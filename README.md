@@ -76,6 +76,8 @@ Les véhicules servent actuellement de décor. L’apparence féminine de Shepar
 
 ## Excel et documentation
 
+- **[27 classeurs supplémentaires — univers étendu](docs/universe/README.md)** : ME2, ME3, Andromeda, Infiltrator, Galaxy, les sept romans, les douze comics et collections demandés, Paragon Lost, le dossier d’extrapolation ME4 et les contenus coupés. Chaque classeur contient 28 onglets, ses sources et sa couverture restante.
+- **[Télécharger les 27 classeurs en ZIP](docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**.
 - **[Classeur de production — 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA.
 - [Guide et décompte du catalogue](docs/CATALOGUE.md).
 - [Catalogue JSON](docs/content-catalog.json), utilisé pour générer le classeur.
