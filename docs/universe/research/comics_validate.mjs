@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {categories} from './comics_catalog_common.mjs';
+import {universeJsonFilename} from '../../../scripts/universe-paths.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const works=['RED','EVO','INV','HOM','FOU','INC','INQ','CON','BLA','HWB','LIB','DIS'];
 const titles=['Redemption','Evolution','Invasion','Homeworlds','Foundation','Incursion','Inquisition','Conviction','Blasto:_Eternity_is_Forever','He_Who_Laughs_Best','Library Edition','Discovery'];
@@ -10,7 +11,8 @@ const report=[];
 const urls=new Set();
 let errors=[];
 for(const id of works){
- const data=JSON.parse(fs.readFileSync(path.join(here,'..','catalogs',`${id}.json`),'utf8'));
+ const catalogPath=path.join(here,'..','catalogs',universeJsonFilename(id));
+ const data=JSON.parse(fs.readFileSync(catalogPath,'utf8'));
  const entryIds=new Set(data.entries.map(e=>e.id));
  const sourceIds=new Set(data.sources.map(s=>s.id));
  const descriptions=new Set(), natureCounts={}, categoryCounts=Object.fromEntries(categories.map(c=>[c,0]));
@@ -29,7 +31,7 @@ for(const id of works){
  }
  if(entryIds.size!==data.entries.length)errors.push(`${id}: duplicate ids`);
  if(data.coverage.length!==26)errors.push(`${id}: incomplete coverage`);
- report.push({id,entries:data.entries.length,sourceRecords:data.sources.length,natureCounts,categoryCounts,factualAnchorWords,bytes:fs.statSync(path.join(here,'..','catalogs',`${id}.json`)).size});
+ report.push({id,entries:data.entries.length,sourceRecords:data.sources.length,natureCounts,categoryCounts,factualAnchorWords,bytes:fs.statSync(catalogPath).size});
 }
 const result={
  date:'2026-10-22',scope:'12 comics/collections; JSON de production uniquement; aucun changement au jeu, aucun XLSX produit par cet auteur.',

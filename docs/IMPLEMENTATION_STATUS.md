@@ -54,7 +54,7 @@ Les rapports ci-dessous concernent les sources 0.2.0. Le [rapport de livraison](
 
 | Contrôle | Résultat et portée | Preuve |
 |---|---|---|
-| Règles Node | 199 contrôles réussis dans 16 fichiers, aucun échec ni test ignoré | [unit-report.json](qa/unit-report.json) |
+| Règles Node | 203 contrôles réussis dans 17 fichiers, aucun échec ni test ignoré | [unit-report.json](qa/unit-report.json) |
 | Campagne complète | 21 victoires, huit étapes, bilan final et quatre choix conservés après reprise | [campaign-report.json](qa/campaign-report.json) |
 | Opérations | 11 conclusions, 43 étapes, 4 victoires annexes et 4 victoires de campagne nécessaires ; reprise de Michel et réduction médicale | [operations-report.json](qa/operations-report.json) |
 | Équipement | 6 contrôles : transactions, sauvegardes auto/manuelles/export/import, quatre onglets à 390 px, véritable victoire et récupération du matériel de Jenkins | [loadout-report.json](qa/loadout-report.json) |
@@ -96,6 +96,8 @@ Les rapports [dossier-and-saves](qa/dossier-and-saves-report.json), [story-and-r
 L’équilibrage de référence avait parcouru 18 campagnes et 378 rencontres avec une politique déterministe : [balance-report.json](qa/balance-report.json). Cette version n’annonce pas une nouvelle matrice complète de difficulté pour les 48 équipements. Le [rapport Windows initial](qa/build-v0.1.0-report.json) concerne le portable 0.1.0 construit sous Linux, sans essai d’exécution sur Windows. Les workflows du dépôt produisent les artefacts de la version poussée ; leur résultat est à consulter dans GitHub Actions.
 
 La configuration Vercel est conservée. Aucun nouveau déploiement Vercel n’est annoncé dans ce complément ; son état antérieur et ses commandes restent documentés dans [DEPLOYMENT.md](DEPLOYMENT.md).
+
+Le premier workflow du commit `3aad710` a réussi la compilation web. Windows a détecté un nom de périphérique réservé lors du checkout : `docs/universe/catalogs/CON.json`. Le catalogue Conviction et son rapport sont renommés `CONVICTION.json`, avec leurs octets et l’ID interne `CON` conservés. Les générateurs et chemins actifs sont adaptés et un test de portabilité couvre cette régression. Le [diagnostic CI](qa/windows-path-fix.json) consigne l’échec initial ; le résultat du workflow suivant reste consultable dans GitHub Actions. Les 27 classeurs n’ont pas été régénérés pour ce changement de chemins.
 
 ## Travail restant
 

@@ -1,6 +1,6 @@
 {
   "version": "0.2.0",
-  "verifiedAt": "2026-10-23T13:07:49.167995+00:00",
+  "verifiedAt": "2026-10-23T13:26:34.857683+00:00",
   "baseCommit": "27daea0b577650589cef46e896eae79fc9ff4f37",
   "passed": true,
   "preserved": {
@@ -12,7 +12,8 @@
     "unchangedAdvancedRecords": 6,
     "universeWorkbooks": 27,
     "universeRecords": 5326,
-    "universeDirectoryUnchangedFromBase": true
+    "universeCatalogueBytesUnchanged": true,
+    "universeWorkbookBytesUnchanged": true
   },
   "added": {
     "operations": 11,
@@ -28,10 +29,10 @@
   },
   "checks": {
     "unit": {
-      "passed": 199,
+      "passed": 203,
       "failed": 0,
       "skipped": 0,
-      "files": 16
+      "files": 17
     },
     "campaign": {
       "victories": 21,
@@ -82,12 +83,18 @@
       "backlog": 6644,
       "missingDependencies": 0,
       "crossCatalogDuplicateIds": []
+    },
+    "windowsPaths": {
+      "checks": 4,
+      "reservedFilesRenamed": 2,
+      "internalIdPreserved": "CON",
+      "report": "docs/qa/windows-path-fix.json"
     }
   },
   "reports": {
     "unit": {
       "path": "docs/qa/unit-report.json",
-      "sha256": "6c7b9a3f3f5f0994908ef12d17687883ae9758a194aa2e3af18119cc695a457c"
+      "sha256": "41dd0226a0b8f5a91907e9ad36cbd6f531517c74b72cff3677406a86f4792ff1"
     },
     "campaign": {
       "path": "docs/qa/campaign-report.json",
@@ -116,6 +123,10 @@
     "production-v02": {
       "path": "docs/qa/production-v02-report.json",
       "sha256": "efedb274fffb15112ed30a925ae84f317dead05ef5aa8060354fd4aa2470e4f6"
+    },
+    "windowsPathFix": {
+      "path": "docs/qa/windows-path-fix.json",
+      "sha256": "bb607bcef994506e0f4bc7e49195c7657336df809fec1255743f3a8c6881468e"
     }
   },
   "sources": {
@@ -170,5 +181,16 @@
     "No native Excel/LibreOffice launch; Artifact Tool and XLSX XML verified.",
     "No Windows or Electron executable launch in this validation.",
     "No new Vercel deployment."
-  ]
+  ],
+  "featureCommit": "3aad710557b8bc413e6d7ee79cda128cf65165c9",
+  "pathFixSources": {
+    "scripts/universe-paths.mjs": "c7267c7b99f560880b73668afd844481cead739ac0b058dd76702473393b5473",
+    "scripts/build-universe-workbooks.mjs": "c8e7277e5bf18827531b05a9955db6114f94ace4c0f0839458988c32412633df",
+    "scripts/package-universe-workbooks.py": "b5d4ad20b68a4422ab9cde96f8e3bdd49dec09402c6a1c11b9d668cfccf0982c",
+    "docs/universe/manifest.json": "8e01692ca5b4570608f0ccefc4d0e8bd412ff8610038ea927170bbb0f1ae2059",
+    "docs/universe/research/comics_write_catalogs.mjs": "1cd1792b0ed33c11ed38805fba1770f0092b19fd6d5d5a8007e6eef7461ea62e",
+    "docs/universe/research/comics_validate.mjs": "4be257475b72ecfeab7c784fd1fe704a86b97f74294c3a38b894503188f5abe3",
+    "docs/universe/research/comics_catalog_library.mjs": "0df5b001a719a417c9856694c2563baf0c228960fffce86c7263361b2a70a272",
+    "tests/portable-paths.test.js": "4674dc0554f4cf4c8952e7c6b0f81bdd5c13db5e1f1caf68b6619176293de750"
+  }
 }

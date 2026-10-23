@@ -104,7 +104,7 @@ npm test
 npm run build
 ```
 
-Les 199 tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
+Les 203 tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium

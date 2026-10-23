@@ -10,6 +10,12 @@ Ces classeurs prolongent le catalogue ME1 existant pour préparer des adaptation
 
 [Classeur ME1 existant](../Mass_Effect_Relay_Chronicles_Production.xlsx) · [Manifeste et empreintes](manifest.json) · [Données JSON](catalogs/) · [Rapports de vérification](qa/)
 
+### Chemins compatibles avec Windows
+
+L’identifiant documentaire de Conviction reste **`CON`**. Ses fichiers sont désormais [catalogs/CONVICTION.json](catalogs/CONVICTION.json) et [qa/CONVICTION.json](qa/CONVICTION.json), car [Windows réserve le nom `CON`, même avec une extension](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file). Les champs `catalogPath` et `qaPath` du manifeste donnent les chemins actuels.
+
+Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La mention conservée dans le catalogue Library Edition et dans son classeur est un texte de conception, sans lien actif. Les 27 catalogues et les 27 fichiers Excel sont conservés octet pour octet ; les générateurs de nouvelles fiches utilisent le nouveau chemin.
+
 ## Jeux
 
 | Classeur | Fiches | Domaines renseignés | Références de sources |

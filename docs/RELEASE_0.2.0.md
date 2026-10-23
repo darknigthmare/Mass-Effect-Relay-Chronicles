@@ -32,6 +32,12 @@ Le format de sauvegarde reste en version 1. Les parties antérieures reçoivent 
 
 Une rencontre annexe interrompue doit être rejouée depuis son début. Le choix de combattre ne donne ni victoire ni récompense. Les récompenses d’opérations sont attribuées une seule fois, à leur conclusion.
 
+### Compatibilité du dépôt avec Windows
+
+Le premier workflow 0.2.0 a compilé et publié l’artefact web, mais Windows refusait le checkout d’un catalogue antérieur nommé `CON.json`. Le catalogue et son rapport utilisent désormais `CONVICTION.json`, avec l’identifiant interne `CON` conservé. Les générateurs et références actives suivent ce nom ; les données des 27 catalogues et les fichiers Excel restent identiques. Les anciennes références textuelles sont expliquées dans [le guide de l’univers](universe/README.md).
+
+Un contrôle de portabilité des chemins empêche la réintroduction de noms réservés. Le diagnostic et la portée du correctif sont conservés dans [windows-path-fix.json](qa/windows-path-fix.json). Le résultat des compilations ultérieures se consulte dans GitHub Actions.
+
 ## Catalogue Excel
 
 Le [classeur principal](Mass_Effect_Relay_Chronicles_Production.xlsx) passe à **1 321 fiches dans 28 onglets**. Il ajoute 118 fiches et en enrichit 32, sans supprimer les 1 203 identifiants existants ni modifier les 57 fiches futures ME2/ME3 ou les six enregistrements Intégré/Validé.
@@ -40,7 +46,7 @@ Le contrôle de l’export compare 22 457 cellules aux données JSON et vérifie
 
 ## Validation et lancement
 
-Les essais couvrent **199 contrôles Node**, la campagne complète de 21 combats, les onze nouvelles opérations, les deux apparences de Shepard, les transactions et sauvegardes d’équipement, le rendu des poses et le chargement du build. Les méthodes, limites et rapports sont dans [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) et [qa/v0.2.0-report.json](qa/v0.2.0-report.json).
+Les essais couvrent **203 contrôles Node**, la campagne complète de 21 combats, les onze nouvelles opérations, les deux apparences de Shepard, les transactions et sauvegardes d’équipement, le rendu des poses et le chargement du build. Les méthodes, limites et rapports sont dans [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) et [qa/v0.2.0-report.json](qa/v0.2.0-report.json).
 
 ```bash
 npm ci

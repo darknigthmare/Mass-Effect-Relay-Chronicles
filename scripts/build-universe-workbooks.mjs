@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
+import {universeFileStem,universeJsonFilename} from './universe-paths.mjs';
 
 // Run from an OS-temporary directory with the Codex primary runtime.
 const modules=process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
@@ -87,11 +88,11 @@ for(const filename of filenames){
  const inspected=await wb.inspect({kind:'table',range:'Dashboard!A37:M37',include:'values,formulas',tableMaxRows:1,tableMaxCols:13,maxChars:2500});
  const report={id:b.id,title:b.title,records:total,sheets:28,sourceCount:b.sources.length,formulaScan:scan.ndjson,statusMutation:{before,after,restored:prior},dashboard:inspected.ndjson,counts:Object.fromEntries(categories.map(c=>[c.id,b.entries.filter(e=>e.category===c.id).length])),rendered:[]};
  const file=await SpreadsheetFile.exportXlsx(wb);await file.save(path.join(outputDir,b.filename));await fs.rm(path.join(outputDir,b.filename+'.inspect.ndjson'),{force:true});
- if(!noRender){const dest=path.join(previewDir,b.id);await fs.mkdir(dest,{recursive:true});
+ if(!noRender){const dest=path.join(previewDir,universeFileStem(b.id));await fs.mkdir(dest,{recursive:true});
   for(const name of ['Dashboard',...categories.map(c=>c.sheetName),'Guide']){const range=name==='Dashboard'?'A1:M38':name==='Guide'?'A1:B13':'A1:H7';const img=await wb.render({sheetName:name,range,scale:1.15,format:'png'});await fs.writeFile(path.join(dest,name+'.png'),new Uint8Array(await img.arrayBuffer()));report.rendered.push(name);}
   const chosen=stats.find(s=>s.c.id==='main_quests'&&s.records.length)||sample;const detail=await wb.render({sheetName:chosen.c.sheetName,range:'I6:Q8',scale:1.15,format:'png'});await fs.writeFile(path.join(dest,'Detail.png'),new Uint8Array(await detail.arrayBuffer()));
   const coverage=await wb.render({sheetName:'Guide',range:`A${coverageStart}:C${Math.min(coverageStart+3,r+b.coverage.length-1)}`,scale:1.15,format:'png'});await fs.writeFile(path.join(dest,'Couverture.png'),new Uint8Array(await coverage.arrayBuffer()));
   const refs=await wb.render({sheetName:sample.c.sheetName,range:'Q6:S8',scale:1.15,format:'png'});await fs.writeFile(path.join(dest,'Sources_notes.png'),new Uint8Array(await refs.arrayBuffer()));
  }
- await fs.writeFile(path.join(qaDir,b.id+'.json'),JSON.stringify(report,null,2)+'\n');console.log(`Exported ${b.id}: ${total} records, ${report.rendered.length} sheet previews`);
+ await fs.writeFile(path.join(qaDir,universeJsonFilename(b.id)),JSON.stringify(report,null,2)+'\n');console.log(`Exported ${b.id}: ${total} records, ${report.rendered.length} sheet previews`);
 }

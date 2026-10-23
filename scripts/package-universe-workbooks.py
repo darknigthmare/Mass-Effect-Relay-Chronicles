@@ -34,7 +34,14 @@ CATEGORIES = [
 
 
 def main():
-    books = {p.stem: json.loads(p.read_text()) for p in (BASE / 'catalogs').glob('*.json')}
+    books = {}
+    catalog_paths = {}
+    for p in sorted((BASE / 'catalogs').glob('*.json')):
+        book = json.loads(p.read_text())
+        bid = book['id']
+        assert bid not in books, f'Duplicate work ID: {bid}'
+        books[bid] = book
+        catalog_paths[bid] = p
     assert set(books) == set(EXPECTED), f'Catalogue set differs: {set(books) ^ set(EXPECTED)}'
     expected_files = {b['filename'] for b in books.values()}
     actual_files = {p.name for p in OUT.glob('*.xlsx')}
@@ -74,7 +81,9 @@ def main():
                 'categoryCounts': dict(Counter(e['category'] for e in b['entries'])),
                 'natureCounts': dict(natures), 'sourceReferences': len(b['sources']),
                 'sha256': digest, 'bytes': workbook.stat().st_size,
-                'catalogSha256': sha256((BASE / 'catalogs' / f'{bid}.json').read_bytes()).hexdigest(),
+                'catalogPath': catalog_paths[bid].relative_to(ROOT).as_posix(),
+                'qaPath': (BASE / 'qa' / catalog_paths[bid].name).relative_to(ROOT).as_posix(),
+                'catalogSha256': sha256(catalog_paths[bid].read_bytes()).hexdigest(),
                 'scope': b['scope'], 'limits': b['canonNote'],
             })
     total = sum(r['records'] for r in records)
@@ -100,6 +109,11 @@ def main():
         if not zip_mode:
             text.extend(['**[Télécharger les 27 classeurs en une archive](outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**', '',
                          '[Classeur ME1 existant](../Mass_Effect_Relay_Chronicles_Production.xlsx) · [Manifeste et empreintes](manifest.json) · [Données JSON](catalogs/) · [Rapports de vérification](qa/)', ''])
+            text.extend([
+                '### Chemins compatibles avec Windows', '',
+                'L’identifiant documentaire de Conviction reste **`CON`**. Ses fichiers sont désormais [catalogs/CONVICTION.json](catalogs/CONVICTION.json) et [qa/CONVICTION.json](qa/CONVICTION.json), car [Windows réserve le nom `CON`, même avec une extension](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file). Les champs `catalogPath` et `qaPath` du manifeste donnent les chemins actuels.', '',
+                'Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La mention conservée dans le catalogue Library Edition et dans son classeur est un texte de conception, sans lien actif. Les 27 catalogues et les 27 fichiers Excel sont conservés octet pour octet ; les générateurs de nouvelles fiches utilisent le nouveau chemin.', '',
+            ])
         for group, ids in GROUPS:
             text.extend([f'## {group}', '', '| Classeur | Fiches | Domaines renseignés | Références de sources |', '|---|---:|---:|---:|'])
             for bid in ids:

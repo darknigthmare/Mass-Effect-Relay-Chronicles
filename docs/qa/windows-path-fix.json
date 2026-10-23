@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "observedAt": "2026-10-23T13:22:51.119954+00:00",
+  "featureCommit": "3aad710557b8bc413e6d7ee79cda128cf65165c9",
+  "run": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/39960029096",
+  "web": {
+    "status": "success",
+    "steps": [
+      "checkout",
+      "npm ci",
+      "npm test",
+      "npm run build",
+      "upload artifact"
+    ],
+    "artifact": "Relay-Chronicles-Web",
+    "artifactId": 12503548339
+  },
+  "windows": {
+    "status": "checkout-failed-before-build",
+    "jobId": 120435406269,
+    "step": "actions/checkout@v4",
+    "error": "error: invalid path 'docs/universe/catalogs/CON.json'",
+    "cause": "CON is a reserved Windows device name even with a filename extension.",
+    "preExistingAtBase": "27daea0b577650589cef46e896eae79fc9ff4f37"
+  },
+  "reference": "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file",
+  "fix": {
+    "catalogue": "docs/universe/catalogs/CONVICTION.json",
+    "qa": "docs/universe/qa/CONVICTION.json",
+    "internalCatalogueId": "CON",
+    "preserveCataloguesAndWorkbooksBytes": true,
+    "note": "Active references and generators use the portable names. Historical textual references and the 2026-10-22 archive are documented in docs/universe/README.md."
+  },
+  "validation": "The follow-up CI run validates the checkout and build; its result is available in GitHub Actions. This report records the diagnosed failure and fix scope, not a claim of Windows runtime execution.",
+  "preservationCheck": {
+    "catalogsByteIdentical": 27,
+    "xlsxByteIdentical": 27,
+    "qaConvictionByteIdentical": true,
+    "existingZipByteIdentical": true,
+    "packageGeneratorTemporaryRun": "PASS",
+    "generatedManifestMatchesActive": true,
+    "generatedReadmeMatchesActive": true,
+    "comicsGeneratorTemporaryRun": "PASS",
+    "comicValidationTemporaryRun": "PASS",
+    "newTestsPassed": 4
+  }
+}

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {build,categories} from './comics_catalog_common.mjs';
+import {universeJsonFilename} from '../../../scripts/universe-paths.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const modules=['comics_catalog_arcs.mjs','comics_catalog_homeworlds.mjs','comics_catalog_foundation.mjs','comics_catalog_shorts.mjs','comics_catalog_discovery.mjs','comics_catalog_library.mjs'];
 const wanted=new Set(process.argv.slice(2));
@@ -22,7 +23,7 @@ for(const filename of modules) {
    for(const s of r.sourceIds) if(!sids.has(s)) throw new Error(`${r.id}: source absente ${s}`);
    if(r.status!=='Défini') throw new Error(`${r.id}: statut de réalisation interdit`);
   }
-  fs.writeFileSync(path.join(here,'..','catalogs',`${c.id}.json`),JSON.stringify(result,null,2)+'\n');
+  fs.writeFileSync(path.join(here,'..','catalogs',universeJsonFilename(c.id)),JSON.stringify(result,null,2)+'\n');
   total+=result.entries.length;
   console.log(`${c.id}: ${result.entries.length} fiches; ${result.sources.length} sources; ${new Set(result.entries.map(x=>x.category)).size}/26 catégories avec fiches; 26 domaines couverts.`);
  }
