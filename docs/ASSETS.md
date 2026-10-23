@@ -62,6 +62,8 @@ Les deux autres images sont livrées comme matériel de production, sans fonctio
 
 ## Intégration et limites
 
+Le complément équipement conserve les dix PNG et les animations de 0.2.0. Il ajoute des tracés distincts pour les quatre familles d’armes et quatre outils fonctionnels, sans nouveau modèle ou atlas de matériel. Changer d’arme ou d’armure ne change pas le costume ni l’arme dessinée sur le sprite ; ces apparences restent à produire et à comparer. Les tracés ne certifient pas la géométrie ou les statistiques de chaque modèle.
+
 Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne remplacent pas la géométrie des bâtiments, sols, coursives, volumes et routes. Les silhouettes conservent un seuil alpha de 0,2 pour limiter les franges de transparence. La taille et les proportions du plan dépendent du type d’atlas, notamment pour les boss.
 
 Shepard dispose d’une animation par images ; les compagnons et les ennemis utilisent encore leurs poses de base avec transformations procédurales. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.

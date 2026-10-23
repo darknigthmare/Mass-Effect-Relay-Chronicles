@@ -65,7 +65,7 @@ En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode *
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.
 - **8 étapes de campagne**, **21 rencontres de campagne**, **63 points de mission**, **9 emplacements de conversation conditionnels** au Normandy et **4 contacts des assignations historiques** à la Citadelle, complétés par les marqueurs des nouvelles opérations.
 - Shepard et six compagnons permanents possibles, avec Jenkins au départ ; **6 classes** pour Shepard.
-- Recrutement, choix de deux compagnons, expérience, niveaux, crédits et calibrations. Inventaire partagé de 150 objets, 48 références achetables, cinq emplacements par personnage et modules avec effets en combat.
+- Recrutement, choix de deux compagnons, expérience, niveaux, crédits et calibrations. Inventaire partagé de 150 objets, 52 références achetables, neuf emplacements par personnage, formations d’armure explicites et effets d’équipement en combat.
 - Tirs à chauffe, couverture, pouvoirs biotiques, technologie, attaques organiques, états temporaires et soin.
 - Décisions enregistrées pour Féros, la reine rachni, Virmire et le Conseil.
 - Journal, 16 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
@@ -80,7 +80,7 @@ Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la p
 
 À la Citadelle, Garrus et Wrex peuvent être recrutés immédiatement ou lors d’un retour après le Conseil. Les preuves de Tali suffisent à obtenir l’audience. Le recrutement ne remplace pas automatiquement le commando sélectionné. Au Normandy, les compagnons disponibles sont stationnés à leur emplacement de conversation ; les mêmes échanges sont accessibles depuis le menu Commando.
 
-Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des nouvelles opérations et des 48 équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille les quêtes, leurs délais, les règles de matériel et la migration. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
+Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des opérations et des équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille cette livraison ; le [complément équipement](docs/research/loadout-extension-sources.md) conserve ses 48 objets et ajoute quatre outils, les seconds ports de mods et la migration des anciennes parties. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
 
 ## Excel et documentation
 
@@ -104,7 +104,7 @@ npm test
 npm run build
 ```
 
-Les 203 tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
+Les tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium
@@ -119,6 +119,7 @@ npm run test:story
 npm run test:assignments
 npm run test:operations
 npm run test:loadout
+npm run test:loadout:extensions
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.

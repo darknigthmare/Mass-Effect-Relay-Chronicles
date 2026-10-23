@@ -31,6 +31,8 @@ export const ACTIONS = Object.freeze({
 const BASE_ACTIONS = ['shoot', 'burst', 'cover', 'reposition'];
 const PRIMARY_ACTIONS = new Set(['shoot', 'burst', 'strike', 'acid', 'cover', 'reposition']);
 const WEAPON_ACTIONS = new Set(['shoot', 'burst', 'signature']);
+const BIOTIC_ACTIONS = new Set(['throw', 'lift', 'warp', 'singularity', 'barrier', 'stasis']);
+const TECH_ACTIONS = new Set(['overload', 'sabotage', 'hack']);
 const DISABLING_STATUSES = ['stasis', 'lift', 'singularity', 'stagger'];
 const DIFFICULTY = {
   story: { enemyDamage: 0.65, enemySpeed: 0.8, focusChance: 0.2 },
@@ -50,6 +52,27 @@ const synthetic = actor => actor.synthetic === true || actor.type === 'synthetic
 const armed = actor => !['strike', 'acid'].includes(actor.primaryAction);
 const disabled = actor => DISABLING_STATUSES.some(key => actor.statuses[key] > EPSILON);
 const ready = actor => living(actor) && !disabled(actor) && actor.atb >= 100 - EPSILON;
+
+// Tools strengthen trained abilities. They do not change weapon damage or grant
+// a power, and an amplifier never strengthens technology (or the reverse).
+function powerMultiplier(actor, actionId) {
+  if (BIOTIC_ACTIONS.has(actionId)) return actor?.bioticMultiplier ?? 1;
+  if (TECH_ACTIONS.has(actionId)) return actor?.techMultiplier ?? 1;
+  return 1;
+}
+
+function powerDescription(actor, actionId) {
+  const multiplier = powerMultiplier(actor, actionId);
+  const duration = seconds => Number((seconds * multiplier).toFixed(2)).toLocaleString('fr-FR');
+  if (multiplier !== 1) {
+    if (actionId === 'sabotage') return `Neutralise les armes adverses pendant ${duration(6)} secondes.`;
+    if (actionId === 'lift') return `Soulève et neutralise la cible pendant ${duration(4)} secondes.`;
+    if (actionId === 'warp') return `Inflige des dégâts et affaiblit l’armure pendant ${duration(6)} secondes.`;
+    if (actionId === 'singularity') return `Désorganise et soulève les adversaires proches pendant ${duration(3)} secondes.`;
+    if (actionId === 'stasis') return `Immobilise ${duration(6)} secondes. La cible est aussi protégée de tous les dégâts.`;
+  }
+  return ACTIONS[actionId].description;
+}
 
 function makeRandom(seed) {
   let state = (finite(seed, 1) >>> 0) || 1;
@@ -105,6 +128,8 @@ function normalizeActor(input, team, index) {
     organicDamageBonus: clamp(finite(input.organicDamageBonus, 0), 0, 1),
     syntheticDamageBonus: clamp(finite(input.syntheticDamageBonus, 0), 0, 1),
     shieldBypass: clamp(finite(input.shieldBypass, 0), 0, .75),
+    bioticMultiplier: clamp(finite(input.bioticMultiplier, 1), .05, 10),
+    techMultiplier: clamp(finite(input.techMultiplier, 1), .05, 10),
     primaryAction: ['strike', 'acid'].includes(input.primaryAction) ? input.primaryAction : 'shoot',
     lastDamagedAt: -Infinity,
     _warpSource: null,
@@ -208,7 +233,7 @@ export function getActions(battle, actorId) {
   return actionIds(actor).map(id => {
     const reason = unavailableReason(battle, actor, id);
     const heatCost = WEAPON_ACTIONS.has(id) ? ACTIONS[id].heatCost * actor.weaponHeatMultiplier : undefined;
-    const description = heatCost === undefined ? ACTIONS[id].description
+    const description = heatCost === undefined ? powerDescription(actor, id)
       : ACTIONS[id].description.replace(/(?:24|48|42) points de chaleur/, `${Math.round(heatCost * 10) / 10} points de chaleur`);
     return { id, ...ACTIONS[id], ...(heatCost === undefined ? {} : { heatCost }), description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
@@ -359,36 +384,36 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       emit(battle, { type: 'revive', actorId, targetId: ally.id, amount: ally.hp, message: `${ally.name} reprend le combat.` });
     }
   } else if (actionId === 'overload') {
-    applyDamage(battle, actor, target, 34 + actor.attack * 0.8, { actionId, ignoreCover: true, ignoreArmor: true, shieldOnly: !synthetic(target) });
+    applyDamage(battle, actor, target, (34 + actor.attack * 0.8) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true, ignoreArmor: true, shieldOnly: !synthetic(target) });
   } else if (actionId === 'sabotage') {
-    if (applyControl(battle, actor, target, 'sabotage', 6)) addHeat(battle, target, 35);
+    if (applyControl(battle, actor, target, 'sabotage', 6 * powerMultiplier(actor, actionId))) addHeat(battle, target, 35 * powerMultiplier(actor, actionId));
   } else if (actionId === 'lift') {
-    applyControl(battle, actor, target, 'lift', 4);
+    applyControl(battle, actor, target, 'lift', 4 * powerMultiplier(actor, actionId));
   } else if (actionId === 'throw') {
     const airborne = target.statuses.lift > EPSILON || target.statuses.singularity > EPSILON;
-    applyDamage(battle, actor, target, (14 + actor.attack * 0.8) * (airborne ? 1.4 : 1), { actionId, ignoreCover: true });
-    if (applyControl(battle, actor, target, 'stagger', 1.2)) {
+    applyDamage(battle, actor, target, (14 + actor.attack * 0.8) * (airborne ? 1.4 : 1) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true });
+    if (applyControl(battle, actor, target, 'stagger', 1.2 * powerMultiplier(actor, actionId))) {
       delete target.statuses.lift;
       delete target.statuses.singularity;
     }
   } else if (actionId === 'warp') {
-    applyDamage(battle, actor, target, 12 + actor.attack * 0.7, { actionId, ignoreCover: true });
+    applyDamage(battle, actor, target, (12 + actor.attack * 0.7) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true });
     if (living(target) && !(target.statuses.stasis > EPSILON)) {
-      target.statuses.warp = 6;
+      target.statuses.warp = 6 * powerMultiplier(actor, actionId);
       target._warpSource = actor.id;
-      emit(battle, { type: 'status', actorId, targetId: target.id, status: 'warp', duration: 6 });
+      emit(battle, { type: 'status', actorId, targetId: target.id, status: 'warp', duration: target.statuses.warp });
     }
   } else if (actionId === 'singularity') {
-    for (const enemy of targets) applyControl(battle, actor, enemy, 'singularity', 3);
+    for (const enemy of targets) applyControl(battle, actor, enemy, 'singularity', 3 * powerMultiplier(actor, actionId));
   } else if (actionId === 'barrier') {
-    const amount = Math.min(actor.maxShield - actor.shield, 26 + actor.maxShield * 0.55);
+    const amount = Math.min(actor.maxShield - actor.shield, (26 + actor.maxShield * 0.55) * powerMultiplier(actor, actionId));
     actor.shield += amount;
-    actor.statuses.barrier = 8;
+    actor.statuses.barrier = 8 * powerMultiplier(actor, actionId);
     emit(battle, { type: 'shield', actorId, targetId: actorId, amount });
   } else if (actionId === 'stasis') {
-    applyControl(battle, actor, target, 'stasis', 6);
+    applyControl(battle, actor, target, 'stasis', 6 * powerMultiplier(actor, actionId));
   } else if (actionId === 'hack') {
-    applyControl(battle, actor, target, 'hacked', 8);
+    applyControl(battle, actor, target, 'hacked', 8 * powerMultiplier(actor, actionId));
   }
   updateWinner(battle);
   battle.waiting = !battle.winner && battle.mode === 'wait' && battle.actors.some(candidate => candidate.team === 'party' && ready(candidate));
@@ -402,7 +427,7 @@ function tickActor(battle, actor, dt) {
   const acidTime = Math.max(0, actor.statuses.corrosion || 0);
   if (warpTime > EPSILON && stasisTime <= EPSILON) {
     const source = battle.actors.find(candidate => candidate.id === actor._warpSource);
-    applyDamage(battle, source, actor, 4 * Math.min(dt, warpTime), { actionId: 'warp', ignoreCover: true, ignoreArmor: true, silent: true });
+    applyDamage(battle, source, actor, 4 * Math.min(dt, warpTime) * powerMultiplier(source, 'warp'), { actionId: 'warp', ignoreCover: true, ignoreArmor: true, silent: true });
   }
   if (living(actor) && acidTime > EPSILON && stasisTime <= EPSILON) {
     const source = battle.actors.find(candidate => candidate.id === actor._acidSource);

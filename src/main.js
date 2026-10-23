@@ -3,7 +3,7 @@ import './loadout-ui.css';
 import './operations-ui.css';
 import './local-map.css';
 import { renderLoadoutScreen } from './loadout-ui.js';
-import { equipItem, unequipItem, buyItem, sellItem, equipmentFor } from './loadout.js';
+import { equipItem, unequipItem, buyItem, sellItem, equipmentFor, trainArmor } from './loadout.js';
 import { listOperations, operationPOIs, getOperationInteraction, advanceOperation, getOperationEncounter, finishOperationBattle, operationEffects } from './operations.js';
 import { renderOperationsJournal } from './operations-ui.js';
 import { renderLocalMap } from './local-map.js';
@@ -36,7 +36,7 @@ const commanderRank = () => state?.appearance==='female'?'Commandante':'Commanda
 const newCommanderForm = () => ({name:'Shepard',classId:'soldier',difficulty:'normal',mode:'wait',appearance:'male',origin:'spacer',psychologicalProfile:'sole-survivor'});
 let hudStamp = '', touchKey = null;
 let state = null, battle = null, running = false, battlePOI = null, lastBattleEvent = 0, combatStamp = '', lastFrame = performance.now(), uiAccumulator = 0, saveAccumulator = 0;
-const ui = { screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
+const ui = { screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
 $('#app').innerHTML = `<div id="world"></div><div class="vignette"></div><div id="hud" class="hidden"></div><div id="battle-ui"></div><div id="overlay"></div><div id="toasts" aria-live="polite"></div><div id="transition" class="transition-cover"><span class="eyebrow">Normandy · liaison opérationnelle</span><h2></h2><div class="spinner"></div></div><div class="scanlines"></div><input type="file" id="save-import" accept="application/json,.json" hidden>`;
 const audio = new AudioDirector();
 let world;
@@ -437,9 +437,10 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'eq-tab':if(['loadout','inventory','shop','calibrations'].includes(id)){ui.equipmentTab=id;renderScreen();}break;
     case 'eq-actor':ui.equipmentActor=id;renderScreen();break;
     case 'eq-kind':ui.equipmentKind=id;renderScreen();break;
+    case 'eq-train':{if(battle||ui.busy)break;const result=trainArmor(state,ui.equipmentActor,button.dataset.weight);toast(result.ok?'Formation d’armure acquise.':result.reason,!result.ok);if(result.ok)autosave();renderScreen();renderHUD();break;}
     case 'eq-equip':case 'eq-unequip':case 'eq-buy':case 'eq-sell':{
       if(battle)break;
-      const result=action==='eq-equip'?equipItem(state,ui.equipmentActor,id):action==='eq-unequip'?unequipItem(state,ui.equipmentActor,id):action==='eq-buy'?buyItem(state,id):sellItem(state,id);
+      const result=action==='eq-equip'?equipItem(state,ui.equipmentActor,id,button.dataset.slot||undefined):action==='eq-unequip'?unequipItem(state,ui.equipmentActor,id):action==='eq-buy'?buyItem(state,id):sellItem(state,id);
       toast(result.ok?'Dotation mise à jour.':result.reason,!result.ok);if(result.ok)autosave();renderScreen();break;
     }
     case 'operation-filter':ui.operationFilter=id;renderScreen();break;
@@ -476,7 +477,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
 });
 document.addEventListener('input',e=>{if(e.target.id==='codex-search'){ui.codexQuery=e.target.value;$('#codex-results').innerHTML=codexContents();}if(e.target.dataset.manualName)ui.manualNames[e.target.dataset.manualName]=e.target.value;if(e.target.id==='commander-name')ui.form.name=e.target.value;if(e.target.id==='volume-setting'){if(!state)state=newGame();state.settings.volume=Number(e.target.value);applySettings();}});
 document.addEventListener('change',e=>{
-  const {id,value,checked}=e.target;if(id==='new-difficulty')ui.form.difficulty=value;if(id==='new-mode')ui.form.mode=value;
+  const {id,value,checked}=e.target;if(e.target.matches('[data-eq-slot-selector]')){ui.equipmentSlots[`${ui.equipmentActor}:${e.target.dataset.item}`]=value;renderScreen();return;}if(id==='new-difficulty')ui.form.difficulty=value;if(id==='new-mode')ui.form.mode=value;
   const commanderFields={'new-appearance':['appearance',COMMANDER_APPEARANCES],'new-origin':['origin',ORIGINS],'new-profile':['psychologicalProfile',PSYCHOLOGICAL_PROFILES]};
   if(commanderFields[id]){const [field,choices]=commanderFields[id];if(Object.hasOwn(choices,value)){ui.form[field]=value;const description=document.getElementById(`${id}-description`);if(description)description.textContent=choices[value].description;if(id==='new-appearance'){const portrait=$('#commander-preview');portrait.style.cssText=value==='female'?'background-image:none':portraitStyle('shepard',value);portrait.innerHTML=commanderArt(value);portrait.setAttribute('aria-label',choices[value].name);}}}
 

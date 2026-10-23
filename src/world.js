@@ -8,6 +8,14 @@ const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', '
 const BOSS_KEYS = ['saren', 'benezia', 'thorian', 'saren-final'];
 const NPC_KEYS = ['femshep', 'anderson', 'joker', 'chakwas', 'nihlus', 'udina', 'kirrahe', 'emily'];
 const CITADEL_RECRUITS = { 'citadel:encounter-1': 'garrus', 'citadel:encounter-2': 'tali', 'citadel:boss': 'wrex' };
+// Abstract ATB readability cues; these do not replace the weapons drawn in the
+// character atlases or reproduce original firing animations, spread or range.
+const WEAPON_TRACE_STYLES = {
+  pistol: { count: 1, burstExtra: 1, radius: .035, duration: .13, spread: .06, color: 0xffdfaf },
+  assault: { count: 3, burstExtra: 2, radius: .024, duration: .11, spread: .13, color: 0xffc376 },
+  shotgun: { count: 5, burstExtra: 2, radius: .024, duration: .12, spread: .7, color: 0xffb577 },
+  sniper: { count: 1, burstExtra: 0, radius: .012, duration: .22, spread: 0, color: 0xe2f3ff },
+};
 const ASSET_BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
 const COLORS = { operation: 0xc09be9, dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
 const TAU = Math.PI * 2;
@@ -880,10 +888,41 @@ export class WorldView {
       const biotic = /biotic|warp|lift|throw|singularity|stasis/.test(action), tech = /tech|overload|sabotage|hack/.test(action);
       const color = action === 'acid' ? 0xb6d16d : biotic ? 0xa9a2ff : tech ? 0x7ee5ed : 0xffcf96;
       if (action === 'strike') { source.group.position.add(to.clone().sub(from).normalize().multiplyScalar(.8)); this._impact(to, 0xf3b391, 1.3); return; }
+      if (['shoot', 'burst', 'signature'].includes(action) && this._weaponTraces(source.state, from, to, action)) return;
       const line = new THREE.Mesh(new THREE.CylinderGeometry(biotic ? .13 : .045, biotic ? .13 : .045, from.distanceTo(to), 8), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .9, depthWrite: false }));
       line.position.copy(from).add(to).multiplyScalar(.5); line.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), to.clone().sub(from).normalize());
       this.particles.add(line); this.effects.push({ object: line, time: .18, max: .18, kind: 'beam' }); this._impact(to, color, biotic ? 1.8 : 1);
     } else if (target && ['damage', 'blocked', 'status'].includes(type)) this._impact(target.group.position.clone().add(new THREE.Vector3(0, 1.2, 0)), type === 'blocked' ? 0xb0a2e4 : 0xf5b282);
+  }
+
+  _weaponTraces(state, from, to, action) {
+    const weaponType = state?.weaponType;
+    if (typeof weaponType !== 'string' || !Object.hasOwn(WEAPON_TRACE_STYLES, weaponType)) return false;
+    const style = WEAPON_TRACE_STYLES[weaponType], burst = action === 'burst', signature = action === 'signature';
+    const count = style.count + (burst ? style.burstExtra : 0);
+    const direction = to.clone().sub(from).normalize();
+    const side = new THREE.Vector3(-direction.z, 0, direction.x);
+    if (side.lengthSq() < .000001) side.set(1, 0, 0); else side.normalize();
+    const up = new THREE.Vector3().crossVectors(direction, side).normalize();
+    for (let i = 0; i < count; i++) {
+      const offset = count === 1 ? 0 : (i / (count - 1) * 2 - 1) * style.spread;
+      const start = from.clone(), end = to.clone();
+      if (weaponType === 'shotgun') {
+        end.addScaledVector(side, offset).addScaledVector(up, Math.abs(offset) * .3);
+      } else if (count > 1) {
+        start.addScaledVector(side, offset); end.addScaledVector(side, offset);
+      }
+      const radius = style.radius * (signature ? 1.25 : 1);
+      const duration = style.duration * (signature ? 1.3 : burst ? 1.15 : 1) + i * .012;
+      const line = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, start.distanceTo(end), 6), new THREE.MeshBasicMaterial({ color: style.color, transparent: true, opacity: .9, depthWrite: false }));
+      line.position.copy(start).add(end).multiplyScalar(.5);
+      line.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), end.clone().sub(start).normalize());
+      line.userData.weaponType = weaponType; line.userData.actionId = action;
+      if (typeof state.weaponName === 'string') line.userData.weaponName = state.weaponName;
+      this.particles.add(line); this.effects.push({ object: line, time: duration, max: duration, kind: 'weapon-trace' });
+    }
+    this._impact(to, style.color, signature ? 1.25 : 1);
+    return true;
   }
 
   _impact(position, color, size = 1) {

@@ -1,0 +1,1215 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-23T21:27:53.062Z",
+  "baseCommit": "c614a452b1cdd2712d34ad2344471c01d2c8d209",
+  "scope": "Extension of the current v0.2.0 architecture; sprites and ATB retained. Functional checks do not certify full canonical content, artwork or numeric statistics.",
+  "coverage": {
+    "gearItems": 52,
+    "preservedItems": 48,
+    "addedGenericTools": 4,
+    "weapons": 20,
+    "armors": 16,
+    "mods": 12,
+    "slotsPerActor": 9,
+    "actorProfiles": 8,
+    "shepardClasses": 6
+  },
+  "preservation": {
+    "historical48ItemsByteEquivalent": true,
+    "unchangedSourceFiles": [
+      "src/state.js",
+      "src/operations.js",
+      "src/operation-data.js",
+      "src/operations-ui.js",
+      "src/operations-ui.css",
+      "src/local-map.js",
+      "src/local-map.css",
+      "src/game-data.js",
+      "public/assets/manifest.json",
+      "public/assets/shepard-female-animation.json",
+      "public/assets/shepard-female-walk-atlas.png",
+      "public/assets/shepard-female-combat-atlas.png"
+    ],
+    "all1321CatalogIdsPreserved": true,
+    "future57RowsUnchanged": true,
+    "advanced6StatusesPreserved": true
+  },
+  "unit": {
+    "command": "npm test",
+    "passed": 236,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 2801.738837
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "modules": 31,
+    "node": "v24.19.0",
+    "output": "dist",
+    "qaHooksExcluded": true,
+    "bundles": [
+      {
+        "path": "dist/assets/index-BmNy4bZ3.js",
+        "bytes": 287535,
+        "sha256": "4f5ebb62fc3043148e694c8ad923d6424587f6b1491cdd961d8b481093243b8a"
+      },
+      {
+        "path": "dist/assets/three-alchEwbN.js",
+        "bytes": 525536,
+        "sha256": "ff427562c0db12235231797eab46f803fcdd11375f3d298c38a192f9aaa27836"
+      }
+    ]
+  },
+  "extendedBrowser": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium npm run test:loadout:extensions",
+    "passed": true,
+    "at": "2026-10-23T21:15:43.183Z",
+    "stage": "complete",
+    "checks": [
+      {
+        "name": "Actual v0.2.0 inventory-v1 JSON import preserves owned items, merchant stock and progression while adding empty extension slots",
+        "oldStockEntries": 48
+      },
+      {
+        "name": "Six real Eden Prime and Therum encounters, Council recruitment and two caches fund the extensions without overriding progression",
+        "credits": 1500,
+        "xp": 980
+      },
+      {
+        "name": "One-click purchases consume credits and merchant stock once; earned armor training is explicit, persistent and unavailable to Kaidan",
+        "remainingCredits": 160
+      },
+      {
+        "name": "Kaidan and Liara can carry their eligible tools, Ashley and the soldier cannot, and tools neither grant powers nor strengthen the other power family"
+      },
+      {
+        "name": "The second weapon and armor slots accept distinct owned modules and reject allocating a single exemplar twice"
+      },
+      {
+        "name": "Replacing or removing base equipment warns and releases all its physical modules; resale and repurchase update merchant stock once without duplication",
+        "replacementShieldDelta": -40
+      },
+      {
+        "name": "Autosave/reload preserves removals; unchanged export/import and independent manual slots preserve both module slots, tools, explicit training, quantities and merchant stocks"
+      },
+      {
+        "name": "A real equipped victory uses both weapon modules, ammunition, shield capacity and announced heat; companion cover orders release decision pauses and equipment editing stays blocked"
+      }
+    ],
+    "encounters": [
+      {
+        "id": "eden-prime:encounter-1",
+        "winner": "party",
+        "actions": 9
+      },
+      {
+        "id": "eden-prime:encounter-2",
+        "winner": "party",
+        "actions": 14
+      },
+      {
+        "id": "eden-prime:boss",
+        "winner": "party",
+        "actions": 12
+      },
+      {
+        "id": "therum:encounter-1",
+        "winner": "party",
+        "actions": 10
+      },
+      {
+        "id": "therum:encounter-2",
+        "winner": "party",
+        "actions": 11
+      },
+      {
+        "id": "therum:boss",
+        "winner": "party",
+        "actions": 24
+      },
+      {
+        "id": "feros:encounter-1",
+        "winner": "party",
+        "actions": 19
+      }
+    ],
+    "purchases": [
+      {
+        "itemId": "omni-tool-upgraded",
+        "cost": 240
+      },
+      {
+        "itemId": "biotic-amp-upgraded",
+        "cost": 240
+      },
+      {
+        "itemId": "heat-sink-i",
+        "cost": 100
+      },
+      {
+        "itemId": "rail-extension-iv",
+        "cost": 200
+      },
+      {
+        "itemId": "armor-piercing-rounds-i",
+        "cost": 110
+      },
+      {
+        "itemId": "shield-battery-i",
+        "cost": 120
+      },
+      {
+        "itemId": "armor-plating-i",
+        "cost": 110
+      },
+      {
+        "itemId": "phoenix-human-iii",
+        "cost": 220
+      },
+      {
+        "itemId": "heat-sink-i",
+        "cost": 100
+      }
+    ],
+    "screenshots": [
+      "test-results/loadout-extensions-liara-tools.png",
+      "test-results/loadout-extensions-second-slots.png",
+      "test-results/loadout-extensions-final-loadout.png"
+    ],
+    "mode": "Real creation, campaign encounters, purchases, allocations, explicit training and save UI. Only simulation time and legitimate battle orders are accelerated. The legacy fixture changes the fresh export’s inventory schema, never progression, statistics or credits.",
+    "fidelity": "Functional verification of the sprites/ATB adaptation; numeric equipment values and prices are not original-game certification.",
+    "legacyFixture": {
+      "commit": "c614a452b1cdd2712d34ad2344471c01d2c8d209",
+      "module": "src/loadout.js",
+      "moduleSHA256": "e32d6966e66d5c50e56f09808dc6d1b33c4bcf787ca5210d12b261571d5c0d43",
+      "construction": "Unmodified initialInventory() from the historical v0.2.0 source module; no progression, statistics or credits."
+    },
+    "errors": [],
+    "failedRequests": [],
+    "combat": {
+      "shot": {
+        "covers": [
+          "kaidan",
+          "ashley"
+        ],
+        "before": {
+          "heat": 0,
+          "target": 130
+        },
+        "heatAfter": 25.92,
+        "targetAfter": 86.78464615957672,
+        "heatCost": 25.92,
+        "attack": 39,
+        "maxShield": 204,
+        "weaponHeatMultiplier": 1.08,
+        "weaponCoolingBonus": 1,
+        "syntheticDamageBonus": 0.15,
+        "bioticMultiplier": 1,
+        "techMultiplier": 1
+      },
+      "cooling": {
+        "before": 25.92,
+        "after": 20.92,
+        "elapsed": 0.4999999999999982
+      }
+    },
+    "assetErrors": []
+  },
+  "legacyLoadoutRegression": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium npm run test:loadout",
+    "version": "0.2.0",
+    "at": "2026-10-23T21:19:12.267Z",
+    "passed": true,
+    "mode": "Actual UI creation, equipment transactions, save/load and one real ATB victory. Combat time is accelerated through the simulation API; no inventory, damage, reward or progression overrides.",
+    "checks": [
+      {
+        "name": "Female creation and keyboard movement",
+        "appearance": "female",
+        "nameInSave": "Jane Shepard",
+        "actualMovement": true
+      },
+      {
+        "name": "UI purchase, equip, sale and Jenkins allocation",
+        "spent": 100,
+        "sale": 28,
+        "credits": 178,
+        "heatSinkStock": 4,
+        "quantitySoldRemoved": true,
+        "desktop": {
+          "label": "Equipment desktop",
+          "viewport": 1440,
+          "documentWidth": 1440,
+          "screenWidth": 1118,
+          "contentWidth": 1118,
+          "clippedButtons": []
+        }
+      },
+      {
+        "name": "Automatic reload, JSON export/import and manual restore preserve inventory",
+        "autosave": true,
+        "exported": true,
+        "imported": true,
+        "manualSlot": "1",
+        "restoredEquippedModuleAfterRemoval": true
+      },
+      {
+        "name": "Actual mobile UI",
+        "widths": [
+          390
+        ],
+        "tabs": [
+          {
+            "label": "Equipment mobile loadout",
+            "viewport": 390,
+            "documentWidth": 390,
+            "screenWidth": 365,
+            "contentWidth": 365,
+            "clippedButtons": []
+          },
+          {
+            "label": "Equipment mobile inventory",
+            "viewport": 390,
+            "documentWidth": 390,
+            "screenWidth": 365,
+            "contentWidth": 365,
+            "clippedButtons": []
+          },
+          {
+            "label": "Equipment mobile shop",
+            "viewport": 390,
+            "documentWidth": 390,
+            "screenWidth": 365,
+            "contentWidth": 365,
+            "clippedButtons": []
+          },
+          {
+            "label": "Equipment mobile calibrations",
+            "viewport": 390,
+            "documentWidth": 390,
+            "screenWidth": 365,
+            "contentWidth": 365,
+            "clippedButtons": []
+          }
+        ]
+      },
+      {
+        "name": "Real ATB victory uses equipped effects",
+        "encounter": "eden-prime:encounter-1",
+        "winner": "party",
+        "elapsed": 15.033300000000079,
+        "actionCount": 11,
+        "medigel": 4,
+        "defeatedEnemies": 2,
+        "party": [
+          {
+            "id": "shepard",
+            "name": "Jane Shepard",
+            "hp": 250,
+            "maxHp": 250,
+            "shield": 18.21441921444201,
+            "maxShield": 140,
+            "alive": true
+          },
+          {
+            "id": "kaidan",
+            "name": "Kaidan Alenko",
+            "hp": 215,
+            "maxHp": 215,
+            "shield": 140,
+            "maxShield": 140,
+            "alive": true
+          },
+          {
+            "id": "jenkins",
+            "name": "Richard Jenkins",
+            "hp": 180,
+            "maxHp": 180,
+            "shield": 90,
+            "maxShield": 90,
+            "alive": true
+          }
+        ],
+        "enemies": [
+          {
+            "id": "geth-0",
+            "name": "Soldat geth",
+            "hp": 0,
+            "maxHp": 95,
+            "shield": 0,
+            "maxShield": 35,
+            "alive": false
+          },
+          {
+            "id": "geth-1",
+            "name": "Soldat geth",
+            "hp": 0,
+            "maxHp": 95,
+            "shield": 0,
+            "maxShield": 35,
+            "alive": false
+          }
+        ],
+        "iterations": 34,
+        "effects": {
+          "weaponHeatMultiplier": 0.9,
+          "weaponCoolingBonus": 1,
+          "announcedHeat": 21.6
+        },
+        "observedShot": {
+          "beforeHeat": 0,
+          "afterHeat": 21.6,
+          "delta": 21.6
+        }
+      },
+      {
+        "name": "Jenkins recovery after the actual first encounter",
+        "lost": true,
+        "recoveredWeapon": "storm-i",
+        "selectionReturnsToShepard": true,
+        "subsequentlyEquippedOnShepard": true,
+        "saveValid": true
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "screenshots": [
+      "docs/screenshots/v02-equipment-loadout.png",
+      "docs/screenshots/v02-equipment-mobile.png",
+      "docs/screenshots/v02-equipment-mobile-inventory.png",
+      "docs/screenshots/v02-equipment-combat.png",
+      "docs/screenshots/v02-equipment-recovery.png"
+    ],
+    "assetErrors": []
+  },
+  "campaignRegression": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium npm run test:campaign",
+    "passed": true,
+    "mode": "Real UI progression with accelerated combat simulation; no stat or progression overrides",
+    "difficulty": "normal",
+    "classId": "soldier",
+    "route": [
+      "eden-prime",
+      "citadel",
+      "noveria",
+      "therum",
+      "virmire",
+      "feros",
+      "ilos",
+      "citadel-finale"
+    ],
+    "encounters": [
+      {
+        "id": "eden-prime:encounter-1",
+        "winner": "party",
+        "seconds": 14,
+        "actions": 9
+      },
+      {
+        "id": "eden-prime:encounter-2",
+        "winner": "party",
+        "seconds": 15,
+        "actions": 14
+      },
+      {
+        "id": "eden-prime:boss",
+        "winner": "party",
+        "seconds": 15,
+        "actions": 12
+      },
+      {
+        "id": "noveria:encounter-1",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "noveria:encounter-2",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 15
+      },
+      {
+        "id": "noveria:boss",
+        "winner": "party",
+        "seconds": 56,
+        "actions": 46
+      },
+      {
+        "id": "therum:encounter-1",
+        "winner": "party",
+        "seconds": 12,
+        "actions": 8
+      },
+      {
+        "id": "therum:encounter-2",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "therum:boss",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 22
+      },
+      {
+        "id": "virmire:encounter-1",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 20
+      },
+      {
+        "id": "virmire:encounter-2",
+        "winner": "party",
+        "seconds": 24,
+        "actions": 16
+      },
+      {
+        "id": "virmire:boss",
+        "winner": "party",
+        "seconds": 42,
+        "actions": 36
+      },
+      {
+        "id": "feros:encounter-1",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 14
+      },
+      {
+        "id": "feros:encounter-2",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 21
+      },
+      {
+        "id": "feros:boss",
+        "winner": "party",
+        "seconds": 24,
+        "actions": 18
+      },
+      {
+        "id": "ilos:encounter-1",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "ilos:encounter-2",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 12
+      },
+      {
+        "id": "ilos:boss",
+        "winner": "party",
+        "seconds": 25,
+        "actions": 19
+      },
+      {
+        "id": "citadel-finale:encounter-1",
+        "winner": "party",
+        "seconds": 21,
+        "actions": 15
+      },
+      {
+        "id": "citadel-finale:encounter-2",
+        "winner": "party",
+        "seconds": 25,
+        "actions": 17
+      },
+      {
+        "id": "citadel-finale:boss",
+        "winner": "party",
+        "seconds": 31,
+        "actions": 22
+      }
+    ],
+    "completed": [
+      "eden-prime",
+      "citadel",
+      "noveria",
+      "therum",
+      "virmire",
+      "feros",
+      "ilos",
+      "citadel-finale"
+    ],
+    "choices": {
+      "noveria": "release",
+      "virmire": "save-ashley",
+      "feros": "save",
+      "citadel-finale": "save-council"
+    },
+    "saveReload": true,
+    "errors": [],
+    "requests": []
+  },
+  "productionRegression": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium node scripts/production-http-browser.mjs",
+    "version": "0.2.0",
+    "at": "2026-10-23T21:26:02.768Z",
+    "passed": true,
+    "mode": "Production HTTP fallback after file:// was blocked by the managed browser",
+    "scope": "The real dist Vite bundles served over HTTP in Linux Chromium: native WebGL drawing, bundled resources, dossier, equipment and actual save/export/import/resume UI. No Electron executable or Windows launch is tested.",
+    "fileURLValidation": {
+      "status": "blocked-by-managed-browser-policy",
+      "error": "ERR_BLOCKED_BY_ADMINISTRATOR",
+      "evidence": "test-results/production-v02-report.json",
+      "policyBypassAttempted": false
+    },
+    "entry": "http://127.0.0.1:4174/",
+    "buildEntry": "dist/index.html",
+    "browser": "154.0.8037.57",
+    "checks": [
+      {
+        "name": "Real female creation and native WebGL drawing from production HTTP bundles",
+        "webgl": {
+          "contextAvailable": true,
+          "contextLost": false,
+          "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "width": 1440,
+          "height": 900,
+          "drawArrays": 480,
+          "drawElements": 1139
+        },
+        "runtimeDevelopmentHarness": "absent"
+      },
+      {
+        "name": "Production dossier, equipment portrait and transaction UI",
+        "dossierImage": "./assets/shepard-female-walk-atlas.png",
+        "equipmentImage": "./assets/shepard-female-walk-atlas.png",
+        "equippedModule": "heat-sink-i",
+        "displayedHeatMultiplier": 0.9
+      },
+      {
+        "name": "HTTP-origin autosave, unchanged JSON export/import and actual title-screen resume",
+        "appearance": "female",
+        "origin": "colonist",
+        "psychologicalProfile": "war-hero",
+        "credits": 150,
+        "exactInventoryPreserved": true,
+        "removedThenImportedModuleRestored": true
+      },
+      {
+        "name": "Ten production images, embedded animation metadata and exact dist bundle hashes",
+        "imagesLoaded": 10,
+        "femaleAtlasesLoaded": 2,
+        "animationJsonRequests": 0,
+        "remoteRequests": 0,
+        "developmentHarnessInBundles": "absent",
+        "servedBundleHashesMatchDist": true
+      }
+    ],
+    "bundles": [
+      {
+        "path": "dist/assets/index-BmNy4bZ3.js",
+        "bytes": 287535,
+        "sha256": "4f5ebb62fc3043148e694c8ad923d6424587f6b1491cdd961d8b481093243b8a"
+      },
+      {
+        "path": "dist/assets/three-alchEwbN.js",
+        "bytes": 525536,
+        "sha256": "ff427562c0db12235231797eab46f803fcdd11375f3d298c38a192f9aaa27836"
+      }
+    ],
+    "servedBundles": [
+      {
+        "url": "http://127.0.0.1:4174/assets/index-BmNy4bZ3.js",
+        "path": "dist/assets/index-BmNy4bZ3.js",
+        "bytes": 287535,
+        "sha256": "4f5ebb62fc3043148e694c8ad923d6424587f6b1491cdd961d8b481093243b8a"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/three-alchEwbN.js",
+        "path": "dist/assets/three-alchEwbN.js",
+        "bytes": 525536,
+        "sha256": "ff427562c0db12235231797eab46f803fcdd11375f3d298c38a192f9aaa27836"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/index-BmNy4bZ3.js",
+        "path": "dist/assets/index-BmNy4bZ3.js",
+        "bytes": 287535,
+        "sha256": "4f5ebb62fc3043148e694c8ad923d6424587f6b1491cdd961d8b481093243b8a"
+      },
+      {
+        "url": "http://127.0.0.1:4174/assets/three-alchEwbN.js",
+        "path": "dist/assets/three-alchEwbN.js",
+        "bytes": 525536,
+        "sha256": "ff427562c0db12235231797eab46f803fcdd11375f3d298c38a192f9aaa27836"
+      }
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "assetRequests": [
+      "dist/assets/boss-atlas.png",
+      "dist/assets/citadel-keyart.png",
+      "dist/assets/crew-atlas.png",
+      "dist/assets/enemy-atlas.png",
+      "dist/assets/index-BmNy4bZ3.js",
+      "dist/assets/index-DuG8Q8b8.css",
+      "dist/assets/npc-atlas.png",
+      "dist/assets/props-atlas.png",
+      "dist/assets/shepard-female-combat-atlas.png",
+      "dist/assets/shepard-female-walk-atlas.png",
+      "dist/assets/shepard-walk-atlas.png",
+      "dist/assets/three-alchEwbN.js",
+      "dist/assets/vehicle-atlas.png"
+    ]
+  },
+  "balance": {
+    "command": "npm run test:balance -- --output test-results/loadout-extensions-balance-report.json",
+    "proof": "docs/qa/equipment-extension-balance-report.json",
+    "summary": {
+      "campaigns": 18,
+      "completedCampaigns": 18,
+      "encounters": 378,
+      "victories": 378,
+      "defeatsOrTimeouts": 0,
+      "partyKO": 0,
+      "encountersWithHealthDamage": 97,
+      "medigelUsed": 21,
+      "coverUsed": 44,
+      "healthRestored": 2071.032257,
+      "minHealthPercent": 46.592587,
+      "totalSeconds": 10757.85,
+      "validatedSaves": 522
+    },
+    "protocol": {
+      "classes": [
+        "soldier",
+        "engineer",
+        "adept",
+        "infiltrator",
+        "vanguard",
+        "sentinel"
+      ],
+      "difficulties": [
+        "story",
+        "normal",
+        "hard"
+      ],
+      "mode": "wait",
+      "route": [
+        "eden-prime",
+        "citadel",
+        "therum",
+        "feros",
+        "noveria",
+        "virmire",
+        "ilos",
+        "citadel-finale"
+      ],
+      "decisions": {
+        "feros": "save",
+        "noveria": "release",
+        "virmire": "save-kaidan",
+        "citadel-finale": "save-council"
+      },
+      "encountersPerCampaign": 21,
+      "firstEncounterSeed": 2183,
+      "seedRule": "2183 + number of previously won encounters, matching the game UI",
+      "simulatedStepSeconds": 0.1,
+      "timeoutSeconds": 300,
+      "healBelowHealthFraction": 0.65,
+      "coverBelowShieldFraction": 0.2,
+      "coverBelowHealthFraction": 0.8,
+      "coverWhenEnemyAtbAbove": 40,
+      "purchases": "Only earned credits; rifle, shield and armor, in that order, up to five levels; no optional caches or medigel purchases.",
+      "squad": "Starting story squad; Garrus and Tali after Citadel; Garrus and Liara after Therum except Adept and Vanguard.",
+      "healthBetweenEncounters": "actorFor restores full health and shields at each encounter, matching current game behavior; medigel persists.",
+      "progression": "Unlocks, ordered encounter gates, recruitment, explicit choices and save/import round trips are checked.",
+      "baseline": "Previous balance parameters restored in memory; all other current engine logic and player policy remain identical.",
+      "limits": [
+        "One deterministic seed sequence and one campaign route per class.",
+        "Instant automated decisions in Wait mode; not a human usability or Active mode test.",
+        "Systematic upgrades and trained-power usage; casual play can be harder.",
+        "This is a regression and calibration report, not final human playtest balancing."
+      ]
+    }
+  },
+  "migrationReview": {
+    "proof": "docs/qa/equipment-extension-migration-review.json",
+    "generatedCasesPassed": 8268,
+    "engineSha256": "ffeeebcf66d64cc13f45f6513c0e8a7872863a32bca078eb6ee206b26aeb6b9f",
+    "limitations": [
+      "Generated legacy fixtures are validated inventory states, not real historical player save files or complete replayed campaigns.",
+      "The 8268 cases vary one assigned catalog item at a time; they do not enumerate every combination of nine slots, owned counts, stocks, or progression states.",
+      "The armor exception is checked by catalog reference, matching the engine count-based item model; individual physical exemplars are not represented.",
+      "This report does not validate canonical ME1 ranks, numeric statistics, artwork, browser behavior, combat frame behavior, or full electronics talents.",
+      "No application source or test files were modified by this audit; only this report and its /tmp executable were written."
+    ]
+  },
+  "primaryReferenceProof": "docs/qa/equipment-primary-reference-report.json",
+  "vercel": {
+    "proof": "docs/qa/vercel-access-report.json",
+    "networkReached": true,
+    "authenticationAvailable": false,
+    "gitLinked": false,
+    "remoteDeploymentCreated": false
+  },
+  "workbook": {
+    "path": "docs/Mass_Effect_Relay_Chronicles_Production.xlsx",
+    "sha256": "f408484da72fa8ff4c5c562a2bc8510f245338b3bf17dc4c061c83c21f6ef2e6",
+    "passed": true,
+    "at": "2026-10-23T21:11:38.948469+00:00",
+    "verifier": "/tmp/relay-verify-workbook.py (stdlib zip/xml)",
+    "errors": [],
+    "expectedRows": 1325,
+    "expectedSources": 39,
+    "baselineRef": "c614a45",
+    "baselineCommit": "c614a452b1cdd2712d34ad2344471c01d2c8d209",
+    "baselineCatalogueRows": 1321,
+    "baselineIdsPreserved": true,
+    "missingBaselineIds": [],
+    "newCatalogueIds": [
+      "GEAR-biotic-amp-standard",
+      "GEAR-biotic-amp-upgraded",
+      "GEAR-omni-tool-standard",
+      "GEAR-omni-tool-upgraded"
+    ],
+    "futureRows": 57,
+    "futureCatalogueRowsUnchanged": true,
+    "advancedStatusesPreserved": true,
+    "advancedStatusRows": {
+      "SYS-creation-de-shepard": "Validé",
+      "SYS-sauvegarde-manuelle": "Validé",
+      "SYS-codex": "Validé",
+      "CHC-recrutement-de-garrus": "Intégré",
+      "CHC-recrutement-de-wrex": "Intégré",
+      "CHC-attitude-de-garrus": "Intégré"
+    },
+    "sheets": 28,
+    "tablesWithFilters": 26,
+    "rows": 1325,
+    "columnsPerCategory": 17,
+    "catalogueCellsCompared": 22525,
+    "guideSources": 39,
+    "guideSourceColumns": 4,
+    "formulas": 274,
+    "proofPaths": 293,
+    "implementedRowsWithProofs": 6,
+    "idsUnique": true,
+    "dependenciesResolved": true,
+    "proofPathsExist": true,
+    "allCatalogueCellsMatch": true,
+    "guideSourcesMatch": true,
+    "dashboardCountsMatch": true,
+    "noCachedFormulaErrors": true,
+    "validationsMatch": true,
+    "freezesMatch": true,
+    "statusCounts": {
+      "Prototype": 284,
+      "Défini": 1035,
+      "Validé": 3,
+      "Intégré": 3
+    },
+    "dashboardB37F37": {
+      "B37": 1325,
+      "C37": 1035,
+      "D37": 284,
+      "E37": 3,
+      "F37": 3
+    },
+    "details": [
+      {
+        "sheet": "Dashboard",
+        "validations": 0,
+        "pane": {
+          "ySplit": "9",
+          "topLeftCell": "A10",
+          "activePane": "bottomLeft",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Personnages",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "PNJ",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Especes_factions",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Mondes",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Zones",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Liaisons",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Decors",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Props",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Ennemis_boss",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Missions",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Secondaires_DLC",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Choix_relations",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Dialogues",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Cinematiques",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Armes",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Armures_equipement",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Pouvoirs",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Movesets_allies",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Movesets_ennemis",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Animations",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Sprites",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "VFX",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Audio",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "UI_systemes",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "QA",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Trilogie",
+        "validations": 5,
+        "pane": {
+          "xSplit": "2",
+          "ySplit": "6",
+          "topLeftCell": "C7",
+          "activePane": "bottomRight",
+          "state": "frozen"
+        }
+      },
+      {
+        "sheet": "Guide",
+        "validations": 0,
+        "pane": {
+          "ySplit": "6",
+          "topLeftCell": "A7",
+          "activePane": "bottomLeft",
+          "state": "frozen"
+        }
+      }
+    ],
+    "uniqueProofPaths": 21,
+    "dependencyLinksChecked": 707,
+    "guideSourceCellsCompared": 156,
+    "guideFooterRow": 71,
+    "xlsxSha256": "f408484da72fa8ff4c5c562a2bc8510f245338b3bf17dc4c061c83c21f6ef2e6",
+    "catalogueSha256": "edecf88a990dde39cd5e2f1f58e218305aaaf5c007d505875d56d6d88aa9fa36",
+    "builderSha256": "e81ff2132514fda1c759c6ec18d3e1a0bce7c66e5a4c43984dfa74df0ac8d498",
+    "checks": {
+      "structure": true,
+      "guideSources": true,
+      "ids": true,
+      "baselineIds": true,
+      "futurePreserved": true,
+      "advancedPreserved": true,
+      "dependencies": true,
+      "cells": true,
+      "paths": true,
+      "noCachedFormulaErrors": true,
+      "freezes": true,
+      "validations": true,
+      "tables": true,
+      "dashboard": true,
+      "snapshot": true
+    },
+    "errorCount": 0,
+    "errorsTruncated": false
+  },
+  "catalogAudit": {
+    "catalogs": 28,
+    "entries": 6651,
+    "statuses": {
+      "Défini": 6361,
+      "Prototype": 284,
+      "Intégré": 3,
+      "Validé": 3
+    },
+    "backlog": 6648,
+    "missingDependencies": 0,
+    "crossCatalogDuplicateIds": []
+  },
+  "visualReview": {
+    "desktopViewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "legacyMobileViewportWidth": 390,
+    "screenshots": {
+      "docs/screenshots/equipment-extension-liara-tools.png": "baa102adb9995f21da1eaa7d67caf3e0091cc49a55b65949492301f73fcebabd",
+      "docs/screenshots/equipment-extension-second-slots.png": "575f1d51efe916ade5ac4cfc35078c9437eae2ce19dfbbe49040dc81323ac733",
+      "docs/screenshots/equipment-extension-final-loadout.png": "9a5e944ea9559285c41e8f36edc58fc122abeea71b7f3c9a64a4d203ceb1e0dd"
+    },
+    "limits": "Equipment sprite costumes remain unchanged; captured item names, slots and functional state are not canonical artwork approval."
+  },
+  "limits": [
+    "Prices, stock, level thresholds, training point budget, weapon penalty and fixed module ports remain explicit ATB adaptations.",
+    "Four generic tools do not represent the complete original manufacturers, models or ranks.",
+    "Companion equipment profiles are partial; complete talents, Liara Electronics effects, licences, grenades and vehicle weapons remain unfinished.",
+    "Modules are returned on replacement/removal and counted by reference; there is no per-instance attachment history.",
+    "Reference sources establish general rules only; individual equipment numbers, names/translations, visual models and edition-specific behavior are not certified 1:1.",
+    "Deterministic balance simulation covers neutral starters and legacy calibrations, not every equipment combination or a human usability test.",
+    "Vercel linkage remains blocked by missing authentication; no remote project or deployment was created."
+  ],
+  "sourceSha256": {
+    "package.json": "24c183feadea711835d0c49ecf4f3a5410e9eeb9ae864f0ecacfa4ae0e1bd082",
+    "package-lock.json": "8d34dc5da0069bdcb11bd60e2e8209d33de20f90f4c58680914d0917b357d8f0",
+    "vite.config.js": "8d9cb13482570e63fd4427d7023469f4d08ca8c3e7785223d14df5ed581ca44e",
+    "src/loadout.js": "ffeeebcf66d64cc13f45f6513c0e8a7872863a32bca078eb6ee206b26aeb6b9f",
+    "src/tool-data.js": "a74626318635e44b4d9d074b95fdf7ce40c9c88bf2758ece6e260db433ea1a3a",
+    "src/character-data.js": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+    "src/loadout-ui.js": "40acca55a46efc6e0f8d17aee4db4f28f220245290cb53668ec7220c0f4c092a",
+    "src/loadout-ui.css": "91bed304471a4913a19e8f2680865fa5cdbe217ddcb3839a5568b3410af1d2f0",
+    "src/main.js": "e8259024c32e54d79428910213f3c6ebffcc9dd28aedd18989af6f0e83bae126",
+    "src/combat.js": "90deee912a1bf896ff52bc7fc5658b0893d64fb02116763823dc61a8cad5a020",
+    "src/world.js": "2ead9d644fab7ecbe9af90a8bd5236d1eb3a7fb995d22aa33046954338f9067b",
+    "src/state.js": "a00d29c8ede57e79dff6d36a63ba09a1ea0a94cc2fc97c733abdd6614f58c85a",
+    "src/game-data.js": "30838f95e490149fc5cbf657d79795d01c67076d26c7d234502fa37e575bc158",
+    "scripts/loadout-extensions-browser.mjs": "c8258f24096f6adf6b322e1a183ec79c6b4d3b314b64f5a44945111c779fd336",
+    "scripts/loadout-browser.mjs": "0677d642bc942c963188282fa54f3a5cedf855e2b922c5ee8b314e4064b0f612",
+    "scripts/campaign-browser.mjs": "01a513260898f5f281fb24f4d473e5f49c2bfa012b0e5f15f940fb6d2cce2ba9",
+    "scripts/production-v02-browser.mjs": "bcd3a86ae13344acafec0eba6786f9d3529ed16dd3766c91cfd45c95674b97dd",
+    "scripts/production-http-browser.mjs": "b8f72efd4e89bd4759e9ef23ef2ffc6a161b720f65ef6c862534b9f3d775ab6c",
+    "scripts/build-workbook.mjs": "e81ff2132514fda1c759c6ec18d3e1a0bce7c66e5a4c43984dfa74df0ac8d498",
+    "tests/loadout.test.js": "41c741b4560c6cb445bfc64b77178ed087f05f83a8ab460aace9d2fe3ad3cdb9",
+    "tests/loadout-migration.test.js": "37468594d1e6e85812c63df9eef4f2b72983cf20aeb1f36cdfaa1389552ddb62",
+    "tests/loadout-ui.test.js": "3e5f8e9bf9ab3b6c8125145c6c0e848b143a7a89984d79bfea217f0f88f98f3d",
+    "tests/tool-data.test.js": "f4e4556c6b59cefb0602210bb35011cfcacb766ecf30b64de133963c6fabe3ac",
+    "tests/character-data.test.js": "94105f3a3857b5783c2095c7b662d38e821cf4c55e90e4659ed4d45efeab3485",
+    "tests/equipment-combat.test.js": "5b5fb8d17abc680226920872e5b57ca39ae1bb6c959857814457aa3f481aefb9",
+    "tests/weapon-world.test.js": "6bba339d5dae93c6ab37367f66e1775a09b163083da26d6a9aa37fccf9e8a46e",
+    "tests/fixtures/loadout-v02-inventory.json": "6ec4c734467bf1eea915d9f65669afd30c08f1f28b306428af8206dd1ade69ce",
+    "docs/content-catalog.json": "edecf88a990dde39cd5e2f1f58e218305aaaf5c007d505875d56d6d88aa9fa36"
+  }
+}
