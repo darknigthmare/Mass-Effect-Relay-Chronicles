@@ -1,11 +1,16 @@
 {
   "schemaVersion": 1,
-  "completedAt": "2026-10-22T08:58:43.017Z",
-  "version": "0.1.0",
+  "completedAt": "2026-10-23T13:07:48.990105+00:00",
+  "version": "0.2.0",
+  "baseCommit": "27daea0b577650589cef46e896eae79fc9ff4f37",
   "web": {
     "status": "passed",
     "command": "npm run build",
     "vite": "7.3.7",
+    "modules": 29,
+    "warnings": [
+      "Three.js vendor chunk exceeds the default 500 kB warning threshold."
+    ],
     "files": [
       {
         "path": "dist/assets/boss-atlas.png",
@@ -28,19 +33,19 @@
         "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
       },
       {
-        "path": "dist/assets/index-CCGGkiWT.css",
-        "bytes": 22272,
-        "sha256": "ef6b53321ee1c9e0b5e4f77c23dc5ddf26123fde6c316df36ad438eec995e58d"
+        "path": "dist/assets/index-BY7sLwvF.css",
+        "bytes": 40537,
+        "sha256": "d4191ade94ff44ec750298c8fa70f14e41789420cd150a10619396206e0516da"
       },
       {
-        "path": "dist/assets/index-CdOd4sK6.js",
-        "bytes": 148162,
-        "sha256": "d3f21e841d15cefb2723ed52341a55610a1360e2aa75ba5d9603921c14df2b9e"
+        "path": "dist/assets/index-uMALnrkz.js",
+        "bytes": 270389,
+        "sha256": "4516e3df0020287105827c42b363368efc3b3c1759b1af02671dac6a31872a4f"
       },
       {
         "path": "dist/assets/manifest.json",
-        "bytes": 16519,
-        "sha256": "aefaf81eacbe00f3930fb4468e197353ffbc77bd13368894cc4ad91ac3975ad4"
+        "bytes": 23648,
+        "sha256": "2a735af003c1be1f6bcc4d628eaaa1792eca3c131225829583e1ebcb54f7bd87"
       },
       {
         "path": "dist/assets/npc-atlas.png",
@@ -51,6 +56,21 @@
         "path": "dist/assets/props-atlas.png",
         "bytes": 2546184,
         "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+      },
+      {
+        "path": "dist/assets/shepard-female-animation.json",
+        "bytes": 5848,
+        "sha256": "7b18714b7d84530c55b483b825dd75f81b37557002208fd12720933e09ac5fe3"
+      },
+      {
+        "path": "dist/assets/shepard-female-combat-atlas.png",
+        "bytes": 1732207,
+        "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+      },
+      {
+        "path": "dist/assets/shepard-female-walk-atlas.png",
+        "bytes": 979680,
+        "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
       },
       {
         "path": "dist/assets/shepard-walk-atlas.png",
@@ -70,51 +90,61 @@
       {
         "path": "dist/index.html",
         "bytes": 660,
-        "sha256": "4c46b34efed6caba09388f5fb3c01f632fe39e5864e73a54293552e6e013c74d"
+        "sha256": "edea465c9ea8423f4cd58f82318dfe2012f6a3edad0544613837a47afb672c19"
       }
-    ]
+    ],
+    "runtimeReport": "docs/qa/production-v02-report.json"
   },
   "windows": {
-    "status": "built",
+    "status": "not-built-locally-for-0.2.0",
     "target": "portable",
     "architecture": "x64",
-    "buildHost": "Linux",
-    "electron": "45.0.0",
-    "electronBuilder": "26.15.3",
-    "command": "ELECTRON_BUILDER_COMPRESSION_LEVEL=5 npm run package:windows -- --config.directories.output=/tmp/relay-windows-final-build",
-    "file": "Relay-Chronicles-0.1.0-win-x64.exe",
-    "bytes": 129614544,
-    "sha256": "0c5ef2b97bb00060aceec326437bb6d9676e366ec1daa70e4d4b3bb4e80d8d23",
     "windowsRuntimeTested": false,
-    "packagedContentCheck": {
-      "passed": true,
-      "matchingFiles": 14,
-      "method": "SHA-256 comparison of compiled web files and Electron entry point with packaged app.asar"
-    }
+    "workflow": ".github/workflows/build.yml",
+    "historicalBuildReport": "docs/qa/build-v0.1.0-report.json",
+    "note": "GitHub Actions is configured to build the pushed version. Its remote result must be checked separately. The local file-origin Chromium check is not a Windows or Electron execution test."
   },
   "sources": {
     "desktop/main.cjs": "92f2322db159d323232f55ac86d232686722bab1e622dbb8d1b9dcb0692458e6",
     "index.html": "e181b6759a0e664b29d43d0ccbadcc8c8a97b506b34d12963ce0486690b43a10",
-    "package-lock.json": "d5e86e446a17fe1a61b4b9ac378c0c28de9c24f9a5d87dacb6e1c2c482ba703d",
-    "package.json": "043ebcc91986a8ebf63225089e3ee5fa8fa2c251c716353da1d4ce1ea6da868e",
+    "package-lock.json": "8d34dc5da0069bdcb11bd60e2e8209d33de20f90f4c58680914d0917b357d8f0",
+    "package.json": "3161e262f55ae9088eea8efcae3dea93331d7d914d8e3df97997f30f4b9aff48",
     "public/assets/boss-atlas.png": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4",
     "public/assets/citadel-keyart.png": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0",
     "public/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
     "public/assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
-    "public/assets/manifest.json": "aefaf81eacbe00f3930fb4468e197353ffbc77bd13368894cc4ad91ac3975ad4",
+    "public/assets/manifest.json": "2a735af003c1be1f6bcc4d628eaaa1792eca3c131225829583e1ebcb54f7bd87",
     "public/assets/npc-atlas.png": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
     "public/assets/props-atlas.png": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875",
+    "public/assets/shepard-female-animation.json": "7b18714b7d84530c55b483b825dd75f81b37557002208fd12720933e09ac5fe3",
+    "public/assets/shepard-female-combat-atlas.png": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+    "public/assets/shepard-female-walk-atlas.png": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc",
     "public/assets/shepard-walk-atlas.png": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476",
     "public/assets/vehicle-atlas.png": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b",
+    "src/assignment-data.js": "3bb7aa18b0f17646a76b17d999a074aa64d304ae3c5393b049a6216b46b34c6b",
+    "src/assignments.js": "19e43646c1be0156914954e62f8a3c8cdc86b3dd8b48672305fc228c43d1c770",
     "src/audio.js": "63a64cb845090c7242afb09a5ec9d39f8f698c50a8f916ab953631e8a7355510",
-    "src/combat.js": "bcdbccfd4f6ac5b8fa7c13bc4c88a3e98e41ad2276cac15f8ba1f00db03a2440",
-    "src/game-data.js": "9ff153a3f7daa3eab4dc029be8b80b6967edc7798aab5c4533d1e80db879fc21",
-    "src/main.js": "58a73c6c710d9bf4b87a0f4a9abcfa7ff26930599e50086144f303540f0a7859",
-    "src/state.js": "b08a459c8f48d350aec28b17642e6941b448674bb5b9492a10b810f95fdd2537",
-    "src/style.css": "e76552ed4a4d95a6463c5a6df567124f35802c0867a35c4210023bb2702ef75b",
-    "src/world-data.js": "70b9dd053b06778fc754e3fc33ce26c8bb19b4c3899359102cfbe8a412cb49c1",
+    "src/combat.js": "b8f8c3e8fe3d61f5e321e7b5f09ede94f5ebf5431e84b92183c4158e2e140552",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/game-data.js": "30838f95e490149fc5cbf657d79795d01c67076d26c7d234502fa37e575bc158",
+    "src/loadout-ui.css": "bf72a66388a7ecbe4a53d60008e5f49f6bcd0b4e5d45b990f699479ad3926cc6",
+    "src/loadout-ui.js": "b760a5cdfbb25276b290befd3236ede40cafde92c749254e7c9d604e1fb143b5",
+    "src/loadout.js": "e32d6966e66d5c50e56f09808dc6d1b33c4bcf787ca5210d12b261571d5c0d43",
+    "src/local-map.css": "b5a83f2c6792fa19237124b245e88b468618217d883897c62e0ff1d9b239d19e",
+    "src/local-map.js": "6f376f7493db002e5982e20768aa03551662b24a94a15714cbf90d75cc2aeaa5",
+    "src/main.js": "57f8f957a85b6ca759177c23bd0997765e8e8bd938f39a3525c38a16428aa50b",
+    "src/operation-data.js": "b0650b5f0ed2884baab2bd1d1d8294585ed4efd4c8b3a237253bd67bd74f642d",
+    "src/operations-ui.css": "32a56e28c65e1cc3819b9c7e2ef1c630adc5efc2b912ce8005db4813beff1858",
+    "src/operations-ui.js": "c1674e9fca51d548e7976cdf3287e59b88e54a24b98351eddb319bf4d4073fdc",
+    "src/operations.js": "c73f13cbc550c155e03d075ca3b008e2a046bb6afdf8455ee12db19dff3f895e",
+    "src/save-slots.js": "01497a48324a647a7e79031656fba4160853126efb29cc7a2b2bad7bbf9adff4",
+    "src/state.js": "a00d29c8ede57e79dff6d36a63ba09a1ea0a94cc2fc97c733abdd6614f58c85a",
+    "src/story-data.js": "0cd052b5f99ec1e167782b6140716753c854fc1e3cd9defa55bd8ee5506a1a5c",
+    "src/story.js": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "src/world-data.js": "e6396b9e97687a98ffcf6a7673b8430dd3b8c79bcde671ca8d62a1f271c9d45e",
     "src/world.css": "9ef3e9206791a760eb4ba741f167f8633475704a3f30657aef7fa80434c37dae",
-    "src/world.js": "6d57ebfe3f4fc6fc4f5eef3a8058c23f0fe412ead89f1083a9c62e3910a0480a",
-    "vite.config.js": "4df0815e8d5a04ba7d7db6aa8e47721256f1f415d7c386790fee175489f8c5d7"
+    "src/world.js": "858cc61adcd4102e2cac785c9e272c1e5cacff5fbd0aaf18191e8ef23c1aa7a6",
+    "vite.config.js": "8d9cb13482570e63fd4427d7023469f4d08ca8c3e7785223d14df5ed581ca44e"
   }
 }

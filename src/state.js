@@ -1,3 +1,5 @@
+import { initialInventory, normalizeInventory } from './loadout.js';
+import { normalizeOperations, operationEffects, listOperations } from './operations.js';
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
 import { createStoryState, migrateStoryState } from './story.js';
@@ -34,6 +36,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
     story: createStoryState(),
     assignments: createAssignmentState(),
+    inventory: initialInventory(), operations: normalizeOperations(undefined), trackedOperation: null,
     logs: [{ title: 'Départ', text: 'Le Normandy fait route vers Eden Prime.' }],
     xp: 0, credits: 250, medigel: 4, upgrades: {}, paragon: 0, renegade: 0,
     playedSeconds: 0, position: null, ending: false, settings: { ...DEFAULT_SETTINGS },
@@ -158,12 +161,19 @@ export function completeZone(state, zone, choice = null) {
   return true;
 }
 
+export function upgradePrice(state, itemId) {
+  const item = EQUIPMENT.find(candidate => candidate.id === itemId);
+  if (!item) return 0;
+  return Math.round(item.cost * (item.stat === 'medigel' ? 1 - operationEffects(state).medicalDiscount : 1));
+}
+
 export function buyUpgrade(state, actorId, itemId) {
   if (!['normandy', 'citadel'].includes(state.zone) || !unlockedZones(state).includes(state.zone)) return { ok: false, reason: 'Rejoignez une armurerie.' };
   if (!OWN(CREW, actorId) || state.lost.includes(actorId) || (actorId !== 'shepard' && !state.recruited.includes(actorId))) return { ok: false, reason: 'Équipier indisponible.' };
   const item = EQUIPMENT.find(candidate => candidate.id === itemId);
   if (!item) return { ok: false, reason: 'Équipement inconnu.' };
-  if (state.credits < item.cost) return { ok: false, reason: 'Crédits insuffisants.' };
+  const price = upgradePrice(state, itemId);
+  if (state.credits < price) return { ok: false, reason: 'Crédits insuffisants.' };
   if (item.stat === 'medigel') {
     if (state.medigel >= 9) return { ok: false, reason: 'Réserve complète.' };
     state.medigel += 1;
@@ -177,7 +187,7 @@ export function buyUpgrade(state, actorId, itemId) {
       [`${item.stat}Count`]: count + 1,
     };
   }
-  state.credits -= item.cost;
+  state.credits -= price;
   return { ok: true };
 }
 
@@ -327,7 +337,15 @@ export function decodeSave(raw) {
     state.story = migrateStoryState(OWN(input, 'story') ? input.story : undefined, state);
     if (!state.story) return null;
     state.assignments = migrateAssignmentState(OWN(input, 'assignments') ? input.assignments : undefined, state);
-    return state.assignments ? state : null;
+    if (!state.assignments) return null;
+    state.inventory = normalizeInventory(OWN(input, 'inventory') ? input.inventory : undefined, state);
+    state.operations = normalizeOperations(OWN(input, 'operations') ? input.operations : undefined, state);
+    if (!state.inventory || !state.operations) return null;
+    const trackedOperation = OWN(input, 'trackedOperation') ? input.trackedOperation : null;
+    if (trackedOperation !== null && (typeof trackedOperation !== 'string'
+      || !listOperations(state).some(operation => operation.id === trackedOperation))) return null;
+    state.trackedOperation = trackedOperation;
+    return state;
   } catch {
     return null;
   }

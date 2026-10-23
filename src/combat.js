@@ -100,6 +100,11 @@ function normalizeActor(input, team, index) {
     cooldowns: { ...input.cooldowns },
     statuses: { ...input.statuses },
     controlResistance: clamp(finite(input.controlResistance, 0), 0, 1),
+    weaponHeatMultiplier: clamp(finite(input.weaponHeatMultiplier, 1), .25, 3),
+    weaponCoolingBonus: clamp(finite(input.weaponCoolingBonus, 0), 0, 20),
+    organicDamageBonus: clamp(finite(input.organicDamageBonus, 0), 0, 1),
+    syntheticDamageBonus: clamp(finite(input.syntheticDamageBonus, 0), 0, 1),
+    shieldBypass: clamp(finite(input.shieldBypass, 0), 0, .75),
     primaryAction: ['strike', 'acid'].includes(input.primaryAction) ? input.primaryAction : 'shoot',
     lastDamagedAt: -Infinity,
     _warpSource: null,
@@ -202,7 +207,10 @@ export function getActions(battle, actorId) {
   if (!actor) return [];
   return actionIds(actor).map(id => {
     const reason = unavailableReason(battle, actor, id);
-    return { id, ...ACTIONS[id], available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
+    const heatCost = WEAPON_ACTIONS.has(id) ? ACTIONS[id].heatCost * actor.weaponHeatMultiplier : undefined;
+    const description = heatCost === undefined ? ACTIONS[id].description
+      : ACTIONS[id].description.replace(/(?:24|48|42) points de chaleur/, `${Math.round(heatCost * 10) / 10} points de chaleur`);
+    return { id, ...ACTIONS[id], ...(heatCost === undefined ? {} : { heatCost }), description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
 }
 
@@ -215,7 +223,10 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
   let amount = rawAmount * (source?.team === 'enemy' ? DIFFICULTY[battle.difficulty].enemyDamage : 1);
   if (target.cover && !ignoreCover) amount *= 0.5;
   if (target.statuses.barrier > EPSILON) amount *= 0.7;
-  const shieldDamage = Math.min(target.shield, amount);
+  // Ammunition bypass splits one hit between shield and health; damage is
+  // never duplicated and armor is applied once to the health portion.
+  const bypass = WEAPON_ACTIONS.has(actionId) && !shieldOnly ? source?.shieldBypass || 0 : 0;
+  const shieldDamage = Math.min(target.shield, amount * (1 - bypass));
   target.shield = Math.max(0, target.shield - shieldDamage);
   const armor = ignoreArmor ? 0 : target.defense * (target.statuses.warp > EPSILON ? 0.5 : 1);
   const remaining = Math.max(0, amount - shieldDamage);
@@ -311,10 +322,11 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
 
   if (WEAPON_ACTIONS.has(actionId)) {
     const multiplier = actionId === 'burst' ? 1.65 : actionId === 'signature' ? 2.4 : 1;
-    const damage = actor.attack * multiplier * (0.94 + random(battle) * 0.12);
+    const speciesBonus = synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus;
+    const damage = actor.attack * multiplier * (1 + speciesBonus) * (0.94 + random(battle) * 0.12);
     applyDamage(battle, actor, target, damage, { actionId, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' });
     delete actor.statuses.flanking;
-    addHeat(battle, actor, definition.heatCost);
+    addHeat(battle, actor, definition.heatCost * actor.weaponHeatMultiplier);
     if (actionId === 'signature') actor.focus = 0;
   } else if (actionId === 'strike') {
     applyDamage(battle, actor, target, actor.attack * (0.94 + random(battle) * 0.12), { actionId, ignoreCover: true });
@@ -405,7 +417,7 @@ function tickActor(battle, actor, dt) {
     actor.statuses[key] = Math.max(0, finite(actor.statuses[key], 0) - dt);
     if (actor.statuses[key] <= EPSILON) delete actor.statuses[key];
   }
-  actor.heat = Math.max(0, actor.heat - dt * 9);
+  actor.heat = Math.max(0, actor.heat - dt * (9 + actor.weaponCoolingBonus));
   if (actor.overheated && actor.heat <= 35 + EPSILON) {
     actor.overheated = false;
     emit(battle, { type: 'cooled', actorId: actor.id, message: `L’arme de ${actor.name} est de nouveau opérationnelle.` });

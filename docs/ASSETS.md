@@ -13,9 +13,11 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `npc-atlas.png` | 1536 × 1024 | 8 personnages, grille 4 × 2 | PNJ placés et portraits ; certaines images encore en réserve |
 | `props-atlas.png` | 1536 × 1024 | 16 objets, grille 4 × 4 | Habillage 2D des décors 3D |
 | `vehicle-atlas.png` | 1312 × 1199 | 4 véhicules / machines ; régions irrégulières | Mako statique et Sovereign distant ; autres images en réserve |
-| `shepard-walk-atlas.png` | 1269 × 1240 | 16 poses, quatre directions | Première animation de marche de Shepard |
+| `shepard-walk-atlas.png` | 1269 × 1240 | 16 poses, quatre directions | Marche de Shepard masculin |
+| `shepard-female-walk-atlas.png` | 1254 × 1254 | 16 poses, quatre directions | Marche féminine, création, dossier et équipement |
+| `shepard-female-combat-atlas.png` | 1536 × 1024 | Visée, pouvoir, impact, hors combat | Poses de combat féminines |
 
-Le lot comprend **48 sujets de sprites**, **16 images d’animation supplémentaires** et **une illustration d’accueil**. Ce nombre ne signifie pas 64 personnages ni 48 movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Le lot comprend **48 sujets de sprites**, **32 images de marche et quatre poses de combat supplémentaires** et **une illustration d’accueil**. Ce nombre ne signifie pas 84 personnages ni 48 movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -64,7 +66,11 @@ Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne
 
 Shepard dispose d’une animation par images ; les compagnons et les ennemis utilisent encore leurs poses de base avec transformations procédurales. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
 
-L’atlas PNJ fournit la variante féminine sélectionnable dans le dossier de Shepard. Le portrait et le sprite utilisent cette même variante en exploration et en combat, après reprise ou import d’une sauvegarde. Cette variante reste statique : elle ne réutilise pas la marche masculine. Sa fidélité artistique et son cycle d’animation restent à produire et à contrôler. Nihlus est placé au Normandy avant le premier départ sur Eden Prime ; Emily Wong reste une image en réserve. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
+La variante féminine sélectionnable utilise deux atlas propres. Les rectangles et pivots sont décrits dans `shepard-female-animation.json`, puis inclus dans le JavaScript compilé pour fonctionner aussi avec le chargement local d’Electron. La marche garde la dernière direction à l’arrêt, utilise sept images par seconde et accélère pendant la course. En combat, les événements déclenchent les poses de visée, pouvoir et impact ; la pose couchée dispose d’une hauteur et d’un pivot spécifiques. Il s’agit de quatre poses clés, pas de quatre cycles complets.
+
+Les deux nouveaux PNG conservent leur transparence native. Les marges et pivots sont mesurés par frame, sans extraction ou retouche des pixels. Certains contacts du cycle restent proches, les effets de pouvoir sont inclus dans l’illustration et la cohérence de costume demande encore une revue artistique. Voir [la provenance et les limites](research/shepard-female-art.md).
+
+Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Wong possède une interaction de quête ; son image de l’atlas PNJ reste disponible pour une intégration de portrait et son personnage dédié dans le monde reste à produire. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
 
 ## Critères d’acceptation de l’art final
 

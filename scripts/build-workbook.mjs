@@ -62,7 +62,9 @@ for(const category of catalog.categories){
  sheet.getRange(`A7:${lastCol}${end}`).format.verticalAlignment='top';
  for(let index=0;index<matrix.length;index++){
   const estimatedLines=Math.max(...matrix[index].map((value,j)=>Math.ceil(String(value).length/(fields[j][2]*0.9))));
-  sheet.getRange(`A${7+index}:${lastCol}${7+index}`).format.rowHeight=Math.max(36,Math.min(100,estimatedLines*13+10));
+  // Extend row height only for the enriched delivery; preserve unrelated rows.
+  const maxHeight=records[index].deliveryVersion==='0.2.0'?260:100;
+  sheet.getRange(`A${7+index}:${lastCol}${7+index}`).format.rowHeight=Math.max(36,Math.min(maxHeight,estimatedLines*13+10));
  }
  sheet.getRange(`C7:G${end}`).format.horizontalAlignment='center';
  sheet.getRange(`C7:G${end}`).format.verticalAlignment='center';
@@ -132,13 +134,15 @@ dashboard.getRange('A39').values=[['Prototype : contenu simplifié. Intégré : 
 dashboard.getRange('A41').values=[['Les chemins « Destination prévue » ne sont pas des fichiers existants. Consulter « Fichier existant » pour les preuves.']];
 dashboard.freezePanes.freezeRows(9);
 
-base(guide,'A1:D57');
+const guideFooter=32+catalog.sources.length;
+const guideEnd=guideFooter+6;
+base(guide,`A1:D${guideEnd}`);
 guide.tabColor='#78929B';
 title(guide,'Guide du catalogue','Définitions, périmètre et références de production.','D');
-guide.getRange('A1:A57').format.columnWidth=26;
-guide.getRange('B1:B57').format.columnWidth=78;
-guide.getRange('C1:C57').format.columnWidth=42;
-guide.getRange('D1:D57').format.columnWidth=100;
+guide.getRange(`A1:A${guideEnd}`).format.columnWidth=26;
+guide.getRange(`B1:B${guideEnd}`).format.columnWidth=78;
+guide.getRange(`C1:C${guideEnd}`).format.columnWidth=42;
+guide.getRange(`D1:D${guideEnd}`).format.columnWidth=100;
 guide.getRange('A6:B6').values=[['Statut du contenu','Signification']];
 header(guide,'A6:B6');
 guide.getRange('A7:B10').values=Object.entries(catalog.meta.statusDefinitions);
@@ -159,14 +163,20 @@ guide.getRange('A20:B26').values=[
 guide.getRange('A29:D29').values=[['Source','Titre','Périmètre','URL']];
 header(guide,'A29:D29');
 guide.getRange(`A30:D${29+catalog.sources.length}`).values=catalog.sources.map(s=>[s.id,s.title,s.scope,s.url??'Conception du projet, sans source externe']);
-guide.getRange('A47:B50').values=[['Périmètre',catalog.meta.scope],['Fidélité',catalog.meta.fidelity],['Version',catalog.meta.version],['Date de référence',new Date(`${catalog.meta.updatedAt}T12:00:00Z`)]];
-guide.getRange('B50').setNumberFormat('dd/mm/yyyy');
-guide.getRange('A6:D50').format.wrapText=true;
-guide.getRange('A7:D50').format.verticalAlignment='top';
-guide.getRange('A7:D50').format.rowHeight=42;
+guide.getRange(`A${guideFooter}:B${guideFooter+3}`).values=[['Périmètre',catalog.meta.scope],['Fidélité',catalog.meta.fidelity],['Version',catalog.meta.version],['Date de référence',new Date(`${catalog.meta.updatedAt}T12:00:00Z`)]];
+guide.getRange(`B${guideFooter+3}`).setNumberFormat('dd/mm/yyyy');
+guide.getRange(`A6:D${guideFooter+3}`).format.wrapText=true;
+guide.getRange(`A7:D${guideFooter+3}`).format.verticalAlignment='top';
+guide.getRange(`A7:D${guideFooter+3}`).format.rowHeight=42;
 guide.getRange('A14:B16').format.rowHeight=48;
 guide.getRange('A25:B26').format.rowHeight=60;
-guide.getRange('A47:B48').format.rowHeight=68;
+guide.getRange(`A${guideFooter}:B${guideFooter+1}`).format.rowHeight=68;
+catalog.sources.forEach((source,index)=>{
+ const cells=[source.id,source.title,source.scope,source.url||'Conception du projet, sans source externe'];
+ const widths=[26,78,42,100];
+ const lines=Math.max(...cells.map((value,i)=>Math.ceil(String(value).length/(widths[i]*.85))));
+ guide.getRange(`A${30+index}:D${30+index}`).format.rowHeight=Math.max(42,lines*13+10);
+});
 guide.freezePanes.freezeRows(6);
 
 // Validate formula recalculation after an editable status changes, then restore it.
@@ -198,6 +208,14 @@ for(const sheetName of ['Dashboard',...catalog.categories.map(c=>c.sheetName),'G
 for(const [categoryId,ids,filename] of [
  ['enemies',['ENM-matriarche-benezia','ENM-thorian','ENM-saren-sur-virmire','ENM-saren-a-la-citadelle'],'Boss-focus'],
  ['sprites',['SPR-VEH-mako','SPR-VEH-normandy-sr-1','SPR-VEH-sovereign'],'Vehicules-focus'],
+ ['side_quests',['SIDE-citadelle-plainte-de-xeltan','OPSTEP-citadel-xeltan-evidence'],'Annexes-focus'],
+ ['side_quests',['OPSTEP-citadel-consort-reception','OPSTEP-citadel-consort-request'],'Etapes-focus'],
+ ['enemies',['OPENCOUNTER-michel-blackmailer','OPENCOUNTER-tunnel-geth'],'Rencontres-focus'],
+ ['weapons',['GEAR-kessler-i','GEAR-lancer-i','GEAR-storm-i'],'Armes-v02-focus'],
+ ['equipment',['GEAR-onyx-human-i','GEAR-phoenix-human-iii','GEAR-colossus-human-vii'],'Armures-v02-focus'],
+ ['equipment',['GEAR-armor-piercing-rounds-i','GEAR-tungsten-rounds-iv','GEAR-shredder-rounds-iv'],'Modules-v02-focus'],
+ ['animations',['FRAME-femshep-walk-front-0','FRAME-femshep-walk-front-1'],'Marche-femme-focus'],
+ ['animations',['FRAME-femshep-combat-hit','FRAME-femshep-combat-down'],'Combat-femme-focus'],
 ]){
  const category=catalog.categories.find(c=>c.id===categoryId);
  if(renderOnly&&!renderOnly.has(category.sheetName))continue;
@@ -207,6 +225,10 @@ for(const [categoryId,ids,filename] of [
  const preview=await wb.render({sheetName:category.sheetName,range:`A${Math.min(...indices)}:I${Math.max(...indices)}`,scale:1.25,format:'png'});
  await fs.writeFile(path.join(previewDir,`${filename}.png`),new Uint8Array(await preview.arrayBuffer()));
  console.log(`Rendered ${filename}`);
+}
+if(!renderOnly||renderOnly.has('Guide')){
+ const preview=await wb.render({sheetName:'Guide',range:`A${Math.max(30,29+catalog.sources.length-2)}:D${guideFooter+3}`,scale:1.25,format:'png'});
+ await fs.writeFile(path.join(previewDir,'Guide-sources-focus.png'),new Uint8Array(await preview.arrayBuffer()));
 }
 console.log(`Workbook exported: ${outPath}`);
 
@@ -257,15 +279,16 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | --- | --- | --- |
 | Exploration | 9 zones jouables condensées : Normandy, Eden Prime, Citadelle, Thérum, Feros, Noveria, Virmire, Ilos et Citadelle assiégée | 8 destinations distinctes ; la Citadelle revient sous deux états. Les 100 sous-zones et 91 liaisons du catalogue restent un plan à produire. |
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
-| Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portrait et sprite cohérents ; variante féminine statique. Réactions narratives aux antécédents, créateur facial et costumes définitifs restent à produire. |
-| Combat | 21 rencontres condensées et commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
+| Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portraits et sprites liés à l’apparence ; marche féminine et quatre poses de combat. Réactions narratives complètes aux antécédents, créateur facial et costumes définitifs restent à produire. |
+| Combat | 21 rencontres de campagne et ${catalog.meta.prototypeCoverage.operationEncounterCount} rencontres annexes possibles, commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
 | Codex | ${catalog.meta.prototypeCoverage.codexCount} entrées à découverte progressive avec recherche | Les entrées dépendant de Liara, Féros, Virmire et Ilos sont conditionnées aux événements connus. Ne représente pas le codex complet de Mass Effect. |
 | Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |
-| PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant le départ sur Eden Prime | Emily reste en réserve. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
+| PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant Eden Prime ; Emily intervient dans son opération | Les nouveaux contacts utilisent des marqueurs et dialogues, sans sprites de terrain dédiés. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
 | Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
-| Assignations | ${catalog.meta.prototypeCoverage.assignmentCount} prototypes de la Citadelle : Retour à la maison, Affaire familiale et Le Fan, suivis au journal | ${catalog.meta.prototypeCoverage.assignmentLimit} Les contacts n’ont pas de sprites dédiés ; les 50 XP uniques sont un réglage de l’adaptation. |
+| Assignations | ${catalog.meta.prototypeCoverage.assignmentCount} quêtes annexes : trois historiques et ${catalog.meta.prototypeCoverage.operationCount} opérations ajoutées à la Citadelle et Féros, avec ${catalog.meta.prototypeCoverage.operationStepCount} nouvelles étapes | ${catalog.meta.prototypeCoverage.assignmentLimit} Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
+| Équipement | ${catalog.meta.prototypeCoverage.equipmentItemCount} articles jouables : 20 armes, 16 armures et 12 modules, achat/vente, comparaison et cinq emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Restrictions de morphologie, poids, niveau et entraînement. Prix et valeurs adaptés ; l’arme et la tenue dessinées ne changent pas avec chaque objet. Les fiches de famille restent des objectifs de couverture distincts des références/rangs jouables. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
-| Animation | Première planche de marche de Shepard : 16 images pour 4 directions, au stade Prototype | Face et dos en trois-quarts, profils latéraux, cycle à nettoyer et mapping UV spécifique. Huit directions et bibliothèque d’actions complètes non validées. Une fiche de marche est Prototype ; les 39 autres fiches d’animation restent Définies. |
+| Animation | ${catalog.meta.prototypeCoverage.walkFrameCount} images de marche pour les deux apparences de Shepard et ${catalog.meta.prototypeCoverage.femaleCombatPoseCount} poses clés de combat féminines, au stade Prototype | ${catalog.meta.prototypeCoverage.animationLimit} Les contacts féminins 0 et 2 restent proches dans certaines orientations. |
 
 ### Images existantes
 

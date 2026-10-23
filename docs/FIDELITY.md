@@ -2,13 +2,13 @@
 
 Le périmètre retenu conserve les sprites et les combats ATB de Relay Chronicles. La fidélité du contenu demande des références distinctes pour les lieux, les personnages, les missions et les conséquences. Les statistiques et le rythme ATB restent des choix d’adaptation.
 
-Le classeur principal suit 1 203 fiches, dont 1 146 ME1 et 57 extensions ME2/ME3. Les 27 autres classeurs suivent 5 326 fiches supplémentaires. Ces quantités décrivent un plan de production, pas des éléments tous jouables.
+Le classeur principal suit 1 321 fiches, dont 1 264 ME1 et 57 extensions ME2/ME3. Les 27 autres classeurs suivent 5 326 fiches supplémentaires. Ces quantités décrivent un plan de production, pas des éléments tous jouables. La version 0.2.0 conserve les 1 203 identifiants antérieurs et les six statuts déjà avancés ; les 118 nouvelles fiches détaillent les opérations, rencontres, objets et frames ajoutés.
 
 ## Dossier de Shepard
 
 Le jeu propose les deux apparences, les origines Stellaire/Colon/Terrien et les profils Rescapé/Héros de guerre/Impitoyable. Les choix sont conservés dans les sauvegardes, les exports et les imports. Le dossier reste consultable depuis la pause et le commando. Les anciennes sauvegardes v1 reçoivent les valeurs par défaut uniquement lorsque les nouveaux champs sont absents ; les valeurs explicitement invalides sont rejetées.
 
-La même identité et la même variante d’atlas sont utilisées en exploration et en combat. La variante féminine garde une pose statique afin de ne pas lui appliquer la marche masculine. Les animations féminines, les réactions narratives aux antécédents, les bonus de moralité de l’original et le créateur facial ne sont pas implémentés par ce dossier. Aucun bonus de combat n’est ajouté.
+La même identité est conservée en exploration et en combat. Les deux apparences ont chacune seize images de marche dans quatre directions. La variante féminine possède quatre poses de combat distinctes, avec rectangles et pivots par frame. Ces dessins restent des prototypes : transitions, huit directions, variations par arme et conformité artistique finale ne sont pas validées. Les réactions narratives complètes aux antécédents, les bonus de moralité de l’original et le créateur facial ne sont pas implémentés par ce dossier. Le choix d’apparence n’ajoute aucun bonus de combat.
 
 Les tests se trouvent dans `tests/commander.test.js`, `tests/commander-world.test.js` et `scripts/commander-browser.mjs`. La commande `npm run test:commander` exerce la création réelle, le dossier, l’export/import, la migration v1, la reprise, le clavier, le changement de zone et le sprite de combat. Son rapport est écrit dans `test-results/commander-report.json`.
 
@@ -38,13 +38,27 @@ Les étapes et les issues sont sauvegardées, et chaque assignation terminée at
 
 Les tests correspondants sont `tests/assignments.test.js`, `tests/assignment-world.test.js` et `npm run test:assignments`. La migration v1 initialise uniquement les données absentes et refuse les étapes ou issues incompatibles avec l’enquête.
 
+## Onze opérations supplémentaires
+
+La Favorite, la plainte de Xeltan, la demande d’Emily Wong, les veilleurs, le signal suspect, le prédicateur, le docteur Michel et quatre opérations de Féros ajoutent 43 étapes et quatre combats possibles. Les étapes, réponses, rencontres armées et victoires sont sauvegardées séparément des trois assignations historiques. Le journal présente les conditions et les échéances. Les récompenses de conclusion ne peuvent pas être récupérées une seconde fois.
+
+Le contenu est adapté aux cartes existantes : quatre scans représentatifs de veilleurs, dialogues français réécrits, positions regroupées, désamorçage simplifié et absence des varrens. Les seuils de persuasion, les récompenses, les combats et la remise de 20 % sur le médi-gel sont des réglages du prototype. Le gain de soutien à la colonie ne recrée pas l’intégralité du calcul de survie de ME1. Les références et écarts sont consignés dans [operations-sources.md](research/operations-sources.md).
+
+Les tests `tests/operations.test.js` et `scripts/operations-browser.mjs` valident la progression, les blocages, les récompenses uniques, les échéances, la reprise de combat et l’accès aux marqueurs. Le parcours navigateur contrôle les chemins puis positionne Shepard à chaque marqueur pour interagir au clavier ; il ne revendique pas une marche manuelle sur l’ensemble des routes.
+
+## Équipement
+
+L’inventaire, l’achat, la vente et les cinq emplacements par personnage fonctionnent pour 48 références : 20 armes, 16 armures et 12 modules. Les contrôles portent sur les quantités, stocks, niveaux, entraînements et morphologies. Les modules ont des effets de combat mesurables ; les chiffres restent des valeurs d’adaptation. Les armures et armes dessinées ne changent pas encore avec l’objet équipé.
+
+Les fiches de familles d’armes ou de marques ne sont pas remplacées par les nouvelles fiches d’objets jouables : une famille encore définie peut contenir un modèle prototype. Les licences, toute la gamme de rangs, le butin aléatoire, les talents détaillés et les apparences d’équipement restent à produire. Voir [loadout-sources.md](research/loadout-sources.md), `tests/loadout.test.js`, `tests/equipment-combat.test.js` et [loadout-report.json](qa/loadout-report.json).
+
 ## État du contenu restant
 
-Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 62 fiches de missions secondaires/DLC, trois ont un prototype jouable et les 59 autres restent Définies. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les modèles d’équipement, les animations et les campagnes ultérieures restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
+Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les variantes visuelles d’équipement, les animations et les campagnes ultérieures restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
 
 Pour reproduire une scène précisément, il faut identifier l’édition, les étapes et conditions, les références de carte ou de costume et les embranchements attendus. Le dépôt conserve des liens de manuels et de guides, mais pas un relevé primaire complet de ces éléments. Les captures de `docs/screenshots/` représentent le prototype.
 
-Les tentatives de consultation du manuel EA et de la page officielle comparant les éditions ont reçu un refus HTTP CONNECT 403 du proxy de cet environnement. Les domaines concernés sont `eaassets-a.akamaihd.net` et `www.ea.com`. Cette restriction empêche leur consultation ici ; elle ne prouve pas que les documents n’existent plus. La comparaison original/Legendary Edition reste à établir pour les détails qui diffèrent.
+Lors du complément antérieur, les tentatives de consultation du manuel EA et de la page officielle comparant les éditions avaient reçu un refus HTTP CONNECT 403 du proxy. Cette observation historique ne prouve pas que les documents n’existent plus. Les sources consultées pour 0.2.0 et leurs limites sont consignées dans `docs/research/`. La comparaison original/Legendary Edition reste à établir pour les détails qui diffèrent.
 
 Un brouillon réseau ajoute `eaassets-a.akamaihd.net`, `www.ea.com`, `na.llnet.bioware.cdn.ea.com`, `primagames.com`, `masseffect.fandom.com` et `api.github.com`. Il doit être revu et enregistré dans les paramètres de l’environnement, puis publié pour activation. L’enregistrement du brouillon seul ne modifie pas le réseau de la machine courante. L’accès Git natif au dépôt fonctionne et permet les pushes sur `main` ; cet accès ne garantit pas l’accès à l’API GitHub.
 

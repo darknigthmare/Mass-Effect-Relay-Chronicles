@@ -9,7 +9,7 @@ const BOSS_KEYS = ['saren', 'benezia', 'thorian', 'saren-final'];
 const NPC_KEYS = ['femshep', 'anderson', 'joker', 'chakwas', 'nihlus', 'udina', 'kirrahe', 'emily'];
 const CITADEL_RECRUITS = { 'citadel:encounter-1': 'garrus', 'citadel:encounter-2': 'tali', 'citadel:boss': 'wrex' };
 const ASSET_BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
-const COLORS = { dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
+const COLORS = { operation: 0xc09be9, dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
 const TAU = Math.PI * 2;
 const clamp = THREE.MathUtils.clamp;
 const V3 = () => new THREE.Vector3();
@@ -58,7 +58,7 @@ export class WorldView {
     this.container = container; this.onInteract = onInteract; this.onMove = onMove; this.onEncounter = onEncounter;
     this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins']; this.commanderAppearance = 'male'; this.storyContext = null;
     this.player = { x: 0, z: 11 }; this.cleared = new Set(); this.colliders = []; this.animations = []; this.effects = [];
-    this.actors = []; this.battleActors = new Map(); this.trail = []; this.spriteCache = new Map(); this.atlases = {};
+    this.actors = []; this.battleActors = new Map(); this.trail = []; this.spriteCache = new Map(); this.atlases = {}; this.characterAnimations = {}; this.assetErrors = []; this.operationPois = [];
     this.textureCache = new Map(); this.materialCache = new Map(); this._moveReport = 0; this._disposed = false;
     this.scene = new THREE.Scene(); this.scene.background = new THREE.Color(0x07111d);
     this.camera = new THREE.OrthographicCamera(-20, 20, 15, -15, 0.1, 500);
@@ -95,6 +95,7 @@ export class WorldView {
     this._loadAtlas('boss', `${ASSET_BASE}boss-atlas.png`); this._loadAtlas('props', `${ASSET_BASE}props-atlas.png`);
     this._loadAtlas('npc', `${ASSET_BASE}npc-atlas.png`); this._loadAtlas('vehicles', `${ASSET_BASE}vehicle-atlas.png`);
     this.enableWalkAtlas();
+    if (typeof __RELAY_FEMSHEP_ANIMATION__ !== 'undefined') this.registerCharacterAnimation('femshep', __RELAY_FEMSHEP_ANIMATION__);
     this.setZone('normandy'); this.resize();
   }
 
@@ -107,7 +108,7 @@ export class WorldView {
       this.characters.traverse(o => { if (o.userData.characterKey && o.material) o.material.map = this._spriteTexture(o.userData.characterKey, o.userData.enemy); });
       if (name === 'props') { for (const args of this._pendingProps || []) this._propSprite(...args); this._pendingProps = []; }
       if (name === 'vehicles') { for (const args of this._pendingVehicles || []) this._vehicleSprite(...args); this._pendingVehicles = []; }
-    }, undefined, () => { /* Hand-drawn placeholder sprites stay usable while assets are prepared. */ });
+    }, undefined, () => { this.assetErrors?.push(`Asset indisponible : ${url}`); });
   }
 
   _spriteTexture(key = 'shepard', enemy = false) {
@@ -213,6 +214,49 @@ export class WorldView {
     texture.repeat.set(width / image.width, height / image.height);
     texture.offset.set((this.walkConfig.columns[frame] + 1) / image.width, 1 - (bottom - 1) / image.height);
     actor.walkAspect = width / height; return texture;
+  }
+
+  // Metadata is bundled by Vite, so Electron loadFile needs no file:// fetch.
+  registerCharacterAnimation(key, config) {
+    if (!config || !Array.isArray(config.frames) || !config.frames.length) return;
+    this.characterAnimations[key] = config;
+    this._loadAtlas(`motion-${key}`, `${ASSET_BASE}${config.file}`);
+    if (config.combat?.file) this._loadAtlas(`combat-${key}`, `${ASSET_BASE}${config.combat.file}`);
+  }
+
+  _applyAnimationFrame(actor, atlasName, frame, { cover = false } = {}) {
+    const atlas = this.atlases[atlasName];
+    if (!atlas || !frame?.rect) return false;
+    const cacheKey = `${atlasName}:${actor.id}`;
+    if (!this.spriteCache.has(cacheKey)) this.spriteCache.set(cacheKey, atlas.clone());
+    const texture = this.spriteCache.get(cacheKey), [x, y, width, height] = frame.rect;
+    texture.repeat.set(width / atlas.image.width, height / atlas.image.height);
+    texture.offset.set(x / atlas.image.width, 1 - (y + height) / atlas.image.height); texture.needsUpdate = true;
+    const displayHeight = actor.height * (frame.heightScale || 1) * (cover ? .88 : 1);
+    const displayWidth = displayHeight * width / height;
+    const pivot = frame.pivot || [width / 2, height];
+    actor.body.scale.set(displayWidth / actor.body.geometry.parameters.width, displayHeight / actor.body.geometry.parameters.height, 1);
+    actor.body.position.y = (pivot[1] / height - .5) * displayHeight + .05;
+    const offset = (.5 - pivot[0] / width) * displayWidth, facing = Math.atan2(this.cameraOffset.x, this.cameraOffset.z);
+    actor.body.position.x = Math.cos(facing) * offset; actor.body.position.z = -Math.sin(facing) * offset;
+    actor.body.material.map = texture; actor.body.rotation.z = 0;
+    actor.animationFrame = frame.id || frame.pose || null;
+    return true;
+  }
+
+  _animateCharacter(actor, moving, dx, dz) {
+    const config = this.characterAnimations?.[actor.key];
+    if (!config || !this.atlases[`motion-${actor.key}`]) return false;
+    if (moving) {
+      const side = new THREE.Vector2(this.cameraOffset.z, -this.cameraOffset.x).normalize();
+      const forward = new THREE.Vector2(-this.cameraOffset.x, -this.cameraOffset.z).normalize();
+      const horizontal = dx * side.x + dz * side.y, vertical = dx * forward.x + dz * forward.y;
+      actor.walkDirection = Math.abs(horizontal) > Math.abs(vertical) ? horizontal > 0 ? 'right' : 'left' : vertical > 0 ? 'back' : 'front';
+    }
+    const frames = config.frames.filter(frame => frame.direction === (actor.walkDirection || 'front'));
+    const rate = (config.fps || 7) * (this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') ? 1.4 : 1);
+    const frame = frames[moving ? Math.floor(this.time * rate) % frames.length : 0];
+    return this._applyAnimationFrame(actor, `motion-${actor.key}`, frame);
   }
 
   _texturedMaterial(color, kind = 'metal', repeats = 6) {
@@ -636,6 +680,7 @@ export class WorldView {
 
   setZone(zoneId, { party, cleared, stage } = {}) {
     const zone = WORLD_ZONES[zoneId] || WORLD_ZONES.normandy;
+    this.operationPois = [];
     this.zone = zone; this.zoneId = zone.id; this.stageState = stage; this.rand = randomGenerator(hash(zone.id));
     this.cleared = new Set(cleared instanceof Set ? cleared : Array.isArray(cleared) ? cleared : []);
     this._clearEffects(); this.animations = []; this.colliders = []; this.combatOccluders = []; this.targetPath = null; this.pendingPOI = null; this._pendingProps = []; this._pendingVehicles = [];
@@ -662,7 +707,7 @@ export class WorldView {
       if (actor.id !== 'shepard' || actor.enemy) continue;
       actor.key = key; actor.group.userData.key = key; actor.body.userData.characterKey = key;
       actor.body.material.map = this._spriteTexture(key, false);
-      actor.body.scale.x = 1;
+      actor.body.scale.set(1, 1, 1); actor.body.position.x = 0; actor.body.position.z = 0;
     }
   }
 
@@ -824,8 +869,8 @@ export class WorldView {
     const source = this.battleActors.get(event.actorId || event.sourceId || event.actor), target = this.battleActors.get(event.targetId || event.target);
     const type = String(event.type || event.kind || '').toLowerCase();
     const action = String(event.actionId || event.power || '').toLowerCase();
-    if (source) source.poseTime = .3;
-    if (target) target.poseTime = .24;
+    if (source) { source.poseTime = .3; if (type === 'action') { source.combatPose = ['shoot', 'burst', 'signature'].includes(action) ? 'aim' : 'power'; source.combatPoseTime = .7; } }
+    if (target) { target.poseTime = .24; if (type === 'damage') { target.combatPose = 'hit'; target.combatPoseTime = .4; } }
     if (type === 'heal' || type === 'revive' || ['medigel', 'unity', 'barrier', 'cover', 'reposition'].includes(action)) {
       const actor = target || source; if (actor) this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.1, 0)), ['medigel', 'unity'].includes(action) || type === 'heal' ? 0x84e3bb : 0x80bddd, 1.5);
       return;
@@ -879,7 +924,7 @@ export class WorldView {
       const recruit = this.zoneId === 'citadel' && CITADEL_RECRUITS[poi.id];
       return !recruit || !this.storyContext || !this.storyContext.recruited.includes(recruit) && !this.storyContext.lost.includes(recruit);
     });
-    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs()];
+    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs(), ...(this.operationPois || [])];
   }
   getAssignmentPOIs() {
     if (this.zoneId !== 'citadel') return [];
@@ -891,6 +936,28 @@ export class WorldView {
       ...(contact.portrait ? { portrait: contact.portrait } : {}),
     }));
   }
+  /** Place optional markers on reachable ground without removing scenery collisions. */
+  setOperationPOIs(pois = []) {
+    this.operationPois = [];
+    const occupied = this.getInteractivePOIs();
+    for (const source of pois) {
+      if (!source || source.zone !== this.zoneId || !Number.isFinite(source.x) || !Number.isFinite(source.z)) continue;
+      const candidates = [{ x: source.x, z: source.z }];
+      for (let radius = .9; radius <= 7.2; radius += .9) for (let angle = 0; angle < TAU; angle += Math.PI / 6)
+        candidates.push({ x: source.x + Math.cos(angle) * radius, z: source.z + Math.sin(angle) * radius });
+      const spot = candidates.find(point => this._walkable(point.x, point.z)
+        && occupied.every(other => Math.hypot(other.x - point.x, other.z - point.z) >= 1.8)
+        && this._pathTo(point)?.length);
+      if (!spot) { this.assetErrors?.push(`Point inaccessible : ${source.id}`); continue; }
+      const poi = { ...source, ...spot, type: 'operation', cleared: false };
+      this.operationPois.push(poi); occupied.push(poi);
+    }
+    if (this.pendingPOI && !this.getInteractivePOIs().some(poi => poi.id === this.pendingPOI.id)) {
+      this.pendingPOI = null; this.targetPath = null;
+    }
+    this._makeMarkers();
+  }
+
   getNearby() {
     let nearest = null, distance = 2.65;
     for (const poi of this.getInteractivePOIs()) { if (poi.type === 'encounter' && this.cleared.has(poi.id)) continue; const d = Math.hypot(this.player.x - poi.x, this.player.z - poi.z); if (d < distance) { distance = d; nearest = poi; } }
@@ -992,6 +1059,7 @@ export class WorldView {
       actor.group.position.z = THREE.MathUtils.lerp(actor.group.position.z, target.z, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
       actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : Math.sin(this.time * 1.8 + index) * .016);
       actor.body.rotation.z = actorMoving ? Math.sin(this.time * 10 - index) * .018 : 0;
+      if (this._animateCharacter(actor, actorMoving, movementX, movementZ)) return;
       if (actor.key === 'shepard' && this.atlases.walk && this.walkConfig) {
         actor.body.material.map = moving ? this._walkingTexture(actor, movementX, movementZ) : this._spriteTexture(actor.key, false);
         actor.body.scale.x = moving ? actor.walkAspect / (2.1 / actor.height) : 1;
@@ -1010,6 +1078,12 @@ export class WorldView {
       actor.body.scale.y = actor.alive && actor.state?.cover ? .88 : 1;
       actor.body.position.y = actor.height / 2 * actor.body.scale.y + .05 + (actor.alive ? Math.sin(this.time * 2 + actor.group.position.z) * .025 : -.5);
       actor.body.material.color.set(actor.poseTime > .15 ? 0xffd6b2 : 0xffffff);
+      const combatConfig = this.characterAnimations?.[actor.key]?.combat;
+      if (combatConfig) {
+        actor.combatPoseTime = Math.max(0, (actor.combatPoseTime || 0) - dt);
+        const pose = !actor.alive ? 'down' : actor.combatPoseTime > 0 ? actor.combatPose || 'aim' : 'aim';
+        this._applyAnimationFrame(actor, `combat-${actor.key}`, combatConfig.frames[pose], { cover: actor.alive && actor.state?.cover });
+      }
     }
     for (const item of this.animations) {
       if (item.kind === 'globe') item.object.rotation.y += dt * .12;

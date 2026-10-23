@@ -73,6 +73,7 @@ try{
   await finish('citadel');
   // A normal UI purchase, then normal squad selection at the Normandy.
   await page.locator('[data-do="equipment"]').click();
+  await page.locator('[data-do="eq-tab"][data-id="calibrations"]').click();
   const beforeCredits=await page.evaluate(()=>window.__RELAY_TEST__.getState().credits);
   await page.locator('[data-do="buy"][data-id="rifle"]').click();
   assert.equal(await page.evaluate(()=>window.__RELAY_TEST__.getState().credits),beforeCredits-180);

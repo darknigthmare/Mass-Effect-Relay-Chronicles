@@ -1,0 +1,165 @@
+{
+  "version": "0.2.0",
+  "at": "2026-10-23T12:53:17.975Z",
+  "passed": true,
+  "mode": "Actual UI creation, equipment transactions, save/load and one real ATB victory. Combat time is accelerated through the simulation API; no inventory, damage, reward or progression overrides.",
+  "checks": [
+    {
+      "name": "Female creation and keyboard movement",
+      "appearance": "female",
+      "nameInSave": "Jane Shepard",
+      "actualMovement": true
+    },
+    {
+      "name": "UI purchase, equip, sale and Jenkins allocation",
+      "spent": 100,
+      "sale": 28,
+      "credits": 178,
+      "heatSinkStock": 4,
+      "quantitySoldRemoved": true,
+      "desktop": {
+        "label": "Equipment desktop",
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "screenWidth": 1118,
+        "contentWidth": 1118,
+        "clippedButtons": []
+      }
+    },
+    {
+      "name": "Automatic reload, JSON export/import and manual restore preserve inventory",
+      "autosave": true,
+      "exported": true,
+      "imported": true,
+      "manualSlot": "1",
+      "restoredEquippedModuleAfterRemoval": true
+    },
+    {
+      "name": "Actual mobile UI",
+      "widths": [
+        390
+      ],
+      "tabs": [
+        {
+          "label": "Equipment mobile loadout",
+          "viewport": 390,
+          "documentWidth": 390,
+          "screenWidth": 365,
+          "contentWidth": 365,
+          "clippedButtons": []
+        },
+        {
+          "label": "Equipment mobile inventory",
+          "viewport": 390,
+          "documentWidth": 390,
+          "screenWidth": 365,
+          "contentWidth": 365,
+          "clippedButtons": []
+        },
+        {
+          "label": "Equipment mobile shop",
+          "viewport": 390,
+          "documentWidth": 390,
+          "screenWidth": 365,
+          "contentWidth": 365,
+          "clippedButtons": []
+        },
+        {
+          "label": "Equipment mobile calibrations",
+          "viewport": 390,
+          "documentWidth": 390,
+          "screenWidth": 365,
+          "contentWidth": 365,
+          "clippedButtons": []
+        }
+      ]
+    },
+    {
+      "name": "Real ATB victory uses equipped effects",
+      "encounter": "eden-prime:encounter-1",
+      "winner": "party",
+      "elapsed": 15.000000000000078,
+      "actionCount": 11,
+      "medigel": 4,
+      "defeatedEnemies": 2,
+      "party": [
+        {
+          "id": "shepard",
+          "name": "Jane Shepard",
+          "hp": 250,
+          "maxHp": 250,
+          "shield": 18.21441921444201,
+          "maxShield": 140,
+          "alive": true
+        },
+        {
+          "id": "kaidan",
+          "name": "Kaidan Alenko",
+          "hp": 215,
+          "maxHp": 215,
+          "shield": 140,
+          "maxShield": 140,
+          "alive": true
+        },
+        {
+          "id": "jenkins",
+          "name": "Richard Jenkins",
+          "hp": 180,
+          "maxHp": 180,
+          "shield": 90,
+          "maxShield": 90,
+          "alive": true
+        }
+      ],
+      "enemies": [
+        {
+          "id": "geth-0",
+          "name": "Soldat geth",
+          "hp": 0,
+          "maxHp": 95,
+          "shield": 0,
+          "maxShield": 35,
+          "alive": false
+        },
+        {
+          "id": "geth-1",
+          "name": "Soldat geth",
+          "hp": 0,
+          "maxHp": 95,
+          "shield": 0,
+          "maxShield": 35,
+          "alive": false
+        }
+      ],
+      "iterations": 33,
+      "effects": {
+        "weaponHeatMultiplier": 0.9,
+        "weaponCoolingBonus": 1,
+        "announcedHeat": 21.6
+      },
+      "observedShot": {
+        "beforeHeat": 0,
+        "afterHeat": 21.6,
+        "delta": 21.6
+      }
+    },
+    {
+      "name": "Jenkins recovery after the actual first encounter",
+      "lost": true,
+      "recoveredWeapon": "storm-i",
+      "selectionReturnsToShepard": true,
+      "subsequentlyEquippedOnShepard": true,
+      "saveValid": true
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "screenshots": [
+    "docs/screenshots/v02-equipment-loadout.png",
+    "docs/screenshots/v02-equipment-mobile.png",
+    "docs/screenshots/v02-equipment-mobile-inventory.png",
+    "docs/screenshots/v02-equipment-combat.png",
+    "docs/screenshots/v02-equipment-recovery.png"
+  ],
+  "assetErrors": []
+}

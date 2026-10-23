@@ -1,7 +1,8 @@
+import { applyLoadout } from './loadout.js';
 // Canonical names and settings; dialogue, encounter tuning and condensed layouts are adaptations.
 import { COMMANDER_APPEARANCES } from './commander.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.2.0';
 export const CLASSES = {
   soldier: { name: 'Soldat', tagline: 'Puissance de feu · endurance', powers: [], attack: 30, defense: 10, hp: 250, shield: 140 },
   engineer: { name: 'Ingénieur', tagline: 'Sabotage · contrôle des systèmes', powers: ['overload', 'sabotage', 'hack'], attack: 22, defense: 6, hp: 210, shield: 140 },
@@ -73,7 +74,7 @@ export const EQUIPMENT = [
   { id: 'shield', name: 'Régulateur de bouclier', cost: 140, stat: 'shield', value: 15, detail: 'Capacité du bouclier : +15.' },
   { id: 'medigel', name: 'Recharge de médi-gel', cost: 50, stat: 'medigel', value: 1, detail: 'Une dose pour la prochaine mission, maximum 9.' },
 ];
-export function actorFor(id, state) {
+export function baseActorFor(id, state) {
   const c = CREW[id] || CREW.kaidan;
   const cls = id === 'shepard' ? CLASSES[state.classId] || CLASSES.soldier : c;
   const level = Math.floor(state.xp / 300) + 1;
@@ -82,6 +83,8 @@ export function actorFor(id, state) {
   const shield = (cls.shield || 120) + (level - 1) * 8 + (upgrades.shield || 0);
   return { ...c, name: id === 'shepard' ? state.name : c.name, sprite: id === 'shepard' ? COMMANDER_APPEARANCES[state.appearance === 'female' ? 'female' : 'male'].sprite : c.sprite, hp, maxHp: hp, shield, maxShield: shield, attack: (cls.attack || 24) + level - 1 + (upgrades.attack || 0), defense: (cls.defense || 6) + (upgrades.defense || 0), speed: cls.speed || 1, powers: [...(cls.powers || []), ...(id === 'shepard' && state.flags.spectre ? ['unity'] : [])], level };
 }
+export function actorFor(id, state) { return applyLoadout(baseActorFor(id, state), state); }
+
 export function enemiesFor(zone, index, state) {
   const ids = ENCOUNTERS[zone]?.[index] || ['geth'];
   const scale = 1 + Math.max(0, state.completed.filter(x => !['citadel','eden-prime'].includes(x)).length - 1) * .065;

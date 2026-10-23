@@ -6,12 +6,12 @@ Représenter Mass Effect avec le langage d’un JRPG de l’époque PlayStation 
 
 Le projet vise à terme une adaptation de ME1 complète et cohérente avec ses personnages, lieux et décisions. Le passage du tir à un RPG ATB change nécessairement les règles d’action et le découpage des affrontements. La fidélité doit donc être évaluée séparément pour l’apparence, la géographie, la chronologie, les décisions et les systèmes de combat.
 
-**Livraison 0.1.0 :** une campagne condensée qui permet d’éprouver toute la boucle, du départ à la fin. Les règles suivantes décrivent cette implémentation lorsqu’elles sont indiquées comme présentes. Le catalogue Excel décrit en complément les éléments à réaliser pour l’ambition intégrale.
+**Livraison 0.2.0 :** la campagne condensée reste jouable du départ à la fin. Elle accueille un inventaire persistant, onze nouvelles opérations annexes et une première animation de Shepard féminine. Les règles suivantes décrivent cette implémentation lorsqu’elles sont indiquées comme présentes. Le catalogue Excel décrit en complément les éléments à réaliser pour l’ambition intégrale.
 
 ## Boucle jouable
 
 1. Rejoindre le Normandy, consulter le briefing et préparer les deux compagnons.
-2. Acheter des améliorations avec les crédits obtenus et consulter les dossiers.
+2. Acheter, vendre et comparer l’équipement ; choisir les armes, armures et modules de chaque compagnon ; consulter les dossiers.
 3. Choisir une destination débloquée par l’enquête.
 4. Explorer le décor 3D, récupérer les ressources, suivre un objectif et approcher une rencontre visible.
 5. Engager le combat ATB ; exploiter pouvoirs, défense, chaleur et ordre des actions.
@@ -62,7 +62,21 @@ Les classes déterminent les aptitudes de Shepard ; le Soldat ne reçoit pas de 
 
 ### Progression actuelle
 
-La victoire donne expérience et crédits. Les niveaux renforcent automatiquement les statistiques. L’armurerie vend des améliorations limitées par personnage et des doses de médi-gel. Santé et boucliers sont restaurés au début d’une rencontre : c’est une simplification volontaire de cette version, qui devra être reconsidérée avec l’équilibrage d’une campagne plus longue. L’inventaire complet par marques, qualités, mods et armures du jeu d’origine est dans le catalogue et reste à implémenter.
+La victoire donne expérience et crédits. Les niveaux renforcent automatiquement les statistiques. L’armurerie conserve les calibrations permanentes de la version précédente et les doses de médi-gel. Elle vend aussi 48 références : 20 armes, 16 armures, quatre modules d’arme, quatre modifications de munitions et quatre modules d’armure. L’inventaire partagé compte au plus 150 objets, équipement compris, et 20 exemplaires par référence. Les stocks et les cinq emplacements de chaque personnage sont sauvegardés.
+
+Le jeu contrôle le niveau, l’espèce et la classe avant d’équiper une armure. Une arme non entraînée ne fournit que la moitié de son bonus d’attaque. La comparaison montre les valeurs résultantes avant l’achat ou l’équipement. Un objet porté ne peut pas être vendu ; le matériel d’un compagnon disparu reste récupérable. Les bonus sont appliqués une seule fois, depuis les statistiques de base. L’équipement de départ ne renforce pas les statistiques du prototype précédent, afin de préserver son équilibre.
+
+Les modules peuvent modifier la chaleur, le refroidissement, les dégâts contre les organiques ou synthétiques, la pénétration du bouclier et la résistance au contrôle. Le coût thermique annoncé par l’action correspond à celui du tir. Les valeurs, prix et stocks relèvent de l’adaptation ATB ; les variantes visuelles d’armes et de tenues ne changent pas encore avec l’équipement.
+
+Santé et boucliers sont restaurés au début d’une rencontre : c’est une simplification volontaire de cette version, à reconsidérer avec une campagne plus longue. Le catalogue conserve les familles, qualités et objets du jeu d’origine qui ne font pas partie de ces 48 références.
+
+### Opérations annexes
+
+Les trois assignations déjà publiées — Retour à la maison, Affaire familiale et Le Fan — gardent leur progression. Onze opérations supplémentaires ajoutent 43 étapes à la Citadelle et à Féros. Le journal affiche leur objectif courant, les conditions de déblocage, les réponses mémorisées, les récompenses et les issues. Un seul objectif annexe peut être suivi ; il apparaît sur la carte et dans l’interface d’exploration.
+
+Les quatre rencontres annexes utilisent les vraies règles ATB. Choisir de combattre arme une rencontre persistante ; seule une victoire validée peut compléter cette étape. Un rechargement reprend depuis l’avant-combat, sans attribuer les récompenses. La conclusion de chaque opération paie une seule fois. Le docteur Michel peut être aidé par persuasion ou par combat et donne ensuite une remise de 20 % sur le médi-gel. Les services rendus à la colonie de Féros et les données de Gavin sont enregistrés dans le rapport de mission.
+
+Les opérations des tunnels et la récupération des données possèdent des échéances liées au Thorien. Le retour à Gavin reste possible si les données ont déjà été copiées. Un avertissement précède les échéances du Thorien et du Conduit. Ces conditions sont celles des cartes condensées ; les dialogues complets, tous les veilleurs et les autres variantes du jeu original restent à produire.
 
 ## Décisions et narration
 
@@ -78,7 +92,9 @@ Pour la version intégrale, chaque scène devra définir son lieu, les participa
 
 Les atlas PNG utilisent un canal alpha. Les matériaux des personnages sont des plans lisibles avec un seuil de transparence, des ombres au sol et une orientation vers la caméra. Les plans de personnages n’exigent pas un squelette 3D. Les portraits de dialogue et les cartes de commando réutilisent les régions d’atlas.
 
-La version actuelle dispose de poses HD du commando, des ennemis et boss, de personnages secondaires, d’objets et de véhicules. Shepard possède une première marche en quatre directions et quatre images par direction. Les autres mouvements restent des transformations de présentation : balancement, déplacement, impact, lévitation, couverture, disparition après KO. Une pose HD ne valide donc pas un moveset complet.
+La version actuelle dispose de poses HD du commando, des ennemis et boss, de personnages secondaires, d’objets et de véhicules. Les deux apparences de Shepard possèdent chacune une première marche en quatre directions et quatre images par direction. Shepard féminine dispose aussi de quatre poses de combat : visée, pouvoir, impact et KO. Les rectangles, pivots et hauteurs sont définis par frame et embarqués dans la compilation ; leur chargement ne demande pas de requête JSON externe.
+
+Les autres mouvements restent des transformations de présentation : balancement, déplacement, impact, lévitation, couverture, disparition après KO. Les quatre poses féminines ne constituent pas quatre cycles animés. Une pose HD ne valide donc pas un moveset complet.
 
 Pour une production finale, chaque personnage devra avoir une référence d’époque approuvée, des proportions et costumes stables, huit directions si le cadrage l’exige, repos, marche, course, tir, usage des pouvoirs, dégâts, KO et transitions. Une silhouette comparable à son personnage ne suffit pas à valider la fidélité des détails.
 
@@ -96,15 +112,17 @@ L’audio repose sur des oscillateurs et enveloppes Web Audio, avec un profil pa
 
 ## Architecture
 
-`main.js` orchestre l’interface et les transitions. `world.js` rend le décor et les sprites. `combat.js` fonctionne sans DOM pour permettre des tests déterministes. `state.js` contrôle les mutations de campagne et reconstruit les sauvegardes depuis des champs validés. `game-data.js` décrit les données du jeu présent. Le catalogue de production est distinct et ne déclare pas automatiquement une fiche jouable.
+`main.js` orchestre l’interface et les transitions. `world.js` rend le décor et les sprites. `combat.js` fonctionne sans DOM pour permettre des tests déterministes. `state.js` contrôle les mutations de campagne et reconstruit les sauvegardes depuis des champs validés. `game-data.js` décrit les données du jeu présent. `loadout.js` valide l’inventaire et calcule les bonus ; `operations.js` contrôle les nouvelles étapes sans modifier les trois assignations historiques. Les modules d’interface correspondants rendent l’équipement, le journal et la carte. Le catalogue de production est distinct et ne déclare pas automatiquement une fiche jouable.
 
 La séparation permet de remplacer une carte condensée, un atlas ou un écran sans réécrire les règles de combat. L’ajout d’une mission nécessite néanmoins des données, des interactions, des conditions de progression, du contenu narratif, des assets et des preuves de test ; ajouter un nom au catalogue ne suffit pas.
 
 ## Sauvegarde et reprise
 
-La sauvegarde automatique se produit hors combat. En combat, la reprise part du point précédent la rencontre. Le fichier exporté porte un identifiant de format et une version. Les données importées sont contrôlées avant d’être appliquées ; une importation invalide ne remplace pas la progression valide. Les niveaux, améliorations, choix, morts, recrues et paramètres de jeu sont persistés.
+La sauvegarde automatique se produit hors combat. En combat, la reprise part du point précédent la rencontre. Six emplacements manuels complètent l’autosauvegarde. Le fichier exporté porte un identifiant de format et une version. Les données importées sont contrôlées avant d’être appliquées ; une importation invalide ne remplace pas la progression valide. Les niveaux, calibrations, équipements, stocks, opérations, choix, morts, recrues, conversations, dossier et paramètres de jeu sont persistés.
 
-Le stockage local dépend du navigateur ou de l’application ; l’export JSON permet de transférer la progression. La version 0.1.0 ne fournit pas de cloud, de multijoueur ni de comptes.
+Le format reste en version 1. Les sauvegardes antérieures sans inventaire ou opérations reçoivent les valeurs initiales de ces champs, tout en conservant le dossier et la progression déjà publiés. Les champs présents mais invalides sont refusés. Une étape ou un combat annexe incomplet n’est pas converti en victoire pendant la migration.
+
+Le stockage local dépend du navigateur ou de l’application ; l’export JSON permet de transférer la progression. La version actuelle ne fournit pas de cloud, de multijoueur ni de comptes.
 
 ## Critères pour passer du prototype à l’adaptation intégrale
 

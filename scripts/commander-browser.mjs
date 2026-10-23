@@ -23,7 +23,7 @@ async function idle(page, zone) {
 async function assertIdentity(page, expected) {
   await page.waitForFunction(() => {
     const world = window.__RELAY_TEST__.getWorld();
-    return world.atlases.npc && world.atlases.crew;
+    return world.atlases.npc && world.atlases.crew && world.atlases['motion-femshep'];
   });
   const identity = await page.evaluate(() => {
     const qa = window.__RELAY_TEST__, state = qa.getState(), world = qa.getWorld();
@@ -36,7 +36,7 @@ async function assertIdentity(page, expected) {
   });
   for (const key of ['name', 'appearance', 'origin', 'psychologicalProfile']) assert.equal(identity[key], expected[key], key);
   assert.equal(identity.sprite, expected.appearance === 'female' ? 'femshep' : 'shepard');
-  assert.match(identity.texture || '', expected.appearance === 'female' ? /npc-atlas\.png/ : /(?:crew|shepard-walk)-atlas\.png/);
+  assert.match(identity.texture || '', expected.appearance === 'female' ? /shepard-female-walk-atlas\.png/ : /(?:crew|shepard-walk)-atlas\.png/);
 }
 
 async function importSave(page, contents, name = 'commander.json') {
@@ -67,8 +67,8 @@ try {
       await page.locator('#new-origin').selectOption(expected.origin);
       await page.locator('#new-profile').selectOption(expected.psychologicalProfile);
       assert.equal(await page.locator('#commander-name').inputValue(), expected.name);
-      const preview = await page.locator('#commander-preview').evaluate(element => getComputedStyle(element).backgroundImage);
-      assert.ok(preview.includes(expected.appearance === 'female' ? 'npc-atlas.png' : 'crew-atlas.png'));
+      const preview = await page.locator('#commander-preview').evaluate(element => element.querySelector('image')?.getAttribute('href')||getComputedStyle(element).backgroundImage);
+      assert.ok(preview.includes(expected.appearance === 'female' ? 'shepard-female-walk-atlas.png' : 'crew-atlas.png'));
       await page.screenshot({ path: fileURLToPath(new URL(`commander-${expected.appearance}-creation.png`, out)) });
       await page.getByRole('button', { name: /Commencer l’aventure/ }).click();
       await page.getByRole('button', { name: 'Je rejoins le briefing.' }).click();
@@ -122,6 +122,7 @@ try {
       await assertIdentity(page, expected);
       await page.evaluate(() => window.__RELAY_TEST__.startBattle('eden-prime:encounter-1'));
       await page.waitForFunction(() => window.__RELAY_TEST__.getWorld().battleActors.has('shepard'));
+      if(expected.appearance === 'female')await page.waitForFunction(()=>window.__RELAY_TEST__.getWorld().battleActors.get('shepard')?.body.material.map?.image?.src?.includes('shepard-female-combat-atlas.png'));
       const battle = await page.evaluate(() => {
         const qa = window.__RELAY_TEST__, actor = qa.getWorld().battleActors.get('shepard');
         return { id: actor.id, key: actor.key, name: qa.getBattle().actors.find(entry => entry.id === 'shepard').name, texture: actor.body.material.map?.image?.src };
@@ -129,7 +130,7 @@ try {
       assert.equal(battle.id, 'shepard');
       assert.equal(battle.name, expected.name);
       assert.equal(battle.key, expected.appearance === 'female' ? 'femshep' : 'shepard');
-      assert.ok(battle.texture?.includes(expected.appearance === 'female' ? 'npc-atlas.png' : 'crew-atlas.png'));
+      assert.ok(battle.texture?.includes(expected.appearance === 'female' ? 'shepard-female-combat-atlas.png' : 'crew-atlas.png'));
       report.scenarios.push({ appearance: expected.appearance, creation: true, dossier: true, saveExport: true, saveReload: true, saveImport: true, keyboardMovement: true, exploration: true, combat: true, ...(expected.appearance === 'female' ? { legacyMigration: true } : {}) });
     } catch (error) {
       await page.screenshot({ path: fileURLToPath(new URL(`commander-${expected.appearance}-failure.png`, out)) }).catch(() => {});

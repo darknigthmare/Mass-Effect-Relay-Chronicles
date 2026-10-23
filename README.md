@@ -2,7 +2,7 @@
 
 Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de trois et commandes ATB**, dans une mise en scène inspirée des JRPG sur PlayStation.
 
-**Version 0.1.0 : campagne ME1 condensée jouable du départ du Normandy à la confrontation finale.** Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
+**Version 0.2.0 : campagne ME1 condensée, 14 assignations, équipement et Shepard femme animée.** Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
 ![Capture réelle du prototype : exploration de la Citadelle](docs/screenshots/citadel.png)
 
@@ -31,7 +31,7 @@ Electron ouvre le jeu dans une fenêtre dédiée. **F11** bascule le plein écra
 npm run package:desktop
 ```
 
-La commande `package:windows` produit un exécutable portable Windows x64 dans `release/`. Les workflows GitHub construisent également le jeu web et l’application Windows ; leurs résultats se trouvent dans les artefacts des exécutions réussies de l’onglet **[Actions](https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions)**. Le [rapport de compilation locale](docs/qa/build-report.json) identifie le paquet fourni et ses sources. Ce binaire a été construit depuis Linux ; son lancement sur Windows reste à vérifier.
+La commande `package:windows` produit un exécutable portable Windows x64 dans `release/`. Les workflows GitHub construisent également le jeu web et l’application Windows ; leurs résultats se trouvent dans les artefacts des exécutions réussies de l’onglet **[Actions](https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions)**. Le [rapport de compilation locale](docs/qa/build-report.json) identifie le build web 0.2.0 et ses sources. Le [binaire local historique](docs/qa/build-v0.1.0-report.json) concerne la version 0.1.0. Le lancement sur Windows reste à vérifier.
 
 ### Version de distribution web
 
@@ -63,24 +63,24 @@ En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode *
 ## Contenu effectivement présent
 
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.
-- **8 étapes de campagne**, **21 rencontres**, **63 points de mission**, **9 emplacements de conversation conditionnels** au Normandy et **4 contacts d’assignation** à la Citadelle.
+- **8 étapes de campagne**, **21 rencontres de campagne**, **63 points de mission**, **9 emplacements de conversation conditionnels** au Normandy et **4 contacts des assignations historiques** à la Citadelle, complétés par les marqueurs des nouvelles opérations.
 - Shepard et six compagnons permanents possibles, avec Jenkins au départ ; **6 classes** pour Shepard.
-- Recrutement, choix de deux compagnons, expérience, niveaux, crédits et améliorations.
+- Recrutement, choix de deux compagnons, expérience, niveaux, crédits et calibrations. Inventaire partagé de 150 objets, 48 références achetables, cinq emplacements par personnage et modules avec effets en combat.
 - Tirs à chauffe, couverture, pouvoirs biotiques, technologie, attaques organiques, états temporaires et soin.
 - Décisions enregistrées pour Féros, la reine rachni, Virmire et le Conseil.
 - Journal, 16 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
 - Conversations avec Nihlus, Joker, Chakwas et les six compagnons, selon leur recrutement, leur survie et les événements connus. Le conseil donné à Garrus est mémorisé et repris dans un échange ultérieur.
-- Trois assignations de la Citadelle : Retour à la maison, Affaire familiale et les trois rencontres du Fan. Objectifs, décisions et récompenses uniques sont conservés dans un journal séparant Missions, Assignations et Rapports.
-- Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; animation expérimentale de marche de Shepard.
+- Quatorze assignations : Retour à la maison, Affaire familiale et Le Fan sont conservées ; onze opérations supplémentaires ajoutent 43 étapes à la Citadelle et sur Féros, avec quatre combats annexes. Le journal conserve étapes, choix, conditions et récompenses uniques.
+- Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; 16 images de marche pour chaque apparence de Shepard et quatre poses de combat féminines.
 - Ambiances et effets générés localement par Web Audio.
 
-Le dossier de Shepard permet de choisir une apparence masculine ou féminine, les trois origines et les trois profils psychologiques. Ces choix sont conservés dans les sauvegardes et consultables depuis la pause ou le commando. Les portraits et sprites suivent l’apparence choisie en exploration et en combat. La variante féminine utilise encore une pose statique ; son cycle de marche reste à produire.
+Le dossier de Shepard permet de choisir une apparence masculine ou féminine, les trois origines et les trois profils psychologiques. Ces choix sont conservés dans les sauvegardes et consultables depuis la pause ou le commando. Les portraits et sprites suivent l’apparence choisie en exploration et en combat. La variante féminine utilise désormais un cycle de marche dans quatre directions et des poses de visée, pouvoir, impact et hors combat. Les atlas et transitions restent au stade Prototype.
 
 Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la pause. Chaque emplacement conserve un nom, une date, une zone et l’identité du commandant. Un remplacement ou une suppression demande confirmation. Ces emplacements restent séparés de la sauvegarde automatique ; le chargement et l’enregistrement sont indisponibles en combat.
 
 À la Citadelle, Garrus et Wrex peuvent être recrutés immédiatement ou lors d’un retour après le Conseil. Les preuves de Tali suffisent à obtenir l’audience. Le recrutement ne remplace pas automatiquement le commando sélectionné. Au Normandy, les compagnons disponibles sont stationnés à leur emplacement de conversation ; les mêmes échanges sont accessibles depuis le menu Commando.
 
-Les trois assignations utilisent des dialogues concis et la Citadelle condensée ; les variantes et contrôles de persuasion complets restent à reconstituer. Leur récompense fixe de 50 XP est un réglage de l’adaptation ATB. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
+Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des nouvelles opérations et des 48 équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille les quêtes, leurs délais, les règles de matériel et la migration. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
 
 ## Excel et documentation
 
@@ -104,7 +104,7 @@ npm test
 npm run build
 ```
 
-Les tests Node vérifient les règles de combat, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
+Les 199 tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium
@@ -117,9 +117,13 @@ npm run test:commander
 npm run test:saves
 npm run test:story
 npm run test:assignments
+npm run test:operations
+npm run test:loadout
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
+
+Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les ressources et la reprise du build sous URLs locales dans Chromium. `node scripts/femshep-poses-browser.mjs` inspecte les quatre poses dans une scène de rendu isolée avec le serveur dev actif. Ces contrôles ne remplacent pas un lancement de l’exécutable Windows.
 
 `npm run test:assignments -- --late-conrad` vérifie le premier contact avec Conrad après deux missions et l’attente d’une nouvelle mission, y compris après rechargement.
 
@@ -140,7 +144,10 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/story-data.js` | Sujets de conversation réécrits et entrées conditionnelles du codex |
 | `src/assignments.js` | Assignations, étapes, issues, récompenses uniques et validation des sauvegardes |
 | `src/assignment-data.js` | Contacts et dialogues condensés des trois assignations de la Citadelle |
-| `src/game-data.js` | Classes, personnages, rencontres, équipement et codex |
+| `src/operations.js` / `src/operation-data.js` | Onze opérations supplémentaires, 43 étapes, quatre combats et validation persistante |
+| `src/loadout.js` / `src/loadout-ui.js` | Inventaire, boutiques, compatibilité, effets de matériel et comparaisons |
+| `src/local-map.js` | Carte numérotée avec filtres et suivi |
+| `src/game-data.js` | Classes, personnages, rencontres, calibrations et codex |
 | `src/audio.js` | Audio procédural local |
 | `public/assets/` | Images et manifestes des atlas |
 | `desktop/` | Application Electron |
