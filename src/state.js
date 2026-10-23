@@ -4,6 +4,7 @@ import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
 import { createStoryState, migrateStoryState } from './story.js';
 import { createAssignmentState, migrateAssignmentState } from './assignments.js';
+import { initialCustomization, normalizeCustomization } from './customization.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -22,11 +23,13 @@ const UPGRADE_STATS = { attack: 3, defense: 2, shield: 15 };
 const FORBIDDEN_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 const clone = value => JSON.parse(JSON.stringify(value));
 
-export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'normal', mode = 'wait', appearance = 'male', origin = 'spacer', psychologicalProfile = 'sole-survivor' } = {}) {
+export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'normal', mode = 'wait', appearance = 'male', origin = 'spacer', psychologicalProfile = 'sole-survivor', customization } = {}) {
   return {
     version: SAVE_VERSION,
     name: typeof name === 'string' ? name.trim().slice(0, 24) || 'Shepard' : 'Shepard',
     appearance: validOption(COMMANDER_APPEARANCES, appearance) ? appearance : 'male',
+    customization: normalizeCustomization(customization, validOption(COMMANDER_APPEARANCES, appearance) ? appearance : 'male')
+      || initialCustomization(validOption(COMMANDER_APPEARANCES, appearance) ? appearance : 'male'),
     origin: validOption(ORIGINS, origin) ? origin : 'spacer',
     psychologicalProfile: validOption(PSYCHOLOGICAL_PROFILES, psychologicalProfile) ? psychologicalProfile : 'sole-survivor',
     classId: OWN(CLASSES, classId) ? classId : 'soldier',
@@ -339,8 +342,9 @@ export function decodeSave(raw) {
     state.assignments = migrateAssignmentState(OWN(input, 'assignments') ? input.assignments : undefined, state);
     if (!state.assignments) return null;
     state.inventory = normalizeInventory(OWN(input, 'inventory') ? input.inventory : undefined, state);
+    state.customization = normalizeCustomization(OWN(input, 'customization') ? input.customization : undefined, appearance);
     state.operations = normalizeOperations(OWN(input, 'operations') ? input.operations : undefined, state);
-    if (!state.inventory || !state.operations) return null;
+    if (!state.inventory || !state.operations || !state.customization) return null;
     const trackedOperation = OWN(input, 'trackedOperation') ? input.trackedOperation : null;
     if (trackedOperation !== null && (typeof trackedOperation !== 'string'
       || !listOperations(state).some(operation => operation.id === trackedOperation))) return null;

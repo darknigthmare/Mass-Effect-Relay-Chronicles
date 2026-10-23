@@ -2,7 +2,7 @@ import { applyLoadout } from './loadout.js';
 // Canonical names and settings; dialogue, encounter tuning and condensed layouts are adaptations.
 import { COMMANDER_APPEARANCES } from './commander.js';
 
-export const VERSION = '0.2.0';
+export const VERSION = '0.3.0';
 export const CLASSES = {
   soldier: { name: 'Soldat', tagline: 'Puissance de feu · endurance', powers: [], attack: 30, defense: 10, hp: 250, shield: 140 },
   engineer: { name: 'Ingénieur', tagline: 'Sabotage · contrôle des systèmes', powers: ['overload', 'sabotage', 'hack'], attack: 22, defense: 6, hp: 210, shield: 140 },

@@ -2,7 +2,7 @@
 
 Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de trois et commandes ATB**, dans une mise en scène inspirée des JRPG sur PlayStation.
 
-**Version 0.2.0 : campagne ME1 condensée, 14 assignations, équipement et Shepard femme animée.** Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
+**Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire et les animations de Shepard restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
 ![Capture réelle du prototype : exploration de la Citadelle](docs/screenshots/citadel.png)
 
@@ -42,6 +42,8 @@ npm run preview
 
 Le dossier `dist/` contient la version web compilée avec tous les assets locaux. Le servir par HTTP ; le double-clic sur `index.html` n’est pas le mode de lancement prévu. La version Electron charge ces mêmes fichiers localement.
 
+Le [rapport de livraison 0.3.0](docs/qa/v0.3.0-report.json) rassemble les vérifications de la personnalisation, de la compilation et du classeur.
+
 ## Commandes
 
 | Action | Commande |
@@ -59,6 +61,22 @@ Le dossier `dist/` contient la version web compilée avec tous les assets locaux
 | Pouvoir ou action ciblée | Choisir une commande, puis une cible |
 
 En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode **Actif**, les jauges continuent. La pause arrête aussi les recharges et la chaleur. Les options proposent trois difficultés, le volume, des transitions réduites et du texte agrandi.
+
+## Personnaliser Shepard
+
+À la création, ouvrir **Personnaliser l’apparence**. En cours de campagne, l’atelier est accessible depuis **Pause**, **Commando** et **Équipement**, hors combat.
+
+| Onglet | Choix disponibles |
+|---|---|
+| Personnage | Apparence masculine ou féminine, quatre préréglages de visage, six teints, cinq couleurs d’yeux, six couleurs de cheveux et quatre coiffures |
+| Armure | Armure complète et module possédés, trois canaux de couleur, quatre motifs, trois finitions et casque masqué, visible ou réservé au combat |
+| Armes | Arme, module d’arme et amélioration de munitions ; filtres et consultation du catalogue, avec disponibilité et restrictions expliquées |
+
+Les changements restent dans un **brouillon** jusqu’à la validation. La comparaison montre la configuration actuelle et les statistiques calculées ; **Annuler** ou **Échap** abandonne les retouches. L’application valide les cinq emplacements ensemble contre l’inventaire courant. Elle ne crée ni objet ni crédit. Les couleurs sont cosmétiques ; l’équipement conserve ses effets réels en combat. Les choix sont conservés dans les sauvegardes automatiques, manuelles et exportées.
+
+![Atelier de personnalisation : création du personnage et aperçu du sprite](docs/screenshots/customization-creation.png)
+
+Le portrait détaillé est un dessin 2D de conception. Le mannequin réutilise le vrai sprite dans quatre directions ; les couleurs, motifs, finitions et réglages du casque sont transmis au rendu du terrain. Les formes de visage et de coiffure restent visibles sur le portrait de l’atelier. Les silhouettes exactes de chaque armure et de chaque arme restent à produire. Les ensembles complets et modules suivent l’organisation ME1 ; les revêtements et la retouche pendant la campagne sont des extensions de cette adaptation. Voir [le périmètre de personnalisation](docs/CUSTOMIZATION.md) et [les références par opus](docs/research/customization-sources.md).
 
 ## Contenu effectivement présent
 
@@ -86,7 +104,7 @@ Les assignations utilisent des dialogues concis et des cartes condensées ; les 
 
 - **[27 classeurs supplémentaires — univers étendu](docs/universe/README.md)** : ME2, ME3, Andromeda, Infiltrator, Galaxy, les sept romans, les douze comics et collections demandés, Paragon Lost, le dossier d’extrapolation ME4 et les contenus coupés. Chaque classeur contient 28 onglets, ses sources et sa couverture restante.
 - **[Télécharger les 27 classeurs en ZIP](docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**.
-- **[Classeur de production — 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA.
+- **[Classeur de production — 1 371 fiches, 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA. La version 0.3.0 ajoute 50 fiches de personnalisation en conservant les 1 321 précédentes.
 - [Guide et décompte du catalogue](docs/CATALOGUE.md).
 - [Catalogue JSON](docs/content-catalog.json), utilisé pour générer le classeur.
 - [Conception du jeu et architecture](docs/DESIGN.md).
@@ -104,7 +122,7 @@ npm test
 npm run build
 ```
 
-Les 203 tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
+Les 217 tests Node, répartis dans 18 fichiers, vérifient les règles de combat, l’équipement, la personnalisation, les opérations, les sauvegardes, la progression, le cycle audio et la portabilité des chemins Windows. Le [rapport 0.3.0](docs/qa/customization-unit-report.json) détaille les exécutions et les empreintes des sources concernées. Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium
@@ -119,9 +137,10 @@ npm run test:story
 npm run test:assignments
 npm run test:operations
 npm run test:loadout
+npm run test:customization
 ```
 
-Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
+Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports historiques sont écrits dans `test-results/`. Le parcours de personnalisation consigne ses preuves dans `docs/qa/customization-report.json` et `docs/screenshots/customization-*.png`.
 
 Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les ressources et la reprise du build sous URLs locales dans Chromium. `node scripts/femshep-poses-browser.mjs` inspecte les quatre poses dans une scène de rendu isolée avec le serveur dev actif. Ces contrôles ne remplacent pas un lancement de l’exécutable Windows.
 
@@ -130,6 +149,8 @@ Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les r
 `npm run audit:fidelity` produit dans `test-results/fidelity-report.json` la liste des fiches restantes du classeur principal, leurs critères et leurs preuves locales. Ajouter `-- --include-universe` pour inclure les 27 catalogues supplémentaires. Cet audit ne modifie aucun statut et ne certifie pas la fidélité canonique.
 
 Le classeur livré est directement ouvrable dans un tableur. Sa régénération avec `npm run workbook` requiert le runtime `@oai/artifact-tool` et sa variable `CODEX_PRIMARY_RUNTIME_NODE_MODULES` ; cette dépendance d’édition n’est pas nécessaire pour jouer ou compiler le jeu.
+
+L’extension ciblée 0.3.0 utilise `scripts/update-customization-catalog.mjs` et `scripts/update-customization-workbook.mjs` sur la base indiquée dans ces scripts. Elle préserve les feuilles, cellules et styles antérieurs. Les résultats de recalcul, de comparaison des cellules et de contrôle des tableaux se trouvent dans [customization-verification.json](docs/workbook-previews/customization-verification.json) et [customization-native-check.json](docs/workbook-previews/customization-native-check.json).
 
 ## Structure
 
@@ -146,6 +167,9 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/assignment-data.js` | Contacts et dialogues condensés des trois assignations de la Citadelle |
 | `src/operations.js` / `src/operation-data.js` | Onze opérations supplémentaires, 43 étapes, quatre combats et validation persistante |
 | `src/loadout.js` / `src/loadout-ui.js` | Inventaire, boutiques, compatibilité, effets de matériel et comparaisons |
+| `src/customization.js` | Options cosmétiques, brouillon détaché, validation et application atomique |
+| `src/customization-ui.js` / `src/customization-ui.css` | Atelier Personnage / Armure / Armes, comparaison et aperçu dans quatre directions |
+| `src/customization-render.js` | Traitement des pixels partagé entre l’aperçu et les sprites du monde |
 | `src/local-map.js` | Carte numérotée avec filtres et suivi |
 | `src/game-data.js` | Classes, personnages, rencontres, calibrations et codex |
 | `src/audio.js` | Audio procédural local |
