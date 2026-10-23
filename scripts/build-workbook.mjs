@@ -241,7 +241,7 @@ Ce catalogue contient **${fr(catalog.entries.length)} fiches**, organisées en *
 | --- | ---: | --- |
 ${statusRows}
 
-Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Aucune fiche n’est déclarée **Validé**. Aucune fidélité 1:1 n’est certifiée par ce catalogue.
+Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Les éventuelles fiches **Validé** attestent leurs critères fonctionnels documentés ; elles ne certifient pas la fidélité 1:1 de l’ensemble du jeu.
 
 | Niveau de canon | Fiches | Signification |
 | --- | ---: | --- |
@@ -257,6 +257,7 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | --- | --- | --- |
 | Exploration | 9 zones jouables condensées : Normandy, Eden Prime, Citadelle, Thérum, Feros, Noveria, Virmire, Ilos et Citadelle assiégée | 8 destinations distinctes ; la Citadelle revient sous deux états. Les 100 sous-zones et 91 liaisons du catalogue restent un plan à produire. |
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
+| Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portrait et sprite cohérents ; variante féminine statique. Réactions narratives aux antécédents, créateur facial et costumes définitifs restent à produire. |
 | Combat | 21 rencontres condensées et commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
 | Codex | 12 entrées de lecture dans le jeu | Ne représente pas le codex complet de Mass Effect. |
 | Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |

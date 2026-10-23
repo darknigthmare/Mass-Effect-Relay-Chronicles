@@ -1,0 +1,251 @@
+{
+  "generatedAt": "2026-10-23T01:32:56.127Z",
+  "scope": "Functional validation of the Shepard dossier and manual save slots in the sprites/ATB adaptation. Does not certify 1:1 fidelity or completion of other catalogue records.",
+  "node": "24.19.0",
+  "unit": {
+    "command": "npm test",
+    "tests": 98,
+    "passed": 98,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "warning": "Existing Three.js chunk exceeds 500kB"
+  },
+  "commander": {
+    "passed": true,
+    "at": "2026-10-23T01:14:38.825Z",
+    "scenarios": [
+      {
+        "appearance": "female",
+        "creation": true,
+        "dossier": true,
+        "saveExport": true,
+        "saveReload": true,
+        "saveImport": true,
+        "keyboardMovement": true,
+        "exploration": true,
+        "combat": true,
+        "legacyMigration": true
+      },
+      {
+        "appearance": "male",
+        "creation": true,
+        "dossier": true,
+        "saveExport": true,
+        "saveReload": true,
+        "saveImport": true,
+        "keyboardMovement": true,
+        "exploration": true,
+        "combat": true
+      }
+    ],
+    "errors": [],
+    "failedRequests": []
+  },
+  "manualSaves": {
+    "passed": true,
+    "at": "2026-10-23T01:15:49.703Z",
+    "checks": [
+      "Named slots show commander, date, zone and class without replacing autosave",
+      "Real movement, briefing and travel change the campaign; overwrite cancellation preserves the old slot",
+      "Confirmed overwrite updates only the chosen slot and preserves autosave",
+      "Loading from the title restores female identity, origin, profile, zone and sprite after a male campaign",
+      "Combat disables manual save access, autosave and export",
+      "Delete requires confirmation, cancellation preserves all data, and confirmed deletion preserves autosave and another slot after reload"
+    ],
+    "errors": [],
+    "failedRequests": []
+  },
+  "sourceSha256": {
+    "package.json": "df5e3c643a46b06e4deb6e0ed634bc1520d46ddde8ba5ff1233c7c5b8bbccb4c",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/state.js": "e72af06cd9388b9f6e1624a697e18f01be21d28cbd73e1477e06543d4d62ec9f",
+    "src/game-data.js": "54c6c186254c121134915fe120e537f8d47f2383a2d665db81eebaba26827247",
+    "src/world.js": "62c2d977b8a4998e18319daf1c88a24b3eca03511c5c0b6c3aa2ab6c9f802919",
+    "src/main.js": "60b4479c2b9ac0aee669f60a4141e2509d7b110cedde6be74ce75525f81c448b",
+    "src/style.css": "7d2fca38bef72d704ec405415db84a6bf16f6fa181fe9d378bcb787175513090",
+    "src/save-slots.js": "01497a48324a647a7e79031656fba4160853126efb29cc7a2b2bad7bbf9adff4",
+    "scripts/commander-browser.mjs": "18cb489efce4df6a88d0ce301b4291140ee99eaec432a22f282a3bd163caed66",
+    "scripts/save-slots-browser.mjs": "9282c9c51227835bf77ed353c2a3a1b1f3fdeced3320db6776f8c8bb5c73d790",
+    "scripts/audit-fidelity.mjs": "ea838dce7f0214ca5f851fefced175e15fc034b0258f089d252379ee0fc97394",
+    "tests/commander.test.js": "a042b9df11198fe7e440ba4c47894a18b7a78a30c544cd606bcc4effc2e305cd",
+    "tests/commander-world.test.js": "04b06343ab0628a9994b2f81047f8adac5c3dfc7468b2ec49579c0d470b2c2ac",
+    "tests/save-slots.test.js": "883defb2c4f556a8113db503bab34d07ce998700537715dbebd219cdd1529337",
+    "tests/fidelity-audit.test.js": "451d6cd2daa104c9e5cefd21a1668b37d48714d12fd1a42b78005308beb10898",
+    "scripts/campaign-browser.mjs": "38d7b6d81c77b15aaf99c4e882f5ac19e3057919bafb8185a9115010f722b5c4"
+  },
+  "campaignRegression": {
+    "passed": true,
+    "mode": "Real UI progression with accelerated combat simulation; no stat or progression overrides",
+    "difficulty": "normal",
+    "classId": "soldier",
+    "route": [
+      "eden-prime",
+      "citadel",
+      "noveria",
+      "therum",
+      "virmire",
+      "feros",
+      "ilos",
+      "citadel-finale"
+    ],
+    "encounters": [
+      {
+        "id": "eden-prime:encounter-1",
+        "winner": "party",
+        "seconds": 14,
+        "actions": 9
+      },
+      {
+        "id": "eden-prime:encounter-2",
+        "winner": "party",
+        "seconds": 15,
+        "actions": 14
+      },
+      {
+        "id": "eden-prime:boss",
+        "winner": "party",
+        "seconds": 15,
+        "actions": 12
+      },
+      {
+        "id": "noveria:encounter-1",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "noveria:encounter-2",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 15
+      },
+      {
+        "id": "noveria:boss",
+        "winner": "party",
+        "seconds": 56,
+        "actions": 46
+      },
+      {
+        "id": "therum:encounter-1",
+        "winner": "party",
+        "seconds": 12,
+        "actions": 8
+      },
+      {
+        "id": "therum:encounter-2",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "therum:boss",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 22
+      },
+      {
+        "id": "virmire:encounter-1",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 20
+      },
+      {
+        "id": "virmire:encounter-2",
+        "winner": "party",
+        "seconds": 24,
+        "actions": 16
+      },
+      {
+        "id": "virmire:boss",
+        "winner": "party",
+        "seconds": 42,
+        "actions": 36
+      },
+      {
+        "id": "feros:encounter-1",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 14
+      },
+      {
+        "id": "feros:encounter-2",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 21
+      },
+      {
+        "id": "feros:boss",
+        "winner": "party",
+        "seconds": 24,
+        "actions": 18
+      },
+      {
+        "id": "ilos:encounter-1",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "ilos:encounter-2",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 12
+      },
+      {
+        "id": "ilos:boss",
+        "winner": "party",
+        "seconds": 25,
+        "actions": 19
+      },
+      {
+        "id": "citadel-finale:encounter-1",
+        "winner": "party",
+        "seconds": 21,
+        "actions": 15
+      },
+      {
+        "id": "citadel-finale:encounter-2",
+        "winner": "party",
+        "seconds": 25,
+        "actions": 17
+      },
+      {
+        "id": "citadel-finale:boss",
+        "winner": "party",
+        "seconds": 31,
+        "actions": 22
+      }
+    ],
+    "completed": [
+      "eden-prime",
+      "citadel",
+      "noveria",
+      "therum",
+      "virmire",
+      "feros",
+      "ilos",
+      "citadel-finale"
+    ],
+    "choices": {
+      "noveria": "release",
+      "virmire": "save-ashley",
+      "feros": "save",
+      "citadel-finale": "save-council"
+    },
+    "saveReload": true,
+    "errors": [],
+    "requests": [],
+    "completedAt": "2026-10-23T01:32:05.968Z",
+    "browser": {
+      "separateRendererProcesses": true,
+      "applicationStatePollingMs": 100,
+      "timeoutMs": 60000
+    }
+  }
+}

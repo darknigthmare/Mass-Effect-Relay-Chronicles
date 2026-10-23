@@ -64,7 +64,7 @@ Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne
 
 Shepard dispose d’une animation par images ; les compagnons et les ennemis utilisent encore leurs poses de base avec transformations procédurales. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
 
-L’atlas PNJ contient une Shepard féminine, mais le créateur de personnage ne permet pas encore de sélectionner cette apparence. Nihlus et Emily Wong sont des images en réserve. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
+L’atlas PNJ fournit la variante féminine sélectionnable dans le dossier de Shepard. Le portrait et le sprite utilisent cette même variante en exploration et en combat, après reprise ou import d’une sauvegarde. Cette variante reste statique : elle ne réutilise pas la marche masculine. Sa fidélité artistique et son cycle d’animation restent à produire et à contrôler. Nihlus et Emily Wong sont des images en réserve. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
 
 ## Critères d’acceptation de l’art final
 

@@ -72,7 +72,11 @@ En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode *
 - Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; animation expérimentale de marche de Shepard.
 - Ambiances et effets générés localement par Web Audio.
 
-Les véhicules servent actuellement de décor. L’apparence féminine de Shepard dispose d’une illustration dans l’atlas PNJ, mais la sélection de cette apparence n’est pas encore implémentée. Les missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 sont documentés pour la production et ne sont pas jouables dans cette version.
+Le dossier de Shepard permet de choisir une apparence masculine ou féminine, les trois origines et les trois profils psychologiques. Ces choix sont conservés dans les sauvegardes et consultables depuis la pause ou le commando. Les portraits et sprites suivent l’apparence choisie en exploration et en combat. La variante féminine utilise encore une pose statique ; son cycle de marche reste à produire.
+
+Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la pause. Chaque emplacement conserve un nom, une date, une zone et l’identité du commandant. Un remplacement ou une suppression demande confirmation. Ces emplacements restent séparés de la sauvegarde automatique ; le chargement et l’enregistrement sont indisponibles en combat.
+
+Les véhicules servent actuellement de décor. Les missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 sont documentés pour la production et ne sont pas jouables dans cette version. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
 
 ## Excel et documentation
 
@@ -103,9 +107,13 @@ npm run dev
 npm run test:browser
 npm run test:campaign
 npm run test:world
+npm run test:commander
+npm run test:saves
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
+
+`npm run audit:fidelity` produit dans `test-results/fidelity-report.json` la liste des fiches restantes du classeur principal, leurs critères et leurs preuves locales. Ajouter `-- --include-universe` pour inclure les 27 catalogues supplémentaires. Cet audit ne modifie aucun statut et ne certifie pas la fidélité canonique.
 
 Le classeur livré est directement ouvrable dans un tableur. Sa régénération avec `npm run workbook` requiert le runtime `@oai/artifact-tool` et sa variable `CODEX_PRIMARY_RUNTIME_NODE_MODULES` ; cette dépendance d’édition n’est pas nécessaire pour jouer ou compiler le jeu.
 

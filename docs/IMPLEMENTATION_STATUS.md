@@ -1,12 +1,20 @@
 # État de livraison — 0.1.0
 
-Date : 22 octobre 2026. Cette page concerne la version du projet livrée dans ce dépôt.
+Rapports de livraison initiaux : 22 octobre 2026. Complément fonctionnel : 23 octobre 2026. Cette page concerne la version du projet livrée dans ce dépôt.
 
 ## Résultat
 
 La campagne condensée est jouable du briefing initial au bilan final. Le parcours navigateur a terminé les 21 rencontres, les huit étapes et les quatre décisions principales, puis rechargé la sauvegarde finale depuis l’écran titre. Le projet fournit les sources, les assets, la compilation web, la configuration PC et un registre de production détaillé.
 
 Il ne s’agit pas encore d’une reproduction intégrale 1:1 de Mass Effect. Les lieux actuels sont condensés, le scénario est résumé, les sprites demandent une revue de conformité et l’ensemble des animations reste à produire. Le terme « complet » ne doit donc pas être employé pour qualifier la couverture du jeu original.
+
+### Complément du 23 octobre
+
+Le dossier de Shepard propose maintenant les deux apparences, les trois origines et les trois profils psychologiques. Portraits, sprites et sauvegardes restent cohérents après reprise et import. La variante féminine est statique ; son cycle d’animation et la fidélité artistique restent à vérifier.
+
+Six emplacements manuels nommés affichent la date, la zone et le commandant. Remplacement et suppression exigent une confirmation, les emplacements sont séparés de l’autosauvegarde, et leur utilisation est bloquée en combat. Les erreurs de stockage et les données illisibles sont présentées sans effacement automatique.
+
+La suite actuelle passe **98 tests Node**, sans échec ni test ignoré. Les parcours navigateur des deux variantes du dossier et les six contrôles des emplacements manuels passent sans erreur JavaScript ni requête échouée. La campagne condensée a également remporté ses **21 rencontres**, terminé ses **huit étapes** et rechargé sa sauvegarde finale avec ses quatre décisions conservées. Le lanceur de cette régression utilise des processus Chromium séparés et vérifie la disponibilité des scènes toutes les 100 ms, avec un délai de 60 secondes pour le rendu logiciel. Les détails et empreintes des sources sont dans [dossier-and-saves-report.json](qa/dossier-and-saves-report.json). Les autres rapports ci-dessous décrivent les validations initiales. Le [suivi de fidélité](FIDELITY.md) conserve les contenus encore manquants.
 
 ## Fonctions présentes
 
@@ -77,7 +85,7 @@ Le classeur a été exporté, recalculé, inspecté et rendu avec Artifact Tool 
 
 - Reconstitution exacte des cartes, des sous-zones, des intérieurs et de leurs connexions.
 - Scénario complet, missions annexes et DLC, romances, dialogues et cinématiques détaillés.
-- Créateur visuel de Shepard, apparence féminine sélectionnable, variations d’armures.
+- Créateur visuel détaillé de Shepard, cycle de marche féminin et variations d’armures. Le choix masculin/féminin et les origines/profils sont désormais disponibles et persistés ; leur conformité artistique finale reste à vérifier.
 - Animations complètes dans huit directions, actions et expressions de chaque personnage.
 - Contrôle artistique de chaque silhouette et costume ; nettoyage des atlas générés et du cycle de marche.
 - Conduite et combat du Mako, comportement fonctionnel des véhicules représentés.

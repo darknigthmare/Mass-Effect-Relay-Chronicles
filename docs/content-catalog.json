@@ -2,7 +2,7 @@
   "meta": {
     "title": "Mass Effect Relay Chronicles",
     "version": "0.1.0",
-    "updatedAt": "2026-10-22",
+    "updatedAt": "2026-10-23",
     "language": "fr-FR",
     "referenceEpisode": "ME1",
     "referenceVisual": "Mass Effect 1 / Legendary Edition, version de chaque référence à vérifier",
@@ -349,7 +349,7 @@
       "plannedPath": "content/characters/CHR-shepard.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.shepard",
-      "notes": "Personnage jouable de prototype. Poses fixes dans crew-atlas.png et variante féminine dans npc-atlas.png. Marche Shepard : 16 images / 4 directions dans shepard-walk-atlas.png ; face/dos en trois-quarts, profils latéraux, cycle à nettoyer. Huit directions, costumes et animations complètes non validés."
+      "notes": "Apparence masculine/féminine, origine et profil psychologique sélectionnables et persistés dans src/commander.js et src/state.js. Portraits et sprites cohérents en exploration et combat après reprise/import. Variante féminine statique ; marche masculine de 16 images / 4 directions. Réactions narratives aux antécédents, créateur facial, huit directions, costumes et fidélité artistique finale restent à produire ou vérifier. Tests : tests/commander.test.js, tests/commander-world.test.js, scripts/commander-browser.mjs."
     },
     {
       "id": "CHR-ashley-williams",
@@ -17747,8 +17747,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Prototype",
-      "assetStatus": "Prototype",
+      "status": "Validé",
+      "assetStatus": "Disponible",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -17759,7 +17759,7 @@
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:creation-de-shepard",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Dossier jouable : nom, classe, deux apparences, trois origines et trois profils psychologiques. Choix sauvegardés et repris/importés avec migration des anciens champs absents. Consultation depuis pause et commando. Aucun bonus combat ou morale ajouté ; réactions narratives et créateur facial restent hors de cette fonction. Vérifications : tests/commander.test.js et scripts/commander-browser.mjs. Critères fonctionnels de cette fiche vérifiés dans les deux variantes par test:commander ; validation de l’adaptation, sans certification artistique 1:1. Preuve : docs/qa/dossier-and-saves-report.json."
     },
     {
       "id": "SYS-sauvegarde-locale",
@@ -17780,7 +17780,7 @@
       "plannedPath": "src/",
       "assetPath": "src/state.js",
       "gameKey": "system:sauvegarde-locale",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Format v1 conservé. Migration des champs de dossier absents, rejet des valeurs explicitement invalides. Autosauvegarde indépendante de six emplacements manuels. Les critères de progression et inventaire complets restent à vérifier ; aucune fidélité 1:1 déclarée."
     },
     {
       "id": "SYS-sauvegarde-manuelle",
@@ -17789,8 +17789,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Validé",
+      "assetStatus": "Disponible",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -17799,9 +17799,9 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/save-slots.js",
+      "gameKey": "writeManualSave",
+      "notes": "Six emplacements nommés indépendants de la sauvegarde automatique, avec aperçu dérivé du contenu chargé : date, zone, commandant, classe et apparence. Confirmation avant remplacement ou suppression, données corrompues visibles, erreurs quota/stockage contenues. Chargement et enregistrement interdits en combat. Implémentation : src/save-slots.js et src/main.js. Vérifications : tests/save-slots.test.js et scripts/save-slots-browser.mjs. Le nombre de six emplacements est un choix d’adaptation. Critères fonctionnels vérifiés par test:saves, avec annulation/confirmation, chargement après changement de commandant et persistance après rechargement. Preuve : docs/qa/dossier-and-saves-report.json."
     },
     {
       "id": "SYS-sauvegarde-automatique",

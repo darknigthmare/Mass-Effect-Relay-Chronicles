@@ -55,7 +55,7 @@ export class WorldView {
   constructor(container, { onInteract, onMove, onEncounter } = {}) {
     if (!container) throw new Error('WorldView needs a container.');
     this.container = container; this.onInteract = onInteract; this.onMove = onMove; this.onEncounter = onEncounter;
-    this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins'];
+    this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins']; this.commanderAppearance = 'male';
     this.player = { x: 0, z: 11 }; this.cleared = new Set(); this.colliders = []; this.animations = []; this.effects = [];
     this.actors = []; this.battleActors = new Map(); this.trail = []; this.spriteCache = new Map(); this.atlases = {};
     this.textureCache = new Map(); this.materialCache = new Map(); this._moveReport = 0; this._disposed = false;
@@ -651,7 +651,21 @@ export class WorldView {
     this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget); this.resize();
   }
 
+  setCommanderAppearance(appearance = 'male') {
+    const next = appearance === 'female' ? 'female' : 'male';
+    if (this.commanderAppearance === next) return;
+    this.commanderAppearance = next;
+    const key = next === 'female' ? 'femshep' : 'shepard';
+    for (const actor of [...this.actors, ...this.battleActors.values()]) {
+      if (actor.id !== 'shepard' || actor.enemy) continue;
+      actor.key = key; actor.group.userData.key = key; actor.body.userData.characterKey = key;
+      actor.body.material.map = this._spriteTexture(key, false);
+      actor.body.scale.x = 1;
+    }
+  }
+
   _makeActor(key, id, enemy = false, parent = this.characters) {
+    if (id === 'shepard' && !enemy) key = this.commanderAppearance === 'female' ? 'femshep' : 'shepard';
     const group = new THREE.Group(); group.userData.actorId = id; group.userData.key = key;
     const boss = BOSS_KEYS.includes(key), large = ['wrex', 'krogan', 'geth-destroyer', 'thorian', 'saren-final'].includes(key);
     const height = key === 'thorian' ? 5.4 : key === 'saren-final' ? 3.6 : large ? 3.25 : key === 'rachni' ? 2.45 : 2.85;

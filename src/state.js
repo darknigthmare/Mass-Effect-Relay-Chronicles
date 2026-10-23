@@ -1,10 +1,12 @@
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
+import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
 const MODES = new Set(['wait', 'active']);
 const DIFFICULTIES = new Set(['story', 'easy', 'normal', 'hard']);
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
+const validOption = (options, key) => typeof key === 'string' && OWN(options, key);
 const CHOICES = {
   feros: ['save', 'force'],
   noveria: ['release', 'destroy'],
@@ -16,10 +18,13 @@ const UPGRADE_STATS = { attack: 3, defense: 2, shield: 15 };
 const FORBIDDEN_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 const clone = value => JSON.parse(JSON.stringify(value));
 
-export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'normal', mode = 'wait' } = {}) {
+export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'normal', mode = 'wait', appearance = 'male', origin = 'spacer', psychologicalProfile = 'sole-survivor' } = {}) {
   return {
     version: SAVE_VERSION,
     name: typeof name === 'string' ? name.trim().slice(0, 24) || 'Shepard' : 'Shepard',
+    appearance: validOption(COMMANDER_APPEARANCES, appearance) ? appearance : 'male',
+    origin: validOption(ORIGINS, origin) ? origin : 'spacer',
+    psychologicalProfile: validOption(PSYCHOLOGICAL_PROFILES, psychologicalProfile) ? psychologicalProfile : 'sole-survivor',
     classId: OWN(CLASSES, classId) ? classId : 'soldier',
     difficulty: DIFFICULTIES.has(difficulty) ? difficulty : 'normal',
     mode: MODES.has(mode) ? mode : 'wait',
@@ -248,6 +253,13 @@ export function decodeSave(raw) {
     if (!safeTree(data) || !plain(data) || data.format !== 'relay-chronicles' || data.version !== SAVE_VERSION || !plain(data.state)) return null;
     const input = data.state;
     if (input.version !== SAVE_VERSION || typeof input.name !== 'string' || !input.name.trim() || input.name.length > 24) return null;
+    // Version 1 saves created before the dossier was selectable have no such
+    // fields. Only absent fields receive defaults; explicit invalid data fails.
+    const appearance = OWN(input, 'appearance') ? input.appearance : 'male';
+    const origin = OWN(input, 'origin') ? input.origin : 'spacer';
+    const psychologicalProfile = OWN(input, 'psychologicalProfile') ? input.psychologicalProfile : 'sole-survivor';
+    if (!validOption(COMMANDER_APPEARANCES, appearance) || !validOption(ORIGINS, origin)
+      || !validOption(PSYCHOLOGICAL_PROFILES, psychologicalProfile)) return null;
     if (!OWN(CLASSES, input.classId) || !DIFFICULTIES.has(input.difficulty) || !MODES.has(input.mode)) return null;
     if (input.zone !== 'normandy' && !OWN(CHAPTERS, input.zone)) return null;
     if (!uniqueStrings(input.party, id => OWN(CREW, id), 3) || input.party.length === 0 || input.party[0] !== 'shepard') return null;
@@ -296,6 +308,7 @@ export function decodeSave(raw) {
     }
     const state = {
       version: SAVE_VERSION, name: input.name.trim(), classId: input.classId, difficulty: input.difficulty, mode: input.mode,
+      appearance, origin, psychologicalProfile,
       zone: input.zone, party: [...input.party], recruited: [...input.recruited], lost: [...input.lost],
       completed: [...input.completed], cleared: [...input.cleared], collected: [...input.collected],
       flags: { ...input.flags }, choices: { ...input.choices }, logs: input.logs.map(log => ({ title: log.title, text: log.text })),

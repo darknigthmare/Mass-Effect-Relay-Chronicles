@@ -5,12 +5,16 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const baseURL=process.env.GAME_URL||'http://127.0.0.1:4173';
 const out=new URL('../test-results/',import.meta.url);
 await mkdir(out,{recursive:true});
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH}:{}),args:['--no-sandbox','--no-zygote','--single-process','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+// Keep renderer and GPU processes separate, as in world-qa.mjs: a software
+// WebGL renderer can otherwise stall the browser during a long campaign.
+const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH}:{}),args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const page=await browser.newPage({viewport:{width:1280,height:800},deviceScaleFactor:1});
+page.setDefaultTimeout(60000);
 const errors=[],requests=[],encounters=[];
 page.on('pageerror',e=>errors.push(e.message));
 page.on('response',r=>{if(r.status()>=400)requests.push({url:r.url(),status:r.status()});});
-async function idle(){await page.waitForFunction(()=>!window.__RELAY_TEST__.getUI().busy);}
+// Zone readiness is application state, independent of a software-rendered frame.
+async function idle(){await page.waitForFunction(()=>!window.__RELAY_TEST__.getUI().busy,null,{polling:100});}
 async function travel(zone){await page.evaluate(z=>window.__RELAY_TEST__.travel(z),zone);await idle();assert.equal(await page.evaluate(()=>window.__RELAY_TEST__.getState().zone),zone);}
 async function clickChoice(index=0){await page.locator(`[data-do="dialogue-choice"][data-index="${index}"]`).click();await idle();}
 async function interact(id){await page.evaluate(p=>window.__RELAY_TEST__.interact(p),id);}
@@ -101,5 +105,5 @@ try{
   const report={passed:true,mode:'Real UI progression with accelerated combat simulation; no stat or progression overrides',difficulty:'normal',classId:'soldier',route:['eden-prime','citadel','noveria','therum','virmire','feros','ilos','citadel-finale'],encounters,completed:ending.completed,choices:ending.choices,saveReload:true,errors,requests};
   await writeFile(new URL('campaign-report.json',out),JSON.stringify(report,null,2));
   console.log(JSON.stringify({passed:true,encounters:encounters.length,ending:true,choices:ending.choices},null,2));
-}catch(e){await page.screenshot({path:new URL('campaign-failure.png',out).pathname}).catch(()=>{});console.error({errors,requests});throw e;}
+}catch(e){const diagnostic=await page.evaluate(()=>({zone:window.__RELAY_TEST__?.getState()?.zone,busy:window.__RELAY_TEST__?.getUI()?.busy,screen:window.__RELAY_TEST__?.getUI()?.screen})).catch(()=>null);await page.screenshot({path:new URL('campaign-failure.png',out).pathname}).catch(()=>{});console.error({errors,requests,diagnostic});throw e;}
 finally{await browser.close();}

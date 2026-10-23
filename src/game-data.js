@@ -1,4 +1,6 @@
 // Canonical names and settings; dialogue, encounter tuning and condensed layouts are adaptations.
+import { COMMANDER_APPEARANCES } from './commander.js';
+
 export const VERSION = '0.1.0';
 export const CLASSES = {
   soldier: { name: 'Soldat', tagline: 'Puissance de feu · endurance', powers: [], attack: 30, defense: 10, hp: 250, shield: 140 },
@@ -78,7 +80,7 @@ export function actorFor(id, state) {
   const upgrades = state.upgrades[id] || {};
   const hp = (cls.hp || 230) + (level - 1) * 14;
   const shield = (cls.shield || 120) + (level - 1) * 8 + (upgrades.shield || 0);
-  return { ...c, name: id === 'shepard' ? state.name : c.name, hp, maxHp: hp, shield, maxShield: shield, attack: (cls.attack || 24) + level - 1 + (upgrades.attack || 0), defense: (cls.defense || 6) + (upgrades.defense || 0), speed: cls.speed || 1, powers: [...(cls.powers || []), ...(id === 'shepard' && state.flags.spectre ? ['unity'] : [])], level };
+  return { ...c, name: id === 'shepard' ? state.name : c.name, sprite: id === 'shepard' ? COMMANDER_APPEARANCES[state.appearance === 'female' ? 'female' : 'male'].sprite : c.sprite, hp, maxHp: hp, shield, maxShield: shield, attack: (cls.attack || 24) + level - 1 + (upgrades.attack || 0), defense: (cls.defense || 6) + (upgrades.defense || 0), speed: cls.speed || 1, powers: [...(cls.powers || []), ...(id === 'shepard' && state.flags.spectre ? ['unity'] : [])], level };
 }
 export function enemiesFor(zone, index, state) {
   const ids = ENCOUNTERS[zone]?.[index] || ['geth'];

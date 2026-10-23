@@ -1,6 +1,6 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-10-22** · Version 0.1.0
+Mise à jour : **2026-10-23** · Version 0.1.0
 
 Ce catalogue contient **1 203 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
@@ -13,12 +13,12 @@ Ce catalogue contient **1 203 fiches**, organisées en **26 catégories** et *
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 1 071 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 132 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 1 070 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 131 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 0 | Présent dans le jeu avec chemin et dépendances vérifiés. |
-| Validé | 0 | Intégré et contrôlé avec preuve de test. |
+| Validé | 2 | Intégré et contrôlé avec preuve de test. |
 
-Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Aucune fiche n’est déclarée **Validé**. Aucune fidélité 1:1 n’est certifiée par ce catalogue.
+Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Les éventuelles fiches **Validé** attestent leurs critères fonctionnels documentés ; elles ne certifient pas la fidélité 1:1 de l’ensemble du jeu.
 
 | Niveau de canon | Fiches | Signification |
 | --- | ---: | --- |
@@ -36,6 +36,7 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | --- | --- | --- |
 | Exploration | 9 zones jouables condensées : Normandy, Eden Prime, Citadelle, Thérum, Feros, Noveria, Virmire, Ilos et Citadelle assiégée | 8 destinations distinctes ; la Citadelle revient sous deux états. Les 100 sous-zones et 91 liaisons du catalogue restent un plan à produire. |
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
+| Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portrait et sprite cohérents ; variante féminine statique. Réactions narratives aux antécédents, créateur facial et costumes définitifs restent à produire. |
 | Combat | 21 rencontres condensées et commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
 | Codex | 12 entrées de lecture dans le jeu | Ne représente pas le codex complet de Mass Effect. |
 | Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |
@@ -86,10 +87,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Sprites | 77 | 42 | 35 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 40 | 11 | 29 | 0 | 0 | Interface et règles de jeu |
+| Systèmes et UI | 40 | 10 | 28 | 0 | 2 | Interface et règles de jeu |
 | QA | 52 | 52 | 0 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 203** | **1 071** | **132** | **0** | **0** | |
+| **Total** | **1 203** | **1 070** | **131** | **0** | **2** | |
 
 ## Lire une fiche
 
