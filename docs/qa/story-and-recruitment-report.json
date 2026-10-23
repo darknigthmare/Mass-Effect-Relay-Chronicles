@@ -1,0 +1,331 @@
+{
+  "generatedAt": "2026-10-23T06:17:42.662Z",
+  "scope": "Functional validation of conditional Normandy conversations, progressive codex and optional/delayed Garrus/Wrex recruitment in the sprites/ATB adaptation. French dialogue rewrites and condensed scene placement do not certify 1:1 fidelity or completion of other catalogue records.",
+  "baseCommit": "7b5ecaada8d778a3d87ff65ed1ce953c13f1e46c",
+  "node": "24.19.0",
+  "coverage": {
+    "conversationCharacters": 9,
+    "conversationTopics": 18,
+    "codexEntries": 16,
+    "optionalRecruitment": [
+      "garrus",
+      "wrex"
+    ],
+    "rememberedAdvice": [
+      "procedure",
+      "results"
+    ]
+  },
+  "unit": {
+    "command": "npm test",
+    "tests": 133,
+    "passed": 133,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "transformedModules": 18,
+    "warning": "Existing Three.js chunk exceeds 500kB",
+    "artifactSha256": {
+      "dist/index.html": "10e89af2f0e5523dacf9ca7b43e432352186c8050279ca27f7e144538254c3f2",
+      "dist/assets/boss-atlas.png": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4",
+      "dist/assets/citadel-keyart.png": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0",
+      "dist/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+      "dist/assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+      "dist/assets/index-BbkIEc0L.css": "7bff9196f935532eff00600372ccce77915903b91bf3c84e442b6b1bd4e90dba",
+      "dist/assets/index-RaPMqZTs.js": "531804b91ffda0b1c3d9ba8f8a31c948205f150ca7e910d6e41c590da6b85d9e",
+      "dist/assets/manifest.json": "aefaf81eacbe00f3930fb4468e197353ffbc77bd13368894cc4ad91ac3975ad4",
+      "dist/assets/npc-atlas.png": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
+      "dist/assets/props-atlas.png": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875",
+      "dist/assets/shepard-walk-atlas.png": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476",
+      "dist/assets/three-alchEwbN.js": "ff427562c0db12235231797eab46f803fcdd11375f3d298c38a192f9aaa27836",
+      "dist/assets/vehicle-atlas.png": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    }
+  },
+  "storyBrowser": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium npm run test:story",
+    "passed": true,
+    "at": "2026-10-23T06:14:09.655Z",
+    "stage": "complete",
+    "checks": [
+      "Nihlus is present before departure; reading Spectres and Kaidan L2 topics records heard subjects and unlocks codex dossiers",
+      "Three real Eden Prime encounters, Ashley recruitment and the beacon objective complete without progression overrides",
+      "Garrus and Wrex can be deferred; Tali evidence alone completes the Council audience; unrecruited companions and departed Nihlus have no Normandy actors or conversation markers",
+      "Joker and Chakwas expose post-prologue subjects after the beacon mission",
+      "Late recruitment after becoming a Spectre unlocks the appropriate Normandy actors and conversations",
+      "Garrus remembers the procedure opinion, unlocks its follow-up and preserves the choice and story record across autosave/reload",
+      "Selecting Garrus and Wrex creates one actor per companion on the Citadel and Normandy; recruited companions leave no duplicate Citadel actors or obsolete recruitment markers",
+      "Progressive codex exposes learned dossiers, hides unencountered Asari, supports accent-insensitive search and clears stale articles on empty results"
+    ],
+    "encounters": [
+      {
+        "id": "eden-prime:encounter-1",
+        "winner": "party",
+        "actions": 9
+      },
+      {
+        "id": "eden-prime:encounter-2",
+        "winner": "party",
+        "actions": 14
+      },
+      {
+        "id": "eden-prime:boss",
+        "winner": "party",
+        "actions": 12
+      }
+    ],
+    "mode": "Real conversations, recruitment and campaign callbacks; accelerated combat time without progression or statistic overrides",
+    "errors": [],
+    "failedRequests": []
+  },
+  "campaignRegression": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium npm run test:campaign",
+    "passed": true,
+    "mode": "Real UI progression with accelerated combat simulation; no stat or progression overrides",
+    "difficulty": "normal",
+    "classId": "soldier",
+    "route": [
+      "eden-prime",
+      "citadel",
+      "noveria",
+      "therum",
+      "virmire",
+      "feros",
+      "ilos",
+      "citadel-finale"
+    ],
+    "encounters": [
+      {
+        "id": "eden-prime:encounter-1",
+        "winner": "party",
+        "seconds": 14,
+        "actions": 9
+      },
+      {
+        "id": "eden-prime:encounter-2",
+        "winner": "party",
+        "seconds": 15,
+        "actions": 14
+      },
+      {
+        "id": "eden-prime:boss",
+        "winner": "party",
+        "seconds": 15,
+        "actions": 12
+      },
+      {
+        "id": "noveria:encounter-1",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "noveria:encounter-2",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 15
+      },
+      {
+        "id": "noveria:boss",
+        "winner": "party",
+        "seconds": 56,
+        "actions": 46
+      },
+      {
+        "id": "therum:encounter-1",
+        "winner": "party",
+        "seconds": 12,
+        "actions": 8
+      },
+      {
+        "id": "therum:encounter-2",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "therum:boss",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 22
+      },
+      {
+        "id": "virmire:encounter-1",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 20
+      },
+      {
+        "id": "virmire:encounter-2",
+        "winner": "party",
+        "seconds": 24,
+        "actions": 16
+      },
+      {
+        "id": "virmire:boss",
+        "winner": "party",
+        "seconds": 42,
+        "actions": 36
+      },
+      {
+        "id": "feros:encounter-1",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 14
+      },
+      {
+        "id": "feros:encounter-2",
+        "winner": "party",
+        "seconds": 26,
+        "actions": 21
+      },
+      {
+        "id": "feros:boss",
+        "winner": "party",
+        "seconds": 24,
+        "actions": 18
+      },
+      {
+        "id": "ilos:encounter-1",
+        "winner": "party",
+        "seconds": 16,
+        "actions": 11
+      },
+      {
+        "id": "ilos:encounter-2",
+        "winner": "party",
+        "seconds": 18,
+        "actions": 12
+      },
+      {
+        "id": "ilos:boss",
+        "winner": "party",
+        "seconds": 25,
+        "actions": 19
+      },
+      {
+        "id": "citadel-finale:encounter-1",
+        "winner": "party",
+        "seconds": 21,
+        "actions": 15
+      },
+      {
+        "id": "citadel-finale:encounter-2",
+        "winner": "party",
+        "seconds": 25,
+        "actions": 17
+      },
+      {
+        "id": "citadel-finale:boss",
+        "winner": "party",
+        "seconds": 31,
+        "actions": 22
+      }
+    ],
+    "completed": [
+      "eden-prime",
+      "citadel",
+      "noveria",
+      "therum",
+      "virmire",
+      "feros",
+      "ilos",
+      "citadel-finale"
+    ],
+    "choices": {
+      "noveria": "release",
+      "virmire": "save-ashley",
+      "feros": "save",
+      "citadel-finale": "save-council"
+    },
+    "saveReload": true,
+    "errors": [],
+    "requests": [],
+    "completedAt": "2026-10-23T06:16:58.923Z",
+    "browser": {
+      "separateRendererProcesses": true,
+      "applicationStatePollingMs": 100,
+      "timeoutMs": 60000
+    }
+  },
+  "visualReview": {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "checked": [
+      "Conversation and codex text/buttons remain readable inside the viewport",
+      "Ashley station moved clear of the foreground Normandy beam; final screenshot reviewed"
+    ],
+    "screenshotsSha256": {
+      "docs/screenshots/normandy-conversations.png": "e3ea27324aa52e352de2bce5dd48164f90f643d8b35d3f7f115869810b9fa407",
+      "docs/screenshots/garrus-remembered-advice.png": "3aa9727ac30bf8259ad03a125a00c5d216d0afeb7ccc04180866a846372dc2c4",
+      "docs/screenshots/codex-search.png": "11ccaffafc8c6caae70f6da1fa1a92cb7ffb293e89b0a91b47852c5758753e31"
+    }
+  },
+  "workbook": {
+    "path": "docs/Mass_Effect_Relay_Chronicles_Production.xlsx",
+    "source": "docs/content-catalog.json",
+    "sha256": "f76f926a48ce5dc57683f8d6489b03c18b36d1f68d10f75b0b7c941e1606957a",
+    "records": 1203,
+    "sheets": 28,
+    "categories": 26,
+    "proofPaths": 153,
+    "all17FieldsMatchCatalogue": true,
+    "idsUnique": true,
+    "dependenciesResolved": true,
+    "noCachedFormulaErrors": true,
+    "statuses": {
+      "Prototype": 143,
+      "Défini": 1054,
+      "Validé": 3,
+      "Intégré": 3
+    },
+    "nativeExcelOpened": false,
+    "proof": "docs/workbook-previews/native-export-check.json"
+  },
+  "catalogAudit": {
+    "command": "npm run audit:fidelity -- --include-universe",
+    "catalogs": 28,
+    "entries": 6529,
+    "statuses": {
+      "Défini": 6380,
+      "Prototype": 143,
+      "Intégré": 3,
+      "Validé": 3
+    },
+    "backlog": 6526,
+    "missingDependencies": 0,
+    "crossCatalogDuplicateIds": [],
+    "fidelity": "not-assessed"
+  },
+  "limits": [
+    "Dialogue topics are concise French rewrites; full canonical dialogue trees, cinematics, romances and voice acting remain unfinished.",
+    "Social actors use the existing condensed Normandy/Citadel geometry; exact deck plans and full locations remain unfinished.",
+    "The quarian codex entry is initially discovered at recruitment; its conversation also records a read/discovery trace.",
+    "Liara’s Vigil topic is a later recap; it does not implement the original Vigil interview.",
+    "Primary-reference network hosts are saved in an environment configuration draft; activation remains pending."
+  ],
+  "sourceSha256": {
+    "package.json": "621656005335703d89b44a530437238c5136b166979ecb52ffb96458bf361fe8",
+    "src/story.js": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+    "src/story-data.js": "0cd052b5f99ec1e167782b6140716753c854fc1e3cd9defa55bd8ee5506a1a5c",
+    "src/state.js": "cb9acac7120fe45ffe9ffae87870311eb8e82383f576363009918c7db91d13ac",
+    "src/main.js": "e5f7de8c51696ba48babe988f9ff13ef67caf72a470322bfbce84f54679d410c",
+    "src/world.js": "c34dbcfef3cfb6ed81dac3b2f130bdea5881ae46a8e71abf63db6c7f2c9e8ae3",
+    "src/world-data.js": "e6396b9e97687a98ffcf6a7673b8430dd3b8c79bcde671ca8d62a1f271c9d45e",
+    "src/style.css": "19a73b7dee125551b66437b54431f19c3f71039f47eacbdd8c51cae4dedd0145",
+    "src/game-data.js": "2d462156f0ce2f50ffc224e2894b47c2a68d0d755e5225fe7609a59e0c66e7a6",
+    "scripts/story-browser.mjs": "678f3253c9c69b3cce701433a5ac97497fd79aa2315d305a5033f7692d6dab74",
+    "scripts/campaign-browser.mjs": "38d7b6d81c77b15aaf99c4e882f5ac19e3057919bafb8185a9115010f722b5c4",
+    "tests/story.test.js": "1509c314a795579af3b39ae62be90e64460f48f501578e0718d94f139b686b50",
+    "tests/recruitment.test.js": "e1675446dffa74025d44492b7dd93a24bf47c11c7f74f37098c1170ce38935e8",
+    "tests/story-world.test.js": "934be6b5a0e4dd8a64f02608c9b40dc6e01d4551190c27732d71a2356b8f4b43",
+    "scripts/build-workbook.mjs": "5fc2c0d560ed2385ad655c6aa3c2b6dae76757b87b71e68f23e102ae555c6131",
+    "docs/content-catalog.json": "9935793304d7c0adeb36389c72009c45ae1cfe5d3982eebd4a5be4844021e52f"
+  }
+}

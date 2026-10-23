@@ -14,21 +14,33 @@ Le dossier de Shepard propose maintenant les deux apparences, les trois origines
 
 Six emplacements manuels nommés affichent la date, la zone et le commandant. Remplacement et suppression exigent une confirmation, les emplacements sont séparés de l’autosauvegarde, et leur utilisation est bloquée en combat. Les erreurs de stockage et les données illisibles sont présentées sans effacement automatique.
 
-La suite actuelle passe **98 tests Node**, sans échec ni test ignoré. Les parcours navigateur des deux variantes du dossier et les six contrôles des emplacements manuels passent sans erreur JavaScript ni requête échouée. La campagne condensée a également remporté ses **21 rencontres**, terminé ses **huit étapes** et rechargé sa sauvegarde finale avec ses quatre décisions conservées. Le lanceur de cette régression utilise des processus Chromium séparés et vérifie la disponibilité des scènes toutes les 100 ms, avec un délai de 60 secondes pour le rendu logiciel. Les détails et empreintes des sources sont dans [dossier-and-saves-report.json](qa/dossier-and-saves-report.json). Les autres rapports ci-dessous décrivent les validations initiales. Le [suivi de fidélité](FIDELITY.md) conserve les contenus encore manquants.
+Ce premier complément, publié au commit `7b5ecaa`, passait **98 tests Node**, sans échec ni test ignoré. Les parcours navigateur des deux variantes du dossier et les six contrôles des emplacements manuels passaient sans erreur JavaScript ni requête échouée. La campagne condensée avait également remporté ses **21 rencontres**, terminé ses **huit étapes** et rechargé sa sauvegarde finale avec ses quatre décisions conservées. Les détails et empreintes de cette version sont conservés dans [dossier-and-saves-report.json](qa/dossier-and-saves-report.json).
+
+### Conversations, codex et recrutement
+
+Le Normandy accueille neuf interlocuteurs et dix-huit sujets selon les étapes, le recrutement et la survie. Nihlus apparaît avant le premier débarquement sur Eden Prime ; le rapport de Joker est prioritaire au retour. Le conseil donné à Garrus a deux réponses possibles et un suivi qui reprend le choix enregistré. Les compagnons disponibles occupent leur point de conversation à bord, y compris lorsqu’ils appartiennent à l’équipe sélectionnée.
+
+Garrus et Wrex peuvent être recrutés avant ou après l’audience du Conseil ; les preuves de Tali suffisent pour cette audience. Le recrutement ne modifie pas automatiquement le groupe actif. Les anciens PNJ et marqueurs de recrutement disparaissent à la Citadelle pour éviter les doublons. Le codex propose seize notices à découverte progressive avec une recherche insensible aux accents. Les révélations sur Liara, le Cipher, Sovereign et Vigil sont masquées avant les événements correspondants.
+
+La suite actuelle passe **133 tests Node**. Les **huit contrôles navigateur** vérifient les conversations, trois combats réels du prologue, le report puis le recrutement tardif, l’absence de doublons, la mémoire du conseil après reprise et la recherche du codex. La régression de campagne remporte aussi les **21 rencontres**, termine les **huit étapes** et recharge la sauvegarde finale avec ses quatre décisions conservées. Aucun de ces parcours ne signale d’erreur JavaScript ou de requête HTTP en échec. La compilation web passe. Le lanceur de campagne utilise des processus Chromium séparés, un contrôle de disponibilité toutes les 100 ms et un délai de 60 secondes pour le rendu logiciel.
+
+Preuves et empreintes des sources : [story-and-recruitment-report.json](qa/story-and-recruitment-report.json). Reproduction : `npm test`, `npm run build`, `npm run test:story` et `npm run test:campaign` avec un serveur Vite dev actif. Les textes ajoutés sont des réécritures françaises concises, sans doublage ; les positions appartiennent aux cartes condensées. Les statuts du catalogue distinguent la validation fonctionnelle du codex, l’intégration des trois choix et les dialogues encore au stade Prototype. Le [suivi de fidélité](FIDELITY.md) conserve les contenus manquants et les références restant à contrôler. Les rapports ci-dessous décrivent les validations initiales.
+
+Captures de ce complément : [équipage au Normandy](screenshots/normandy-conversations.png), [conseil mémorisé par Garrus](screenshots/garrus-remembered-advice.png) et [recherche dans le codex](screenshots/codex-search.png). Le placement d’Ashley a été ajusté après revue pour dégager sa silhouette de la poutre du décor.
 
 ## Fonctions présentes
 
 | Domaine | Livraison observable |
 |---|---|
 | Exploration | 9 scènes 3D, collisions, navigation au clic, clavier, course, suivi d’objectif |
-| Interactions | 63 points d’intérêt, dialogues, caches, armurerie, navigation et extraction |
+| Interactions | 63 points d’intérêt de mission et 9 points de conversation conditionnels, caches, armurerie, navigation et extraction |
 | Campagne | 8 étapes, enquête à ordre partiellement libre, 21 rencontres persistantes |
 | Groupe | Shepard, Jenkins au départ, puis six compagnons recrutables ; deux équipiers actifs |
 | Combat | 6 classes, modes Attente/Actif, trois difficultés, chaleur, bouclier, pouvoirs et états |
-| Choix | Féros, reine rachni, Virmire, Conseil ; journal et bilan final |
+| Choix | Féros, reine rachni, Virmire, Conseil, recrutement différé de Garrus/Wrex et conseil à Garrus ; journal et bilan final |
 | Progression | Expérience, niveaux automatiques, crédits, améliorations et réserve de médi-gel |
-| Sauvegardes | Auto hors combat, import/export JSON, validation structurelle et cohérence de progression |
-| Interface | Titre, création, journal, cartes, commando, équipement, codex, pause, options, victoire, défaite, fin |
+| Sauvegardes | Auto hors combat, 6 emplacements manuels, import/export JSON, dossier Shepard et historique des conversations persistés, migration v1 |
+| Interface | Titre, création et dossier Shepard, journal, cartes, commando, équipement, 16 notices de codex avec recherche, pause, options, victoire, défaite, fin |
 | Art | 8 PNG, 48 sujets de sprites, 16 poses de marche supplémentaires, illustration d’accueil |
 | Son | Ambiances et effets locaux Web Audio ; aucun doublage |
 | Distribution | Build Vite, fenêtre Electron, cible portable Windows, workflows de compilation |
@@ -37,7 +49,7 @@ La suite actuelle passe **98 tests Node**, sans échec ni test ignoré. Les parc
 
 ### Tests unitaires
 
-**55 contrôles passent** : 29 pour le combat, 16 pour l’état et les sauvegardes, 10 pour l’audio. Exécution par `node tests/combat.test.js`, `node tests/state.test.js` et `node tests/audio.test.js`. `npm test` exécute les trois fichiers avec le runner Node.
+La validation initiale comportait **55 contrôles** : 29 pour le combat, 16 pour l’état et les sauvegardes, 10 pour l’audio. Ce rapport historique correspond aux trois fichiers `tests/combat.test.js`, `tests/state.test.js` et `tests/audio.test.js`. La commande actuelle `npm test` exécute tous les fichiers `tests/*.test.js`, soit les 133 contrôles décrits plus haut.
 
 Les tests comprennent la surchauffe, la Stase, le piratage et ses immunités, les attaques organiques, la recharge des boucliers, les KO, les soins, l’ordre de progression, les décisions sensibles, les imports invalides, les propriétés de prototype, la composition du groupe et la libération des ressources audio. Deux parcours d’état prennent des choix opposés et relisent les sauvegardes au fil de leur progression.
 
@@ -73,7 +85,7 @@ Le dernier contrôle ciblé vérifie le combat de Féros : les six acteurs reste
 
 ### Compilation et application PC
 
-La version web finale et le portable Windows x64 ont été compilés avec Vite 7.3.7, Electron 45.0.0 et electron-builder 26.15.3. Le paquet Windows a été créé sous Linux ; il n’a pas été exécuté sur Windows pendant cette session. Le rapport conserve les empreintes du binaire, des fichiers web distribués et des sources utilisées : [build-report.json](qa/build-report.json). Les dossiers `dist/` et `release/` sont des sorties de compilation exclues du dépôt.
+La version web et le portable Windows x64 initiaux ont été compilés avec Vite 7.3.7, Electron 45.0.0 et electron-builder 26.15.3. Le paquet Windows a été créé sous Linux ; il n’a pas été exécuté sur Windows pendant cette session et ne contient pas les compléments ultérieurs. Le rapport historique conserve les empreintes du binaire, des fichiers web distribués et des sources utilisées : [build-report.json](qa/build-report.json). La compilation web du complément actuel est vérifiée séparément dans son rapport. Les dossiers `dist/` et `release/` sont des sorties de compilation exclues du dépôt.
 
 ### Excel
 

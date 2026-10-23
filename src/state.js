@@ -1,5 +1,6 @@
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
+import { createStoryState, migrateStoryState } from './story.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -30,6 +31,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     mode: MODES.has(mode) ? mode : 'wait',
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
+    story: createStoryState(),
     logs: [{ title: 'Départ', text: 'Le Normandy fait route vers Eden Prime.' }],
     xp: 0, credits: 250, medigel: 4, upgrades: {}, paragon: 0, renegade: 0,
     playedSeconds: 0, position: null, ending: false, settings: { ...DEFAULT_SETTINGS },
@@ -62,7 +64,9 @@ export function encounterIndex(id) {
 
 export function objectiveReady(state, zone = state.zone) {
   if (!OWN(CHAPTERS, zone) || !unlockedZones(state).includes(zone) || state.completed.includes(zone)) return false;
-  if (zone === 'citadel') return ['garrus', 'tali', 'wrex'].every(id => state.recruited.includes(id) && !state.lost.includes(id));
+  // Tali supplies the evidence against Saren. Garrus and Wrex can be recruited
+  // independently; accepting their help is not a condition for the audience.
+  if (zone === 'citadel') return state.recruited.includes('tali') && !state.lost.includes('tali');
   const encounters = zoneEncounters(zone);
   return encounters.length > 0 && encounters.every(id => state.cleared.includes(id));
 }
@@ -92,6 +96,7 @@ export function recruit(state, id) {
     ? state.zone === 'eden-prime' && state.cleared.includes('eden-prime:encounter-1')
     : id === 'liara'
       ? state.zone === 'therum' && state.completed.includes('therum')
+      // Completing the audience does not prevent a later recruitment visit.
       : ['garrus', 'tali', 'wrex'].includes(id) && state.zone === 'citadel' && unlockedZones(state).includes('citadel');
   if (!allowed) return false;
   state.recruited.push(id);
@@ -237,7 +242,7 @@ function validateProgression(state) {
   if (state.recruited.includes('liara') !== state.completed.includes('therum')) return false;
   const citadelCrew = ['garrus', 'tali', 'wrex'];
   if (!unlocked.includes('citadel') && citadelCrew.some(id => state.recruited.includes(id))) return false;
-  if (state.completed.includes('citadel') && !citadelCrew.every(id => state.recruited.includes(id))) return false;
+  if (state.completed.includes('citadel') && !state.recruited.includes('tali')) return false;
   const expectedLost = jenkinsLost ? ['jenkins'] : [];
   if (state.completed.includes('virmire')) expectedLost.push(state.choices.virmire === 'save-kaidan' ? 'ashley' : 'kaidan');
   if (state.lost.length !== expectedLost.length || !expectedLost.every(id => state.lost.includes(id))) return false;
@@ -316,7 +321,9 @@ export function decodeSave(raw) {
       paragon: input.paragon, renegade: input.renegade, playedSeconds: input.playedSeconds,
       position, ending: input.ending, settings,
     };
-    return validateProgression(state) ? state : null;
+    if (!validateProgression(state)) return null;
+    state.story = migrateStoryState(OWN(input, 'story') ? input.story : undefined, state);
+    return state.story ? state : null;
   } catch {
     return null;
   }

@@ -48,7 +48,7 @@
       "distinctWorldDestinations": 8,
       "companionCount": 8,
       "encounterCount": 21,
-      "codexCount": 12,
+      "codexCount": 16,
       "visualLimit": "Atlas de poses statiques, avec première planche de marche Shepard de 16 images / 4 directions ; costumes, apparences et animations complètes non validés.",
       "coverageLimit": "Les 9 zones sont des décors condensés. Les 100 sous-zones et 91 liaisons du catalogue restent à produire.",
       "vehicleLimit": "Mako et Sovereign décoratifs ; Normandy SR-1 et armature geth illustrés. Aucun véhicule pilotable.",
@@ -67,7 +67,7 @@
         },
         {
           "path": "public/assets/npc-atlas.png",
-          "scope": "8 poses dont Shepard féminin et 7 PNJ ; 5 PNJ placés"
+          "scope": "8 poses dont Shepard féminin et 7 PNJ ; 6 PNJ placés, Nihlus seulement avant Eden Prime"
         },
         {
           "path": "public/assets/vehicle-atlas.png",
@@ -82,7 +82,9 @@
           "scope": "Shepard : 16 images / 4 directions ; cycle de marche à nettoyer, huit directions non validées"
         }
       ],
-      "animationLimit": "Une planche Shepard de 16 images / 4 directions est au stade Prototype. Face/dos en trois-quarts, profils latéraux et cycle à nettoyer. Huit directions et bibliothèque d’actions complètes non validées."
+      "animationLimit": "Une planche Shepard de 16 images / 4 directions est au stade Prototype. Face/dos en trois-quarts, profils latéraux et cycle à nettoyer. Huit directions et bibliothèque d’actions complètes non validées.",
+      "conversationPointCount": 9,
+      "conversationTopicCount": 18
     }
   },
   "sources": [
@@ -652,7 +654,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "Prototype",
       "reference": "Nom et rôle à recouper dans le jeu et son codex ; guide utilisé comme point de départ.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -664,7 +666,7 @@
       "plannedPath": "content/npcs/NPC-nihlus-kryik.json",
       "assetPath": "public/assets/npc-atlas.png",
       "gameKey": "NPC_KEYS.nihlus",
-      "notes": "Atlas 4 × 2, ligne 2, colonne 1. Image présente dans l’atlas ; aucune présence de scène contrôlée. Costume, visage, dialogues et animations complets à vérifier ou produire."
+      "notes": "Atlas 4 × 2, ligne 2, colonne 1. Placé au Normandy avant le premier départ sur Eden Prime avec deux sujets de conversation. Absent aux retours suivants. Costume, visage, animation et scènes du prologue non validés. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "NPC-donnel-udina",
@@ -8202,8 +8204,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8212,9 +8214,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-nihlus-observation.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.nihlus",
+      "notes": "Deux sujets avant le premier débarquement sur Eden Prime ; Nihlus disparaît ensuite. Scènes du prologue, animations et texte intégral restent à produire ou à vérifier. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-joker-retour-du-prologue",
@@ -8223,8 +8225,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8233,9 +8235,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-joker-retour-du-prologue.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.joker",
+      "notes": "Rapport après Eden Prime proposé avant le sujet ordinaire de pilotage et marqué comme lu. Pose assise et version intégrale restent à produire. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-chakwas-etat-de-shepard",
@@ -8244,8 +8246,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8254,9 +8256,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-chakwas-etat-de-shepard.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.chakwas",
+      "notes": "Sujet sur la vision disponible après Eden Prime et conservé dans l’historique. Portrait statique ; animation, scène médicale et texte intégral restent à produire. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-ashley-apres-recrutement",
@@ -8265,8 +8267,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8275,9 +8277,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-ashley-apres-recrutement.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.ashley",
+      "notes": "Sujet sur la perte de son unité après recrutement, absent si elle est perdue. Les variantes selon le ton adopté sur Eden Prime ne sont pas encore implémentées. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-premiere-audience",
@@ -8307,8 +8309,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8317,9 +8319,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-garrus-clinique.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/main.js",
+      "gameKey": "recruit:garrus",
+      "notes": "Acceptation ou report, puis recrutement encore possible après l’audience du Conseil. La rencontre utilise la carte condensée ; la clinique et l’enquête complète ne sont pas reconstituées. Dialogue français concis réécrit. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-wrex-contrat",
@@ -8328,8 +8330,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8338,9 +8340,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-wrex-contrat.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/main.js",
+      "gameKey": "recruit:wrex",
+      "notes": "Acceptation ou report, puis recrutement encore possible après l’audience du Conseil. Les scènes du contrat et les lieux exacts ne sont pas reconstitués. Dialogue français concis réécrit. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-tali-preuve",
@@ -8412,8 +8414,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8422,9 +8424,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-tali-vie-de-la-flotte.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.tali",
+      "notes": "Trois sujets sur le pèlerinage, la Flotte et les geth. Lecture conservée dans l’historique et la trace de codex ; la première découverte du dossier quarien intervient déjà au recrutement. Le critère d’un premier déblocage par ce dialogue seul reste incomplet. Texte complet et toutes les nuances restent à recouper. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-wrex-genophage",
@@ -8433,8 +8435,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8443,9 +8445,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-wrex-genophage.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.wrex",
+      "notes": "Sujet sur le génophage après recrutement. Présence et conversation conditionnées au compagnon. Réécriture courte à comparer avec l’original. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-garrus-procedures",
@@ -8454,8 +8456,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8464,9 +8466,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-garrus-procedures.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.garrus",
+      "notes": "Deux conseils possibles, réponse persistante et sujet de suivi adapté. Ce conseil ne remplace pas les dialogues complets ni les conséquences des missions personnelles. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-liara-archeologie",
@@ -8475,8 +8477,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8485,9 +8487,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-liara-archeologie.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.liara",
+      "notes": "Archéologie après Thérum, Cipher après Féros et rappel de Vigil après Ilos. Les étapes ne sont pas divulguées avant les événements. Scènes complètes à produire. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-kaidan-implants",
@@ -8496,8 +8498,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8506,9 +8508,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-kaidan-implants.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.kaidan",
+      "notes": "Sujet sur les implants L2 et les migraines, disponible tant que Kaidan est recruté et vivant. Réécriture courte sans doublage ni animation. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-ashley-famille",
@@ -8517,8 +8519,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Réécriture de production à valider contre la scène ME1 ; pas de transcription intégrale fournie.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -8527,9 +8529,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/dialogues/DIA-ashley-famille.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story-data.js",
+      "gameKey": "STORY_CONVERSATIONS.ashley",
+      "notes": "Sujet personnel sur ses sœurs et le service de l’Alliance après recrutement. Réécriture courte ; détails et variantes complets restent à produire. Texte français réécrit, sans certification mot à mot. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "DIA-colons-de-zhu-s-hope",
@@ -8823,7 +8825,7 @@
       "plannedPath": "content/dialogues/DIA-vigil-histoire.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Preuve partielle : src/story-data.js contient uniquement un compte rendu de Liara après Ilos (liara:vigil). L’entretien original avec Vigil et ses embranchements restent à produire ; la fiche demeure Défini."
     },
     {
       "id": "DIA-saren-final",
@@ -17894,8 +17896,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Prototype",
-      "assetStatus": "Prototype",
+      "status": "Validé",
+      "assetStatus": "Disponible",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -17904,9 +17906,9 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": "src/main.js",
-      "gameKey": "system:codex",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "assetPath": "src/story.js",
+      "gameKey": "getCodexEntries",
+      "notes": "Critère fonctionnel vérifié : recherche insensible aux accents, découverte progressive et filtrage des informations de Liara, Féros, Virmire et Ilos. Aucun article obsolète après recherche vide. Seize entrées réécrites ; ne constitue pas le codex complet ni une certification canonique 1:1. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "SYS-catalogue-de-production",
@@ -18326,7 +18328,7 @@
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:dialogue-a-choix",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Branches de recrutement acceptation/report et conseil à Garrus avec réponse persistée, sous forme de réécritures concises. Les dialogues intégraux, la roue de conversation complète et l’ensemble des branches du catalogue restent à produire. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "SYS-reputation",
@@ -23165,8 +23167,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Intégré",
+      "assetStatus": "Disponible",
       "reference": "Drapeaux de narration à relever ; adaptation du stockage, sans nouvelles issues imposées.",
       "sourceId": "PRIMA-VIRMIRE",
       "sourceUrl": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectra-assignments-virmire-and-citadel-lockdown/virmire-assignments",
@@ -23175,9 +23177,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/choices/CHC-recrutement-de-garrus.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/state.js",
+      "gameKey": "recruit:garrus",
+      "notes": "Acceptation et report fonctionnels avant/après l’audience. Le PNJ et son marqueur disparaissent dès le recrutement ; un seul acteur quand Garrus est sélectionné. Aucun changement automatique de l’équipe active. Vérification canonique complète encore à mener. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "CHC-recrutement-de-wrex",
@@ -23186,8 +23188,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Intégré",
+      "assetStatus": "Disponible",
       "reference": "Drapeaux de narration à relever ; adaptation du stockage, sans nouvelles issues imposées.",
       "sourceId": "PRIMA-VIRMIRE",
       "sourceUrl": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectra-assignments-virmire-and-citadel-lockdown/virmire-assignments",
@@ -23196,9 +23198,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/choices/CHC-recrutement-de-wrex.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/state.js",
+      "gameKey": "recruit:wrex",
+      "notes": "Acceptation et report fonctionnels avant/après l’audience. Présence et conversation à bord selon le recrutement ; absence du PNJ de recrutement à la Citadelle. Position à bord dans le décor condensé, sans reconstitution exacte des ponts. Vérification canonique complète encore à mener. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "CHC-ordre-des-destinations",
@@ -23249,8 +23251,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Intégré",
+      "assetStatus": "Disponible",
       "reference": "Drapeaux de narration à relever ; adaptation du stockage, sans nouvelles issues imposées.",
       "sourceId": "PRIMA-VIRMIRE",
       "sourceUrl": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectra-assignments-virmire-and-citadel-lockdown/virmire-assignments",
@@ -23259,9 +23261,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/choices/CHC-attitude-de-garrus.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/story.js",
+      "gameKey": "story.choices[garrus:procedure]",
+      "notes": "Conseil procédure/résultats mémorisé, suivi adapté, persistance après autosauvegarde et reprise. Ne couvre pas toutes les conséquences ou missions personnelles du jeu original. Vérification canonique complète encore à mener. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json."
     },
     {
       "id": "CHC-armure-de-wrex",

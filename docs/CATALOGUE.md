@@ -13,10 +13,10 @@ Ce catalogue contient **1 203 fiches**, organisées en **26 catégories** et *
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 1 070 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 131 | Présent sous une forme simplifiée à reprendre. |
-| Intégré | 0 | Présent dans le jeu avec chemin et dépendances vérifiés. |
-| Validé | 2 | Intégré et contrôlé avec preuve de test. |
+| Défini | 1 054 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 143 | Présent sous une forme simplifiée à reprendre. |
+| Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
+| Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
 Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Les éventuelles fiches **Validé** attestent leurs critères fonctionnels documentés ; elles ne certifient pas la fidélité 1:1 de l’ensemble du jeu.
 
@@ -38,9 +38,10 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
 | Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portrait et sprite cohérents ; variante féminine statique. Réactions narratives aux antécédents, créateur facial et costumes définitifs restent à produire. |
 | Combat | 21 rencontres condensées et commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
-| Codex | 12 entrées de lecture dans le jeu | Ne représente pas le codex complet de Mass Effect. |
+| Codex | 16 entrées à découverte progressive avec recherche | Les entrées dépendant de Liara, Féros, Virmire et Ilos sont conditionnées aux événements connus. Ne représente pas le codex complet de Mass Effect. |
 | Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |
-| PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus et Emily présents dans l’atlas | Les deux derniers ne sont pas déclarés placés. L’image de Joker est debout ; sa pose assise reste à produire. |
+| PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant le départ sur Eden Prime | Emily reste en réserve. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
+| Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
 | Animation | Première planche de marche de Shepard : 16 images pour 4 directions, au stade Prototype | Face et dos en trois-quarts, profils latéraux, cycle à nettoyer et mapping UV spécifique. Huit directions et bibliothèque d’actions complètes non validées. Une fiche de marche est Prototype ; les 39 autres fiches d’animation restent Définies. |
 
@@ -51,7 +52,7 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | [crew-atlas.png](../public/assets/crew-atlas.png) | 8 poses alliées ; portraits, combat et repli statique du terrain | Prototype |
 | [enemy-atlas.png](../public/assets/enemy-atlas.png) | 8 silhouettes ennemies de prototype | Prototype |
 | [boss-atlas.png](../public/assets/boss-atlas.png) | 4 poses de boss ; aucune planche animée complète | Prototype |
-| [npc-atlas.png](../public/assets/npc-atlas.png) | 8 poses dont Shepard féminin et 7 PNJ ; 5 PNJ placés | Prototype |
+| [npc-atlas.png](../public/assets/npc-atlas.png) | 8 poses dont Shepard féminin et 7 PNJ ; 6 PNJ placés, Nihlus seulement avant Eden Prime | Prototype |
 | [vehicle-atlas.png](../public/assets/vehicle-atlas.png) | 4 silhouettes de véhicules ou grande machine ; 2 placements décoratifs | Prototype |
 | [props-atlas.png](../public/assets/props-atlas.png) | Objets illustrés de décor | Prototype |
 | [shepard-walk-atlas.png](../public/assets/shepard-walk-atlas.png) | Shepard : 16 images / 4 directions ; cycle de marche à nettoyer, huit directions non validées | Prototype |
@@ -65,7 +66,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Catégorie | Total | Défini | Prototype | Intégré | Validé | Périmètre |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | Personnages | 8 | 0 | 8 | 0 | 0 | Shepard, équipiers et identités jouables |
-| PNJ | 66 | 61 | 5 | 0 | 0 | Personnages de rencontre et services |
+| PNJ | 66 | 60 | 6 | 0 | 0 | Personnages de rencontre et services |
 | Espèces et factions | 36 | 29 | 7 | 0 | 0 | Espèces, organisations et règles culturelles |
 | Mondes | 32 | 24 | 8 | 0 | 0 | Destinations et identité environnementale |
 | Zones | 100 | 100 | 0 | 0 | 0 | Pièces, espaces extérieurs et points de passage |
@@ -75,8 +76,8 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Ennemis et boss | 35 | 31 | 4 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
 | Missions | 63 | 42 | 21 | 0 | 0 | Étapes de l’intrigue principale |
 | Secondaires et DLC | 62 | 62 | 0 | 0 | 0 | Missions annexes et extensions de ME1 |
-| Choix et relations | 34 | 34 | 0 | 0 | 0 | Conséquences persistantes et relations |
-| Dialogues | 36 | 36 | 0 | 0 | 0 | Situations de dialogue et conditions |
+| Choix et relations | 34 | 31 | 0 | 3 | 0 | Conséquences persistantes et relations |
+| Dialogues | 36 | 24 | 12 | 0 | 0 | Situations de dialogue et conditions |
 | Cinématiques | 26 | 26 | 0 | 0 | 0 | Séquences et mise en scène |
 | Armes | 24 | 24 | 0 | 0 | 0 | Familles, modèles et comportements |
 | Armures et équipement | 26 | 26 | 0 | 0 | 0 | Protections, modules et consommables |
@@ -87,10 +88,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Sprites | 77 | 42 | 35 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 40 | 10 | 28 | 0 | 2 | Interface et règles de jeu |
+| Systèmes et UI | 40 | 10 | 27 | 0 | 3 | Interface et règles de jeu |
 | QA | 52 | 52 | 0 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 203** | **1 070** | **131** | **0** | **2** | |
+| **Total** | **1 203** | **1 054** | **143** | **3** | **3** | |
 
 ## Lire une fiche
 

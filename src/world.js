@@ -7,6 +7,7 @@ const CREW_KEYS = ['shepard', 'ashley', 'kaidan', 'jenkins', 'garrus', 'tali', '
 const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', 'rachni', 'creeper', 'asari'];
 const BOSS_KEYS = ['saren', 'benezia', 'thorian', 'saren-final'];
 const NPC_KEYS = ['femshep', 'anderson', 'joker', 'chakwas', 'nihlus', 'udina', 'kirrahe', 'emily'];
+const CITADEL_RECRUITS = { 'citadel:encounter-1': 'garrus', 'citadel:encounter-2': 'tali', 'citadel:boss': 'wrex' };
 const ASSET_BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
 const COLORS = { dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
 const TAU = Math.PI * 2;
@@ -55,7 +56,7 @@ export class WorldView {
   constructor(container, { onInteract, onMove, onEncounter } = {}) {
     if (!container) throw new Error('WorldView needs a container.');
     this.container = container; this.onInteract = onInteract; this.onMove = onMove; this.onEncounter = onEncounter;
-    this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins']; this.commanderAppearance = 'male';
+    this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins']; this.commanderAppearance = 'male'; this.storyContext = null;
     this.player = { x: 0, z: 11 }; this.cleared = new Set(); this.colliders = []; this.animations = []; this.effects = [];
     this.actors = []; this.battleActors = new Map(); this.trail = []; this.spriteCache = new Map(); this.atlases = {};
     this.textureCache = new Map(); this.materialCache = new Map(); this._moveReport = 0; this._disposed = false;
@@ -644,10 +645,11 @@ export class WorldView {
     ({ normandy: () => this._normandy(), eden: () => this._eden(), citadel: () => this._citadel(false), therum: () => this._therum(), feros: () => this._feros(), noveria: () => this._noveria(), virmire: () => this._virmire(), ilos: () => this._ilos(), finale: () => this._citadel(true) }[zone.theme] || (() => this._eden()))();
     this._dressScene();
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
-    this.colliders = this.colliders.filter(c => !zone.pois.some(p => this._insideCollider(p.x, p.z, c, .3)));
+    this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
     this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
     this.cameraTarget.set(this.player.x * .42, 0, this.player.z * .42);
-    this._makeMarkers(); this.setParty(party || this.party); this._makeAmbientCharacters();
+    this._makeMarkers(); this.setParty(party || this.party);
+    if (this.zoneId !== 'normandy' || !this.storyContext) this._makeAmbientCharacters();
     this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget); this.resize();
   }
 
@@ -662,6 +664,25 @@ export class WorldView {
       actor.body.material.map = this._spriteTexture(key, false);
       actor.body.scale.x = 1;
     }
+  }
+
+  setStoryContext(context = null) {
+    const strings = value => [...new Set(Array.isArray(value) ? value.filter(item => typeof item === 'string') : [])];
+    const next = context && typeof context === 'object' ? {
+      recruited: strings(context.recruited), lost: strings(context.lost), completed: strings(context.completed),
+      visitedZones: strings(context.visitedZones ?? context.story?.visitedZones),
+      flags: { jenkinsLost: context.flags?.jenkinsLost === true },
+    } : null;
+    if (next?.flags.jenkinsLost && !next.lost.includes('jenkins')) next.lost.push('jenkins');
+    if (JSON.stringify(next) === JSON.stringify(this.storyContext)) return;
+    this.storyContext = next;
+    if (!this.zone) return;
+    if (this.pendingPOI && !this.getInteractivePOIs().some(poi => poi.id === this.pendingPOI.id)) {
+      this.pendingPOI = null; this.targetPath = null;
+    }
+    this.setParty(this.party);
+    if (this.zoneId === 'normandy') this._makeMarkers();
+    if (this.zoneId === 'citadel') { this._makeMarkers(); this._makeAmbientCharacters(); }
   }
 
   _makeActor(key, id, enemy = false, parent = this.characters) {
@@ -680,14 +701,22 @@ export class WorldView {
   }
 
   setParty(party = []) {
-    this.party = party.length ? party : ['shepard'];
+    const members = party.length ? party : ['shepard'];
+    this.party = this.storyContext ? members.filter(member => {
+      const id = typeof member === 'string' ? member : member.id;
+      return id === 'shepard' || this.storyContext.recruited.includes(id) && !this.storyContext.lost.includes(id);
+    }) : members;
+    if (!this.party.length) this.party = ['shepard'];
+    const conversations = this.getConversationPOIs();
     for (const actor of this.actors) { this.characters.remove(actor.group); disposeObject(actor.group); }
     this.actors = this.party.slice(0, 3).map((member, i) => {
       const key = typeof member === 'string' ? member : member.sprite || member.id || 'shepard';
       const actor = this._makeActor(key, typeof member === 'string' ? member : member.id || key);
-      actor.group.position.set(this.player.x + (i === 1 ? -1.2 : i === 2 ? 1.2 : 0), 0, this.player.z + i * .8);
+      actor.stationPosition = conversations.find(poi => poi.conversationId === actor.id)?.actorPosition;
+      actor.group.position.set(actor.stationPosition?.x ?? this.player.x + (i === 1 ? -1.2 : i === 2 ? 1.2 : 0), 0, actor.stationPosition?.z ?? this.player.z + i * .8);
       actor.group.visible = this.mode !== 'combat'; return actor;
     });
+    if (this.zoneId === 'normandy' && this.storyContext) this._makeAmbientCharacters();
   }
 
   _makeAmbientCharacters() {
@@ -700,19 +729,28 @@ export class WorldView {
       }
     }
     if (this.zoneId === 'citadel') for (const [suffix, key] of [['encounter-1', 'garrus'], ['encounter-2', 'tali'], ['boss', 'wrex']]) {
+      if (this.storyContext && (this.storyContext.recruited.includes(key) || this.storyContext.lost.includes(key))) continue;
       const p = this.zone.pois.find(x => x.id === `citadel:${suffix}`); if (!p) continue;
       const actor = this._makeActor(key, `ambient:${p.id}`); actor.group.position.set(p.x + .9, 0, p.z - .8); actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
     }
     const npcs = this.zoneId === 'normandy'
-      ? [['chakwas', 5.2, 10.5], ['joker', .5, -15.3], ...(!this.cleared.has('eden-prime:boss') ? [['anderson', -5.2, -3.8]] : [])]
+      ? [...(!this.storyContext ? [['chakwas', 5.2, 10.5], ['joker', .5, -15.3]] : []), ...(!this.cleared.has('eden-prime:boss') ? [['anderson', -5.2, -3.8]] : [])]
       : this.zoneId === 'citadel' ? [['anderson', .8, 11.2], ['udina', 1.1, -17.9]]
       : this.zoneId === 'virmire' ? [['kirrahe', .8, 11.2]] : [];
     for (const [key, x, z] of npcs) { const actor = this._makeActor(key, `npc:${key}`); actor.group.position.set(x, 0, z); actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor); }
+    const active = new Set(this.actors.map(actor => actor.id));
+    for (const poi of this.getConversationPOIs()) {
+      if (active.has(poi.characterId)) continue;
+      const actor = this._makeActor(poi.characterId, `npc:${poi.characterId}`);
+      actor.conversationId = poi.conversationId; actor.poiId = poi.id;
+      actor.group.position.set(poi.actorPosition.x, 0, poi.actorPosition.z);
+      actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
+    }
   }
 
   _makeMarkers() {
     disposeObject(this.markers); this.markers.clear(); this.labels.replaceChildren(); this.poiViews = [];
-    for (const poi of this.zone.pois) {
+    for (const poi of this.getInteractivePOIs()) {
       const group = new THREE.Group(); group.position.set(poi.x, .08, poi.z); this.markers.add(group);
       const color = COLORS[poi.type] || 0x9ac8dd;
       const ring = new THREE.Mesh(new THREE.RingGeometry(.62, .69, 48), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .55, side: THREE.DoubleSide, depthWrite: false }));
@@ -807,13 +845,31 @@ export class WorldView {
     const b = this.zone.bounds; const x = clamp(position.x, b.minX + .5, b.maxX - .5), z = clamp(position.z, b.minZ + .5, b.maxZ - .5);
     if (!this._walkable(x, z)) return;
     this.player = { x, z }; this._resetTrail(); this.targetPath = null;
-    this.actors.forEach((actor, i) => actor.group.position.set(x, 0, z + i * .8));
+    this.actors.forEach((actor, i) => actor.group.position.set(actor.stationPosition?.x ?? x, 0, actor.stationPosition?.z ?? z + i * .8));
   }
   getBounds() { return { ...this.zone.bounds }; }
   getPOIs() { return this.zone.pois.map(poi => ({ ...poi, cleared: this.cleared.has(poi.id) })); }
+  getConversationPOIs() {
+    const context = this.storyContext;
+    if (this.zoneId !== 'normandy' || !context) return [];
+    return (this.zone.conversationPois || []).filter(poi => {
+      const id = poi.conversationId;
+      if (context.lost.includes(id)) return false;
+      if (id === 'joker' || id === 'chakwas') return true;
+      if (id === 'nihlus') return !context.visitedZones.includes('eden-prime') && !context.completed.includes('eden-prime') && !context.flags.jenkinsLost;
+      return context.recruited.includes(id);
+    }).map(poi => ({ ...poi, cleared: false }));
+  }
+  getInteractivePOIs() {
+    const pois = this.getPOIs().filter(poi => {
+      const recruit = this.zoneId === 'citadel' && CITADEL_RECRUITS[poi.id];
+      return !recruit || !this.storyContext || !this.storyContext.recruited.includes(recruit) && !this.storyContext.lost.includes(recruit);
+    });
+    return [...pois, ...this.getConversationPOIs()];
+  }
   getNearby() {
     let nearest = null, distance = 2.65;
-    for (const poi of this.zone.pois) { if (poi.type === 'encounter' && this.cleared.has(poi.id)) continue; const d = Math.hypot(this.player.x - poi.x, this.player.z - poi.z); if (d < distance) { distance = d; nearest = poi; } }
+    for (const poi of this.getInteractivePOIs()) { if (poi.type === 'encounter' && this.cleared.has(poi.id)) continue; const d = Math.hypot(this.player.x - poi.x, this.player.z - poi.z); if (d < distance) { distance = d; nearest = poi; } }
     return nearest ? { ...nearest, distance } : null;
   }
   interact() {
@@ -906,11 +962,12 @@ export class WorldView {
     this.cameraTarget.lerp(desired, 1 - Math.exp(-dt * 3)); this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget);
     const facing = Math.atan2(this.cameraOffset.x, this.cameraOffset.z);
     this.actors.forEach((actor, index) => {
-      const target = index === 0 ? this.player : this.trail[Math.min(this.trail.length - 1, index * 11)] || this.player;
+      const target = actor.stationPosition || (index === 0 ? this.player : this.trail[Math.min(this.trail.length - 1, index * 11)] || this.player);
+      const actorMoving = moving && !actor.stationPosition;
       actor.group.position.x = THREE.MathUtils.lerp(actor.group.position.x, target.x, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
       actor.group.position.z = THREE.MathUtils.lerp(actor.group.position.z, target.z, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
-      actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (moving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : Math.sin(this.time * 1.8 + index) * .016);
-      actor.body.rotation.z = moving ? Math.sin(this.time * 10 - index) * .018 : 0;
+      actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : Math.sin(this.time * 1.8 + index) * .016);
+      actor.body.rotation.z = actorMoving ? Math.sin(this.time * 10 - index) * .018 : 0;
       if (actor.key === 'shepard' && this.atlases.walk && this.walkConfig) {
         actor.body.material.map = moving ? this._walkingTexture(actor, movementX, movementZ) : this._spriteTexture(actor.key, false);
         actor.body.scale.x = moving ? actor.walkAspect / (2.1 / actor.height) : 1;

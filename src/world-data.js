@@ -1,4 +1,4 @@
-/** World staging is original fan-game geometry; story and canonical milestones live in content.js. */
+/** Original fan-game staging; story milestones live in game-data.js and story-data.js. */
 const poi = (zone, suffix, label, type, x, z, extra = {}) => ({
   id: `${zone}:${suffix}`, label, type, x, z, ...extra,
 });
@@ -29,6 +29,19 @@ export const WORLD_ZONES = {
       poi('normandy', 'medbay', 'Infirmerie', 'terminal', 4.8, 12),
       poi('normandy', 'archive', 'Archives de l’Alliance', 'terminal', -4.8, 12),
       poi('normandy', 'exit', 'Déploiement', 'exit', 0, 15),
+    ],
+    // Conversation staging belongs to this condensed adaptation, not a surveyed SR-1 deck plan.
+    // Keep it separate from the seven authored mission/service points.
+    conversationPois: [
+      poi('normandy', 'talk-joker', 'Joker', 'dialogue', 0, -13.2, { conversationId: 'joker', characterId: 'joker', actorPosition: { x: .5, z: -15.3 } }),
+      poi('normandy', 'talk-chakwas', 'Dr Chakwas', 'dialogue', 3.5, 10, { conversationId: 'chakwas', characterId: 'chakwas', actorPosition: { x: 5.2, z: 10.5 } }),
+      poi('normandy', 'talk-nihlus', 'Nihlus Kryik', 'dialogue', 3.8, -9.2, { conversationId: 'nihlus', characterId: 'nihlus', actorPosition: { x: 5.3, z: -9.9 } }),
+      poi('normandy', 'talk-kaidan', 'Kaidan Alenko', 'dialogue', -3.6, -.2, { conversationId: 'kaidan', characterId: 'kaidan', actorPosition: { x: -5.1, z: -.5 } }),
+      poi('normandy', 'talk-ashley', 'Ashley Williams', 'dialogue', 3.6, 7.5, { conversationId: 'ashley', characterId: 'ashley', actorPosition: { x: 4.5, z: 6.8 } }),
+      poi('normandy', 'talk-garrus', 'Garrus Vakarian', 'dialogue', -3.7, 3, { conversationId: 'garrus', characterId: 'garrus', actorPosition: { x: -5.2, z: 3.2 } }),
+      poi('normandy', 'talk-tali', 'Tali’Zorah', 'dialogue', -3.6, 9, { conversationId: 'tali', characterId: 'tali', actorPosition: { x: -5.1, z: 9.2 } }),
+      poi('normandy', 'talk-wrex', 'Urdnot Wrex', 'dialogue', -3.7, -14.5, { conversationId: 'wrex', characterId: 'wrex', actorPosition: { x: -5.3, z: -15.2 } }),
+      poi('normandy', 'talk-liara', 'Liara T’Soni', 'dialogue', 3.7, -2, { conversationId: 'liara', characterId: 'liara', actorPosition: { x: 5.1, z: -2.4 } }),
     ],
   },
   'eden-prime': expedition('eden-prime', 'Eden Prime', 'UTOPIA · FRONTIÈRE DE L’ALLIANCE', 'eden', [
