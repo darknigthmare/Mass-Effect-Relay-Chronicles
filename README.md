@@ -2,7 +2,7 @@
 
 Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de trois et commandes ATB**, dans une mise en scène inspirée des JRPG sur PlayStation.
 
-**Version 0.2.0 : campagne ME1 condensée, 14 assignations, équipement et Shepard femme animée.** Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
+**Version 0.2.0 enrichie : campagne ME1 condensée, 14 assignations, équipement, Shepard femme animée et Chroniques indépendantes.** Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
 ![Capture réelle du prototype : exploration de la Citadelle](docs/screenshots/citadel.png)
 
@@ -80,7 +80,15 @@ Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la p
 
 À la Citadelle, Garrus et Wrex peuvent être recrutés immédiatement ou lors d’un retour après le Conseil. Les preuves de Tali suffisent à obtenir l’audience. Le recrutement ne remplace pas automatiquement le commando sélectionné. Au Normandy, les compagnons disponibles sont stationnés à leur emplacement de conversation ; les mêmes échanges sont accessibles depuis le menu Commando.
 
-Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des opérations et des équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille cette livraison ; le [complément équipement](docs/research/loadout-extension-sources.md) conserve ses 48 objets et ajoute quatre outils, les seconds ports de mods et la migration des anciennes parties. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
+Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des opérations et des équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille cette livraison ; le [complément équipement](docs/research/loadout-extension-sources.md) conserve ses 48 objets et ajoute quatre outils, les seconds ports de mods et la migration des anciennes parties. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes intégrales ME2/ME3/Andromeda restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
+
+## Chroniques indépendantes
+
+Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Dix essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost : quatre oppositions à types d’adversaires référencés, trois bancs à mannequins originaux et trois ateliers d’équipement. Ces essais proposent 34 profils de personnages sélectionnables parmi 42 profils partiels, et 68 équipements dans les ateliers.
+
+L’œuvre, le segment, le porteur et les règles de l’essai limitent chaque sélection. Les ateliers utilisent une préparation libre et des valeurs ATB adaptées ; l’acquisition et les conditions de déblocage d’origine restent à reproduire. Les alternatives Samara/Morinth et Ashley/Kaidan sont exclusives. Les dossiers ME4, Library Edition, Blasto et contenus coupés restent documentaires, sans période historique jouable.
+
+Les Chroniques possèdent leurs propres sauvegardes et exports, sans transfert vers la campagne ME1. Elles utilisent des symboles de prototype, sans nouveau portrait ni sprite. Voir [le périmètre, les essais et les limites](docs/CHRONICLES.md).
 
 ## Excel et documentation
 
@@ -89,6 +97,7 @@ Les assignations utilisent des dialogues concis et des cartes condensées ; les 
 - **[Classeur de production — 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA.
 - [Guide et décompte du catalogue](docs/CATALOGUE.md).
 - [Catalogue JSON](docs/content-catalog.json), utilisé pour générer le classeur.
+- [Chroniques : périodes, personnages, équipement et sauvegardes séparées](docs/CHRONICLES.md).
 - [Conception du jeu et architecture](docs/DESIGN.md).
 - [Registre des assets et limites artistiques](docs/ASSETS.md).
 - [État de livraison et vérifications](docs/IMPLEMENTATION_STATUS.md).
@@ -120,6 +129,7 @@ npm run test:assignments
 npm run test:operations
 npm run test:loadout
 npm run test:loadout:extensions
+npm run test:universe
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
@@ -129,6 +139,8 @@ Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les r
 `npm run test:assignments -- --late-conrad` vérifie le premier contact avec Conrad après deux missions et l’attente d’une nouvelle mission, y compris après rechargement.
 
 `npm run audit:fidelity` produit dans `test-results/fidelity-report.json` la liste des fiches restantes du classeur principal, leurs critères et leurs preuves locales. Ajouter `-- --include-universe` pour inclure les 27 catalogues supplémentaires. Cet audit ne modifie aucun statut et ne certifie pas la fidélité canonique.
+
+`npm run build:universe` régénère le registre documentaire du jeu depuis les 28 catalogues. `npm run build:universe -- --check` vérifie sa correspondance sans écrire. Cette commande ne modifie ni les sources JSON ni les classeurs.
 
 Le classeur livré est directement ouvrable dans un tableur. Sa régénération avec `npm run workbook` requiert le runtime `@oai/artifact-tool` et sa variable `CODEX_PRIMARY_RUNTIME_NODE_MODULES` ; cette dépendance d’édition n’est pas nécessaire pour jouer ou compiler le jeu.
 
@@ -147,6 +159,10 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/assignment-data.js` | Contacts et dialogues condensés des trois assignations de la Citadelle |
 | `src/operations.js` / `src/operation-data.js` | Onze opérations supplémentaires, 43 étapes, quatre combats et validation persistante |
 | `src/loadout.js` / `src/loadout-ui.js` | Inventaire, boutiques, compatibilité, effets de matériel et comparaisons |
+| `src/continuity-data.js` / `src/continuity.js` | Œuvres, segments, provenance et validation des contextes |
+| `src/universe-data.js` | Registre documentaire généré depuis les 28 catalogues |
+| `src/universe-actors.js` / `src/universe-equipment.js` | Profils partiels et sélections autorisées dans les essais |
+| `src/chronicles.js` / `src/universe-ui.js` | Chroniques indépendantes, préparation, combat et sauvegardes séparées |
 | `src/local-map.js` | Carte numérotée avec filtres et suivi |
 | `src/game-data.js` | Classes, personnages, rencontres, calibrations et codex |
 | `src/audio.js` | Audio procédural local |

@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-23T22:08:37.759Z",
+  "baseCommit": "f6b23904247ff137b37139bb2a512b04f75c745e",
+  "scope": "Chroniques indépendantes des œuvres ; prototypes ATB et registre documentaire. Aucune campagne intégrale ou fidélité globale 1:1 certifiée.",
+  "coverage": {
+    "works": 28,
+    "segments": 48,
+    "documentaryRecords": 6653,
+    "sourceReferences": 448,
+    "factualRecords": 1706,
+    "contextualRecords": 1620,
+    "prototypeWorks": [
+      "ME2",
+      "ME3",
+      "MEA",
+      "INF",
+      "GAL",
+      "RED",
+      "PL"
+    ],
+    "tacticalScenarios": 10,
+    "referencedOpposition": 4,
+    "abstractSimulations": 3,
+    "equipmentWorkshops": 3,
+    "selectableProfilesByWork": 34,
+    "partialActorProfiles": 42,
+    "playableEquipment": 68,
+    "weapons": 58,
+    "armors": 10,
+    "compatibleSceneActorEquipmentCombinations": 227
+  },
+  "unit": {
+    "command": "npm test",
+    "tests": 298,
+    "passed": 298,
+    "failed": 0,
+    "durationMs": 3483.627866
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "modules": 40,
+    "node": "v24.19.0",
+    "platform": "linux",
+    "bundles": [
+      {
+        "path": "dist/assets/chronicles-CVoayVQa.js",
+        "bytes": 32667,
+        "sha256": "03af173bae3198400180db03183b77eafb287a08b6c4d08f426b58848364f783"
+      },
+      {
+        "path": "dist/assets/continuity-Cxr7lIy4.js",
+        "bytes": 4858,
+        "sha256": "d1c5e4428295a9a1120e9e8a29f9e8f7499e3d43fd3c4a6f44684ed1aa9c814a"
+      },
+      {
+        "path": "dist/assets/index-BjFlrg23.js",
+        "bytes": 299194,
+        "sha256": "1ad13a2e09f4e31ef22067ad04a7bfd08ed76b517b797d9b3cb972c9877741ae"
+      },
+      {
+        "path": "dist/assets/three-alchEwbN.js",
+        "bytes": 525536,
+        "sha256": "ff427562c0db12235231797eab46f803fcdd11375f3d298c38a192f9aaa27836"
+      },
+      {
+        "path": "dist/assets/universe-data-BKFIDL0s.js",
+        "bytes": 3210268,
+        "sha256": "1f09369e516abecc96ecb37aae5e2ff7899cc59631ddf5bea9de73bdb7ef81f7"
+      },
+      {
+        "path": "dist/assets/universe-ui-BKQdtMMt.js",
+        "bytes": 13166,
+        "sha256": "d0bb5cd5450012bafac6e1518ea95e5548248ffc904048c49642c625b1c19c70"
+      }
+    ],
+    "warning": "Three.js et le registre documentaire dépassent 500 kB ; le registre est chargé à la première entrée dans Chroniques, sans requête initiale ni pendant le parcours ME1."
+  },
+  "browser": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium npm run test:universe",
+    "proof": "docs/qa/chronicles-browser-report.json",
+    "passed": true,
+    "checks": 6,
+    "legitimateVictories": 10,
+    "entryCheckpoint": {
+      "previouslySavedPlayedSeconds": 0.1,
+      "livePlayedSeconds": 0.6,
+      "checkpointPlayedSeconds": 0.6
+    },
+    "errors": [],
+    "failedRequests": []
+  },
+  "production": {
+    "command": "PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium GAME_URL=<production-preview> node scripts/production-http-browser.mjs",
+    "proof": "docs/qa/chronicles-production-report.json",
+    "passed": true,
+    "checks": 6,
+    "developmentHarnessAbsent": true,
+    "exactBundleHashes": true,
+    "registryDeferredUntilEntry": true,
+    "errors": [],
+    "failedRequests": []
+  },
+  "campaignRegression": {
+    "proof": "docs/qa/chronicles-me1-campaign-report.json",
+    "passed": true,
+    "encounters": 21,
+    "stages": 8,
+    "ending": true,
+    "saveReload": true
+  },
+  "balanceRegression": {
+    "proof": "docs/qa/chronicles-me1-balance-report.json",
+    "summary": {
+      "campaigns": 18,
+      "completedCampaigns": 18,
+      "encounters": 378,
+      "victories": 378,
+      "defeatsOrTimeouts": 0,
+      "partyKO": 0,
+      "encountersWithHealthDamage": 97,
+      "medigelUsed": 21,
+      "coverUsed": 44,
+      "healthRestored": 2071.032257,
+      "minHealthPercent": 46.592587,
+      "totalSeconds": 10757.85,
+      "validatedSaves": 522
+    }
+  },
+  "workbooks": {
+    "main": "docs/Mass_Effect_Relay_Chronicles_Production.xlsx",
+    "mainSha256": "c3a2a6ad7d269873279bbde54ceeaa1bd4d43127ee843cb3834d85ca68450fa2",
+    "mainRows": 1327,
+    "mainCellsCompared": 22559,
+    "mainProof": "docs/workbook-previews/native-export-check.json",
+    "universeRows": 5326,
+    "universePrototypeRows": 102,
+    "universeProof": "docs/universe/qa/verification.json",
+    "manifest": "docs/universe/manifest.json",
+    "archive": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip",
+    "archiveSha256": "1358758e0c985faff8cdbc4f03dc0f97306f799b9348dddc0d0284576fb99dbc",
+    "currentUniverseExportsVisuallyReviewed": 0,
+    "note": "Les XLSX courants ont été vérifiés comme structures et textes ; les anciens rendus des 27 classeurs restent historiques. Les nouveaux systèmes du principal ont un aperçu ciblé."
+  },
+  "preservationProof": "docs/qa/chronicles-preservation-report.json",
+  "primaryReferenceProof": "docs/qa/chronicles-primary-reference-report.json",
+  "catalogAudit": {
+    "catalogs": 28,
+    "entries": 6653,
+    "statuses": {
+      "Défini": 6259,
+      "Prototype": 388,
+      "Intégré": 3,
+      "Validé": 3
+    },
+    "backlog": 6650,
+    "missingDependencies": 0,
+    "crossCatalogDuplicateIds": []
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/chronicles-documentary-lock.png",
+      "sha256": "a55a76479bc1be4df56d9e4275a241271038783b6bab98c5e1b900f8fa7f8752"
+    },
+    {
+      "path": "docs/screenshots/chronicles-me2-preparation.png",
+      "sha256": "345f451c3c30f9f3eacaa8df9b1c313924ac07ce5f85362ff900c24078e8e2ad"
+    },
+    {
+      "path": "docs/screenshots/chronicles-production-restored.png",
+      "sha256": "a52ce9dd5e3a516b5641e596b35faf99fc54d31cfddbfb43cf388bc54330cb16"
+    },
+    {
+      "path": "docs/screenshots/chronicles-thermal-clips.png",
+      "sha256": "b71edf3a95904427e2abcbc4e22de32e6ddf353e4affe35aec1966df7090721e"
+    }
+  ],
+  "vercel": {
+    "authenticationAvailable": false,
+    "localProjectLinked": false,
+    "remoteProjectCreated": false,
+    "deploymentCreated": false,
+    "scope": "Aucun jeton Vercel disponible dans cette session ; liaison distante non effectuée."
+  },
+  "limits": [
+    "34 profils sont comptés par œuvre ; un même personnage peut avoir plusieurs profils.",
+    "Les fiches documentaires, critères complets et prototypes partiels sont distincts ;102 fiches seulement passent à Prototype dans les catalogues supplémentaires.",
+    "Les ateliers supposent un état de test avec compagnons présents ; acquisition, recrutement et progression canoniques ne sont pas reproduits.",
+    "Valeurs ATB, chargeurs, réserves, dégâts et bonus adaptés ; mécaniques spéciales ou édition non configurée refusées.",
+    "Aucun nouveau portrait, sprite, costume, décor ou dialogue complet propre aux autres œuvres.",
+    "Les ennemis sans ancrage de scène suffisant utilisent des cibles abstraites explicitement signalées.",
+    "Tests Linux / Chromium et simulations déterministes ; aucun lancement Electron/Windows ni test humain complet."
+  ],
+  "sourceSha256": {
+    "src/chronicles.js": "808fbc4aea428315ce0e4319f489b320ffbd88ccf721c1f4e67439017efc4c04",
+    "src/continuity-data.js": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03",
+    "src/continuity.js": "5aa0e4702ef5c8fab03f3bc601b4cb2ed31aa93dd1f428693d4706217602a107",
+    "src/universe-actors.js": "39a9c632044e7d4a981e69c0d6374baefd935f7b0c7ca48c221177f18ba905d6",
+    "src/universe-data.js": "532b0099e14ed7b742ae820f50da64f413dd87a5b451312ea21bc4a73dbde2b9",
+    "src/universe-equipment.js": "35469d6b72caf95184f46ac97e983f439727058b89e0efbe5ac604e02ecebc1b",
+    "src/universe-ui.js": "4a9ad1df2da220b98cd6006bff54b92847c9e2026a04c2fb7ecb97bf7f1c8bcd",
+    "src/universe-ui.css": "7e3d54b97b15d25ce1c81debb909728f3c93cd9fd2d73b73a913482cfc0721d2",
+    "src/main.js": "152cacdf6d265e36a2ff149b43bbaba43c78747b3502f87392b3be884513ed9e",
+    "src/state.js": "9746bc6a34ef31d39e77320a4acf4a050142619db545be513a5d57943d699ac8",
+    "src/combat.js": "f02747b08b11fd177bed1b9d4efb1175fde6cc25960b2e220e2978c118e8b691",
+    "scripts/build-universe-runtime.mjs": "1382030268cdf179be51a4174d3ba2d9da3869ee7abd2bcd228ed9518502207f",
+    "scripts/universe-browser.mjs": "a479965c8be955a0f184b6283926e92d0fa8b0431da2af22d955048f980ec179",
+    "scripts/production-http-browser.mjs": "fadccab8aeff83893056e9be8067e04a9c6f06608c439d14fbcf8c0478cc8380",
+    "scripts/build-workbook.mjs": "5a506b6d89704c514f4c8c97df485a6aa95f24c6bec89199d1b4e5df49829162",
+    "scripts/verify-workbook.py": "e530ae665fe2347d632cf06ad622aef47e7bac5466502ea5e7ca08f826791e1f",
+    "scripts/verify-universe-workbooks.py": "d5684cecd6b836901047cf1581e9f3052be4b260796ac219436a5c0c9248b142",
+    "scripts/package-universe-workbooks.py": "0e2562cc3787f50cf407f499cc65d7e1431ddf27483d303a4c74f5ff31a00206",
+    "docs/content-catalog.json": "36492ffefc8bf7d11949d4fd273305c50f778dfbc0beeed626174096a4bc49d8",
+    "docs/universe/manifest.json": "25e2a9c6c11579f6d8e599d92928d698f162e497e66fa7f84a2de51e76fb7fc0",
+    "tests/chronicles.test.js": "3a460b7ab25e644c6333b5c2c1f02fe86cb04e501161cbcca03d7e0df85069d8",
+    "tests/continuity-data.test.js": "7dfede73ccf5e2c21de7d455f9e1c1f7675a116731c64c011896de1c6d6059c5",
+    "tests/continuity.test.js": "c0b9d3c9f973705da4ce9f972c9c3672510dc9df9eb4a180b6eae52bac2b4b32",
+    "tests/save-continuity.test.js": "2ccc74c6bffd4ce9cf95ed15755d5618aacfe12b825280d5d1d1dcb86d15448b",
+    "tests/universe-actors.test.js": "59ae6d95db9dfc0889b96c1247be49055c83f196de8a038ccb28e05b1d4b5631",
+    "tests/universe-combat.test.js": "47c3647e9e8d12852057904c57948275dba80afd6fa4219af7c5798a3f712000",
+    "tests/universe-equipment.test.js": "6e0ca9bd0e53cf0232b0c77b10f57cbc2f90935f9a65a476a82ae0b6bd73c285",
+    "tests/universe-ui.test.js": "3d7370d383db1ad93e61d2f00064a5ac6cce79ff9992b26d841fc9366e0f2156"
+  }
+}

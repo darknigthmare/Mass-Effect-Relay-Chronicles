@@ -269,6 +269,16 @@ export function decodeSave(raw) {
     const data = typeof raw === 'string' ? JSON.parse(raw) : raw;
     if (!safeTree(data) || !plain(data) || data.format !== 'relay-chronicles' || data.version !== SAVE_VERSION || !plain(data.state)) return null;
     const input = data.state;
+    // Older campaign saves have no context field. An explicit foreign or
+    // malformed context must never be silently converted into the ME1 campaign.
+    if (OWN(input, 'context')) {
+      const context = input.context;
+      if (!plain(context) || !OWN(context, 'mediaId') || !OWN(context, 'periodId')
+        || Reflect.ownKeys(context).some(key => typeof key !== 'string' || !['mediaId', 'periodId', 'galaxy'].includes(key)
+          || !Object.getOwnPropertyDescriptor(context, key).enumerable)
+        || context.mediaId !== 'ME1' || context.periodId !== 'me1'
+        || OWN(context, 'galaxy') && context.galaxy !== 'milky-way') return null;
+    }
     if (input.version !== SAVE_VERSION || typeof input.name !== 'string' || !input.name.trim() || input.name.length > 24) return null;
     // Version 1 saves created before the dossier was selectable have no such
     // fields. Only absent fields receive defaults; explicit invalid data fails.

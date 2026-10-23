@@ -13,7 +13,7 @@ await mkdir(out, { recursive: true });
 const report = {
   version: '0.2.0', at: new Date().toISOString(), passed: false,
   mode: 'Production HTTP fallback after file:// was blocked by the managed browser',
-  scope: 'The real dist Vite bundles served over HTTP in Linux Chromium: native WebGL drawing, bundled resources, dossier, equipment and actual save/export/import/resume UI. No Electron executable or Windows launch is tested.',
+  scope: 'The real dist Vite bundles served over HTTP in Linux Chromium: native WebGL drawing, bundled resources, dossier, equipment, actual save/export/import/resume UI and a separately saved ME2 Chronicle workshop loaded through its production UI. No Electron executable or Windows launch is tested.',
   fileURLValidation: { status: 'blocked-by-managed-browser-policy', error: 'ERR_BLOCKED_BY_ADMINISTRATOR', evidence: 'test-results/production-v02-report.json', policyBypassAttempted: false },
   entry: entry.href, buildEntry: 'dist/index.html', browser: null, checks: [], bundles: [], servedBundles: [], errors: [], failedRequests: [], assetRequests: [],
 };
@@ -23,6 +23,12 @@ for (const filename of (await readdir(new URL('../dist/assets/', import.meta.url
   report.bundles.push({ path: `dist/assets/${filename}`, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') });
 }
 assert.ok(report.bundles.length > 0, 'Production JavaScript bundles exist');
+const registryBundles = report.bundles.filter(bundle => /\/universe-data-[^/]+\.js$/.test(bundle.path));
+assert.ok(registryBundles.length > 0, 'The documentary registry has a separate production bundle');
+const requestedBundles = () => [...requests].map(address => {
+  const parsed = new URL(address);
+  return parsed.origin === entry.origin ? `dist${parsed.pathname}` : null;
+}).filter(path => report.bundles.some(bundle => bundle.path === path)).sort();
 const browser = await chromium.launch({
   headless: true,
   ...(process.env.PLAYWRIGHT_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH } : {}),
@@ -70,6 +76,9 @@ try {
   console.log(JSON.stringify({ stage: 'Loading real production bundles over HTTP' }));
   await page.goto(url.href, { waitUntil: 'networkidle' });
   assert.equal(await page.evaluate(() => typeof window.__RELAY_TEST__), 'undefined');
+  const initialBundles = requestedBundles();
+  assert.ok(registryBundles.every(bundle => !initialBundles.includes(bundle.path)), 'The registry is absent from initial production requests');
+  report.chronicleLoading = { initialBundles, registryBundles: registryBundles.map(bundle => bundle.path), initialRegistryRequested: false };
   await page.getByRole('button', { name: /Nouvelle campagne/ }).click();
   await page.locator('#commander-name').fill('Jane Production');
   await page.locator('#new-appearance').selectOption('female');
@@ -139,6 +148,59 @@ try {
   assert.equal(after.appearance, 'female'); assert.equal(after.origin, 'colonist'); assert.equal(after.psychologicalProfile, 'war-hero');
   assert.deepEqual(after.inventory, before.inventory); assert.equal(after.credits, before.credits);
   record({ name: 'HTTP-origin autosave, unchanged JSON export/import and actual title-screen resume', appearance: after.appearance, origin: after.origin, psychologicalProfile: after.psychologicalProfile, credits: after.credits, exactInventoryPreserved: true, removedThenImportedModuleRestored: true });
+
+  assert.ok(registryBundles.every(bundle => !requestedBundles().includes(bundle.path)), 'The complete ME1 path does not request the documentary registry');
+  const campaignPreviouslySaved = await savedState();
+  await action('close').click(); await page.waitForTimeout(300); await page.keyboard.press('Escape');
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  // Entering Chronicles checkpoints recent ME1 play before its simulation pauses.
+  // The immutable baseline starts after that legitimate campaign save.
+  const campaignBeforeChronicle = await savedState();
+  const campaignBytesBeforeChronicle = await page.evaluate(() => localStorage.getItem('relay-chronicles.save.v1'));
+  assert.ok(campaignBeforeChronicle.playedSeconds > campaignPreviouslySaved.playedSeconds, 'The entry checkpoint retains recent time played since the previous save');
+  assert.deepEqual(campaignBeforeChronicle.position, campaignPreviouslySaved.position, 'The paused stationary commander keeps the same world position');
+  assert.deepEqual({ ...campaignBeforeChronicle, playedSeconds: campaignPreviouslySaved.playedSeconds }, campaignPreviouslySaved, 'The entry checkpoint preserves all other ME1 gameplay fields');
+  assert.equal(await page.evaluate(() => typeof window.__RELAY_TEST__), 'undefined');
+  assert.equal(await page.locator('#chronicle-media option').evaluateAll(options => options.filter(option => option.value !== '').length), 28);
+  await page.locator('#chronicle-media').selectOption('ME2');
+  await page.locator('#chronicle-period').selectOption('me2');
+  await action('universe-tab', 'session').click();
+  await page.locator('#chronicle-scenario').selectOption('me2-equipment-workshop');
+  await action('chronicle-start').click();
+  const weapon = page.locator('[data-chronicle-gear][data-actor-id="ME2-CHR-SHEPARD"][data-slot="weapon"]');
+  await weapon.selectOption('ME2-WPN-CARNIFEX');
+  await action('chronicle-save').click();
+  assert.equal(await weapon.inputValue(), 'ME2-WPN-CARNIFEX');
+  const chronicleKey = 'relay-chronicles.chronicle.ME2.me2.v1';
+  const workshop = await page.evaluate(key => JSON.parse(localStorage.getItem(key) || 'null')?.session, chronicleKey);
+  assert.deepEqual(workshop.context, { mediaId: 'ME2', periodId: 'me2', galaxy: 'milky-way' });
+  assert.equal(workshop.scenarioId, 'me2-equipment-workshop');
+  assert.equal(workshop.loadouts['ME2-CHR-SHEPARD'].weapon, 'ME2-WPN-CARNIFEX');
+  assert.ok(registryBundles.every(bundle => requestedBundles().includes(bundle.path)), 'Entering Chronicles requests its documentary registry');
+  assert.equal(await page.evaluate(() => localStorage.getItem('relay-chronicles.save.v1')), campaignBytesBeforeChronicle, 'Chronicle preparation does not write the ME1 autosave');
+  report.chronicleLoading.enteredBundles = requestedBundles();
+  await capture('chronicle-workshop');
+  await action('chronicle-back').click();
+  await page.getByRole('dialog', { name: 'Mission en pause', exact: true }).waitFor();
+  assert.equal(await page.evaluate(() => localStorage.getItem('relay-chronicles.save.v1')), campaignBytesBeforeChronicle, 'Returning to the paused campaign preserves its exact save bytes');
+  record({ name: 'Deferred production Chronicles load 28 works and save a scoped ME2 workshop independently', initialRegistryRequested: false, registryRequestedOnEntry: true, worksListed: 28, context: workshop.context, scenarioId: workshop.scenarioId, equippedWeapon: workshop.loadouts['ME2-CHR-SHEPARD'].weapon, entryCheckpointRetainsRecentPlaytime: true, checkpointPlayedSeconds: campaignBeforeChronicle.playedSeconds, exactCampaignSavePreserved: true, runtimeDevelopmentHarness: 'absent' });
+
+  await page.reload({ waitUntil: 'networkidle' });
+  assert.equal(await page.evaluate(() => typeof window.__RELAY_TEST__), 'undefined');
+  assert.deepEqual(await savedState(), campaignBeforeChronicle, 'The production reload preserves the complete ME1 campaign state');
+  const campaignBytesAfterReload = await page.evaluate(() => localStorage.getItem('relay-chronicles.save.v1'));
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  await page.locator('#chronicle-media').selectOption('ME2');
+  await page.locator('#chronicle-period').selectOption('me2');
+  await action('universe-tab', 'session').click(); await action('chronicle-load').click();
+  assert.equal(await page.locator('#chronicle-scenario').inputValue(), 'me2-equipment-workshop');
+  assert.equal(await weapon.inputValue(), 'ME2-WPN-CARNIFEX');
+  assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key) || 'null')?.session, chronicleKey), workshop);
+  assert.equal(await page.evaluate(() => localStorage.getItem('relay-chronicles.save.v1')), campaignBytesAfterReload);
+  await capture('chronicle-restored'); await action('chronicle-back').click();
+  await page.getByRole('button', { name: /Nouvelle campagne/ }).waitFor();
+  assert.deepEqual(await savedState(), campaignBeforeChronicle);
+  record({ name: 'Production reload and title navigation restore the Chronicle without changing ME1', context: workshop.context, workshopRestored: true, exactCampaignStatePreserved: true, runtimeDevelopmentHarness: 'absent' });
 
   const femaleRequests = [...completed].filter(address => /shepard-female-(?:walk|combat)-atlas\.png$/.test(address));
   assert.equal(femaleRequests.length, 2, 'Both female PNG atlases completed HTTP loading');

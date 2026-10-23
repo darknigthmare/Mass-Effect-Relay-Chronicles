@@ -10,6 +10,7 @@
 export const ACTIONS = Object.freeze({
   shoot: { label: 'Tir contrôlé', description: 'Un tir précis. Génère 24 points de chaleur.', target: 'enemy', heatCost: 24 },
   burst: { label: 'Rafale', description: 'Plus de dégâts, mais 48 points de chaleur.', target: 'enemy', heatCost: 48 },
+  reload: { label: 'Recharger', description: 'Remplit le chargeur depuis la réserve. Consomme une action ATB.', target: 'self' },
   strike: { label: 'Assaut organique', description: 'Une attaque rapprochée qui contourne la couverture. Ne génère aucune chaleur d’arme.', target: 'enemy' },
   acid: { label: 'Projection acide', description: 'Une attaque organique suivie de corrosion. Ne mobilise aucun pouvoir biotique.', target: 'enemy' },
   cover: { label: 'Couverture', description: 'Réduit les tirs jusqu’à la prochaine action, accélère la recharge des boucliers et laisse refroidir l’arme.', target: 'self' },
@@ -29,7 +30,7 @@ export const ACTIONS = Object.freeze({
 });
 
 const BASE_ACTIONS = ['shoot', 'burst', 'cover', 'reposition'];
-const PRIMARY_ACTIONS = new Set(['shoot', 'burst', 'strike', 'acid', 'cover', 'reposition']);
+const PRIMARY_ACTIONS = new Set(['shoot', 'burst', 'reload', 'strike', 'acid', 'cover', 'reposition']);
 const WEAPON_ACTIONS = new Set(['shoot', 'burst', 'signature']);
 const BIOTIC_ACTIONS = new Set(['throw', 'lift', 'warp', 'singularity', 'barrier', 'stasis']);
 const TECH_ACTIONS = new Set(['overload', 'sabotage', 'hack']);
@@ -52,6 +53,10 @@ const synthetic = actor => actor.synthetic === true || actor.type === 'synthetic
 const armed = actor => !['strike', 'acid'].includes(actor.primaryAction);
 const disabled = actor => DISABLING_STATUSES.some(key => actor.statuses[key] > EPSILON);
 const ready = actor => living(actor) && !disabled(actor) && actor.atb >= 100 - EPSILON;
+const usesClips = actor => actor.weaponSystem === 'thermal-clip';
+// Magazine sizes and shots spent per ATB order are adaptation values. ME1 heat
+// actors never enter this branch and retain their original unlimited ammunition.
+const ammoCost = actionId => actionId === 'burst' ? 3 : actionId === 'signature' ? 2 : 1;
 
 // Tools strengthen trained abilities. They do not change weapon damage or grant
 // a power, and an amplifier never strengthens technology (or the reverse).
@@ -102,6 +107,8 @@ function emit(battle, event) {
 function normalizeActor(input, team, index) {
   const maxHp = Math.max(1, finite(input.maxHp, finite(input.hp, 100)));
   const maxShield = Math.max(0, finite(input.maxShield, finite(input.shield, 40)));
+  const clipWeapon = input.weaponSystem === 'thermal-clip';
+  const magazineCapacity = Math.floor(clamp(finite(input.magazineCapacity, 8), 1, 200));
   return {
     ...input,
     id: String(input.id ?? `${team}-${index}`),
@@ -116,9 +123,12 @@ function normalizeActor(input, team, index) {
     speed: clamp(finite(input.speed, 1), 0.1, 5),
     powers: [...new Set(Array.isArray(input.powers) ? input.powers : [])].filter(id => ACTIONS[id]),
     atb: clamp(finite(input.atb, 0), 0, 100),
-    heat: clamp(finite(input.heat, 0), 0, 100),
+    heat: clipWeapon ? 0 : clamp(finite(input.heat, 0), 0, 100),
     focus: clamp(finite(input.focus, 0), 0, 100),
-    overheated: Boolean(input.overheated) || input.heat >= 100,
+    overheated: !clipWeapon && (Boolean(input.overheated) || input.heat >= 100),
+    ...(clipWeapon ? { weaponSystem: 'thermal-clip', magazineCapacity,
+      ammo: Math.floor(clamp(finite(input.ammo, magazineCapacity), 0, magazineCapacity)),
+      reserveAmmo: Math.floor(clamp(finite(input.reserveAmmo, 0), 0, 10000)) } : {}),
     cover: Boolean(input.cover),
     cooldowns: { ...input.cooldowns },
     statuses: { ...input.statuses },
@@ -197,8 +207,9 @@ function friends(battle, actor) {
 function actionIds(actor) {
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
+  if (!organic && usesClips(actor)) ids.push('reload');
   if (actor.team === 'party') ids.push('medigel');
-  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && id !== 'medigel' && id !== 'signature'));
+  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload'].includes(id)));
   if (actor.team === 'party' && !organic) ids.push('signature');
   return [...new Set(ids)];
 }
@@ -212,8 +223,11 @@ function unavailableReason(battle, actor, actionId) {
   if (actor.cooldowns[actionId] > EPSILON) return `Recharge : ${Math.ceil(actor.cooldowns[actionId])} s.`;
   if (WEAPON_ACTIONS.has(actionId)) {
     if (actor.statuses.sabotage > EPSILON) return 'L’arme est neutralisée par Sabotage.';
-    if (actor.overheated) return 'Arme en surchauffe : attendre le refroidissement.';
+    if (usesClips(actor) && actor.ammo < ammoCost(actionId)) return 'Chargeur insuffisant : recharger ou utiliser un pouvoir.';
+    if (!usesClips(actor) && actor.overheated) return 'Arme en surchauffe : attendre le refroidissement.';
   }
+  if (actionId === 'reload' && (!usesClips(actor) || actor.ammo >= actor.magazineCapacity)) return 'Le chargeur est déjà plein.';
+  if (actionId === 'reload' && actor.reserveAmmo < 1) return 'Aucune munition en réserve.';
   if (actionId === 'signature' && actor.focus < 100 - EPSILON) return 'Concentration insuffisante (100 requis).';
   if (actionId === 'medigel') {
     if (battle.medigel < 1) return 'Plus de médi-gel.';
@@ -232,10 +246,11 @@ export function getActions(battle, actorId) {
   if (!actor) return [];
   return actionIds(actor).map(id => {
     const reason = unavailableReason(battle, actor, id);
-    const heatCost = WEAPON_ACTIONS.has(id) ? ACTIONS[id].heatCost * actor.weaponHeatMultiplier : undefined;
-    const description = heatCost === undefined ? powerDescription(actor, id)
+    const clipShot = WEAPON_ACTIONS.has(id) && usesClips(actor);
+    const heatCost = WEAPON_ACTIONS.has(id) && !clipShot ? ACTIONS[id].heatCost * actor.weaponHeatMultiplier : undefined;
+    const description = clipShot ? `${ACTIONS[id].label} : consomme ${ammoCost(id)} munition(s) du chargeur. Rechargement par remplacement du clip thermique.` : heatCost === undefined ? powerDescription(actor, id)
       : ACTIONS[id].description.replace(/(?:24|48|42) points de chaleur/, `${Math.round(heatCost * 10) / 10} points de chaleur`);
-    return { id, ...ACTIONS[id], ...(heatCost === undefined ? {} : { heatCost }), description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
+    return { id, ...ACTIONS[id], ...(clipShot ? { heatCost: 0, ammoCost: ammoCost(id) } : heatCost === undefined ? {} : { heatCost }), description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
 }
 
@@ -351,8 +366,16 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     const damage = actor.attack * multiplier * (1 + speciesBonus) * (0.94 + random(battle) * 0.12);
     applyDamage(battle, actor, target, damage, { actionId, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' });
     delete actor.statuses.flanking;
-    addHeat(battle, actor, definition.heatCost * actor.weaponHeatMultiplier);
+    if (usesClips(actor)) {
+      actor.ammo -= ammoCost(actionId);
+      emit(battle, { type: 'ammo', actorId, ammo: actor.ammo, reserveAmmo: actor.reserveAmmo });
+    } else addHeat(battle, actor, definition.heatCost * actor.weaponHeatMultiplier);
     if (actionId === 'signature') actor.focus = 0;
+  } else if (actionId === 'reload') {
+    const amount = Math.min(actor.magazineCapacity - actor.ammo, actor.reserveAmmo);
+    actor.ammo += amount;
+    actor.reserveAmmo -= amount;
+    emit(battle, { type: 'reload', actorId, amount, ammo: actor.ammo, reserveAmmo: actor.reserveAmmo, message: `${actor.name} recharge son arme.` });
   } else if (actionId === 'strike') {
     applyDamage(battle, actor, target, actor.attack * (0.94 + random(battle) * 0.12), { actionId, ignoreCover: true });
   } else if (actionId === 'acid') {
@@ -386,7 +409,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
   } else if (actionId === 'overload') {
     applyDamage(battle, actor, target, (34 + actor.attack * 0.8) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true, ignoreArmor: true, shieldOnly: !synthetic(target) });
   } else if (actionId === 'sabotage') {
-    if (applyControl(battle, actor, target, 'sabotage', 6 * powerMultiplier(actor, actionId))) addHeat(battle, target, 35 * powerMultiplier(actor, actionId));
+    if (applyControl(battle, actor, target, 'sabotage', 6 * powerMultiplier(actor, actionId)) && !usesClips(target)) addHeat(battle, target, 35 * powerMultiplier(actor, actionId));
   } else if (actionId === 'lift') {
     applyControl(battle, actor, target, 'lift', 4 * powerMultiplier(actor, actionId));
   } else if (actionId === 'throw') {
@@ -484,6 +507,9 @@ export function autoEnemyActions(battle) {
     let targetId = target.id;
     if (can('barrier') && actor.shield < actor.maxShield * 0.4) {
       actionId = 'barrier';
+      targetId = actor.id;
+    } else if (usesClips(actor) && actor.ammo < 1 && can('reload')) {
+      actionId = 'reload';
       targetId = actor.id;
     } else if (random(battle) < 0.6) {
       const powers = actions.filter(action => !PRIMARY_ACTIONS.has(action.id) && !['signature', 'medigel', 'unity', 'barrier'].includes(action.id)

@@ -7,7 +7,7 @@
     "referenceEpisode": "ME1",
     "referenceVisual": "Mass Effect 1 / Legendary Edition, version de chaque référence à vérifier",
     "purpose": "Catalogue de production partagé entre jeu, codex de suivi et classeur Excel.",
-    "scope": "Plan de couverture du premier Mass Effect avec extensions ME2 et ME3 séparées. Le prototype jouable condense les lieux et ne constitue pas une reproduction complète.",
+    "scope": "Plan de couverture du premier Mass Effect avec extensions ME2 et ME3 séparées. Le prototype jouable condense les lieux et ne constitue pas une reproduction complète. Chroniques indépendantes : références des 28 œuvres et prototypes tactiques isolés pour sept œuvres ; aucun transfert dans la campagne ME1.",
     "fidelity": "Aucun asset ni aucune mission n’est déclaré fidèle 1:1 ou terminé sans contrôle explicite.",
     "statusDefinitions": {
       "Défini": "Élément décrit, non vérifié dans le jeu.",
@@ -108,7 +108,27 @@
       "femaleCombatPoseCount": 4,
       "toolItemCount": 4,
       "equipmentSlotCount": 9,
-      "characterEquipmentProfileCount": 8
+      "characterEquipmentProfileCount": 8,
+      "chronicles": {
+        "works": 28,
+        "periodSegments": 48,
+        "scenarios": 10,
+        "selectableCharacters": 34,
+        "partialActorProfiles": 42,
+        "equipmentItems": 68,
+        "weapons": 58,
+        "armors": 10,
+        "prototypeWorks": [
+          "ME2",
+          "ME3",
+          "MEA",
+          "INF",
+          "GAL",
+          "RED",
+          "PL"
+        ],
+        "limit": "Sessions et sauvegardes séparées de ME1 ; 4 oppositions référencées, 3 simulations à cibles abstraites et 3 ateliers. Réglages ATB adaptés, sans nouveaux sprites ni campagne intégrale."
+      }
     },
     "v02Sources": {
       "src/loadout.js": "e32d6966e66d5c50e56f09808dc6d1b33c4bcf787ca5210d12b261571d5c0d43",
@@ -31267,6 +31287,48 @@
         "docs/qa/equipment-extension-report.json"
       ],
       "recordType": "equipment-item"
+    },
+    {
+      "id": "SYS-chroniques-contextuelles",
+      "category": "systems",
+      "name": "Chroniques par œuvre et période",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Décisions du fan game ; contexte propre à chaque œuvre.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Registre documentaire des jeux et médias ; essais tactiques indépendants et sélection strictement conditionnée à une œuvre et un segment.",
+      "acceptance": "Les 28 œuvres et 48 segments sont identifiés ; les essais refusent personnages, objets et sauvegardes étrangers à leur contexte. La campagne ME1 conserve inventaire, décisions et sauvegardes. Les scènes abstraites sont indiquées comme simulations.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/chronicles.js",
+      "assetPath": "src/chronicles.js",
+      "gameKey": "SYS-chroniques-contextuelles",
+      "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1."
+    },
+    {
+      "id": "SYS-clips-thermiques",
+      "category": "systems",
+      "name": "Chargeurs et recharge des Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Principe des cartouches : manuel PC ME2, pages 16–17 ; cadence et capacités ATB adaptées.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Chargeur, réserve et action de recharge pour les profils qui utilisent des cartouches thermiques ; mode chaleur conservé pour ME1.",
+      "acceptance": "Les tirs consomment le chargeur, la recharge utilise une action ATB et la réserve ; tir impossible à vide, pas de munitions négatives. Les capacités et le temps ATB restent adaptés, sans certification numérique 1:1.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/combat.js",
+      "assetPath": "src/combat.js",
+      "gameKey": "SYS-clips-thermiques",
+      "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1."
     }
   ]
 }

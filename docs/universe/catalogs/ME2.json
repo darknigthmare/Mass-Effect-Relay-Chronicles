@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_2_Production.xlsx",
   "scope": "Campagne solo ME2 et Legendary Edition ; recrutements, loyautés, affectations N7 et hubs ; Kasumi, Zaeed, Normandy Crash Site, Firewalker, Overlord, Lair of the Shadow Broker et Arrival. Genesis est identifié comme récapitulatif interactif ; aucun mode multijoueur ME2 ajouté au canon.",
-  "summary": "670 fiches de préparation couvrant les 26 domaines du schéma. Sources consultées au 22 octobre 2026 ; inventaire de production substantiel, sans prétention d’exhaustivité vérifiée.",
+  "summary": "670 fiches de préparation couvrant les 26 domaines du schéma. Sources consultées au 22 octobre 2026 ; inventaire de production substantiel, sans prétention d’exhaustivité vérifiée. Prototype partiel : 12 profils sélectionnables et 11 équipements en Chroniques ; le reste demeure documentaire.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -510,6 +510,14 @@
       "kind": "wiki",
       "scope": "Ensemble personnalisable",
       "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME2-SRC-MANUAL-FR",
+      "title": "Mass Effect 2 — manuel PC français, EA",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
+      "kind": "source officielle",
+      "scope": "Cartouches thermiques : dissipateurs amovibles, éjection/remplacement et compteur de tirs, pages imprimées 16–17.",
+      "note": "PDF réellement téléchargé le 23 octobre 2026, HTTP 200, 18 pages, SHA-256 c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1. Cette source établit le principe ; capacités par famille et recharge en une action ATB sont des adaptations."
     }
   ],
   "entries": [
@@ -517,7 +525,7 @@
       "id": "ME2-CHR-SHEPARD",
       "category": "characters",
       "name": "Commandant Shepard",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Protagoniste personnalisable de ME2.",
@@ -526,7 +534,7 @@
       "visual": "Armure N7 modulable, visage et carrure paramétrables ; cicatrices en calque séparé.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/shepard ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-SHEPARD ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Historique et état importés ; aucune apparence unique imposée.",
       "acceptance": "Le livrable « Commandant Shepard » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -534,13 +542,22 @@
         "ME2-SRC-EA-LE"
       ],
       "reference": "Commandant Shepard",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-MIRANDA",
       "category": "characters",
       "name": "Miranda Lawson",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière de Cerberus.",
@@ -549,7 +566,7 @@
       "visual": "Combinaison claire à panneaux noirs ; silhouette droite et démarche maîtrisée.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/miranda ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-MIRANDA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Miranda Lawson » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -557,13 +574,22 @@
         "ME2-SRC-SQUAD"
       ],
       "reference": "Miranda Lawson",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-JACOB",
       "category": "characters",
       "name": "Jacob Taylor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier de Cerberus.",
@@ -572,7 +598,7 @@
       "visual": "Tenue noire Cerberus, épaules larges et fusil compact.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/jacob ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-JACOB ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Jacob Taylor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -580,13 +606,22 @@
         "ME2-SRC-SQUAD"
       ],
       "reference": "Jacob Taylor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-MORDIN",
       "category": "characters",
       "name": "Mordin Solus",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Scientifique galarien recruté à Omega.",
@@ -595,7 +630,7 @@
       "visual": "Visage anguleux, crête asymétrique, manteau clair ; gestes précis.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/mordin ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-MORDIN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Mordin Solus » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -603,13 +638,22 @@
         "ME2-SRC-PROF"
       ],
       "reference": "Mordin Solus",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-GARRUS",
       "category": "characters",
       "name": "Garrus Vakarian",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Garrus est Archangel.",
@@ -618,7 +662,7 @@
       "visual": "Armure bleue abîmée, viseur, mandibule cicatrisée ; asymétrie conservée.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/garrus ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-GARRUS ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Garrus Vakarian » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -626,13 +670,22 @@
         "ME2-SRC-ARCHANGEL"
       ],
       "reference": "Garrus Vakarian",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-GRUNT",
       "category": "characters",
       "name": "Grunt",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Krogan récupéré dans la cuve d’Okeer.",
@@ -641,7 +694,7 @@
       "visual": "Masse krogan, carapace claire et armure sombre ; centre de gravité bas.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/grunt ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-GRUNT ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Activation de la cuve nécessaire.",
       "acceptance": "Le livrable « Grunt » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -649,13 +702,22 @@
         "ME2-SRC-WARLORD"
       ],
       "reference": "Grunt",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-JACK",
       "category": "characters",
       "name": "Jack",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Biotique libérée de Purgatory.",
@@ -664,7 +726,7 @@
       "visual": "Crâne rasé, tatouages simplifiés lisibles, posture nerveuse.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/jack ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-JACK ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Jack » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -672,13 +734,22 @@
         "ME2-SRC-CONVICT"
       ],
       "reference": "Jack",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-TALI",
       "category": "characters",
       "name": "Tali’Zorah vas Neema / vas Normandy",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Tali rejoint l’équipe après Haestrom.",
@@ -687,7 +758,7 @@
       "visual": "Capuche violette, visière opaque lumineuse, jambes et mains quariens.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/tali ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-TALI ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Nom selon étape du procès ; ne pas l’uniformiser.",
       "acceptance": "Le livrable « Tali’Zorah vas Neema / vas Normandy » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -696,13 +767,22 @@
         "ME2-SRC-TREASON"
       ],
       "reference": "Tali’Zorah vas Neema / vas Normandy",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-THANE",
       "category": "characters",
       "name": "Thane Krios",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Assassin drell recruté sur Illium.",
@@ -711,7 +791,7 @@
       "visual": "Écailles vertes, yeux sombres, manteau noir à ouverture thoracique.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/thane ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-THANE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Thane Krios » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -719,13 +799,22 @@
         "ME2-SRC-ASSASSIN"
       ],
       "reference": "Thane Krios",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-SAMARA",
       "category": "characters",
       "name": "Samara",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Justicari asari recrutée sur Illium.",
@@ -734,7 +823,7 @@
       "visual": "Armure rouge, tête bleue et posture verticale ; mains ouvertes en préparation.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/samara ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-SAMARA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Samara » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -742,13 +831,22 @@
         "ME2-SRC-JUSTICAR"
       ],
       "reference": "Samara",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-MORINTH",
       "category": "characters",
       "name": "Morinth",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Elle peut remplacer Samara.",
@@ -757,7 +855,7 @@
       "visual": "Variante de Samara avec détails faciaux séparés ; portrait de secret facultatif.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/morinth ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-MORINTH ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Exclusivité Samara/Morinth ; embranchement de loyauté.",
       "acceptance": "Le livrable « Morinth » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -765,13 +863,22 @@
         "ME2-SRC-SAMARA"
       ],
       "reference": "Morinth",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-LEGION",
       "category": "characters",
       "name": "Legion",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Unité geth recrutabile après l’IFF.",
@@ -780,7 +887,7 @@
       "visual": "Optique unique, plaques geth, partie d’armure N7 rapportée et trou thoracique.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/legion ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME2-CHR-LEGION ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Décision d’activation ; disponibilité tardive.",
       "acceptance": "Le livrable « Legion » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -790,7 +897,16 @@
         "ME2-SRC-STOP"
       ],
       "reference": "Legion",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-CHR-KASUMI",
@@ -7604,7 +7720,7 @@
       "id": "ME2-WPN-PREDATOR",
       "category": "weapons",
       "name": "M-3 Predator",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet de ME2.",
@@ -7613,7 +7729,7 @@
       "visual": "Pistolet compact noir/gris.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/predator ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-PREDATOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-3 Predator » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7621,13 +7737,23 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-3 Predator",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-CARNIFEX",
       "category": "weapons",
       "name": "M-6 Carnifex",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet obtenu auprès de Mordin.",
@@ -7636,7 +7762,7 @@
       "visual": "Canon massif et poignée courte.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/carnifex ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-CARNIFEX ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-6 Carnifex » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7644,7 +7770,17 @@
         "ME2-SRC-PROF"
       ],
       "reference": "M-6 Carnifex",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-PHALANX",
@@ -7673,7 +7809,7 @@
       "id": "ME2-WPN-SHURIKEN",
       "category": "weapons",
       "name": "M-4 Shuriken",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet mitrailleur de ME2.",
@@ -7682,7 +7818,7 @@
       "visual": "Châssis compact et canon court.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/shuriken ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-SHURIKEN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-4 Shuriken » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7690,13 +7826,23 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-4 Shuriken",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-TEMPEST",
       "category": "weapons",
       "name": "M-9 Tempest",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Arme récupérable sur Haestrom.",
@@ -7705,7 +7851,7 @@
       "visual": "Pistolet mitrailleur large et chargeur proéminent.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/tempest ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-TEMPEST ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-9 Tempest » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7713,7 +7859,17 @@
         "ME2-SRC-TALI"
       ],
       "reference": "M-9 Tempest",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-LOCUST",
@@ -7743,7 +7899,7 @@
       "id": "ME2-WPN-AVENGER",
       "category": "weapons",
       "name": "M-8 Avenger",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut de ME2.",
@@ -7752,7 +7908,7 @@
       "visual": "Fusil N7 reconnaissable à profil central.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/avenger ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-AVENGER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-8 Avenger » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7760,13 +7916,23 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-8 Avenger",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-VINDICATOR",
       "category": "weapons",
       "name": "M-15 Vindicator",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à rafales.",
@@ -7775,7 +7941,7 @@
       "visual": "Canon fin et viseur supérieur.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/vindicator ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-VINDICATOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-15 Vindicator » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7783,7 +7949,17 @@
         "ME2-SRC-VINDICATOR"
       ],
       "reference": "M-15 Vindicator",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-REVENANT",
@@ -7881,7 +8057,7 @@
       "id": "ME2-WPN-KATANA",
       "category": "weapons",
       "name": "M-23 Katana",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe de ME2.",
@@ -7890,7 +8066,7 @@
       "visual": "Pompe compacte et canon large.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/katana ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-KATANA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-23 Katana » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7898,13 +8074,23 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-23 Katana",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-SCIMITAR",
       "category": "weapons",
       "name": "M-27 Scimitar",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe de ME2.",
@@ -7913,7 +8099,7 @@
       "visual": "Silhouette plus longue et mécanisme de pompe.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/scimitar ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-SCIMITAR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-27 Scimitar » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7921,7 +8107,17 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-27 Scimitar",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-CLAYMORE",
@@ -7996,7 +8192,7 @@
       "id": "ME2-WPN-MANTIS",
       "category": "weapons",
       "name": "M-92 Mantis",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision de ME2.",
@@ -8005,7 +8201,7 @@
       "visual": "Long canon et grande lunette.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/mantis ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-MANTIS ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-92 Mantis » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8013,13 +8209,23 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-92 Mantis",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-VIPER",
       "category": "weapons",
       "name": "M-97 Viper",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision de ME2.",
@@ -8028,7 +8234,7 @@
       "visual": "Fusil long au chargeur distinct.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/weapons/viper ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-WPN-VIPER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-97 Viper » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8036,7 +8242,17 @@
         "ME2-SRC-WEAPONS"
       ],
       "reference": "M-97 Viper",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-WPN-WIDOW",
@@ -8273,7 +8489,7 @@
       "id": "ME2-EQP-N7",
       "category": "equipment",
       "name": "Armure N7 personnalisable",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure de base de Shepard.",
@@ -8282,7 +8498,7 @@
       "visual": "Noir, bande N7 et palette modifiable.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/n7 ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME2-EQP-N7 ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Armure N7 personnalisable » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8291,7 +8507,17 @@
         "ME2-SRC-ARMOR"
       ],
       "reference": "Armure N7 personnalisable",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME2-EQP-KESTREL",
@@ -8610,10 +8836,11 @@
       "acceptance": "Le livrable « Clips thermiques » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
       "sourceIds": [
-        "ME2-SRC-WEAPONS"
+        "ME2-SRC-WEAPONS",
+        "ME2-SRC-MANUAL-FR"
       ],
       "reference": "Clips thermiques",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Manuel PC français consulté directement : principe des dissipateurs amovibles confirmé ; recharge ATB dans src/combat.js. Cette fiche complète (objet/présentation/acquisition) reste à réaliser."
     },
     {
       "id": "ME2-EQP-CELLS",
@@ -16055,6 +16282,11 @@
       "area": "Sources et périmètre",
       "covered": "Confirmations EA/BioWare pour éditions et DLC ; index et pages spécifiques Fandom pour le détail. Les créations originales sont marquées Extrapolation.",
       "remaining": "L’accès direct Fandom a été limité ; les pages ont été consultées sous forme indexée. Les index ne constituent pas une validation primaire de chaque détail. Aucun contenu coupé ni rumeur promu en canon."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "12 personnages sélectionnables, 11 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     }
   ]
 }

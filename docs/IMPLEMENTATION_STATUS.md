@@ -2,6 +2,16 @@
 
 Mise à jour : **23 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
 
+## Complément Chroniques
+
+Le complément actuel reprend `f6b23904247ff137b37139bb2a512b04f75c745e` et ajoute des **Chroniques indépendantes** : registre de 28 œuvres et 48 segments, dix essais ATB dans sept œuvres, 34 profils sélectionnables parmi 42 profils partiels et 68 équipements d’atelier (58 armes, 10 armures). Les contextes, scènes, porteurs et alternatives conditionnelles limitent la sélection. Les sauvegardes restent séparées de ME1 ; l’entrée depuis une campagne enregistre d’abord son point de reprise.
+
+Les Excel suivent les éléments réellement disponibles : **102 nouvelles fiches Prototype** dans sept catalogues, deux systèmes transversaux dans le principal ; **6 653 fiches** au total. Les 57 fiches d’extension historiques du principal et les six statuts avancés sont conservés. Les autres lignes restent documentaires. Aucun nouveau portrait, sprite, costume ou décor propre aux œuvres ultérieures n’est livré ; les statistiques et chargeurs utilisent des réglages ATB adaptés.
+
+Voir le [périmètre et les dix essais](CHRONICLES.md), les [références consultées](research/chronicles-sources.md) et le [rapport de conservation](qa/chronicles-preservation-report.json). Les rapports du complément équipement ci-dessous restent les preuves historiques de leur livraison.
+
+Validation du complément Chroniques : **298 tests**, compilation Vite, six contrôles navigateur avec dix victoires réelles et six contrôles de production HTTP. La campagne ME1 atteint de nouveau sa fin en 21 rencontres ; les 18 simulations de campagne réussissent leurs 378 combats et 522 reprises de sauvegarde. Le [rapport courant](qa/chronicles-report.json) relie les résultats, empreintes et limites. Les 28 classeurs sont vérifiés ; les 27 exports supplémentaires ne disposent pas d’une nouvelle revue visuelle liée à leurs empreintes.
+
 ## Résultat jouable
 
 La campagne condensée reste jouable du briefing initial au bilan final : **neuf scènes 3D, huit étapes et 21 rencontres de campagne**. La version conserve **onze opérations annexes, 43 étapes et quatre combats possibles**, propose maintenant **52 références d’équipement** et conserve les deux atlas d’animation pour Shepard féminine.

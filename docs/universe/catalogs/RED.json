@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Redemption_Production.xlsx",
   "scope": "Les quatre numéros de Redemption; pont narratif vers Mass Effect 2, personnages, Omega, poursuite et récupération. Bonus éditoriaux traités comme références, pas comme scènes supplémentaires.",
-  "summary": "Catalogue de production pour une adaptation centrée sur Liara et Feron. Les faits courts sourcés servent d’ancrages aux propositions originales de recherche, infiltration, entraide ATB et mise en scène.",
+  "summary": "Catalogue de production pour une adaptation centrée sur Liara et Feron. Les faits courts sourcés servent d’ancrages aux propositions originales de recherche, infiltration, entraide ATB et mise en scène. Prototype partiel : 2 profils sélectionnables et 0 équipements en Chroniques ; le reste demeure documentaire.",
   "canonNote": "Le Shepard personnalisé doit rester compatible avec les choix du joueur. Les notes de l’auteur emploient « Alignon », alors que le wiki emploie « Alingon » : graphie à comparer au comic et au codex avant livraison. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -174,7 +174,7 @@
       "name": "Croquis du recueil"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Liara mène la recherche de Shepard.",
@@ -183,7 +183,7 @@
       "visual": "Direction proposée : Peau bleue, crête asari et manteau de terrain simplifié; accents cyan réservés aux actions. Vérifier le costume sur l'édition autorisée avant peinture finale.",
       "animation": "Garde ouverte, poussée des deux bras, lecture d’un terminal, protection du partenaire.",
       "audio": "Interprétation originale; sous-titres attribués au locuteur et aucune reprise des voix du jeu.",
-      "implementation": "Livrable proposé : spécification RED/characters/act-liara; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime RED-ACT-LIARA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "Liara T’Soni possède une fiche de référence séparant rôle attesté, silhouette à contrôler et commandes proposées.",
       "dependencies": [],
@@ -191,10 +191,19 @@
         "RED-S-BOOK"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente.",
+      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
       "id": "RED-ACT-LIARA",
       "category": "characters",
-      "name": "Liara T’Soni"
+      "name": "Liara T’Soni",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "status": "Défini",
@@ -268,7 +277,7 @@
       "name": "Écran de passage"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Feron est le partenaire drell de Liara.",
@@ -277,7 +286,7 @@
       "visual": "Direction proposée : Tête reptilienne et col haut, couches de vêtement lisibles; motifs précis à vérifier. Vérifier le costume sur l'édition autorisée avant peinture finale.",
       "animation": "Coup d’œil latéral, geste de passe, accroupissement et manipulation discrète.",
       "audio": "Interprétation originale; sous-titres attribués au locuteur et aucune reprise des voix du jeu.",
-      "implementation": "Livrable proposé : spécification RED/characters/act-feron; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime RED-ACT-FERON ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "Feron possède une fiche de référence séparant rôle attesté, silhouette à contrôler et commandes proposées.",
       "dependencies": [],
@@ -285,10 +294,19 @@
         "RED-S-COMPLETE"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente.",
+      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
       "id": "RED-ACT-FERON",
       "category": "characters",
-      "name": "Feron"
+      "name": "Feron",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "status": "Défini",
@@ -2924,6 +2942,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "2 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     }
   ]
 }

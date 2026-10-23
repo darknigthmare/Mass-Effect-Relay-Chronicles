@@ -2,7 +2,7 @@
 
 Le périmètre retenu conserve les sprites et les combats ATB de Relay Chronicles. La fidélité du contenu demande des références distinctes pour les lieux, les personnages, les missions et les conséquences. Les statistiques et le rythme ATB restent des choix d’adaptation.
 
-Le classeur principal suit 1 325 fiches, dont 1 268 ME1 et 57 extensions ME2/ME3. Les 27 autres classeurs suivent 5 326 fiches supplémentaires. Ces quantités décrivent un plan de production, pas des éléments tous jouables. La version 0.2.0 conservait les 1 203 identifiants antérieurs et les six statuts déjà avancés ; ses 118 nouvelles fiches détaillent les opérations, rencontres, objets et frames ajoutés. Le complément conserve ses 1 321 fiches et ajoute quatre outils.
+Le classeur principal suit 1 327 fiches. Les 27 autres classeurs suivent 5 326 fiches supplémentaires, soit 6 653 fiches au total. Ces quantités décrivent un plan de production, pas des éléments tous jouables. La version 0.2.0 conservait les 1 203 identifiants antérieurs et les six statuts déjà avancés ; ses 118 nouvelles fiches détaillent les opérations, rencontres, objets et frames ajoutés. Le complément équipement conserve ces 1 321 fiches et ajoute quatre outils ; le lot Chroniques ajoute deux fiches de fonctions et de validation.
 
 ## Dossier de Shepard
 
@@ -54,9 +54,21 @@ Les fiches de familles d’armes ou de marques ne sont pas remplacées par les n
 
 Le [complément et ses limites](research/loadout-extension-sources.md) conserve les règles consultées, la migration de l’inventaire interne et les écarts restants. Les profils des compagnons restent partiels. Le droit de Liara à un omni-outil n’ajoute pas de pouvoir technologique ; Electronics et les arbres originaux complets restent à reproduire. Les types d’armes ont des tracés distincts, sans reproduction de leur précision ou portée originales.
 
+## Chroniques par œuvre et segment
+
+Le [module Chroniques](CHRONICLES.md) réunit un registre de 28 œuvres et 48 segments. Les références visibles sont limitées à leur œuvre et à un segment explicitement documenté ; une année supposée, un nom commun ou la présence dans un recueil ne suffit pas à rendre un acteur ou un objet disponible. Les fenêtres de scène incertaines restent fermées. ME4, Library Edition, Blasto et les contenus coupés n’ouvrent aucune période historique jouable.
+
+Dix essais indépendants couvrent sept œuvres : ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Quatre utilisent des types d’opposition référencés ; trois sont des bancs de personnages face à des mannequins originaux ; trois sont des ateliers d’équipement. Les prologues de ME3 et d’Andromeda ainsi que Redemption ne rejouent donc aucun affrontement canonique. Les essais proposent 34 profils sélectionnables au total, parmi 42 profils partiels définis, avec des identifiants distincts selon l’œuvre. Les profils, pouvoirs disponibles et groupes restent bornés à chaque essai.
+
+Les ateliers exposent 68 équipements compatibles : 11 ME2, 27 ME3 et 30 Andromeda. Leur préparation libre ne simule aucune acquisition, aucun recrutement ni déblocage d’origine. Les alternatives Samara/Morinth et Ashley/Kaidan restent exclusives ; les armures personnelles sont réservées au protagoniste autorisé. Les modèles dont la charge, le rayon, les cellules, l’édition ou une autre mécanique manque restent fermés. Les statistiques, réserves, effets et rythmes sont des adaptations ATB.
+
+Les sauvegardes, préparations et résultats des Chroniques sont séparés de la campagne ME1 et de ses six emplacements manuels. Aucune victoire ne transfère crédit, expérience, choix narratif, personnage ou équipement dans ME1. Le registre et les essais ne modifient pas les statuts documentaires par leur simple existence. Aucun atlas ni portrait supplémentaire n’est livré : la présentation utilise des symboles de prototype. Les campagnes complètes, la mise en scène, les costumes et les mécaniques propres aux œuvres restent à produire.
+
+Les contrôles dédiés se trouvent dans `tests/continuity*.test.js`, `tests/save-continuity.test.js`, `tests/chronicles.test.js` et `tests/universe-*.test.js`. `npm run test:universe` exerce l’interface et l’isolation des sauvegardes ; ses résultats dépendent du rapport de l’exécution concernée, pas de ce décompte de fonctionnalités.
+
 ## État du contenu restant
 
-Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les variantes visuelles d’équipement, les animations et les campagnes ultérieures restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
+Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les variantes visuelles d’équipement, les animations et les campagnes ultérieures intégrales restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
 
 Pour reproduire une scène précisément, il faut identifier l’édition, les étapes et conditions, les références de carte ou de costume et les embranchements attendus. Le dépôt conserve des liens de manuels et de guides, mais pas un relevé primaire complet de ces éléments. Les captures de `docs/screenshots/` représentent le prototype.
 

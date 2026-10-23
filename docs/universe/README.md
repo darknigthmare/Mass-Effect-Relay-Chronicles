@@ -1,10 +1,10 @@
 # Relay Chronicles — 27 classeurs de l’univers Mass Effect
 
-**27 fichiers Excel · 756 onglets · 5 326 fiches de production** — état documentaire du 22 octobre 2026.
+**27 fichiers Excel · 756 onglets · 5 326 fiches de production** — export documentaire du 2026-10-23.
 
 Ces classeurs prolongent le catalogue ME1 existant pour préparer des adaptations en RPG à commandes ATB, avec personnages principalement en sprites 2D et décors 3D. Ils partagent la charte du classeur initial : titres bleu nuit, accents turquoise, lignes alternées, filtres, volets figés et cellules de statut ambre.
 
-**Toutes les nouvelles fiches sont au statut « Défini ».** Les colonnes de conception décrivent le travail proposé. Elles ne certifient pas que les campagnes, cartes ou sprites correspondants sont déjà réalisés. Le prototype jouable du dépôt conserve son périmètre ME1 décrit dans le README principal.
+**Statuts des fiches : Défini : 5 224 · Prototype : 102 · Intégré : 0 · Validé : 0.** Les statuts non Défini ont des chemins de code et de preuves explicites vérifiés dans le dépôt. L’existence de ces fichiers ne promeut aucune fiche automatiquement. Les prototypes de profils et d’équipements sont des essais dans des chroniques indépendantes ; ils ne certifient ni des campagnes complètes, ni des cartes et sprites achevés, ni une fidélité 1:1.
 
 **[Télécharger les 27 classeurs en une archive](outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**
 
@@ -14,13 +14,13 @@ Ces classeurs prolongent le catalogue ME1 existant pour préparer des adaptation
 
 L’identifiant documentaire de Conviction reste **`CON`**. Ses fichiers sont désormais [catalogs/CONVICTION.json](catalogs/CONVICTION.json) et [qa/CONVICTION.json](qa/CONVICTION.json), car [Windows réserve le nom `CON`, même avec une extension](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file). Les champs `catalogPath` et `qaPath` du manifeste donnent les chemins actuels.
 
-Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La mention conservée dans le catalogue Library Edition et dans son classeur est un texte de conception, sans lien actif. Les 27 catalogues et les 27 fichiers Excel sont conservés octet pour octet ; les générateurs de nouvelles fiches utilisent le nouveau chemin.
+Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La mention conservée dans le catalogue Library Edition et dans son classeur est un texte de conception, sans lien actif. La correction des chemins Windows conservait les 27 catalogues et classeurs octet pour octet dans l’état historique `c614a45`. Les exports actuels peuvent évoluer avec les statuts et leurs preuves ; leurs empreintes figurent dans le manifeste courant.
 
 ## Jeux
 
 | Classeur | Fiches | Domaines renseignés | Références de sources |
 |---|---:|---:|---:|
-| [Mass Effect 2](outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx) | 670 | 26/26 | 63 |
+| [Mass Effect 2](outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx) | 670 | 26/26 | 64 |
 | [Mass Effect 3](outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx) | 736 | 26/26 | 61 |
 | [Mass Effect Andromeda](outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Production.xlsx) | 763 | 26/26 | 92 |
 | [Mass Effect: Infiltrator](outputs/relay-chronicles-20261022/Mass_Effect_Infiltrator_Production.xlsx) | 109 | 26/26 | 6 |
@@ -60,7 +60,7 @@ Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `do
 | Classeur | Fiches | Domaines renseignés | Références de sources |
 |---|---:|---:|---:|
 | [Mass Effect: Paragon Lost](outputs/relay-chronicles-20261022/Mass_Effect_Paragon_Lost_Production.xlsx) | 199 | 26/26 | 13 |
-| [Mass Effect 4 : extrapolation du projet annulé](outputs/relay-chronicles-20261022/Mass_Effect_4_Extrapolation_Production.xlsx) | 145 | 26/26 | 6 |
+| [Mass Effect suivant — dossier prospectif](outputs/relay-chronicles-20261022/Mass_Effect_4_Extrapolation_Production.xlsx) | 145 | 26/26 | 6 |
 | [Mass Effect : contenus coupés et concepts abandonnés](outputs/relay-chronicles-20261022/Mass_Effect_Contenus_Coupes_Production.xlsx) | 124 | 26/26 | 12 |
 
 Le nombre de fiches mesure le contenu du catalogue. Il ne représente ni un pourcentage d’exhaustivité ni un pourcentage de réalisation. Les sources peuvent être communes à plusieurs œuvres ; une référence indiquée comme partielle ou inaccessible n’est pas une lecture intégrale.
@@ -106,7 +106,7 @@ Ces niveaux sont indépendants du statut de production. Une référence établie
 
 ## Traitement des cas particuliers
 
-- **ME4** : le titre est un nom de travail. Les annonces officielles du 21 octobre 2026 sont répertoriées séparément. Le module **Les Routes du silence** est une campagne originale extrapolée : équipage, mondes, missions, boss et conclusions ne sont pas présentés comme un scénario officiel retrouvé. Sources : [EA](https://www.ea.com/news/building-eas-next-chapter) et [BioWare](https://blog.bioware.com/2026/10/21/bioware-update/).
+- **Mass Effect suivant — dossier prospectif (`ME4`)** : dossier verrouillé. L’allégation d’annulation en octobre 2026 figurant dans le catalogue d’origine n’a pas été validée et n’est pas retenue comme fait. Le module **Les Routes du silence** est une création extrapolée ; aucun scénario, équipage ou calendrier officiel complet n’est établi par ce dossier.
 - **Paragon Lost** : traité comme un film d’animation, avec une adaptation jouable proposée. [Présentation BioWare](https://blog.bioware.com/2013/03/12/mass-effect-paragon-lost-available-now-in-the-uk/).
 - **Library Edition** : traité comme une collection éditoriale. Le catalogue couvre ses volumes, leur contenu, les bonus et les renvois aux arcs ; il évite de compter la collection comme une nouvelle histoire.
 - **Deception** : les incohérences et l’annonce d’une révision sont documentées sans supposer qu’une édition corrigée a effectivement été publiée.
@@ -124,9 +124,9 @@ Les modifications faites dans Excel ne sont pas automatiquement réimportées da
 
 ## Vérification effectuée
 
-Les 27 fichiers ont été ouverts comme archives XLSX et contrôlés contre leurs catalogues : 756 onglets, 5 326 identifiants, tous les champs exportés, dépendances et sources, compteurs, filtres, validations et volets figés. Les 8 856 formules ne présentent pas d’erreur de cellule dans les exports. Une modification temporaire de statut a vérifié la mise à jour des compteurs avant restitution de « Défini ».
+Les 27 fichiers actuels ont été ouverts comme archives XLSX et contrôlés contre les empreintes de leurs catalogues : 756 onglets, 5 326 identifiants, 19 colonnes par fiche, sources du Guide, dépendances, compteurs par statut et nature, filtres complets, validations et volets figés. Les 8 856 formules ont un cache contrôlé sans erreur de cellule. Chaque fiche non Défini possède des chemins de source et de preuves existants, dont les empreintes sont liées à cet audit. Ce contrôle n’exécute pas les tests du jeu.
 
-Chaque onglet a fait l’objet d’un rendu et d’une revue visuelle de sa zone d’ouverture. Des extraits des colonnes de production et de la couverture ont également été revus. Cette inspection ne signifie pas une lecture visuelle de chaque cellule ; les textes complets font l’objet du contrôle automatique distinct. Les scénarios QA décrits dans les fiches restent des tests futurs du jeu.
+Revue visuelle liée aux empreintes des exports actuels : **0/27 classeurs**. Les anciens rapports `qa/visual-*.json` et leurs rendus restent des archives historiques séparées ; ils ne prouvent pas la lisibilité des nouveaux exports. Une génération avec `--no-render` ne produit aucun nouvel aperçu ni nouvelle revue visuelle. Les vérifications de texte et de structure ci-dessus portent, elles, sur les XLSX actuels.
 
 Les catalogues ne constituent pas une certification de fidélité 1:1. Les positions exactes, variantes de dialogues, statistiques d’origine, détails visuels et contenus non accessibles dans les sources consultées restent à relever dans les œuvres. Les limites sont inscrites dans chaque Guide.
 
@@ -139,7 +139,7 @@ Les classeurs livrés sont utilisables sans outil de développement. Leur régé
 # Un seul catalogue : ajouter --ids ME2
 ```
 
-Depuis la racine du dépôt, vérifier puis reconstruire l’index et l’archive après la revue visuelle des nouveaux rendus :
+L’option `--no-render` permet une régénération sans nouveaux aperçus. Depuis la racine du dépôt, contrôler les XLSX courants puis reconstruire l’index et l’archive. Une nouvelle revue visuelle doit référencer les empreintes du classeur et du catalogue pour être attribuée aux exports actuels :
 
 ```bash
 python3 scripts/verify-universe-workbooks.py

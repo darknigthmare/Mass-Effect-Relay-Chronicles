@@ -74,6 +74,14 @@ Les deux nouveaux PNG conservent leur transparence native. Les marges et pivots 
 
 Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Wong possède une interaction de quête ; son image de l’atlas PNJ reste disponible pour une intégration de portrait et son personnage dédié dans le monde reste à produire. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
 
+## Présentation des Chroniques
+
+Le lot [Chroniques](CHRONICLES.md) conserve les dix PNG existants et ne livre aucun nouvel atlas, portrait, modèle d’arme ou décor. Les 34 profils sélectionnables des Chroniques sont représentés par des initiales et des symboles de prototype dans l’interface des essais. Ils ne correspondent pas à 34 nouveaux sprites et ne réemploient pas les portraits de personnages ME1 pour représenter d’autres identités.
+
+Les mannequins des trois bancs de personnages et les cibles des trois ateliers sont des gabarits originaux. Ils ne représentent pas des adversaires attestés des missions ou comics concernés. Les quatre autres essais conservent des types d’adversaires référencés, présentés avec la même convention symbolique. Les effets, projectiles et barres d’état n’établissent aucune conformité visuelle des personnages ou modèles d’armes.
+
+Chaque œuvre demande encore ses costumes, armes dessinées, portraits, silhouettes, décors et animations propres à la période. Une sélection disponible dans un atelier ne livre pas l’asset correspondant. La fidélité artistique et les mouvements par personnage restent des critères distincts de la validation des règles et sauvegardes.
+
 ## Critères d’acceptation de l’art final
 
 Chaque asset devra être confronté à des références approuvées de l’épisode choisi : silhouette, visage, nombre et forme des appendices, armure, motifs, couleurs, accessoires, époque et poses. Les variantes doivent conserver la même identité. Les frames doivent respecter une origine et un pied d’ancrage constants, sans morceaux des cellules voisines ni variation de taille involontaire.

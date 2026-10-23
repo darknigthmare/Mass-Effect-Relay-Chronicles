@@ -4,7 +4,7 @@
   "medium": "Jeu mobile",
   "filename": "Mass_Effect_Galaxy_Production.xlsx",
   "scope": "Six missions de Jacob, trois pistes d’enquête et adaptation du système mobile.",
-  "summary": "Transformer les arènes mobiles et la narration dessinée en module ATB de poche, avec décors 3D.",
+  "summary": "Transformer les arènes mobiles et la narration dessinée en module ATB de poche, avec décors 3D. Prototype partiel : 1 profils sélectionnables et 0 équipements en Chroniques ; le reste demeure documentaire.",
   "canonNote": "BioWare situe l’aventure entre ME1 et ME2 ; certains repères du wiki la placent avant des événements de 2183. Le calendrier précis reste à arbitrer sans modifier silencieusement la source.",
   "sources": [
     {
@@ -85,7 +85,7 @@
       "id": "GAL-CHR-JACOB",
       "category": "characters",
       "name": "Jacob Taylor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Soldat biotique protagoniste.",
@@ -94,7 +94,7 @@
       "visual": "Proposition : tenue de combat compacte, visage lisible, fusil conservé dans la silhouette.",
       "animation": "",
       "audio": "",
-      "implementation": "",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime GAL-CHR-JACOB ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "La fiche distingue identité de référence et rôle proposé.",
       "dependencies": [],
@@ -102,7 +102,16 @@
         "GAL-WIKI"
       ],
       "reference": "Personnages",
-      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1."
+      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "GAL-SPR-JACOB",
@@ -2412,6 +2421,11 @@
       "area": "Production et contrôles",
       "covered": "Animation, VFX, audio original, sauvegarde, UI, critères de recette et limites de continuité.",
       "remaining": "Aucun asset ni niveau de ce module n’est réalisé par la rédaction du classeur. Les critères QA décrivent des tests futurs du jeu."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "1 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     }
   ]
 }

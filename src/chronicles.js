@@ -1,0 +1,213 @@
+// Independent tactical chronicles. No function reads or writes the ME1 save key.
+import { createChronicleSession, normalizeChronicleSession, normalizeContext, canAccessContent } from './continuity.js';
+import { CHRONICLE_SCENARIOS, getUniverseActor, canUseUniverseActor, universeActorFor } from './universe-actors.js';
+import { listUniverseEquipment, normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects } from './universe-equipment.js';
+import { createBattle } from './combat.js';
+
+export const CHRONICLE_FORMAT = 'relay-chronicles.chronicle';
+const MAX_FILE_BYTES = 2_000_000;
+const own = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
+const copy = value => JSON.parse(JSON.stringify(value));
+const fail = reason => ({ ok: false, reason });
+const sameContext = (left, right) => !!left && !!right && ['mediaId', 'periodId', 'galaxy'].every(key => left[key] === right[key]);
+const scenarios = () => Array.isArray(CHRONICLE_SCENARIOS) ? CHRONICLE_SCENARIOS : Object.values(CHRONICLE_SCENARIOS);
+const scenarioFor = id => typeof id === 'string' ? scenarios().find(scenario => scenario.id === id) || null : null;
+const scenarioContext = scenario => normalizeContext(scenario?.context);
+const actorCheck = (context, id, scenarioId) => {
+  const check = canUseUniverseActor(context, id, scenarioId);
+  return check === true || check?.ok === true;
+};
+const battleSnapshots = new WeakMap();
+const fingerprint = session => JSON.stringify([session.context, session.scenarioId, session.party, session.loadouts]);
+
+export function listChronicleScenarios(rawContext) {
+  const context = normalizeContext(rawContext);
+  return context ? scenarios().filter(scenario => sameContext(scenarioContext(scenario), context)).map(copy) : [];
+}
+
+/** Composite validation: a valid base envelope cannot invent actors or gear. */
+export function normalizeChronicle(raw) {
+  try {
+    const session = normalizeChronicleSession(raw);
+    if (!session) return null;
+    const allowed = listChronicleScenarios(session.context);
+    if (!session.cleared.every(id => allowed.some(scenario => scenario.id === id))) return null;
+    if (session.scenarioId === null) return session.party.length === 0 && Object.keys(session.loadouts).length === 0 ? session : null;
+    const scenario = allowed.find(candidate => candidate.id === session.scenarioId);
+    if (!scenario || session.party.length < 1 || session.party.length > 3
+      || !session.party.every(id => scenario.actorIds.includes(id) && actorCheck(session.context, id, scenario.id))
+      || (scenario.exclusiveActorGroups || []).some(group => session.party.filter(id => group.includes(id)).length > 1)) return null;
+    const loadouts = normalizeChronicleLoadouts(session.loadouts, session.context, session.party, scenario.id);
+    return loadouts ? { ...session, loadouts } : null;
+  } catch { return null; }
+}
+
+export function createChronicle(rawContext, scenarioId) {
+  const base = createChronicleSession(rawContext);
+  if (!base) return null;
+  const available = listChronicleScenarios(base.context);
+  const scenario = scenarioId === undefined ? available[0] : available.find(candidate => candidate.id === scenarioId);
+  if (scenarioId !== undefined && !scenario) return null;
+  if (!scenario) return base;
+  base.scenarioId = scenario.id;
+  base.party = [...scenario.defaultParty];
+  base.loadouts = normalizeChronicleLoadouts(undefined, base.context, base.party, scenario.id);
+  return normalizeChronicle(base);
+}
+
+export function selectChronicleScenario(raw, scenarioId) {
+  const session = normalizeChronicle(raw);
+  if (!session) return fail('Chronique invalide.');
+  const replacement = createChronicle(session.context, scenarioId);
+  if (!replacement) return fail('Cet essai n’appartient pas à cette période.');
+  return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes, cleared: session.cleared } };
+}
+
+export function setChronicleParty(raw, actorIds) {
+  const session = normalizeChronicle(raw);
+  const selection = session && normalizeChronicleSession({ ...session, party: actorIds, loadouts: {} });
+  if (!selection || selection.party.length < 1) return fail('Choisissez de un à trois combattants disponibles.');
+  const loadouts = Object.fromEntries(selection.party.filter(id => own(session.loadouts, id)).map(id => [id, session.loadouts[id]]));
+  const updated = normalizeChronicle({ ...session, party: selection.party, loadouts });
+  return updated ? { ok: true, session: updated } : fail('Un personnage est indisponible dans cet essai.');
+}
+
+export function equipChronicle(raw, actorId, itemId, slot) {
+  const session = normalizeChronicle(raw);
+  if (!session) return fail('Chronique invalide.');
+  const result = equipChronicleItem(session, actorId, itemId, slot);
+  if (!result.ok) return result;
+  const updated = normalizeChronicle({ ...session, loadouts: result.loadouts });
+  return updated ? { ok: true, session: updated } : fail('Équipement incompatible avec cette chronique.');
+}
+
+export function getChronicleRoster(raw) {
+  const session = normalizeChronicle(raw), scenario = scenarioFor(session?.scenarioId);
+  return scenario ? scenario.actorIds.filter(id => actorCheck(session.context, id, scenario.id)).map(id => {
+    const actor = getUniverseActor(id);
+    return { ...copy(actor), selected: session.party.includes(id) };
+  }) : [];
+}
+
+export function getChronicleGear(raw, actorId) {
+  const session = normalizeChronicle(raw);
+  return session && session.party.includes(actorId) ? listUniverseEquipment(session.context, { actorId, scenarioId: session.scenarioId }) : [];
+}
+
+/** Apply loadout bonuses once, on the actor's independent base definition. */
+export function buildChronicleActor(raw, actorId) {
+  const session = normalizeChronicle(raw);
+  if (!session || !session.party.includes(actorId)) return null;
+  const base = universeActorFor(actorId, session.context);
+  if (!base) return null;
+  const effects = getChronicleEquipmentEffects(session, actorId);
+  const hp = base.hp + effects.hp, shield = base.shield + effects.shield;
+  const actor = { ...copy(base), hp, maxHp: hp, shield, maxShield: shield,
+    attack: base.attack + effects.attack, defense: base.defense + effects.defense,
+    weaponHeatMultiplier: (base.weaponHeatMultiplier ?? 1) * effects.weaponHeatMultiplier,
+    weaponCoolingBonus: (base.weaponCoolingBonus ?? 0) + effects.weaponCoolingBonus,
+    controlResistance: Math.min(.6, (base.controlResistance ?? 0) + effects.controlResistance),
+    bioticMultiplier: (base.bioticMultiplier ?? 1) * effects.bioticMultiplier,
+    techMultiplier: (base.techMultiplier ?? 1) * effects.techMultiplier,
+  };
+  for (const key of ['weaponType', 'weaponName', 'weaponSystem', 'magazineCapacity', 'ammo', 'reserveAmmo']) {
+    if (effects[key] !== undefined) actor[key] = effects[key];
+  }
+  return actor;
+}
+
+export function startChronicleBattle(raw) {
+  const session = normalizeChronicle(raw), scenario = scenarioFor(session?.scenarioId);
+  if (!session || !scenario) return fail('Aucun essai tactique disponible pour cette période.');
+  try {
+    if (!Array.isArray(scenario.enemies) || scenario.enemies.length < 1 || scenario.enemies.some(enemy => enemy.catalogId
+      ? !canAccessContent(enemy.catalogId, session.context).ok
+      : enemy.abstract !== true || !['equipment-workshop', 'tactical-simulation'].includes(scenario.kind)))
+      return fail('Les adversaires de cet essai ne sont pas attestés dans cette période.');
+    const party = session.party.map(id => buildChronicleActor(session, id));
+    if (party.some(actor => !actor)) return fail('Commando incompatible avec cette période.');
+    const enemies = scenario.enemies.map((enemy, index) => ({ ...copy(enemy), id: `chronicle-enemy-${index}` }));
+    const battle = createBattle({ party, enemies, mode: 'wait', difficulty: 'normal', seed: 2183 + session.cleared.length, medigel: 3 });
+    battleSnapshots.set(battle, fingerprint(session));
+    return { ok: true, battle };
+  } catch { return fail('Impossible de démarrer cet essai tactique.'); }
+}
+
+/** Tactical results never award campaign progress, credits, or canonical choices. */
+export function finishChronicleBattle(raw, battle) {
+ try {
+  const session = normalizeChronicle(raw);
+  if (!session || !battle || battleSnapshots.get(battle) !== fingerprint(session)) return fail('Résultat d’essai invalide ou étranger à cette chronique.');
+  const winner = Object.getOwnPropertyDescriptor(battle, 'winner');
+  const actorsField = Object.getOwnPropertyDescriptor(battle, 'actors');
+  if (!winner || !own(winner, 'value') || !['party', 'enemy'].includes(winner.value)
+    || !actorsField || !own(actorsField, 'value') || !Array.isArray(actorsField.value)) return fail('Résultat d’essai invalide.');
+  const actors = [];
+  for (let index = 0; index < actorsField.value.length; index++) {
+    const field = Object.getOwnPropertyDescriptor(actorsField.value, String(index));
+    if (!field || !own(field, 'value') || !field.value || typeof field.value !== 'object') return fail('Combattant invalide.');
+    const team = Object.getOwnPropertyDescriptor(field.value, 'team'), hp = Object.getOwnPropertyDescriptor(field.value, 'hp');
+    if (!team || !hp || !own(team, 'value') || !own(hp, 'value') || !['party', 'enemy'].includes(team.value)
+      || !Number.isFinite(hp.value) || hp.value < 0) return fail('Combattant invalide.');
+    actors.push({ team: team.value, hp: hp.value });
+  }
+  const won = winner.value === 'party';
+  if (!actors.some(actor => actor.team === 'enemy') || !actors.some(actor => actor.team === 'party')
+    || won && (actors.some(actor => actor.team === 'enemy' && actor.hp > 0)
+      || !actors.some(actor => actor.team === 'party' && actor.hp > 0))
+    || !won && actors.some(actor => actor.team === 'party' && actor.hp > 0)) return fail('L’essai n’est pas terminé.');
+  battleSnapshots.delete(battle);
+  if (won && !session.cleared.includes(session.scenarioId)) session.cleared.push(session.scenarioId);
+  return { ok: true, session, won };
+ } catch { return fail('Résultat d’essai invalide.'); }
+}
+
+function serializeChronicle(session) {
+  const encoded = JSON.stringify({ format: CHRONICLE_FORMAT, version: 1, session });
+  return encoded.length <= MAX_FILE_BYTES ? encoded : null;
+}
+export function encodeChronicle(raw) {
+  const session = normalizeChronicle(raw);
+  return session ? serializeChronicle(session) : null;
+}
+export function decodeChronicle(value) {
+  try {
+    if (typeof value === 'string' && value.length > MAX_FILE_BYTES) return null;
+    const packet = typeof value === 'string' ? JSON.parse(value) : value;
+    if (!packet || typeof packet !== 'object' || Array.isArray(packet)
+      || ![Object.prototype, null].includes(Object.getPrototypeOf(packet))) return null;
+    const keys = Reflect.ownKeys(packet);
+    if (keys.length !== 3 || !['format', 'version', 'session'].every(key => keys.includes(key))) return null;
+    const fields = Object.fromEntries(keys.map(key => {
+      const descriptor = Object.getOwnPropertyDescriptor(packet, key);
+      if (!descriptor.enumerable || !own(descriptor, 'value')) throw new Error('Accessor');
+      return [key, descriptor.value];
+    }));
+    return fields.format === CHRONICLE_FORMAT && fields.version === 1 ? normalizeChronicle(fields.session) : null;
+  } catch { return null; }
+}
+
+export function chronicleStorageKey(rawContext) {
+  const context = normalizeContext(rawContext);
+  return context ? `relay-chronicles.chronicle.${context.mediaId}.${context.periodId}.v1` : null;
+}
+export function saveChronicle(storage, raw) {
+  try {
+    const session = normalizeChronicle(raw);
+    const encoded = session && serializeChronicle(session);
+    if (!encoded) return fail('Chronique invalide ; sauvegarde précédente conservée.');
+    storage.setItem(chronicleStorageKey(session.context), encoded);
+    return { ok: true };
+  } catch { return fail('Impossible d’enregistrer la chronique ; vérifiez le stockage disponible.'); }
+}
+export function loadChronicle(storage, rawContext) {
+  const context = normalizeContext(rawContext), key = chronicleStorageKey(context);
+  if (!key) return fail('Période indisponible.');
+  try {
+    const encoded = storage.getItem(key);
+    if (encoded === null) return { ok: true, session: createChronicle(context), fresh: true };
+    const session = decodeChronicle(encoded);
+    return session && sameContext(session.context, context) ? { ok: true, session, fresh: false }
+      : fail('La chronique enregistrée est invalide. Son contenu a été conservé.');
+  } catch { return fail('Impossible de lire le stockage des chroniques.'); }
+}
