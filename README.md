@@ -63,13 +63,14 @@ En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode *
 ## Contenu effectivement présent
 
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.
-- **8 étapes de campagne**, **21 rencontres**, **63 points de mission** et **9 emplacements de conversation conditionnels** au Normandy.
+- **8 étapes de campagne**, **21 rencontres**, **63 points de mission**, **9 emplacements de conversation conditionnels** au Normandy et **4 contacts d’assignation** à la Citadelle.
 - Shepard et six compagnons permanents possibles, avec Jenkins au départ ; **6 classes** pour Shepard.
 - Recrutement, choix de deux compagnons, expérience, niveaux, crédits et améliorations.
 - Tirs à chauffe, couverture, pouvoirs biotiques, technologie, attaques organiques, états temporaires et soin.
 - Décisions enregistrées pour Féros, la reine rachni, Virmire et le Conseil.
 - Journal, 16 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
 - Conversations avec Nihlus, Joker, Chakwas et les six compagnons, selon leur recrutement, leur survie et les événements connus. Le conseil donné à Garrus est mémorisé et repris dans un échange ultérieur.
+- Trois assignations de la Citadelle : Retour à la maison, Affaire familiale et les trois rencontres du Fan. Objectifs, décisions et récompenses uniques sont conservés dans un journal séparant Missions, Assignations et Rapports.
 - Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; animation expérimentale de marche de Shepard.
 - Ambiances et effets générés localement par Web Audio.
 
@@ -79,7 +80,7 @@ Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la p
 
 À la Citadelle, Garrus et Wrex peuvent être recrutés immédiatement ou lors d’un retour après le Conseil. Les preuves de Tali suffisent à obtenir l’audience. Le recrutement ne remplace pas automatiquement le commando sélectionné. Au Normandy, les compagnons disponibles sont stationnés à leur emplacement de conversation ; les mêmes échanges sont accessibles depuis le menu Commando.
 
-Les véhicules servent actuellement de décor. Les missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 sont documentés pour la production et ne sont pas jouables dans cette version. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
+Les trois assignations utilisent des dialogues concis et la Citadelle condensée ; les variantes et contrôles de persuasion complets restent à reconstituer. Leur récompense fixe de 50 XP est un réglage de l’adaptation ATB. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes ME2/ME3 restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
 
 ## Excel et documentation
 
@@ -95,6 +96,8 @@ Les véhicules servent actuellement de décor. Les missions annexes, DLC, romanc
 **Une fiche de production ne signifie pas un élément terminé.** Le classeur sépare le statut du contenu, le statut de l’asset et le niveau de vérification canonique. Les liens vers des fichiers constituent des preuves localisables ; les noms d’assets futurs restent dans une colonne distincte. Une modification directe dans Excel n’est pas automatiquement réimportée dans le JSON.
 
 ## Développement et vérification
+
+La configuration de publication web est disponible dans [vercel.json](vercel.json). Voir [relier le dépôt à Vercel](docs/DEPLOYMENT.md) pour l’intégration Git et l’état des accès cloud.
 
 ```bash
 npm test
@@ -113,9 +116,12 @@ npm run test:world
 npm run test:commander
 npm run test:saves
 npm run test:story
+npm run test:assignments
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
+
+`npm run test:assignments -- --late-conrad` vérifie le premier contact avec Conrad après deux missions et l’attente d’une nouvelle mission, y compris après rechargement.
 
 `npm run audit:fidelity` produit dans `test-results/fidelity-report.json` la liste des fiches restantes du classeur principal, leurs critères et leurs preuves locales. Ajouter `-- --include-universe` pour inclure les 27 catalogues supplémentaires. Cet audit ne modifie aucun statut et ne certifie pas la fidélité canonique.
 
@@ -132,6 +138,8 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/state.js` | Progression, achats, recrutement et validation des sauvegardes |
 | `src/story.js` | Conversations, découvertes du codex et historique narratif sauvegardé |
 | `src/story-data.js` | Sujets de conversation réécrits et entrées conditionnelles du codex |
+| `src/assignments.js` | Assignations, étapes, issues, récompenses uniques et validation des sauvegardes |
+| `src/assignment-data.js` | Contacts et dialogues condensés des trois assignations de la Citadelle |
 | `src/game-data.js` | Classes, personnages, rencontres, équipement et codex |
 | `src/audio.js` | Audio procédural local |
 | `public/assets/` | Images et manifestes des atlas |

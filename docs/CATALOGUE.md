@@ -13,8 +13,8 @@ Ce catalogue contient **1 203 fiches**, organisées en **26 catégories** et *
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 1 054 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 143 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 1 048 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 149 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
 | Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
@@ -42,6 +42,7 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |
 | PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant le départ sur Eden Prime | Emily reste en réserve. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
 | Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
+| Assignations | 3 prototypes de la Citadelle : Retour à la maison, Affaire familiale et Le Fan, suivis au journal | Trois assignations de Citadelle condensées ; dialogues et emplacements réécrits, contrôles de persuasion et variantes complets à produire. Les 59 autres fiches secondaires/DLC restent Définies. Les contacts n’ont pas de sprites dédiés ; les 50 XP uniques sont un réglage de l’adaptation. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
 | Animation | Première planche de marche de Shepard : 16 images pour 4 directions, au stade Prototype | Face et dos en trois-quarts, profils latéraux, cycle à nettoyer et mapping UV spécifique. Huit directions et bibliothèque d’actions complètes non validées. Une fiche de marche est Prototype ; les 39 autres fiches d’animation restent Définies. |
 
@@ -66,7 +67,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Catégorie | Total | Défini | Prototype | Intégré | Validé | Périmètre |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | Personnages | 8 | 0 | 8 | 0 | 0 | Shepard, équipiers et identités jouables |
-| PNJ | 66 | 60 | 6 | 0 | 0 | Personnages de rencontre et services |
+| PNJ | 66 | 57 | 9 | 0 | 0 | Personnages de rencontre et services |
 | Espèces et factions | 36 | 29 | 7 | 0 | 0 | Espèces, organisations et règles culturelles |
 | Mondes | 32 | 24 | 8 | 0 | 0 | Destinations et identité environnementale |
 | Zones | 100 | 100 | 0 | 0 | 0 | Pièces, espaces extérieurs et points de passage |
@@ -75,7 +76,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Props | 52 | 52 | 0 | 0 | 0 | Objets de décor et interactions |
 | Ennemis et boss | 35 | 31 | 4 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
 | Missions | 63 | 42 | 21 | 0 | 0 | Étapes de l’intrigue principale |
-| Secondaires et DLC | 62 | 62 | 0 | 0 | 0 | Missions annexes et extensions de ME1 |
+| Secondaires et DLC | 62 | 59 | 3 | 0 | 0 | Missions annexes et extensions de ME1 |
 | Choix et relations | 34 | 31 | 0 | 3 | 0 | Conséquences persistantes et relations |
 | Dialogues | 36 | 24 | 12 | 0 | 0 | Situations de dialogue et conditions |
 | Cinématiques | 26 | 26 | 0 | 0 | 0 | Séquences et mise en scène |
@@ -91,7 +92,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Systèmes et UI | 40 | 10 | 27 | 0 | 3 | Interface et règles de jeu |
 | QA | 52 | 52 | 0 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 203** | **1 054** | **143** | **3** | **3** | |
+| **Total** | **1 203** | **1 048** | **149** | **3** | **3** | |
 
 ## Lire une fiche
 
@@ -131,6 +132,7 @@ La colonne de source donne une référence de travail. Les lignes marquées **R�
 | EA-TRILOGY | [EA Legendary Edition](https://www.ea.com/fr/games/mass-effect/mass-effect-legendary-edition) | Périmètre trilogie et continuité des choix |
 | SQUAD-INDEX | [Index des équipiers à recouper](https://masseffect.fandom.com/wiki/Squad) | Index secondaire ; capture du jeu requise avant validation |
 | PROJECT | Conception Relay Chronicles | Décisions du fan game ; aucune prétention de canon officiel |
+| ME1-CITADEL-ASSIGNMENTS | [Assignations de la Citadelle — index secondaire à vérifier](https://masseffect.fandom.com/wiki/Assignments) | Pistes de comparaison pour Homecoming, Family Matter et The Fan. Pages non consultées depuis cet environnement ; contrôle du jeu et de son édition requis. |
 
 La production prend ME1 comme base. La continuité doit distinguer le Normandy SR-1 des vaisseaux ultérieurs, les armes à chauffe des systèmes de cartouches thermiques, et les talents de ME1 des pouvoirs introduits plus tard. Les guides cosplay et les visuels de la trilogie exigent un classement par épisode avant réutilisation. Les références original/Legendary Edition doivent également être identifiées avant une comparaison exacte.
 

@@ -1,6 +1,7 @@
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
 import { createStoryState, migrateStoryState } from './story.js';
+import { createAssignmentState, migrateAssignmentState } from './assignments.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -32,6 +33,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
     story: createStoryState(),
+    assignments: createAssignmentState(),
     logs: [{ title: 'Départ', text: 'Le Normandy fait route vers Eden Prime.' }],
     xp: 0, credits: 250, medigel: 4, upgrades: {}, paragon: 0, renegade: 0,
     playedSeconds: 0, position: null, ending: false, settings: { ...DEFAULT_SETTINGS },
@@ -323,7 +325,9 @@ export function decodeSave(raw) {
     };
     if (!validateProgression(state)) return null;
     state.story = migrateStoryState(OWN(input, 'story') ? input.story : undefined, state);
-    return state.story ? state : null;
+    if (!state.story) return null;
+    state.assignments = migrateAssignmentState(OWN(input, 'assignments') ? input.assignments : undefined, state);
+    return state.assignments ? state : null;
   } catch {
     return null;
   }

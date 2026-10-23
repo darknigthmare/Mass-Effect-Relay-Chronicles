@@ -668,10 +668,24 @@ export class WorldView {
 
   setStoryContext(context = null) {
     const strings = value => [...new Set(Array.isArray(value) ? value.filter(item => typeof item === 'string') : [])];
+    const assignmentContacts = [], contactIds = new Set(), bounds = WORLD_ZONES.citadel.bounds;
+    for (const contact of Array.isArray(context?.assignmentContacts) ? context.assignmentContacts : []) {
+      if (!contact || typeof contact.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(contact.id) || contactIds.has(contact.id)
+        || typeof contact.label !== 'string' || !contact.label.trim() || typeof contact.speaker !== 'string' || !contact.speaker.trim()
+        || typeof contact.assignmentId !== 'string' || !contact.assignmentId
+        || !Number.isFinite(contact.x) || !Number.isFinite(contact.z)
+        || contact.x < bounds.minX + .4 || contact.x > bounds.maxX - .4 || contact.z < bounds.minZ + .4 || contact.z > bounds.maxZ - .4) continue;
+      contactIds.add(contact.id);
+      assignmentContacts.push({
+        id: contact.id, label: contact.label, speaker: contact.speaker, assignmentId: contact.assignmentId,
+        x: contact.x, z: contact.z, ...(typeof contact.portrait === 'string' ? { portrait: contact.portrait } : {}),
+      });
+    }
     const next = context && typeof context === 'object' ? {
       recruited: strings(context.recruited), lost: strings(context.lost), completed: strings(context.completed),
       visitedZones: strings(context.visitedZones ?? context.story?.visitedZones),
       flags: { jenkinsLost: context.flags?.jenkinsLost === true },
+      assignmentContacts,
     } : null;
     if (next?.flags.jenkinsLost && !next.lost.includes('jenkins')) next.lost.push('jenkins');
     if (JSON.stringify(next) === JSON.stringify(this.storyContext)) return;
@@ -865,7 +879,17 @@ export class WorldView {
       const recruit = this.zoneId === 'citadel' && CITADEL_RECRUITS[poi.id];
       return !recruit || !this.storyContext || !this.storyContext.recruited.includes(recruit) && !this.storyContext.lost.includes(recruit);
     });
-    return [...pois, ...this.getConversationPOIs()];
+    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs()];
+  }
+  getAssignmentPOIs() {
+    if (this.zoneId !== 'citadel') return [];
+    // These contacts currently have named interaction markers, not reviewed character assets.
+    return (this.storyContext?.assignmentContacts || []).map(contact => ({
+      id: `citadel:assignment-${contact.id}`, type: 'dialogue', label: contact.label,
+      assignmentContactId: contact.id, assignmentId: contact.assignmentId, speaker: contact.speaker,
+      x: contact.x, z: contact.z, cleared: false,
+      ...(contact.portrait ? { portrait: contact.portrait } : {}),
+    }));
   }
   getNearby() {
     let nearest = null, distance = 2.65;

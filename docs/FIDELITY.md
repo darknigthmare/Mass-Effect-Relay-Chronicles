@@ -30,15 +30,25 @@ Garrus et Wrex peuvent être recrutés avant ou après l’audience du Conseil ;
 
 Les tests correspondants sont `tests/story.test.js`, `tests/recruitment.test.js`, `tests/story-world.test.js` et `npm run test:story`. Les rapports courants restent dans `test-results/` et les preuves conservées sont référencées dans l’état de livraison.
 
+## Premières assignations de la Citadelle
+
+Retour à la maison suit la demande de Samesh Bhatia, l’échange avec Bosker puis le compte rendu à la famille, avec restitution du corps de Nirali ou poursuite des recherches. Affaire familiale propose deux réponses au désaccord de Rebekah et Michael après une première mission de l’enquête. Le Fan propose l’autographe, la photographie puis la dissuasion de Conrad, avec une nouvelle mission parmi Thérum, Féros et Novéria entre chaque rencontre. Les jalons sont enregistrés au moment de l’autographe et de la photographie, y compris si le premier contact arrive tard. De simples allers-retours ne débloquent pas la rencontre suivante. Si ces missions sont déjà épuisées, le journal explique pourquoi cette assignation ne peut plus avancer dans la chronique.
+
+Les étapes et les issues sont sauvegardées, et chaque assignation terminée attribue une seule fois 50 XP. Ce montant est un choix d’équilibrage de l’adaptation ATB. Le journal distingue Missions, Assignations et Rapports, puis sépare les assignations en cours et terminées. Les contacts utilisent des marqueurs nommés dans la carte condensée ; leurs sprites et portraits dédiés restent à produire. Les conditions de persuasion, l’ensemble des répliques et les autres issues restent à reconstituer. Ces trois fiches sont donc des Prototypes.
+
+Les tests correspondants sont `tests/assignments.test.js`, `tests/assignment-world.test.js` et `npm run test:assignments`. La migration v1 initialise uniquement les données absentes et refuse les étapes ou issues incompatibles avec l’enquête.
+
 ## État du contenu restant
 
-Les 100 sous-zones, 91 liaisons et 62 missions secondaires/DLC du catalogue ne constituent pas encore des parcours jouables. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les modèles d’équipement, les animations et les campagnes ultérieures restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
+Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 62 fiches de missions secondaires/DLC, trois ont un prototype jouable et les 59 autres restent Définies. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les modèles d’équipement, les animations et les campagnes ultérieures restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
 
 Pour reproduire une scène précisément, il faut identifier l’édition, les étapes et conditions, les références de carte ou de costume et les embranchements attendus. Le dépôt conserve des liens de manuels et de guides, mais pas un relevé primaire complet de ces éléments. Les captures de `docs/screenshots/` représentent le prototype.
 
 Les tentatives de consultation du manuel EA et de la page officielle comparant les éditions ont reçu un refus HTTP CONNECT 403 du proxy de cet environnement. Les domaines concernés sont `eaassets-a.akamaihd.net` et `www.ea.com`. Cette restriction empêche leur consultation ici ; elle ne prouve pas que les documents n’existent plus. La comparaison original/Legendary Edition reste à établir pour les détails qui diffèrent.
 
 Un brouillon réseau ajoute `eaassets-a.akamaihd.net`, `www.ea.com`, `na.llnet.bioware.cdn.ea.com`, `primagames.com`, `masseffect.fandom.com` et `api.github.com`. Il doit être revu et enregistré dans les paramètres de l’environnement, puis publié pour activation. L’enregistrement du brouillon seul ne modifie pas le réseau de la machine courante. L’accès Git natif au dépôt fonctionne et permet les pushes sur `main` ; cet accès ne garantit pas l’accès à l’API GitHub.
+
+La préparation Vercel ajoute `api.vercel.com`, `vercel.com` et une exigence de secret personnel `VERCEL_TOKEN`. La liaison distante attend l’activation de ces accès et une identité Vercel utilisable. La configuration web, les commandes de liaison et le résultat du contrôle d’accès sont dans [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Auditer les fiches
 

@@ -84,7 +84,10 @@
       ],
       "animationLimit": "Une planche Shepard de 16 images / 4 directions est au stade Prototype. Face/dos en trois-quarts, profils latéraux et cycle à nettoyer. Huit directions et bibliothèque d’actions complètes non validées.",
       "conversationPointCount": 9,
-      "conversationTopicCount": 18
+      "conversationTopicCount": 18,
+      "assignmentCount": 3,
+      "assignmentContactCount": 4,
+      "assignmentLimit": "Trois assignations de Citadelle condensées ; dialogues et emplacements réécrits, contrôles de persuasion et variantes complets à produire. Les 59 autres fiches secondaires/DLC restent Définies."
     }
   },
   "sources": [
@@ -171,6 +174,12 @@
       "title": "Conception Relay Chronicles",
       "url": null,
       "scope": "Décisions du fan game ; aucune prétention de canon officiel"
+    },
+    {
+      "id": "ME1-CITADEL-ASSIGNMENTS",
+      "title": "Assignations de la Citadelle — index secondaire à vérifier",
+      "url": "https://masseffect.fandom.com/wiki/Assignments",
+      "scope": "Pistes de comparaison pour Homecoming, Family Matter et The Fan. Pages non consultées depuis cet environnement ; contrôle du jeu et de son édition requis."
     }
   ],
   "categories": [
@@ -906,19 +915,19 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
-      "reference": "Nom et rôle à recouper dans le jeu et son codex ; guide utilisé comme point de départ.",
-      "sourceId": "PRIMA-PROLOGUE",
-      "sourceUrl": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
+      "reference": "Page secondaire proposée pour comparaison ; non consultée dans cet environnement. Noms, conditions, embranchements et édition à recouper dans le jeu avant validation canonique.",
+      "sourceId": "ME1-CITADEL-ASSIGNMENTS",
+      "sourceUrl": "https://masseffect.fandom.com/wiki/Citadel:_The_Fan",
       "description": "Admirateur récurrent de Shepard.",
       "acceptance": "Progression de ses rencontres sans répétition prématurée.",
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/npcs/NPC-conrad-verner.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/assignment-data.js",
+      "gameKey": "ASSIGNMENT_CONTACTS[conrad-verner]",
+      "notes": "Trois rencontres conditionnées à l’enquête ; aucun avancement par simple revisite et aucune récompense répétable. Les autres issues canoniques restent à produire. Marqueur nommé et dialogue disponibles ; aucun portrait ni corps de PNJ dédié. Texte et position condensés à comparer avec l’original. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "NPC-emily-wong",
@@ -1200,19 +1209,19 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
-      "reference": "Nom et rôle à recouper dans le jeu et son codex ; guide utilisé comme point de départ.",
-      "sourceId": "PRIMA-PROLOGUE",
-      "sourceUrl": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
+      "reference": "Page secondaire proposée pour comparaison ; non consultée dans cet environnement. Noms, conditions, embranchements et édition à recouper dans le jeu avant validation canonique.",
+      "sourceId": "ME1-CITADEL-ASSIGNMENTS",
+      "sourceUrl": "https://masseffect.fandom.com/wiki/Citadel:_Homecoming",
       "description": "Demande la restitution du corps de son épouse.",
       "acceptance": "Sujet traité sans récompense comique.",
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/npcs/NPC-samesh-bhatia.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/assignment-data.js",
+      "gameKey": "ASSIGNMENT_CONTACTS[samesh-bhatia]",
+      "notes": "Interlocuteur de Retour à la maison, demande, attente et issue de la restitution/recherche persistantes. Marqueur nommé et dialogue disponibles ; aucun portrait ni corps de PNJ dédié. Texte et position condensés à comparer avec l’original. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "NPC-bosker",
@@ -1221,19 +1230,19 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
-      "reference": "Nom et rôle à recouper dans le jeu et son codex ; guide utilisé comme point de départ.",
-      "sourceId": "PRIMA-PROLOGUE",
-      "sourceUrl": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
+      "reference": "Page secondaire proposée pour comparaison ; non consultée dans cet environnement. Noms, conditions, embranchements et édition à recouper dans le jeu avant validation canonique.",
+      "sourceId": "ME1-CITADEL-ASSIGNMENTS",
+      "sourceUrl": "https://masseffect.fandom.com/wiki/Citadel:_Homecoming",
       "description": "Responsable administratif de la restitution.",
       "acceptance": "Conditions de persuasion traçables.",
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/npcs/NPC-bosker.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/assignment-data.js",
+      "gameKey": "ASSIGNMENT_CONTACTS[bosker]",
+      "notes": "Interlocuteur disponible après la demande de Samesh ; les deux issues sont conservées. Les seuils de persuasion canoniques ne sont pas implémentés. Marqueur nommé et dialogue disponibles ; aucun portrait ni corps de PNJ dédié. Texte et position condensés à comparer avec l’original. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "NPC-admiral-kahoku",
@@ -17887,7 +17896,7 @@
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:journal-de-mission",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Trois onglets Missions/Assignations/Rapports. Les assignations commencées affichent objectif et issue ; celles qui sont terminées quittent le groupe actif, sans doublon de texte. Les états d’échec et le catalogue complet restent à intégrer. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "SYS-codex",
@@ -21760,19 +21769,24 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
-      "assetStatus": "À produire",
-      "reference": "Liste de couverture des affectations ; titres français et déclencheurs à recouper dans ME1.",
-      "sourceId": "PRIMA-FEROS",
-      "sourceUrl": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-noveria-and-feros/feros-assignments",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Page secondaire proposée pour comparaison ; non consultée dans cet environnement. Noms, conditions, embranchements et édition à recouper dans le jeu avant validation canonique.",
+      "sourceId": "ME1-CITADEL-ASSIGNMENTS",
+      "sourceUrl": "https://masseffect.fandom.com/wiki/Citadel:_Homecoming",
       "description": "Demande de Samesh Bhatia.",
       "acceptance": "Résolution par dialogue et résultat explicités.",
-      "dependencies": [],
+      "dependencies": [
+        "NPC-samesh-bhatia",
+        "NPC-bosker",
+        "SYS-dialogue-a-choix",
+        "SYS-journal-de-mission"
+      ],
       "priority": "P1",
       "plannedPath": "content/side_quests/SIDE-citadelle-retour-a-la-maison.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/assignment-data.js",
+      "gameKey": "ASSIGNMENTS.homecoming",
+      "notes": "Demande de Samesh, échange avec Bosker et retour à la famille ; deux issues conservées (restitution du corps ou poursuite des recherches). Les contrôles de persuasion, la totalité des répliques et les lieux exacts restent à reconstituer. Réécritures françaises concises et points de contact dans la Citadelle condensée, sans sprites dédiés ni doublage. Récompense fixe de 50 XP une seule fois par assignation : réglage de l’adaptation ATB, pas valeur canonique certifiée. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "SIDE-citadelle-le-fan",
@@ -21781,19 +21795,23 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
-      "assetStatus": "À produire",
-      "reference": "Liste de couverture des affectations ; titres français et déclencheurs à recouper dans ME1.",
-      "sourceId": "PRIMA-FEROS",
-      "sourceUrl": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-noveria-and-feros/feros-assignments",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Page secondaire proposée pour comparaison ; non consultée dans cet environnement. Noms, conditions, embranchements et édition à recouper dans le jeu avant validation canonique.",
+      "sourceId": "ME1-CITADEL-ASSIGNMENTS",
+      "sourceUrl": "https://masseffect.fandom.com/wiki/Citadel:_The_Fan",
       "description": "Rencontres successives avec Conrad Verner.",
       "acceptance": "Évolution entre visites sans boucler la récompense.",
-      "dependencies": [],
+      "dependencies": [
+        "NPC-conrad-verner",
+        "SYS-dialogue-a-choix",
+        "SYS-journal-de-mission"
+      ],
       "priority": "P1",
       "plannedPath": "content/side_quests/SIDE-citadelle-le-fan.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/assignment-data.js",
+      "gameKey": "ASSIGNMENTS.fan",
+      "notes": "Autographe, photographie puis dissuasion, avec une nouvelle étape parmi Thérum, Féros et Novéria entre chaque rencontre. Les jalons du premier contact et de la photo sont conservés. Les simples allers-retours ne font pas progresser la quête. Refus, intimidation et conséquences ultérieures restent à produire. Réécritures françaises concises et points de contact dans la Citadelle condensée, sans sprites dédiés ni doublage. Récompense fixe de 50 XP une seule fois par assignation : réglage de l’adaptation ATB, pas valeur canonique certifiée. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "SIDE-citadelle-la-s-ur-de-rita",
@@ -22012,19 +22030,22 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
-      "assetStatus": "À produire",
-      "reference": "Liste de couverture des affectations ; titres français et déclencheurs à recouper dans ME1.",
-      "sourceId": "PRIMA-FEROS",
-      "sourceUrl": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-noveria-and-feros/feros-assignments",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Page secondaire proposée pour comparaison ; non consultée dans cet environnement. Noms, conditions, embranchements et édition à recouper dans le jeu avant validation canonique.",
+      "sourceId": "ME1-CITADEL-ASSIGNMENTS",
+      "sourceUrl": "https://masseffect.fandom.com/wiki/Citadel:_Family_Matter",
       "description": "Débat familial lié à une grossesse.",
       "acceptance": "Choix de dialogue vérifié avec prudence narrative.",
-      "dependencies": [],
+      "dependencies": [
+        "SYS-dialogue-a-choix",
+        "SYS-journal-de-mission"
+      ],
       "priority": "P1",
       "plannedPath": "content/side_quests/SIDE-citadelle-affaire-familiale.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/assignment-data.js",
+      "gameKey": "ASSIGNMENTS.family",
+      "notes": "Discussion Rebekah/Michael après une étape principale de l’enquête ; deux prises de position persistantes. Aucun chiffre de risque ni résultat médical inventé. Les conditions et variantes intégrales restent à recouper. Réécritures françaises concises et points de contact dans la Citadelle condensée, sans sprites dédiés ni doublage. Récompense fixe de 50 XP une seule fois par assignation : réglage de l’adaptation ATB, pas valeur canonique certifiée. Contrôles fonctionnels : tests/assignments.test.js, tests/assignment-world.test.js et scripts/assignments-browser.mjs ; rapport docs/qa/assignments-and-deployment-report.json."
     },
     {
       "id": "SIDE-citadelle-negociateur-asari",
