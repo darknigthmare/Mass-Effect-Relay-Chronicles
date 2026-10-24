@@ -278,7 +278,8 @@ try {
   await action('chronicle-party', 'ME2-CHR-SAMARA').click(); await action('chronicle-party', 'ME2-CHR-JACK').click();
   assert.ok((await chronicle()).party.includes('ME2-CHR-JACK'));
   const jack = await page.evaluate(async () => (await import('/src/chronicles.js')).buildChronicleActor(window.__RELAY_TEST__.getChronicle(), 'ME2-CHR-JACK'));
-  assert.deepEqual(jack.powers, [], 'Unimplemented Jack powers are not replaced with invented ME1 abilities');
+  assert.deepEqual(jack.powers, ['pull', 'shockwave'], 'Jack uses her implemented power bindings without an invented ME1 ability');
+  assert.equal(jack.powers.includes('lift'), false, 'Pull is not an alias for ME1 Lift');
   await action('chronicle-party', 'ME2-CHR-JACK').click();
   for (const id of ['ME2-CHR-MIRANDA', 'ME2-CHR-JACOB']) await action('chronicle-party', id).click();
   await blockedGearOption('ME2-CHR-MIRANDA', 'armor', 'ME2-EQP-N7');

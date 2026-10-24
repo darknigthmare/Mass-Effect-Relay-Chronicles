@@ -1,8 +1,8 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-10-23** · Version 0.2.0
+Mise à jour : **2026-10-24** · Version 0.2.0
 
-Ce catalogue contient **1 327 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
+Ce catalogue contient **1 330 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
@@ -14,7 +14,7 @@ Ce catalogue contient **1 327 fiches**, organisées en **26 catégories** et *
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
 | Défini | 1 035 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 286 | Présent sous une forme simplifiée à reprendre. |
+| Prototype | 289 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
 | Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
@@ -24,9 +24,9 @@ Un statut de contenu et un statut d’asset décrivent deux choses distinctes. U
 | --- | ---: | --- |
 | Confirmé | 17 | Existence ou règle vérifiée dans la source indiquée. Cela ne valide pas un asset. |
 | Référence à vérifier | 522 | Nom, rôle, apparence ou conditions à recouper avant production finale. |
-| Adaptation | 788 | Règle, découpage ou livrable original de ce fan game. |
+| Adaptation | 791 | Règle, découpage ou livrable original de ce fan game. |
 
-Le périmètre comprend **1 268 fiches ME1**, **33 fiches ME2**, **24 fiches ME3** et **2 systèmes transversaux**. Les 57 fiches d’extension futures du classeur principal restent séparées ; les nouveaux essais sont suivis dans les classeurs propres aux œuvres. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
+Le périmètre comprend **1 268 fiches ME1**, **33 fiches ME2**, **24 fiches ME3** et **5 systèmes transversaux**. Les 57 fiches d’extension futures du classeur principal restent séparées ; les nouveaux essais sont suivis dans les classeurs propres aux œuvres. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
 
 ## Couverture du prototype
 
@@ -44,7 +44,9 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | 14 quêtes annexes : trois historiques et 11 opérations ajoutées à la Citadelle et Féros, avec 43 nouvelles étapes | Trois assignations historiques et onze opérations supplémentaires. Quatre scans de veilleurs, dialogues réécrits, cartes condensées, quatre combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire. Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
 | Équipement | 52 articles jouables : 20 armes, 16 armures, 12 modules et 4 outils, achat/vente, comparaison et neuf emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Formations explicites, restrictions de morphologie, poids, niveau et bio/tech. Modules restitués au retrait de leur pièce. Prix, points et ports fixes adaptés ; l’arme et la tenue dessinées ne changent pas. Voir [complément et sources](research/loadout-extension-sources.md). |
-| Chroniques | 28 œuvres, 48 segments documentés, 10 essais tactiques, 34 personnages sélectionnables et 68 équipements | Sessions et sauvegardes séparées de ME1 ; 4 oppositions référencées, 3 simulations à cibles abstraites et 3 ateliers. Réglages ATB adaptés, sans nouveaux sprites ni campagne intégrale. Voir [périmètre et utilisation](CHRONICLES.md). |
+| Chroniques | 28 œuvres, 48 segments documentés, 10 essais tactiques, 34 personnages sélectionnables et 70 équipements | Sessions et sauvegardes séparées de ME1 ; dix essais et neuf lectures courtes. Pouvoirs, chargeurs et modules utilisent des réglages ATB adaptés. Aucun nouveau sprite, niveau, dialogue intégral ou campagne complète. Voir [périmètre et utilisation](CHRONICLES.md). |
+| Pouvoirs des Chroniques | 40 fiches reliées à 18 actions, dont 10 nouvelles ; 15 préparations de classe ou de compétences | Arbres et acquisition complets non simulés ; statistiques ATB de base conservées. Les deux familles de modules ME3 sont limitées aux fusils d’assaut conventionnels à clips. |
+| Lectures documentaires | 9 parcours et 42 pages sourcées | Paraphrases factuelles avec navigation et découvertes persistantes. Aucun personnage de livre rendu jouable, niveau créé, dialogue intégral ou choix canonique inventé. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
 | Animation | 32 images de marche pour les deux apparences de Shepard et 4 poses clés de combat féminines, au stade Prototype | 32 frames de marche pour les deux apparences de Shepard, quatre directions chacune ; quatre poses de combat féminines. Raccords, huit directions, variantes par arme et mouvements des compagnons restent à produire. Les contacts féminins 0 et 2 restent proches dans certaines orientations. |
 
@@ -93,10 +95,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Sprites | 77 | 42 | 35 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 42 | 8 | 31 | 0 | 3 | Interface et règles de jeu |
+| Systèmes et UI | 45 | 8 | 34 | 0 | 3 | Interface et règles de jeu |
 | QA | 52 | 52 | 0 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 327** | **1 035** | **286** | **3** | **3** | |
+| **Total** | **1 330** | **1 035** | **289** | **3** | **3** | |
 
 ## Lire une fiche
 

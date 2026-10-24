@@ -8,6 +8,8 @@ export const CAMPAIGN_CONTEXT = Object.freeze({ mediaId: 'ME1', periodId: 'me1',
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const FORBIDDEN = new Set(['__proto__', 'prototype', 'constructor']);
 const SESSION_KEYS = ['version', 'context', 'scenarioId', 'discovered', 'notes', 'party', 'loadouts', 'cleared'];
+const OPTIONAL_SESSION_KEYS = ['builds', 'readingProgress'];
+const EQUIPMENT_SLOTS = ['weapon', 'armor', 'weaponMod', 'weaponMod2'];
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/;
 const isId = value => typeof value === 'string' && ID.test(value) && !FORBIDDEN.has(value);
 const fail = reason => ({ ok: false, reason });
@@ -86,7 +88,7 @@ const searchable = value => String(value ?? '').normalize('NFD').replace(/[\u030
 export function listAvailable(rawContext, { group = 'all', query = '' } = {}) {
   try {
     const context = normalizeContext(rawContext);
-    if (!context || typeof query !== 'string' || query.length > 300 || !['all', 'actors', 'equipment', 'story'].includes(group)) return [];
+    if (!context || typeof query !== 'string' || query.length > 300 || !['all', 'actors', 'equipment', 'powers', 'story'].includes(group)) return [];
     const records = group === 'all' ? UNIVERSE_RECORDS : UNIVERSE_GROUPS[group];
     if (!Array.isArray(records)) return [];
     const term = searchable(query.trim());
@@ -97,13 +99,14 @@ export function listAvailable(rawContext, { group = 'all', query = '' } = {}) {
 
 export function createChronicleSession(rawContext) {
   const context = normalizeContext(rawContext);
-  return context ? { version: 1, context, scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, cleared: [] } : null;
+  return context ? { version: 1, context, scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, builds: {}, readingProgress: {}, cleared: [] } : null;
 }
 
 /** Pure base validator. chronicles.js additionally checks scenarios, actors and gear. */
 export function normalizeChronicleSession(raw) {
   try {
-    if (!safeTree(raw) || !exact(raw, SESSION_KEYS) || raw.version !== 1) return null;
+    if (!safeTree(raw) || !plain(raw) || !SESSION_KEYS.every(key => OWN(raw, key))
+      || Reflect.ownKeys(raw).some(key => ![...SESSION_KEYS, ...OPTIONAL_SESSION_KEYS].includes(key)) || raw.version !== 1) return null;
     const context = normalizeContext(raw.context);
     if (!context || raw.scenarioId !== null && !isId(raw.scenarioId)
       || !uniqueIds(raw.discovered, 2000) || !uniqueIds(raw.party, 3) || !uniqueIds(raw.cleared, 1000)
@@ -118,12 +121,19 @@ export function normalizeChronicleSession(raw) {
     const loadouts = {};
     if (Object.keys(raw.loadouts).length > raw.party.length) return null;
     for (const [actorId, loadout] of Object.entries(raw.loadouts)) {
-      if (!raw.party.includes(actorId) || !exact(loadout, ['weapon', 'armor'])
-        || !['weapon', 'armor'].every(slot => loadout[slot] === null || isId(loadout[slot]))) return null;
-      loadouts[actorId] = { weapon: loadout.weapon, armor: loadout.armor };
+      if (!raw.party.includes(actorId) || !(exact(loadout, ['weapon', 'armor']) || exact(loadout, EQUIPMENT_SLOTS))
+        || !EQUIPMENT_SLOTS.every(slot => !OWN(loadout, slot) || loadout[slot] === null || isId(loadout[slot]))) return null;
+      loadouts[actorId] = Object.fromEntries(EQUIPMENT_SLOTS.map(slot => [slot, loadout[slot] ?? null]));
     }
+    const rawBuilds = OWN(raw, 'builds') ? raw.builds : {};
+    if (!plain(rawBuilds) || Object.keys(rawBuilds).length > raw.party.length
+      || Object.entries(rawBuilds).some(([actorId, buildId]) => !raw.party.includes(actorId) || !isId(buildId))) return null;
+    const builds = Object.fromEntries(raw.party.map(actorId => [actorId, rawBuilds[actorId] ?? 'default']));
+    const rawProgress = OWN(raw, 'readingProgress') ? raw.readingProgress : {};
+    if (!plain(rawProgress) || Object.keys(rawProgress).length > 500
+      || Object.entries(rawProgress).some(([storyId, index]) => !isId(storyId) || !Number.isInteger(index) || index < 0 || index > 999)) return null;
     return { version: 1, context, scenarioId: raw.scenarioId, discovered: [...raw.discovered], notes,
-      party: [...raw.party], loadouts, cleared: [...raw.cleared] };
+      party: [...raw.party], loadouts, builds, readingProgress: { ...rawProgress }, cleared: [...raw.cleared] };
   } catch { return null; }
 }
 

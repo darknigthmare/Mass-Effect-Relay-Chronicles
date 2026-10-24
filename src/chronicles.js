@@ -1,7 +1,8 @@
 // Independent tactical chronicles. No function reads or writes the ME1 save key.
 import { createChronicleSession, normalizeChronicleSession, normalizeContext, canAccessContent } from './continuity.js';
-import { CHRONICLE_SCENARIOS, getUniverseActor, canUseUniverseActor, universeActorFor } from './universe-actors.js';
-import { listUniverseEquipment, normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects } from './universe-equipment.js';
+import { CHRONICLE_SCENARIOS, getUniverseActor, canUseUniverseActor, universeActorFor, listUniverseBuilds, getUniverseBuild } from './universe-actors.js';
+import { listUniverseEquipment, getUniverseEquipment, canEquipUniverseItem, normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects } from './universe-equipment.js';
+import { listChronicleStories, getChronicleStory, readChronicleStoryStep } from './chronicle-story.js';
 import { createBattle } from './combat.js';
 
 export const CHRONICLE_FORMAT = 'relay-chronicles.chronicle';
@@ -18,7 +19,7 @@ const actorCheck = (context, id, scenarioId) => {
   return check === true || check?.ok === true;
 };
 const battleSnapshots = new WeakMap();
-const fingerprint = session => JSON.stringify([session.context, session.scenarioId, session.party, session.loadouts]);
+const fingerprint = session => JSON.stringify([session.context, session.scenarioId, session.party, session.loadouts, session.builds]);
 
 export function listChronicleScenarios(rawContext) {
   const context = normalizeContext(rawContext);
@@ -30,6 +31,10 @@ export function normalizeChronicle(raw) {
   try {
     const session = normalizeChronicleSession(raw);
     if (!session) return null;
+    for (const [storyId, index] of Object.entries(session.readingProgress)) {
+      const story = getChronicleStory(storyId, session.context), page = story?.steps[index];
+      if (!page || ![story.progressRecordId, ...page.recordIds].every(id => session.discovered.includes(id))) return null;
+    }
     const allowed = listChronicleScenarios(session.context);
     if (!session.cleared.every(id => allowed.some(scenario => scenario.id === id))) return null;
     if (session.scenarioId === null) return session.party.length === 0 && Object.keys(session.loadouts).length === 0 ? session : null;
@@ -38,7 +43,12 @@ export function normalizeChronicle(raw) {
       || !session.party.every(id => scenario.actorIds.includes(id) && actorCheck(session.context, id, scenario.id))
       || (scenario.exclusiveActorGroups || []).some(group => session.party.filter(id => group.includes(id)).length > 1)) return null;
     const loadouts = normalizeChronicleLoadouts(session.loadouts, session.context, session.party, scenario.id);
-    return loadouts ? { ...session, loadouts } : null;
+    if (!loadouts) return null;
+    for (const actorId of session.party) {
+      const build = getUniverseBuild(actorId, session.context, session.builds[actorId], scenario.id);
+      if (!build || loadouts[actorId].weapon && !build.allowedWeapons.includes(getUniverseEquipment(loadouts[actorId].weapon)?.weaponType)) return null;
+    }
+    return { ...session, loadouts };
   } catch { return null; }
 }
 
@@ -60,15 +70,17 @@ export function selectChronicleScenario(raw, scenarioId) {
   if (!session) return fail('Chronique invalide.');
   const replacement = createChronicle(session.context, scenarioId);
   if (!replacement) return fail('Cet essai n’appartient pas à cette période.');
-  return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes, cleared: session.cleared } };
+  return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes,
+    readingProgress: session.readingProgress, cleared: session.cleared } };
 }
 
 export function setChronicleParty(raw, actorIds) {
   const session = normalizeChronicle(raw);
-  const selection = session && normalizeChronicleSession({ ...session, party: actorIds, loadouts: {} });
+  const selection = session && normalizeChronicleSession({ ...session, party: actorIds, loadouts: {}, builds: {} });
   if (!selection || selection.party.length < 1) return fail('Choisissez de un à trois combattants disponibles.');
   const loadouts = Object.fromEntries(selection.party.filter(id => own(session.loadouts, id)).map(id => [id, session.loadouts[id]]));
-  const updated = normalizeChronicle({ ...session, party: selection.party, loadouts });
+  const builds = Object.fromEntries(selection.party.map(id => [id, session.builds[id] ?? 'default']));
+  const updated = normalizeChronicle({ ...session, party: selection.party, loadouts, builds });
   return updated ? { ok: true, session: updated } : fail('Un personnage est indisponible dans cet essai.');
 }
 
@@ -85,26 +97,83 @@ export function getChronicleRoster(raw) {
   const session = normalizeChronicle(raw), scenario = scenarioFor(session?.scenarioId);
   return scenario ? scenario.actorIds.filter(id => actorCheck(session.context, id, scenario.id)).map(id => {
     const actor = getUniverseActor(id);
-    return { ...copy(actor), selected: session.party.includes(id) };
+    const native = universeActorFor(id, session.context, session.builds[id] ?? 'default', scenario.id);
+    return { ...copy(actor), ...(native?.missingPowers ? { missingPowers: [...native.missingPowers] } : {}), selected: session.party.includes(id) };
   }) : [];
 }
 
-export function getChronicleGear(raw, actorId) {
+export function getChronicleGear(raw, actorId, slot) {
   const session = normalizeChronicle(raw);
-  return session && session.party.includes(actorId) ? listUniverseEquipment(session.context, { actorId, scenarioId: session.scenarioId }) : [];
+  if (!session || !session.party.includes(actorId)
+    || slot !== undefined && !['weapon', 'armor', 'weaponMod', 'weaponMod2'].includes(slot)) return [];
+  const build = getUniverseBuild(actorId, session.context, session.builds[actorId], session.scenarioId);
+  return listUniverseEquipment(session.context, { actorId, scenarioId: session.scenarioId, loadout: session.loadouts[actorId] }).map(item => {
+    if (item.kind === 'weapon' && item.runtimeSupported && !build.allowedWeapons.includes(item.weaponType)) {
+      const reason = 'Cette famille d’arme ne fait pas partie de cette préparation de classe.';
+      return { ...item, compatible: false, compatibleSlots: [], playable: false,
+        slotReasons: { ...item.slotReasons, weapon: reason }, reason };
+    }
+    if (slot === undefined) return item;
+    const check = canEquipUniverseItem(session.context, actorId, item.id, slot, session.scenarioId, session.loadouts[actorId]);
+    return { ...item, compatible: check.ok, playable: check.ok, reason: check.reason };
+  });
+}
+
+export function getChronicleBuilds(raw, actorId) {
+  const session = normalizeChronicle(raw);
+  return session && session.party.includes(actorId) ? listUniverseBuilds(actorId, session.context, session.scenarioId) : [];
+}
+
+/** Class preparation may withdraw an incompatible weapon; it never creates stock. */
+export function setChronicleBuild(raw, actorId, buildId) {
+  const session = normalizeChronicle(raw);
+  if (!session || !session.party.includes(actorId)) return fail('Combattant indisponible dans cette chronique.');
+  const build = getUniverseBuild(actorId, session.context, buildId, session.scenarioId);
+  if (!build) return fail('Préparation inconnue ou étrangère à cette œuvre.');
+  const loadouts = copy(session.loadouts), loadout = loadouts[actorId], clearedEquipment = [];
+  if (loadout.weapon && !build.allowedWeapons.includes(getUniverseEquipment(loadout.weapon)?.weaponType)) {
+    for (const slot of ['weapon', 'weaponMod', 'weaponMod2']) {
+      if (loadout[slot]) clearedEquipment.push(loadout[slot]);
+      loadout[slot] = null;
+    }
+  }
+  const updated = normalizeChronicle({ ...session, loadouts, builds: { ...session.builds, [actorId]: build.id } });
+  return updated ? { ok: true, session: updated, clearedEquipment } : fail('Cette préparation est incompatible avec le groupe.');
+}
+
+export const listChronicleReadings = rawContext => listChronicleStories(rawContext);
+
+export function getChronicleReading(raw, storyId) {
+  const session = normalizeChronicle(raw);
+  if (!session || typeof storyId !== 'string') return null;
+  const result = readChronicleStoryStep(session.context, storyId, session.readingProgress[storyId] ?? 0, session.discovered);
+  return result.ok ? result : null;
+}
+
+/** Reading records facts visited, without replacing personal notes or story choices. */
+export function readChroniclePage(raw, storyId, index) {
+  const session = normalizeChronicle(raw);
+  if (!session || typeof storyId !== 'string') return fail('Chronique ou parcours invalide.');
+  const reading = readChronicleStoryStep(session.context, storyId,
+    index === undefined ? session.readingProgress[storyId] ?? 0 : index, session.discovered);
+  if (!reading.ok) return reading;
+  const updated = normalizeChronicle({ ...session, discovered: reading.discovered,
+    readingProgress: { ...session.readingProgress, [storyId]: reading.index } });
+  return updated ? { ok: true, session: updated, reading } : fail('Progression documentaire invalide.');
 }
 
 /** Apply loadout bonuses once, on the actor's independent base definition. */
 export function buildChronicleActor(raw, actorId) {
   const session = normalizeChronicle(raw);
   if (!session || !session.party.includes(actorId)) return null;
-  const base = universeActorFor(actorId, session.context);
+  const base = universeActorFor(actorId, session.context, session.builds[actorId], session.scenarioId);
   if (!base) return null;
   const effects = getChronicleEquipmentEffects(session, actorId);
   const hp = base.hp + effects.hp, shield = base.shield + effects.shield;
   const actor = { ...copy(base), hp, maxHp: hp, shield, maxShield: shield,
     attack: base.attack + effects.attack, defense: base.defense + effects.defense,
     weaponHeatMultiplier: (base.weaponHeatMultiplier ?? 1) * effects.weaponHeatMultiplier,
+    weaponDamageMultiplier: (base.weaponDamageMultiplier ?? 1) * (effects.weaponDamageMultiplier ?? 1),
     weaponCoolingBonus: (base.weaponCoolingBonus ?? 0) + effects.weaponCoolingBonus,
     controlResistance: Math.min(.6, (base.controlResistance ?? 0) + effects.controlResistance),
     bioticMultiplier: (base.bioticMultiplier ?? 1) * effects.bioticMultiplier,

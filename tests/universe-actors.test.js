@@ -54,7 +54,7 @@ test('every tactical scenario has real source identifiers and a valid bounded ex
 test('equipment workshops whitelist same-work models without inventing mission possession or armour ownership', () => {
   const workshops = CHRONICLE_SCENARIOS.filter(scene => scene.kind === 'equipment-workshop');
   assert.equal(workshops.length, 3);
-  assert.equal(workshops.reduce((sum, scene) => sum + scene.allowedEquipmentIds.length, 0), 68);
+  assert.equal(workshops.reduce((sum, scene) => sum + scene.allowedEquipmentIds.length, 0), 70);
   for (const scene of workshops) {
     assert.ok(scene.allowedEquipmentIds.every(id => id.startsWith(`${scene.context.mediaId}-`)));
     assert.ok(scene.allowedEquipmentIds.every(id => getUniverseRecord(id)));
@@ -123,8 +123,8 @@ test('work, galaxy, prologue and scenario restrictions cannot become recruitment
 test('native combat profiles use only existing documented power subsets and expose missing mechanics', () => {
   assert.deepEqual(getUniverseActor('ME2-CHR-MIRANDA').powers, ['warp', 'overload']);
   assert.deepEqual(getUniverseActor('GAL-CHR-JACOB').powers, ['stasis', 'overload']);
-  assert.deepEqual(getUniverseActor('ME2-CHR-JACOB').powers, []);
-  assert.deepEqual(getUniverseActor('ME2-CHR-GRUNT').powers, [], 'Fortification is not a biotic Barrier');
+  assert.deepEqual(getUniverseActor('ME2-CHR-JACOB').powers, ['pull']);
+  assert.deepEqual(getUniverseActor('ME2-CHR-GRUNT').powers, ['concussiveShot'], 'Loyalty Fortification remains locked outside a prepared workshop');
   assert.deepEqual(getUniverseActor('MEA-CHR-CORA').powers, [], 'Charge/Nova/Shield Boost are not silently replaced by ME1 abilities');
   assert.equal(getUniverseActor('MEA-CHR-CORA').biotic, true);
   assert.ok(getUniverseActor('MEA-CHR-CORA').missingPowers.includes('Charge'));

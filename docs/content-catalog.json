@@ -2,7 +2,7 @@
   "meta": {
     "title": "Mass Effect Relay Chronicles",
     "version": "0.2.0",
-    "updatedAt": "2026-10-23",
+    "updatedAt": "2026-10-24",
     "language": "fr-FR",
     "referenceEpisode": "ME1",
     "referenceVisual": "Mass Effect 1 / Legendary Edition, version de chaque référence à vérifier",
@@ -115,7 +115,7 @@
         "scenarios": 10,
         "selectableCharacters": 34,
         "partialActorProfiles": 42,
-        "equipmentItems": 68,
+        "equipmentItems": 70,
         "weapons": 58,
         "armors": 10,
         "prototypeWorks": [
@@ -127,7 +127,14 @@
           "RED",
           "PL"
         ],
-        "limit": "Sessions et sauvegardes séparées de ME1 ; 4 oppositions référencées, 3 simulations à cibles abstraites et 3 ateliers. Réglages ATB adaptés, sans nouveaux sprites ni campagne intégrale."
+        "limit": "Sessions et sauvegardes séparées de ME1 ; dix essais et neuf lectures courtes. Pouvoirs, chargeurs et modules utilisent des réglages ATB adaptés. Aucun nouveau sprite, niveau, dialogue intégral ou campagne complète.",
+        "weaponModuleFamilies": 2,
+        "powerCatalogEntries": 40,
+        "activePowerActions": 18,
+        "newPowerActions": 10,
+        "classPreparations": 15,
+        "documentaryReadings": 9,
+        "documentaryPages": 42
       }
     },
     "v02Sources": {
@@ -31329,6 +31336,69 @@
       "assetPath": "src/combat.js",
       "gameKey": "SYS-clips-thermiques",
       "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1."
+    },
+    {
+      "id": "SYS-preparations-chroniques",
+      "category": "systems",
+      "name": "Préparations de classes et pouvoirs des Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Système de l’adaptation ; sources propres aux œuvres et aux fiches de contenu.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Sous-ensembles de six classes Shepard pour ME2/ME3 et de trois préparations Ryder ; pouvoirs et armes disponibles conditionnés au contexte.",
+      "acceptance": "Le profil default des anciennes préparations migre sans classe imposée. Changer de classe retire atomiquement une arme incompatible et ses modules ; loyautés et compétences de prologue restent bornées aux scènes autorisées. Les valeurs demeurent des adaptations ATB.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/chronicles.js",
+      "assetPath": "src/chronicles.js",
+      "gameKey": "SYS-preparations-chroniques",
+      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
+    },
+    {
+      "id": "SYS-modules-chroniques",
+      "category": "systems",
+      "name": "Deux ports de modules dans les Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Système de l’adaptation ; sources propres aux œuvres et aux fiches de contenu.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Modules de canon et de chargeur testables sur fusils d’assaut ME3 à clips, sans transfert d’inventaire ME1.",
+      "acceptance": "Deux familles distinctes, arme parent valide, retrait des modules lors d’un changement d’arme. Le canon renforce uniquement les tirs ; le chargeur réaffecte des munitions de réserve sans en créer. Anciennes préparations à deux slots migrées vers quatre.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/universe-equipment.js",
+      "assetPath": "src/universe-equipment.js",
+      "gameKey": "SYS-modules-chroniques",
+      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
+    },
+    {
+      "id": "SYS-lectures-chroniques",
+      "category": "systems",
+      "name": "Lectures documentaires des Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Système de l’adaptation ; sources propres aux œuvres et aux fiches de contenu.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Neuf parcours de lecture et 42 pages de paraphrases factuelles sourcées, isolés des scénarios de combat.",
+      "acceptance": "Navigation et sources visibles ; contexte exact ; découvertes uniques et position conservées à l’import/reprise. readingProgress reste séparé des notes personnelles. Aucun crédit, recrutement, combat gagné ou choix canonique n’est accordé par une lecture.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/chronicle-story.js",
+      "assetPath": "src/chronicle-story.js",
+      "gameKey": "SYS-lectures-chroniques",
+      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
     }
   ]
 }

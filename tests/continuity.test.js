@@ -87,7 +87,7 @@ test('available lists filter by provenance, category and accent-insensitive Fren
 
 test('new chronicle sessions are independent and contain no campaign inventory or economy', () => {
   const a = createChronicleSession(me2), b = createChronicleSession(me2);
-  assert.deepEqual(a, { version: 1, context: normalizeContext(me2), scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, cleared: [] });
+  assert.deepEqual(a, { version: 1, context: normalizeContext(me2), scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, builds: {}, readingProgress: {}, cleared: [] });
   assert.equal(createChronicleSession({ mediaId: 'ME4', periodId: 'me4' }), null);
   a.party.push('prototype-actor'); a.loadouts['prototype-actor'] = { weapon: null, armor: null };
   a.cleared.push('prototype-scenario');
@@ -103,10 +103,27 @@ test('base session normalization copies selections while leaving gameplay author
   assert.equal(discoverContent(raw, 'ME2-CHR-JACK').ok, true);
   assert.equal(setChronicleNote(raw, 'ME2-CHR-JACK', '  Note personnelle.  ').ok, true);
   const result = normalizeChronicleSession(raw);
-  assert.deepEqual(result, raw); assert.equal(result.notes['ME2-CHR-JACK'], 'Note personnelle.');
+  assert.deepEqual(result, { ...raw, builds: { 'ME2-CHR-JACK': 'default' }, loadouts: { 'ME2-CHR-JACK': { ...raw.loadouts['ME2-CHR-JACK'], weaponMod: null, weaponMod2: null } } }); assert.equal(result.notes['ME2-CHR-JACK'], 'Note personnelle.');
   result.loadouts['ME2-CHR-JACK'].weapon = null; result.context.periodId = 'different'; result.discovered.length = 0;
   assert.equal(raw.loadouts['ME2-CHR-JACK'].weapon, 'ME2-WPN-EXAMPLE'); assert.equal(raw.context.periodId, 'me2');
   assert.deepEqual(raw.discovered, ['ME2-CHR-JACK']);
+});
+
+test('legacy Chronicle versions migrate two equipment slots and absent optional progress without changing notes', () => {
+  const old = createChronicleSession(me2);
+  delete old.builds; delete old.readingProgress;
+  old.party = ['ME2-CHR-JACK']; old.loadouts = { 'ME2-CHR-JACK': { weapon: null, armor: null } };
+  old.discovered = ['ME2-CHR-JACK']; old.notes = { 'ME2-CHR-JACK': 'Une note personnelle à conserver.' };
+  const before = snapshot(old), current = normalizeChronicleSession(old);
+  assert.deepEqual(current.loadouts['ME2-CHR-JACK'], { weapon: null, armor: null, weaponMod: null, weaponMod2: null });
+  assert.deepEqual(current.builds, { 'ME2-CHR-JACK': 'default' });
+  assert.deepEqual(current.readingProgress, {}); assert.deepEqual(current.notes, old.notes);
+  assert.equal(snapshot(old), before); assert.equal(current.version, 1);
+  for (const mutation of [raw => { raw.builds = { stranger: 'soldier' }; }, raw => { raw.readingProgress = { story: -1 }; },
+    raw => { raw.readingProgress = { story: 0.5 }; }, raw => { raw.readingProgress = null; },
+    raw => { raw.loadouts['ME2-CHR-JACK'].weaponMod = null; }, raw => { raw.extra = {}; }]) {
+    const invalid = clone(old); mutation(invalid); assert.equal(normalizeChronicleSession(invalid), null);
+  }
 });
 
 test('base session rejects unknown schema, stale discoveries and malformed selections', () => {

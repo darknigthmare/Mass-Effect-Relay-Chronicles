@@ -7,7 +7,10 @@ import { SCENARIOS, getUniverseActorProfile, canUseUniverseActor } from './unive
 
 const OWN = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const fail = reason => ({ ok: false, reason });
-const SLOTS = Object.freeze(['weapon', 'armor']);
+const LEGACY_SLOTS = Object.freeze(['weapon', 'armor']);
+export const CHRONICLE_EQUIPMENT_SLOTS = Object.freeze([...LEGACY_SLOTS, 'weaponMod', 'weaponMod2']);
+const SLOTS = CHRONICLE_EQUIPMENT_SLOTS;
+const MOD_SLOTS = Object.freeze(['weaponMod', 'weaponMod2']);
 const PREPARATION_NOTE = 'Préparation libre du prototype ; acquisition et déblocages d’origine non simulés. Aucun crédit, stock ou objet transféré depuis ME1.';
 const TUNING_NOTE = 'Budgets et effets adaptés au système ATB ; aucune fidélité numérique ou visuelle 1:1 certifiée.';
 const AMMO = Object.freeze({
@@ -89,6 +92,21 @@ for (const suffix of ['MATTOCK', 'EVISCERATOR', 'INCISOR', 'PARTICLE']) locked(`
   'Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite.', ['infiltrator-weapon-system']);
 locked('GAL-WPN-AVENGER', 'weapon', 'Système d’arme de Galaxy à vérifier ; le nom seul ne détermine pas sa gestion thermique.', ['galaxy-weapon-system']);
 
+// The catalogue establishes modification families, not a particular original
+// model, rank or universal compatibility. This prototype deliberately supports
+// only conventional ME3 assault rifles; the other variants remain unverified.
+for (const [id, modFamily, bonuses] of [
+  ['ME3-EQP-BARREL', 'barrel', { weaponDamageMultiplier: 1.12 }],
+  ['ME3-EQP-MAGAZINE', 'magazine', { magazineCapacityMultiplier: 1.25 }],
+]) definitions[id] = {
+  kind: 'weaponMod', slot: 'weaponMod', allowedSlots: [...MOD_SLOTS], modFamily,
+  weaponTypes: ['assault'], weaponSystems: ['thermal-clip'], bonuses,
+  requiredCapabilities: ['explicit-parent-weapon', 'two-distinct-mod-families'], familyPrototype: true,
+  prototypeDetail: 'Prototype de famille limité aux fusils d’assaut ME3 conventionnels à clips ; aucun modèle, rang, fabricant ni compatibilité universelle d’origine certifiés.',
+};
+locked('ME3-EQP-SCOPE', 'reference', 'La visée, le zoom et la précision propres aux lunettes ne sont pas implémentés.', ['scope-aiming']);
+locked('ME3-EQP-ULTRALIGHT', 'reference', 'La masse du matériel et son effet sur les recharges de pouvoirs ne sont pas implémentés.', ['loadout-weight']);
+
 const freeze = value => {
   if (value && typeof value === 'object') { for (const child of Object.values(value)) freeze(child); Object.freeze(value); }
   return value;
@@ -122,7 +140,7 @@ const scenarioFor = (context, scenarioId) => typeof scenarioId === 'string' ? SC
 }) || null : null;
 
 /** Scene evidence and wearer permissions are checked separately from dossier access. */
-export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenarioId) {
+export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenarioId, loadout) {
   try {
     const context = normalizeContext(rawContext), item = getUniverseEquipment(itemId);
     if (!context) return fail('Œuvre ou segment indisponible.');
@@ -133,8 +151,13 @@ export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenario
     const profile = getUniverseActorProfile(actorId, context);
     if (!profile) return fail('Profil de porteur indisponible.');
     if (!item.runtimeSupported) return fail(item.lockReason);
-    const targetSlot = slot ?? item.slot;
-    if (!SLOTS.includes(targetSlot) || targetSlot !== item.slot) return fail('Cet équipement ne correspond pas à cet emplacement.');
+    const module = item.kind === 'weaponMod';
+    const row = module ? normalizeLoadoutRow(loadout) : null;
+    if (module && !row) return fail('Préparation de l’arme requise pour vérifier ce module.');
+    const targetSlot = slot ?? (module ? MOD_SLOTS.find(candidate => row[candidate] === item.id)
+      || MOD_SLOTS.find(candidate => row[candidate] === null) || item.slot : item.slot);
+    if (!SLOTS.includes(targetSlot) || (module ? !MOD_SLOTS.includes(targetSlot) : targetSlot !== item.slot))
+      return fail('Cet équipement ne correspond pas à cet emplacement.');
     const scenario = scenarioFor(context, scenarioId);
     if (!scenario) return fail('Choisissez un essai tactique attesté pour cette période.');
     if (!Array.isArray(scenario.allowedEquipmentIds) || !scenario.allowedEquipmentIds.includes(item.id))
@@ -144,17 +167,31 @@ export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenario
     if (item.kind === 'weapon' && !profile.allowedWeapons.includes(item.weaponType)) return fail('Cette famille d’arme ne fait pas partie du profil du porteur.');
     if (item.kind === 'armor' && (!item.armorSpecies.includes(profile.armorSpecies) || !item.wearerIds.includes(actorId)))
       return fail('Cette protection est réservée au protagoniste et à la morphologie documentés.');
+    if (module) {
+      const parent = getUniverseEquipment(row.weapon);
+      if (!parent || parent.kind !== 'weapon' || !canEquipUniverseItem(context, actorId, parent.id, 'weapon', scenarioId).ok)
+        return fail('Équipez d’abord une arme explicitement autorisée pour ce porteur et cet atelier.');
+      if (parent.mediaId !== item.mediaId || !item.weaponSystems.includes(parent.weaponSystem) || !item.weaponTypes.includes(parent.weaponType))
+        return fail('Ce prototype de module exige un fusil d’assaut ME3 conventionnel à clips thermiques.');
+      if (MOD_SLOTS.some(candidate => candidate !== targetSlot && getUniverseEquipment(row[candidate])?.modFamily === item.modFamily))
+        return fail('Deux modules de la même famille ne peuvent pas occuper les deux ports de cette arme.');
+    }
     return { ok: true, reason: null, slot: targetSlot, item };
   } catch { return fail('Équipement ou contexte invalide.'); }
 }
 
 /** Lists only dossiers available in this exact segment; references remain non-equippable. */
-export function listUniverseEquipment(rawContext, { actorId, scenarioId } = {}) {
+export function listUniverseEquipment(rawContext, { actorId, scenarioId, loadout } = {}) {
   const context = normalizeContext(rawContext);
   if (!context) return [];
   return UNIVERSE_EQUIPMENT.filter(item => canAccessContent(item.id, context).ok).map(item => {
-    const check = actorId === undefined ? fail(item.lockReason) : canEquipUniverseItem(context, actorId, item.id, undefined, scenarioId);
-    return { ...item, compatible: check.ok, playable: check.ok, reason: check.reason };
+    const check = actorId === undefined ? fail(item.lockReason) : canEquipUniverseItem(context, actorId, item.id, undefined, scenarioId, loadout);
+    const slotChecks = (item.kind === 'weaponMod' ? MOD_SLOTS : item.slot ? [item.slot] : [])
+      .map(slot => [slot, actorId === undefined ? fail(item.lockReason) : canEquipUniverseItem(context, actorId, item.id, slot, scenarioId, loadout)]);
+    const compatibleSlots = slotChecks.filter(([, result]) => result.ok).map(([slot]) => slot);
+    const slotReasons = Object.fromEntries(slotChecks.map(([slot, result]) => [slot, result.ok ? null : result.reason]));
+    const compatible = compatibleSlots.length > 0;
+    return { ...item, compatible, playable: compatible, reason: compatible ? null : check.reason, compatibleSlots, slotReasons };
   });
 }
 
@@ -166,7 +203,15 @@ function ownData(value, maxKeys = 20) {
   return keys.length <= maxKeys && keys.every(key => typeof key === 'string' && !['__proto__', 'prototype', 'constructor'].includes(key)
     && OWN(Object.getOwnPropertyDescriptor(value, key), 'value') && Object.getOwnPropertyDescriptor(value, key).enumerable);
 }
-const emptyLoadout = () => ({ weapon: null, armor: null });
+const emptyLoadout = () => Object.fromEntries(SLOTS.map(slot => [slot, null]));
+function normalizeLoadoutRow(row) {
+  if (!ownData(row, SLOTS.length)) return null;
+  const keys = Reflect.ownKeys(row);
+  const schema = keys.length === LEGACY_SLOTS.length ? LEGACY_SLOTS : SLOTS;
+  if (keys.length !== schema.length || !schema.every(slot => OWN(row, slot))
+    || !schema.every(slot => row[slot] === null || typeof row[slot] === 'string')) return null;
+  return { ...emptyLoadout(), ...row };
+}
 function partyIds(value) {
   if (!Array.isArray(value) || Object.getPrototypeOf(value) !== Array.prototype || value.length > 8
     || Reflect.ownKeys(value).length !== value.length + 1) return null;
@@ -188,12 +233,12 @@ export function normalizeChronicleLoadouts(raw, rawContext, party, scenarioId) {
     if (raw !== undefined && (!ownData(raw, 8) || Object.keys(raw).some(id => !ids.includes(id)))) return null;
     const result = {};
     for (const actorId of ids) {
-      const row = raw && OWN(raw, actorId) ? raw[actorId] : emptyLoadout();
-      if (!ownData(row, 2) || Reflect.ownKeys(row).length !== 2 || !SLOTS.every(slot => OWN(row, slot))) return null;
+      const row = normalizeLoadoutRow(raw && OWN(raw, actorId) ? raw[actorId] : emptyLoadout());
+      if (!row) return null;
       result[actorId] = {};
       for (const slot of SLOTS) {
         const itemId = row[slot];
-        if (itemId !== null && (typeof itemId !== 'string' || !canEquipUniverseItem(context, actorId, itemId, slot, scenarioId).ok)) return null;
+        if (itemId !== null && (typeof itemId !== 'string' || !canEquipUniverseItem(context, actorId, itemId, slot, scenarioId, row).ok)) return null;
         result[actorId][slot] = itemId;
       }
     }
@@ -208,19 +253,28 @@ export function equipChronicleItem(session, actorId, itemId, slot) {
     const context = normalizeContext(session.context);
     const loadouts = normalizeChronicleLoadouts(session.loadouts, context, session.party, session.scenarioId);
     if (!loadouts || typeof actorId !== 'string' || !OWN(loadouts, actorId)) return fail('Porteur ou préparation invalide.');
-    const targetSlot = slot ?? getUniverseEquipment(itemId)?.slot;
-    if (!SLOTS.includes(targetSlot)) return fail('Emplacement inconnu.');
+    let targetSlot = slot ?? getUniverseEquipment(itemId)?.slot;
     if (itemId !== null) {
-      const check = canEquipUniverseItem(context, actorId, itemId, targetSlot, session.scenarioId);
+      const check = canEquipUniverseItem(context, actorId, itemId, slot, session.scenarioId, loadouts[actorId]);
       if (!check.ok) return check;
+      targetSlot = check.slot;
+    }
+    if (!SLOTS.includes(targetSlot)) return fail('Emplacement inconnu.');
+    const returnedMods = [];
+    if (targetSlot === 'weapon' && loadouts[actorId].weapon !== itemId) {
+      for (const modSlot of MOD_SLOTS) {
+        if (loadouts[actorId][modSlot] !== null) returnedMods.push(loadouts[actorId][modSlot]);
+        loadouts[actorId][modSlot] = null;
+      }
     }
     loadouts[actorId][targetSlot] = itemId;
-    return { ok: true, reason: null, loadouts };
+    if (!normalizeChronicleLoadouts(loadouts, context, session.party, session.scenarioId)) return fail('Préparation incompatible.');
+    return { ok: true, reason: null, loadouts, returnedMods };
   } catch { return fail('Préparation invalide.'); }
 }
 
 const neutralEffects = () => ({ hp: 0, shield: 0, attack: 0, defense: 0, weaponHeatMultiplier: 1,
-  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1 });
+  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1, weaponDamageMultiplier: 1 });
 
 /** Base hp/shield/attack/defense are added once by the chronicles compositor. */
 export function getChronicleEquipmentEffects(session, actorId) {
@@ -229,17 +283,26 @@ export function getChronicleEquipmentEffects(session, actorId) {
     if (!ownData(session)) return effects;
     const loadouts = normalizeChronicleLoadouts(session.loadouts, session.context, session.party, session.scenarioId);
     if (!loadouts || typeof actorId !== 'string' || !OWN(loadouts, actorId)) return effects;
+    let capacityMultiplier = 1;
     for (const itemId of Object.values(loadouts[actorId])) {
       const item = getUniverseEquipment(itemId);
       if (!item) continue;
       for (const key of ['hp', 'shield', 'attack', 'defense', 'weaponCoolingBonus', 'controlResistance'])
         if (Number.isFinite(item.bonuses[key])) effects[key] += item.bonuses[key];
-      for (const key of ['weaponHeatMultiplier', 'bioticMultiplier', 'techMultiplier'])
+      for (const key of ['weaponHeatMultiplier', 'bioticMultiplier', 'techMultiplier', 'weaponDamageMultiplier'])
         if (Number.isFinite(item.bonuses[key]) && item.bonuses[key] > 0) effects[key] *= item.bonuses[key];
+      if (Number.isFinite(item.bonuses.magazineCapacityMultiplier) && item.bonuses.magazineCapacityMultiplier > 0)
+        capacityMultiplier *= item.bonuses.magazineCapacityMultiplier;
       if (item.kind === 'weapon') Object.assign(effects, {
         weaponType: item.weaponType, weaponName: item.name, weaponSystem: item.weaponSystem,
         magazineCapacity: item.magazineCapacity, ammo: item.ammo, reserveAmmo: item.reserveAmmo,
       });
+    }
+    if (effects.weaponSystem === 'thermal-clip' && capacityMultiplier !== 1) {
+      const totalAmmo = effects.ammo + effects.reserveAmmo;
+      effects.magazineCapacity = Math.min(256, Math.max(1, Math.ceil(effects.magazineCapacity * capacityMultiplier)));
+      effects.ammo = Math.min(effects.magazineCapacity, totalAmmo);
+      effects.reserveAmmo = totalAmmo - effects.ammo;
     }
     return effects;
   } catch { return neutralEffects(); }

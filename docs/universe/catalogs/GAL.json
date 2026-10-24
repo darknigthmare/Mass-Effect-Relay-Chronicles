@@ -4,7 +4,7 @@
   "medium": "Jeu mobile",
   "filename": "Mass_Effect_Galaxy_Production.xlsx",
   "scope": "Six missions de Jacob, trois pistes d’enquête et adaptation du système mobile.",
-  "summary": "Transformer les arènes mobiles et la narration dessinée en module ATB de poche, avec décors 3D. Prototype partiel : 1 profils sélectionnables et 0 équipements en Chroniques ; le reste demeure documentaire.",
+  "summary": "103 fiches de production ; 3 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "BioWare situe l’aventure entre ME1 et ME2 ; certains repères du wiki la placent avant des événements de 2183. Le calendrier précis reste à arbitrer sans modifier silencieusement la source.",
   "sources": [
     {
@@ -1187,7 +1187,7 @@
       "id": "GAL-PWR-STASIS",
       "category": "powers",
       "name": "Stase",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir biotique de Jacob.",
@@ -1196,7 +1196,7 @@
       "visual": "Halo bleu-violet en anneau.",
       "animation": "",
       "audio": "",
-      "implementation": "",
+      "implementation": "Prototype partiel : liaison GAL-PWR-STASIS dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible reprend son tour après expiration sans double action.",
       "dependencies": [],
@@ -1204,13 +1204,25 @@
         "GAL-ABIL"
       ],
       "reference": "Conception du fan game",
-      "notes": ""
+      "notes": " Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "GAL-PWR-OVERLOAD",
       "category": "powers",
       "name": "Surcharge des boucliers",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir technique de Jacob.",
@@ -1219,7 +1231,7 @@
       "visual": "Éclairs courts au contact de la protection.",
       "animation": "",
       "audio": "",
-      "implementation": "",
+      "implementation": "Prototype partiel : liaison GAL-PWR-OVERLOAD dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La barre de santé ne reçoit pas automatiquement les dégâts de bouclier.",
       "dependencies": [],
@@ -1227,7 +1239,19 @@
         "GAL-ABIL"
       ],
       "reference": "Conception du fan game",
-      "notes": ""
+      "notes": " Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "GAL-PWR-HEAVY",
@@ -2426,6 +2450,11 @@
       "area": "Prototype Chroniques indépendant",
       "covered": "1 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
       "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "2 fiches de pouvoirs utilisées, 0 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }

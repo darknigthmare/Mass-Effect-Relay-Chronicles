@@ -8,6 +8,7 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const groupCategories = {
   actors: ['characters', 'npcs', 'enemies'],
   equipment: ['weapons', 'equipment'],
+  powers: ['powers'],
   story: ['lore', 'main_quests', 'side_quests', 'choices', 'dialogues', 'cinematics', 'worlds', 'zones', 'continuity', 'links'],
 };
 const strings = value => Array.isArray(value) ? [...new Set(value.filter(item => typeof item === 'string' && item))] : [];

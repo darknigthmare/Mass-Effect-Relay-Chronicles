@@ -3,20 +3,16 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {universeFileStem,universeJsonFilename} from './universe-paths.mjs';
+import {parseWorkbookOptions,validateWorkbookSelection,planWorkbookPreviews,checkDeclaredProofs,sha256} from './universe-workbook-tools.mjs';
 
 // Run from an OS-temporary directory with the Codex primary runtime.
-const modules=process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
-if(!modules)throw new Error('CODEX_PRIMARY_RUNTIME_NODE_MODULES is required.');
-const runtimeRequire=createRequire(path.join(modules,'__relay_universe__.cjs'));
-const {Workbook,SpreadsheetFile}=await import(pathToFileURL(runtimeRequire.resolve('@oai/artifact-tool')).href);
+const options=parseWorkbookOptions(process.argv.slice(2));
+if(options.help){console.log('node scripts/build-universe-workbooks.mjs [--ids ME2,ME3] [--no-render] [--render-sheets Dashboard,Pouvoirs] [--focus-status Prototype] [--focus-ids ID1,ID2] [--plan-previews]\nAll selected workbooks are rebuilt in full. Rendering options only select previews. --plan-previews is read-only and needs no spreadsheet runtime.');process.exit(0);}
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const dataDir=path.join(root,'docs/universe/catalogs');
 const outputDir=path.join(root,'docs/universe/outputs/relay-chronicles-20261022');
 const qaDir=path.join(root,'docs/universe/qa');
 const previewDir=process.env.RELAY_PREVIEW_DIR||'/tmp/relay-universe-workbooks-20261022/previews';
-const arg=(k)=>{const i=process.argv.indexOf(k);return i<0?null:process.argv[i+1];};
-const wanted=arg('--ids')?.split(',');
-const noRender=process.argv.includes('--no-render');
 const sourceCatalog=JSON.parse(await fs.readFile(path.join(root,'docs/content-catalog.json'),'utf8'));
 const categories=sourceCatalog.categories.map(c=>c.id==='trilogy'?{id:'continuity',title:'Continuité',sheetName:'Continuite',description:'États persistants, chronologie et limites de l’adaptation'}:{...c,description:c.id==='characters'?'Identités et fonctions dans l’œuvre':c.id==='enemies'?'Bestiaire, adversaires et affrontements':c.id==='side_quests'?'Contenus annexes, variantes et extensions':c.description});
 const color={navy:'#102438',teal:'#087F8C',text:'#183044',faint:'#EDF5F7',amber:'#FFF0C7',light:'#F8FBFC',line:'#D5E2E8'};
@@ -38,10 +34,20 @@ function validate(b){
  if(!/^[\w.-]+_Production\.xlsx$/.test(b.filename))throw new Error(`Unsafe filename ${b.filename}`);
  if(new Set(b.sources.map(s=>s.id)).size!==b.sources.length)throw new Error(`Duplicate sources ${b.id}`);
 }
-await fs.mkdir(outputDir,{recursive:true});await fs.mkdir(qaDir,{recursive:true});await fs.mkdir(previewDir,{recursive:true});
 const filenames=(await fs.readdir(dataDir)).filter(n=>n.endsWith('.json')).sort();
-for(const filename of filenames){
- const b=JSON.parse(await fs.readFile(path.join(dataDir,filename),'utf8'));if(wanted&&!wanted.includes(b.id))continue;validate(b);
+const catalogSnapshots=new Map();
+const allBooks=await Promise.all(filenames.map(async filename=>{const bytes=await fs.readFile(path.join(dataDir,filename));const book=JSON.parse(bytes.toString('utf8'));catalogSnapshots.set(book,{filename,bytes});return book;}));
+const books=validateWorkbookSelection(allBooks,categories,options);
+const proofs=new Map();
+for(const b of books){validate(b);const checked=[];for(const entry of b.entries){const proof=await checkDeclaredProofs(entry,root);if(proof)checked.push(proof);}proofs.set(b.id,checked);}
+if(options.planPreviews){console.log(JSON.stringify({readOnly:true,workbooks:books.map(b=>({id:b.id,records:b.entries.length,statusCounts:Object.fromEntries(status.map(value=>[value,b.entries.filter(e=>e.status===value).length])),previews:planWorkbookPreviews(b,categories,options)}))},null,2));process.exit(0);}
+const modules=process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
+if(!modules)throw new Error('CODEX_PRIMARY_RUNTIME_NODE_MODULES is required.');
+const runtimeRequire=createRequire(path.join(modules,'__relay_universe__.cjs'));
+const {Workbook,SpreadsheetFile}=await import(pathToFileURL(runtimeRequire.resolve('@oai/artifact-tool')).href);
+const builderDigest=sha256(await fs.readFile(fileURLToPath(import.meta.url)));
+await fs.mkdir(outputDir,{recursive:true});await fs.mkdir(qaDir,{recursive:true});await fs.mkdir(previewDir,{recursive:true});
+for(const b of books){
  console.log(`Creating ${b.id}: ${b.entries.length} records`);
  const wb=Workbook.create();const dashboard=wb.worksheets.add('Dashboard');const sheets=new Map(categories.map(c=>[c.id,wb.worksheets.add(c.sheetName)]));const guide=wb.worksheets.add('Guide');
  const stats=[];const sources=new Map(b.sources.map(s=>[s.id,s]));
@@ -61,9 +67,14 @@ for(const filename of filenames){
    s.getRange(`E7:E${end}`).conditionalFormats.add('cellIs',{operator:'equal',formula:'"P0"',format:{font:{bold:true,color:color.teal}}});
    // These are per-record data, so they belong to the table and move with sorting.
    // General methodology remains in Guide, outside the record tables.
-   s.getRange(`R7:S${end}`).format.wrapText=false;
+   s.getRange(`R7:S${end}`).format.wrapText=true;
    const maxNote=Math.max(80,...values.map(r=>String(r[18]).length));s.getRange(`S1:S${end}`).format.columnWidth=Math.min(255,Math.ceil(maxNote*0.91));
    const maxUrl=Math.max(75,...values.flatMap(r=>String(r[17]).split('\n').map(x=>x.length)));s.getRange(`R1:R${end}`).format.columnWidth=Math.min(255,Math.ceil(maxUrl*0.91));
+   const sourceWidth=Math.min(255,Math.ceil(maxUrl*0.91)),noteWidth=Math.min(255,Math.ceil(maxNote*0.91));
+   for(let i=0;i<values.length;i++){
+    const n=Math.max(...values[i].slice(0,17).map((v,j)=>lines(v,fields[j][2])),lines(values[i][17],sourceWidth),lines(values[i][18],noteWidth));
+    s.getRange(`A${i+7}:S${i+7}`).format.rowHeight=Math.max(44,Math.min(360,n*14+12));
+   }
   }else{s.getRange('B7').values=[['Aucun élément inventorié. Voir les limites dans Guide.']];s.getRange('B7:G7').format.wrapText=false;}
   header(s,'A6:S6');s.freezePanes.freezeRows(6);s.freezePanes.freezeColumns(2);
  }
@@ -86,13 +97,14 @@ for(const filename of filenames){
  const total=Number(dashboard.getRange('B37').values[0][0]);if(total!==b.entries.length)throw new Error(`Total mismatch ${b.id}: ${total}`);
  const scan=await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!|#SPILL!|#CALC!',options:{useRegex:true,maxResults:50},maxChars:2000});
  const inspected=await wb.inspect({kind:'table',range:'Dashboard!A37:M37',include:'values,formulas',tableMaxRows:1,tableMaxCols:13,maxChars:2500});
- const report={id:b.id,title:b.title,records:total,sheets:28,sourceCount:b.sources.length,formulaScan:scan.ndjson,statusMutation:{before,after,restored:prior},dashboard:inspected.ndjson,counts:Object.fromEntries(categories.map(c=>[c.id,b.entries.filter(e=>e.category===c.id).length])),rendered:[]};
+ const report={id:b.id,title:b.title,generatedAt:new Date().toISOString(),records:total,sheets:28,sourceCount:b.sources.length,formulaScan:scan.ndjson,statusMutation:{before,after,restored:prior},dashboard:inspected.ndjson,counts:Object.fromEntries(categories.map(c=>[c.id,b.entries.filter(e=>e.category===c.id).length])),statusCounts:Object.fromEntries(status.map(value=>[value,b.entries.filter(e=>e.status===value).length])),implementationProofs:proofs.get(b.id),renderOptions:options,previewPlan:planWorkbookPreviews(b,categories,options),rendered:[],renderedImages:[]};
+ const catalogSnapshot=catalogSnapshots.get(b);if(!(await fs.readFile(path.join(dataDir,catalogSnapshot.filename))).equals(catalogSnapshot.bytes))throw new Error(`Catalogue changed during generation: ${b.id}`);
  const file=await SpreadsheetFile.exportXlsx(wb);await file.save(path.join(outputDir,b.filename));await fs.rm(path.join(outputDir,b.filename+'.inspect.ndjson'),{force:true});
- if(!noRender){const dest=path.join(previewDir,universeFileStem(b.id));await fs.mkdir(dest,{recursive:true});
-  for(const name of ['Dashboard',...categories.map(c=>c.sheetName),'Guide']){const range=name==='Dashboard'?'A1:M38':name==='Guide'?'A1:B13':'A1:H7';const img=await wb.render({sheetName:name,range,scale:1.15,format:'png'});await fs.writeFile(path.join(dest,name+'.png'),new Uint8Array(await img.arrayBuffer()));report.rendered.push(name);}
-  const chosen=stats.find(s=>s.c.id==='main_quests'&&s.records.length)||sample;const detail=await wb.render({sheetName:chosen.c.sheetName,range:'I6:Q8',scale:1.15,format:'png'});await fs.writeFile(path.join(dest,'Detail.png'),new Uint8Array(await detail.arrayBuffer()));
-  const coverage=await wb.render({sheetName:'Guide',range:`A${coverageStart}:C${Math.min(coverageStart+3,r+b.coverage.length-1)}`,scale:1.15,format:'png'});await fs.writeFile(path.join(dest,'Couverture.png'),new Uint8Array(await coverage.arrayBuffer()));
-  const refs=await wb.render({sheetName:sample.c.sheetName,range:'Q6:S8',scale:1.15,format:'png'});await fs.writeFile(path.join(dest,'Sources_notes.png'),new Uint8Array(await refs.arrayBuffer()));
+ report.xlsxSha256=sha256(await fs.readFile(path.join(outputDir,b.filename)));
+ report.catalogSha256=sha256(catalogSnapshot.bytes);
+ report.builderSha256=builderDigest;
+ if(report.previewPlan.length){const dest=path.join(previewDir,universeFileStem(b.id));await fs.mkdir(dest,{recursive:true});
+  for(const preview of report.previewPlan){const img=await wb.render({sheetName:preview.sheetName,range:preview.range,scale:1.15,format:'png'});const bytes=new Uint8Array(await img.arrayBuffer());await fs.writeFile(path.join(dest,preview.filename),bytes);report.renderedImages.push({...preview,sha256:sha256(bytes),xlsxSha256:report.xlsxSha256,catalogSha256:report.catalogSha256});if(!report.rendered.includes(preview.sheetName))report.rendered.push(preview.sheetName);}
  }
  await fs.writeFile(path.join(qaDir,universeJsonFilename(b.id)),JSON.stringify(report,null,2)+'\n');console.log(`Exported ${b.id}: ${total} records, ${report.rendered.length} sheet previews`);
 }

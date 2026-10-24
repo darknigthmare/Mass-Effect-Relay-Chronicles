@@ -84,11 +84,15 @@ Les assignations utilisent des dialogues concis et des cartes condensées ; les 
 
 ## Chroniques indépendantes
 
-Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Dix essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost : quatre oppositions à types d’adversaires référencés, trois bancs à mannequins originaux et trois ateliers d’équipement. Ces essais proposent 34 profils de personnages sélectionnables parmi 42 profils partiels, et 68 équipements dans les ateliers.
+Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Dix essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost : quatre oppositions à types d’adversaires référencés, trois bancs à mannequins originaux et trois ateliers d’équipement. Les effectifs restent de **34 profils sélectionnables parmi 42 profils partiels**. Les ateliers passent à **70 équipements : 58 armes, 10 armures et deux familles de modules ME3**.
+
+Shepard dispose de six préparations de classe dans ME2 et de six dans ME3 ; Ryder de trois préparations de compétences, en plus des dotations par défaut. Dix mécaniques de pouvoirs supplémentaires utilisent des réglages ATB ; 40 fiches de pouvoirs supplémentaires sont reliées aux commandes disponibles, sans constituer 40 actions distinctes. Les deux ports de modules restent limités aux familles et armes compatibles. Les talents, rangs et acquisitions d’origine ne sont pas entièrement reconstitués.
+
+L’onglet **Lecture** propose **neuf parcours documentaires et 42 pages sourcées** dans Revelation, Ascension, Retribution, Nexus Uprising, Initiation, Annihilation, Redemption, Invasion et le segment d’Evolution après les hostilités. Les pages paraphrasent des faits établis ; elles ne proposent ni dialogue canonique inventé, ni issue alternative, ni récompense. La présence d’un personnage dans ces lectures ne le rend pas sélectionnable en combat.
 
 L’œuvre, le segment, le porteur et les règles de l’essai limitent chaque sélection. Les ateliers utilisent une préparation libre et des valeurs ATB adaptées ; l’acquisition et les conditions de déblocage d’origine restent à reproduire. Les alternatives Samara/Morinth et Ashley/Kaidan sont exclusives. Les dossiers ME4, Library Edition, Blasto et contenus coupés restent documentaires, sans période historique jouable.
 
-Les Chroniques possèdent leurs propres sauvegardes et exports, sans transfert vers la campagne ME1. Elles utilisent des symboles de prototype, sans nouveau portrait ni sprite. Voir [le périmètre, les essais et les limites](docs/CHRONICLES.md).
+Les Chroniques possèdent leurs propres sauvegardes et exports, sans transfert vers la campagne ME1. Les anciennes préparations v1 à deux emplacements migrent vers quatre : arme, armure et deux modules d’arme. La lecture reprend sa page dans `readingProgress`, séparément des notes personnelles. Les Chroniques utilisent des symboles de prototype, sans nouveau portrait ni sprite. Voir [le périmètre, les essais, les lectures et les limites](docs/CHRONICLES.md).
 
 ## Excel et documentation
 
@@ -130,6 +134,7 @@ npm run test:operations
 npm run test:loadout
 npm run test:loadout:extensions
 npm run test:universe
+npm run test:chronicle:expansion
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
@@ -161,7 +166,9 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/loadout.js` / `src/loadout-ui.js` | Inventaire, boutiques, compatibilité, effets de matériel et comparaisons |
 | `src/continuity-data.js` / `src/continuity.js` | Œuvres, segments, provenance et validation des contextes |
 | `src/universe-data.js` | Registre documentaire généré depuis les 28 catalogues |
-| `src/universe-actors.js` / `src/universe-equipment.js` | Profils partiels et sélections autorisées dans les essais |
+| `src/universe-actors.js` / `src/universe-equipment.js` | Profils partiels, préparations et équipement autorisés dans les essais |
+| `src/universe-powers.js` | Liaisons sourcées entre pouvoirs, personnages et commandes ATB |
+| `src/chronicle-story.js` | Neuf parcours documentaires, sources et découvertes par page |
 | `src/chronicles.js` / `src/universe-ui.js` | Chroniques indépendantes, préparation, combat et sauvegardes séparées |
 | `src/local-map.js` | Carte numérotée avec filtres et suivi |
 | `src/game-data.js` | Classes, personnages, rencontres, calibrations et codex |

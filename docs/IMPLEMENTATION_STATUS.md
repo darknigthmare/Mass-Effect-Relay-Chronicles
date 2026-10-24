@@ -1,16 +1,30 @@
 # État de livraison — 0.2.0
 
-Mise à jour : **23 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
+Mise à jour : **24 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
 
-## Complément Chroniques
+## Complément pouvoirs, préparations et lectures
 
-Le complément actuel reprend `f6b23904247ff137b37139bb2a512b04f75c745e` et ajoute des **Chroniques indépendantes** : registre de 28 œuvres et 48 segments, dix essais ATB dans sept œuvres, 34 profils sélectionnables parmi 42 profils partiels et 68 équipements d’atelier (58 armes, 10 armures). Les contextes, scènes, porteurs et alternatives conditionnelles limitent la sélection. Les sauvegardes restent séparées de ME1 ; l’entrée depuis une campagne enregistre d’abord son point de reprise.
+Le complément reprend **`994a963`**. Il ajoute dix mécaniques ATB de pouvoirs, reliées à **40 fiches de pouvoirs supplémentaires utilisées**, et non 40 actions distinctes. Shepard reçoit les six préparations de classe de ME2 et de ME3 ; Ryder reçoit trois préparations de compétences, en plus des dotations par défaut conservées. Les capacités manquantes et les conditions de loyauté restent explicites. Les effectifs ne changent pas : **34 profils sélectionnables parmi 42 profils partiels**.
+
+Les ateliers passent à **70 équipements : 58 armes, dix armures et deux familles de modules ME3 pour fusils d’assaut à clips**. Les ports `weaponMod` et `weaponMod2` vérifient leurs compatibilités séparément et refusent les doublons de famille. Remplacer ou retirer l’arme retire ses modules, sélectionner la même arme les conserve. Le chargeur conserve le total de munitions ; le canon renforce les tirs et non les pouvoirs. Les anciennes préparations v1 à deux emplacements migrent vers quatre, avec les deux nouveaux ports vides.
+
+L’onglet Lecture propose **neuf parcours documentaires et 42 pages sourcées**, sans dialogue canonique inventé ni choix ou récompense ajoutés. Les textes s’appuient sur des fiches de nature Établi, dans l’œuvre et le segment exacts. La page atteinte est conservée dans `readingProgress`, séparément des notes personnelles. Les acteurs de romans ou comics cités dans les pages restent documentaires lorsqu’ils n’ont pas d’autorisation de combat.
+
+Le suivi de catalogue comprend **85 nouvelles promotions Prototype supplémentaires : 40 pouvoirs, deux familles de modules et 43 références documentaires de lieux, récit ou continuité**, ainsi que **trois systèmes dans le principal**. Le décompte est de **1 330 fiches principales et 5 326 supplémentaires, soit 6 656**. Le registre du jeu est régénéré depuis ces catalogues. Les identifiants de sources, natures et descriptions restent conservés ; aucun nouveau portrait, sprite ou décor n’est livré.
+
+Au 24 octobre 2026, les **358 tests Node** et la compilation passent. Les quatre nouveaux contrôles navigateur exécutent les dix pouvoirs, remportent six essais et visitent les 42 pages ; les six contrôles de régression des Chroniques remportent leurs dix essais. La campagne ME1 atteint sa fin en 21 combats, avec reprise de sauvegarde ; les 18 simulations remportent 378 combats et valident 522 sauvegardes. Les 28 classeurs sont vérifiés et 46 panneaux font l’objet d’une revue visuelle ciblée. Le [rapport du complément](qa/chronicle-expansion-report.json) rassemble les résultats, empreintes et limites ; les rapports historiques sont conservés. La commande `npm run test:chronicle:expansion` écrit `test-results/chronicle-expansion-report.json`. Voir aussi [CHRONICLES.md](CHRONICLES.md) et [FIDELITY.md](FIDELITY.md).
+
+Les **huit contrôles de production HTTP** passent sur les vrais fichiers compilés, sans harnais de développement : sauvegardes ME1 et Chroniques séparées, préparation et modules ME3, lecture restaurée après rechargement. Les six bundles JavaScript servis ont leurs tailles et empreintes exactes ; les dix PNG se chargent sans requête distante ni erreur du jeu. Le lancement Electron Windows reste hors du périmètre de ce contrôle Linux Chromium.
+
+## Premier lot Chroniques — historique
+
+Le premier lot reprend `f6b23904247ff137b37139bb2a512b04f75c745e` et ajoute des **Chroniques indépendantes** : registre de 28 œuvres et 48 segments, dix essais ATB dans sept œuvres, 34 profils sélectionnables parmi 42 profils partiels et 68 équipements d’atelier (58 armes, 10 armures). Les contextes, scènes, porteurs et alternatives conditionnelles limitent la sélection. Les sauvegardes restent séparées de ME1 ; l’entrée depuis une campagne enregistre d’abord son point de reprise.
 
 Les Excel suivent les éléments réellement disponibles : **102 nouvelles fiches Prototype** dans sept catalogues, deux systèmes transversaux dans le principal ; **6 653 fiches** au total. Les 57 fiches d’extension historiques du principal et les six statuts avancés sont conservés. Les autres lignes restent documentaires. Aucun nouveau portrait, sprite, costume ou décor propre aux œuvres ultérieures n’est livré ; les statistiques et chargeurs utilisent des réglages ATB adaptés.
 
 Voir le [périmètre et les dix essais](CHRONICLES.md), les [références consultées](research/chronicles-sources.md) et le [rapport de conservation](qa/chronicles-preservation-report.json). Les rapports du complément équipement ci-dessous restent les preuves historiques de leur livraison.
 
-Validation du complément Chroniques : **298 tests**, compilation Vite, six contrôles navigateur avec dix victoires réelles et six contrôles de production HTTP. La campagne ME1 atteint de nouveau sa fin en 21 rencontres ; les 18 simulations de campagne réussissent leurs 378 combats et 522 reprises de sauvegarde. Le [rapport courant](qa/chronicles-report.json) relie les résultats, empreintes et limites. Les 28 classeurs sont vérifiés ; les 27 exports supplémentaires ne disposent pas d’une nouvelle revue visuelle liée à leurs empreintes.
+Validation historique du premier lot Chroniques : **298 tests**, compilation Vite, six contrôles navigateur avec dix victoires réelles et six contrôles de production HTTP. La campagne ME1 atteint de nouveau sa fin en 21 rencontres ; les 18 simulations de campagne réussissent leurs 378 combats et 522 reprises de sauvegarde. Le [rapport de ce premier lot](qa/chronicles-report.json) relie ses résultats, empreintes et limites. Les 28 classeurs sont vérifiés ; les 27 exports supplémentaires ne disposent pas d’une nouvelle revue visuelle liée à leurs empreintes.
 
 ## Résultat jouable
 
@@ -93,9 +107,9 @@ Les quatre poses sont contrôlées dans une scène isolée ; le test force notam
 
 Captures : [équipement](screenshots/v02-equipment-loadout.png), [équipement mobile](screenshots/v02-equipment-mobile.png), [carte](screenshots/v02-local-map.png), [opérations terminées](screenshots/v02-operations-completed.png), [journal mobile](screenshots/v02-mobile-journal.png).
 
-## Excel et catalogues
+## Excel et catalogues — complément équipement historique
 
-Le classeur principal contient **1 325 fiches, 26 catégories et 28 feuilles**. La livraison initiale ajoutait **118 fiches** pour 48 objets, 43 étapes, quatre rencontres, vingt frames et trois quêtes absentes du catalogue ; le complément ajoute quatre fiches d’outils. Huit autres quêtes réutilisent leurs fiches existantes.
+Au stade du complément équipement, le classeur principal contenait **1 325 fiches, 26 catégories et 28 feuilles**. La livraison initiale ajoutait **118 fiches** pour 48 objets, 43 étapes, quatre rencontres, vingt frames et trois quêtes absentes du catalogue ; le complément ajoute quatre fiches d’outils. Huit autres quêtes réutilisent leurs fiches existantes.
 
 La comparaison avec `c614a45` vérifie la conservation des **1 321 identifiants**, des **57 fiches ME2/ME3** et des **six enregistrements Intégré/Validé**. Les statuts sont 1 035 Défini, 284 Prototype, trois Intégré et trois Validé. Ces statuts décrivent les critères de chaque fiche, sans certifier la fidélité artistique globale.
 
@@ -111,7 +125,7 @@ npm test
 npm run build
 ```
 
-Pour les scénarios navigateur, ouvrir un terminal avec `RELAY_QA=1 npm run dev`, puis lancer `npm run test:campaign`, `npm run test:commander`, `npm run test:operations`, `npm run test:loadout`, `npm run test:loadout:extensions` ou `npm run test:assignments -- --late-conrad`. `PLAYWRIGHT_EXECUTABLE_PATH` permet de désigner un Chromium installé. Pour le build, utiliser `npm run build`, `npm run preview -- --port 4174`, puis `node scripts/production-http-browser.mjs`. Ce dernier contrôle les fichiers compilés servis en HTTP, sans les hooks QA ; il reste distinct du test historique `production-v02-browser.mjs` par fichiers locaux. Le navigateur géré bloque actuellement les URL `file://` ; aucun contournement de cette règle n’est appliqué.
+Pour les scénarios navigateur, ouvrir un terminal avec `RELAY_QA=1 npm run dev`, puis lancer `npm run test:campaign`, `npm run test:commander`, `npm run test:operations`, `npm run test:loadout`, `npm run test:loadout:extensions`, `npm run test:chronicle:expansion` ou `npm run test:assignments -- --late-conrad`. `PLAYWRIGHT_EXECUTABLE_PATH` permet de désigner un Chromium installé. Pour le build, utiliser `npm run build`, `npm run preview -- --port 4174`, puis `node scripts/production-http-browser.mjs`. Ce dernier contrôle les fichiers compilés servis en HTTP, sans les hooks QA ; il reste distinct du test historique `production-v02-browser.mjs` par fichiers locaux. Le navigateur géré bloque actuellement les URL `file://` ; aucun contournement de cette règle n’est appliqué.
 
 ## Historique conservé
 

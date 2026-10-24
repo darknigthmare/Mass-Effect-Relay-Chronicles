@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_2_Production.xlsx",
   "scope": "Campagne solo ME2 et Legendary Edition ; recrutements, loyautés, affectations N7 et hubs ; Kasumi, Zaeed, Normandy Crash Site, Firewalker, Overlord, Lair of the Shadow Broker et Arrival. Genesis est identifié comme récapitulatif interactif ; aucun mode multijoueur ME2 ajouté au canon.",
-  "summary": "670 fiches de préparation couvrant les 26 domaines du schéma. Sources consultées au 22 octobre 2026 ; inventaire de production substantiel, sans prétention d’exhaustivité vérifiée. Prototype partiel : 12 profils sélectionnables et 11 équipements en Chroniques ; le reste demeure documentaire.",
+  "summary": "670 fiches de production ; 39 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -516,8 +516,8 @@
       "title": "Mass Effect 2 — manuel PC français, EA",
       "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
       "kind": "source officielle",
-      "scope": "Cartouches thermiques : dissipateurs amovibles, éjection/remplacement et compteur de tirs, pages imprimées 16–17.",
-      "note": "PDF réellement téléchargé le 23 octobre 2026, HTTP 200, 18 pages, SHA-256 c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1. Cette source établit le principe ; capacités par famille et recharge en une action ATB sont des adaptations."
+      "scope": "Cartouches thermiques : dissipateurs amovibles, éjection/remplacement et compteur de tirs, pages imprimées 16–17. Annexe 2, pages imprimées 22–24 : six classes, familles d’armes et pouvoirs.",
+      "note": "PDF réellement téléchargé le 23 octobre 2026, HTTP 200, 18 pages, SHA-256 c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1. Cette source établit le principe ; capacités par famille et recharge en une action ATB sont des adaptations. Relecture locale le 24 octobre 2026 de l’annexe des classes ; les variantes chiffrées et kits complets des compagnons ne sont pas établis par ce manuel."
     }
   ],
   "entries": [
@@ -8965,7 +8965,7 @@
       "id": "ME2-POW-PULL",
       "category": "powers",
       "name": "Pull",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -8974,7 +8974,7 @@
       "visual": "Fil biotique ascendant et cible suspendue.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/pull ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-PULL dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -8982,13 +8982,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-THROW",
       "category": "powers",
       "name": "Throw",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -8997,7 +9009,7 @@
       "visual": "Impulsion bleue et trajectoire au sol.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/throw ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-THROW dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9005,13 +9017,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-WARP",
       "category": "powers",
       "name": "Warp",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9020,7 +9044,7 @@
       "visual": "Tourbillon violet serré.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/warp ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-WARP dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9028,13 +9052,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-SINGULARITY",
       "category": "powers",
       "name": "Singularity",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9043,7 +9079,7 @@
       "visual": "Noyau sombre et anneaux bleus.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/singularity ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-SINGULARITY dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9051,13 +9087,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-SHOCKWAVE",
       "category": "powers",
       "name": "Shockwave",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9066,7 +9114,7 @@
       "visual": "Vagues successives au sol.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/shockwave ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-SHOCKWAVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9074,13 +9122,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-SLAM",
       "category": "powers",
       "name": "Slam",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9089,7 +9149,7 @@
       "visual": "Colonne biotique et choc vertical.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/slam ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-SLAM dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9097,13 +9157,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-REAVE",
       "category": "powers",
       "name": "Reave",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9112,7 +9184,7 @@
       "visual": "Aura biotique rouge-violette.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/reave ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-REAVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9120,13 +9192,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-DOMINATE",
       "category": "powers",
       "name": "Dominate",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9135,7 +9219,7 @@
       "visual": "Lien violet et icône de durée.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/dominate ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-DOMINATE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9143,13 +9227,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-BARRIER",
       "category": "powers",
       "name": "Barrier",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9158,7 +9254,7 @@
       "visual": "Dôme bref et bord de portrait violet.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/barrier ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-BARRIER dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9166,7 +9262,19 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-CHARGE",
@@ -9195,7 +9303,7 @@
       "id": "ME2-POW-OVERLOAD",
       "category": "powers",
       "name": "Overload",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9204,7 +9312,7 @@
       "visual": "Arc sur circuit et flash de cible.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/overload ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-OVERLOAD dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9212,13 +9320,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-INCINERATE",
       "category": "powers",
       "name": "Incinerate",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9227,7 +9347,7 @@
       "visual": "Projectile orange et lueur résiduelle.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/incinerate ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-INCINERATE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9235,13 +9355,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-CRYO",
       "category": "powers",
       "name": "Cryo Blast",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9250,7 +9382,7 @@
       "visual": "Brume blanche et givre à contour épais.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/cryo ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-CRYO dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9258,13 +9390,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-HACK",
       "category": "powers",
       "name": "AI Hacking",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9273,7 +9417,7 @@
       "visual": "Omni-outil orange et icône réseau.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/hack ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-HACK dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9281,7 +9425,19 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-DRONE",
@@ -9310,7 +9466,7 @@
       "id": "ME2-POW-ENERGY-DRAIN",
       "category": "powers",
       "name": "Energy Drain",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9319,7 +9475,7 @@
       "visual": "Arc dirigé de la cible vers l’allié.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/energy-drain ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-ENERGY-DRAIN dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9327,7 +9483,19 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-NEURAL",
@@ -9425,7 +9593,7 @@
       "id": "ME2-POW-FORTIFICATION",
       "category": "powers",
       "name": "Fortification",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9434,7 +9602,7 @@
       "visual": "Halo dense et posture plantée.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/fortification ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-FORTIFICATION dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9442,13 +9610,25 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-CONCUSSIVE",
       "category": "powers",
       "name": "Concussive Shot",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9457,7 +9637,7 @@
       "visual": "Projectile blanc et recul bref.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/concussive ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-CONCUSSIVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9465,7 +9645,19 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-ADRENALINE",
@@ -16287,6 +16479,11 @@
       "area": "Prototype Chroniques indépendant",
       "covered": "12 personnages sélectionnables, 11 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
       "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "16 fiches de pouvoirs utilisées, 0 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   UNIVERSE_EQUIPMENT, getUniverseEquipment, listUniverseEquipment, canEquipUniverseItem,
-  normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects,
+  normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects, CHRONICLE_EQUIPMENT_SLOTS,
 } from '../src/universe-equipment.js';
 import { getUniverseRecord } from '../src/universe-data.js';
 import { SCENARIOS, universeActorFor } from '../src/universe-actors.js';
@@ -22,7 +22,8 @@ const prepare = (session, actorId, itemId, slot) => {
   return { ...session, loadouts: result.loadouts };
 };
 const neutral = { hp: 0, shield: 0, attack: 0, defense: 0, weaponHeatMultiplier: 1,
-  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1 };
+  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1, weaponDamageMultiplier: 1 };
+const emptyLoadout = () => ({ weapon: null, armor: null, weaponMod: null, weaponMod2: null });
 
 test('equipment profiles preserve catalogue provenance without inventing manufacturers, ranks or comic models', () => {
   assert.equal(new Set(UNIVERSE_EQUIPMENT.map(item => item.id)).size, UNIVERSE_EQUIPMENT.length);
@@ -99,18 +100,19 @@ test('edition-dependent equipment is not unlocked by selecting its work or works
   }
 });
 
-test('the 68 workshop selections have explicit permissions and never become prologue mission equipment', () => {
-  const expected = { ME2: 11, ME3: 27, MEA: 30 };
+test('workshop selections have explicit permissions and never become prologue mission equipment', () => {
+  const expected = { ME2: 11, ME3: 29, MEA: 30 };
   for (const [mediaId, count] of Object.entries(expected)) {
     const scene = workshop(mediaId), actorId = protagonist[mediaId];
     assert.equal(scene.allowedEquipmentIds.length, count);
-    const listed = listUniverseEquipment(scene.context, { actorId, scenarioId: scene.id });
+    const loadout = { ...emptyLoadout(), weapon: `${mediaId}-WPN-AVENGER` };
+    const listed = listUniverseEquipment(scene.context, { actorId, scenarioId: scene.id, loadout });
     assert.equal(listed.filter(item => item.compatible).length, count);
     for (const id of scene.allowedEquipmentIds) {
       const item = getUniverseEquipment(id);
       assert.equal(item.mediaId, mediaId);
       assert.equal(item.runtimeSupported, true);
-      assert.equal(canEquipUniverseItem(scene.context, actorId, id, item.slot, scene.id).ok, true);
+      assert.equal(canEquipUniverseItem(scene.context, actorId, id, item.slot, scene.id, loadout).ok, true);
     }
     assert.equal(listUniverseEquipment(scene.context).some(item => item.playable), false);
   }
@@ -139,9 +141,11 @@ test('wearer, weapon family, exact scenario and slot remain independent restrict
 
 test('loadout normalization rejects cross-period payloads, unknown slots and malformed maps without coercion', () => {
   const session = sessionFor('ME2'), actorId = protagonist.ME2;
-  assert.deepEqual(normalizeChronicleLoadouts(undefined, session.context, session.party, session.scenarioId), { [actorId]: { weapon: null, armor: null } });
+  assert.deepEqual(normalizeChronicleLoadouts(undefined, session.context, session.party, session.scenarioId), { [actorId]: emptyLoadout() });
   const valid = { [actorId]: { weapon: 'ME2-WPN-PREDATOR', armor: 'ME2-EQP-N7' } };
-  assert.deepEqual(normalizeChronicleLoadouts(valid, session.context, session.party, session.scenarioId), valid);
+  assert.deepEqual(normalizeChronicleLoadouts(valid, session.context, session.party, session.scenarioId), {
+    [actorId]: { ...emptyLoadout(), ...valid[actorId] },
+  });
   for (const raw of [null, [], { outsider: { weapon: null, armor: null } },
     { [actorId]: { weapon: 'MEA-WPN-PREDATOR', armor: null } },
     { [actorId]: { weapon: 'ME2-WPN-MATTOCK', armor: null } },
@@ -196,4 +200,142 @@ test('equipped conventional weapons feed real thermal-clip combat, consume ammun
   assert.equal(performAction(battle, { actorId, actionId: 'reload' }).ok, true);
   assert.equal(actor.ammo, 18); assert.equal(actor.reserveAmmo, 71); assert.equal(actor.atb, 0); assert.equal(actor.heat, 0);
   assert.equal(getChronicleEquipmentEffects(session, actorId).ammo, 18, 'Battle consumption does not mutate the preparation template');
+});
+
+test('the two supported modifications remain partial family prototypes with source names and no invented ranks', () => {
+  assert.deepEqual(CHRONICLE_EQUIPMENT_SLOTS, ['weapon', 'armor', 'weaponMod', 'weaponMod2']);
+  for (const [id, family] of [['ME3-EQP-BARREL', 'barrel'], ['ME3-EQP-MAGAZINE', 'magazine']]) {
+    const item = getUniverseEquipment(id), source = getUniverseRecord(id);
+    assert.equal(item.name, source.name);
+    assert.equal(item.description, 'Famille de modification.');
+    assert.deepEqual(item.sourceIds, source.sourceIds);
+    assert.equal(item.familyPrototype, true); assert.equal(item.runtimeSupported, true);
+    assert.equal(item.kind, 'weaponMod'); assert.equal(item.slot, 'weaponMod');
+    assert.equal(item.modFamily, family);
+    assert.deepEqual(item.allowedSlots, ['weaponMod', 'weaponMod2']);
+    assert.deepEqual(item.weaponTypes, ['assault']); assert.deepEqual(item.weaponSystems, ['thermal-clip']);
+    assert.match(item.prototypeDetail, /aucun modèle, rang, fabricant ni compatibilité universelle d’origine certifiés/);
+  }
+  for (const id of ['ME3-EQP-SCOPE', 'ME3-EQP-ULTRALIGHT', 'ME3-EQP-WEAPON-MODS',
+    'MEA-EQP-WEAPON-MODS', 'MEA-EQP-AUGMENT', 'MEA-EQP-FUSION']) {
+    assert.equal(getUniverseEquipment(id).runtimeSupported, false, id);
+  }
+});
+
+test('two-slot saves migrate to four empty ports without changing their selected weapon or armor', () => {
+  const session = sessionFor('ME3'), actorId = protagonist.ME3;
+  const legacy = { [actorId]: { weapon: 'ME3-WPN-AVENGER', armor: 'ME3-EQP-N7' } }, before = clone(legacy);
+  const expected = { [actorId]: { ...emptyLoadout(), ...legacy[actorId] } };
+  const normalized = normalizeChronicleLoadouts(legacy, session.context, session.party, session.scenarioId);
+  assert.deepEqual(normalized, expected); assert.deepEqual(legacy, before);
+  assert.deepEqual(normalizeChronicleLoadouts(normalized, session.context, session.party, session.scenarioId), expected);
+  const partial = { [actorId]: { ...legacy[actorId], weaponMod: null } };
+  assert.equal(normalizeChronicleLoadouts(partial, session.context, session.party, session.scenarioId), null);
+  normalized[actorId].weapon = null;
+  assert.equal(legacy[actorId].weapon, 'ME3-WPN-AVENGER');
+});
+
+test('modification permissions require an explicit compatible parent rather than an abstract default gun', () => {
+  const session = sessionFor('ME3'), actorId = protagonist.ME3, { context, scenarioId } = session;
+  const check = (itemId, slot, row) => canEquipUniverseItem(context, actorId, itemId, slot, scenarioId, row);
+  assert.equal(check('ME3-EQP-BARREL', 'weaponMod').ok, false);
+  assert.equal(check('ME3-EQP-BARREL', 'weaponMod', emptyLoadout()).ok, false);
+  for (const id of ['ME3-WPN-PREDATOR', 'ME3-WPN-SHURIKEN', 'ME3-WPN-KATANA', 'ME3-WPN-MANTIS',
+    'ME3-WPN-LANCER', 'ME3-WPN-PARTICLE', 'ME2-WPN-AVENGER']) {
+    assert.equal(check('ME3-EQP-BARREL', 'weaponMod', { ...emptyLoadout(), weapon: id }).ok, false, id);
+  }
+  const row = { ...emptyLoadout(), weapon: 'ME3-WPN-AVENGER' };
+  assert.equal(check('ME3-EQP-BARREL', 'weaponMod', row).ok, true);
+  assert.equal(check('ME3-EQP-BARREL', 'weaponMod2', row).ok, true);
+  assert.equal(check('ME3-EQP-BARREL', 'armor', row).ok, false);
+  assert.equal(canEquipUniverseItem(workshop('ME2').context, protagonist.ME2, 'ME3-EQP-BARREL', 'weaponMod', workshop('ME2').id, row).ok, false);
+  const noParent = listUniverseEquipment(context, { actorId, scenarioId }).find(item => item.id === 'ME3-EQP-BARREL');
+  assert.equal(noParent.compatible, false); assert.deepEqual(noParent.compatibleSlots, []);
+  const withParent = listUniverseEquipment(context, { actorId, scenarioId, loadout: row }).find(item => item.id === 'ME3-EQP-BARREL');
+  assert.equal(withParent.compatible, true); assert.deepEqual(withParent.compatibleSlots, ['weaponMod', 'weaponMod2']);
+});
+
+test('the two ports accept distinct families in either order and reject duplicated or orphaned imports', () => {
+  const actorId = protagonist.ME3, base = prepare(sessionFor('ME3'), actorId, 'ME3-WPN-AVENGER');
+  const first = prepare(base, actorId, 'ME3-EQP-BARREL'), combined = prepare(first, actorId, 'ME3-EQP-MAGAZINE');
+  assert.equal(first.loadouts[actorId].weaponMod, 'ME3-EQP-BARREL');
+  assert.equal(combined.loadouts[actorId].weaponMod2, 'ME3-EQP-MAGAZINE');
+  const before = clone(first);
+  assert.equal(equipChronicleItem(first, actorId, 'ME3-EQP-BARREL', 'weaponMod2').ok, false);
+  assert.deepEqual(first, before);
+  const card = listUniverseEquipment(first.context, { actorId, scenarioId: first.scenarioId, loadout: first.loadouts[actorId] })
+    .find(item => item.id === 'ME3-EQP-BARREL');
+  assert.equal(card.compatible, true); assert.equal(card.reason, null);
+  assert.deepEqual(card.compatibleSlots, ['weaponMod']); assert.equal(card.slotReasons.weaponMod, null);
+  assert.match(card.slotReasons.weaponMod2, /même famille/);
+  assert.deepEqual(prepare(first, actorId, 'ME3-EQP-BARREL').loadouts, first.loadouts);
+  const reverse = prepare(prepare(base, actorId, 'ME3-EQP-MAGAZINE', 'weaponMod2'), actorId, 'ME3-EQP-BARREL', 'weaponMod');
+  assert.deepEqual(getChronicleEquipmentEffects(reverse, actorId), getChronicleEquipmentEffects(combined, actorId));
+  for (const mutate of [row => { row.weaponMod2 = 'ME3-EQP-BARREL'; }, row => { row.weapon = null; },
+    row => { row.weapon = 'ME3-WPN-PREDATOR'; }, row => { row.weaponMod = 'MEA-EQP-FUSION'; },
+    row => { row.weaponMod = 'ME3-EQP-SCOPE'; }]) {
+    const raw = clone(combined.loadouts); mutate(raw[actorId]);
+    assert.equal(normalizeChronicleLoadouts(raw, combined.context, combined.party, combined.scenarioId), null);
+  }
+});
+
+test('weapon replacement or removal releases both module selections atomically and same-weapon selection preserves them', () => {
+  const actorId = protagonist.ME3;
+  const base = prepare(prepare(prepare(sessionFor('ME3'), actorId, 'ME3-WPN-AVENGER'), actorId, 'ME3-EQP-BARREL'), actorId, 'ME3-EQP-MAGAZINE');
+  const before = clone(base);
+  const same = equipChronicleItem(base, actorId, 'ME3-WPN-AVENGER');
+  assert.equal(same.ok, true); assert.deepEqual(same.returnedMods, []); assert.deepEqual(same.loadouts, base.loadouts);
+  for (const replacement of [null, 'ME3-WPN-PREDATOR', 'ME3-WPN-VINDICATOR']) {
+    const result = equipChronicleItem(base, actorId, replacement, 'weapon');
+    assert.equal(result.ok, true, result.reason);
+    assert.deepEqual(result.returnedMods, ['ME3-EQP-BARREL', 'ME3-EQP-MAGAZINE']);
+    assert.equal(result.loadouts[actorId].weaponMod, null); assert.equal(result.loadouts[actorId].weaponMod2, null);
+    assert.equal(getChronicleEquipmentEffects({ ...base, loadouts: result.loadouts }, actorId).weaponDamageMultiplier, 1);
+  }
+  assert.equal(equipChronicleItem(base, actorId, 'ME3-WPN-LANCER').ok, false);
+  assert.deepEqual(base, before);
+});
+
+test('magazine capacity transfers its initial extra rounds from reserve and removing it restores the same finite budget', () => {
+  const actorId = protagonist.ME3, scene = workshop('ME3');
+  for (const weaponId of scene.allowedEquipmentIds.filter(id => getUniverseEquipment(id).kind === 'weapon'
+    && getUniverseEquipment(id).weaponType === 'assault')) {
+    const base = prepare(sessionFor('ME3'), actorId, weaponId), original = getChronicleEquipmentEffects(base, actorId);
+    const equipped = prepare(base, actorId, 'ME3-EQP-MAGAZINE'), effects = getChronicleEquipmentEffects(equipped, actorId);
+    assert.equal(effects.magazineCapacity, Math.ceil(original.magazineCapacity * 1.25));
+    assert.equal(effects.ammo + effects.reserveAmmo, original.ammo + original.reserveAmmo);
+    assert.equal(effects.ammo, effects.magazineCapacity); assert.ok(effects.reserveAmmo >= 0);
+    assert.equal(Object.hasOwn(effects, 'magazineCapacityMultiplier'), false, 'The compositor receives final capacity, never a multiplier to apply twice');
+    const removed = prepare(equipped, actorId, null, 'weaponMod');
+    assert.deepEqual(getChronicleEquipmentEffects(removed, actorId), original);
+  }
+});
+
+test('a real modified weapon changes only gunfire damage while capacity and reload preserve finite ammunition', () => {
+  const actorId = protagonist.ME3;
+  const plain = prepare(sessionFor('ME3'), actorId, 'ME3-WPN-AVENGER');
+  const modified = prepare(prepare(plain, actorId, 'ME3-EQP-BARREL'), actorId, 'ME3-EQP-MAGAZINE');
+  const before = getChronicleEquipmentEffects(plain, actorId), after = getChronicleEquipmentEffects(modified, actorId);
+  assert.equal(before.attack, after.attack); assert.equal(after.weaponDamageMultiplier, 1.12);
+  assert.equal(after.bioticMultiplier, 1); assert.equal(after.techMultiplier, 1);
+  assert.equal(after.magazineCapacity, 23); assert.equal(after.ammo, 23); assert.equal(after.reserveAmmo, 67);
+  const scenario = effects => {
+    const base = universeActorFor(actorId, modified.context);
+    return createBattle({ party: [{ ...base, ...effects, hp: base.hp, maxHp: base.maxHp, shield: base.shield, maxShield: base.maxShield,
+      attack: base.attack, defense: base.defense, powers: ['throw', 'overload'] }],
+      enemies: [{ id: 'target', hp: 10000, maxHp: 10000, shield: 0, defense: 0, synthetic: true }], mode: 'active', rng: () => .5 });
+  };
+  const damage = (effects, actionId) => {
+    const battle = scenario(effects); battle.actors[0].atb = 100;
+    assert.equal(performAction(battle, { actorId, actionId, targetId: 'target' }).ok, true);
+    return { value: 10000 - battle.actors[1].hp, battle };
+  };
+  const shot = damage(after, 'shoot');
+  assert.ok(Math.abs(shot.value - damage(before, 'shoot').value * 1.12) < 1e-8);
+  for (const action of ['throw', 'overload']) assert.equal(damage(after, action).value, damage(before, action).value);
+  const actor = shot.battle.actors[0];
+  assert.equal(actor.ammo, 22); assert.equal(actor.heat, 0);
+  actor.atb = 100; assert.equal(performAction(shot.battle, { actorId, actionId: 'reload' }).ok, true);
+  assert.equal(actor.ammo, 23); assert.equal(actor.reserveAmmo, 66); assert.equal(actor.heat, 0);
+  assert.equal(actor.ammo + actor.reserveAmmo, 89, 'The shot spent one round; reload creates none');
 });

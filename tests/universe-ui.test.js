@@ -3,16 +3,21 @@ import assert from 'node:assert/strict';
 import { MEDIA_PERIODS } from '../src/continuity-data.js';
 import { UNIVERSE_WORKS, getUniverseRecord } from '../src/universe-data.js';
 import { normalizeContext, listAvailable } from '../src/continuity.js';
-import { createChronicle, listChronicleScenarios, getChronicleRoster, getChronicleGear, buildChronicleActor, startChronicleBattle } from '../src/chronicles.js';
-import { getActions } from '../src/combat.js';
-import { renderUniverseScreen, renderUniverseReferences, renderChronicleBattle } from '../src/universe-ui.js';
+import { createChronicle, listChronicleScenarios, getChronicleRoster, getChronicleGear, buildChronicleActor, startChronicleBattle,
+  getChronicleBuilds, setChronicleBuild, equipChronicle, listChronicleReadings, getChronicleReading, readChroniclePage } from '../src/chronicles.js';
+import { getActions, ACTIONS } from '../src/combat.js';
+import { renderUniverseScreen, renderUniverseReferences, renderChronicleBattle, renderChronicleReading } from '../src/universe-ui.js';
 
 const context = (mediaId, periodId) => normalizeContext({ mediaId, periodId });
 const uiFor = (ctx, extra = {}) => ({ mediaId: ctx?.mediaId || '', periodId: ctx?.periodId || '', group: 'all', query: '', recordId: null, visibleCount: 30, tab: 'references', ...extra });
 function viewFor(ctx, session = null) {
-  const roster = session ? getChronicleRoster(session) : [], gearByActor = {}, actors = {};
-  for (const id of session?.party || []) { gearByActor[id] = getChronicleGear(session, id); actors[id] = buildChronicleActor(session, id); }
-  return { works: UNIVERSE_WORKS, context: ctx, records: ctx ? listAvailable(ctx) : [], scenarios: listChronicleScenarios(ctx), session, roster, gearByActor, actors, battle: null, actions: [] };
+  const roster = session ? getChronicleRoster(session) : [], gearByActor = {}, gearByActorSlot = {}, actors = {}, buildsByActor = {};
+  for (const id of session?.party || []) {
+    gearByActor[id] = getChronicleGear(session, id); actors[id] = buildChronicleActor(session, id); buildsByActor[id] = getChronicleBuilds(session, id);
+    gearByActorSlot[id] = { weaponMod: getChronicleGear(session, id, 'weaponMod'), weaponMod2: getChronicleGear(session, id, 'weaponMod2') };
+  }
+  const readings = listChronicleReadings(ctx), reading = session && readings[0] ? getChronicleReading(session, readings[0].id) : null;
+  return { works: UNIVERSE_WORKS, context: ctx, records: ctx ? listAvailable(ctx) : [], scenarios: listChronicleScenarios(ctx), session, roster, gearByActor, gearByActorSlot, actors, buildsByActor, actionLabels: ACTIONS, readings, reading, battle: null, actions: [] };
 }
 
 test('the registry offers all works and only their registered finite chapters, with sourced date uncertainty', () => {
@@ -108,4 +113,79 @@ test('the isolated battle renders real engine actions and data bars with neutral
   assert.ok(html.includes('data-do="chronicle-target"'));
   assert.ok(!/<(?:img|svg)\b/.test(html));
   assert.equal(JSON.stringify(view.battle), before);
+});
+
+test('class preparation renders real selected powers and rejects incompatible weapon families before selection', () => {
+  const ctx = context('ME2', 'me2');
+  let session = createChronicle(ctx, 'me2-equipment-workshop');
+  const result = setChronicleBuild(session, 'ME2-CHR-SHEPARD', 'engineer');
+  assert.equal(result.ok, true); session = result.session;
+  const before = JSON.stringify(session), html = renderUniverseScreen(viewFor(ctx, session), uiFor(ctx, { tab: 'session' }));
+  const buildSelect = html.match(/<select[^>]*data-chronicle-build data-actor-id="ME2-CHR-SHEPARD"[^>]*>([\s\S]*?)<\/select>/)[1];
+  assert.equal([...buildSelect.matchAll(/<option /g)].length, 7);
+  assert.match(buildSelect, /value="engineer" selected>Ingénieur/);
+  const actor = buildChronicleActor(session, 'ME2-CHR-SHEPARD');
+  for (const power of actor.powers) assert.ok(html.includes(ACTIONS[power].label));
+  assert.match(html, /<option value="ME2-WPN-AVENGER"[^>]*disabled/);
+  assert.ok(html.includes('Cette famille d’arme ne fait pas partie de cette préparation de classe.'));
+  assert.ok(html.includes('Changer de profil retire les équipements devenus incompatibles.'));
+  assert.equal(JSON.stringify(session), before);
+
+  const prologue = context('ME3', 'me3-prologue'), fixed = createChronicle(prologue, 'me3-earth-prologue');
+  const fixedHTML = renderUniverseScreen(viewFor(prologue, fixed), uiFor(prologue, { tab: 'session' }));
+  assert.match(fixedHTML, /<select[^>]*data-chronicle-build[^>]*disabled/);
+});
+
+test('both module ports expose their exact compatibility, selected family profiles and replacement warning', () => {
+  const ctx = context('ME3', 'me3');
+  let session = createChronicle(ctx, 'me3-equipment-workshop');
+  for (const [item, slot] of [['ME3-WPN-AVENGER', 'weapon'], ['ME3-EQP-BARREL', 'weaponMod'], ['ME3-EQP-MAGAZINE', 'weaponMod2']]) {
+    const result = equipChronicle(session, 'ME3-CHR-SHEPARD', item, slot); assert.equal(result.ok, true, result.reason); session = result.session;
+  }
+  const before = JSON.stringify(session), html = renderUniverseScreen(viewFor(ctx, session), uiFor(ctx, { tab: 'session' }));
+  for (const [slot, item] of [['weaponMod', 'ME3-EQP-BARREL'], ['weaponMod2', 'ME3-EQP-MAGAZINE']]) {
+    const selector = new RegExp(`<select[^>]*data-actor-id="ME3-CHR-SHEPARD" data-slot="${slot}"[^>]*>([\\s\\S]*?)<\\/select>`);
+    const content = html.match(selector)[1];
+    assert.match(content, new RegExp(`value="${item}" selected`));
+  }
+  assert.ok(html.includes('Changer d’arme retire les modules de ses deux ports.'));
+  assert.ok(html.includes('Chargeur ATB 23, réserve ATB 67'));
+  assert.ok(html.includes('Dégâts des tirs ATB 112 %'));
+  assert.equal(buildChronicleActor(session, 'ME3-CHR-SHEPARD').magazineCapacity, 23);
+  assert.equal(JSON.stringify(session), before);
+});
+
+test('documentary reading shows one sourced page, exact navigation and saved progression without combat rewards', () => {
+  const ctx = context('REV', 'rev'), session = createChronicle(ctx), result = readChroniclePage(session, 'rev-sidon', 1);
+  assert.equal(result.ok, true);
+  const view = viewFor(ctx, result.session), ui = uiFor(ctx, { tab: 'reading', readingId: 'rev-sidon' }), before = JSON.stringify(result.session);
+  const html = renderUniverseScreen(view, ui);
+  assert.ok(html.includes('data-do="universe-tab" data-id="reading" aria-pressed="true"'));
+  assert.ok(html.includes('id="chronicle-reading"'));
+  assert.ok(html.includes('data-chronicle-reading="rev-sidon" data-reading-index="1"'));
+  assert.ok(html.includes(result.reading.step.text));
+  for (const source of result.reading.step.sources) assert.ok(html.includes(`data-reading-source="${source.id}"`));
+  assert.ok(html.includes('data-do="chronicle-page" data-index="0"'));
+  assert.ok(html.includes('data-do="chronicle-page" data-index="2"'));
+  assert.ok(!html.includes('data-do="chronicle-battle"'));
+  assert.ok(!html.includes('data-chronicle-actor'));
+  assert.equal(JSON.stringify(result.session), before);
+  const last = readChroniclePage(result.session, 'rev-sidon', 4), lastView = viewFor(ctx, last.session);
+  assert.match(renderChronicleReading(lastView, ui), /data-do="chronicle-page" data-index="4" disabled>Étape suivante/);
+});
+
+test('reading and power-reference tabs preserve context gates and active battle restrictions', () => {
+  const rev = context('REV', 'rev'), session = createChronicle(rev), reading = getChronicleReading(session, 'rev-sidon');
+  const view = viewFor(context('ME1', 'me1'), session); view.readings = listChronicleReadings(rev); view.reading = reading;
+  assert.ok(!renderChronicleReading(view, uiFor(rev, { readingId: 'rev-sidon' })).includes(reading.step.text));
+  const me2 = context('ME2', 'me2'), battleSession = createChronicle(me2, 'me2-equipment-workshop'), active = viewFor(me2, battleSession);
+  active.battle = startChronicleBattle(battleSession).battle;
+  assert.match(renderUniverseScreen(active, uiFor(me2, { tab: 'session' })), /data-id="reading"[^>]*disabled>Lecture/);
+  const safe = viewFor(rev, session); safe.battle = active.battle;
+  assert.ok(!renderChronicleReading(safe, uiFor(rev, { tab: 'reading' })).includes(reading.step.text));
+
+  const powersView = viewFor(me2), power = getUniverseRecord('ME2-POW-PULL'); powersView.records = [power];
+  const html = renderUniverseReferences(powersView, uiFor(me2, { group: 'powers' }));
+  assert.ok(html.includes('data-id="powers" aria-pressed="true">Pouvoirs'));
+  assert.ok(html.includes(`data-universe-record="${power.id}"`));
 });

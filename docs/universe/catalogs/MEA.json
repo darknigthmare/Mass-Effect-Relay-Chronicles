@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_Andromeda_Production.xlsx",
   "scope": "Campagne solo complète comme périmètre de préparation, grands arcs d’alliés, mondes de Heleus, tâches représentatives et épilogue. Profils de patch explicités. APEX et multijoueur coopératif sont des modules séparés ; aucun DLC narratif solo hypothétique ni résolution inventée de l’arche quarienne.",
-  "summary": "763 fiches de préparation couvrant les 26 familles du schéma. Sources consultées au 22 octobre 2026 ; inventaire de production substantiel, sans prétention d’exhaustivité vérifiée. Prototype partiel : 8 profils sélectionnables et 30 équipements en Chroniques ; le reste demeure documentaire.",
+  "summary": "763 fiches de production ; 45 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -10936,7 +10936,7 @@
       "id": "MEA-POW-CONCUSSIVE",
       "category": "powers",
       "name": "Concussive Shot",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Combat.",
@@ -10945,7 +10945,7 @@
       "visual": "Projectile blanc et recul.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/concussive ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-CONCUSSIVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Combat",
       "acceptance": "Concussive Shot : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -10953,7 +10953,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Concussive Shot",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-OMNI-GRENADE",
@@ -11212,7 +11224,7 @@
       "id": "MEA-POW-THROW",
       "category": "powers",
       "name": "Throw",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Biotique.",
@@ -11221,7 +11233,7 @@
       "visual": "Trait bleu et flèche de recul.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/throw ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-THROW dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Biotique",
       "acceptance": "Throw : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11229,13 +11241,25 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Throw",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-PULL",
       "category": "powers",
       "name": "Pull",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Biotique.",
@@ -11244,7 +11268,7 @@
       "visual": "Halo de lévitation.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/pull ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-PULL dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Biotique",
       "acceptance": "Pull : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11252,7 +11276,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Pull",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-CHARGE",
@@ -11304,7 +11340,7 @@
       "id": "MEA-POW-SHOCKWAVE",
       "category": "powers",
       "name": "Shockwave",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Biotique.",
@@ -11313,7 +11349,7 @@
       "visual": "Vagues bleues en ligne.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/shockwave ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-SHOCKWAVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Biotique",
       "acceptance": "Shockwave : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11321,7 +11357,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Shockwave",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-ANNIHILATION",
@@ -11488,7 +11536,7 @@
       "id": "MEA-POW-OVERLOAD",
       "category": "powers",
       "name": "Overload",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Tech.",
@@ -11497,7 +11545,7 @@
       "visual": "Arc bleu-orange.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/overload ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-OVERLOAD dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Tech",
       "acceptance": "Overload : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11505,13 +11553,25 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Overload",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-INCINERATE",
       "category": "powers",
       "name": "Incinerate",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Tech.",
@@ -11520,7 +11580,7 @@
       "visual": "Projectile orange et flamme résiduelle.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/incinerate ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-INCINERATE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Tech",
       "acceptance": "Incinerate : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11528,7 +11588,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Incinerate",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-ASSAULT-TURRET",
@@ -11580,7 +11652,7 @@
       "id": "MEA-POW-ENERGY-DRAIN",
       "category": "powers",
       "name": "Energy Drain",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Tech.",
@@ -11589,7 +11661,7 @@
       "visual": "Lien électrique vers Ryder.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/energy-drain ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-ENERGY-DRAIN dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Tech",
       "acceptance": "Energy Drain : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11597,7 +11669,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Energy Drain",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-TACTICAL-CLOAK",
@@ -18890,6 +18974,11 @@
       "area": "Prototype Chroniques indépendant",
       "covered": "8 personnages sélectionnables, 30 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
       "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "7 fiches de pouvoirs utilisées, 0 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }
