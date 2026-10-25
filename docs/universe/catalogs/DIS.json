@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Discovery_Production.xlsx",
   "scope": "Les quatre numéros : infiltration de l’Initiative, recherche de Shio, site minier du Novarra, Omega et réseau Kholas. Deux séquences de production par numéro, avec limites de connaissance et d’allégeance.",
-  "summary": "Adaptation d’enquête en duo autour de Tiran Kandros, fondée sur une couverture, une poursuite et une décision d’engagement. Les calculs astrométriques sont des objectifs abstraits, pas des données scientifiques inventées.",
+  "summary": "160 fiches de production ; 2 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "La notice officielle confirme un Turien infiltré dans l’Initiative et un scientifique recherché. Les détails des personnages et scènes issus du wiki indexé restent À vérifier. La découverte du réseau geth ne prouve ni un financement précis ni une solution à tous les mystères de l’Initiative. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -58,7 +58,7 @@
   ],
   "entries": [
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "L’éditeur présente un jeune Turien infiltrant l’Initiative d’Andromède pour retrouver un scientifique.",
@@ -67,7 +67,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification DIS/lore/ref-scope; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire DIS-REF-SCOPE consultable dans les lectures dis-infiltration de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source BOOK et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -75,13 +75,24 @@
         "DIS-S-BOOK"
       ],
       "reference": "Mass Effect: Discovery, série concernée",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "DIS-REF-SCOPE",
       "category": "lore",
-      "name": "Infiltration de l’Initiative"
+      "name": "Infiltration de l’Initiative",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Dark Horse identifie Tiran Kandros comme le protagoniste de Discovery.",
@@ -90,7 +101,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification DIS/lore/ref-tiran; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire DIS-REF-TIRAN consultable dans les lectures dis-infiltration de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source COMPLETE et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -98,10 +109,21 @@
         "DIS-S-COMPLETE"
       ],
       "reference": "Mass Effect: Discovery, série concernée",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "DIS-REF-TIRAN",
       "category": "lore",
-      "name": "Tiran Kandros"
+      "name": "Tiran Kandros",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -3897,6 +3919,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Vérifier l’ordre des révélations, les liens familiaux, les costumes et la fin dans les quatre numéros. Ne pas conclure sur les mystères de financement de l’Initiative."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "2 références supplémentaires au stade Prototype dans 1 parcours de lecture (1 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }

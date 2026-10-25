@@ -11,10 +11,11 @@ const entry = new URL(process.env.GAME_URL || 'http://127.0.0.1:4174');
 const url = new URL(entry); url.searchParams.set('qa', '');
 const out = new URL('../test-results/', import.meta.url);
 await mkdir(out, { recursive: true });
+const packageMetadata = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
 const report = {
-  version: '0.2.0', at: new Date().toISOString(), passed: false,
+  version: packageMetadata.version, at: new Date().toISOString(), passed: false,
   mode: 'Production HTTP fallback after file:// was blocked by the managed browser',
-  scope: 'The real dist Vite bundles served over HTTP in Linux Chromium: native WebGL drawing, bundled resources, dossier, equipment, actual save/export/import/resume UI, separately saved ME2 and ME3 Chronicle workshops, the ME3 engineer preparation with two weapon modifications, and Revelation documentary reading restored after reload through production UI. No Electron executable or Windows launch is tested.',
+  scope: 'The real dist Vite bundles served over HTTP in Linux Chromium: native WebGL drawing, bundled resources, dossier, equipment, actual save/export/import/resume UI, separately saved ME2 and ME3 Chronicle workshops, the ME3 engineer preparation with two weapon modifications, Revelation documentary reading restored after reload, a cancellable heat beam and finite grenade charges through production UI. No Electron executable or Windows launch is tested.',
   fileURLValidation: { status: 'blocked-by-managed-browser-policy', error: 'ERR_BLOCKED_BY_ADMINISTRATOR', evidence: 'test-results/production-v02-report.json', policyBypassAttempted: false },
   entry: entry.href, buildEntry: 'dist/index.html', browser: null, checks: [], bundles: [], bundleStatuses: [], servedBundles: [], errors: [], failedRequests: [], assetRequests: [],
 };
@@ -345,6 +346,68 @@ try {
     exactReadingEnvelopeRestored: true, exactOtherChroniclesPreserved: true, exactCampaignCheckpointPreserved: true,
     campaignCheckpointSha256: createHash('sha256').update(activityCampaignBytes).digest('hex'),
     partyCreated: false, tacticalVictoryAwarded: false, campaignRewardAwarded: false, runtimeDevelopmentHarness: 'absent' });
+
+  // Exercise the new combat dispatch in the real build, without the DEV API or
+  // simulation acceleration. Party changes and resource use are visible orders.
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  await captureEntryCheckpoint('Specialist production entry');
+  await page.locator('#chronicle-media').selectOption('MEA');
+  await page.locator('#chronicle-period').selectOption('mea');
+  await action('universe-tab', 'session').click();
+  await page.locator('#chronicle-scenario').selectOption('mea-equipment-workshop');
+  await action('chronicle-start').click();
+  for (const id of ['MEA-CHR-CORA', 'MEA-CHR-LIAM']) await action('chronicle-party', id).click();
+  const ryderWeapon = page.locator('[data-chronicle-gear][data-actor-id="MEA-CHR-RYDER"][data-slot="weapon"]');
+  await ryderWeapon.selectOption('MEA-WPN-PAW');
+  assert.match(await page.locator('[data-chronicle-actor="MEA-CHR-RYDER"]').innerText(), /Chaleur.*sans recharge de clips/);
+  await action('chronicle-battle').click();
+  await page.locator('[data-do="chronicle-action"][data-id="shoot"]:not([disabled])').waitFor();
+  await action('chronicle-action', 'shoot').click();
+  await action('chronicle-target', 'chronicle-enemy-0').click();
+  await page.locator('[data-chronicle-channel]').waitFor();
+  await page.waitForFunction(() => {
+    const counter = document.querySelector('.chronicle-command .small')?.textContent || '';
+    const match = counter.match(/(\d+) % de chaleur/);
+    return match && Number(match[1]) > 0 && document.querySelector('[data-chronicle-channel]');
+  }, null, { polling: 50 });
+  const beamResource = await page.locator('.chronicle-command .small').innerText();
+  assert.equal(await page.locator('[data-chronicle-ammo]').count(), 0);
+  assert.match(beamResource, /Canalisation en cours/);
+  await action('chronicle-action', 'cancelChannel').click();
+  await page.locator('[data-chronicle-channel]').waitFor({ state: 'detached' });
+  assert.equal(await page.evaluate(() => typeof window.__RELAY_TEST__), 'undefined');
+  await assertCampaignFrozen('Production heat beam and cancellation');
+  await capture('specialist-heat-beam');
+  record({ name: 'Production P.A.W. uses heat and a real cancellable channel without inheriting clip ammunition',
+    actorId: 'MEA-CHR-RYDER', weaponId: 'MEA-WPN-PAW', resourceDisplay: beamResource,
+    ammunitionCounterAbsent: true, actualCancellation: true, runtimeDevelopmentHarness: 'absent' });
+
+  await action('chronicle-preparation').click();
+  await action('chronicle-party', 'MEA-CHR-LIAM').click();
+  await action('chronicle-party', 'MEA-CHR-RYDER').click();
+  await action('chronicle-battle').click();
+  const grenadeCount = page.locator('[data-chronicle-grenades]');
+  assert.equal(await grenadeCount.innerText(), '3/3 charges de grenade');
+  const startingAmmo = await page.locator('[data-chronicle-ammo]').innerText();
+  const spentGrenades = [];
+  for (let number = 1; number <= 3; number += 1) {
+    await page.locator('[data-do="chronicle-action"][data-id="fragGrenade"]:not([disabled])').waitFor();
+    await action('chronicle-action', 'fragGrenade').click();
+    await action('chronicle-target', 'chronicle-enemy-0').click();
+    const resource = await grenadeCount.innerText();
+    assert.equal(resource, `${3 - number}/3 charges de grenade`);
+    assert.equal(await page.locator('[data-chronicle-ammo]').innerText(), startingAmmo);
+    spentGrenades.push(resource);
+  }
+  assert.equal(await action('chronicle-action', 'fragGrenade').isDisabled(), true);
+  await assertCampaignFrozen('Production finite grenade charges');
+  await capture('specialist-grenades-empty');
+  await action('chronicle-preparation').click(); await action('chronicle-back').click();
+  await page.getByRole('button', { name: /Nouvelle campagne/ }).waitFor();
+  await assertCampaignFrozen('Production specialist return to title');
+  record({ name: 'Production Liam spends exactly three finite grenade charges without spending weapon ammunition or altering ME1',
+    actorId: 'MEA-CHR-LIAM', actionId: 'fragGrenade', spentGrenades, weaponAmmunitionUnchanged: startingAmmo,
+    emptyActionDisabled: true, exactCampaignCheckpointPreserved: true, runtimeDevelopmentHarness: 'absent' });
 
   const femaleRequests = [...completed].filter(address => /shepard-female-(?:walk|combat)-atlas\.png$/.test(address));
   assert.equal(femaleRequests.length, 2, 'Both female PNG atlases completed HTTP loading');

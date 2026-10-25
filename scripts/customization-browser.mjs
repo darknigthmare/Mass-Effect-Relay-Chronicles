@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile, copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { SLOTS } from '../src/loadout.js';
 import { CUSTOMIZATION_OPTIONS, initialCustomization } from '../src/customization.js';
 
 // Start with RELAY_QA=1 npm run dev (port 4173 in vite.config.js). Override
@@ -12,6 +13,8 @@ import { CUSTOMIZATION_OPTIONS, initialCustomization } from '../src/customizatio
 // Separate, named save fixtures exercise migration and inventory restrictions.
 const baseURL = process.env.GAME_URL || 'http://127.0.0.1:4173';
 const productionURL = process.env.PRODUCTION_GAME_URL || null;
+const reportPrefix = process.env.CUSTOMIZATION_REPORT_PREFIX || 'customization';
+assert.match(reportPrefix, /^[a-z0-9][a-z0-9-]*$/, 'A report prefix must be a plain filename prefix.');
 const out = new URL('../test-results/', import.meta.url);
 const docs = new URL('../docs/qa/', import.meta.url);
 const screenshots = new URL('../docs/screenshots/', import.meta.url);
@@ -21,9 +24,14 @@ const report = {
   version: '0.3.0', at: new Date().toISOString(), passed: false, browser: null,
   scope: 'Real creation/customization/equipment UI, draft cancellation and commit, keyboard, mobile layout, save/reload/export/import, and explicit imported-save fixtures. State and world are observed, never overwritten through the development harness. This does not establish pixel-perfect canon art or a native Windows launch.',
   urls: { development: baseURL, production: productionURL }, checks: [], fixtures: [],
-  command: [process.env.PLAYWRIGHT_EXECUTABLE_PATH && `PLAYWRIGHT_EXECUTABLE_PATH=${process.env.PLAYWRIGHT_EXECUTABLE_PATH}`, `GAME_URL=${baseURL}`, productionURL && `PRODUCTION_GAME_URL=${productionURL}`, 'node scripts/customization-browser.mjs'].filter(Boolean).join(' '),
+  command: [`CUSTOMIZATION_REPORT_PREFIX=${reportPrefix}`, process.env.PLAYWRIGHT_EXECUTABLE_PATH && `PLAYWRIGHT_EXECUTABLE_PATH=${process.env.PLAYWRIGHT_EXECUTABLE_PATH}`, `GAME_URL=${baseURL}`, productionURL && `PRODUCTION_GAME_URL=${productionURL}`, 'node scripts/customization-browser.mjs'].filter(Boolean).join(' '),
   errors: [], failedRequests: [], screenshots: [], production: { status: productionURL ? 'pending' : 'not-requested' },
 };
+report.baseMain = '748b9657de4cad0a4633b86c9d185ea63793c293';
+report.sources = Object.fromEntries(await Promise.all([
+  'src/main.js', 'src/state.js', 'src/world.js', 'src/customization.js', 'src/customization-ui.js',
+  'src/customization-ui.css', 'src/customization-render.js', 'src/loadout.js', 'scripts/customization-browser.mjs',
+].map(async source => [source, createHash('sha256').update(await readFile(new URL(`../${source}`, import.meta.url))).digest('hex')])));
 const browser = await chromium.launch({
   headless: true,
   ...(process.env.PLAYWRIGHT_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH } : {}),
@@ -56,10 +64,10 @@ async function idle(zone = 'normandy') {
 }
 async function shot(name) {
   if (await page.locator('.customization-screen').count()) await page.waitForFunction(() => document.querySelector('[data-custom-canvas]')?.dataset.ready === 'true');
-  const filename = `customization-${name}.png`;
+  const filename = `${reportPrefix}-${name}.png`;
   await page.screenshot({ path: fileURLToPath(new URL(filename, screenshots)) });
   report.screenshots.push(`docs/screenshots/${filename}`);
-  const alias = { 'armor-desktop': 'customization-armor.png', 'character-mobile': 'customization-mobile.png' }[name];
+  const alias = { 'armor-desktop': `${reportPrefix}-armor.png`, 'character-mobile': `${reportPrefix}-mobile.png` }[name];
   if (alias) {
     await copyFile(new URL(filename, screenshots), new URL(alias, screenshots));
     report.screenshots.push(`docs/screenshots/${alias}`);
@@ -300,7 +308,7 @@ try {
   const restricted = JSON.parse(serialized);
   restricted.state.inventory.items['onyx-turian-i'] = 1;
   restricted.state.inventory.items['colossus-human-vii'] = 1;
-  restricted.state.inventory.equipped.jenkins = { weapon: 'avenger-i', armor: null, weaponMod: null, ammoMod: null, armorMod: null };
+  restricted.state.inventory.equipped.jenkins = { ...Object.fromEntries(SLOTS.map(slot => [slot, null])), weapon: 'avenger-i' };
   await importSave(JSON.stringify(restricted), 'fixture-customization-restrictions.json'); await openFromPause();
   await action('custom-tab', 'armor').click(); await action('custom-slot', 'armor').click();
   await action('custom-show-all').click();
@@ -354,14 +362,14 @@ try {
 
   assert.deepEqual(report.errors, [], 'No uncaught browser errors'); assert.deepEqual(report.failedRequests, [], 'No failed HTTP/asset requests');
   report.passed = true;
-  await writeFile(new URL('customization-report.json', docs), `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(new URL(`${reportPrefix}-report.json`, docs), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify({ passed: true, checks: report.checks.length, screenshots: report.screenshots.length, production: report.production.status }));
 } catch (error) {
   report.failure = error.stack || String(error); console.error(report.failure);
   console.error(JSON.stringify({ errors: report.errors, failedRequests: report.failedRequests }));
-  if (page) await page.screenshot({ path: fileURLToPath(new URL('customization-failure.png', out)) }).catch(() => {});
+  if (page) await page.screenshot({ path: fileURLToPath(new URL(`${reportPrefix}-failure.png`, out)) }).catch(() => {});
   throw error;
 } finally {
   await browser.close();
-  await writeFile(new URL('customization-report.json', out), `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(new URL(`${reportPrefix}-report.json`, out), `${JSON.stringify(report, null, 2)}\n`);
 }

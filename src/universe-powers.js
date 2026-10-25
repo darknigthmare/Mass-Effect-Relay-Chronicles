@@ -17,9 +17,10 @@ const ACTION_SUFFIXES = {
     CRYO: 'cryoBlast', HACK: 'hack', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis' },
   ME3: { PULL: 'pull', THROW: 'throw', WARP: 'warp', SINGULARITY: 'singularity', SHOCKWAVE: 'shockwave', SLAM: 'slam',
     REAVE: 'reave', DOMINATE: 'dominate', BARRIER: 'barrier', OVERLOAD: 'overload', INCINERATE: 'incinerate',
-    CRYO: 'cryoBlast', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis', SABOTAGE: 'sabotage' },
+    CRYO: 'cryoBlast', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis', SABOTAGE: 'sabotage',
+    FRAG: 'fragGrenade', STICKY: 'stickyGrenade' },
   MEA: { CONCUSSIVE: 'concussiveShot', THROW: 'throw', PULL: 'pull', SHOCKWAVE: 'shockwave', SINGULARITY: 'singularity',
-    OVERLOAD: 'overload', INCINERATE: 'incinerate', 'ENERGY-DRAIN': 'energyDrain' },
+    OVERLOAD: 'overload', INCINERATE: 'incinerate', 'ENERGY-DRAIN': 'energyDrain', FRAG: 'fragGrenade', STICKY: 'stickyGrenade', 'SHIELD-BOOST': 'shieldBoost' },
   GAL: { STASIS: 'stasis', OVERLOAD: 'overload' },
 };
 const catalogueId = (mediaId, suffix) => `${mediaId}-${mediaId === 'GAL' ? 'PWR' : 'POW'}-${suffix}`;
@@ -54,7 +55,7 @@ kit('ME2-CHR-LEGION', ['HACK']);
 kit('ME2-CHR-KASUMI', ['OVERLOAD']);
 kit('ME2-CHR-ZAEED', ['CONCUSSIVE']);
 kit('ME2-CHR-LIARA', ['WARP', 'SINGULARITY', 'STASIS']);
-kit('ME3-CHR-JAMES', ['FORTIFICATION']);
+kit('ME3-CHR-JAMES', ['FORTIFICATION', 'FRAG']);
 kit('ME3-CHR-LIARA', ['WARP', 'SINGULARITY', 'STASIS']);
 kit('ME3-CHR-GARRUS', ['OVERLOAD', 'CONCUSSIVE']);
 kit('ME3-CHR-EDI', ['OVERLOAD', 'INCINERATE']);
@@ -64,13 +65,16 @@ kit('ME3-CHR-KAIDAN', ['OVERLOAD', 'BARRIER', 'REAVE', 'CRYO']);
 kit('ME3-CHR-TALI', ['SABOTAGE', 'ENERGY-DRAIN']);
 kit('ME3-CHR-ARIA', ['REAVE']);
 kit('ME3-CHR-NYREEN', ['OVERLOAD', 'INCINERATE']);
-kit('MEA-CHR-JAAL', ['ENERGY-DRAIN']);
+kit('MEA-CHR-CORA', ['SHIELD-BOOST']);
+kit('MEA-CHR-LIAM', ['FRAG']);
+kit('MEA-CHR-JAAL', ['ENERGY-DRAIN', 'STICKY']);
 kit('MEA-CHR-DRACK', ['INCINERATE']);
 kit('MEA-CHR-PEEBEE', ['PULL']);
 kit('GAL-CHR-JACOB', ['STASIS', 'OVERLOAD']);
 export const ACTOR_POWER_ASSIGNMENTS = freeze(assignments);
 const squadSources = { ME2: ['ME2-SRC-SQUAD'], ME3: ['ME3-SRC-SQUAD'], MEA: ['MEA-SRC-SQUAD', 'MEA-SRC-SKILLS'], GAL: ['GAL-ABIL'] };
 const workshopFor = mediaId => `${mediaId.toLowerCase()}-equipment-workshop`;
+const preparedLoyaltyScenarios = new Set(['me2-equipment-workshop', 'me2-dlc-specialists']);
 
 export function getActorPowerKit(actorId, rawContext, scenarioId) {
   const context = normalizeContext(rawContext);
@@ -82,7 +86,8 @@ export function getActorPowerKit(actorId, rawContext, scenarioId) {
     if (!mapping || !canAccessContent(mapping.catalogId, context).ok) continue;
     const provenance = { ...mapping, actorCatalogId: actorId, attributionSourceIds: [...squadSources[context.mediaId] || []],
       requirement: assignment.requirement, attributionVerification: 'Secondary squad/skills reference; full source kit not certified 1:1' };
-    if (assignment.requirement === 'loyalty' && scenarioId !== workshopFor(context.mediaId)) locked.push(provenance);
+    if (assignment.requirement === 'loyalty' && !(context.mediaId === 'ME2'
+      ? preparedLoyaltyScenarios.has(scenarioId) : scenarioId === workshopFor(context.mediaId))) locked.push(provenance);
     else unlocked.push(provenance);
   }
   return { powers: unlocked.map(power => power.actionId), powerCatalogIds: unlocked.map(power => power.catalogId),

@@ -24,7 +24,7 @@ test('documentary identities remain distinct across works and never gain combat 
 
 test('every tactical scenario has real source identifiers and a valid bounded explicit roster', () => {
   assert.equal(SCENARIOS, CHRONICLE_SCENARIOS);
-  assert.equal(CHRONICLE_SCENARIOS.length, 10);
+  assert.equal(CHRONICLE_SCENARIOS.length, 16);
   for (const scenario of CHRONICLE_SCENARIOS) {
     assert.match(scenario.description, /Essai tactique/);
     assert.ok(scenario.sourceEntryIds.length > 0);
@@ -32,7 +32,7 @@ test('every tactical scenario has real source identifiers and a valid bounded ex
     for (const enemy of scenario.enemies) {
       if (enemy.catalogId === null) {
         assert.equal(enemy.abstract, true);
-        assert.ok(['equipment-workshop', 'tactical-simulation'].includes(scenario.kind));
+        assert.ok(['equipment-workshop', 'tactical-simulation', 'specialist-workshop'].includes(scenario.kind));
       } else assert.equal(canAccessContent(enemy.catalogId, scenario.context).ok, true, enemy.catalogId);
     }
     assert.ok(scenario.defaultParty.length >= 1 && scenario.defaultParty.length <= 3);
@@ -54,7 +54,7 @@ test('every tactical scenario has real source identifiers and a valid bounded ex
 test('equipment workshops whitelist same-work models without inventing mission possession or armour ownership', () => {
   const workshops = CHRONICLE_SCENARIOS.filter(scene => scene.kind === 'equipment-workshop');
   assert.equal(workshops.length, 3);
-  assert.equal(workshops.reduce((sum, scene) => sum + scene.allowedEquipmentIds.length, 0), 70);
+  assert.equal(workshops.reduce((sum, scene) => sum + scene.allowedEquipmentIds.length, 0), 76);
   for (const scene of workshops) {
     assert.ok(scene.allowedEquipmentIds.every(id => id.startsWith(`${scene.context.mediaId}-`)));
     assert.ok(scene.allowedEquipmentIds.every(id => getUniverseRecord(id)));
@@ -74,7 +74,7 @@ test('workshops expose the main companion rosters while preserving exclusive and
   for (const id of ['ME2-CHR-LIARA', 'ME2-CHR-KENSON', 'ME2-CHR-KASUMI', 'ME2-CHR-ZAEED']) assert.equal(me2.actorIds.includes(id), false);
   for (const id of ['ME3-CHR-ANDERSON', 'ME3-CHR-ARIA', 'ME3-CHR-NYREEN', 'ME3-CHR-WREX']) assert.equal(me3.actorIds.includes(id), false);
   assert.equal(mea.actorIds.includes('MEA-CHR-ALEC'), false);
-  assert.equal(new Set(CHRONICLE_SCENARIOS.flatMap(scene => scene.actorIds)).size, 34);
+  assert.equal(new Set(CHRONICLE_SCENARIOS.flatMap(scene => scene.actorIds)).size, 42);
   for (const scene of [me2, me3, mea]) {
     assert.equal(scene.defaultParty.length, 3);
     for (const group of scene.exclusiveActorGroups) assert.ok(group.every(id => scene.actorIds.includes(id)));
@@ -125,7 +125,7 @@ test('native combat profiles use only existing documented power subsets and expo
   assert.deepEqual(getUniverseActor('GAL-CHR-JACOB').powers, ['stasis', 'overload']);
   assert.deepEqual(getUniverseActor('ME2-CHR-JACOB').powers, ['pull']);
   assert.deepEqual(getUniverseActor('ME2-CHR-GRUNT').powers, ['concussiveShot'], 'Loyalty Fortification remains locked outside a prepared workshop');
-  assert.deepEqual(getUniverseActor('MEA-CHR-CORA').powers, [], 'Charge/Nova/Shield Boost are not silently replaced by ME1 abilities');
+  assert.ok(!getUniverseActor('MEA-CHR-CORA').powers.some(id => ['barrier', 'lift'].includes(id)), 'Later abilities are not silently replaced by ME1 Barrier or Lift');
   assert.equal(getUniverseActor('MEA-CHR-CORA').biotic, true);
   assert.ok(getUniverseActor('MEA-CHR-CORA').missingPowers.includes('Charge'));
   assert.equal(universeActorFor('ME3-CHR-SHEPARD', { mediaId: 'ME3', periodId: 'me3-prologue' }).weaponSystem, 'thermal-clip');

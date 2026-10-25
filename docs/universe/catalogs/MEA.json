@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_Andromeda_Production.xlsx",
   "scope": "Campagne solo complète comme périmètre de préparation, grands arcs d’alliés, mondes de Heleus, tâches représentatives et épilogue. Profils de patch explicités. APEX et multijoueur coopératif sont des modules séparés ; aucun DLC narratif solo hypothétique ni résolution inventée de l’arche quarienne.",
-  "summary": "763 fiches de production ; 45 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "763 fiches de production ; 52 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -9183,7 +9183,7 @@
       "id": "MEA-WPN-SWEEPER",
       "category": "weapons",
       "name": "Sweeper",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil reliquat.",
@@ -9192,7 +9192,7 @@
       "visual": "Surface noire et lumière reliquate.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/sweeper ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel MEA-WPN-SWEEPER dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : salve énergétique à chaleur. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Sweeper : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9200,13 +9200,28 @@
         "MEA-SRC-SWEEPER"
       ],
       "reference": "Sweeper",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-PAW",
       "category": "weapons",
       "name": "P.A.W.",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Arme à rayon.",
@@ -9215,7 +9230,7 @@
       "visual": "Rayon continu et cœur énergétique.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/paw ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel MEA-WPN-PAW dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : rayon canalisé à chaleur. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "P.A.W. : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9223,7 +9238,22 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "P.A.W.",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-THOKIN",
@@ -9542,7 +9572,7 @@
       "id": "MEA-WPN-SCORPION",
       "category": "weapons",
       "name": "Scorpion",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet explosif.",
@@ -9551,7 +9581,7 @@
       "visual": "Projectile collant lumineux.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/scorpion ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel MEA-WPN-SCORPION dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : explosion différée sur le groupe ATB. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Scorpion : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9559,7 +9589,22 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Scorpion",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-SIDEWINDER",
@@ -9776,7 +9821,7 @@
       "id": "MEA-WPN-REEGAR",
       "category": "weapons",
       "name": "Reegar Carbine",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil électrique.",
@@ -9785,7 +9830,7 @@
       "visual": "Électricité et petit canon.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/reegar ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel MEA-WPN-REEGAR dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : jet canalisé consommant les munitions par impulsion. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Reegar Carbine : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9793,7 +9838,22 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Reegar Carbine",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-SCATTERSHOT",
@@ -11848,7 +11908,7 @@
       "id": "MEA-POW-SHIELD-BOOST",
       "category": "powers",
       "name": "Shield Boost",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Allié Cora.",
@@ -11857,7 +11917,7 @@
       "visual": "Pulse bleu autour des alliés.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/shield-boost ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel de pouvoir : liaison MEA-POW-SHIELD-BOOST → shieldBoost dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans mea-equipment-workshop, avec provenance et restrictions de la fiche conservées.",
       "conditions": "Allié Cora",
       "acceptance": "Shield Boost : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11865,7 +11925,20 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Shield Boost",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Action de soutien de groupe : restaure les boucliers des alliés admissibles sans rendre de santé ni de charges de grenades. Montants, durée, recharge et portée de groupe sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-HAVOC",
@@ -11894,7 +11967,7 @@
       "id": "MEA-POW-FRAG",
       "category": "powers",
       "name": "Frag Grenade",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Allié Liam.",
@@ -11903,7 +11976,7 @@
       "visual": "Grenade et arc de lancer.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/frag ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel de pouvoir : liaison MEA-POW-FRAG → fragGrenade dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans mea-equipment-workshop, avec provenance et restrictions de la fiche conservées.",
       "conditions": "Allié Liam",
       "acceptance": "Frag Grenade : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11911,7 +11984,20 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Frag Grenade",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Grenade de pouvoir à réserve finie ; échantillon préparé de trois charges ATB, aucune acquisition ni collecte originale simulée. La commande sans charge est refusée sans mutation ; les ressources de l’arme restent distinctes. Zone, délai et dégâts sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-AVENGER-STRIKE",
@@ -11940,7 +12026,7 @@
       "id": "MEA-POW-STICKY",
       "category": "powers",
       "name": "Sticky Grenade",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Allié Jaal.",
@@ -11949,7 +12035,7 @@
       "visual": "Charge fixée et signal de durée.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/sticky ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel de pouvoir : liaison MEA-POW-STICKY → stickyGrenade dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans mea-equipment-workshop, avec provenance et restrictions de la fiche conservées.",
       "conditions": "Allié Jaal",
       "acceptance": "Sticky Grenade : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11957,7 +12043,20 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Sticky Grenade",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Grenade de pouvoir à réserve finie ; échantillon préparé de trois charges ATB, aucune acquisition ni collecte originale simulée. La commande sans charge est refusée sans mutation ; les ressources de l’arme restent distinctes. Zone, délai et dégâts sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-POWER-ARMOR",
@@ -18972,13 +19071,18 @@
     },
     {
       "area": "Prototype Chroniques indépendant",
-      "covered": "8 personnages sélectionnables, 30 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "covered": "8 personnages sélectionnables, 34 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
       "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     },
     {
       "area": "Complément pouvoirs, modules et lectures",
-      "covered": "7 fiches de pouvoirs utilisées, 0 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "covered": "10 fiches de pouvoirs effectivement utilisées, 0 familles de modules préparables et 0 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
       "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
+    },
+    {
+      "area": "Complément spécialistes contextualisés",
+      "covered": "0 profils supplémentaires limités aux bancs de spécialistes, 4 profils d’armes spéciales et 3 fiches de pouvoirs supplémentaires effectivement exposées. Vérification fonctionnelle liée au rapport docs/qa/chronicle-specialists-browser-report.json.",
+      "remaining": "Bancs ATB sur mannequins originaux, conditions préparées et dotations abstraites ; aucune reconstruction des missions, acquisition de campagne, illustration, animation, doublage ni valeur originale certifiée. Les sources secondaires et incertitudes restent explicites."
     }
   ]
 }

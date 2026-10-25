@@ -374,19 +374,17 @@ try {
   await blockedGearOption('ME3-CHR-LIARA', 'armor', 'ME3-EQP-N7');
   await gear('ME3-CHR-SHEPARD', 'weapon').selectOption('ME3-WPN-AVENGER');
   await action('chronicle-battle').click(); report.tacticalVictories.push(await winChronicle());
-  const remaining = [
-    ['ME2', 'me2', 'me2-freedoms-progress'], ['ME3', 'me3-prologue', 'me3-earth-prologue'],
-    ['MEA', 'mea-prologue', 'mea-habitat7'], ['INF', 'inf', 'inf-security'],
-    ['GAL', 'gal', 'gal-jacob'], ['PL', 'pl-collectors', 'pl-collectors'], ['RED', 'red', 'red-liara-feron'],
-    ['MEA', 'mea', 'mea-equipment-workshop'],
-  ];
+  const exposed = await page.evaluate(async () => (await import('/src/universe-actors.js')).CHRONICLE_SCENARIOS
+    .map(scenario => [scenario.context.mediaId, scenario.context.periodId, scenario.id]));
+  const alreadyWon = new Set(report.tacticalVictories.map(result => result.scenarioId));
+  const remaining = exposed.filter(([, , scenarioId]) => !alreadyWon.has(scenarioId));
   for (const [mediaId, periodId, scenarioId] of remaining) {
     mark(`prototype:${scenarioId}`); await prepare(mediaId, periodId, scenarioId, scenarioId === 'mea-equipment-workshop');
     if (scenarioId === 'gal-jacob') assert.equal(await gear('GAL-CHR-JACOB', 'weapon').locator('option[value="ME3-WPN-GRAAL"]').count(), 0);
     await action('chronicle-battle').click(); report.tacticalVictories.push(await winChronicle());
     await assertIsolated();
   }
-  const exposedScenarios = await page.evaluate(async () => (await import('/src/universe-actors.js')).CHRONICLE_SCENARIOS.map(scenario => scenario.id));
+  const exposedScenarios = exposed.map(([, , scenarioId]) => scenarioId);
   assert.deepEqual(report.tacticalVictories.map(result => result.scenarioId).sort(), exposedScenarios.sort());
   await screenshot('completed-workshop');
   record('Every exposed bounded tactical prototype reaches victory through legitimate orders, with independent scene rosters, partial powers and no ME1 progress or reward transfer', { scenarios: report.tacticalVictories.map(result => result.scenarioId) });

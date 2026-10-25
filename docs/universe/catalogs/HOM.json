@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Homeworlds_Production.xlsx",
   "scope": "Quatre récits autonomes, repérés par numéro : #1 James Vega, #2 Tali’Zorah, #3 Garrus Vakarian, #4 Liara T’Soni. Flashbacks et cadres présents sont séparés; aucune campagne à quatre héros simultanés n’est affirmée.",
-  "summary": "Catalogue de quatre modules partageant un cadre de production, avec des règles propres à la fugue urbaine, à la protection d’une preuve, à une défense de position et à la recherche d’archives.",
+  "summary": "171 fiches de production ; 1 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les quatre héros sont confirmés par la notice officielle; les détails des numéros sont issus d’extraits wiki indexés et restent À vérifier. Mars n’est ici qu’un raccord documentaire de #4, pas une mission nouvelle. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -150,7 +150,7 @@
       "name": "#3 — Garrus Vakarian"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Liara, devenue Courtier de l’ombre, cherche des informations contre la menace des Moissonneurs.",
@@ -159,7 +159,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification HOM/lore/ref-issue4; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire HOM-REF-ISSUE4 consultable dans les lectures hom-liara de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source DH4 et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -167,10 +167,21 @@
         "HOM-S-DH4"
       ],
       "reference": "Homeworlds #4",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "HOM-REF-ISSUE4",
       "category": "lore",
-      "name": "#4 — Liara T’Soni"
+      "name": "#4 — Liara T’Soni",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -4155,6 +4166,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "1 références supplémentaires au stade Prototype dans 1 parcours de lecture (1 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }

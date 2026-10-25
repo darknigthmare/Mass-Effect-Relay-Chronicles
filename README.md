@@ -102,11 +102,13 @@ Les assignations utilisent des dialogues concis et des cartes condensées ; les 
 
 ## Chroniques indépendantes
 
-Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Dix essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost : quatre oppositions à types d’adversaires référencés, trois bancs à mannequins originaux et trois ateliers d’équipement. Les effectifs restent de **34 profils sélectionnables parmi 42 profils partiels**. Les ateliers passent à **70 équipements : 58 armes, 10 armures et deux familles de modules ME3**.
+Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Seize essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost : quatre oppositions à types d’adversaires référencés, neuf bancs à mannequins originaux et trois ateliers d’équipement. Les six bancs supplémentaires réservent les personnages DLC ou bonus à leur contexte explicite. Les **42 profils partiels sont sélectionnables dans leurs essais autorisés**. Les ateliers proposent **76 équipements : 64 armes, 10 armures et deux familles de modules ME3**.
 
-Shepard dispose de six préparations de classe dans ME2 et de six dans ME3 ; Ryder de trois préparations de compétences, en plus des dotations par défaut. Dix mécaniques de pouvoirs supplémentaires utilisent des réglages ATB ; 40 fiches de pouvoirs supplémentaires sont reliées aux commandes disponibles, sans constituer 40 actions distinctes. Les deux ports de modules restent limités aux familles et armes compatibles. Les talents, rangs et acquisitions d’origine ne sont pas entièrement reconstitués.
+Shepard dispose de six préparations de classe dans ME2 et de six dans ME3 ; Ryder de trois préparations de compétences, en plus des dotations par défaut. Les **47 fiches de pouvoirs utilisées correspondent à 21 commandes ATB**, dont les grenades à fragmentation, grenades collantes et le soutien des boucliers de Cora. Les grenades disposent d’une réserve d’essai limitée ; elles ne consomment pas les munitions de l’arme. Les deux ports de modules restent limités aux familles et armes compatibles. Les talents, rangs et acquisitions d’origine ne sont pas entièrement reconstitués.
 
-L’onglet **Lecture** propose **neuf parcours documentaires et 42 pages sourcées** dans Revelation, Ascension, Retribution, Nexus Uprising, Initiation, Annihilation, Redemption, Invasion et le segment d’Evolution après les hostilités. Les pages paraphrasent des faits établis ; elles ne proposent ni dialogue canonique inventé, ni issue alternative, ni récompense. La présence d’un personnage dans ces lectures ne le rend pas sélectionnable en combat.
+Six armes spéciales ajoutent des explosions différées, des salves énergétiques et des canalisations : Falcon et Scorpion dans ME3 ; Scorpion, P.A.W., Reegar et Sweeper dans Andromeda. Les jauges de chaleur et les clips sont distincts ; une canalisation peut être interrompue. Les paramètres sont adaptés à l’ATB et les mécanismes originaux ne sont pas certifiés intégralement.
+
+L’onglet **Lecture** propose **seize parcours documentaires et 52 pages sourcées**. Les ajouts couvrent les repères et contradictions de Deception, le quatrième numéro de Homeworlds, le cinquième de Foundation, Discovery, Incursion, Inquisition et le début d’Evolution. Chaque parcours reste limité aux faits établis de son segment, sans dialogue canonique inventé, issue alternative ou récompense. La présence d’un personnage dans ces lectures ne le rend pas sélectionnable en combat.
 
 L’œuvre, le segment, le porteur et les règles de l’essai limitent chaque sélection. Les ateliers utilisent une préparation libre et des valeurs ATB adaptées ; l’acquisition et les conditions de déblocage d’origine restent à reproduire. Les alternatives Samara/Morinth et Ashley/Kaidan sont exclusives. Les dossiers ME4, Library Edition, Blasto et contenus coupés restent documentaires, sans période historique jouable.
 
@@ -135,7 +137,7 @@ npm test
 npm run build
 ```
 
-Les tests Node vérifient le combat, l’équipement, la personnalisation, les opérations, les sauvegardes, les Chroniques et la portabilité Windows. Le [rapport initial de personnalisation](docs/qa/customization-unit-report.json) conserve ses 217 tests historiques ; il ne décrit pas la validation de cette fusion. La fusion avec main est vérifiée séparément dans [pr1-merge-report.json](docs/qa/pr1-merge-report.json) : 377 tests Node et compilation réussis sur le socle `7fe7a88`, sans nouveau parcours navigateur à ce stade. Les tests navigateur requièrent Playwright et Chromium :
+Les tests Node vérifient le combat, l’équipement, la personnalisation, les opérations, les sauvegardes, les Chroniques et la portabilité Windows. Le [rapport initial de personnalisation](docs/qa/customization-unit-report.json) conserve ses 217 tests historiques ; il ne décrit pas la validation de cette fusion. La fusion finale au socle `748b965` passe **415 tests Node**, **neuf contrôles de personnalisation** et **dix contrôles de production HTTP** : [pr1-final-report.json](docs/qa/pr1-final-report.json). Le [premier rapport de fusion](docs/qa/pr1-merge-report.json) conserve les 377 tests de `0d2192a` sur l’ancienne base `7fe7a88`. Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium
@@ -154,6 +156,7 @@ npm run test:customization
 npm run test:loadout:extensions
 npm run test:universe
 npm run test:chronicle:expansion
+npm run test:chronicle:specialists
 ```
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports historiques sont écrits dans `test-results/`. Le parcours de personnalisation consigne ses preuves dans `docs/qa/customization-report.json` et `docs/screenshots/customization-*.png`.

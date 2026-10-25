@@ -1,8 +1,8 @@
 # État de livraison — 0.3.0
 
-Mise à jour : **25 octobre 2026**. La branche de personnalisation `7bf6c937a2f09cc759d3506ef7be7f3d2eaef8a0` intègre le socle `main` `7fe7a88de686e943956fd6622ee72e770f0800ba`. L’atelier, ses choix cosmétiques et son application atomique sont conservés avec l’inventaire à neuf emplacements, les formations et toutes les Chroniques récentes.
+Mise à jour : **25 octobre 2026**. La branche de personnalisation `7bf6c937a2f09cc759d3506ef7be7f3d2eaef8a0` intègre le socle `main` `748b9657de4cad0a4633b86c9d185ea63793c293`. L’atelier, ses choix cosmétiques et son application atomique sont conservés avec l’inventaire à neuf emplacements, les formations et toutes les Chroniques récentes.
 
-Le principal contient **1 380 fiches = 1 330 fiches main conservées + 50 fiches de personnalisation inchangées** ; avec les 5 326 fiches supplémentaires, le registre compte **6 706 références**. Les sources et métadonnées des deux branches sont réunies ; les classeurs de l’univers conservent leurs derniers exports. La vérification du classeur fusionné est distincte des rapports historiques : [customization-merge-native-check.json](workbook-previews/customization-merge-native-check.json). Les 377 tests Node (dont 19 de personnalisation), la compilation et les contrôles de conservation passent sur ce socle : [pr1-merge-report.json](qa/pr1-merge-report.json). Aucun nouveau parcours navigateur de cette fusion n’est annoncé avant son exécution.
+Le principal contient **1 380 fiches = 1 330 fiches main conservées + 50 fiches de personnalisation inchangées** ; avec les 5 326 fiches supplémentaires, le registre compte **6 706 références**. Les sources et métadonnées des deux branches sont réunies ; les classeurs de l’univers conservent leurs derniers exports. La vérification finale du classeur fusionné est distincte des rapports historiques : [pr1-final-workbook-report.json](qa/pr1-final-workbook-report.json). Le rapport de la première fusion [pr1-merge-report.json](qa/pr1-merge-report.json) reste historique. La synchronisation finale contre `748b965` passe **415 tests Node**, la compilation, **neuf contrôles de personnalisation** et **dix contrôles HTTP de production**, sans erreur JavaScript ni requête échouée. Les six bundles servis correspondent exactement au build et ne contiennent pas de harnais DEV. Voir le [rapport final](qa/pr1-final-report.json), le [parcours de personnalisation](qa/pr1-final-customization-report.json) et le [parcours de production](qa/pr1-final-production-report.json).
 
 ## Personnalisation de Shepard
 
@@ -51,9 +51,27 @@ La correction Windows de la base `c614a45` est conservée : le fichier de catalo
 
 Les configurations Electron, Vercel et les workflows GitHub restent présents. Les résultats des builds publiés sont à consulter dans GitHub Actions. Aucun nouveau déploiement Vercel n’est annoncé ici ; voir [DEPLOYMENT.md](DEPLOYMENT.md). Le [rapport Windows 0.1.0](qa/build-v0.1.0-report.json) et le [rapport d’équilibrage antérieur](qa/balance-report.json) restent historiques.
 
-## Socle main conservé — pouvoirs, préparations et lectures (avant fusion)
+## Socle main `748b965` conservé
 
-Le complément de main, avant ajout des 50 fiches de personnalisation, reprend **`994a963`**. Il ajoute dix mécaniques ATB de pouvoirs, reliées à **40 fiches de pouvoirs supplémentaires utilisées**, et non 40 actions distinctes. Shepard reçoit les six préparations de classe de ME2 et de ME3 ; Ryder reçoit trois préparations de compétences, en plus des dotations par défaut conservées. Les capacités manquantes et les conditions de loyauté restent explicites. Les effectifs ne changent pas : **34 profils sélectionnables parmi 42 profils partiels**.
+Les rapports et résultats ci-dessous portent sur les sources de main avant personnalisation ; leurs empreintes ne sont pas réécrites pour la PR. Les 50 fiches de personnalisation portent le principal fusionné à 1 380 et le registre à 6 706.
+
+## Complément spécialistes — 25 octobre 2026
+
+Le complément reprend `7fe7a88`. Il ajoute **six profils d’armes spéciales**, les grenades à fragmentation et collantes à réserve limitée, et le soutien des boucliers de Cora. Les ateliers proposent désormais **76 équipements : 64 armes, dix armures et deux familles de modules**. Explosions différées, chaleur et clips, canaux interrompus et charges dépensées sont des comportements distincts ; leurs paramètres restent adaptés à l’ATB.
+
+Six bancs réservés aux extensions ou bonus rendent sélectionnables huit profils auparavant documentaires : Kasumi, Zaeed, Liara ME2, Javik, Aria, Nyreen, Wrex ME3 et le prisonnier turien d’Incarceration. Les **42 profils partiels** sont maintenant accessibles dans leurs essais autorisés, sans agrandir les dix anciens rosters ni attribuer un recrutement ou une survie à une campagne. Cela porte les essais à **16**, les fiches de pouvoirs utilisées à **47 pour 21 commandes**, et les lectures à **16 parcours / 52 pages**. Les neuf anciennes lectures sont conservées à l’identique.
+
+Le catalogue ajoute **37 promotions Prototype** : huit profils, six armes, sept fiches de pouvoirs et seize références documentaires. Les 6 656 identifiants sont conservés ; le principal reste à 1 330 fiches, les 27 autres classeurs à 5 326. La description et la note du système de lecture sont actualisées dans le principal, sans modifier ses 1 329 autres fiches. Les sources, faits et conditions de toutes les fiches univers restent inchangés.
+
+Les **396 tests Node** et la compilation passent. Le [nouveau parcours navigateur](qa/chronicle-specialists-browser-report.json) passe cinq contrôles : six armes, trois actions, quatre victoires réelles, les six bancs et dix nouvelles pages. Les sauvegardes ME1, imports et reprises sont préservés, sans erreur JavaScript ou réseau. Le [contrôle différentiel ME1](qa/chronicle-specialists-me1-combat-diff.json) reproduit les mêmes résumés et événements sur 30 graines et 1 755 ordres. La régression des Chroniques passe ses six contrôles et remporte les seize essais exposés. La commande `npm run test:chronicle:specialists` reproduit le nouveau parcours. Les résultats finaux et les exports Excel sont regroupés dans le [rapport du complément](qa/chronicle-specialists-report.json).
+
+Les **dix contrôles de production HTTP** passent, dont un rayon P.A.W. effectivement canalisé puis interrompu, et trois grenades de Liam dépensées sans toucher aux munitions de son arme. La campagne ME1 atteint sa fin en 21 combats et se recharge correctement. Les 28 classeurs passent leurs audits ; 21 exports univers sont reconstruits et six restent identiques. La revue visuelle couvre **81 panneaux ciblés**, sans inspection intégrale de tous les onglets.
+
+Les [sources contrôlées](research/chronicle-specialist-sources.md) distinguent le manuel Andromeda effectivement téléchargé des fiches individuelles d’armes, toujours secondaires. Aucun nouveau portrait, sprite, costume ou modèle d’arme n’est livré. La personnalisation 0.3.0 de la PR nº1 reste sur sa branche, avec les conflits corrigés ; elle n’est pas fusionnée dans `main` par ce complément.
+
+## Complément pouvoirs, préparations et lectures — historique du 24 octobre
+
+Le complément reprend **`994a963`**. Il ajoute dix mécaniques ATB de pouvoirs, reliées à **40 fiches de pouvoirs supplémentaires utilisées**, et non 40 actions distinctes. Shepard reçoit les six préparations de classe de ME2 et de ME3 ; Ryder reçoit trois préparations de compétences, en plus des dotations par défaut conservées. Les capacités manquantes et les conditions de loyauté restent explicites. Les effectifs ne changent pas : **34 profils sélectionnables parmi 42 profils partiels**.
 
 Les ateliers passent à **70 équipements : 58 armes, dix armures et deux familles de modules ME3 pour fusils d’assaut à clips**. Les ports `weaponMod` et `weaponMod2` vérifient leurs compatibilités séparément et refusent les doublons de famille. Remplacer ou retirer l’arme retire ses modules, sélectionner la même arme les conserve. Le chargeur conserve le total de munitions ; le canon renforce les tirs et non les pouvoirs. Les anciennes préparations v1 à deux emplacements migrent vers quatre, avec les deux nouveaux ports vides.
 
@@ -174,7 +192,7 @@ npm test
 npm run build
 ```
 
-Pour les scénarios navigateur, ouvrir un terminal avec `RELAY_QA=1 npm run dev`, puis lancer `npm run test:campaign`, `npm run test:commander`, `npm run test:operations`, `npm run test:loadout`, `npm run test:loadout:extensions`, `npm run test:chronicle:expansion`, `npm run test:customization` ou `npm run test:assignments -- --late-conrad`. `PLAYWRIGHT_EXECUTABLE_PATH` permet de désigner un Chromium installé. Pour le build, utiliser `npm run build`, `npm run preview -- --port 4174`, puis `node scripts/production-http-browser.mjs`. Ce dernier contrôle les fichiers compilés servis en HTTP, sans les hooks QA ; il reste distinct du test historique `production-v02-browser.mjs` par fichiers locaux. Le navigateur géré bloque actuellement les URL `file://` ; aucun contournement de cette règle n’est appliqué.
+Pour les scénarios navigateur, ouvrir un terminal avec `RELAY_QA=1 npm run dev`, puis lancer `npm run test:campaign`, `npm run test:commander`, `npm run test:operations`, `npm run test:loadout`, `npm run test:loadout:extensions`, `npm run test:chronicle:expansion` ou `npm run test:assignments -- --late-conrad`. `PLAYWRIGHT_EXECUTABLE_PATH` permet de désigner un Chromium installé. Pour le build, utiliser `npm run build`, `npm run preview -- --port 4174`, puis `node scripts/production-http-browser.mjs`. Ce dernier contrôle les fichiers compilés servis en HTTP, sans les hooks QA ; il reste distinct du test historique `production-v02-browser.mjs` par fichiers locaux. Le navigateur géré bloque actuellement les URL `file://` ; aucun contournement de cette règle n’est appliqué.
 
 ## Historique conservé
 
@@ -182,7 +200,7 @@ Les rapports [dossier-and-saves](qa/dossier-and-saves-report.json), [story-and-r
 
 L’équilibrage de référence avait parcouru 18 campagnes et 378 rencontres avec une politique déterministe : [balance-report.json](qa/balance-report.json). Cette version n’annonce pas une nouvelle matrice complète de difficulté pour les 48 équipements. Le [rapport Windows initial](qa/build-v0.1.0-report.json) concerne le portable 0.1.0 construit sous Linux, sans essai d’exécution sur Windows. Les workflows du dépôt produisent les artefacts de la version poussée ; leur résultat est à consulter dans GitHub Actions.
 
-La configuration Vercel est conservée. L’API répond désormais directement, mais demande un jeton absent ; la CLI reste déconnectée. Aucun lien Git ni déploiement distant n’est créé. Le [diagnostic courant](qa/vercel-access-report.json) et [DEPLOYMENT.md](DEPLOYMENT.md) remplacent les indications d’accès historiques.
+L’intégration Git Vercel est observée dans les contrôles de la PR nº 1 : la poussée de correction du 25 octobre a déclenché un nouveau déploiement. Le [relevé GitHub](qa/vercel-github-integration-report.json) conserve l’état exact observé ; [DEPLOYMENT.md](DEPLOYMENT.md) distingue cette intégration du diagnostic CLI historique et des tests locaux. Aucun nouveau projet Vercel n’a été créé depuis ce checkout.
 
 Le premier workflow du commit `3aad710` a réussi la compilation web. Windows a détecté un nom de périphérique réservé lors du checkout : `docs/universe/catalogs/CON.json`. Le catalogue Conviction et son rapport sont renommés `CONVICTION.json`, avec leurs octets et l’ID interne `CON` conservés. Les générateurs et chemins actifs sont adaptés et un test de portabilité couvre cette régression. Le [diagnostic CI](qa/windows-path-fix.json) consigne l’échec initial ; le résultat du workflow suivant reste consultable dans GitHub Actions. Les 27 classeurs n’ont pas été régénérés pour ce changement de chemins.
 
@@ -197,14 +215,3 @@ Le premier workflow du commit `3aad710` a réussi la compilation web. Windows a 
 - Produire doublage et musique ; développer les campagnes des autres jeux et adaptations à partir de leurs catalogues.
 
 Le rendu navigateur est testé avec WebGL logiciel. Aucune fréquence d’images sur un PC de joueur, couverture matérielle exhaustive ou certification 1:1 n’est revendiquée. Le [suivi de fidélité](FIDELITY.md) détaille les limites par domaine.
-
-
-## Travail restant propre à la personnalisation
-
-- Compléter les cartes, sous-zones, liaisons, quêtes secondaires et variantes encore condensées.
-- Produire les dialogues, cinématiques, romances et réactions aux antécédents manquants.
-- Réaliser les silhouettes d’équipement, coiffures et visages animés, les mouvements complets et huit directions.
-- Compléter le Mako, les talents détaillés, licences et gamme d’objets.
-- Éprouver l’équilibrage, les commandes manette, le mobile et les matériels réels ; produire doublage et musique et développer les autres campagnes.
-
-Le rendu navigateur utilise WebGL logiciel pour les contrôles automatisés. Aucune fréquence d’images sur un PC de joueur ni couverture matérielle exhaustive n’est revendiquée. Le [suivi de fidélité](FIDELITY.md) détaille les limites par domaine.

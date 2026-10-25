@@ -4,7 +4,7 @@
   "medium": "Comic court / récit autonome",
   "filename": "Mass_Effect_Inquisition_Production.xlsx",
   "scope": "Récit court de Bailey : demande d’Udina, enquête, confrontation avec Pallin et conclusion ambiguë. Le dossier ne tranche pas une culpabilité que la source laisse questionnée.",
-  "summary": "Adaptation d’enquête compacte avec sources d’information attribuées, confrontation courte et rapport. Les branches proposées changent la méthode, pas le verdict canon.",
+  "summary": "63 fiches de production ; 2 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les accusations d’Udina et les doutes de Bailey doivent rester des points de vue. Aucune fiche ne qualifie Pallin de traître avéré sur cette seule base. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -26,7 +26,7 @@
   ],
   "entries": [
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "L’éditeur présente Bailey cherchant un traître présumé dans le contexte de la Citadelle.",
@@ -35,7 +35,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INQ/lore/ref-scope; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INQ-REF-SCOPE consultable dans les lectures inq-bailey de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source PAIR et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -43,10 +43,21 @@
         "INQ-S-PAIR"
       ],
       "reference": "Mass Effect: Inquisition, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les soupçons d’Inquisition restent attribués à leur notice, sans verdict inventé. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "INQ-REF-SCOPE",
       "category": "lore",
-      "name": "Bailey au centre de l’enquête"
+      "name": "Bailey au centre de l’enquête",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -399,7 +410,7 @@
       "name": "Enfant de Bailey — interlocuteur distant — jeu de poses"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "L’éditeur situe l’enquête de Bailey sur la Citadelle.",
@@ -408,7 +419,7 @@
       "visual": "Clair institutionnel, coin d’enquête plus sombre mais éclairage jouable suffisant.",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INQ/worlds/wrl-citadel; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INQ-WRL-CITADEL consultable dans les lectures inq-bailey de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Conserver la confrontation publiée et l’incertitude finale; une option de dialogue n’établit pas une innocence ou une culpabilité omnisciente.",
       "acceptance": "Le nom Citadelle — enquête de Bailey et sa fonction sont sourcés; les dimensions, chemins et interactions restent explicitement proposés.",
       "dependencies": [],
@@ -416,10 +427,21 @@
         "INQ-S-PAIR"
       ],
       "reference": "Mass Effect: Inquisition, récit court",
-      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle.",
+      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les soupçons d’Inquisition restent attribués à leur notice, sans verdict inventé. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "INQ-WRL-CITADEL",
       "category": "worlds",
-      "name": "Citadelle — enquête de Bailey"
+      "name": "Citadelle — enquête de Bailey",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -1613,6 +1635,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "2 références supplémentaires au stade Prototype dans 1 parcours de lecture (1 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }

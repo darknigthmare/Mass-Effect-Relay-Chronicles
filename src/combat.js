@@ -6,11 +6,13 @@
  * Cooldowns and timed statuses use simulated seconds. In wait mode a ready,
  * actionable party member freezes the entire simulation until an order is given.
  */
+import { getUniverseWeaponProfile } from './universe-weapon-profiles.js';
 
 export const ACTIONS = Object.freeze({
   shoot: { label: 'Tir contrôlé', description: 'Un tir précis. Génère 24 points de chaleur.', target: 'enemy', heatCost: 24 },
   burst: { label: 'Rafale', description: 'Plus de dégâts, mais 48 points de chaleur.', target: 'enemy', heatCost: 48 },
   reload: { label: 'Recharger', description: 'Remplit le chargeur depuis la réserve. Consomme une action ATB.', target: 'self' },
+  cancelChannel: { label: 'Interrompre le tir', description: 'Arrête la canalisation sans rembourser les ressources déjà dépensées. Aucun coût ATB supplémentaire.', target: 'self' },
   strike: { label: 'Assaut organique', description: 'Une attaque rapprochée qui contourne la couverture. Ne génère aucune chaleur d’arme.', target: 'enemy' },
   acid: { label: 'Projection acide', description: 'Une attaque organique suivie de corrosion. Ne mobilise aucun pouvoir biotique.', target: 'enemy' },
   cover: { label: 'Couverture', description: 'Réduit les tirs jusqu’à la prochaine action, accélère la recharge des boucliers et laisse refroidir l’arme.', target: 'self' },
@@ -35,6 +37,9 @@ export const ACTIONS = Object.freeze({
   shockwave: { label: 'Onde de choc', description: 'Onde sur le groupe adverse dans cette adaptation ATB. Les cibles exposées sont brièvement déséquilibrées.', target: 'enemies', cooldown: 13 },
   slam: { label: 'Écrasement', description: 'Soulève brièvement une cible sans bouclier, puis l’écrase après un court délai.', target: 'enemy', cooldown: 10 },
   dominate: { label: 'Domination', description: 'Un organique sans bouclier attaque son propre camp pendant huit secondes. Les cibles immunisées résistent.', target: 'enemy', cooldown: 15, organicOnly: true },
+  fragGrenade: { label: 'Grenade à fragmentation', description: 'Dégâts explosifs sur le groupe adverse ATB. Consomme un échantillon de grenade, sans recharge temporelle.', target: 'enemy', grenadeCost: 1 },
+  stickyGrenade: { label: 'Grenade adhésive', description: 'Fixe une charge qui explose après 1,2 seconde ATB. Consomme un échantillon de grenade, sans recharge temporelle.', target: 'enemy', grenadeCost: 1 },
+  shieldBoost: { label: 'Renfort de boucliers', description: 'Restaure les boucliers des alliés conscients et accélère leur recharge pendant cinq secondes ATB.', target: 'allies', cooldown: 14 },
   unity: { label: 'Unité', description: 'Talent Spectre : remet les équipiers hors combat en état de combattre.', target: 'allies', cooldown: 24 },
   signature: { label: 'Technique d’élite', description: 'Une exécution précise avec l’arsenal du personnage. Nécessite 100 de concentration.', target: 'enemy', heatCost: 42 },
 });
@@ -62,12 +67,14 @@ const living = actor => actor.hp > EPSILON;
 const synthetic = actor => actor.synthetic === true || actor.type === 'synthetic';
 const armed = actor => !['strike', 'acid'].includes(actor.primaryAction);
 const disabled = actor => DISABLING_STATUSES.some(key => actor.statuses[key] > EPSILON);
-const ready = actor => living(actor) && !disabled(actor) && actor.atb >= 100 - EPSILON;
+const ready = actor => living(actor) && !disabled(actor) && !actor.channel && actor.atb >= 100 - EPSILON;
 const usesClips = actor => actor.weaponSystem === 'thermal-clip';
 const protectedTarget = actor => actor.shield > EPSILON || (actor.statuses.fortification > EPSILON && actor.fortificationShield > EPSILON);
 // Magazine sizes and shots spent per ATB order are adaptation values. ME1 heat
 // actors never enter this branch and retain their original unlimited ammunition.
 const ammoCost = actionId => actionId === 'burst' ? 3 : actionId === 'signature' ? 2 : 1;
+const weaponProfile = actor => getUniverseWeaponProfile(actor.weaponProfileId);
+const weaponAmmoCost = (actor, actionId) => weaponProfile(actor)?.mode === 'clip-channel' ? weaponProfile(actor).ammoPerTick : ammoCost(actionId);
 const effectDuration = (actor, actionId, seconds) => clamp(seconds * powerMultiplier(actor, actionId), .25, 20);
 
 // Tools strengthen trained abilities. They do not change weapon damage or grant
@@ -131,8 +138,11 @@ function normalizeActor(input, team, index) {
   const maxHp = Math.max(1, finite(input.maxHp, finite(input.hp, 100)));
   const maxShield = Math.max(0, finite(input.maxShield, finite(input.shield, 40)));
   const clipWeapon = input.weaponSystem === 'thermal-clip';
-  const magazineCapacity = Math.floor(clamp(finite(input.magazineCapacity, 8), 1, 200));
-  return {
+  const profile = getUniverseWeaponProfile(input.weaponProfileId);
+  const thermalClip = profile ? profile.weaponSystem === 'thermal-clip' : clipWeapon;
+  const magazineCapacity = Math.floor(clamp(finite(input.magazineCapacity, profile?.magazineCapacity ?? 8), 1, 200));
+  const grenadeCapacity = Math.floor(clamp(finite(input.grenadeCapacity, 0), 0, 12));
+  const actor = {
     ...input,
     id: String(input.id ?? `${team}-${index}`),
     name: String(input.name ?? (team === 'party' ? 'Commando' : 'Adversaire')),
@@ -146,12 +156,15 @@ function normalizeActor(input, team, index) {
     speed: clamp(finite(input.speed, 1), 0.1, 5),
     powers: [...new Set(Array.isArray(input.powers) ? input.powers : [])].filter(id => ACTIONS[id]),
     atb: clamp(finite(input.atb, 0), 0, 100),
-    heat: clipWeapon ? 0 : clamp(finite(input.heat, 0), 0, 100),
+    heat: thermalClip ? 0 : clamp(finite(input.heat, 0), 0, 100),
     focus: clamp(finite(input.focus, 0), 0, 100),
-    overheated: !clipWeapon && (Boolean(input.overheated) || input.heat >= 100),
-    ...(clipWeapon ? { weaponSystem: 'thermal-clip', magazineCapacity,
+    overheated: !thermalClip && (Boolean(input.overheated) || input.heat >= 100),
+    ...(profile ? { weaponProfileId: profile.id, weaponType: profile.weaponType, weaponSystem: profile.weaponSystem } : {}),
+    ...(thermalClip ? { weaponSystem: 'thermal-clip', magazineCapacity,
       ammo: Math.floor(clamp(finite(input.ammo, magazineCapacity), 0, magazineCapacity)),
-      reserveAmmo: Math.floor(clamp(finite(input.reserveAmmo, 0), 0, 10000)) } : {}),
+      reserveAmmo: Math.floor(clamp(finite(input.reserveAmmo, profile?.reserveAmmo ?? 0), 0, 10000)) } : {}),
+    grenadeCapacity, grenadeCharges: Math.floor(clamp(finite(input.grenadeCharges, 0), 0, grenadeCapacity)),
+    channel: null,
     cover: Boolean(input.cover),
     cooldowns: { ...input.cooldowns },
     statuses: { ...input.statuses },
@@ -174,6 +187,10 @@ function normalizeActor(input, team, index) {
     _slamDamage: 0,
     fortificationShield: 0,
   };
+  if (profile?.weaponSystem === 'heat') {
+    delete actor.ammo; delete actor.reserveAmmo; delete actor.magazineCapacity;
+  }
+  return actor;
 }
 
 /** Creates a fresh battle without changing the supplied actor definitions. */
@@ -204,7 +221,7 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
   };
   emit(battle, { type: 'start', message: 'Contact hostile. Le commando attend vos ordres.' });
   updateWinner(battle);
-  battle.waiting = battle.mode === 'wait' && actors.some(actor => actor.team === 'party' && ready(actor));
+  battle.waiting = waitingForDecision(battle);
   return battle;
 }
 
@@ -213,6 +230,10 @@ function updateWinner(battle) {
   const partyAlive = battle.actors.some(actor => actor.team === 'party' && living(actor));
   const enemyAlive = battle.actors.some(actor => actor.team === 'enemy' && living(actor));
   if (!partyAlive || !enemyAlive) {
+    // A launched explosive survives its shooter. Resolve dangerous flights
+    // before declaring the outcome; ordinary ME1 encounters have no queue.
+    if (dangerousProjectiles(battle)) return null;
+    for (const actor of battle.actors) stopChannel(battle, actor, 'combat terminé');
     battle.winner = partyAlive ? 'party' : 'enemy';
     battle.waiting = false;
     emit(battle, {
@@ -221,6 +242,15 @@ function updateWinner(battle) {
     });
   }
   return battle.winner;
+}
+
+function dangerousProjectiles(battle) {
+  return battle.projectiles?.some(projectile => battle.actors.some(actor => living(actor) && actor.team === projectile.targetTeam)) || false;
+}
+
+function waitingForDecision(battle) {
+  const settling = dangerousProjectiles(battle) && ['party', 'enemy'].some(team => !battle.actors.some(actor => actor.team === team && living(actor)));
+  return battle.mode === 'wait' && !settling && battle.actors.some(actor => actor.team === 'party' && ready(actor));
 }
 
 function opponents(battle, actor) {
@@ -237,8 +267,9 @@ function actionIds(actor) {
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
   if (!organic && usesClips(actor)) ids.push('reload');
+  if (actor.channel) ids.push('cancelChannel');
   if (actor.team === 'party') ids.push('medigel');
-  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload'].includes(id)));
+  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel'].includes(id)));
   if (actor.team === 'party' && !organic) ids.push('signature');
   return [...new Set(ids)];
 }
@@ -262,16 +293,19 @@ function unavailableReason(battle, actor, actionId) {
   if (battle.winner) return 'Le combat est terminé.';
   if (!living(actor)) return 'Ce personnage est hors combat.';
   if (disabled(actor)) return actor.statuses.stasis > 0 ? 'Ce personnage est en stase.' : 'Ce personnage est immobilisé.';
+  if (actionId === 'cancelChannel') return actor.channel ? null : 'Aucune canalisation en cours.';
+  if (actor.channel) return 'Canalisation en cours.';
   if (actor.atb < 100 - EPSILON) return 'La jauge ATB doit être pleine.';
   if (actor.cooldowns[actionId] > EPSILON) return `Recharge : ${Math.ceil(actor.cooldowns[actionId])} s.`;
   if (WEAPON_ACTIONS.has(actionId)) {
     if (actor.statuses.sabotage > EPSILON) return 'L’arme est neutralisée par Sabotage.';
-    if (usesClips(actor) && actor.ammo < ammoCost(actionId)) return 'Chargeur insuffisant : recharger ou utiliser un pouvoir.';
+    if (usesClips(actor) && actor.ammo < weaponAmmoCost(actor, actionId)) return 'Chargeur insuffisant : recharger ou utiliser un pouvoir.';
     if (!usesClips(actor) && actor.overheated) return 'Arme en surchauffe : attendre le refroidissement.';
   }
   if (actionId === 'reload' && (!usesClips(actor) || actor.ammo >= actor.magazineCapacity)) return 'Le chargeur est déjà plein.';
   if (actionId === 'reload' && actor.reserveAmmo < 1) return 'Aucune munition en réserve.';
   if (actionId === 'signature' && actor.focus < 100 - EPSILON) return 'Concentration insuffisante (100 requis).';
+  if (action.grenadeCost && actor.grenadeCharges < action.grenadeCost) return 'Aucun échantillon de grenade disponible.';
   if (actionId === 'medigel') {
     if (battle.medigel < 1) return 'Plus de médi-gel.';
     if (!friends(battle, actor).some(target => living(target) && target.hp < target.maxHp - EPSILON)) return 'Aucun allié conscient à soigner.';
@@ -290,11 +324,16 @@ export function getActions(battle, actorId) {
   if (!actor) return [];
   return actionIds(actor).map(id => {
     const reason = unavailableReason(battle, actor, id);
+    const profile = WEAPON_ACTIONS.has(id) ? weaponProfile(actor) : null;
     const clipShot = WEAPON_ACTIONS.has(id) && usesClips(actor);
     const heatCost = WEAPON_ACTIONS.has(id) && !clipShot ? ACTIONS[id].heatCost * actor.weaponHeatMultiplier : undefined;
-    const description = clipShot ? `${ACTIONS[id].label} : consomme ${ammoCost(id)} munition(s) du chargeur. Rechargement par remplacement du clip thermique.` : heatCost === undefined ? powerDescription(actor, id)
+    let description = clipShot ? `${ACTIONS[id].label} : consomme ${weaponAmmoCost(actor, id)} munition(s) du chargeur. Rechargement par remplacement du clip thermique.` : heatCost === undefined ? powerDescription(actor, id)
       : ACTIONS[id].description.replace(/(?:24|48|42) points de chaleur/, `${Math.round(heatCost * 10) / 10} points de chaleur`);
-    return { id, ...ACTIONS[id], ...(clipShot ? { heatCost: 0, ammoCost: ammoCost(id) } : heatCost === undefined ? {} : { heatCost }), description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
+    if (profile) description = `${profile.mechanicNote} ${profile.mode === 'clip-channel' ? `${profile.ammoPerTick} munition par impulsion, au maximum ${Math.ceil(profile.duration / profile.tickInterval)} impulsions.` : ''}`;
+    return { id, ...ACTIONS[id], ...(clipShot ? { heatCost: 0, ammoCost: weaponAmmoCost(actor, id) } : heatCost === undefined ? {} : { heatCost }),
+      ...(profile?.mode === 'heat-beam' ? { heatCost: profile.heatPerSecond * profile.duration * actor.weaponHeatMultiplier, channelDuration: profile.duration } : {}),
+      ...(profile?.mode === 'clip-channel' ? { channelDuration: profile.duration } : {}),
+      description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
 }
 
@@ -337,6 +376,7 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
     });
   }
   if (!living(target)) {
+    stopChannel(battle, target, 'hors combat');
     target.hp = 0;
     target.atb = 0;
     target.cover = false;
@@ -354,6 +394,7 @@ function applyControl(battle, source, target, status, duration) {
     return false;
   }
   target.statuses[status] = Math.max(target.statuses[status] || 0, actual);
+  if (DISABLING_STATUSES.includes(status) || status === 'sabotage') stopChannel(battle, target, 'contrôle');
   if (status !== 'hacked' && status !== 'sabotage') target.cover = false;
   emit(battle, { type: 'status', actorId: source.id, targetId: target.id, status, duration: actual });
   return true;
@@ -366,11 +407,11 @@ function timedEffect(battle, source, target, status, duration) {
   return true;
 }
 
-function restoreShield(battle, source, amount, actionId) {
+function restoreShield(battle, source, amount, actionId, actorId = source.id) {
   const restored = Math.max(0, Math.min(source.maxShield - source.shield, amount));
   if (restored <= EPSILON || !living(source)) return 0;
   source.shield += restored;
-  emit(battle, { type: 'shield', actorId: source.id, targetId: source.id, amount: restored, actionId });
+  emit(battle, { type: 'shield', actorId, targetId: source.id, amount: restored, actionId });
   return restored;
 }
 
@@ -380,6 +421,75 @@ function reaveHealing(battle, source, target, healthDamage) {
   if (amount <= EPSILON) return;
   source.hp += amount;
   emit(battle, { type: 'heal', actorId: source.id, targetId: source.id, amount, actionId: 'reave' });
+}
+
+function stopChannel(battle, actor, reason) {
+  if (!actor.channel) return;
+  const channel = actor.channel;
+  actor.channel = null;
+  emit(battle, { type: 'channelEnd', actorId: actor.id, targetId: channel.targetId, actionId: channel.actionId,
+    weaponProfileId: channel.weaponProfileId, reason });
+}
+
+function queueProjectile(battle, actor, target, actionId, baseDamage, delay, splashRatio, profileId = null, weaponAttack = false) {
+  battle.projectiles ||= [];
+  battle.projectiles.push({ actorId: actor.id, targetId: target.id, targetTeam: target.team, actionId,
+    weaponProfileId: profileId, remaining: delay, baseDamage, splashRatio, weaponAttack });
+  emit(battle, { type: 'projectile', actorId: actor.id, targetId: target.id, actionId, weaponProfileId: profileId, remaining: delay });
+}
+
+function areaImpact(battle, actor, targetId, targetTeam, actionId, baseDamage, splashRatio, weaponAttack = false, profileId = null) {
+  emit(battle, { type: 'explosion', actorId: actor.id, targetId, actionId, weaponProfileId: profileId });
+  for (const target of battle.actors.filter(candidate => candidate.id !== actor.id && candidate.team === targetTeam && living(candidate))) {
+    const ammunition = weaponAttack ? 1 + (synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus) : 1;
+    applyDamage(battle, actor, target, baseDamage * (target.id === targetId ? 1 : splashRatio) * ammunition,
+      { actionId, ignoreCover: true });
+  }
+}
+
+function tickProjectiles(battle, dt) {
+  if (!battle.projectiles?.length) return;
+  const pending = [];
+  for (const projectile of battle.projectiles) {
+    projectile.remaining = Math.max(0, projectile.remaining - dt);
+    if (projectile.remaining > EPSILON) pending.push(projectile);
+    else {
+      const actor = battle.actors.find(candidate => candidate.id === projectile.actorId);
+      if (actor) areaImpact(battle, actor, projectile.targetId, projectile.targetTeam, projectile.actionId,
+        projectile.baseDamage, projectile.splashRatio, projectile.weaponAttack, projectile.weaponProfileId);
+    }
+  }
+  battle.projectiles = pending;
+}
+
+function tickChannel(battle, actor, dt) {
+  const channel = actor.channel;
+  if (!channel) return 0;
+  const target = battle.actors.find(candidate => candidate.id === channel.targetId);
+  const profile = getUniverseWeaponProfile(channel.weaponProfileId);
+  if (!living(actor) || disabled(actor) || actor.statuses.sabotage > EPSILON || !target || !living(target) || !profile) {
+    stopChannel(battle, actor, 'interruption'); return 0;
+  }
+  const activeTime = Math.min(dt, channel.remaining);
+  channel.remaining = Math.max(0, channel.remaining - activeTime);
+  channel.untilNextPulse -= activeTime;
+  while (channel.untilNextPulse <= EPSILON && channel.remainingTicks > 0 && actor.channel) {
+    if (profile.mode === 'clip-channel' && actor.ammo < profile.ammoPerTick) { stopChannel(battle, actor, 'chargeur vide'); break; }
+    const ammunition = 1 + (synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus);
+    applyDamage(battle, actor, target, channel.baseDamage / channel.totalTicks * ammunition,
+      { actionId: channel.actionId, ignoreCover: channel.ignoreCover });
+    if (profile.mode === 'clip-channel') actor.ammo -= profile.ammoPerTick;
+    else addHeat(battle, actor, profile.heatPerSecond * profile.tickInterval * actor.weaponHeatMultiplier);
+    channel.remainingTicks--;
+    channel.untilNextPulse += profile.tickInterval;
+    emit(battle, { type: 'channelPulse', actorId: actor.id, targetId: target.id, actionId: channel.actionId,
+      weaponProfileId: profile.id, remainingTicks: channel.remainingTicks, ...(usesClips(actor) ? { ammo: actor.ammo } : { heat: actor.heat }) });
+    if (!living(target) || actor.overheated || (usesClips(actor) && actor.ammo < profile.ammoPerTick && channel.remainingTicks > 0)) {
+      stopChannel(battle, actor, actor.overheated ? 'surchauffe' : !living(target) ? 'cible hors combat' : 'chargeur vide');
+    }
+  }
+  if (actor.channel && (channel.remaining <= EPSILON || channel.remainingTicks <= 0)) stopChannel(battle, actor, 'terminé');
+  return activeTime;
 }
 
 function addHeat(battle, actor, amount) {
@@ -430,7 +540,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
   const target = targets[0];
   const startIndex = battle.events.length;
   const definition = ACTIONS[actionId];
-  actor.atb = 0;
+  if (actionId !== 'cancelChannel') actor.atb = 0;
   if (actionId !== 'cover') actor.cover = false;
   if (definition.cooldown) actor.cooldowns[actionId] = definition.cooldown;
   battle.actionCount += 1;
@@ -438,15 +548,41 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
 
   if (WEAPON_ACTIONS.has(actionId)) {
     const multiplier = actionId === 'burst' ? 1.65 : actionId === 'signature' ? 2.4 : 1;
-    const speciesBonus = synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus;
-    const damage = actor.attack * actor.weaponDamageMultiplier * multiplier * (1 + speciesBonus) * (0.94 + random(battle) * 0.12);
-    applyDamage(battle, actor, target, damage, { actionId, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' });
+    const profile = weaponProfile(actor);
+    if (profile) {
+      const baseDamage = actor.attack * actor.weaponDamageMultiplier * multiplier * (0.94 + random(battle) * .12);
+      if (['heat-beam', 'clip-channel'].includes(profile.mode)) {
+        const totalTicks = Math.ceil(profile.duration / profile.tickInterval);
+        actor.channel = { actorId, targetId: target.id, actionId, weaponProfileId: profile.id,
+          remaining: profile.duration, remainingTicks: totalTicks, totalTicks, untilNextPulse: profile.tickInterval,
+          baseDamage: baseDamage * profile.duration, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' };
+        emit(battle, { type: 'channelStart', actorId, targetId: target.id, actionId, weaponProfileId: profile.id, duration: profile.duration });
+      } else if (profile.mode === 'delayed-area') {
+        queueProjectile(battle, actor, target, actionId, baseDamage, profile.delay, profile.splashRatio, profile.id, true);
+        actor.ammo -= ammoCost(actionId);
+        emit(battle, { type: 'ammo', actorId, ammo: actor.ammo, reserveAmmo: actor.reserveAmmo });
+      } else if (profile.mode === 'heat-burst') {
+        for (let hit = 0; hit < profile.burstCount && living(target); hit++) {
+          const ammunition = 1 + (synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus);
+          applyDamage(battle, actor, target, baseDamage / profile.burstCount * ammunition,
+            { actionId, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' });
+        }
+        addHeat(battle, actor, profile.heatCost * definition.heatCost / ACTIONS.shoot.heatCost * actor.weaponHeatMultiplier);
+        emit(battle, { type: 'weaponBurst', actorId, targetId: target.id, actionId, weaponProfileId: profile.id, count: profile.burstCount });
+      }
+    } else {
+      const speciesBonus = synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus;
+      const damage = actor.attack * actor.weaponDamageMultiplier * multiplier * (1 + speciesBonus) * (0.94 + random(battle) * 0.12);
+      applyDamage(battle, actor, target, damage, { actionId, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' });
+      if (usesClips(actor)) {
+        actor.ammo -= ammoCost(actionId);
+        emit(battle, { type: 'ammo', actorId, ammo: actor.ammo, reserveAmmo: actor.reserveAmmo });
+      } else addHeat(battle, actor, definition.heatCost * actor.weaponHeatMultiplier);
+    }
     delete actor.statuses.flanking;
-    if (usesClips(actor)) {
-      actor.ammo -= ammoCost(actionId);
-      emit(battle, { type: 'ammo', actorId, ammo: actor.ammo, reserveAmmo: actor.reserveAmmo });
-    } else addHeat(battle, actor, definition.heatCost * actor.weaponHeatMultiplier);
     if (actionId === 'signature') actor.focus = 0;
+  } else if (actionId === 'cancelChannel') {
+    stopChannel(battle, actor, 'annulation volontaire');
   } else if (actionId === 'reload') {
     const amount = Math.min(actor.magazineCapacity - actor.ammo, actor.reserveAmmo);
     actor.ammo += amount;
@@ -563,14 +699,26 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     }
   } else if (actionId === 'dominate') {
     applyControl(battle, actor, target, 'dominated', effectDuration(actor, actionId, 8));
+  } else if (actionId === 'fragGrenade' || actionId === 'stickyGrenade') {
+    actor.grenadeCharges--;
+    const damage = actionId === 'fragGrenade' ? 24 + actor.attack * .6 : 30 + actor.attack * .7;
+    if (actionId === 'fragGrenade') areaImpact(battle, actor, target.id, target.team, actionId, damage, .5);
+    else queueProjectile(battle, actor, target, actionId, damage, 1.2, .4);
+    emit(battle, { type: 'grenade', actorId, targetId: target.id, actionId, grenadeCharges: actor.grenadeCharges });
+  } else if (actionId === 'shieldBoost') {
+    for (const ally of targets.filter(candidate => living(candidate) && candidate.maxShield > 0)) {
+      restoreShield(battle, ally, 20 + ally.maxShield * .25, actionId, actor.id);
+      ally.statuses.shieldBoost = 5;
+      emit(battle, { type: 'status', actorId, targetId: ally.id, status: 'shieldBoost', duration: 5 });
+    }
   }
   updateWinner(battle);
-  battle.waiting = !battle.winner && battle.mode === 'wait' && battle.actors.some(candidate => candidate.team === 'party' && ready(candidate));
+  battle.waiting = !battle.winner && waitingForDecision(battle);
   return { ok: true, reason: null, events: battle.events.slice(startIndex) };
 }
 
 function tickActor(battle, actor, dt) {
-  if (!living(actor)) return;
+  if (!living(actor)) { stopChannel(battle, actor, 'hors combat'); return; }
   const stasisTime = Math.max(0, actor.statuses.stasis || 0);
   const warpTime = Math.max(0, actor.statuses.warp || 0);
   const acidTime = Math.max(0, actor.statuses.corrosion || 0);
@@ -598,6 +746,7 @@ function tickActor(battle, actor, dt) {
     applyDamage(battle, source, actor, damage, { actionId: 'slam', ignoreCover: true });
   }
   if (!living(actor)) return;
+  const channelTime = tickChannel(battle, actor, dt);
   for (const key of Object.keys(actor.cooldowns)) {
     actor.cooldowns[key] = Math.max(0, finite(actor.cooldowns[key], 0) - dt);
     if (actor.cooldowns[key] <= EPSILON) delete actor.cooldowns[key];
@@ -607,13 +756,14 @@ function tickActor(battle, actor, dt) {
     if (actor.statuses[key] <= EPSILON) delete actor.statuses[key];
   }
   if (!(actor.statuses.fortification > EPSILON)) actor.fortificationShield = 0;
-  actor.heat = Math.max(0, actor.heat - dt * (9 + actor.weaponCoolingBonus));
+  actor.heat = Math.max(0, actor.heat - (dt - channelTime) * (9 + actor.weaponCoolingBonus));
   if (actor.overheated && actor.heat <= 35 + EPSILON) {
     actor.overheated = false;
     emit(battle, { type: 'cooled', actorId: actor.id, message: `L’arme de ${actor.name} est de nouveau opérationnelle.` });
   }
-  const shieldDelay = actor.cover ? SHIELD_RECHARGE.coverDelay : SHIELD_RECHARGE.exposedDelay;
-  const shieldRate = actor.cover ? SHIELD_RECHARGE.coverRate : SHIELD_RECHARGE.exposedRate;
+  const boosted = actor.statuses.shieldBoost > EPSILON;
+  const shieldDelay = boosted ? 1 : actor.cover ? SHIELD_RECHARGE.coverDelay : SHIELD_RECHARGE.exposedDelay;
+  const shieldRate = (actor.cover ? SHIELD_RECHARGE.coverRate : SHIELD_RECHARGE.exposedRate) + (boosted ? 6 : 0);
   if (battle.elapsed - actor.lastDamagedAt >= shieldDelay && actor.shield < actor.maxShield) {
     actor.shield = Math.min(actor.maxShield, actor.shield + dt * shieldRate);
   }
@@ -626,7 +776,7 @@ function tickActor(battle, actor, dt) {
 /** Enemy orders are deterministic for a given seed and decision sequence. */
 export function autoEnemyActions(battle) {
   if (battle.winner) return battle;
-  if (battle.mode === 'wait' && battle.actors.some(actor => actor.team === 'party' && ready(actor))) return battle;
+  if (waitingForDecision(battle)) return battle;
   for (const actor of battle.actors.filter(candidate => candidate.team === 'enemy')) {
     if (!ready(actor) || battle.winner) continue;
     const targets = opponents(battle, actor).filter(target => !(target.statuses.stasis > EPSILON));
@@ -657,7 +807,7 @@ export function autoEnemyActions(battle) {
       actionId = 'reload';
       targetId = actor.id;
     } else if (random(battle) < 0.6) {
-      const powers = actions.filter(action => !PRIMARY_ACTIONS.has(action.id) && !['signature', 'medigel', 'unity', 'barrier', 'fortification'].includes(action.id)
+      const powers = actions.filter(action => !PRIMARY_ACTIONS.has(action.id) && !['signature', 'medigel', 'unity', 'barrier', 'fortification', 'cancelChannel', 'shieldBoost'].includes(action.id)
         && (!action.syntheticOnly || (synthetic(target) && !target.hackImmune))
         && (action.id !== 'sabotage' || armed(target))
         && (action.id !== 'overload' || target.shield > 0 || synthetic(target))
@@ -684,15 +834,16 @@ export function tickBattle(battle, dt, { paused = false } = {}) {
   if (paused || battle.winner || !Number.isFinite(dt) || dt <= 0) return battle;
   let remaining = dt;
   while (remaining > EPSILON && !battle.winner) {
-    battle.waiting = battle.mode === 'wait' && battle.actors.some(actor => actor.team === 'party' && ready(actor));
+    battle.waiting = waitingForDecision(battle);
     if (battle.waiting) break;
     const step = Math.min(0.05, remaining);
     battle.elapsed += step;
     for (const actor of battle.actors) tickActor(battle, actor, step);
+    tickProjectiles(battle, step);
     updateWinner(battle);
     if (battle.winner) break;
     // A player decision wins simultaneous readiness in wait mode; active mode has no such pause.
-    battle.waiting = battle.mode === 'wait' && battle.actors.some(actor => actor.team === 'party' && ready(actor));
+    battle.waiting = waitingForDecision(battle);
     if (!battle.waiting) autoEnemyActions(battle);
     remaining -= step;
   }

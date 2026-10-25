@@ -4,6 +4,7 @@
 import { UNIVERSE_GROUPS } from './universe-data.js';
 import { normalizeContext, canAccessContent } from './continuity.js';
 import { SCENARIOS, getUniverseActorProfile, canUseUniverseActor } from './universe-actors.js';
+import { UNIVERSE_WEAPON_PROFILES, getUniverseWeaponProfile } from './universe-weapon-profiles.js';
 
 const OWN = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const fail = reason => ({ ok: false, reason });
@@ -92,6 +93,16 @@ for (const suffix of ['MATTOCK', 'EVISCERATOR', 'INCISOR', 'PARTICLE']) locked(`
   'Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite.', ['infiltrator-weapon-system']);
 locked('GAL-WPN-AVENGER', 'weapon', 'Système d’arme de Galaxy à vérifier ; le nom seul ne détermine pas sa gestion thermique.', ['galaxy-weapon-system']);
 
+// Special weapons use the same small, immutable mechanics table as combat.
+// A profile supplies no scene permission and does not convert heat into clips.
+for (const profile of UNIVERSE_WEAPON_PROFILES) definitions[profile.id] = {
+  kind: 'weapon', slot: 'weapon', weaponType: profile.weaponType, weaponSystem: profile.weaponSystem,
+  weaponProfileId: profile.id, requiredCapabilities: [profile.mode], bonuses: {},
+  ...(profile.weaponSystem === 'thermal-clip' ? {
+    magazineCapacity: profile.magazineCapacity, ammo: profile.ammo, reserveAmmo: profile.reserveAmmo,
+  } : {}),
+};
+
 // The catalogue establishes modification families, not a particular original
 // model, rank or universal compatibility. This prototype deliberately supports
 // only conventional ME3 assault rifles; the other variants remain unverified.
@@ -126,8 +137,9 @@ export const UNIVERSE_EQUIPMENT = freeze(records.filter(record => record.mediaId
       ? 'Choisissez un porteur et une scène attestant explicitement ce modèle.'
       : 'Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués.'),
     statsBasis: 'ATB adaptation', tuningNote: TUNING_NOTE, acquisitionNote: PREPARATION_NOTE,
-    firingModelNote: definition?.kind === 'weapon'
-      ? 'Profil de famille ATB ; cadence, dispersion, précision, sons et variantes de tir d’origine non reproduits.' : null,
+    firingModelNote: definition?.kind === 'weapon' ? getUniverseWeaponProfile(record.id)?.mechanicNote
+      || 'Profil de famille ATB ; cadence, dispersion, précision, sons et variantes de tir d’origine non reproduits.' : null,
+    ...(definition?.weaponProfileId ? { profileLimitations: [...getUniverseWeaponProfile(record.id).limitations] } : {}),
     visualMode: 'prototype-symbol',
   };
 }));
@@ -171,7 +183,7 @@ export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenario
       const parent = getUniverseEquipment(row.weapon);
       if (!parent || parent.kind !== 'weapon' || !canEquipUniverseItem(context, actorId, parent.id, 'weapon', scenarioId).ok)
         return fail('Équipez d’abord une arme explicitement autorisée pour ce porteur et cet atelier.');
-      if (parent.mediaId !== item.mediaId || !item.weaponSystems.includes(parent.weaponSystem) || !item.weaponTypes.includes(parent.weaponType))
+      if (parent.weaponProfileId || parent.mediaId !== item.mediaId || !item.weaponSystems.includes(parent.weaponSystem) || !item.weaponTypes.includes(parent.weaponType))
         return fail('Ce prototype de module exige un fusil d’assaut ME3 conventionnel à clips thermiques.');
       if (MOD_SLOTS.some(candidate => candidate !== targetSlot && getUniverseEquipment(row[candidate])?.modFamily === item.modFamily))
         return fail('Deux modules de la même famille ne peuvent pas occuper les deux ports de cette arme.');
@@ -293,10 +305,13 @@ export function getChronicleEquipmentEffects(session, actorId) {
         if (Number.isFinite(item.bonuses[key]) && item.bonuses[key] > 0) effects[key] *= item.bonuses[key];
       if (Number.isFinite(item.bonuses.magazineCapacityMultiplier) && item.bonuses.magazineCapacityMultiplier > 0)
         capacityMultiplier *= item.bonuses.magazineCapacityMultiplier;
-      if (item.kind === 'weapon') Object.assign(effects, {
-        weaponType: item.weaponType, weaponName: item.name, weaponSystem: item.weaponSystem,
-        magazineCapacity: item.magazineCapacity, ammo: item.ammo, reserveAmmo: item.reserveAmmo,
-      });
+      if (item.kind === 'weapon') {
+        Object.assign(effects, { weaponType: item.weaponType, weaponName: item.name, weaponSystem: item.weaponSystem });
+        if (item.weaponProfileId) effects.weaponProfileId = item.weaponProfileId;
+        if (item.weaponSystem === 'thermal-clip') Object.assign(effects, {
+          magazineCapacity: item.magazineCapacity, ammo: item.ammo, reserveAmmo: item.reserveAmmo,
+        });
+      }
     }
     if (effects.weaponSystem === 'thermal-clip' && capacityMultiplier !== 1) {
       const totalAmmo = effects.ammo + effects.reserveAmmo;

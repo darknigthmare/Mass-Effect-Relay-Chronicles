@@ -179,8 +179,12 @@ export function buildChronicleActor(raw, actorId) {
     bioticMultiplier: (base.bioticMultiplier ?? 1) * effects.bioticMultiplier,
     techMultiplier: (base.techMultiplier ?? 1) * effects.techMultiplier,
   };
-  for (const key of ['weaponType', 'weaponName', 'weaponSystem', 'magazineCapacity', 'ammo', 'reserveAmmo']) {
+  for (const key of ['weaponType', 'weaponName', 'weaponSystem', 'weaponProfileId', 'magazineCapacity', 'ammo', 'reserveAmmo']) {
     if (effects[key] !== undefined) actor[key] = effects[key];
+  }
+  // A Remnant heat profile cannot inherit the protagonist's abstract clip stock.
+  if (actor.weaponSystem === 'heat' && actor.weaponProfileId) {
+    for (const key of ['magazineCapacity', 'ammo', 'reserveAmmo']) delete actor[key];
   }
   return actor;
 }
@@ -191,7 +195,7 @@ export function startChronicleBattle(raw) {
   try {
     if (!Array.isArray(scenario.enemies) || scenario.enemies.length < 1 || scenario.enemies.some(enemy => enemy.catalogId
       ? !canAccessContent(enemy.catalogId, session.context).ok
-      : enemy.abstract !== true || !['equipment-workshop', 'tactical-simulation'].includes(scenario.kind)))
+      : enemy.abstract !== true || !['equipment-workshop', 'tactical-simulation', 'specialist-workshop'].includes(scenario.kind)))
       return fail('Les adversaires de cet essai ne sont pas attestés dans cette période.');
     const party = session.party.map(id => buildChronicleActor(session, id));
     if (party.some(actor => !actor)) return fail('Commando incompatible avec cette période.');

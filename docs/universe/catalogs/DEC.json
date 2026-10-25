@@ -4,7 +4,7 @@
   "medium": "Roman",
   "filename": "Mass_Effect_Deception_Production.xlsx",
   "scope": "Roman de William C. Dietz ; référence éditoriale controversée et adaptation isolée jusqu’à arbitrage des contradictions.",
-  "summary": "Enquête d’Anderson et Kahlee, vengeance de Gillian et Biotic Underground ; registre explicite des incohérences, avec propositions de gameplay mises sous contrôle éditorial.",
+  "summary": "160 fiches de production ; 7 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme. Les données de gameplay, plans, choix, statistiques, sprites et sons sont des créations d’adaptation ; tous les ajouts jouables sont marqués Extrapolation. Sources consultées le 22 octobre 2026.",
   "sources": [
     {
@@ -1113,7 +1113,7 @@
       "id": "DEC-REF-CERBERUS",
       "category": "lore",
       "name": "Cerberus",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "L’organisation est la cible de Gillian et une menace pour les enquêteurs.",
@@ -1122,7 +1122,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Codex ref.dec.cerberus ; affichage bref avec source.",
+      "implementation": "Référence documentaire DEC-REF-CERBERUS consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La source citée atteste précisément cet élément ; modèle, plan détaillé et valeur de combat restent séparés.",
       "dependencies": [],
@@ -1130,13 +1130,24 @@
         "DEC-SRC-PUB"
       ],
       "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
-      "notes": "Ce relevé n’est ni un inventaire exhaustif ni un résumé scène par scène."
+      "notes": "Ce relevé n’est ni un inventaire exhaustif ni un résumé scène par scène. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-REF-UNDERGROUND",
       "category": "lore",
       "name": "Biotic Underground",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le groupe suprémaciste biotique attire Nick.",
@@ -1145,7 +1156,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Codex ref.dec.underground ; affichage bref avec source.",
+      "implementation": "Référence documentaire DEC-REF-UNDERGROUND consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La source citée atteste précisément cet élément ; modèle, plan détaillé et valeur de combat restent séparés.",
       "dependencies": [],
@@ -1153,7 +1164,18 @@
         "DEC-SRC-NICK"
       ],
       "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
-      "notes": "Ce relevé n’est ni un inventaire exhaustif ni un résumé scène par scène."
+      "notes": "Ce relevé n’est ni un inventaire exhaustif ni un résumé scène par scène. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-REF-BIO",
@@ -3398,7 +3420,7 @@
       "id": "DEC-CON-01",
       "category": "continuity",
       "name": "Annonce de révision",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "BioWare et Del Rey ont annoncé en 2012 des changements pour de futures éditions. Cette annonce n’atteste pas leur parution.",
@@ -3407,7 +3429,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "continuity/dec.json ; règle documentée et décision de validation datée.",
+      "implementation": "Référence documentaire DEC-CON-01 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La règle est contrôlée dans les textes, cartes, choix et sauvegardes ; incertitude résolue ou affichée.",
       "dependencies": [],
@@ -3415,13 +3437,24 @@
         "DEC-SRC-PRESS"
       ],
       "reference": "Limite de continuité / contrôle transversal",
-      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié."
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-CON-02",
       "category": "continuity",
       "name": "Gillian : âge incohérent",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "L’âge de dix-huit ans indiqué dans Deception contredit l’intervalle avec Ascension, où Gillian a douze ans. Conserver les deux données et arbitrer.",
@@ -3430,7 +3463,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "continuity/dec.json ; règle documentée et décision de validation datée.",
+      "implementation": "Référence documentaire DEC-CON-02 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La règle est contrôlée dans les textes, cartes, choix et sauvegardes ; incertitude résolue ou affichée.",
       "dependencies": [],
@@ -3438,13 +3471,24 @@
         "DEC-SRC-GIL"
       ],
       "reference": "Limite de continuité / contrôle transversal",
-      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié."
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-CON-03",
       "category": "continuity",
       "name": "Nick : âge incohérent",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Nick passe également à dix-huit ans dans Deception malgré la chronologie décrite dans les œuvres précédentes.",
@@ -3453,7 +3497,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "continuity/dec.json ; règle documentée et décision de validation datée.",
+      "implementation": "Référence documentaire DEC-CON-03 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La règle est contrôlée dans les textes, cartes, choix et sauvegardes ; incertitude résolue ou affichée.",
       "dependencies": [],
@@ -3461,7 +3505,18 @@
         "DEC-SRC-NICK"
       ],
       "reference": "Limite de continuité / contrôle transversal",
-      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié."
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-CON-04",
@@ -3534,7 +3589,7 @@
       "id": "DEC-CON-07",
       "category": "continuity",
       "name": "Édition corrigée non attestée",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Les sources consultées ne fournissent pas la preuve d’une édition révisée effectivement publiée ; le catalogue n’en crée aucune.",
@@ -3543,7 +3598,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "continuity/dec.json ; règle documentée et décision de validation datée.",
+      "implementation": "Référence documentaire DEC-CON-07 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La règle est contrôlée dans les textes, cartes, choix et sauvegardes ; incertitude résolue ou affichée.",
       "dependencies": [],
@@ -3551,7 +3606,18 @@
         "DEC-SRC-WIKI"
       ],
       "reference": "Limite de continuité / contrôle transversal",
-      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié."
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-CON-08",
@@ -3622,7 +3688,7 @@
       "id": "DEC-CON-11",
       "category": "continuity",
       "name": "Bibliographie",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Deception est attribué à William C. Dietz, contrairement aux trois romans précédents de Karpyshyn.",
@@ -3631,7 +3697,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "continuity/dec.json ; règle documentée et décision de validation datée.",
+      "implementation": "Référence documentaire DEC-CON-11 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Matériel narratif de Deception sous réserve de cohérence avec les autres œuvres. Aucune édition corrigée n’est affirmée ; ne pas corriger silencieusement l’âge des personnages ni inventer une guérison de l’autisme.",
       "acceptance": "La règle est contrôlée dans les textes, cartes, choix et sauvegardes ; incertitude résolue ou affichée.",
       "dependencies": [],
@@ -3639,7 +3705,18 @@
         "DEC-SRC-PUB"
       ],
       "reference": "Limite de continuité / contrôle transversal",
-      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié."
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "DEC-QA-SOURCES",
@@ -3756,6 +3833,11 @@
       "area": "Armes : catégorie non ouverte",
       "covered": "Aucun modèle d’arme propre à Deception n’est affirmé sur la base des sources consultées. Les rencontres et actions proposées détaillent déjà leurs télégraphes et contre-mesures.",
       "remaining": "Relever les armes effectivement nommées dans l’édition retenue avant de créer une fiche weapons. Aucun modèle ni inventaire de ME3 n’est attribué automatiquement au roman."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "7 références supplémentaires au stade Prototype dans 1 parcours de lecture (4 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }
