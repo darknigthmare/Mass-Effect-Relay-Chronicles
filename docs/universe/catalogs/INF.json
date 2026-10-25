@@ -4,7 +4,7 @@
   "medium": "Jeu mobile",
   "filename": "Mass_Effect_Infiltrator_Production.xlsx",
   "scope": "Campagne de Randall, mission bonus turienne et systèmes adaptés.",
-  "summary": "Un parcours d’infiltration et de fuite réinterprété en ATB avec sprites 2D et environnements 3D.",
+  "summary": "Un parcours d’infiltration et de fuite réinterprété en ATB avec sprites 2D et environnements 3D. Prototype partiel : 1 profils sélectionnables et 0 équipements en Chroniques ; le reste demeure documentaire.",
   "canonNote": "Les faits de base sont référencés. Plans, statistiques, bruitages et animations proposés ne constituent pas un relevé 1:1.",
   "sources": [
     {
@@ -61,7 +61,7 @@
       "id": "INF-CHR-RANDALL",
       "category": "characters",
       "name": "Randall Ezno",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Agent de Cerberus puis fugitif.",
@@ -70,7 +70,7 @@
       "visual": "Proposition : armure segmentée gris clair, marquages Cerberus à contrôler, implants visibles au portrait.",
       "animation": "",
       "audio": "",
-      "implementation": "",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime INF-CHR-RANDALL ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "La fiche distingue identité de référence et rôle proposé.",
       "dependencies": [],
@@ -78,7 +78,16 @@
         "INF-WIKI"
       ],
       "reference": "Personnages",
-      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1."
+      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "INF-SPR-RANDALL",
@@ -2545,6 +2554,11 @@
       "area": "Production et contrôles",
       "covered": "Animation, VFX, audio original, sauvegarde, UI, critères de recette et limites de continuité.",
       "remaining": "Aucun asset ni niveau de ce module n’est réalisé par la rédaction du classeur. Les critères QA décrivent des tests futurs du jeu."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "1 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     }
   ]
 }

@@ -4,7 +4,7 @@
   "medium": "Long métrage animé",
   "filename": "Mass_Effect_Paragon_Lost_Production.xlsx",
   "scope": "Film animé réalisé avec BioWare, FUNimation et Production I.G. ; carrière de James Vega avant ME3.",
-  "summary": "Delta Squad, Fehl Prime, Treeya et attaque des Récolteurs ; fiches de production originales couvrant coopération tactique, protection civile et conséquences du commandement.",
+  "summary": "Delta Squad, Fehl Prime, Treeya et attaque des Récolteurs ; fiches de production originales couvrant coopération tactique, protection civile et conséquences du commandement. Prototype partiel : 1 profils sélectionnables et 0 équipements en Chroniques ; le reste demeure documentaire.",
   "canonNote": "Paragon Lost est un film, pas une série. Préserver les pertes et la décision finale de Vega ; les choix jouables portent sur les méthodes locales. Toute variante contrefactuelle éventuelle doit être séparée du module de continuité, et n’est pas définie ici. Les données de gameplay, plans, choix, statistiques, sprites et sons sont des créations d’adaptation ; tous les ajouts jouables sont marqués Extrapolation. Sources consultées le 22 octobre 2026.",
   "sources": [
     {
@@ -117,7 +117,7 @@
       "id": "PL-CHR-VEGA",
       "category": "characters",
       "name": "James Vega",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Marine de l’Alliance au centre du film, confronté aux Récolteurs.",
@@ -126,7 +126,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Réserver actor.pl.vega ; rôle de référence : équipier.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime PL-CHR-VEGA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Paragon Lost est un film, pas une série. Préserver les pertes et la décision finale de Vega ; les choix jouables portent sur les méthodes locales. Toute variante contrefactuelle éventuelle doit être séparée du module de continuité, et n’est pas définie ici.",
       "acceptance": "Nom, rôle et présence confirmés dans la source indiquée ; aucune compétence chiffrée déduite du roman.",
       "dependencies": [],
@@ -134,7 +134,16 @@
         "PL-SRC-BW"
       ],
       "reference": "Notice de personnage ou présentation de l’œuvre ; pas de chapitre attribué.",
-      "notes": "Contrôler le modèle contre le film avant dessin définitif."
+      "notes": "Contrôler le modèle contre le film avant dessin définitif. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "PL-SPR-VEGA",
@@ -4657,6 +4666,11 @@
       "area": "Accès aux pages demandées",
       "covered": "Page wiki demandée ouverte ; sources secondaires utilisées seulement pour les points visibles.",
       "remaining": "Les extraits indexés ne remplacent pas une vérification de l’œuvre intégrale. Les traductions françaises des noms et titres restent à contrôler selon l’édition retenue."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "1 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     }
   ]
 }

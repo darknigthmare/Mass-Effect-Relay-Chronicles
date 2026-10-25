@@ -1,5 +1,7 @@
 # Équipement ME1 — sources et adaptation ATB
 
+Ce document décrit la livraison initiale 0.2.0 conservée au commit `c614a45`. Pour les quatre outils ajoutés, les neuf ports, les formations explicites et la migration, consulter le [complément actuel](loadout-extension-sources.md). Les anciennes règles de déblocage automatique ci-dessous sont historiques.
+
 Vérification du 23 octobre 2026. Ce module ajoute **48 fiches jouables** : 20 armes, 16 armures et 12 modules. Les noms et les familles se réfèrent à Mass Effect 1 ; les valeurs, prix, stocks, seuils et effets détaillés ci-dessous sont l’équilibrage de Relay Chronicles. Les fiches ne certifient pas une fidélité statistique ou artistique 1:1.
 
 ## Références

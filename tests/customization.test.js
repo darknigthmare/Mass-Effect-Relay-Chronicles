@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { newGame, encodeSave, decodeSave } from '../src/state.js';
 import { actorFor } from '../src/game-data.js';
-import { equipItem, buyItem } from '../src/loadout.js';
+import { equipItem, buyItem, SLOTS, initialInventory, normalizeInventory } from '../src/loadout.js';
 import {
   initialCustomization, normalizeCustomization, createCustomizationDraft,
-  validateCustomizationDraft, customizationPreviewState, commitCustomization, getCustomizationPalette,
+  validateCustomizationDraft, customizationPreviewState, commitCustomization, getCustomizationPalette, prepareCustomizationEquipment,
 } from '../src/customization.js';
 import { hasVisualCustomization, tintCustomizationPixels } from '../src/customization-render.js';
 
@@ -67,7 +67,7 @@ test('a draft and every preview are detached; cancellation requires no state rol
   assert.equal(snapshot(state), before);
 });
 
-test('appearance and five equipment slots apply together and survive a normal save round trip', () => {
+test('appearance and all equipment slots apply together and survive a normal save round trip', () => {
   const state = newGame({ origin: 'earthborn', psychologicalProfile: 'ruthless' });
   const draft = changedDraft(state), prior = structuredClone(state);
   assert.equal(commitCustomization(state, draft).ok, true);
@@ -81,6 +81,88 @@ test('appearance and five equipment slots apply together and survive a normal sa
   draft.customization.armor.primary = 'purple'; draft.equipment.weapon = null;
   assert.equal(state.customization.armor.primary, 'alliance');
   assert.equal(state.inventory.equipped.shepard.weapon, 'kessler-i');
+});
+
+test('cosmetic edits preserve second module ports and tools from the current nine-slot inventory', () => {
+  const state = newGame({ classId: 'sentinel' }); state.credits = 3000;
+  for (const [id, slot] of [['heat-sink-i', 'weaponMod2'], ['armor-plating-i', 'armorMod2'], ['omni-tool-upgraded', 'omniTool'], ['biotic-amp-upgraded', 'bioticAmp']]) {
+    assert.equal(buyItem(state, id).ok, true); assert.equal(equipItem(state, 'shepard', id, slot).ok, true);
+  }
+  const inventory = structuredClone(state.inventory), draft = createCustomizationDraft(state);
+  draft.customization.armor.primary = 'purple';
+  assert.equal(Object.keys(draft.equipment).length, 9);
+  assert.equal(commitCustomization(state, draft).ok, true);
+  assert.deepEqual(state.inventory, inventory);
+  assert.deepEqual(decodeSave(encodeSave(state)), state);
+});
+
+test('parent replacement and removal release all attachments in the draft and at commit without changing shared stock', () => {
+  for (const replacement of ['kessler-i', null]) {
+    const state = newGame(); state.credits = 3000;
+    for (const [id, slot] of [['heat-sink-i', 'weaponMod'], ['heat-sink-i', 'weaponMod2'], ['armor-piercing-rounds-i', 'ammoMod']]) {
+      assert.equal(buyItem(state, id).ok, true); assert.equal(equipItem(state, 'shepard', id, slot).ok, true);
+    }
+    const before = snapshot(state), oldInventory = structuredClone(state.inventory), draft = createCustomizationDraft(state);
+    // Old callers with a directly changed parent must not transfer attachments.
+    const direct = structuredClone(draft); delete direct.equipmentChanges; direct.equipment.weapon = replacement;
+    const preview = customizationPreviewState(state, direct); assert.ok(preview);
+    for (const slot of ['weaponMod', 'weaponMod2', 'ammoMod']) assert.equal(preview.inventory.equipped.shepard[slot], null);
+    const prepared = prepareCustomizationEquipment(state, draft, 'weapon', replacement);
+    assert.equal(prepared.ok, true); assert.equal(prepared.returnedMods.length, 3);
+    for (const slot of ['weaponMod', 'weaponMod2', 'ammoMod']) assert.equal(prepared.draft.equipment[slot], null);
+    assert.equal(snapshot(state), before);
+    assert.equal(commitCustomization(state, prepared.draft).ok, true);
+    assert.deepEqual(state.inventory.items, oldInventory.items); assert.deepEqual(state.inventory.stock, oldInventory.stock);
+    assert.deepEqual(state.inventory.equipped.kaidan, oldInventory.equipped.kaidan);
+  }
+});
+
+test('an explicitly selected owned module can be prepared again after a weapon replacement', () => {
+  const state = newGame(); state.credits = 3000;
+  assert.equal(buyItem(state, 'heat-sink-i').ok, true); assert.equal(equipItem(state, 'shepard', 'heat-sink-i', 'weaponMod2').ok, true);
+  const weapon = prepareCustomizationEquipment(state, createCustomizationDraft(state), 'weapon', 'kessler-i');
+  assert.equal(weapon.ok, true); assert.equal(weapon.draft.equipment.weaponMod2, null);
+  const module = prepareCustomizationEquipment(state, weapon.draft, 'weaponMod2', 'heat-sink-i');
+  assert.equal(module.ok, true); assert.equal(commitCustomization(state, module.draft).ok, true);
+  assert.equal(state.inventory.equipped.shepard.weaponMod2, 'heat-sink-i');
+  const invalid = createCustomizationDraft(state); invalid.equipment.weaponMod = 'heat-sink-i';
+  const before = snapshot(state); assert.equal(commitCustomization(state, invalid).ok, false); assert.equal(snapshot(state), before);
+});
+
+test('the workshop preserves a historical armor exception only while the inherited armor stays equipped', () => {
+  const state = newGame({ classId: 'soldier' }); state.xp = 2100;
+  const old = initialInventory(); old.version = 1; delete old.training;
+  for (const id of ['omni-tool-standard', 'omni-tool-upgraded', 'biotic-amp-standard', 'biotic-amp-upgraded']) delete old.stock[id];
+  for (const slots of Object.values(old.equipped)) for (const slot of SLOTS) if (!['weapon', 'armor', 'weaponMod', 'ammoMod', 'armorMod'].includes(slot)) delete slots[slot];
+  old.items['colossus-human-vii'] = 1; old.equipped.shepard.armor = 'colossus-human-vii';
+  state.inventory = normalizeInventory(old, state); assert.ok(state.inventory);
+  const cosmetic = createCustomizationDraft(state); cosmetic.customization.armor.primary = 'white';
+  assert.equal(commitCustomization(state, cosmetic).ok, true);
+  assert.equal(state.inventory.training.shepard.legacyArmor, 'colossus-human-vii');
+  const same = prepareCustomizationEquipment(state, createCustomizationDraft(state), 'armor', 'colossus-human-vii');
+  assert.equal(same.ok, true); assert.equal(same.draft.equipmentChanges.armor, undefined);
+  assert.equal(commitCustomization(state, same.draft).ok, true);
+  const forgedChange = createCustomizationDraft(state); forgedChange.equipmentChanges.armor = true;
+  const previous = snapshot(state); assert.equal(commitCustomization(state, forgedChange).ok, false); assert.equal(snapshot(state), previous);
+  const removed = prepareCustomizationEquipment(state, createCustomizationDraft(state), 'armor', null);
+  assert.equal(removed.ok, true);
+  const denied = prepareCustomizationEquipment(state, removed.draft, 'armor', 'colossus-human-vii');
+  assert.equal(denied.ok, false); assert.match(denied.reason, /Formation/);
+  assert.equal(commitCustomization(state, removed.draft).ok, true);
+  assert.equal(state.inventory.training.shepard.legacyArmor, null);
+});
+
+test('customization HTML includes both second ports, tools, and parent-module return warnings', async () => {
+  const { renderCustomizationScreen } = await import('../src/customization-ui.js');
+  const state = newGame(); state.credits = 3000;
+  assert.equal(buyItem(state, 'heat-sink-i').ok, true); assert.equal(equipItem(state, 'shepard', 'heat-sink-i', 'weaponMod2').ok, true);
+  const draft = createCustomizationDraft(state), ui = { customizationDraft: draft, customTab: 'weapons', customSlot: 'weapon', customView: 'front', customShowAll: true };
+  const before = snapshot(state), weapons = renderCustomizationScreen(state, ui);
+  for (const slot of ['weaponMod2', 'omniTool', 'bioticAmp']) assert.ok(weapons.includes(`data-do="custom-slot" data-id="${slot}"`));
+  assert.ok(weapons.includes('Les modules actuels seront remis dans le stock'));
+  const armor = renderCustomizationScreen(state, { ...ui, customTab: 'armor', customSlot: 'armor' });
+  assert.ok(armor.includes('data-do="custom-slot" data-id="armorMod2"'));
+  assert.equal(snapshot(state), before);
 });
 
 test('cosmetics do not grant combat bonuses; weapon and module changes still affect the existing combat rules', () => {

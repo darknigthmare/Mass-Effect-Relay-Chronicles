@@ -1,9 +1,12 @@
 """Read-only XLSX package checks; standard library, no workbook authoring."""
 import argparse
+import datetime
 import hashlib
+import importlib.util
 import json
 import posixpath
 import re
+import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from zipfile import ZipFile
@@ -11,6 +14,89 @@ from zipfile import ZipFile
 NS = {"s": "http://schemas.openxmlformats.org/spreadsheetml/2006/main", "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships"}
 REL = "http://schemas.openxmlformats.org/package/2006/relationships"
 FIELDS = ["id", "name", "status", "assetStatus", "priority", "episode", "canonLevel", "description", "acceptance", "dependencies", "plannedPath", "assetPath", "gameKey", "reference", "sourceUrl", "scope", "notes"]
+
+def git_catalog(root, ref):
+    commit = subprocess.check_output(["git", "rev-parse", "--verify", ref+"^{commit}"], cwd=root, text=True).strip()
+    return commit, json.loads(subprocess.check_output(["git", "show", commit+":docs/content-catalog.json"], cwd=root))
+
+def extends_range(previous, current):
+    pattern = r"([A-Z]+)(\d+):([A-Z]+)(\d+)"
+    old, new = re.fullmatch(pattern, previous), re.fullmatch(pattern, current)
+    return previous == current or bool(old and new and old.group(1, 2, 3) == new.group(1, 2, 3) and int(new[4]) >= int(old[4]))
+
+def verify_merged(root, args, baseline, catalog, old, new):
+    """Verify a regenerated main workbook plus the unchanged PR additions.
+
+    The historical append-only mode below intentionally retains its original
+    strict package checks. Main's generator replaces full validation/format
+    ranges when rows grow, so this mode checks range extension and the complete
+    current workbook semantically instead of requiring old XML ranges verbatim.
+    """
+    main_ref, main = git_catalog(root, args.main_ref)
+    pr_ref, pr = git_catalog(root, args.customization_ref)
+    assert baseline == main, "--baseline-catalog must be the exact merged main catalogue."
+    original = {entry["id"]: entry for entry in main["entries"]}
+    custom = {entry["id"]: entry for entry in pr["entries"] if entry["id"].startswith("CUST-")}
+    current = {entry["id"]: entry for entry in catalog["entries"]}
+    assert len(custom) == 50, "The customization PR must retain its exact 50 records."
+    assert len(current) == len(catalog["entries"]), "Duplicate catalogue IDs."
+    assert set(current) == set(original) | set(custom), "Merged IDs differ from main plus the customization PR."
+    for identifier, record in {**original, **custom}.items():
+        assert current[identifier] == record, f"Protected record changed: {identifier}"
+    assert catalog["categories"] == main["categories"] == pr["categories"], "Category definitions changed."
+    assert catalog["meta"]["version"] == "0.3.0"
+    for key, value in main["meta"].items():
+        if key not in ("version", "updatedAt"):
+            assert catalog["meta"][key] == value, f"Main metadata lost or changed: {key}"
+    for key, value in pr["meta"]["customization"].items():
+        if key != "equipmentModel":
+            assert catalog["meta"]["customization"][key] == value, f"Customization metadata lost: {key}"
+    main_sources = {source["id"]: source for source in main["sources"]}
+    pr_sources = {source["id"]: source for source in pr["sources"]}
+    sources = {source["id"]: source for source in catalog["sources"]}
+    assert len(sources) == len(catalog["sources"])
+    assert set(sources) == set(main_sources) | set(pr_sources), "A source from either branch is missing."
+    for identifier, source in main_sources.items():
+        assert sources[identifier] == source, f"Latest main source annotation changed: {identifier}"
+    for identifier, source in pr_sources.items():
+        if identifier not in main_sources:
+            assert sources[identifier] == source, f"Customization source changed: {identifier}"
+        else:
+            for field in ("id", "title", "url"):
+                assert sources[identifier].get(field) == source.get(field), f"Shared source identity changed: {identifier}"
+    assert list(old.sheets) == list(new.sheets) and len(new.sheets) == 28
+    assert set(old.tables) == set(new.tables) and len(new.tables) == 26
+    baseline_cells = 0
+    for category in main["categories"]:
+        cells = old.cells(category["sheetName"])
+        for row, entry in enumerate((record for record in main["entries"] if record["category"] == category["id"]), 7):
+            for index, field in enumerate(FIELDS):
+                expected = entry.get(field) or ""
+                if isinstance(expected, list): expected = ", ".join(expected)
+                assert cells.get(f"{chr(65+index)}{row}", {}).get("value", "") == str(expected), "The baseline XLSX does not match its catalogue."
+                baseline_cells += 1
+    for name in old.sheets:
+        for query in ("s:sheetViews", "s:cols", "s:sheetProtection", "s:mergeCells"):
+            assert tree(old.sheets[name].find(query, NS)) == tree(new.sheets[name].find(query, NS)), f"Native feature changed: {name} {query}"
+        old_cf, new_cf = old.conditional_formats(name), new.conditional_formats(name)
+        for old_range, rules in old_cf:
+            assert any(rules == candidate and extends_range(old_range, new_range) for new_range, candidate in new_cf), f"Conditional formatting lost: {name} {old_range}"
+    spec = importlib.util.spec_from_file_location("relay_current_workbook_verifier", root/"scripts/verify-workbook.py")
+    verifier = importlib.util.module_from_spec(spec); spec.loader.exec_module(verifier)
+    native = verifier.verify(root, len(catalog["entries"]), len(sources), main_ref)
+    assert native["passed"], native["errors"][:20]
+    return {
+        "passed": True, "at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "version": "0.3.0",
+        "mode": "main-regenerated-customization-merge", "mainRef": main_ref, "customizationRef": pr_ref,
+        "records": len(catalog["entries"]), "preservedMainRecords": len(original), "preservedCustomizationRecords": len(custom),
+        "protectedRecordsUnchanged": True, "mainMetadataPreserved": True, "customizationMetadataPreserved": True,
+        "sources": len(sources), "sourceIdentitiesFromBothBranchesPreserved": True, "latestMainSourceAnnotationsPreserved": True,
+        "sharedSourceScopePriority": "Latest main annotations retained for shared IDs; historical PR reports remain unchanged.",
+        "baselineCatalogueCellsCompared": baseline_cells, "sheets": 28, "tablesWithFilters": 26,
+        "nativeViewsColumnsProtectionAndMergesPreserved": True, "conditionalFormattingRangesPreservedOrExtended": True,
+        "nativeWorkbookVerification": native,
+        "method": "Read-only JSON and ZIP/XML comparisons against both Git baselines, then current main workbook validation; no native desktop execution.",
+    }
 
 def tree(element):
     if element is None:
@@ -74,6 +160,9 @@ def main():
     parser.add_argument("--baseline", required=True)
     parser.add_argument("--baseline-catalog", required=True)
     parser.add_argument("--root", default=str(Path(__file__).resolve().parents[1]))
+    parser.add_argument("--main-ref", help="Enable regenerated merge verification against this exact main commit.")
+    parser.add_argument("--customization-ref", help="PR commit providing the 50 unchanged CUST- records.")
+    parser.add_argument("--report", help="Report path; merge mode defaults to a distinct customization-merge-native-check.json.")
     args = parser.parse_args()
     root = Path(args.root)
     baseline = json.loads(Path(args.baseline_catalog).read_text())
@@ -81,6 +170,13 @@ def main():
     old = Package(args.baseline)
     file = root / "docs/Mass_Effect_Relay_Chronicles_Production.xlsx"
     new = Package(file)
+    if args.main_ref:
+        assert args.customization_ref, "--customization-ref is required with --main-ref."
+        report = verify_merged(root, args, baseline, catalog, old, new)
+        destination = Path(args.report) if args.report else root/"docs/workbook-previews/customization-merge-native-check.json"
+        destination.write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
+        print(json.dumps({key: value for key, value in report.items() if key != "nativeWorkbookVerification"}, ensure_ascii=False, indent=2))
+        return
     assert list(old.sheets) == list(new.sheets), "Worksheet order or names changed."
     assert len(new.sheets) == 28
     assert set(old.tables) == set(new.tables) and len(new.tables) == 26
@@ -170,7 +266,8 @@ def main():
         "xlsxSha256": hashlib.sha256(file.read_bytes()).hexdigest(),
         "method": "Read-only ZIP/XML inspection with Python standard library; no Microsoft Excel desktop execution.",
     }
-    (root/"docs/workbook-previews/customization-native-check.json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
+    destination = Path(args.report) if args.report else root/"docs/workbook-previews/customization-native-check.json"
+    destination.write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n")
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-import { SLOTS, ITEMS, equipmentFor, normalizeInventory, itemCompatibility } from './loadout.js';
+import { SLOTS, ITEMS, equipmentFor, normalizeInventory, equipItem, unequipItem } from './loadout.js';
 
 // These cosmetic choices belong to Relay Chronicles. Equipment keeps the ME1
 // whole-suit model; paints and an in-campaign appearance editor are adaptations.
@@ -114,6 +114,7 @@ export function createCustomizationDraft(state) {
     appearance: isAppearance(state.appearance) ? state.appearance : 'male',
     customization: normalizeCustomization(state.customization, state.appearance) || initialCustomization(state.appearance),
     equipment: equipmentFor(state, 'shepard'),
+    equipmentChanges: {},
   };
 }
 
@@ -121,26 +122,55 @@ export function createCustomizationDraft(state) {
 export function validateCustomizationDraft(state, draft, { inCombat = false } = {}) {
   try {
     if (inCombat || state?.inCombat === true || state?.battle) return fail('La personnalisation est indisponible pendant un combat.');
-    if (!safeObject(draft) || !exact(draft, ['appearance', 'customization', 'equipment']) || !isAppearance(draft.appearance)
+    if (!safeObject(draft) || !(exact(draft, ['appearance', 'customization', 'equipment']) || exact(draft, ['appearance', 'customization', 'equipment', 'equipmentChanges'])) || !isAppearance(draft.appearance)
       || !exact(draft.equipment, SLOTS)) return fail('Personnalisation invalide.');
+    if (owns(draft, 'equipmentChanges') && (!draft.equipmentChanges || typeof draft.equipmentChanges !== 'object'
+      || Object.entries(draft.equipmentChanges).some(([slot, changed]) => !SLOTS.includes(slot) || changed !== true))) return fail('Changements de dotation invalides.');
     const customization = normalizeCustomization(draft.customization, draft.appearance);
     if (!customization) return fail('Options d’apparence invalides.');
     const inventory = normalizeInventory(state.inventory, state);
     if (!inventory) return fail('Inventaire invalide.');
-    for (const slot of SLOTS) {
-      const id = draft.equipment[slot];
-      if (id === null) continue;
-      if (typeof id !== 'string' || !owns(ITEMS, id) || ITEMS[id].slot !== slot) return fail('Objet incompatible avec cet emplacement.');
-      const check = itemCompatibility(state, 'shepard', id);
-      if (!check.ok) return fail(check.reason);
-      const reservedByOthers = Object.entries(inventory.equipped).reduce((total, [actorId, slots]) => total + (actorId === 'shepard' ? 0 : Object.values(slots).filter(value => value === id).length), 0);
-      if ((inventory.items[id] || 0) <= reservedByOthers) return fail('Aucun exemplaire libre dans l’inventaire.');
+    const original = equipmentFor(state, 'shepard'), requested = { ...draft.equipment };
+    for (const [parent, children] of [['weapon', ['weaponMod', 'weaponMod2', 'ammoMod']], ['armor', ['armorMod', 'armorMod2']]]) {
+      if (original[parent] === requested[parent] && !draft.equipmentChanges?.[parent]) continue;
+      // Replacing a parent releases its existing modules. A subsequent explicit
+      // module selection can prepare that owned item again on the new parent.
+      for (const slot of children) if (requested[parent] === null || requested[slot] === original[slot] && !draft.equipmentChanges?.[slot]) requested[slot] = null;
     }
-    inventory.equipped.shepard = { ...draft.equipment };
-    const validatedInventory = normalizeInventory(inventory, state);
+    const candidate = { ...structuredClone(state), appearance: draft.appearance, customization, inventory };
+    // Release changed slots first so exchanges between the two module ports
+    // use the same shared-quantity rules as the main equipment screen.
+    for (const slot of SLOTS) {
+      if (candidate.inventory.equipped.shepard?.[slot] && (original[slot] !== requested[slot] || ['weapon', 'armor'].includes(slot) && draft.equipmentChanges?.[slot])) {
+        const result = unequipItem(candidate, 'shepard', slot);
+        if (!result.ok) return fail(result.reason);
+      }
+    }
+    for (const slot of SLOTS) {
+      const id = requested[slot];
+      if (id === null || candidate.inventory.equipped.shepard?.[slot] === id) continue;
+      if (typeof id !== 'string' || !owns(ITEMS, id)) return fail('Objet incompatible avec cet emplacement.');
+      const result = equipItem(candidate, 'shepard', id, slot);
+      if (!result.ok) return fail(result.reason);
+    }
+    const validatedInventory = normalizeInventory(candidate.inventory, candidate);
     if (!validatedInventory) return fail('Cette dotation ne peut pas être appliquée.');
-    return { ok: true, state: { ...structuredClone(state), appearance: draft.appearance, customization, inventory: validatedInventory } };
+    return { ok: true, state: { ...candidate, inventory: validatedInventory } };
   } catch { return fail('Personnalisation invalide.'); }
+}
+
+/** Stage one real equipment operation on a detached preview, including returns. */
+export function prepareCustomizationEquipment(state, draft, slot, itemId) {
+  const validation = validateCustomizationDraft(state, draft);
+  if (!validation.ok) return validation;
+  if (!SLOTS.includes(slot)) return fail('Emplacement indisponible.');
+  const candidate = validation.state, current = equipmentFor(candidate, 'shepard')[slot];
+  if (current === itemId) return { ok: true, draft: structuredClone(draft), returnedMods: [] };
+  const result = itemId === null
+    ? unequipItem(candidate, 'shepard', slot) : equipItem(candidate, 'shepard', itemId, slot);
+  if (!result.ok) return result;
+  return { ok: true, draft: { ...structuredClone(draft), equipment: equipmentFor(candidate, 'shepard'),
+    equipmentChanges: { ...draft.equipmentChanges, [slot]: true } }, returnedMods: result.returnedMods || [] };
 }
 
 export function customizationPreviewState(state, draft) {

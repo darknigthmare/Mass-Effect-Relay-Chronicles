@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-10-23T20:52:20.326Z",
+  "scope": "Règles générales réellement consultées ; ce rapport ne valide pas les illustrations, fabricants, rangs, prix ni statistiques de chaque objet du catalogue.",
+  "sources": [
+    {
+      "id": "ME1-MANUAL",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+      "httpStatus": 200,
+      "bytes": 4659610,
+      "sha256": "17fa35a20690481d7b29edaa06c618a7b74ff85bb03fb3ec4b5b9ef9b6f5516c",
+      "pdfPages": 22,
+      "scope": "Manuel officiel PC français de ME1 ; règles générales consultées, pas un relevé des statistiques de chaque objet."
+    },
+    {
+      "id": "PRIMA-PROLOGUE",
+      "url": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
+      "httpStatus": 200,
+      "bytes": 4677689,
+      "sha256": "dbef65537b3ab6dc7dbcc2d8f4f9ae2f7e4eaa99d47f1d1a2831d7b213e5f8c2",
+      "pdfPages": 23,
+      "scope": "Extrait officiel Prima : prologue et retours au Normandy. Ce fichier ne contient pas le guide complet ni les tables de tous les fabricants."
+    },
+    {
+      "id": "EA-GAMEPLAY",
+      "url": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "httpStatus": 200,
+      "bytes": 116395,
+      "sha256": "04331a9de892103d9e93d60fc7dca7195363ba1abb7731342d529389ad1ed0dd",
+      "scope": "Comparaison officielle Legendary Edition : le tir, la chauffe et les spécialisations ont changé ; ne pas fusionner silencieusement les éditions."
+    }
+  ],
+  "facts": [
+    {
+      "id": "weapon-families",
+      "sourceId": "ME1-MANUAL",
+      "printedPages": [
+        20,
+        21
+      ],
+      "pdfPages": [
+        12
+      ],
+      "fact": "Quatre familles : pistolet, fusil d’assaut, fusil à pompe et fusil de précision. Leur précision, cadence et portée diffèrent dans le jeu original.",
+      "implementation": "Familles et noms présents ; les portées et statistiques du tir original ne sont pas reproduites intégralement."
+    },
+    {
+      "id": "armor-training",
+      "sourceId": "ME1-MANUAL",
+      "printedPages": [
+        22
+      ],
+      "pdfPages": [
+        13
+      ],
+      "fact": "Les classes de Shepard peuvent porter léger. Le soldat commence avec l’intermédiaire ; porte-étendard et franc-tireur peuvent s’y former. Aucune classe ne commence en lourd, dont l’accès formé appartient au soldat.",
+      "implementation": "Restrictions de classe et formation explicite ; budget et coût des points d’apprentissage ATB restent une adaptation, sans seuil original certifié."
+    },
+    {
+      "id": "typed-upgrade-slots",
+      "sourceId": "ME1-MANUAL",
+      "printedPages": [
+        23
+      ],
+      "pdfPages": [
+        13
+      ],
+      "fact": "Les améliorations sont liées aux emplacements d’arme, munition, armure ou grenade ; une munition ne se place pas dans n’importe quel port.",
+      "implementation": "Emplacements arme/munition/armure séparés et contrôlés ; grenade et progression complète des nombres de ports restent à produire."
+    },
+    {
+      "id": "biotic-amplifiers",
+      "sourceId": "ME1-MANUAL",
+      "printedPages": [
+        24
+      ],
+      "pdfPages": [
+        14
+      ],
+      "fact": "Un amplificateur renforce les pouvoirs d’un utilisateur biotique.",
+      "implementation": "L’amplificateur exige un profil biotique et ne donne pas de nouveau pouvoir."
+    },
+    {
+      "id": "omni-tools-and-gel",
+      "sourceId": "ME1-MANUAL",
+      "printedPages": [
+        24
+      ],
+      "pdfPages": [
+        14
+      ],
+      "fact": "OmniTech/omni-outil sert aux opérations technologiques ; l’omni-gel est une ressource de conversion, décryptage et réparation.",
+      "implementation": "Outil technologique équipé par les profils éligibles ; conversion et réparations Mako ne sont pas déclarées réalisées."
+    },
+    {
+      "id": "heat-ammunition",
+      "sourceId": "PRIMA-PROLOGUE",
+      "printedPages": [
+        64
+      ],
+      "pdfPages": [
+        8
+      ],
+      "fact": "Les armes utilisent des munitions non épuisables ; la surchauffe bloque le tir jusqu’au refroidissement.",
+      "implementation": "La chaleur et les mods de munitions persistants n’ajoutent pas de cartouches thermiques consommables."
+    },
+    {
+      "id": "weapon-use-vs-mastery",
+      "sourceId": "PRIMA-PROLOGUE",
+      "printedPages": [
+        65
+      ],
+      "pdfPages": [
+        9
+      ],
+      "fact": "Une arme non maîtrisée reste utilisable, avec pénalités de précision et de dégâts dans l’original.",
+      "implementation": "Le port reste distinct de la maîtrise. La réduction de moitié du seul bonus de puissance de l’arme, conservée dans cette version depuis 0.2.0, est une adaptation ATB ; elle ne certifie pas la précision ni les pénalités chiffrées originales."
+    },
+    {
+      "id": "legendary-edition-differences",
+      "sourceId": "EA-GAMEPLAY",
+      "fact": "Legendary Edition modifie notamment les restrictions de visée, le refroidissement et les effets de certains talents d’arme ; les spécialisations restent liées aux classes.",
+      "implementation": "Le manuel PC et l’extrait Prima guident les règles générales ; aucune statistique d’objet n’est certifiée identique entre éditions."
+    }
+  ],
+  "unavailable": [
+    {
+      "url": "https://masseffect.fandom.com/wiki/Weapons",
+      "httpStatus": 402
+    },
+    {
+      "url": "https://masseffect.fandom.com/wiki/Upgrades",
+      "httpStatus": 402
+    }
+  ]
+}

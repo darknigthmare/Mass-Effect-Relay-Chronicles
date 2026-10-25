@@ -1,21 +1,20 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-10-23** · Version 0.3.0
+Mise à jour : **2026-10-25** · Version 0.3.0
 
-Ce catalogue contient **1 371 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
+Ce catalogue contient **1 380 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
-- [Générateur d’origine du classeur et de cette page — 0.2.0](../scripts/build-workbook.mjs) · [Extension du catalogue — 0.3.0](../scripts/update-customization-catalog.mjs) · [Mise à jour ciblée du classeur — 0.3.0](../scripts/update-customization-workbook.mjs).
-- [Aperçu du tableau de bord](workbook-previews/Dashboard.png) · [Vérification des formules et compteurs — 0.3.0](workbook-previews/customization-verification.json) · [Contrôle du fichier exporté et conservation des données — 0.3.0](workbook-previews/customization-native-check.json).
-- Vérifications historiques 0.2.0 : [formules](workbook-previews/verification.json) · [fichier exporté](workbook-previews/native-export-check.json).
+- [Générateur du classeur et de cette page](../scripts/build-workbook.mjs).
+- [Aperçu du tableau de bord](workbook-previews/Dashboard.png) · [Vérification des formules](workbook-previews/verification.json) · [Contrôle du fichier exporté](workbook-previews/native-export-check.json).
 
 ## État réel
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 1 041 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 324 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 1 038 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 336 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
 | Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
@@ -23,11 +22,11 @@ Un statut de contenu et un statut d’asset décrivent deux choses distinctes. U
 
 | Niveau de canon | Fiches | Signification |
 | --- | ---: | --- |
-| Confirmé | 15 | Existence ou règle vérifiée dans la source indiquée. Cela ne valide pas un asset. |
-| Référence à vérifier | 524 | Nom, rôle, apparence ou conditions à recouper avant production finale. |
-| Adaptation | 832 | Règle, découpage ou livrable original de ce fan game. |
+| Confirmé | 17 | Existence ou règle vérifiée dans la source indiquée. Cela ne valide pas un asset. |
+| Référence à vérifier | 522 | Nom, rôle, apparence ou conditions à recouper avant production finale. |
+| Adaptation | 841 | Règle, découpage ou livrable original de ce fan game. |
 
-Le périmètre comprend **1 314 fiches ME1**, **33 fiches ME2** et **24 fiches ME3**. Les deux épisodes suivants restent une extension de production. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
+Le périmètre comprend **1 318 fiches ME1**, **33 fiches ME2**, **24 fiches ME3** et **5 systèmes transversaux**. Les 57 fiches d’extension futures du classeur principal restent séparées ; les nouveaux essais sont suivis dans les classeurs propres aux œuvres. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
 
 ## Couverture du prototype
 
@@ -38,14 +37,16 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Exploration | 9 zones jouables condensées : Normandy, Eden Prime, Citadelle, Thérum, Feros, Noveria, Virmire, Ilos et Citadelle assiégée | 8 destinations distinctes ; la Citadelle revient sous deux états. Les 100 sous-zones et 91 liaisons du catalogue restent un plan à produire. |
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
 | Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portraits et sprites liés à l’apparence ; marche féminine et quatre poses de combat. Réactions narratives complètes aux antécédents, créateur facial et costumes définitifs restent à produire. |
-| Personnalisation — 0.3.0 | Trois onglets Personnage, Armure et Armes : préréglages de visage, palettes, armure complète ME1, cinq emplacements existants, aperçu et comparaison, brouillon avec application ou annulation, sauvegarde des choix | Atelier visuel original en 2D. Les couleurs, motifs, finitions et réglages de casque sont une extension cosmétique. Le terrain conserve les silhouettes et coiffures des atlas ; morphologie faciale 3D et variantes exactes de chaque équipement restent à produire. Détails et preuves dans [Personnalisation](CUSTOMIZATION.md). |
 | Combat | 21 rencontres de campagne et 4 rencontres annexes possibles, commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
 | Codex | 16 entrées à découverte progressive avec recherche | Les entrées dépendant de Liara, Féros, Virmire et Ilos sont conditionnées aux événements connus. Ne représente pas le codex complet de Mass Effect. |
 | Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |
 | PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant Eden Prime ; Emily intervient dans son opération | Les nouveaux contacts utilisent des marqueurs et dialogues, sans sprites de terrain dédiés. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
 | Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | 14 quêtes annexes : trois historiques et 11 opérations ajoutées à la Citadelle et Féros, avec 43 nouvelles étapes | Trois assignations historiques et onze opérations supplémentaires. Quatre scans de veilleurs, dialogues réécrits, cartes condensées, quatre combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire. Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
-| Équipement | 48 articles jouables : 20 armes, 16 armures et 12 modules, achat/vente, comparaison et cinq emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Restrictions de morphologie, poids, niveau et entraînement. Prix et valeurs adaptés ; l’arme et la tenue dessinées ne changent pas avec chaque objet. Les fiches de famille restent des objectifs de couverture distincts des références/rangs jouables. |
+| Équipement | 52 articles jouables : 20 armes, 16 armures, 12 modules et 4 outils, achat/vente, comparaison et neuf emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Formations explicites, restrictions de morphologie, poids, niveau et bio/tech. Modules restitués au retrait de leur pièce. Prix, points et ports fixes adaptés ; l’arme et la tenue dessinées ne changent pas. Voir [complément et sources](research/loadout-extension-sources.md). |
+| Chroniques | 28 œuvres, 48 segments documentés, 10 essais tactiques, 34 personnages sélectionnables et 70 équipements | Sessions et sauvegardes séparées de ME1 ; dix essais et neuf lectures courtes. Pouvoirs, chargeurs et modules utilisent des réglages ATB adaptés. Aucun nouveau sprite, niveau, dialogue intégral ou campagne complète. Voir [périmètre et utilisation](CHRONICLES.md). |
+| Pouvoirs des Chroniques | 40 fiches reliées à 18 actions, dont 10 nouvelles ; 15 préparations de classe ou de compétences | Arbres et acquisition complets non simulés ; statistiques ATB de base conservées. Les deux familles de modules ME3 sont limitées aux fusils d’assaut conventionnels à clips. |
+| Lectures documentaires | 9 parcours et 42 pages sourcées | Paraphrases factuelles avec navigation et découvertes persistantes. Aucun personnage de livre rendu jouable, niveau créé, dialogue intégral ou choix canonique inventé. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
 | Animation | 32 images de marche pour les deux apparences de Shepard et 4 poses clés de combat féminines, au stade Prototype | 32 frames de marche pour les deux apparences de Shepard, quatre directions chacune ; quatre poses de combat féminines. Raccords, huit directions, variantes par arme et mouvements des compagnons restent à produire. Les contacts féminins 0 et 2 restent proches dans certaines orientations. |
 
@@ -86,7 +87,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Dialogues | 36 | 24 | 12 | 0 | 0 | Situations de dialogue et conditions |
 | Cinématiques | 26 | 26 | 0 | 0 | 0 | Séquences et mise en scène |
 | Armes | 48 | 24 | 24 | 0 | 0 | Familles, modèles et comportements |
-| Armures et équipement | 60 | 26 | 34 | 0 | 0 | Protections, modules et consommables |
+| Armures et équipement | 64 | 24 | 40 | 0 | 0 | Protections, modules et consommables |
 | Pouvoirs | 30 | 17 | 13 | 0 | 0 | Capacités canoniques et traduction ATB |
 | Movesets alliés | 50 | 50 | 0 | 0 | 0 | Actions et contraintes par équipier |
 | Movesets ennemis | 75 | 75 | 0 | 0 | 0 | Télégraphes, actions et réponses tactiques |
@@ -94,10 +95,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Sprites | 82 | 43 | 39 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 60 | 9 | 48 | 0 | 3 | Interface et règles de jeu |
+| Systèmes et UI | 65 | 8 | 54 | 0 | 3 | Interface et règles de jeu |
 | QA | 64 | 53 | 11 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 371** | **1 041** | **324** | **3** | **3** | |
+| **Total** | **1 380** | **1 038** | **336** | **3** | **3** | |
 
 ## Lire une fiche
 
@@ -121,18 +122,16 @@ Chaque fiche possède un identifiant stable, une catégorie, un épisode, un pé
 
 La colonne de source donne une référence de travail. Les lignes marquées **Référence à vérifier** demandent encore une comparaison avec le jeu, son codex, des captures identifiées et la version exacte choisie. Certaines pages du guide constituent seulement un point de départ pour retrouver le détail. L’index communautaire est une source secondaire, signalée comme telle.
 
-Le catalogue et le Guide du classeur recensent **43 sources**. Les quatre références ajoutées pour la personnalisation complètent les sources existantes ME2 et Legendary Edition ; les [notes de comparaison entre opus](research/customization-sources.md) précisent leur portée et les adaptations de l’atelier.
-
 | Identifiant | Source | Usage et périmètre |
 | --- | --- | --- |
-| ME1-MANUAL | [Manuel officiel Mass Effect PC FR](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf) | Classes, interface, équipement et pouvoirs ME1 |
+| ME1-MANUAL | [Manuel officiel Mass Effect PC FR](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf) | Manuel PC FR réellement consulté : familles, formations d’armures et ports/outils pp.20–24 ; existence et règles seulement, pas les chiffres de chaque modèle. Preuve docs/qa/equipment-primary-reference-report.json. |
 | ME2-MANUAL | [Manuel officiel Mass Effect 2 PC FR](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf) | Référence des extensions ME2 uniquement |
-| EA-GAMEPLAY | [EA Gameplay Calibrations](https://www.ea.com/ea-play/news/gameplay-calibrations) | Différences original / Legendary Edition |
+| EA-GAMEPLAY | [EA Gameplay Calibrations](https://www.ea.com/ea-play/news/gameplay-calibrations) | Article officiel réellement consulté : différences de visée, chauffe et spécialisations original/Legendary Edition, sans certification des valeurs des objets. |
 | EA-VISUAL | [EA Visual Improvements](https://www.ea.com/ea-play/news/visual-improvements) | Atmosphères des lieux remasterisés |
 | EA-COSPLAY | [EA guides cosplay](https://www.ea.com/games/mass-effect/community/cosplay-guides) | Silhouettes et costumes à classer par épisode |
 | BIOWARE-SR1 | [BioWare Normandy SR-1](https://gear.bioware.com/products/mass-effect-normandy-sr-1-pin-set) | Identification du vaisseau ME1 |
 | BIOWARE-SR2 | [BioWare Normandy SR-2 Cerberus](https://gear.bioware.com/en-eu/products/mass-effect-cerberus-normandy-sr-2-ship-replica-remaster) | Référence ME2 uniquement |
-| PRIMA-PROLOGUE | [Guide officiel Prima, prologue](https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf) | Prologue ME1, extraits indexés ; PDF complet à contrôler |
+| PRIMA-PROLOGUE | [Guide officiel Prima, prologue](https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf) | Extrait officiel consulté de 23 pages : prologue/Normandy, chauffe p.64 et port/maîtrise p.65. Ne contient pas les tables de tous les objets. |
 | PRIMA-FEROS | [Prima guide Feros](https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-noveria-and-feros/feros-assignments) | Missions secondaires de Feros |
 | PRIMA-VIRMIRE | [Prima guide Virmire](https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectra-assignments-virmire-and-citadel-lockdown/virmire-assignments) | Choix et objectifs de Virmire |
 | PRIMA-NORMANDY | [Prima retours au Normandy](https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-4-feros/the-normandy-revisited) | Relations du premier épisode |
@@ -164,10 +163,10 @@ Le catalogue et le Guide du classeur recensent **43 sources**. Les quatre réfé
 | ME1-GEAR-AMMUNITION-UPGRADES | [ME1 — Ammunition Upgrades](https://masseffect.fandom.com/wiki/Ammunition_Upgrades) | Source communautaire sur noms, fabricants et familles. Valeurs de combat et économie du prototype, sans équivalence statistique 1:1. |
 | ME1-GEAR-ARMOR-UPGRADES | [ME1 — Armor Upgrades](https://masseffect.fandom.com/wiki/Armor_Upgrades) | Source communautaire sur noms, fabricants et familles. Valeurs de combat et économie du prototype, sans équivalence statistique 1:1. |
 | EA-LE-FEMSHEP | [EA — apparence féminine de Shepard dans Legendary Edition](https://news.ea.com/press-releases/press-releases-details/2021/Relive-the-Award-Winning-Space-Opera-in-Mass-Effect-Legendary-Edition-on-May-14/) | Source primaire du 2 février 2021, consultée le 23 octobre 2026. Confirme la disponibilité du modèle féminin par défaut dans les trois épisodes ; ne valide pas les PNG du projet. |
-| ME1-CUSTOMIZATION-MANUAL | [Manuel officiel Mass Effect Xbox 360 EN](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf) | Pages imprimées 5–7 et 18–19 : création de Shepard, armures complètes selon les compétences et améliorations d’équipement, dont les munitions. Référence de structure ME1 ; les palettes de l’atelier sont une adaptation. |
-| ME3-CUSTOMIZATION-MANUAL | [Manuel officiel Mass Effect 3 PC EN](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf) | Pages 12–13 : pièces d’armure, ensembles uniques, couleurs et motifs, deux modules d’arme et poids. Référence comparative ME3 ; ces règles ne sont pas présentées comme natives de ME1. |
-| MEA-CUSTOMIZATION-MANUAL | [Manuel officiel Mass Effect Andromeda PC EN](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-andromeda-pc-en.pdf) | Pages 6 et 15–18 : création, recherche, développement, équipement, modules et augmentations. Référence comparative ; aucune fabrication Andromeda n’est ajoutée au prototype ME1. |
-| MEA-PATCH108 | [BioWare — Mass Effect Andromeda, patch 1.08](https://blog.bioware.com/2017/06/06/mass-effect-andromeda-patch-1-08-notes/) | Modification de l’apparence en cours de partie au Tempest. Situe cette possibilité dans Andromeda ; l’accès à l’atelier de Relay Chronicles est une décision d’adaptation. |
+| ME1-CUSTOMIZATION-MANUAL | [Mass Effect — manuel Xbox 360 officiel](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf) | Pages imprimées 5–7 et 18–19. Création de Shepard, armures complètes et améliorations spécialisées. |
+| ME3-CUSTOMIZATION-MANUAL | [Mass Effect 3 — manuel PC officiel](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf) | Pages 12–13. Pièces d’armure, deux mods par arme, charge et recharge. Référence des différences entre opus. |
+| MEA-CUSTOMIZATION-MANUAL | [Mass Effect Andromeda — manuel PC officiel](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-andromeda-pc-en.pdf) | Pages 6 et 15–18. Créateur, recherche, développement, augmentations et équipement. Référence future. |
+| MEA-PATCH108 | [BioWare — Mass Effect Andromeda Patch 1.08](https://blog.bioware.com/2017/06/06/mass-effect-andromeda-patch-1-08-notes/) | Modification d’apparence à bord du Tempest. Ne décrit pas une fonctionnalité native de ME1. |
 
 La production prend ME1 comme base. La continuité doit distinguer le Normandy SR-1 des vaisseaux ultérieurs, les armes à chauffe des systèmes de cartouches thermiques, et les talents de ME1 des pouvoirs introduits plus tard. Les guides cosplay et les visuels de la trilogie exigent un classement par épisode avant réutilisation. Les références original/Legendary Edition doivent également être identifiées avant une comparaison exacte.
 
@@ -175,16 +174,12 @@ Les dialogues, la topologie complète, les missions secondaires, les DLC, les ch
 
 ## Mettre à jour le suivi
 
-Le générateur d’origine de la version 0.2.0 permet une reconstruction complète. Modifier les fiches dans [content-catalog.json](content-catalog.json), puis le lancer avec le runtime Node disposant de `@oai/artifact-tool` :
+Modifier les fiches dans [content-catalog.json](content-catalog.json), puis lancer le générateur avec le runtime Node disposant de `@oai/artifact-tool` :
 
 ```bash
 node scripts/build-workbook.mjs
 ```
 
 La variable `CODEX_PRIMARY_RUNTIME_NODE_MODULES` doit désigner les modules du runtime d’artefacts. L’option `--render-sheets Dashboard,PNJ,Ennemis_boss,Sprites` limite les aperçus recalculés, tout en reconstruisant le classeur complet et cette page. Les fichiers de vérification donnent le total exporté, le contrôle des formules et la présence des filtres, validations et volets figés.
-
-La livraison 0.3.0 utilise [update-customization-catalog.mjs](../scripts/update-customization-catalog.mjs) pour ajouter les 50 fiches, puis [update-customization-workbook.mjs](../scripts/update-customization-workbook.mjs) pour étendre le classeur existant. Ce dernier demande une copie du classeur 0.2.0 avec `--source` et son catalogue JSON avec `--baseline-catalog` ; `--output-dir` choisit le dossier de sortie. Ces références permettent de vérifier la conservation des 1 321 fiches précédentes, des 28 onglets, des tableaux, des formules et des validations. Cette page est mise à jour séparément pour conserver les indications propres à l’extension.
-
-Les [vérifications 0.3.0](workbook-previews/customization-verification.json) couvrent les compteurs, le recalcul, le changement temporaire d’un statut puis sa restauration et les rendus des vues affectées. Le [contrôle natif](workbook-previews/customization-native-check.json), produit par [verify-customization-workbook.py](../scripts/verify-customization-workbook.py), compare 25 580 cellules historiques et 23 307 cellules du catalogue exporté ; il confirme 43 sources et aucune erreur de formule mise en cache. Ce contrôle du fichier ne constitue pas une session de test dans Microsoft Excel.
 
 Les modifications effectuées directement dans Excel recalculent son tableau de bord, mais ne sont pas automatiquement réimportées dans le JSON. Reporter ces décisions dans le catalogue avant de régénérer le classeur.

@@ -82,7 +82,7 @@ for(const category of catalog.categories){
  sheet.getRange(`C7:C${end}`).dataValidation={rule:{type:'list',values:Object.keys(catalog.meta.statusDefinitions)}};
  sheet.getRange(`D7:D${end}`).dataValidation={rule:{type:'list',values:catalog.meta.assetStatusValues}};
  sheet.getRange(`E7:E${end}`).dataValidation={rule:{type:'list',values:['P0','P1','P2']}};
- sheet.getRange(`F7:F${end}`).dataValidation={rule:{type:'list',values:['ME1','ME2','ME3']}};
+ sheet.getRange(`F7:F${end}`).dataValidation={rule:{type:'list',values:['ME1','ME2','ME3','TRANSVERSE']}};
  sheet.getRange(`G7:G${end}`).dataValidation={rule:{type:'list',values:Object.keys(catalog.meta.canonDefinitions)}};
  const statusRange=sheet.getRange(`C7:C${end}`);
  for(const [status,fill,color] of [['Prototype','#FFF1D0','#865000'],['Intégré','#D9EEF2','#0C5966'],['Validé','#DDF1E8','#176A4D']]){
@@ -216,6 +216,8 @@ for(const [categoryId,ids,filename] of [
  ['equipment',['GEAR-armor-piercing-rounds-i','GEAR-tungsten-rounds-iv','GEAR-shredder-rounds-iv'],'Modules-v02-focus'],
  ['animations',['FRAME-femshep-walk-front-0','FRAME-femshep-walk-front-1'],'Marche-femme-focus'],
  ['animations',['FRAME-femshep-combat-hit','FRAME-femshep-combat-down'],'Combat-femme-focus'],
+ ['systems',['SYS-chroniques-contextuelles','SYS-clips-thermiques'],'Chroniques-focus'],
+ ['systems',['SYS-preparations-chroniques','SYS-modules-chroniques','SYS-lectures-chroniques'],'Chantiers-chroniques-focus'],
 ]){
  const category=catalog.categories.find(c=>c.id===categoryId);
  if(renderOnly&&!renderOnly.has(category.sheetName))continue;
@@ -269,7 +271,7 @@ Un statut de contenu et un statut d’asset décrivent deux choses distinctes. U
 | --- | ---: | --- |
 ${canonRows}
 
-Le périmètre comprend **${fr(episodeCounts.ME1||0)} fiches ME1**, **${fr(episodeCounts.ME2||0)} fiches ME2** et **${fr(episodeCounts.ME3||0)} fiches ME3**. Les deux épisodes suivants restent une extension de production. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
+Le périmètre comprend **${fr(episodeCounts.ME1||0)} fiches ME1**, **${fr(episodeCounts.ME2||0)} fiches ME2**, **${fr(episodeCounts.ME3||0)} fiches ME3** et **${fr(episodeCounts.TRANSVERSE||0)} systèmes transversaux**. Les 57 fiches d’extension futures du classeur principal restent séparées ; les nouveaux essais sont suivis dans les classeurs propres aux œuvres. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
 
 ## Couverture du prototype
 
@@ -286,7 +288,10 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant Eden Prime ; Emily intervient dans son opération | Les nouveaux contacts utilisent des marqueurs et dialogues, sans sprites de terrain dédiés. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
 | Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | ${catalog.meta.prototypeCoverage.assignmentCount} quêtes annexes : trois historiques et ${catalog.meta.prototypeCoverage.operationCount} opérations ajoutées à la Citadelle et Féros, avec ${catalog.meta.prototypeCoverage.operationStepCount} nouvelles étapes | ${catalog.meta.prototypeCoverage.assignmentLimit} Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
-| Équipement | ${catalog.meta.prototypeCoverage.equipmentItemCount} articles jouables : 20 armes, 16 armures et 12 modules, achat/vente, comparaison et cinq emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Restrictions de morphologie, poids, niveau et entraînement. Prix et valeurs adaptés ; l’arme et la tenue dessinées ne changent pas avec chaque objet. Les fiches de famille restent des objectifs de couverture distincts des références/rangs jouables. |
+| Équipement | ${catalog.meta.prototypeCoverage.equipmentItemCount} articles jouables : 20 armes, 16 armures, 12 modules et ${catalog.meta.prototypeCoverage.toolItemCount} outils, achat/vente, comparaison et neuf emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Formations explicites, restrictions de morphologie, poids, niveau et bio/tech. Modules restitués au retrait de leur pièce. Prix, points et ports fixes adaptés ; l’arme et la tenue dessinées ne changent pas. Voir [complément et sources](research/loadout-extension-sources.md). |
+| Chroniques | ${catalog.meta.prototypeCoverage.chronicles.works} œuvres, ${catalog.meta.prototypeCoverage.chronicles.periodSegments} segments documentés, ${catalog.meta.prototypeCoverage.chronicles.scenarios} essais tactiques, ${catalog.meta.prototypeCoverage.chronicles.selectableCharacters} personnages sélectionnables et ${catalog.meta.prototypeCoverage.chronicles.equipmentItems} équipements | ${catalog.meta.prototypeCoverage.chronicles.limit} Voir [périmètre et utilisation](CHRONICLES.md). |
+| Pouvoirs des Chroniques | ${catalog.meta.prototypeCoverage.chronicles.powerCatalogEntries} fiches reliées à ${catalog.meta.prototypeCoverage.chronicles.activePowerActions} actions, dont ${catalog.meta.prototypeCoverage.chronicles.newPowerActions} nouvelles ; ${catalog.meta.prototypeCoverage.chronicles.classPreparations} préparations de classe ou de compétences | Arbres et acquisition complets non simulés ; statistiques ATB de base conservées. Les deux familles de modules ME3 sont limitées aux fusils d’assaut conventionnels à clips. |
+| Lectures documentaires | ${catalog.meta.prototypeCoverage.chronicles.documentaryReadings} parcours et ${catalog.meta.prototypeCoverage.chronicles.documentaryPages} pages sourcées | Paraphrases factuelles avec navigation et découvertes persistantes. Aucun personnage de livre rendu jouable, niveau créé, dialogue intégral ou choix canonique inventé. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
 | Animation | ${catalog.meta.prototypeCoverage.walkFrameCount} images de marche pour les deux apparences de Shepard et ${catalog.meta.prototypeCoverage.femaleCombatPoseCount} poses clés de combat féminines, au stade Prototype | ${catalog.meta.prototypeCoverage.animationLimit} Les contacts féminins 0 et 2 restent proches dans certaines orientations. |
 

@@ -62,6 +62,8 @@ Les deux autres images sont livrées comme matériel de production, sans fonctio
 
 ## Intégration et limites
 
+Le complément équipement conserve les dix PNG et les animations de 0.2.0. Il ajoute des tracés distincts pour les quatre familles d’armes et quatre outils fonctionnels, sans nouveau modèle ou atlas de matériel. Changer d’arme ou d’armure ne change pas le costume ni l’arme dessinée sur le sprite ; ces apparences restent à produire et à comparer. Les tracés ne certifient pas la géométrie ou les statistiques de chaque modèle.
+
 Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne remplacent pas la géométrie des bâtiments, sols, coursives, volumes et routes. Les silhouettes conservent un seuil alpha de 0,2 pour limiter les franges de transparence. La taille et les proportions du plan dépendent du type d’atlas, notamment pour les boss.
 
 Shepard dispose d’une animation par images ; les compagnons et les ennemis utilisent encore leurs poses de base avec transformations procédurales. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
@@ -71,6 +73,16 @@ La variante féminine sélectionnable utilise deux atlas propres. Les rectangles
 Les deux nouveaux PNG conservent leur transparence native. Les marges et pivots sont mesurés par frame, sans extraction ou retouche des pixels. Certains contacts du cycle restent proches, les effets de pouvoir sont inclus dans l’illustration et la cohérence de costume demande encore une revue artistique. Voir [la provenance et les limites](research/shepard-female-art.md).
 
 Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Wong possède une interaction de quête ; son image de l’atlas PNJ reste disponible pour une intégration de portrait et son personnage dédié dans le monde reste à produire. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
+
+## Présentation des Chroniques
+
+Le lot [Chroniques](CHRONICLES.md) conserve les dix PNG existants et ne livre aucun nouvel atlas, portrait, modèle d’arme ou décor. Les 34 profils sélectionnables des Chroniques sont représentés par des initiales et des symboles de prototype dans l’interface des essais. Ils ne correspondent pas à 34 nouveaux sprites et ne réemploient pas les portraits de personnages ME1 pour représenter d’autres identités.
+
+Le complément pouvoirs, préparations et lectures conserve également ces assets. Les dix mécaniques supplémentaires, les classes, les deux familles de modules et les 42 pages documentaires sont présentées par les commandes, barres, textes et liens de l’interface. Les 40 nouvelles fiches de pouvoirs utilisées ne correspondent ni à 40 animations ni à 40 VFX livrés. Les modules ne livrent aucun modèle visuel ou rang original certifié ; les lectures ne créent aucun portrait ou doublage de roman/comic.
+
+Les mannequins des trois bancs de personnages et les cibles des trois ateliers sont des gabarits originaux. Ils ne représentent pas des adversaires attestés des missions ou comics concernés. Les quatre autres essais conservent des types d’adversaires référencés, présentés avec la même convention symbolique. Les effets, projectiles et barres d’état n’établissent aucune conformité visuelle des personnages ou modèles d’armes.
+
+Chaque œuvre demande encore ses costumes, armes dessinées, portraits, silhouettes, décors et animations propres à la période. Une sélection disponible dans un atelier ne livre pas l’asset correspondant. La fidélité artistique et les mouvements par personnage restent des critères distincts de la validation des règles et sauvegardes.
 
 ## Critères d’acceptation de l’art final
 

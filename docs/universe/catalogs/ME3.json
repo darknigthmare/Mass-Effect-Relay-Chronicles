@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_3_Production.xlsx",
   "scope": "Campagne solo et DLC From Ashes, Leviathan, Omega, Citadel et Extended Cut ; profils Original et Legendary distincts. Le multijoueur de ME3 original et ses packs sont décrits comme module séparé, sans l’intégrer au roster solo ni le présenter comme présent dans Legendary.",
-  "summary": "736 fiches de préparation couvrant les 26 familles du schéma. Sources consultées au 22 octobre 2026 ; inventaire de production substantiel, sans prétention d’exhaustivité vérifiée.",
+  "summary": "736 fiches de production ; 53 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -501,7 +501,7 @@
       "id": "ME3-CHR-SHEPARD",
       "category": "characters",
       "name": "Commandant Shepard",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Protagoniste de ME3.",
@@ -510,7 +510,7 @@
       "visual": "Armure N7, personnalisation et cicatrices importées.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/shepard ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-SHEPARD ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Commandant Shepard » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -518,13 +518,22 @@
         "ME3-SRC-EA-LE"
       ],
       "reference": "Commandant Shepard",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-JAMES",
       "category": "characters",
       "name": "James Vega",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier humain de la campagne.",
@@ -533,7 +542,7 @@
       "visual": "Carrure massive, coupe courte et armure Alliance.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/james ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-JAMES ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « James Vega » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -541,13 +550,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "James Vega",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-LIARA",
       "category": "characters",
       "name": "Liara T’Soni",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière biotique de la campagne.",
@@ -556,7 +574,7 @@
       "visual": "Armure claire, bleu asari, tenue de Courtier hors combat.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/liara ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-LIARA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Liara T’Soni » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -564,13 +582,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Liara T’Soni",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-GARRUS",
       "category": "characters",
       "name": "Garrus Vakarian",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier s’il a survécu à ME2.",
@@ -579,7 +606,7 @@
       "visual": "Armure bleue marquée et viseur asymétrique.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/garrus ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-GARRUS ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Survie ME2 requise.",
       "acceptance": "Le livrable « Garrus Vakarian » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -587,13 +614,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Garrus Vakarian",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-EDI",
       "category": "characters",
       "name": "EDI — corps synthétique",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "EDI devient équipière de terrain.",
@@ -602,7 +638,7 @@
       "visual": "Corps synthétique argenté et segments noirs.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/edi ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-EDI ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « EDI — corps synthétique » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -610,7 +646,16 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "EDI — corps synthétique",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-JAVIK",
@@ -640,7 +685,7 @@
       "id": "ME3-CHR-ASHLEY",
       "category": "characters",
       "name": "Ashley Williams",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière possible, survivante de Virmire.",
@@ -649,7 +694,7 @@
       "visual": "Armure Alliance bleue, silhouette humaine et cheveux propres au modèle.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/ashley ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-ASHLEY ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Exclusive de Kaidan ; autres conditions narratives.",
       "acceptance": "Le livrable « Ashley Williams » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -657,13 +702,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Ashley Williams",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-KAIDAN",
       "category": "characters",
       "name": "Kaidan Alenko",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier possible, survivant de Virmire.",
@@ -672,7 +726,7 @@
       "visual": "Armure Alliance et posture contenue.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/kaidan ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-KAIDAN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Exclusif d’Ashley ; autres conditions narratives.",
       "acceptance": "Le livrable « Kaidan Alenko » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -680,13 +734,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Kaidan Alenko",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-TALI",
       "category": "characters",
       "name": "Tali’Zorah vas Normandy",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière dépendant de ME2 et Rannoch.",
@@ -695,7 +758,7 @@
       "visual": "Capuche violette, visière et tenue quariène.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/tali ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-TALI ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Survie et dénouement Rannoch conditionnels.",
       "acceptance": "Le livrable « Tali’Zorah vas Normandy » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -703,13 +766,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Tali’Zorah vas Normandy",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-ANDERSON",
       "category": "characters",
       "name": "David Anderson — temporaire",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Accompagne le prologue terrestre.",
@@ -718,7 +790,7 @@
       "visual": "Uniforme Alliance et arme de poing.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/characters/anderson ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime ME3-CHR-ANDERSON ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Prologue seulement.",
       "acceptance": "Le livrable « David Anderson — temporaire » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -726,7 +798,16 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "David Anderson — temporaire",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-CHR-ARIA",
@@ -7835,7 +7916,7 @@
       "id": "ME3-WPN-AVENGER",
       "category": "weapons",
       "name": "M-8 Avenger",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut.",
@@ -7844,7 +7925,7 @@
       "visual": "Carcasse Alliance compacte.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/avenger ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-AVENGER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-8 Avenger » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7852,13 +7933,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-8 Avenger",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-VINDICATOR",
       "category": "weapons",
       "name": "M-15 Vindicator",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut.",
@@ -7867,7 +7958,7 @@
       "visual": "Fusil à cadence en salve.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/vindicator ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-VINDICATOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-15 Vindicator » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7875,13 +7966,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-15 Vindicator",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-MATTOCK",
       "category": "weapons",
       "name": "M-96 Mattock",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil semi-automatique.",
@@ -7890,7 +7991,7 @@
       "visual": "Crosse longue et boîtier sombre.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/mattock ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-MATTOCK ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-96 Mattock » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7898,13 +7999,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-96 Mattock",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-REVENANT",
       "category": "weapons",
       "name": "M-76 Revenant",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut lourd.",
@@ -7913,7 +8024,7 @@
       "visual": "Large canon et chargeur massif.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/revenant ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-REVENANT ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-76 Revenant » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7921,13 +8032,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-76 Revenant",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-PHAESTON",
       "category": "weapons",
       "name": "Phaeston",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil turien.",
@@ -7936,7 +8057,7 @@
       "visual": "Carcasse angulaire turienne.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/phaeston ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-PHAESTON ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Phaeston » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7944,7 +8065,17 @@
         "ME3-SRC-PHAESTON"
       ],
       "reference": "Phaeston",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-FALCON",
@@ -7973,7 +8104,7 @@
       "id": "ME3-WPN-SABER",
       "category": "weapons",
       "name": "M-99 Saber",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil lourd.",
@@ -7982,7 +8113,7 @@
       "visual": "Fusil massif à long canon.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/saber ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-SABER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-99 Saber » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7990,7 +8121,17 @@
         "ME3-SRC-SABER"
       ],
       "reference": "M-99 Saber",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-PARTICLE",
@@ -8157,7 +8298,7 @@
       "id": "ME3-WPN-GETH-RIFLE",
       "category": "weapons",
       "name": "Geth Pulse Rifle",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil geth.",
@@ -8166,7 +8307,7 @@
       "visual": "Carcasse courbe et lumière bleue.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/geth-rifle ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-GETH-RIFLE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Geth Pulse Rifle » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8174,13 +8315,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "Geth Pulse Rifle",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-PREDATOR",
       "category": "weapons",
       "name": "M-3 Predator",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet.",
@@ -8189,7 +8340,7 @@
       "visual": "Pistolet compact noir et blanc.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/predator ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-PREDATOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-3 Predator » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8197,13 +8348,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-3 Predator",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-PHALANX",
       "category": "weapons",
       "name": "M-5 Phalanx",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet lourd.",
@@ -8212,7 +8373,7 @@
       "visual": "Pistolet militaire trapu.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/phalanx ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-PHALANX ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-5 Phalanx » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8220,13 +8381,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-5 Phalanx",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-CARNIFEX",
       "category": "weapons",
       "name": "M-6 Carnifex",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet lourd.",
@@ -8235,7 +8406,7 @@
       "visual": "Grande carcasse grise.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/carnifex ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-CARNIFEX ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-6 Carnifex » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8243,13 +8414,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-6 Carnifex",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-PALADIN",
       "category": "weapons",
       "name": "M-77 Paladin",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet lourd.",
@@ -8258,7 +8439,7 @@
       "visual": "Profil de gros pistolet.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/paladin ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-PALADIN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-77 Paladin » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8266,13 +8447,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-77 Paladin",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-TALON",
       "category": "weapons",
       "name": "M-358 Talon",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet à dispersion.",
@@ -8281,7 +8472,7 @@
       "visual": "Canon court et silhouette massive.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/talon ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-TALON ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-358 Talon » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8289,7 +8480,17 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-358 Talon",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-SCORPION",
@@ -8387,7 +8588,7 @@
       "id": "ME3-WPN-KATANA",
       "category": "weapons",
       "name": "M-23 Katana",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe.",
@@ -8396,7 +8597,7 @@
       "visual": "Fusil court à pompe.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/katana ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-KATANA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-23 Katana » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8404,13 +8605,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-23 Katana",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-SCIMITAR",
       "category": "weapons",
       "name": "M-27 Scimitar",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe.",
@@ -8419,7 +8630,7 @@
       "visual": "Fusil compact à cadence rapide.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/scimitar ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-SCIMITAR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-27 Scimitar » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8427,13 +8638,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-27 Scimitar",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-CLAYMORE",
       "category": "weapons",
       "name": "M-300 Claymore",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil krogan.",
@@ -8442,7 +8663,7 @@
       "visual": "Carcasse krogan très massive.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/claymore ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-CLAYMORE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-300 Claymore » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8450,13 +8671,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-300 Claymore",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-EVISCERATOR",
       "category": "weapons",
       "name": "M-22 Eviscerator",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe.",
@@ -8465,7 +8696,7 @@
       "visual": "Arme courte sombre.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/eviscerator ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-EVISCERATOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-22 Eviscerator » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8473,13 +8704,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-22 Eviscerator",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-DISCIPLE",
       "category": "weapons",
       "name": "Disciple",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe asari.",
@@ -8488,7 +8729,7 @@
       "visual": "Courbes asari et teinte claire.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/disciple ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-DISCIPLE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Disciple » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8496,7 +8737,17 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "Disciple",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-GRAAL",
@@ -8618,7 +8869,7 @@
       "id": "ME3-WPN-MANTIS",
       "category": "weapons",
       "name": "M-92 Mantis",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision.",
@@ -8627,7 +8878,7 @@
       "visual": "Long fusil de sniper.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/mantis ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-MANTIS ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-92 Mantis » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8635,13 +8886,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-92 Mantis",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-VIPER",
       "category": "weapons",
       "name": "M-97 Viper",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision.",
@@ -8650,7 +8911,7 @@
       "visual": "Fusil semi-automatique fin.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/viper ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-VIPER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-97 Viper » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8658,13 +8919,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-97 Viper",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-WIDOW",
       "category": "weapons",
       "name": "M-98 Widow",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil lourd de précision.",
@@ -8673,7 +8944,7 @@
       "visual": "Canon massif et bipied.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/widow ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-WIDOW ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-98 Widow » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8681,13 +8952,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-98 Widow",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-BLACK-WIDOW",
       "category": "weapons",
       "name": "Black Widow",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision.",
@@ -8696,7 +8977,7 @@
       "visual": "Grande carcasse sombre.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/black-widow ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-BLACK-WIDOW ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Black Widow » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8704,7 +8985,17 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "Black Widow",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-JAVELIN",
@@ -8733,7 +9024,7 @@
       "id": "ME3-WPN-RAPTOR",
       "category": "weapons",
       "name": "M-13 Raptor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil semi-automatique.",
@@ -8742,7 +9033,7 @@
       "visual": "Fusil fin à lunette.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/raptor ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-RAPTOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-13 Raptor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8750,7 +9041,17 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-13 Raptor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-INDRA",
@@ -8802,7 +9103,7 @@
       "id": "ME3-WPN-SHURIKEN",
       "category": "weapons",
       "name": "M-4 Shuriken",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet mitrailleur.",
@@ -8811,7 +9112,7 @@
       "visual": "SMG compact.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/shuriken ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-SHURIKEN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-4 Shuriken » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8819,13 +9120,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-4 Shuriken",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-TEMPEST",
       "category": "weapons",
       "name": "M-9 Tempest",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet mitrailleur.",
@@ -8834,7 +9145,7 @@
       "visual": "Chargeur et canon courts.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/tempest ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-TEMPEST ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-9 Tempest » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8842,13 +9153,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-9 Tempest",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-LOCUST",
       "category": "weapons",
       "name": "M-12 Locust",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet mitrailleur.",
@@ -8857,7 +9178,7 @@
       "visual": "Silhouette fine de SMG.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/locust ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-LOCUST ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-12 Locust » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8865,13 +9186,23 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-12 Locust",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-HORNET",
       "category": "weapons",
       "name": "M-25 Hornet",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet mitrailleur.",
@@ -8880,7 +9211,7 @@
       "visual": "Boîtier Cerberus compact.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/weapons/hornet ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-WPN-HORNET ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « M-25 Hornet » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8888,7 +9219,17 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "M-25 Hornet",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-WPN-HURRICANE",
@@ -9009,7 +9350,7 @@
       "id": "ME3-POW-PULL",
       "category": "powers",
       "name": "Pull",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9018,7 +9359,7 @@
       "visual": "Fil biotique ascendant et cible suspendue.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/pull ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-PULL dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9026,13 +9367,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Pull",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-THROW",
       "category": "powers",
       "name": "Throw",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9041,7 +9394,7 @@
       "visual": "Impulsion bleue et trajectoire au sol.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/throw ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-THROW dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9049,13 +9402,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Throw",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-WARP",
       "category": "powers",
       "name": "Warp",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9064,7 +9429,7 @@
       "visual": "Tourbillon violet serré.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/warp ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-WARP dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9072,13 +9437,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Warp",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-SINGULARITY",
       "category": "powers",
       "name": "Singularity",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9087,7 +9464,7 @@
       "visual": "Noyau sombre et anneaux bleus.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/singularity ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-SINGULARITY dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9095,13 +9472,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Singularity",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-SHOCKWAVE",
       "category": "powers",
       "name": "Shockwave",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9110,7 +9499,7 @@
       "visual": "Vagues successives au sol.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/shockwave ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-SHOCKWAVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9118,7 +9507,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Shockwave",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-SLAM",
@@ -9147,7 +9548,7 @@
       "id": "ME3-POW-REAVE",
       "category": "powers",
       "name": "Reave",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9156,7 +9557,7 @@
       "visual": "Aura biotique rouge-violette.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/reave ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-REAVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9164,7 +9565,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Reave",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-DOMINATE",
@@ -9193,7 +9606,7 @@
       "id": "ME3-POW-BARRIER",
       "category": "powers",
       "name": "Barrier",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9202,7 +9615,7 @@
       "visual": "Dôme bref et bord de portrait violet.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/barrier ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-BARRIER dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9210,7 +9623,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Barrier",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-CHARGE",
@@ -9239,7 +9664,7 @@
       "id": "ME3-POW-OVERLOAD",
       "category": "powers",
       "name": "Overload",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9248,7 +9673,7 @@
       "visual": "Arc sur circuit et flash de cible.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/overload ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-OVERLOAD dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9256,13 +9681,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Overload",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-INCINERATE",
       "category": "powers",
       "name": "Incinerate",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9271,7 +9708,7 @@
       "visual": "Projectile orange et lueur résiduelle.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/incinerate ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-INCINERATE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9279,13 +9716,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Incinerate",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-CRYO",
       "category": "powers",
       "name": "Cryo Blast",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9294,7 +9743,7 @@
       "visual": "Brume blanche et givre à contour épais.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/cryo ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-CRYO dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9302,7 +9751,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Cryo Blast",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-DRONE",
@@ -9331,7 +9792,7 @@
       "id": "ME3-POW-ENERGY-DRAIN",
       "category": "powers",
       "name": "Energy Drain",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9340,7 +9801,7 @@
       "visual": "Arc dirigé de la cible vers l’allié.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/energy-drain ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-ENERGY-DRAIN dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9348,7 +9809,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Energy Drain",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-TACTICAL",
@@ -9400,7 +9873,7 @@
       "id": "ME3-POW-FORTIFICATION",
       "category": "powers",
       "name": "Fortification",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9409,7 +9882,7 @@
       "visual": "Halo dense et posture plantée.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/fortification ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-FORTIFICATION dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9417,13 +9890,25 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Fortification",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-CONCUSSIVE",
       "category": "powers",
       "name": "Concussive Shot",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9432,7 +9917,7 @@
       "visual": "Projectile blanc et recul bref.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/concussive ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-CONCUSSIVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9440,7 +9925,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Concussive Shot",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-ADRENALINE",
@@ -9607,7 +10104,7 @@
       "id": "ME3-POW-STASIS",
       "category": "powers",
       "name": "Stasis",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9616,7 +10113,7 @@
       "visual": "Silhouette figée dans un cadre bleu.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/stasis ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-STASIS dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9624,7 +10121,19 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Stasis",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-NOVA",
@@ -9815,7 +10324,7 @@
       "id": "ME3-POW-SABOTAGE",
       "category": "powers",
       "name": "Sabotage",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de Tali.",
@@ -9824,7 +10333,7 @@
       "visual": "Omni-outil et parasites orange.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/sabotage ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-SABOTAGE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "",
       "acceptance": "Le livrable « Sabotage » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -9832,7 +10341,19 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Sabotage",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-POW-DEFENSE-DRONE",
@@ -9976,7 +10497,7 @@
       "id": "ME3-EQP-N7",
       "category": "equipment",
       "name": "Armure N7 personnalisable",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Shepard dispose d’une armure modulaire.",
@@ -9985,7 +10506,7 @@
       "visual": "Plaques N7, couleur et matériau réglables.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/equipment/n7 ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime ME3-EQP-N7 ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Armure N7 personnalisable » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -9993,7 +10514,17 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "Armure N7 personnalisable",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "ME3-EQP-AJAX",
@@ -10322,7 +10853,7 @@
       "id": "ME3-EQP-BARREL",
       "category": "equipment",
       "name": "Canon et dégâts — mod",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille de modification.",
@@ -10331,7 +10862,7 @@
       "visual": "Icône canon et comparaison chiffrée de fan game.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/equipment/barrel ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de famille : ME3-EQP-BARREL dans src/universe-equipment.js ; deux ports de modules sur fusil d’assaut ME3 conventionnel à clips, préparation d’atelier seulement. Aucun modèle ou rang original certifié.",
       "conditions": "",
       "acceptance": "Le livrable « Canon et dégâts — mod » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10339,7 +10870,18 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "Canon et dégâts — mod",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel d’une famille de modules ; compatibilité limitée par le prototype aux fusils d’assaut ME3 conventionnels à clips. Pas de fabricant, modèle, rang, acquisition ou bonus original certifié. Aucun module ME2/MEA ajouté par analogie.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-EQP-SCOPE",
@@ -10368,7 +10910,7 @@
       "id": "ME3-EQP-MAGAZINE",
       "category": "equipment",
       "name": "Chargeur — mod",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille de modification.",
@@ -10377,7 +10919,7 @@
       "visual": "Chargeur et compteur.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/equipment/magazine ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de famille : ME3-EQP-MAGAZINE dans src/universe-equipment.js ; deux ports de modules sur fusil d’assaut ME3 conventionnel à clips, préparation d’atelier seulement. Aucun modèle ou rang original certifié.",
       "conditions": "",
       "acceptance": "Le livrable « Chargeur — mod » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10385,7 +10927,18 @@
         "ME3-SRC-EQUIP"
       ],
       "reference": "Chargeur — mod",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel d’une famille de modules ; compatibilité limitée par le prototype aux fusils d’assaut ME3 conventionnels à clips. Pas de fabricant, modèle, rang, acquisition ou bonus original certifié. Aucun module ME2/MEA ajouté par analogie.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "ME3-EQP-ULTRALIGHT",
@@ -17602,6 +18155,16 @@
       "area": "Traçabilité",
       "covered": "Sources officielles EA/BioWare pour éditions et DLC ; index wiki secondaires pour inventaire détaillé.",
       "remaining": "Consultation par pages indexées lorsque Fandom direct est limité ; aucune revendication d’audit exhaustif ou de validation de tous les embranchements en jeu."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "9 personnages sélectionnables, 27 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "15 fiches de pouvoirs utilisées, 2 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }

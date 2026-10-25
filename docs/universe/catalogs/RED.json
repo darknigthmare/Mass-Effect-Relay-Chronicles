@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Redemption_Production.xlsx",
   "scope": "Les quatre numéros de Redemption; pont narratif vers Mass Effect 2, personnages, Omega, poursuite et récupération. Bonus éditoriaux traités comme références, pas comme scènes supplémentaires.",
-  "summary": "Catalogue de production pour une adaptation centrée sur Liara et Feron. Les faits courts sourcés servent d’ancrages aux propositions originales de recherche, infiltration, entraide ATB et mise en scène.",
+  "summary": "117 fiches de production ; 8 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Le Shepard personnalisé doit rester compatible avec les choix du joueur. Les notes de l’auteur emploient « Alignon », alors que le wiki emploie « Alingon » : graphie à comparer au comic et au codex avant livraison. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -128,7 +128,7 @@
       "name": "Shepard adaptable"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Liara s’allie au drell Feron pour récupérer le corps de Shepard auprès du Courtier de l’ombre.",
@@ -137,7 +137,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification RED/lore/ref-feron; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire RED-REF-FERON consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source COMPLETE et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -145,10 +145,21 @@
         "RED-S-COMPLETE"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "RED-REF-FERON",
       "category": "lore",
-      "name": "Duo de recherche"
+      "name": "Duo de recherche",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -174,7 +185,7 @@
       "name": "Croquis du recueil"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Liara mène la recherche de Shepard.",
@@ -183,7 +194,7 @@
       "visual": "Direction proposée : Peau bleue, crête asari et manteau de terrain simplifié; accents cyan réservés aux actions. Vérifier le costume sur l'édition autorisée avant peinture finale.",
       "animation": "Garde ouverte, poussée des deux bras, lecture d’un terminal, protection du partenaire.",
       "audio": "Interprétation originale; sous-titres attribués au locuteur et aucune reprise des voix du jeu.",
-      "implementation": "Livrable proposé : spécification RED/characters/act-liara; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime RED-ACT-LIARA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "Liara T’Soni possède une fiche de référence séparant rôle attesté, silhouette à contrôler et commandes proposées.",
       "dependencies": [],
@@ -191,10 +202,19 @@
         "RED-S-BOOK"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente.",
+      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
       "id": "RED-ACT-LIARA",
       "category": "characters",
-      "name": "Liara T’Soni"
+      "name": "Liara T’Soni",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "status": "Défini",
@@ -268,7 +288,7 @@
       "name": "Écran de passage"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Feron est le partenaire drell de Liara.",
@@ -277,7 +297,7 @@
       "visual": "Direction proposée : Tête reptilienne et col haut, couches de vêtement lisibles; motifs précis à vérifier. Vérifier le costume sur l'édition autorisée avant peinture finale.",
       "animation": "Coup d’œil latéral, geste de passe, accroupissement et manipulation discrète.",
       "audio": "Interprétation originale; sous-titres attribués au locuteur et aucune reprise des voix du jeu.",
-      "implementation": "Livrable proposé : spécification RED/characters/act-feron; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime RED-ACT-FERON ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "Feron possède une fiche de référence séparant rôle attesté, silhouette à contrôler et commandes proposées.",
       "dependencies": [],
@@ -285,10 +305,19 @@
         "RED-S-COMPLETE"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente.",
+      "notes": "Le rôle dans la source ne prouve ni recrutement jouable ni disponibilité permanente. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
       "id": "RED-ACT-FERON",
       "category": "characters",
-      "name": "Feron"
+      "name": "Feron",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "status": "Défini",
@@ -712,7 +741,7 @@
       "name": "Courtier de l’ombre — représentation distante — jeu de poses"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "La recherche de Liara traverse Omega.",
@@ -721,7 +750,7 @@
       "visual": "Métal usé, lumière orange latérale et profondeur industrielle; sol clair sous les sprites.",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification RED/worlds/wrl-omega; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire RED-WRL-OMEGA consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "Le nom Omega et sa fonction sont sourcés; les dimensions, chemins et interactions restent explicitement proposés.",
       "dependencies": [],
@@ -729,10 +758,21 @@
         "RED-S-AUTHOR2"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle.",
+      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "RED-WRL-OMEGA",
       "category": "worlds",
-      "name": "Omega"
+      "name": "Omega",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -942,7 +982,7 @@
       "name": "Alingon / Alignon — graphie à contrôler — paysage sonore"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le troisième numéro quitte Omega pour une poursuite spatiale.",
@@ -951,7 +991,7 @@
       "visual": "Astéroïdes mats et contraste faible du ciel; vaisseau du duo traité en sprite orientable.",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification RED/worlds/wrl-space; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire RED-WRL-SPACE consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "Le nom Poursuite dans l’espace et sa fonction sont sourcés; les dimensions, chemins et interactions restent explicitement proposés.",
       "dependencies": [],
@@ -959,10 +999,21 @@
         "RED-S-AUTHOR3"
       ],
       "reference": "Mass Effect: Redemption, série concernée",
-      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle.",
+      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "RED-WRL-SPACE",
       "category": "worlds",
-      "name": "Poursuite dans l’espace"
+      "name": "Poursuite dans l’espace",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -1687,7 +1738,7 @@
       "name": "Docks et transfert — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "La poursuite du troisième numéro conduit le duo vers la base du Courtier. ",
@@ -1696,7 +1747,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification RED/lore/sc-pursuit-ref; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire RED-SC-PURSUIT-REF consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "L’ancrage reste bref et son numéro/segment est identifiable dans les sources; les détails non confirmés portent À vérifier.",
       "dependencies": [],
@@ -1704,10 +1755,21 @@
         "RED-S-AUTHOR3"
       ],
       "reference": "Redemption #3",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "RED-SC-PURSUIT-REF",
       "category": "lore",
-      "name": "Rejoindre la base"
+      "name": "Rejoindre la base",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -1897,7 +1959,7 @@
       "name": "Rejoindre la base — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "L’auteur relie le cloisonnement de la base aux possibilités d’action de Feron. ",
@@ -1906,7 +1968,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification RED/lore/sc-access-ref; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire RED-SC-ACCESS-REF consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "L’ancrage reste bref et son numéro/segment est identifiable dans les sources; les détails non confirmés portent À vérifier.",
       "dependencies": [],
@@ -1914,10 +1976,21 @@
         "RED-S-AUTHOR3"
       ],
       "reference": "Redemption #3",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "RED-SC-ACCESS-REF",
       "category": "lore",
-      "name": "Identité et accès compartimentés"
+      "name": "Identité et accès compartimentés",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -2107,7 +2180,7 @@
       "name": "Identité et accès compartimentés — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le dernier numéro révèle le jeu multiple de Feron. ",
@@ -2116,7 +2189,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification RED/lore/sc-recover-ref; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire RED-SC-RECOVER-REF consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Préserver l’absence active de Shepard, la relation Liara/Feron et le raccord vers ME2; les méthodes d’enquête ne changent pas le sort publié des protagonistes.",
       "acceptance": "L’ancrage reste bref et son numéro/segment est identifiable dans les sources; les détails non confirmés portent À vérifier.",
       "dependencies": [],
@@ -2124,10 +2197,21 @@
         "RED-S-AUTHOR4"
       ],
       "reference": "Redemption #4",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "RED-SC-RECOVER-REF",
       "category": "lore",
-      "name": "Récupération et séparation"
+      "name": "Récupération et séparation",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -2924,6 +3008,16 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "2 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "0 fiches de pouvoirs utilisées, 0 familles de modules préparables et 6 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }

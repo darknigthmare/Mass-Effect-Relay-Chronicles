@@ -1,6 +1,7 @@
 {
   "id": "GAL",
   "title": "Mass Effect: Galaxy",
+  "generatedAt": "2026-10-24T02:23:39.967Z",
   "records": 103,
   "sheets": 28,
   "sourceCount": 9,
@@ -8,9 +9,9 @@
   "statusMutation": {
     "before": 0,
     "after": 1,
-    "restored": "Défini"
+    "restored": "Prototype"
   },
-  "dashboard": "{\"kind\":\"table\",\"sheet\":\"Dashboard\",\"address\":\"A37:M37\",\"rows\":1,\"cols\":13,\"values\":[[\"TOTAL\",103,103,0,0,0,37,1,65,0,0,0,19]]}",
+  "dashboard": "{\"kind\":\"table\",\"sheet\":\"Dashboard\",\"address\":\"A37:M37\",\"rows\":1,\"cols\":13,\"values\":[[\"TOTAL\",103,100,3,0,0,37,1,65,0,0,0,19]]}",
   "counts": {
     "characters": 2,
     "npcs": 6,
@@ -39,34 +40,233 @@
     "qa": 5,
     "continuity": 3
   },
+  "statusCounts": {
+    "Défini": 100,
+    "Prototype": 3,
+    "Intégré": 0,
+    "Validé": 0
+  },
+  "implementationProofs": [
+    {
+      "id": "GAL-CHR-JACOB",
+      "status": "Prototype",
+      "implementationPaths": [
+        {
+          "path": "src/universe-actors.js",
+          "sha256": "981f484c04a16c24ffca92496fa8b2910f5a9301a783110e15eb977bd6a98efd"
+        },
+        {
+          "path": "src/chronicles.js",
+          "sha256": "7b77c6cece1cd2f286127d8b3a577cb0ee8908becf76c8ec33c9b1f1f3ea7f16"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/universe-actors.test.js",
+          "sha256": "a3fbde3092b2194f88c60b305e526cfe864fafe08f1d7cc89ff1de86aab5a8d9"
+        },
+        {
+          "path": "tests/chronicles.test.js",
+          "sha256": "3a460b7ab25e644c6333b5c2c1f02fe86cb04e501161cbcca03d7e0df85069d8"
+        },
+        {
+          "path": "scripts/universe-browser.mjs",
+          "sha256": "4c0c77566fe405350ca1296982da6fcb8d23d7a68ba6eeaaae4af77a38930f5d"
+        }
+      ]
+    },
+    {
+      "id": "GAL-PWR-STASIS",
+      "status": "Prototype",
+      "implementationPaths": [
+        {
+          "path": "src/combat.js",
+          "sha256": "bdd8c8ff851ce1999d9af1ab0b52019370c26d09b47729f40154ceb9e859ddcf"
+        },
+        {
+          "path": "src/universe-powers.js",
+          "sha256": "8863dcf3e0fff9f772f080990687227da403574f70448a8b87740d816274f2c2"
+        },
+        {
+          "path": "src/universe-actors.js",
+          "sha256": "981f484c04a16c24ffca92496fa8b2910f5a9301a783110e15eb977bd6a98efd"
+        },
+        {
+          "path": "src/chronicles.js",
+          "sha256": "7b77c6cece1cd2f286127d8b3a577cb0ee8908becf76c8ec33c9b1f1f3ea7f16"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/universe-powers.test.js",
+          "sha256": "41de9ecd830bc18177f0e0da49d58512fa82629b27649f0ee007820da91a2fe3"
+        },
+        {
+          "path": "tests/universe-power-profiles.test.js",
+          "sha256": "5a4c87308b663ed3287c2d5cb1baa8cd5a41d4b41b4334d1922717cbb27fd9b8"
+        },
+        {
+          "path": "scripts/chronicle-expansion-browser.mjs",
+          "sha256": "9a5a20632afbe8afa1640784ab291f77e5d48cce289eee35e44a2fc47797e66b"
+        },
+        {
+          "path": "docs/qa/chronicle-expansion-browser-report.json",
+          "sha256": "925e84aba9472ece699d86e98a9287072272168d385bfe0069403060640a806e"
+        }
+      ]
+    },
+    {
+      "id": "GAL-PWR-OVERLOAD",
+      "status": "Prototype",
+      "implementationPaths": [
+        {
+          "path": "src/combat.js",
+          "sha256": "bdd8c8ff851ce1999d9af1ab0b52019370c26d09b47729f40154ceb9e859ddcf"
+        },
+        {
+          "path": "src/universe-powers.js",
+          "sha256": "8863dcf3e0fff9f772f080990687227da403574f70448a8b87740d816274f2c2"
+        },
+        {
+          "path": "src/universe-actors.js",
+          "sha256": "981f484c04a16c24ffca92496fa8b2910f5a9301a783110e15eb977bd6a98efd"
+        },
+        {
+          "path": "src/chronicles.js",
+          "sha256": "7b77c6cece1cd2f286127d8b3a577cb0ee8908becf76c8ec33c9b1f1f3ea7f16"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/universe-powers.test.js",
+          "sha256": "41de9ecd830bc18177f0e0da49d58512fa82629b27649f0ee007820da91a2fe3"
+        },
+        {
+          "path": "tests/universe-power-profiles.test.js",
+          "sha256": "5a4c87308b663ed3287c2d5cb1baa8cd5a41d4b41b4334d1922717cbb27fd9b8"
+        },
+        {
+          "path": "scripts/chronicle-expansion-browser.mjs",
+          "sha256": "9a5a20632afbe8afa1640784ab291f77e5d48cce289eee35e44a2fc47797e66b"
+        },
+        {
+          "path": "docs/qa/chronicle-expansion-browser-report.json",
+          "sha256": "925e84aba9472ece699d86e98a9287072272168d385bfe0069403060640a806e"
+        }
+      ]
+    }
+  ],
+  "renderOptions": {
+    "ids": [
+      "ME2",
+      "ME3",
+      "MEA",
+      "GAL",
+      "REV",
+      "ASC",
+      "RET",
+      "NEX",
+      "INI",
+      "ANN",
+      "RED",
+      "EVO",
+      "INV"
+    ],
+    "renderSheets": null,
+    "focusStatus": null,
+    "focusIds": [
+      "ME2-POW-PULL",
+      "ME2-POW-FORTIFICATION",
+      "ME3-POW-ENERGY-DRAIN",
+      "ME3-EQP-BARREL",
+      "ME3-EQP-MAGAZINE",
+      "MEA-POW-SHOCKWAVE",
+      "GAL-PWR-STASIS",
+      "REV-REF-SIDON",
+      "ASC-CON-07",
+      "RET-REF-OMEGA",
+      "NEX-REF-INITIATIVE",
+      "INI-REF-THEIA",
+      "ANN-REF-ARK",
+      "RED-SC-RECOVER-REF",
+      "EVO-SC-AFTERWAR-REF",
+      "INV-REF-SCOPE"
+    ],
+    "noRender": false,
+    "planPreviews": false,
+    "help": false
+  },
+  "previewPlan": [
+    {
+      "sheetName": "Pouvoirs",
+      "range": "A7:H7",
+      "filename": "Pouvoirs-focus-7-7-identity.png",
+      "kind": "focus",
+      "selectedIds": [
+        "GAL-PWR-STASIS"
+      ]
+    },
+    {
+      "sheetName": "Pouvoirs",
+      "range": "I7:P7",
+      "filename": "Pouvoirs-focus-7-7-production.png",
+      "kind": "focus",
+      "selectedIds": [
+        "GAL-PWR-STASIS"
+      ]
+    },
+    {
+      "sheetName": "Pouvoirs",
+      "range": "Q7:S7",
+      "filename": "Pouvoirs-focus-7-7-sources.png",
+      "kind": "focus",
+      "selectedIds": [
+        "GAL-PWR-STASIS"
+      ]
+    }
+  ],
   "rendered": [
-    "Dashboard",
-    "Personnages",
-    "PNJ",
-    "Especes_factions",
-    "Mondes",
-    "Zones",
-    "Liaisons",
-    "Decors",
-    "Props",
-    "Ennemis_boss",
-    "Missions",
-    "Secondaires_DLC",
-    "Choix_relations",
-    "Dialogues",
-    "Cinematiques",
-    "Armes",
-    "Armures_equipement",
-    "Pouvoirs",
-    "Movesets_allies",
-    "Movesets_ennemis",
-    "Animations",
-    "Sprites",
-    "VFX",
-    "Audio",
-    "UI_systemes",
-    "QA",
-    "Continuite",
-    "Guide"
-  ]
+    "Pouvoirs"
+  ],
+  "renderedImages": [
+    {
+      "sheetName": "Pouvoirs",
+      "range": "A7:H7",
+      "filename": "Pouvoirs-focus-7-7-identity.png",
+      "kind": "focus",
+      "selectedIds": [
+        "GAL-PWR-STASIS"
+      ],
+      "sha256": "b72abe1fbe902e5bad3d8ec56d5a5d4daed27929760381f50fba02f3cf27d8ab",
+      "xlsxSha256": "398c542db211fcfc3d9e49441dcdcf50a279020aa524cf569c337aaee4b84da7",
+      "catalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6"
+    },
+    {
+      "sheetName": "Pouvoirs",
+      "range": "I7:P7",
+      "filename": "Pouvoirs-focus-7-7-production.png",
+      "kind": "focus",
+      "selectedIds": [
+        "GAL-PWR-STASIS"
+      ],
+      "sha256": "aa500bda4e9d34cb8787059996009429caa689be46166c8df40802f5e5374d37",
+      "xlsxSha256": "398c542db211fcfc3d9e49441dcdcf50a279020aa524cf569c337aaee4b84da7",
+      "catalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6"
+    },
+    {
+      "sheetName": "Pouvoirs",
+      "range": "Q7:S7",
+      "filename": "Pouvoirs-focus-7-7-sources.png",
+      "kind": "focus",
+      "selectedIds": [
+        "GAL-PWR-STASIS"
+      ],
+      "sha256": "abc7e9b079d2f2ad1a651297a10965cd1450f3c9c5036c188c44d4f9e7eaac7e",
+      "xlsxSha256": "398c542db211fcfc3d9e49441dcdcf50a279020aa524cf569c337aaee4b84da7",
+      "catalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6"
+    }
+  ],
+  "xlsxSha256": "398c542db211fcfc3d9e49441dcdcf50a279020aa524cf569c337aaee4b84da7",
+  "catalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+  "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c"
 }

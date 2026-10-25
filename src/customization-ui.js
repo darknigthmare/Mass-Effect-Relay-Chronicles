@@ -1,6 +1,6 @@
 import { CLASSES, actorFor } from './game-data.js';
 import { ITEMS, GEAR_CATALOG, SLOT_LABELS, WEAPON_LABELS, ARMOR_LABELS, listInventory, itemCompatibility } from './loadout.js';
-import { CUSTOMIZATION_OPTIONS, createCustomizationDraft, customizationPreviewState, validateCustomizationDraft, getCustomizationPalette } from './customization.js';
+import { CUSTOMIZATION_OPTIONS, createCustomizationDraft, customizationPreviewState, validateCustomizationDraft, getCustomizationPalette, prepareCustomizationEquipment } from './customization.js';
 import { renderCustomizationSprite } from './customization-render.js';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
@@ -49,8 +49,12 @@ function equipmentList(state, ui, slots) {
   const draft = ui.customizationDraft;
   const selectedSlot = slots.includes(ui.customSlot) ? ui.customSlot : slots[0];
   const owned = new Map(listInventory(state).map(item => [item.id, item]));
-  const entries = GEAR_CATALOG.filter(item => item.slot === selectedSlot && (ui.customShowAll || owned.has(item.id)) && (selectedSlot !== 'weapon' || !ui.customWeaponFilter || ui.customWeaponFilter === 'all' || item.weaponType === ui.customWeaponFilter));
-  const trial = id => validateCustomizationDraft(state, { ...draft, equipment: { ...draft.equipment, [selectedSlot]: id } });
+  const itemSlot = selectedSlot === 'weaponMod2' ? 'weaponMod' : selectedSlot === 'armorMod2' ? 'armorMod' : selectedSlot;
+  const entries = GEAR_CATALOG.filter(item => item.slot === itemSlot && (ui.customShowAll || owned.has(item.id)) && (selectedSlot !== 'weapon' || !ui.customWeaponFilter || ui.customWeaponFilter === 'all' || item.weaponType === ui.customWeaponFilter));
+  const trial = id => prepareCustomizationEquipment(state, draft, selectedSlot, id);
+  const parentModules = selectedSlot === 'weapon' ? ['weaponMod','weaponMod2','ammoMod'] : selectedSlot === 'armor' ? ['armorMod','armorMod2'] : [];
+  const training = state.inventory?.training?.shepard, armor = ITEMS[draft.equipment.armor];
+  const inheritedArmor = selectedSlot === 'armor' && training?.legacyArmor === armor?.id && !training?.weights?.[armor?.armorWeight];
   return `<div class="custom-slot-tabs" role="group" aria-label="Emplacements">${slots.map(slot => `<button class="custom-slot ${selectedSlot === slot ? 'selected' : ''}" data-do="custom-slot" data-id="${slot}" aria-pressed="${selectedSlot === slot}"><span>${esc(SLOT_LABELS[slot])}</span><small>${esc(itemName(draft.equipment[slot], slot))}</small></button>`).join('')}</div>
     ${selectedSlot === 'weapon' ? `<label class="custom-filter">Catégorie<select id="custom-weapon-filter"><option value="all">Toutes les armes</option>${Object.entries(WEAPON_LABELS).map(([id, label]) => `<option value="${id}" ${ui.customWeaponFilter === id ? 'selected' : ''}>${label}</option>`).join('')}</select></label>` : ''}
     <div class="custom-list-heading"><span>${entries.length} référence${entries.length > 1 ? 's' : ''}</span><button data-do="custom-show-all" aria-pressed="${!!ui.customShowAll}">${ui.customShowAll ? 'Voir mes objets' : 'Tout le catalogue'}</button></div>
@@ -58,13 +62,15 @@ function equipmentList(state, ui, slots) {
       const selected = draft.equipment[selectedSlot] === item.id, validation = trial(item.id), stock = owned.get(item.id);
       return `<article class="custom-item ${selected ? 'selected' : ''} ${ui.customItem === item.id ? 'inspected' : ''}" data-custom-item="${item.id}"><button class="custom-item-info" data-do="custom-inspect" data-id="${item.id}" aria-label="Inspecter ${esc(item.name)}"><span class="custom-item-type">${esc(itemCategory(item))} · niv. ${item.level}</span><strong>${esc(item.name)}</strong><small>${stock ? `${stock.quantity} possédé${stock.quantity > 1 ? 's' : ''}` : 'À acquérir'}${item.spectre ? ' · Spectre' : ''}</small></button><button class="custom-equip" data-do="custom-equip" data-slot="${selectedSlot}" data-id="${item.id}" ${selected || !validation.ok ? 'disabled' : ''} aria-label="${selected ? 'Sélectionné' : 'Préparer'} : ${esc(item.name)}" title="${esc(selected ? 'Déjà sélectionné' : validation.reason || 'Préparer cet objet')}">${selected ? '✓' : '+'}</button>${!selected && !validation.ok ? `<p class="custom-item-reason">${esc(validation.reason)}</p>` : ''}</article>`;
     }).join('') || '<p class="custom-empty">Aucun objet possédé dans cette catégorie. Consultez l’Armurerie pour en acquérir.</p>'}</div>
+    ${parentModules.some(slot => draft.equipment[slot]) ? '<p class="custom-item-reason">Les modules actuels seront remis dans le stock au retrait ou remplacement de la pièce.</p>' : ''}
+    ${inheritedArmor ? '<p class="custom-item-reason">L’autorisation de porter cette armure prend fin si vous la retirez ou la remplacez. Une formation sera ensuite nécessaire.</p>' : ''}
     <button class="custom-remove" data-do="custom-equip" data-slot="${selectedSlot}" data-id="" ${draft.equipment[selectedSlot] ? '' : 'disabled'}>Retirer ${selectedSlot === 'armor' ? 'l’armure' : selectedSlot === 'weapon' ? 'l’arme' : 'le module'}</button>`;
 }
 
 function armorControls(state, ui) {
   const draft = ui.customizationDraft;
   return `<div class="custom-section-title"><span>Protection & apparence</span><small>Ensemble complet</small></div>
-    ${equipmentList(state, ui, ['armor', 'armorMod'])}
+    ${equipmentList(state, ui, ['armor', 'armorMod', 'armorMod2'])}
     <details class="custom-colors" open><summary>Revêtement de l’armure</summary>
     ${choices(draft, 'armor.primary', 'Couleur principale', true)}
     ${choices(draft, 'armor.secondary', 'Couleur secondaire', true)}
@@ -148,7 +154,7 @@ function statsMarkup(state, ui) {
       const before = current[key] ?? (key === 'weaponHeatMultiplier' ? 1 : 0), after = proposed[key] ?? (key === 'weaponHeatMultiplier' ? 1 : 0), diff = after - before;
       return `<div class="custom-stat" data-stat="${key}" data-before="${before}" data-after="${after}"><div><span>${label}</span><b>${display(key, before)}<span> → </span>${display(key, after)}</b></div><div class="custom-stat-bar"><i style="width:${Math.min(100, before / max * 100)}%"></i><i class="${diff && (lower ? diff < 0 : diff > 0) ? 'improved' : diff ? 'reduced' : ''}" style="width:${Math.min(100, after / max * 100)}%"></i></div>${diff ? `<small class="${lower ? diff < 0 ? 'positive' : 'negative' : diff > 0 ? 'positive' : 'negative'}">${signed(diff * (percent(key) ? 100 : 1))}${percent(key) ? ' points' : ''}</small>` : ''}</div>`;
     }).join('')}</div>${training ? `<p class="custom-training-warning" role="status">${esc(training)}</p>` : ''}
-    ${detailed ? `<section class="custom-item-detail"><span class="eyebrow">${esc(itemCategory(detailed))}</span><h4>${esc(detailed.name)}</h4><p class="custom-maker">${esc(detailed.manufacturer)}</p><p>${esc(detailed.detail)}</p><dl><div><dt>Niveau requis</dt><dd>${detailed.level}</dd></div><div><dt>Emplacement</dt><dd>${esc(SLOT_LABELS[detailed.slot])}</dd></div>${detailed.spectre ? '<div><dt>Accès</dt><dd>Spectre</dd></div>' : ''}</dl></section>` : ''}
+    ${detailed ? `<section class="custom-item-detail"><span class="eyebrow">${esc(itemCategory(detailed))}</span><h4>${esc(detailed.name)}</h4><p class="custom-maker">${esc(detailed.manufacturer)}</p><p>${esc(detailed.detail || detailed.description)}</p><dl><div><dt>Niveau requis</dt><dd>${detailed.level}</dd></div><div><dt>Emplacement</dt><dd>${esc(SLOT_LABELS[detailed.slot])}</dd></div>${detailed.spectre ? '<div><dt>Accès</dt><dd>Spectre</dd></div>' : ''}</dl></section>` : ''}
     <section class="custom-loadout-summary"><h4>Configuration préparée</h4>${Object.entries(ui.customizationDraft.equipment).map(([slot, id]) => `<p><span>${esc(SLOT_LABELS[slot])}</span><b>${esc(itemName(id, slot))}</b></p>`).join('')}</section>
     <p class="custom-game-note">Les statistiques tiennent compte de votre classe, de votre niveau et de vos calibrations. Les couleurs ne donnent aucun bonus.</p></aside>`;
 }
@@ -156,7 +162,7 @@ function statsMarkup(state, ui) {
 /** The caller owns the draft, all mutation, persistence, and focus management. */
 export function renderCustomizationScreen(state, ui) {
   const dirty = customizationHasChanges(state, ui.customizationDraft), tab = TABS.some(([id]) => id === ui.customTab) ? ui.customTab : 'character';
-  const controls = tab === 'character' ? characterControls(ui.customizationDraft) : tab === 'armor' ? armorControls(state, ui) : `<div class="custom-section-title"><span>Armement & modules</span><small>Matériel ME1</small></div>${equipmentList(state, ui, ['weapon', 'weaponMod', 'ammoMod'])}`;
+  const controls = tab === 'character' ? characterControls(ui.customizationDraft) : tab === 'armor' ? armorControls(state, ui) : `<div class="custom-section-title"><span>Armement & modules</span><small>Matériel ME1</small></div>${equipmentList(state, ui, ['weapon', 'weaponMod', 'weaponMod2', 'ammoMod', 'omniTool', 'bioticAmp'])}`;
   return `<div class="custom-toolbar"><nav class="custom-tabs" aria-label="Sections de personnalisation">${TABS.map(([id, number, label]) => `<button data-do="custom-tab" data-id="${id}" class="${tab === id ? 'selected' : ''}" aria-pressed="${tab === id}"><small>${number}</small>${label}</button>`).join('')}</nav><div class="custom-draft-status ${dirty ? 'dirty' : ''}" role="status"><i></i>${dirty ? 'Modifications en attente' : 'Configuration actuelle'}</div></div>
     <div class="custom-workspace"><div class="custom-controls" data-custom-tab="${tab}">${controls}</div>${previewMarkup(state, { ...ui, customTab: tab })}${statsMarkup(state, ui)}</div>
     <div class="custom-context"><span>Atelier visuel de Relay Chronicles</span><p>Armure complète et modules ME1. Revêtements et retouche en cours de partie : extensions cosmétiques de cette adaptation.</p></div>`;

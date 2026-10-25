@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { newGame, encodeSave, decodeSave, winEncounter } from '../src/state.js';
 import { actorFor, baseActorFor } from '../src/game-data.js';
-import { GEAR_CATALOG, ITEMS, SLOTS, initialInventory, normalizeInventory, inventoryCount, equipmentFor, listInventory, listShop, itemCompatibility, canEquipItem, equipItem, unequipItem, buyItem, sellItem, loadoutBonuses, applyLoadout, previewLoadout } from '../src/loadout.js';
+import { GEAR_CATALOG, ITEMS, SLOTS, initialInventory, normalizeInventory, inventoryCount, equipmentFor, listInventory, listShop, itemCompatibility, canEquipItem, equipItem, unequipItem, buyItem, sellItem, loadoutBonuses, applyLoadout, previewLoadout, trainArmor } from '../src/loadout.js';
 import { renderLoadoutScreen, loadoutActors } from '../src/loadout-ui.js';
 
 const snapshot = state => JSON.stringify(state);
@@ -16,10 +16,10 @@ function seniorState() {
 function acquire(state, id) { assert.equal(buyItem(state, id).ok, true, id); }
 function assertUnchanged(state, operation) { const before = snapshot(state); assert.equal(operation().ok, false); assert.equal(snapshot(state), before); }
 
-test('catalogue contains 48 unique ME1 named items and the expected slots', () => {
-  assert.equal(GEAR_CATALOG.length, 48);
-  assert.equal(new Set(GEAR_CATALOG.map(item => item.id)).size, 48);
-  assert.deepEqual(Object.fromEntries(SLOTS.map(slot => [slot, GEAR_CATALOG.filter(item => item.slot === slot).length])), { weapon: 20, armor: 16, weaponMod: 4, ammoMod: 4, armorMod: 4 });
+test('catalogue preserves 48 historical items and adds four generic tools with nine slots', () => {
+  assert.equal(GEAR_CATALOG.length, 52);
+  assert.equal(new Set(GEAR_CATALOG.map(item => item.id)).size, 52);
+  assert.deepEqual(Object.fromEntries(SLOTS.map(slot => [slot, GEAR_CATALOG.filter(item => item.slot === slot).length])), { weapon: 20, armor: 16, weaponMod: 4, ammoMod: 4, armorMod: 4, weaponMod2: 0, armorMod2: 0, omniTool: 2, bioticAmp: 2 });
   assert.ok(GEAR_CATALOG.every(item => item.sell < item.cost && item.sourceUrl.startsWith('https://')));
   assert.ok(GEAR_CATALOG.every(item => Object.isFrozen(item) && Object.isFrozen(item.bonuses)));
 });
@@ -38,7 +38,7 @@ test('starter inventory is independent and preserves all base combat statistics'
 test('only absent inventory migrates and a valid copy does not share references', () => {
   const state = equippedState();
   assert.deepEqual(normalizeInventory(undefined, state), initialInventory());
-  for (const value of [null, [], {}, 5, { ...state.inventory, version: 2 }]) assert.equal(normalizeInventory(value, state), null);
+  for (const value of [null, [], {}, 5, { ...state.inventory, version: 3 }]) assert.equal(normalizeInventory(value, state), null);
   const copy = normalizeInventory(state.inventory, state); copy.items['kessler-i'] = 2;
   assert.equal(state.inventory.items['kessler-i'], 1);
   const save = JSON.parse(encodeSave(state)); delete save.state.inventory;
@@ -134,7 +134,11 @@ test('armor compatibility respects human-Asari sharing, species, class and weigh
   assert.equal(itemCompatibility(state, 'tali', 'phoenix-human-iii').ok, false);
   assert.equal(itemCompatibility(state, 'garrus', 'onyx-turian-i').ok, true);
   assert.equal(itemCompatibility(state, 'kaidan', 'colossus-human-vii').ok, false);
+  assert.equal(itemCompatibility(state, 'ashley', 'colossus-human-vii').ok, false);
+  assert.equal(trainArmor(state, 'ashley', 'heavy').ok, true);
   assert.equal(itemCompatibility(state, 'ashley', 'colossus-human-vii').ok, true);
+  assert.equal(itemCompatibility(state, 'wrex', 'colossus-krogan-vii').ok, false);
+  assert.equal(trainArmor(state, 'wrex', 'heavy').ok, true);
   assert.equal(itemCompatibility(state, 'wrex', 'colossus-krogan-vii').ok, true);
   assert.equal(itemCompatibility(state, 'tali', 'liberator-quarian-v').ok, true);
   state.xp = 0; assert.equal(itemCompatibility(state, 'shepard', 'colossus-human-vii').ok, false);
@@ -169,7 +173,7 @@ test('fallen companions retain recoverable equipment and cannot receive new gear
 
 test('actual applied effects combine heat, cooling, target bonuses and defenses', () => {
   const state = seniorState();
-  for (const id of ['frictionless-materials-viii', 'phasic-rounds-vii', 'hardened-weave-i', 'predator-human-vii']) { acquire(state, id); assert.equal(equipItem(state, 'shepard', id).ok, true); }
+  for (const id of ['predator-human-vii', 'frictionless-materials-viii', 'phasic-rounds-vii', 'hardened-weave-i']) { acquire(state, id); assert.equal(equipItem(state, 'shepard', id).ok, true); }
   const bonus = loadoutBonuses(state, 'shepard');
   assert.ok(Math.abs(bonus.weaponHeatMultiplier - .935) < 1e-9);
   assert.equal(bonus.weaponCoolingBonus, 2); assert.equal(bonus.shieldBypass, .2);
@@ -202,6 +206,6 @@ test('renderers are pure, cover all tabs and escape the commander name', () => {
     assert.equal(snapshot(state), before);
   }
   const shop = renderLoadoutScreen(state, { equipmentActor: 'shepard', equipmentTab: 'shop' }, options);
-  assert.equal((shop.match(/data-item=/g) || []).length, 48);
+  assert.equal((shop.match(/<article[^>]*data-item=/g) || []).length, 52);
   assert.ok(listShop(state).find(item => item.id === 'hmwp-vii').reason);
 });

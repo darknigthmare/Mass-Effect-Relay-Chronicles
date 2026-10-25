@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Invasion_Production.xlsx",
   "scope": "Invasion #1–4 : défense d’Omega, menace des Adjutants, alliance circonstancielle, Avernus et prise de pouvoir de Cerberus. Le DLC Omega reste un raccord, pas un cinquième numéro.",
-  "summary": "Spécifications originales pour une défense de station, une coopération instable et une sortie imposée par la menace stratégique. Le catalogue distingue l’ennemi publié des règles de contagion et de combat proposées.",
+  "summary": "117 fiches de production ; 4 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les règles de propagation et de transformation jouables sont des abstractions originales. Ne pas confondre les Adjutants de cet arc avec tous leurs comportements du DLC Omega. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -58,7 +58,7 @@
   ],
   "entries": [
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Aria défend Omega face à une menace liée à Cerberus.",
@@ -67,7 +67,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INV/lore/ref-scope; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INV-REF-SCOPE consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source BOOK et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -75,13 +75,24 @@
         "INV-S-BOOK"
       ],
       "reference": "Mass Effect: Invasion, série concernée",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "INV-REF-SCOPE",
       "category": "lore",
-      "name": "Omega au centre du conflit"
+      "name": "Omega au centre du conflit",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Le scénariste confirme la fuite d’Aria et les doutes de Petrovsky au dernier numéro.",
@@ -90,7 +101,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INV/lore/ref-final; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INV-REF-FINAL consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source AUTHOR4 et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -98,10 +109,21 @@
         "INV-S-AUTHOR4"
       ],
       "reference": "Invasion #4",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "INV-REF-FINAL",
       "category": "lore",
-      "name": "Raccord du dernier numéro"
+      "name": "Raccord du dernier numéro",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -127,7 +149,7 @@
       "name": "Suite dans Omega"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "Le scénariste souligne la coopération des gangs visible dans leurs tactiques et armes au final.",
@@ -136,7 +158,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INV/lore/ref-gangs; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INV-REF-GANGS consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source AUTHOR4 et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -144,10 +166,21 @@
         "INV-S-AUTHOR4"
       ],
       "reference": "Invasion #4",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "INV-REF-GANGS",
       "category": "lore",
-      "name": "Coopération des gangs"
+      "name": "Coopération des gangs",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -2058,7 +2091,7 @@
       "name": "Piège d’Afterlife — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le dernier numéro se conclut par le départ d’Aria. ",
@@ -2067,7 +2100,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INV/lore/sc-exile-ref; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INV-SC-EXILE-REF consultable dans les lectures de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ou incarnation de personnage n’est produite par cette fiche.",
       "conditions": "Conserver le raccord d’occupation d’Omega et le départ d’Aria; une victoire tactique locale ne permet pas de gagner une guerre contraire au comic.",
       "acceptance": "L’ancrage reste bref et son numéro/segment est identifiable dans les sources; les détails non confirmés portent À vérifier.",
       "dependencies": [],
@@ -2075,10 +2108,21 @@
         "INV-S-AUTHOR4"
       ],
       "reference": "Invasion #4",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
       "id": "INV-SC-EXILE-REF",
       "category": "lore",
-      "name": "Ultimatum et départ"
+      "name": "Ultimatum et départ",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-expansion.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -2894,6 +2938,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "0 fiches de pouvoirs utilisées, 0 familles de modules préparables et 4 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }

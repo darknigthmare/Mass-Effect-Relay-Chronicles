@@ -1,0 +1,91 @@
+{
+  "observed_at": "2026-10-23T21:01:36Z",
+  "observed_at_paris": "2026-10-23T23:01:36+02:00",
+  "repository": "darknigthmare/Mass-Effect-Relay-Chronicles",
+  "base_commit": "27daea0b577650589cef46e896eae79fc9ff4f37",
+  "scope": "Read-only Vercel authentication and persistent Git integration diagnosis; distinct from historical local deployment validation.",
+  "runtime_observation": {
+    "observations_current": true,
+    "observed_phase": "running",
+    "connectivity": "connected",
+    "network_policy_mode": "restricted",
+    "network_policy_state": "unknown",
+    "configured_vercel_domains": [
+      "api.vercel.com",
+      "vercel.com"
+    ],
+    "secrets": [],
+    "runtime_variables": [],
+    "outbound_identities": []
+  },
+  "configuration_observation": {
+    "draft_id": null,
+    "revision": null,
+    "secrets": [],
+    "runtime_requirements": [],
+    "pending_runtime_requirements": []
+  },
+  "credential_presence": {
+    "VERCEL_TOKEN": false,
+    "VERCEL_ORG_ID": false,
+    "VERCEL_PROJECT_ID": false
+  },
+  "local_vercel_project_link": {
+    "project_json_present": false
+  },
+  "checks": [
+    {
+      "command": "cloud_environment.environment_status()",
+      "result": "Managed instance running; configured Vercel domains present; no configured secrets or identities. Policy enforcement observation is unknown, so connectivity is demonstrated separately."
+    },
+    {
+      "command": "cloud_environment_onboarding.read_environment_config_draft()",
+      "result": "No VERCEL_TOKEN secret requirement in the configuration returned for this chat."
+    },
+    {
+      "command": "curl --silent --show-error --connect-timeout 10 --max-time 20 https://api.vercel.com/v2/user",
+      "exit_code": 0,
+      "http_status": 403,
+      "error_code": "forbidden",
+      "error_message": "The request is missing an authentication token",
+      "result": "Vercel API returned an authentication error; this is not the historical proxy CONNECT denial."
+    },
+    {
+      "command": "XDG_CONFIG_HOME=/tmp/relay-vercel-config XDG_DATA_HOME=/tmp/relay-vercel-data XDG_CACHE_HOME=/tmp/relay-vercel-cache VERCEL_TELEMETRY_DISABLED=1 CI=1 /tmp/relay-vercel-npm/_npx/eddd9d5223940fe0/node_modules/.bin/vercel whoami",
+      "cli_version": "65.2.0",
+      "node_version": "24.19.0",
+      "exit_code": 1,
+      "authentication": "logged_out",
+      "message": "Logged out.",
+      "auxiliary_error": "Failed to fetch dist-tags from npm during the CLI package update check."
+    },
+    {
+      "command": "XDG_CONFIG_HOME=/tmp/relay-vercel-config XDG_DATA_HOME=/tmp/relay-vercel-data XDG_CACHE_HOME=/tmp/relay-vercel-cache VERCEL_TELEMETRY_DISABLED=1 CI=1 /tmp/relay-vercel-npm/_npx/eddd9d5223940fe0/node_modules/.bin/vercel git connect --help",
+      "exit_code": 0,
+      "result": "CLI supports persistent repository connection via git connect [git-url], with --project and --scope selectors. Help only; connection was not executed.",
+      "auxiliary_error": "Failed to fetch dist-tags from npm during the CLI package update check."
+    },
+    {
+      "command": "git ls-remote origin HEAD",
+      "exit_code": 0,
+      "remote_head": "c614a452b1cdd2712d34ad2344471c01d2c8d209",
+      "result": "Read access to the GitHub origin succeeds. This does not establish Vercel GitHub App authorization."
+    }
+  ],
+  "outcome": {
+    "status": "blocked_missing_vercel_authentication",
+    "persistent_git_connection_supported": true,
+    "persistent_git_connection_verified": false,
+    "existing_remote_vercel_projects": "unknown_without_authentication",
+    "cli_authenticated_api_connectivity": "not_tested_without_credentials",
+    "next_steps": [
+      "Configure VERCEL_TOKEN securely for api.vercel.com and activate the environment configuration.",
+      "Recheck whoami and list projects in the intended Vercel scope.",
+      "Verify Vercel GitHub App access and connect the verified project to the repository."
+    ],
+    "remote_mutations_performed": false,
+    "interactive_login_performed": false,
+    "deployment_performed": false,
+    "cloud_configuration_mutated": false
+  }
+}

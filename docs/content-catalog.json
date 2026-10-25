@@ -2,12 +2,12 @@
   "meta": {
     "title": "Mass Effect Relay Chronicles",
     "version": "0.3.0",
-    "updatedAt": "2026-10-23",
+    "updatedAt": "2026-10-25",
     "language": "fr-FR",
     "referenceEpisode": "ME1",
     "referenceVisual": "Mass Effect 1 / Legendary Edition, version de chaque référence à vérifier",
     "purpose": "Catalogue de production partagé entre jeu, codex de suivi et classeur Excel.",
-    "scope": "Plan de couverture du premier Mass Effect avec extensions ME2 et ME3 séparées. Le prototype jouable condense les lieux et ne constitue pas une reproduction complète.",
+    "scope": "Plan de couverture du premier Mass Effect avec extensions ME2 et ME3 séparées. Le prototype jouable condense les lieux et ne constitue pas une reproduction complète. Chroniques indépendantes : références des 28 œuvres et prototypes tactiques isolés pour sept œuvres ; aucun transfert dans la campagne ME1.",
     "fidelity": "Aucun asset ni aucune mission n’est déclaré fidèle 1:1 ou terminé sans contrôle explicite.",
     "statusDefinitions": {
       "Défini": "Élément décrit, non vérifié dans le jeu.",
@@ -100,17 +100,56 @@
       "operationCount": 11,
       "operationStepCount": 43,
       "operationEncounterCount": 4,
-      "equipmentItemCount": 48,
+      "equipmentItemCount": 52,
       "weaponItemCount": 20,
       "armorItemCount": 16,
       "moduleItemCount": 12,
       "walkFrameCount": 32,
-      "femaleCombatPoseCount": 4
+      "femaleCombatPoseCount": 4,
+      "toolItemCount": 4,
+      "equipmentSlotCount": 9,
+      "characterEquipmentProfileCount": 8,
+      "chronicles": {
+        "works": 28,
+        "periodSegments": 48,
+        "scenarios": 10,
+        "selectableCharacters": 34,
+        "partialActorProfiles": 42,
+        "equipmentItems": 70,
+        "weapons": 58,
+        "armors": 10,
+        "prototypeWorks": [
+          "ME2",
+          "ME3",
+          "MEA",
+          "INF",
+          "GAL",
+          "RED",
+          "PL"
+        ],
+        "limit": "Sessions et sauvegardes séparées de ME1 ; dix essais et neuf lectures courtes. Pouvoirs, chargeurs et modules utilisent des réglages ATB adaptés. Aucun nouveau sprite, niveau, dialogue intégral ou campagne complète.",
+        "weaponModuleFamilies": 2,
+        "powerCatalogEntries": 40,
+        "activePowerActions": 18,
+        "newPowerActions": 10,
+        "classPreparations": 15,
+        "documentaryReadings": 9,
+        "documentaryPages": 42
+      }
     },
     "v02Sources": {
       "src/loadout.js": "e32d6966e66d5c50e56f09808dc6d1b33c4bcf787ca5210d12b261571d5c0d43",
       "src/operation-data.js": "b0650b5f0ed2884baab2bd1d1d8294585ed4efd4c8b3a237253bd67bd74f642d",
       "public/assets/shepard-female-animation.json": "7b18714b7d84530c55b483b825dd75f81b37557002208fd12720933e09ac5fe3"
+    },
+    "equipmentExtension": {
+      "baseCommit": "c614a452b1cdd2712d34ad2344471c01d2c8d209",
+      "preservedGearItems": 48,
+      "addedTools": 4,
+      "slots": 9,
+      "internalInventoryVersion": 2,
+      "primaryReferenceProof": "docs/qa/equipment-primary-reference-report.json",
+      "limits": "Prix, rangs de déblocage, budget de formation, multiplicateurs et ports fixes sont une adaptation ATB ; modèles, talents et chiffres originaux non certifiés."
     },
     "customization": {
       "version": "0.3.0",
@@ -120,7 +159,7 @@
         "Armes"
       ],
       "records": 50,
-      "equipmentModel": "Armure complète ME1 et cinq emplacements déjà présents. Les options de couleur, motif et finition sont une extension cosmétique de Relay Chronicles.",
+      "equipmentModel": "Armure complète ME1 et neuf emplacements du complément équipement conservés. Les options de couleur, motif et finition sont une extension cosmétique de Relay Chronicles.",
       "visualLimit": "Aperçus 2D et recoloration de prototype. Morphing facial 3D, variantes artistiques exactes par équipement et animations dédiées restent à produire."
     }
   },
@@ -129,7 +168,7 @@
       "id": "ME1-MANUAL",
       "title": "Manuel officiel Mass Effect PC FR",
       "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
-      "scope": "Classes, interface, équipement et pouvoirs ME1"
+      "scope": "Manuel PC FR réellement consulté : familles, formations d’armures et ports/outils pp.20–24 ; existence et règles seulement, pas les chiffres de chaque modèle. Preuve docs/qa/equipment-primary-reference-report.json."
     },
     {
       "id": "ME2-MANUAL",
@@ -141,7 +180,7 @@
       "id": "EA-GAMEPLAY",
       "title": "EA Gameplay Calibrations",
       "url": "https://www.ea.com/ea-play/news/gameplay-calibrations",
-      "scope": "Différences original / Legendary Edition"
+      "scope": "Article officiel réellement consulté : différences de visée, chauffe et spécialisations original/Legendary Edition, sans certification des valeurs des objets."
     },
     {
       "id": "EA-VISUAL",
@@ -171,7 +210,7 @@
       "id": "PRIMA-PROLOGUE",
       "title": "Guide officiel Prima, prologue",
       "url": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
-      "scope": "Prologue ME1, extraits indexés ; PDF complet à contrôler"
+      "scope": "Extrait officiel consulté de 23 pages : prologue/Normandy, chauffe p.64 et port/maîtrise p.65. Ne contient pas les tables de tous les objets."
     },
     {
       "id": "PRIMA-FEROS",
@@ -562,7 +601,7 @@
       "plannedPath": "content/characters/CHR-shepard.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.shepard",
-      "notes": "Dossier masculin/féminin, origines et profil conservés. Deux cycles de marche de 16 images chacun, quatre directions. Shepard femme possède quatre poses de combat. Créateur facial, réactions complètes aux antécédents, huit directions et fidélité artistique finale restent à produire.",
+      "notes": "Dossier masculin/féminin, origines et profil conservés. Deux cycles de marche de 16 images chacun, quatre directions. Shepard femme possède quatre poses de combat. Créateur facial, réactions complètes aux antécédents, huit directions et fidélité artistique finale restent à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement.",
       "deliveryVersion": "0.2.0",
       "implementationPaths": [
         "src/commander.js",
@@ -595,7 +634,7 @@
       "plannedPath": "content/characters/CHR-ashley-williams.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.ashley",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "CHR-kaidan-alenko",
@@ -616,7 +655,7 @@
       "plannedPath": "content/characters/CHR-kaidan-alenko.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.kaidan",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "CHR-garrus-vakarian",
@@ -637,7 +676,7 @@
       "plannedPath": "content/characters/CHR-garrus-vakarian.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.garrus",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "CHR-urdnot-wrex",
@@ -658,7 +697,7 @@
       "plannedPath": "content/characters/CHR-urdnot-wrex.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.wrex",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "CHR-tali-zorah-nar-rayya",
@@ -679,7 +718,7 @@
       "plannedPath": "content/characters/CHR-tali-zorah-nar-rayya.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.tali",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "CHR-liara-t-soni",
@@ -700,7 +739,7 @@
       "plannedPath": "content/characters/CHR-liara-t-soni.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.liara",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "CHR-jenkins",
@@ -721,7 +760,7 @@
       "plannedPath": "content/characters/CHR-jenkins.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.jenkins",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire."
+      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
     },
     {
       "id": "NPC-david-anderson",
@@ -10604,10 +10643,10 @@
       "name": "Omni-outil",
       "episode": "ME1",
       "scope": "Production ME1",
-      "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "canonLevel": "Confirmé",
+      "status": "Prototype",
       "assetStatus": "À produire",
-      "reference": "Catalogue d’équipement à relever dans ME1 ; valeurs non inventées.",
+      "reference": "Manuel PC FR p.24 (PDF14), existence et rôle général de l’outil. Aucun fabricant, rang, prix ou chiffre original certifié.",
       "sourceId": "ME1-MANUAL",
       "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
       "description": "Interface technologique de l’équipier.",
@@ -10615,9 +10654,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/equipment/EQP-omni-outil.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/tool-data.js",
+      "gameKey": "omniTool",
+      "notes": "Versions génériques standard et améliorée dans le commerce, avec équipement, vente et persistance. Compatibilité bio/tech contrôlée ; aucun pouvoir ajouté. Multiplicateur et prix ATB. Pas de modèle visuel dédié ni gamme complète. Preuves : docs/research/loadout-extension-sources.md, tests/tool-data.test.js et docs/qa/equipment-extension-report.json."
     },
     {
       "id": "EQP-amplificateur-biotique",
@@ -10625,10 +10664,10 @@
       "name": "Amplificateur biotique",
       "episode": "ME1",
       "scope": "Production ME1",
-      "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "canonLevel": "Confirmé",
+      "status": "Prototype",
       "assetStatus": "À produire",
-      "reference": "Catalogue d’équipement à relever dans ME1 ; valeurs non inventées.",
+      "reference": "Manuel PC FR p.24 (PDF14), existence et rôle général de l’outil. Aucun fabricant, rang, prix ou chiffre original certifié.",
       "sourceId": "ME1-MANUAL",
       "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
       "description": "Équipement réservé aux utilisateurs biotiques.",
@@ -10636,9 +10675,9 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/equipment/EQP-amplificateur-biotique.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/tool-data.js",
+      "gameKey": "bioticAmp",
+      "notes": "Versions génériques standard et améliorée dans le commerce, avec équipement, vente et persistance. Compatibilité bio/tech contrôlée ; aucun pouvoir ajouté. Multiplicateur et prix ATB. Pas de modèle visuel dédié ni gamme complète. Preuves : docs/research/loadout-extension-sources.md, tests/tool-data.test.js et docs/qa/equipment-extension-report.json."
     },
     {
       "id": "EQP-medi-gel",
@@ -18338,14 +18377,14 @@
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Inventaire partagé de 150 objets, au plus 20 exemplaires par référence. 48 articles et cinq emplacements par personnage.",
+      "description": "Inventaire partagé de 150 objets, 20 exemplaires par référence, 52 articles et neuf emplacements par personnage.",
       "acceptance": "Refuser surallocation, achat impossible et équipement incompatible avant toute mutation. Retrait, vente et import doivent préserver les quantités ; récupérer le matériel d’un allié disparu.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
       "assetPath": "src/loadout.js",
       "gameKey": "normalizeInventory",
-      "notes": "Les objets équipés restent dans le total. Comparaison avant achat. Icônes et modèles propres à chaque objet restent à produire.",
+      "notes": "Les objets équipés restent dans le total. Comparaison avant achat. Icônes et modèles propres à chaque objet restent à produire. Complément : inventaire interne v2, migration stricte des stocks et ports v1, restitution des modules au retrait/remplacement de leur pièce, quatre outils et comparaison des effets bio/tech. Preuve docs/qa/equipment-extension-report.json.",
       "deliveryVersion": "0.2.0",
       "implementationPaths": [
         "src/loadout.js"
@@ -18391,8 +18430,8 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
@@ -18401,9 +18440,9 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/loadout.js",
+      "gameKey": "trainArmor",
+      "notes": "Formations d’armure explicites seulement, classe/personnage éligible et budget contrôlé. Un point par niveau ATB gagné, coût un point. Ancienne armure portée conservée par exception limitée à cette pièce ; changer de pièce exige une formation. Arbres complets, rangs originaux, Electronics et bonus de maîtrise restent à reproduire. Voir docs/research/loadout-extension-sources.md."
     },
     {
       "id": "SYS-atb-actif",
@@ -31142,6 +31181,259 @@
         "docs/research/shepard-female-art.md"
       ],
       "recordType": "animation-frame"
+    },
+    {
+      "id": "GEAR-omni-tool-standard",
+      "category": "equipment",
+      "name": "OmniTech standard",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "À produire",
+      "reference": "Manuel PC FR p.24 : rôle général. Version générique ; prix et bonus propres à Relay Chronicles.",
+      "sourceId": "ME1-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+      "description": "Outil générique pour capacités technologiques ; achat 80 CR, vente 32 CR, stock initial 3. Bonus ATB : {\"techMultiplier\":1}.",
+      "acceptance": "Contrôler éligibilité, quantité, stock et transaction avant mutation. Renforcer uniquement les pouvoirs existants du domaine, sans double bonus ni nouveau pouvoir. Conserver après reprise et import.",
+      "dependencies": [
+        "SYS-inventaire",
+        "SYS-commerce",
+        "EQP-omni-outil"
+      ],
+      "priority": "P1",
+      "plannedPath": "src/tool-data.js",
+      "assetPath": "src/tool-data.js",
+      "gameKey": "ITEMS.omni-tool-standard",
+      "notes": "Aucun fabricant, rang original ni modèle visuel dédié. Coûts et multiplicateurs ATB, à comparer aux tables de l’édition retenue.",
+      "implementationPaths": [
+        "src/tool-data.js",
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/tool-data.test.js",
+        "tests/equipment-combat.test.js",
+        "docs/qa/equipment-extension-report.json"
+      ],
+      "recordType": "equipment-item"
+    },
+    {
+      "id": "GEAR-biotic-amp-standard",
+      "category": "equipment",
+      "name": "Amplificateur biotique standard",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "À produire",
+      "reference": "Manuel PC FR p.24 : rôle général. Version générique ; prix et bonus propres à Relay Chronicles.",
+      "sourceId": "ME1-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+      "description": "Outil générique pour capacités biotiques ; achat 80 CR, vente 32 CR, stock initial 3. Bonus ATB : {\"bioticMultiplier\":1}.",
+      "acceptance": "Contrôler éligibilité, quantité, stock et transaction avant mutation. Renforcer uniquement les pouvoirs existants du domaine, sans double bonus ni nouveau pouvoir. Conserver après reprise et import.",
+      "dependencies": [
+        "SYS-inventaire",
+        "SYS-commerce",
+        "EQP-amplificateur-biotique"
+      ],
+      "priority": "P1",
+      "plannedPath": "src/tool-data.js",
+      "assetPath": "src/tool-data.js",
+      "gameKey": "ITEMS.biotic-amp-standard",
+      "notes": "Aucun fabricant, rang original ni modèle visuel dédié. Coûts et multiplicateurs ATB, à comparer aux tables de l’édition retenue.",
+      "implementationPaths": [
+        "src/tool-data.js",
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/tool-data.test.js",
+        "tests/equipment-combat.test.js",
+        "docs/qa/equipment-extension-report.json"
+      ],
+      "recordType": "equipment-item"
+    },
+    {
+      "id": "GEAR-omni-tool-upgraded",
+      "category": "equipment",
+      "name": "OmniTech amélioré",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "À produire",
+      "reference": "Manuel PC FR p.24 : rôle général. Version générique ; prix et bonus propres à Relay Chronicles.",
+      "sourceId": "ME1-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+      "description": "Outil générique pour capacités technologiques ; achat 240 CR, vente 96 CR, stock initial 3. Bonus ATB : {\"techMultiplier\":1.15}.",
+      "acceptance": "Contrôler éligibilité, quantité, stock et transaction avant mutation. Renforcer uniquement les pouvoirs existants du domaine, sans double bonus ni nouveau pouvoir. Conserver après reprise et import.",
+      "dependencies": [
+        "SYS-inventaire",
+        "SYS-commerce",
+        "EQP-omni-outil"
+      ],
+      "priority": "P1",
+      "plannedPath": "src/tool-data.js",
+      "assetPath": "src/tool-data.js",
+      "gameKey": "ITEMS.omni-tool-upgraded",
+      "notes": "Aucun fabricant, rang original ni modèle visuel dédié. Coûts et multiplicateurs ATB, à comparer aux tables de l’édition retenue.",
+      "implementationPaths": [
+        "src/tool-data.js",
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/tool-data.test.js",
+        "tests/equipment-combat.test.js",
+        "docs/qa/equipment-extension-report.json"
+      ],
+      "recordType": "equipment-item"
+    },
+    {
+      "id": "GEAR-biotic-amp-upgraded",
+      "category": "equipment",
+      "name": "Amplificateur biotique amélioré",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "À produire",
+      "reference": "Manuel PC FR p.24 : rôle général. Version générique ; prix et bonus propres à Relay Chronicles.",
+      "sourceId": "ME1-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+      "description": "Outil générique pour capacités biotiques ; achat 240 CR, vente 96 CR, stock initial 3. Bonus ATB : {\"bioticMultiplier\":1.15}.",
+      "acceptance": "Contrôler éligibilité, quantité, stock et transaction avant mutation. Renforcer uniquement les pouvoirs existants du domaine, sans double bonus ni nouveau pouvoir. Conserver après reprise et import.",
+      "dependencies": [
+        "SYS-inventaire",
+        "SYS-commerce",
+        "EQP-amplificateur-biotique"
+      ],
+      "priority": "P1",
+      "plannedPath": "src/tool-data.js",
+      "assetPath": "src/tool-data.js",
+      "gameKey": "ITEMS.biotic-amp-upgraded",
+      "notes": "Aucun fabricant, rang original ni modèle visuel dédié. Coûts et multiplicateurs ATB, à comparer aux tables de l’édition retenue.",
+      "implementationPaths": [
+        "src/tool-data.js",
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/tool-data.test.js",
+        "tests/equipment-combat.test.js",
+        "docs/qa/equipment-extension-report.json"
+      ],
+      "recordType": "equipment-item"
+    },
+    {
+      "id": "SYS-chroniques-contextuelles",
+      "category": "systems",
+      "name": "Chroniques par œuvre et période",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Décisions du fan game ; contexte propre à chaque œuvre.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Registre documentaire des jeux et médias ; essais tactiques indépendants et sélection strictement conditionnée à une œuvre et un segment.",
+      "acceptance": "Les 28 œuvres et 48 segments sont identifiés ; les essais refusent personnages, objets et sauvegardes étrangers à leur contexte. La campagne ME1 conserve inventaire, décisions et sauvegardes. Les scènes abstraites sont indiquées comme simulations.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/chronicles.js",
+      "assetPath": "src/chronicles.js",
+      "gameKey": "SYS-chroniques-contextuelles",
+      "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1."
+    },
+    {
+      "id": "SYS-clips-thermiques",
+      "category": "systems",
+      "name": "Chargeurs et recharge des Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Principe des cartouches : manuel PC ME2, pages 16–17 ; cadence et capacités ATB adaptées.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Chargeur, réserve et action de recharge pour les profils qui utilisent des cartouches thermiques ; mode chaleur conservé pour ME1.",
+      "acceptance": "Les tirs consomment le chargeur, la recharge utilise une action ATB et la réserve ; tir impossible à vide, pas de munitions négatives. Les capacités et le temps ATB restent adaptés, sans certification numérique 1:1.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/combat.js",
+      "assetPath": "src/combat.js",
+      "gameKey": "SYS-clips-thermiques",
+      "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1."
+    },
+    {
+      "id": "SYS-preparations-chroniques",
+      "category": "systems",
+      "name": "Préparations de classes et pouvoirs des Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Système de l’adaptation ; sources propres aux œuvres et aux fiches de contenu.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Sous-ensembles de six classes Shepard pour ME2/ME3 et de trois préparations Ryder ; pouvoirs et armes disponibles conditionnés au contexte.",
+      "acceptance": "Le profil default des anciennes préparations migre sans classe imposée. Changer de classe retire atomiquement une arme incompatible et ses modules ; loyautés et compétences de prologue restent bornées aux scènes autorisées. Les valeurs demeurent des adaptations ATB.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/chronicles.js",
+      "assetPath": "src/chronicles.js",
+      "gameKey": "SYS-preparations-chroniques",
+      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
+    },
+    {
+      "id": "SYS-modules-chroniques",
+      "category": "systems",
+      "name": "Deux ports de modules dans les Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Système de l’adaptation ; sources propres aux œuvres et aux fiches de contenu.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Modules de canon et de chargeur testables sur fusils d’assaut ME3 à clips, sans transfert d’inventaire ME1.",
+      "acceptance": "Deux familles distinctes, arme parent valide, retrait des modules lors d’un changement d’arme. Le canon renforce uniquement les tirs ; le chargeur réaffecte des munitions de réserve sans en créer. Anciennes préparations à deux slots migrées vers quatre.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/universe-equipment.js",
+      "assetPath": "src/universe-equipment.js",
+      "gameKey": "SYS-modules-chroniques",
+      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
+    },
+    {
+      "id": "SYS-lectures-chroniques",
+      "category": "systems",
+      "name": "Lectures documentaires des Chroniques",
+      "episode": "TRANSVERSE",
+      "scope": "Chroniques indépendantes",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Sans objet",
+      "reference": "Système de l’adaptation ; sources propres aux œuvres et aux fiches de contenu.",
+      "sourceId": "PROJECT",
+      "sourceUrl": null,
+      "description": "Neuf parcours de lecture et 42 pages de paraphrases factuelles sourcées, isolés des scénarios de combat.",
+      "acceptance": "Navigation et sources visibles ; contexte exact ; découvertes uniques et position conservées à l’import/reprise. readingProgress reste séparé des notes personnelles. Aucun crédit, recrutement, combat gagné ou choix canonique n’est accordé par une lecture.",
+      "dependencies": [],
+      "priority": "P0",
+      "plannedPath": "src/chronicle-story.js",
+      "assetPath": "src/chronicle-story.js",
+      "gameKey": "SYS-lectures-chroniques",
+      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
     },
     {
       "id": "CUST-UI-workshop",

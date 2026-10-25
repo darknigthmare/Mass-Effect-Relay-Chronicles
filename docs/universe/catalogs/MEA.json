@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_Andromeda_Production.xlsx",
   "scope": "Campagne solo complète comme périmètre de préparation, grands arcs d’alliés, mondes de Heleus, tâches représentatives et épilogue. Profils de patch explicités. APEX et multijoueur coopératif sont des modules séparés ; aucun DLC narratif solo hypothétique ni résolution inventée de l’arche quarienne.",
-  "summary": "763 fiches de préparation couvrant les 26 familles du schéma. Sources consultées au 22 octobre 2026 ; inventaire de production substantiel, sans prétention d’exhaustivité vérifiée.",
+  "summary": "763 fiches de production ; 45 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -749,7 +749,7 @@
       "id": "MEA-CHR-RYDER",
       "category": "characters",
       "name": "Pathfinder Ryder — Sara ou Scott",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le joueur choisit l’un des jumeaux Ryder.",
@@ -758,7 +758,7 @@
       "visual": "Personnalisation humaine et armure de Pionnier.",
       "animation": "Marche, sprint, saut, suspension, dash, tir et trois compétences sélectionnées ; visages Sara/Scott séparés, ancres de main partagées par gabarit.",
       "audio": "Pas de combinaison, souffle et propulsion originaux ; deux profils de voix selon personnage choisi.",
-      "implementation": "Prévu : fiche de données mea/characters/ryder ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-RYDER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "L’autre jumeau a un rôle narratif distinct.",
       "acceptance": "Pathfinder Ryder — Sara ou Scott : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -767,13 +767,22 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Pathfinder Ryder — Sara ou Scott",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-CORA",
       "category": "characters",
       "name": "Cora Harper",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière biotique humaine.",
@@ -782,7 +791,7 @@
       "visual": "Coupe courte, armure de Pionnier et halo biotique.",
       "animation": "Charge au sol, impact Nova et geste ouvert de Shield Boost ; transitions de visée shotgun vers biotique sans arme flottante.",
       "audio": "Impulsion biotique courte, pulse de protection doux et annonce de secours avec sous-titre.",
-      "implementation": "Prévu : fiche de données mea/characters/cora ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-CORA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Cora Harper : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -790,13 +799,22 @@
         "MEA-SRC-CORA"
       ],
       "reference": "Cora Harper",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-LIAM",
       "category": "characters",
       "name": "Liam Kosta",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier humain.",
@@ -805,7 +823,7 @@
       "visual": "Armure légère et posture vive.",
       "animation": "Bond Havoc Strike, lancer de grenade et Overload ; atterrissage utilise la bonne hauteur et reprise de garde mobile.",
       "audio": "Propulseur bref, lancer physique et signal électrique distinct, annonces d’assaut lisibles.",
-      "implementation": "Prévu : fiche de données mea/characters/liam ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-LIAM ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Liam Kosta : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -814,13 +832,22 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Liam Kosta",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-VETRA",
       "category": "characters",
       "name": "Vetra Nyx",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière turienne.",
@@ -829,7 +856,7 @@
       "visual": "Grande silhouette turienne, visière et armure sombre.",
       "animation": "Activation de plaques, pose de tir soutenu et recul de fusil ; tête turienne et visière gardent leur asymétrie.",
       "audio": "Déploiement d’armure, montée de rafale puis reprise ; voix de tir priorisée sur bruit mécanique.",
-      "implementation": "Prévu : fiche de données mea/characters/vetra ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-VETRA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Vetra Nyx : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -838,13 +865,22 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Vetra Nyx",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-JAAL",
       "category": "characters",
       "name": "Jaal Ama Darav",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier angara.",
@@ -853,7 +889,7 @@
       "visual": "Manteau angara, visage violet et silhouette large.",
       "animation": "Visée longue, lancer adhésif, voile et frappe de retour ; manteau suit mouvement sans cacher la cellule ciblée.",
       "audio": "Signal de voile, frappe et arme séparés, voix angara originale sous-titrée.",
-      "implementation": "Prévu : fiche de données mea/characters/jaal ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-JAAL ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Jaal Ama Darav : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -862,13 +898,22 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Jaal Ama Darav",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-DRACK",
       "category": "characters",
       "name": "Nakmor Drack",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier krogan.",
@@ -877,7 +922,7 @@
       "visual": "Vieille carapace krogan, armure lourde et pièces techniques.",
       "animation": "Pas lourds, Incinerate d’un bras, Flak Cannon et rage de contact ; ne pas mirrorer prothèses et marques de carapace.",
       "audio": "Pas métalliques/armure, souffle rauque original et avertissement de charge.",
-      "implementation": "Prévu : fiche de données mea/characters/drack ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-DRACK ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Nakmor Drack : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -886,13 +931,22 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Nakmor Drack",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-PEEBEE",
       "category": "characters",
       "name": "Pelessaria B’Sayle / Peebee",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière asari et chercheuse de Reliquats.",
@@ -901,7 +955,7 @@
       "visual": "Masque de peinture, veste et silhouette asari.",
       "animation": "Pull, Shockwave et activation Invasion avec gestuelle vive ; acrobatie de décoration ne modifie pas hitbox ni coût.",
       "audio": "Impulsion biotique et parasites tech distincts ; commentaire de découverte limité en fréquence.",
-      "implementation": "Prévu : fiche de données mea/characters/peebee ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-PEEBEE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Pelessaria B’Sayle / Peebee : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -910,13 +964,22 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Pelessaria B’Sayle / Peebee",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-CHR-ALEC",
       "category": "characters",
       "name": "Alec Ryder — prologue",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pionnier initial de l’Hyperion.",
@@ -925,7 +988,7 @@
       "visual": "Armure N7 et casque de Pionnier.",
       "animation": "Progression de guide, tir d’appui et gestes vers objectif ; retrait du prologue désactive toutes animations de compagnon permanent.",
       "audio": "Ordres courts de tutoriel et respiration de casque, voix coupée au bon jalon narratif.",
-      "implementation": "Prévu : fiche de données mea/characters/alec ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-actors.js, src/chronicles.js. Identifiant runtime MEA-CHR-ALEC ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Prologue uniquement.",
       "acceptance": "Alec Ryder — prologue : identifier sa silhouette aux huit orientations proposées, tester chaque action de son rôle et ses conditions de présence ; arme, portrait et retour au couvert restent cohérents pendant saut, cast et reprise.",
       "dependencies": [],
@@ -933,7 +996,16 @@
         "MEA-SRC-GUIDE"
       ],
       "reference": "Alec Ryder — prologue",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : profil ATB sans portrait, sprite ou moveset complet ; pouvoirs non implémentés signalés. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/chronicles.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-NPC-TWIN",
@@ -8946,7 +9018,7 @@
       "id": "MEA-WPN-AVENGER",
       "category": "weapons",
       "name": "Avenger",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut.",
@@ -8955,7 +9027,7 @@
       "visual": "Silhouette militaire compacte.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/avenger ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-AVENGER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Avenger : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -8963,13 +9035,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Avenger",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-CYCLONE",
       "category": "weapons",
       "name": "Cyclone",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut.",
@@ -8978,7 +9060,7 @@
       "visual": "Gros fusil à rotation.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/cyclone ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-CYCLONE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Cyclone : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -8986,13 +9068,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Cyclone",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-MATTOCK",
       "category": "weapons",
       "name": "Mattock",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil semi-automatique.",
@@ -9001,7 +9093,7 @@
       "visual": "Longue crosse et canon.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/mattock ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-MATTOCK ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Mattock : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9009,13 +9101,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Mattock",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-REVENANT",
       "category": "weapons",
       "name": "Revenant",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut lourd.",
@@ -9024,7 +9126,7 @@
       "visual": "Large carcasse et chargeur.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/revenant ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-REVENANT ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Revenant : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9032,13 +9134,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Revenant",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-VALKYRIE",
       "category": "weapons",
       "name": "Valkyrie",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil d’assaut.",
@@ -9047,7 +9159,7 @@
       "visual": "Fusil militaire N7.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/valkyrie ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-VALKYRIE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Valkyrie : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9055,7 +9167,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Valkyrie",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-SWEEPER",
@@ -9199,7 +9321,7 @@
       "id": "MEA-WPN-PREDATOR",
       "category": "weapons",
       "name": "Predator",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet.",
@@ -9208,7 +9330,7 @@
       "visual": "Pistolet compact.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/predator ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-PREDATOR ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Predator : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9216,13 +9338,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Predator",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-CARNIFEX",
       "category": "weapons",
       "name": "Carnifex",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet lourd.",
@@ -9231,7 +9363,7 @@
       "visual": "Grande carcasse métallique.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/carnifex ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-CARNIFEX ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Carnifex : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9239,13 +9371,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Carnifex",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-PHALANX",
       "category": "weapons",
       "name": "Phalanx",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet.",
@@ -9254,7 +9396,7 @@
       "visual": "Pistolet militaire stable.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/phalanx ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-PHALANX ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Phalanx : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9262,13 +9404,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Phalanx",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-EAGLE",
       "category": "weapons",
       "name": "Eagle",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet automatique.",
@@ -9277,7 +9429,7 @@
       "visual": "Pistolet N7.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/eagle ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-EAGLE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Eagle : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9285,7 +9437,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Eagle",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-EQUALIZER",
@@ -9314,7 +9476,7 @@
       "id": "MEA-WPN-CHARGER",
       "category": "weapons",
       "name": "Charger",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet automatique.",
@@ -9323,7 +9485,7 @@
       "visual": "Arme compacte à chargeur.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/charger ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-CHARGER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Charger : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9331,13 +9493,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Charger",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-HORNET",
       "category": "weapons",
       "name": "Hornet",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Arme automatique classée pistolet.",
@@ -9346,7 +9518,7 @@
       "visual": "Petit boîtier militaire.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/hornet ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-HORNET ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Hornet : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9354,7 +9526,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Hornet",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-SCORPION",
@@ -9383,7 +9565,7 @@
       "id": "MEA-WPN-SIDEWINDER",
       "category": "weapons",
       "name": "Sidewinder",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet de type revolver.",
@@ -9392,7 +9574,7 @@
       "visual": "Revolver futuriste.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/sidewinder ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-SIDEWINDER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Sidewinder : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9400,13 +9582,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Sidewinder",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-TALON",
       "category": "weapons",
       "name": "Talon",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet à dispersion.",
@@ -9415,7 +9607,7 @@
       "visual": "Gros canon court.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/talon ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-TALON ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Talon : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9423,13 +9615,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Talon",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-KATANA",
       "category": "weapons",
       "name": "Katana",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe.",
@@ -9438,7 +9640,7 @@
       "visual": "Fusil militaire classique.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/katana ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-KATANA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Katana : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9446,13 +9648,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Katana",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-RUZAD",
       "category": "weapons",
       "name": "Ruzad",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil krogan.",
@@ -9461,7 +9673,7 @@
       "visual": "Carcasse krogan massive.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/ruzad ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-RUZAD ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Ruzad : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9469,7 +9681,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Ruzad",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-HESH",
@@ -9521,7 +9743,7 @@
       "id": "MEA-WPN-DISCIPLE",
       "category": "weapons",
       "name": "Disciple",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil asari.",
@@ -9530,7 +9752,7 @@
       "visual": "Courbes asari.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/disciple ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-DISCIPLE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Disciple : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9538,7 +9760,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Disciple",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-REEGAR",
@@ -9590,7 +9822,7 @@
       "id": "MEA-WPN-PIRANHA",
       "category": "weapons",
       "name": "N7 Piranha",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à pompe.",
@@ -9599,7 +9831,7 @@
       "visual": "Arme N7 compacte.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/piranha ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-PIRANHA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "N7 Piranha : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9607,7 +9839,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "N7 Piranha",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-VENOM",
@@ -9659,7 +9901,7 @@
       "id": "MEA-WPN-MANTIS",
       "category": "weapons",
       "name": "Mantis",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision.",
@@ -9668,7 +9910,7 @@
       "visual": "Long canon et lunette.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/mantis ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-MANTIS ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Mantis : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9676,13 +9918,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Mantis",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-VIPER",
       "category": "weapons",
       "name": "Viper",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision.",
@@ -9691,7 +9943,7 @@
       "visual": "Arme fine semi-automatique.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/viper ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-VIPER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Viper : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9699,13 +9951,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Viper",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-BLACK-WIDOW",
       "category": "weapons",
       "name": "Black Widow",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil lourd de précision.",
@@ -9714,7 +9976,7 @@
       "visual": "Grand fusil sombre.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/black-widow ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-BLACK-WIDOW ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Black Widow : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9722,13 +9984,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Black Widow",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-INDRA",
       "category": "weapons",
       "name": "Indra",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil automatique de précision.",
@@ -9737,7 +10009,7 @@
       "visual": "Fusil long automatique.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/indra ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-INDRA ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Indra : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9745,7 +10017,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Indra",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-ISHARAY",
@@ -9820,7 +10102,7 @@
       "id": "MEA-WPN-VANQUISHER",
       "category": "weapons",
       "name": "Vanquisher",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil de précision.",
@@ -9829,7 +10111,7 @@
       "visual": "Carcasse de sniper tactique.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/vanquisher ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-WPN-VANQUISHER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Vanquisher : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9837,7 +10119,17 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Vanquisher",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-WPN-WATCHMAN",
@@ -10050,7 +10342,7 @@
       "id": "MEA-EQP-INITIATIVE",
       "category": "equipment",
       "name": "Initiative Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille d’armure humaine.",
@@ -10059,7 +10351,7 @@
       "visual": "Blanc et gris d’expédition.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/initiative ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-INITIATIVE ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Initiative Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10067,13 +10359,23 @@
         "MEA-SRC-ARMOR"
       ],
       "reference": "Initiative Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-PATHFINDER",
       "category": "equipment",
       "name": "Pathfinder Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure en quatre pièces.",
@@ -10082,7 +10384,7 @@
       "visual": "Armure du Pionnier et insigne.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/pathfinder ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-PATHFINDER ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Pathfinder Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10090,13 +10392,23 @@
         "MEA-SRC-PATH-ARMOR"
       ],
       "reference": "Pathfinder Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-N7",
       "category": "equipment",
       "name": "N7 Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure N7.",
@@ -10105,7 +10417,7 @@
       "visual": "Noir, rouge et marquage N7.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/n7 ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-N7 ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « N7 Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10113,13 +10425,23 @@
         "MEA-SRC-N7-ARMOR"
       ],
       "reference": "N7 Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-HYPERGUARDIAN",
       "category": "equipment",
       "name": "Hyperguardian Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille d’armure.",
@@ -10128,7 +10450,7 @@
       "visual": "Plaques épaisses et casque robuste.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/hyperguardian ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-HYPERGUARDIAN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Hyperguardian Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10136,13 +10458,23 @@
         "MEA-SRC-ARMOR"
       ],
       "reference": "Hyperguardian Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-MAVERICK",
       "category": "equipment",
       "name": "Maverick Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille d’armure.",
@@ -10151,7 +10483,7 @@
       "visual": "Tenue de tireur et visière.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/maverick ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-MAVERICK ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Maverick Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10159,13 +10491,23 @@
         "MEA-SRC-ARMOR"
       ],
       "reference": "Maverick Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-ANGARAN",
       "category": "equipment",
       "name": "Angaran Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure de technologie Heleus.",
@@ -10174,7 +10516,7 @@
       "visual": "Violet, textiles et plaques locales.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/angaran ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-ANGARAN ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Angaran Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10182,13 +10524,23 @@
         "MEA-SRC-ANGARA-ARMOR"
       ],
       "reference": "Angaran Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-KETT",
       "category": "equipment",
       "name": "Kett Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille de technologie kett.",
@@ -10197,7 +10549,7 @@
       "visual": "Plaques osseuses intégrées à tenue humaine.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/kett ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-KETT ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Kett Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10205,7 +10557,17 @@
         "MEA-SRC-KETT-ARMOR"
       ],
       "reference": "Kett Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-REMNANT",
@@ -10234,7 +10596,7 @@
       "id": "MEA-EQP-HELEUS",
       "category": "equipment",
       "name": "Heleus Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Famille d’armure.",
@@ -10243,7 +10605,7 @@
       "visual": "Matériaux mixtes et détails locaux.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/heleus ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype Chroniques : src/universe-equipment.js, src/chronicles.js, src/combat.js. Identifiant runtime MEA-EQP-HELEUS ; contexte d’œuvre/segment et sélection de scène obligatoires.",
       "conditions": "",
       "acceptance": "Le livrable « Heleus Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10251,7 +10613,17 @@
         "MEA-SRC-HELEUS-ARMOR"
       ],
       "reference": "Heleus Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype partiel disponible dans les Chroniques indépendantes : préparation en atelier uniquement, porteur et famille contrôlés ; valeurs ATB adaptées, acquisition et bonus numériques originaux non reproduits. Aucun nouveau visuel de modèle. Aucun transfert vers ME1 ni validation 1:1.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/universe-equipment.test.js",
+        "tests/universe-combat.test.js",
+        "scripts/universe-browser.mjs"
+      ]
     },
     {
       "id": "MEA-EQP-SCAVENGER",
@@ -10564,7 +10936,7 @@
       "id": "MEA-POW-CONCUSSIVE",
       "category": "powers",
       "name": "Concussive Shot",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Combat.",
@@ -10573,7 +10945,7 @@
       "visual": "Projectile blanc et recul.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/concussive ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-CONCUSSIVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Combat",
       "acceptance": "Concussive Shot : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -10581,7 +10953,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Concussive Shot",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-OMNI-GRENADE",
@@ -10840,7 +11224,7 @@
       "id": "MEA-POW-THROW",
       "category": "powers",
       "name": "Throw",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Biotique.",
@@ -10849,7 +11233,7 @@
       "visual": "Trait bleu et flèche de recul.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/throw ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-THROW dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Biotique",
       "acceptance": "Throw : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -10857,13 +11241,25 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Throw",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-PULL",
       "category": "powers",
       "name": "Pull",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Biotique.",
@@ -10872,7 +11268,7 @@
       "visual": "Halo de lévitation.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/pull ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-PULL dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Biotique",
       "acceptance": "Pull : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -10880,7 +11276,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Pull",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-CHARGE",
@@ -10932,7 +11340,7 @@
       "id": "MEA-POW-SHOCKWAVE",
       "category": "powers",
       "name": "Shockwave",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Biotique.",
@@ -10941,7 +11349,7 @@
       "visual": "Vagues bleues en ligne.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/shockwave ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-SHOCKWAVE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Biotique",
       "acceptance": "Shockwave : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -10949,7 +11357,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Shockwave",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-ANNIHILATION",
@@ -11116,7 +11536,7 @@
       "id": "MEA-POW-OVERLOAD",
       "category": "powers",
       "name": "Overload",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Tech.",
@@ -11125,7 +11545,7 @@
       "visual": "Arc bleu-orange.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/overload ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-OVERLOAD dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Tech",
       "acceptance": "Overload : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11133,13 +11553,25 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Overload",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-INCINERATE",
       "category": "powers",
       "name": "Incinerate",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Tech.",
@@ -11148,7 +11580,7 @@
       "visual": "Projectile orange et flamme résiduelle.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/incinerate ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-INCINERATE dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Tech",
       "acceptance": "Incinerate : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11156,7 +11588,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Incinerate",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-ASSAULT-TURRET",
@@ -11208,7 +11652,7 @@
       "id": "MEA-POW-ENERGY-DRAIN",
       "category": "powers",
       "name": "Energy Drain",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Compétence de MEA — Tech.",
@@ -11217,7 +11661,7 @@
       "visual": "Lien électrique vers Ryder.",
       "animation": "Aucune animation d’activation pour les passifs ; pour une action, pose anticipée, effet à événement unique et reprise compatible avec saut/sol.",
       "audio": "Signature originale par famille ; signal de disponibilité distinct du signal d’impact, équivalents visuels pour les informations utiles.",
-      "implementation": "Prévu : fiche de données mea/powers/energy-drain ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison MEA-POW-ENERGY-DRAIN dans src/universe-powers.js, exposition par src/universe-actors.js, action native dans src/combat.js. Les acteurs, scènes et préparations autorisés sont explicitement listés par getUniversePowerUsage().",
       "conditions": "Tech",
       "acceptance": "Energy Drain : contrôler cible, protections, portée, coût, interruption et fin d’effet ; un passif n’apparaît jamais comme action sélectionnable et un pouvoir d’allié n’entre pas dans le build de Ryder par erreur.",
       "dependencies": [],
@@ -11225,7 +11669,19 @@
         "MEA-SRC-SKILLS"
       ],
       "reference": "Energy Drain",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Prototype d’action ATB : effets, coûts et durées adaptés ; arbre complet, rangs, acquisition et variantes d’édition non reproduits. Les attributions aux compagnons restent fondées sur des sources secondaires ; les classes ME2 sont recoupées avec le manuel officiel pp22–24.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-powers.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-expansion-browser.mjs",
+        "docs/qa/chronicle-expansion-browser-report.json"
+      ]
     },
     {
       "id": "MEA-POW-TACTICAL-CLOAK",
@@ -18513,6 +18969,16 @@
       "area": "Sources",
       "covered": "Sources EA/BioWare/manuel pour périmètre et versions, pages wiki de missions et mondes pour inventaire secondaire.",
       "remaining": "Pages Fandom consultées par index de recherche lorsque accès direct limité ; inventaire substantiel sans revendication d’exhaustivité vérifiée en jeu."
+    },
+    {
+      "area": "Prototype Chroniques indépendant",
+      "covered": "8 personnages sélectionnables, 30 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément pouvoirs, modules et lectures",
+      "covered": "7 fiches de pouvoirs utilisées, 0 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     }
   ]
 }

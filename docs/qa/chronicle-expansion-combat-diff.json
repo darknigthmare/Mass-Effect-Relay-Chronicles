@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-24T02:12:44.142825+00:00",
+  "kind": "read-only differential combat review",
+  "execution": {
+    "date": "2026-10-24",
+    "exactStartedAt": null,
+    "runtime": "v24.19.0",
+    "reusedCompletedRun": true,
+    "largeRunRepeatedForReport": false,
+    "observedOutput": {
+      "seeds": 30,
+      "acceptedPartyActions": 1755,
+      "ME1SummariesAndEvents": "identical"
+    }
+  },
+  "sources": {
+    "baseline": {
+      "commit": "994a9634c8a0ad92894d570e289500f535ebbfb4",
+      "path": "src/combat.js",
+      "bytes": 33148,
+      "sha256": "f02747b08b11fd177bed1b9d4efb1175fde6cc25960b2e220e2978c118e8b691"
+    },
+    "candidate": {
+      "path": "src/combat.js",
+      "bytes": 44834,
+      "sha256": "bdd8c8ff851ce1999d9af1ab0b52019370c26d09b47729f40154ceb9e859ddcf",
+      "hashCapturedAfterRun": true,
+      "unchangedSinceRunConfirmedByOwner": true,
+      "ownerConfirmation": "The combat owner confirmed no source edits since the 10-action/58-test freeze; only tests and messages followed."
+    }
+  },
+  "method": {
+    "baselineLoading": "git show 994a963:src/combat.js, imported as an independent JavaScript data URL",
+    "candidateLoading": "ES module import of the working-tree src/combat.js",
+    "seeds": {
+      "first": 1,
+      "last": 30,
+      "count": 30
+    },
+    "mode": "active",
+    "difficultyForSeed": "[story,normal,hard][seed % 3]",
+    "stepSeconds": 0.25,
+    "maximumStepsPerSeed": 1800,
+    "stopCondition": "Stop on the baseline battle winner or the per-seed step limit; completion was not required.",
+    "partyActionPriority": [
+      "shoot",
+      "burst",
+      "overload",
+      "sabotage",
+      "lift",
+      "throw",
+      "warp",
+      "singularity",
+      "barrier",
+      "stasis",
+      "hack",
+      "cover",
+      "reposition"
+    ],
+    "partyActionSelection": "Rotate that priority by simulation-step index, then choose its first action marked available by the baseline engine.",
+    "targetSelection": "Self actions target p. Other actions try living enemies in actor order until the baseline accepts the order; submit the identical order to the candidate.",
+    "enemyActions": "Each engine performs its own deterministic native enemy AI inside tickBattle.",
+    "comparisons": [
+      "JSON equality of each submitted performAction result",
+      "JSON equality of summarizeBattle after every tick",
+      "JSON equality of the complete event array after every tick"
+    ]
+  },
+  "inputs": {
+    "medigel": 3,
+    "party": [
+      {
+        "id": "p",
+        "hp": 1800,
+        "shield": 100,
+        "attack": 24,
+        "defense": 4,
+        "atb": 100,
+        "powers": [
+          "overload",
+          "sabotage",
+          "lift",
+          "throw",
+          "warp",
+          "singularity",
+          "barrier",
+          "stasis",
+          "hack"
+        ]
+      }
+    ],
+    "enemies": [
+      {
+        "id": "e1",
+        "hp": 1000,
+        "shield": 80,
+        "attack": 15,
+        "defense": 5,
+        "powers": [
+          "warp",
+          "barrier"
+        ]
+      },
+      {
+        "id": "e2",
+        "hp": 800,
+        "shield": 60,
+        "attack": 13,
+        "synthetic": true,
+        "powers": [
+          "sabotage"
+        ]
+      }
+    ]
+  },
+  "result": {
+    "passed": true,
+    "comparedSeeds": 30,
+    "acceptedPartyActions": 1755,
+    "observedDivergence": false
+  },
+  "limitations": [
+    "Synthetic fixed combat inputs, not a complete campaign, UI, save/import or rendered scene test.",
+    "Only pre-expansion ME1 actions are exercised by this differential run; new power effects have separate tests.",
+    "Internal actor fields outside action results, event arrays and summarizeBattle are not compared directly.",
+    "Victory counts, enemy order counts and exact wall-clock start/end times were not recorded and are not inferred.",
+    "A deterministic regression comparison does not certify canonical numerical, visual or narrative fidelity."
+  ]
+}
