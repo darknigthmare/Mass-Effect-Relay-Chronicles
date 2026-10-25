@@ -20,7 +20,7 @@ Le lot ajoute **17 promotions Prototype** : quatre pouvoirs de soutien, dix de m
 | Build web | Compilation réussie de 47 modules |
 | Nouveau parcours navigateur | Cinq contrôles ; dix cartes de munitions, quatre de soutien, trois portraits et une victoire réelle |
 | Régression des Chroniques | Six contrôles, seize victoires ; passage antérieur à la correction SVG finale, ensuite couverte par le parcours du lot et la production |
-| Production HTTP | Douze contrôles, onze PNG et six bundles servis avec empreintes vérifiées |
+| Production HTTP | Douze contrôles, onze PNG et sept bundles servis avec empreintes vérifiées |
 | Différentiel combat ME1 | Bilans, événements et résultats d’ordres identiques sur 30 graines et 1 755 ordres acceptés |
 | Classeurs | 28 XLSX vérifiés ; 21 exports univers reconstruits et six conservés |
 | Revue des classeurs | 30 panneaux ciblés de deux classeurs univers et trois panneaux du principal |

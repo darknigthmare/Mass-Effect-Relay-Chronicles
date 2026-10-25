@@ -188,7 +188,7 @@ Les tests dédiés couvrent continuité, provenance, personnages, matériel, rec
 | Tests et compilation | 473 tests Node réussis sur 473 ; build de 47 modules | [Rapport global](qa/chronicle-support-report.json) |
 | Nouveau parcours navigateur | Cinq contrôles, dix cartes de munitions, quatre cartes de soutien, trois portraits et une victoire réelle | [Parcours du lot](qa/chronicle-support-browser-report.json) |
 | Régression des Chroniques | Six contrôles et seize victoires ; réalisée avant la dernière correction SVG, couverte ensuite par le parcours final et la production | [Régression](qa/chronicle-support-legacy-universe-report.json) |
-| Production HTTP | Douze contrôles, onze PNG chargés et six bundles servis vérifiés par empreinte | [Production](qa/chronicle-support-production-report.json) |
+| Production HTTP | Douze contrôles, onze PNG chargés et sept bundles servis vérifiés par empreinte | [Production](qa/chronicle-support-production-report.json) |
 | Combat ME1 | Événements, bilans et résultats d’ordres identiques sur 30 graines et 1 755 ordres acceptés | [Comparaison déterministe](qa/chronicle-support-me1-combat-diff.json) |
 | Classeurs | 28 XLSX vérifiés, 21 exports univers reconstruits ; 30 panneaux ciblés de deux classeurs univers et trois panneaux du principal revus | [Exports](qa/chronicle-support-workbook-export-report.json), [revue univers](qa/chronicle-support-workbook-visual-report.json), [principal](qa/chronicle-support-main-workbook-report.json) |
 
