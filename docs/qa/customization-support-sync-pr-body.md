@@ -2,7 +2,7 @@ Ajoute un atelier de personnalisation de Shepard à la création et depuis les m
 
 Les choix sont conservés par sauvegarde, export/import et reprise. Les aperçus 2D et la recoloration des sprites restent des rendus de prototype.
 
-La branche est synchronisée avec main `cefa0b1`. Les contenus Chroniques, soutiens, munitions et portraits déjà présents dans main sont conservés. Le catalogue réunit ses 1 330 fiches principales et les 50 fiches de personnalisation, soit 1 380 principales et 6 706 références au total, avec 453 sources. Les 27 classeurs univers et leurs sources restent identiques à main.
+La branche est synchronisée avec main `1310a84` (correctif documentaire après `cefa0b1`, sans changement applicatif). Les contenus Chroniques, soutiens, munitions et portraits déjà présents dans main sont conservés. Le catalogue réunit ses 1 330 fiches principales et les 50 fiches de personnalisation, soit 1 380 principales et 6 706 références au total, avec 453 sources. Les 27 classeurs univers et leurs sources restent identiques à main.
 
 Validation du code combiné :
 

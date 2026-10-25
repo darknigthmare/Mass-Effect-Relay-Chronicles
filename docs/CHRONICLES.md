@@ -2,7 +2,7 @@
 
 Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis seize essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
 
-**Registre de la branche 0.3.0, au 25 octobre 2026 — socle main `cefa0b1`.** Le registre régénéré rassemble **6 706 fiches : 1 380 dans le principal, dont les 50 entrées de personnalisation 0.3.0, et 5 326 dans les 27 catalogues supplémentaires**. Il réunit **453 sources : 43 dans le principal et 410 dans les catalogues supplémentaires**. Les identifiants, sources, conditions, natures et descriptions des fiches univers restent ceux du main publié.
+**Registre de la branche 0.3.0, au 25 octobre 2026 — socle main `1310a84`.** Le registre régénéré rassemble **6 706 fiches : 1 380 dans le principal, dont les 50 entrées de personnalisation 0.3.0, et 5 326 dans les 27 catalogues supplémentaires**. Il réunit **453 sources : 43 dans le principal et 410 dans les catalogues supplémentaires**. Les identifiants, sources, conditions, natures et descriptions des fiches univers restent ceux du main publié.
 
 Le lot soutiens, munitions et portraits de main `cefa0b1`, basé sur `748b965`, conserve ses **17 promotions : quatre pouvoirs de soutien, dix pouvoirs de munitions exposés et trois portraits partiels**. Son bilan historique porte sur **6 656 fiches, 530 Prototype, 6 120 Défini, trois Intégré, trois Validé et 449 sources**. Le [rapport de main](qa/chronicle-support-report.json) conserve ses propres contrôles ; les nouvelles validations de la branche personnalisée sont regroupées dans [customization-support-sync-report.json](qa/customization-support-sync-report.json).
 
@@ -190,7 +190,7 @@ Les tests dédiés couvrent continuité, provenance, personnages, matériel, rec
 | Tests et compilation | 473 tests Node réussis sur 473 ; build de 47 modules | [Rapport global](qa/chronicle-support-report.json) |
 | Nouveau parcours navigateur | Cinq contrôles, dix cartes de munitions, quatre cartes de soutien, trois portraits et une victoire réelle | [Parcours du lot](qa/chronicle-support-browser-report.json) |
 | Régression des Chroniques | Six contrôles et seize victoires ; réalisée avant la dernière correction SVG, couverte ensuite par le parcours final et la production | [Régression](qa/chronicle-support-legacy-universe-report.json) |
-| Production HTTP | Douze contrôles, onze PNG chargés et six bundles servis vérifiés par empreinte | [Production](qa/chronicle-support-production-report.json) |
+| Production HTTP | Douze contrôles, onze PNG chargés et sept bundles servis vérifiés par empreinte | [Production](qa/chronicle-support-production-report.json) |
 | Combat ME1 | Événements, bilans et résultats d’ordres identiques sur 30 graines et 1 755 ordres acceptés | [Comparaison déterministe](qa/chronicle-support-me1-combat-diff.json) |
 | Classeurs | 28 XLSX vérifiés, 21 exports univers reconstruits ; 30 panneaux ciblés de deux classeurs univers et trois panneaux du principal revus | [Exports](qa/chronicle-support-workbook-export-report.json), [revue univers](qa/chronicle-support-workbook-visual-report.json), [principal](qa/chronicle-support-main-workbook-report.json) |
 
