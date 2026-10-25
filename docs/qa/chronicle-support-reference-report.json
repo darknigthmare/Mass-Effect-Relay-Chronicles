@@ -1,0 +1,666 @@
+{
+  "schemaVersion": 1,
+  "kind": "targeted-source-review",
+  "completed": true,
+  "createdAt": "2026-10-25T08:01:24.538093+00:00",
+  "baseCommit": "748b9657de4cad0a4633b86c9d185ea63793c293",
+  "scope": "Invocations and ammunition; provenance only, before implementation and browser QA",
+  "browserExecuted": false,
+  "historicalReportsChanged": false,
+  "globalFidelityCertified": false,
+  "priorityQuestion": {
+    "question": "Are MEA ammunition consumables limited by duration, number of shots, or magazines?",
+    "answer": "Not verifiable from the successfully consulted official sources and current catalogue descriptions.",
+    "canonicalRuleVerified": false,
+    "durationSeconds": null,
+    "shots": null,
+    "magazines": null,
+    "catalogueIds": [
+      "MEA-EQP-AMMO-FIRE",
+      "MEA-EQP-AMMO-CRYO",
+      "MEA-EQP-AMMO-DISRUPT"
+    ],
+    "primarySourceLimitation": "MEA manual names a loadout consumables tab, weapon ammo HUD and Power Cells, but does not name or specify consumption of special ammo types.",
+    "implementationBoundary": "The three MEA ammo consumables remain closed in this implementation lot. No duration, shots or magazine rule is invented or certified."
+  },
+  "manuals": [
+    {
+      "id": "ME2",
+      "localPath": "/tmp/relay-me2-manual-fr.pdf",
+      "validPdf": true,
+      "bytes": 2937619,
+      "sha256": "c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1",
+      "pdfPages": 18,
+      "consultedPrintedPages": [
+        "8–9",
+        "22–24"
+      ],
+      "consultation": "Local PDF text extracted with pdftotext; selected pages visually inspected",
+      "renderedPdfPages": [
+        14
+      ],
+      "renderedObservation": "Viewed in this review",
+      "httpObservation": {
+        "id": "me2",
+        "requestedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
+        "resolvedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "2937619",
+        "bytes": 2937619,
+        "signature": "%PDF-",
+        "sha256": "c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1",
+        "fetchedAt": "2026-10-25T07:58:34.140728+00:00",
+        "retrievedBy": "parallel portrait-reference review",
+        "thisReviewRepeatedRequest": false
+      }
+    },
+    {
+      "id": "ME3",
+      "localPath": "/tmp/chronicle-visual-review/mass-effect-3-manuals_PC.pdf",
+      "validPdf": true,
+      "bytes": 1886992,
+      "sha256": "07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01",
+      "pdfPages": 27,
+      "consultedPrintedPages": [
+        "5",
+        "8",
+        "20",
+        "25–26"
+      ],
+      "consultation": "Local PDF text extracted with pdftotext; selected pages visually inspected",
+      "renderedPdfPages": [
+        5,
+        25,
+        26
+      ],
+      "renderedObservation": "Viewed in this review",
+      "httpObservation": {
+        "id": "me3",
+        "requestedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+        "resolvedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "1886992",
+        "bytes": 1886992,
+        "signature": "%PDF-",
+        "sha256": "07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01",
+        "fetchedAt": "2026-10-25T07:58:34.096016+00:00",
+        "retrievedBy": "parallel portrait-reference review",
+        "thisReviewRepeatedRequest": false
+      }
+    },
+    {
+      "id": "MEA",
+      "localPath": "/tmp/relay-mea-manual-pc-en.pdf",
+      "validPdf": true,
+      "bytes": 847754,
+      "sha256": "a5e3bfc40a63695fb20d8fcb2db4b590a6fa65bf24c90b01c9eae555190f817f",
+      "pdfPages": 30,
+      "consultedPrintedPages": [
+        "17–19",
+        "30"
+      ],
+      "consultation": "Local PDF text extracted with pdftotext; selected pages visually inspected",
+      "renderedPdfPages": [
+        18,
+        19
+      ],
+      "renderedObservation": "MEA renders were inspected during the previous specialist source review; not rerendered in this review",
+      "httpObservation": {
+        "newRequestInThisReview": false,
+        "historicalReport": "docs/qa/chronicle-specialist-reference-report.json",
+        "historicalReportSha256": "071c291d5038689ff749fe826874c4c96d0b44e2dcfcfa7e7a463e02db6dca59",
+        "status": 200,
+        "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-andromeda-pc-en.pdf"
+      }
+    }
+  ],
+  "primaryFindings": [
+    {
+      "id": "me2-engineer-drone",
+      "manual": "ME2",
+      "printedPages": [
+        "8–9",
+        "24"
+      ],
+      "finding": "Engineer uses Combat Drone to harass enemies or force them out of cover; listed as an exclusive Engineer power.",
+      "limits": [
+        "No companion-kit table",
+        "No HP/lifetime/cadence/owner-KO rule or victory semantics"
+      ]
+    },
+    {
+      "id": "me2-class-ammo",
+      "manual": "ME2",
+      "printedPages": [
+        "22–23"
+      ],
+      "finding": "Soldier, Infiltrator and Vanguard class lists contain their ammunition powers and unlock distinctions.",
+      "limits": [
+        "Does not certify named companion ammo powers or loyalty state",
+        "Does not prove duration or squad-rank variants"
+      ]
+    },
+    {
+      "id": "me3-ammo-general",
+      "manual": "ME3",
+      "printedPages": [
+        "8",
+        "26"
+      ],
+      "finding": "Generic thermal clips and shots/reserve HUD; no clips prevents firing.",
+      "limits": [
+        "No exact per-model budget",
+        "Does not certify every special model resource system"
+      ]
+    },
+    {
+      "id": "me3-ammo-effects",
+      "manual": "ME3",
+      "printedPages": [
+        "25–26"
+      ],
+      "finding": "Incendiary and armor-piercing ammunition help against armor; Disruptor helps against shields/barriers/geth; Cryo Ammo can prime a cryo combination.",
+      "limits": [
+        "No exact multiplier, duration, rank or individual companion assignment"
+      ]
+    },
+    {
+      "id": "me3-multiplayer-equipment",
+      "manual": "ME3",
+      "printedPages": [
+        "20"
+      ],
+      "finding": "Ammo/armor/weapon equipment boosts last one mission in the MULTIPLAYER section.",
+      "limits": [
+        "Cannot be used as the solo ammo-power or MEA consumable rule"
+      ]
+    },
+    {
+      "id": "mea-powercells",
+      "manual": "MEA",
+      "printedPages": [
+        "19"
+      ],
+      "finding": "Numbered powers consume Power Cells refilled at ammo caches and have no recharge time; unnumbered powers use cooldown.",
+      "limits": [
+        "Not special-ammo consumption",
+        "No named power attribution or initial-cell count"
+      ]
+    },
+    {
+      "id": "me3-no-named-summon-kit",
+      "manual": "ME3",
+      "printedPages": [],
+      "finding": "No named Combat Drone/Sentry Turret/Defense Drone entry or individual squad table located in extracted text. The separate rendered Garrus power-screen image on p.5 was inspected and provides the specific attribution recorded above.",
+      "limits": [
+        "Absence from manual does not prove absence from game",
+        "Enemy Engineer advice is not a player kit table"
+      ]
+    },
+    {
+      "id": "me3-garrus-armor-piercing",
+      "manual": "ME3",
+      "printedPages": [
+        "5"
+      ],
+      "method": "Rendered PDF image inspected, independent of extracted text",
+      "finding": "Garrus squad power screen visibly lists Concussive Shot, Overload, Armor-Piercing Ammo and Proximity Mine. Confirms Armor-Piercing Ammo attribution to Garrus ME3.",
+      "limits": [
+        "Does not certify acquisition/ranks/initial level",
+        "No same-name transfer to Garrus ME2 or another companion",
+        "No original numerical parameters certified"
+      ],
+      "renderPath": "/tmp/chronicle-visual-review/me3-page5.png",
+      "renderSha256": "0107765bbb643ea942788c34103e10c435ee58ef42bdc3c8d42469187d004c2f"
+    }
+  ],
+  "attributionReview": {
+    "status": "Partial secondary companion declarations, with a specific primary visual confirmation for Garrus ME3 Armor-Piercing Ammo",
+    "summonDeclarations": [
+      {
+        "mediaId": "ME2",
+        "power": "Combat Drone",
+        "actors": [
+          "ME2-CHR-SHEPARD:engineer",
+          "ME2-CHR-TALI",
+          "ME2-CHR-LEGION"
+        ],
+        "primaryConfirmedOnly": [
+          "ME2-CHR-SHEPARD:engineer"
+        ]
+      },
+      {
+        "mediaId": "ME3",
+        "power": "Combat Drone",
+        "actors": [
+          "ME3-CHR-SHEPARD:engineer",
+          "ME3-CHR-TALI"
+        ],
+        "primaryConfirmedOnly": []
+      },
+      {
+        "mediaId": "ME3",
+        "power": "Sentry Turret",
+        "actors": [
+          "ME3-CHR-SHEPARD:engineer"
+        ],
+        "catalogueId": "ME3-POW-SENTRY",
+        "mustNotInfer": [
+          "ME3-CHR-TALI"
+        ]
+      },
+      {
+        "mediaId": "ME3",
+        "power": "Defense Drone",
+        "actors": [
+          "ME3-CHR-TALI"
+        ],
+        "catalogueId": "ME3-POW-DEFENSE-DRONE",
+        "mustNotInfer": [
+          "ME3-CHR-SHEPARD:engineer"
+        ]
+      }
+    ],
+    "existingCompanionAmmoLabels": [
+      {
+        "actorId": "ME2-CHR-JACOB",
+        "label": "Incendiary Ammo"
+      },
+      {
+        "actorId": "ME2-CHR-GRUNT",
+        "label": "Incendiary Ammo"
+      },
+      {
+        "actorId": "ME2-CHR-ZAEED",
+        "label": "Disruptor Ammo"
+      },
+      {
+        "actorId": "ME2-CHR-GARRUS",
+        "label": "Armor-Piercing Ammo"
+      },
+      {
+        "actorId": "ME2-CHR-JACK",
+        "label": "Warp Ammo"
+      },
+      {
+        "actorId": "ME2-CHR-THANE",
+        "label": "Shredder Ammo"
+      },
+      {
+        "actorId": "ME3-CHR-ASHLEY",
+        "label": "Disruptor Ammo"
+      },
+      {
+        "actorId": "ME3-CHR-GARRUS",
+        "label": "Armor-Piercing Ammo",
+        "evidence": "New primary rendered manual image, p.5; not an initial missing-power label"
+      }
+    ],
+    "ammoLabelLimitation": "Other labels are not acquisition, rank or loyalty proof; conditions require explicit references. Primary confirmation is restricted to the Garrus ME3 attribution. Missing local labels do not prove a power absent from the original game.",
+    "meaCompanionAmmoAttributionVerified": false,
+    "prohibitedInferences": [
+      "No same-name transfer across games",
+      "Sentry Interface helmets are not Sentry Turret",
+      "Do not assign MEA ammo consumables as squad powers",
+      "No inference from soldier/engineer role alone",
+      "ME3 enemy Engineer advice does not establish Shepard or Tali kit",
+      "CombatDrone/DefenseDrone/Sentry do not authorize Assault Turret or Remnant VI"
+    ],
+    "primaryCompanionAttributionsNewlyVerified": [
+      {
+        "actorId": "ME3-CHR-GARRUS",
+        "catalogId": "ME3-POW-AMMO-AP",
+        "manual": "ME3",
+        "printedPage": 5,
+        "scope": "Attribution only, not full kit behavior, ranks or acquisition"
+      }
+    ]
+  },
+  "localCatalogueAssertions": [
+    {
+      "mediaId": "ME2",
+      "id": "ME2-EQP-SENTRY",
+      "category": "equipment",
+      "name": "Sentry Interface",
+      "description": "Visière de personnalisation.",
+      "sourceIds": [
+        "ME2-SRC-ARMOR"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-DRONE",
+      "category": "powers",
+      "name": "Combat Drone",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-AMMO-INCENDIARY",
+      "category": "powers",
+      "name": "Incendiary Ammo",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-AMMO-DISRUPTOR",
+      "category": "powers",
+      "name": "Disruptor Ammo",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-AMMO-CRYO",
+      "category": "powers",
+      "name": "Cryo Ammo",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-AMMO-AP",
+      "category": "powers",
+      "name": "Armor-Piercing Ammo",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-AMMO-WARP",
+      "category": "powers",
+      "name": "Warp Ammo",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME2",
+      "id": "ME2-POW-AMMO-SHREDDER",
+      "category": "powers",
+      "name": "Shredder Ammo",
+      "description": "Pouvoir de ME2.",
+      "sourceIds": [
+        "ME2-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-DRONE",
+      "category": "powers",
+      "name": "Combat Drone",
+      "description": "Pouvoir présent dans l’arsenal ME3.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-AMMO-INCENDIARY",
+      "category": "powers",
+      "name": "Incendiary Ammo",
+      "description": "Pouvoir présent dans l’arsenal ME3.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-AMMO-DISRUPTOR",
+      "category": "powers",
+      "name": "Disruptor Ammo",
+      "description": "Pouvoir présent dans l’arsenal ME3.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-AMMO-CRYO",
+      "category": "powers",
+      "name": "Cryo Ammo",
+      "description": "Pouvoir présent dans l’arsenal ME3.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-AMMO-AP",
+      "category": "powers",
+      "name": "Armor-Piercing Ammo",
+      "description": "Pouvoir présent dans l’arsenal ME3.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-AMMO-WARP",
+      "category": "powers",
+      "name": "Warp Ammo",
+      "description": "Pouvoir présent dans l’arsenal ME3.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-DEFENSE-DRONE",
+      "category": "powers",
+      "name": "Defense Drone",
+      "description": "Pouvoir de Tali.",
+      "sourceIds": [
+        "ME3-SRC-SQUAD"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-EQP-SENTRY",
+      "category": "equipment",
+      "name": "Sentry Interface",
+      "description": "Casque de l’arsenal.",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "ME3",
+      "id": "ME3-POW-SENTRY",
+      "category": "powers",
+      "name": "Sentry Turret",
+      "description": "Pouvoir d’ingénieur.",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "MEA",
+      "id": "MEA-EQP-AMMO-FIRE",
+      "category": "equipment",
+      "name": "Munitions incendiaires — consommable",
+      "description": "MEA utilise des consommables de munitions.",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "MEA",
+      "id": "MEA-EQP-AMMO-CRYO",
+      "category": "equipment",
+      "name": "Munitions cryogéniques — consommable",
+      "description": "Type de consommable.",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "MEA",
+      "id": "MEA-EQP-AMMO-DISRUPT",
+      "category": "equipment",
+      "name": "Munitions disruptives — consommable",
+      "description": "Type de consommable.",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "conditions": "",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    },
+    {
+      "mediaId": "MEA",
+      "id": "MEA-POW-ASSAULT-TURRET",
+      "category": "powers",
+      "name": "Assault Turret",
+      "description": "Compétence de MEA — Tech.",
+      "sourceIds": [
+        "MEA-SRC-TURRET"
+      ],
+      "conditions": "Tech",
+      "sourceVerification": "Existing secondary catalogue assertion; no new article consultation",
+      "primaryAttributionVerified": false
+    }
+  ],
+  "localSourceSnapshots": [
+    {
+      "path": "docs/universe/catalogs/ME2.json",
+      "sha256": "4f4d1143e63f1f01dbfce8130fc39e7d66b8cfdbc90e36d2d363ac8e887e7a8d"
+    },
+    {
+      "path": "docs/universe/catalogs/ME3.json",
+      "sha256": "dd793758dd8f13f327934848f475dfc499412aaa89a0063a3b52cc399b807dfd"
+    },
+    {
+      "path": "docs/universe/catalogs/MEA.json",
+      "sha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6"
+    },
+    {
+      "path": "src/universe-actors.js",
+      "sha256": "042f0ac8c1b1092955533c45719319c6d667369e7efbdd5c3e02f18a7fab5b04"
+    },
+    {
+      "path": "src/universe-powers.js",
+      "sha256": "d51d8e098b8bd0ab3c3ba6c8f6a0e626e367b1c4c2351c67ba5cdbf883969bcf"
+    }
+  ],
+  "newNetworkRequests": [
+    {
+      "url": "https://www.ea.com/games/mass-effect/mass-effect-andromeda/news/mass-effect-andromeda-gameplay-series-combat",
+      "finalUrl": "https://www.ea.com/games/mass-effect/mass-effect-andromeda",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 376557,
+      "sha256": "d022936a8f335d19212f0b0d107820a01446f5bce9fc7f493b34463b84ff4427"
+    },
+    {
+      "url": "https://www.ea.com/games/mass-effect/mass-effect-andromeda",
+      "finalUrl": "https://www.ea.com/games/mass-effect/mass-effect-andromeda",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 376795,
+      "sha256": "d279d4e13b77202a5be9c8c897b825970755a881de6b5ff2ca0ec3b9d4fa1ad3"
+    }
+  ],
+  "networkLimits": {
+    "defaultProxyPreserved": true,
+    "tlsVerificationEnabled": true,
+    "blockedSourcesBypassed": false,
+    "newFandomRequests": 0,
+    "articleRedirectCountsAsConsultedArticle": false,
+    "manualMEARefetchedInThisReview": false,
+    "manualME3RefetchedByThisAgent": false
+  },
+  "invalidHistoricalFile": {
+    "localPath": "/tmp/relay-me3-manual-fr.pdf",
+    "bytes": 263,
+    "validPdf": false,
+    "sha256": "0fa728226cd9be828fd1b5d8a050dcad689c120efe61bb2c51671347ffaac7b5",
+    "bodyType": "XML AccessDenied",
+    "notReclassifiedByNewEnglishPdf": true
+  },
+  "note": {
+    "path": "docs/research/chronicle-support-sources.md",
+    "sha256": "d6d46ab18ed3ec743eb51937ad5cc521b964ea31791359ebd71fe9fe0cb1cb0b"
+  },
+  "functionalValidation": "Not performed. This source review must not be used as browser, gameplay, acquisition or 1:1 fidelity evidence.",
+  "updatedAt": "2026-10-25T08:09:50.893207+00:00",
+  "applicationFilesChangedByThisSourceReview": false,
+  "implementationScopeDecision": {
+    "meaAmmoConsumables": "Remain closed in this implementation lot because the consumption rule is unverified",
+    "me3JamesIncendiaryAmmo": "Not newly enabled without a verified attribution; no inference from soldier role",
+    "me3WarpAmmo": "Profile may exist but remains outside prepared kits, without Advanced Training authorization"
+  },
+  "localSourceSnapshotScope": "Initial read-only source audit before the separate runtime mapping implementation. These preserve the inspected local declarations, not the final implementation fingerprint."
+}

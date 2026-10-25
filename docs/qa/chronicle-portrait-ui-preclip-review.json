@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-25T09:02:33.071723+00:00",
+  "passed": false,
+  "status": "blocked-before-source-cell-clipping",
+  "scope": "Actual visual inspection of seven unmodified desktop UI screenshots, including three 220px portrait detail panels. Partial generated bust art only; no full-body, animation or 1:1 certification.",
+  "functionalEvidence": {
+    "path": "docs/qa/chronicle-support-browser-report.json",
+    "sha256": "c1cb196def951e7900c242a063430df97844f4d428f0e2281e00a17013fdd5fe",
+    "passed": true,
+    "at": "2026-10-25T08:51:08.302Z",
+    "runnerSha256": "c0d10a08942293dc3ebb6a30f5fa1d050b4c885e9961cd7fbece45a233317d38",
+    "sourceHashesAtBrowserRun": {
+      "src/universe-ui.js": "e1512d04f799f4de561c41f3be8bc22080830484fb294e92d6bf94d82f915f58",
+      "src/universe-portraits.js": "896977e1b52becf5bd2284eec01641a11ece90649e6bd2c0e6bf0050e02111da",
+      "src/chronicles.js": "62f7d28013c07a33faab2c1d9f7a97c7366eabc22073ed29eeabb6070c99fecc",
+      "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9"
+    },
+    "distinction": "The browser run passed asset decoding, DOM viewBox, identity and gameplay-isolation assertions. Those checks did not detect neighboring pixels visible outside the source-cell rectangle."
+  },
+  "protocol": {
+    "browserLaunchedByReviewer": false,
+    "gpuSessionLaunchedByReviewer": false,
+    "appFilesModifiedByReviewer": false,
+    "browserReportModified": false,
+    "inspectionTool": "view_image, original detail",
+    "viewportAtCapture": {
+      "width": 1440,
+      "height": 1000
+    },
+    "imageCount": 7,
+    "method": [
+      "Read the frozen browser report and verify its supplied SHA256.",
+      "Open all seven archived portrait screenshots at original resolution.",
+      "Reopen the full ME2 cover and ME3 page5 references previously rendered from verified official manuals.",
+      "Compare visible source identities, bust features, borders, halos, labels and neighboring cells.",
+      "Copy the seven original screenshots byte for byte into a dedicated preclip archive and verify SHA256/dimensions."
+    ],
+    "capturesAre": "Actual UI panel screenshots, not mockups, edited crops, enlarged reconstructions or new image generations."
+  },
+  "asset": {
+    "path": "public/assets/chronicle-portraits-me2-me3.png",
+    "metadataPath": "public/assets/chronicle-portraits.json",
+    "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd",
+    "metadataSha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977",
+    "bytes": 2622017,
+    "width": 1536,
+    "height": 1024,
+    "generated": true,
+    "scope": "Three generated partial bust portraits; no full-body sprites, animation or certified 1:1 likeness"
+  },
+  "captures": [
+    {
+      "runPath": "test-results/chronicle-support-me2-portrait-roster.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-me2-portrait-roster.png",
+      "sha256": "8b07c15fb7f609c42bb96c25a6a9d1f36b09deb05c9239e8a497fd4d24d3ecd7",
+      "width": 1114,
+      "height": 311,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-me2-portrait-roster.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "context": {
+        "mediaId": "ME2",
+        "periodId": "me2",
+        "scenarioId": "me2-equipment-workshop"
+      },
+      "observations": [
+        "Miranda and Thane labels are readable; Shepard and other actors retain initials.",
+        "Miranda thumbnail exposes the adjacent Thane cell on its right. Thane thumbnail exposes Miranda on its left and a Garrus fragment on its right."
+      ],
+      "cropAccepted": false
+    },
+    {
+      "runPath": "test-results/chronicle-support-portrait-detail-me2-chr-miranda.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-portrait-detail-me2-chr-miranda.png",
+      "sha256": "686ad788098ec3f692709bf329acd4b3f25bc327f581acfeaa795386e0b2b0e6",
+      "width": 326,
+      "height": 221,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-portrait-detail-me2-chr-miranda.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "actorId": "ME2-CHR-MIRANDA",
+      "observations": [
+        "Miranda head and upper white/dark outfit are readable.",
+        "A large portion of Thane appears on the right of the nominal Miranda panel."
+      ],
+      "cropAccepted": false
+    },
+    {
+      "runPath": "test-results/chronicle-support-portrait-detail-me2-chr-thane.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-portrait-detail-me2-chr-thane.png",
+      "sha256": "33d4e8ddee4749e1c78443b56165b83da4693cc4cab5526e56641a72b108a54a",
+      "width": 326,
+      "height": 221,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-portrait-detail-me2-chr-thane.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "actorId": "ME2-CHR-THANE",
+      "observations": [
+        "The nominal Thane detail shows Miranda on the left, Thane centrally and Garrus ME3 on the right.",
+        "This visibly exposes an ME3 portrait within an ME2 panel despite correct identity-level DOM attributes."
+      ],
+      "cropAccepted": false
+    },
+    {
+      "runPath": "test-results/chronicle-support-me2-portrait-battle.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-me2-portrait-battle.png",
+      "sha256": "7fde526976d7658eb0bce2c9e02af5702aa14acb6c42872a6ffcd38c72c4eae6",
+      "width": 1114,
+      "height": 348,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-me2-portrait-battle.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "context": {
+        "mediaId": "ME2",
+        "periodId": "me2",
+        "scenarioId": "me2-equipment-workshop"
+      },
+      "observations": [
+        "Names, health labels, bars and command buttons are readable and do not overlap portrait boxes.",
+        "Neighbor-cell fragments remain visible beside the small Miranda and Thane combat portraits. Targets remain initials."
+      ],
+      "cropAccepted": false
+    },
+    {
+      "runPath": "test-results/chronicle-support-me3-portrait-roster.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-me3-portrait-roster.png",
+      "sha256": "8228292ad9acaa9d5c628e1f1c6daf0a88a2bc376a6d80e56847333e9ea4b68c",
+      "width": 1114,
+      "height": 272,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-me3-portrait-roster.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "scenarioId": "me3-equipment-workshop"
+      },
+      "observations": [
+        "Garrus is named correctly; Shepard, Liara, James, EDI, Tali, Ashley and Kaidan retain initials.",
+        "A yellow/green Thane fragment is visible on the left of the Garrus thumbnail."
+      ],
+      "cropAccepted": false
+    },
+    {
+      "runPath": "test-results/chronicle-support-portrait-detail-me3-chr-garrus.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-portrait-detail-me3-chr-garrus.png",
+      "sha256": "d3085be0b219c0b8cce8fc787546247ee8171e86296804294610f19d91797e63",
+      "width": 326,
+      "height": 221,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-portrait-detail-me3-chr-garrus.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "actorId": "ME3-CHR-GARRUS",
+      "observations": [
+        "Garrus head, visor and blue upper armor are readable.",
+        "A large Thane ME2 bust appears on the left of the nominal Garrus ME3 detail."
+      ],
+      "cropAccepted": false
+    },
+    {
+      "runPath": "test-results/chronicle-support-me3-portrait-battle.png",
+      "archivePath": "docs/screenshots/chronicle-support-preclip/chronicle-support-me3-portrait-battle.png",
+      "sha256": "b7995be8220b005657b55e6f34032c3b6652bbd2633f1b7e4eaa27e0bbcb85b4",
+      "width": 1114,
+      "height": 184,
+      "method": "Unmodified screenshot of actual UI",
+      "originalArchivePath": "docs/screenshots/chronicle-support-me3-portrait-battle.png",
+      "copyVerifiedByteForByte": true,
+      "visuallyInspected": true,
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "scenarioId": "me3-equipment-workshop"
+      },
+      "observations": [
+        "Garrus name, health, bars and commands remain readable.",
+        "Thane ME2 remains visible as a neighboring fragment at the left of the Garrus combat portrait."
+      ],
+      "cropAccepted": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "PORTRAIT-CROP-01",
+      "severity": "blocking",
+      "status": "open-at-reviewed-capture",
+      "title": "Atlas neighbors remain visible within every portrait viewport",
+      "affectedCaptures": 7,
+      "description": "SVG viewBox values match metadata, but the physical SVG viewport is wider than the 512×1024 source region. With the current aspect-ratio mapping and unclipped atlas image, adjacent cells appear in the available margins. Every reviewed roster, detail and battle portrait exposes a neighbor.",
+      "workScopeConsequence": "Garrus ME3 becomes visible in the Thane ME2 detail, and Thane ME2 becomes visible in the Garrus ME3 detail. DOM identity restrictions alone therefore do not establish visual work isolation.",
+      "recommendedCorrection": "Clip the rendered atlas explicitly to its exact source rectangle or use an inner SVG viewport with the source aspect ratio and clipping. Preserve the PNG bytes.",
+      "requiredRecheck": "Repeat and inspect all seven actual UI captures after the rendering fix; recheck asset SHA and contextual exclusions. No portrait art/animation completion should be claimed from these preclip captures."
+    }
+  ],
+  "limitedPositiveObservations": [
+    "The PNG decodes at the expected 1536×1024 dimensions and its SHA matches the generated source.",
+    "Character names, selected-card borders, health labels, bars and buttons remain readable at the reviewed desktop size.",
+    "The three intended faces are recognizable in the large details, and visible costume cues broadly correspond to the consulted work-specific references.",
+    "Soft contours and colored halos blend into the dark panel without an obvious solid rectangular image background in the inspected screenshots. This does not resolve the neighboring-cell defect.",
+    "Generic Shepard and all other roster identities retain initials in the seven reviewed screenshots."
+  ],
+  "referenceComparisons": [
+    {
+      "actorId": "ME2-CHR-MIRANDA",
+      "referenceId": "me2-cover",
+      "pdfPage": 1,
+      "observedCorrespondence": [
+        "Brown shoulder-length hair.",
+        "White patterned chest panel, pale collar and dark surrounding outfit."
+      ],
+      "qualification": "Generated pose, face, hair volume, seams, fasteners and chest ornament are interpretations; the cover does not establish the hidden costume. Recognizability is not an exact-model likeness approval."
+    },
+    {
+      "actorId": "ME2-CHR-THANE",
+      "referenceId": "me2-cover",
+      "pdfPage": 1,
+      "observedCorrespondence": [
+        "Green/olive drell head with dark patches and dark eyes.",
+        "Dark high open collar with pale edging."
+      ],
+      "qualification": "The generated frontal portrait reinterprets head reliefs, facial proportions and coat details. No exact pattern, anatomical mesh or full costume conformity certified."
+    },
+    {
+      "actorId": "ME3-CHR-GARRUS",
+      "referenceId": "me3-garrus",
+      "pdfPage": 5,
+      "observedCorrespondence": [
+        "Turian plated head, mandibular silhouette, lateral blue visor and facial damage.",
+        "Blue/dark upper armor."
+      ],
+      "qualification": "The official embedded screenshot is 512×256 including UI. Fine scar, visor, armor geometry and material correspondence cannot be certified from that resolution."
+    }
+  ],
+  "referenceHashes": {
+    "me2Pdf": "c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1",
+    "me2CoverRender": "02be5914876656148d6b84f190d533a92d8b91b5b4d5a81ec267f2d790c3cf01",
+    "me3Pdf": "07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01",
+    "me3Page5Render": "0107765bbb643ea942788c34103e10c435ee58ef42bdc3c8d42469187d004c2f"
+  },
+  "contextAssertionBasis": {
+    "source": "Frozen functional browser report and its verifyPortraits runner, not direct visual proof from all excluded contexts.",
+    "expected": [
+      "Miranda ME2 in Freedom’s Progress or ME2 equipment workshop.",
+      "Thane ME2 only in ME2 equipment workshop.",
+      "Garrus ME3 only in ME3 equipment workshop.",
+      "No portrait helper result for ME1, prologue, foreign identity or generic Shepard."
+    ],
+    "caveat": "Expected helper/DOM restrictions pass, but neighboring atlas pixels visibly violate contextual isolation before clipping."
+  },
+  "limits": [
+    "Desktop 1440×1000 only; no mobile or tablet visual review.",
+    "Panel crops do not establish whole-screen layout or scroll behavior.",
+    "No keyboard, screen-reader, color-vision or accessibility conformance audit.",
+    "No full-body sprites, back views, walking, eight directions, firing cycles, alternative costumes or equipment-dependent appearance.",
+    "No certification of exact game-model faces, anatomy, materials, palette, geometry or 1:1 visual fidelity.",
+    "No new browser session, GPU use, image generation, pixel editing or app mutation performed by this reviewer.",
+    "The functional report remains unchanged and positive; this separate visual verdict is negative pending clipping."
+  ]
+}

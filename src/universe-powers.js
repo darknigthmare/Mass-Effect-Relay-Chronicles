@@ -1,6 +1,6 @@
 // Explicit catalogue-to-action bindings. Effects and timing remain ATB tuning.
-// Companion assignments below retain the secondary squad/skills references used
-// for the partial kits; they are not a new primary-source certification.
+// Companion assignments retain the partial squad/skills references. Individually
+// inspected primary evidence is attached only to the attribution it establishes.
 import { UNIVERSE_RECORDS, getUniverseRecord } from './universe-data.js';
 import { normalizeContext, canAccessContent } from './continuity.js';
 
@@ -14,11 +14,15 @@ const own = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const ACTION_SUFFIXES = {
   ME2: { PULL: 'pull', THROW: 'throw', WARP: 'warp', SINGULARITY: 'singularity', SHOCKWAVE: 'shockwave', SLAM: 'slam',
     REAVE: 'reave', DOMINATE: 'dominate', BARRIER: 'barrier', OVERLOAD: 'overload', INCINERATE: 'incinerate',
-    CRYO: 'cryoBlast', HACK: 'hack', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis' },
+    CRYO: 'cryoBlast', HACK: 'hack', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis',
+    DRONE: 'combatDrone', 'AMMO-INCENDIARY': 'ammoIncendiary', 'AMMO-CRYO': 'ammoCryo', 'AMMO-DISRUPTOR': 'ammoDisruptor',
+    'AMMO-AP': 'ammoArmorPiercing', 'AMMO-WARP': 'ammoWarp', 'AMMO-SHREDDER': 'ammoShredder' },
   ME3: { PULL: 'pull', THROW: 'throw', WARP: 'warp', SINGULARITY: 'singularity', SHOCKWAVE: 'shockwave', SLAM: 'slam',
     REAVE: 'reave', DOMINATE: 'dominate', BARRIER: 'barrier', OVERLOAD: 'overload', INCINERATE: 'incinerate',
     CRYO: 'cryoBlast', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis', SABOTAGE: 'sabotage',
-    FRAG: 'fragGrenade', STICKY: 'stickyGrenade' },
+    FRAG: 'fragGrenade', STICKY: 'stickyGrenade', DRONE: 'combatDrone', SENTRY: 'sentryTurret', 'DEFENSE-DRONE': 'defenseDrone',
+    'AMMO-INCENDIARY': 'ammoIncendiary', 'AMMO-CRYO': 'ammoCryo', 'AMMO-DISRUPTOR': 'ammoDisruptor',
+    'AMMO-AP': 'ammoArmorPiercing', 'AMMO-WARP': 'ammoWarp' },
   MEA: { CONCUSSIVE: 'concussiveShot', THROW: 'throw', PULL: 'pull', SHOCKWAVE: 'shockwave', SINGULARITY: 'singularity',
     OVERLOAD: 'overload', INCINERATE: 'incinerate', 'ENERGY-DRAIN': 'energyDrain', FRAG: 'fragGrenade', STICKY: 'stickyGrenade', 'SHIELD-BOOST': 'shieldBoost' },
   GAL: { STASIS: 'stasis', OVERLOAD: 'overload' },
@@ -35,6 +39,13 @@ export const UNIVERSE_POWER_MAPPINGS = freeze(Object.entries(ACTION_SUFFIXES).fl
 const byId = new Map(UNIVERSE_POWER_MAPPINGS.map(power => [power.catalogId, power]));
 export const getUniversePowerMapping = id => typeof id === 'string' ? byId.get(id) || null : null;
 
+export const ME3_GARRUS_AMMO_PRIMARY_REFERENCE = freeze({
+  sourceUrl: 'https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf',
+  sha256: '07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01',
+  reference: 'Manuel PC anglais, page imprimée 5 : capture du panneau des pouvoirs de Garrus, Armor-Piercing Ammo lisible.',
+  verification: 'Primary manual image inspected; confirms this attribution, not ranks, progression or ATB parameters',
+});
+
 // Unlock conditions are attached to a power, never inferred from its name.
 const assignments = {};
 function kit(actorId, suffixes, loyalty = []) {
@@ -42,27 +53,27 @@ function kit(actorId, suffixes, loyalty = []) {
   assignments[actorId] = suffixes.map(suffix => ({ catalogId: catalogueId(mediaId, suffix), requirement: loyalty.includes(suffix) ? 'loyalty' : null }));
 }
 kit('ME2-CHR-MIRANDA', ['WARP', 'OVERLOAD', 'SLAM'], ['SLAM']);
-kit('ME2-CHR-JACOB', ['PULL', 'BARRIER'], ['BARRIER']);
+kit('ME2-CHR-JACOB', ['PULL', 'AMMO-INCENDIARY', 'BARRIER'], ['BARRIER']);
 kit('ME2-CHR-MORDIN', ['INCINERATE', 'CRYO']);
-kit('ME2-CHR-GARRUS', ['OVERLOAD', 'CONCUSSIVE']);
-kit('ME2-CHR-GRUNT', ['CONCUSSIVE', 'FORTIFICATION'], ['FORTIFICATION']);
-kit('ME2-CHR-JACK', ['PULL', 'SHOCKWAVE']);
-kit('ME2-CHR-TALI', ['HACK', 'ENERGY-DRAIN'], ['ENERGY-DRAIN']);
-kit('ME2-CHR-THANE', ['THROW', 'WARP']);
+kit('ME2-CHR-GARRUS', ['OVERLOAD', 'CONCUSSIVE', 'AMMO-AP'], ['AMMO-AP']);
+kit('ME2-CHR-GRUNT', ['CONCUSSIVE', 'AMMO-INCENDIARY', 'FORTIFICATION'], ['FORTIFICATION']);
+kit('ME2-CHR-JACK', ['PULL', 'SHOCKWAVE', 'AMMO-WARP'], ['AMMO-WARP']);
+kit('ME2-CHR-TALI', ['HACK', 'DRONE', 'ENERGY-DRAIN'], ['ENERGY-DRAIN']);
+kit('ME2-CHR-THANE', ['THROW', 'WARP', 'AMMO-SHREDDER'], ['AMMO-SHREDDER']);
 kit('ME2-CHR-SAMARA', ['THROW', 'PULL', 'REAVE'], ['REAVE']);
 kit('ME2-CHR-MORINTH', ['THROW', 'PULL', 'DOMINATE'], ['DOMINATE']);
-kit('ME2-CHR-LEGION', ['HACK']);
+kit('ME2-CHR-LEGION', ['HACK', 'DRONE']);
 kit('ME2-CHR-KASUMI', ['OVERLOAD']);
-kit('ME2-CHR-ZAEED', ['CONCUSSIVE']);
+kit('ME2-CHR-ZAEED', ['CONCUSSIVE', 'AMMO-DISRUPTOR']);
 kit('ME2-CHR-LIARA', ['WARP', 'SINGULARITY', 'STASIS']);
 kit('ME3-CHR-JAMES', ['FORTIFICATION', 'FRAG']);
 kit('ME3-CHR-LIARA', ['WARP', 'SINGULARITY', 'STASIS']);
-kit('ME3-CHR-GARRUS', ['OVERLOAD', 'CONCUSSIVE']);
+kit('ME3-CHR-GARRUS', ['OVERLOAD', 'CONCUSSIVE', 'AMMO-AP']);
 kit('ME3-CHR-EDI', ['OVERLOAD', 'INCINERATE']);
 kit('ME3-CHR-JAVIK', ['SLAM']);
-kit('ME3-CHR-ASHLEY', ['CONCUSSIVE']);
+kit('ME3-CHR-ASHLEY', ['CONCUSSIVE', 'AMMO-DISRUPTOR']);
 kit('ME3-CHR-KAIDAN', ['OVERLOAD', 'BARRIER', 'REAVE', 'CRYO']);
-kit('ME3-CHR-TALI', ['SABOTAGE', 'ENERGY-DRAIN']);
+kit('ME3-CHR-TALI', ['SABOTAGE', 'DRONE', 'DEFENSE-DRONE', 'ENERGY-DRAIN']);
 kit('ME3-CHR-ARIA', ['REAVE']);
 kit('ME3-CHR-NYREEN', ['OVERLOAD', 'INCINERATE']);
 kit('MEA-CHR-CORA', ['SHIELD-BOOST']);
@@ -86,6 +97,10 @@ export function getActorPowerKit(actorId, rawContext, scenarioId) {
     if (!mapping || !canAccessContent(mapping.catalogId, context).ok) continue;
     const provenance = { ...mapping, actorCatalogId: actorId, attributionSourceIds: [...squadSources[context.mediaId] || []],
       requirement: assignment.requirement, attributionVerification: 'Secondary squad/skills reference; full source kit not certified 1:1' };
+    if (actorId === 'ME3-CHR-GARRUS' && mapping.catalogId === 'ME3-POW-AMMO-AP') {
+      provenance.attributionReference = ME3_GARRUS_AMMO_PRIMARY_REFERENCE;
+      provenance.attributionVerification = ME3_GARRUS_AMMO_PRIMARY_REFERENCE.verification;
+    }
     if (assignment.requirement === 'loyalty' && !(context.mediaId === 'ME2'
       ? preparedLoyaltyScenarios.has(scenarioId) : scenarioId === workshopFor(context.mediaId))) locked.push(provenance);
     else unlocked.push(provenance);

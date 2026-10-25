@@ -8,7 +8,7 @@ export const CAMPAIGN_CONTEXT = Object.freeze({ mediaId: 'ME1', periodId: 'me1',
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const FORBIDDEN = new Set(['__proto__', 'prototype', 'constructor']);
 const SESSION_KEYS = ['version', 'context', 'scenarioId', 'discovered', 'notes', 'party', 'loadouts', 'cleared'];
-const OPTIONAL_SESSION_KEYS = ['builds', 'readingProgress'];
+const OPTIONAL_SESSION_KEYS = ['builds', 'readingProgress', 'ammoModes'];
 const EQUIPMENT_SLOTS = ['weapon', 'armor', 'weaponMod', 'weaponMod2'];
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/;
 const isId = value => typeof value === 'string' && ID.test(value) && !FORBIDDEN.has(value);
@@ -99,7 +99,7 @@ export function listAvailable(rawContext, { group = 'all', query = '' } = {}) {
 
 export function createChronicleSession(rawContext) {
   const context = normalizeContext(rawContext);
-  return context ? { version: 1, context, scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, builds: {}, readingProgress: {}, cleared: [] } : null;
+  return context ? { version: 1, context, scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, builds: {}, readingProgress: {}, ammoModes: {}, cleared: [] } : null;
 }
 
 /** Pure base validator. chronicles.js additionally checks scenarios, actors and gear. */
@@ -129,11 +129,16 @@ export function normalizeChronicleSession(raw) {
     if (!plain(rawBuilds) || Object.keys(rawBuilds).length > raw.party.length
       || Object.entries(rawBuilds).some(([actorId, buildId]) => !raw.party.includes(actorId) || !isId(buildId))) return null;
     const builds = Object.fromEntries(raw.party.map(actorId => [actorId, rawBuilds[actorId] ?? 'default']));
+    const rawAmmoModes = OWN(raw, 'ammoModes') ? raw.ammoModes : Object.fromEntries(raw.party.map(actorId => [actorId, null]));
+    if (!plain(rawAmmoModes) || Object.keys(rawAmmoModes).length !== raw.party.length
+      || Object.entries(rawAmmoModes).some(([actorId, modeId]) => !raw.party.includes(actorId)
+        || modeId !== null && (!isId(modeId) || !canAccessContent(modeId, context).ok))) return null;
+    const ammoModes = Object.fromEntries(raw.party.map(actorId => [actorId, rawAmmoModes[actorId]]));
     const rawProgress = OWN(raw, 'readingProgress') ? raw.readingProgress : {};
     if (!plain(rawProgress) || Object.keys(rawProgress).length > 500
       || Object.entries(rawProgress).some(([storyId, index]) => !isId(storyId) || !Number.isInteger(index) || index < 0 || index > 999)) return null;
     return { version: 1, context, scenarioId: raw.scenarioId, discovered: [...raw.discovered], notes,
-      party: [...raw.party], loadouts, builds, readingProgress: { ...rawProgress }, cleared: [...raw.cleared] };
+      party: [...raw.party], loadouts, builds, readingProgress: { ...rawProgress }, ammoModes, cleared: [...raw.cleared] };
   } catch { return null; }
 }
 

@@ -123,8 +123,8 @@ test('work, galaxy, prologue and scenario restrictions cannot become recruitment
 test('native combat profiles use only existing documented power subsets and expose missing mechanics', () => {
   assert.deepEqual(getUniverseActor('ME2-CHR-MIRANDA').powers, ['warp', 'overload']);
   assert.deepEqual(getUniverseActor('GAL-CHR-JACOB').powers, ['stasis', 'overload']);
-  assert.deepEqual(getUniverseActor('ME2-CHR-JACOB').powers, ['pull']);
-  assert.deepEqual(getUniverseActor('ME2-CHR-GRUNT').powers, ['concussiveShot'], 'Loyalty Fortification remains locked outside a prepared workshop');
+  assert.deepEqual(getUniverseActor('ME2-CHR-JACOB').powers, ['pull', 'ammoIncendiary']);
+  assert.deepEqual(getUniverseActor('ME2-CHR-GRUNT').powers, ['concussiveShot', 'ammoIncendiary'], 'Loyalty Fortification remains locked outside a prepared workshop');
   assert.ok(!getUniverseActor('MEA-CHR-CORA').powers.some(id => ['barrier', 'lift'].includes(id)), 'Later abilities are not silently replaced by ME1 Barrier or Lift');
   assert.equal(getUniverseActor('MEA-CHR-CORA').biotic, true);
   assert.ok(getUniverseActor('MEA-CHR-CORA').missingPowers.includes('Charge'));

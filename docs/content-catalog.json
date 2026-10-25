@@ -127,16 +127,19 @@
           "RED",
           "PL"
         ],
-        "limit": "Sessions et sauvegardes séparées de ME1 ; seize essais et seize lectures courtes. Conditions DLC/bonus explicites dans six bancs spécifiques. Pouvoirs, grenades limitées, armes spéciales, chargeurs et modules utilisent des réglages ATB adaptés. Aucun nouveau sprite, niveau, dialogue intégral ou campagne complète.",
+        "limit": "Sessions et sauvegardes séparées de ME1 ; seize essais et seize lectures courtes. Soutiens autonomes ciblables et modes de munitions exclusifs, avec valeurs ATB adaptées. Trois portraits de bustes sourcés ; silhouettes complètes, animations, niveaux, dialogues intégraux et campagnes complètes restent à produire.",
         "weaponModuleFamilies": 2,
-        "powerCatalogEntries": 47,
-        "activePowerActions": 21,
-        "newPowerActions": 13,
+        "powerCatalogEntries": 61,
+        "activePowerActions": 30,
+        "newPowerActions": 22,
         "classPreparations": 15,
         "documentaryReadings": 16,
         "documentaryPages": 52,
         "specialistWorkshops": 6,
-        "specialWeaponProfiles": 6
+        "specialWeaponProfiles": 6,
+        "autonomousSupportCards": 4,
+        "ammunitionPowerCards": 10,
+        "portraitProfiles": 3
       }
     },
     "v02Sources": {
@@ -31351,7 +31354,7 @@
       "plannedPath": "src/chronicles.js",
       "assetPath": "src/chronicles.js",
       "gameKey": "SYS-chroniques-contextuelles",
-      "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1."
+      "notes": "Prototype partiel. Les soutiens autonomes ont HP/durée/propriétaire et ne remplacent aucun combattant natif dans la victoire. Trois portraits partiels ne créent ni sprite animé ni recrutement. Voir tests/combat-support.test.js, tests/chronicles.test.js et docs/CHRONICLES.md. Aucun transfert dans ME1."
     },
     {
       "id": "SYS-clips-thermiques",
@@ -31387,13 +31390,13 @@
       "sourceId": "PROJECT",
       "sourceUrl": null,
       "description": "Sous-ensembles de six classes Shepard pour ME2/ME3 et de trois préparations Ryder ; pouvoirs et armes disponibles conditionnés au contexte.",
-      "acceptance": "Le profil default des anciennes préparations migre sans classe imposée. Changer de classe retire atomiquement une arme incompatible et ses modules ; loyautés et compétences de prologue restent bornées aux scènes autorisées. Les valeurs demeurent des adaptations ATB.",
+      "acceptance": "Le profil default des anciennes préparations migre sans classe imposée. Modes de munitions appris exclusifs, quatre ports conservés ; classe ou arme incompatible retire le mode. ammoModes reste distinct des notes et sauvegardes ME1. Les valeurs demeurent des adaptations ATB.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/chronicles.js",
       "assetPath": "src/chronicles.js",
       "gameKey": "SYS-preparations-chroniques",
-      "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
+      "notes": "Prototype partiel : tests/chronicle-ammo-sessions.test.js et tests/universe-support-ui.test.js ; commandes et préférences de munitions bornées au vrai kit et à l’œuvre. Voir docs/CHRONICLES.md ; rangs, acquisition et fidélité globale1:1 non certifiés."
     },
     {
       "id": "SYS-modules-chroniques",

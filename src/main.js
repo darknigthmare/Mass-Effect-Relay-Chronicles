@@ -1,3 +1,4 @@
+import { isSummon } from './combat-summons.js';
 import './style.css';
 import './loadout-ui.css';
 import './customization-ui.css';
@@ -123,16 +124,16 @@ function universeView(){
   const records=context?universeModules.continuity.listAvailable(context,{group:universeUI.group,query:universeUI.query}):[];
   if(!records.some(record=>record.id===universeUI.recordId))universeUI.recordId=records[0]?.id||null;
   const roster=chronicleSession?engine.getChronicleRoster(chronicleSession):[];
-  const gearByActor={},gearByActorSlot={},actors={},buildsByActor={};
-  for(const id of chronicleSession?.party||[]){gearByActor[id]=engine.getChronicleGear(chronicleSession,id);gearByActorSlot[id]={weaponMod:engine.getChronicleGear(chronicleSession,id,'weaponMod'),weaponMod2:engine.getChronicleGear(chronicleSession,id,'weaponMod2')};actors[id]=engine.buildChronicleActor(chronicleSession,id);buildsByActor[id]=engine.getChronicleBuilds(chronicleSession,id);}
+  const gearByActor={},gearByActorSlot={},actors={},buildsByActor={},ammoModesByActor={};
+  for(const id of chronicleSession?.party||[]){gearByActor[id]=engine.getChronicleGear(chronicleSession,id);gearByActorSlot[id]={weaponMod:engine.getChronicleGear(chronicleSession,id,'weaponMod'),weaponMod2:engine.getChronicleGear(chronicleSession,id,'weaponMod2')};actors[id]=engine.buildChronicleActor(chronicleSession,id);buildsByActor[id]=engine.getChronicleBuilds(chronicleSession,id);ammoModesByActor[id]=engine.getChronicleAmmoModes(chronicleSession,id);}
   const readings=context?engine.listChronicleReadings(context):[];
   if(!readings.some(reading=>reading.id===universeUI.readingId))universeUI.readingId=readings[0]?.id||null;
   const reading=chronicleSession&&universeUI.readingId?engine.getChronicleReading(chronicleSession,universeUI.readingId):null;
-  return {works:universeModules.data.UNIVERSE_WORKS,context,records,scenarios:context?engine.listChronicleScenarios(context):[],session:chronicleSession,roster,gearByActor,gearByActorSlot,actors,buildsByActor,actionLabels:ACTIONS,readings,reading,battle:chronicleBattle,feedback:universeUI.feedback,paused:chroniclePaused,...chronicleCommands()};
+  return {works:universeModules.data.UNIVERSE_WORKS,context,records,scenarios:context?engine.listChronicleScenarios(context):[],session:chronicleSession,roster,gearByActor,gearByActorSlot,actors,buildsByActor,ammoModesByActor,actionLabels:ACTIONS,readings,reading,battle:chronicleBattle,feedback:universeUI.feedback,paused:chroniclePaused,...chronicleCommands()};
 }
 function chronicleCommands(){
   if(!chronicleBattle)return {actions:[],selectedActorId:null,selectedActionId:null};
-  const party=chronicleBattle.actors.filter(actor=>actor.team==='party');
+  const party=chronicleBattle.actors.filter(actor=>actor.team==='party'&&!isSummon(actor));
   let actor=party.find(actor=>actor.id===universeUI.actorId);
   const ready=party.find(candidate=>candidate.hp>0&&getActions(chronicleBattle,candidate.id).some(action=>action.available));
   if((!actor||actor.hp<=0||actor.atb<99.999)&&ready)actor=ready;
@@ -198,12 +199,13 @@ function advanceChronicle(dt){
 function renderChronicleCombat(force=false){
   if(ui.screen!=='chronicles'||universeUI.tab!=='session'||!chronicleBattle||!chronicleView)return;
   Object.assign(chronicleView,{battle:chronicleBattle,session:chronicleSession,paused:chroniclePaused},chronicleCommands());
-  const stamp=[chronicleView.selectedActorId,chronicleView.selectedActionId,chroniclePaused,chronicleBattle.waiting,chronicleBattle.winner,chronicleBattle.medigel,chronicleBattle.log.at(-1),...chronicleView.actions.map(action=>`${action.id}:${action.available}:${action.reason}:${Math.ceil(action.cooldownRemaining||0)}`),...chronicleBattle.actors.map(actor=>`${actor.id}:${actor.hp>0}:${actor.ammo}:${Math.round(actor.heat)}`)].join('|');
+  const stamp=[chronicleView.selectedActorId,chronicleView.selectedActionId,chroniclePaused,chronicleBattle.waiting,chronicleBattle.winner,chronicleBattle.medigel,chronicleBattle.log.at(-1),...chronicleView.actions.map(action=>`${action.id}:${action.available}:${action.reason}:${Math.ceil(action.cooldownRemaining||0)}`),...chronicleBattle.actors.map(actor=>`${actor.id}:${actor.hp>0}:${actor.ammo}:${Math.round(actor.heat)}:${actor.ammoModeId}`)].join('|');
   if(force||stamp!==chronicleStamp){chronicleStamp=stamp;const content=$('#chronicle-battle-content');if(content)content.innerHTML=universeModules.renderer.renderChronicleBattle(chronicleView,universeUI,{esc});}
   for(const actor of chronicleBattle.actors){
     const card=document.querySelector(`[data-chronicle-unit="${CSS.escape(actor.id)}"]`);if(!card)continue;
     for(const [stat,value,max] of [['hp',actor.hp,actor.maxHp],['shield',actor.shield,actor.maxShield],['atb',actor.atb,100]]){const bar=card.querySelector(`[data-chronicle-stat="${stat}"]`);if(bar)bar.style.width=`${pct(value,max)}%`;}
     card.querySelector('[data-chronicle-hp-label]').textContent=`${Math.ceil(actor.hp)} / ${actor.maxHp}`;
+    const lifetime=card.querySelector('[data-chronicle-support-time]');if(lifetime)lifetime.textContent=`${Math.max(0,Math.ceil(actor.expiresAt-chronicleBattle.elapsed))} s`;
   }
 }
 function exportChronicle(){
@@ -581,7 +583,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'chronicle-export':exportChronicle();break;
     case 'chronicle-party':if(chronicleSession&&!chronicleBattle){const party=chronicleSession.party.includes(id)?chronicleSession.party.filter(actorId=>actorId!==id):[...chronicleSession.party,id];acceptChronicle(universeModules.engine.setChronicleParty(chronicleSession,party),'Groupe enregistré.');}break;
     case 'chronicle-battle':launchChronicleBattle();break;
-    case 'chronicle-actor':universeUI.actorId=id;renderChronicleCombat(true);break;
+    case 'chronicle-actor':if(chronicleBattle?.actors.some(actor=>actor.id===id&&actor.team==='party'&&!isSummon(actor))){universeUI.actorId=id;renderChronicleCombat(true);}break;
     case 'chronicle-action':{if(!chronicleBattle||chroniclePaused)break;const selected=getActions(chronicleBattle,universeUI.actorId).find(action=>action.id===id);if(!selected?.available)break;universeUI.actionId=id;if(['self','allies'].includes(selected.target))issueChronicleAction(universeUI.actorId);else renderChronicleCombat(true);break;}
     case 'chronicle-target':issueChronicleAction(id);break;
     case 'chronicle-pause':chroniclePaused=!chroniclePaused;renderChronicleCombat(true);break;
@@ -677,6 +679,7 @@ document.addEventListener('change',e=>{
     if(id==='chronicle-scenario'){universeUI.scenarioId=value;if(chronicleSession)acceptChronicle(universeModules.engine.selectChronicleScenario(chronicleSession,value),'Essai sélectionné.');else renderScreen();return;}
     if(id==='chronicle-reading'&&!(chronicleBattle&&!chronicleBattle.winner)){universeUI.readingId=value;readChroniclePage();return;}
     if(e.target.matches('[data-chronicle-build]')&&chronicleSession&&!chronicleBattle){const result=universeModules.engine.setChronicleBuild(chronicleSession,e.target.dataset.actorId,value);acceptChronicle(result,result.clearedEquipment?.length?'Profil enregistré · équipements incompatibles retirés.':'Profil enregistré.');return;}
+    if(e.target.matches('[data-chronicle-ammo-mode]')&&chronicleSession&&!chronicleBattle){acceptChronicle(universeModules.engine.setChronicleAmmoMode(chronicleSession,e.target.dataset.actorId,value||null),'Mode de munitions enregistré.');return;}
     if(e.target.matches('[data-chronicle-gear]')&&chronicleSession&&!chronicleBattle){acceptChronicle(universeModules.engine.equipChronicle(chronicleSession,e.target.dataset.actorId,value||null,e.target.dataset.slot),'Dotation enregistrée.');return;}
   }
   if(e.target.matches('[data-eq-slot-selector]')){ui.equipmentSlots[`${ui.equipmentActor}:${e.target.dataset.item}`]=value;renderScreen();return;}if(id==='new-difficulty')ui.form.difficulty=value;if(id==='new-mode')ui.form.mode=value;

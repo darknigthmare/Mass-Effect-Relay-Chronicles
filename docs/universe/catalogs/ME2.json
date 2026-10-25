@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_2_Production.xlsx",
   "scope": "Campagne solo ME2 et Legendary Edition ; recrutements, loyautés, affectations N7 et hubs ; Kasumi, Zaeed, Normandy Crash Site, Firewalker, Overlord, Lair of the Shadow Broker et Arrival. Genesis est identifié comme récapitulatif interactif ; aucun mode multijoueur ME2 ajouté au canon.",
-  "summary": "670 fiches de production ; 43 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "670 fiches de production ; 52 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -9485,7 +9485,7 @@
       "id": "ME2-POW-DRONE",
       "category": "powers",
       "name": "Combat Drone",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9494,7 +9494,7 @@
       "visual": "Petite sphère holographique et ombre.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/drone ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-DRONE → combatDrone dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me2-freedoms-progress, me2-equipment-workshop, me2-dlc-specialists, me2-shadow-broker. Propriétaire, santé, limite de remplacement, interventions autonomes et retrait sont visibles ; aucune nouvelle place dans le commando.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9502,7 +9502,22 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-ENERGY-DRAIN",
@@ -9797,7 +9812,7 @@
       "id": "ME2-POW-AMMO-INCENDIARY",
       "category": "powers",
       "name": "Incendiary Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9806,7 +9821,7 @@
       "visual": "Marque orange au chargeur.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/ammo-incendiary ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-INCENDIARY → ammoIncendiary dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9814,13 +9829,28 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-AMMO-DISRUPTOR",
       "category": "powers",
       "name": "Disruptor Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9829,7 +9859,7 @@
       "visual": "Éclats électriques bleus.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/ammo-disruptor ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-DISRUPTOR → ammoDisruptor dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9837,13 +9867,28 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-AMMO-CRYO",
       "category": "powers",
       "name": "Cryo Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9852,7 +9897,7 @@
       "visual": "Liseré blanc au projectile.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/ammo-cryo ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-CRYO → ammoCryo dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9860,13 +9905,28 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-AMMO-AP",
       "category": "powers",
       "name": "Armor-Piercing Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9875,7 +9935,7 @@
       "visual": "Icône de plaque perforée.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/ammo-ap ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-AP → ammoArmorPiercing dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9883,13 +9943,28 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-AMMO-WARP",
       "category": "powers",
       "name": "Warp Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9898,7 +9973,7 @@
       "visual": "Impact violet.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/ammo-warp ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-WARP → ammoWarp dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9906,13 +9981,28 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-AMMO-SHREDDER",
       "category": "powers",
       "name": "Shredder Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9921,7 +10011,7 @@
       "visual": "Icône d’impact rouge sans gore.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/ammo-shredder ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-SHREDDER → ammoShredder dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9929,7 +10019,22 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME2-POW-STASIS",
@@ -15145,7 +15250,7 @@
       "id": "ME2-SPR-CHR-MIRANDA",
       "category": "sprites",
       "name": "Planche sprites — Miranda Lawson",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Miranda Lawson.",
@@ -15154,7 +15259,7 @@
       "visual": "Combinaison claire à panneaux noirs ; silhouette droite et démarche maîtrisée.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Miranda Lawson. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/chr-miranda ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : portrait de buste original de Miranda ME2 dans public/assets/chronicle-portraits-me2-me3.png, intégré par src/universe-portraits.js et src/universe-ui.js aux contextes et scénarios autorisés de ME2-CHR-MIRANDA. Le SVG est borné à sa cellule d’atlas avec clipping explicite, vérifié dans le navigateur après correction. Aucun sprite en pied ni animation livré.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, Miranda Lawson est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15162,7 +15267,21 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Livraison limitée à un buste généré, d’après la couverture du manuel PC français ME2, rapprochée de l’identité du catalogue. Les portraits apparaissent dans les interfaces de commando et combat ; sprite=null. Corps entier, dos, déplacement, huit orientations, poses de tir, variations d’équipement et animations restent à produire. Traits, couleurs et détails interprétés ; aucune fidélité artistique ou géométrique 1:1 certifiée. Aucun portrait transféré à une autre œuvre ou au protagoniste configurable.",
+      "implementationPaths": [
+        "src/universe-portraits.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/chronicle-portraits-me2-me3.png",
+        "public/assets/chronicle-portraits.json"
+      ],
+      "evidence": [
+        "tests/universe-portraits.test.js",
+        "tests/universe-support-ui.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-portrait-reference-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-CHR-JACOB",
@@ -15306,7 +15425,7 @@
       "id": "ME2-SPR-CHR-THANE",
       "category": "sprites",
       "name": "Planche sprites — Thane Krios",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Thane Krios.",
@@ -15315,7 +15434,7 @@
       "visual": "Écailles vertes, yeux sombres, manteau noir à ouverture thoracique.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Thane Krios. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/chr-thane ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : portrait de buste original de Thane ME2 dans public/assets/chronicle-portraits-me2-me3.png, intégré par src/universe-portraits.js et src/universe-ui.js aux contextes et scénarios autorisés de ME2-CHR-THANE. Le SVG est borné à sa cellule d’atlas avec clipping explicite, vérifié dans le navigateur après correction. Aucun sprite en pied ni animation livré.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, Thane Krios est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15323,7 +15442,21 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Livraison limitée à un buste généré, d’après la couverture du manuel PC français ME2, rapprochée de l’identité du catalogue. Les portraits apparaissent dans les interfaces de commando et combat ; sprite=null. Corps entier, dos, déplacement, huit orientations, poses de tir, variations d’équipement et animations restent à produire. Traits, couleurs et détails interprétés ; aucune fidélité artistique ou géométrique 1:1 certifiée. Aucun portrait transféré à une autre œuvre ou au protagoniste configurable.",
+      "implementationPaths": [
+        "src/universe-portraits.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/chronicle-portraits-me2-me3.png",
+        "public/assets/chronicle-portraits.json"
+      ],
+      "evidence": [
+        "tests/universe-portraits.test.js",
+        "tests/universe-support-ui.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-portrait-reference-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-CHR-SAMARA",
@@ -16537,13 +16670,18 @@
     },
     {
       "area": "Complément pouvoirs, modules et lectures",
-      "covered": "17 fiches de pouvoirs effectivement utilisées, 0 familles de modules préparables et 0 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "covered": "24 fiches de pouvoirs effectivement utilisées, 0 familles de modules préparables et 0 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
       "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     },
     {
       "area": "Complément spécialistes contextualisés",
       "covered": "3 profils supplémentaires limités aux bancs de spécialistes, 0 profils d’armes spéciales et 1 fiches de pouvoirs supplémentaires effectivement exposées. Vérification fonctionnelle liée au rapport docs/qa/chronicle-specialists-browser-report.json.",
       "remaining": "Bancs ATB sur mannequins originaux, conditions préparées et dotations abstraites ; aucune reconstruction des missions, acquisition de campagne, illustration, animation, doublage ni valeur originale certifiée. Les sources secondaires et incertitudes restent explicites."
+    },
+    {
+      "area": "Complément soutiens, munitions et portraits partiels",
+      "covered": "1 fiches de soutien et 6 pouvoirs de munitions supplémentaires effectivement utilisés, plus 2 portraits de buste générés intégrés aux seuls acteurs/contextes autorisés. Vérification navigateur complète post-correction liée à docs/qa/chronicle-support-browser-report.json ; les chemins de preuves sont inscrits sur les seules fiches promues.",
+      "remaining": "Budgets et effets adaptés à l’ATB ; acquisition, rangs et simulation originale complète restent à vérifier. Les bustes ne livrent ni corps entier, dos, huit orientations, déplacement, animation, arme ou costume variable. Warp Ammo ME3 reste Défini ; les consommables de munitions MEA ne sont pas implémentés et leur durée ou quantité originale n’est pas inventée."
     }
   ]
 }

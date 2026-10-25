@@ -1,6 +1,6 @@
 # Assets visuels — registre de livraison
 
-Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dépend d’aucun CDN pour afficher ses sprites. Les atlas ont été générés pour ce projet, puis inspectés et reliés aux régions utilisées par le renderer. **Ils restent des assets de prototype : la fidélité 1:1 à ME1 n’est pas certifiée.**
+Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dépend d’aucun CDN pour afficher ses sprites. Les atlas ont été générés pour ce projet, puis inspectés et reliés aux régions utilisées par le renderer. **Ils restent des assets de prototype : la fidélité 1:1 aux épisodes concernés n’est pas certifiée.**
 
 ## Images livrées
 
@@ -16,8 +16,9 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `shepard-walk-atlas.png` | 1269 × 1240 | 16 poses, quatre directions | Marche de Shepard masculin |
 | `shepard-female-walk-atlas.png` | 1254 × 1254 | 16 poses, quatre directions | Marche féminine, création, dossier et équipement |
 | `shepard-female-combat-atlas.png` | 1536 × 1024 | Visée, pouvoir, impact, hors combat | Poses de combat féminines |
+| `chronicle-portraits-me2-me3.png` | 1536 × 1024 | Trois bustes : Miranda ME2, Thane ME2, Garrus ME3 | Portraits de prototype dans leurs contextes Chroniques autorisés |
 
-Le lot comprend **48 sujets de sprites**, **32 images de marche et quatre poses de combat supplémentaires** et **une illustration d’accueil**. Ce nombre ne signifie pas 84 personnages ni 48 movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les dix PNG historiques comprennent **48 sujets de sprites**, **32 images de marche et quatre poses de combat supplémentaires** et **une illustration d’accueil**. Le onzième PNG ajoute **trois bustes partiels**, sans nouveau sprite ni animation. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -76,9 +77,15 @@ Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Won
 
 ## Présentation des Chroniques
 
-Le lot [Chroniques](CHRONICLES.md) conserve les dix PNG existants et ne livre aucun nouvel atlas, portrait, modèle d’arme ou décor. Les 42 profils sélectionnables des Chroniques sont représentés par des initiales et des symboles de prototype dans l’interface des essais. Ils ne correspondent pas à 42 nouveaux sprites et ne réemploient pas les portraits de personnages ME1 pour représenter d’autres identités.
+Les premiers lots [Chroniques](CHRONICLES.md) conservaient les dix PNG existants, sans nouvel atlas de personnages. Le lot actuel ajoute `chronicle-portraits-me2-me3.png`, avec les trois identités exactes `ME2-CHR-MIRANDA`, `ME2-CHR-THANE` et `ME3-CHR-GARRUS`. Les 39 autres profils sélectionnables conservent des initiales et symboles de prototype. Aucun portrait de personnage ME1 n’est réemployé pour représenter une autre identité.
 
-Les compléments pouvoirs, préparations, spécialistes et lectures conservent également ces assets. Les treize mécaniques supplémentaires, les classes, les deux familles de modules et les 52 pages documentaires sont présentées par les commandes, barres, textes et liens de l’interface. Les 47 fiches de pouvoirs utilisées ne correspondent ni à 47 animations ni à 47 VFX livrés. Les six armes spéciales ont leurs règles de combat et une présentation de prototype, sans modèle, silhouette ou animation original certifié. Les lectures ne créent aucun portrait ou doublage de roman/comic.
+L’atlas local est une génération RGBA conservée sans retouche des pixels. Ses trois cellules de 512 × 1024 se lisent de gauche à droite : Miranda ME2, Thane ME2, Garrus ME3. Le [manifeste dédié](../public/assets/chronicle-portraits.json) consigne cadrages, contexte, empreinte et références ; la [note de provenance](research/chronicle-portrait-sources.md) distingue la couverture du manuel ME2 de la petite capture de Garrus dans le manuel ME3. Les contours doux et halos sont conservés. Les détails de visage, cicatrices, reliefs et vêtements sont des interprétations générées, sans certification 1:1.
+
+Le rendu SVG isole désormais chaque cellule pour empêcher l’apparition de fragments du portrait voisin, sans modifier les pixels de l’atlas. La [revue finale](qa/chronicle-portrait-ui-review.json) examine **sept captures après correction** : deux panneaux de groupe, deux panneaux de combat et trois vues de détail. Le nouveau parcours navigateur vérifie les trois portraits ; les **douze contrôles de production HTTP** chargent les **onze PNG** et vérifient les empreintes de **six bundles servis**. Voir le [rapport du lot](qa/chronicle-support-report.json). Ces contrôles portent sur l’intégration ; les limites artistiques ci-dessous demeurent.
+
+Ces images fournissent uniquement des têtes et hauts de buste : aucun corps en pied, vue arrière, huit directions, marche ou cycle de combat. Le portrait de Garrus est réservé à son identité ME3, sans substitution dans ME1 ou ME2. Les profils de protagonistes personnalisables gardent leur présentation propre. Les trois portraits ne changent ni recrutement, statistiques, pouvoirs ou conditions de scénario.
+
+Les classes, les deux familles de modules et les 52 pages documentaires restent présentées par les commandes, barres, textes et liens de l’interface. Les **61 fiches de pouvoirs exposées pour 30 commandes** ne correspondent ni à 61 animations ni à 61 VFX livrés. Les trois actions de soutien emploient des symboles et barres d’état de prototype ; leurs entités ciblables ne disposent pas de modèles de drone ou tourelle certifiés. Les six armes spéciales ont leurs règles de combat et une présentation de prototype, sans modèle, silhouette ou animation original certifié. Les lectures ne créent aucun portrait ou doublage de roman/comic.
 
 Les mannequins des trois bancs de personnages et les cibles des trois ateliers sont des gabarits originaux. Ils ne représentent pas des adversaires attestés des missions ou comics concernés. Les quatre autres essais conservent des types d’adversaires référencés, présentés avec la même convention symbolique. Les effets, projectiles et barres d’état n’établissent aucune conformité visuelle des personnages ou modèles d’armes.
 

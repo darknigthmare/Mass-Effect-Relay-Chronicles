@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import { ACTIONS, createBattle, getActions, performAction } from '../src/combat.js';
 import { getUniverseRecord, getUniverseWork } from '../src/universe-data.js';
 import { canAccessContent } from '../src/continuity.js';
-import { UNIVERSE_POWER_MAPPINGS, ACTOR_POWER_ASSIGNMENTS, getUniversePowerMapping, getActorPowerKit } from '../src/universe-powers.js';
+import { UNIVERSE_POWER_MAPPINGS, ACTOR_POWER_ASSIGNMENTS, getUniversePowerMapping, getActorPowerKit,
+  ME3_GARRUS_AMMO_PRIMARY_REFERENCE } from '../src/universe-powers.js';
+import { UNIVERSE_AMMO_PROFILES, getAmmoActionProfile } from '../src/universe-ammo.js';
 import { getUniverseActor, universeActorFor, listUniverseBuilds, getUniverseBuild, getUniversePowerUsage,
   getUsedUniversePowerCatalogIds, CHRONICLE_SCENARIOS } from '../src/universe-actors.js';
 
@@ -63,7 +65,7 @@ test('loyalty powers remain unavailable before the prepared post-loyalty worksho
   }
   const miranda = universeActorFor('ME2-CHR-MIRANDA', ctx, 'default', 'me2-freedoms-progress');
   const jacob = universeActorFor('ME2-CHR-JACOB', ctx, 'default', 'me2-freedoms-progress');
-  assert.deepEqual(miranda.powers, ['warp', 'overload']); assert.deepEqual(jacob.powers, ['pull']);
+  assert.deepEqual(miranda.powers, ['warp', 'overload']); assert.deepEqual(jacob.powers, ['pull', 'ammoIncendiary']);
   assert.ok(miranda.missingPowers.includes('Slam de loyauté')); assert.ok(jacob.missingPowers.includes('Barrier de loyauté'));
   assert.equal(native('ME2-CHR-MIRANDA').missingPowers.includes('Slam de loyauté'), false);
   assert.match(CHRONICLE_SCENARIOS.find(scene => scene.id === workshop('ME2')).description, /post-loyauté/);
@@ -99,7 +101,7 @@ test('Shepard’s six ME2 classes enforce primary-manual weapon families without
     assert.match(build.attributionReference.reference, /22–24/);
     assert.ok(actor.powerProvenance.every(power => power.mediaId === 'ME2'));
   }
-  assert.deepEqual(native(actorId, 'soldier').powers, ['concussiveShot']);
+  assert.deepEqual(native(actorId, 'soldier').powers, ['concussiveShot', 'ammoDisruptor', 'ammoIncendiary', 'ammoCryo']);
   assert.ok(native(actorId, 'engineer').powers.includes('cryoBlast'));
   assert.ok(native(actorId, 'adept').powers.includes('singularity'));
   assert.equal(native(actorId, 'infiltrator').powers.includes('overload'), false);
@@ -160,6 +162,113 @@ test('used catalogue power reports contain only bindings reachable through actua
     assert.ok(row.scenarioIds.every(id => CHRONICLE_SCENARIOS.some(scene => scene.id === id)));
     assert.ok(row.actorIds.every(id => Object.hasOwn(ACTOR_POWER_ASSIGNMENTS, id) || id.endsWith('-SHEPARD') || id === 'MEA-CHR-RYDER'));
   }
+});
+
+test('the four summon cards have exact work, class and companion whitelists', () => {
+  const supports = new Set(['combatDrone', 'sentryTurret', 'defenseDrone']);
+  const actual = [];
+  for (const scene of CHRONICLE_SCENARIOS) for (const actorId of scene.actorIds) {
+    for (const build of listUniverseBuilds(actorId, scene.context, scene.id)) {
+      for (const power of build.powerProvenance.filter(power => supports.has(power.actionId))) {
+        actual.push(`${power.catalogId}/${actorId}/${build.id}`);
+      }
+    }
+  }
+  assert.deepEqual([...new Set(actual)].sort(), [
+    'ME2-POW-DRONE/ME2-CHR-SHEPARD/engineer',
+    'ME2-POW-DRONE/ME2-CHR-TALI/default',
+    'ME2-POW-DRONE/ME2-CHR-LEGION/default',
+    'ME3-POW-DRONE/ME3-CHR-SHEPARD/engineer',
+    'ME3-POW-DRONE/ME3-CHR-TALI/default',
+    'ME3-POW-SENTRY/ME3-CHR-SHEPARD/engineer',
+    'ME3-POW-DEFENSE-DRONE/ME3-CHR-TALI/default',
+  ].sort());
+  assert.equal(native('ME3-CHR-TALI').powers.includes('sentryTurret'), false);
+  assert.equal(native('ME3-CHR-SHEPARD', 'engineer').powers.includes('defenseDrone'), false);
+  assert.equal(native('ME2-CHR-TALI').powers.includes('defenseDrone'), false);
+  assert.equal(getUniversePowerMapping('MEA-POW-ASSAULT-TURRET'), null);
+  assert.equal(getUniversePowerMapping('MEA-POW-REMNANT-VI'), null);
+});
+
+test('companion ammunition is explicit and ME2 loyalty ammo never unlocks from a label alone', () => {
+  const expected = {
+    'ME2-CHR-JACOB': 'ammoIncendiary', 'ME2-CHR-GRUNT': 'ammoIncendiary',
+    'ME2-CHR-ZAEED': 'ammoDisruptor', 'ME2-CHR-GARRUS': 'ammoArmorPiercing',
+    'ME2-CHR-JACK': 'ammoWarp', 'ME2-CHR-THANE': 'ammoShredder',
+    'ME3-CHR-GARRUS': 'ammoArmorPiercing', 'ME3-CHR-ASHLEY': 'ammoDisruptor',
+  };
+  const actual = {};
+  for (const scene of CHRONICLE_SCENARIOS) for (const actorId of scene.actorIds) {
+    if (actorId.endsWith('-SHEPARD') || actorId.endsWith('-RYDER')) continue;
+    const actor = universeActorFor(actorId, scene.context, 'default', scene.id);
+    const ammo = actor.powers.filter(id => getAmmoActionProfile(actor.mediaId, id));
+    if (ammo.length) {
+      assert.equal(ammo.length, 1); actual[actorId] = ammo[0];
+      assert.deepEqual(actor.allowedAmmoProfileIds, [getAmmoActionProfile(actor.mediaId, ammo[0]).id]);
+    }
+  }
+  assert.deepEqual(actual, expected);
+  for (const actorId of ['ME2-CHR-GARRUS', 'ME2-CHR-JACK', 'ME2-CHR-THANE']) {
+    const before = universeActorFor(actorId, context('ME2'));
+    assert.deepEqual(before.allowedAmmoProfileIds, []);
+    assert.equal(before.powers.includes(expected[actorId]), false);
+    assert.ok(before.lockedPowers.some(power => power.actionId === expected[actorId] && power.requirement === 'loyalty'));
+    assert.ok(native(actorId).powers.includes(expected[actorId]));
+  }
+  assert.ok(universeActorFor('ME2-CHR-JACOB', context('ME2'), 'default', 'me2-freedoms-progress').powers.includes('ammoIncendiary'));
+  assert.ok(native('ME2-CHR-ZAEED', 'default', 'me2-dlc-specialists').powers.includes('ammoDisruptor'));
+  assert.deepEqual(native('ME3-CHR-JAMES').allowedAmmoProfileIds, [], 'No new companion ammo attribution without inspected supporting evidence');
+});
+
+test('ammo permissions are derived from the true work and build, default to no active mode, and remain isolated', () => {
+  const expected = {
+    soldier: ['AMMO-DISRUPTOR', 'AMMO-INCENDIARY', 'AMMO-CRYO'],
+    infiltrator: ['AMMO-DISRUPTOR', 'AMMO-CRYO'], vanguard: ['AMMO-INCENDIARY', 'AMMO-CRYO'],
+    engineer: [], adept: [], sentinel: [], default: [],
+  };
+  for (const mediaId of ['ME2', 'ME3']) for (const [buildId, suffixes] of Object.entries(expected)) {
+    const actor = native(`${mediaId}-CHR-SHEPARD`, buildId);
+    assert.deepEqual(actor.allowedAmmoProfileIds, suffixes.map(suffix => `${mediaId}-POW-${suffix}`));
+    assert.equal(actor.ammoModeId, null);
+    assert.ok(actor.allowedAmmoProfileIds.every(id => actor.powerProvenance.some(power => power.catalogId === id)));
+  }
+  for (const actorId of ['MEA-CHR-RYDER', 'MEA-CHR-CORA', 'MEA-CHR-LIAM', 'MEA-CHR-VETRA', 'MEA-CHR-JAAL', 'MEA-CHR-DRACK', 'MEA-CHR-PEEBEE']) {
+    for (const build of listUniverseBuilds(actorId, context('MEA'), workshop('MEA'))) {
+      const actor = native(actorId, build.id);
+      assert.deepEqual(actor.allowedAmmoProfileIds, []); assert.equal(actor.ammoModeId, null);
+    }
+  }
+  const forged = native('ME2-CHR-JACOB');
+  forged.allowedAmmoProfileIds.push('ME3-POW-AMMO-WARP'); forged.ammoModeId = 'ME3-POW-AMMO-WARP';
+  const next = native('ME2-CHR-JACOB');
+  assert.deepEqual(next.allowedAmmoProfileIds, ['ME2-POW-AMMO-INCENDIARY']); assert.equal(next.ammoModeId, null);
+});
+
+test('eleven native ammo profiles map to distinct cards while only the ten permitted profiles are exposed', () => {
+  const profileIds = UNIVERSE_AMMO_PROFILES.map(profile => profile.id);
+  const mapped = UNIVERSE_POWER_MAPPINGS.filter(power => getAmmoActionProfile(power.mediaId, power.actionId));
+  assert.deepEqual(mapped.map(power => power.catalogId).sort(), [...profileIds].sort());
+  assert.equal(profileIds.length, 11);
+  const used = getUniversePowerUsage().filter(power => profileIds.includes(power.catalogId));
+  assert.deepEqual(used.map(power => power.catalogId).sort(), profileIds.filter(id => id !== 'ME3-POW-AMMO-WARP').sort());
+  assert.equal(getUniversePowerMapping('ME3-POW-AMMO-SHREDDER'), null);
+  assert.equal(getUniversePowerMapping('MEA-EQP-AMMO-FIRE'), null);
+  assert.equal(getUniversePowerMapping('MEA-EQP-AMMO-CRYO'), null);
+  assert.equal(getUniversePowerMapping('MEA-EQP-AMMO-DISRUPT'), null);
+  assert.equal(getAmmoActionProfile('MEA', 'ammoIncendiary'), null);
+});
+
+test('Garrus ME3 armor-piercing attribution retains its inspected primary image and precise limits', () => {
+  const actor = native('ME3-CHR-GARRUS');
+  const ammo = actor.powerProvenance.find(power => power.catalogId === 'ME3-POW-AMMO-AP');
+  assert.deepEqual(ammo.attributionReference, ME3_GARRUS_AMMO_PRIMARY_REFERENCE);
+  assert.match(ammo.attributionReference.sourceUrl, /mass-effect-3-manuals_PC\.pdf$/);
+  assert.match(ammo.attributionReference.reference, /page imprimée 5/);
+  assert.equal(ammo.attributionReference.sha256, '07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01');
+  assert.match(ammo.attributionVerification, /Primary manual image inspected/);
+  assert.match(ammo.attributionVerification, /not ranks, progression or ATB parameters/);
+  assert.equal(native('ME2-CHR-GARRUS').powerProvenance.find(power => power.actionId === 'ammoArmorPiercing').attributionReference, undefined);
+  assert.equal(actor.powerProvenance.find(power => power.actionId === 'overload').attributionReference, undefined);
 });
 
 test('build and actor snapshots cannot mutate shared source mappings or future preparations', () => {

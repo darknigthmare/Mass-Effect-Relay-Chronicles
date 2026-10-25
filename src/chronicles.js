@@ -3,6 +3,8 @@ import { createChronicleSession, normalizeChronicleSession, normalizeContext, ca
 import { CHRONICLE_SCENARIOS, getUniverseActor, canUseUniverseActor, universeActorFor, listUniverseBuilds, getUniverseBuild } from './universe-actors.js';
 import { listUniverseEquipment, getUniverseEquipment, canEquipUniverseItem, normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects } from './universe-equipment.js';
 import { listChronicleStories, getChronicleStory, readChronicleStoryStep } from './chronicle-story.js';
+import { UNIVERSE_AMMO_PROFILES, validateAmmoMode } from './universe-ammo.js';
+import { isVictoryParticipant, SUMMON_LIMITS } from './combat-summons.js';
 import { createBattle } from './combat.js';
 
 export const CHRONICLE_FORMAT = 'relay-chronicles.chronicle';
@@ -19,7 +21,21 @@ const actorCheck = (context, id, scenarioId) => {
   return check === true || check?.ok === true;
 };
 const battleSnapshots = new WeakMap();
-const fingerprint = session => JSON.stringify([session.context, session.scenarioId, session.party, session.loadouts, session.builds]);
+const fingerprint = session => JSON.stringify([session.context, session.scenarioId, session.party, session.loadouts, session.builds, session.ammoModes]);
+
+function preparedAmmoCheck(session, actorId, modeId) {
+  if (modeId !== null && !canAccessContent(modeId, session.context).ok) return fail('Ce mode n’appartient pas à cette période.');
+  return validateAmmoMode(composeChronicleActor(session, actorId), modeId);
+}
+
+// Only transitions from an already valid session may withdraw an obsolete mode.
+// Imports use the strict validator below and never silently repair forged kits.
+function reconcileAmmoModes(session) {
+  return Object.fromEntries(session.party.map(actorId => {
+    const modeId = session.ammoModes[actorId] ?? null;
+    return [actorId, preparedAmmoCheck(session, actorId, modeId).ok ? modeId : null];
+  }));
+}
 
 export function listChronicleScenarios(rawContext) {
   const context = normalizeContext(rawContext);
@@ -48,7 +64,9 @@ export function normalizeChronicle(raw) {
       const build = getUniverseBuild(actorId, session.context, session.builds[actorId], scenario.id);
       if (!build || loadouts[actorId].weapon && !build.allowedWeapons.includes(getUniverseEquipment(loadouts[actorId].weapon)?.weaponType)) return null;
     }
-    return { ...session, loadouts };
+    const normalized = { ...session, loadouts };
+    if (!session.party.every(actorId => preparedAmmoCheck(normalized, actorId, session.ammoModes[actorId]).ok)) return null;
+    return normalized;
   } catch { return null; }
 }
 
@@ -61,6 +79,7 @@ export function createChronicle(rawContext, scenarioId) {
   if (!scenario) return base;
   base.scenarioId = scenario.id;
   base.party = [...scenario.defaultParty];
+  base.ammoModes = Object.fromEntries(base.party.map(actorId => [actorId, null]));
   base.loadouts = normalizeChronicleLoadouts(undefined, base.context, base.party, scenario.id);
   return normalizeChronicle(base);
 }
@@ -70,17 +89,22 @@ export function selectChronicleScenario(raw, scenarioId) {
   if (!session) return fail('Chronique invalide.');
   const replacement = createChronicle(session.context, scenarioId);
   if (!replacement) return fail('Cet essai n’appartient pas à cette période.');
+  replacement.ammoModes = reconcileAmmoModes({ ...replacement, ammoModes: session.ammoModes });
   return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes,
     readingProgress: session.readingProgress, cleared: session.cleared } };
 }
 
 export function setChronicleParty(raw, actorIds) {
   const session = normalizeChronicle(raw);
-  const selection = session && normalizeChronicleSession({ ...session, party: actorIds, loadouts: {}, builds: {} });
+  const selectionInput = session && { ...session, party: actorIds, loadouts: {}, builds: {} };
+  // Let the base validator inspect hostile arrays before enumerating any IDs.
+  if (selectionInput) delete selectionInput.ammoModes;
+  const selection = selectionInput && normalizeChronicleSession(selectionInput);
   if (!selection || selection.party.length < 1) return fail('Choisissez de un à trois combattants disponibles.');
   const loadouts = Object.fromEntries(selection.party.filter(id => own(session.loadouts, id)).map(id => [id, session.loadouts[id]]));
   const builds = Object.fromEntries(selection.party.map(id => [id, session.builds[id] ?? 'default']));
-  const updated = normalizeChronicle({ ...session, party: selection.party, loadouts, builds });
+  const ammoModes = Object.fromEntries(selection.party.map(id => [id, session.ammoModes[id] ?? null]));
+  const updated = normalizeChronicle({ ...session, party: selection.party, loadouts, builds, ammoModes });
   return updated ? { ok: true, session: updated } : fail('Un personnage est indisponible dans cet essai.');
 }
 
@@ -89,8 +113,11 @@ export function equipChronicle(raw, actorId, itemId, slot) {
   if (!session) return fail('Chronique invalide.');
   const result = equipChronicleItem(session, actorId, itemId, slot);
   if (!result.ok) return result;
-  const updated = normalizeChronicle({ ...session, loadouts: result.loadouts });
-  return updated ? { ok: true, session: updated } : fail('Équipement incompatible avec cette chronique.');
+  const candidate = { ...session, loadouts: result.loadouts };
+  const updated = normalizeChronicle({ ...candidate, ammoModes: reconcileAmmoModes(candidate) });
+  return updated ? { ok: true, session: updated, returnedMods: result.returnedMods ?? [],
+    clearedAmmoMode: session.ammoModes[actorId] !== updated.ammoModes[actorId] ? session.ammoModes[actorId] : null }
+    : fail('Équipement incompatible avec cette chronique.');
 }
 
 export function getChronicleRoster(raw) {
@@ -124,6 +151,28 @@ export function getChronicleBuilds(raw, actorId) {
   return session && session.party.includes(actorId) ? listUniverseBuilds(actorId, session.context, session.scenarioId) : [];
 }
 
+/** Contextual profiles stay visible with the actual kit/weapon refusal reason. */
+export function getChronicleAmmoModes(raw, actorId) {
+  const session = normalizeChronicle(raw);
+  if (!session || !session.party.includes(actorId)) return [];
+  return UNIVERSE_AMMO_PROFILES.filter(profile => profile.mediaId === session.context.mediaId
+    && canAccessContent(profile.id, session.context).ok).map(profile => {
+    const check = preparedAmmoCheck(session, actorId, profile.id);
+    return { ...copy(profile), compatible: check.ok, reason: check.reason ?? null,
+      selected: session.ammoModes[actorId] === profile.id };
+  });
+}
+
+/** Preparation choices are independent from later live combat activations. */
+export function setChronicleAmmoMode(raw, actorId, modeId) {
+  const session = normalizeChronicle(raw);
+  if (!session || !session.party.includes(actorId)) return fail('Combattant indisponible dans cette chronique.');
+  const check = preparedAmmoCheck(session, actorId, modeId);
+  if (!check.ok) return check;
+  const updated = normalizeChronicle({ ...session, ammoModes: { ...session.ammoModes, [actorId]: check.ammoModeId } });
+  return updated ? { ok: true, session: updated } : fail('Mode de munitions incompatible avec cette chronique.');
+}
+
 /** Class preparation may withdraw an incompatible weapon; it never creates stock. */
 export function setChronicleBuild(raw, actorId, buildId) {
   const session = normalizeChronicle(raw);
@@ -137,8 +186,11 @@ export function setChronicleBuild(raw, actorId, buildId) {
       loadout[slot] = null;
     }
   }
-  const updated = normalizeChronicle({ ...session, loadouts, builds: { ...session.builds, [actorId]: build.id } });
-  return updated ? { ok: true, session: updated, clearedEquipment } : fail('Cette préparation est incompatible avec le groupe.');
+  const candidate = { ...session, loadouts, builds: { ...session.builds, [actorId]: build.id } };
+  const updated = normalizeChronicle({ ...candidate, ammoModes: reconcileAmmoModes(candidate) });
+  return updated ? { ok: true, session: updated, clearedEquipment,
+    clearedAmmoMode: session.ammoModes[actorId] !== updated.ammoModes[actorId] ? session.ammoModes[actorId] : null }
+    : fail('Cette préparation est incompatible avec le groupe.');
 }
 
 export const listChronicleReadings = rawContext => listChronicleStories(rawContext);
@@ -162,10 +214,8 @@ export function readChroniclePage(raw, storyId, index) {
   return updated ? { ok: true, session: updated, reading } : fail('Progression documentaire invalide.');
 }
 
-/** Apply loadout bonuses once, on the actor's independent base definition. */
-export function buildChronicleActor(raw, actorId) {
-  const session = normalizeChronicle(raw);
-  if (!session || !session.party.includes(actorId)) return null;
+/** Compose trusted selections without recursively validating the session. */
+function composeChronicleActor(session, actorId) {
   const base = universeActorFor(actorId, session.context, session.builds[actorId], session.scenarioId);
   if (!base) return null;
   const effects = getChronicleEquipmentEffects(session, actorId);
@@ -187,6 +237,14 @@ export function buildChronicleActor(raw, actorId) {
     for (const key of ['magazineCapacity', 'ammo', 'reserveAmmo']) delete actor[key];
   }
   return actor;
+}
+
+/** Apply loadout bonuses once and pass only validated preparation permissions. */
+export function buildChronicleActor(raw, actorId) {
+  const session = normalizeChronicle(raw);
+  if (!session || !session.party.includes(actorId)) return null;
+  const actor = composeChronicleActor(session, actorId);
+  return actor ? { ...actor, ammoModeId: session.ammoModes[actorId] } : null;
 }
 
 export function startChronicleBattle(raw) {
@@ -214,18 +272,31 @@ export function finishChronicleBattle(raw, battle) {
   const winner = Object.getOwnPropertyDescriptor(battle, 'winner');
   const actorsField = Object.getOwnPropertyDescriptor(battle, 'actors');
   if (!winner || !own(winner, 'value') || !['party', 'enemy'].includes(winner.value)
-    || !actorsField || !own(actorsField, 'value') || !Array.isArray(actorsField.value)) return fail('Résultat d’essai invalide.');
-  const actors = [];
+    || !actorsField || !own(actorsField, 'value') || !Array.isArray(actorsField.value)
+    || actorsField.value.length > SUMMON_LIMITS.maximumActors) return fail('Résultat d’essai invalide.');
+  const scenario = scenarioFor(session.scenarioId);
+  const expected = new Map([...session.party.map(id => [id, 'party']),
+    ...scenario.enemies.map((enemy, index) => [`chronicle-enemy-${index}`, 'enemy'])]);
+  const actors = [], seen = new Set();
   for (let index = 0; index < actorsField.value.length; index++) {
     const field = Object.getOwnPropertyDescriptor(actorsField.value, String(index));
     if (!field || !own(field, 'value') || !field.value || typeof field.value !== 'object') return fail('Combattant invalide.');
+    const id = Object.getOwnPropertyDescriptor(field.value, 'id');
     const team = Object.getOwnPropertyDescriptor(field.value, 'team'), hp = Object.getOwnPropertyDescriptor(field.value, 'hp');
-    if (!team || !hp || !own(team, 'value') || !own(hp, 'value') || !['party', 'enemy'].includes(team.value)
+    if (!id || !own(id, 'value') || typeof id.value !== 'string' || seen.has(id.value)
+      || !team || !hp || !own(team, 'value') || !own(hp, 'value') || !['party', 'enemy'].includes(team.value)
       || !Number.isFinite(hp.value) || hp.value < 0) return fail('Combattant invalide.');
+    seen.add(id.value);
+    if (!isVictoryParticipant(field.value)) {
+      if (expected.has(id.value)) return fail('Combattant natif invalide.');
+      continue;
+    }
+    if (expected.get(id.value) !== team.value) return fail('Combattant étranger à cet essai.');
     actors.push({ team: team.value, hp: hp.value });
   }
   const won = winner.value === 'party';
-  if (!actors.some(actor => actor.team === 'enemy') || !actors.some(actor => actor.team === 'party')
+  if (actors.length !== expected.size
+    || !actors.some(actor => actor.team === 'enemy') || !actors.some(actor => actor.team === 'party')
     || won && (actors.some(actor => actor.team === 'enemy' && actor.hp > 0)
       || !actors.some(actor => actor.team === 'party' && actor.hp > 0))
     || !won && actors.some(actor => actor.team === 'party' && actor.hp > 0)) return fail('L’essai n’est pas terminé.');

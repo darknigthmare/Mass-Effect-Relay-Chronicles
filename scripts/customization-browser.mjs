@@ -24,10 +24,11 @@ const report = {
   version: '0.3.0', at: new Date().toISOString(), passed: false, browser: null,
   scope: 'Real creation/customization/equipment UI, draft cancellation and commit, keyboard, mobile layout, save/reload/export/import, and explicit imported-save fixtures. State and world are observed, never overwritten through the development harness. This does not establish pixel-perfect canon art or a native Windows launch.',
   urls: { development: baseURL, production: productionURL }, checks: [], fixtures: [],
-  command: [`CUSTOMIZATION_REPORT_PREFIX=${reportPrefix}`, process.env.PLAYWRIGHT_EXECUTABLE_PATH && `PLAYWRIGHT_EXECUTABLE_PATH=${process.env.PLAYWRIGHT_EXECUTABLE_PATH}`, `GAME_URL=${baseURL}`, productionURL && `PRODUCTION_GAME_URL=${productionURL}`, 'node scripts/customization-browser.mjs'].filter(Boolean).join(' '),
+  command: [`CUSTOMIZATION_REPORT_PREFIX=${reportPrefix}`, process.env.CUSTOMIZATION_BASE_MAIN && `CUSTOMIZATION_BASE_MAIN=${process.env.CUSTOMIZATION_BASE_MAIN}`, process.env.PLAYWRIGHT_EXECUTABLE_PATH && `PLAYWRIGHT_EXECUTABLE_PATH=${process.env.PLAYWRIGHT_EXECUTABLE_PATH}`, `GAME_URL=${baseURL}`, productionURL && `PRODUCTION_GAME_URL=${productionURL}`, 'node scripts/customization-browser.mjs'].filter(Boolean).join(' '),
   errors: [], failedRequests: [], screenshots: [], production: { status: productionURL ? 'pending' : 'not-requested' },
 };
-report.baseMain = '748b9657de4cad0a4633b86c9d185ea63793c293';
+report.baseMain = process.env.CUSTOMIZATION_BASE_MAIN || '748b9657de4cad0a4633b86c9d185ea63793c293';
+assert.match(report.baseMain, /^[0-9a-f]{40}$/, 'The report base must be an exact main commit.');
 report.sources = Object.fromEntries(await Promise.all([
   'src/main.js', 'src/state.js', 'src/world.js', 'src/customization.js', 'src/customization-ui.js',
   'src/customization-ui.css', 'src/customization-render.js', 'src/loadout.js', 'scripts/customization-browser.mjs',

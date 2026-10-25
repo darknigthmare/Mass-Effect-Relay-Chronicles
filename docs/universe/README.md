@@ -4,7 +4,7 @@
 
 Ces classeurs prolongent le catalogue ME1 existant pour préparer des adaptations en RPG à commandes ATB, avec personnages principalement en sprites 2D et décors 3D. Ils partagent la charte du classeur initial : titres bleu nuit, accents turquoise, lignes alternées, filtres, volets figés et cellules de statut ambre.
 
-**Statuts des fiches : Défini : 5 102 · Prototype : 224 · Intégré : 0 · Validé : 0.** Les statuts non Défini ont des chemins de code et de preuves explicites vérifiés dans le dépôt. L’existence de ces fichiers ne promeut aucune fiche automatiquement. Les prototypes de profils et d’équipements sont des essais dans des chroniques indépendantes ; ils ne certifient ni des campagnes complètes, ni des cartes et sprites achevés, ni une fidélité 1:1.
+**Statuts des fiches : Défini : 5 085 · Prototype : 241 · Intégré : 0 · Validé : 0.** Les statuts non Défini ont des chemins de code et de preuves explicites vérifiés dans le dépôt. L’existence de ces fichiers ne promeut aucune fiche automatiquement. Les prototypes de profils et d’équipements sont des essais dans des chroniques indépendantes ; ils ne certifient ni des campagnes complètes, ni des cartes et sprites achevés, ni une fidélité 1:1.
 
 **[Télécharger les 27 classeurs en une archive](outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**
 
@@ -21,7 +21,7 @@ Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `do
 | Classeur | Fiches | Domaines renseignés | Références de sources |
 |---|---:|---:|---:|
 | [Mass Effect 2](outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx) | 670 | 26/26 | 64 |
-| [Mass Effect 3](outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx) | 736 | 26/26 | 61 |
+| [Mass Effect 3](outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx) | 736 | 26/26 | 62 |
 | [Mass Effect Andromeda](outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Production.xlsx) | 763 | 26/26 | 92 |
 | [Mass Effect: Infiltrator](outputs/relay-chronicles-20261022/Mass_Effect_Infiltrator_Production.xlsx) | 109 | 26/26 | 6 |
 | [Mass Effect: Galaxy](outputs/relay-chronicles-20261022/Mass_Effect_Galaxy_Production.xlsx) | 103 | 26/26 | 9 |
