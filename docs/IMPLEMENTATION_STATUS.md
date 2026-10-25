@@ -2,7 +2,35 @@
 
 Mise à jour : **25 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
 
-## Complément spécialistes — 25 octobre 2026
+## Complément soutiens, munitions et portraits — 25 octobre 2026
+
+Le lot actuel reprend `748b965`. Il raccorde **quatre fiches de soutien à trois actions** : Drone de combat ME2/ME3, Tourelle de garde ME3 et Drone de défense ME3. Chaque invocation devient une entité ciblable, dotée de PV, d’une durée et d’un propriétaire. Les soutiens ne sont pas commandables, ne reçoivent pas les soins du groupe et ne comptent pas dans la détermination des vainqueurs. Les plafonds, cadences, durées, retrait lorsque le propriétaire tombe et réaction défensive sont des choix ATB explicités, sans simulation de proximité originale.
+
+**Dix fiches de munitions exposées donnent six actions de modes exclusifs**, plus leur désactivation. Les modes appris demandent le kit, l’œuvre et une arme conventionnelle à clips compatibles. Activation et désactivation consomment un ordre ATB sans remplir les réserves ; les effets restent limités aux tirs, avec dégâts par couche et états après perte réelle de santé. Pouvoirs, invocations, armes à chaleur et six armes spéciales restent exclus. Warp Ammo ME3 et les consommables de munitions Andromeda restent fermés. Les **61 fiches de pouvoirs exposées correspondent désormais à 30 commandes**, hors désactivation.
+
+La préparation conserve ses choix dans `ammoModes`, avec validation stricte et migration neutre des anciennes sessions. Changer de classe ou d’arme retire un mode incompatible ; les activations pendant un combat ne réécrivent pas la préparation sauvegardée. Les Chroniques restent séparées de la campagne ME1.
+
+Un onzième PNG local fournit **trois bustes de prototype**, limités à Miranda ME2, Thane ME2 et Garrus ME3 dans leurs contextes autorisés. Il ne livre ni sprite en pied, ni huit directions, ni animation ou costume complet. Les autres profils gardent leurs symboles. Les [références des soutiens et munitions](research/chronicle-support-sources.md) et les [références des portraits](research/chronicle-portrait-sources.md) distinguent faits consultés, attributions secondaires et adaptations.
+
+Le lot ajoute **17 promotions Prototype** : quatre pouvoirs de soutien, dix de munitions et trois portraits partiels. Le décompte vérifié après reconstruction est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé**, soit **6 656 fiches et 449 sources**. Le [rapport global](qa/chronicle-support-report.json) relie les résultats suivants à leurs sources.
+
+| Validation du lot actuel | Résultat et portée |
+|---|---|
+| Tests Node | 473 réussis sur 473, aucun échec ni test ignoré |
+| Build web | Compilation réussie de 47 modules |
+| Nouveau parcours navigateur | Cinq contrôles ; dix cartes de munitions, quatre de soutien, trois portraits et une victoire réelle |
+| Régression des Chroniques | Six contrôles, seize victoires ; passage antérieur à la correction SVG finale, ensuite couverte par le parcours du lot et la production |
+| Production HTTP | Douze contrôles, onze PNG et six bundles servis avec empreintes vérifiées |
+| Différentiel combat ME1 | Bilans, événements et résultats d’ordres identiques sur 30 graines et 1 755 ordres acceptés |
+| Classeurs | 28 XLSX vérifiés ; 21 exports univers reconstruits et six conservés |
+| Revue des classeurs | 30 panneaux ciblés de deux classeurs univers et trois panneaux du principal |
+| Revue des portraits | Sept captures finales revues après correction du débordement entre cellules SVG |
+
+Preuves détaillées : [nouveau parcours](qa/chronicle-support-browser-report.json), [régression](qa/chronicle-support-legacy-universe-report.json), [production](qa/chronicle-support-production-report.json), [différentiel ME1](qa/chronicle-support-me1-combat-diff.json), [exports](qa/chronicle-support-workbook-export-report.json), [revue univers](qa/chronicle-support-workbook-visual-report.json), [principal](qa/chronicle-support-main-workbook-report.json) et [portraits](qa/chronicle-portrait-ui-review.json). La correction SVG isole les bustes voisins sans retouche de l’atlas. Les bustes restent partiels, sans huit directions ni animations.
+
+Ce lot ne revendique aucune nouvelle campagne complète de 21 combats, aucun lancement Windows et aucune fidélité 1:1 complète. Les résultats de campagne et de distribution ci-dessous concernent uniquement les livraisons historiques indiquées.
+
+## Complément spécialistes — historique du 25 octobre 2026
 
 Le complément reprend `7fe7a88`. Il ajoute **six profils d’armes spéciales**, les grenades à fragmentation et collantes à réserve limitée, et le soutien des boucliers de Cora. Les ateliers proposent désormais **76 équipements : 64 armes, dix armures et deux familles de modules**. Explosions différées, chaleur et clips, canaux interrompus et charges dépensées sont des comportements distincts ; leurs paramètres restent adaptés à l’ATB.
 
@@ -58,7 +86,7 @@ Cette livraison est un prototype jouable de l’adaptation ATB. La reconstitutio
 | Sauvegardes | Auto hors combat, 6 emplacements manuels, import/export JSON et migration des anciennes parties v1 |
 | Narration | 9 interlocuteurs et 18 sujets conditionnels au Normandy, conseil à Garrus mémorisé, 16 notices de codex progressives |
 | Carte et journal | Filtres, légende, repères lisibles, étapes et conditions de blocage, suivi d’une opération |
-| Art | 10 PNG, 48 sujets d’atlas, 32 images de marche, 4 poses de combat féminines et une illustration d’accueil |
+| Art | 11 PNG, 48 sujets d’atlas historiques, 32 images de marche, 4 poses de combat féminines, une illustration d’accueil et trois bustes partiels des Chroniques |
 | Son | Ambiances et effets locaux Web Audio ; aucun doublage |
 | Distribution | Compilation Vite, configuration Electron/Windows, configuration Vercel et workflows GitHub existants |
 

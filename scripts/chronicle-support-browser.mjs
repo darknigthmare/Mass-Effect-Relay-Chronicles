@@ -1,0 +1,689 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { mkdir, readFile, writeFile, copyFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+
+const baseURL = process.env.GAME_URL || 'http://127.0.0.1:4173';
+const out = new URL('../test-results/', import.meta.url);
+await mkdir(out, { recursive: true });
+const report = {
+  passed: false, at: new Date().toISOString(), stage: 'prepare', checks: [], screenshots: [], errors: [], failedRequests: [],
+  summons: [], ammo: [], portraits: [], tacticalVictories: [],
+  scope: 'Actual UI and native callback verification of four support cards/three actions, ten reachable ammo cards/six modes, session preferences and three generated bust portraits. All combat budgets, summon lifetimes and ammo effects remain ATB adaptations. MEA consumables remain closed; no global 1:1 fidelity or complete character art is certified.',
+};
+let browser, page, baselineState, baselineStorage;
+const mark = stage => { report.stage = stage; console.log(JSON.stringify({ stage })); };
+const record = (name, details = {}) => { report.checks.push({ name, ...details }); console.log(JSON.stringify({ check: name })); };
+const action = (name, id) => page.locator(`[data-do="${name}"]${id ? `[data-id="${id}"]` : ''}`).first();
+const session = () => page.evaluate(() => window.__RELAY_TEST__.getChronicle());
+const battle = () => page.evaluate(() => window.__RELAY_TEST__.getChronicleBattle());
+const campaignState = () => page.evaluate(() => structuredClone(window.__RELAY_TEST__.getState()));
+const campaignStorage = () => page.evaluate(() => Object.fromEntries(Object.keys(localStorage)
+  .filter(key => key === 'relay-chronicles.save.v1' || key.startsWith('relay-chronicles.manual-save.v1.'))
+  .sort().map(key => [key, localStorage.getItem(key)])));
+const chronicleStorage = () => page.evaluate(() => Object.fromEntries(Object.keys(localStorage)
+  .filter(key => key.startsWith('relay-chronicles.chronicle.')).sort().map(key => [key, localStorage.getItem(key)])));
+const gear = (actorId, slot) => page.locator(`[data-chronicle-gear][data-actor-id="${actorId}"][data-slot="${slot}"]`);
+const buildSelect = actorId => page.locator(`[data-chronicle-build][data-actor-id="${actorId}"]`);
+const combatant = (combat, id) => combat.actors.find(actor => actor.id === id);
+const compactActor = actor => Object.fromEntries(['id', 'hp', 'shield', 'maxShield', 'atb', 'heat', 'ammo', 'reserveAmmo', 'magazineCapacity', 'grenadeCharges', 'grenadeCapacity', 'weaponProfileId', 'weaponSystem', 'channel', 'statuses'].filter(key => actor[key] !== undefined).map(key => [key, actor[key]]));
+async function preparedActor(actorId) {
+  return page.evaluate(async id => (await import('/src/chronicles.js')).buildChronicleActor(window.__RELAY_TEST__.getChronicle(), id), actorId);
+}
+
+async function screenshot(name) {
+  const filename = `chronicle-support-${name}.png`;
+  await page.screenshot({ path: fileURLToPath(new URL(filename, out)), timeout: 60000 });
+  report.screenshots.push(`test-results/${filename}`);
+}
+async function idle(zone) {
+  await page.waitForFunction(expected => {
+    const qa = window.__RELAY_TEST__;
+    return qa?.getState() && !qa.getUI().busy && (!expected || qa.getState().zone === expected);
+  }, zone || null, { polling: 100, timeout: 60000 });
+}
+async function selectContext(mediaId, periodId) {
+  if (await page.locator('#chronicle-media').inputValue() !== mediaId) await page.locator('#chronicle-media').selectOption(mediaId);
+  if (periodId && await page.locator('#chronicle-period').inputValue() !== periodId) await page.locator('#chronicle-period').selectOption(periodId);
+}
+async function prepare(mediaId, periodId, scenarioId) {
+  await selectContext(mediaId, periodId); await action('universe-tab', 'session').click();
+  if (await page.locator('#chronicle-scenario').inputValue() !== scenarioId) await page.locator('#chronicle-scenario').selectOption(scenarioId);
+  await action('chronicle-start').click();
+  await page.waitForFunction(({ mediaId, periodId, scenarioId }) => {
+    const current = window.__RELAY_TEST__.getChronicle();
+    return current?.context.mediaId === mediaId && current.context.periodId === periodId && current.scenarioId === scenarioId;
+  }, { mediaId, periodId, scenarioId }, { polling: 100, timeout: 60000 });
+}
+async function selectParty(ids) {
+  const current = await session(), unwanted = current.party.filter(id => !ids.includes(id));
+  const keeper = current.party.some(id => ids.includes(id)) ? null : unwanted.pop();
+  for (const id of unwanted) await action('chronicle-party', id).click();
+  for (const id of ids.filter(id => !(current.party.includes(id)))) {
+    await action('chronicle-party', id).click();
+    if (keeper && (await session()).party.includes(keeper)) await action('chronicle-party', keeper).click();
+  }
+  assert.deepEqual([...(await session()).party].sort(), [...ids].sort());
+}
+async function blockedOption(actorId, slot, itemId) {
+  const observed = await gear(actorId, slot).locator(`option[value="${itemId}"]`).evaluate(option => ({ disabled: option.disabled, attribute: option.hasAttribute('disabled'), label: option.textContent }));
+  assert.equal(observed.disabled, true, `${itemId}: ${JSON.stringify(observed)}`);
+  assert.equal(observed.attribute, true);
+}
+async function exportDownload(button, filename) {
+  const pending = page.waitForEvent('download'); await button.click();
+  const download = await pending, path = fileURLToPath(new URL(filename, out));
+  await download.saveAs(path); return readFile(path, 'utf8');
+}
+async function importChronicle(contents, valid = true) {
+  await page.evaluate(() => { window.__SUPPORT_IMPORT_FEEDBACK__ = document.querySelector('.universe-feedback'); });
+  await page.locator('#chronicle-import').setInputFiles({ name: 'chronicle-support.json', mimeType: 'application/json', buffer: Buffer.from(contents) });
+  await page.waitForFunction(() => {
+    const current = document.querySelector('.universe-feedback');
+    return document.querySelector('#chronicle-import').value === '' && current && current !== window.__SUPPORT_IMPORT_FEEDBACK__;
+  }, null, { polling: 100, timeout: 60000 });
+  await page.evaluate(() => { delete window.__SUPPORT_IMPORT_FEEDBACK__; });
+  assert.equal(await page.locator('.universe-feedback.error').count(), valid ? 0 : 1);
+}
+async function assertIsolated() {
+  assert.deepEqual(await campaignStorage(), baselineStorage, 'Chronicle actions and reload leave the entry checkpoint and manual ME1 saves byte-identical');
+  const live = await campaignState(); if (live) assert.deepEqual(live, baselineState, 'Chronicles do not advance the ME1 clock, inventory, choices or rewards');
+  assert.equal(await page.evaluate(() => window.__RELAY_TEST__.getBattle()), null);
+}
+async function establishCampaignWitness() {
+  await page.goto(`${baseURL}/?qa`, { waitUntil: 'networkidle' });
+  await page.getByRole('button', { name: /Nouvelle campagne/ }).click();
+  await page.locator('#commander-name').fill('Alex Soutiens');
+  await page.getByRole('button', { name: /Commencer l’aventure/ }).click();
+  await page.getByRole('button', { name: 'Je rejoins le briefing.' }).click(); await idle('normandy');
+  await action('equipment').click(); await action('eq-tab', 'shop').click(); await action('eq-buy', 'heat-sink-i').click();
+  await action('eq-tab', 'inventory').click(); await action('eq-equip', 'heat-sink-i').click(); await action('close').click();
+  await page.keyboard.press('Escape'); await action('manual-saves').click();
+  await page.locator('#manual-save-name-1').fill('ME1 — témoin soutiens Chroniques'); await action('manual-save', '1').click();
+  assert.equal(await page.locator('[data-save-slot="1"]').getAttribute('data-status'), 'saved');
+  await action('manual-back').click(); await action('save').click();
+  const before = await campaignState(), manual = await campaignStorage();
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  baselineState = await campaignState(); baselineStorage = await campaignStorage();
+  assert.deepEqual(baselineState, before);
+  assert.deepEqual(JSON.parse(baselineStorage['relay-chronicles.save.v1']).state, before);
+  assert.equal(baselineState.credits, 150); assert.equal(baselineState.inventory.equipped.shepard.weaponMod, 'heat-sink-i');
+  for (const key of Object.keys(manual).filter(key => key !== 'relay-chronicles.save.v1')) assert.equal(baselineStorage[key], manual[key]);
+}
+async function waitReady(actorId, actionId) {
+  await page.evaluate(async ({ actorId, actionId }) => {
+    const { getActions } = await import('/src/combat.js'), qa = window.__RELAY_TEST__;
+    for (let turn = 0; turn < 400; turn++) {
+      const combat = qa.getChronicleBattle();
+      if (!combat || combat.winner) throw new Error('The Chronicle ended before the requested order');
+      if (getActions(combat, actorId).some(action => action.id === actionId && action.available)) return;
+      for (const member of combat.actors.filter(actor => actor.team === 'party' && actor.id !== actorId && actor.hp > 0)) {
+        if (getActions(combat, member.id).some(action => action.id === 'cover' && action.available)) {
+          const result = qa.chronicleAction({ actorId: member.id, actionId: 'cover', targetId: member.id });
+          if (!result?.ok) throw new Error(result?.reason || 'A legitimate companion cover order failed');
+        }
+      }
+      qa.chronicleStep(.25);
+    }
+    throw new Error(`${actorId} did not become ready for ${actionId}`);
+  }, { actorId, actionId });
+}
+async function uiOrder(actorId, actionId, targetId) {
+  await waitReady(actorId, actionId);
+  await action('chronicle-actor', actorId).click();
+  const targetKind = await page.evaluate(async ({ actorId, actionId }) => (await import('/src/combat.js')).getActions(window.__RELAY_TEST__.getChronicleBattle(), actorId).find(action => action.id === actionId).target, { actorId, actionId });
+  const targeted = !['self', 'allies'].includes(targetKind);
+  assert.ok(!targeted || targetId, `${actionId} needs a real UI target click`);
+  const before = await battle();
+  // A read-only observer runs after the application's native click handler and
+  // before the next animation frame. It changes no actor, session or battle data.
+  await page.evaluate(({ actorId, actionId, targetId, targeted }) => {
+    const listener = event => {
+      const button = event.target.closest('[data-do]');
+      if (!button || button.dataset.do !== (targeted ? 'chronicle-target' : 'chronicle-action') || button.dataset.id !== (targeted ? targetId : actionId)) return;
+      window.__SUPPORT_ORDER_AFTER__ = window.__RELAY_TEST__.getChronicleBattle();
+      document.removeEventListener('click', listener);
+    };
+    window.__SUPPORT_ORDER_LISTENER__ = listener;
+    window.__SUPPORT_ORDER_AFTER__ = null;
+    document.addEventListener('click', listener);
+  }, { actorId, actionId, targetId, targeted });
+  await action('chronicle-action', actionId).click();
+  if (targeted) await action('chronicle-target', targetId).click();
+  const after = await page.evaluate(() => {
+    const snapshot = window.__SUPPORT_ORDER_AFTER__;
+    document.removeEventListener('click', window.__SUPPORT_ORDER_LISTENER__);
+    delete window.__SUPPORT_ORDER_AFTER__; delete window.__SUPPORT_ORDER_LISTENER__;
+    return snapshot;
+  });
+  assert.ok(after, 'The actual UI order was observed');
+  assert.ok(after.actionCount > before.actionCount, `${actionId} executes a real order`);
+  assert.equal(after.events.slice(before.events.length).filter(event => event.type === 'action' && event.actorId === actorId && event.actionId === actionId).length, 1, `${actionId} executes exactly once for this actor`);
+  return { before, after };
+}
+async function advanceLegitimately(seconds) {
+  return page.evaluate(async seconds => {
+    const { getActions } = await import('/src/combat.js'), qa = window.__RELAY_TEST__;
+    const until = qa.getChronicleBattle().elapsed + seconds;
+    let combat = qa.getChronicleBattle(), turns = 0;
+    while (!combat.winner && combat.elapsed < until && turns++ < 2000) {
+      for (const member of combat.actors.filter(actor => actor.team === 'party' && actor.hp > 0)) {
+        if (getActions(qa.getChronicleBattle(), member.id).some(action => action.id === 'cover' && action.available)) {
+          const result = qa.chronicleAction({ actorId: member.id, actionId: 'cover', targetId: member.id });
+          if (!result?.ok) throw new Error(result?.reason || 'A legitimate cover order failed');
+        }
+      }
+      qa.chronicleStep(.1); combat = qa.getChronicleBattle();
+    }
+    if (!combat.winner && combat.elapsed < until) throw new Error('The legitimate battle clock did not advance');
+    return combat;
+  }, seconds);
+}
+async function exposeTarget(actorId, targetId) {
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const target = combatant(await battle(), targetId);
+    assert.ok(target.hp > 0, 'The target survives preparation for the power');
+    if (target.shield <= 0) return;
+    await uiOrder(actorId, 'burst', targetId);
+  }
+  assert.equal(combatant(await battle(), targetId).shield, 0, 'Real gunfire removes shields before exposed-target control');
+}
+function powerEvidence(actionId, actorId, targetId, before, after) {
+  report.powers.push({ actionId, actorId, targetId, before: { actor: compactActor(combatant(before, actorId)), ...(targetId ? { target: compactActor(combatant(before, targetId)) } : {}) },
+    after: { actor: compactActor(combatant(after, actorId)), ...(targetId ? { target: compactActor(combatant(after, targetId)) } : {}) } });
+}
+async function winChronicle() {
+  const outcome = await page.evaluate(async () => {
+    const { getActions } = await import('/src/combat.js'), qa = window.__RELAY_TEST__;
+    let iterations = 0, combat = qa.getChronicleBattle();
+    while (combat && !combat.winner && iterations++ < 6000) {
+      for (const actor of combat.actors.filter(actor => actor.team === 'party' && actor.hp > 0)) {
+        combat = qa.getChronicleBattle(); if (combat.winner) break;
+        const available = getActions(combat, actor.id).filter(action => action.available);
+        const enemies = combat.actors.filter(enemy => enemy.team === 'enemy' && enemy.hp > 0);
+        const target = enemies.find(enemy => !enemy.statuses.stasis && !enemy.statuses.dominated) || enemies[0];
+        if (!target || !available.length) continue;
+        const low = combat.actors.filter(member => member.team === 'party' && member.hp > 0).sort((a, b) => a.hp / a.maxHp - b.hp / b.maxHp)[0];
+        const priorities = [];
+        if (low.hp / low.maxHp < .4) priorities.push(['medigel', low.id]);
+        if (actor.weaponSystem === 'thermal-clip' && actor.ammo < 1) priorities.push(['reload', actor.id]);
+        if (target.shield > 0) priorities.push(['overload', target.id]);
+        priorities.push(['signature', target.id], ['warp', target.id], ['burst', target.id], ['shoot', target.id], ['throw', target.id], ['overload', target.id], ['reload', actor.id], ['cover', actor.id]);
+        for (const [actionId, targetId] of priorities) {
+          if (!available.some(action => action.id === actionId)) continue;
+          if (qa.chronicleAction({ actorId: actor.id, actionId, targetId })?.ok) break;
+        }
+      }
+      qa.chronicleStep(.5); combat = qa.getChronicleBattle();
+    }
+    return { winner: combat?.winner, actions: combat?.actionCount, elapsed: combat?.elapsed, iterations, scenarioId: qa.getChronicle()?.scenarioId };
+  });
+  assert.equal(outcome.winner, 'party'); assert.ok(outcome.actions > 0);
+  await page.locator('#chronicle-battle-status').filter({ hasText: 'Victoire' }).waitFor();
+  await action('chronicle-preparation').click(); report.tacticalVictories.push(outcome);
+  await assertIsolated(); return outcome;
+}
+
+const ammoSelect = actorId => page.locator(`[data-chronicle-ammo-mode][data-actor-id="${actorId}"]`);
+const unit = (combat, id) => combat.actors.find(actor => actor.id === id);
+const freshEvents = (before, after) => after.events.slice(before.events.length);
+const damageOf = (order, actorId, actionId, targetId) => {
+  const hits = freshEvents(order.before, order.after).filter(event => event.type === 'damage'
+    && event.actorId === actorId && event.actionId === actionId && event.targetId === targetId);
+  assert.equal(hits.length, 1, `${actorId}/${actionId} has one real damage event`);
+  return hits[0];
+};
+const closeEnough = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-6,
+  `${label}: observed ${actual}, expected ATB result ${expected}`);
+
+async function returnToPreparation() {
+  await action('chronicle-preparation').click(); await assertIsolated();
+}
+async function trial(mediaId, actorId, buildId = 'default', modeId = null, companions = []) {
+  await prepare(mediaId, mediaId.toLowerCase(), `${mediaId.toLowerCase()}-equipment-workshop`);
+  await selectParty([actorId, ...companions]);
+  if (await buildSelect(actorId).inputValue() !== buildId) await buildSelect(actorId).selectOption(buildId);
+  if (await gear(actorId, 'weapon').inputValue()) await gear(actorId, 'weapon').selectOption('');
+  if (await ammoSelect(actorId).count()) await ammoSelect(actorId).selectOption(modeId || '');
+  else assert.equal(modeId, null);
+  const prepared = await preparedActor(actorId);
+  assert.equal(prepared.ammoModeId, modeId); assert.equal(prepared.weaponProfileId ?? null, null);
+  await action('chronicle-battle').click();
+  await page.locator('#chronicle-battle-status').waitFor();
+  return prepared;
+}
+async function modeShot(profile, modeId) {
+  const actorId = profile.witness, companions = profile.mode === 'warp' ? ['ME2-CHR-SAMARA'] : [];
+  await trial(profile.mediaId, actorId, profile.build || 'default', modeId, companions);
+  const targetId = profile.mode === 'disruptor' ? 'chronicle-enemy-0' : 'chronicle-enemy-1';
+  let exposureHit = null;
+  if (profile.mode === 'shredder') {
+    const exposure = await uiOrder(actorId, 'shoot', targetId);
+    assert.ok(unit(exposure.before, targetId).shield > 0);
+    assert.equal(unit(exposure.after, targetId).shield, 0);
+    exposureHit = damageOf(exposure, actorId, 'shoot', targetId);
+  }
+  if (profile.mode === 'warp') {
+    await uiOrder(actorId, 'burst', targetId);
+    await uiOrder('ME2-CHR-SAMARA', 'cover');
+    await uiOrder('ME2-CHR-SAMARA', 'pull', targetId);
+    assert.ok(unit(await battle(), targetId).statuses.pull > 0);
+  }
+  const actionId = profile.mode === 'cryo' ? 'burst' : 'shoot';
+  const order = await uiOrder(actorId, actionId, targetId);
+  const hit = damageOf(order, actorId, actionId, targetId);
+  assert.ok(hit.healthDamage > 0, 'The ammo witness has real health damage after the protection layer');
+  assert.equal(unit(order.before, targetId).cover, false);
+  return { ...order, hit, exposureHit, actorId, targetId, actionId };
+}
+
+async function verifyAmmoEffects() {
+  mark('ammo-mode-effects');
+  const profiles = await page.evaluate(async () => (await import('/src/universe-ammo.js')).UNIVERSE_AMMO_PROFILES);
+  assert.equal(profiles.length, 11);
+  const used = profiles.filter(profile => profile.id !== 'ME3-POW-AMMO-WARP').map(profile => ({ ...profile,
+    witness: profile.mode === 'armor-piercing' ? `${profile.mediaId}-CHR-GARRUS`
+      : profile.mode === 'warp' ? 'ME2-CHR-JACK' : profile.mode === 'shredder' ? 'ME2-CHR-THANE'
+        : `${profile.mediaId}-CHR-SHEPARD`,
+    build: ['incendiary', 'cryo', 'disruptor'].includes(profile.mode) ? 'soldier' : 'default',
+  }));
+  assert.equal(used.length, 10); assert.equal(new Set(used.map(profile => profile.mode)).size, 6);
+  for (const profile of used) {
+    mark(`ammo:${profile.id}`);
+    const baseline = await modeShot(profile, null);
+    await returnToPreparation();
+    const active = await modeShot(profile, profile.id);
+    assert.equal(active.hit.ammoProfileId, profile.id);
+    const beforeTarget = unit(active.before, active.targetId), afterTarget = unit(active.after, active.targetId);
+    const baseTarget = unit(baseline.before, baseline.targetId);
+    assert.equal(beforeTarget.shield, baseTarget.shield);
+    assert.equal(beforeTarget.defense, baseTarget.defense);
+    assert.equal(unit(active.before, active.actorId).attack, unit(baseline.before, baseline.actorId).attack);
+    assert.equal(unit(active.before, active.actorId).ammo - unit(active.after, active.actorId).ammo, active.actionId === 'burst' ? 3 : 1);
+    assert.equal(unit(active.before, active.actorId).reserveAmmo, unit(active.after, active.actorId).reserveAmmo);
+    let evidence;
+    if (profile.mode === 'incendiary') {
+      closeEnough(active.hit.amount, baseline.hit.amount, 'Incendiary does not globally multiply the direct hit');
+      assert.ok(afterTarget.statuses.burning > 0);
+      const advanced = await advanceLegitimately(.6);
+      assert.ok(unit(advanced, active.targetId).hp < afterTarget.hp);
+      const burned = unit(advanced, active.targetId);
+      assert.equal(burned._burnSource, active.actorId); assert.equal(burned._burnActionId, 'ammoIncendiary');
+      closeEnough(afterTarget.hp - burned.hp, Math.min(afterTarget.statuses.burning, advanced.elapsed - active.after.elapsed) * 4,
+        'Silent native DOT applies the actual ATB burn rate over the elapsed lifetime');
+      evidence = { burning: afterTarget.statuses.burning, postTickHp: burned.hp,
+        elapsed: advanced.elapsed - active.after.elapsed, burnSource: burned._burnSource, burnActionId: burned._burnActionId };
+    } else if (profile.mode === 'cryo') {
+      closeEnough(active.hit.amount, baseline.hit.amount, 'Cryo buildup does not amplify its triggering shot');
+      assert.ok(afterTarget.statuses.frozen > 0); assert.equal(afterTarget.cryoStacks, 0);
+      const buildup = freshEvents(active.before, active.after).find(event => event.type === 'cryoBuildup' && event.targetId === active.targetId);
+      assert.equal(buildup.stacks, 3); evidence = { buildup, frozen: afterTarget.statuses.frozen };
+    } else if (profile.mode === 'disruptor') {
+      const raw = baseline.hit.shieldDamage + baseline.hit.healthDamage + beforeTarget.defense;
+      const expectedShield = Math.min(beforeTarget.shield, raw * 1.3);
+      const expectedHealth = Math.max(Math.min(1, raw - expectedShield / 1.3), raw - expectedShield / 1.3 - beforeTarget.defense) * 1.2;
+      closeEnough(active.hit.shieldDamage, expectedShield, 'Disruptor shield layer');
+      closeEnough(active.hit.healthDamage, expectedHealth, 'Disruptor synthetic spill is calculated after the shield layer');
+      assert.ok(active.hit.healthDamage > baseline.hit.healthDamage);
+      evidence = { baselineRaw: raw, shieldDamage: active.hit.shieldDamage, healthDamage: active.hit.healthDamage };
+    } else if (profile.mode === 'armor-piercing') {
+      closeEnough(active.hit.shieldDamage, baseline.hit.shieldDamage, 'Armor piercing leaves the shield portion unchanged');
+      closeEnough(active.hit.healthDamage - baseline.hit.healthDamage, beforeTarget.defense * .35, 'Armor piercing reduces the actual armor deduction');
+      evidence = { armor: beforeTarget.defense, additionalHealthDamage: active.hit.healthDamage - baseline.hit.healthDamage };
+    } else if (profile.mode === 'warp') {
+      assert.ok(beforeTarget.statuses.pull > 0);
+      closeEnough(active.hit.healthDamage, baseline.hit.healthDamage * 1.2, 'Warp ammo helps against an actually suspended enemy');
+      evidence = { realPull: beforeTarget.statuses.pull, baselineHealthDamage: baseline.hit.healthDamage, healthDamage: active.hit.healthDamage };
+    } else {
+      assert.equal(beforeTarget.shield, 0);
+      closeEnough(active.exposureHit.amount, baseline.exposureHit.amount, 'Shredder leaves a hit that starts against shields unchanged');
+      closeEnough(active.hit.healthDamage, baseline.hit.healthDamage * 1.25, 'Shredder boosts exposed organic health only');
+      evidence = { organic: !beforeTarget.synthetic, initialProtectedHit: active.exposureHit,
+        baselineHealthDamage: baseline.hit.healthDamage, healthDamage: active.hit.healthDamage };
+    }
+    // Preparation preference and live combat activation have separate ownership.
+    const preference = (await session()).ammoModes[active.actorId];
+    const off = await uiOrder(active.actorId, 'ammoOff');
+    assert.equal(unit(off.after, active.actorId).ammoModeId, null);
+    assert.equal((await session()).ammoModes[active.actorId], preference);
+    const switched = await uiOrder(active.actorId, profile.actionId);
+    const previous = unit(switched.before, active.actorId), next = unit(switched.after, active.actorId);
+    assert.equal(next.ammoModeId, profile.id); assert.equal(next.atb, 0);
+    for (const key of ['ammo', 'reserveAmmo', 'heat', 'grenadeCharges']) assert.equal(next[key], previous[key]);
+    assert.equal(freshEvents(switched.before, switched.after).filter(event => event.type === 'ammoMode' && event.actorId === active.actorId).length, 1);
+    // The wait-mode UI selects a ready companion after the actor spends a turn.
+    // Consume that companion's real cover order before inspecting the spent actor.
+    await page.evaluate(async actorId => {
+      const { getActions } = await import('/src/combat.js'), qa = window.__RELAY_TEST__;
+      for (const companion of qa.getChronicleBattle().actors.filter(actor => actor.team === 'party' && !actor.autonomous && actor.id !== actorId && actor.hp > 0)) {
+        if (getActions(qa.getChronicleBattle(), companion.id).some(action => action.id === 'cover' && action.available)) {
+          const result = qa.chronicleAction({ actorId: companion.id, actionId: 'cover', targetId: companion.id });
+          if (!result?.ok) throw new Error(result?.reason || 'The legitimate companion cover order failed');
+        }
+      }
+    }, active.actorId);
+    await action('chronicle-actor', active.actorId).click();
+    assert.ok(await page.locator('[data-chronicle-ammo-mode-active]').innerText());
+    report.ammo.push({ profileId: profile.id, mode: profile.mode, actorId: active.actorId,
+      baselineDamage: baseline.hit, activeDamage: active.hit, evidence,
+      nativeActivation: { before: compactActor(previous), after: compactActor(next) }, preferenceUnchanged: true });
+    if (profile.id === 'ME3-POW-AMMO-AP') {
+      await page.locator('.chronicle-command').scrollIntoViewIfNeeded(); await screenshot('garrus-ammo-active');
+    }
+    await returnToPreparation();
+  }
+  // A real power cast does not gain an ammunition hit modifier or post-hit state.
+  const fire = used.find(profile => profile.id === 'ME3-POW-AMMO-INCENDIARY');
+  const casts = [];
+  for (const modeId of [null, fire.id]) {
+    await trial('ME3', fire.witness, 'soldier', modeId);
+    const order = await uiOrder(fire.witness, 'concussiveShot', 'chronicle-enemy-1');
+    const hit = damageOf(order, fire.witness, 'concussiveShot', 'chronicle-enemy-1');
+    assert.equal(hit.ammoProfileId, undefined);
+    assert.equal(unit(order.after, 'chronicle-enemy-1').statuses.burning ?? 0, 0);
+    assert.equal(unit(order.before, fire.witness).ammo, unit(order.after, fire.witness).ammo);
+    casts.push(hit); await returnToPreparation();
+  }
+  closeEnough(casts[0].amount, casts[1].amount, 'Prepared ammo does not amplify Concussive Shot');
+  report.powerIsolation = { actionId: 'concussiveShot', baseline: casts[0], preparedIncendiary: casts[1] };
+  record('Ten reachable ammo cards execute six distinct adapted modes, native activation/off orders and real layer/post-hit effects while powers remain unchanged', { cards: report.ammo.length });
+}
+
+async function verifyAmmoPersistence() {
+  mark('ammo-preference-persistence');
+  await prepare('ME3', 'me3', 'me3-equipment-workshop');
+  const shepard = 'ME3-CHR-SHEPARD', garrus = 'ME3-CHR-GARRUS';
+  await selectParty([shepard, garrus]); await buildSelect(shepard).selectOption('soldier');
+  await gear(shepard, 'weapon').selectOption('ME3-WPN-AVENGER');
+  await ammoSelect(garrus).selectOption('ME3-POW-AMMO-AP');
+  await ammoSelect(shepard).selectOption('ME3-POW-AMMO-INCENDIARY');
+  await ammoSelect(shepard).selectOption('ME3-POW-AMMO-CRYO');
+  assert.deepEqual((await session()).ammoModes, { [shepard]: 'ME3-POW-AMMO-CRYO', [garrus]: 'ME3-POW-AMMO-AP' });
+  const warp = await ammoSelect(shepard).locator('option[value="ME3-POW-AMMO-WARP"]').evaluate(option => ({ disabled: option.disabled, text: option.textContent }));
+  assert.equal(warp.disabled, true); assert.match(warp.text, /profil|appris/i);
+  assert.equal(await ammoSelect(shepard).locator('option[value="ME3-POW-AMMO-SHREDDER"]').count(), 0);
+  await action('chronicle-save').click(); const saved = await session();
+  const exported = await exportDownload(action('chronicle-export'), 'chronicle-support-ammo-preferences.json');
+  await page.reload({ waitUntil: 'networkidle' }); await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  await importChronicle(exported); assert.deepEqual(await session(), saved);
+  await action('universe-tab', 'session').click();
+  await action('chronicle-load').click(); assert.deepEqual(await session(), saved);
+  const forged = JSON.parse(exported); forged.session.ammoModes[shepard] = 'ME3-POW-AMMO-WARP';
+  const beforeBad = await chronicleStorage(); await importChronicle(JSON.stringify(forged), false);
+  assert.deepEqual(await session(), saved); assert.deepEqual(await chronicleStorage(), beforeBad);
+  const old = JSON.parse(exported); delete old.session.ammoModes;
+  await importChronicle(JSON.stringify(old));
+  assert.deepEqual((await session()).ammoModes, { [shepard]: null, [garrus]: null });
+  assert.deepEqual((await session()).loadouts, saved.loadouts); assert.deepEqual((await session()).builds, saved.builds);
+  await importChronicle(exported);
+  await buildSelect(shepard).selectOption('engineer');
+  assert.equal((await session()).ammoModes[shepard], null); assert.equal((await session()).ammoModes[garrus], 'ME3-POW-AMMO-AP');
+  await buildSelect(shepard).selectOption('soldier'); assert.equal((await session()).ammoModes[shepard], null);
+  await ammoSelect(shepard).selectOption('ME3-POW-AMMO-DISRUPTOR');
+  await gear(shepard, 'weapon').selectOption('ME3-WPN-FALCON');
+  assert.equal((await session()).ammoModes[shepard], null);
+  const rejected = await page.evaluate(async id => (await import('/src/chronicles.js')).getChronicleAmmoModes(window.__RELAY_TEST__.getChronicle(), id), shepard);
+  assert.ok(rejected.length > 0 && rejected.every(mode => !mode.compatible));
+  await gear(shepard, 'weapon').selectOption('ME3-WPN-AVENGER');
+  assert.equal((await session()).ammoModes[shepard], null);
+  await prepare('MEA', 'mea', 'mea-equipment-workshop');
+  assert.equal(await page.locator('[data-chronicle-ammo-mode]').count(), 0);
+  const meaModes = await page.evaluate(async () => {
+    const module = await import('/src/chronicles.js'), current = window.__RELAY_TEST__.getChronicle();
+    return current.party.map(id => module.getChronicleAmmoModes(current, id));
+  });
+  assert.ok(meaModes.every(modes => modes.length === 0));
+  report.preferenceRoundtrip = { exportPath: 'test-results/chronicle-support-ammo-preferences.json',
+    original: saved.ammoModes, reloadImportAndLoadExact: true, oldMissingFieldMigratesToNull: true,
+    invalidWarpImportAtomic: true, classChangeClearsOnlyInvalidActor: true, specialWeaponClearsMode: true, meaConsumablesClosed: true };
+  await assertIsolated();
+  record('Ammo preferences persist through real save/export/import/reload, migrate an absent field, reject an unlearned mode atomically and reconcile class or special-weapon changes');
+}
+
+async function advanceWithoutCover(seconds) {
+  return page.evaluate(async seconds => {
+    const { getActions } = await import('/src/combat.js'), qa = window.__RELAY_TEST__;
+    const until = qa.getChronicleBattle().elapsed + seconds;
+    let combat = qa.getChronicleBattle(), turns = 0;
+    while (!combat.winner && combat.elapsed < until && turns++ < 2000) {
+      for (const actor of combat.actors.filter(actor => actor.team === 'party' && !actor.autonomous && actor.hp > 0)) {
+        if (getActions(qa.getChronicleBattle(), actor.id).some(action => action.id === 'reposition' && action.available)) {
+          const result = qa.chronicleAction({ actorId: actor.id, actionId: 'reposition', targetId: actor.id });
+          if (!result?.ok) throw new Error(result?.reason || 'The native reposition order failed');
+        }
+      }
+      qa.chronicleStep(.1); combat = qa.getChronicleBattle();
+    }
+    if (!combat.winner && combat.elapsed < until) throw new Error('The native clock did not advance');
+    return combat;
+  }, seconds);
+}
+async function verifySummons() {
+  mark('support-entities');
+  const cases = [
+    { catalogId: 'ME2-POW-DRONE', mediaId: 'ME2', actorId: 'ME2-CHR-SHEPARD', buildId: 'engineer', actionId: 'combatDrone' },
+    { catalogId: 'ME3-POW-DRONE', mediaId: 'ME3', actorId: 'ME3-CHR-SHEPARD', buildId: 'engineer', actionId: 'combatDrone' },
+    { catalogId: 'ME3-POW-SENTRY', mediaId: 'ME3', actorId: 'ME3-CHR-SHEPARD', buildId: 'engineer', actionId: 'sentryTurret' },
+    { catalogId: 'ME3-POW-DEFENSE-DRONE', mediaId: 'ME3', actorId: 'ME3-CHR-TALI', buildId: 'default', actionId: 'defenseDrone' },
+  ];
+  for (const item of cases) {
+    mark(`support:${item.catalogId}`);
+    await trial(item.mediaId, item.actorId, item.buildId);
+    const order = await uiOrder(item.actorId, item.actionId, 'chronicle-enemy-0');
+    const entity = order.after.actors.find(actor => actor.autonomous && actor.ownerId === item.actorId && actor.actionId === item.actionId);
+    assert.ok(entity); assert.equal(entity.summonProfileId, item.catalogId);
+    assert.equal(entity.countsForVictory, false); assert.equal(entity.targetable, true);
+    assert.ok(entity.hp > 0 && entity.maxHp === entity.hp && entity.expiresAt > entity.summonedAt);
+    assert.equal(entity.ammoModeId ?? null, null); assert.deepEqual(entity.powers, []);
+    const commands = await page.evaluate(async id => (await import('/src/combat.js')).getActions(window.__RELAY_TEST__.getChronicleBattle(), id), entity.id);
+    assert.deepEqual(commands, []);
+    assert.equal(await action('chronicle-actor', entity.id).count(), 0);
+    assert.equal(await page.locator(`[data-chronicle-unit="${entity.id}"] [data-chronicle-support-owner="${item.actorId}"]`).count(), 1);
+    assert.match(await page.locator(`[data-chronicle-unit="${entity.id}"] [data-chronicle-support-time]`).innerText(), /^\d+ s$/);
+    assert.equal(order.after.events.filter(event => event.type === 'action' && event.actorId === entity.id).length, 0,
+      'A newly deployed entity does not manufacture an earlier autonomous attack');
+    const pulses = await advanceLegitimately(item.actionId === 'defenseDrone' ? 2.3 : 2.2);
+    const pulseEvents = pulses.events.filter(event => event.type === 'action' && event.actorId === entity.id && event.actionId === 'summonPulse');
+    assert.ok(pulseEvents.length > 0, 'The support produces a real autonomous order');
+    assert.ok(pulses.events.some(event => event.type === 'damage' && event.actorId === entity.id && event.actionId === 'summonPulse' && event.amount > 0));
+    if (item.actionId === 'defenseDrone') {
+      for (const pulse of pulseEvents) assert.ok(pulses.events.some(event => event.type === 'damage' && event.id < pulse.id
+        && event.targetId === item.actorId && event.actorId === pulse.targetId && event.amount > 0 && event.at >= entity.summonedAt && event.at <= pulse.at),
+      'Every defensive reaction follows an actual owner-damage event from that attacker');
+      const quiet = await advanceLegitimately(.3);
+      assert.equal(quiet.events.filter(event => event.type === 'action' && event.actorId === entity.id).length, pulseEvents.length,
+        'The same damage event is not replayed as another reactive attack');
+    }
+    const targeted = await advanceLegitimately(8);
+    const hits = targeted.events.filter(event => event.type === 'damage' && event.targetId === entity.id);
+    assert.ok(hits.length > 0, 'Native enemies can target and damage the actual support entity');
+    assert.ok(unit(targeted, entity.id)?.hp < entity.hp || unit(targeted, entity.id)?.shield < entity.shield);
+    assert.equal(unit(targeted, item.actorId).ammo, unit(order.after, item.actorId).ammo,
+      'Autonomous support damage spends no owner weapon ammunition');
+    const replacement = await uiOrder(item.actorId, item.actionId, 'chronicle-enemy-0');
+    const newer = replacement.after.actors.find(actor => actor.autonomous && actor.ownerId === item.actorId && actor.actionId === item.actionId);
+    assert.ok(newer && newer.id !== entity.id);
+    assert.equal(replacement.after.actors.some(actor => actor.id === entity.id), false);
+    assert.equal(replacement.after.actors.filter(actor => actor.autonomous && actor.ownerId === item.actorId && actor.actionId === item.actionId).length, 1);
+    assert.ok(replacement.after.events.some(event => event.type === 'summonRetire' && event.actorId === entity.id && event.reason === 'replaced'));
+    if (item.catalogId === 'ME3-POW-SENTRY') {
+      await uiOrder(item.actorId, 'combatDrone', 'chronicle-enemy-0');
+      const live = await battle();
+      assert.equal(live.actors.filter(actor => actor.autonomous && actor.ownerId === item.actorId).length, 2,
+        'The two learned support types occupy distinct bounded owner slots');
+      await page.locator('.chronicle-supports').scrollIntoViewIfNeeded(); await screenshot('two-autonomous-supports');
+    }
+    if (item.actionId === 'defenseDrone') {
+      await page.locator('.chronicle-supports').scrollIntoViewIfNeeded(); await screenshot('defense-drone-reaction');
+    }
+    const remaining = Math.max(...(await battle()).actors.filter(actor => actor.autonomous).map(actor => actor.expiresAt)) - (await battle()).elapsed;
+    const expired = await advanceWithoutCover(remaining + .5);
+    assert.equal(expired.actors.some(actor => actor.id === newer.id), false);
+    assert.ok(expired.events.some(event => event.type === 'summonRetire' && event.actorId === newer.id && event.reason === 'expired'),
+      'A live replacement is removed when its actual ATB lifetime ends');
+    assert.ok(expired.actors.every(actor => !actor.autonomous));
+    report.summons.push({ ...item, created: compactActor(entity), entityId: entity.id, lifetime: entity.expiresAt - entity.summonedAt,
+      autonomousOrders: pulseEvents, realIncomingDamage: hits, replacementId: newer.id, onePerAction: true,
+      noSelectableCommands: true, actualExpiry: expired.events.find(event => event.type === 'summonRetire' && event.actorId === newer.id),
+      nativeReactiveDamageOnly: item.actionId === 'defenseDrone' });
+    await returnToPreparation();
+  }
+  // A real victory also traverses the composite result/save path with a support.
+  await prepare('ME3', 'me3', 'me3-equipment-workshop');
+  await selectParty(['ME3-CHR-SHEPARD', 'ME3-CHR-GARRUS', 'ME3-CHR-TALI']);
+  await buildSelect('ME3-CHR-SHEPARD').selectOption('engineer');
+  await action('chronicle-battle').click();
+  await uiOrder('ME3-CHR-SHEPARD', 'sentryTurret');
+  await winChronicle();
+  assert.ok((await session()).cleared.includes('me3-equipment-workshop'));
+  record('Four support cards execute three autonomous actions with real incoming damage, strict ownership/replacement limits, defensive reactions and expiry; one tactical victory saves normally', { cards: report.summons.length });
+}
+
+async function capturePanel(name, locator) {
+  const filename = `chronicle-support-${name}.png`;
+  await locator.scrollIntoViewIfNeeded();
+  await locator.screenshot({ path: fileURLToPath(new URL(filename, out)), timeout: 60000 });
+  report.screenshots.push(`test-results/${filename}`);
+  // Portrait review can inspect these actual UI captures while the later combat
+  // checks run. The historical unmodified pre-clip captures are archived separately.
+  await mkdir(new URL('../docs/screenshots/', import.meta.url), { recursive: true });
+  await copyFile(new URL(filename, out), new URL(`../docs/screenshots/${filename}`, import.meta.url));
+}
+async function verifyPortraits() {
+  mark('generated-portrait-rendering');
+  const metadata = JSON.parse(await readFile(new URL('../public/assets/chronicle-portraits.json', import.meta.url), 'utf8'));
+  const pixels = await readFile(new URL('../public/assets/chronicle-portraits-me2-me3.png', import.meta.url));
+  assert.equal(createHash('sha256').update(pixels).digest('hex'), metadata.sha256);
+  assert.equal(metadata.sha256, '7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd');
+  assert.equal(pixels.readUInt32BE(16), 1536); assert.equal(pixels.readUInt32BE(20), 1024);
+  for (const [mediaId, expected] of [['ME2', ['ME2-CHR-MIRANDA', 'ME2-CHR-THANE']], ['ME3', ['ME3-CHR-GARRUS']]]) {
+    await prepare(mediaId, mediaId.toLowerCase(), `${mediaId.toLowerCase()}-equipment-workshop`);
+    const visibleIds = await page.locator('[data-chronicle-portrait]').evaluateAll(nodes => nodes.map(node => node.dataset.chroniclePortrait));
+    assert.deepEqual([...new Set(visibleIds)].sort(), [...expected].sort());
+    for (const id of expected) {
+      const portrait = page.locator(`[data-chronicle-portrait="${id}"]`).first();
+      const info = await portrait.evaluate(async svg => {
+        const image = svg.querySelector('image'), src = image.getAttribute('href');
+        const viewport = svg.querySelector('svg');
+        const loaded = new Image(); loaded.src = src; await loaded.decode();
+        const box = svg.getBoundingClientRect();
+        return { id: svg.dataset.chroniclePortrait, viewBox: svg.getAttribute('viewBox'), src,
+          width: loaded.naturalWidth, height: loaded.naturalHeight, renderedWidth: box.width, renderedHeight: box.height,
+          viewport: viewport ? Object.fromEntries(['x', 'y', 'width', 'height', 'viewBox', 'overflow'].map(key => [key, viewport.getAttribute(key)])) : null };
+      });
+      const entry = metadata.portraits.find(item => item.actorId === id);
+      assert.equal(info.viewBox, entry.sourceRect.join(' ')); assert.equal(info.src, metadata.src);
+      assert.equal(info.width, 1536); assert.equal(info.height, 1024);
+      assert.ok(info.renderedWidth > 0 && info.renderedHeight > 0);
+      assert.deepEqual(info.viewport, { x: String(entry.sourceRect[0]), y: String(entry.sourceRect[1]),
+        width: '512', height: '1024', viewBox: entry.sourceRect.join(' '), overflow: 'hidden' },
+      'The inner viewport clips the exact atlas cell before the outer SVG letterboxes');
+      report.portraits.push({ ...info, mode: metadata.mode, partial: entry.partial, sprite: entry.sprite });
+    }
+    await capturePanel(`${mediaId.toLowerCase()}-portrait-roster`, page.locator('.universe-roster'));
+    await selectParty(expected);
+    for (const id of expected) {
+      const detail = page.locator(`[data-chronicle-actor="${id}"] .chronicle-portrait-detail`);
+      const dimensions = await detail.evaluate(element => {
+        const svg = element.querySelector('[data-chronicle-portrait]'), box = svg.getBoundingClientRect();
+        const inner = svg.querySelector('svg');
+        return { width: box.width, height: box.height, viewBox: svg.getAttribute('viewBox'), actorId: svg.dataset.chroniclePortrait,
+          viewport: inner ? Object.fromEntries(['x', 'y', 'width', 'height', 'overflow'].map(key => [key, inner.getAttribute(key)])) : null };
+      });
+      assert.equal(dimensions.actorId, id); assert.ok(dimensions.width > 0); assert.equal(dimensions.height, 220);
+      assert.equal(dimensions.viewBox, metadata.portraits.find(portrait => portrait.actorId === id).sourceRect.join(' '));
+      assert.equal(dimensions.viewport?.overflow, 'hidden');
+      assert.equal(dimensions.viewport?.width, '512'); assert.equal(dimensions.viewport?.height, '1024');
+      report.portraits.find(portrait => portrait.id === id).detail = dimensions;
+      await capturePanel(`portrait-detail-${id.toLowerCase()}`, detail);
+    }
+    await action('chronicle-battle').click();
+    assert.deepEqual([...new Set(await page.locator('[data-chronicle-portrait]').evaluateAll(nodes => nodes.map(node => node.dataset.chroniclePortrait)))].sort(), [...expected].sort());
+    await uiOrder(expected.at(-1), 'shoot', 'chronicle-enemy-0');
+    await capturePanel(`${mediaId.toLowerCase()}-portrait-battle`, page.locator('.chronicle-combat-units'));
+    await returnToPreparation();
+  }
+  await prepare('ME2', 'me2', 'me2-freedoms-progress');
+  assert.deepEqual([...new Set(await page.locator('[data-chronicle-portrait]').evaluateAll(nodes => nodes.map(node => node.dataset.chroniclePortrait)))], ['ME2-CHR-MIRANDA']);
+  for (const [mediaId, periodId, scene] of [['ME3', 'me3-prologue', 'me3-earth-prologue'], ['MEA', 'mea', 'mea-equipment-workshop']]) {
+    await prepare(mediaId, periodId, scene); assert.equal(await page.locator('[data-chronicle-portrait]').count(), 0);
+  }
+  const refused = await page.evaluate(async () => {
+    const { getUniversePortrait } = await import('/src/universe-portraits.js');
+    return [getUniversePortrait('ME3-CHR-GARRUS', { mediaId: 'ME1', periodId: 'me1' }),
+      getUniversePortrait('ME2-CHR-THANE', { mediaId: 'ME3', periodId: 'me3' }, 'me3-equipment-workshop'),
+      getUniversePortrait('ME3-CHR-SHEPARD', { mediaId: 'ME3', periodId: 'me3' }, 'me3-equipment-workshop')];
+  });
+  assert.deepEqual(refused, [null, null, null]);
+  report.portraitAsset = { path: 'public/assets/chronicle-portraits-me2-me3.png', metadataPath: 'public/assets/chronicle-portraits.json',
+    sha256: metadata.sha256, metadataSha256: createHash('sha256').update(await readFile(new URL('../public/assets/chronicle-portraits.json', import.meta.url))).digest('hex'),
+    bytes: pixels.length, width: 1536, height: 1024, generated: true,
+    scope: 'Three generated partial bust portraits; no full-body sprites, animation or certified 1:1 likeness' };
+  await assertIsolated();
+  record('Three exact contextual bust portraits decode from the generated atlas and render in roster/battle UI; foreign works, prologues, ME1 and Shepard receive none', { portraits: report.portraits.length });
+  mark('portrait-captures-ready');
+}
+
+try {
+  report.runnerSha256 = createHash('sha256').update(await readFile(fileURLToPath(import.meta.url))).digest('hex');
+  report.sources = Object.fromEntries(await Promise.all(['src/combat.js', 'src/combat-summons.js', 'src/universe-ammo.js',
+    'src/universe-powers.js', 'src/universe-actors.js', 'src/universe-equipment.js', 'src/universe-weapon-profiles.js',
+    'src/universe-portraits.js', 'src/chronicles.js', 'src/continuity.js', 'src/universe-ui.js', 'src/universe-ui.css', 'src/main.js'].map(async name =>
+    [name, createHash('sha256').update(await readFile(new URL(`../${name}`, import.meta.url))).digest('hex')])));
+  browser = await chromium.launch({ headless: true,
+    executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH || '/usr/bin/chromium',
+    args: ['--no-sandbox', '--no-zygote', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
+  });
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
+  page = await context.newPage(); page.setDefaultTimeout(60000);
+  page.on('pageerror', error => report.errors.push(error.message));
+  page.on('requestfailed', request => report.failedRequests.push(`${request.url()}: ${request.failure()?.errorText}`));
+  page.on('response', response => { if (response.status() >= 400) report.failedRequests.push(`${response.status()} ${response.url()}`); });
+  mark('independent-me1-purchase-and-save'); await establishCampaignWitness();
+  record('A real ME1 stock purchase, equipped module, entry checkpoint and named manual slot remain independent from every Chronicle change');
+  report.preclipHistory = { reportPath: 'docs/qa/chronicle-support-preclip-browser-report.json',
+    reportSha256: 'c1cb196def951e7900c242a063430df97844f4d428f0e2281e00a17013fdd5fe',
+    archiveManifestPath: 'docs/qa/chronicle-support-preclip-archive.json',
+    note: 'Historical functional pass had adjacent-cell leakage in portraits. This run checks the corrected inner viewport and captures new UI images; no source PNG pixels were retouched.' };
+  await verifyPortraits();
+  await verifyAmmoEffects();
+  await verifyAmmoPersistence();
+  await verifySummons();
+  await action('chronicle-back').click(); await page.getByRole('button', { name: /Reprendre/ }).click(); await idle('normandy');
+  const resumed = await campaignState();
+  for (const key of ['name', 'xp', 'credits', 'inventory', 'party', 'recruited', 'lost', 'completed', 'cleared', 'choices', 'flags', 'story', 'operations']) assert.deepEqual(resumed[key], baselineState[key]);
+  assert.equal(await page.locator('[data-chronicle-portrait]').count(), 0);
+  await screenshot('me1-resumed'); assert.deepEqual(report.errors, []); assert.deepEqual(report.failedRequests, []);
+  assert.deepEqual(await page.evaluate(() => window.__RELAY_TEST__.getWorld().assetErrors || []), []);
+  for (const [path, hash] of Object.entries(report.sources)) assert.equal(createHash('sha256').update(await readFile(new URL(`../${path}`, import.meta.url))).digest('hex'), hash, `Frozen source changed during the run: ${path}`);
+  report.passed = true; mark('complete');
+  console.log(JSON.stringify({ passed: true, checks: report.checks.length, ammoCards: report.ammo.length, supports: report.summons.length, portraits: report.portraits.length, victories: report.tacticalVictories.length }));
+} catch (error) {
+  report.failure = error.stack || String(error);
+  if (page) {
+    report.diagnostic = await Promise.race([
+      page.evaluate(() => ({ ui: window.__RELAY_TEST__?.getUI()?.screen, mainZone: window.__RELAY_TEST__?.getState()?.zone,
+        chronicle: window.__RELAY_TEST__?.getChronicle?.(), battle: window.__RELAY_TEST__?.getChronicleBattle?.() })).catch(() => null),
+      new Promise(resolve => setTimeout(() => resolve({ unavailable: true }), 5000)),
+    ]);
+    await screenshot('failure').catch(() => {});
+  }
+  throw error;
+} finally {
+  await browser?.close();
+  if (report.passed) {
+    await mkdir(new URL('../docs/screenshots/', import.meta.url), { recursive: true });
+    report.captureArtifacts = [];
+    for (const runPath of report.screenshots) {
+      const archivePath = runPath.replace('test-results/', 'docs/screenshots/');
+      const bytes = await readFile(new URL(`../${runPath}`, import.meta.url));
+      await copyFile(new URL(`../${runPath}`, import.meta.url), new URL(`../${archivePath}`, import.meta.url));
+      report.captureArtifacts.push({ runPath, archivePath, sha256: createHash('sha256').update(bytes).digest('hex'), width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20), method: 'Unmodified screenshot of actual UI' });
+    }
+    report.screenshots = report.captureArtifacts.map(artifact => artifact.archivePath);
+  }
+  const encoded = `${JSON.stringify(report, null, 2)}\n`;
+  await writeFile(new URL('chronicle-support-report.json', out), encoded);
+  await writeFile(new URL('../docs/qa/chronicle-support-browser-report.json', import.meta.url), encoded);
+}

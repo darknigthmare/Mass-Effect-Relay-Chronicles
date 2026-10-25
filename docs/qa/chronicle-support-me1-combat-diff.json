@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-25T08:31:49.589Z",
+  "kind": "read-only differential combat review",
+  "execution": {
+    "exactStartedAt": "2026-10-25T08:31:37.278Z",
+    "exactCompletedAt": "2026-10-25T08:31:49.589Z",
+    "runtime": "v24.19.0",
+    "reusedCompletedRun": false,
+    "executedForThisReport": true
+  },
+  "sources": {
+    "baseline": {
+      "commit": "748b9657de4cad0a4633b86c9d185ea63793c293",
+      "path": "src/combat.js",
+      "bytes": 55530,
+      "sha256": "4f18e1a00c0815c5072f514cf28e70c1ca0e56cd066b1494816abfce425f3c34"
+    },
+    "candidate": {
+      "path": "src/combat.js",
+      "bytes": 65945,
+      "sha256": "dde9c1e18afb09b5a9e481383b6e2953f4c7d529b90f242c404eca652c03261d",
+      "unchangedDuringRun": true
+    },
+    "weaponProfiles": {
+      "path": "src/universe-weapon-profiles.js",
+      "sha256": "39f9c997412acd4d4964ce0d92411cf751adbfa3abc35c9e5777d2a8a8d3445e",
+      "identicalToBaseline": true
+    },
+    "summons": {
+      "path": "src/combat-summons.js",
+      "sha256": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b"
+    },
+    "ammunition": {
+      "path": "src/universe-ammo.js",
+      "sha256": "76580f7e77eb21f1bfd42438ee10c2e1f6088c214e2db4eac31a9a1033e6fdd6"
+    }
+  },
+  "method": {
+    "baselineLoading": "git show 748b965:src/combat.js, imported as an independent JavaScript data URL; its sole relative weapon-profile import is replaced by the absolute file URL of the byte-identical baseline helper.",
+    "candidateLoading": "ES module import of working-tree src/combat.js and its three pure dependencies",
+    "seeds": {
+      "first": 1,
+      "last": 30,
+      "count": 30
+    },
+    "mode": "active",
+    "difficultyForSeed": "[story,normal,hard][seed % 3]",
+    "stepSeconds": 0.25,
+    "maximumStepsPerSeed": 1800,
+    "stopCondition": "Stop on the baseline battle winner or the per-seed step limit; completion was not required.",
+    "partyActionPriority": [
+      "shoot",
+      "burst",
+      "overload",
+      "sabotage",
+      "lift",
+      "throw",
+      "warp",
+      "singularity",
+      "barrier",
+      "stasis",
+      "hack",
+      "cover",
+      "reposition"
+    ],
+    "partyActionSelection": "Rotate that priority by simulation-step index, then choose its first action marked available by the baseline engine.",
+    "targetSelection": "Self actions target p. Other actions try living enemies in actor order until the baseline accepts the order; submit the identical order to the candidate.",
+    "enemyActions": "Each engine performs its own deterministic native enemy AI inside tickBattle.",
+    "comparisons": [
+      "JSON equality of each submitted performAction result",
+      "JSON equality of summarizeBattle after every tick",
+      "JSON equality of the complete event array after every tick",
+      "Invalid submitted target attempts are also compared; no actor object shape equality is required."
+    ]
+  },
+  "inputs": {
+    "medigel": 3,
+    "party": [
+      {
+        "id": "p",
+        "hp": 1800,
+        "shield": 100,
+        "attack": 24,
+        "defense": 4,
+        "atb": 100,
+        "powers": [
+          "overload",
+          "sabotage",
+          "lift",
+          "throw",
+          "warp",
+          "singularity",
+          "barrier",
+          "stasis",
+          "hack"
+        ]
+      }
+    ],
+    "enemies": [
+      {
+        "id": "e1",
+        "hp": 1000,
+        "shield": 80,
+        "attack": 15,
+        "defense": 5,
+        "powers": [
+          "warp",
+          "barrier"
+        ]
+      },
+      {
+        "id": "e2",
+        "hp": 800,
+        "shield": 60,
+        "attack": 13,
+        "synthetic": true,
+        "powers": [
+          "sabotage"
+        ]
+      }
+    ]
+  },
+  "result": {
+    "passed": true,
+    "comparedSeeds": 30,
+    "acceptedPartyActions": 1755,
+    "ticks": 34944,
+    "comparisons": 71782,
+    "observedDivergence": false
+  },
+  "runs": [
+    {
+      "seed": 1,
+      "difficulty": "normal",
+      "steps": 926,
+      "acceptedPartyActions": 47,
+      "winner": "enemy",
+      "elapsed": 231.5000000000184,
+      "events": 299
+    },
+    {
+      "seed": 2,
+      "difficulty": "hard",
+      "steps": 688,
+      "acceptedPartyActions": 35,
+      "winner": "enemy",
+      "elapsed": 171.90000000000484,
+      "events": 238
+    },
+    {
+      "seed": 3,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 446
+    },
+    {
+      "seed": 4,
+      "difficulty": "normal",
+      "steps": 1076,
+      "acceptedPartyActions": 54,
+      "winner": "enemy",
+      "elapsed": 268.9500000000269,
+      "events": 341
+    },
+    {
+      "seed": 5,
+      "difficulty": "hard",
+      "steps": 726,
+      "acceptedPartyActions": 37,
+      "winner": "enemy",
+      "elapsed": 181.350000000007,
+      "events": 248
+    },
+    {
+      "seed": 6,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 444
+    },
+    {
+      "seed": 7,
+      "difficulty": "normal",
+      "steps": 1030,
+      "acceptedPartyActions": 52,
+      "winner": "enemy",
+      "elapsed": 257.35000000002424,
+      "events": 330
+    },
+    {
+      "seed": 8,
+      "difficulty": "hard",
+      "steps": 658,
+      "acceptedPartyActions": 33,
+      "winner": "enemy",
+      "elapsed": 164.40000000000313,
+      "events": 227
+    },
+    {
+      "seed": 9,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 449
+    },
+    {
+      "seed": 10,
+      "difficulty": "normal",
+      "steps": 1076,
+      "acceptedPartyActions": 54,
+      "winner": "enemy",
+      "elapsed": 268.9500000000269,
+      "events": 343
+    },
+    {
+      "seed": 11,
+      "difficulty": "hard",
+      "steps": 673,
+      "acceptedPartyActions": 34,
+      "winner": "enemy",
+      "elapsed": 168.15000000000398,
+      "events": 234
+    },
+    {
+      "seed": 12,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 449
+    },
+    {
+      "seed": 13,
+      "difficulty": "normal",
+      "steps": 966,
+      "acceptedPartyActions": 49,
+      "winner": "enemy",
+      "elapsed": 241.40000000002064,
+      "events": 311
+    },
+    {
+      "seed": 14,
+      "difficulty": "hard",
+      "steps": 719,
+      "acceptedPartyActions": 36,
+      "winner": "enemy",
+      "elapsed": 179.6000000000066,
+      "events": 246
+    },
+    {
+      "seed": 15,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 440
+    },
+    {
+      "seed": 16,
+      "difficulty": "normal",
+      "steps": 959,
+      "acceptedPartyActions": 48,
+      "winner": "enemy",
+      "elapsed": 239.65000000002024,
+      "events": 307
+    },
+    {
+      "seed": 17,
+      "difficulty": "hard",
+      "steps": 711,
+      "acceptedPartyActions": 36,
+      "winner": "enemy",
+      "elapsed": 177.60000000000613,
+      "events": 246
+    },
+    {
+      "seed": 18,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 444
+    },
+    {
+      "seed": 19,
+      "difficulty": "normal",
+      "steps": 997,
+      "acceptedPartyActions": 50,
+      "winner": "enemy",
+      "elapsed": 249.2000000000224,
+      "events": 319
+    },
+    {
+      "seed": 20,
+      "difficulty": "hard",
+      "steps": 685,
+      "acceptedPartyActions": 35,
+      "winner": "enemy",
+      "elapsed": 171.2500000000047,
+      "events": 238
+    },
+    {
+      "seed": 21,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 443
+    },
+    {
+      "seed": 22,
+      "difficulty": "normal",
+      "steps": 988,
+      "acceptedPartyActions": 50,
+      "winner": "enemy",
+      "elapsed": 247.0000000000219,
+      "events": 318
+    },
+    {
+      "seed": 23,
+      "difficulty": "hard",
+      "steps": 697,
+      "acceptedPartyActions": 35,
+      "winner": "enemy",
+      "elapsed": 174.05000000000533,
+      "events": 240
+    },
+    {
+      "seed": 24,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 443
+    },
+    {
+      "seed": 25,
+      "difficulty": "normal",
+      "steps": 942,
+      "acceptedPartyActions": 48,
+      "winner": "enemy",
+      "elapsed": 235.30000000001925,
+      "events": 304
+    },
+    {
+      "seed": 26,
+      "difficulty": "hard",
+      "steps": 696,
+      "acceptedPartyActions": 35,
+      "winner": "enemy",
+      "elapsed": 173.85000000000528,
+      "events": 239
+    },
+    {
+      "seed": 27,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 447
+    },
+    {
+      "seed": 28,
+      "difficulty": "normal",
+      "steps": 1035,
+      "acceptedPartyActions": 52,
+      "winner": "enemy",
+      "elapsed": 258.6000000000245,
+      "events": 331
+    },
+    {
+      "seed": 29,
+      "difficulty": "hard",
+      "steps": 696,
+      "acceptedPartyActions": 35,
+      "winner": "enemy",
+      "elapsed": 173.85000000000528,
+      "events": 240
+    },
+    {
+      "seed": 30,
+      "difficulty": "story",
+      "steps": 1800,
+      "acceptedPartyActions": 90,
+      "winner": null,
+      "elapsed": 450.00000000006804,
+      "events": 442
+    }
+  ],
+  "limitations": [
+    "Fixed synthetic ME1 regression inputs; not a complete campaign, UI or canonical fidelity certification.",
+    "Future summons and learned ammunition modes are covered separately by tests/combat-summons.test.js, tests/universe-ammo.test.js and tests/combat-support.test.js.",
+    "Support HP, timing, caps, owner-KO retirement, reactive guard and ammunition multipliers/status buildup are ATB adaptations, not certified original rules."
+  ]
+}

@@ -1,0 +1,583 @@
+{
+  "version": 1,
+  "passed": true,
+  "at": "2026-10-25T09:20:35.988646+00:00",
+  "scope": "21 exports reconstruits après correction UI : 19 avec les preuves existantes gelées, puis ME2 et ME3 après les 17 promotions postclip. Audit structurel des 27 XLSX ; seules 30 images ciblées sont produites, sans revue visuelle complète revendiquée.",
+  "workbookCount": 21,
+  "generationRuns": [
+    {
+      "cwd": "/tmp",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "/workspace/Mass-Effect-Relay-Chronicles/scripts/build-universe-workbooks.mjs",
+        "--ids",
+        "ANN,ASC,DEC,DIS,EVO,FOU,GAL,HOM,INC,INF,INI,INQ,INV,MEA,NEX,PL,RED,RET,REV",
+        "--no-render"
+      ],
+      "log": "/tmp/relay-support-postclip-19-workbooks.log",
+      "newPreviews": false,
+      "exitCode": 0
+    },
+    {
+      "cwd": "/tmp",
+      "command": [
+        "node",
+        "--max-old-space-size=8192",
+        "/workspace/Mass-Effect-Relay-Chronicles/scripts/build-universe-workbooks.mjs",
+        "--ids",
+        "ME2,ME3",
+        "--focus-ids",
+        "ME2-POW-DRONE,ME3-POW-DRONE,ME3-POW-SENTRY,ME3-POW-DEFENSE-DRONE,ME2-POW-AMMO-INCENDIARY,ME2-POW-AMMO-DISRUPTOR,ME2-POW-AMMO-CRYO,ME2-POW-AMMO-AP,ME2-POW-AMMO-WARP,ME2-POW-AMMO-SHREDDER,ME3-POW-AMMO-INCENDIARY,ME3-POW-AMMO-DISRUPTOR,ME3-POW-AMMO-CRYO,ME3-POW-AMMO-AP,ME2-SPR-CHR-MIRANDA,ME2-SPR-CHR-THANE,ME3-SPR-CHR-GARRUS"
+      ],
+      "previewDir": "/tmp/relay-support-workbook-previews",
+      "log": "/tmp/relay-support-final-2-workbooks.log",
+      "exitCode": 0
+    }
+  ],
+  "prior19PostclipAudit": {
+    "workbooks": 19,
+    "rows": 3350,
+    "cellsCompared": 63650,
+    "formulaCaches": 6232,
+    "formulaErrors": 0,
+    "reportSha256": "ca493d2b97c70412d7b6233d06ce52fd3228e530c6e44258c7f89c88993d2c75",
+    "proofFreeze": {
+      "docs/qa/chronicle-expansion-browser-report.json": "925e84aba9472ece699d86e98a9287072272168d385bfe0069403060640a806e",
+      "scripts/chronicle-expansion-browser.mjs": "9a5a20632afbe8afa1640784ab291f77e5d48cce289eee35e44a2fc47797e66b",
+      "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+      "src/chronicles.js": "62f7d28013c07a33faab2c1d9f7a97c7366eabc22073ed29eeabb6070c99fecc",
+      "src/universe-ui.js": "f2b050b35584184a9491ae7c0fe1292258abcea9c10e4b0845d6046e62cca062",
+      "tests/chronicle-expansion.test.js": "483516c814ba97a3619e5f154ec611c78146a52fa37f65e5a7c6984d34361978",
+      "tests/chronicle-story.test.js": "fe14ea2cd4aff421bf20c16ce82bfc5779e970b3638e60b72dd73f6faf9b346d",
+      "docs/qa/chronicle-specialists-browser-report.json": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+      "scripts/chronicle-specialists-browser.mjs": "e6e3066d77693029fd84fb2212c514d7e1e2de6223ef253ff1f758e9dc10be27",
+      "tests/chronicle-specialists.test.js": "70f6a47892f23c70ab3da0af73b6a09dc95ad0a019bac2a93c56726fdecf8ebf",
+      "scripts/universe-browser.mjs": "62820a49ace9c84e18fb261added872cb409f05e224c2e9817284dc5e9175529",
+      "src/combat.js": "dde9c1e18afb09b5a9e481383b6e2953f4c7d529b90f242c404eca652c03261d",
+      "src/universe-actors.js": "662093a6971b61c90e287e98b88e9bfd1cb00b72664353cbb062fa327643e387",
+      "src/universe-powers.js": "523170ae46502b307704a15ff8b3cd7c5ce2c9805611a4b5c6c2fe987f7e67c5",
+      "tests/chronicles.test.js": "a30a218c2dc86f819e4a3b186d5bff460b843304552a19ed0a7af8ce2be39286",
+      "tests/universe-actors.test.js": "6a29f61fe3130c64041da069f07d9408d1cc2aa26fce7cb02f5e94bede2dbf4f",
+      "tests/universe-power-profiles.test.js": "0f251cadc8e5a2278c6c8ccaa3ed9010c4d7ff7ede7e949a2b3c85431ee64a16",
+      "tests/universe-powers.test.js": "41de9ecd830bc18177f0e0da49d58512fa82629b27649f0ee007820da91a2fe3",
+      "docs/qa/chronicle-specialist-reference-report.json": "071c291d5038689ff749fe826874c4c96d0b44e2dcfcfa7e7a463e02db6dca59",
+      "src/universe-specialist-scenarios.js": "3be9693c263ae8803527d5defdd1b0783a068a3c6b2d2b9845c4ef0badbb7759",
+      "tests/universe-specialist-scenarios.test.js": "dcf1e91a8e5ddd02e1c39e3e25b4f7e064441cdd561076d71801c3c3b63dde0f",
+      "src/universe-equipment.js": "f9a7e62d3ef121d0ffb6ed20edfa76d5885cf72e0c052b3a2f914b7de3e456e4",
+      "src/universe-weapon-profiles.js": "39f9c997412acd4d4964ce0d92411cf751adbfa3abc35c9e5777d2a8a8d3445e",
+      "tests/combat-specialists.test.js": "d22df515641742c159888ccb6dd807a0fdf263e62981b7b3c5f76c5d0d6ebc81",
+      "tests/universe-combat.test.js": "47c3647e9e8d12852057904c57948275dba80afd6fa4219af7c5798a3f712000",
+      "tests/universe-equipment.test.js": "63a751adadeff66b4507914f384d20a396d3683a6f8429f92752976e48614018",
+      "tests/universe-weapon-profiles.test.js": "98a782dabb9cdb5e6b649770b8e250cea2c4a9794257e0994a447bbefc77bb82"
+    }
+  },
+  "workbooks": [
+    {
+      "id": "ANN",
+      "catalogPath": "docs/universe/catalogs/ANN.json",
+      "catalogSha256": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Annihilation_Production.xlsx",
+      "xlsxSha256": "3e2d015ea67dd27dc2644f37cd116c114789b41761d385866eab501868ccb18d",
+      "qaPath": "docs/universe/qa/ANN.json",
+      "qaSha256": "93b8a3fa0f5b84b547ab7796077dfa12a305d7ef7cc9dd3bdfb2b3f1439e3fc3",
+      "rows": 161,
+      "statusCounts": {
+        "Défini": 157,
+        "Prototype": 4,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "ASC",
+      "catalogPath": "docs/universe/catalogs/ASC.json",
+      "catalogSha256": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Ascension_Production.xlsx",
+      "xlsxSha256": "57d397c79352bdb044bde715c9ce3accec8a12f4361cfee48b5353b97fcaf15d",
+      "qaPath": "docs/universe/qa/ASC.json",
+      "qaSha256": "488fb645ebd97fff98e943a6d4ccc174333091ebb3624d497930c0aa663c1ea3",
+      "rows": 158,
+      "statusCounts": {
+        "Défini": 154,
+        "Prototype": 4,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "DEC",
+      "catalogPath": "docs/universe/catalogs/DEC.json",
+      "catalogSha256": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Deception_Production.xlsx",
+      "xlsxSha256": "c8e4b50feef3f912359994eaa203d105fd2386e634d6c345550690988f130661",
+      "qaPath": "docs/universe/qa/DEC.json",
+      "qaSha256": "4731f1b33e98dfab6858a32f6ee1f7c9307652654f749e0babeb722a8482bb0e",
+      "rows": 160,
+      "statusCounts": {
+        "Défini": 153,
+        "Prototype": 7,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "DIS",
+      "catalogPath": "docs/universe/catalogs/DIS.json",
+      "catalogSha256": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Discovery_Production.xlsx",
+      "xlsxSha256": "425bdd18c0814bf280d04169e1832663502387cee1c860a3d7eb02c38ce0df9b",
+      "qaPath": "docs/universe/qa/DIS.json",
+      "qaSha256": "4d69ddc112f7d29a641527cf5f68e332d4cdf3d58691327f7d6731b32dd5161f",
+      "rows": 160,
+      "statusCounts": {
+        "Défini": 158,
+        "Prototype": 2,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "EVO",
+      "catalogPath": "docs/universe/catalogs/EVO.json",
+      "catalogSha256": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Evolution_Production.xlsx",
+      "xlsxSha256": "99c22dc31e674c8bebbfab3493c7d4d8abedee3d873131cd7d6a94c372abacf4",
+      "qaPath": "docs/universe/qa/EVO.json",
+      "qaSha256": "8b71517448f72067af8197365a82f47b978e09106e5eeaf0f1868e82968570ec",
+      "rows": 122,
+      "statusCounts": {
+        "Défini": 117,
+        "Prototype": 5,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "FOU",
+      "catalogPath": "docs/universe/catalogs/FOU.json",
+      "catalogSha256": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Foundation_Production.xlsx",
+      "xlsxSha256": "45d7a7d6468923c7b244e3f851988c865a9daaf99882e184f234c945865ddd05",
+      "qaPath": "docs/universe/qa/FOU.json",
+      "qaSha256": "913c6e2f3b1b8f33c58b406e4cea12a5237554d8af7b40635c8047206fee5895",
+      "rows": 249,
+      "statusCounts": {
+        "Défini": 248,
+        "Prototype": 1,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "GAL",
+      "catalogPath": "docs/universe/catalogs/GAL.json",
+      "catalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Galaxy_Production.xlsx",
+      "xlsxSha256": "193d4a342c580d7869d97b14a5353e425384b14ebad886c9069a25c295efa5b4",
+      "qaPath": "docs/universe/qa/GAL.json",
+      "qaSha256": "fbc7eaee537917f50747ad43bef11dcf1a94da7273a9c5c2450d0c80c9115b5c",
+      "rows": 103,
+      "statusCounts": {
+        "Défini": 100,
+        "Prototype": 3,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "HOM",
+      "catalogPath": "docs/universe/catalogs/HOM.json",
+      "catalogSha256": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Homeworlds_Production.xlsx",
+      "xlsxSha256": "4ba8cd15d2238b9ff96cf5db74272b291dd71da990b7099ec1ac19d1ea1cafb2",
+      "qaPath": "docs/universe/qa/HOM.json",
+      "qaSha256": "c117e5246d530e6055634140f8df8de50b6cccf89597c8272e3c200549f585ae",
+      "rows": 171,
+      "statusCounts": {
+        "Défini": 170,
+        "Prototype": 1,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "INC",
+      "catalogPath": "docs/universe/catalogs/INC.json",
+      "catalogSha256": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Incursion_Production.xlsx",
+      "xlsxSha256": "9a948581fbfb3d1c654dcfe817a0deaa1d6a375c976f4df6ffb83cfadd3fc7bc",
+      "qaPath": "docs/universe/qa/INC.json",
+      "qaSha256": "7d4e5f6f8f50a51ea0e2a8c1693e4ce3e8997656529eee6803329d35ff09f4d2",
+      "rows": 64,
+      "statusCounts": {
+        "Défini": 62,
+        "Prototype": 2,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "INF",
+      "catalogPath": "docs/universe/catalogs/INF.json",
+      "catalogSha256": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Infiltrator_Production.xlsx",
+      "xlsxSha256": "54a099d6c51b6746e9b2e91d6428cbf37fcb976a7f0f5a871733b8d8fd1db506",
+      "qaPath": "docs/universe/qa/INF.json",
+      "qaSha256": "32c1d8746fe37361148ddc88cc1167bf6e2a94223d6f0ddbd61adb2ad422febe",
+      "rows": 109,
+      "statusCounts": {
+        "Défini": 107,
+        "Prototype": 2,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "INI",
+      "catalogPath": "docs/universe/catalogs/INI.json",
+      "catalogSha256": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Initiation_Production.xlsx",
+      "xlsxSha256": "bd3258ac7689dc20667090a508d5000f4de00bdb22d59d04c37ba7b2db16ee70",
+      "qaPath": "docs/universe/qa/INI.json",
+      "qaSha256": "408510ee9b2660825c6d114717ed785bdfe7c41291e852775ff448be4c20180a",
+      "rows": 159,
+      "statusCounts": {
+        "Défini": 154,
+        "Prototype": 5,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "INQ",
+      "catalogPath": "docs/universe/catalogs/INQ.json",
+      "catalogSha256": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Inquisition_Production.xlsx",
+      "xlsxSha256": "ad47766ed8098d7fc567f003c0c6c3be185582b68edc1ae3cfba3e2d60a55c94",
+      "qaPath": "docs/universe/qa/INQ.json",
+      "qaSha256": "12e8ce44839dd9c1addc1b9f18cffd5c462c260265545c7cf20e6f2c34744603",
+      "rows": 63,
+      "statusCounts": {
+        "Défini": 61,
+        "Prototype": 2,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "INV",
+      "catalogPath": "docs/universe/catalogs/INV.json",
+      "catalogSha256": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Invasion_Production.xlsx",
+      "xlsxSha256": "2b606d440cf8968f83b082039b64414c143ec8cbd9b7f6f7de14ae992232936c",
+      "qaPath": "docs/universe/qa/INV.json",
+      "qaSha256": "724695c304a5d789523a1d8477190726010c0ada7b4badb2a876c2bcb51a4c80",
+      "rows": 117,
+      "statusCounts": {
+        "Défini": 113,
+        "Prototype": 4,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "MEA",
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "catalogSha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Production.xlsx",
+      "xlsxSha256": "b1746a558771a9d3c3dcb41ea3f40595981a0e41cb7b7b6417ac3e24cf977e2e",
+      "qaPath": "docs/universe/qa/MEA.json",
+      "qaSha256": "0908e0f77351f8805a4eb92005f66e130bbd18129b97df7afedb2be5e94b497b",
+      "rows": 763,
+      "statusCounts": {
+        "Défini": 711,
+        "Prototype": 52,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "NEX",
+      "catalogPath": "docs/universe/catalogs/NEX.json",
+      "catalogSha256": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Nexus_Uprising_Production.xlsx",
+      "xlsxSha256": "0e9386abbe2a5d775534ba1fb5eb4aab8d03b07641cba7ef75345321a83b17dc",
+      "qaPath": "docs/universe/qa/NEX.json",
+      "qaSha256": "e64a53925d3d0a25263c5eeca7e66e0c9ea1f22bd0836a3d5961c605e71e2043",
+      "rows": 159,
+      "statusCounts": {
+        "Défini": 154,
+        "Prototype": 5,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "PL",
+      "catalogPath": "docs/universe/catalogs/PL.json",
+      "catalogSha256": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Paragon_Lost_Production.xlsx",
+      "xlsxSha256": "ba5c2a1c0ef3a71dfa18881a482216062bfdaf37fbe6d31be1b95ee75901040c",
+      "qaPath": "docs/universe/qa/PL.json",
+      "qaSha256": "ddc5b732d9620c85b676f775b83832cd94347685bf15f8ea615a63284dc6cae8",
+      "rows": 199,
+      "statusCounts": {
+        "Défini": 198,
+        "Prototype": 1,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "RED",
+      "catalogPath": "docs/universe/catalogs/RED.json",
+      "catalogSha256": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Redemption_Production.xlsx",
+      "xlsxSha256": "e50035236235794e352b7d5ae8c40654a2b7ece3ce7bdd6ec236dce7732360d9",
+      "qaPath": "docs/universe/qa/RED.json",
+      "qaSha256": "babf6db3d219df7ae906362a8ad0776ffada1ca29156796314735c44cb9ba1fd",
+      "rows": 117,
+      "statusCounts": {
+        "Défini": 109,
+        "Prototype": 8,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "RET",
+      "catalogPath": "docs/universe/catalogs/RET.json",
+      "catalogSha256": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Retribution_Production.xlsx",
+      "xlsxSha256": "9200cf786098a33c8d9dcf1c2374145b75b75bd92a5c480d8c623a2aa81f2c14",
+      "qaPath": "docs/universe/qa/RET.json",
+      "qaSha256": "db5ba86d3e73c7353bcc85bb05c08e5a8e4f9feed365552dc2c4e800b9e35782",
+      "rows": 158,
+      "statusCounts": {
+        "Défini": 153,
+        "Prototype": 5,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "REV",
+      "catalogPath": "docs/universe/catalogs/REV.json",
+      "catalogSha256": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Revelation_Production.xlsx",
+      "xlsxSha256": "69657987d41767ba4bec51b46f18608d3917a4a11c6560d258d85e9c8ae9ea31",
+      "qaPath": "docs/universe/qa/REV.json",
+      "qaSha256": "c0edb0f6868a30720ff07c6d9a59358d3c041f8c4ed74cb7118c69e3dd165a88",
+      "rows": 158,
+      "statusCounts": {
+        "Défini": 152,
+        "Prototype": 6,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "newVisualReview": false,
+      "generationPhase": "postclip-existing-proofs",
+      "newTargetedPanels": 0
+    },
+    {
+      "id": "ME2",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "catalogSha256": "9433f29619e8dd26fa5924ce3dad894181003419749215d06c72ad0c120783b4",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx",
+      "xlsxSha256": "6a6aeaf997950925abca4bb1e784c0e0325cf3bc308a9a10c734ad6b15dd775a",
+      "qaPath": "docs/universe/qa/ME2.json",
+      "qaSha256": "a256ecca5666b80d7575a5b7f6d3fcd7af5e0061b6fe2ee2c4bd7615986b14b0",
+      "rows": 670,
+      "statusCounts": {
+        "Défini": 618,
+        "Prototype": 52,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "generationPhase": "postclip-final-promotions",
+      "newTargetedPanels": 15,
+      "newVisualReview": "targeted-only"
+    },
+    {
+      "id": "ME3",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "catalogSha256": "3901fc2cabf4120f218b8583a8f147f17b5c800b5bfb0a6dcaa4a64451da9223",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx",
+      "xlsxSha256": "308a7f728258d7d7ab2c7d2228f52a05b143160ed7a5724acb7abc5677cf85a4",
+      "qaPath": "docs/universe/qa/ME3.json",
+      "qaSha256": "0049dcef57f9c3cb120138be6af7c80e9073258750a2047c4a63e4dd624c9b9e",
+      "rows": 736,
+      "statusCounts": {
+        "Défini": 666,
+        "Prototype": 70,
+        "Intégré": 0,
+        "Validé": 0
+      },
+      "generationPhase": "postclip-final-promotions",
+      "newTargetedPanels": 15,
+      "newVisualReview": "targeted-only"
+    }
+  ],
+  "untouchedWorkbooks": [
+    {
+      "id": "BLA",
+      "catalogPath": "docs/universe/catalogs/BLA.json",
+      "catalogSha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Blasto_Eternity_is_Forever_Production.xlsx",
+      "xlsxSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+      "currentAuditSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+      "baseline748XlsxSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+      "byteIdenticalToBaseline748": true
+    },
+    {
+      "id": "CON",
+      "catalogPath": "docs/universe/catalogs/CONVICTION.json",
+      "catalogSha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Conviction_Production.xlsx",
+      "xlsxSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+      "currentAuditSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+      "baseline748XlsxSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+      "byteIdenticalToBaseline748": true
+    },
+    {
+      "id": "CUT",
+      "catalogPath": "docs/universe/catalogs/CUT.json",
+      "catalogSha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Contenus_Coupes_Production.xlsx",
+      "xlsxSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+      "currentAuditSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+      "baseline748XlsxSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+      "byteIdenticalToBaseline748": true
+    },
+    {
+      "id": "HWB",
+      "catalogPath": "docs/universe/catalogs/HWB.json",
+      "catalogSha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_He_Who_Laughs_Best_Production.xlsx",
+      "xlsxSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+      "currentAuditSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+      "baseline748XlsxSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+      "byteIdenticalToBaseline748": true
+    },
+    {
+      "id": "LIB",
+      "catalogPath": "docs/universe/catalogs/LIB.json",
+      "catalogSha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Library_Edition_Production.xlsx",
+      "xlsxSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+      "currentAuditSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+      "baseline748XlsxSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+      "byteIdenticalToBaseline748": true
+    },
+    {
+      "id": "ME4",
+      "catalogPath": "docs/universe/catalogs/ME4.json",
+      "catalogSha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+      "xlsxPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_4_Extrapolation_Production.xlsx",
+      "xlsxSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+      "currentAuditSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+      "baseline748XlsxSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+      "byteIdenticalToBaseline748": true
+    }
+  ],
+  "verificationPath": "docs/universe/qa/verification.json",
+  "verificationSha256": "c5b4fb8168b76005bb9cb62846cebbc6a91b90aa703f61341b0b5a0f88e3552e",
+  "audit": {
+    "workbooks": 27,
+    "worksheets": 756,
+    "rows": 5326,
+    "columnsPerCategory": 19,
+    "cellsCompared": 101194,
+    "sourceCellsCompared": 2460,
+    "formulaCachesChecked": 8856,
+    "formulaErrors": 0,
+    "tables": 699,
+    "validationsChecked": 2097,
+    "statusCounts": {
+      "Défini": 5085,
+      "Prototype": 241,
+      "Intégré": 0,
+      "Validé": 0
+    }
+  },
+  "sourceAdditionException": {
+    "baseCommit": "748b9657de4cad0a4633b86c9d185ea63793c293",
+    "catalogPath": "docs/universe/catalogs/ME3.json",
+    "beforeSha256": "dd793758dd8f13f327934848f475dfc499412aaa89a0063a3b52cc399b807dfd",
+    "afterSha256": "7272f9936371e7b267c2e590150807523f34f885f7d6d2a16b63ce7dd6bcccea",
+    "allowedException": "Append one newly consulted primary source; no existing source or catalogue entry changed.",
+    "addedSource": {
+      "id": "ME3-SRC-MANUAL-PC",
+      "title": "Mass Effect 3 — manuel PC anglais officiel, EA",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "kind": "source officielle",
+      "scope": "Page 5 : menus de pouvoirs et capture de Garrus confirmant Armor-Piercing Ammo ; pages 25–26 : effets généraux des munitions. Page 20 : équipements du multijoueur uniquement, explicitement hors des règles solo et des consommables MEA.",
+      "note": "PDF réellement téléchargé et consulté le 25 octobre 2026 : HTTP 200, 1 886 992 octets, 27 pages, SHA-256 07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01. La capture de Garrus page 5 a été inspectée visuellement ; elle confirme cette attribution ME3 sans certifier rang, acquisition ni kit d’une autre œuvre. Les pages 25–26 ne certifient aucun multiplicateur, durée ou budget ATB ; la règle d’équipement du multijoueur page 20 ne devient pas une règle de pouvoir solo. Preuves : docs/qa/chronicle-support-reference-report.json et docs/qa/chronicle-portrait-reference-report.json."
+    },
+    "sourceProofs": {
+      "docs/qa/chronicle-support-reference-report.json": "c7896d41033facaeb7c75616e5b5d688405d15bee40111ee6b2b6ca528470c0b",
+      "docs/qa/chronicle-portrait-reference-report.json": "05babe3115876c3d627f99fb126e706a732df0dc2883131ecee5ea06dd3474c3"
+    },
+    "oldSourcesPreserved": true,
+    "entriesPreserved": true,
+    "sourcesUniverseBefore": 409,
+    "sourcesUniverseAfter": 410,
+    "sourcesMain": 39
+  },
+  "principalIncluded": false
+}

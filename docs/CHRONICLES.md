@@ -2,7 +2,9 @@
 
 Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis seize essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
 
-**État documentaire du 25 octobre 2026, basé sur `7fe7a88`.** Le registre régénéré rassemble **6 656 fiches : 1 330 dans le principal et 5 326 dans les 27 catalogues supplémentaires**. Le complément ajoute **37 promotions Prototype : huit profils de personnages, six armes, sept fiches de pouvoirs et seize références documentaires**. Les identifiants, sources, conditions, natures et descriptions des fiches univers sont conservés. La description du système de lecture du principal est actualisée à seize parcours et 52 pages ; ses autres fiches sont inchangées. Une fiche du registre ne devient pas automatiquement visible, sélectionnable ou jouable : sa provenance doit autoriser le segment et l’essai choisis. Les campagnes intégrales, dialogues, cartes et scènes des œuvres supplémentaires restent à produire ; aucune fidélité 1:1 n’est certifiée par ces essais.
+**Lot soutiens, munitions et portraits du 25 octobre 2026, basé sur `748b965`.** Le registre reconstruit conserve **6 656 fiches : 1 330 dans le principal et 5 326 dans les 27 catalogues supplémentaires**. Les 17 nouvelles promotions concernent quatre pouvoirs de soutien, dix pouvoirs de munitions exposés et trois portraits partiels. Le décompte vérifié est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé, avec 449 sources**. Le [rapport du lot](qa/chronicle-support-report.json) relie validation fonctionnelle, exports et limites de fidélité.
+
+Le complément spécialistes précédent, basé sur `7fe7a88`, ajoutait 37 promotions Prototype : huit profils de personnages, six armes, sept fiches de pouvoirs et seize références documentaires. Ses rapports restent historiques. Une fiche du registre ne devient pas automatiquement visible, sélectionnable ou jouable : sa provenance doit autoriser le segment et l’essai choisis. Les campagnes intégrales, dialogues, cartes et scènes des œuvres supplémentaires restent à produire ; aucune fidélité 1:1 n’est certifiée par ces essais.
 
 ## Ouvrir une chronique
 
@@ -53,9 +55,23 @@ Les bonus d’armure, profils de familles d’armes, chargeurs et pouvoirs utili
 
 ## Pouvoirs et préparations
 
-Le premier complément ajoutait dix mécaniques ATB : Attraction, Incinération, Explosion cryogénique, Tir percutant, Drain d’énergie, Fortification, Ravage, Onde de choc, Écrasement et Domination. Le complément du 25 octobre ajoute **Grenade à fragmentation**, **Grenade collante** et **Soutien des boucliers**. Les **47 fiches de pouvoirs utilisées correspondent à 21 commandes**, dont certaines partagées entre les œuvres. Les protections, cibles, durées, états et variantes restent des réglages explicitement adaptés. Les pouvoirs de loyauté ME2 ne sont proposés que dans les bancs qui déclarent cette condition préparée.
+Le premier complément ajoutait dix mécaniques ATB : Attraction, Incinération, Explosion cryogénique, Tir percutant, Drain d’énergie, Fortification, Ravage, Onde de choc, Écrasement et Domination. Le complément spécialistes ajoutait **Grenade à fragmentation**, **Grenade collante** et **Soutien des boucliers**. Le lot actuel porte l’ensemble à **61 fiches de pouvoirs exposées pour 30 commandes**, plus la commande de désactivation des munitions. Les protections, cibles, durées, états et variantes restent des réglages explicitement adaptés. Les pouvoirs de loyauté ME2 ne sont proposés que dans les bancs qui déclarent cette condition préparée.
 
 Les grenades de James et du Soldat ME3, celles du Franc-tireur ME3, de Liam et de Jaal disposent de **trois charges par escarmouche dans le réglage d’essai**. Chaque lancer accepté dépense une charge, sans clip d’arme ni délai de recharge artificiel ; aucun réapprovisionnement n’a lieu pendant le combat. La grenade collante reste un projectile différé. Le soutien de Cora restaure les boucliers des alliés vivants puis accélère temporairement leur recharge ; il ne soigne pas la santé et ne ranime personne. L’attribution non vérifiée de Flak Cannon à Peebee a été retirée de ses capacités manquantes, sans lui accorder une autre capacité.
+
+### Soutiens autonomes
+
+Quatre fiches correspondent à **trois actions** : Drone de combat ME2 et ME3, Tourelle de garde ME3 et Drone de défense ME3. Le Drone de combat est réservé à l’Ingénieur, Tali et Legion dans ME2, puis à l’Ingénieur et Tali dans ME3. La tourelle reste propre à l’Ingénieur ME3 ; le drone défensif à Tali ME3. Ces listes respectent les préparations et essais autorisés, sans déduction depuis un nom de classe voisin.
+
+Chaque déploiement ajoute une entité ciblable avec ses propres PV, boucliers éventuels, propriétaire et durée. Le drone harcèle une cible et peut la déloger du couvert ; la tourelle tire automatiquement ; la garde défensive réagit aux dégâts réellement reçus par son propriétaire. Cette réaction est une convention ATB, sans simulation de proximité physique. Le budget est d’un soutien du même type par propriétaire, deux types par propriétaire et six entités par camp ; redéployer le même type le remplace. Destruction, expiration ou mise hors combat du propriétaire retirent l’entité. Ces durées, plafonds et règles de retrait sont des choix du prototype.
+
+Les soutiens ne sont pas commandables et ne prennent pas la place d’un équipier. Ils ne reçoivent ni médi-gel, ni Unité, ni Soutien des boucliers. Leur disponibilité ne suspend pas le mode Attente ; ils cessent d’agir pendant une vraie attente d’ordre ou une pause. La victoire et la défaite dépendent des combattants natifs, jamais des soutiens survivants.
+
+### Modes de munitions appris
+
+Dix fiches exposées couvrent **six modes exclusifs** : incendiaire, cryogénique, disruptif, perforant, distorsion et déchiqueteur. ME2 propose les six ; ME3 en propose quatre, sans mode déchiqueteur ni Warp Ammo. Les permissions sont reconstruites depuis le kit et l’œuvre, avec les conditions de loyauté conservées. Les consommables de munitions Andromeda restent fermés faute de règle individuelle suffisamment vérifiée.
+
+Choisir ou désactiver un mode consomme un ordre ATB, sans réserve supplémentaire, remplissage du chargeur ou recharge temporelle ajoutée. Un seul mode reste actif. Les effets concernent les tirs contrôlés, rafales et techniques d’élite d’armes conventionnelles à clips ; pouvoirs, invocations, armes à chaleur et six armes spéciales restent exclus. Incendiaire et cryogénique exigent des dégâts réels de santé et respectent protections et immunités. Les autres modes modifient leurs couches de dégâts adaptées ; la munition perforante ne simule pas la traversée du décor. Multiplicateurs, accumulation de gel et durées restent des réglages ATB. Voir les [références et limites](research/chronicle-support-sources.md).
 
 Shepard peut choisir les **six classes dans ME2 et les six classes dans ME3**, en plus de la dotation par défaut conservée pour les anciennes sessions. Ryder dispose de **trois préparations de compétences — combat, biotique, technologie — et de sa dotation par défaut**. Ces préparations ne reproduisent ni tout l’arbre des talents ni les bonus passifs des profils d’Andromeda. Les compagnons gardent leur kit autorisé et les bancs de prologue gardent leur dotation par défaut. Les capacités manquantes restent affichées.
 
@@ -113,7 +129,9 @@ Ces dossiers restent présents dans la liste avec leur motif de fermeture et leu
 
 ## Sauvegardes séparées
 
-Une chronique est enregistrée par couple œuvre/segment sous une clé locale propre : `relay-chronicles.chronicle.<mediaId>.<periodId>.v1`. Elle conserve le scénario actif, le groupe, les profils `builds`, les quatre emplacements de préparation et les essais réussis. Les anciennes sessions v1 à deux emplacements migrent automatiquement vers `weapon`, `armor`, `weaponMod` et `weaponMod2`, avec les deux ports supplémentaires vides. Une structure explicitement invalide reste refusée.
+Une chronique est enregistrée par couple œuvre/segment sous une clé locale propre : `relay-chronicles.chronicle.<mediaId>.<periodId>.v1`. Elle conserve le scénario actif, le groupe, les profils `builds`, les quatre emplacements de préparation, les modes préparés `ammoModes` et les essais réussis. Les anciennes sessions v1 à deux emplacements migrent automatiquement vers `weapon`, `armor`, `weaponMod` et `weaponMod2`, avec les deux ports supplémentaires vides. Une ancienne session sans `ammoModes` reçoit des choix neutres. Une structure explicitement invalide reste refusée.
+
+Le mode préparé est validé selon l’œuvre, le kit et l’arme. Un changement de classe ou d’arme retire une sélection devenue incompatible ; il ne débloque aucun pouvoir. Les activations pendant l’escarmouche restent dans ce combat et ne réécrivent pas la préparation sauvegardée. Les entités invoquées ne sont pas ajoutées au groupe préparé ni à la sauvegarde de campagne.
 
 Les découvertes enregistrent uniquement des fiches autorisées dans le contexte. `readingProgress` conserve séparément l’index de page par parcours ; il n’écrase pas `notes`, qui reste réservé aux notes personnelles. Les anciens exports dépourvus de ces champs reçoivent leurs valeurs par défaut. L’interface ne propose pas d’éditeur de notes personnelles.
 
@@ -125,7 +143,9 @@ Les imports sont validés avant enregistrement : contexte exact, scénario connu
 
 ## Présentation visuelle
 
-Ce lot ne crée aucune illustration, aucun portrait ni aucun atlas. Les Chroniques emploient des symboles, initiales et effets de prototype. Les silhouettes de ME1 ne sont pas réattribuées aux nouveaux personnages. Costumes par époque, modèles d’armes, décors, portraits, sprites et animations propres à chaque œuvre restent à produire et à vérifier. Voir le [registre des assets](ASSETS.md).
+Un atlas local de 1536 × 1024 fournit **trois bustes de prototype**, associés aux identités exactes `ME2-CHR-MIRANDA`, `ME2-CHR-THANE` et `ME3-CHR-GARRUS`, dans leurs essais autorisés. Le Garrus de ME3 n’est pas utilisé pour ME1 ou ME2. Les autres profils et les soutiens conservent des symboles de prototype. Les silhouettes de ME1 ne sont pas réattribuées à d’autres identités.
+
+Ces bustes partiels ne livrent ni sprites en pied, ni huit directions, ni animations ou variations d’équipement. Le débordement de cellules voisines est corrigé par un découpage SVG ; sept captures finales d’interface ont été revues. Cette correction de présentation ne certifie pas les détails générés contre les modèles d’origine. Voir le [registre des assets](ASSETS.md), la [revue visuelle finale](qa/chronicle-portrait-ui-review.json) et les [références de portraits](research/chronicle-portrait-sources.md).
 
 ## Sources, code et vérifications
 
@@ -140,6 +160,9 @@ Ce lot ne crée aucune illustration, aucun portrait ni aucun atlas. Les Chroniqu
 | [`universe-powers.js`](../src/universe-powers.js) | Liaisons sourcées, kits, classes et conditions des pouvoirs |
 | [`chronicle-story.js`](../src/chronicle-story.js) | Seize lectures, 52 pages, provenance et découvertes validées |
 | [`universe-weapon-profiles.js`](../src/universe-weapon-profiles.js) | Six profils d’armes ATB sans chargement du catalogue depuis le combat |
+| [`combat-summons.js`](../src/combat-summons.js) | Plans purs des entités, durée, plafonds, réactions et retrait des soutiens |
+| [`universe-ammo.js`](../src/universe-ammo.js) | Modes appris exclusifs, compatibilité et effets par couche de dégâts |
+| [`universe-portraits.js`](../src/universe-portraits.js) | Trois bustes associés aux identités et contextes exacts |
 | [`chronicles.js`](../src/chronicles.js) | Validation composite, préparation, combat, import/export et stockage isolé |
 | [`universe-ui.js`](../src/universe-ui.js) | Registre, profils, modules, lecture et commandes des essais |
 
@@ -158,9 +181,22 @@ npm run test:chronicle:expansion
 npm run test:chronicle:specialists
 ```
 
-Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Le premier parcours navigateur écrit `test-results/universe-report.json` ; le complément pouvoirs, modules et lecture écrit `test-results/chronicle-expansion-report.json`. Leur résultat doit être lu dans les rapports de l’exécution concernée ; cette documentation ne certifie ni une campagne intégrale ni un lancement Windows.
+Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Le lot actuel ajoute `tests/combat-summons.test.js`, `tests/combat-support.test.js`, `tests/universe-ammo.test.js`, `tests/chronicle-ammo-sessions.test.js` et `tests/universe-portraits.test.js`. Le [rapport global](qa/chronicle-support-report.json) conserve les résultats suivants.
 
-Le [rapport du complément du 25 octobre 2026](qa/chronicle-specialists-report.json) rassemble les 396 tests, le nouveau parcours, ses six armes, trois actions, six bancs et sept lectures, les régressions et les exports actuels. Le contrôle différentiel de combat ME1 conserve les mêmes événements et bilans sur 30 graines et 1 755 ordres acceptés. Les limites des sources et de la présentation restent distinctes des tests fonctionnels.
+| Contrôle du lot soutiens, munitions et portraits | Résultat | Preuve |
+|---|---|---|
+| Tests et compilation | 473 tests Node réussis sur 473 ; build de 47 modules | [Rapport global](qa/chronicle-support-report.json) |
+| Nouveau parcours navigateur | Cinq contrôles, dix cartes de munitions, quatre cartes de soutien, trois portraits et une victoire réelle | [Parcours du lot](qa/chronicle-support-browser-report.json) |
+| Régression des Chroniques | Six contrôles et seize victoires ; réalisée avant la dernière correction SVG, couverte ensuite par le parcours final et la production | [Régression](qa/chronicle-support-legacy-universe-report.json) |
+| Production HTTP | Douze contrôles, onze PNG chargés et six bundles servis vérifiés par empreinte | [Production](qa/chronicle-support-production-report.json) |
+| Combat ME1 | Événements, bilans et résultats d’ordres identiques sur 30 graines et 1 755 ordres acceptés | [Comparaison déterministe](qa/chronicle-support-me1-combat-diff.json) |
+| Classeurs | 28 XLSX vérifiés, 21 exports univers reconstruits ; 30 panneaux ciblés de deux classeurs univers et trois panneaux du principal revus | [Exports](qa/chronicle-support-workbook-export-report.json), [revue univers](qa/chronicle-support-workbook-visual-report.json), [principal](qa/chronicle-support-main-workbook-report.json) |
+
+Ces contrôles ne constituent ni une nouvelle campagne ME1 complète de 21 combats, ni un lancement Windows, ni une certification 1:1. Le premier parcours navigateur écrit `test-results/universe-report.json` ; le complément pouvoirs, modules et lecture écrit `test-results/chronicle-expansion-report.json`. Les rapports historiques gardent les résultats de leur propre exécution.
+
+### Rapports conservés du lot spécialistes
+
+Le [rapport historique du complément spécialistes du 25 octobre 2026](qa/chronicle-specialists-report.json) rassemble les 396 tests de ce lot, son parcours, ses six armes, trois actions, six bancs et sept lectures, ses régressions et ses exports. Son contrôle différentiel de combat ME1 conservait les mêmes événements et bilans sur 30 graines et 1 755 ordres acceptés. Les limites des sources et de la présentation restent distinctes des tests fonctionnels.
 
 La régression remporte les **16 essais** ; les **dix contrôles de production HTTP** passent avec les fichiers compilés réels, dont le rayon et les grenades sans harnais de développement. La campagne ME1 termine ses 21 combats et restaure sa sauvegarde. Les audits des 28 classeurs passent. La [revue visuelle du 25 octobre](qa/chronicle-specialists-workbook-visual-report.json) couvre 81 panneaux ciblés de onze classeurs, sans inspection complète de toutes leurs feuilles.
 

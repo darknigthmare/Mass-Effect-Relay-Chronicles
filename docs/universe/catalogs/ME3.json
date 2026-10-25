@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_3_Production.xlsx",
   "scope": "Campagne solo et DLC From Ashes, Leviathan, Omega, Citadel et Extended Cut ; profils Original et Legendary distincts. Le multijoueur de ME3 original et ses packs sont décrits comme module séparé, sans l’intégrer au roster solo ni le présenter comme présent dans Legendary.",
-  "summary": "736 fiches de production ; 62 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "736 fiches de production ; 70 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -494,6 +494,14 @@
       "kind": "wiki",
       "scope": "Différence Unity ME2 et First Aid ME3",
       "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME3-SRC-MANUAL-PC",
+      "title": "Mass Effect 3 — manuel PC anglais officiel, EA",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "kind": "source officielle",
+      "scope": "Page 5 : menus de pouvoirs et capture de Garrus confirmant Armor-Piercing Ammo ; pages 25–26 : effets généraux des munitions. Page 20 : équipements du multijoueur uniquement, explicitement hors des règles solo et des consommables MEA.",
+      "note": "PDF réellement téléchargé et consulté le 25 octobre 2026 : HTTP 200, 1 886 992 octets, 27 pages, SHA-256 07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01. La capture de Garrus page 5 a été inspectée visuellement ; elle confirme cette attribution ME3 sans certifier rang, acquisition ni kit d’une autre œuvre. Les pages 25–26 ne certifient aucun multiplicateur, durée ou budget ATB ; la règle d’équipement du multijoueur page 20 ne devient pas une règle de pouvoir solo. Preuves : docs/qa/chronicle-support-reference-report.json et docs/qa/chronicle-portrait-reference-report.json."
     }
   ],
   "entries": [
@@ -9868,7 +9876,7 @@
       "id": "ME3-POW-DRONE",
       "category": "powers",
       "name": "Combat Drone",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -9877,7 +9885,7 @@
       "visual": "Petite sphère holographique et ombre.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/drone ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-DRONE → combatDrone dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me3-equipment-workshop, me3-from-ashes, me3-omega, me3-citadel-wrex. Propriétaire, santé, limite de remplacement, interventions autonomes et retrait sont visibles ; aucune nouvelle place dans le commando.",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -9885,7 +9893,22 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Combat Drone",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-ENERGY-DRAIN",
@@ -10088,7 +10111,7 @@
       "id": "ME3-POW-AMMO-INCENDIARY",
       "category": "powers",
       "name": "Incendiary Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -10097,7 +10120,7 @@
       "visual": "Marque orange au chargeur.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/ammo-incendiary ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-INCENDIARY → ammoIncendiary dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -10105,13 +10128,28 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Incendiary Ammo",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-AMMO-DISRUPTOR",
       "category": "powers",
       "name": "Disruptor Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -10120,7 +10158,7 @@
       "visual": "Éclats électriques bleus.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/ammo-disruptor ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-DISRUPTOR → ammoDisruptor dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -10128,13 +10166,28 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Disruptor Ammo",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-AMMO-CRYO",
       "category": "powers",
       "name": "Cryo Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -10143,7 +10196,7 @@
       "visual": "Liseré blanc au projectile.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/ammo-cryo ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-CRYO → ammoCryo dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -10151,13 +10204,28 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Cryo Ammo",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-AMMO-AP",
       "category": "powers",
       "name": "Armor-Piercing Ammo",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir présent dans l’arsenal ME3.",
@@ -10166,7 +10234,7 @@
       "visual": "Icône de plaque perforée.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/ammo-ap ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-AP → ammoArmorPiercing dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
       "conditions": "",
       "acceptance": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
       "dependencies": [],
@@ -10174,7 +10242,22 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Armor-Piercing Ammo",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot. L’attribution à Garrus ME3 est recoupée dans la capture du manuel officiel ME3 page 5 ; cette preuve ne certifie ni son rang ni le kit de Garrus ME2.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-AMMO-WARP",
@@ -10471,7 +10554,7 @@
       "id": "ME3-POW-DEFENSE-DRONE",
       "category": "powers",
       "name": "Defense Drone",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de Tali.",
@@ -10480,7 +10563,7 @@
       "visual": "Sphère de défense et petit arc.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/defense-drone ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-DEFENSE-DRONE → defenseDrone dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me3-equipment-workshop. Propriétaire, santé, limite de remplacement, réactions défensives de proximité et retrait sont visibles ; aucune nouvelle place dans le commando.",
       "conditions": "",
       "acceptance": "Le livrable « Defense Drone » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10488,7 +10571,22 @@
         "ME3-SRC-SQUAD"
       ],
       "reference": "Defense Drone",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-DEFENSE-MATRIX",
@@ -12781,7 +12879,7 @@
       "id": "ME3-POW-SENTRY",
       "category": "powers",
       "name": "Sentry Turret",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir d’ingénieur.",
@@ -12790,7 +12888,7 @@
       "visual": "Tourelle holographique et cône.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me3/powers/sentry ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : liaison ME3-POW-SENTRY → sentryTurret dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me3-equipment-workshop, me3-from-ashes, me3-omega, me3-citadel-wrex. Propriétaire, santé, limite de remplacement, interventions autonomes et retrait sont visibles ; aucune nouvelle place dans le commando.",
       "conditions": "",
       "acceptance": "Le livrable « Sentry Turret » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -12798,7 +12896,22 @@
         "ME3-SRC-POWERS"
       ],
       "reference": "Sentry Turret",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ]
     },
     {
       "id": "ME3-POW-FITNESS",
@@ -16965,7 +17078,7 @@
       "id": "ME3-SPR-CHR-GARRUS",
       "category": "sprites",
       "name": "Planche sprites — Garrus Vakarian",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Garrus Vakarian.",
@@ -16974,7 +17087,7 @@
       "visual": "Armure bleue marquée et viseur asymétrique.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Garrus Vakarian. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me3/sprites/chr-garrus ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel : portrait de buste original de Garrus ME3 dans public/assets/chronicle-portraits-me2-me3.png, intégré par src/universe-portraits.js et src/universe-ui.js aux contextes et scénarios autorisés de ME3-CHR-GARRUS. Le SVG est borné à sa cellule d’atlas avec clipping explicite, vérifié dans le navigateur après correction. Aucun sprite en pied ni animation livré.",
       "conditions": "Survie ME2 requise.",
       "acceptance": "À l’échelle de jeu, Garrus Vakarian est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -16982,7 +17095,21 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Livraison limitée à un buste généré, d’après la capture de Garrus dans le manuel PC ME3, page 5. Les portraits apparaissent dans les interfaces de commando et combat ; sprite=null. Corps entier, dos, déplacement, huit orientations, poses de tir, variations d’équipement et animations restent à produire. Traits, couleurs et détails interprétés ; aucune fidélité artistique ou géométrique 1:1 certifiée. Aucun portrait transféré à une autre œuvre ou au protagoniste configurable.",
+      "implementationPaths": [
+        "src/universe-portraits.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/chronicle-portraits-me2-me3.png",
+        "public/assets/chronicle-portraits.json"
+      ],
+      "evidence": [
+        "tests/universe-portraits.test.js",
+        "tests/universe-support-ui.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-portrait-reference-report.json"
+      ]
     },
     {
       "id": "ME3-SPR-CHR-EDI",
@@ -18288,13 +18415,18 @@
     },
     {
       "area": "Complément pouvoirs, modules et lectures",
-      "covered": "18 fiches de pouvoirs effectivement utilisées, 2 familles de modules préparables et 0 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "covered": "25 fiches de pouvoirs effectivement utilisées, 2 familles de modules préparables et 0 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
       "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
     },
     {
       "area": "Complément spécialistes contextualisés",
       "covered": "4 profils supplémentaires limités aux bancs de spécialistes, 2 profils d’armes spéciales et 3 fiches de pouvoirs supplémentaires effectivement exposées. Vérification fonctionnelle liée au rapport docs/qa/chronicle-specialists-browser-report.json.",
       "remaining": "Bancs ATB sur mannequins originaux, conditions préparées et dotations abstraites ; aucune reconstruction des missions, acquisition de campagne, illustration, animation, doublage ni valeur originale certifiée. Les sources secondaires et incertitudes restent explicites."
+    },
+    {
+      "area": "Complément soutiens, munitions et portraits partiels",
+      "covered": "3 fiches de soutien et 4 pouvoirs de munitions supplémentaires effectivement utilisés, plus 1 portraits de buste générés intégrés aux seuls acteurs/contextes autorisés. Vérification navigateur complète post-correction liée à docs/qa/chronicle-support-browser-report.json ; les chemins de preuves sont inscrits sur les seules fiches promues.",
+      "remaining": "Budgets et effets adaptés à l’ATB ; acquisition, rangs et simulation originale complète restent à vérifier. Les bustes ne livrent ni corps entier, dos, huit orientations, déplacement, animation, arme ou costume variable. Warp Ammo ME3 reste Défini ; les consommables de munitions MEA ne sont pas implémentés et leur durée ou quantité originale n’est pas inventée."
     }
   ]
 }

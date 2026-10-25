@@ -15,9 +15,9 @@ const packageMetadata = JSON.parse(await readFile(new URL('../package.json', imp
 const report = {
   version: packageMetadata.version, at: new Date().toISOString(), passed: false,
   mode: 'Production HTTP fallback after file:// was blocked by the managed browser',
-  scope: 'The real dist Vite bundles served over HTTP in Linux Chromium: native WebGL drawing, bundled resources, dossier, equipment, actual save/export/import/resume UI, separately saved ME2 and ME3 Chronicle workshops, the ME3 engineer preparation with two weapon modifications, Revelation documentary reading restored after reload, a cancellable heat beam and finite grenade charges through production UI. No Electron executable or Windows launch is tested.',
+  scope: 'Real dist bundles over HTTP in Linux Chromium: native WebGL, resources, campaign and Chronicle save UI, workshops, reading, special weapons, finite grenades, actual autonomous support deployment, saved ammo preferences and generated portrait delivery. No Electron executable or Windows launch is tested.',
   fileURLValidation: { status: 'blocked-by-managed-browser-policy', error: 'ERR_BLOCKED_BY_ADMINISTRATOR', evidence: 'test-results/production-v02-report.json', policyBypassAttempted: false },
-  entry: entry.href, buildEntry: 'dist/index.html', browser: null, checks: [], bundles: [], bundleStatuses: [], servedBundles: [], errors: [], failedRequests: [], assetRequests: [],
+  entry: entry.href, buildEntry: 'dist/index.html', browser: null, checks: [], bundles: [], bundleStatuses: [], servedBundles: [], portraitStatuses: [], errors: [], failedRequests: [], assetRequests: [],
 };
 for (const filename of (await readdir(new URL('../dist/assets/', import.meta.url))).filter(name => name.endsWith('.js')).sort()) {
   const bytes = await readFile(new URL(`../dist/assets/${filename}`, import.meta.url));
@@ -27,6 +27,8 @@ for (const filename of (await readdir(new URL('../dist/assets/', import.meta.url
 assert.ok(report.bundles.length > 0, 'Production JavaScript bundles exist');
 const registryBundles = report.bundles.filter(bundle => /\/universe-data-[^/]+\.js$/.test(bundle.path));
 assert.ok(registryBundles.length > 0, 'The documentary registry has a separate production bundle');
+const portraitBytes = await readFile(new URL('../dist/assets/chronicle-portraits-me2-me3.png', import.meta.url));
+const portraitExpected = { path: 'dist/assets/chronicle-portraits-me2-me3.png', bytes: portraitBytes.length, sha256: createHash('sha256').update(portraitBytes).digest('hex') };
 const requestedBundles = () => [...requests].map(address => {
   const parsed = new URL(address);
   return parsed.origin === entry.origin ? `dist${parsed.pathname}` : null;
@@ -50,9 +52,10 @@ page.on('response', response => {
   const status = response.status();
   if (status >= 400) report.failedRequests.push(`${status} ${response.url()}`);
   const address = new URL(response.url()), filename = address.pathname.split('/').at(-1);
-  const expected = report.bundles.find(bundle => bundle.path === `dist/assets/${filename}`);
+  const portrait = filename === 'chronicle-portraits-me2-me3.png';
+  const expected = portrait ? portraitExpected : report.bundles.find(bundle => bundle.path === `dist/assets/${filename}`);
   if (address.origin !== entry.origin || !expected) return;
-  report.bundleStatuses.push({ url: response.url(), path: expected.path, status });
+  (portrait ? report.portraitStatuses : report.bundleStatuses).push({ url: response.url(), path: expected.path, status });
   // Redirects and cache revalidations cannot satisfy the full 200 requirement.
   // Reserve the first 200 immediately: reloads can expose another 200 whose
   // cached body is unavailable, and cannot replace a failed first collection.
@@ -60,7 +63,8 @@ page.on('response', response => {
   scheduledBundleBodies.add(expected.path);
   bundleResponses.push((async () => {
     const bytes = await response.body();
-    report.servedBundles.push({ url: response.url(), path: expected.path, status, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') });
+    const observed = { url: response.url(), path: expected.path, status, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') };
+    if (portrait) report.servedPortrait = observed; else report.servedBundles.push(observed);
   })().catch(error => { report.failedRequests.push(`Could not inspect bundle ${response.url()}: ${error.message}`); }));
 });
 // Count calls to the native graphics API without exposing or modifying game state.
@@ -409,6 +413,53 @@ try {
     actorId: 'MEA-CHR-LIAM', actionId: 'fragGrenade', spentGrenades, weaponAmmunitionUnchanged: startingAmmo,
     emptyActionDisabled: true, exactCampaignCheckpointPreserved: true, runtimeDevelopmentHarness: 'absent' });
 
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  await captureEntryCheckpoint('Support and ammo production entry');
+  await page.locator('#chronicle-media').selectOption('ME3');
+  await page.locator('#chronicle-period').selectOption('me3');
+  await action('universe-tab', 'session').click();
+  await page.locator('#chronicle-scenario').selectOption('me3-equipment-workshop');
+  await action('chronicle-start').click();
+  for (const id of ['ME3-CHR-LIARA', 'ME3-CHR-JAMES']) await action('chronicle-party', id).click();
+  await page.locator('[data-chronicle-build][data-actor-id="ME3-CHR-SHEPARD"]').selectOption('engineer');
+  await action('chronicle-battle').click();
+  await page.locator('[data-do="chronicle-action"][data-id="combatDrone"]:not([disabled])').waitFor();
+  await action('chronicle-action', 'combatDrone').click();
+  await action('chronicle-target', 'chronicle-enemy-0').click();
+  const support = page.locator('[data-chronicle-support-owner="ME3-CHR-SHEPARD"]').locator('..');
+  await support.waitFor(); assert.match(await support.innerText(), /Soutien autonome/);
+  assert.equal(await support.locator('[data-do="chronicle-actor"]').count(), 0);
+  assert.ok(Number.parseInt(await support.locator('[data-chronicle-support-time]').innerText(), 10) > 0);
+  await assertCampaignFrozen('Production autonomous support'); await capture('support-deployment');
+  record({ name: 'Production Engineer deploys a real timed autonomous support without a player command button',
+    actionId: 'combatDrone', ownerId: 'ME3-CHR-SHEPARD', runtimeDevelopmentHarness: 'absent' });
+  await action('chronicle-preparation').click();
+  await page.locator('[data-chronicle-build][data-actor-id="ME3-CHR-SHEPARD"]').selectOption('soldier');
+  const ammoMode = page.locator('[data-chronicle-ammo-mode][data-actor-id="ME3-CHR-SHEPARD"]');
+  await ammoMode.selectOption('ME3-POW-AMMO-CRYO'); await action('chronicle-save').click();
+  const ammoPacket = await chroniclePacket(me3Key);
+  assert.equal(ammoPacket.session.ammoModes['ME3-CHR-SHEPARD'], 'ME3-POW-AMMO-CRYO');
+  await page.reload({ waitUntil: 'networkidle' });
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  await captureEntryCheckpoint('Restored ammo preparation entry');
+  await page.locator('#chronicle-media').selectOption('ME3'); await page.locator('#chronicle-period').selectOption('me3');
+  await action('universe-tab', 'session').click(); await action('chronicle-load').click();
+  assert.equal(await ammoMode.inputValue(), 'ME3-POW-AMMO-CRYO');
+  await action('chronicle-battle').click();
+  assert.match(await page.locator('[data-chronicle-ammo-mode-active]').innerText(), /cryogéniques/);
+  const ammoBeforeSwitch = await page.locator('[data-chronicle-ammo]').innerText();
+  await page.locator('[data-do="chronicle-action"][data-id="ammoDisruptor"]:not([disabled])').waitFor();
+  await action('chronicle-action', 'ammoDisruptor').click();
+  assert.match(await page.locator('[data-chronicle-ammo-mode-active]').innerText(), /disruptives/);
+  assert.equal(await page.locator('[data-chronicle-ammo]').innerText(), ammoBeforeSwitch);
+  assertExact(await chroniclePacket(me3Key), ammoPacket, 'Battle activation leaves the saved preparation unchanged');
+  await assertCampaignFrozen('Production ammo activation'); await capture('ammo-mode');
+  await action('chronicle-preparation').click(); assert.equal(await ammoMode.inputValue(), 'ME3-POW-AMMO-CRYO');
+  await action('chronicle-back').click(); await page.getByRole('button', { name: /Nouvelle campagne/ }).waitFor();
+  record({ name: 'Production ammo preference resumes after reload while a real battle switch changes no save or clip stock',
+    savedProfileId: 'ME3-POW-AMMO-CRYO', battleProfileId: 'ME3-POW-AMMO-DISRUPTOR', weaponAmmunitionUnchanged: ammoBeforeSwitch,
+    exactSavedPreparationRestored: true, runtimeDevelopmentHarness: 'absent' });
+
   const femaleRequests = [...completed].filter(address => /shepard-female-(?:walk|combat)-atlas\.png$/.test(address));
   assert.equal(femaleRequests.length, 2, 'Both female PNG atlases completed HTTP loading');
   assert.ok(femaleRequests.every(address => new URL(address).origin === entry.origin));
@@ -416,7 +467,7 @@ try {
   assert.deepEqual(jsonAnimationRequests, [], 'Animation metadata is bundled, with no JSON fetch');
   const remoteRequests = [...requests].filter(address => /^https?:/.test(address) && new URL(address).origin !== entry.origin);
   assert.deepEqual(remoteRequests, [], 'All game resources come from the production preview origin');
-  const expectedImages = ['crew-atlas.png', 'enemy-atlas.png', 'boss-atlas.png', 'props-atlas.png', 'npc-atlas.png', 'vehicle-atlas.png', 'shepard-walk-atlas.png', 'shepard-female-walk-atlas.png', 'shepard-female-combat-atlas.png', 'citadel-keyart.png'];
+  const expectedImages = ['crew-atlas.png', 'enemy-atlas.png', 'boss-atlas.png', 'props-atlas.png', 'npc-atlas.png', 'vehicle-atlas.png', 'shepard-walk-atlas.png', 'shepard-female-walk-atlas.png', 'shepard-female-combat-atlas.png', 'citadel-keyart.png', 'chronicle-portraits-me2-me3.png'];
   for (const filename of expectedImages) assert.ok([...completed].some(address => new URL(address).origin === entry.origin && new URL(address).pathname.endsWith(`/assets/${filename}`)), `${filename} completed production HTTP loading`);
   await Promise.all(bundleResponses);
   for (const expected of report.bundles) {
@@ -427,8 +478,9 @@ try {
       assert.equal(bundle.bytes, expected.bytes, `HTTP 200 byte length matches ${expected.path}`);
     }
   }
+  assert.equal(report.servedPortrait?.sha256, portraitExpected.sha256); assert.equal(report.servedPortrait?.bytes, portraitExpected.bytes);
   report.assetRequests = [...completed].filter(address => /\.(?:png|js|css)(?:\?|$)/.test(address)).map(address => `dist${new URL(address).pathname}`).sort();
-  record({ name: 'Ten production images, embedded animation metadata and exact dist bundle hashes', imagesLoaded: expectedImages.length, femaleAtlasesLoaded: 2, animationJsonRequests: 0, remoteRequests: 0, developmentHarnessInBundles: 'absent', servedBundleHashesMatchDist: true });
+  record({ name: 'Eleven production images, exact generated portrait bytes, embedded metadata and exact bundle hashes', imagesLoaded: expectedImages.length, femaleAtlasesLoaded: 2, animationJsonRequests: 0, remoteRequests: 0, developmentHarnessInBundles: 'absent', servedBundleHashesMatchDist: true, servedPortraitMatchesDist: true });
   assert.deepEqual(report.errors, []); assert.deepEqual(report.failedRequests, []);
   report.passed = true;
   console.log(JSON.stringify({ passed: true, checks: report.checks.length, errors: report.errors, failedRequests: report.failedRequests }));

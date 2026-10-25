@@ -87,7 +87,7 @@ test('available lists filter by provenance, category and accent-insensitive Fren
 
 test('new chronicle sessions are independent and contain no campaign inventory or economy', () => {
   const a = createChronicleSession(me2), b = createChronicleSession(me2);
-  assert.deepEqual(a, { version: 1, context: normalizeContext(me2), scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, builds: {}, readingProgress: {}, cleared: [] });
+  assert.deepEqual(a, { version: 1, context: normalizeContext(me2), scenarioId: null, discovered: [], notes: {}, party: [], loadouts: {}, builds: {}, readingProgress: {}, ammoModes: {}, cleared: [] });
   assert.equal(createChronicleSession({ mediaId: 'ME4', periodId: 'me4' }), null);
   a.party.push('prototype-actor'); a.loadouts['prototype-actor'] = { weapon: null, armor: null };
   a.cleared.push('prototype-scenario');
@@ -98,6 +98,7 @@ test('new chronicle sessions are independent and contain no campaign inventory o
 test('base session normalization copies selections while leaving gameplay authorization to the composite validator', () => {
   const raw = createChronicleSession(me2);
   raw.scenarioId = 'ME2-MQ-FREEDOM'; raw.party = ['ME2-CHR-JACK'];
+  raw.ammoModes = { 'ME2-CHR-JACK': null };
   raw.loadouts = { 'ME2-CHR-JACK': { weapon: 'ME2-WPN-EXAMPLE', armor: null } };
   raw.cleared = ['ME2-MQ-FREEDOM'];
   assert.equal(discoverContent(raw, 'ME2-CHR-JACK').ok, true);
@@ -111,12 +112,13 @@ test('base session normalization copies selections while leaving gameplay author
 
 test('legacy Chronicle versions migrate two equipment slots and absent optional progress without changing notes', () => {
   const old = createChronicleSession(me2);
-  delete old.builds; delete old.readingProgress;
+  delete old.builds; delete old.readingProgress; delete old.ammoModes;
   old.party = ['ME2-CHR-JACK']; old.loadouts = { 'ME2-CHR-JACK': { weapon: null, armor: null } };
   old.discovered = ['ME2-CHR-JACK']; old.notes = { 'ME2-CHR-JACK': 'Une note personnelle à conserver.' };
   const before = snapshot(old), current = normalizeChronicleSession(old);
   assert.deepEqual(current.loadouts['ME2-CHR-JACK'], { weapon: null, armor: null, weaponMod: null, weaponMod2: null });
   assert.deepEqual(current.builds, { 'ME2-CHR-JACK': 'default' });
+  assert.deepEqual(current.ammoModes, { 'ME2-CHR-JACK': null });
   assert.deepEqual(current.readingProgress, {}); assert.deepEqual(current.notes, old.notes);
   assert.equal(snapshot(old), before); assert.equal(current.version, 1);
   for (const mutation of [raw => { raw.builds = { stranger: 'soldier' }; }, raw => { raw.readingProgress = { story: -1 }; },

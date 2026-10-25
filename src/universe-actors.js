@@ -5,6 +5,7 @@ import { UNIVERSE_GROUPS, getUniverseRecord } from './universe-data.js';
 import { canAccessContent, normalizeContext } from './continuity.js';
 import { SPECIALIST_SCENARIOS } from './universe-specialist-scenarios.js';
 import { getActorPowerKit, unresolvedPowerNames, SHEPARD_CLASS_PREPARATIONS, RYDER_SKILL_PREPARATIONS, getPreparationPowers, ME2_CLASS_PRIMARY_REFERENCE } from './universe-powers.js';
+import { getAmmoActionProfile } from './universe-ammo.js';
 
 const freeze = value => {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -243,6 +244,8 @@ export function universeActorFor(actorId, context, buildId = 'default', scenario
   const clips = ['ME2', 'ME3', 'MEA'].includes(profile.mediaId);
   return { id: profile.id, catalogId: profile.id, name: profile.name, mediaId: profile.mediaId, buildId: build.id,
     ...stats, maxHp: stats.hp, maxShield: stats.shield, powers: [...build.powers], synthetic: !!profile.synthetic,
+    allowedAmmoProfileIds: build.powers.map(actionId => getAmmoActionProfile(profile.mediaId, actionId)?.id).filter(Boolean),
+    ammoModeId: null,
     allowedWeapons: [...build.allowedWeapons], biotic: build.biotic, tech: build.tech,
     powerCatalogIds: [...build.powerCatalogIds], powerProvenance: copy(build.powerProvenance), lockedPowers: copy(build.lockedPowers),
     ...(build.powers.some(id => ['fragGrenade', 'stickyGrenade'].includes(id))

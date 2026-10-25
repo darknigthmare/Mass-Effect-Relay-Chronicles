@@ -86,7 +86,9 @@ Les assignations utilisent des dialogues concis et des cartes condensées ; les 
 
 Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Seize essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost : quatre oppositions à types d’adversaires référencés, neuf bancs à mannequins originaux et trois ateliers d’équipement. Les six bancs supplémentaires réservent les personnages DLC ou bonus à leur contexte explicite. Les **42 profils partiels sont sélectionnables dans leurs essais autorisés**. Les ateliers proposent **76 équipements : 64 armes, 10 armures et deux familles de modules ME3**.
 
-Shepard dispose de six préparations de classe dans ME2 et de six dans ME3 ; Ryder de trois préparations de compétences, en plus des dotations par défaut. Les **47 fiches de pouvoirs utilisées correspondent à 21 commandes ATB**, dont les grenades à fragmentation, grenades collantes et le soutien des boucliers de Cora. Les grenades disposent d’une réserve d’essai limitée ; elles ne consomment pas les munitions de l’arme. Les deux ports de modules restent limités aux familles et armes compatibles. Les talents, rangs et acquisitions d’origine ne sont pas entièrement reconstitués.
+Shepard dispose de six préparations de classe dans ME2 et de six dans ME3 ; Ryder de trois préparations de compétences, en plus des dotations par défaut. Les **61 fiches de pouvoirs exposées correspondent à 30 commandes ATB**, auxquelles s’ajoute la désactivation du mode de munitions. Le lot actuel raccorde quatre fiches de soutien à trois actions — drone de combat, tourelle de garde et drone de défense — et dix fiches de munitions ME2/ME3 à six modes exclusifs. Les soutiens ont leurs propres PV, une durée et un propriétaire ; ils peuvent être détruits et ne comptent pas comme équipiers pour la victoire. Les modes appris s’appliquent aux seuls tirs conventionnels à clips, sans remplir le chargeur ni renforcer les pouvoirs. Les consommables de munitions Andromeda et Warp Ammo ME3 restent fermés. Les paramètres sont adaptés à l’ATB ; talents, rangs et acquisitions d’origine restent partiels.
+
+Les grenades à fragmentation et collantes disposent d’une réserve d’essai limitée, distincte des munitions de l’arme ; le soutien des boucliers de Cora restaure les alliés conscients. Les deux ports de modules restent limités aux familles et armes compatibles. Le lot soutiens, munitions et portraits passe **473 tests Node**, la compilation et **cinq contrôles navigateur** ; ses **douze contrôles de production HTTP** chargent les onze PNG. Le [rapport du lot](docs/qa/chronicle-support-report.json) conserve les résultats et leurs limites ; les rapports historiques décrivent leurs propres versions.
 
 Six armes spéciales ajoutent des explosions différées, des salves énergétiques et des canalisations : Falcon et Scorpion dans ME3 ; Scorpion, P.A.W., Reegar et Sweeper dans Andromeda. Les jauges de chaleur et les clips sont distincts ; une canalisation peut être interrompue. Les paramètres sont adaptés à l’ATB et les mécanismes originaux ne sont pas certifiés intégralement.
 
@@ -94,7 +96,7 @@ L’onglet **Lecture** propose **seize parcours documentaires et 52 pages sourc�
 
 L’œuvre, le segment, le porteur et les règles de l’essai limitent chaque sélection. Les ateliers utilisent une préparation libre et des valeurs ATB adaptées ; l’acquisition et les conditions de déblocage d’origine restent à reproduire. Les alternatives Samara/Morinth et Ashley/Kaidan sont exclusives. Les dossiers ME4, Library Edition, Blasto et contenus coupés restent documentaires, sans période historique jouable.
 
-Les Chroniques possèdent leurs propres sauvegardes et exports, sans transfert vers la campagne ME1. Les anciennes préparations v1 à deux emplacements migrent vers quatre : arme, armure et deux modules d’arme. La lecture reprend sa page dans `readingProgress`, séparément des notes personnelles. Les Chroniques utilisent des symboles de prototype, sans nouveau portrait ni sprite. Voir [le périmètre, les essais, les lectures et les limites](docs/CHRONICLES.md).
+Les Chroniques possèdent leurs propres sauvegardes et exports, sans transfert vers la campagne ME1. Les anciennes préparations v1 à deux emplacements migrent vers quatre : arme, armure et deux modules d’arme. Le mode de munitions préparé est conservé dans `ammoModes`, avec validation du personnage, de l’œuvre et de l’arme ; l’activer pendant une escarmouche ne réécrit pas la préparation. La lecture reprend sa page dans `readingProgress`, séparément des notes personnelles. Un nouvel atlas fournit trois bustes de prototype : Miranda ME2, Thane ME2 et Garrus ME3, uniquement dans leurs contextes autorisés. Les autres profils conservent leurs symboles ; ces bustes n’ajoutent ni sprites en pied, ni huit directions, ni animations. Voir [le périmètre, les essais, les lectures et les limites](docs/CHRONICLES.md).
 
 ## Excel et documentation
 
@@ -171,7 +173,9 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/universe-data.js` | Registre documentaire généré depuis les 28 catalogues |
 | `src/universe-actors.js` / `src/universe-equipment.js` | Profils partiels, préparations et équipement autorisés dans les essais |
 | `src/universe-powers.js` | Liaisons sourcées entre pouvoirs, personnages et commandes ATB |
-| `src/chronicle-story.js` | Neuf parcours documentaires, sources et découvertes par page |
+| `src/combat-summons.js` / `src/universe-ammo.js` | Plans d’invocation et modes de munitions adaptés, raccordés au vrai combat |
+| `src/universe-portraits.js` | Trois bustes de prototype associés aux identités et contextes exacts |
+| `src/chronicle-story.js` | Seize parcours documentaires, sources et découvertes par page |
 | `src/chronicles.js` / `src/universe-ui.js` | Chroniques indépendantes, préparation, combat et sauvegardes séparées |
 | `src/local-map.js` | Carte numérotée avec filtres et suivi |
 | `src/game-data.js` | Classes, personnages, rencontres, calibrations et codex |

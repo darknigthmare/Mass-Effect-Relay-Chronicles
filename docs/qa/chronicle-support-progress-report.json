@@ -1,0 +1,889 @@
+{
+  "version": 1,
+  "passed": true,
+  "at": "2026-10-25T09:20:35.988646+00:00",
+  "baseCommit": "748b9657de4cad0a4633b86c9d185ea63793c293",
+  "plan": "docs/universe/qa/chronicle-support-progress-plan.json",
+  "planSha256": "be6540fa684406c640c5e2db5e4642a64c5e0be34962bd6f04682712679bbd6f",
+  "validation": "docs/qa/chronicle-support-browser-report.json",
+  "validationSha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+  "validationResultPointer": "/passed",
+  "changedRecords": 17,
+  "changedCatalogs": 2,
+  "changesByGroup": {
+    "supportPowerCards": 4,
+    "ammoPowerCards": 10,
+    "partialBustAssetCards": 3
+  },
+  "changesByCatalog": {
+    "ME2": 9,
+    "ME3": 8
+  },
+  "protectedFieldsUnchanged": true,
+  "unselectedRowsUnchanged": true,
+  "allIdsAndOrderPreserved": true,
+  "oldSourcesUnchanged": true,
+  "uniqueDocumentaryException": {
+    "baseCommit": "748b9657de4cad0a4633b86c9d185ea63793c293",
+    "catalogPath": "docs/universe/catalogs/ME3.json",
+    "beforeSha256": "dd793758dd8f13f327934848f475dfc499412aaa89a0063a3b52cc399b807dfd",
+    "afterSha256": "7272f9936371e7b267c2e590150807523f34f885f7d6d2a16b63ce7dd6bcccea",
+    "allowedException": "Append one newly consulted primary source; no existing source or catalogue entry changed.",
+    "addedSource": {
+      "id": "ME3-SRC-MANUAL-PC",
+      "title": "Mass Effect 3 — manuel PC anglais officiel, EA",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "kind": "source officielle",
+      "scope": "Page 5 : menus de pouvoirs et capture de Garrus confirmant Armor-Piercing Ammo ; pages 25–26 : effets généraux des munitions. Page 20 : équipements du multijoueur uniquement, explicitement hors des règles solo et des consommables MEA.",
+      "note": "PDF réellement téléchargé et consulté le 25 octobre 2026 : HTTP 200, 1 886 992 octets, 27 pages, SHA-256 07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01. La capture de Garrus page 5 a été inspectée visuellement ; elle confirme cette attribution ME3 sans certifier rang, acquisition ni kit d’une autre œuvre. Les pages 25–26 ne certifient aucun multiplicateur, durée ou budget ATB ; la règle d’équipement du multijoueur page 20 ne devient pas une règle de pouvoir solo. Preuves : docs/qa/chronicle-support-reference-report.json et docs/qa/chronicle-portrait-reference-report.json."
+    },
+    "sourceProofs": {
+      "docs/qa/chronicle-support-reference-report.json": "c7896d41033facaeb7c75616e5b5d688405d15bee40111ee6b2b6ca528470c0b",
+      "docs/qa/chronicle-portrait-reference-report.json": "05babe3115876c3d627f99fb126e706a732df0dc2883131ecee5ea06dd3474c3"
+    },
+    "oldSourcesPreserved": true,
+    "entriesPreserved": true,
+    "sourcesUniverseBefore": 409,
+    "sourcesUniverseAfter": 410,
+    "sourcesMain": 39
+  },
+  "sourceReferences": {
+    "universeBefore": 409,
+    "universeAfter": 410,
+    "principal": 39,
+    "globalBefore": 448,
+    "globalAfter": 449
+  },
+  "editSurface": [
+    "status",
+    "implementationPaths",
+    "evidence",
+    "implementation",
+    "notes",
+    "book.summary",
+    "book.coverage",
+    "ME3.sources append one explicitly authorized primary source"
+  ],
+  "execution": {
+    "boundedPreclipRestore": {
+      "rows": 17,
+      "onlyWhitelistRows": true,
+      "newPrimarySourceRetained": true,
+      "history": "docs/qa/chronicle-support-progress-preclip.json",
+      "historySha256": "f77ccb25eeb93bd8e6bd024e173965469170ad33ab577b285b2862bae655ba15"
+    },
+    "postclipDryRun": {
+      "passed": true,
+      "changedRecords": 17,
+      "changedCatalogs": 2,
+      "log": "/tmp/relay-support-postclip-progress-dry-run.json"
+    },
+    "postclipApply": {
+      "passed": true,
+      "changedRecords": 17,
+      "changedCatalogs": 2,
+      "log": "/tmp/relay-support-postclip-progress-applied.json"
+    }
+  },
+  "runtimeCoverage": {
+    "usedPowerCards": 61,
+    "nativeActions": 30,
+    "selectableActors": 42,
+    "partialBustPortraits": 3,
+    "equipment": 76,
+    "scenarios": 16
+  },
+  "functionalScope": {
+    "checks": 5,
+    "supportCards": 4,
+    "nativeSupportActions": 3,
+    "ammoCards": 10,
+    "ammoModes": 6,
+    "partialBustPortraits": 3,
+    "sourceModuleHashes": {
+      "src/combat.js": "dde9c1e18afb09b5a9e481383b6e2953f4c7d529b90f242c404eca652c03261d",
+      "src/combat-summons.js": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b",
+      "src/universe-ammo.js": "76580f7e77eb21f1bfd42438ee10c2e1f6088c214e2db4eac31a9a1033e6fdd6",
+      "src/universe-powers.js": "523170ae46502b307704a15ff8b3cd7c5ce2c9805611a4b5c6c2fe987f7e67c5",
+      "src/universe-actors.js": "662093a6971b61c90e287e98b88e9bfd1cb00b72664353cbb062fa327643e387",
+      "src/universe-equipment.js": "f9a7e62d3ef121d0ffb6ed20edfa76d5885cf72e0c052b3a2f914b7de3e456e4",
+      "src/universe-weapon-profiles.js": "39f9c997412acd4d4964ce0d92411cf751adbfa3abc35c9e5777d2a8a8d3445e",
+      "src/universe-portraits.js": "896977e1b52becf5bd2284eec01641a11ece90649e6bd2c0e6bf0050e02111da",
+      "src/chronicles.js": "62f7d28013c07a33faab2c1d9f7a97c7366eabc22073ed29eeabb6070c99fecc",
+      "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+      "src/universe-ui.js": "f2b050b35584184a9491ae7c0fe1292258abcea9c10e4b0845d6046e62cca062",
+      "src/universe-ui.css": "c65435a0028287f59bd1f57b7230cf1b60566064328a276409992dabd7ebb12a",
+      "src/main.js": "92a4994010be55ff03a2a5d31a6877482d72fd480a8ceeb03231c4a5613f1197"
+    },
+    "runnerSha256": "fa3ec9075cdadee71a5dc133de26abf13a68d4b9fd35064884a87dfe1e162994"
+  },
+  "explicitExclusions": [
+    "ME3-POW-AMMO-WARP",
+    "MEA-EQP-AMMO-FIRE",
+    "MEA-EQP-AMMO-CRYO",
+    "MEA-EQP-AMMO-DISRUPT",
+    "All animation cards and full eight-direction sprite completion"
+  ],
+  "preservation": {
+    "reportPath": "docs/qa/chronicle-support-preservation-report.json",
+    "sha256": "bd8b05e361121d4b6b1d9b0eadf5272e08c2f238dba4a45901396fbf9a9ab309",
+    "passed": true
+  },
+  "exports": {
+    "reportPath": "docs/qa/chronicle-support-workbook-export-report.json",
+    "sha256": "0cd648870e40ba28c557f86b9c5c5e582c533e47a9fa43a30439364525202617",
+    "rebuiltWorkbooks": 21,
+    "auditWorkbooks": 27,
+    "scope": "19 exports postclip déjà audités, puis 2 exports après les promotions finales."
+  },
+  "visual": {
+    "reportPath": "docs/qa/chronicle-support-workbook-visual-report.json",
+    "sha256": "3425b6803689d1bac2f58e93f64ea3ad9a17f247ee0d3475057bb9fd970fe185",
+    "passed": true,
+    "scope": "30 panneaux ciblés uniquement, 2 classeurs, 10 fenêtres ; aucune revue complète revendiquée."
+  },
+  "package": {
+    "manifestPath": "docs/universe/manifest.json",
+    "manifestSha256": "d5f95d7a69f4e9c381dd8bb79defb0ae2cc07af3f3c5dc3ad37a4241b2309462",
+    "archivePath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip",
+    "archiveSha256": "25490835c7a92a5da3558332331c3ebac04746c815194d0d0eed76364e9d6144",
+    "xlsxMembers": 27,
+    "archiveMembers": 29,
+    "membersByteMatchManifestAndDisk": true
+  },
+  "statusCounts": {
+    "Défini": 5085,
+    "Prototype": 241,
+    "Intégré": 0,
+    "Validé": 0
+  },
+  "catalogs": [
+    {
+      "id": "ANN",
+      "path": "docs/universe/catalogs/ANN.json",
+      "sha256": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d",
+      "baseline748Sha256": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d",
+      "postSourceBaselineSha256": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d"
+    },
+    {
+      "id": "ASC",
+      "path": "docs/universe/catalogs/ASC.json",
+      "sha256": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+      "baseline748Sha256": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+      "postSourceBaselineSha256": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57"
+    },
+    {
+      "id": "BLA",
+      "path": "docs/universe/catalogs/BLA.json",
+      "sha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+      "baseline748Sha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+      "postSourceBaselineSha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c"
+    },
+    {
+      "id": "CON",
+      "path": "docs/universe/catalogs/CONVICTION.json",
+      "sha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+      "baseline748Sha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+      "postSourceBaselineSha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05"
+    },
+    {
+      "id": "CUT",
+      "path": "docs/universe/catalogs/CUT.json",
+      "sha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+      "baseline748Sha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+      "postSourceBaselineSha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081"
+    },
+    {
+      "id": "DEC",
+      "path": "docs/universe/catalogs/DEC.json",
+      "sha256": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d",
+      "baseline748Sha256": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d",
+      "postSourceBaselineSha256": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d"
+    },
+    {
+      "id": "DIS",
+      "path": "docs/universe/catalogs/DIS.json",
+      "sha256": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b",
+      "baseline748Sha256": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b",
+      "postSourceBaselineSha256": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b"
+    },
+    {
+      "id": "EVO",
+      "path": "docs/universe/catalogs/EVO.json",
+      "sha256": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a",
+      "baseline748Sha256": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a",
+      "postSourceBaselineSha256": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a"
+    },
+    {
+      "id": "FOU",
+      "path": "docs/universe/catalogs/FOU.json",
+      "sha256": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56",
+      "baseline748Sha256": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56",
+      "postSourceBaselineSha256": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56"
+    },
+    {
+      "id": "GAL",
+      "path": "docs/universe/catalogs/GAL.json",
+      "sha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+      "baseline748Sha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+      "postSourceBaselineSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6"
+    },
+    {
+      "id": "HOM",
+      "path": "docs/universe/catalogs/HOM.json",
+      "sha256": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e",
+      "baseline748Sha256": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e",
+      "postSourceBaselineSha256": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e"
+    },
+    {
+      "id": "HWB",
+      "path": "docs/universe/catalogs/HWB.json",
+      "sha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+      "baseline748Sha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+      "postSourceBaselineSha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677"
+    },
+    {
+      "id": "INC",
+      "path": "docs/universe/catalogs/INC.json",
+      "sha256": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6",
+      "baseline748Sha256": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6",
+      "postSourceBaselineSha256": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6"
+    },
+    {
+      "id": "INF",
+      "path": "docs/universe/catalogs/INF.json",
+      "sha256": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+      "baseline748Sha256": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+      "postSourceBaselineSha256": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec"
+    },
+    {
+      "id": "INI",
+      "path": "docs/universe/catalogs/INI.json",
+      "sha256": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+      "baseline748Sha256": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+      "postSourceBaselineSha256": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818"
+    },
+    {
+      "id": "INQ",
+      "path": "docs/universe/catalogs/INQ.json",
+      "sha256": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68",
+      "baseline748Sha256": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68",
+      "postSourceBaselineSha256": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68"
+    },
+    {
+      "id": "INV",
+      "path": "docs/universe/catalogs/INV.json",
+      "sha256": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70",
+      "baseline748Sha256": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70",
+      "postSourceBaselineSha256": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70"
+    },
+    {
+      "id": "LIB",
+      "path": "docs/universe/catalogs/LIB.json",
+      "sha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+      "baseline748Sha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+      "postSourceBaselineSha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966"
+    },
+    {
+      "id": "ME2",
+      "path": "docs/universe/catalogs/ME2.json",
+      "sha256": "9433f29619e8dd26fa5924ce3dad894181003419749215d06c72ad0c120783b4",
+      "baseline748Sha256": "4f4d1143e63f1f01dbfce8130fc39e7d66b8cfdbc90e36d2d363ac8e887e7a8d",
+      "postSourceBaselineSha256": "4f4d1143e63f1f01dbfce8130fc39e7d66b8cfdbc90e36d2d363ac8e887e7a8d"
+    },
+    {
+      "id": "ME3",
+      "path": "docs/universe/catalogs/ME3.json",
+      "sha256": "3901fc2cabf4120f218b8583a8f147f17b5c800b5bfb0a6dcaa4a64451da9223",
+      "baseline748Sha256": "dd793758dd8f13f327934848f475dfc499412aaa89a0063a3b52cc399b807dfd",
+      "postSourceBaselineSha256": "7272f9936371e7b267c2e590150807523f34f885f7d6d2a16b63ce7dd6bcccea"
+    },
+    {
+      "id": "ME4",
+      "path": "docs/universe/catalogs/ME4.json",
+      "sha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+      "baseline748Sha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+      "postSourceBaselineSha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11"
+    },
+    {
+      "id": "MEA",
+      "path": "docs/universe/catalogs/MEA.json",
+      "sha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6",
+      "baseline748Sha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6",
+      "postSourceBaselineSha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6"
+    },
+    {
+      "id": "NEX",
+      "path": "docs/universe/catalogs/NEX.json",
+      "sha256": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0",
+      "baseline748Sha256": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0",
+      "postSourceBaselineSha256": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0"
+    },
+    {
+      "id": "PL",
+      "path": "docs/universe/catalogs/PL.json",
+      "sha256": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a",
+      "baseline748Sha256": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a",
+      "postSourceBaselineSha256": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a"
+    },
+    {
+      "id": "RED",
+      "path": "docs/universe/catalogs/RED.json",
+      "sha256": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea",
+      "baseline748Sha256": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea",
+      "postSourceBaselineSha256": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea"
+    },
+    {
+      "id": "RET",
+      "path": "docs/universe/catalogs/RET.json",
+      "sha256": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+      "baseline748Sha256": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+      "postSourceBaselineSha256": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64"
+    },
+    {
+      "id": "REV",
+      "path": "docs/universe/catalogs/REV.json",
+      "sha256": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+      "baseline748Sha256": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+      "postSourceBaselineSha256": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe"
+    }
+  ],
+  "changes": [
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-DRONE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-DRONE → combatDrone dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me2-freedoms-progress, me2-equipment-workshop, me2-dlc-specialists, me2-shadow-broker. Propriétaire, santé, limite de remplacement, interventions autonomes et retrait sont visibles ; aucune nouvelle place dans le commando.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-AMMO-INCENDIARY",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-INCENDIARY → ammoIncendiary dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-AMMO-DISRUPTOR",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-DISRUPTOR → ammoDisruptor dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-AMMO-CRYO",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-CRYO → ammoCryo dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-AMMO-AP",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-AP → ammoArmorPiercing dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-AMMO-WARP",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-WARP → ammoWarp dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-AMMO-SHREDDER",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME2-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME2-POW-AMMO-SHREDDER → ammoShredder dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-SPR-CHR-MIRANDA",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Extrapolation",
+      "sourceIdsPreserved": [],
+      "implementationPaths": [
+        "src/universe-portraits.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/chronicle-portraits-me2-me3.png",
+        "public/assets/chronicle-portraits.json"
+      ],
+      "evidence": [
+        "tests/universe-portraits.test.js",
+        "tests/universe-support-ui.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-portrait-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : portrait de buste original de Miranda ME2 dans public/assets/chronicle-portraits-me2-me3.png, intégré par src/universe-portraits.js et src/universe-ui.js aux contextes et scénarios autorisés de ME2-CHR-MIRANDA. Le SVG est borné à sa cellule d’atlas avec clipping explicite, vérifié dans le navigateur après correction. Aucun sprite en pied ni animation livré.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Livraison limitée à un buste généré, d’après la couverture du manuel PC français ME2, rapprochée de l’identité du catalogue. Les portraits apparaissent dans les interfaces de commando et combat ; sprite=null. Corps entier, dos, déplacement, huit orientations, poses de tir, variations d’équipement et animations restent à produire. Traits, couleurs et détails interprétés ; aucune fidélité artistique ou géométrique 1:1 certifiée. Aucun portrait transféré à une autre œuvre ou au protagoniste configurable.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-SPR-CHR-THANE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Extrapolation",
+      "sourceIdsPreserved": [],
+      "implementationPaths": [
+        "src/universe-portraits.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/chronicle-portraits-me2-me3.png",
+        "public/assets/chronicle-portraits.json"
+      ],
+      "evidence": [
+        "tests/universe-portraits.test.js",
+        "tests/universe-support-ui.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-portrait-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : portrait de buste original de Thane ME2 dans public/assets/chronicle-portraits-me2-me3.png, intégré par src/universe-portraits.js et src/universe-ui.js aux contextes et scénarios autorisés de ME2-CHR-THANE. Le SVG est borné à sa cellule d’atlas avec clipping explicite, vérifié dans le navigateur après correction. Aucun sprite en pied ni animation livré.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Livraison limitée à un buste généré, d’après la couverture du manuel PC français ME2, rapprochée de l’identité du catalogue. Les portraits apparaissent dans les interfaces de commando et combat ; sprite=null. Corps entier, dos, déplacement, huit orientations, poses de tir, variations d’équipement et animations restent à produire. Traits, couleurs et détails interprétés ; aucune fidélité artistique ou géométrique 1:1 certifiée. Aucun portrait transféré à une autre œuvre ou au protagoniste configurable.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-DRONE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-DRONE → combatDrone dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me3-equipment-workshop, me3-from-ashes, me3-omega, me3-citadel-wrex. Propriétaire, santé, limite de remplacement, interventions autonomes et retrait sont visibles ; aucune nouvelle place dans le commando.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-AMMO-INCENDIARY",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-INCENDIARY → ammoIncendiary dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-AMMO-DISRUPTOR",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-DISRUPTOR → ammoDisruptor dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-AMMO-CRYO",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-CRYO → ammoCryo dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-AMMO-AP",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ammo.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-ammo.test.js",
+        "tests/combat-support.test.js",
+        "tests/chronicle-ammo-sessions.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-AMMO-AP → ammoArmorPiercing dans src/universe-powers.js et src/universe-ammo.js ; activation, remplacement et arrêt natifs dans src/combat.js. Préférence de préparation contrôlée, sauvegardée et restaurée par src/chronicles.js ; attribution limitée aux compétences et contextes autorisés.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Un seul mode de munitions actif sur une arme compatible ; activation et arrêt n’inventent pas de stock de cartouches. Préférence persistante revalidée contre le profil du porteur, la classe et l’arme ; aucun pouvoir non appris accordé. Les effets sur protections, santé, feu, gel et pénétration sont des adaptations ATB ; multiplicateurs, durées, seuils, rangs et progression d’origine non certifiés. Les consommables MEA restent distincts et fermés dans ce lot. L’attribution à Garrus ME3 est recoupée dans la capture du manuel officiel ME3 page 5 ; cette preuve ne certifie ni son rang ni le kit de Garrus ME2.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-DEFENSE-DRONE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-SQUAD"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-DEFENSE-DRONE → defenseDrone dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me3-equipment-workshop. Propriétaire, santé, limite de remplacement, réactions défensives de proximité et retrait sont visibles ; aucune nouvelle place dans le commando.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-SENTRY",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Établi",
+      "sourceIdsPreserved": [
+        "ME3-SRC-POWERS"
+      ],
+      "implementationPaths": [
+        "src/combat.js",
+        "src/combat-summons.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/combat-summons.test.js",
+        "tests/combat-support.test.js",
+        "tests/universe-power-profiles.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-support-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : liaison ME3-POW-SENTRY → sentryTurret dans src/universe-powers.js ; unité temporaire gérée par src/combat-summons.js et src/combat.js, utilisée dans me3-equipment-workshop, me3-from-ashes, me3-omega, me3-citadel-wrex. Propriétaire, santé, limite de remplacement, interventions autonomes et retrait sont visibles ; aucune nouvelle place dans le commando.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Unité de soutien ATB liée à son propriétaire, ciblable et retirée à sa fin ; remplacement borné et durée annoncée. La commande du joueur reste portée par son créateur, sans personnage recruté ni ordre de commando supplémentaire. Santé, bouclier, durée, cadence et dégâts sont des budgets de prototype, pas des valeurs originales. Modèle visuel, trajectoire, occupation du sol et animation source complets non reproduits.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-SPR-CHR-GARRUS",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "naturePreserved": "Extrapolation",
+      "sourceIdsPreserved": [],
+      "implementationPaths": [
+        "src/universe-portraits.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/chronicle-portraits-me2-me3.png",
+        "public/assets/chronicle-portraits.json"
+      ],
+      "evidence": [
+        "tests/universe-portraits.test.js",
+        "tests/universe-support-ui.test.js",
+        "scripts/chronicle-support-browser.mjs",
+        "docs/qa/chronicle-support-browser-report.json",
+        "docs/qa/chronicle-portrait-reference-report.json"
+      ],
+      "implementation": "Prototype partiel : portrait de buste original de Garrus ME3 dans public/assets/chronicle-portraits-me2-me3.png, intégré par src/universe-portraits.js et src/universe-ui.js aux contextes et scénarios autorisés de ME3-CHR-GARRUS. Le SVG est borné à sa cellule d’atlas avec clipping explicite, vérifié dans le navigateur après correction. Aucun sprite en pied ni animation livré.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Livraison limitée à un buste généré, d’après la capture de Garrus dans le manuel PC ME3, page 5. Les portraits apparaissent dans les interfaces de commando et combat ; sprite=null. Corps entier, dos, déplacement, huit orientations, poses de tir, variations d’équipement et animations restent à produire. Traits, couleurs et détails interprétés ; aucune fidélité artistique ou géométrique 1:1 certifiée. Aucun portrait transféré à une autre œuvre ou au protagoniste configurable.",
+      "validation": {
+        "reportPath": "docs/qa/chronicle-support-browser-report.json",
+        "sha256": "8d3b678876ab5ece706a6ea31ddda1b4db943b60f7b6868329e0fc847c6c28ca",
+        "resultPointer": "/passed"
+      }
+    }
+  ],
+  "scope": "Promotions Défini → Prototype seulement, preuves postclip positives. Les anciens champs factuels et sources sont conservés, hormis l’ajout documentaire primaire unique autorisé. Aucun achèvement de campagne, animation, huit orientations, consommation MEA inconnue ou fidélité 1:1 certifié. Le principal et le registre généré restent sous la responsabilité root."
+}

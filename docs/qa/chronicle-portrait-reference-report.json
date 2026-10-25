@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-25",
+  "baseCommit": "748b965",
+  "scope": "Primary visual-reference review and limited generated-atlas inspection; three work-scoped prototype bust portraits, no animation or 1:1 claim.",
+  "manuals": [
+    {
+      "id": "me2",
+      "requestedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
+      "resolvedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
+      "status": 200,
+      "contentType": "application/pdf",
+      "contentLength": "2937619",
+      "bytes": 2937619,
+      "signature": "%PDF-",
+      "sha256": "c4d5edbe68f36fc261e6efe9e445711ec6214e38b74b61b3c89edc34ef2965e1",
+      "fetchedAt": "2026-10-25T07:58:34.140728+00:00",
+      "responseHeaders": {
+        "content-type": "application/pdf",
+        "content-length": "2937619",
+        "last-modified": "Tue, 07 Jan 2014 19:31:56 GMT",
+        "etag": "\"5a085621aee893c62edf1c00996c83b0\"",
+        "date": "Sun, 25 Oct 2026 07:58:33 GMT"
+      },
+      "pdfPages": 18,
+      "localPath": "/tmp/relay-me2-manual-fr.pdf"
+    },
+    {
+      "id": "me3",
+      "requestedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "resolvedUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "status": 200,
+      "contentType": "application/pdf",
+      "contentLength": "1886992",
+      "bytes": 1886992,
+      "signature": "%PDF-",
+      "sha256": "07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01",
+      "fetchedAt": "2026-10-25T07:58:34.096016+00:00",
+      "responseHeaders": {
+        "content-type": "application/pdf",
+        "content-length": "1886992",
+        "last-modified": "Fri, 22 Nov 2013 15:24:55 GMT",
+        "etag": "\"5ddd7d019d3ea841e09ab926cc2f188b\"",
+        "date": "Sun, 25 Oct 2026 07:58:33 GMT"
+      },
+      "pdfPages": 27,
+      "localPath": "/tmp/chronicle-visual-review/mass-effect-3-manuals_PC.pdf"
+    }
+  ],
+  "renderTool": "pdftoppm 26.05.0 (Poppler)",
+  "renderedReferences": [
+    {
+      "path": "/tmp/chronicle-visual-review/me2-cover.png",
+      "bytes": 1137013,
+      "sha256": "02be5914876656148d6b84f190d533a92d8b91b5b4d5a81ec267f2d790c3cf01",
+      "width": 734,
+      "height": 1100,
+      "sourceId": "me2",
+      "pdfPage": 1,
+      "transformation": "Full PDF page rendered; no crop, recolor, retouch, costume completion or generated pixels.",
+      "command": "pdftoppm -f 1 -l 1 -scale-to 1100 -png -singlefile /tmp/relay-me2-manual-fr.pdf /tmp/chronicle-visual-review/me2-cover"
+    },
+    {
+      "path": "/tmp/chronicle-visual-review/me3-page5.png",
+      "bytes": 905644,
+      "sha256": "0107765bbb643ea942788c34103e10c435ee58ef42bdc3c8d42469187d004c2f",
+      "width": 1160,
+      "height": 1500,
+      "sourceId": "me3",
+      "pdfPage": 5,
+      "transformation": "Full PDF page rendered; no crop, recolor, retouch, costume completion or generated pixels.",
+      "command": "pdftoppm -f 5 -l 5 -scale-to 1500 -png -singlefile /tmp/chronicle-visual-review/mass-effect-3-manuals_PC.pdf /tmp/chronicle-visual-review/me3-page5"
+    }
+  ],
+  "inspectedReferences": [
+    {
+      "sourceId": "me2",
+      "pdfPages": [
+        1,
+        9,
+        10,
+        11
+      ],
+      "observed": "Cover contains recognizable Miranda Lawson and Thane Krios busts beside Shepard. Interior screenshots inspected did not establish another target character costume.",
+      "limitations": "Cover does not label the character names. Identification cross-references existing catalog identities. Limbs, lower garments and rear views are partly or entirely hidden."
+    },
+    {
+      "sourceId": "me3",
+      "pdfPages": [
+        5,
+        6,
+        7,
+        10,
+        12,
+        13,
+        14
+      ],
+      "method": "Full rendered page 5 and original embedded JPEG screenshots inspected.",
+      "observed": "Page 5 labels Garrus and shows his head/upper armor. No sufficiently legible Liara/EDI/Javik/James reference established in the inspected screenshots.",
+      "embeddedImagePixels": [
+        512,
+        256
+      ],
+      "limitations": "Resolution includes interface; a larger page render cannot recover costume or face detail."
+    }
+  ],
+  "proposedPortraits": [
+    {
+      "catalogId": "ME2-CHR-MIRANDA",
+      "context": {
+        "mediaId": "ME2",
+        "periodId": "me2"
+      },
+      "sourceId": "me2",
+      "pdfPage": 1,
+      "cropPolicy": "Generated head-and-upper-bust portrait only, no reconstruction of hidden costume.",
+      "visibleDetails": [
+        "Human female face; shoulder-length brown side-parted hair.",
+        "White open collar and white honeycomb-patterned chest panel.",
+        "Dark side panels/sleeves and geometric Cerberus outfit details."
+      ],
+      "limitations": [
+        "Weapon and arm mask portions of upper body.",
+        "Do not infer legs, back or alternate ME3 costumes."
+      ],
+      "status": "Generated atlas visually inspected against the reference; partial prototype only, browser integration still requires QA."
+    },
+    {
+      "catalogId": "ME2-CHR-THANE",
+      "context": {
+        "mediaId": "ME2",
+        "periodId": "me2"
+      },
+      "sourceId": "me2",
+      "pdfPage": 1,
+      "cropPolicy": "Generated head-and-upper-bust portrait only, no reconstruction of hidden costume.",
+      "visibleDetails": [
+        "Green/olive drell face and hairless head with dark cranial ridges/patches.",
+        "Large dark eyes and nonhuman face/neck proportions.",
+        "Dark brown/black high open collar, pale seams and trim."
+      ],
+      "limitations": [
+        "Do not replace drell anatomy with salarian or turian anatomy.",
+        "Lower costume and back are hidden."
+      ],
+      "status": "Generated atlas visually inspected against the reference; partial prototype only, browser integration still requires QA."
+    }
+  ],
+  "optionalPortraitReference": {
+    "catalogId": "ME3-CHR-GARRUS",
+    "context": {
+      "mediaId": "ME3",
+      "periodId": "me3"
+    },
+    "sourceId": "me3",
+    "pdfPage": 5,
+    "visibleDetails": [
+      "Caption Garrus.",
+      "Turian facial plates and mandibles, blue markings, blue side visor and facial damage.",
+      "Dark blue-toned upper armor with colored chest emblem."
+    ],
+    "limitations": [
+      "Only a small bust screenshot is established.",
+      "Do not reassign to ME2 or ME1.",
+      "No full-body or animation reference established."
+    ]
+  },
+  "officialGuideIndex": {
+    "requestedUrl": "https://www.ea.com/games/mass-effect/mass-effect-legendary-edition/community/cosplay-guides",
+    "resolvedUrl": "https://www.ea.com/games/mass-effect/community/cosplay-guides",
+    "status": 200,
+    "localPath": "/tmp/chronicle-visual-review/cosplay-guides.html",
+    "sha256": "9bcc4fd9f6cf12c7d6bc5d18add0cadcbd7ba24300b6c283453309b36895f5d9",
+    "guideCount": 20,
+    "observation": "Official index lists 20 named downloadable costume guides. It does not by itself establish which episode or outfit each guide depicts.",
+    "downloadObservations": [
+      {
+        "characterSlug": "mirandalawson",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-mirandalawson-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "jacobtaylor",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-jacobtaylor-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "mordinsolus",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-mordinsolus-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "jack",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-jack-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "garrusvakarian",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-garrusvakarian-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "talizorah",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-talizorah-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "liaratsoni",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-liaratsoni-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "edi",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-edi-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "javik",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-javik-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      },
+      {
+        "characterSlug": "jamesvega",
+        "url": "https://media.contentapi.ea.com/content/dam/eacom/mass-effect-legendary-edition/cosplay-guides/mele-cosplayguide-jamesvega-final-pdf.zip",
+        "originHttpStatus": null,
+        "transportError": "Tunnel connection failed: 403 Forbidden",
+        "contentConsulted": false
+      }
+    ]
+  },
+  "guardrails": [
+    "Image generation was performed separately by the parent operator. This subtask inspected the finished image and copied it byte for byte; no pixel editing or browser session was performed.",
+    "No catalogue, source availability, scenario roster, gameplay code or historical report was modified.",
+    "The ME2 cover male Shepard does not determine the configurable generic Shepard appearance.",
+    "Existing ME1 generated atlases may guide visual style, never the costume of another work.",
+    "A generated portrait remains a partial prototype and does not complete animation or eight-direction sprite tasks.",
+    "403 archive failures are recorded as transport failures, not as successfully consulted PDFs.",
+    "The earlier /tmp/relay-me3-manual-fr.pdf is an AccessDenied XML response and was not used as a visual reference."
+  ],
+  "generationReview": {
+    "date": "2026-10-25",
+    "metadata": "public/assets/chronicle-portraits.json",
+    "deliveredFile": "public/assets/chronicle-portraits-me2-me3.png",
+    "originalFile": "/workspace/generated_images/exec-01bbe381-b451-466e-b90c-62acf657a7ec.png",
+    "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd",
+    "bytes": 2622017,
+    "atlasDimensions": [
+      1536,
+      1024
+    ],
+    "generation": {
+      "tool": "image_gen.imagegen",
+      "date": "2026-10-25",
+      "originalFile": "/workspace/generated_images/exec-01bbe381-b451-466e-b90c-62acf657a7ec.png",
+      "originalSha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd",
+      "copyOperation": "Byte-for-byte copy; original preserved; no crop, resize, retouch, recolor, alpha extraction or background removal.",
+      "referenceUsage": "The parent generation operator confirmed the three exact input paths and prompt summary; the verbatim prompt is not archived here.",
+      "referencedImagePaths": [
+        {
+          "path": "/tmp/chronicle-visual-review/me2-cover.png",
+          "sha256": "02be5914876656148d6b84f190d533a92d8b91b5b4d5a81ec267f2d790c3cf01",
+          "usage": "Character appearance reference."
+        },
+        {
+          "path": "/tmp/chronicle-visual-review/me3-page5.png",
+          "sha256": "0107765bbb643ea942788c34103e10c435ee58ef42bdc3c8d42469187d004c2f",
+          "usage": "Character appearance reference."
+        },
+        {
+          "path": "/workspace/Mass-Effect-Relay-Chronicles/public/assets/crew-atlas.png",
+          "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+          "usage": "Style only; no ME1 costume reassignment."
+        }
+      ],
+      "transparentBackground": true,
+      "promptArchivedVerbatim": false,
+      "promptSummary": "1536×1024 transparent atlas, three equal columns: Miranda ME2 left, Thane ME2 center, Garrus ME3 right; heads and busts only, source-cover/manual identities and costumes, no full bodies, rear views, animation, text, invented logos or props. Existing crew atlas provided for style only."
+    },
+    "pixelInspection": {
+      "format": "PNG",
+      "mode": "RGBA",
+      "alphaMinimum": 0,
+      "alphaMaximum": 254,
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "fullyTransparentPixels": 700479,
+      "fullyOpaquePixels": 0,
+      "partialAlphaPixels": 872385,
+      "centerAlpha": [
+        253,
+        253,
+        253
+      ],
+      "observation": "Native RGBA retained, soft contours and colored halos; maximum alpha254, so no pixel is fully opaque."
+    },
+    "catalogIds": [
+      "ME2-CHR-MIRANDA",
+      "ME2-CHR-THANE",
+      "ME3-CHR-GARRUS"
+    ],
+    "sourceRects": [
+      [
+        0,
+        0,
+        512,
+        1024
+      ],
+      [
+        512,
+        0,
+        512,
+        1024
+      ],
+      [
+        1024,
+        0,
+        512,
+        1024
+      ]
+    ],
+    "inspection": "Generated image opened with view_image and compared to the already-inspected official ME2 cover/ME3 Garrus screenshot. Three recognizable busts and a consistent painted treatment. No full-body anatomy, back view, animation, exact game-model geometry or pixel-perfect likeness certified.",
+    "copyVerifiedByteForByte": true,
+    "validation": "Seven targeted Node tests passed: asset hash/PNG header, fixed regions, all scenario gates, work/prologue exclusions, hostile inputs, unchanged native actors and source metadata. This is not a browser or final art-approval result.",
+    "status": "Prototype partiel; browser integration QA pending."
+  }
+}

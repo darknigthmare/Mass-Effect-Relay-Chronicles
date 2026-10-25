@@ -7,6 +7,13 @@
  * actionable party member freezes the entire simulation until an order is given.
  */
 import { getUniverseWeaponProfile } from './universe-weapon-profiles.js';
+import { SUMMON_PROFILES, getSummonProfile, isSummon, isVictoryParticipant, planSummon, planSummonTick } from './combat-summons.js';
+import { UNIVERSE_AMMO_PROFILES, getAmmoActionProfile, validateAmmoMode, canActivateAmmoProfile, activateAmmoProfile, getAmmoHitModifiers, getAmmoPostHit } from './universe-ammo.js';
+
+const SUMMON_ACTIONS = new Set(SUMMON_PROFILES.map(profile => profile.actionId));
+const AMMO_ACTIONS = new Set(UNIVERSE_AMMO_PROFILES.map(profile => profile.actionId));
+const ammoActionDefinitions = Object.fromEntries(UNIVERSE_AMMO_PROFILES.map(profile => [profile.actionId,
+  { label: profile.name, description: 'Active ce seul mode appris sur l’arme conventionnelle à clips. Consomme un ordre ATB, sans recharger ni ajouter de munition.', target: 'self' }]));
 
 export const ACTIONS = Object.freeze({
   shoot: { label: 'Tir contrôlé', description: 'Un tir précis. Génère 24 points de chaleur.', target: 'enemy', heatCost: 24 },
@@ -40,6 +47,11 @@ export const ACTIONS = Object.freeze({
   fragGrenade: { label: 'Grenade à fragmentation', description: 'Dégâts explosifs sur le groupe adverse ATB. Consomme un échantillon de grenade, sans recharge temporelle.', target: 'enemy', grenadeCost: 1 },
   stickyGrenade: { label: 'Grenade adhésive', description: 'Fixe une charge qui explose après 1,2 seconde ATB. Consomme un échantillon de grenade, sans recharge temporelle.', target: 'enemy', grenadeCost: 1 },
   shieldBoost: { label: 'Renfort de boucliers', description: 'Restaure les boucliers des alliés conscients et accélère leur recharge pendant cinq secondes ATB.', target: 'allies', cooldown: 14 },
+  combatDrone: { label: 'Drone de combat', description: 'Déploie un drone ciblable et temporaire qui harcèle un adversaire. Paramètres et plafonds adaptés à l’ATB.', target: 'enemy', cooldown: 10 },
+  sentryTurret: { label: 'Tourelle de garde', description: 'Déploie une tourelle ciblable et temporaire à tir autonome. Ne devient pas un équipier sélectionnable.', target: 'self', cooldown: 12 },
+  defenseDrone: { label: 'Drone de défense', description: 'Déploie une garde ATB réactive aux coups réellement reçus par le propriétaire ; aucune proximité physique d’origine n’est simulée.', target: 'self', cooldown: 12 },
+  ...ammoActionDefinitions,
+  ammoOff: { label: 'Désactiver les munitions', description: 'Retire le mode actif sans restituer ni ajouter de munition. Consomme un ordre ATB.', target: 'self' },
   unity: { label: 'Unité', description: 'Talent Spectre : remet les équipiers hors combat en état de combattre.', target: 'allies', cooldown: 24 },
   signature: { label: 'Technique d’élite', description: 'Une exécution précise avec l’arsenal du personnage. Nécessite 100 de concentration.', target: 'enemy', heatCost: 42 },
 });
@@ -67,7 +79,7 @@ const living = actor => actor.hp > EPSILON;
 const synthetic = actor => actor.synthetic === true || actor.type === 'synthetic';
 const armed = actor => !['strike', 'acid'].includes(actor.primaryAction);
 const disabled = actor => DISABLING_STATUSES.some(key => actor.statuses[key] > EPSILON);
-const ready = actor => living(actor) && !disabled(actor) && !actor.channel && actor.atb >= 100 - EPSILON;
+const ready = actor => !isSummon(actor) && living(actor) && !disabled(actor) && !actor.channel && actor.atb >= 100 - EPSILON;
 const usesClips = actor => actor.weaponSystem === 'thermal-clip';
 const protectedTarget = actor => actor.shield > EPSILON || (actor.statuses.fortification > EPSILON && actor.fortificationShield > EPSILON);
 // Magazine sizes and shots spent per ATB order are adaptation values. ME1 heat
@@ -134,6 +146,61 @@ function emit(battle, event) {
   return entry;
 }
 
+function summonPlan(battle, actor, actionId, targetId) {
+  const serial = battle.nextSummonSerial ?? Math.max(0, ...battle.actors.filter(isSummon).map(candidate => candidate.summonSerial)) + 1;
+  return planSummon({ actors: battle.actors, ownerId: actor.id, actionId, targetId, elapsed: battle.elapsed,
+    serial, eventCursor: battle.events.at(-1)?.id ?? -1 });
+}
+
+function retireSummons(battle, entries) {
+  if (!entries.length) return;
+  const ids = new Set(entries.map(entry => entry.actorId));
+  for (const actor of battle.actors.filter(candidate => isSummon(candidate) && ids.has(candidate.id))) {
+    const entry = entries.find(candidate => candidate.actorId === actor.id);
+    stopChannel(battle, actor, 'soutien retiré');
+    const retired = { id: actor.id, ownerId: actor.ownerId, actionId: actor.actionId, reason: entry.reason, at: battle.elapsed };
+    battle.summonHistory ||= [];
+    battle.summonHistory.push(retired);
+    battle.summonHistory = battle.summonHistory.slice(-24);
+    emit(battle, { type: 'summonRetire', actorId: actor.id, ownerId: actor.ownerId, actionId: actor.actionId,
+      reason: entry.reason, message: `${actor.name} est retiré du combat.` });
+  }
+  battle.actors = battle.actors.filter(actor => !isSummon(actor) || !ids.has(actor.id));
+}
+
+function cleanupSummons(battle) {
+  if (!battle.actors.some(isSummon)) return;
+  const plan = planSummonTick({ actors: battle.actors, elapsed: battle.elapsed });
+  if (plan.ok) retireSummons(battle, plan.retirements);
+}
+
+function advanceSummons(battle) {
+  if (!battle.actors.some(isSummon)) return;
+  const plan = planSummonTick({ actors: battle.actors, elapsed: battle.elapsed, recentEvents: battle.events });
+  if (!plan.ok) return;
+  for (const patch of plan.patches) {
+    const actor = battle.actors.find(candidate => candidate.id === patch.actorId);
+    if (actor) { actor.nextAttackAt = patch.nextAttackAt; actor.eventCursor = patch.eventCursor; }
+  }
+  for (const attack of plan.attacks) {
+    const actor = battle.actors.find(candidate => candidate.id === attack.actorId);
+    const target = battle.actors.find(candidate => candidate.id === attack.targetId);
+    const owner = actor && battle.actors.find(candidate => candidate.id === actor.ownerId);
+    if (!actor || !isSummon(actor) || !living(actor) || !owner || !living(owner) || disabled(actor) || actor.statuses.sabotage > EPSILON
+      || !target || !living(target) || target.statuses.stasis > EPSILON || !opponents(battle, actor).some(candidate => candidate.id === target.id)) continue;
+    battle.actionCount++;
+    emit(battle, { type: 'action', actorId: actor.id, ownerId: actor.ownerId, actionId: 'summonPulse', powerActionId: actor.actionId,
+      targetId: target.id, message: `${actor.name} intervient.` });
+    const damage = applyDamage(battle, actor, target, attack.rawDamage, { actionId: 'summonPulse', ignoreCover: attack.ignoreCover });
+    if (damage > EPSILON) {
+      if (attack.breakCover) target.cover = false;
+      if (attack.staggerDuration > 0 && !protectedTarget(target)) applyControl(battle, actor, target, 'stagger', attack.staggerDuration);
+    }
+  }
+  retireSummons(battle, plan.retirements);
+  cleanupSummons(battle);
+}
+
 function normalizeActor(input, team, index) {
   const maxHp = Math.max(1, finite(input.maxHp, finite(input.hp, 100)));
   const maxShield = Math.max(0, finite(input.maxShield, finite(input.shield, 40)));
@@ -142,6 +209,7 @@ function normalizeActor(input, team, index) {
   const thermalClip = profile ? profile.weaponSystem === 'thermal-clip' : clipWeapon;
   const magazineCapacity = Math.floor(clamp(finite(input.magazineCapacity, profile?.magazineCapacity ?? 8), 1, 200));
   const grenadeCapacity = Math.floor(clamp(finite(input.grenadeCapacity, 0), 0, 12));
+  const powers = [...new Set(Array.isArray(input.powers) ? input.powers : [])].filter(id => ACTIONS[id]);
   const actor = {
     ...input,
     id: String(input.id ?? `${team}-${index}`),
@@ -154,7 +222,9 @@ function normalizeActor(input, team, index) {
     attack: Math.max(1, finite(input.attack, team === 'party' ? 22 : 17)),
     defense: Math.max(0, finite(input.defense, 3)),
     speed: clamp(finite(input.speed, 1), 0.1, 5),
-    powers: [...new Set(Array.isArray(input.powers) ? input.powers : [])].filter(id => ACTIONS[id]),
+    powers,
+    allowedAmmoProfileIds: UNIVERSE_AMMO_PROFILES.filter(profile => profile.mediaId === input.mediaId && powers.includes(profile.actionId)).map(profile => profile.id),
+    ammoModeId: null,
     atb: clamp(finite(input.atb, 0), 0, 100),
     heat: thermalClip ? 0 : clamp(finite(input.heat, 0), 0, 100),
     focus: clamp(finite(input.focus, 0), 0, 100),
@@ -182,14 +252,20 @@ function normalizeActor(input, team, index) {
     _warpSource: null,
     _acidSource: null,
     _burnSource: null,
+    _burnActionId: 'incinerate',
+    _burnDamagePerSecond: 5,
+    _burnTechAmplified: true,
     _reaveSource: null,
     _slamSource: null,
     _slamDamage: 0,
     fortificationShield: 0,
+    cryoStacks: 0,
   };
   if (profile?.weaponSystem === 'heat') {
     delete actor.ammo; delete actor.reserveAmmo; delete actor.magazineCapacity;
   }
+  const ammoMode = validateAmmoMode(actor, input.ammoModeId ?? null);
+  actor.ammoModeId = ammoMode.ok ? ammoMode.ammoModeId : null;
   return actor;
 }
 
@@ -227,8 +303,9 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
 
 function updateWinner(battle) {
   if (battle.winner) return battle.winner;
-  const partyAlive = battle.actors.some(actor => actor.team === 'party' && living(actor));
-  const enemyAlive = battle.actors.some(actor => actor.team === 'enemy' && living(actor));
+  cleanupSummons(battle);
+  const partyAlive = battle.actors.some(actor => actor.team === 'party' && isVictoryParticipant(actor) && living(actor));
+  const enemyAlive = battle.actors.some(actor => actor.team === 'enemy' && isVictoryParticipant(actor) && living(actor));
   if (!partyAlive || !enemyAlive) {
     // A launched explosive survives its shooter. Resolve dangerous flights
     // before declaring the outcome; ordinary ME1 encounters have no queue.
@@ -249,7 +326,7 @@ function dangerousProjectiles(battle) {
 }
 
 function waitingForDecision(battle) {
-  const settling = dangerousProjectiles(battle) && ['party', 'enemy'].some(team => !battle.actors.some(actor => actor.team === team && living(actor)));
+  const settling = dangerousProjectiles(battle) && ['party', 'enemy'].some(team => !battle.actors.some(actor => actor.team === team && isVictoryParticipant(actor) && living(actor)));
   return battle.mode === 'wait' && !settling && battle.actors.some(actor => actor.team === 'party' && ready(actor));
 }
 
@@ -260,16 +337,19 @@ function opponents(battle, actor) {
 }
 
 function friends(battle, actor) {
-  return battle.actors.filter(target => target.team === actor.team);
+  return battle.actors.filter(target => target.team === actor.team && !isSummon(target));
 }
 
 function actionIds(actor) {
+  if (isSummon(actor)) return [];
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
   if (!organic && usesClips(actor)) ids.push('reload');
   if (actor.channel) ids.push('cancelChannel');
   if (actor.team === 'party') ids.push('medigel');
-  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel'].includes(id)));
+  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel', 'ammoOff'].includes(id)
+    && (!AMMO_ACTIONS.has(id) || getAmmoActionProfile(actor.mediaId, id))));
+  if (actor.ammoModeId) ids.push('ammoOff');
   if (actor.team === 'party' && !organic) ids.push('signature');
   return [...new Set(ids)];
 }
@@ -297,6 +377,18 @@ function unavailableReason(battle, actor, actionId) {
   if (actor.channel) return 'Canalisation en cours.';
   if (actor.atb < 100 - EPSILON) return 'La jauge ATB doit être pleine.';
   if (actor.cooldowns[actionId] > EPSILON) return `Recharge : ${Math.ceil(actor.cooldowns[actionId])} s.`;
+  if (AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff') {
+    const profile = getAmmoActionProfile(actor.mediaId, actionId);
+    const check = canActivateAmmoProfile(actor, actionId === 'ammoOff' ? null : profile?.id);
+    if (!check.ok) return check.reason;
+  }
+  if (SUMMON_ACTIONS.has(actionId)) {
+    const profile = getSummonProfile(actor.mediaId, actionId);
+    if (!profile) return 'Ce soutien ne correspond pas à cette œuvre.';
+    const targetId = profile.target === 'self' ? actor.id : opponents(battle, actor).find(target => !(target.statuses.stasis > EPSILON))?.id;
+    const plan = summonPlan(battle, actor, actionId, targetId);
+    if (!plan.ok) return plan.reason;
+  }
   if (WEAPON_ACTIONS.has(actionId)) {
     if (actor.statuses.sabotage > EPSILON) return 'L’arme est neutralisée par Sabotage.';
     if (usesClips(actor) && actor.ammo < weaponAmmoCost(actor, actionId)) return 'Chargeur insuffisant : recharger ou utiliser un pouvoir.';
@@ -343,8 +435,10 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
     if (!silent) emit(battle, { type: 'blocked', actorId: source?.id, targetId: target.id, actionId, amount: 0, message: `${target.name} est protégé par la stase.` });
     return 0;
   }
+  const ammoModifiers = getAmmoHitModifiers(source, target, actionId);
+  const activeAmmo = ammoModifiers.profileId !== null;
   let amount = rawAmount * (source?.team === 'enemy' ? DIFFICULTY[battle.difficulty].enemyDamage : 1);
-  if (target.cover && !ignoreCover) amount *= 0.5;
+  if (target.cover && !ignoreCover) amount *= activeAmmo ? 1 - .5 * ammoModifiers.coverMultiplier : .5;
   if (target.statuses.barrier > EPSILON) amount *= 0.7;
   if (target.statuses.fortification > EPSILON && target.mediaId !== 'ME2') amount *= .75;
   if (target.statuses.reaveGuard > EPSILON) amount *= .85;
@@ -352,16 +446,21 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
   // Ammunition bypass splits one hit between shield and health; damage is
   // never duplicated and armor is applied once to the health portion.
   const bypass = WEAPON_ACTIONS.has(actionId) && !shieldOnly ? source?.shieldBypass || 0 : 0;
+  const shieldMultiplier = activeAmmo ? ammoModifiers.shieldMultiplier : 1;
   const temporaryShieldDamage = target.statuses.fortification > EPSILON
-    ? Math.min(target.fortificationShield, amount * (1 - bypass)) : 0;
+    ? Math.min(target.fortificationShield, amount * (1 - bypass) * shieldMultiplier) : 0;
   target.fortificationShield -= temporaryShieldDamage;
-  const shieldDamage = Math.min(target.shield, Math.max(0, amount * (1 - bypass) - temporaryShieldDamage));
+  const shieldDamage = activeAmmo
+    ? Math.min(target.shield, Math.max(0, amount * (1 - bypass) - temporaryShieldDamage / shieldMultiplier) * shieldMultiplier)
+    : Math.min(target.shield, Math.max(0, amount * (1 - bypass) - temporaryShieldDamage));
   target.shield = Math.max(0, target.shield - shieldDamage);
-  const armor = ignoreArmor ? 0 : target.defense * (target.statuses.warp > EPSILON ? 0.5 : 1);
-  const remaining = Math.max(0, amount - shieldDamage - temporaryShieldDamage);
+  const armor = ignoreArmor ? 0 : target.defense * (target.statuses.warp > EPSILON ? 0.5 : 1) * (activeAmmo ? ammoModifiers.defenseMultiplier : 1);
+  const remaining = activeAmmo ? Math.max(0, amount - shieldDamage / shieldMultiplier - temporaryShieldDamage / shieldMultiplier)
+    : Math.max(0, amount - shieldDamage - temporaryShieldDamage);
   // A small simulation slice must not turn a fractional damage-over-time tick
   // into a whole hit point. The one-point armor floor applies only to hits >= 1.
-  const healthDamage = shieldOnly || remaining <= 0 ? 0 : Math.min(target.hp, Math.max(Math.min(1, remaining), remaining - armor));
+  const healthDamage = shieldOnly || remaining <= 0 ? 0 : Math.min(target.hp,
+    Math.max(Math.min(1, remaining), remaining - armor) * (activeAmmo ? ammoModifiers.healthMultiplier : 1));
   target.hp = Math.max(0, target.hp - healthDamage);
   const total = shieldDamage + temporaryShieldDamage + healthDamage;
   if (total > EPSILON) {
@@ -372,6 +471,7 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
       type: 'damage', actorId: source?.id, targetId: target.id, actionId,
       amount: total, shieldDamage: shieldDamage + temporaryShieldDamage, healthDamage,
       ...(temporaryShieldDamage > 0 ? { temporaryShieldDamage } : {}),
+      ...(activeAmmo ? { ammoProfileId: ammoModifiers.profileId } : {}),
       message: `${target.name} subit ${Math.round(total)} dégâts${shieldDamage + temporaryShieldDamage > 0 ? ` (${Math.round(shieldDamage + temporaryShieldDamage)} sur les boucliers)` : ''}.`,
     });
   }
@@ -381,9 +481,35 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
     target.atb = 0;
     target.cover = false;
     target.statuses = {};
+    target.cryoStacks = 0;
     emit(battle, { type: 'defeat', actorId: source?.id, targetId: target.id, message: `${target.name} est hors combat.` });
   }
+  if (source && healthDamage > EPSILON && living(target)) {
+    const effect = getAmmoPostHit(source, target, actionId, { healthDamage, shieldDamage: shieldDamage + temporaryShieldDamage });
+    if (effect) applyAmmoPostHit(battle, source, target, effect);
+  }
   return total;
+}
+
+function applyAmmoPostHit(battle, source, target, effect) {
+  if (effect.kind === 'burn') {
+    if (target.burnImmune) return;
+    const previousSource = battle.actors.find(actor => actor.id === target._burnSource);
+    const previousRate = target._burnDamagePerSecond * (target._burnTechAmplified ? powerMultiplier(previousSource, 'incinerate') : 1);
+    if (target.statuses.burning > EPSILON && previousRate > effect.damagePerSecond) return;
+    target.statuses.burning = effect.duration;
+    target._burnSource = source.id; target._burnActionId = 'ammoIncendiary';
+    target._burnDamagePerSecond = effect.damagePerSecond; target._burnTechAmplified = false;
+    delete target.statuses.frozen;
+    emit(battle, { type: 'status', actorId: source.id, targetId: target.id, status: 'burning', duration: effect.duration, ammoModeId: source.ammoModeId });
+  } else if (effect.kind === 'cryo') {
+    target.cryoStacks = clamp((target.cryoStacks || 0) + effect.stacks, 0, effect.threshold);
+    emit(battle, { type: 'cryoBuildup', actorId: source.id, targetId: target.id, stacks: target.cryoStacks, threshold: effect.threshold });
+    if (target.cryoStacks >= effect.threshold) {
+      target.cryoStacks = 0;
+      applyControl(battle, source, target, 'frozen', effect.freezeDuration);
+    }
+  }
 }
 
 function applyControl(battle, source, target, status, duration) {
@@ -510,7 +636,7 @@ function resolveTargets(battle, actor, actionId, targetId) {
   if (definition.target === 'allies') return { targets: friends(battle, actor) };
   if (definition.target === 'ally') {
     const ally = target ?? (targetId == null ? actor : null);
-    if (!ally || ally.team !== actor.team || !living(ally)) return { error: 'Choisissez un allié conscient.' };
+    if (!ally || isSummon(ally) || ally.team !== actor.team || !living(ally)) return { error: 'Choisissez un allié conscient.' };
     if (ally.hp >= ally.maxHp - EPSILON) return { error: 'Cet allié est déjà en pleine santé.' };
     return { targets: [ally] };
   }
@@ -538,6 +664,11 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
   if (resolution.error) return { ok: false, reason: resolution.error, events: [] };
   const targets = resolution.targets;
   const target = targets[0];
+  const deployment = SUMMON_ACTIONS.has(actionId) ? summonPlan(battle, actor, actionId, target?.id) : null;
+  if (deployment && !deployment.ok) return { ok: false, reason: deployment.reason, events: [] };
+  const ammoSelection = AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff'
+    ? activateAmmoProfile(actor, actionId === 'ammoOff' ? null : getAmmoActionProfile(actor.mediaId, actionId)?.id) : null;
+  if (ammoSelection && !ammoSelection.ok) return { ok: false, reason: ammoSelection.reason, events: [] };
   const startIndex = battle.events.length;
   const definition = ACTIONS[actionId];
   if (actionId !== 'cancelChannel') actor.atb = 0;
@@ -581,6 +712,17 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     }
     delete actor.statuses.flanking;
     if (actionId === 'signature') actor.focus = 0;
+  } else if (deployment) {
+    retireSummons(battle, deployment.retireIds.map(actorId => ({ actorId, reason: 'replaced' })));
+    const summoned = normalizeActor(deployment.actor, actor.team, battle.actors.length);
+    battle.actors.push(summoned);
+    battle.nextSummonSerial = deployment.nextSerial;
+    emit(battle, { type: 'summon', actorId: actor.id, ownerId: actor.id, targetId: summoned.id, actionId,
+      summonId: summoned.id, expiresAt: summoned.expiresAt, message: `${actor.name} déploie ${summoned.name}.` });
+  } else if (ammoSelection) {
+    actor.ammoModeId = ammoSelection.ammoModeId;
+    emit(battle, { type: 'ammoMode', actorId, actionId, ammoModeId: actor.ammoModeId, replacedProfileId: ammoSelection.replacedProfileId,
+      message: actor.ammoModeId ? `${actor.name} change de mode de munitions.` : `${actor.name} désactive son mode de munitions.` });
   } else if (actionId === 'cancelChannel') {
     stopChannel(battle, actor, 'annulation volontaire');
   } else if (actionId === 'reload') {
@@ -658,6 +800,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     const hit = applyDamage(battle, actor, target, (18 + actor.attack * .6) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true, ignoreArmor: true });
     if (hit > EPSILON && !target.burnImmune && timedEffect(battle, actor, target, 'burning', effectDuration(actor, actionId, 5))) {
       target._burnSource = actor.id;
+      target._burnActionId = actionId; target._burnDamagePerSecond = 5; target._burnTechAmplified = true;
       delete target.statuses.frozen;
     }
   } else if (actionId === 'cryoBlast') {
@@ -730,12 +873,13 @@ function tickActor(battle, actor, dt) {
     const source = battle.actors.find(candidate => candidate.id === actor._acidSource);
     applyDamage(battle, source, actor, 3 * Math.min(dt, acidTime), { actionId: 'acid', ignoreCover: true, ignoreArmor: true, silent: true });
   }
-  for (const [status, sourceKey, actionId, rate] of [['burning', '_burnSource', 'incinerate', 5], ['reave', '_reaveSource', 'reave', 6]]) {
+  for (const [status, sourceKey, actionId, rate] of [['burning', '_burnSource', actor._burnActionId, actor._burnDamagePerSecond], ['reave', '_reaveSource', 'reave', 6]]) {
     const duration = Math.max(0, actor.statuses[status] || 0);
     if (living(actor) && duration > EPSILON && stasisTime <= EPSILON) {
       const source = battle.actors.find(candidate => candidate.id === actor[sourceKey]);
       const previousHp = actor.hp;
-      applyDamage(battle, source, actor, rate * Math.min(dt, duration) * powerMultiplier(source, actionId), { actionId, ignoreCover: true, ignoreArmor: true, silent: true });
+      const amplifier = status === 'burning' && !actor._burnTechAmplified ? 1 : powerMultiplier(source, actionId);
+      applyDamage(battle, source, actor, rate * Math.min(dt, duration) * amplifier, { actionId, ignoreCover: true, ignoreArmor: true, silent: true });
       if (actionId === 'reave') reaveHealing(battle, source, actor, previousHp - actor.hp);
     }
   }
@@ -777,7 +921,7 @@ function tickActor(battle, actor, dt) {
 export function autoEnemyActions(battle) {
   if (battle.winner) return battle;
   if (waitingForDecision(battle)) return battle;
-  for (const actor of battle.actors.filter(candidate => candidate.team === 'enemy')) {
+  for (const actor of battle.actors.filter(candidate => candidate.team === 'enemy' && !isSummon(candidate))) {
     if (!ready(actor) || battle.winner) continue;
     const targets = opponents(battle, actor).filter(target => !(target.statuses.stasis > EPSILON));
     const actions = getActions(battle, actor.id).filter(action => action.available);
@@ -840,11 +984,14 @@ export function tickBattle(battle, dt, { paused = false } = {}) {
     battle.elapsed += step;
     for (const actor of battle.actors) tickActor(battle, actor, step);
     tickProjectiles(battle, step);
+    advanceSummons(battle);
     updateWinner(battle);
     if (battle.winner) break;
     // A player decision wins simultaneous readiness in wait mode; active mode has no such pause.
     battle.waiting = waitingForDecision(battle);
     if (!battle.waiting) autoEnemyActions(battle);
+    advanceSummons(battle);
+    updateWinner(battle);
     remaining -= step;
   }
   return battle;
@@ -857,8 +1004,8 @@ export function summarizeBattle(battle) {
     elapsed: battle.elapsed,
     actionCount: battle.actionCount,
     medigel: battle.medigel,
-    defeatedEnemies: battle.actors.filter(actor => actor.team === 'enemy' && !living(actor)).length,
-    party: battle.actors.filter(actor => actor.team === 'party').map(({ id, name, hp, maxHp, shield, maxShield }) => ({ id, name, hp, maxHp, shield, maxShield, alive: hp > 0 })),
-    enemies: battle.actors.filter(actor => actor.team === 'enemy').map(({ id, name, hp, maxHp, shield, maxShield }) => ({ id, name, hp, maxHp, shield, maxShield, alive: hp > 0 })),
+    defeatedEnemies: battle.actors.filter(actor => actor.team === 'enemy' && isVictoryParticipant(actor) && !living(actor)).length,
+    party: battle.actors.filter(actor => actor.team === 'party' && isVictoryParticipant(actor)).map(({ id, name, hp, maxHp, shield, maxShield }) => ({ id, name, hp, maxHp, shield, maxShield, alive: hp > 0 })),
+    enemies: battle.actors.filter(actor => actor.team === 'enemy' && isVictoryParticipant(actor)).map(({ id, name, hp, maxHp, shield, maxShield }) => ({ id, name, hp, maxHp, shield, maxShield, alive: hp > 0 })),
   };
 }

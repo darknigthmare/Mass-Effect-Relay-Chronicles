@@ -84,7 +84,9 @@ test('workshop preparation keeps scoped roster, compatibility reasons and ATB bu
     assert.ok(html.includes(`data-actor-id="${id}" data-slot="weapon"`));
     assert.ok(html.includes(`data-actor-id="${id}" data-slot="armor"`));
   }
-  assert.ok(!html.includes('assets/'));
+  assert.ok(html.includes('data-chronicle-portrait="ME2-CHR-MIRANDA"'));
+  assert.ok(!html.includes('crew-atlas.png'), 'No ME1 costume is reused for a later identity');
+  assert.ok([...html.matchAll(/href="([^"]*assets\/[^\"]*)"/g)].every(match => match[1] === './assets/chronicle-portraits-me2-me3.png'));
   const incompatible = view.gearByActor[session.party[0]].find(item => item.slot && !item.compatible);
   assert.ok(incompatible, 'The scoped catalogue contains a concrete incompatible equipment model.');
   assert.match(html, new RegExp(`<option value="${incompatible.id}"[^>]*disabled`));
@@ -100,7 +102,7 @@ test('a session from another period cannot expose its party or battle in the sel
   assert.ok(!html.includes('ME2-CHR-MIRANDA'));
 });
 
-test('the isolated battle renders real engine actions and data bars with neutral unit symbols', () => {
+test('the isolated battle renders real actions, data bars and only authorized prototype portraits', () => {
   const ctx = context('ME2', 'me2'), session = createChronicle(ctx, 'me2-equipment-workshop'), view = viewFor(ctx, session);
   const result = startChronicleBattle(session); assert.equal(result.ok, true);
   const actor = result.battle.actors.find(unit => unit.team === 'party');
@@ -111,7 +113,9 @@ test('the isolated battle renders real engine actions and data bars with neutral
   for (const action of view.actions) assert.ok(html.includes(`data-do="chronicle-action" data-id="${action.id}"`));
   assert.ok(html.includes('data-do="chronicle-pause"'));
   assert.ok(html.includes('data-do="chronicle-target"'));
-  assert.ok(!/<(?:img|svg)\b/.test(html));
+  assert.ok(html.includes('data-chronicle-portrait="ME2-CHR-MIRANDA"'));
+  assert.ok(!html.includes('data-chronicle-portrait="ME2-CHR-SHEPARD"'));
+  assert.ok(!html.includes('crew-atlas.png'));
   assert.equal(JSON.stringify(view.battle), before);
 });
 
