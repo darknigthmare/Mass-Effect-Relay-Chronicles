@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Foundation_Production.xlsx",
   "scope": "Les treize numéros, avec un module par numéro : #1 Themis/Rasa; #2 Wrex; #3 Ashley; #4 Kaidan; #5–6 Miranda et Jacob; #7 Jack; #8 Thane; #9 Mordin; #10 Kasumi; #11 Zaeed; #12 Thane; #13 Rasa. Recueils #1–4, #5–8 et #9–13 repérés séparément.",
-  "summary": "Dossier de production articulé autour des investigations de Rasa et des histoires de l’entourage de Shepard. Chaque numéro a son objectif proposé, une stratégie locale, des intentions de dialogue, un objet, un raccord visuel et une recette; le dispositif conserve les flashbacks et limites de connaissance.",
+  "summary": "249 fiches de production ; 1 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les associations détaillées numéro/personnage reposent sur les notices de volumes et les extraits par numéro. Les entrées issues uniquement du wiki ou de catalogues secondaires restent À vérifier. Rasa/Maya Brooks est un dossier d’alias à contrôler, pas deux personnages jouables indépendants. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -3437,7 +3437,7 @@
       "name": "#4 — formation de Kaidan — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Miranda et Jacob sont envoyés chercher le corps de Shepard. ",
@@ -3446,7 +3446,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification FOU/lore/sc-05-ref; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire FOU-SC-05-REF consultable dans les lectures fou-recherche de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Le fil de Rasa et les souvenirs des autres personnages restent séparés. Les options d’adaptation ne réécrivent ni les décès, ni l’issue du génophage, ni les origines des équipiers; aucun personnage n’est recruté uniquement parce que son dossier est consulté.",
       "acceptance": "L’ancrage reste bref et son numéro/segment est identifiable dans les sources; les détails non confirmés portent À vérifier.",
       "dependencies": [],
@@ -3454,10 +3454,21 @@
         "FOU-S-ISSUE5"
       ],
       "reference": "Foundation #5",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "FOU-SC-05-REF",
       "category": "lore",
-      "name": "#5 — recherche de Shepard"
+      "name": "#5 — recherche de Shepard",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -6064,6 +6075,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "1 références supplémentaires au stade Prototype dans 1 parcours de lecture (1 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }

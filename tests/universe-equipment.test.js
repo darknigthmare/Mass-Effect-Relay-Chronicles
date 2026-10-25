@@ -8,6 +8,7 @@ import { getUniverseRecord } from '../src/universe-data.js';
 import { SCENARIOS, universeActorFor } from '../src/universe-actors.js';
 import { canAccessContent } from '../src/continuity.js';
 import { createBattle, performAction } from '../src/combat.js';
+import { UNIVERSE_WEAPON_PROFILES, getUniverseWeaponProfile } from '../src/universe-weapon-profiles.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
 const workshop = mediaId => SCENARIOS.find(scene => scene.kind === 'equipment-workshop' && scene.context.mediaId === mediaId);
@@ -66,7 +67,7 @@ test('exact work and segment gates prevent future equipment and Andromeda techno
 });
 
 test('thermal-clip budgets are bounded ATB data and unsupported technologies remain documentary', () => {
-  const clipItems = UNIVERSE_EQUIPMENT.filter(item => item.runtimeSupported && item.kind === 'weapon');
+  const clipItems = UNIVERSE_EQUIPMENT.filter(item => item.runtimeSupported && item.kind === 'weapon' && item.weaponSystem === 'thermal-clip');
   assert.ok(clipItems.length > 50);
   for (const item of clipItems) {
     assert.equal(item.weaponSystem, 'thermal-clip');
@@ -74,9 +75,9 @@ test('thermal-clip budgets are bounded ATB data and unsupported technologies rem
     assert.ok(Number.isInteger(item.magazineCapacity) && item.magazineCapacity > 0 && item.magazineCapacity <= 24);
     assert.equal(item.ammo, item.magazineCapacity);
     assert.equal(item.reserveAmmo, item.magazineCapacity * 4);
-    assert.match(item.firingModelNote, /variantes de tir d’origine non reproduits/);
+    if (!item.weaponProfileId) assert.match(item.firingModelNote, /variantes de tir d’origine non reproduits/);
   }
-  for (const id of ['ME3-WPN-LANCER', 'ME3-WPN-PARTICLE', 'MEA-WPN-EQUALIZER', 'MEA-WPN-SWEEPER',
+  for (const id of ['ME3-WPN-LANCER', 'ME3-WPN-PARTICLE', 'MEA-WPN-EQUALIZER', 'MEA-WPN-SCATTERSHOT',
     'MEA-WPN-ASARI-SWORD', 'MEA-EQP-REMNANT', 'INF-WPN-MATTOCK', 'GAL-WPN-AVENGER']) {
     const item = getUniverseEquipment(id);
     assert.equal(item.runtimeSupported, false, id);
@@ -101,7 +102,7 @@ test('edition-dependent equipment is not unlocked by selecting its work or works
 });
 
 test('workshop selections have explicit permissions and never become prologue mission equipment', () => {
-  const expected = { ME2: 11, ME3: 29, MEA: 30 };
+  const expected = { ME2: 11, ME3: 31, MEA: 34 };
   for (const [mediaId, count] of Object.entries(expected)) {
     const scene = workshop(mediaId), actorId = protagonist[mediaId];
     assert.equal(scene.allowedEquipmentIds.length, count);
@@ -241,7 +242,7 @@ test('modification permissions require an explicit compatible parent rather than
   assert.equal(check('ME3-EQP-BARREL', 'weaponMod').ok, false);
   assert.equal(check('ME3-EQP-BARREL', 'weaponMod', emptyLoadout()).ok, false);
   for (const id of ['ME3-WPN-PREDATOR', 'ME3-WPN-SHURIKEN', 'ME3-WPN-KATANA', 'ME3-WPN-MANTIS',
-    'ME3-WPN-LANCER', 'ME3-WPN-PARTICLE', 'ME2-WPN-AVENGER']) {
+    'ME3-WPN-LANCER', 'ME3-WPN-PARTICLE', 'ME3-WPN-FALCON', 'ME3-WPN-SCORPION', 'ME2-WPN-AVENGER']) {
     assert.equal(check('ME3-EQP-BARREL', 'weaponMod', { ...emptyLoadout(), weapon: id }).ok, false, id);
   }
   const row = { ...emptyLoadout(), weapon: 'ME3-WPN-AVENGER' };
@@ -299,7 +300,7 @@ test('weapon replacement or removal releases both module selections atomically a
 test('magazine capacity transfers its initial extra rounds from reserve and removing it restores the same finite budget', () => {
   const actorId = protagonist.ME3, scene = workshop('ME3');
   for (const weaponId of scene.allowedEquipmentIds.filter(id => getUniverseEquipment(id).kind === 'weapon'
-    && getUniverseEquipment(id).weaponType === 'assault')) {
+    && getUniverseEquipment(id).weaponType === 'assault' && !getUniverseEquipment(id).weaponProfileId)) {
     const base = prepare(sessionFor('ME3'), actorId, weaponId), original = getChronicleEquipmentEffects(base, actorId);
     const equipped = prepare(base, actorId, 'ME3-EQP-MAGAZINE'), effects = getChronicleEquipmentEffects(equipped, actorId);
     assert.equal(effects.magazineCapacity, Math.ceil(original.magazineCapacity * 1.25));
@@ -338,4 +339,78 @@ test('a real modified weapon changes only gunfire damage while capacity and relo
   actor.atb = 100; assert.equal(performAction(shot.battle, { actorId, actionId: 'reload' }).ok, true);
   assert.equal(actor.ammo, 23); assert.equal(actor.reserveAmmo, 66); assert.equal(actor.heat, 0);
   assert.equal(actor.ammo + actor.reserveAmmo, 89, 'The shot spent one round; reload creates none');
+});
+
+test('six special weapons retain source facts, exact scene gates and typed mechanics without leaking into prologues', () => {
+  for (const profile of UNIVERSE_WEAPON_PROFILES) {
+    const item = getUniverseEquipment(profile.id), source = getUniverseRecord(profile.id);
+    const mediaId = profile.id.startsWith('ME3-') ? 'ME3' : 'MEA';
+    const scene = workshop(mediaId), actorId = protagonist[mediaId];
+    assert.equal(item.runtimeSupported, true, profile.id); assert.equal(item.requiresEdition, false);
+    assert.equal(item.playable, false, 'A supported profile alone is not permission to use it in any scene');
+    assert.equal(item.name, source.name); assert.equal(item.description, source.description);
+    assert.deepEqual(item.sourceIds, source.sourceIds);
+    assert.equal(item.weaponProfileId, profile.id); assert.equal(item.weaponSystem, profile.weaponSystem);
+    assert.equal(item.weaponType, profile.weaponType); assert.equal(item.firingModelNote, profile.mechanicNote);
+    assert.deepEqual(item.profileLimitations, profile.limitations);
+    assert.equal(canEquipUniverseItem(scene.context, actorId, item.id, 'weapon', scene.id).ok, true);
+    assert.equal(canEquipUniverseItem(scene.context, actorId, item.id, 'weapon', 'missing-workshop').ok, false);
+    assert.equal(canEquipUniverseItem(scene.context, actorId, item.id, 'weaponMod', scene.id).ok, false);
+    assert.equal(canEquipUniverseItem(workshop('ME2').context, protagonist.ME2, item.id, 'weapon', workshop('ME2').id).ok, false);
+    for (const prologue of SCENARIOS.filter(candidate => candidate.context.mediaId === mediaId && candidate.kind !== 'equipment-workshop')) {
+      for (const wearer of prologue.actorIds) {
+        assert.equal(canEquipUniverseItem(prologue.context, wearer, item.id, 'weapon', prologue.id).ok, false);
+      }
+    }
+  }
+});
+
+test('special equipment effects transmit only a whitelisted profile ID and the correct finite resource system', () => {
+  for (const profile of UNIVERSE_WEAPON_PROFILES) {
+    const mediaId = profile.id.startsWith('ME3-') ? 'ME3' : 'MEA', actorId = protagonist[mediaId];
+    const original = sessionFor(mediaId), snapshot = clone(original);
+    const prepared = prepare(original, actorId, profile.id), effects = getChronicleEquipmentEffects(prepared, actorId);
+    assert.deepEqual(original, snapshot);
+    assert.equal(effects.weaponProfileId, profile.id);
+    assert.equal(getUniverseWeaponProfile(effects.weaponProfileId), profile);
+    assert.equal(effects.weaponSystem, profile.weaponSystem);
+    assert.equal(effects.attack, 0); assert.equal(effects.weaponDamageMultiplier, 1);
+    assert.equal(effects.techMultiplier, 1); assert.equal(effects.bioticMultiplier, 1);
+    assert.equal(Object.hasOwn(effects, 'weaponProfile'), false, 'Custom serialized mechanics are never accepted');
+    if (profile.weaponSystem === 'heat') {
+      for (const key of ['magazineCapacity', 'ammo', 'reserveAmmo']) {
+        assert.equal(Object.hasOwn(effects, key), false); assert.equal(Object.hasOwn(getUniverseEquipment(profile.id), key), false);
+      }
+    } else {
+      assert.equal(effects.magazineCapacity, profile.magazineCapacity);
+      assert.equal(effects.ammo, profile.ammo); assert.equal(effects.reserveAmmo, profile.reserveAmmo);
+    }
+    assert.deepEqual(getChronicleEquipmentEffects(prepare(prepared, actorId, null, 'weapon'), actorId), neutral);
+  }
+  const ordinary = prepare(sessionFor('ME3'), protagonist.ME3, 'ME3-WPN-AVENGER');
+  assert.equal(Object.hasOwn(getChronicleEquipmentEffects(ordinary, protagonist.ME3), 'weaponProfileId'), false);
+  const legacy = { [protagonist.ME3]: { weapon: 'ME3-WPN-AVENGER', armor: 'ME3-EQP-N7' } };
+  assert.deepEqual(normalizeChronicleLoadouts(legacy, ordinary.context, ordinary.party, ordinary.scenarioId), {
+    [protagonist.ME3]: { ...emptyLoadout(), ...legacy[protagonist.ME3] },
+  });
+});
+
+test('special assault weapons do not inherit conventional mod permissions, and replacing the parent releases both ports', () => {
+  const actorId = protagonist.ME3;
+  const equipped = prepare(prepare(prepare(sessionFor('ME3'), actorId, 'ME3-WPN-AVENGER'), actorId, 'ME3-EQP-BARREL'), actorId, 'ME3-EQP-MAGAZINE');
+  const result = equipChronicleItem(equipped, actorId, 'ME3-WPN-FALCON', 'weapon');
+  assert.equal(result.ok, true, result.reason);
+  assert.deepEqual(result.returnedMods, ['ME3-EQP-BARREL', 'ME3-EQP-MAGAZINE']);
+  assert.deepEqual(result.loadouts[actorId], { ...emptyLoadout(), weapon: 'ME3-WPN-FALCON' });
+  const falcon = { ...equipped, loadouts: result.loadouts }, snapshot = clone(result.loadouts);
+  assert.equal(getChronicleEquipmentEffects(falcon, actorId).magazineCapacity, 6);
+  for (const slot of ['weaponMod', 'weaponMod2']) {
+    for (const itemId of ['ME3-EQP-BARREL', 'ME3-EQP-MAGAZINE']) {
+      const rejected = equipChronicleItem(falcon, actorId, itemId, slot);
+      assert.equal(rejected.ok, false); assert.match(rejected.reason, /conventionnel/);
+      const forged = clone(falcon.loadouts); forged[actorId][slot] = itemId;
+      assert.equal(normalizeChronicleLoadouts(forged, falcon.context, falcon.party, falcon.scenarioId), null);
+    }
+  }
+  assert.deepEqual(falcon.loadouts, snapshot);
 });

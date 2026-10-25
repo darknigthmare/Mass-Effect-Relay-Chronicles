@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { MEDIA_PERIODS } from '../src/continuity-data.js';
 import { getUniverseRecord, getUniverseWork } from '../src/universe-data.js';
 import { normalizeContext, canAccessContent, createChronicleSession, normalizeChronicleSession } from '../src/continuity.js';
@@ -9,15 +10,15 @@ import { listChronicleStories, getChronicleStory, readChronicleStoryStep } from 
 const context = (mediaId, periodId) => normalizeContext({ mediaId, periodId });
 const allStories = () => MEDIA_PERIODS.flatMap(work => work.periods.flatMap(period => listChronicleStories({ mediaId: work.id, periodId: period.id })));
 
-test('nine established works have short documentary readings with distinct canonical progress anchors', () => {
+test('sixteen exact-context documentary readings retain distinct canonical progress anchors', () => {
   const stories = allStories();
-  assert.equal(stories.length, 9);
-  assert.deepEqual(stories.map(story => story.context.mediaId).sort(), ['ANN', 'ASC', 'EVO', 'INI', 'INV', 'NEX', 'RED', 'RET', 'REV']);
+  assert.equal(stories.length, 16);
+  assert.deepEqual(stories.map(story => story.context.mediaId).sort(), ['ANN', 'ASC', 'DEC', 'DIS', 'EVO', 'EVO', 'FOU', 'HOM', 'INC', 'INI', 'INQ', 'INV', 'NEX', 'RED', 'RET', 'REV']);
   assert.equal(new Set(stories.map(story => story.progressRecordId)).size, stories.length);
   for (const summary of stories) {
     const story = getChronicleStory(summary.id, summary.context);
     assert.equal(summary.kind, 'documentary');
-    assert.ok(story.steps.length >= 3 && story.steps.length <= 6);
+    assert.ok(story.steps.length >= 1 && story.steps.length <= 6);
     assert.equal(summary.stepCount, story.steps.length);
     assert.equal(story.progressRecordId, story.steps[0].recordIds[0]);
     assert.equal(canAccessContent(story.progressRecordId, story.context).ok, true);
@@ -51,14 +52,17 @@ test('readings require exact work, segment and derived galaxy, without leaking i
   for (const wrong of [context('EVO', 'evo-contact'), context('ME1', 'me1'), context('MEA', 'mea'),
     { mediaId: 'EVO', periodId: 'evo' }, { ...evo, year: 2157 }, { ...evo, galaxy: 'andromeda' },
     { mediaId: 'HOM', periodId: 'hom' }, { mediaId: 'FOU', periodId: 'fou' }]) {
-    assert.deepEqual(listChronicleStories(wrong), []);
+    assert.equal(listChronicleStories(wrong).some(story => story.id === 'evo-apres-guerre'), false);
     assert.equal(getChronicleStory('evo-apres-guerre', wrong), null);
     assert.equal(readChronicleStoryStep(wrong, 'evo-apres-guerre').ok, false);
   }
   for (const mediaId of ['HOM', 'FOU']) {
-    for (const period of MEDIA_PERIODS.find(work => work.id === mediaId).periods) assert.deepEqual(listChronicleStories({ mediaId, periodId: period.id }), []);
+    for (const period of MEDIA_PERIODS.find(work => work.id === mediaId).periods) {
+      const expected = period.id === 'hom-4-liara' ? ['hom-liara'] : period.id === 'fou-5' ? ['fou-recherche'] : [];
+      assert.deepEqual(listChronicleStories({ mediaId, periodId: period.id }).map(story => story.id), expected);
+    }
   }
-  for (const mediaId of ['LIB', 'BLA', 'CUT', 'ME4', 'DEC']) assert.deepEqual(listChronicleStories({ mediaId, periodId: mediaId.toLowerCase() }), []);
+  for (const mediaId of ['LIB', 'BLA', 'CUT', 'ME4', 'CON', 'HWB']) assert.deepEqual(listChronicleStories({ mediaId, periodId: mediaId.toLowerCase() }), []);
   assert.equal(getChronicleStory('unknown'), null);
 });
 
@@ -137,4 +141,60 @@ test('returned stories, sources and pages are independent copies and cannot alte
   assert.equal(listChronicleStories(ctx)[0].context.periodId, 'inv');
   const page = readChronicleStoryStep(ctx, 'inv-omega'); page.step.recordIds.length = 0; page.step.sources[0].url = 'changed';
   assert.deepEqual(getChronicleStory('inv-omega', ctx), original);
+});
+
+
+test('the nine published readings preserve every original ID, page, text and progress anchor', () => {
+  const originalIds = ['ann-transit', 'asc-projet', 'evo-apres-guerre', 'ini-cora', 'inv-omega', 'nex-crise', 'red-recherche', 'ret-grayson', 'rev-sidon'];
+  const stories = originalIds.map(id => getChronicleStory(id)).map(story => ({
+    id: story.id, progressRecordId: story.progressRecordId,
+    steps: story.steps.map(({ id, title, recordIds, text }) => ({ id, title, recordIds, text })),
+  }));
+  assert.equal(stories.reduce((total, story) => total + story.steps.length, 0), 42);
+  assert.equal(createHash('sha256').update(JSON.stringify(stories)).digest('hex'), 'ea7a38c0d1f0f994e7e9efc5bfdd9cf613fff0df859b1eb7193ede809a8ea50c');
+});
+
+test('seven additions use only nineteen existing fact IDs and ten bounded pages, without filler or foreign phases', () => {
+  const expected = {
+    'dec-reperes': { mediaId: 'DEC', periodId: 'dec', pages: 4, ids: ['DEC-CON-11', 'DEC-REF-CERBERUS', 'DEC-REF-UNDERGROUND', 'DEC-CON-02', 'DEC-CON-03', 'DEC-CON-01', 'DEC-CON-07'] },
+    'hom-liara': { mediaId: 'HOM', periodId: 'hom-4-liara', pages: 1, ids: ['HOM-REF-ISSUE4', 'HOM-ACT-LIARA'] },
+    'fou-recherche': { mediaId: 'FOU', periodId: 'fou-5', pages: 1, ids: ['FOU-SC-05-REF', 'FOU-ACT-MIRANDA', 'FOU-ACT-JACOB'] },
+    'dis-infiltration': { mediaId: 'DIS', periodId: 'dis', pages: 1, ids: ['DIS-REF-SCOPE', 'DIS-REF-TIRAN'] },
+    'inc-omega': { mediaId: 'INC', periodId: 'inc', pages: 1, ids: ['INC-REF-SCOPE', 'INC-WRL-OMEGA'] },
+    'inq-bailey': { mediaId: 'INQ', periodId: 'inq', pages: 1, ids: ['INQ-REF-SCOPE', 'INQ-WRL-CITADEL'] },
+    'evo-contact': { mediaId: 'EVO', periodId: 'evo-contact', pages: 1, ids: ['EVO-SC-RESIST-REF'] },
+  };
+  let pageCount = 0; const allIds = new Set();
+  const campaign = newGame(), campaignBefore = JSON.stringify(campaign);
+  for (const [id, definition] of Object.entries(expected)) {
+    const ctx = context(definition.mediaId, definition.periodId), story = getChronicleStory(id, ctx);
+    assert.ok(story); assert.equal(story.steps.length, definition.pages); pageCount += story.steps.length;
+    assert.deepEqual([...new Set(story.steps.flatMap(step => step.recordIds))], definition.ids);
+    for (const recordId of definition.ids) allIds.add(recordId);
+    let discovered = [];
+    for (let index = 0; index < story.steps.length; index += 1) {
+      const result = readChronicleStoryStep(ctx, id, index, discovered);
+      assert.equal(result.ok, true); assert.equal(result.completed, index === story.steps.length - 1);
+      assert.equal(result.nextIndex, index + 1 < story.steps.length ? index + 1 : null);
+      assert.ok(!['party', 'loadouts', 'builds', 'reward', 'xp', 'credits', 'cleared'].some(key => Object.hasOwn(result, key)));
+      discovered = result.discovered;
+    }
+    assert.ok(discovered.every(recordId => definition.ids.includes(recordId)));
+    assert.equal(getChronicleStory(id, context('ME1', 'me1')), null);
+  }
+  assert.equal(pageCount, 10); assert.equal(allIds.size, 19);
+  assert.equal(allStories().reduce((total, summary) => total + summary.stepCount, 0), 52);
+  assert.equal(JSON.stringify(campaign), campaignBefore);
+});
+
+test('Deception preserves contradictions and publication uncertainty, while Inquisition never asserts guilt', () => {
+  const text = id => getChronicleStory(id).steps.map(step => step.text).join(' ');
+  const deception = text('dec-reperes');
+  assert.match(deception, /dix-huit ans/); assert.match(deception, /douze ans/); assert.match(deception, /contradictions sont conservées/);
+  assert.match(deception, /n’établissent pas qu’une édition révisée ait effectivement été publiée/);
+  assert.ok(!getChronicleStory('dec-reperes').steps.flatMap(step => step.recordIds).includes('DEC-CON-08'));
+  assert.ok(!/guérison|guérie|Gillian meurt/u.test(deception));
+  assert.match(text('inq-bailey'), /traître présumé/); assert.ok(!/Pallin|coupable|condamné/u.test(text('inq-bailey')));
+  assert.ok(!/Mars|Kahje|Rasa|Tali|Garrus/u.test(text('hom-liara')));
+  assert.ok(!/Illium|Palaven|Monolithe|Desolas/u.test(text('evo-contact')));
 });

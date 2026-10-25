@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_2_Production.xlsx",
   "scope": "Campagne solo ME2 et Legendary Edition ; recrutements, loyautés, affectations N7 et hubs ; Kasumi, Zaeed, Normandy Crash Site, Firewalker, Overlord, Lair of the Shadow Broker et Arrival. Genesis est identifié comme récapitulatif interactif ; aucun mode multijoueur ME2 ajouté au canon.",
-  "summary": "670 fiches de production ; 39 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "670 fiches de production ; 43 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -912,7 +912,7 @@
       "id": "ME2-CHR-KASUMI",
       "category": "characters",
       "name": "Kasumi Goto",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipière du pack Stolen Memory.",
@@ -921,7 +921,7 @@
       "visual": "Capuche sombre, bordures ocre, un œil visible ; ombre distincte.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/kasumi ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil sélectionnable dans me2-dlc-specialists via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
       "conditions": "",
       "acceptance": "Le livrable « Kasumi Goto » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -929,13 +929,27 @@
         "ME2-SRC-KASUMI"
       ],
       "reference": "Kasumi Goto",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Shadow Strike, Flashbang Grenade.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "ME2-CHR-ZAEED",
       "category": "characters",
       "name": "Zaeed Massani",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Équipier du pack The Price of Revenge.",
@@ -944,7 +958,7 @@
       "visual": "Armure usée, visage marqué, œil altéré et fusil tenu sans cérémonie.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/zaeed ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil sélectionnable dans me2-dlc-specialists via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
       "conditions": "",
       "acceptance": "Le livrable « Zaeed Massani » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -952,13 +966,27 @@
         "ME2-SRC-ZAEED"
       ],
       "reference": "Zaeed Massani",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Inferno Grenade, Disruptor Ammo.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "ME2-CHR-LIARA",
       "category": "characters",
       "name": "Liara T’Soni — équipière temporaire",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Liara accompagne le DLC Shadow Broker.",
@@ -967,7 +995,7 @@
       "visual": "Combinaison blanche, bleu asari et détails de ceinture.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/characters/liara ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil sélectionnable dans me2-shadow-broker via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
       "conditions": "Équipière limitée à cette extension ; contacts possibles ailleurs.",
       "acceptance": "Le livrable « Liara T’Soni — équipière temporaire » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -976,7 +1004,21 @@
         "ME2-SRC-SQUAD"
       ],
       "reference": "Liara T’Soni — équipière temporaire",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "ME2-CHR-KENSON",
@@ -9893,7 +9935,7 @@
       "id": "ME2-POW-STASIS",
       "category": "powers",
       "name": "Stasis",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pouvoir de ME2.",
@@ -9902,7 +9944,7 @@
       "visual": "Silhouette figée dans un cadre bleu.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/powers/stasis ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype partiel de pouvoir : liaison ME2-POW-STASIS → stasis dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans me2-shadow-broker, avec provenance et restrictions de la fiche conservées.",
       "conditions": "",
       "acceptance": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
       "dependencies": [],
@@ -9910,7 +9952,20 @@
         "ME2-SRC-POWERS"
       ],
       "reference": "Table des pouvoirs ME2",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Pouvoir effectivement exposé par les nouveaux profils de spécialistes ; présence d’une liaison seule non comptée comme usage. Effets, coûts et durées ATB, arbres complets, rangs, acquisition, animations et variantes d’édition non certifiés 1:1.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "id": "ME2-POW-UNITY",
@@ -16477,13 +16532,18 @@
     },
     {
       "area": "Prototype Chroniques indépendant",
-      "covered": "12 personnages sélectionnables, 11 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "covered": "15 personnages sélectionnables, 11 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
       "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
     },
     {
       "area": "Complément pouvoirs, modules et lectures",
-      "covered": "16 fiches de pouvoirs utilisées, 0 familles de modules préparables et 0 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "covered": "17 fiches de pouvoirs effectivement utilisées, 0 familles de modules préparables et 0 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
       "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
+    },
+    {
+      "area": "Complément spécialistes contextualisés",
+      "covered": "3 profils supplémentaires limités aux bancs de spécialistes, 0 profils d’armes spéciales et 1 fiches de pouvoirs supplémentaires effectivement exposées. Vérification fonctionnelle liée au rapport docs/qa/chronicle-specialists-browser-report.json.",
+      "remaining": "Bancs ATB sur mannequins originaux, conditions préparées et dotations abstraites ; aucune reconstruction des missions, acquisition de campagne, illustration, animation, doublage ni valeur originale certifiée. Les sources secondaires et incertitudes restent explicites."
     }
   ]
 }

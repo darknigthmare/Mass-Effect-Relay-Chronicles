@@ -1,8 +1,8 @@
 # Chroniques — œuvres, segments et essais tactiques
 
-Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis dix essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Neuf parcours documentaires ajoutent 42 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
+Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis seize essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
 
-**État documentaire du complément du 24 octobre 2026, basé sur `994a963`.** Le registre régénéré rassemble **6 656 fiches : 1 330 dans le principal et 5 326 dans les 27 catalogues supplémentaires**. Les 85 nouvelles fiches passées au stade Prototype dans les catalogues supplémentaires concernent 40 fiches de pouvoirs, deux familles de modules et 43 références documentaires de lieux, récit ou continuité. Les identifiants de sources, la nature et les descriptions des fiches sont conservés. Une fiche conservée dans ce registre ne devient pas automatiquement visible, sélectionnable ou jouable. L’interface ne présente que les références dont la provenance autorise le segment choisi. Les campagnes intégrales, dialogues, cartes et scènes des œuvres supplémentaires restent à produire ; aucune fidélité 1:1 n’est certifiée par ces essais.
+**État documentaire du 25 octobre 2026, basé sur `7fe7a88`.** Le registre régénéré rassemble **6 656 fiches : 1 330 dans le principal et 5 326 dans les 27 catalogues supplémentaires**. Le complément ajoute **37 promotions Prototype : huit profils de personnages, six armes, sept fiches de pouvoirs et seize références documentaires**. Les identifiants, sources, conditions, natures et descriptions des fiches univers sont conservés. La description du système de lecture du principal est actualisée à seize parcours et 52 pages ; ses autres fiches sont inchangées. Une fiche du registre ne devient pas automatiquement visible, sélectionnable ou jouable : sa provenance doit autoriser le segment et l’essai choisis. Les campagnes intégrales, dialogues, cartes et scènes des œuvres supplémentaires restent à produire ; aucune fidélité 1:1 n’est certifiée par ces essais.
 
 ## Ouvrir une chronique
 
@@ -16,9 +16,9 @@ Depuis le titre ou la pause de la campagne, choisir **Chroniques**, puis une **�
 
 Les combats utilisent le mode Attente. Les armes conventionnelles des profils ME2, ME3 et Andromeda emploient un chargeur et une réserve ; **Recharger** consomme une action ATB. Les capacités, statistiques, réserves et adversaires des essais suivent les réglages de ce prototype.
 
-Les **34 profils sélectionnables sont comptés par œuvre** : un même personnage peut avoir plusieurs profils distincts selon son contexte. Les capacités manquantes restent signalées dans chaque préparation.
+Les **42 profils sélectionnables sont comptés par œuvre** : un même personnage peut avoir plusieurs profils distincts selon son contexte. Les capacités manquantes restent signalées dans chaque préparation. Les huit profils supplémentaires restent réservés aux six bancs d’extensions ou de bonus : leur présence n’est pas ajoutée aux dix essais antérieurs.
 
-## Dix essais, trois périmètres
+## Seize essais, quatre périmètres
 
 | Œuvre et segment | Essai | Périmètre réalisé |
 |---|---|---|
@@ -32,14 +32,20 @@ Les **34 profils sélectionnables sont comptés par œuvre** : un même personna
 | ME2 · `me2` | Atelier d’équipement | Groupe de test et matériel autorisé de ME2 face à des cibles originales |
 | ME3 · `me3` | Atelier d’équipement | Groupe de test et matériel autorisé de ME3 face à des cibles originales |
 | Andromeda · `mea` | Atelier d’équipement | Groupe de test et matériel autorisé d’Andromeda face à des cibles originales |
+| ME2 · `me2` | Spécialistes DLC | Shepard, Kasumi et Zaeed ; packs et conditions de loyauté préparés pour l’essai |
+| ME2 · `me2` | Shadow Broker | Shepard et Liara ; rôle temporaire limité à cette extension |
+| ME3 · `me3` | From Ashes | Shepard et Javik ; extension et recrutement préparés pour l’essai |
+| ME3 · `me3` | Omega | Shepard, Aria et Nyreen ; état où les deux partenaires temporaires sont présentes |
+| ME3 · `me3` | Citadel, Wrex vivant | Shepard et Wrex ; survie préparée dans ce banc uniquement, sans accès global ou Armax |
+| Infiltrator · `inf` | Incarceration | Prisonnier turien seul ; le bonus ne lui attribue pas la campagne de Randall |
 
-Cela représente **quatre oppositions à types d’adversaires référencés**, **trois bancs à cibles abstraites** et **trois ateliers d’équipement**. Les effectifs, cartes de combat, durées, valeurs et commandes ATB sont adaptés. Une victoire enregistre la réussite de l’essai ; elle n’accorde ni crédits, ni expérience, ni choix canoniques à la campagne.
+Cela représente **quatre oppositions à types d’adversaires référencés**, **trois bancs à cibles abstraites**, **trois ateliers d’équipement** et **six bancs de spécialistes**. Les six derniers utilisent exclusivement des mannequins originaux et la dotation abstraite du profil, sans équipement supplémentaire. Ils ne rejouent aucune mission et ne décident d’aucun recrutement, loyauté ou survie dans une campagne. Les effectifs, cartes de combat, durées, valeurs et commandes ATB sont adaptés. Une victoire enregistre la réussite de l’essai ; elle n’accorde ni crédits, ni expérience, ni choix canoniques à la campagne.
 
 ## Présence des personnages et du matériel
 
-Les dix essais exposent **34 profils de personnages sélectionnables au total**, parmi **42 profils de combat partiels définis**. Un même personnage dans deux œuvres possède deux identifiants distincts. Les profils supplémentaires ne sont pas tous sélectionnables : il faut aussi une autorisation dans l’essai choisi. Les pouvoirs absents du moteur ou insuffisamment documentés ne sont pas ajoutés par analogie.
+Les seize essais exposent **42 profils de personnages sélectionnables au total**, tous partiels. Un même personnage dans deux œuvres possède deux identifiants distincts. Chaque sélection demande une autorisation dans l’essai choisi. Les pouvoirs absents du moteur ou insuffisamment documentés ne sont pas ajoutés par analogie.
 
-Les ateliers proposent **70 équipements sélectionnables** : 11 dans ME2, 29 dans ME3 et 30 dans Andromeda, soit **58 armes, 10 armures et deux familles de modules**. Chaque modèle doit satisfaire simultanément les conditions de l’œuvre, du segment, de l’essai, du porteur et des mécaniques disponibles. Les armures personnelles sont réservées à Shepard ou Ryder selon l’œuvre. Les armes lourdes, tirs chargés, rayons, technologies reliquates, variantes d’édition et autres mécanismes non reproduits restent des références fermées lorsque leur fonctionnement manque.
+Les ateliers proposent **76 équipements sélectionnables** : 11 dans ME2, 31 dans ME3 et 34 dans Andromeda, soit **64 armes, 10 armures et deux familles de modules**. Chaque modèle doit satisfaire simultanément les conditions de l’œuvre, du segment, de l’essai, du porteur et des mécaniques disponibles. Les armures personnelles sont réservées à Shepard ou Ryder selon l’œuvre. Les armes lourdes, tirs chargés, variantes d’édition et autres modèles dont le mécanisme manque restent des références fermées.
 
 La préparation d’atelier est libre. Elle ne simule pas l’acquisition d’origine, le recrutement, les arbres détaillés de talents, les rangs, les bonus passifs, les ressources, les achats, les crédits ou le butin. L’atelier utilise un état de test où les compagnons proposés ont rejoint le groupe et survécu ; les conditions de leurs fiches restent consultables. Les alternatives sont conservées : **Samara/Morinth** et **Ashley/Kaidan** ne peuvent pas être sélectionnés ensemble. Anderson et Alec restent limités à leurs bancs de prologue.
 
@@ -47,13 +53,21 @@ Les bonus d’armure, profils de familles d’armes, chargeurs et pouvoirs utili
 
 ## Pouvoirs et préparations
 
-Le complément ajoute **dix mécaniques ATB** : Attraction, Incinération, Explosion cryogénique, Tir percutant, Drain d’énergie, Fortification, Ravage, Onde de choc, Écrasement et Domination. **40 fiches de pouvoirs supplémentaires** sont utilisées avec ces nouvelles commandes ou des commandes déjà présentes ; ce nombre ne correspond pas à 40 actions distinctes. Les protections, cibles, durées, états et variantes ME2/ME3 restent des réglages explicitement adaptés. Les pouvoirs de loyauté ME2 ne sont proposés que dans l’atelier correspondant, préparé dans un état après loyauté.
+Le premier complément ajoutait dix mécaniques ATB : Attraction, Incinération, Explosion cryogénique, Tir percutant, Drain d’énergie, Fortification, Ravage, Onde de choc, Écrasement et Domination. Le complément du 25 octobre ajoute **Grenade à fragmentation**, **Grenade collante** et **Soutien des boucliers**. Les **47 fiches de pouvoirs utilisées correspondent à 21 commandes**, dont certaines partagées entre les œuvres. Les protections, cibles, durées, états et variantes restent des réglages explicitement adaptés. Les pouvoirs de loyauté ME2 ne sont proposés que dans les bancs qui déclarent cette condition préparée.
+
+Les grenades de James et du Soldat ME3, celles du Franc-tireur ME3, de Liam et de Jaal disposent de **trois charges par escarmouche dans le réglage d’essai**. Chaque lancer accepté dépense une charge, sans clip d’arme ni délai de recharge artificiel ; aucun réapprovisionnement n’a lieu pendant le combat. La grenade collante reste un projectile différé. Le soutien de Cora restaure les boucliers des alliés vivants puis accélère temporairement leur recharge ; il ne soigne pas la santé et ne ranime personne. L’attribution non vérifiée de Flak Cannon à Peebee a été retirée de ses capacités manquantes, sans lui accorder une autre capacité.
 
 Shepard peut choisir les **six classes dans ME2 et les six classes dans ME3**, en plus de la dotation par défaut conservée pour les anciennes sessions. Ryder dispose de **trois préparations de compétences — combat, biotique, technologie — et de sa dotation par défaut**. Ces préparations ne reproduisent ni tout l’arbre des talents ni les bonus passifs des profils d’Andromeda. Les compagnons gardent leur kit autorisé et les bancs de prologue gardent leur dotation par défaut. Les capacités manquantes restent affichées.
 
 Deux **familles de modules ME3**, canon et chargeur, utilisent les ports `weaponMod` et `weaponMod2`. Elles demandent une arme ME3 de famille fusil d’assaut à clips, explicitement équipée dans l’atelier. Les deux familles peuvent coexister ; dupliquer une famille est refusé avec un motif par port. Il ne s’agit pas de nouveaux rangs ou modèles officiels certifiés. Le canon multiplie les dégâts des tirs par 1,12 sans renforcer les pouvoirs. Le chargeur conserve le total de munitions : l’Avenger passe de 18/72 à 23/67 dans ce réglage ATB. Remplacer ou retirer l’arme retire ses modules ; sélectionner la même arme les conserve.
 
-## Neuf parcours documentaires
+## Armes spéciales
+
+Falcon et les deux Scorpion lancent un projectile qui explose après un délai, avec des dégâts réduits sur les autres adversaires. Le P.A.W. canalise un rayon à chaleur, le Reegar un jet électrique consommant ses clips par impulsion, et le Sweeper une salve énergétique à chaleur. Une canalisation s’interrompt par annulation, mise hors combat ou neutralisation ; les projectiles déjà lancés restent en vol. Une victoire attend la résolution des projectiles encore dangereux. Les profils à chaleur n’héritent pas de réserves de clips.
+
+Ces six profils restent limités aux ateliers ME3 ou Andromeda. Falcon ne reçoit pas les deux modules conçus pour les fusils d’assaut conventionnels. Délais, zone, suivi de cible, chaleur, munitions, trajectoires et dégâts ne constituent pas une reproduction intégrale des modèles originaux. Voir les [sources et limites vérifiées](research/chronicle-specialist-sources.md).
+
+## Seize parcours documentaires
 
 L’onglet Lecture présente des **paraphrases courtes de faits établis**. Les pages s’appuient sur des fiches et sources identifiées ; l’interface affiche leurs titres, liens et repères. L’ordre des pages guide la lecture ; il ne constitue pas un découpage exhaustif des chapitres ou cases. Aucun dialogue canonique, choix alternatif, personnage de combat, butin ou récompense n’est créé pour ces parcours.
 
@@ -68,8 +82,15 @@ L’onglet Lecture présente des **paraphrases courtes de faits établis**. Les 
 | Redemption · `red` | La recherche de Liara | 5 |
 | Invasion · `inv` | La défense d’Omega | 3 |
 | Evolution · `evo-aftermath` | Après les hostilités | 4 |
+| Deception · `dec` | Repères et contradictions documentaires | 4 |
+| Homeworlds · `hom-4-liara` | Liara, quatrième numéro | 1 |
+| Foundation · `fou-5` | La recherche de Shepard, cinquième numéro | 1 |
+| Discovery · `dis` | L’infiltration | 1 |
+| Incursion · `inc` | Repères sur Omega | 1 |
+| Inquisition · `inq` | L’enquête de Bailey | 1 |
+| Evolution · `evo-contact` | Pendant les hostilités | 1 |
 
-Les **42 pages** s’appuient sur 63 fiches, dont 43 références documentaires de lieux, récit ou continuité suivies par les nouvelles promotions Prototype. Les fiches d’identité citées gardent leur statut documentaire : aucun acteur de roman n’est rendu combattant par la présence de son nom. Les descriptions, natures et sources d’origine restent conservées. Les fenêtres d’Homeworlds et Foundation ne sont pas fusionnées ; aucun parcours global d’anthologie n’est ajouté. Evolution reste limité aux numéros après les hostilités, Annihilation au transit de l’arche et Initiation à sa préquelle en Voie lactée.
+Les **52 pages** s’appuient sur 82 fiches, dont 59 références documentaires de lieux, récit ou continuité. Les fiches d’identité citées gardent leur statut documentaire : aucun acteur de roman n’est rendu combattant par la présence de son nom. Les descriptions, natures et sources d’origine restent conservées. Les fenêtres d’Homeworlds et Foundation ne sont pas fusionnées ; aucun parcours global d’anthologie n’est ajouté. Les deux parcours d’Evolution restent séparés, Annihilation limité au transit de l’arche et Initiation à sa préquelle en Voie lactée. Deception conserve ses contradictions et distingue une correction annoncée d’une édition corrigée effectivement vérifiée. Inquisition mentionne un traître présumé, sans établir sa culpabilité ou lui attribuer un nom non attesté par les fiches utilisées.
 
 ## Continuité et incertitudes
 
@@ -113,10 +134,12 @@ Ce lot ne crée aucune illustration, aucun portrait ni aucun atlas. Les Chroniqu
 | [`continuity-data.js`](../src/continuity-data.js) | Œuvres, segments explicites, réserves et règles documentaires de provenance |
 | [`universe-data.js`](../src/universe-data.js) | Registre généré à partir des catalogues, sans promotion de leurs statuts |
 | [`continuity.js`](../src/continuity.js) | Contexte, filtrage et validation de la base des sessions |
-| [`universe-actors.js`](../src/universe-actors.js) | Profils partiels, autorisations des groupes et dix essais |
+| [`universe-actors.js`](../src/universe-actors.js) | Profils partiels, autorisations des groupes et seize essais |
+| [`universe-specialist-scenarios.js`](../src/universe-specialist-scenarios.js) | Six bancs d’extensions ou de bonus, sans ouverture des autres scènes |
 | [`universe-equipment.js`](../src/universe-equipment.js) | Matériel, quatre emplacements, compatibilité par port et effets disponibles |
 | [`universe-powers.js`](../src/universe-powers.js) | Liaisons sourcées, kits, classes et conditions des pouvoirs |
-| [`chronicle-story.js`](../src/chronicle-story.js) | Neuf lectures, 42 pages, provenance et découvertes validées |
+| [`chronicle-story.js`](../src/chronicle-story.js) | Seize lectures, 52 pages, provenance et découvertes validées |
+| [`universe-weapon-profiles.js`](../src/universe-weapon-profiles.js) | Six profils d’armes ATB sans chargement du catalogue depuis le combat |
 | [`chronicles.js`](../src/chronicles.js) | Validation composite, préparation, combat, import/export et stockage isolé |
 | [`universe-ui.js`](../src/universe-ui.js) | Registre, profils, modules, lecture et commandes des essais |
 
@@ -132,11 +155,18 @@ npm run build
 # Avec un serveur local et Chromium Playwright disponibles :
 npm run test:universe
 npm run test:chronicle:expansion
+npm run test:chronicle:specialists
 ```
 
 Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Le premier parcours navigateur écrit `test-results/universe-report.json` ; le complément pouvoirs, modules et lecture écrit `test-results/chronicle-expansion-report.json`. Leur résultat doit être lu dans les rapports de l’exécution concernée ; cette documentation ne certifie ni une campagne intégrale ni un lancement Windows.
 
-Le [rapport du complément du 24 octobre 2026](qa/chronicle-expansion-report.json) relie les **358 tests réussis**, la compilation, les quatre nouveaux contrôles navigateur et les six contrôles de régression des Chroniques. Le nouveau parcours exécute les dix pouvoirs ajoutés, remporte six essais et visite les 42 pages des neuf lectures. Les 21 combats de campagne ME1 et ses reprises passent ; les 18 simulations de campagne remportent 378 combats et valident 522 sauvegardes. Le contrôle différentiel de combat ME1 conserve les mêmes événements et bilans sur 30 graines et 1 755 ordres acceptés. Les rapports historiques gardent leurs résultats et empreintes propres.
+Le [rapport du complément du 25 octobre 2026](qa/chronicle-specialists-report.json) rassemble les 396 tests, le nouveau parcours, ses six armes, trois actions, six bancs et sept lectures, les régressions et les exports actuels. Le contrôle différentiel de combat ME1 conserve les mêmes événements et bilans sur 30 graines et 1 755 ordres acceptés. Les limites des sources et de la présentation restent distinctes des tests fonctionnels.
+
+La régression remporte les **16 essais** ; les **dix contrôles de production HTTP** passent avec les fichiers compilés réels, dont le rayon et les grenades sans harnais de développement. La campagne ME1 termine ses 21 combats et restaure sa sauvegarde. Les audits des 28 classeurs passent. La [revue visuelle du 25 octobre](qa/chronicle-specialists-workbook-visual-report.json) couvre 81 panneaux ciblés de onze classeurs, sans inspection complète de toutes leurs feuilles.
+
+### Rapports conservés du 24 octobre
+
+Le [rapport du complément du 24 octobre 2026](qa/chronicle-expansion-report.json) relie les **358 tests réussis**, la compilation, les quatre contrôles navigateur et les six contrôles de régression de cette version. Son parcours exécutait les dix pouvoirs ajoutés, remportait six essais et visitait les 42 pages des neuf lectures. Ses 21 combats de campagne ME1 et ses reprises passaient ; ses 18 simulations de campagne remportaient 378 combats et validaient 522 sauvegardes. Ces rapports gardent leurs résultats et empreintes propres.
 
 Les 28 classeurs sont vérifiés contre les catalogues. La [revue visuelle ciblée](qa/chronicle-expansion-workbook-visual-report.json) couvre 46 panneaux conservés avec leurs empreintes : elle ne constitue pas une inspection intégrale de tous leurs onglets. Les [références des pouvoirs et leurs limites](research/chronicle-power-sources.md) distinguent le manuel officiel consulté localement des attributions de compagnons issues de références secondaires.
 

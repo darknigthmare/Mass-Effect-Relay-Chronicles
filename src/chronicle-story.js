@@ -75,12 +75,36 @@ const DEFINITIONS = [
     page('palaven', 'Le projet de Desolas', ['EVO-SC-PALAVEN-REF'], 'Dans le troisième numéro, Desolas utilise les traditions de Palaven pour son projet.'),
     page('artefact', 'Le contrôle par l’artefact', ['EVO-SC-BREAK-REF'], 'Dans les notes du dernier numéro, l’auteur décrit l’artefact comme un moyen de contrôler les êtres transformés et comme la cause de la chute de Desolas.'),
   ]),
+  reading('dec-reperes', 'DEC', 'dec', 'Deception — repères et contradictions', 'Quelques faits du roman et les réserves éditoriales conservées par les sources.', [
+    page('publication', 'William C. Dietz', ['DEC-CON-11'], 'Deception est un roman de William C. Dietz. Les trois romans précédents sont attribués à Karpyshyn.'),
+    page('cerberus', 'Cerberus et le Biotic Underground', ['DEC-REF-CERBERUS', 'DEC-REF-UNDERGROUND'], 'Gillian prend Cerberus pour cible, et l’organisation menace les enquêteurs. Nick est attiré par le groupe suprémaciste biotique Biotic Underground.'),
+    page('ages', 'Des âges contradictoires', ['DEC-CON-02', 'DEC-CON-03'], 'Deception indique dix-huit ans pour Gillian, alors qu’Ascension la présente à douze ans ; le raccord chronologique pose problème. Nick est également présenté comme ayant dix-huit ans, malgré la chronologie précédente. Ces contradictions sont conservées.'),
+    page('revision', 'Annonce et publication', ['DEC-CON-01', 'DEC-CON-07'], 'BioWare et Del Rey ont annoncé des changements pour de futures éditions. Les sources du catalogue n’établissent pas qu’une édition révisée ait effectivement été publiée.'),
+  ]),
+  reading('hom-liara', 'HOM', 'hom-4-liara', 'Homeworlds — le dossier de Liara', 'Le seul repère de cette lecture appartient au quatrième récit.', [
+    page('liara', 'Liara, Courtier de l’ombre', ['HOM-REF-ISSUE4', 'HOM-ACT-LIARA'], 'Liara est l’héroïne du quatrième récit de Homeworlds. Devenue Courtier de l’ombre, elle recherche des informations contre la menace des Moissonneurs.'),
+  ]),
+  reading('fou-recherche', 'FOU', 'fou-5', 'Foundation — la recherche de Shepard', 'Le mandat de Miranda et Jacob, limité au cinquième numéro.', [
+    page('recherche', 'Miranda et Jacob', ['FOU-SC-05-REF', 'FOU-ACT-MIRANDA', 'FOU-ACT-JACOB'], 'Dans Foundation #5, Miranda et Jacob sont envoyés chercher le corps de Shepard.'),
+  ]),
+  reading('dis-infiltration', 'DIS', 'dis', 'Discovery — une infiltration de l’Initiative', 'Le protagoniste et l’objectif présentés par les notices officielles.', [
+    page('infiltration', 'Tiran Kandros et l’Initiative', ['DIS-REF-SCOPE', 'DIS-REF-TIRAN'], 'Tiran Kandros est le protagoniste de Discovery. Le récit présente un jeune Turien infiltrant l’Initiative d’Andromède pour retrouver un scientifique.'),
+  ]),
+  reading('inc-omega', 'INC', 'inc', 'Incursion — une attaque sur Omega', 'Aria, Omega et la menace décrites dans la notice de l’éditeur.', [
+    page('omega', 'Aria face aux Récolteurs', ['INC-REF-SCOPE', 'INC-WRL-OMEGA'], 'La notice de l’éditeur situe sur Omega une attaque des Récolteurs affrontée par Aria.'),
+  ]),
+  reading('inq-bailey', 'INQ', 'inq', 'Inquisition — l’enquête de Bailey', 'Le point de départ de l’enquête, sans transformer un soupçon en verdict.', [
+    page('enquete', 'Un traître présumé', ['INQ-REF-SCOPE', 'INQ-WRL-CITADEL'], 'L’éditeur présente Bailey cherchant un traître présumé dans une enquête située sur la Citadelle.'),
+  ]),
+  reading('evo-contact', 'EVO', 'evo-contact', 'Evolution — pendant les hostilités', 'Le repère du premier numéro, distinct du parcours après-guerre.', [
+    page('hostilites', 'La Première Guerre de Contact', ['EVO-SC-RESIST-REF'], 'Le premier numéro d’Evolution se déroule pendant la Première Guerre de Contact.'),
+  ]),
 ];
 
 function compileStory(definition) {
   const context = normalizeContext({ mediaId: definition.mediaId, periodId: definition.periodId });
   const work = getUniverseWork(definition.mediaId), period = getMediaPeriod(definition.mediaId, definition.periodId);
-  if (!context || !work || !period || definition.steps.length < 3 || definition.steps.length > 6) return null;
+  if (!context || !work || !period || definition.steps.length < 1 || definition.steps.length > 6) return null;
   const steps = [];
   for (const step of definition.steps) {
     const records = step.recordIds.map(getUniverseRecord);

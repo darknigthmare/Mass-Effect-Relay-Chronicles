@@ -3,6 +3,7 @@
 // authorize combat; their statistics and encounter counts are ATB adaptations.
 import { UNIVERSE_GROUPS, getUniverseRecord } from './universe-data.js';
 import { canAccessContent, normalizeContext } from './continuity.js';
+import { SPECIALIST_SCENARIOS } from './universe-specialist-scenarios.js';
 import { getActorPowerKit, unresolvedPowerNames, SHEPARD_CLASS_PREPARATIONS, RYDER_SKILL_PREPARATIONS, getPreparationPowers, ME2_CLASS_PRIMARY_REFERENCE } from './universe-powers.js';
 
 const freeze = value => {
@@ -63,7 +64,7 @@ actor('MEA-CHR-LIAM', 'soldier', 'human', ['assault'], [], ['Havoc Strike', 'Fra
 actor('MEA-CHR-VETRA', 'soldier', 'turian', ['assault'], [], ['Power Armor', 'Turbocharge']);
 actor('MEA-CHR-JAAL', 'sniper', 'angara', ['sniper'], [], ['Energy Drain', 'Avenger Strike', 'Sticky Grenade'], { tech: true });
 actor('MEA-CHR-DRACK', 'krogan', 'krogan', ['shotgun'], [], ['Blood Rage', 'Incinerate', 'Flak Cannon'], { tech: true });
-actor('MEA-CHR-PEEBEE', 'biotic', 'asari', ['pistol'], [], ['Pull', 'Invasion', 'Flak Cannon'], { biotic: true, tech: true });
+actor('MEA-CHR-PEEBEE', 'biotic', 'asari', ['pistol'], [], ['Pull', 'Invasion', 'Autres capacités à vérifier'], { biotic: true, tech: true });
 actor('MEA-CHR-ALEC', 'soldier', 'human', WEAPONS, [], ['Profils et compétences non relevés'], { role: 'temporary-combatant', sceneRestriction: 'Habitat 7 uniquement.' });
 actor('INF-CHR-RANDALL', 'soldier', 'human', ['assault', 'shotgun', 'sniper'], [], ['Implants et pouvoirs non confirmés'], { role: 'protagonist' });
 actor('INF-CHR-TURIAN', 'soldier', 'turian', ['assault', 'shotgun', 'sniper'], [], [], { sceneRestriction: 'Bonus Incarceration uniquement.' });
@@ -104,8 +105,8 @@ function scenario(id, mediaId, periodId, name, actorIds, defaultParty, enemies, 
 }
 const workshopWeapons = {
   ME2: ['PREDATOR', 'CARNIFEX', 'SHURIKEN', 'TEMPEST', 'AVENGER', 'VINDICATOR', 'KATANA', 'SCIMITAR', 'MANTIS', 'VIPER'],
-  ME3: ['AVENGER', 'VINDICATOR', 'MATTOCK', 'REVENANT', 'PHAESTON', 'SABER', 'GETH-RIFLE', 'PREDATOR', 'PHALANX', 'CARNIFEX', 'PALADIN', 'TALON', 'KATANA', 'SCIMITAR', 'CLAYMORE', 'EVISCERATOR', 'DISCIPLE', 'MANTIS', 'VIPER', 'WIDOW', 'BLACK-WIDOW', 'RAPTOR', 'SHURIKEN', 'TEMPEST', 'LOCUST', 'HORNET'],
-  MEA: ['AVENGER', 'CYCLONE', 'MATTOCK', 'REVENANT', 'VALKYRIE', 'PREDATOR', 'CARNIFEX', 'PHALANX', 'EAGLE', 'CHARGER', 'HORNET', 'SIDEWINDER', 'TALON', 'KATANA', 'RUZAD', 'DISCIPLE', 'PIRANHA', 'MANTIS', 'VIPER', 'BLACK-WIDOW', 'INDRA', 'VANQUISHER'],
+  ME3: ['AVENGER', 'VINDICATOR', 'MATTOCK', 'REVENANT', 'PHAESTON', 'SABER', 'GETH-RIFLE', 'PREDATOR', 'PHALANX', 'CARNIFEX', 'PALADIN', 'TALON', 'KATANA', 'SCIMITAR', 'CLAYMORE', 'EVISCERATOR', 'DISCIPLE', 'MANTIS', 'VIPER', 'WIDOW', 'BLACK-WIDOW', 'RAPTOR', 'SHURIKEN', 'TEMPEST', 'LOCUST', 'HORNET', 'FALCON', 'SCORPION'],
+  MEA: ['AVENGER', 'CYCLONE', 'MATTOCK', 'REVENANT', 'VALKYRIE', 'PREDATOR', 'CARNIFEX', 'PHALANX', 'EAGLE', 'CHARGER', 'HORNET', 'SIDEWINDER', 'TALON', 'KATANA', 'RUZAD', 'DISCIPLE', 'PIRANHA', 'MANTIS', 'VIPER', 'BLACK-WIDOW', 'INDRA', 'VANQUISHER', 'SCORPION', 'PAW', 'REEGAR', 'SWEEPER'],
 };
 function workshop(mediaId, actorIds, exclusiveActorGroups = []) {
   const equipmentIds = [...workshopWeapons[mediaId].map(model => `${mediaId}-WPN-${model}`),
@@ -162,6 +163,7 @@ export const CHRONICLE_SCENARIOS = freeze([
     'ME3-CHR-EDI', 'ME3-CHR-TALI', 'ME3-CHR-ASHLEY', 'ME3-CHR-KAIDAN'], [['ME3-CHR-ASHLEY', 'ME3-CHR-KAIDAN']]),
   workshop('MEA', ['MEA-CHR-RYDER', 'MEA-CHR-CORA', 'MEA-CHR-LIAM', 'MEA-CHR-VETRA',
     'MEA-CHR-JAAL', 'MEA-CHR-DRACK', 'MEA-CHR-PEEBEE']),
+  ...SPECIALIST_SCENARIOS,
 ]);
 export const SCENARIOS = CHRONICLE_SCENARIOS;
 export function getUniverseScenario(context, scenarioId) {
@@ -243,6 +245,8 @@ export function universeActorFor(actorId, context, buildId = 'default', scenario
     ...stats, maxHp: stats.hp, maxShield: stats.shield, powers: [...build.powers], synthetic: !!profile.synthetic,
     allowedWeapons: [...build.allowedWeapons], biotic: build.biotic, tech: build.tech,
     powerCatalogIds: [...build.powerCatalogIds], powerProvenance: copy(build.powerProvenance), lockedPowers: copy(build.lockedPowers),
+    ...(build.powers.some(id => ['fragGrenade', 'stickyGrenade'].includes(id))
+      ? { grenadeCapacity: 3, grenadeCharges: 3, grenadeResourceBasis: 'Échantillon ATB de trois charges pour cet essai ; acquisition et réapprovisionnement non simulés.' } : {}),
     weaponType, weaponName: 'Dotation abstraite — prototype ATB', weaponSystem: clips ? 'thermal-clip' : 'heat',
     ...(clips ? { magazineCapacity: 8, ammo: 8, reserveAmmo: 32 } : {}),
     visualMode: 'prototype-symbol', portrait: null, sprite: null, prototype: true,

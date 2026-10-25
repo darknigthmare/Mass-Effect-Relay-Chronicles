@@ -4,7 +4,7 @@
   "medium": "Jeu mobile",
   "filename": "Mass_Effect_Infiltrator_Production.xlsx",
   "scope": "Campagne de Randall, mission bonus turienne et systèmes adaptés.",
-  "summary": "Un parcours d’infiltration et de fuite réinterprété en ATB avec sprites 2D et environnements 3D. Prototype partiel : 1 profils sélectionnables et 0 équipements en Chroniques ; le reste demeure documentaire.",
+  "summary": "109 fiches de production ; 2 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "Les faits de base sont référencés. Plans, statistiques, bruitages et animations proposés ne constituent pas un relevé 1:1.",
   "sources": [
     {
@@ -116,7 +116,7 @@
       "id": "INF-CHR-TURIAN",
       "category": "characters",
       "name": "Prisonnier turien",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Personnage jouable de la mission bonus.",
@@ -125,7 +125,7 @@
       "visual": "Crête turienne, jambes digitigrades, tenue de sujet d’expérience à relever.",
       "animation": "",
       "audio": "",
-      "implementation": "",
+      "implementation": "Prototype de profil sélectionnable dans inf-incarceration via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
       "conditions": "",
       "acceptance": "La fiche distingue identité de référence et rôle proposé.",
       "dependencies": [],
@@ -133,7 +133,21 @@
         "INF-WIKI"
       ],
       "reference": "Personnages",
-      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1."
+      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés.",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ]
     },
     {
       "id": "INF-SPR-TURIAN",
@@ -2557,8 +2571,13 @@
     },
     {
       "area": "Prototype Chroniques indépendant",
-      "covered": "1 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
+      "covered": "2 personnages sélectionnables, 0 équipements utilisables sous restrictions d’œuvre, segment, scène et porteur ; preuves dans implementationPaths et evidence des seules lignes Prototype.",
       "remaining": "Campagne complète, dialogues, acquisition canonique, sprites, costumes, animations et statistiques originales à réaliser ou vérifier. Les ateliers sont des essais de préparation ATB, sans progression canonique ni transfert ME1."
+    },
+    {
+      "area": "Complément spécialistes contextualisés",
+      "covered": "1 profils supplémentaires limités aux bancs de spécialistes, 0 profils d’armes spéciales et 0 fiches de pouvoirs supplémentaires effectivement exposées. Vérification fonctionnelle liée au rapport docs/qa/chronicle-specialists-browser-report.json.",
+      "remaining": "Bancs ATB sur mannequins originaux, conditions préparées et dotations abstraites ; aucune reconstruction des missions, acquisition de campagne, illustration, animation, doublage ni valeur originale certifiée. Les sources secondaires et incertitudes restent explicites."
     }
   ]
 }

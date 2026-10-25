@@ -24,7 +24,7 @@ function simulate(battle) {
 }
 
 test('every bounded scenario starts only its own canonical context and neutral session', () => {
-  assert.equal(CHRONICLE_SCENARIOS.length, 10);
+  assert.equal(CHRONICLE_SCENARIOS.length, 16);
   for (const scenario of CHRONICLE_SCENARIOS) {
     const session = createChronicle(scenario.context, scenario.id);
     assert.ok(session, scenario.id);

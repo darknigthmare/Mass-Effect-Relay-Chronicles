@@ -74,11 +74,11 @@ test('later and comic identities never inherit a same-name character’s powers'
   assert.deepEqual(universeActorFor('INF-CHR-RANDALL', { mediaId: 'INF', periodId: 'inf' }, 'default', 'inf-security').powers, []);
   assert.equal(getActorPowerKit('ME2-CHR-JACK', context('ME1')), null);
   assert.equal(universeActorFor('ME3-CHR-KAIDAN', context('ME2')), null);
-  assert.equal(getUniverseActor('MEA-CHR-CORA').powers.length, 0);
+  assert.deepEqual(getUniverseActor('MEA-CHR-CORA').powers, ['shieldBoost']);
   assert.ok(getUniverseActor('MEA-CHR-CORA').missingPowers.includes('Charge'));
   assert.deepEqual(native('MEA-CHR-PEEBEE').powers, ['pull']);
   assert.equal(native('MEA-CHR-PEEBEE').powers.includes('shockwave'), false);
-  assert.ok(native('MEA-CHR-PEEBEE').missingPowers.includes('Flak Cannon'));
+  assert.equal(native('MEA-CHR-PEEBEE').missingPowers.includes('Flak Cannon'), false, 'An unverified companion attribution must not be presented as her missing ability');
   assert.equal(native('MEA-CHR-PEEBEE').missingPowers.includes('Shockwave'), false);
   assert.ok(native('MEA-CHR-DRACK').powers.includes('incinerate'));
   assert.ok(native('MEA-CHR-JAAL').powers.includes('energyDrain'));
@@ -153,7 +153,7 @@ test('used catalogue power reports contain only bindings reachable through actua
   const usage = getUniversePowerUsage(), ids = getUsedUniversePowerCatalogIds();
   assert.deepEqual(usage.map(row => row.catalogId), ids); assert.equal(new Set(ids).size, ids.length);
   assert.ok(ids.includes('ME2-POW-SLAM')); assert.ok(ids.includes('ME3-POW-FORTIFICATION'));
-  assert.equal(ids.includes('ME3-POW-SLAM'), false, 'Javik stays outside these scenarios');
+  assert.deepEqual(usage.find(row => row.catalogId === 'ME3-POW-SLAM').scenarioIds, ['me3-from-ashes'], 'Javik is confined to his explicitly prepared extension bench');
   assert.equal(ids.includes('ME2-POW-CHARGE'), false); assert.equal(ids.includes('MEA-POW-REMNANT-VI'), false);
   for (const row of usage) {
     assert.equal(getUniversePowerMapping(row.catalogId).actionId, row.actionId);

@@ -4,7 +4,7 @@
   "medium": "Comic court / récit autonome",
   "filename": "Mass_Effect_Incursion_Production.xlsx",
   "scope": "Récit court centré sur Aria, les Collectors et un trafic sur Omega; trois modules de production proportionnés à l’œuvre.",
-  "summary": "Enquête brève, confrontation concentrée et lecture d’un indice. Le système de jeu proposé ne transforme pas le récit en campagne de libération de colonies.",
+  "summary": "64 fiches de production ; 2 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "La présence de lieux dans un relevé de population ne signifie pas qu’ils sont visités. Les groupes et leurs comportements précis doivent être comparés aux planches. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -34,7 +34,7 @@
   ],
   "entries": [
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P0",
       "description": "La notice éditeur décrit une attaque des Collectors sur Omega affrontée par Aria.",
@@ -43,7 +43,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INC/lore/ref-scope; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INC-REF-SCOPE consultable dans les lectures inc-omega de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Vérifier toute précision non contenue dans cette notice avant de la déclarer canon.",
       "acceptance": "Le dossier cite la source PAIR et distingue cette information de toute règle de gameplay.",
       "dependencies": [],
@@ -51,10 +51,21 @@
         "INC-S-PAIR"
       ],
       "reference": "Mass Effect: Incursion, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "INC-REF-SCOPE",
       "category": "lore",
-      "name": "Aria et les Collectors"
+      "name": "Aria et les Collectors",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -291,7 +302,7 @@
       "name": "Appui de garde"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Omega est le lieu de l’affrontement présenté par l’éditeur.",
@@ -300,7 +311,7 @@
       "visual": "Métal usé, orange de service et zones d’ombre qui ne masquent pas les cibles.",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification INC/worlds/wrl-omega; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire INC-WRL-OMEGA consultable dans les lectures inc-omega de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Le résultat narratif du raid reste fixé; une tâche de gameplay ne réécrit pas le sort des captifs ni ne fait d’Aria la libératrice de toutes les colonies.",
       "acceptance": "Le nom Omega — secteur du raid et sa fonction sont sourcés; les dimensions, chemins et interactions restent explicitement proposés.",
       "dependencies": [],
@@ -308,10 +319,21 @@
         "INC-S-PAIR"
       ],
       "reference": "Mass Effect: Incursion, récit court",
-      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle.",
+      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "INC-WRL-OMEGA",
       "category": "worlds",
-      "name": "Omega — secteur du raid"
+      "name": "Omega — secteur du raid",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -1643,6 +1665,11 @@
       "area": "continuity",
       "covered": "2 fiche(s) : Position dans l’univers; Contenus non attestés",
       "remaining": "Comparer les détails marqués À vérifier à une édition autorisée; les sources éditoriales n’attestent pas chaque détail graphique."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "2 références supplémentaires au stade Prototype dans 1 parcours de lecture (1 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }

@@ -1,0 +1,1645 @@
+{
+  "version": 1,
+  "passed": true,
+  "reviewedAtUTC": "2026-10-25T07:04:43.086507+00:00",
+  "reviewType": "targeted-panels-only",
+  "scope": {
+    "workbooksWithTargetedPanels": 11,
+    "panels": 81,
+    "windows": 27,
+    "targetRecords": 37,
+    "identityColumns": "A:H",
+    "productionColumns": "I:P",
+    "sourceColumns": "Q:S",
+    "completeWorkbookReview": false,
+    "fullWorksheetReview": false,
+    "all28WorkbooksReviewed": false,
+    "principalIncluded": false,
+    "statement": "Uniquement les 81 panneaux ciblés des 27 fenêtres listées. Cette revue ne couvre ni toutes les feuilles ni tous les classeurs. Le principal est hors périmètre."
+  },
+  "method": [
+    "Lecture des images à leur résolution originale, sans retouche ni recadrage.",
+    "Contrôle des SHA-256 images/XLSX/catalogues/QA et copie des pixels identiques dans le dépôt.",
+    "Contrôle ciblé du texte coupé, des statuts, des limites de prototype et de la présence des références, identifiants sources et URLs. Aucun défaut de mise en page bloquant observé."
+  ],
+  "reviewers": {
+    "excel_inventory": {
+      "panels": 45,
+      "workbooks": [
+        "DEC",
+        "DIS",
+        "EVO",
+        "FOU",
+        "HOM",
+        "INC",
+        "INF",
+        "INQ",
+        "ME2"
+      ]
+    },
+    "armor_mods": {
+      "passed": true,
+      "reviewer": "/root/armor_mods",
+      "panels": 36,
+      "windows": 12,
+      "workbooks": [
+        "ME3",
+        "MEA"
+      ],
+      "method": "Tous les 36 PNG ouverts via view_image(detail=original), hashes vérifiés contre la liste finale avant lecture ; aucun fichier modifié ni navigateur lancé.",
+      "windowRanges": [
+        "ME3 Personnages12–12",
+        "ME3 Personnages17–19",
+        "ME3 Armes12–12",
+        "ME3 Armes27–27",
+        "ME3 Pouvoirs12–12",
+        "ME3 Pouvoirs39–39",
+        "ME3 Pouvoirs51–51",
+        "MEA Armes12–13",
+        "MEA Armes25–25",
+        "MEA Armes33–33",
+        "MEA Pouvoirs43–45",
+        "MEA Pouvoirs47–47"
+      ],
+      "observations": [
+        "Aucun texte coupé ou débordant, source/référence absente ni statut incohérent.",
+        "Les deux panneaux sources acteurs ME3 finaux montrent les conditions de contenu et de disponibilité de l’état préparé, sans loyauté générique ; pouvoirs non reproduits listés.",
+        "La ligne MEA Havoc Strike44 non ciblée reste correctement Défini / spécification à réaliser entre les deux pouvoirs Prototype.",
+        "Limites ATB et absence de validation 1:1 visibles."
+      ],
+      "blockingIssues": []
+    }
+  },
+  "resolvedFindings": [
+    {
+      "id": "generic-actor-condition-note",
+      "status": "resolved",
+      "finding": "La note ajoutée aux huit profils énumérait génériquement DLC, loyauté et survie, ce qui pouvait suggérer une loyauté dans ME3 ou Infiltrator.",
+      "resolution": "Note remplacée par les conditions de contenu et de disponibilité affichées par le banc ; conditions factuelles et scénarios inchangés. Trois exports reconstruits, quatre PNG sources réinspectés.",
+      "changedPanels": [
+        {
+          "workId": "INF",
+          "filename": "Personnages-focus-8-8-sources.png",
+          "previousSha256": "b77ee2b608b136008967876ffa83423d757464f1a4bf969c8f704a20a196dac8",
+          "currentSha256": "eb28ea6a8fabb470f6f8b604bee22ab1d4e7b27d843eb58f66efcb360b7db403"
+        },
+        {
+          "workId": "ME2",
+          "filename": "Personnages-focus-19-21-sources.png",
+          "previousSha256": "d57784a9f82c8eb2d06aa3758d7002a2ca9a435197ae2a701e88e317157451b6",
+          "currentSha256": "effb64baf7d36307a39170d0e7ea3ac8ae9c9fff5c42a2e17a6abc734b0bc03d"
+        },
+        {
+          "workId": "ME3",
+          "filename": "Personnages-focus-12-12-sources.png",
+          "previousSha256": "845938674c13c76456ac23ba290b535714ace494930f5858f92b24efb8926a87",
+          "currentSha256": "203478654f24ad1c2a6c0f195229bb784524e097709348ced95d5877911ef99f"
+        },
+        {
+          "workId": "ME3",
+          "filename": "Personnages-focus-17-19-sources.png",
+          "previousSha256": "263625e23d30db3dafa78ebeb51543bdaffc5729580e0848abb8f171a0e9ee93",
+          "currentSha256": "a693474593a1bdf7958435a1283908f46e64d824a7d8a9d0fa26f45b2283afac"
+        }
+      ],
+      "previousPanelsVersioned": false
+    }
+  ],
+  "runnerRefresh": {
+    "runnerPath": "scripts/universe-browser.mjs",
+    "sha256": "fcfe5bd79b87f66ebc508e88ead16a3fd6671af2844bd562410755f6079058a4",
+    "rebuiltWorkbooks": [
+      "GAL",
+      "INF",
+      "ME2",
+      "ME3",
+      "MEA",
+      "PL",
+      "RED"
+    ],
+    "panelsByteIdenticalBeforeNoteClarification": 81,
+    "scope": "Rafraîchissement des preuves après correction de la liste des essais du runner ; aucun changement de cellule ni de logique applicative à cette étape."
+  },
+  "workbooks": [
+    {
+      "id": "DEC",
+      "title": "Mass Effect: Deception",
+      "catalogPath": "docs/universe/catalogs/DEC.json",
+      "catalogSha256": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Deception_Production.xlsx",
+      "xlsxSha256": "7cf11882f69be6ff985ecc8df6c7932e05eef59509c109b82da4ebc1bf2f6225",
+      "qaPath": "docs/universe/qa/DEC.json",
+      "qaSha256": "045e457196464557a93f4522b04b8ed5d5e3477d857d485f18d243a672a21e0e",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Sept références Prototype : auteur, Cerberus, Biotic Underground, âges contradictoires et absence de preuve d’une édition corrigée. Réserves visibles ; références et URLs présentes ; aucun texte coupé observé."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A7:H8",
+          "selectedIds": [
+            "DEC-REF-CERBERUS",
+            "DEC-REF-UNDERGROUND"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Especes_factions-focus-7-8-identity.png",
+          "sha256": "3b24e69332ef0a5709498cb7a75320f7108bc4946fbc6c3eec4e0d4a23c175c4",
+          "width": 3289,
+          "height": 274,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I7:P8",
+          "selectedIds": [
+            "DEC-REF-CERBERUS",
+            "DEC-REF-UNDERGROUND"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Especes_factions-focus-7-8-production.png",
+          "sha256": "d2cf50a641e6a97f15a8405b0ca7e0db1b131ff1101df38d8dc7191b08089b9d",
+          "width": 4934,
+          "height": 274,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q7:S8",
+          "selectedIds": [
+            "DEC-REF-CERBERUS",
+            "DEC-REF-UNDERGROUND"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Especes_factions-focus-7-8-sources.png",
+          "sha256": "949277fefd90b72ad117bf23bf0dc159b578f4cc5e39192971d313b2090fde9b",
+          "width": 4301,
+          "height": 274,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "A7:H9",
+          "selectedIds": [
+            "DEC-CON-01",
+            "DEC-CON-02",
+            "DEC-CON-03"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-7-9-identity.png",
+          "sha256": "39c3765231fa5af497e64a199ce80ab37e9ae133b07f8918f02edbd48fdbe045",
+          "width": 3289,
+          "height": 400,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "I7:P9",
+          "selectedIds": [
+            "DEC-CON-01",
+            "DEC-CON-02",
+            "DEC-CON-03"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-7-9-production.png",
+          "sha256": "82ecdb85040e32f9d3a352e3f2b216bf1a7124a3cc93aab86d18c3c5c90f3e8a",
+          "width": 4934,
+          "height": 400,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "Q7:S9",
+          "selectedIds": [
+            "DEC-CON-01",
+            "DEC-CON-02",
+            "DEC-CON-03"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-7-9-sources.png",
+          "sha256": "a1a98ab7bff27376c8a4be5221d2b8c529fc4a7520b1cfcbfe908ead480737ac",
+          "width": 4301,
+          "height": 400,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "A13:H13",
+          "selectedIds": [
+            "DEC-CON-07"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-13-13-identity.png",
+          "sha256": "3fd56b1e207a2d18a5928555a1cc72f45cf49627e8f8d1aa5c39a38876ddd4a8",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "I13:P13",
+          "selectedIds": [
+            "DEC-CON-07"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-13-13-production.png",
+          "sha256": "7be05a9d2e96cd31e7a0f29c7c3f4aacf20ab801fcf7b12591fa68885d823cfe",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "Q13:S13",
+          "selectedIds": [
+            "DEC-CON-07"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-13-13-sources.png",
+          "sha256": "1004c96898e0dba0007db6dc03d92b93395d22ee6d33a36c12d81312e3f4f176",
+          "width": 4301,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "A17:H17",
+          "selectedIds": [
+            "DEC-CON-11"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-17-17-identity.png",
+          "sha256": "b1452e687a2e5b635ec90703004f0c9881fd81ffad0d0f8ea420d894fe3b309a",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "I17:P17",
+          "selectedIds": [
+            "DEC-CON-11"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-17-17-production.png",
+          "sha256": "9bbd8e2d2dcfb9351dc2cde7f359e09ffb99d663d9db3ada01037065b7f68cac",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Continuite",
+          "range": "Q17:S17",
+          "selectedIds": [
+            "DEC-CON-11"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DEC/Continuite-focus-17-17-sources.png",
+          "sha256": "4d9a64f862dd53600eead0fc2fdbb851858fc17d14ea8e0184d1ba7ad5bfb9d1",
+          "width": 4301,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "DIS",
+      "title": "Mass Effect: Discovery",
+      "catalogPath": "docs/universe/catalogs/DIS.json",
+      "catalogSha256": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Discovery_Production.xlsx",
+      "xlsxSha256": "254a7581dc227b7625d74f72c2fa5671d6d87310b62aaed39141bc8c4fab1b37",
+      "qaPath": "docs/universe/qa/DIS.json",
+      "qaSha256": "4de72bbb90986dcdba075b0d61e12ad5ac5dd56894da30360d082319cf2215d6",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Deux références Prototype de Discovery : infiltration et Tiran ; les sources éditoriales et la limite de paraphrase documentaire sont visibles."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A7:H8",
+          "selectedIds": [
+            "DIS-REF-SCOPE",
+            "DIS-REF-TIRAN"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DIS/Especes_factions-focus-7-8-identity.png",
+          "sha256": "499c1cf4c44d8ea00a8aec35686f0638f297db776eda94dacba854e3582c8ecf",
+          "width": 3289,
+          "height": 274,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I7:P8",
+          "selectedIds": [
+            "DIS-REF-SCOPE",
+            "DIS-REF-TIRAN"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DIS/Especes_factions-focus-7-8-production.png",
+          "sha256": "674bbba74533d7afacba2d0a035c4bdcc725b7218d8619b5b07ce1e322a32b19",
+          "width": 4934,
+          "height": 274,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q7:S8",
+          "selectedIds": [
+            "DIS-REF-SCOPE",
+            "DIS-REF-TIRAN"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/DIS/Especes_factions-focus-7-8-sources.png",
+          "sha256": "06c6f671164c6e01aceedd875bff246a3435a758c224dd71d9302b0bb657ce3e",
+          "width": 5072,
+          "height": 274,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "EVO",
+      "title": "Mass Effect: Evolution",
+      "catalogPath": "docs/universe/catalogs/EVO.json",
+      "catalogSha256": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Evolution_Production.xlsx",
+      "xlsxSha256": "b4da07754b6171f7cc61ed152b590606c64d18475c8e2602d553d130bfbab3d1",
+      "qaPath": "docs/universe/qa/EVO.json",
+      "qaSha256": "e42415749e66a2621fd66240a8ace9f7a12e72e6a889300e6f368395111c5041",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Référence Prototype du premier numéro, distincte du parcours après-guerre ; repère Evolution #1 et URL auteur présents."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A11:H11",
+          "selectedIds": [
+            "EVO-SC-RESIST-REF"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/EVO/Especes_factions-focus-11-11-identity.png",
+          "sha256": "a4ab1ea858fe0006e1b13ed12f38e869e6c384565af2b349a16362d788bdc287",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I11:P11",
+          "selectedIds": [
+            "EVO-SC-RESIST-REF"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/EVO/Especes_factions-focus-11-11-production.png",
+          "sha256": "dd88b919c774185dd560868f6520695ad341e49d4382ae0e36f877b0ae74e094",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q11:S11",
+          "selectedIds": [
+            "EVO-SC-RESIST-REF"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/EVO/Especes_factions-focus-11-11-sources.png",
+          "sha256": "832d97a104d91e37155fb396a353f1cdc27eb9f4d64d1780b9433555283f188a",
+          "width": 4359,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "FOU",
+      "title": "Mass Effect: Foundation",
+      "catalogPath": "docs/universe/catalogs/FOU.json",
+      "catalogSha256": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Foundation_Production.xlsx",
+      "xlsxSha256": "807917bed3d7056ad0e5b8a234bac7bea2d09c50f0224e008d5a803412290a58",
+      "qaPath": "docs/universe/qa/FOU.json",
+      "qaSha256": "3630714ac61ce5fa1493a91166821dca52edac32d074eb0aced28b9aae3bbbdb",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Référence Prototype limitée au cinquième numéro ; Miranda/Jacob cités sans recrutement ni incarnation accordés. Source et URL visibles."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A17:H17",
+          "selectedIds": [
+            "FOU-SC-05-REF"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/FOU/Especes_factions-focus-17-17-identity.png",
+          "sha256": "67e2229bfaa733287be59435d28b0138a845e60216ec12f6bef0690b427447de",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I17:P17",
+          "selectedIds": [
+            "FOU-SC-05-REF"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/FOU/Especes_factions-focus-17-17-production.png",
+          "sha256": "7a119ea6d3d0e423b47ab668ec65678076a189bf718e5dccfac3ebb3b4b12145",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q17:S17",
+          "selectedIds": [
+            "FOU-SC-05-REF"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/FOU/Especes_factions-focus-17-17-sources.png",
+          "sha256": "7fa8044cc0139b6fbc11311086dff9b3144105d41e3c10d379a61530432f2fa9",
+          "width": 4221,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "HOM",
+      "title": "Mass Effect: Homeworlds",
+      "catalogPath": "docs/universe/catalogs/HOM.json",
+      "catalogSha256": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Homeworlds_Production.xlsx",
+      "xlsxSha256": "62102b5211f5878f88be50039d3575c9dd4a0b7cf9af806c713cbcf3218bbfc8",
+      "qaPath": "docs/universe/qa/HOM.json",
+      "qaSha256": "6aeda5f57bbc07e9c47fd616289ce0bb6bd8df4d846fab17240f3440359452a3",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Référence Prototype limitée à Homeworlds #4 ; référence et URL Dark Horse visibles ; aucun arsenal ni époque des autres récits déduit."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A11:H11",
+          "selectedIds": [
+            "HOM-REF-ISSUE4"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/HOM/Especes_factions-focus-11-11-identity.png",
+          "sha256": "2580302f0f731f48364f6f1335fbe401c04ae99013ae536aabd9fd759449e609",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I11:P11",
+          "selectedIds": [
+            "HOM-REF-ISSUE4"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/HOM/Especes_factions-focus-11-11-production.png",
+          "sha256": "ab9c6ecbda2c6a0d099581de0f5cd835108585ec6f24d11ade28063fb5814f8d",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q11:S11",
+          "selectedIds": [
+            "HOM-REF-ISSUE4"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/HOM/Especes_factions-focus-11-11-sources.png",
+          "sha256": "afdb6124666151a9383231d5385bd31653433ac8a06f98934af2091505c0e5e9",
+          "width": 4428,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "INC",
+      "title": "Mass Effect: Incursion",
+      "catalogPath": "docs/universe/catalogs/INC.json",
+      "catalogSha256": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Incursion_Production.xlsx",
+      "xlsxSha256": "a3985ef6236d39c571f63b8608fc8c0a801c3cf193ea4ffc4d7ad6e0cd88af1a",
+      "qaPath": "docs/universe/qa/INC.json",
+      "qaSha256": "747b1df4104b55901e498fe71cc80bd82a4bbcec358f1cd61e1cbc6f978a6861",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Deux références Prototype : prémisse et lieu du raid. Les champs de conception restent des propositions, la mise en œuvre ne revendique qu’une lecture documentaire ; sources visibles."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A7:H7",
+          "selectedIds": [
+            "INC-REF-SCOPE"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INC/Especes_factions-focus-7-7-identity.png",
+          "sha256": "a9f496117d149d002eefb99583059b17a8fb10d608679352bde8e37800a370bb",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I7:P7",
+          "selectedIds": [
+            "INC-REF-SCOPE"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INC/Especes_factions-focus-7-7-production.png",
+          "sha256": "d213a04ca47ec8f7f597f6257edc414533cb46a5fa95745ae26f3a15c6a034a0",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q7:S7",
+          "selectedIds": [
+            "INC-REF-SCOPE"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INC/Especes_factions-focus-7-7-sources.png",
+          "sha256": "1e4a3ae218b882266fcd6b513be7f8bd33f9336fc93281a5401c9b0837c3238a",
+          "width": 4071,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Mondes",
+          "range": "A7:H7",
+          "selectedIds": [
+            "INC-WRL-OMEGA"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INC/Mondes-focus-7-7-identity.png",
+          "sha256": "8187ed102d285214e933ba4a936e101ee036f1f878bef43b363fea28bf8c0d2e",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Mondes",
+          "range": "I7:P7",
+          "selectedIds": [
+            "INC-WRL-OMEGA"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INC/Mondes-focus-7-7-production.png",
+          "sha256": "17e55ed62dd04d23d0611e0cea2f3970852687531c4d8a8419f85ef502fbed81",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Mondes",
+          "range": "Q7:S7",
+          "selectedIds": [
+            "INC-WRL-OMEGA"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INC/Mondes-focus-7-7-sources.png",
+          "sha256": "b2e5f28810ef98f2a783202b5507108ac849d4e94c92c28aa30eec263016e828",
+          "width": 4071,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "INF",
+      "title": "Mass Effect: Infiltrator",
+      "catalogPath": "docs/universe/catalogs/INF.json",
+      "catalogSha256": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Infiltrator_Production.xlsx",
+      "xlsxSha256": "4347d782de4398702862ddd02453dcb302f746c5128b13dd51fee916d9808af6",
+      "qaPath": "docs/universe/qa/INF.json",
+      "qaSha256": "96cf875234cc5f3dc158bc8e5ded8ea70f46d3e076dfbbeea1d63b70d9c6a534",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Profil turien Prototype limité au banc Incarceration ; mannequin/dotation abstraite et absence de sprite/costume explicites. Note finale renvoyant aux seules conditions affichées par le banc ; référence et URL visibles."
+      ],
+      "panels": [
+        {
+          "sheetName": "Personnages",
+          "range": "A8:H8",
+          "selectedIds": [
+            "INF-CHR-TURIAN"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INF/Personnages-focus-8-8-identity.png",
+          "sha256": "eaf24a927aea789bca5d5d5442d3e2fad61bc9d7efcf58a5d81580b817a70014",
+          "width": 3289,
+          "height": 213,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "I8:P8",
+          "selectedIds": [
+            "INF-CHR-TURIAN"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INF/Personnages-focus-8-8-production.png",
+          "sha256": "71d1f051e05805fca73056c43b6c758039fa2732d112cae9abe3383fbc9956a9",
+          "width": 4934,
+          "height": 213,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "Q8:S8",
+          "selectedIds": [
+            "INF-CHR-TURIAN"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INF/Personnages-focus-8-8-sources.png",
+          "sha256": "eb28ea6a8fabb470f6f8b604bee22ab1d4e7b27d843eb58f66efcb360b7db403",
+          "width": 4048,
+          "height": 213,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "INQ",
+      "title": "Mass Effect: Inquisition",
+      "catalogPath": "docs/universe/catalogs/INQ.json",
+      "catalogSha256": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Inquisition_Production.xlsx",
+      "xlsxSha256": "c0fa3d5b940313dfddcddeeb851f8034f50296b00a96bb2ec7d85c552b1e0f40",
+      "qaPath": "docs/universe/qa/INQ.json",
+      "qaSha256": "b62e59f182447310734a096b2d022ed94b3469e085030de499d5703f9f59d77b",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Deux références Prototype : enquête de Bailey et Citadelle. « Traître présumé », incertitude finale et absence de verdict inventé visibles ; sources présentes."
+      ],
+      "panels": [
+        {
+          "sheetName": "Especes_factions",
+          "range": "A7:H7",
+          "selectedIds": [
+            "INQ-REF-SCOPE"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INQ/Especes_factions-focus-7-7-identity.png",
+          "sha256": "59ce3f79b9fb3486f324e6f823fb9a05031e0179cfd5ccd94458dba5126e4c75",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "I7:P7",
+          "selectedIds": [
+            "INQ-REF-SCOPE"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INQ/Especes_factions-focus-7-7-production.png",
+          "sha256": "6cb3adee92fc8fe7811c1cef912900252d3600d5dec54c0ccc6a66a961206af5",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Especes_factions",
+          "range": "Q7:S7",
+          "selectedIds": [
+            "INQ-REF-SCOPE"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INQ/Especes_factions-focus-7-7-sources.png",
+          "sha256": "83ac6995add2f4139cb16e9b107b779955dc01600aec1988b5675b930bed4ff2",
+          "width": 4071,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Mondes",
+          "range": "A7:H7",
+          "selectedIds": [
+            "INQ-WRL-CITADEL"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INQ/Mondes-focus-7-7-identity.png",
+          "sha256": "dd3018158ccd03bbe7e5baad5418077ef0ba185e014557072a8198be0c5272d7",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Mondes",
+          "range": "I7:P7",
+          "selectedIds": [
+            "INQ-WRL-CITADEL"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INQ/Mondes-focus-7-7-production.png",
+          "sha256": "33593ff4b5406103d6254efe0946386d114749e42edab986cdf8069e6be2e316",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Mondes",
+          "range": "Q7:S7",
+          "selectedIds": [
+            "INQ-WRL-CITADEL"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/INQ/Mondes-focus-7-7-sources.png",
+          "sha256": "e427a41e80027731b27b4d94c946afeda385dbe072c4886941ecee4a27d7c568",
+          "width": 4071,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "ME2",
+      "title": "Mass Effect 2",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "catalogSha256": "4f4d1143e63f1f01dbfce8130fc39e7d66b8cfdbc90e36d2d363ac8e887e7a8d",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx",
+      "xlsxSha256": "5b1e562ae63a82e4b036ee0b91fd9363081690c3b8a121ec8bdf4ceee2b7b518",
+      "qaPath": "docs/universe/qa/ME2.json",
+      "qaSha256": "0a5f24385d04dd240e925e32fde957523b097e603040da39ff275cdddd8ab65c",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Kasumi, Zaeed, Liara et Stasis affichent Prototype ; bancs spécifiques et compétences manquantes explicités, rôle temporaire de Liara conservé. Sources multiples de Liara lisibles ; aucune loyauté globale inventée par la note finale."
+      ],
+      "panels": [
+        {
+          "sheetName": "Personnages",
+          "range": "A19:H21",
+          "selectedIds": [
+            "ME2-CHR-KASUMI",
+            "ME2-CHR-ZAEED",
+            "ME2-CHR-LIARA"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME2/Personnages-focus-19-21-identity.png",
+          "sha256": "c658a4fa01e209df560b84618a6e6e4758403bfca0a6227cfb89fc6fc912517e",
+          "width": 3289,
+          "height": 593,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "I19:P21",
+          "selectedIds": [
+            "ME2-CHR-KASUMI",
+            "ME2-CHR-ZAEED",
+            "ME2-CHR-LIARA"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME2/Personnages-focus-19-21-production.png",
+          "sha256": "dcc67b4c924fb27489a6d9815665d48aaf5c2daca0645cc5ab987088709d2366",
+          "width": 4934,
+          "height": 593,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "Q19:S21",
+          "selectedIds": [
+            "ME2-CHR-KASUMI",
+            "ME2-CHR-ZAEED",
+            "ME2-CHR-LIARA"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME2/Personnages-focus-19-21-sources.png",
+          "sha256": "effb64baf7d36307a39170d0e7ea3ac8ae9c9fff5c42a2e17a6abc734b0bc03d",
+          "width": 4048,
+          "height": 593,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "A39:H39",
+          "selectedIds": [
+            "ME2-POW-STASIS"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME2/Pouvoirs-focus-39-39-identity.png",
+          "sha256": "59358faad3ecb8fee9d9eca035367f80121f7d068c9d5f04289a361918148c8b",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "I39:P39",
+          "selectedIds": [
+            "ME2-POW-STASIS"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME2/Pouvoirs-focus-39-39-production.png",
+          "sha256": "d6d07fcfd2c78bc682343534605781932cc19e0de7472c93281a46558aee710b",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "Q39:S39",
+          "selectedIds": [
+            "ME2-POW-STASIS"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME2/Pouvoirs-focus-39-39-sources.png",
+          "sha256": "af526320a2af89b2fc5603ddbb3f847388fa78e142767d722c3a2cda2c2a6446",
+          "width": 4048,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "excel_inventory",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "ME3",
+      "title": "Mass Effect 3",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "catalogSha256": "dd793758dd8f13f327934848f475dfc499412aaa89a0063a3b52cc399b807dfd",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx",
+      "xlsxSha256": "50c1e9a62e8cc8a58db3ac68fab51d84f77734d3d72ef3c049d97f9ffc414e03",
+      "qaPath": "docs/universe/qa/ME3.json",
+      "qaSha256": "3e2d8d0e0dfe927749771dc318682845def052c7cef681f029fb61f92c8177f0",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Inspection déléguée des sept fenêtres, y compris les deux panneaux sources acteurs corrigés ; conditions des bancs, limites ATB et sources visibles."
+      ],
+      "panels": [
+        {
+          "sheetName": "Personnages",
+          "range": "A12:H12",
+          "selectedIds": [
+            "ME3-CHR-JAVIK"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Personnages-focus-12-12-identity.png",
+          "sha256": "43aa98d14006be367c3c33404a3896cde8025a70d20ad4c2cf05f6c43a855f49",
+          "width": 3289,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "I12:P12",
+          "selectedIds": [
+            "ME3-CHR-JAVIK"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Personnages-focus-12-12-production.png",
+          "sha256": "7bdbd8249dfd344eb1478de6fbe807c8c45cb9a425d089edf000751c71f70047",
+          "width": 4934,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "Q12:S12",
+          "selectedIds": [
+            "ME3-CHR-JAVIK"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Personnages-focus-12-12-sources.png",
+          "sha256": "203478654f24ad1c2a6c0f195229bb784524e097709348ced95d5877911ef99f",
+          "width": 4048,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "A17:H19",
+          "selectedIds": [
+            "ME3-CHR-ARIA",
+            "ME3-CHR-NYREEN",
+            "ME3-CHR-WREX"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Personnages-focus-17-19-identity.png",
+          "sha256": "c8f885a6639f1853fb63bc3d4ef4c1bcefe99cf4b394d91d4690320110392644",
+          "width": 3289,
+          "height": 550,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "I17:P19",
+          "selectedIds": [
+            "ME3-CHR-ARIA",
+            "ME3-CHR-NYREEN",
+            "ME3-CHR-WREX"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Personnages-focus-17-19-production.png",
+          "sha256": "6e09d1beca7624ab8653629be1507b66b64b80787e10507bb7309e83fbc20288",
+          "width": 4934,
+          "height": 550,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Personnages",
+          "range": "Q17:S19",
+          "selectedIds": [
+            "ME3-CHR-ARIA",
+            "ME3-CHR-NYREEN",
+            "ME3-CHR-WREX"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Personnages-focus-17-19-sources.png",
+          "sha256": "a693474593a1bdf7958435a1283908f46e64d824a7d8a9d0fa26f45b2283afac",
+          "width": 4048,
+          "height": 550,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "A12:H12",
+          "selectedIds": [
+            "ME3-WPN-FALCON"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Armes-focus-12-12-identity.png",
+          "sha256": "7d2b1a962cce593f1dd8d9a3c0d4b0dc30170ee7f9a10c4528b4025ac08478e4",
+          "width": 3289,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "I12:P12",
+          "selectedIds": [
+            "ME3-WPN-FALCON"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Armes-focus-12-12-production.png",
+          "sha256": "d171bbe362d3426af1c8889ef3294cc741f8caec6d0589d12b682d7456c2440e",
+          "width": 4934,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "Q12:S12",
+          "selectedIds": [
+            "ME3-WPN-FALCON"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Armes-focus-12-12-sources.png",
+          "sha256": "9bc1c00a26fc987b63c765d1c7bf19e529224896a7af8a57e9cafe86eee7ada8",
+          "width": 4267,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "A27:H27",
+          "selectedIds": [
+            "ME3-WPN-SCORPION"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Armes-focus-27-27-identity.png",
+          "sha256": "4286875b5c8453063128246fa5fb5e0eac17d557c7c416bf00a9fa22c3570f25",
+          "width": 3289,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "I27:P27",
+          "selectedIds": [
+            "ME3-WPN-SCORPION"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Armes-focus-27-27-production.png",
+          "sha256": "d63b43d3f8c06a77f4352932ed08a4c2b2b5a1cd2967b20e0a1d8cda6e780f64",
+          "width": 4934,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "Q27:S27",
+          "selectedIds": [
+            "ME3-WPN-SCORPION"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Armes-focus-27-27-sources.png",
+          "sha256": "5615b87cb15a6aa2e578aa6f31cc7a875debaff467593bb141067b2d7edafa27",
+          "width": 4267,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "A12:H12",
+          "selectedIds": [
+            "ME3-POW-SLAM"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-12-12-identity.png",
+          "sha256": "7d3a3acd687fb79c409ff448738ecedb2f0ee27962b664c3e82fc4a0deec28b2",
+          "width": 3289,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "I12:P12",
+          "selectedIds": [
+            "ME3-POW-SLAM"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-12-12-production.png",
+          "sha256": "45a8d59ebc9e1fa06b6fe48d9d2b4e12726d8e1ac8ab090e88e107db4960b757",
+          "width": 4934,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "Q12:S12",
+          "selectedIds": [
+            "ME3-POW-SLAM"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-12-12-sources.png",
+          "sha256": "18cd099b79428ff4de7d2dfd6189cc2f5809545b6b4f2ed873df0b67bc592c0b",
+          "width": 4048,
+          "height": 149,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "A39:H39",
+          "selectedIds": [
+            "ME3-POW-FRAG"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-39-39-identity.png",
+          "sha256": "cb3d148c661f3f3608ae678eeda0a34932d12b8ae0f2d3ecf44fabf737a64b3a",
+          "width": 3289,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "I39:P39",
+          "selectedIds": [
+            "ME3-POW-FRAG"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-39-39-production.png",
+          "sha256": "1dfb68107543ebc7ee210595dc4bea3d2ac861a36ca3ac696342f46e3e71ea52",
+          "width": 4934,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "Q39:S39",
+          "selectedIds": [
+            "ME3-POW-FRAG"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-39-39-sources.png",
+          "sha256": "6420d714881133582fb8af70f5da9c9b9da6169e9de11b9ef4cc09e8d24245da",
+          "width": 4048,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "A51:H51",
+          "selectedIds": [
+            "ME3-POW-STICKY"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-51-51-identity.png",
+          "sha256": "100ff5b9f0d11c0dd7944c6a9fd8837186c08774f116604e3db6bd4143eac62a",
+          "width": 3289,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "I51:P51",
+          "selectedIds": [
+            "ME3-POW-STICKY"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-51-51-production.png",
+          "sha256": "2ca8a30e84877c773a94ae2b65b49e025b590068b4e7e1855caa82cde582a044",
+          "width": 4934,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "Q51:S51",
+          "selectedIds": [
+            "ME3-POW-STICKY"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/ME3/Pouvoirs-focus-51-51-sources.png",
+          "sha256": "c96a3ae7987955df65176b05fdde7cf08dfdfa1f71bf4c24f59de337958c11c6",
+          "width": 4048,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    },
+    {
+      "id": "MEA",
+      "title": "Mass Effect Andromeda",
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "catalogSha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Production.xlsx",
+      "xlsxSha256": "c163cb61d0676856b698b32d40d7c87f2b9e53a1a35d7c4f7c486180b5761d15",
+      "qaPath": "docs/universe/qa/MEA.json",
+      "qaSha256": "aabe76fff67f2ae45c2ce2e329bbfe6d86c13eb919f53fe2f67873d751cf684d",
+      "builderSha256": "68b8ce73b155574a8a0619515dbac0ccf828dc929cc4b68e6169dd999538812c",
+      "observations": [
+        "Inspection déléguée des cinq fenêtres ; quatre armes spéciales et trois fiches de pouvoirs ciblées affichées Prototype avec ressources, limites ATB et références visibles. La ligne Havoc Strike44 intermédiaire non ciblée reste correctement Défini."
+      ],
+      "panels": [
+        {
+          "sheetName": "Armes",
+          "range": "A12:H13",
+          "selectedIds": [
+            "MEA-WPN-SWEEPER",
+            "MEA-WPN-PAW"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-12-13-identity.png",
+          "sha256": "e4b63afbef671a0a10d1c786a42dbd21f23a5978da8a1caa205e406ec3538443",
+          "width": 3289,
+          "height": 317,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "I12:P13",
+          "selectedIds": [
+            "MEA-WPN-SWEEPER",
+            "MEA-WPN-PAW"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-12-13-production.png",
+          "sha256": "71512b0a96a442083c39abb1d12d4760617547e4a14ef9168af82f652d5250c8",
+          "width": 4934,
+          "height": 317,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "Q12:S13",
+          "selectedIds": [
+            "MEA-WPN-SWEEPER",
+            "MEA-WPN-PAW"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-12-13-sources.png",
+          "sha256": "afc70b367732d67965eb7564db2888b0d4f515ac0f86186e7b69d50817c805e1",
+          "width": 4048,
+          "height": 317,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "A25:H25",
+          "selectedIds": [
+            "MEA-WPN-SCORPION"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-25-25-identity.png",
+          "sha256": "ed560b067e60eec99196fb083eeb1f206a8bc76c9c4d74b176be19b2a10cb83b",
+          "width": 3289,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "I25:P25",
+          "selectedIds": [
+            "MEA-WPN-SCORPION"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-25-25-production.png",
+          "sha256": "c341b99b8b9d17106ba0dcd5d8af4c97cc2c820c79d9331a73173123165f5756",
+          "width": 4934,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "Q25:S25",
+          "selectedIds": [
+            "MEA-WPN-SCORPION"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-25-25-sources.png",
+          "sha256": "89a28387698e621c2a6a71c6da36b733bcd1049d90d22abedaef0b9de1fe0f9d",
+          "width": 4048,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "A33:H33",
+          "selectedIds": [
+            "MEA-WPN-REEGAR"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-33-33-identity.png",
+          "sha256": "aafc5e941135747a258bbbfb23eb7e6452d96d4dfd9bd7f5d40860ee1eb8461f",
+          "width": 3289,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "I33:P33",
+          "selectedIds": [
+            "MEA-WPN-REEGAR"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-33-33-production.png",
+          "sha256": "b2e4c9fd6d5b514dc9d3bb1fb5597f607d1513f38be3fba9565b6a98cf661613",
+          "width": 4934,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Armes",
+          "range": "Q33:S33",
+          "selectedIds": [
+            "MEA-WPN-REEGAR"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Armes-focus-33-33-sources.png",
+          "sha256": "59512c9f10c339898a8c02c32a24f9c3462ecdabcd138c407cb5c4a825b7126e",
+          "width": 4048,
+          "height": 192,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "A43:H45",
+          "selectedIds": [
+            "MEA-POW-SHIELD-BOOST",
+            "MEA-POW-FRAG"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Pouvoirs-focus-43-45-identity.png",
+          "sha256": "4aeef48078d0b329f8bc189a10b3759992148358b35cabe5335b9350b367742c",
+          "width": 3289,
+          "height": 400,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "I43:P45",
+          "selectedIds": [
+            "MEA-POW-SHIELD-BOOST",
+            "MEA-POW-FRAG"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Pouvoirs-focus-43-45-production.png",
+          "sha256": "eb647b6668c0a178f0a36629911230e2e63ee2153dd9de17c4a5abaa0f628fed",
+          "width": 4934,
+          "height": 400,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "Q43:S45",
+          "selectedIds": [
+            "MEA-POW-SHIELD-BOOST",
+            "MEA-POW-FRAG"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Pouvoirs-focus-43-45-sources.png",
+          "sha256": "7110c001984b542dd35093886bfad4cdeb03333b751acde460bfcff203750368",
+          "width": 4048,
+          "height": 400,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "A47:H47",
+          "selectedIds": [
+            "MEA-POW-STICKY"
+          ],
+          "panelType": "identity",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Pouvoirs-focus-47-47-identity.png",
+          "sha256": "5365be0488c0cfc7d387c4cee6e229413a9aeab67fbf2038e0e2f6231a4b1fb5",
+          "width": 3289,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "I47:P47",
+          "selectedIds": [
+            "MEA-POW-STICKY"
+          ],
+          "panelType": "production",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Pouvoirs-focus-47-47-production.png",
+          "sha256": "dd911717aacb17cf55a5b42e8534dcc7097aa7cf11078d2049c3f548a48850ff",
+          "width": 4934,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        },
+        {
+          "sheetName": "Pouvoirs",
+          "range": "Q47:S47",
+          "selectedIds": [
+            "MEA-POW-STICKY"
+          ],
+          "panelType": "sources",
+          "imagePath": "docs/universe/previews/chronicle-specialists/MEA/Pouvoirs-focus-47-47-sources.png",
+          "sha256": "ed50148e9db815d47ca27bc966114d11316264f37c4fed488ac5df3f92abc0f6",
+          "width": 4048,
+          "height": 170,
+          "inspected": true,
+          "reviewer": "armor_mods",
+          "result": "pass",
+          "copiedWithoutModification": true
+        }
+      ],
+      "blockingIssues": []
+    }
+  ],
+  "currentBlockingIssues": [],
+  "limitations": [
+    "Les autres lignes et feuilles ne sont pas déclarées revues visuellement.",
+    "Une référence présente ne constitue pas une nouvelle vérification externe de son exactitude. Les réserves du catalogue et les sources secondaires restent explicites.",
+    "Aucun ancien rapport visuel n’est présenté comme preuve de ces exports. Ce rapport ciblé ne vaut pas revue complète dans le packager.",
+    "Aucun modèle, sprite, doublage, campagne intégrale ou fidélité artistique et numérique 1:1 n’est certifié."
+  ]
+}

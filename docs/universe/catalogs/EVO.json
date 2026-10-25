@@ -4,7 +4,7 @@
   "medium": "Comic / bande dessinée",
   "filename": "Mass_Effect_Evolution_Production.xlsx",
   "scope": "Evolution #1–4 : Première Guerre de Contact, Jack Harper, Arca Monolith, Illium, Palaven et origine de l’Homme trouble. Les récits courts inclus dans certains recueils disposent de leurs catalogues séparés.",
-  "summary": "122 fiches de production ; 4 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "122 fiches de production ; 5 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
   "canonNote": "L’explication exacte des réactions différentes de Jack et Ben n’est pas tranchée par les notes d’auteur. La guerrière Eva Coré ne doit pas être confondue avec la plateforme de ME3 portant ce nom. Les missions, options, ATB, coûts, compositions 2D/3D, effets et fichiers proposés sont des extrapolations; aucun chiffre de réglage n’est présenté comme canon. « Établi » qualifie uniquement le fait bref de description, pas sa proposition d’adaptation. Les sources wiki consultées via l’index restent À vérifier. Les 12 pages Fandom fournies ont été tentées en accès direct et ont échoué; les notices officielles et notes d’auteur servent de remplacement lorsque disponibles.",
   "sources": [
     {
@@ -1148,7 +1148,7 @@
       "name": "Palaven — paysage sonore"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le premier numéro se déroule pendant la Première Guerre de Contact. ",
@@ -1157,7 +1157,7 @@
       "visual": "",
       "animation": "",
       "audio": "",
-      "implementation": "Livrable proposé : spécification EVO/lore/sc-resist-ref; brancher au registre de contenu de l'œuvre seulement après production.",
+      "implementation": "Référence documentaire EVO-SC-RESIST-REF consultable dans les lectures evo-contact de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
       "conditions": "Les résultats d’adaptation locaux convergent vers les faits de l’œuvre; les personnages absents ne deviennent pas des alliés disponibles.",
       "acceptance": "L’ancrage reste bref et son numéro/segment est identifiable dans les sources; les détails non confirmés portent À vérifier.",
       "dependencies": [],
@@ -1165,10 +1165,21 @@
         "EVO-S-AUTHOR1"
       ],
       "reference": "Evolution #1",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
       "id": "EVO-SC-RESIST-REF",
       "category": "lore",
-      "name": "Résistance sur Shanxi"
+      "name": "Résistance sur Shanxi",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ]
     },
     {
       "status": "Défini",
@@ -3062,8 +3073,13 @@
     },
     {
       "area": "Complément pouvoirs, modules et lectures",
-      "covered": "0 fiches de pouvoirs utilisées, 0 familles de modules préparables et 4 références consultables dans une lecture documentaire. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
+      "covered": "0 fiches de pouvoirs effectivement utilisées, 0 familles de modules préparables et 5 références au stade Prototype consultables dans des lectures documentaires. Les chemins et preuves sont inscrits sur les seules lignes Prototype.",
       "remaining": "Arbres et progression complets, modèles et rangs exacts, campagnes et dialogues intégraux, niveaux et ressources visuelles propres à l’œuvre restent à réaliser ou vérifier. Les références lues ne rendent pas leurs personnages jouables."
+    },
+    {
+      "area": "Complément lectures contextualisées",
+      "covered": "1 références supplémentaires au stade Prototype dans 1 parcours de lecture (1 pages de paraphrases documentaires sourcées), limités à leurs segments exacts.",
+      "remaining": "Les faits, références, sources et réserves d’origine sont conservés. Ces lectures ne constituent ni un découpage intégral, ni une scène jouable, ni un recrutement ; modèles, voix et animations de l’œuvre ne sont pas produits."
     }
   ]
 }

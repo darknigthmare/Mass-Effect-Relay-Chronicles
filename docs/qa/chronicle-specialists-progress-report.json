@@ -1,0 +1,1592 @@
+{
+  "passed": true,
+  "at": "2026-10-25T07:04:43.086507+00:00",
+  "baseCommit": "7fe7a88de686e943956fd6622ee72e770f0800ba",
+  "plan": "docs/universe/qa/chronicle-specialists-progress-plan.json",
+  "planSha256": "4007e681e2736cb4775c1f48db28cac7675f5d4424d65cc05cea8bdad10a2510",
+  "validation": "docs/qa/chronicle-specialists-browser-report.json",
+  "validationSha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+  "validationResultPointer": "/passed",
+  "changedRecords": 37,
+  "changedCatalogs": 11,
+  "changesByGroup": {
+    "actors": 8,
+    "weapons": 6,
+    "powers": 7,
+    "readingReferences": 16
+  },
+  "changesByCatalog": {
+    "DEC": 7,
+    "DIS": 2,
+    "EVO": 1,
+    "FOU": 1,
+    "HOM": 1,
+    "INC": 2,
+    "INF": 1,
+    "INQ": 2,
+    "ME2": 4,
+    "ME3": 9,
+    "MEA": 7
+  },
+  "protectedFieldsUnchanged": true,
+  "unselectedRowsUnchanged": true,
+  "allIdsAndOrderPreserved": true,
+  "editSurface": [
+    "status",
+    "implementationPaths",
+    "evidence",
+    "implementation",
+    "notes",
+    "book.summary",
+    "book.coverage"
+  ],
+  "protectedScope": "Tous les autres champs de chaque fiche, dont identités, noms, descriptions, natures, sources/URLs, références, conditions et dépendances, ainsi que les sources et métadonnées documentaires des catalogues, restent identiques à la baseline.",
+  "execution": {
+    "dryRun": {
+      "passed": true,
+      "changedRecords": 37,
+      "changedCatalogs": 11,
+      "log": "/tmp/relay-specialists-progress-dry-run.json"
+    },
+    "apply": {
+      "passed": true,
+      "changedRecords": 37,
+      "changedCatalogs": 11,
+      "log": "/tmp/relay-specialists-progress-applied.json"
+    },
+    "promotionCommand": [
+      "node",
+      "scripts/catalog-progress.mjs",
+      "--plan",
+      "docs/universe/qa/chronicle-specialists-progress-plan.json",
+      "--apply"
+    ],
+    "generationRuns": [
+      {
+        "cwd": "/tmp",
+        "command": [
+          "node",
+          "--max-old-space-size=8192",
+          "/workspace/Mass-Effect-Relay-Chronicles/scripts/build-universe-workbooks.mjs",
+          "--ids",
+          "ANN,ASC,DEC,DIS,EVO,FOU,GAL,HOM,INC,INF,INI,INQ,INV,ME2,ME3,MEA,NEX,PL,RED,RET,REV",
+          "--focus-ids",
+          "ME2-CHR-KASUMI,ME2-CHR-ZAEED,ME2-CHR-LIARA,ME3-CHR-JAVIK,ME3-CHR-ARIA,ME3-CHR-NYREEN,ME3-CHR-WREX,INF-CHR-TURIAN,ME3-WPN-FALCON,ME3-WPN-SCORPION,MEA-WPN-SCORPION,MEA-WPN-PAW,MEA-WPN-REEGAR,MEA-WPN-SWEEPER,ME3-POW-FRAG,ME3-POW-STICKY,MEA-POW-SHIELD-BOOST,MEA-POW-FRAG,MEA-POW-STICKY,ME2-POW-STASIS,ME3-POW-SLAM,DEC-CON-11,DEC-REF-CERBERUS,DEC-REF-UNDERGROUND,DEC-CON-02,DEC-CON-03,DEC-CON-01,DEC-CON-07,HOM-REF-ISSUE4,FOU-SC-05-REF,DIS-REF-SCOPE,DIS-REF-TIRAN,INC-REF-SCOPE,INC-WRL-OMEGA,INQ-REF-SCOPE,INQ-WRL-CITADEL,EVO-SC-RESIST-REF"
+        ],
+        "previewDir": "/tmp/relay-specialists-workbook-previews",
+        "log": "/tmp/relay-specialists-workbooks.log",
+        "exitCode": 0
+      },
+      {
+        "cwd": "/tmp",
+        "command": [
+          "node",
+          "--max-old-space-size=8192",
+          "/workspace/Mass-Effect-Relay-Chronicles/scripts/build-universe-workbooks.mjs",
+          "--ids",
+          "GAL,INF,ME2,ME3,MEA,PL,RED",
+          "--focus-ids",
+          "ME2-CHR-KASUMI,ME2-CHR-ZAEED,ME2-CHR-LIARA,ME3-CHR-JAVIK,ME3-CHR-ARIA,ME3-CHR-NYREEN,ME3-CHR-WREX,INF-CHR-TURIAN,ME3-WPN-FALCON,ME3-WPN-SCORPION,MEA-WPN-SCORPION,MEA-WPN-PAW,MEA-WPN-REEGAR,MEA-WPN-SWEEPER,ME3-POW-FRAG,ME3-POW-STICKY,MEA-POW-SHIELD-BOOST,MEA-POW-FRAG,MEA-POW-STICKY,ME2-POW-STASIS,ME3-POW-SLAM"
+        ],
+        "previewDir": "/tmp/relay-specialists-workbook-previews",
+        "log": "/tmp/relay-specialists-workbook-runner-refresh.log",
+        "exitCode": 0
+      },
+      {
+        "cwd": "/tmp",
+        "command": [
+          "node",
+          "--max-old-space-size=8192",
+          "/workspace/Mass-Effect-Relay-Chronicles/scripts/build-universe-workbooks.mjs",
+          "--ids",
+          "INF,ME2,ME3",
+          "--focus-ids",
+          "ME2-CHR-KASUMI,ME2-CHR-ZAEED,ME2-CHR-LIARA,ME3-CHR-JAVIK,ME3-CHR-ARIA,ME3-CHR-NYREEN,ME3-CHR-WREX,INF-CHR-TURIAN,ME3-WPN-FALCON,ME3-WPN-SCORPION,ME3-POW-FRAG,ME3-POW-STICKY,ME2-POW-STASIS,ME3-POW-SLAM"
+        ],
+        "log": "/tmp/relay-specialists-workbook-note.log",
+        "exitCode": 0
+      }
+    ],
+    "verificationCommand": [
+      "python",
+      "scripts/verify-universe-workbooks.py"
+    ],
+    "packagePreflightCommand": [
+      "python",
+      "scripts/package-universe-workbooks.py",
+      "--check"
+    ],
+    "packageCommand": [
+      "python",
+      "scripts/package-universe-workbooks.py"
+    ]
+  },
+  "runtimeCoverage": {
+    "selectedActors": 42,
+    "partialActors": 42,
+    "equipment": 76,
+    "weapons": 64,
+    "armors": 10,
+    "mods": 2,
+    "usedPowerCards": 47,
+    "nativeActions": 21,
+    "scenarios": 16,
+    "readings": 16,
+    "pages": 52
+  },
+  "functionalScope": {
+    "checks": 5,
+    "weapons": 6,
+    "nativePowers": 3,
+    "victories": 4,
+    "newSpecialistBenches": 6,
+    "newReadings": 7,
+    "newReadingPages": 10,
+    "sourceModules": {
+      "src/combat.js": "4f18e1a00c0815c5072f514cf28e70c1ca0e56cd066b1494816abfce425f3c34",
+      "src/universe-weapon-profiles.js": "39f9c997412acd4d4964ce0d92411cf751adbfa3abc35c9e5777d2a8a8d3445e",
+      "src/universe-specialist-scenarios.js": "3be9693c263ae8803527d5defdd1b0783a068a3c6b2d2b9845c4ef0badbb7759",
+      "src/universe-powers.js": "d51d8e098b8bd0ab3c3ba6c8f6a0e626e367b1c4c2351c67ba5cdbf883969bcf",
+      "src/universe-actors.js": "042f0ac8c1b1092955533c45719319c6d667369e7efbdd5c3e02f18a7fab5b04",
+      "src/universe-equipment.js": "f9a7e62d3ef121d0ffb6ed20edfa76d5885cf72e0c052b3a2f914b7de3e456e4",
+      "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+      "src/chronicles.js": "1877977931a62a1b93a1beaea61efe78d1f51d97543197525de95fcc0328293e",
+      "src/continuity.js": "3c35d1de16de1b94c7ab047359d3d6c542b750378417d85209b0832311e79cba",
+      "src/universe-ui.js": "757697f33ecef48acf89ecc867c3b51a1666b8052c309211d6ce335284d53f06",
+      "src/main.js": "d7218c5072d2cd8bc5f42b2b4d80ea4d0caf4f3b838b9ef0ab50184b40bc0332"
+    },
+    "runnerSha256": "e6e3066d77693029fd84fb2212c514d7e1e2de6223ef253ff1f758e9dc10be27"
+  },
+  "xlsx": {
+    "rebuiltWorkbooks": [
+      "ANN",
+      "ASC",
+      "DEC",
+      "DIS",
+      "EVO",
+      "FOU",
+      "GAL",
+      "HOM",
+      "INC",
+      "INF",
+      "INI",
+      "INQ",
+      "INV",
+      "ME2",
+      "ME3",
+      "MEA",
+      "NEX",
+      "PL",
+      "RED",
+      "RET",
+      "REV"
+    ],
+    "untouchedWorkbooks": [
+      {
+        "id": "BLA",
+        "catalogPath": "docs/universe/catalogs/BLA.json",
+        "catalogSha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+        "previousCatalogSha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+        "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Blasto_Eternity_is_Forever_Production.xlsx",
+        "xlsxSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+        "previousXlsxSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+        "statusCounts": {
+          "Défini": 82
+        }
+      },
+      {
+        "id": "CON",
+        "catalogPath": "docs/universe/catalogs/CONVICTION.json",
+        "catalogSha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+        "previousCatalogSha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+        "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Conviction_Production.xlsx",
+        "xlsxSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+        "previousXlsxSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+        "statusCounts": {
+          "Défini": 68
+        }
+      },
+      {
+        "id": "CUT",
+        "catalogPath": "docs/universe/catalogs/CUT.json",
+        "catalogSha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+        "previousCatalogSha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+        "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Contenus_Coupes_Production.xlsx",
+        "xlsxSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+        "previousXlsxSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+        "statusCounts": {
+          "Défini": 124
+        }
+      },
+      {
+        "id": "HWB",
+        "catalogPath": "docs/universe/catalogs/HWB.json",
+        "catalogSha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+        "previousCatalogSha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+        "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_He_Who_Laughs_Best_Production.xlsx",
+        "xlsxSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+        "previousXlsxSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+        "statusCounts": {
+          "Défini": 71
+        }
+      },
+      {
+        "id": "LIB",
+        "catalogPath": "docs/universe/catalogs/LIB.json",
+        "catalogSha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+        "previousCatalogSha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+        "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Library_Edition_Production.xlsx",
+        "xlsxSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+        "previousXlsxSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+        "statusCounts": {
+          "Défini": 80
+        }
+      },
+      {
+        "id": "ME4",
+        "catalogPath": "docs/universe/catalogs/ME4.json",
+        "catalogSha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+        "previousCatalogSha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+        "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_4_Extrapolation_Production.xlsx",
+        "xlsxSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+        "previousXlsxSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+        "statusCounts": {
+          "Défini": 145
+        }
+      }
+    ],
+    "verificationPath": "docs/universe/qa/verification.json",
+    "verificationSha256": "58f724841a462c6d054683ac6fa6123cc91a6491e3401d1c639a98ab189a8f93",
+    "auditedWorkbooks": 27,
+    "worksheets": 756,
+    "records": 5326,
+    "columnsPerCategory": 19,
+    "cellsCompared": 101194,
+    "sourceCellsCompared": 2454,
+    "formulaCachesChecked": 8856,
+    "formulaErrors": 0,
+    "tables": 699,
+    "validationsChecked": 2097,
+    "statusCounts": {
+      "Défini": 5102,
+      "Prototype": 224,
+      "Intégré": 0,
+      "Validé": 0
+    }
+  },
+  "visual": {
+    "reportPath": "docs/qa/chronicle-specialists-workbook-visual-report.json",
+    "sha256": "0d9cf27070e498614aa4c31ad54c1610b68d4f0ef6c45ffab3c2c7794870a943",
+    "passed": true,
+    "scope": "81 panneaux ciblés seulement, 11 classeurs, 27 fenêtres, aucune revue complète revendiquée."
+  },
+  "package": {
+    "manifestPath": "docs/universe/manifest.json",
+    "manifestSha256": "121015645e8723769a950c2d2fad56e56e3b5f8f816c792f1ea889587580704d",
+    "archivePath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip",
+    "archiveSha256": "5b1434d1bdbdc939e4a3eda2c5d8176cc8924ab98615f1e0e39e54a7c3e64d94",
+    "archiveMembers": 29,
+    "xlsxMembers": 27,
+    "membersByteMatchManifestAndDisk": true
+  },
+  "catalogs": [
+    {
+      "id": "ANN",
+      "catalogPath": "docs/universe/catalogs/ANN.json",
+      "catalogSha256": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d",
+      "previousCatalogSha256": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Annihilation_Production.xlsx",
+      "xlsxSha256": "6c3e29bea64d89c75818c648a4a6eeaae0ca5a907228454010c05e579d9cefe5",
+      "previousXlsxSha256": "abc3fc3c746f4b95d23b47f92bc4a4362b80159c83e110fa74142bbf75b6e5ad",
+      "statusCounts": {
+        "Défini": 157,
+        "Prototype": 4
+      }
+    },
+    {
+      "id": "ASC",
+      "catalogPath": "docs/universe/catalogs/ASC.json",
+      "catalogSha256": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+      "previousCatalogSha256": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Ascension_Production.xlsx",
+      "xlsxSha256": "a46bf97d5befad37d2648b266bfa0e2cbd94744ce99f30f3742c86ffd679b818",
+      "previousXlsxSha256": "f9f4f81646d12d37c14f4824c9bb21a49b3d694d78b3770b111182d8b65094ea",
+      "statusCounts": {
+        "Défini": 154,
+        "Prototype": 4
+      }
+    },
+    {
+      "id": "BLA",
+      "catalogPath": "docs/universe/catalogs/BLA.json",
+      "catalogSha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+      "previousCatalogSha256": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Blasto_Eternity_is_Forever_Production.xlsx",
+      "xlsxSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+      "previousXlsxSha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+      "statusCounts": {
+        "Défini": 82
+      }
+    },
+    {
+      "id": "CON",
+      "catalogPath": "docs/universe/catalogs/CONVICTION.json",
+      "catalogSha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+      "previousCatalogSha256": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Conviction_Production.xlsx",
+      "xlsxSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+      "previousXlsxSha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+      "statusCounts": {
+        "Défini": 68
+      }
+    },
+    {
+      "id": "CUT",
+      "catalogPath": "docs/universe/catalogs/CUT.json",
+      "catalogSha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+      "previousCatalogSha256": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Contenus_Coupes_Production.xlsx",
+      "xlsxSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+      "previousXlsxSha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+      "statusCounts": {
+        "Défini": 124
+      }
+    },
+    {
+      "id": "DEC",
+      "catalogPath": "docs/universe/catalogs/DEC.json",
+      "catalogSha256": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d",
+      "previousCatalogSha256": "5eefb9345591cf02ed7c4d34d0e3ddda06dc6659bff224e84625b96ab27c0add",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Deception_Production.xlsx",
+      "xlsxSha256": "7cf11882f69be6ff985ecc8df6c7932e05eef59509c109b82da4ebc1bf2f6225",
+      "previousXlsxSha256": "0faf9442fc01e6ddd6e77b263aefc776e34027dc5c2f83649b21e8cb5558c820",
+      "statusCounts": {
+        "Défini": 153,
+        "Prototype": 7
+      }
+    },
+    {
+      "id": "DIS",
+      "catalogPath": "docs/universe/catalogs/DIS.json",
+      "catalogSha256": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b",
+      "previousCatalogSha256": "f4e72a7923eaef5153e843b3c990d7cd4e444d24d62a65b69adda71a721cdff4",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Discovery_Production.xlsx",
+      "xlsxSha256": "254a7581dc227b7625d74f72c2fa5671d6d87310b62aaed39141bc8c4fab1b37",
+      "previousXlsxSha256": "87545de48f4c21ed96e34f6f42a9b5652e7bd6c403486738a9e4dad723b52ab5",
+      "statusCounts": {
+        "Prototype": 2,
+        "Défini": 158
+      }
+    },
+    {
+      "id": "EVO",
+      "catalogPath": "docs/universe/catalogs/EVO.json",
+      "catalogSha256": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a",
+      "previousCatalogSha256": "b06eb8d6995e1e15b02e121b8df1f48848d6eeee44576502a37983157df4ff63",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Evolution_Production.xlsx",
+      "xlsxSha256": "b4da07754b6171f7cc61ed152b590606c64d18475c8e2602d553d130bfbab3d1",
+      "previousXlsxSha256": "bfe2ed7ef1f6f4576f7e0cc3b1a87633a576c0a71098548633f23345c8830a14",
+      "statusCounts": {
+        "Défini": 117,
+        "Prototype": 5
+      }
+    },
+    {
+      "id": "FOU",
+      "catalogPath": "docs/universe/catalogs/FOU.json",
+      "catalogSha256": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56",
+      "previousCatalogSha256": "08726063fa5ec60aa660b7d2d3fffd0dd9bdbab81c897b6d40d0e0559f88ec46",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Foundation_Production.xlsx",
+      "xlsxSha256": "807917bed3d7056ad0e5b8a234bac7bea2d09c50f0224e008d5a803412290a58",
+      "previousXlsxSha256": "eb28155b771fb3e9848989e225645ca125ee24541ced589f06485723a1d4c0cc",
+      "statusCounts": {
+        "Défini": 248,
+        "Prototype": 1
+      }
+    },
+    {
+      "id": "GAL",
+      "catalogPath": "docs/universe/catalogs/GAL.json",
+      "catalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+      "previousCatalogSha256": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Galaxy_Production.xlsx",
+      "xlsxSha256": "ef1b96d2325e843f3ef2969d01952e6e2224050e103fbed18e9f3d3d2d9a787a",
+      "previousXlsxSha256": "398c542db211fcfc3d9e49441dcdcf50a279020aa524cf569c337aaee4b84da7",
+      "statusCounts": {
+        "Prototype": 3,
+        "Défini": 100
+      }
+    },
+    {
+      "id": "HOM",
+      "catalogPath": "docs/universe/catalogs/HOM.json",
+      "catalogSha256": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e",
+      "previousCatalogSha256": "f9cdbfdd5b1d7859f78ced96c5332bfe009b889427a7f286a658b136efadb28c",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Homeworlds_Production.xlsx",
+      "xlsxSha256": "62102b5211f5878f88be50039d3575c9dd4a0b7cf9af806c713cbcf3218bbfc8",
+      "previousXlsxSha256": "311a1e20af12770c237e7ebfd1db8bccc79aa25303916b535a0c4c139288c16f",
+      "statusCounts": {
+        "Défini": 170,
+        "Prototype": 1
+      }
+    },
+    {
+      "id": "HWB",
+      "catalogPath": "docs/universe/catalogs/HWB.json",
+      "catalogSha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+      "previousCatalogSha256": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_He_Who_Laughs_Best_Production.xlsx",
+      "xlsxSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+      "previousXlsxSha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+      "statusCounts": {
+        "Défini": 71
+      }
+    },
+    {
+      "id": "INC",
+      "catalogPath": "docs/universe/catalogs/INC.json",
+      "catalogSha256": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6",
+      "previousCatalogSha256": "5b09166042118b9227c6895860a5ca53ed6a00d23a82fd1df8a4345a62c860b2",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Incursion_Production.xlsx",
+      "xlsxSha256": "a3985ef6236d39c571f63b8608fc8c0a801c3cf193ea4ffc4d7ad6e0cd88af1a",
+      "previousXlsxSha256": "0936006667b813dafe255955e1b88e74d461e83b7a1d5daa41e86188dc77fc76",
+      "statusCounts": {
+        "Prototype": 2,
+        "Défini": 62
+      }
+    },
+    {
+      "id": "INF",
+      "catalogPath": "docs/universe/catalogs/INF.json",
+      "catalogSha256": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+      "previousCatalogSha256": "d1fb17dfa84085c5cb505668a93527fcd45adafb2daf9351f7ca0171cc664b79",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Infiltrator_Production.xlsx",
+      "xlsxSha256": "4347d782de4398702862ddd02453dcb302f746c5128b13dd51fee916d9808af6",
+      "previousXlsxSha256": "89beb1fb4f087c711c8fd8843b77fb86403256008d9b513299b887b5ad86bb7d",
+      "statusCounts": {
+        "Prototype": 2,
+        "Défini": 107
+      }
+    },
+    {
+      "id": "INI",
+      "catalogPath": "docs/universe/catalogs/INI.json",
+      "catalogSha256": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+      "previousCatalogSha256": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Initiation_Production.xlsx",
+      "xlsxSha256": "c112dd8da5bca1ba67c5e9efc3fdb8ccf955498ea586dc55e26b8be67a89d73a",
+      "previousXlsxSha256": "df8ab9b62b5f9fa2395ae4da707f62f63a8ccd3dc9be564706c9cec39c5f2a7a",
+      "statusCounts": {
+        "Défini": 154,
+        "Prototype": 5
+      }
+    },
+    {
+      "id": "INQ",
+      "catalogPath": "docs/universe/catalogs/INQ.json",
+      "catalogSha256": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68",
+      "previousCatalogSha256": "af3d9bf9b9fb0473ee474b1548fd9af808d81a0de3a31f94056dad94968ecb27",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Inquisition_Production.xlsx",
+      "xlsxSha256": "c0fa3d5b940313dfddcddeeb851f8034f50296b00a96bb2ec7d85c552b1e0f40",
+      "previousXlsxSha256": "1b8afac1910137052fdbfb59c179611bebd2c7f37864bee1fb9a62e5146b1361",
+      "statusCounts": {
+        "Prototype": 2,
+        "Défini": 61
+      }
+    },
+    {
+      "id": "INV",
+      "catalogPath": "docs/universe/catalogs/INV.json",
+      "catalogSha256": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70",
+      "previousCatalogSha256": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Invasion_Production.xlsx",
+      "xlsxSha256": "c4c62142b9d35bdcbb7be35442e67faf29935319d36f3867eb9fd5d38ac222b3",
+      "previousXlsxSha256": "d2e253f21bf5fcad5c7c03a854a0d463385ca0f964c6f93468e08a51f175e600",
+      "statusCounts": {
+        "Prototype": 4,
+        "Défini": 113
+      }
+    },
+    {
+      "id": "LIB",
+      "catalogPath": "docs/universe/catalogs/LIB.json",
+      "catalogSha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+      "previousCatalogSha256": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Library_Edition_Production.xlsx",
+      "xlsxSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+      "previousXlsxSha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+      "statusCounts": {
+        "Défini": 80
+      }
+    },
+    {
+      "id": "ME2",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "catalogSha256": "4f4d1143e63f1f01dbfce8130fc39e7d66b8cfdbc90e36d2d363ac8e887e7a8d",
+      "previousCatalogSha256": "b073e507566c4cf6348bc997fe9fd2ac2823d8d9d2dd9669787b6bfd6845095b",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx",
+      "xlsxSha256": "5b1e562ae63a82e4b036ee0b91fd9363081690c3b8a121ec8bdf4ceee2b7b518",
+      "previousXlsxSha256": "b540ccc5be62966c713f8d4b68157358fab5af9ed2b1fa6887ff0fda51b8e422",
+      "statusCounts": {
+        "Prototype": 43,
+        "Défini": 627
+      }
+    },
+    {
+      "id": "ME3",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "catalogSha256": "dd793758dd8f13f327934848f475dfc499412aaa89a0063a3b52cc399b807dfd",
+      "previousCatalogSha256": "4de3128e5e189c5e5db80ecf50dcb1baed6870ba066ba643abb4076a4ab2081a",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx",
+      "xlsxSha256": "50c1e9a62e8cc8a58db3ac68fab51d84f77734d3d72ef3c049d97f9ffc414e03",
+      "previousXlsxSha256": "f3ee4a5c51c3f629b95ce6e4dc18837fd7fc8538535efadb33dcc34f2f812ef4",
+      "statusCounts": {
+        "Prototype": 62,
+        "Défini": 674
+      }
+    },
+    {
+      "id": "ME4",
+      "catalogPath": "docs/universe/catalogs/ME4.json",
+      "catalogSha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+      "previousCatalogSha256": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_4_Extrapolation_Production.xlsx",
+      "xlsxSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+      "previousXlsxSha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+      "statusCounts": {
+        "Défini": 145
+      }
+    },
+    {
+      "id": "MEA",
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "catalogSha256": "e1d10720d85fdd25fee2349e1f4a2ef3f018e3cf2f3f6f177a06154c4b0377b6",
+      "previousCatalogSha256": "c1dc352d9664f35f40d237a7465792e697bf37d41418852e15081d9e31f9c061",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Production.xlsx",
+      "xlsxSha256": "c163cb61d0676856b698b32d40d7c87f2b9e53a1a35d7c4f7c486180b5761d15",
+      "previousXlsxSha256": "cbdd2634c4c0759beb9a069212c22e9e0eff4adac7b915173f4d2ba5a6899829",
+      "statusCounts": {
+        "Prototype": 52,
+        "Défini": 711
+      }
+    },
+    {
+      "id": "NEX",
+      "catalogPath": "docs/universe/catalogs/NEX.json",
+      "catalogSha256": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0",
+      "previousCatalogSha256": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Nexus_Uprising_Production.xlsx",
+      "xlsxSha256": "2006ae9688b4034736aa43310d793266107f284e58597815416e355a17d377b8",
+      "previousXlsxSha256": "f16c5650d5953792ed6ff9c9452f96a947e5d1276e8b40b866384d45831703e3",
+      "statusCounts": {
+        "Défini": 154,
+        "Prototype": 5
+      }
+    },
+    {
+      "id": "PL",
+      "catalogPath": "docs/universe/catalogs/PL.json",
+      "catalogSha256": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a",
+      "previousCatalogSha256": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Paragon_Lost_Production.xlsx",
+      "xlsxSha256": "b2f0fcfeeb4dbb69c82110e4c88ce0068e0d301f83bbb86b6eb8f7f166b6da3f",
+      "previousXlsxSha256": "f56f66480beae8126b531b06e5d1658de729abe8c13ee2efb9a5986f2903222b",
+      "statusCounts": {
+        "Prototype": 1,
+        "Défini": 198
+      }
+    },
+    {
+      "id": "RED",
+      "catalogPath": "docs/universe/catalogs/RED.json",
+      "catalogSha256": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea",
+      "previousCatalogSha256": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Redemption_Production.xlsx",
+      "xlsxSha256": "bfadc504e63ee9f967559e738a9af5fbc69764d745b01c1f913c85b058ef6abc",
+      "previousXlsxSha256": "3beacb49af661332829897547f8654cc4aa60ca8964373c9156ae9db202ea5da",
+      "statusCounts": {
+        "Défini": 109,
+        "Prototype": 8
+      }
+    },
+    {
+      "id": "RET",
+      "catalogPath": "docs/universe/catalogs/RET.json",
+      "catalogSha256": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+      "previousCatalogSha256": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Retribution_Production.xlsx",
+      "xlsxSha256": "df79c632e891971548eb3453c6e4c0416db088714af8efa8cfc55283d0168aa0",
+      "previousXlsxSha256": "e3c315ead1f2d7aa293ca98ca2efedfe7eff3a831b5afd279d7c7543a0cf274c",
+      "statusCounts": {
+        "Défini": 153,
+        "Prototype": 5
+      }
+    },
+    {
+      "id": "REV",
+      "catalogPath": "docs/universe/catalogs/REV.json",
+      "catalogSha256": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+      "previousCatalogSha256": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+      "workbookPath": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Revelation_Production.xlsx",
+      "xlsxSha256": "037a06ba96e58a2556c81a136a2949a1568e9690d54ee550813ff552781bc3dd",
+      "previousXlsxSha256": "bab08c215173ec30a70a2d8617329d457f229b2952552ea27029d21cb9ac7392",
+      "statusCounts": {
+        "Défini": 152,
+        "Prototype": 6
+      }
+    }
+  ],
+  "changes": [
+    {
+      "catalogId": "DEC",
+      "id": "DEC-REF-CERBERUS",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-REF-CERBERUS consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Ce relevé n’est ni un inventaire exhaustif ni un résumé scène par scène. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DEC",
+      "id": "DEC-REF-UNDERGROUND",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-REF-UNDERGROUND consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Ce relevé n’est ni un inventaire exhaustif ni un résumé scène par scène. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DEC",
+      "id": "DEC-CON-01",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-CON-01 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DEC",
+      "id": "DEC-CON-02",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-CON-02 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DEC",
+      "id": "DEC-CON-03",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-CON-03 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DEC",
+      "id": "DEC-CON-07",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-CON-07 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DEC",
+      "id": "DEC-CON-11",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DEC-CON-11 consultable dans les lectures dec-reperes de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Aucun numéro de chapitre ou de page n’est attribué sans exemplaire vérifié. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les contradictions et réserves éditoriales de Deception restent attribuées à leurs notices. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DIS",
+      "id": "DIS-REF-SCOPE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DIS-REF-SCOPE consultable dans les lectures dis-infiltration de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "DIS",
+      "id": "DIS-REF-TIRAN",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire DIS-REF-TIRAN consultable dans les lectures dis-infiltration de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "EVO",
+      "id": "EVO-SC-RESIST-REF",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire EVO-SC-RESIST-REF consultable dans les lectures evo-contact de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "FOU",
+      "id": "FOU-SC-05-REF",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire FOU-SC-05-REF consultable dans les lectures fou-recherche de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "HOM",
+      "id": "HOM-REF-ISSUE4",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire HOM-REF-ISSUE4 consultable dans les lectures hom-liara de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "INC",
+      "id": "INC-REF-SCOPE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire INC-REF-SCOPE consultable dans les lectures inc-omega de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "INC",
+      "id": "INC-WRL-OMEGA",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire INC-WRL-OMEGA consultable dans les lectures inc-omega de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "INF",
+      "id": "INF-CHR-TURIAN",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans inf-incarceration via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Costume exact à contrôler sur les images originales avant validation 1:1. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés."
+    },
+    {
+      "catalogId": "INQ",
+      "id": "INQ-REF-SCOPE",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire INQ-REF-SCOPE consultable dans les lectures inq-bailey de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les soupçons d’Inquisition restent attribués à leur notice, sans verdict inventé. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "INQ",
+      "id": "INQ-WRL-CITADEL",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/chronicle-story.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/chronicle-story.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Référence documentaire INQ-WRL-CITADEL consultable dans les lectures inq-bailey de src/chronicle-story.js, avec sources et progression séparée. Aucune scène, carte, animation ni incarnation de personnage produite par cette fiche.",
+      "notes": "La géométrie jouable ci-dessous est originale et ne prétend pas reconstituer une carte officielle. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les soupçons d’Inquisition restent attribués à leur notice, sans verdict inventé. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne."
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-CHR-KASUMI",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me2-dlc-specialists via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Shadow Strike, Flashbang Grenade."
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-CHR-ZAEED",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me2-dlc-specialists via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Inferno Grenade, Disruptor Ammo."
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-CHR-LIARA",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me2-shadow-broker via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés."
+    },
+    {
+      "catalogId": "ME2",
+      "id": "ME2-POW-STASIS",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison ME2-POW-STASIS → stasis dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans me2-shadow-broker, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Pouvoir effectivement exposé par les nouveaux profils de spécialistes ; présence d’une liaison seule non comptée comme usage. Effets, coûts et durées ATB, arbres complets, rangs, acquisition, animations et variantes d’édition non certifiés 1:1."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-CHR-JAVIK",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me3-from-ashes via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Dark Channel, Lift Grenade."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-CHR-ARIA",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me3-omega via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Flare, Lash, Carnage."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-CHR-NYREEN",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me3-omega via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Lift Grenade, Biotic Protector."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-CHR-WREX",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-actors.js",
+        "src/universe-specialist-scenarios.js",
+        "src/universe-powers.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-actors.test.js",
+        "tests/universe-specialist-scenarios.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype de profil sélectionnable dans me3-citadel-wrex via src/universe-specialist-scenarios.js et src/universe-actors.js. Conditions de contenu, présence et survie affichées ; mannequins originaux et dotation abstraite, sans mission ni recrutement de campagne. Aucun portrait, sprite ou costume de ce personnage produit.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil partiel à statistiques ATB, limité aux bancs déclarés et à leur état préparé. Les conditions de contenu et de disponibilité affichées par le banc sont des prérequis de son état préparé, pas des choix de campagne accordés. Pouvoirs non reproduits : Carnage, Stimulant Pack, Lift Grenade."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-WPN-FALCON",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel ME3-WPN-FALCON dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : explosion différée sur le groupe ATB. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite. Ce profil spécial refuse les modules conventionnels canon/chargeur."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-WPN-SCORPION",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel ME3-WPN-SCORPION dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : explosion différée sur le groupe ATB. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-SLAM",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison ME3-POW-SLAM → slam dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans me3-from-ashes, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Pouvoir effectivement exposé par les nouveaux profils de spécialistes ; présence d’une liaison seule non comptée comme usage. Effets, coûts et durées ATB, arbres complets, rangs, acquisition, animations et variantes d’édition non certifiés 1:1."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-FRAG",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison ME3-POW-FRAG → fragGrenade dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans me3-equipment-workshop, me3-from-ashes, me3-omega, me3-citadel-wrex, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Grenade de pouvoir à réserve finie ; échantillon préparé de trois charges ATB, aucune acquisition ni collecte originale simulée. La commande sans charge est refusée sans mutation ; les ressources de l’arme restent distinctes. Zone, délai et dégâts sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié."
+    },
+    {
+      "catalogId": "ME3",
+      "id": "ME3-POW-STICKY",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison ME3-POW-STICKY → stickyGrenade dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans me3-equipment-workshop, me3-from-ashes, me3-omega, me3-citadel-wrex, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Grenade de pouvoir à réserve finie ; échantillon préparé de trois charges ATB, aucune acquisition ni collecte originale simulée. La commande sans charge est refusée sans mutation ; les ressources de l’arme restent distinctes. Zone, délai et dégâts sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-WPN-SWEEPER",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel MEA-WPN-SWEEPER dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : salve énergétique à chaleur. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-WPN-PAW",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel MEA-WPN-PAW dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : rayon canalisé à chaleur. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-WPN-SCORPION",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel MEA-WPN-SCORPION dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : explosion différée sur le groupe ATB. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-WPN-REEGAR",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/chronicle-specialist-reference-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel MEA-WPN-REEGAR dans src/universe-weapon-profiles.js, src/universe-equipment.js et src/combat.js : jet canalisé consommant les munitions par impulsion. Sélection et restauration contrôlées dans l’atelier de cette œuvre ; aucune acquisition ni mission originale reconstituée.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB identifié par le catalogue secondaire : mécanique, dégâts, délais, chaleur et réserves sont adaptés. Aucune validation primaire du modèle, trajectoire, collision, portée, son, animation ou apparence 1:1. Les systèmes à chaleur ne reçoivent pas de réserve de clips abstraite."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-POW-SHIELD-BOOST",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison MEA-POW-SHIELD-BOOST → shieldBoost dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans mea-equipment-workshop, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Action de soutien de groupe : restaure les boucliers des alliés admissibles sans rendre de santé ni de charges de grenades. Montants, durée, recharge et portée de groupe sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-POW-FRAG",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison MEA-POW-FRAG → fragGrenade dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans mea-equipment-workshop, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Grenade de pouvoir à réserve finie ; échantillon préparé de trois charges ATB, aucune acquisition ni collecte originale simulée. La commande sans charge est refusée sans mutation ; les ressources de l’arme restent distinctes. Zone, délai et dégâts sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié."
+    },
+    {
+      "catalogId": "MEA",
+      "id": "MEA-POW-STICKY",
+      "fromStatus": "Défini",
+      "toStatus": "Prototype",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-power-profiles.test.js",
+        "tests/combat-specialists.test.js",
+        "tests/chronicle-specialists.test.js",
+        "scripts/chronicle-specialists-browser.mjs",
+        "docs/qa/chronicle-specialists-browser-report.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/chronicle-specialists-browser-report.json",
+        "sha256": "119e574c95b25aee0e99ba9baa94ad4db079a1042d229cdeac0e7d59df83f986",
+        "resultPointer": "/passed"
+      },
+      "implementation": "Prototype partiel de pouvoir : liaison MEA-POW-STICKY → stickyGrenade dans src/universe-powers.js ; action native dans src/combat.js. Exposé par les profils/préparations autorisés dans mea-equipment-workshop, avec provenance et restrictions de la fiche conservées.",
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Grenade de pouvoir à réserve finie ; échantillon préparé de trois charges ATB, aucune acquisition ni collecte originale simulée. La commande sans charge est refusée sans mutation ; les ressources de l’arme restent distinctes. Zone, délai et dégâts sont des réglages ATB ; aucun arbre complet ni rang d’origine certifié."
+    }
+  ],
+  "scope": "Promotions Défini → Prototype seulement, liées à la vérification fonctionnelle positive. Les prototypes partiels ne certifient ni campagnes complètes, ni assets, ni fidélité 1:1. Le principal et ses aperçus restent sous la responsabilité root ; aucun ancien rapport de lot n’a été modifié."
+}
