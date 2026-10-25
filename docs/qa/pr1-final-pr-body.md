@@ -2,7 +2,7 @@ Cette PR ajoute un atelier de personnalisation de Shepard, accessible à la cré
 
 Les options cosmétiques sont persistantes. L’atelier respecte les neuf emplacements et les quantités de l’inventaire existant, restitue les modules au remplacement de leur pièce et fait expirer l’autorisation d’une ancienne armure lorsqu’elle est retirée. Les objets d’autres équipiers restent réservés. Les préréglages détaillés du visage sont des aperçus 2D ; les sprites existants reçoivent les teintes prises en charge, sans nouveau modèle facial 3D.
 
-La branche intègre `main` `748b965` et conserve ses Chroniques et ses règles d’équipement : ces contenus déjà livrés ne constituent pas les ajouts fonctionnels de cette PR. Le catalogue fusionné contient **1 380 fiches principales = 1 330 existantes + 50 fiches de personnalisation inchangées**, et **6 706 références** avec les 27 catalogues supplémentaires. Les 43 sources et tous les exports univers, leur manifeste et leur ZIP sont préservés. La version reste **0.3.0**.
+La branche intègre `main` `748b965` et conserve ses Chroniques et ses règles d’équipement : ces contenus déjà livrés ne constituent pas les ajouts fonctionnels de cette PR. Le catalogue fusionné contient **1 380 fiches principales = 1 330 existantes + 50 fiches de personnalisation inchangées**, et **6 706 références** avec les 27 catalogues supplémentaires. Les 43 sources principales sont réunies ; le runtime compte 452 sources avec les catalogues supplémentaires. Tous les exports univers, leur manifeste et leur ZIP sont préservés. La version reste **0.3.0**.
 
 Validation récente de la fusion :
 
