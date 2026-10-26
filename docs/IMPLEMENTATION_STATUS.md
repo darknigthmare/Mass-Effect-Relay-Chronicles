@@ -1,10 +1,37 @@
 # État de livraison — 0.2.0
 
-Mise à jour : **25 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
+Mise à jour : **26 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
 
-## Complément soutiens, munitions et portraits — 25 octobre 2026
+## Complément arsenal — 26 octobre 2026
 
-Le lot actuel reprend `748b965`. Il raccorde **quatre fiches de soutien à trois actions** : Drone de combat ME2/ME3, Tourelle de garde ME3 et Drone de défense ME3. Chaque invocation devient une entité ciblable, dotée de PV, d’une durée et d’un propriétaire. Les soutiens ne sont pas commandables, ne reçoivent pas les soins du groupe et ne comptent pas dans la détermination des vainqueurs. Les plafonds, cadences, durées, retrait lorsque le propriétaire tombe et réaction défensive sont des choix ATB explicités, sans simulation de proximité originale.
+Le complément reprend `1310a84`. Il conserve les soutiens, munitions, préparations, lectures et portraits précédents, puis ajoute **huit profils d’armes**, dont quatre à charge automatique ATB, **quinze armures** et une famille de module ultraléger pour mitraillette ME3 conventionnelle à clips. Les ateliers atteignent **100 équipements : 72 armes, 25 armures et trois familles de modules**. Quatorze des armures ajoutées sont limitées aux ateliers Legendary Edition ME2/ME3 ou Deluxe Andromeda ; la quinzième est une protection Reliquats agrégée. Acquisition, rangs, apparences et valeurs originales restent partiels.
+
+Les huit armes sont le fusil à particules, le Lancer, l’Arc, le Graal et le Javelin ME3, puis l’Equalizer, le Scattershot et le Venom Andromeda. Arc, Graal, Javelin et Venom utilisent une charge automatique interruptible d’une seconde ATB ; les clips sont dépensés au tir. Le Javelin ignore seulement le couvert binaire ATB, sans traversée géométrique du décor. Le module ultraléger applique un multiplicateur de 0,9 aux délais de pouvoirs ATB, sans simuler le poids original ni donner de pouvoir.
+
+**Six bancs d’opposition et trois ateliers d’édition** portent les essais à **25**. Les nouveaux bancs emploient **16 profils d’adversaires, dont trois boss**, avec actions génériques et mécaniques manquantes visibles. Les phases, orbes, possession, vol et sous-cibles non reconstitués restent signalés. Les **42 profils de personnages sélectionnables**, les **61 fiches de pouvoirs / 30 commandes**, les six modes de munitions et les **16 lectures / 52 pages** restent inchangés. Aucun de ces bancs ne reconstitue une campagne complète.
+
+Quatre atlas RGBA ajoutent **24 illustrations fixes et partielles** : quatre bustes de personnages, deux de PNJ, six silhouettes d’adversaires, six équipements et six véhicules ou vaisseaux. Ils complètent les trois portraits historiques, qui gardent leur priorité. Les PNJ et la flotte restent documentaires ; aucun pilotage ou droit de sélection n’est déduit d’une image. Les quinze PNG courants n’ajoutent pas de nouveau cycle animé ni de modèle complet. Le [manifeste arsenal](../public/assets/arsenal-visuals.json) conserve quatre empreintes et six cadrages irréguliers ; toutes les entrées restent `primaryVisualVerified: false`.
+
+Le registre courant compte **6 658 fiches et 450 sources** : 1 332 fiches et 40 sources principales, puis 5 326 fiches et 410 sources supplémentaires. Deux nouvelles références ME1 documentent uniquement l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les anciennes fiches d’adaptation ne sont pas requalifiées. Les **52 promotions Prototype sont appliquées**. Les statuts actuels sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**.
+
+Le [rapport global arsenal](qa/arsenal-report.json) relie les validations finales suivantes.
+
+| Contrôle actuel | Résultat et portée |
+|---|---|
+| Tests Node | 537 réussis sur 537, aucun échec ni test ignoré |
+| Build web | 52 modules compilés en 3,31 secondes |
+| Nouveau parcours navigateur | Six contrôles : huit armes, quinze armures, un module, seize adversaires dont trois boss, 24 visuels et six victoires réelles |
+| Régression des Chroniques | Six contrôles et 25 victoires ; tous les essais exposés |
+| Production HTTP | 17 contrôles ; quinze PNG et sept bundles servis vérifiés par empreinte ; les quatre atlas répondent HTTP 200 avec les SHA exacts |
+| Différentiel ME1 | Aucune divergence sur 30 graines et 1 755 ordres acceptés |
+| Classeurs | 28 XLSX vérifiés, 21 exports univers reconstruits ; 93 panneaux ciblés de trois classeurs supplémentaires et trois panneaux du principal revus |
+| Conservation | Sources, faits historiques et archives préservés dans les exceptions déclarées du rapport |
+
+Preuves : [nouveau parcours](qa/arsenal-browser-report.json), [régression](qa/arsenal-legacy-universe-report.json), [production](qa/arsenal-production-report.json), [conservation](qa/arsenal-preservation-report.json), [exports](qa/arsenal-workbook-export-report.json), [revue univers](qa/arsenal-workbook-visual-report.json) et [principal](qa/arsenal-main-workbook-report.json). Les [six réserves bibliographiques](qa/arsenal-source-reservations.json) restent ouvertes ; la [corroboration primaire limitée](qa/arsenal-additional-source-check.json) de Brute, Banshee et Husk ne valide ni kits ni illustrations. La revue ne porte pas sur toutes les feuilles des classeurs. Aucun nouveau parcours ME1 complet, lancement Windows ou contrôle mobile n’est annoncé. Les preuves des lots ci-dessous restent historiques et ne sont pas réécrites pour ce code. Les [références visuelles inspectées](research/arsenal-visual-sources.md), [limites artistiques](ASSETS.md) et [périmètres des essais](CHRONICLES.md) distinguent adaptation fonctionnelle et fidélité 1:1 non certifiée. La personnalisation 0.3.0 reste dans la PR nº1, séparée de `main`.
+
+## Complément soutiens, munitions et portraits — historique du 25 octobre 2026
+
+Ce lot historique reprenait `748b965`. Il raccorde **quatre fiches de soutien à trois actions** : Drone de combat ME2/ME3, Tourelle de garde ME3 et Drone de défense ME3. Chaque invocation devient une entité ciblable, dotée de PV, d’une durée et d’un propriétaire. Les soutiens ne sont pas commandables, ne reçoivent pas les soins du groupe et ne comptent pas dans la détermination des vainqueurs. Les plafonds, cadences, durées, retrait lorsque le propriétaire tombe et réaction défensive sont des choix ATB explicités, sans simulation de proximité originale.
 
 **Dix fiches de munitions exposées donnent six actions de modes exclusifs**, plus leur désactivation. Les modes appris demandent le kit, l’œuvre et une arme conventionnelle à clips compatibles. Activation et désactivation consomment un ordre ATB sans remplir les réserves ; les effets restent limités aux tirs, avec dégâts par couche et états après perte réelle de santé. Pouvoirs, invocations, armes à chaleur et six armes spéciales restent exclus. Warp Ammo ME3 et les consommables de munitions Andromeda restent fermés. Les **61 fiches de pouvoirs exposées correspondent désormais à 30 commandes**, hors désactivation.
 
@@ -14,7 +41,7 @@ Un onzième PNG local fournit **trois bustes de prototype**, limités à Miranda
 
 Le lot ajoute **17 promotions Prototype** : quatre pouvoirs de soutien, dix de munitions et trois portraits partiels. Le décompte vérifié après reconstruction est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé**, soit **6 656 fiches et 449 sources**. Le [rapport global](qa/chronicle-support-report.json) relie les résultats suivants à leurs sources.
 
-| Validation du lot actuel | Résultat et portée |
+| Validation historique du lot soutiens | Résultat et portée |
 |---|---|
 | Tests Node | 473 réussis sur 473, aucun échec ni test ignoré |
 | Build web | Compilation réussie de 47 modules |
@@ -86,7 +113,7 @@ Cette livraison est un prototype jouable de l’adaptation ATB. La reconstitutio
 | Sauvegardes | Auto hors combat, 6 emplacements manuels, import/export JSON et migration des anciennes parties v1 |
 | Narration | 9 interlocuteurs et 18 sujets conditionnels au Normandy, conseil à Garrus mémorisé, 16 notices de codex progressives |
 | Carte et journal | Filtres, légende, repères lisibles, étapes et conditions de blocage, suivi d’une opération |
-| Art | 11 PNG, 48 sujets d’atlas historiques, 32 images de marche, 4 poses de combat féminines, une illustration d’accueil et trois bustes partiels des Chroniques |
+| Art | 15 PNG : sujets et animations historiques, trois bustes des Chroniques et 24 illustrations fixes partielles sur quatre atlas arsenal |
 | Son | Ambiances et effets locaux Web Audio ; aucun doublage |
 | Distribution | Compilation Vite, configuration Electron/Windows, configuration Vercel et workflows GitHub existants |
 

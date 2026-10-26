@@ -86,6 +86,7 @@ const protectedTarget = actor => actor.shield > EPSILON || (actor.statuses.forti
 // actors never enter this branch and retain their original unlimited ammunition.
 const ammoCost = actionId => actionId === 'burst' ? 3 : actionId === 'signature' ? 2 : 1;
 const weaponProfile = actor => getUniverseWeaponProfile(actor.weaponProfileId);
+const chargeProfile = profile => ['charged-shot', 'charged-area'].includes(profile?.mode);
 const weaponAmmoCost = (actor, actionId) => weaponProfile(actor)?.mode === 'clip-channel' ? weaponProfile(actor).ammoPerTick : ammoCost(actionId);
 const effectDuration = (actor, actionId, seconds) => clamp(seconds * powerMultiplier(actor, actionId), .25, 20);
 
@@ -247,6 +248,7 @@ function normalizeActor(input, team, index) {
     bioticMultiplier: clamp(finite(input.bioticMultiplier, 1), .05, 10),
     techMultiplier: clamp(finite(input.techMultiplier, 1), .05, 10),
     weaponDamageMultiplier: clamp(finite(input.weaponDamageMultiplier, 1), .1, 3),
+    powerCooldownMultiplier: clamp(finite(input.powerCooldownMultiplier, 1), .5, 1.5),
     primaryAction: ['strike', 'acid'].includes(input.primaryAction) ? input.primaryAction : 'shoot',
     lastDamagedAt: -Infinity,
     _warpSource: null,
@@ -425,6 +427,7 @@ export function getActions(battle, actorId) {
     return { id, ...ACTIONS[id], ...(clipShot ? { heatCost: 0, ammoCost: weaponAmmoCost(actor, id) } : heatCost === undefined ? {} : { heatCost }),
       ...(profile?.mode === 'heat-beam' ? { heatCost: profile.heatPerSecond * profile.duration * actor.weaponHeatMultiplier, channelDuration: profile.duration } : {}),
       ...(profile?.mode === 'clip-channel' ? { channelDuration: profile.duration } : {}),
+      ...(chargeProfile(profile) ? { channelDuration: profile.chargeDuration, chargeDuration: profile.chargeDuration } : {}),
       description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
 }
@@ -557,10 +560,11 @@ function stopChannel(battle, actor, reason) {
     weaponProfileId: channel.weaponProfileId, reason });
 }
 
-function queueProjectile(battle, actor, target, actionId, baseDamage, delay, splashRatio, profileId = null, weaponAttack = false) {
+function queueProjectile(battle, actor, target, actionId, baseDamage, delay, splashRatio, profileId = null, weaponAttack = false, launchedAt) {
   battle.projectiles ||= [];
   battle.projectiles.push({ actorId: actor.id, targetId: target.id, targetTeam: target.team, actionId,
-    weaponProfileId: profileId, remaining: delay, baseDamage, splashRatio, weaponAttack });
+    weaponProfileId: profileId, remaining: delay, baseDamage, splashRatio, weaponAttack,
+    ...(Number.isFinite(launchedAt) ? { launchedAt } : {}) });
   emit(battle, { type: 'projectile', actorId: actor.id, targetId: target.id, actionId, weaponProfileId: profileId, remaining: delay });
 }
 
@@ -577,7 +581,11 @@ function tickProjectiles(battle, dt) {
   if (!battle.projectiles?.length) return;
   const pending = [];
   for (const projectile of battle.projectiles) {
-    projectile.remaining = Math.max(0, projectile.remaining - dt);
+    // A charged projectile is born during an actor tick. Its flight may use
+    // only the time after that instant, rather than spending the tick twice.
+    const flightTime = Number.isFinite(projectile.launchedAt)
+      ? Math.min(dt, Math.max(0, battle.elapsed - projectile.launchedAt)) : dt;
+    projectile.remaining = Math.max(0, projectile.remaining - flightTime);
     if (projectile.remaining > EPSILON) pending.push(projectile);
     else {
       const actor = battle.actors.find(candidate => candidate.id === projectile.actorId);
@@ -598,6 +606,29 @@ function tickChannel(battle, actor, dt) {
   }
   const activeTime = Math.min(dt, channel.remaining);
   channel.remaining = Math.max(0, channel.remaining - activeTime);
+  if (chargeProfile(profile)) {
+    if (channel.remaining > EPSILON) return activeTime;
+    const cost = ammoCost(channel.actionId);
+    if (actor.ammo < cost) { stopChannel(battle, actor, 'chargeur vide'); return activeTime; }
+    actor.ammo -= cost;
+    const damage = channel.baseDamage * profile.chargeDamageMultiplier;
+    emit(battle, { type: 'weaponChargeRelease', actorId: actor.id, targetId: target.id, actionId: channel.actionId,
+      weaponProfileId: profile.id, chargeDuration: profile.chargeDuration, ammo: actor.ammo });
+    emit(battle, { type: 'ammo', actorId: actor.id, ammo: actor.ammo, reserveAmmo: actor.reserveAmmo });
+    if (profile.mode === 'charged-area') {
+      const launchedAt = battle.elapsed - (dt - activeTime);
+      queueProjectile(battle, actor, target, channel.actionId, damage, profile.delay, profile.splashRatio, profile.id, true, launchedAt);
+    } else {
+      const ammunition = 1 + (synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus);
+      for (let hit = 0; hit < profile.impactCount && living(target); hit++) {
+        applyDamage(battle, actor, target, damage / profile.impactCount * ammunition,
+          { actionId: channel.actionId, ignoreCover: channel.ignoreCover || profile.ignoresCover === true });
+      }
+    }
+    channel.remainingTicks = 0;
+    stopChannel(battle, actor, 'charge terminée');
+    return activeTime;
+  }
   channel.untilNextPulse -= activeTime;
   while (channel.untilNextPulse <= EPSILON && channel.remainingTicks > 0 && actor.channel) {
     if (profile.mode === 'clip-channel' && actor.ammo < profile.ammoPerTick) { stopChannel(battle, actor, 'chargeur vide'); break; }
@@ -673,7 +704,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
   const definition = ACTIONS[actionId];
   if (actionId !== 'cancelChannel') actor.atb = 0;
   if (actionId !== 'cover') actor.cover = false;
-  if (definition.cooldown) actor.cooldowns[actionId] = definition.cooldown;
+  if (definition.cooldown) actor.cooldowns[actionId] = definition.cooldown * actor.powerCooldownMultiplier;
   battle.actionCount += 1;
   emit(battle, { type: 'action', actorId, actionId, targetId: target?.id, targetIds: targets.map(candidate => candidate.id), message: `${actor.name} : ${definition.label}.` });
 
@@ -682,7 +713,13 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     const profile = weaponProfile(actor);
     if (profile) {
       const baseDamage = actor.attack * actor.weaponDamageMultiplier * multiplier * (0.94 + random(battle) * .12);
-      if (['heat-beam', 'clip-channel'].includes(profile.mode)) {
+      if (chargeProfile(profile)) {
+        actor.channel = { actorId, targetId: target.id, actionId, weaponProfileId: profile.id, phase: 'charging',
+          remaining: profile.chargeDuration, remainingTicks: 1, totalTicks: 1, untilNextPulse: profile.chargeDuration,
+          baseDamage, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' };
+        emit(battle, { type: 'channelStart', actorId, targetId: target.id, actionId, weaponProfileId: profile.id,
+          phase: 'charging', duration: profile.chargeDuration });
+      } else if (['heat-beam', 'clip-channel'].includes(profile.mode)) {
         const totalTicks = Math.ceil(profile.duration / profile.tickInterval);
         actor.channel = { actorId, targetId: target.id, actionId, weaponProfileId: profile.id,
           remaining: profile.duration, remainingTicks: totalTicks, totalTicks, untilNextPulse: profile.tickInterval,

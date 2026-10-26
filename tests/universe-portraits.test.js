@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { CHRONICLE_SCENARIOS, getUniverseActor, universeActorFor } from '../src/universe-actors.js';
+import { CHRONICLE_SCENARIOS, HISTORICAL_CHRONICLE_SCENARIOS, getUniverseActor, universeActorFor } from '../src/universe-actors.js';
 import { getUniversePortrait, UNIVERSE_PORTRAITS, UNIVERSE_PORTRAIT_ATLAS } from '../src/universe-portraits.js';
 
 const metadata = JSON.parse(readFileSync(new URL('../public/assets/chronicle-portraits.json', import.meta.url), 'utf8'));
@@ -66,7 +66,8 @@ test('portrait eligibility follows each existing scenario roster without admitti
       assert.equal(!!getUniversePortrait(id, scene.context, scene.id), expected, `${id}/${scene.id}`);
       if (expected) allowed.push(scene.id);
     }
-    assert.deepEqual(allowed, id === 'ME2-CHR-MIRANDA'
+    const historical = new Set(HISTORICAL_CHRONICLE_SCENARIOS.map(scene => scene.id));
+    assert.deepEqual(allowed.filter(sceneId => historical.has(sceneId)), id === 'ME2-CHR-MIRANDA'
       ? ['me2-freedoms-progress', 'me2-equipment-workshop']
       : [id === 'ME2-CHR-THANE' ? 'me2-equipment-workshop' : 'me3-equipment-workshop']);
     assert.equal(getUniversePortrait(id, context, 'unknown-scenario'), null);

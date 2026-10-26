@@ -1,8 +1,8 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-10-25** · Version 0.2.0
+Mise à jour : **2026-10-26** · Version 0.2.0
 
-Ce catalogue contient **1 330 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
+Ce catalogue contient **1 332 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
@@ -14,7 +14,7 @@ Ce catalogue contient **1 330 fiches**, organisées en **26 catégories** et *
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
 | Défini | 1 035 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 289 | Présent sous une forme simplifiée à reprendre. |
+| Prototype | 291 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
 | Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
@@ -22,11 +22,11 @@ Un statut de contenu et un statut d’asset décrivent deux choses distinctes. U
 
 | Niveau de canon | Fiches | Signification |
 | --- | ---: | --- |
-| Confirmé | 17 | Existence ou règle vérifiée dans la source indiquée. Cela ne valide pas un asset. |
+| Confirmé | 19 | Existence ou règle vérifiée dans la source indiquée. Cela ne valide pas un asset. |
 | Référence à vérifier | 522 | Nom, rôle, apparence ou conditions à recouper avant production finale. |
 | Adaptation | 791 | Règle, découpage ou livrable original de ce fan game. |
 
-Le périmètre comprend **1 268 fiches ME1**, **33 fiches ME2**, **24 fiches ME3** et **5 systèmes transversaux**. Les 57 fiches d’extension futures du classeur principal restent séparées ; les nouveaux essais sont suivis dans les classeurs propres aux œuvres. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
+Le périmètre comprend **1 270 fiches ME1**, **33 fiches ME2**, **24 fiches ME3** et **5 systèmes transversaux**. Les 57 fiches d’extension futures du classeur principal restent séparées ; les nouveaux essais sont suivis dans les classeurs propres aux œuvres. Un élément canonique confirmé ne signifie pas que sa représentation graphique ou ses mécaniques sont fidèles.
 
 ## Couverture du prototype
 
@@ -44,7 +44,7 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | 14 quêtes annexes : trois historiques et 11 opérations ajoutées à la Citadelle et Féros, avec 43 nouvelles étapes | Trois assignations historiques et onze opérations supplémentaires. Quatre scans de veilleurs, dialogues réécrits, cartes condensées, quatre combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire. Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
 | Équipement | 52 articles jouables : 20 armes, 16 armures, 12 modules et 4 outils, achat/vente, comparaison et neuf emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Formations explicites, restrictions de morphologie, poids, niveau et bio/tech. Modules restitués au retrait de leur pièce. Prix, points et ports fixes adaptés ; l’arme et la tenue dessinées ne changent pas. Voir [complément et sources](research/loadout-extension-sources.md). |
-| Chroniques | 28 œuvres, 48 segments documentés, 16 essais tactiques, 42 personnages sélectionnables et 76 équipements | Sessions et sauvegardes séparées de ME1 ; seize essais et seize lectures courtes. Soutiens autonomes ciblables et modes de munitions exclusifs, avec valeurs ATB adaptées. Trois portraits de bustes sourcés ; silhouettes complètes, animations, niveaux, dialogues intégraux et campagnes complètes restent à produire. Voir [périmètre et utilisation](CHRONICLES.md). |
+| Chroniques | 28 œuvres, 48 segments documentés, 25 essais tactiques, 42 personnages sélectionnables et 100 équipements | Sessions et sauvegardes séparées de ME1 ; vingt-cinq essais et seize lectures courtes. Huit armes supplémentaires dont des charges interruptibles, quinze armures et un module ultraléger bornés à leur contexte ; paramètres ATB explicitement adaptés. Vingt-quatre nouvelles illustrations fixes couvrent personnages, PNJ, ennemis et boss, costumes, armes, schémas de modules, véhicules et vaisseaux. Modèles, animations, rangs, phases de boss, pilotage et campagnes complètes restent à produire ; aucune fidélité 1:1 intégrale certifiée. Voir [périmètre et utilisation](CHRONICLES.md). |
 | Pouvoirs des Chroniques | 61 fiches reliées à 30 actions, dont 22 nouvelles ; 15 préparations de classe ou de compétences | Arbres et acquisition complets non simulés ; statistiques ATB de base conservées. Les deux familles de modules ME3 sont limitées aux fusils d’assaut conventionnels à clips. |
 | Lectures documentaires | 16 parcours et 52 pages sourcées | Paraphrases factuelles avec navigation et découvertes persistantes. Aucun personnage de livre rendu jouable, niveau créé, dialogue intégral ou choix canonique inventé. |
 | Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
@@ -79,7 +79,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Zones | 100 | 100 | 0 | 0 | 0 | Pièces, espaces extérieurs et points de passage |
 | Liaisons | 91 | 91 | 0 | 0 | 0 | Continuité spatiale et conditions de passage |
 | Décors | 35 | 34 | 1 | 0 | 0 | Architecture, matières et cadrages |
-| Props | 52 | 52 | 0 | 0 | 0 | Objets de décor et interactions |
+| Props | 54 | 52 | 2 | 0 | 0 | Objets de décor et interactions |
 | Ennemis et boss | 39 | 31 | 8 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
 | Missions | 63 | 42 | 21 | 0 | 0 | Étapes de l’intrigue principale |
 | Secondaires et DLC | 108 | 51 | 57 | 0 | 0 | Missions annexes et extensions de ME1 |
@@ -98,7 +98,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Systèmes et UI | 45 | 8 | 34 | 0 | 3 | Interface et règles de jeu |
 | QA | 52 | 52 | 0 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 330** | **1 035** | **289** | **3** | **3** | |
+| **Total** | **1 332** | **1 035** | **291** | **3** | **3** | |
 
 ## Lire une fiche
 
@@ -163,6 +163,7 @@ La colonne de source donne une référence de travail. Les lignes marquées **R�
 | ME1-GEAR-AMMUNITION-UPGRADES | [ME1 — Ammunition Upgrades](https://masseffect.fandom.com/wiki/Ammunition_Upgrades) | Source communautaire sur noms, fabricants et familles. Valeurs de combat et économie du prototype, sans équivalence statistique 1:1. |
 | ME1-GEAR-ARMOR-UPGRADES | [ME1 — Armor Upgrades](https://masseffect.fandom.com/wiki/Armor_Upgrades) | Source communautaire sur noms, fabricants et familles. Valeurs de combat et économie du prototype, sans équivalence statistique 1:1. |
 | EA-LE-FEMSHEP | [EA — apparence féminine de Shepard dans Legendary Edition](https://news.ea.com/press-releases/press-releases-details/2021/Relive-the-Award-Winning-Space-Opera-in-Mass-Effect-Legendary-Edition-on-May-14/) | Source primaire du 2 février 2021, consultée le 23 octobre 2026. Confirme la disponibilité du modèle féminin par défaut dans les trois épisodes ; ne valide pas les PNG du projet. |
+| ME1-MANUAL-X360-EN | [Mass Effect — manuel Xbox360 anglais officiel](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf) | Manuel réellement téléchargé HTTP 200 le 26/10/2026 : 16 pages, SHA-256 f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44. Normandy : page PDF 3, page imprimée 4 ; Mako : page PDF 13, pages imprimées 23–24. Identification et vue seulement ; aucune géométrie, statistique ou fidélité générée certifiée. Preuve : docs/qa/arsenal-visual-reference-report.json. Source distincte du manuel PC français ME1-MANUAL. |
 
 La production prend ME1 comme base. La continuité doit distinguer le Normandy SR-1 des vaisseaux ultérieurs, les armes à chauffe des systèmes de cartouches thermiques, et les talents de ME1 des pouvoirs introduits plus tard. Les guides cosplay et les visuels de la trilogie exigent un classement par épisode avant réutilisation. Les références original/Legendary Edition doivent également être identifiées avant une comparaison exacte.
 

@@ -4,6 +4,8 @@
 import { UNIVERSE_GROUPS, getUniverseRecord } from './universe-data.js';
 import { canAccessContent, normalizeContext } from './continuity.js';
 import { SPECIALIST_SCENARIOS } from './universe-specialist-scenarios.js';
+import { OPPOSITION_SCENARIOS } from './universe-opposition-scenarios.js';
+import { createEditionEquipmentScenarios } from './universe-equipment-scenarios.js';
 import { getActorPowerKit, unresolvedPowerNames, SHEPARD_CLASS_PREPARATIONS, RYDER_SKILL_PREPARATIONS, getPreparationPowers, ME2_CLASS_PRIMARY_REFERENCE } from './universe-powers.js';
 import { getAmmoActionProfile } from './universe-ammo.js';
 
@@ -106,13 +108,13 @@ function scenario(id, mediaId, periodId, name, actorIds, defaultParty, enemies, 
 }
 const workshopWeapons = {
   ME2: ['PREDATOR', 'CARNIFEX', 'SHURIKEN', 'TEMPEST', 'AVENGER', 'VINDICATOR', 'KATANA', 'SCIMITAR', 'MANTIS', 'VIPER'],
-  ME3: ['AVENGER', 'VINDICATOR', 'MATTOCK', 'REVENANT', 'PHAESTON', 'SABER', 'GETH-RIFLE', 'PREDATOR', 'PHALANX', 'CARNIFEX', 'PALADIN', 'TALON', 'KATANA', 'SCIMITAR', 'CLAYMORE', 'EVISCERATOR', 'DISCIPLE', 'MANTIS', 'VIPER', 'WIDOW', 'BLACK-WIDOW', 'RAPTOR', 'SHURIKEN', 'TEMPEST', 'LOCUST', 'HORNET', 'FALCON', 'SCORPION'],
-  MEA: ['AVENGER', 'CYCLONE', 'MATTOCK', 'REVENANT', 'VALKYRIE', 'PREDATOR', 'CARNIFEX', 'PHALANX', 'EAGLE', 'CHARGER', 'HORNET', 'SIDEWINDER', 'TALON', 'KATANA', 'RUZAD', 'DISCIPLE', 'PIRANHA', 'MANTIS', 'VIPER', 'BLACK-WIDOW', 'INDRA', 'VANQUISHER', 'SCORPION', 'PAW', 'REEGAR', 'SWEEPER'],
+  ME3: ['AVENGER', 'VINDICATOR', 'MATTOCK', 'REVENANT', 'PHAESTON', 'SABER', 'GETH-RIFLE', 'PREDATOR', 'PHALANX', 'CARNIFEX', 'PALADIN', 'TALON', 'KATANA', 'SCIMITAR', 'CLAYMORE', 'EVISCERATOR', 'DISCIPLE', 'MANTIS', 'VIPER', 'WIDOW', 'BLACK-WIDOW', 'RAPTOR', 'SHURIKEN', 'TEMPEST', 'LOCUST', 'HORNET', 'FALCON', 'SCORPION', 'ARC', 'GRAAL', 'JAVELIN'],
+  MEA: ['AVENGER', 'CYCLONE', 'MATTOCK', 'REVENANT', 'VALKYRIE', 'PREDATOR', 'CARNIFEX', 'PHALANX', 'EAGLE', 'CHARGER', 'HORNET', 'SIDEWINDER', 'TALON', 'KATANA', 'RUZAD', 'DISCIPLE', 'PIRANHA', 'MANTIS', 'VIPER', 'BLACK-WIDOW', 'INDRA', 'VANQUISHER', 'SCORPION', 'PAW', 'REEGAR', 'SWEEPER', 'EQUALIZER', 'SCATTERSHOT', 'VENOM'],
 };
 function workshop(mediaId, actorIds, exclusiveActorGroups = []) {
   const equipmentIds = [...workshopWeapons[mediaId].map(model => `${mediaId}-WPN-${model}`),
-    ...(mediaId === 'MEA' ? ['INITIATIVE', 'PATHFINDER', 'N7', 'HYPERGUARDIAN', 'MAVERICK', 'ANGARAN', 'KETT', 'HELEUS'] : ['N7']).map(model => `${mediaId}-EQP-${model}`)];
-  if (mediaId === 'ME3') equipmentIds.push('ME3-EQP-BARREL', 'ME3-EQP-MAGAZINE');
+    ...(mediaId === 'MEA' ? ['INITIATIVE', 'PATHFINDER', 'N7', 'HYPERGUARDIAN', 'MAVERICK', 'ANGARAN', 'KETT', 'HELEUS', 'REMNANT'] : ['N7']).map(model => `${mediaId}-EQP-${model}`)];
+  if (mediaId === 'ME3') equipmentIds.push('ME3-EQP-BARREL', 'ME3-EQP-MAGAZINE', 'ME3-EQP-ULTRALIGHT');
   const title = mediaId === 'MEA' ? 'Andromeda' : mediaId === 'ME2' ? 'Mass Effect 2' : 'Mass Effect 3';
   const scene = scenario(`${mediaId.toLowerCase()}-equipment-workshop`, mediaId, mediaId.toLowerCase(), `Atelier d’équipement — ${title}`, actorIds, actorIds.slice(0, 3),
     [enemy('prototype-target', 'Cible mécanique — banc ATB', { id: `${mediaId}:workshop:synthetic`, catalogId: null, abstract: true, synthetic: true, hp: 250, maxHp: 250, attack: 5 }),
@@ -136,7 +138,7 @@ function contextualSimulation(id, mediaId, periodId, name, actorIds, sourceEntry
     sourceEntryIds, `configuration de commando à l’époque du prologue, dans un banc de personnages indépendant. ${description} Les adversaires exacts de cette scène ne sont pas vérifiés : seuls des mannequins originaux sont employés ; aucune rencontre de la mission n’est reproduite.`);
   return { ...scene, kind: 'tactical-simulation' };
 }
-export const CHRONICLE_SCENARIOS = freeze([
+export const HISTORICAL_CHRONICLE_SCENARIOS = freeze([
   scenario('me2-freedoms-progress', 'ME2', 'me2', 'Freedom’s Progress — sécurité mécanique',
     ['ME2-CHR-SHEPARD', 'ME2-CHR-MIRANDA', 'ME2-CHR-JACOB'], ['ME2-CHR-SHEPARD', 'ME2-CHR-MIRANDA', 'ME2-CHR-JACOB'],
     [enemy('ME2-ENM-LOKI', 'LOKI — prototype', { synthetic: true }), enemy('ME2-ENM-LOKI', 'LOKI — prototype', { id: 'ME2-ENM-LOKI:prototype-2', synthetic: true })],
@@ -165,6 +167,10 @@ export const CHRONICLE_SCENARIOS = freeze([
   workshop('MEA', ['MEA-CHR-RYDER', 'MEA-CHR-CORA', 'MEA-CHR-LIAM', 'MEA-CHR-VETRA',
     'MEA-CHR-JAAL', 'MEA-CHR-DRACK', 'MEA-CHR-PEEBEE']),
   ...SPECIALIST_SCENARIOS,
+]);
+export const EDITION_EQUIPMENT_SCENARIOS = createEditionEquipmentScenarios(HISTORICAL_CHRONICLE_SCENARIOS);
+export const CHRONICLE_SCENARIOS = freeze([
+  ...HISTORICAL_CHRONICLE_SCENARIOS, ...OPPOSITION_SCENARIOS, ...EDITION_EQUIPMENT_SCENARIOS,
 ]);
 export const SCENARIOS = CHRONICLE_SCENARIOS;
 export function getUniverseScenario(context, scenarioId) {

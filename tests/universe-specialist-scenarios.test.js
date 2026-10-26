@@ -5,7 +5,7 @@ import { getMediaPeriod } from '../src/continuity-data.js';
 import { canAccessContent } from '../src/continuity.js';
 import { getUniverseRecord, getUniverseWork } from '../src/universe-data.js';
 import { SPECIALIST_SCENARIOS } from '../src/universe-specialist-scenarios.js';
-import { CHRONICLE_SCENARIOS, canUseUniverseActor, universeActorFor, getUniverseActor } from '../src/universe-actors.js';
+import { CHRONICLE_SCENARIOS, HISTORICAL_CHRONICLE_SCENARIOS, canUseUniverseActor, universeActorFor, getUniverseActor } from '../src/universe-actors.js';
 import { createChronicle, setChronicleParty, encodeChronicle, decodeChronicle } from '../src/chronicles.js';
 import { newGame } from '../src/state.js';
 
@@ -78,7 +78,8 @@ test('prepared edition, loyalty and survival conditions are visible without crea
 });
 
 test('eight newly reachable identities remain excluded from every older scenario and other specialist benches', () => {
-  assert.equal(CHRONICLE_SCENARIOS.length, 16);
+  assert.equal(HISTORICAL_CHRONICLE_SCENARIOS.length, 16);
+  assert.deepEqual(CHRONICLE_SCENARIOS.slice(0, 16), HISTORICAL_CHRONICLE_SCENARIOS);
   assert.equal(new Set(CHRONICLE_SCENARIOS.flatMap(scene => scene.actorIds)).size, 42);
   assert.deepEqual(CHRONICLE_SCENARIOS.slice(0, 10).map(scene => scene.id), Object.keys(originalRosters));
   for (const [id, actorIds] of Object.entries(originalRosters)) {
@@ -131,15 +132,16 @@ test('specialist sessions roundtrip and reject crossed identities while preservi
   assert.equal(JSON.stringify(campaign), before);
 });
 
-test('six new weapon permissions belong only to existing equipment workshops', () => {
+test('the six historical specialist weapons remain scoped to base and explicitly prepared edition workshops', () => {
   const expectedWeapons = {
     'ME3-WPN-FALCON': 'me3-equipment-workshop', 'ME3-WPN-SCORPION': 'me3-equipment-workshop',
     'MEA-WPN-SCORPION': 'mea-equipment-workshop', 'MEA-WPN-PAW': 'mea-equipment-workshop',
     'MEA-WPN-REEGAR': 'mea-equipment-workshop', 'MEA-WPN-SWEEPER': 'mea-equipment-workshop',
   };
   for (const [itemId, onlyScene] of Object.entries(expectedWeapons)) {
-    for (const scene of CHRONICLE_SCENARIOS) assert.equal(scene.allowedEquipmentIds.includes(itemId), scene.id === onlyScene, `${itemId}/${scene.id}`);
+    const editionScene = itemId.startsWith('ME3-') ? 'me3-legendary-equipment-workshop' : 'mea-deluxe-equipment-workshop';
+    for (const scene of CHRONICLE_SCENARIOS) assert.equal(scene.allowedEquipmentIds.includes(itemId), [onlyScene, editionScene].includes(scene.id), `${itemId}/${scene.id}`);
   }
-  const workshops = CHRONICLE_SCENARIOS.filter(scene => scene.kind === 'equipment-workshop');
-  assert.deepEqual(workshops.map(scene => [scene.context.mediaId, scene.allowedEquipmentIds.length]), [['ME2', 11], ['ME3', 31], ['MEA', 34]]);
+  const workshops = HISTORICAL_CHRONICLE_SCENARIOS.filter(scene => scene.kind === 'equipment-workshop');
+  assert.deepEqual(workshops.map(scene => [scene.context.mediaId, scene.allowedEquipmentIds.length]), [['ME2', 11], ['ME3', 35], ['MEA', 38]]);
 });

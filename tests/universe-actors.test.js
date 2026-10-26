@@ -4,7 +4,7 @@ import { ACTIONS, createBattle } from '../src/combat.js';
 import { getUniverseRecord } from '../src/universe-data.js';
 import { canAccessContent } from '../src/continuity.js';
 import { createChronicle, setChronicleParty, startChronicleBattle } from '../src/chronicles.js';
-import { UNIVERSE_ACTORS, CHRONICLE_SCENARIOS, SCENARIOS, getUniverseActor, getUniverseActorProfile, canUseUniverseActor, universeActorFor, getUniverseScenario } from '../src/universe-actors.js';
+import { UNIVERSE_ACTORS, CHRONICLE_SCENARIOS, HISTORICAL_CHRONICLE_SCENARIOS, SCENARIOS, getUniverseActor, getUniverseActorProfile, canUseUniverseActor, universeActorFor, getUniverseScenario } from '../src/universe-actors.js';
 
 test('documentary identities remain distinct across works and never gain combat statistics by default', () => {
   assert.ok(UNIVERSE_ACTORS.length > 100);
@@ -24,7 +24,7 @@ test('documentary identities remain distinct across works and never gain combat 
 
 test('every tactical scenario has real source identifiers and a valid bounded explicit roster', () => {
   assert.equal(SCENARIOS, CHRONICLE_SCENARIOS);
-  assert.equal(CHRONICLE_SCENARIOS.length, 16);
+  assert.equal(HISTORICAL_CHRONICLE_SCENARIOS.length, 16);
   for (const scenario of CHRONICLE_SCENARIOS) {
     assert.match(scenario.description, /Essai tactique/);
     assert.ok(scenario.sourceEntryIds.length > 0);
@@ -52,9 +52,9 @@ test('every tactical scenario has real source identifiers and a valid bounded ex
 });
 
 test('equipment workshops whitelist same-work models without inventing mission possession or armour ownership', () => {
-  const workshops = CHRONICLE_SCENARIOS.filter(scene => scene.kind === 'equipment-workshop');
+  const workshops = HISTORICAL_CHRONICLE_SCENARIOS.filter(scene => scene.kind === 'equipment-workshop');
   assert.equal(workshops.length, 3);
-  assert.equal(workshops.reduce((sum, scene) => sum + scene.allowedEquipmentIds.length, 0), 76);
+  assert.equal(workshops.reduce((sum, scene) => sum + scene.allowedEquipmentIds.length, 0), 84);
   for (const scene of workshops) {
     assert.ok(scene.allowedEquipmentIds.every(id => id.startsWith(`${scene.context.mediaId}-`)));
     assert.ok(scene.allowedEquipmentIds.every(id => getUniverseRecord(id)));

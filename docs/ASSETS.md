@@ -17,8 +17,12 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `shepard-female-walk-atlas.png` | 1254 × 1254 | 16 poses, quatre directions | Marche féminine, création, dossier et équipement |
 | `shepard-female-combat-atlas.png` | 1536 × 1024 | Visée, pouvoir, impact, hors combat | Poses de combat féminines |
 | `chronicle-portraits-me2-me3.png` | 1536 × 1024 | Trois bustes : Miranda ME2, Thane ME2, Garrus ME3 | Portraits de prototype dans leurs contextes Chroniques autorisés |
+| `arsenal-people.png` | 1536 × 1024 | Quatre bustes de personnages et deux de PNJ | Identités et usages Chroniques autorisés ; PNJ documentaires |
+| `arsenal-opponents.png` | 1536 × 1024 | Six silhouettes d’adversaires, dont deux boss | Références et portraits de combat dans leurs seuls bancs autorisés |
+| `arsenal-equipment.png` | 1536 × 1024 | Deux armes, deux costumes et deux modules | Illustrations fixes des dossiers et préparations compatibles |
+| `arsenal-fleet.png` | 1536 × 1024 | Trois véhicules et trois vaisseaux | Références documentaires uniquement, sans pilotage |
 
-Les dix PNG historiques comprennent **48 sujets de sprites**, **32 images de marche et quatre poses de combat supplémentaires** et **une illustration d’accueil**. Le onzième PNG ajoute **trois bustes partiels**, sans nouveau sprite ni animation. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **quinze PNG courants** comprennent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat supplémentaires et une illustration d’accueil —, l’atlas des trois bustes partiels et les quatre atlas arsenal de **24 illustrations fixes**. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -77,19 +81,56 @@ Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Won
 
 ## Présentation des Chroniques
 
-Les premiers lots [Chroniques](CHRONICLES.md) conservaient les dix PNG existants, sans nouvel atlas de personnages. Le lot actuel ajoute `chronicle-portraits-me2-me3.png`, avec les trois identités exactes `ME2-CHR-MIRANDA`, `ME2-CHR-THANE` et `ME3-CHR-GARRUS`. Les 39 autres profils sélectionnables conservent des initiales et symboles de prototype. Aucun portrait de personnage ME1 n’est réemployé pour représenter une autre identité.
+Les premiers lots [Chroniques](CHRONICLES.md) conservaient les dix PNG existants. Le lot soutiens ajoutait `chronicle-portraits-me2-me3.png`, avec les trois identités exactes `ME2-CHR-MIRANDA`, `ME2-CHR-THANE` et `ME3-CHR-GARRUS`. Ces trois portraits gardent leur priorité. Aucun portrait de personnage ME1 n’est réemployé pour représenter une autre identité.
 
 L’atlas local est une génération RGBA conservée sans retouche des pixels. Ses trois cellules de 512 × 1024 se lisent de gauche à droite : Miranda ME2, Thane ME2, Garrus ME3. Le [manifeste dédié](../public/assets/chronicle-portraits.json) consigne cadrages, contexte, empreinte et références ; la [note de provenance](research/chronicle-portrait-sources.md) distingue la couverture du manuel ME2 de la petite capture de Garrus dans le manuel ME3. Les contours doux et halos sont conservés. Les détails de visage, cicatrices, reliefs et vêtements sont des interprétations générées, sans certification 1:1.
 
-Le rendu SVG isole désormais chaque cellule pour empêcher l’apparition de fragments du portrait voisin, sans modifier les pixels de l’atlas. La [revue finale](qa/chronicle-portrait-ui-review.json) examine **sept captures après correction** : deux panneaux de groupe, deux panneaux de combat et trois vues de détail. Le nouveau parcours navigateur vérifie les trois portraits ; les **douze contrôles de production HTTP** chargent les **onze PNG** et vérifient les empreintes de **sept bundles servis**. Voir le [rapport du lot](qa/chronicle-support-report.json). Ces contrôles portent sur l’intégration ; les limites artistiques ci-dessous demeurent.
+Le rendu SVG isole chaque cellule pour empêcher l’apparition de fragments du portrait voisin, sans modifier les pixels de l’atlas. La [revue historique](qa/chronicle-portrait-ui-review.json) examine sept captures après correction. Les douze contrôles de production du [lot soutiens](qa/chronicle-support-report.json) chargeaient onze PNG et sept bundles servis. Ces résultats décrivent ce lot historique. Le [contrôle de production arsenal](qa/arsenal-production-report.json) passe désormais 17 contrôles avec quinze PNG et sept bundles servis vérifiés par empreinte ; les quatre nouveaux atlas répondent HTTP 200 avec leurs tailles et SHA attendus.
 
 Ces images fournissent uniquement des têtes et hauts de buste : aucun corps en pied, vue arrière, huit directions, marche ou cycle de combat. Le portrait de Garrus est réservé à son identité ME3, sans substitution dans ME1 ou ME2. Les profils de protagonistes personnalisables gardent leur présentation propre. Les trois portraits ne changent ni recrutement, statistiques, pouvoirs ou conditions de scénario.
 
-Les classes, les deux familles de modules et les 52 pages documentaires restent présentées par les commandes, barres, textes et liens de l’interface. Les **61 fiches de pouvoirs exposées pour 30 commandes** ne correspondent ni à 61 animations ni à 61 VFX livrés. Les trois actions de soutien emploient des symboles et barres d’état de prototype ; leurs entités ciblables ne disposent pas de modèles de drone ou tourelle certifiés. Les six armes spéciales ont leurs règles de combat et une présentation de prototype, sans modèle, silhouette ou animation original certifié. Les lectures ne créent aucun portrait ou doublage de roman/comic.
+Les classes, les trois familles de modules et les 52 pages documentaires restent présentées par les commandes, barres, textes et liens de l’interface. Les **61 fiches de pouvoirs exposées pour 30 commandes** ne correspondent ni à 61 animations ni à 61 VFX livrés. Les trois actions de soutien emploient des symboles et barres d’état de prototype ; leurs entités ciblables ne disposent pas de modèles de drone ou tourelle certifiés. Les quatorze profils d’armes spéciales n’impliquent pas quatorze silhouettes ou animations livrées. Les lectures ne créent aucun portrait ou doublage de roman/comic.
 
-Les mannequins des trois bancs de personnages et les cibles des trois ateliers sont des gabarits originaux. Ils ne représentent pas des adversaires attestés des missions ou comics concernés. Les quatre autres essais conservent des types d’adversaires référencés, présentés avec la même convention symbolique. Les effets, projectiles et barres d’état n’établissent aucune conformité visuelle des personnages ou modèles d’armes.
+Les mannequins des bancs de personnages, de spécialistes et des six ateliers sont des gabarits originaux. Les six nouveaux bancs d’opposition emploient des profils d’adversaires référencés, dont les mécaniques manquantes restent affichées. Six de ces adversaires disposent d’une illustration partielle ; les autres gardent la convention symbolique. Les effets, projectiles et barres d’état n’établissent aucune conformité visuelle des personnages ou modèles d’armes.
 
 Chaque œuvre demande encore ses costumes, armes dessinées, portraits, silhouettes, décors et animations propres à la période. Une sélection disponible dans un atelier ne livre pas l’asset correspondant. La fidélité artistique et les mouvements par personnage restent des critères distincts de la validation des règles et sauvegardes.
+
+### Quatre atlas arsenal — 26 octobre 2026
+
+Le [manifeste arsenal](../public/assets/arsenal-visuals.json) décrit **24 entrées**, quatre fichiers RGBA de 1536 × 1024 et leurs empreintes. Les sorties de génération sont copiées sans retouche de pixels ; la disposition des adversaires a été corrigée par une nouvelle génération. Toutes les entrées portent `partial: true` et `primaryVisualVerified: false`, et le manifeste conserve `globalFidelityCertified: false`.
+
+| Atlas | Ligne haute, de gauche à droite | Ligne basse, de gauche à droite |
+|---|---|---|
+| Personnages et PNJ | Mordin ME2, Tali ME2, Legion ME2 | Samara ME2, Aria ME2, Traynor ME3 |
+| Adversaires | LOKI ME2, YMIR ME2, Praetorian ME2 | Kai Leng ME3, Brute ME3, Banshee ME3 |
+| Équipement | Vindicator ME3, Arc ME3, Inferno ME2 | Terminus ME3, canon ME3, chargeur ME3 |
+| Flotte | Mako ME1, Nomad Andromeda, Hammerhead ME2 | Normandy SR-1 ME1, Normandy SR-2 ME2, Tempest Andromeda |
+
+Aria et Traynor sont ici des références de PNJ, sans portrait de groupe ou de combat induit. Les six images de flotte restent documentaires : elles n’ajoutent ni pilotage, ni combat de véhicule ou de vaisseau. Les références ME1 `REF-VEH-M35-MAKO-ME1` et `REF-SHP-NORMANDY-SR1-ME1` sont deux nouvelles fiches étroites fondées sur le manuel Xbox 360 ; les anciens alias d’adaptation restent fermés. La présence d’un visuel ne donne ni statistiques, ni pouvoir, ni recrutement.
+
+L’affichage vérifie l’identifiant de fiche, l’œuvre et le segment exacts. Pour les usages de groupe et de combat, il vérifie aussi le scénario et son personnage ou adversaire autorisé. Les protagonistes personnalisables conservent leur présentation propre ; l’apparence de Shepard n’est pas appliquée aux autres profils. Les soutiens et les profils sans image gardent leurs symboles.
+
+L’atlas d’équipement possède **six rectangles irréguliers**, mesurés en pixels depuis le coin supérieur gauche :
+
+| Entrée | Rectangle `[x, y, largeur, hauteur]` |
+|---|---|
+| Vindicator | `[0, 0, 620, 500]` |
+| Arc | `[620, 0, 404, 512]` |
+| Inferno | `[1024, 0, 512, 540]` |
+| Terminus | `[0, 508, 512, 516]` |
+| Canon | `[512, 540, 512, 484]` |
+| Chargeur | `[1024, 540, 512, 484]` |
+
+Les dix-huit cellules des trois autres atlas mesurent 512 × 512. Le découpage SVG utilise ces régions exactes, sans supposer une grille régulière pour l’équipement.
+
+| Fichier | SHA-256 |
+|---|---|
+| `arsenal-people.png` | `c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3` |
+| `arsenal-opponents.png` | `03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147` |
+| `arsenal-equipment.png` | `2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714` |
+| `arsenal-fleet.png` | `efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5` |
+
+Les [manuels inspectés et leurs limites](research/arsenal-visual-sources.md) ne fournissent pas une référence primaire complète pour chaque cellule. Les visages, silhouettes, costumes, reliefs, proportions et géométries générés restent à contrôler. Ces images fixes ne livrent ni modèle complet, animation, vue arrière, huit directions ou apparence interchangeable d’équipement. Le [parcours arsenal](qa/arsenal-browser-report.json) vérifie les 24 visuels et leurs restrictions. La [revue ciblée de l’interface](qa/arsenal-ui-visual-review.json) et la [revue des images générées](qa/arsenal-generated-art-review.json) distinguent lisibilité, cadrages et conformité canonique non certifiée. Les 17 contrôles de production HTTP chargent les quinze PNG et les sept bundles de cette version ; aucun résultat historique n’est réutilisé comme preuve actuelle. Ces contrôles Linux Chromium ne certifient ni rendu mobile, ni exécutable Windows, ni modèle ou kit original.
 
 ## Critères d’acceptation de l’art final
 

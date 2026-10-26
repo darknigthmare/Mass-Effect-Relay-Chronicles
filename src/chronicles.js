@@ -224,6 +224,7 @@ function composeChronicleActor(session, actorId) {
     attack: base.attack + effects.attack, defense: base.defense + effects.defense,
     weaponHeatMultiplier: (base.weaponHeatMultiplier ?? 1) * effects.weaponHeatMultiplier,
     weaponDamageMultiplier: (base.weaponDamageMultiplier ?? 1) * (effects.weaponDamageMultiplier ?? 1),
+    powerCooldownMultiplier: (base.powerCooldownMultiplier ?? 1) * (effects.powerCooldownMultiplier ?? 1),
     weaponCoolingBonus: (base.weaponCoolingBonus ?? 0) + effects.weaponCoolingBonus,
     controlResistance: Math.min(.6, (base.controlResistance ?? 0) + effects.controlResistance),
     bioticMultiplier: (base.bioticMultiplier ?? 1) * effects.bioticMultiplier,

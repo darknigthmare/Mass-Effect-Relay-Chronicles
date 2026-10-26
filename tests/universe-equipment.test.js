@@ -23,7 +23,7 @@ const prepare = (session, actorId, itemId, slot) => {
   return { ...session, loadouts: result.loadouts };
 };
 const neutral = { hp: 0, shield: 0, attack: 0, defense: 0, weaponHeatMultiplier: 1,
-  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1, weaponDamageMultiplier: 1 };
+  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1, weaponDamageMultiplier: 1, powerCooldownMultiplier: 1 };
 const emptyLoadout = () => ({ weapon: null, armor: null, weaponMod: null, weaponMod2: null });
 
 test('equipment profiles preserve catalogue provenance without inventing manufacturers, ranks or comic models', () => {
@@ -77,16 +77,16 @@ test('thermal-clip budgets are bounded ATB data and unsupported technologies rem
     assert.equal(item.reserveAmmo, item.magazineCapacity * 4);
     if (!item.weaponProfileId) assert.match(item.firingModelNote, /variantes de tir d’origine non reproduits/);
   }
-  for (const id of ['ME3-WPN-LANCER', 'ME3-WPN-PARTICLE', 'MEA-WPN-EQUALIZER', 'MEA-WPN-SCATTERSHOT',
-    'MEA-WPN-ASARI-SWORD', 'MEA-EQP-REMNANT', 'INF-WPN-MATTOCK', 'GAL-WPN-AVENGER']) {
+  for (const id of ['ME3-WPN-CHAKRAM', 'ME3-WPN-REEGAR', 'MEA-WPN-LANAT',
+    'MEA-WPN-ASARI-SWORD', 'INF-WPN-MATTOCK', 'GAL-WPN-AVENGER']) {
     const item = getUniverseEquipment(id);
     assert.equal(item.runtimeSupported, false, id);
     assert.equal(item.playable, false);
     assert.ok(item.lockReason.length > 20);
     assert.ok(item.requiredCapabilities.length);
   }
-  assert.equal(getUniverseEquipment('MEA-WPN-EQUALIZER').weaponSystem, undefined);
-  assert.equal(getUniverseEquipment('ME3-WPN-LANCER').weaponSystem, undefined);
+  assert.equal(getUniverseEquipment('MEA-WPN-LANAT').weaponSystem, undefined);
+  assert.equal(getUniverseEquipment('ME3-WPN-LANCER').weaponSystem, 'heat');
 });
 
 test('edition-dependent equipment is not unlocked by selecting its work or workshop', () => {
@@ -94,26 +94,27 @@ test('edition-dependent equipment is not unlocked by selecting its work or works
     ['ME3', 'ME3-WPN-SUPPRESSOR'], ['MEA', 'MEA-EQP-SCAVENGER']]) {
     const item = getUniverseEquipment(itemId), scene = workshop(mediaId);
     assert.equal(item.requiresEdition, true);
-    assert.equal(item.runtimeSupported, false);
+    assert.equal(item.runtimeSupported, item.requiredEditionProfile !== null);
     const result = canEquipUniverseItem(scene.context, protagonist[mediaId], itemId, item.slot, scene.id);
     assert.equal(result.ok, false);
-    assert.match(result.reason, /Édition|édition|contenu additionnel/);
+    assert.match(result.reason, /Édition|édition|Edition|Deluxe|contenu additionnel/);
   }
 });
 
 test('workshop selections have explicit permissions and never become prologue mission equipment', () => {
-  const expected = { ME2: 11, ME3: 31, MEA: 34 };
+  const expected = { ME2: 11, ME3: 35, MEA: 38 };
   for (const [mediaId, count] of Object.entries(expected)) {
     const scene = workshop(mediaId), actorId = protagonist[mediaId];
     assert.equal(scene.allowedEquipmentIds.length, count);
     const loadout = { ...emptyLoadout(), weapon: `${mediaId}-WPN-AVENGER` };
     const listed = listUniverseEquipment(scene.context, { actorId, scenarioId: scene.id, loadout });
-    assert.equal(listed.filter(item => item.compatible).length, count);
+    assert.equal(listed.filter(item => item.compatible).length, count - (mediaId === 'ME3' ? 1 : 0), 'The SMG ultralight family does not fit the assault-rifle parent');
     for (const id of scene.allowedEquipmentIds) {
       const item = getUniverseEquipment(id);
       assert.equal(item.mediaId, mediaId);
       assert.equal(item.runtimeSupported, true);
-      assert.equal(canEquipUniverseItem(scene.context, actorId, id, item.slot, scene.id, loadout).ok, true);
+      const parent = item.modFamily === 'ultralight' ? { ...loadout, weapon: 'ME3-WPN-SHURIKEN' } : loadout;
+      assert.equal(canEquipUniverseItem(scene.context, actorId, id, item.slot, scene.id, parent).ok, true, id);
     }
     assert.equal(listUniverseEquipment(scene.context).some(item => item.playable), false);
   }
@@ -203,7 +204,7 @@ test('equipped conventional weapons feed real thermal-clip combat, consume ammun
   assert.equal(getChronicleEquipmentEffects(session, actorId).ammo, 18, 'Battle consumption does not mutate the preparation template');
 });
 
-test('the two supported modifications remain partial family prototypes with source names and no invented ranks', () => {
+test('the original barrel and magazine modifications remain partial family prototypes with no invented ranks', () => {
   assert.deepEqual(CHRONICLE_EQUIPMENT_SLOTS, ['weapon', 'armor', 'weaponMod', 'weaponMod2']);
   for (const [id, family] of [['ME3-EQP-BARREL', 'barrel'], ['ME3-EQP-MAGAZINE', 'magazine']]) {
     const item = getUniverseEquipment(id), source = getUniverseRecord(id);
@@ -217,7 +218,7 @@ test('the two supported modifications remain partial family prototypes with sour
     assert.deepEqual(item.weaponTypes, ['assault']); assert.deepEqual(item.weaponSystems, ['thermal-clip']);
     assert.match(item.prototypeDetail, /aucun modèle, rang, fabricant ni compatibilité universelle d’origine certifiés/);
   }
-  for (const id of ['ME3-EQP-SCOPE', 'ME3-EQP-ULTRALIGHT', 'ME3-EQP-WEAPON-MODS',
+  for (const id of ['ME3-EQP-SCOPE', 'ME3-EQP-WEAPON-MODS',
     'MEA-EQP-WEAPON-MODS', 'MEA-EQP-AUGMENT', 'MEA-EQP-FUSION']) {
     assert.equal(getUniverseEquipment(id).runtimeSupported, false, id);
   }
@@ -341,12 +342,13 @@ test('a real modified weapon changes only gunfire damage while capacity and relo
   assert.equal(actor.ammo + actor.reserveAmmo, 89, 'The shot spent one round; reload creates none');
 });
 
-test('six special weapons retain source facts, exact scene gates and typed mechanics without leaking into prologues', () => {
+test('special weapons retain source facts, exact edition and scene gates without leaking into prologues', () => {
   for (const profile of UNIVERSE_WEAPON_PROFILES) {
     const item = getUniverseEquipment(profile.id), source = getUniverseRecord(profile.id);
     const mediaId = profile.id.startsWith('ME3-') ? 'ME3' : 'MEA';
-    const scene = workshop(mediaId), actorId = protagonist[mediaId];
-    assert.equal(item.runtimeSupported, true, profile.id); assert.equal(item.requiresEdition, false);
+    const scene = item.requiredEditionProfile ? SCENARIOS.find(candidate => candidate.context.mediaId === mediaId
+      && candidate.editionEquipmentProfile === item.requiredEditionProfile) : workshop(mediaId), actorId = protagonist[mediaId];
+    assert.equal(item.runtimeSupported, true, profile.id); assert.equal(item.requiresEdition, item.requiredEditionProfile !== null);
     assert.equal(item.playable, false, 'A supported profile alone is not permission to use it in any scene');
     assert.equal(item.name, source.name); assert.equal(item.description, source.description);
     assert.deepEqual(item.sourceIds, source.sourceIds);
@@ -368,7 +370,9 @@ test('six special weapons retain source facts, exact scene gates and typed mecha
 test('special equipment effects transmit only a whitelisted profile ID and the correct finite resource system', () => {
   for (const profile of UNIVERSE_WEAPON_PROFILES) {
     const mediaId = profile.id.startsWith('ME3-') ? 'ME3' : 'MEA', actorId = protagonist[mediaId];
-    const original = sessionFor(mediaId), snapshot = clone(original);
+    const item = getUniverseEquipment(profile.id), scene = item.requiredEditionProfile ? SCENARIOS.find(candidate => candidate.context.mediaId === mediaId
+      && candidate.editionEquipmentProfile === item.requiredEditionProfile) : workshop(mediaId);
+    const original = { ...sessionFor(mediaId), scenarioId: scene.id }, snapshot = clone(original);
     const prepared = prepare(original, actorId, profile.id), effects = getChronicleEquipmentEffects(prepared, actorId);
     assert.deepEqual(original, snapshot);
     assert.equal(effects.weaponProfileId, profile.id);

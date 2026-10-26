@@ -2,7 +2,7 @@
   "meta": {
     "title": "Mass Effect Relay Chronicles",
     "version": "0.2.0",
-    "updatedAt": "2026-10-25",
+    "updatedAt": "2026-10-26",
     "language": "fr-FR",
     "referenceEpisode": "ME1",
     "referenceVisual": "Mass Effect 1 / Legendary Edition, version de chaque référence à vérifier",
@@ -112,12 +112,12 @@
       "chronicles": {
         "works": 28,
         "periodSegments": 48,
-        "scenarios": 16,
+        "scenarios": 25,
         "selectableCharacters": 42,
         "partialActorProfiles": 42,
-        "equipmentItems": 76,
-        "weapons": 64,
-        "armors": 10,
+        "equipmentItems": 100,
+        "weapons": 72,
+        "armors": 25,
         "prototypeWorks": [
           "ME2",
           "ME3",
@@ -127,8 +127,8 @@
           "RED",
           "PL"
         ],
-        "limit": "Sessions et sauvegardes séparées de ME1 ; seize essais et seize lectures courtes. Soutiens autonomes ciblables et modes de munitions exclusifs, avec valeurs ATB adaptées. Trois portraits de bustes sourcés ; silhouettes complètes, animations, niveaux, dialogues intégraux et campagnes complètes restent à produire.",
-        "weaponModuleFamilies": 2,
+        "limit": "Sessions et sauvegardes séparées de ME1 ; vingt-cinq essais et seize lectures courtes. Huit armes supplémentaires dont des charges interruptibles, quinze armures et un module ultraléger bornés à leur contexte ; paramètres ATB explicitement adaptés. Vingt-quatre nouvelles illustrations fixes couvrent personnages, PNJ, ennemis et boss, costumes, armes, schémas de modules, véhicules et vaisseaux. Modèles, animations, rangs, phases de boss, pilotage et campagnes complètes restent à produire ; aucune fidélité 1:1 intégrale certifiée.",
+        "weaponModuleFamilies": 3,
         "powerCatalogEntries": 61,
         "activePowerActions": 30,
         "newPowerActions": 22,
@@ -136,10 +136,14 @@
         "documentaryReadings": 16,
         "documentaryPages": 52,
         "specialistWorkshops": 6,
-        "specialWeaponProfiles": 6,
+        "specialWeaponProfiles": 14,
         "autonomousSupportCards": 4,
         "ammunitionPowerCards": 10,
-        "portraitProfiles": 3
+        "portraitProfiles": 7,
+        "additionalVisualSubjects": 24,
+        "opponentProfiles": 16,
+        "oppositionWorkshops": 6,
+        "editionEquipmentWorkshops": 3
       }
     },
     "v02Sources": {
@@ -391,6 +395,12 @@
       "title": "EA — apparence féminine de Shepard dans Legendary Edition",
       "url": "https://news.ea.com/press-releases/press-releases-details/2021/Relive-the-Award-Winning-Space-Opera-in-Mass-Effect-Legendary-Edition-on-May-14/",
       "scope": "Source primaire du 2 février 2021, consultée le 23 octobre 2026. Confirme la disponibilité du modèle féminin par défaut dans les trois épisodes ; ne valide pas les PNG du projet."
+    },
+    {
+      "id": "ME1-MANUAL-X360-EN",
+      "title": "Mass Effect — manuel Xbox360 anglais officiel",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "scope": "Manuel réellement téléchargé HTTP 200 le 26/10/2026 : 16 pages, SHA-256 f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44. Normandy : page PDF 3, page imprimée 4 ; Mako : page PDF 13, pages imprimées 23–24. Identification et vue seulement ; aucune géométrie, statistique ou fidélité générée certifiée. Preuve : docs/qa/arsenal-visual-reference-report.json. Source distincte du manuel PC français ME1-MANUAL."
     }
   ],
   "categories": [
@@ -31319,7 +31329,7 @@
       "plannedPath": "src/chronicles.js",
       "assetPath": "src/chronicles.js",
       "gameKey": "SYS-chroniques-contextuelles",
-      "notes": "Prototype partiel. Les soutiens autonomes ont HP/durée/propriétaire et ne remplacent aucun combattant natif dans la victoire. Trois portraits partiels ne créent ni sprite animé ni recrutement. Voir tests/combat-support.test.js, tests/chronicles.test.js et docs/CHRONICLES.md. Aucun transfert dans ME1."
+      "notes": "Prototype partiel : 25 essais dont six bancs d’opposition et trois ateliers d’édition explicites. Les 16 profils ennemis ont leurs limites affichées ; les 42 profils joueurs historiques sont conservés. Les 24 illustrations fixes contextualisées ne donnent ni statistiques aux PNJ, ni pilotage ou géométrie. Voir src/universe-visuals.js, tests/universe-visuals.test.js et docs/CHRONICLES.md. Aucun transfert vers ME1."
     },
     {
       "id": "SYS-clips-thermiques",
@@ -31361,7 +31371,7 @@
       "plannedPath": "src/chronicles.js",
       "assetPath": "src/chronicles.js",
       "gameKey": "SYS-preparations-chroniques",
-      "notes": "Prototype partiel : tests/chronicle-ammo-sessions.test.js et tests/universe-support-ui.test.js ; commandes et préférences de munitions bornées au vrai kit et à l’œuvre. Voir docs/CHRONICLES.md ; rangs, acquisition et fidélité globale1:1 non certifiés."
+      "notes": "Prototype partiel : 100 équipements selon la scène, le porteur et l’édition ; quatre ports conservés. Le module ultraléger est limité aux SMG conventionnelles ME3 et à un coefficient de recharge ATB de 0,9. Les modes de munitions exclusifs et préférences sauvegardées restent distincts du combat. Voir tests/universe-armor-editions.test.js et tests/chronicle-ammo-sessions.test.js ; acquisition, rangs et fidélité globale 1:1 non certifiés."
     },
     {
       "id": "SYS-modules-chroniques",
@@ -31404,6 +31414,78 @@
       "assetPath": "src/chronicle-story.js",
       "gameKey": "SYS-lectures-chroniques",
       "notes": "Prototype partiel : tests/chronicle-story.test.js et tests/chronicle-specialists.test.js ; compléments des parcours couverts par scripts/chronicle-specialists-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1."
+    },
+    {
+      "id": "REF-VEH-M35-MAKO-ME1",
+      "category": "props",
+      "name": "Référence visuelle — Mako ME1",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Confirmé",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Manuel Xbox360 EN PDF 13, pages imprimées23–24, rubrique MAKO.",
+      "sourceId": "ME1-MANUAL-X360-EN",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Le manuel officiel du premier Mass Effect présente le véhicule Mako sous sa rubrique dédiée et une vue extérieure.",
+      "acceptance": "Illustration de référence visible uniquement dans le registre ME1, liée à la source exacte et marquée Prototype. Aucun pilotage, intérieur, nouvelle géométrie ou statistique ne sont accordés.",
+      "dependencies": [],
+      "priority": "P1",
+      "plannedPath": "public/assets/arsenal-fleet.png",
+      "assetPath": "public/assets/arsenal-fleet.png",
+      "gameKey": "REF-VEH-M35-MAKO-ME1",
+      "notes": "Existence et sujet de la vue primaire seulement confirmés. La génération reste une illustration fixe partielle ; ressemblance, détails de coque et proportions ne sont pas certifiés 1:1. Les anciens dossiers, leurs natures et les systèmes de pilotage restent inchangés.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-fleet.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
+    },
+    {
+      "id": "REF-SHP-NORMANDY-SR1-ME1",
+      "category": "props",
+      "name": "Référence visuelle — Normandy SR-1 ME1",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Confirmé",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Manuel Xbox360 EN PDF 3, page imprimée4, Normandy.",
+      "sourceId": "ME1-MANUAL-X360-EN",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Le manuel officiel du premier Mass Effect nomme le Normandy et montre sa coque ; cette référence concerne le vaisseau de ME1.",
+      "acceptance": "Illustration de référence visible uniquement dans le registre ME1, liée à la source exacte et marquée Prototype. Aucun pilotage, intérieur, nouvelle géométrie ou statistique ne sont accordés.",
+      "dependencies": [],
+      "priority": "P1",
+      "plannedPath": "public/assets/arsenal-fleet.png",
+      "assetPath": "public/assets/arsenal-fleet.png",
+      "gameKey": "REF-SHP-NORMANDY-SR1-ME1",
+      "notes": "Existence et sujet de la vue primaire seulement confirmés. La génération reste une illustration fixe partielle ; ressemblance, détails de coque et proportions ne sont pas certifiés 1:1. Les anciens dossiers, leurs natures et les systèmes de pilotage restent inchangés.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-fleet.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     }
   ]
 }

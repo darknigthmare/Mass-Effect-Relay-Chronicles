@@ -1,8 +1,10 @@
 # Chroniques — œuvres, segments et essais tactiques
 
-Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis seize essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
+Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis vingt-cinq essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
 
-**Lot soutiens, munitions et portraits du 25 octobre 2026, basé sur `748b965`.** Le registre reconstruit conserve **6 656 fiches : 1 330 dans le principal et 5 326 dans les 27 catalogues supplémentaires**. Les 17 nouvelles promotions concernent quatre pouvoirs de soutien, dix pouvoirs de munitions exposés et trois portraits partiels. Le décompte vérifié est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé, avec 449 sources**. Le [rapport du lot](qa/chronicle-support-report.json) relie validation fonctionnelle, exports et limites de fidélité.
+**Complément arsenal du 26 octobre 2026, basé sur `1310a84`, validé fonctionnellement dans son périmètre partiel.** Le registre courant contient **6 658 fiches : 1 332 dans le principal et 5 326 dans les 27 catalogues supplémentaires**, avec **450 sources : 40 principales et 410 supplémentaires**. Deux nouvelles références ME1 documentent l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360, sans valider leur géométrie ni leur pilotage. Les **52 promotions Prototype sont appliquées**. Les statuts courants sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**. Le [rapport arsenal](qa/arsenal-report.json) conserve les résultats fonctionnels et leurs limites.
+
+**Historique soutiens, munitions et portraits du 25 octobre, basé sur `748b965`.** Ce lot conservait 6 656 fiches et 449 sources. Ses 17 promotions donnaient 530 Prototype, 6 120 Défini, trois Intégré et trois Validé. Le [rapport historique](qa/chronicle-support-report.json) relie ses propres contrôles aux sources de cette version.
 
 Le complément spécialistes précédent, basé sur `7fe7a88`, ajoutait 37 promotions Prototype : huit profils de personnages, six armes, sept fiches de pouvoirs et seize références documentaires. Ses rapports restent historiques. Une fiche du registre ne devient pas automatiquement visible, sélectionnable ou jouable : sa provenance doit autoriser le segment et l’essai choisis. Les campagnes intégrales, dialogues, cartes et scènes des œuvres supplémentaires restent à produire ; aucune fidélité 1:1 n’est certifiée par ces essais.
 
@@ -12,7 +14,7 @@ Depuis le titre ou la pause de la campagne, choisir **Chroniques**, puis une **�
 
 - **Registre** : rechercher parmi les personnages, équipements, pouvoirs, récits et lieux autorisés. Une fiche affiche son statut, ses conditions, ses repères et ses sources.
 - **Essai tactique** : choisir l’essai proposé, préparer un groupe d’un à trois personnages, puis lancer l’escarmouche. Certains contextes proposent seulement des références.
-- Dans les trois ateliers, choisir un profil de combat disponible, une arme et, pour le protagoniste autorisé, une armure. Les modules compatibles disposent de deux ports ; les choix incompatibles restent indisponibles avec leur motif.
+- Dans les six ateliers d’équipement, dont trois limités à une édition préparée, choisir un profil de combat disponible, une arme et, pour le protagoniste autorisé, une armure. Les modules compatibles disposent de deux ports ; les choix incompatibles restent indisponibles avec leur motif.
 - **Lecture** : ouvrir le parcours documentaire du segment, avancer ou revenir parmi ses pages et consulter leurs sources. La page atteinte est enregistrée sans récompense ni choix ajouté au récit.
 - Enregistrer, reprendre, exporter ou importer la chronique depuis ce même espace. Le retour ramène au titre ou à la pause de la campagne.
 
@@ -20,7 +22,7 @@ Les combats utilisent le mode Attente. Les armes conventionnelles des profils ME
 
 Les **42 profils sélectionnables sont comptés par œuvre** : un même personnage peut avoir plusieurs profils distincts selon son contexte. Les capacités manquantes restent signalées dans chaque préparation. Les huit profils supplémentaires restent réservés aux six bancs d’extensions ou de bonus : leur présence n’est pas ajoutée aux dix essais antérieurs.
 
-## Seize essais, quatre périmètres
+## Vingt-cinq essais et leurs périmètres
 
 | Œuvre et segment | Essai | Périmètre réalisé |
 |---|---|---|
@@ -40,14 +42,25 @@ Les **42 profils sélectionnables sont comptés par œuvre** : un même personna
 | ME3 · `me3` | Omega | Shepard, Aria et Nyreen ; état où les deux partenaires temporaires sont présentes |
 | ME3 · `me3` | Citadel, Wrex vivant | Shepard et Wrex ; survie préparée dans ce banc uniquement, sans accès global ou Armax |
 | Infiltrator · `inf` | Incarceration | Prisonnier turien seul ; le bonus ne lui attribue pas la campagne de Randall |
+| ME2 · `me2` | Banc des mécas de sécurité | LOKI, FENRIS et YMIR ; actions génériques, sans rejouer leur rencontre d’origine |
+| ME2 · `me2` | Banc des Collecteurs | Drone, hôte d’Harbinger et Praetorian ; possession, vol et phases non reproduits |
+| ME3 · `me3` | Banc de Cerberus | Fantassin et Kai Leng ; les phases de boss restent absentes |
+| ME3 · `me3` | Banc des Moissonneurs | Husk, Marauder, Brute et Banshee ; kits et comportements propres restent partiels |
+| Andromeda · `mea` | Banc kett | Chosen, Ascendant et Cardinal ; orbes, objectifs et phases non simulés |
+| Andromeda · `mea` | Banc reliquat | Destroyer ; sous-cibles et comportement original non reproduits |
+| ME2 · `me2` | Atelier Legendary Edition | Équipements d’édition autorisés dans cette seule préparation |
+| ME3 · `me3` | Atelier Legendary Edition | Armures d’édition, fusil à particules et Lancer, sous leurs conditions préparées |
+| Andromeda · `mea` | Atelier Deluxe | Armures Scavenger et Deep Space, sans acquisition d’origine simulée |
 
-Cela représente **quatre oppositions à types d’adversaires référencés**, **trois bancs à cibles abstraites**, **trois ateliers d’équipement** et **six bancs de spécialistes**. Les six derniers utilisent exclusivement des mannequins originaux et la dotation abstraite du profil, sans équipement supplémentaire. Ils ne rejouent aucune mission et ne décident d’aucun recrutement, loyauté ou survie dans une campagne. Les effectifs, cartes de combat, durées, valeurs et commandes ATB sont adaptés. Une victoire enregistre la réussite de l’essai ; elle n’accorde ni crédits, ni expérience, ni choix canoniques à la campagne.
+Les seize essais précédents sont conservés : quatre oppositions à types d’adversaires référencés, trois bancs de personnages à cibles abstraites, trois ateliers standard et six bancs de spécialistes. Le complément ajoute **six bancs d’opposition et trois ateliers d’édition**, soit **25 essais**. Les six bancs de spécialistes utilisent des mannequins originaux et la dotation abstraite du profil, sans équipement supplémentaire. Aucun banc ne décide d’un recrutement, d’une loyauté ou d’une survie dans une campagne. Les effectifs, cartes de combat, durées, valeurs et commandes ATB sont adaptés. Une victoire enregistre la réussite de l’essai ; elle n’accorde ni crédits, ni expérience, ni choix canoniques à la campagne.
+
+Les nouveaux bancs d’opposition emploient **16 profils d’adversaires, dont trois boss : Praetorian, Kai Leng et Cardinal**. Leurs descriptions distinguent les faits de silhouette des valeurs ATB et affichent les mécaniques absentes. Une protection chiffrée ne reconstitue pas une barrière de boss ; une action générique ne reproduit pas son kit, ses phases ou sa rencontre canonique.
 
 ## Présence des personnages et du matériel
 
-Les seize essais exposent **42 profils de personnages sélectionnables au total**, tous partiels. Un même personnage dans deux œuvres possède deux identifiants distincts. Chaque sélection demande une autorisation dans l’essai choisi. Les pouvoirs absents du moteur ou insuffisamment documentés ne sont pas ajoutés par analogie.
+Les vingt-cinq essais exposent **42 profils de personnages sélectionnables au total**, tous partiels et inchangés par le complément arsenal. Un même personnage dans deux œuvres possède deux identifiants distincts. Chaque sélection demande une autorisation dans l’essai choisi. Les pouvoirs absents du moteur ou insuffisamment documentés ne sont pas ajoutés par analogie.
 
-Les ateliers proposent **76 équipements sélectionnables** : 11 dans ME2, 31 dans ME3 et 34 dans Andromeda, soit **64 armes, 10 armures et deux familles de modules**. Chaque modèle doit satisfaire simultanément les conditions de l’œuvre, du segment, de l’essai, du porteur et des mécaniques disponibles. Les armures personnelles sont réservées à Shepard ou Ryder selon l’œuvre. Les armes lourdes, tirs chargés, variantes d’édition et autres modèles dont le mécanisme manque restent des références fermées.
+Les ateliers proposent **100 équipements sélectionnables : 72 armes, 25 armures et trois familles de modules**. Chaque modèle doit satisfaire simultanément les conditions de l’œuvre, du segment, de l’essai, du porteur et des mécaniques disponibles. Les armures personnelles sont réservées à Shepard ou Ryder selon l’œuvre. Parmi les quinze armures ajoutées, six ME2 et six ME3 sont limitées aux ateliers Legendary Edition, deux Andromeda à l’atelier Deluxe ; la protection Reliquats d’Andromeda est un profil agrégé sans bonus de régénération inventé. Les variantes et mécanismes non pris en charge restent fermés, même si leur nom figure au registre.
 
 La préparation d’atelier est libre. Elle ne simule pas l’acquisition d’origine, le recrutement, les arbres détaillés de talents, les rangs, les bonus passifs, les ressources, les achats, les crédits ou le butin. L’atelier utilise un état de test où les compagnons proposés ont rejoint le groupe et survécu ; les conditions de leurs fiches restent consultables. Les alternatives sont conservées : **Samara/Morinth** et **Ashley/Kaidan** ne peuvent pas être sélectionnés ensemble. Anderson et Alec restent limités à leurs bancs de prologue.
 
@@ -55,7 +68,7 @@ Les bonus d’armure, profils de familles d’armes, chargeurs et pouvoirs utili
 
 ## Pouvoirs et préparations
 
-Le premier complément ajoutait dix mécaniques ATB : Attraction, Incinération, Explosion cryogénique, Tir percutant, Drain d’énergie, Fortification, Ravage, Onde de choc, Écrasement et Domination. Le complément spécialistes ajoutait **Grenade à fragmentation**, **Grenade collante** et **Soutien des boucliers**. Le lot actuel porte l’ensemble à **61 fiches de pouvoirs exposées pour 30 commandes**, plus la commande de désactivation des munitions. Les protections, cibles, durées, états et variantes restent des réglages explicitement adaptés. Les pouvoirs de loyauté ME2 ne sont proposés que dans les bancs qui déclarent cette condition préparée.
+Le premier complément ajoutait dix mécaniques ATB : Attraction, Incinération, Explosion cryogénique, Tir percutant, Drain d’énergie, Fortification, Ravage, Onde de choc, Écrasement et Domination. Le complément spécialistes ajoutait **Grenade à fragmentation**, **Grenade collante** et **Soutien des boucliers**. Le lot soutiens avait porté l’ensemble à **61 fiches de pouvoirs exposées pour 30 commandes**, plus la commande de désactivation des munitions. Les protections, cibles, durées, états et variantes restent des réglages explicitement adaptés. Les pouvoirs de loyauté ME2 ne sont proposés que dans les bancs qui déclarent cette condition préparée.
 
 Les grenades de James et du Soldat ME3, celles du Franc-tireur ME3, de Liam et de Jaal disposent de **trois charges par escarmouche dans le réglage d’essai**. Chaque lancer accepté dépense une charge, sans clip d’arme ni délai de recharge artificiel ; aucun réapprovisionnement n’a lieu pendant le combat. La grenade collante reste un projectile différé. Le soutien de Cora restaure les boucliers des alliés vivants puis accélère temporairement leur recharge ; il ne soigne pas la santé et ne ranime personne. L’attribution non vérifiée de Flak Cannon à Peebee a été retirée de ses capacités manquantes, sans lui accorder une autre capacité.
 
@@ -71,17 +84,23 @@ Les soutiens ne sont pas commandables et ne prennent pas la place d’un équipi
 
 Dix fiches exposées couvrent **six modes exclusifs** : incendiaire, cryogénique, disruptif, perforant, distorsion et déchiqueteur. ME2 propose les six ; ME3 en propose quatre, sans mode déchiqueteur ni Warp Ammo. Les permissions sont reconstruites depuis le kit et l’œuvre, avec les conditions de loyauté conservées. Les consommables de munitions Andromeda restent fermés faute de règle individuelle suffisamment vérifiée.
 
-Choisir ou désactiver un mode consomme un ordre ATB, sans réserve supplémentaire, remplissage du chargeur ou recharge temporelle ajoutée. Un seul mode reste actif. Les effets concernent les tirs contrôlés, rafales et techniques d’élite d’armes conventionnelles à clips ; pouvoirs, invocations, armes à chaleur et six armes spéciales restent exclus. Incendiaire et cryogénique exigent des dégâts réels de santé et respectent protections et immunités. Les autres modes modifient leurs couches de dégâts adaptées ; la munition perforante ne simule pas la traversée du décor. Multiplicateurs, accumulation de gel et durées restent des réglages ATB. Voir les [références et limites](research/chronicle-support-sources.md).
+Choisir ou désactiver un mode consomme un ordre ATB, sans réserve supplémentaire, remplissage du chargeur ou recharge temporelle ajoutée. Un seul mode reste actif. Les effets concernent les tirs contrôlés, rafales et techniques d’élite d’armes conventionnelles à clips ; pouvoirs, invocations, armes à chaleur et profils d’armes spéciales restent exclus. Incendiaire et cryogénique exigent des dégâts réels de santé et respectent protections et immunités. Les autres modes modifient leurs couches de dégâts adaptées ; la munition perforante ne simule pas la traversée du décor. Multiplicateurs, accumulation de gel et durées restent des réglages ATB. Voir les [références et limites](research/chronicle-support-sources.md).
 
 Shepard peut choisir les **six classes dans ME2 et les six classes dans ME3**, en plus de la dotation par défaut conservée pour les anciennes sessions. Ryder dispose de **trois préparations de compétences — combat, biotique, technologie — et de sa dotation par défaut**. Ces préparations ne reproduisent ni tout l’arbre des talents ni les bonus passifs des profils d’Andromeda. Les compagnons gardent leur kit autorisé et les bancs de prologue gardent leur dotation par défaut. Les capacités manquantes restent affichées.
 
 Deux **familles de modules ME3**, canon et chargeur, utilisent les ports `weaponMod` et `weaponMod2`. Elles demandent une arme ME3 de famille fusil d’assaut à clips, explicitement équipée dans l’atelier. Les deux familles peuvent coexister ; dupliquer une famille est refusé avec un motif par port. Il ne s’agit pas de nouveaux rangs ou modèles officiels certifiés. Le canon multiplie les dégâts des tirs par 1,12 sans renforcer les pouvoirs. Le chargeur conserve le total de munitions : l’Avenger passe de 18/72 à 23/67 dans ce réglage ATB. Remplacer ou retirer l’arme retire ses modules ; sélectionner la même arme les conserve.
 
+Une troisième famille, **matériaux ultralégers pour mitraillette ME3**, applique un multiplicateur de **0,9 aux délais de pouvoirs ATB**. Elle exige une mitraillette conventionnelle à clips compatible ; elle ne donne aucun pouvoir et ne modélise pas le poids original, les rangs ou les restrictions de tous les épisodes. Les deux ports demeurent les seuls ports de modules des Chroniques ; l’inventaire ME1 conserve ses neuf emplacements séparés.
+
 ## Armes spéciales
 
 Falcon et les deux Scorpion lancent un projectile qui explose après un délai, avec des dégâts réduits sur les autres adversaires. Le P.A.W. canalise un rayon à chaleur, le Reegar un jet électrique consommant ses clips par impulsion, et le Sweeper une salve énergétique à chaleur. Une canalisation s’interrompt par annulation, mise hors combat ou neutralisation ; les projectiles déjà lancés restent en vol. Une victoire attend la résolution des projectiles encore dangereux. Les profils à chaleur n’héritent pas de réserves de clips.
 
-Ces six profils restent limités aux ateliers ME3 ou Andromeda. Falcon ne reçoit pas les deux modules conçus pour les fusils d’assaut conventionnels. Délais, zone, suivi de cible, chaleur, munitions, trajectoires et dégâts ne constituent pas une reproduction intégrale des modèles originaux. Voir les [sources et limites vérifiées](research/chronicle-specialist-sources.md).
+Ces six profils historiques restent limités aux ateliers ME3 ou Andromeda. Le complément arsenal ajoute **huit profils**, soit quatorze au total : fusil à particules et Lancer ME3, Arc, Graal et Javelin ME3, puis Equalizer, Scattershot et Venom Andromeda. Le fusil à particules et le Lancer exigent l’atelier Legendary Edition ME3 ; cette préparation ne reconstitue pas l’acquisition de From Ashes ou Citadel.
+
+Arc, Graal, Javelin et Venom utilisent **quatre charges automatiques d’une seconde ATB**, interruptibles avant le tir. Les clips sont dépensés au tir, pas au début de la charge. L’annulation ne rembourse ni l’ordre ni le coût d’action ; les niveaux de charge manuels d’origine ne sont pas simulés. Le Javelin ignore seulement le couvert binaire du moteur ATB : aucune pénétration de mur, géométrie ou cible multiple n’est reproduite. Les autres ajouts distinguent rayon à chaleur et salve à chaleur.
+
+Falcon et les autres profils spéciaux ne reçoivent pas les modules conçus pour les armes conventionnelles. Délais, zone, suivi de cible, chaleur, munitions, trajectoires et dégâts ne constituent pas une reproduction intégrale des modèles originaux. Les [sources historiques](research/chronicle-specialist-sources.md) restent identifiées comme telles ; les métadonnées courantes conservent les conditions et limites de chaque profil.
 
 ## Seize parcours documentaires
 
@@ -143,9 +162,11 @@ Les imports sont validés avant enregistrement : contexte exact, scénario connu
 
 ## Présentation visuelle
 
-Un atlas local de 1536 × 1024 fournit **trois bustes de prototype**, associés aux identités exactes `ME2-CHR-MIRANDA`, `ME2-CHR-THANE` et `ME3-CHR-GARRUS`, dans leurs essais autorisés. Le Garrus de ME3 n’est pas utilisé pour ME1 ou ME2. Les autres profils et les soutiens conservent des symboles de prototype. Les silhouettes de ME1 ne sont pas réattribuées à d’autres identités.
+L’atlas de portraits précédent conserve sa priorité pour `ME2-CHR-MIRANDA`, `ME2-CHR-THANE` et `ME3-CHR-GARRUS`, dans leurs seuls contextes autorisés. Le complément ajoute **24 illustrations fixes et partielles sur quatre atlas de 1536 × 1024** : quatre bustes de joueurs, deux de PNJ, six silhouettes d’adversaires, six équipements et six véhicules ou vaisseaux. Le manifeste [arsenal-visuals.json](../public/assets/arsenal-visuals.json) conserve les identifiants exacts, périodes, cadrages et empreintes.
 
-Ces bustes partiels ne livrent ni sprites en pied, ni huit directions, ni animations ou variations d’équipement. Le débordement de cellules voisines est corrigé par un découpage SVG ; sept captures finales d’interface ont été revues. Cette correction de présentation ne certifie pas les détails générés contre les modèles d’origine. Voir le [registre des assets](ASSETS.md), la [revue visuelle finale](qa/chronicle-portrait-ui-review.json) et les [références de portraits](research/chronicle-portrait-sources.md).
+Les bustes ajoutés concernent Mordin, Tali, Legion et Samara ME2 ; Aria ME2 et Traynor ME3 restent des références de PNJ. Les six silhouettes représentent LOKI, YMIR, Praetorian, Kai Leng, Brute et Banshee dans leur œuvre exacte. Les six images de flotte — Mako, Nomad, Hammerhead, Normandy SR-1, Normandy SR-2 et Tempest — sont documentaires, sans pilotage ni intégration au groupe. L’accès à une image en référence ne rend pas son sujet sélectionnable en combat ; cet usage demande aussi une autorisation dans le scénario exact. Les deux références ME1 nouvelles ne débloquent pas les anciens alias d’adaptation.
+
+Les rectangles SVG isolent chaque illustration, avec six cadrages irréguliers dans l’atlas d’équipement. Aucun nouveau sprite animé, huit directions, modèle complet, costume interchangeable ou apparence Shepard n’est appliqué par ces images. Toutes portent `partial: true` et `primaryVisualVerified: false` ; aucune fidélité visuelle 1:1 n’est certifiée. Les profils sans image et les soutiens gardent leurs symboles. Voir le [registre des assets](ASSETS.md), les [références primaires inspectées](research/arsenal-visual-sources.md) et, pour les trois bustes historiques, leur [revue d’interface](qa/chronicle-portrait-ui-review.json).
 
 ## Sources, code et vérifications
 
@@ -154,15 +175,18 @@ Ces bustes partiels ne livrent ni sprites en pied, ni huit directions, ni animat
 | [`continuity-data.js`](../src/continuity-data.js) | Œuvres, segments explicites, réserves et règles documentaires de provenance |
 | [`universe-data.js`](../src/universe-data.js) | Registre généré à partir des catalogues, sans promotion de leurs statuts |
 | [`continuity.js`](../src/continuity.js) | Contexte, filtrage et validation de la base des sessions |
-| [`universe-actors.js`](../src/universe-actors.js) | Profils partiels, autorisations des groupes et seize essais |
+| [`universe-actors.js`](../src/universe-actors.js) | Profils partiels, autorisations des groupes et vingt-cinq essais |
 | [`universe-specialist-scenarios.js`](../src/universe-specialist-scenarios.js) | Six bancs d’extensions ou de bonus, sans ouverture des autres scènes |
+| [`universe-opponents.js`](../src/universe-opponents.js) | Seize profils d’adversaires, dont trois boss, et leurs mécaniques manquantes |
 | [`universe-equipment.js`](../src/universe-equipment.js) | Matériel, quatre emplacements, compatibilité par port et effets disponibles |
 | [`universe-powers.js`](../src/universe-powers.js) | Liaisons sourcées, kits, classes et conditions des pouvoirs |
 | [`chronicle-story.js`](../src/chronicle-story.js) | Seize lectures, 52 pages, provenance et découvertes validées |
-| [`universe-weapon-profiles.js`](../src/universe-weapon-profiles.js) | Six profils d’armes ATB sans chargement du catalogue depuis le combat |
+| [`universe-weapon-profiles.js`](../src/universe-weapon-profiles.js) | Quatorze profils d’armes ATB sans chargement du catalogue depuis le combat |
 | [`combat-summons.js`](../src/combat-summons.js) | Plans purs des entités, durée, plafonds, réactions et retrait des soutiens |
 | [`universe-ammo.js`](../src/universe-ammo.js) | Modes appris exclusifs, compatibilité et effets par couche de dégâts |
 | [`universe-portraits.js`](../src/universe-portraits.js) | Trois bustes associés aux identités et contextes exacts |
+| [`universe-visuals.js`](../src/universe-visuals.js) | Illustrations fixes avec accès documentaire et usages de groupe/combat distincts |
+| [`arsenal-visual-data.js`](../src/arsenal-visual-data.js) | Vingt-quatre associations, rectangles, empreintes et réserves artistiques |
 | [`chronicles.js`](../src/chronicles.js) | Validation composite, préparation, combat, import/export et stockage isolé |
 | [`universe-ui.js`](../src/universe-ui.js) | Registre, profils, modules, lecture et commandes des essais |
 
@@ -181,7 +205,21 @@ npm run test:chronicle:expansion
 npm run test:chronicle:specialists
 ```
 
-Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Le lot actuel ajoute `tests/combat-summons.test.js`, `tests/combat-support.test.js`, `tests/universe-ammo.test.js`, `tests/chronicle-ammo-sessions.test.js` et `tests/universe-portraits.test.js`. Le [rapport global](qa/chronicle-support-report.json) conserve les résultats suivants.
+Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Le complément arsenal passe **537 tests Node sur 537**, sans échec ni test ignoré, puis la compilation de **52 modules en 3,31 secondes**. Les 52 promotions Prototype sont appliquées. Les contrôles suivants sont reliés au [rapport global](qa/arsenal-report.json) ; ils ne certifient pas une fidélité artistique ou mécanique 1:1.
+
+| Contrôle arsenal | Résultat et portée | Preuve |
+|---|---|---|
+| Nouveau parcours navigateur | Six contrôles : huit armes, quinze armures, un module, seize adversaires dont trois boss, 24 visuels ; six victoires réelles | [Parcours](qa/arsenal-browser-report.json) |
+| Régression des Chroniques | Six contrôles et 25 victoires, couvrant tous les essais exposés | [Régression](qa/arsenal-legacy-universe-report.json) |
+| Production HTTP | 17 contrôles ; quinze PNG et sept bundles servis de taille et empreinte exactes ; quatre atlas répondant HTTP 200 avec les SHA attendus | [Production](qa/arsenal-production-report.json) |
+| Combat ME1 | Aucune divergence sur 30 graines et 1 755 ordres acceptés | [Différentiel](qa/arsenal-weapons-me1-combat-diff.json) |
+| Classeurs | 28 XLSX vérifiés ; 21 exports univers reconstruits ; 93 panneaux ciblés de trois classeurs supplémentaires et trois panneaux du principal revus | [Exports](qa/arsenal-workbook-export-report.json), [revue univers](qa/arsenal-workbook-visual-report.json), [principal](qa/arsenal-main-workbook-report.json) |
+
+Les catalogues, sources et archives sont préservés dans les limites déclarées du [rapport de conservation](qa/arsenal-preservation-report.json). Six citations héritées restent indirectes, avec une [réserve bibliographique](qa/arsenal-source-reservations.json) explicite. La [corroboration primaire supplémentaire](qa/arsenal-additional-source-check.json) porte seulement sur quelques faits nommés de Brute, Banshee et Husk, sans valider les kits, les paramètres ATB ou les images. Ces résultats Linux Chromium ne comprennent ni nouvelle campagne ME1 complète, ni lancement Windows, ni contrôle mobile.
+
+### Rapports conservés du lot soutiens, munitions et portraits
+
+Le lot précédent ajoutait `tests/combat-summons.test.js`, `tests/combat-support.test.js`, `tests/universe-ammo.test.js`, `tests/chronicle-ammo-sessions.test.js` et `tests/universe-portraits.test.js`. Le [rapport historique](qa/chronicle-support-report.json) conserve les résultats suivants, qui ne sont pas les résultats du complément arsenal.
 
 | Contrôle du lot soutiens, munitions et portraits | Résultat | Preuve |
 |---|---|---|
