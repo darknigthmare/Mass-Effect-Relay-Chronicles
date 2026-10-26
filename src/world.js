@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { WORLD_ZONES } from './world-data.js';
+import { initialCustomization, normalizeCustomization } from './customization.js';
+import { hasVisualCustomization, renderCustomizationSprite } from './customization-render.js';
 
 const CREW_KEYS = ['shepard', 'ashley', 'kaidan', 'jenkins', 'garrus', 'tali', 'wrex', 'liara'];
 const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', 'rachni', 'creeper', 'asari'];
@@ -64,7 +66,7 @@ export class WorldView {
   constructor(container, { onInteract, onMove, onEncounter } = {}) {
     if (!container) throw new Error('WorldView needs a container.');
     this.container = container; this.onInteract = onInteract; this.onMove = onMove; this.onEncounter = onEncounter;
-    this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins']; this.commanderAppearance = 'male'; this.storyContext = null;
+    this.mode = 'menu'; this.time = 0; this.keys = new Set(); this.party = ['shepard', 'kaidan', 'jenkins']; this.commanderAppearance = 'male'; this.commanderCustomization = initialCustomization(); this.customizationTextures = new Map(); this.storyContext = null;
     this.player = { x: 0, z: 11 }; this.cleared = new Set(); this.colliders = []; this.animations = []; this.effects = [];
     this.actors = []; this.battleActors = new Map(); this.trail = []; this.spriteCache = new Map(); this.atlases = {}; this.characterAnimations = {}; this.assetErrors = []; this.operationPois = [];
     this.textureCache = new Map(); this.materialCache = new Map(); this._moveReport = 0; this._disposed = false;
@@ -214,6 +216,7 @@ export class WorldView {
     const texture = this.spriteCache.get(key), side = new THREE.Vector2(this.cameraOffset.z, -this.cameraOffset.x).normalize(), forward = new THREE.Vector2(-this.cameraOffset.x, -this.cameraOffset.z).normalize();
     const horizontal = dx * side.x + dz * side.y, vertical = dx * forward.x + dz * forward.y;
     const direction = Math.abs(horizontal) > Math.abs(vertical) ? horizontal > 0 ? 'right' : 'left' : vertical > 0 ? 'back' : 'front';
+    actor.walkDirection = direction;
     const row = Math.max(0, this.walkConfig.directions.indexOf(direction));
     const rate = this.walkConfig.fps * (this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') ? 1.4 : 1);
     const frame = Math.floor(this.time * rate) % this.walkConfig.columns.length;
@@ -709,14 +712,72 @@ export class WorldView {
   setCommanderAppearance(appearance = 'male') {
     const next = appearance === 'female' ? 'female' : 'male';
     if (this.commanderAppearance === next) return;
+    const previousDefault = initialCustomization(this.commanderAppearance);
+    const usedDefault = !this.commanderCustomization || JSON.stringify(this.commanderCustomization) === JSON.stringify(previousDefault);
+    this._clearCommanderTextures();
     this.commanderAppearance = next;
+    if (usedDefault) this.commanderCustomization = initialCustomization(next);
     const key = next === 'female' ? 'femshep' : 'shepard';
     for (const actor of [...this.actors, ...this.battleActors.values()]) {
       if (actor.id !== 'shepard' || actor.enemy) continue;
       actor.key = key; actor.group.userData.key = key; actor.body.userData.characterKey = key;
       actor.body.material.map = this._spriteTexture(key, false);
       actor.body.scale.set(1, 1, 1); actor.body.position.x = 0; actor.body.position.z = 0;
+      this._applyCommanderCustomization(actor);
     }
+  }
+
+  setCommanderCustomization(customization) {
+    const next = normalizeCustomization(customization, this.commanderAppearance);
+    if (!next || JSON.stringify(next) === JSON.stringify(this.commanderCustomization)) return false;
+    this._clearCommanderTextures(); this.commanderCustomization = next;
+    for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
+    return true;
+  }
+
+  _clearCommanderTextures() {
+    for (const actor of [...this.actors, ...this.battleActors.values()]) {
+      const source = actor.body?.material?.map?.userData?.relayCustomizationSource;
+      if (source) actor.body.material.map = source;
+    }
+    for (const texture of this.customizationTextures?.values() || []) texture.dispose();
+    this.customizationTextures?.clear();
+  }
+
+  _applyCommanderCustomization(actor) {
+    if (actor.id !== 'shepard' || actor.enemy || !actor.body?.material?.map) return;
+    const material = actor.body.material, source = material.map.userData?.relayCustomizationSource || material.map;
+    const customization = this.commanderCustomization || initialCustomization(this.commanderAppearance);
+    material.userData.commanderCustomization = customization;
+    const inCombat = this.mode === 'combat';
+    if (!hasVisualCustomization(customization, this.commanderAppearance, inCombat)) { material.map = source; return; }
+    if (typeof document === 'undefined' || !source.image?.width || !source.image?.height) return;
+    const direction = actor.state ? 'front' : actor.walkDirection || 'front';
+    const rect = [
+      Math.round(source.offset.x * source.image.width),
+      Math.round((1 - source.offset.y - source.repeat.y) * source.image.height),
+      Math.max(1, Math.round(source.repeat.x * source.image.width)),
+      Math.max(1, Math.round(source.repeat.y * source.image.height)),
+    ];
+    const cacheKey = `${source.uuid}:${rect.join(',')}:${this.commanderAppearance}:${direction}:${inCombat}`;
+    this.customizationTextures ||= new Map();
+    if (!this.customizationTextures.has(cacheKey)) {
+      try {
+        const canvas = document.createElement('canvas'); canvas.width = rect[2]; canvas.height = rect[3];
+        canvas.getContext('2d').drawImage(source.image, ...rect, 0, 0, rect[2], rect[3]);
+        const tinted = renderCustomizationSprite(canvas, customization, { appearance: this.commanderAppearance, direction, inCombat });
+        const texture = new THREE.CanvasTexture(tinted); texture.colorSpace = THREE.SRGBColorSpace;
+        texture.anisotropy = 4; texture.magFilter = THREE.LinearFilter;
+        texture.userData.relayCustomizationSource = source;
+        this.customizationTextures.set(cacheKey, texture);
+      } catch {
+        // Keep the original art if a browser cannot read its canvas; retain a
+        // diagnostic instead of replacing an actor with an invisible texture.
+        if (!this.customizationRenderError) this.assetErrors?.push('La teinte du personnage n’a pas pu être générée.');
+        this.customizationRenderError = true; material.map = source; return;
+      }
+    }
+    material.map = this.customizationTextures.get(cacheKey);
   }
 
   setStoryContext(context = null) {
@@ -764,7 +825,9 @@ export class WorldView {
     shadow.rotation.x = -Math.PI / 2; shadow.position.y = .035; group.add(shadow);
     const statusShell = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 10), new THREE.MeshBasicMaterial({ color: 0xa69cea, transparent: true, opacity: .18, wireframe: true, depthWrite: false }));
     statusShell.scale.set(large ? 1.35 : 1.05, height * .6, .8); statusShell.position.y = height * .48; statusShell.visible = false; group.add(statusShell);
-    parent.add(group); return { id, key, enemy, group, body, shadow, statusShell, height, alive: true, poseTime: 0, lastHp: null, lastShield: null };
+    const actor = { id, key, enemy, group, body, shadow, statusShell, height, alive: true, poseTime: 0, lastHp: null, lastShield: null };
+    this._applyCommanderCustomization(actor);
+    parent.add(group); return actor;
   }
 
   setParty(party = []) {
@@ -846,6 +909,7 @@ export class WorldView {
     for (const actor of this.actors) actor.group.visible = mode !== 'combat';
     for (const actor of this.ambientActors || []) actor.group.visible = mode !== 'combat' && (!actor.poiId || !this.cleared.has(actor.poiId));
     for (const actor of this.battleActors.values()) actor.group.visible = mode === 'combat';
+    for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     for (const view of this.poiViews || []) { view.group.visible = mode !== 'combat' && !(view.poi.type === 'encounter' && this.cleared.has(view.poi.id)); if (mode !== 'explore') view.label.style.opacity = '0'; }
   }
 
@@ -1124,6 +1188,7 @@ export class WorldView {
         this._applyAnimationFrame(actor, `combat-${actor.key}`, combatConfig.frames[pose], { cover: actor.alive && actor.state?.cover });
       }
     }
+    for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     for (const item of this.animations) {
       if (item.kind === 'globe') item.object.rotation.y += dt * .12;
       if (item.kind === 'orbit') item.object.rotation.z += dt * item.speed;
@@ -1159,6 +1224,7 @@ export class WorldView {
     if (this._disposed) return; this._disposed = true;
     this.resizeObserver?.disconnect(); window.removeEventListener('keydown', this._keydown); window.removeEventListener('keyup', this._keyup); window.removeEventListener('blur', this._blur);
     this.renderer.domElement.removeEventListener('pointerdown', this._pointerdown);
+    this._clearCommanderTextures();
     disposeObject(this.scene); for (const texture of this.spriteCache.values()) texture.dispose(); for (const texture of this.textureCache.values()) texture.dispose(); for (const texture of Object.values(this.atlases)) texture.dispose();
     this.renderer.dispose(); this.renderer.domElement.remove(); this.labels.remove();
   }

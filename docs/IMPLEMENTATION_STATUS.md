@@ -1,8 +1,65 @@
-# État de livraison — 0.2.0
+# État de livraison — 0.3.0
 
-Mise à jour : **26 octobre 2026**. La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
+Mise à jour : **26 octobre 2026**. La branche de personnalisation intègre main `7ef342a1c7fb2152cb9f614917575886da4fcb8f`.
 
-## Complément arsenal — 26 octobre 2026
+La branche 0.3.0 conserve les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.
+
+Les **556 tests Node** et le build de **56 modules en 4,10 secondes** passent. Le [parcours actuel](qa/customization-arsenal-sync-customization-report.json) passe neuf contrôles de personnalisation, dont la reprise du build compilé ; les **17 contrôles HTTP de production** passent avec quinze PNG et sept bundles servis vérifiés par empreinte. Le [contrôle du principal](qa/customization-arsenal-sync-workbook-report.json) conserve les fiches et sources des deux branches, 28 feuilles et 26 tableaux filtrés. Les synchronisations [soutiens](qa/customization-support-sync-report.json) et [précédente](qa/pr1-final-report.json) restent historiques.
+
+ La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
+
+## Personnalisation de Shepard
+
+L’atelier est accessible à la création et, hors combat, depuis Pause, Commando et Équipement. Ses trois onglets partagent un brouillon, un aperçu et une comparaison avec la configuration enregistrée.
+
+| Onglet | Choix disponibles | Effet |
+|---|---|---|
+| Personnage | Deux apparences, quatre préréglages de visage, six teints, cinq couleurs d’yeux, six couleurs de cheveux et quatre coiffures | Paramètres persistants et portrait de conception 2D |
+| Armure | Armure complète possédée, deux modules d’armure, trois canaux parmi dix couleurs, quatre motifs, trois finitions et trois réglages de casque | Équipement existant et options cosmétiques ; casque masqué, visible ou réservé au combat |
+| Armes | Arme possédée, deux modules d’arme, modification de munitions, OmniTech et amplificateur | Disponibilité et statistiques issues du même inventaire que l’écran Équipement |
+
+**Appliquer** valide l’ensemble de la configuration avant toute mutation. Les quantités disponibles tiennent compte des autres équipiers ; les restrictions d’équipement restent actives. **Annuler** ou fermer l’atelier abandonne les changements du brouillon. Les cosmétiques ne donnent aucun bonus de combat et les armures restent des ensembles complets ME1.
+
+Les choix sont conservés dans `state.customization`, avec l’apparence et les neuf emplacements d’équipement existants. Une ancienne sauvegarde sans personnalisation reçoit les valeurs par défaut. Un champ présent mais malformé est refusé, sans exécuter d’accesseur. Les détails fonctionnels et les fichiers concernés figurent dans [CUSTOMIZATION.md](CUSTOMIZATION.md).
+
+### Portée visuelle
+
+L’aperçu réutilise les sprites existants dans quatre directions ; le portrait de conception rend les choix de visage et de coiffure. L’aperçu et le terrain partagent le traitement des couleurs, motifs, finitions et du casque. Le casque est représenté par un masque et une visière sur la silhouette existante.
+
+Le terrain conserve la géométrie des silhouettes et les coupes de cheveux des atlas. Les préréglages de visage, les formes de coiffure et le détail des yeux se lisent dans le portrait de l’atelier ; ils ne constituent pas un morphing facial 3D. Les silhouettes exactes de chaque arme et armure, leurs accessoires et leurs animations propres restent à produire. Aucune fidélité artistique 1:1 n’est déclarée.
+
+## Vérifications historiques de la personnalisation avant fusion
+
+Les résultats suivants portent sur les sources de la PR avant fusion ; leurs rapports restent inchangés.
+
+Le [rapport de livraison 0.3.0](qa/v0.3.0-report.json) réunit les résultats et les empreintes des sources et de la compilation.
+
+| Contrôle | Résultat et portée | Preuve |
+|---|---|---|
+| Règles Node | **217 contrôles réussis dans 18 fichiers**, aucun échec ni test ignoré ; dont 14 scénarios dédiés à la personnalisation | [customization-unit-report.json](qa/customization-unit-report.json) |
+| Atelier dans le navigateur | **9 groupes réussis** : création, brouillon, équipement, rendu terrain, sauvegardes, trois onglets mobiles, migration, restrictions et build de production ; aucune erreur navigateur ou ressource en échec | [customization-report.json](qa/customization-report.json) |
+| Compilation web | `npm run build` réussi, 33 modules ; ressources locales et WebGL contrôlés dans le build | [v0.3.0-report.json](qa/v0.3.0-report.json) |
+| Classeur | 1 371 fiches, conservation des 1 321 fiches historiques et de leurs styles ; 28 feuilles et 26 tables filtrées | [customization-native-check.json](workbook-previews/customization-native-check.json) |
+
+Les contrôles du modèle couvrent le brouillon détaché, l’application atomique, l’équipement partagé, l’interdiction en combat, la migration et le refus de données malformées. Ils vérifient aussi les couleurs, le casque, les valeurs par défaut et la libération des textures générées.
+
+Le parcours navigateur utilise les commandes réelles de création, d’achat, de personnalisation et de sauvegarde. Il vérifie la reprise automatique, un export JSON téléchargé puis importé et une restauration manuelle nommée. Le contrôle historique du rendu constatait 16 812 pixels RGB modifiés sur la texture de Shepard et une transparence identique. Les deux sauvegardes préparées pour la migration et les restrictions d’inventaire sont des fixtures importées explicitement ; elles ne représentent pas du matériel obtenu en campagne.
+
+Les trois onglets ont été contrôlés à **360 × 800** et l’atelier bureau à **1 440 × 1 000**, sans débordement horizontal ni bouton tronqué. Le build de production reprend les choix après rechargement et n’expose pas l’API de développement. Les captures historiques [création](screenshots/customization-creation.png), [armure](screenshots/customization-armor.png), [armes](screenshots/customization-weapons-desktop.png), [mobile](screenshots/customization-mobile.png) et [production](screenshots/customization-production.png) sont issues de ces essais. Le casque du sprite reste un masque coloré schématique sur la silhouette d’origine, comme indiqué dans la revue visuelle du rapport.
+
+## Distribution et preuves de la branche de personnalisation
+
+Les rapports de campagne, d’opérations, d’équipement et d’apparences de **0.2.0 restent des preuves historiques de leurs sources respectives** : [livraison 0.2.0](qa/v0.2.0-report.json), [campagne](qa/campaign-report.json), [opérations](qa/operations-report.json), [équipement](qa/loadout-report.json), [apparences](qa/commander-report.json), [poses féminines](qa/femshep-poses-report.json) et [distribution web](qa/production-v02-report.json). Ils ne signifient pas que ces parcours complets ont été réexécutés sur 0.3.0.
+
+La correction Windows de la base `c614a45` est conservée : le fichier de catalogue nommé `CON.json` et son rapport deviennent `CONVICTION.json`, avec leurs octets et l’identifiant interne `CON` préservés. Les chemins des générateurs et le test de portabilité sont intégrés. Le [diagnostic initial](qa/windows-path-fix.json) décrit l’échec de checkout qui motivait ce changement ; cette livraison n’annonce pas un nouveau test d’exécution sous Windows.
+
+Les configurations Electron, Vercel et les workflows GitHub restent présents. Les résultats des builds publiés sont à consulter dans GitHub Actions. Aucun nouveau déploiement Vercel n’est annoncé ici ; voir [DEPLOYMENT.md](DEPLOYMENT.md). Le [rapport Windows 0.1.0](qa/build-v0.1.0-report.json) et le [rapport d’équilibrage antérieur](qa/balance-report.json) restent historiques.
+
+## Socle main `7ef342a` conservé
+
+Les rapports et résultats ci-dessous portent sur les sources de main avant personnalisation ; leurs empreintes ne sont pas réécrites pour la PR. Les 50 fiches de personnalisation portent le principal fusionné à 1 382 et le registre à 6 708.
+
+## Complément arsenal de main — 26 octobre 2026
 
 Le complément reprend `1310a84`. Il conserve les soutiens, munitions, préparations, lectures et portraits précédents, puis ajoute **huit profils d’armes**, dont quatre à charge automatique ATB, **quinze armures** et une famille de module ultraléger pour mitraillette ME3 conventionnelle à clips. Les ateliers atteignent **100 équipements : 72 armes, 25 armures et trois familles de modules**. Quatorze des armures ajoutées sont limitées aux ateliers Legendary Edition ME2/ME3 ou Deluxe Andromeda ; la quinzième est une protection Reliquats agrégée. Acquisition, rangs, apparences et valeurs originales restent partiels.
 
@@ -12,11 +69,11 @@ Les huit armes sont le fusil à particules, le Lancer, l’Arc, le Graal et le J
 
 Quatre atlas RGBA ajoutent **24 illustrations fixes et partielles** : quatre bustes de personnages, deux de PNJ, six silhouettes d’adversaires, six équipements et six véhicules ou vaisseaux. Ils complètent les trois portraits historiques, qui gardent leur priorité. Les PNJ et la flotte restent documentaires ; aucun pilotage ou droit de sélection n’est déduit d’une image. Les quinze PNG courants n’ajoutent pas de nouveau cycle animé ni de modèle complet. Le [manifeste arsenal](../public/assets/arsenal-visuals.json) conserve quatre empreintes et six cadrages irréguliers ; toutes les entrées restent `primaryVisualVerified: false`.
 
-Le registre courant compte **6 658 fiches et 450 sources** : 1 332 fiches et 40 sources principales, puis 5 326 fiches et 410 sources supplémentaires. Deux nouvelles références ME1 documentent uniquement l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les anciennes fiches d’adaptation ne sont pas requalifiées. Les **52 promotions Prototype sont appliquées**. Les statuts actuels sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**.
+Dans main `7ef342a`, le registre compte **6 658 fiches et 450 sources** : 1 332 fiches et 40 sources principales, puis 5 326 fiches et 410 sources supplémentaires. Deux nouvelles références ME1 documentent uniquement l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les anciennes fiches d’adaptation ne sont pas requalifiées. Les **52 promotions Prototype sont appliquées**. Les statuts de main sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**.
 
 Le [rapport global arsenal](qa/arsenal-report.json) relie les validations finales suivantes.
 
-| Contrôle actuel | Résultat et portée |
+| Contrôle du main arsenal, conservé à l’identique | Résultat et portée |
 |---|---|
 | Tests Node | 537 réussis sur 537, aucun échec ni test ignoré |
 | Build web | 52 modules compilés en 3,31 secondes |
@@ -39,7 +96,7 @@ La préparation conserve ses choix dans `ammoModes`, avec validation stricte et 
 
 Un onzième PNG local fournit **trois bustes de prototype**, limités à Miranda ME2, Thane ME2 et Garrus ME3 dans leurs contextes autorisés. Il ne livre ni sprite en pied, ni huit directions, ni animation ou costume complet. Les autres profils gardent leurs symboles. Les [références des soutiens et munitions](research/chronicle-support-sources.md) et les [références des portraits](research/chronicle-portrait-sources.md) distinguent faits consultés, attributions secondaires et adaptations.
 
-Le lot ajoute **17 promotions Prototype** : quatre pouvoirs de soutien, dix de munitions et trois portraits partiels. Le décompte vérifié après reconstruction est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé**, soit **6 656 fiches et 449 sources**. Le [rapport global](qa/chronicle-support-report.json) relie les résultats suivants à leurs sources.
+Le lot ajoute **17 promotions Prototype** : quatre pouvoirs de soutien, dix de munitions et trois portraits partiels. Dans main `cefa0b1`, le décompte vérifié après reconstruction est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé**, soit **6 656 fiches et 449 sources**. Le [rapport global](qa/chronicle-support-report.json) relie les résultats suivants à leurs sources. Ces preuves restent celles du main 0.2.0 publié ; les contrôles du `main.js` personnalisé 0.3.0 figurent dans le [rapport de synchronisation](qa/customization-support-sync-report.json).
 
 | Validation historique du lot soutiens | Résultat et portée |
 |---|---|

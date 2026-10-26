@@ -2,7 +2,7 @@
 
 Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de trois et commandes ATB**, dans une mise en scène inspirée des JRPG sur PlayStation.
 
-**Version 0.2.0 enrichie : campagne ME1 condensée, 14 assignations, équipement, Shepard femme animée et Chroniques indépendantes.** Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
+**Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
 ![Capture réelle du prototype : exploration de la Citadelle](docs/screenshots/citadel.png)
 
@@ -42,6 +42,8 @@ npm run preview
 
 Le dossier `dist/` contient la version web compilée avec tous les assets locaux. Le servir par HTTP ; le double-clic sur `index.html` n’est pas le mode de lancement prévu. La version Electron charge ces mêmes fichiers localement.
 
+Le [rapport initial de livraison 0.3.0](docs/qa/v0.3.0-report.json) conserve les vérifications de la branche de personnalisation avant sa fusion avec les dernières Chroniques.
+
 ## Commandes
 
 | Action | Commande |
@@ -59,6 +61,22 @@ Le dossier `dist/` contient la version web compilée avec tous les assets locaux
 | Pouvoir ou action ciblée | Choisir une commande, puis une cible |
 
 En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode **Actif**, les jauges continuent. La pause arrête aussi les recharges et la chaleur. Les options proposent trois difficultés, le volume, des transitions réduites et du texte agrandi.
+
+## Personnaliser Shepard
+
+À la création, ouvrir **Personnaliser l’apparence**. En cours de campagne, l’atelier est accessible depuis **Pause**, **Commando** et **Équipement**, hors combat.
+
+| Onglet | Choix disponibles |
+|---|---|
+| Personnage | Apparence masculine ou féminine, quatre préréglages de visage, six teints, cinq couleurs d’yeux, six couleurs de cheveux et quatre coiffures |
+| Armure | Armure complète et module possédés, trois canaux de couleur, quatre motifs, trois finitions et casque masqué, visible ou réservé au combat |
+| Armes | Arme, module d’arme et amélioration de munitions ; filtres et consultation du catalogue, avec disponibilité et restrictions expliquées |
+
+Les changements restent dans un **brouillon** jusqu’à la validation. La comparaison montre la configuration actuelle et les statistiques calculées ; **Annuler** ou **Échap** abandonne les retouches. L’application valide les neuf emplacements ensemble contre l’inventaire courant. Elle ne crée ni objet ni crédit. Les couleurs sont cosmétiques ; l’équipement conserve ses effets réels en combat. Les choix sont conservés dans les sauvegardes automatiques, manuelles et exportées.
+
+![Atelier de personnalisation : création du personnage et aperçu du sprite](docs/screenshots/customization-creation.png)
+
+Le portrait détaillé est un dessin 2D de conception. Le mannequin réutilise le vrai sprite dans quatre directions ; les couleurs, motifs, finitions et réglages du casque sont transmis au rendu du terrain. Les formes de visage et de coiffure restent visibles sur le portrait de l’atelier. Les silhouettes exactes de chaque armure et de chaque arme restent à produire. Les ensembles complets et modules suivent l’organisation ME1 ; les revêtements et la retouche pendant la campagne sont des extensions de cette adaptation. Voir [le périmètre de personnalisation](docs/CUSTOMIZATION.md) et [les références par opus](docs/research/customization-sources.md).
 
 ## Contenu effectivement présent
 
@@ -90,7 +108,7 @@ Les nouveaux bancs utilisent **16 profils d’adversaires, dont trois boss**, av
 
 Shepard dispose de six préparations de classe dans ME2 et de six dans ME3 ; Ryder de trois préparations de compétences, en plus des dotations par défaut. Les **61 fiches de pouvoirs exposées correspondent à 30 commandes ATB**, auxquelles s’ajoute la désactivation du mode de munitions. Le système conserve quatre fiches de soutien à trois actions — drone de combat, tourelle de garde et drone de défense — et dix fiches de munitions ME2/ME3 à six modes exclusifs. Les soutiens ont leurs propres PV, une durée et un propriétaire ; ils peuvent être détruits et ne comptent pas comme équipiers pour la victoire. Les modes appris s’appliquent aux seuls tirs conventionnels à clips, sans remplir le chargeur ni renforcer les pouvoirs. Les consommables de munitions Andromeda et Warp Ammo ME3 restent fermés. Les paramètres sont adaptés à l’ATB ; talents, rangs et acquisitions d’origine restent partiels.
 
-Les grenades à fragmentation et collantes disposent d’une réserve d’essai limitée, distincte des munitions de l’arme ; le soutien des boucliers de Cora restaure les alliés conscients. Les deux ports de modules restent limités aux familles et armes compatibles. Le complément arsenal passe **537 tests Node sur 537**, la compilation de 52 modules, **six contrôles navigateur avec six victoires**, puis six contrôles de régression couvrant les 25 essais. Les **17 contrôles de production HTTP** chargent les quinze PNG et vérifient les sept bundles servis. Les 52 promotions Prototype sont appliquées ; le [rapport arsenal](docs/qa/arsenal-report.json) relie les résultats à leurs sources. Le [rapport historique soutiens, munitions et portraits](docs/qa/chronicle-support-report.json) conserve ses 473 tests, cinq contrôles navigateur et douze contrôles de production ; il ne constitue pas une preuve du complément actuel.
+Les grenades à fragmentation et collantes disposent d’une réserve d’essai limitée, distincte des munitions de l’arme ; le soutien des boucliers de Cora restaure les alliés conscients. Les deux ports de modules restent limités aux familles et armes compatibles. Sur main `7ef342a`, le complément arsenal passait **537 tests Node sur 537**, la compilation de 52 modules, **six contrôles navigateur avec six victoires**, puis six contrôles de régression couvrant les 25 essais. Les **17 contrôles de production HTTP** chargent les quinze PNG et vérifient les sept bundles servis. Les 52 promotions Prototype sont appliquées ; le [rapport arsenal](docs/qa/arsenal-report.json) relie les résultats à leurs sources. Le [rapport historique soutiens, munitions et portraits](docs/qa/chronicle-support-report.json) conserve ses 473 tests, cinq contrôles navigateur et douze contrôles de production ; il ne constitue pas une preuve du complément actuel.
 
 Les six profils d’armes spéciales précédents sont conservés. Huit autres ajoutent le fusil à particules, le Lancer, l’Arc, le Graal et le Javelin dans ME3, puis l’Equalizer, le Scattershot et le Venom dans Andromeda. Quatre utilisent une charge ATB automatique et interruptible. Les jauges de chaleur et les clips sont distincts ; le Javelin ignore seulement le couvert abstrait ATB, sans simulation de traversée du décor. Les paramètres et les mécanismes originaux ne sont pas certifiés intégralement.
 
@@ -106,7 +124,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 
 - **[27 classeurs supplémentaires — univers étendu](docs/universe/README.md)** : ME2, ME3, Andromeda, Infiltrator, Galaxy, les sept romans, les douze comics et collections demandés, Paragon Lost, le dossier d’extrapolation ME4 et les contenus coupés. Chaque classeur contient 28 onglets, ses sources et sa couverture restante.
 - **[Télécharger les 27 classeurs en ZIP](docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**.
-- **[Classeur de production — 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA.
+- **[Classeur de production — 1 382 fiches, 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA. La version 0.3.0 ajoute 50 fiches de personnalisation en conservant les 1 332 fiches de la branche principale, soit 6 708 références avec les 27 catalogues supplémentaires.
 - [Guide et décompte du catalogue](docs/CATALOGUE.md).
 - [Catalogue JSON](docs/content-catalog.json), utilisé pour générer le classeur.
 - [Chroniques : périodes, personnages, équipement et sauvegardes séparées](docs/CHRONICLES.md).
@@ -114,7 +132,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 - [Registre des assets et limites artistiques](docs/ASSETS.md).
 - [État de livraison et vérifications](docs/IMPLEMENTATION_STATUS.md).
 
-Le registre courant compte **6 658 fiches et 450 sources** : **1 332 fiches et 40 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Les deux nouvelles références ME1 documentent uniquement la présence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les statuts courants sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**. Les 28 classeurs sont vérifiés ; la revue visuelle couvre 93 panneaux ciblés de trois classeurs supplémentaires et trois panneaux du principal. Elle ne constitue pas une inspection complète de toutes les feuilles.
+Le registre courant de la branche 0.3.0 compte **6 708 fiches et 454 sources** : **1 382 fiches et 44 sources dans le principal**, dont les 50 fiches de personnalisation, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Les deux nouvelles références ME1 documentent uniquement la présence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les statuts courants sont **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Le principal fusionné est vérifié contre les deux bases. La revue historique de main `7ef342a` couvrait 93 panneaux ciblés de trois classeurs supplémentaires et trois panneaux du principal ; elle n’a pas été rejouée sur la PR. Trois nouveaux aperçus du principal fusionné sont [revus séparément](docs/qa/customization-arsenal-sync-workbook-visual-report.json). Ces revues ne constituent pas une inspection complète de toutes les feuilles.
 
 **Une fiche de production ne signifie pas un élément terminé.** Le classeur sépare le statut du contenu, le statut de l’asset et le niveau de vérification canonique. Les liens vers des fichiers constituent des preuves localisables ; les noms d’assets futurs restent dans une colonne distincte. Une modification directe dans Excel n’est pas automatiquement réimportée dans le JSON.
 
@@ -127,7 +145,7 @@ npm test
 npm run build
 ```
 
-Les tests Node vérifient les règles de combat, l’équipement, les opérations, les sauvegardes, la progression et le cycle audio. Les tests navigateur requièrent Playwright et Chromium :
+Les tests Node vérifient le combat, l’équipement, la personnalisation, les opérations, les sauvegardes, les Chroniques et la portabilité Windows. Le [rapport initial de personnalisation](docs/qa/customization-unit-report.json) conserve ses 217 tests historiques ; il ne décrit pas la validation de cette fusion. La synchronisation actuelle au socle `7ef342a` passe **556 tests Node**, la compilation de **56 modules** et **neuf contrôles de personnalisation**, y compris le build compilé. Les **17 contrôles HTTP de production** passent avec quinze PNG et sept bundles de taille et empreinte exactes ; les résultats courants sont conservés dans [customization-arsenal-sync-report.json](docs/qa/customization-arsenal-sync-report.json). La [synchronisation précédente](docs/qa/customization-support-sync-report.json) conserve ses 492 tests et neuf/douze contrôles sur le socle `cefa0b1` ; elle reste historique. La fusion précédente au socle `748b965` conserve ses 415 tests Node, neuf contrôles de personnalisation et dix contrôles HTTP dans [pr1-final-report.json](docs/qa/pr1-final-report.json) ; ce rapport est historique. Le [premier rapport de fusion](docs/qa/pr1-merge-report.json) conserve les 377 tests de `0d2192a` sur l’ancienne base `7fe7a88`. Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium
@@ -142,13 +160,14 @@ npm run test:story
 npm run test:assignments
 npm run test:operations
 npm run test:loadout
+npm run test:customization
 npm run test:loadout:extensions
 npm run test:universe
 npm run test:chronicle:expansion
 npm run test:chronicle:specialists
 ```
 
-Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports sont écrits dans `test-results/`.
+Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports historiques sont écrits dans `test-results/`. Le parcours de personnalisation consigne ses preuves dans `docs/qa/customization-report.json` et `docs/screenshots/customization-*.png`.
 
 Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les ressources et la reprise du build sous URLs locales dans Chromium. `node scripts/femshep-poses-browser.mjs` inspecte les quatre poses dans une scène de rendu isolée avec le serveur dev actif. Ces contrôles ne remplacent pas un lancement de l’exécutable Windows.
 
@@ -159,6 +178,8 @@ Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les r
 `npm run build:universe` régénère le registre documentaire du jeu depuis les 28 catalogues. `npm run build:universe -- --check` vérifie sa correspondance sans écrire. Cette commande ne modifie ni les sources JSON ni les classeurs.
 
 Le classeur livré est directement ouvrable dans un tableur. Sa régénération avec `npm run workbook` requiert le runtime `@oai/artifact-tool` et sa variable `CODEX_PRIMARY_RUNTIME_NODE_MODULES` ; cette dépendance d’édition n’est pas nécessaire pour jouer ou compiler le jeu.
+
+La génération historique de l’extension ciblée 0.3.0 utilise `scripts/update-customization-catalog.mjs` et `scripts/update-customization-workbook.mjs` sur la base indiquée dans ces scripts. Elle préserve les feuilles, cellules et styles antérieurs. Les résultats de recalcul, de comparaison des cellules et de contrôle des tableaux se trouvent dans [customization-verification.json](docs/workbook-previews/customization-verification.json) et [customization-native-check.json](docs/workbook-previews/customization-native-check.json). Le [premier contrôle de fusion](docs/workbook-previews/customization-merge-native-check.json) reste historique ; le classeur actuel est vérifié dans [customization-arsenal-sync-workbook-report.json](docs/qa/customization-arsenal-sync-workbook-report.json).
 
 ## Structure
 
@@ -175,6 +196,9 @@ Le classeur livré est directement ouvrable dans un tableur. Sa régénération 
 | `src/assignment-data.js` | Contacts et dialogues condensés des trois assignations de la Citadelle |
 | `src/operations.js` / `src/operation-data.js` | Onze opérations supplémentaires, 43 étapes, quatre combats et validation persistante |
 | `src/loadout.js` / `src/loadout-ui.js` | Inventaire, boutiques, compatibilité, effets de matériel et comparaisons |
+| `src/customization.js` | Options cosmétiques, brouillon détaché, validation et application atomique |
+| `src/customization-ui.js` / `src/customization-ui.css` | Atelier Personnage / Armure / Armes, comparaison et aperçu dans quatre directions |
+| `src/customization-render.js` | Traitement des pixels partagé entre l’aperçu et les sprites du monde |
 | `src/continuity-data.js` / `src/continuity.js` | Œuvres, segments, provenance et validation des contextes |
 | `src/universe-data.js` | Registre documentaire généré depuis les 28 catalogues |
 | `src/universe-actors.js` / `src/universe-equipment.js` | Profils partiels, préparations et équipement autorisés dans les essais |

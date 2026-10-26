@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Mass Effect Relay Chronicles",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "updatedAt": "2026-10-26",
     "language": "fr-FR",
     "referenceEpisode": "ME1",
@@ -159,6 +159,17 @@
       "internalInventoryVersion": 2,
       "primaryReferenceProof": "docs/qa/equipment-primary-reference-report.json",
       "limits": "Prix, rangs de déblocage, budget de formation, multiplicateurs et ports fixes sont une adaptation ATB ; modèles, talents et chiffres originaux non certifiés."
+    },
+    "customization": {
+      "version": "0.3.0",
+      "tabs": [
+        "Personnage",
+        "Armure",
+        "Armes"
+      ],
+      "records": 50,
+      "equipmentModel": "Armure complète ME1 et neuf emplacements du complément équipement conservés. Les options de couleur, motif et finition sont une extension cosmétique de Relay Chronicles.",
+      "visualLimit": "Aperçus 2D et recoloration de prototype. Morphing facial 3D, variantes artistiques exactes par équipement et animations dédiées restent à produire."
     }
   },
   "sources": [
@@ -401,6 +412,30 @@
       "title": "Mass Effect — manuel Xbox360 anglais officiel",
       "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
       "scope": "Manuel réellement téléchargé HTTP 200 le 26/10/2026 : 16 pages, SHA-256 f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44. Normandy : page PDF 3, page imprimée 4 ; Mako : page PDF 13, pages imprimées 23–24. Identification et vue seulement ; aucune géométrie, statistique ou fidélité générée certifiée. Preuve : docs/qa/arsenal-visual-reference-report.json. Source distincte du manuel PC français ME1-MANUAL."
+    },
+    {
+      "id": "ME1-CUSTOMIZATION-MANUAL",
+      "title": "Mass Effect — manuel Xbox 360 officiel",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "scope": "Pages imprimées 5–7 et 18–19. Création de Shepard, armures complètes et améliorations spécialisées."
+    },
+    {
+      "id": "ME3-CUSTOMIZATION-MANUAL",
+      "title": "Mass Effect 3 — manuel PC officiel",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "scope": "Pages 12–13. Pièces d’armure, deux mods par arme, charge et recharge. Référence des différences entre opus."
+    },
+    {
+      "id": "MEA-CUSTOMIZATION-MANUAL",
+      "title": "Mass Effect Andromeda — manuel PC officiel",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-andromeda-pc-en.pdf",
+      "scope": "Pages 6 et 15–18. Créateur, recherche, développement, augmentations et équipement. Référence future."
+    },
+    {
+      "id": "MEA-PATCH108",
+      "title": "BioWare — Mass Effect Andromeda Patch 1.08",
+      "url": "https://blog.bioware.com/2017/06/06/mass-effect-andromeda-patch-1-08-notes/",
+      "scope": "Modification d’apparence à bord du Tempest. Ne décrit pas une fonctionnalité native de ME1."
     }
   ],
   "categories": [
@@ -31486,6 +31521,1554 @@
         "scripts/arsenal-browser.mjs",
         "docs/qa/arsenal-browser-report.json"
       ]
+    },
+    {
+      "id": "CUST-UI-workshop",
+      "category": "systems",
+      "name": "Atelier de personnalisation de Shepard",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Écran réunissant trois onglets : Personnage, Armure et Armes. Présentation du personnage, options et dotation partagent un brouillon.",
+      "acceptance": "Ouvrir les trois onglets, modifier des options, puis appliquer ou annuler sans quitter la campagne ni perdre la progression.",
+      "dependencies": [
+        "SYS-creation-de-shepard",
+        "SYS-inventaire",
+        "SYS-sauvegarde-locale"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:UI-workshop",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-entry",
+      "category": "systems",
+      "name": "Accès à l’atelier depuis les menus",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Entrées visibles depuis les menus de Shepard et de l’équipement. Retour à l’écran d’origine après fermeture.",
+      "acceptance": "Atteindre l’atelier sans console ni commande de développement. Le bouton Retour rétablit le menu attendu.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/main.js",
+      "assetPath": "src/main.js",
+      "gameKey": "customization:UI-entry",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-character",
+      "category": "systems",
+      "name": "Onglet Personnage",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-GAMEPLAY",
+      "sourceUrl": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "description": "Choix de l’apparence, des préréglages du visage, du teint, des cheveux et des yeux, avec aperçu immédiat.",
+      "acceptance": "Chaque option modifie le brouillon et son aperçu. Le personnage actif reste inchangé avant validation.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:UI-character",
+      "notes": "Présentation 2D propre au projet. L’ensemble des curseurs morphologiques du créateur officiel reste à réaliser.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-armor",
+      "category": "systems",
+      "name": "Onglet Armure",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Choix d’une armure complète possédée et d’un module d’armure. Les options visuelles sont regroupées sous l’atelier de Relay Chronicles.",
+      "acceptance": "Afficher la pièce équipée, les autres armures disponibles, leurs restrictions et les différences de statistiques.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:UI-armor",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-weapons",
+      "category": "systems",
+      "name": "Onglet Armes",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Choix de l’arme, de son module et de ses munitions spéciales à partir de l’inventaire partagé.",
+      "acceptance": "La sélection respecte les emplacements existants et permet le retour à la dotation précédente avant validation.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:UI-weapons",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-FACE-preset",
+      "category": "systems",
+      "name": "Préréglages du visage",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-GAMEPLAY",
+      "sourceUrl": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "description": "Préréglages visuels adaptés au portrait 2D de Shepard. Les identifiants sont persistants et distincts du sexe d’apparence.",
+      "acceptance": "Changer le préréglage puis revenir au précédent restitue le même aperçu. Une valeur inconnue est rejetée au chargement.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:FACE-preset",
+      "notes": "Préréglages originaux de l’adaptation ; aucun code visage officiel ni morphing 3D natif.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-FACE-skin",
+      "category": "systems",
+      "name": "Palette de teints",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-GAMEPLAY",
+      "sourceUrl": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "description": "Choix du teint dans une palette bornée. La palette sert à l’aperçu 2D et à la sauvegarde de l’atelier.",
+      "acceptance": "Les teintes restent distinctes et lisibles sous l’éclairage de l’atelier. La valeur choisie survit à un chargement.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:FACE-skin",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-FACE-hair",
+      "category": "systems",
+      "name": "Coiffure et couleur des cheveux",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-GAMEPLAY",
+      "sourceUrl": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "description": "Sélection d’une coiffure et d’une couleur indépendantes, représentées dans le portrait de personnalisation.",
+      "acceptance": "Changer la couleur conserve la coiffure et inversement. Les valeurs invalides ne sont pas importées dans la partie.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:FACE-hair",
+      "notes": "Les coiffures du portrait ne constituent pas des atlas animés redessinés pour chaque variante.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-FACE-eyes",
+      "category": "systems",
+      "name": "Couleur des yeux",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-GAMEPLAY",
+      "sourceUrl": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "description": "Palette des yeux visible sur le portrait agrandi, enregistrée dans la configuration du commandant.",
+      "acceptance": "La sélection reste vérifiable dans le portrait et dans la sauvegarde exportée sans modifier les statistiques de combat.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:FACE-eyes",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-identity",
+      "category": "systems",
+      "name": "Conservation du dossier de Shepard",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "La retouche de l’apparence préserve l’origine, le profil psychologique, la classe et les décisions de campagne déjà enregistrées.",
+      "acceptance": "Comparer le dossier, les quêtes, les crédits, l’XP et les drapeaux narratifs avant et après application d’une retouche.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:SYS-identity",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-draft",
+      "category": "systems",
+      "name": "Brouillon de personnalisation isolé",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Les changements sont rassemblés dans une copie de travail avant leur validation. Parcourir des options ne consomme aucun objet.",
+      "acceptance": "Modifier chaque catégorie puis vérifier que l’état de campagne et son inventaire restent identiques à leur état initial.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:SYS-draft",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-atomic",
+      "category": "systems",
+      "name": "Application atomique du personnage et du matériel",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Le bouton Appliquer vérifie l’apparence et tous les emplacements de la dotation avant de remplacer l’état actif.",
+      "acceptance": "Si une seule sélection échoue, aucune apparence ni pièce d’équipement n’est modifiée. Une application valide ne duplique aucun objet.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:SYS-atomic",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-cancel",
+      "category": "systems",
+      "name": "Annuler les retouches",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Annuler abandonne les modifications du brouillon et retrouve l’apparence et l’équipement effectivement sauvegardés.",
+      "acceptance": "Modifier visage, armure et arme puis annuler. Comparer l’état complet à l’état précédant l’ouverture de l’atelier.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:SYS-cancel",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-reset",
+      "category": "systems",
+      "name": "Réinitialiser le brouillon",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Rétablir la configuration courante dans l’atelier afin de recommencer une comparaison sans réinitialiser la campagne.",
+      "acceptance": "Après plusieurs changements, le brouillon réinitialisé correspond au personnage actif et n’affecte ni quête ni inventaire.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:SYS-reset",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-comparison",
+      "category": "systems",
+      "name": "Comparaison des statistiques de dotation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "L’atelier présente les valeurs équipées et les valeurs projetées du brouillon : santé, bouclier, puissance, défense et effets des modules.",
+      "acceptance": "Les différences affichées correspondent aux règles d’équipement existantes, y compris chaleur, refroidissement et bonus spécialisés.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:UI-comparison",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-persistence",
+      "category": "systems",
+      "name": "Persistance de la personnalisation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "L’apparence et la dotation validées sont incluses dans la sauvegarde automatique, les sauvegardes manuelles et les exports JSON.",
+      "acceptance": "Après validation, recharger chaque type de sauvegarde et retrouver exactement la configuration sélectionnée.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/state.js",
+      "assetPath": "src/state.js",
+      "gameKey": "customization:SYS-persistence",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/state.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-migration",
+      "category": "systems",
+      "name": "Migration des sauvegardes sans personnalisation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Une sauvegarde antérieure dépourvue du nouveau champ reçoit une configuration par défaut compatible avec son apparence.",
+      "acceptance": "Importer une sauvegarde 0.2.0 sans le champ puis sauvegarder à nouveau, en conservant progression, inventaire et identité.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/state.js",
+      "assetPath": "src/state.js",
+      "gameKey": "customization:SYS-migration",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/state.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-SYS-validation",
+      "category": "systems",
+      "name": "Validation des données de personnalisation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Le chargement contrôle la forme des données, leurs clés et les valeurs des palettes, préréglages et options de l’atelier.",
+      "acceptance": "Refuser une version inconnue, un identifiant interdit ou une structure malformée. Ne pas exécuter de getter fourni par une entrée externe.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:SYS-validation",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-responsive",
+      "category": "systems",
+      "name": "Atelier sur ordinateur et mobile",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "L’aperçu et les options s’adaptent à la largeur disponible. Les libellés, statistiques et actions restent accessibles au défilement.",
+      "acceptance": "Parcourir les trois onglets à largeur de bureau et de téléphone sans débordement horizontal ni bouton masqué.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.css",
+      "assetPath": "src/customization-ui.css",
+      "gameKey": "customization:UI-responsive",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.css"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "category": "systems",
+      "name": "Navigation clavier de l’atelier",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Contrôles natifs nommés, focus visible et fermeture cohérente avec le reste des menus.",
+      "acceptance": "Sélectionner des options et valider ou annuler au clavier. Échap n’applique aucune modification du brouillon.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:UI-keyboard",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ARMOR-full-suit",
+      "category": "equipment",
+      "name": "Armure complète ME1 dans l’atelier",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Une seule armure complète remplit l’emplacement armure. Les catégories légère, intermédiaire et lourde restent celles du catalogue existant.",
+      "acceptance": "Ne pas fabriquer de combinaison torse/bras/jambes ME2 dans la dotation ME1. L’objet sélectionné est un identifiant existant de l’inventaire.",
+      "dependencies": [
+        "CUST-UI-armor",
+        "SYS-inventaire"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:ARMOR-full-suit",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ARMOR-compatibility",
+      "category": "equipment",
+      "name": "Restrictions d’armure et disponibilité",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "La sélection reprend les restrictions d’espèce, d’entraînement et de disponibilité de la dotation existante.",
+      "acceptance": "Une armure incompatible ou réservée par un autre équipier ne peut pas être validée. La raison est compréhensible dans l’écran.",
+      "dependencies": [
+        "CUST-ARMOR-full-suit"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:ARMOR-compatibility",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ARMOR-module",
+      "category": "equipment",
+      "name": "Module d’armure dans le brouillon",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Choisir ou retirer le module d’armure existant, sans ajouter d’emplacement non pris en charge par le moteur.",
+      "acceptance": "La comparaison du bouclier, de la défense ou des résistances suit le module choisi. Retirer le module ne détruit pas l’objet.",
+      "dependencies": [
+        "CUST-UI-armor"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:ARMOR-module",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ARMOR-colors",
+      "category": "equipment",
+      "name": "Couleurs de l’armure de Relay Chronicles",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME2-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-2-manuals_PC_fr.pdf",
+      "description": "Couleurs principales, secondaires et d’accent de l’atelier visuel, séparées des propriétés de l’objet équipé.",
+      "acceptance": "Changer une couleur conserve les statistiques et les objets. Afficher qu’il s’agit d’une option de l’adaptation.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:ARMOR-colors",
+      "notes": "Personnalisation cosmétique inspirée des opus ultérieurs. Ce n’est pas une fonction native revendiquée de ME1.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ARMOR-pattern-finish",
+      "category": "equipment",
+      "name": "Motif et finition de l’armure",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME3-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "description": "Options visuelles de motif et de finition dans le personnage présenté par l’atelier.",
+      "acceptance": "Le motif et la finition sont visibles dans l’aperçu, persistent après validation et ne modifient pas les bonus.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:ARMOR-pattern-finish",
+      "notes": "Extension de Relay Chronicles ; les règles d’armures spéciales de ME3 ne sont pas importées dans ME1.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ARMOR-helmet",
+      "category": "equipment",
+      "name": "Visibilité du casque dans l’atelier",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Préférence de présentation du casque pour l’aperçu du personnage.",
+      "acceptance": "Activer et masquer le casque laisse l’armure et sa défense inchangées. Décrire la portée réelle de la représentation en jeu.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:ARMOR-helmet",
+      "notes": "Option visuelle. Le remplacement fidèle du casque sur toutes les images animées demande des assets dédiés.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-WEAPON-owned",
+      "category": "weapons",
+      "name": "Arme équipée et armes disponibles",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Sélection d’un modèle d’arme possédé, avec sa famille et ses limites d’entraînement dans l’adaptation.",
+      "acceptance": "Choisir parmi les armes disponibles sans en créer ni en acheter implicitement. Le modèle équipé reste affiché.",
+      "dependencies": [
+        "CUST-UI-weapons"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:WEAPON-owned",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-WEAPON-upgrade",
+      "category": "weapons",
+      "name": "Module d’arme séparé des munitions",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "L’emplacement de module d’arme utilise le catalogue de modules existant et ses effets sur la puissance ou la chaleur.",
+      "acceptance": "Un module d’armure ou de munitions ne peut pas entrer dans ce champ. La comparaison reflète l’effet du module.",
+      "dependencies": [
+        "CUST-UI-weapons"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:WEAPON-upgrade",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-WEAPON-ammo",
+      "category": "weapons",
+      "name": "Munitions spéciales dans le brouillon",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "ME1-CUSTOMIZATION-MANUAL",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "L’amélioration de munitions est sélectionnée indépendamment du module d’arme.",
+      "acceptance": "Équiper puis retirer des munitions spéciales ne remplace pas le module d’arme et conserve la quantité possédée.",
+      "dependencies": [
+        "CUST-UI-weapons"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:WEAPON-ammo",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-WEAPON-effects",
+      "category": "weapons",
+      "name": "Effets réels de la nouvelle dotation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Après application, l’équipement de l’atelier alimente le calcul d’acteur et les règles de combat déjà présentes.",
+      "acceptance": "Vérifier puissance, chaleur, refroidissement, dégâts spécialisés et résistance avec les mêmes calculs que l’écran Équipement.",
+      "dependencies": [
+        "CUST-UI-comparison",
+        "CUST-SYS-atomic"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization.js",
+      "assetPath": "src/customization.js",
+      "gameKey": "customization:WEAPON-effects",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ART-face-preview",
+      "category": "sprites",
+      "name": "Portrait 2D personnalisable",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-GAMEPLAY",
+      "sourceUrl": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "description": "Portrait procédural de l’atelier affichant les choix de visage, teint, coiffure et yeux.",
+      "acceptance": "L’aperçu permet de distinguer chaque option. Les libellés n’annoncent pas un modèle facial 3D officiel.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:ART-face-preview",
+      "notes": "Représentation graphique de prototype. Fidélité des visages officiels à contrôler séparément.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "category": "sprites",
+      "name": "Silhouette d’armure dans l’atelier",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Silhouette inspectable du commandant, indiquant les couleurs, le motif et le casque choisis.",
+      "acceptance": "Le corps reste lisible avec le casque affiché ou masqué et les couleurs de la palette. Les options ne recouvrent pas les commandes.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:ART-armor-preview",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ART-weapon-preview",
+      "category": "sprites",
+      "name": "Aperçu de la famille d’arme",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Représentation d’inspection et fiche du modèle sélectionné dans l’onglet Armes.",
+      "acceptance": "La famille présentée correspond à l’objet choisi. Ne pas présenter une silhouette générique comme la géométrie exacte d’un modèle ME1.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/customization-ui.js",
+      "assetPath": "src/customization-ui.js",
+      "gameKey": "customization:ART-weapon-preview",
+      "notes": "La représentation des familles reste une adaptation. Les modèles détaillés propres à chaque fabricant restent à produire.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/customization-ui.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "category": "sprites",
+      "name": "Couleur personnalisée du sprite en jeu",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Transmettre les couleurs prises en charge par le rendu de Shepard à l’exploration et au combat.",
+      "acceptance": "Vérifier les limites du masque ou de la recoloration sur toutes les directions et poses. Aucun changement d’apparence d’un autre équipier.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/world.js",
+      "assetPath": "src/world.js",
+      "gameKey": "customization:ART-world-palette",
+      "notes": "La recoloration d’un atlas ne remplace pas les silhouettes d’armures ou coiffures par des assets dédiés.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/world.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ART-faithful-variants",
+      "category": "sprites",
+      "name": "Variantes artistiques exactes par armure et arme",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Défini",
+      "assetStatus": "À produire",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "EA-COSPLAY",
+      "sourceUrl": "https://www.ea.com/games/mass-effect/community/cosplay-guides",
+      "description": "Produire des sprites, portraits et détails correspondant à chaque armure, arme, casque et coiffure réellement équipés.",
+      "acceptance": "Comparer les volumes, panneaux, marquages et teintes au modèle de l’opus retenu dans toutes les vues et poses avant validation.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P1",
+      "plannedPath": "public/assets/customization/",
+      "assetPath": "",
+      "gameKey": "customization:ART-faithful-variants",
+      "notes": "Backlog artistique. Les aperçus procéduraux et teintes d’atlas ne valident pas ces variantes 1:1.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ANI-walk-colors",
+      "category": "animations",
+      "name": "Personnalisation et cycle de marche",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Conserver la configuration visuelle prise en charge lors du changement de direction, de l’arrêt et de la course de Shepard.",
+      "acceptance": "Parcourir les quatre directions pour les deux apparences sans retour à la palette par défaut entre les frames.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/world.js",
+      "assetPath": "src/world.js",
+      "gameKey": "customization:ANI-walk-colors",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/world.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "category": "animations",
+      "name": "Personnalisation et poses de combat",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Maintenir les options visuelles prises en charge pendant les poses de visée, pouvoir, impact et hors combat.",
+      "acceptance": "Vérifier la persistance de la palette et des ancrages lors du passage exploration/combat puis du retour sur la carte.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P0",
+      "plannedPath": "src/world.js",
+      "assetPath": "src/world.js",
+      "gameKey": "customization:ANI-combat-colors",
+      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "src/world.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-ANI-equipment-transitions",
+      "category": "animations",
+      "name": "Transitions animées propres à l’équipement",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Défini",
+      "assetStatus": "À produire",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Prévoir des poses de sélection, manipulation, mise en joue et rangement pour chaque famille d’arme et catégorie d’armure.",
+      "acceptance": "Les mains suivent les prises de l’arme, les volumes de l’armure restent cohérents et les accessoires n’intersectent pas le corps.",
+      "dependencies": [
+        "CUST-UI-workshop"
+      ],
+      "priority": "P1",
+      "plannedPath": "public/assets/customization/animations/",
+      "assetPath": "",
+      "gameKey": "customization:ANI-equipment-transitions",
+      "notes": "Backlog. Aucun nouveau cycle dessiné par équipement n’est livré par l’atelier 0.3.0.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "customization-feature"
+    },
+    {
+      "id": "CUST-QA-draft-pure",
+      "category": "qa",
+      "name": "QA — aperçu sans mutation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Modifier toutes les catégories du brouillon et comparer l’état de campagne avant validation.",
+      "acceptance": "L’état actif et les quantités restent strictement inchangés.",
+      "dependencies": [
+        "CUST-SYS-draft"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-draft-pure",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-cancel",
+      "category": "qa",
+      "name": "QA — annulation complète",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Modifier l’apparence, l’armure, l’arme et les modules puis annuler depuis l’atelier.",
+      "acceptance": "La configuration antérieure reste affichée après fermeture et réouverture.",
+      "dependencies": [
+        "CUST-SYS-cancel"
+      ],
+      "priority": "P0",
+      "plannedPath": "scripts/customization-browser.mjs",
+      "assetPath": "scripts/customization-browser.mjs",
+      "gameKey": "customization:QA-cancel",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "scripts/customization-browser.mjs"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-apply",
+      "category": "qa",
+      "name": "QA — validation d’une configuration",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Valider une configuration cohérente et relire l’acteur équipé.",
+      "acceptance": "Toutes les modifications sont appliquées ensemble sans altérer crédits, quêtes ni XP.",
+      "dependencies": [
+        "CUST-SYS-atomic"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-apply",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-failure",
+      "category": "qa",
+      "name": "QA — échec atomique",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Ajouter une sélection incompatible ou devenue indisponible au brouillon.",
+      "acceptance": "L’opération échoue sans modifier apparence, dotation ou inventaire.",
+      "dependencies": [
+        "CUST-SYS-atomic"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-failure",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-legacy",
+      "category": "qa",
+      "name": "QA — sauvegarde antérieure",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Charger une sauvegarde 0.2.0 dépourvue du champ de personnalisation.",
+      "acceptance": "Les valeurs par défaut sont ajoutées et les données historiques restent intactes.",
+      "dependencies": [
+        "CUST-SYS-migration"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-legacy",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-malformed",
+      "category": "qa",
+      "name": "QA — données de personnalisation invalides",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Tester clés inconnues, palettes invalides, valeurs hors type et objets avec accesseurs.",
+      "acceptance": "Chaque entrée non valide est refusée sans exécution de getter ni mutation partielle.",
+      "dependencies": [
+        "CUST-SYS-validation"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-malformed",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-roundtrip",
+      "category": "qa",
+      "name": "QA — sauvegarder et retrouver le personnage",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Enregistrer, exporter, recharger et importer une configuration personnalisée.",
+      "acceptance": "L’apparence et les cinq emplacements de dotation retrouvés sont identiques aux choix validés.",
+      "dependencies": [
+        "CUST-SYS-persistence"
+      ],
+      "priority": "P0",
+      "plannedPath": "scripts/customization-browser.mjs",
+      "assetPath": "scripts/customization-browser.mjs",
+      "gameKey": "customization:QA-roundtrip",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "scripts/customization-browser.mjs"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-ownership",
+      "category": "qa",
+      "name": "QA — propriété des objets",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Essayer un objet absent, incompatible ou déjà attribué à un autre équipier.",
+      "acceptance": "Aucun objet ne se duplique et aucune attribution de l’autre équipier ne disparaît.",
+      "dependencies": [
+        "CUST-ARMOR-compatibility"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-ownership",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-stats",
+      "category": "qa",
+      "name": "QA — comparaison et calcul du combat",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Comparer la projection du brouillon au calcul d’acteur après application.",
+      "acceptance": "Les différences numériques correspondent à la dotation et aux effets des modules.",
+      "dependencies": [
+        "CUST-WEAPON-effects"
+      ],
+      "priority": "P0",
+      "plannedPath": "tests/customization.test.js",
+      "assetPath": "tests/customization.test.js",
+      "gameKey": "customization:QA-stats",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "tests/customization.test.js"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-layouts",
+      "category": "qa",
+      "name": "QA — lisibilité ordinateur et téléphone",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Parcourir les trois onglets avec de longs noms et plusieurs tailles de fenêtre.",
+      "acceptance": "Aucun défilement horizontal involontaire, contrôle tronqué ou action inaccessible.",
+      "dependencies": [
+        "CUST-UI-responsive"
+      ],
+      "priority": "P0",
+      "plannedPath": "scripts/customization-browser.mjs",
+      "assetPath": "scripts/customization-browser.mjs",
+      "gameKey": "customization:QA-layouts",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "scripts/customization-browser.mjs"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "category": "qa",
+      "name": "QA — navigation clavier et fermeture",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Changer les contrôles au clavier, parcourir les onglets puis fermer sans appliquer.",
+      "acceptance": "Le focus reste visible et Échap ne valide pas le brouillon.",
+      "dependencies": [
+        "CUST-UI-keyboard"
+      ],
+      "priority": "P0",
+      "plannedPath": "scripts/customization-browser.mjs",
+      "assetPath": "scripts/customization-browser.mjs",
+      "gameKey": "customization:QA-keyboard",
+      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [
+        "scripts/customization-browser.mjs"
+      ],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
+    },
+    {
+      "id": "CUST-QA-art-review",
+      "category": "qa",
+      "name": "QA — fidélité artistique de la personnalisation",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Adaptation",
+      "status": "Défini",
+      "assetStatus": "À produire",
+      "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
+      "sourceId": "PROJECT",
+      "sourceUrl": "",
+      "description": "Comparer chaque silhouette, détail d’armure, arme et coiffure aux références de son opus.",
+      "acceptance": "Documenter les différences et conserver le statut à produire jusqu’au contrôle des vues et animations.",
+      "dependencies": [
+        "CUST-ART-faithful-variants"
+      ],
+      "priority": "P1",
+      "plannedPath": "docs/research/customization-art-review.md",
+      "assetPath": "",
+      "gameKey": "customization:QA-art-review",
+      "notes": "Revue artistique non réalisée. Aucune certification de fidélité 1:1.",
+      "deliveryVersion": "0.3.0",
+      "implementationPaths": [],
+      "evidence": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "recordType": "acceptance-scenario"
     }
   ]
 }

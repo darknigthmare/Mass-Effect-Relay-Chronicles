@@ -2,7 +2,9 @@
 
 Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis vingt-cinq essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
 
-**Complément arsenal du 26 octobre 2026, basé sur `1310a84`, validé fonctionnellement dans son périmètre partiel.** Le registre courant contient **6 658 fiches : 1 332 dans le principal et 5 326 dans les 27 catalogues supplémentaires**, avec **450 sources : 40 principales et 410 supplémentaires**. Deux nouvelles références ME1 documentent l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360, sans valider leur géométrie ni leur pilotage. Les **52 promotions Prototype sont appliquées**. Les statuts courants sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**. Le [rapport arsenal](qa/arsenal-report.json) conserve les résultats fonctionnels et leurs limites.
+La branche 0.3.0 conserve les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.
+
+**Complément arsenal de main du 26 octobre 2026, basé sur `1310a84`, validé fonctionnellement dans son périmètre partiel.** Le registre de main contient **6 658 fiches : 1 332 dans le principal et 5 326 dans les 27 catalogues supplémentaires**, avec **450 sources : 40 principales et 410 supplémentaires**. Deux nouvelles références ME1 documentent l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360, sans valider leur géométrie ni leur pilotage. Les **52 promotions Prototype sont appliquées**. Ses statuts sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**. Le [rapport arsenal](qa/arsenal-report.json) conserve les résultats fonctionnels et leurs limites.
 
 **Historique soutiens, munitions et portraits du 25 octobre, basé sur `748b965`.** Ce lot conservait 6 656 fiches et 449 sources. Ses 17 promotions donnaient 530 Prototype, 6 120 Défini, trois Intégré et trois Validé. Le [rapport historique](qa/chronicle-support-report.json) relie ses propres contrôles aux sources de cette version.
 
@@ -205,7 +207,7 @@ npm run test:chronicle:expansion
 npm run test:chronicle:specialists
 ```
 
-Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Le complément arsenal passe **537 tests Node sur 537**, sans échec ni test ignoré, puis la compilation de **52 modules en 3,31 secondes**. Les 52 promotions Prototype sont appliquées. Les contrôles suivants sont reliés au [rapport global](qa/arsenal-report.json) ; ils ne certifient pas une fidélité artistique ou mécanique 1:1.
+Les tests dédiés couvrent continuité, provenance, personnages, matériel, rechargement, validation des sessions et isolation des sauvegardes. Sur main `7ef342a`, le complément arsenal passait **537 tests Node sur 537**, sans échec ni test ignoré, puis la compilation de **52 modules en 3,31 secondes**. Les 52 promotions Prototype sont appliquées. Les contrôles suivants sont reliés au [rapport global](qa/arsenal-report.json) ; ils ne certifient pas une fidélité artistique ou mécanique 1:1.
 
 | Contrôle arsenal | Résultat et portée | Preuve |
 |---|---|---|
