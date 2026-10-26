@@ -1,0 +1,334 @@
+{
+  "readOnly": true,
+  "authorizedBy": "Root explicit message26Oct2026: one new officialME1source, two new named-view reference cards, two existingSYSnotes and mainmetadata; only two new mainIDs may be promoted by this agent after positiveQA.",
+  "originalBaseline": {
+    "path": "/tmp/relay-arsenal-baseline-1310a84.json",
+    "sha256": "3877325cc911e7e5e65fd48704a30b0409ce945fa8d49b7ece1fc53c6684c948",
+    "commit": "1310a84ff132e80f5b00e14b19e4930cbe9d27d5",
+    "records": 6656,
+    "sources": 449
+  },
+  "afterAuthorizedRootChanges": {
+    "path": "/tmp/relay-arsenal-baseline-after-main-references.json",
+    "sha256": "b08735f6d0c5d25f530094d0994e3ca6bcdfd1932ec21c363d35543f0091ddd5",
+    "records": 6658,
+    "sources": 450,
+    "mainRows": 1332,
+    "mainSources": 40
+  },
+  "rootAppendedSource": {
+    "id": "ME1-MANUAL-X360-EN",
+    "title": "Mass Effect — manuel Xbox360 anglais officiel",
+    "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+    "scope": "Manuel réellement téléchargé HTTP 200 le 26/10/2026 : 16 pages, SHA-256 f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44. Normandy : page PDF 3, page imprimée 4 ; Mako : page PDF 13, pages imprimées 23–24. Identification et vue seulement ; aucune géométrie, statistique ou fidélité générée certifiée. Preuve : docs/qa/arsenal-visual-reference-report.json. Source distincte du manuel PC français ME1-MANUAL."
+  },
+  "rootAddedEntries": [
+    {
+      "id": "REF-VEH-M35-MAKO-ME1",
+      "category": "props",
+      "name": "Référence visuelle — Mako ME1",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Confirmé",
+      "status": "Défini",
+      "assetStatus": "Prototype",
+      "reference": "Manuel Xbox360 EN PDF 13, pages imprimées23–24, rubrique MAKO.",
+      "sourceId": "ME1-MANUAL-X360-EN",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Le manuel officiel du premier Mass Effect présente le véhicule Mako sous sa rubrique dédiée et une vue extérieure.",
+      "acceptance": "Illustration de référence visible uniquement dans le registre ME1, liée à la source exacte et marquée Prototype. Aucun pilotage, intérieur, nouvelle géométrie ou statistique ne sont accordés.",
+      "dependencies": [],
+      "priority": "P1",
+      "plannedPath": "public/assets/arsenal-fleet.png",
+      "assetPath": "public/assets/arsenal-fleet.png",
+      "gameKey": "REF-VEH-M35-MAKO-ME1",
+      "notes": "Existence et sujet de la vue primaire seulement confirmés. La génération reste une illustration fixe partielle ; ressemblance, détails de coque et proportions ne sont pas certifiés 1:1. Les anciens dossiers, leurs natures et les systèmes de pilotage restent inchangés."
+    },
+    {
+      "id": "REF-SHP-NORMANDY-SR1-ME1",
+      "category": "props",
+      "name": "Référence visuelle — Normandy SR-1 ME1",
+      "episode": "ME1",
+      "scope": "Production ME1",
+      "canonLevel": "Confirmé",
+      "status": "Défini",
+      "assetStatus": "Prototype",
+      "reference": "Manuel Xbox360 EN PDF 3, page imprimée4, Normandy.",
+      "sourceId": "ME1-MANUAL-X360-EN",
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "description": "Le manuel officiel du premier Mass Effect nomme le Normandy et montre sa coque ; cette référence concerne le vaisseau de ME1.",
+      "acceptance": "Illustration de référence visible uniquement dans le registre ME1, liée à la source exacte et marquée Prototype. Aucun pilotage, intérieur, nouvelle géométrie ou statistique ne sont accordés.",
+      "dependencies": [],
+      "priority": "P1",
+      "plannedPath": "public/assets/arsenal-fleet.png",
+      "assetPath": "public/assets/arsenal-fleet.png",
+      "gameKey": "REF-SHP-NORMANDY-SR1-ME1",
+      "notes": "Existence et sujet de la vue primaire seulement confirmés. La génération reste une illustration fixe partielle ; ressemblance, détails de coque et proportions ne sont pas certifiés 1:1. Les anciens dossiers, leurs natures et les systèmes de pilotage restent inchangés."
+    }
+  ],
+  "rootChangedOldRows": [
+    {
+      "id": "SYS-chroniques-contextuelles",
+      "fields": {
+        "notes": {
+          "before": "Prototype partiel. Les soutiens autonomes ont HP/durée/propriétaire et ne remplacent aucun combattant natif dans la victoire. Trois portraits partiels ne créent ni sprite animé ni recrutement. Voir tests/combat-support.test.js, tests/chronicles.test.js et docs/CHRONICLES.md. Aucun transfert dans ME1.",
+          "after": "Prototype partiel : 25 essais dont six bancs d’opposition et trois ateliers d’édition explicites. Les 16 profils ennemis ont leurs limites affichées ; les 42 profils joueurs historiques sont conservés. Les 24 illustrations fixes contextualisées ne donnent ni statistiques aux PNJ, ni pilotage ou géométrie. Voir src/universe-visuals.js, tests/universe-visuals.test.js et docs/CHRONICLES.md. Aucun transfert vers ME1."
+        }
+      }
+    },
+    {
+      "id": "SYS-preparations-chroniques",
+      "fields": {
+        "notes": {
+          "before": "Prototype partiel : tests/chronicle-ammo-sessions.test.js et tests/universe-support-ui.test.js ; commandes et préférences de munitions bornées au vrai kit et à l’œuvre. Voir docs/CHRONICLES.md ; rangs, acquisition et fidélité globale1:1 non certifiés.",
+          "after": "Prototype partiel : 100 équipements selon la scène, le porteur et l’édition ; quatre ports conservés. Le module ultraléger est limité aux SMG conventionnelles ME3 et à un coefficient de recharge ATB de 0,9. Les modes de munitions exclusifs et préférences sauvegardées restent distincts du combat. Voir tests/universe-armor-editions.test.js et tests/chronicle-ammo-sessions.test.js ; acquisition, rangs et fidélité globale 1:1 non certifiés."
+        }
+      }
+    }
+  ],
+  "rootChangedMainMetadata": {
+    "updatedAt": {
+      "before": "2026-10-25",
+      "after": "2026-10-26"
+    },
+    "prototypeCoverage": {
+      "before": {
+        "worldZoneKeys": [
+          "normandy",
+          "eden-prime",
+          "citadel",
+          "therum",
+          "feros",
+          "noveria",
+          "virmire",
+          "ilos",
+          "citadel-finale"
+        ],
+        "distinctWorldDestinations": 8,
+        "companionCount": 8,
+        "encounterCount": 21,
+        "codexCount": 16,
+        "visualLimit": "Deux cycles de marche de Shepard et quatre poses de combat féminines. Les autres atlas restent des poses de prototype. Costumes, visages et mouvements complets non validés 1:1.",
+        "coverageLimit": "Les 9 zones sont des décors condensés. Les 100 sous-zones et 91 liaisons du catalogue restent à produire.",
+        "vehicleLimit": "Mako et Sovereign décoratifs ; Normandy SR-1 et armature geth illustrés. Aucun véhicule pilotable.",
+        "atlases": [
+          {
+            "path": "public/assets/crew-atlas.png",
+            "scope": "8 poses alliées ; portraits, combat et repli statique du terrain"
+          },
+          {
+            "path": "public/assets/enemy-atlas.png",
+            "scope": "8 silhouettes ennemies de prototype"
+          },
+          {
+            "path": "public/assets/boss-atlas.png",
+            "scope": "4 poses de boss ; aucune planche animée complète"
+          },
+          {
+            "path": "public/assets/npc-atlas.png",
+            "scope": "8 poses dont Shepard féminin et 7 PNJ ; 6 PNJ placés, Nihlus seulement avant Eden Prime"
+          },
+          {
+            "path": "public/assets/vehicle-atlas.png",
+            "scope": "4 silhouettes de véhicules ou grande machine ; 2 placements décoratifs"
+          },
+          {
+            "path": "public/assets/props-atlas.png",
+            "scope": "Objets illustrés de décor"
+          },
+          {
+            "path": "public/assets/shepard-walk-atlas.png",
+            "scope": "Shepard : 16 images / 4 directions ; cycle de marche à nettoyer, huit directions non validées"
+          },
+          {
+            "path": "public/assets/shepard-female-walk-atlas.png",
+            "scope": "Shepard femme : 16 frames de marche / quatre directions ; cycle à nettoyer"
+          },
+          {
+            "path": "public/assets/shepard-female-combat-atlas.png",
+            "scope": "Shepard femme : quatre poses clés aim, power, hit et down ; aucune transition dessinée"
+          }
+        ],
+        "animationLimit": "32 frames de marche pour les deux apparences de Shepard, quatre directions chacune ; quatre poses de combat féminines. Raccords, huit directions, variantes par arme et mouvements des compagnons restent à produire.",
+        "conversationPointCount": 9,
+        "conversationTopicCount": 18,
+        "assignmentCount": 14,
+        "assignmentContactCount": 4,
+        "assignmentLimit": "Trois assignations historiques et onze opérations supplémentaires. Quatre scans de veilleurs, dialogues réécrits, cartes condensées, quatre combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire.",
+        "historicalAssignmentCount": 3,
+        "operationCount": 11,
+        "operationStepCount": 43,
+        "operationEncounterCount": 4,
+        "equipmentItemCount": 52,
+        "weaponItemCount": 20,
+        "armorItemCount": 16,
+        "moduleItemCount": 12,
+        "walkFrameCount": 32,
+        "femaleCombatPoseCount": 4,
+        "toolItemCount": 4,
+        "equipmentSlotCount": 9,
+        "characterEquipmentProfileCount": 8,
+        "chronicles": {
+          "works": 28,
+          "periodSegments": 48,
+          "scenarios": 16,
+          "selectableCharacters": 42,
+          "partialActorProfiles": 42,
+          "equipmentItems": 76,
+          "weapons": 64,
+          "armors": 10,
+          "prototypeWorks": [
+            "ME2",
+            "ME3",
+            "MEA",
+            "INF",
+            "GAL",
+            "RED",
+            "PL"
+          ],
+          "limit": "Sessions et sauvegardes séparées de ME1 ; seize essais et seize lectures courtes. Soutiens autonomes ciblables et modes de munitions exclusifs, avec valeurs ATB adaptées. Trois portraits de bustes sourcés ; silhouettes complètes, animations, niveaux, dialogues intégraux et campagnes complètes restent à produire.",
+          "weaponModuleFamilies": 2,
+          "powerCatalogEntries": 61,
+          "activePowerActions": 30,
+          "newPowerActions": 22,
+          "classPreparations": 15,
+          "documentaryReadings": 16,
+          "documentaryPages": 52,
+          "specialistWorkshops": 6,
+          "specialWeaponProfiles": 6,
+          "autonomousSupportCards": 4,
+          "ammunitionPowerCards": 10,
+          "portraitProfiles": 3
+        }
+      },
+      "after": {
+        "worldZoneKeys": [
+          "normandy",
+          "eden-prime",
+          "citadel",
+          "therum",
+          "feros",
+          "noveria",
+          "virmire",
+          "ilos",
+          "citadel-finale"
+        ],
+        "distinctWorldDestinations": 8,
+        "companionCount": 8,
+        "encounterCount": 21,
+        "codexCount": 16,
+        "visualLimit": "Deux cycles de marche de Shepard et quatre poses de combat féminines. Les autres atlas restent des poses de prototype. Costumes, visages et mouvements complets non validés 1:1.",
+        "coverageLimit": "Les 9 zones sont des décors condensés. Les 100 sous-zones et 91 liaisons du catalogue restent à produire.",
+        "vehicleLimit": "Mako et Sovereign décoratifs ; Normandy SR-1 et armature geth illustrés. Aucun véhicule pilotable.",
+        "atlases": [
+          {
+            "path": "public/assets/crew-atlas.png",
+            "scope": "8 poses alliées ; portraits, combat et repli statique du terrain"
+          },
+          {
+            "path": "public/assets/enemy-atlas.png",
+            "scope": "8 silhouettes ennemies de prototype"
+          },
+          {
+            "path": "public/assets/boss-atlas.png",
+            "scope": "4 poses de boss ; aucune planche animée complète"
+          },
+          {
+            "path": "public/assets/npc-atlas.png",
+            "scope": "8 poses dont Shepard féminin et 7 PNJ ; 6 PNJ placés, Nihlus seulement avant Eden Prime"
+          },
+          {
+            "path": "public/assets/vehicle-atlas.png",
+            "scope": "4 silhouettes de véhicules ou grande machine ; 2 placements décoratifs"
+          },
+          {
+            "path": "public/assets/props-atlas.png",
+            "scope": "Objets illustrés de décor"
+          },
+          {
+            "path": "public/assets/shepard-walk-atlas.png",
+            "scope": "Shepard : 16 images / 4 directions ; cycle de marche à nettoyer, huit directions non validées"
+          },
+          {
+            "path": "public/assets/shepard-female-walk-atlas.png",
+            "scope": "Shepard femme : 16 frames de marche / quatre directions ; cycle à nettoyer"
+          },
+          {
+            "path": "public/assets/shepard-female-combat-atlas.png",
+            "scope": "Shepard femme : quatre poses clés aim, power, hit et down ; aucune transition dessinée"
+          }
+        ],
+        "animationLimit": "32 frames de marche pour les deux apparences de Shepard, quatre directions chacune ; quatre poses de combat féminines. Raccords, huit directions, variantes par arme et mouvements des compagnons restent à produire.",
+        "conversationPointCount": 9,
+        "conversationTopicCount": 18,
+        "assignmentCount": 14,
+        "assignmentContactCount": 4,
+        "assignmentLimit": "Trois assignations historiques et onze opérations supplémentaires. Quatre scans de veilleurs, dialogues réécrits, cartes condensées, quatre combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire.",
+        "historicalAssignmentCount": 3,
+        "operationCount": 11,
+        "operationStepCount": 43,
+        "operationEncounterCount": 4,
+        "equipmentItemCount": 52,
+        "weaponItemCount": 20,
+        "armorItemCount": 16,
+        "moduleItemCount": 12,
+        "walkFrameCount": 32,
+        "femaleCombatPoseCount": 4,
+        "toolItemCount": 4,
+        "equipmentSlotCount": 9,
+        "characterEquipmentProfileCount": 8,
+        "chronicles": {
+          "works": 28,
+          "periodSegments": 48,
+          "scenarios": 25,
+          "selectableCharacters": 42,
+          "partialActorProfiles": 42,
+          "equipmentItems": 100,
+          "weapons": 72,
+          "armors": 25,
+          "prototypeWorks": [
+            "ME2",
+            "ME3",
+            "MEA",
+            "INF",
+            "GAL",
+            "RED",
+            "PL"
+          ],
+          "limit": "Sessions et sauvegardes séparées de ME1 ; vingt-cinq essais et seize lectures courtes. Huit armes supplémentaires dont des charges interruptibles, quinze armures et un module ultraléger bornés à leur contexte ; paramètres ATB explicitement adaptés. Vingt-quatre nouvelles illustrations fixes couvrent personnages, PNJ, ennemis et boss, costumes, armes, schémas de modules, véhicules et vaisseaux. Modèles, animations, rangs, phases de boss, pilotage et campagnes complètes restent à produire ; aucune fidélité 1:1 intégrale certifiée.",
+          "weaponModuleFamilies": 3,
+          "powerCatalogEntries": 61,
+          "activePowerActions": 30,
+          "newPowerActions": 22,
+          "classPreparations": 15,
+          "documentaryReadings": 16,
+          "documentaryPages": 52,
+          "specialistWorkshops": 6,
+          "specialWeaponProfiles": 14,
+          "autonomousSupportCards": 4,
+          "ammunitionPowerCards": 10,
+          "portraitProfiles": 7,
+          "additionalVisualSubjects": 24,
+          "opponentProfiles": 16,
+          "oppositionWorkshops": 6,
+          "editionEquipmentWorkshops": 3
+        }
+      }
+    }
+  },
+  "sourceResearchReport": {
+    "path": "docs/qa/arsenal-visual-reference-report.json",
+    "sha256": "647610b990c3f7d609720c1da4d7e4fac11b1ebf608c804d2d763058b11045ca",
+    "actualLocalPdfSha256": "f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44",
+    "pageCount": 16,
+    "scope": "Research evidence, not positive functionalQA or certification of generated likeness."
+  },
+  "checks": {
+    "all1330OriginalEntryIdsRetained": true,
+    "all1330OriginalStatusesNaturesDescriptionsReferencesSourceIdsDependenciesPreserved": true,
+    "all39OriginalSourceObjectsExact": true,
+    "universe27CatalogueBytesUnchanged": true,
+    "oldEntryChangesLimitedToTwoAuthorizedNotes": true,
+    "noAdditionalSourceAppendAuthorized": true
+  }
+}

@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_Andromeda_Production.xlsx",
   "scope": "Campagne solo complète comme périmètre de préparation, grands arcs d’alliés, mondes de Heleus, tâches représentatives et épilogue. Profils de patch explicités. APEX et multijoueur coopératif sont des modules séparés ; aucun DLC narratif solo hypothétique ni résolution inventée de l’arche quarienne.",
-  "summary": "763 fiches de production ; 52 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "763 fiches de production ; 62 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -7126,7 +7126,7 @@
       "id": "MEA-ENM-CHOSEN",
       "category": "enemies",
       "name": "Kett Chosen",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Infanterie kett.",
@@ -7135,7 +7135,7 @@
       "visual": "Armure organique claire et visage kett.",
       "animation": "Préparer une anticipation orientée, un événement de résolution, une récupération et une réaction interrompue propres à ce comportement : Avance par petits groupes et tir de ligne ; annonce de grenade proposée pour déloger un couvert sans sortie forcée hors carte.",
       "audio": "Créer un signal distinct de préparation et une indication visuelle équivalente ; signaux de créature, machine et tir allié restent différenciés.",
-      "implementation": "Prévu : fiche de données mea/enemies/chosen ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "Campagne / multi selon rencontre.",
       "acceptance": "Kett Chosen : tester la menace annoncée, une réponse de déplacement, un contre compatible et la sortie de combat ; cible, faction et phase ne changent jamais sans retour visible.",
       "dependencies": [],
@@ -7143,7 +7143,21 @@
         "MEA-SRC-CHOSEN"
       ],
       "reference": "Kett Chosen",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Armement et comportement du Chosen original. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EMV-CHOSEN",
@@ -7356,7 +7370,7 @@
       "id": "MEA-ENM-ASCENDANT",
       "category": "enemies",
       "name": "Ascendant",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Unité kett protégée par un orbe.",
@@ -7365,7 +7379,7 @@
       "visual": "Kett flottant et sphère orbitale.",
       "animation": "Préparer une anticipation orientée, un événement de résolution, une récupération et une réaction interrompue propres à ce comportement : Orbe comme cible mobile séparée, champ de protection et attaque électrique ; après rupture, vraie fenêtre d’attaque puis retour signalé.",
       "audio": "Créer un signal distinct de préparation et une indication visuelle équivalente ; signaux de créature, machine et tir allié restent différenciés.",
-      "implementation": "Prévu : fiche de données mea/enemies/ascendant ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "Campagne / multi selon rencontre.",
       "acceptance": "Ascendant : tester la menace annoncée, une réponse de déplacement, un contre compatible et la sortie de combat ; cible, faction et phase ne changent jamais sans retour visible.",
       "dependencies": [],
@@ -7373,7 +7387,21 @@
         "MEA-SRC-ASCENDANT"
       ],
       "reference": "Ascendant",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Orbe, ciblage et cycle de protection non simulés. Attaques et comportement spécifiques non reproduits. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EMV-ASCENDANT",
@@ -7402,7 +7430,7 @@
       "id": "MEA-ENM-CARDINAL",
       "category": "enemies",
       "name": "Le Cardinal",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Boss de l’installation d’exaltation.",
@@ -7411,7 +7439,7 @@
       "visual": "Armure de commandement et orbe.",
       "animation": "Préparer une anticipation orientée, un événement de résolution, une récupération et une réaction interrompue propres à ce comportement : Variante Ascendant avec renforts limités et phases de protection lisibles ; résolution du boss ouvre la décision sur le site.",
       "audio": "Créer un signal distinct de préparation et une indication visuelle équivalente ; signaux de créature, machine et tir allié restent différenciés.",
-      "implementation": "Prévu : fiche de données mea/enemies/cardinal ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "A Trail of Hope II.",
       "acceptance": "Le Cardinal : tester la menace annoncée, une réponse de déplacement, un contre compatible et la sortie de combat ; cible, faction et phase ne changent jamais sans retour visible.",
       "dependencies": [],
@@ -7420,7 +7448,21 @@
         "MEA-SRC-GUIDE"
       ],
       "reference": "Le Cardinal",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Rencontre A Trail of Hope II, phases et objectifs non reproduits. Orbe et kit de boss non reconstitués. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EMV-CARDINAL",
@@ -8324,7 +8366,7 @@
       "id": "MEA-ENM-DESTROYER",
       "category": "enemies",
       "name": "Destroyer",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Machine reliquate lourde.",
@@ -8333,7 +8375,7 @@
       "visual": "Châssis massif et lumière turquoise.",
       "animation": "Préparer une anticipation orientée, un événement de résolution, une récupération et une réaction interrompue propres à ce comportement : Tourelles latérales, salves et noyau ; pièces ciblables ont barres et projections au sol indépendantes du corps.",
       "audio": "Créer un signal distinct de préparation et une indication visuelle équivalente ; signaux de créature, machine et tir allié restent différenciés.",
-      "implementation": "Prévu : fiche de données mea/enemies/destroyer ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "Sites reliquats.",
       "acceptance": "Destroyer : tester la menace annoncée, une réponse de déplacement, un contre compatible et la sortie de combat ; cible, faction et phase ne changent jamais sans retour visible.",
       "dependencies": [],
@@ -8341,7 +8383,21 @@
         "MEA-SRC-ASSEMBLER"
       ],
       "reference": "Destroyer",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Sous-cibles, armement et comportement propres au Destroyer non reproduits. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EMV-DESTROYER",
@@ -9483,7 +9539,7 @@
       "id": "MEA-WPN-EQUALIZER",
       "category": "weapons",
       "name": "Equalizer",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Pistolet reliquat.",
@@ -9492,7 +9548,7 @@
       "visual": "Arme noire et lumineux turquoise.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/equalizer ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de modèle de tir dans src/universe-weapon-profiles.js et src/combat.js ; compatibilité et préparation dans src/universe-equipment.js et src/chronicles.js. Acquisition, rangs, géométrie et fidélité visuelle originale non reproduits.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Equalizer : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9500,7 +9556,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Equalizer",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Modèle utilisable dans la préparation contextualisée ; comportement de tir ATB partiel. Atelier solo de cette œuvre ; aucune acquisition narrative accordée. Le cycle thermique et la canalisation sont une proposition ATB, sans vérification primaire du modèle. Portée, suivi du viseur, géométrie et éventuelle montée en puissance d’origine ne sont pas reproduits. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/combat-arsenal-weapons.test.js",
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-armor-editions.test.js",
+        "docs/qa/arsenal-weapons-source-review.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-CHARGER",
@@ -9859,7 +9931,7 @@
       "id": "MEA-WPN-SCATTERSHOT",
       "category": "weapons",
       "name": "Scattershot",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil reliquat.",
@@ -9868,7 +9940,7 @@
       "visual": "Géométrie reliquate et lueurs.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/scattershot ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de modèle de tir dans src/universe-weapon-profiles.js et src/combat.js ; compatibilité et préparation dans src/universe-equipment.js et src/chronicles.js. Acquisition, rangs, géométrie et fidélité visuelle originale non reproduits.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Scattershot : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9876,7 +9948,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Scattershot",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Modèle utilisable dans la préparation contextualisée ; comportement de tir ATB partiel. Atelier solo de cette œuvre ; aucune acquisition narrative accordée. Les impacts ATB ne certifient ni le nombre de projectiles, ni la cadence ou le cycle thermique d’origine. Dispersion, cône, portée, collisions et gestion des munitions modifiées d’origine ne sont pas simulés. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/combat-arsenal-weapons.test.js",
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-armor-editions.test.js",
+        "docs/qa/arsenal-weapons-source-review.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-PIRANHA",
@@ -9915,7 +10003,7 @@
       "id": "MEA-WPN-VENOM",
       "category": "weapons",
       "name": "Venom",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Fusil à projectiles explosifs.",
@@ -9924,7 +10012,7 @@
       "visual": "Lanceur à canon large.",
       "animation": "Pose de visée adaptée à cette carcasse, départ de tir ou frappe, recul/contact puis reprise ; point d’origine lié à la main et non au centre du sprite.",
       "audio": "Créer signature originale du mécanisme et de son impact ; mix séparant arme du joueur et armes adverses de même famille.",
-      "implementation": "Prévu : fiche de données mea/weapons/venom ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de modèle de tir dans src/universe-weapon-profiles.js et src/combat.js ; compatibilité et préparation dans src/universe-equipment.js et src/chronicles.js. Acquisition, rangs, géométrie et fidélité visuelle originale non reproduits.",
       "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
       "acceptance": "Venom : aperçu de portée, coût et ressource correspond à la résolution ; vérifier obstacle, cible mobile, rechargement/refroidissement et annulation avant tir.",
       "dependencies": [],
@@ -9932,7 +10020,23 @@
         "MEA-SRC-WEAPONS"
       ],
       "reference": "Venom",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Modèle utilisable dans la préparation contextualisée ; comportement de tir ATB partiel. Atelier solo de cette œuvre ; aucune acquisition narrative accordée. Charge automatique complète de prototype : maintien manuel, tir court, niveaux partiels et progression d’origine non reproduits. Temps, facteur de dégâts, nombre de pointes, capacité et réserve sont des réglages ATB sans certification primaire. Trajectoires, rebonds, portée et collision du projectile avec le décor ne sont pas simulés. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-weapon-profiles.js",
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/combat-arsenal-weapons.test.js",
+        "tests/universe-weapon-profiles.test.js",
+        "tests/universe-armor-editions.test.js",
+        "docs/qa/arsenal-weapons-source-review.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-WPN-DEEP-IMPACT",
@@ -10633,7 +10737,7 @@
       "id": "MEA-EQP-REMNANT",
       "category": "equipment",
       "name": "Remnant Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure reliquate.",
@@ -10642,7 +10746,7 @@
       "visual": "Segments noirs et accents turquoise.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/remnant ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Remnant Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10650,7 +10754,20 @@
         "MEA-SRC-REM-ARMOR"
       ],
       "reference": "Remnant Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Protection Remnant agrégée réservée à Ryder dans l’atelier Andromeda de base. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EQP-HELEUS",
@@ -10689,7 +10806,7 @@
       "id": "MEA-EQP-SCAVENGER",
       "category": "equipment",
       "name": "Scavenger Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure de l’édition Deluxe.",
@@ -10698,7 +10815,7 @@
       "visual": "Armure de récupération.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/scavenger ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "Édition compatible.",
       "acceptance": "Le livrable « Scavenger Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10707,13 +10824,26 @@
         "MEA-SRC-EA-DELUXE"
       ],
       "reference": "Scavenger Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé à Ryder dans l’atelier explicitement configuré Deluxe d’Andromeda. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EQP-DEEP-SPACE",
       "category": "equipment",
       "name": "Deep Space Explorer Armor",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Armure de l’édition Deluxe.",
@@ -10722,7 +10852,7 @@
       "visual": "Tenue de grande expédition.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données mea/equipment/deep-space ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "Édition compatible.",
       "acceptance": "Le livrable « Deep Space Explorer Armor » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -10731,7 +10861,20 @@
         "MEA-SRC-ARMOR"
       ],
       "reference": "Deep Space Explorer Armor",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé à Ryder dans l’atelier explicitement configuré Deluxe d’Andromeda. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "MEA-EQP-AUGMENT",
@@ -19083,6 +19226,11 @@
       "area": "Complément spécialistes contextualisés",
       "covered": "0 profils supplémentaires limités aux bancs de spécialistes, 4 profils d’armes spéciales et 3 fiches de pouvoirs supplémentaires effectivement exposées. Vérification fonctionnelle liée au rapport docs/qa/chronicle-specialists-browser-report.json.",
       "remaining": "Bancs ATB sur mannequins originaux, conditions préparées et dotations abstraites ; aucune reconstruction des missions, acquisition de campagne, illustration, animation, doublage ni valeur originale certifiée. Les sources secondaires et incertitudes restent explicites."
+    },
+    {
+      "area": "Complément arsenal, oppositions et illustrations partielles",
+      "covered": "Quatre profils ennemis, dont le Cardinal partiel ; trois modèles d’armes à comportements ATB partiels ; protection Remnant agrégée pour Ryder et deux ensembles réservés à l’atelier Deluxe. Deux bancs d’opposition et un atelier d’édition ajoutés.",
+      "remaining": "Orbe, phases, objectifs et choix de site du Cardinal/Ascendant ; sous-cibles du Destroyer ; chiffres et comportements d’origine des armes et armures. Mods MEA, pilotage du Nomad et géométrie du Tempest restent à produire."
     }
   ]
 }

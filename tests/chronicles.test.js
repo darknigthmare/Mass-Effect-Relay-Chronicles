@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { newGame, encodeSave, decodeSave } from '../src/state.js';
-import { CHRONICLE_SCENARIOS } from '../src/universe-actors.js';
+import { CHRONICLE_SCENARIOS, HISTORICAL_CHRONICLE_SCENARIOS } from '../src/universe-actors.js';
 import { UNIVERSE_EQUIPMENT } from '../src/universe-equipment.js';
 import { createChronicle, normalizeChronicle, listChronicleScenarios, selectChronicleScenario, setChronicleParty, equipChronicle, getChronicleRoster, getChronicleGear, buildChronicleActor, startChronicleBattle, finishChronicleBattle, encodeChronicle, decodeChronicle, chronicleStorageKey, saveChronicle, loadChronicle } from '../src/chronicles.js';
 import { getActions, performAction, tickBattle } from '../src/combat.js';
@@ -24,7 +24,8 @@ function simulate(battle) {
 }
 
 test('every bounded scenario starts only its own canonical context and neutral session', () => {
-  assert.equal(CHRONICLE_SCENARIOS.length, 16);
+  assert.equal(HISTORICAL_CHRONICLE_SCENARIOS.length, 16);
+  assert.deepEqual(CHRONICLE_SCENARIOS.slice(0, 16), HISTORICAL_CHRONICLE_SCENARIOS);
   for (const scenario of CHRONICLE_SCENARIOS) {
     const session = createChronicle(scenario.context, scenario.id);
     assert.ok(session, scenario.id);

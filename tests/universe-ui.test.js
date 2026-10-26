@@ -7,6 +7,7 @@ import { createChronicle, listChronicleScenarios, getChronicleRoster, getChronic
   getChronicleBuilds, setChronicleBuild, equipChronicle, listChronicleReadings, getChronicleReading, readChroniclePage } from '../src/chronicles.js';
 import { getActions, ACTIONS } from '../src/combat.js';
 import { renderUniverseScreen, renderUniverseReferences, renderChronicleBattle, renderChronicleReading } from '../src/universe-ui.js';
+import { getUniverseVisual } from '../src/universe-visuals.js';
 
 const context = (mediaId, periodId) => normalizeContext({ mediaId, periodId });
 const uiFor = (ctx, extra = {}) => ({ mediaId: ctx?.mediaId || '', periodId: ctx?.periodId || '', group: 'all', query: '', recordId: null, visibleCount: 30, tab: 'references', ...extra });
@@ -86,7 +87,9 @@ test('workshop preparation keeps scoped roster, compatibility reasons and ATB bu
   }
   assert.ok(html.includes('data-chronicle-portrait="ME2-CHR-MIRANDA"'));
   assert.ok(!html.includes('crew-atlas.png'), 'No ME1 costume is reused for a later identity');
-  assert.ok([...html.matchAll(/href="([^"]*assets\/[^\"]*)"/g)].every(match => match[1] === './assets/chronicle-portraits-me2-me3.png'));
+  const allowedVisualSources = new Set(['./assets/chronicle-portraits-me2-me3.png', ...view.roster
+    .map(actor => getUniverseVisual(actor.id, ctx, { usage: 'party', scenarioId: session.scenarioId })?.src).filter(Boolean)]);
+  assert.ok([...html.matchAll(/href="([^"]*assets\/[^\"]*)"/g)].every(match => allowedVisualSources.has(match[1])));
   const incompatible = view.gearByActor[session.party[0]].find(item => item.slot && !item.compatible);
   assert.ok(incompatible, 'The scoped catalogue contains a concrete incompatible equipment model.');
   assert.match(html, new RegExp(`<option value="${incompatible.id}"[^>]*disabled`));

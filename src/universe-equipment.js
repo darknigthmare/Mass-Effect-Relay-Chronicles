@@ -25,6 +25,14 @@ const definitions = {};
 const editionSpecificIds = new Set([
   'ME2-WPN-LOCUST', 'ME2-WPN-COLLECTOR-RIFLE', 'ME2-EQP-KESTREL',
 ]);
+// Only these documented additions have an explicit prepared edition bench.
+// A broad DLC/edition text match never grants availability on its own.
+const editionRequirements = Object.freeze(Object.fromEntries([
+  ...['KESTREL', 'CERBERUS', 'COLLECTOR', 'TERMINUS', 'BLOOD-DRAGON', 'INFERNO'].map(id => [`ME2-EQP-${id}`, 'legendary']),
+  ...['AJAX', 'INFERNO', 'BLOOD-DRAGON', 'COLLECTOR', 'TERMINUS', 'CERBERUS'].map(id => [`ME3-EQP-${id}`, 'legendary']),
+  ...['SCAVENGER', 'DEEP-SPACE'].map(id => [`MEA-EQP-${id}`, 'deluxe']),
+  ['ME3-WPN-PARTICLE', 'legendary'], ['ME3-WPN-LANCER', 'legendary'],
+]));
 const weapons = (work, type, suffixes) => {
   for (const suffix of suffixes) definitions[`${work}-WPN-${suffix}`] = {
     kind: 'weapon', slot: 'weapon', weaponType: type, weaponSystem: 'thermal-clip',
@@ -83,12 +91,15 @@ const armors = (work, suffixes, baseline) => {
     wearerIds: [work === 'MEA' ? 'MEA-CHR-RYDER' : `${work}-CHR-SHEPARD`], requiredCapabilities: ['armor-set'],
     // One transparent prototype budget, not guessed original model bonuses.
     bonuses: suffix === baseline ? {} : { defense: 2, shield: 10 },
+    armorGranularity: 'aggregate-preset',
+    prototypeDetail: 'Protection agrégée ATB ; sélection de pièces, recette, statistiques et apparence d’origine non reproduites.',
   };
 };
 armors('ME2', ['N7', 'KESTREL', 'CERBERUS', 'COLLECTOR', 'TERMINUS', 'BLOOD-DRAGON', 'INFERNO'], 'N7');
 armors('ME3', ['N7', 'AJAX', 'INFERNO', 'BLOOD-DRAGON', 'COLLECTOR', 'TERMINUS', 'CERBERUS'], 'N7');
 armors('MEA', ['INITIATIVE', 'PATHFINDER', 'N7', 'HYPERGUARDIAN', 'MAVERICK', 'ANGARAN', 'KETT', 'REMNANT', 'HELEUS', 'SCAVENGER', 'DEEP-SPACE'], 'INITIATIVE');
-locked('MEA-EQP-REMNANT', 'armor', 'Les effets propres à cette protection reliquate restent à vérifier et à implémenter.', ['remnant-armor-system']);
+// Remnant is an aggregate protection prototype like the other MEA sets. It
+// grants no unverified regeneration, fusion port or original model statistics.
 for (const suffix of ['MATTOCK', 'EVISCERATOR', 'INCISOR', 'PARTICLE']) locked(`INF-WPN-${suffix}`, 'weapon',
   'Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite.', ['infiltrator-weapon-system']);
 locked('GAL-WPN-AVENGER', 'weapon', 'Système d’arme de Galaxy à vérifier ; le nom seul ne détermine pas sa gestion thermique.', ['galaxy-weapon-system']);
@@ -116,7 +127,13 @@ for (const [id, modFamily, bonuses] of [
   prototypeDetail: 'Prototype de famille limité aux fusils d’assaut ME3 conventionnels à clips ; aucun modèle, rang, fabricant ni compatibilité universelle d’origine certifiés.',
 };
 locked('ME3-EQP-SCOPE', 'reference', 'La visée, le zoom et la précision propres aux lunettes ne sont pas implémentés.', ['scope-aiming']);
-locked('ME3-EQP-ULTRALIGHT', 'reference', 'La masse du matériel et son effet sur les recharges de pouvoirs ne sont pas implémentés.', ['loadout-weight']);
+definitions['ME3-EQP-ULTRALIGHT'] = {
+  kind: 'weaponMod', slot: 'weaponMod', allowedSlots: [...MOD_SLOTS], modFamily: 'ultralight',
+  weaponTypes: ['smg'], weaponSystems: ['thermal-clip'], bonuses: { powerCooldownMultiplier: .9 },
+  requiredCapabilities: ['explicit-parent-weapon', 'two-distinct-mod-families', 'power-recharge'], familyPrototype: true,
+  prototypeDetail: 'Prototype de matériaux ultralégers limité aux mitraillettes ME3 conventionnelles : recharge des pouvoirs à 90 % en ATB. Aucun poids, rang ou bonus original certifié ; aucun effet sur les actions sans recharge.',
+  parentRequirement: 'Ce prototype de matériaux ultralégers exige une mitraillette ME3 conventionnelle à clips thermiques.',
+};
 
 const freeze = value => {
   if (value && typeof value === 'object') { for (const child of Object.values(value)) freeze(child); Object.freeze(value); }
@@ -125,14 +142,17 @@ const freeze = value => {
 const records = Array.isArray(UNIVERSE_GROUPS.equipment) ? UNIVERSE_GROUPS.equipment : [];
 export const UNIVERSE_EQUIPMENT = freeze(records.filter(record => record.mediaId !== 'ME1').map(record => {
   const definition = definitions[record.id];
+  const requiredEditionProfile = OWN(editionRequirements, record.id) ? editionRequirements[record.id] : null;
   const requiresEdition = editionSpecificIds.has(record.id)
     || /(?:DLC|additionnel|additionnelle|promotionnel|édition|Legendary|Deluxe|Kasumi|Leviathan|pack)/i.test(`${record.description} ${record.conditions}`);
-  const supported = !!definition && !definition.unsupportedReason && !requiresEdition;
+  const supported = !!definition && !definition.unsupportedReason && (!requiresEdition || requiredEditionProfile !== null);
   return {
     ...record, ...definition, kind: definition?.kind || 'reference', slot: definition?.slot || null,
     bonuses: { ...definition?.bonuses }, requiredCapabilities: [...definition?.requiredCapabilities || []],
     runtimeSupported: supported, playable: false, requiresEdition,
-    lockReason: definition?.unsupportedReason || (requiresEdition
+    requiredEditionProfile,
+    lockReason: definition?.unsupportedReason || (requiresEdition && requiredEditionProfile
+      ? `Ce modèle exige un atelier d’équipement explicitement configuré pour ${requiredEditionProfile === 'legendary' ? 'Legendary Edition' : 'les bonus Deluxe'}.` : requiresEdition
       ? 'Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai.' : supported
       ? 'Choisissez un porteur et une scène attestant explicitement ce modèle.'
       : 'Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués.'),
@@ -172,6 +192,8 @@ export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenario
       return fail('Cet équipement ne correspond pas à cet emplacement.');
     const scenario = scenarioFor(context, scenarioId);
     if (!scenario) return fail('Choisissez un essai tactique attesté pour cette période.');
+    if (item.requiresEdition && scenario.editionEquipmentProfile !== item.requiredEditionProfile)
+      return fail(item.lockReason);
     if (!Array.isArray(scenario.allowedEquipmentIds) || !scenario.allowedEquipmentIds.includes(item.id))
       return fail('La présence de ce modèle n’est pas attestée dans cette scène.');
     if (scenario.allowedEquipmentByActor && (!OWN(scenario.allowedEquipmentByActor, actorId)
@@ -184,7 +206,7 @@ export function canEquipUniverseItem(rawContext, actorId, itemId, slot, scenario
       if (!parent || parent.kind !== 'weapon' || !canEquipUniverseItem(context, actorId, parent.id, 'weapon', scenarioId).ok)
         return fail('Équipez d’abord une arme explicitement autorisée pour ce porteur et cet atelier.');
       if (parent.weaponProfileId || parent.mediaId !== item.mediaId || !item.weaponSystems.includes(parent.weaponSystem) || !item.weaponTypes.includes(parent.weaponType))
-        return fail('Ce prototype de module exige un fusil d’assaut ME3 conventionnel à clips thermiques.');
+        return fail(item.parentRequirement || 'Ce prototype de module exige un fusil d’assaut ME3 conventionnel à clips thermiques.');
       if (MOD_SLOTS.some(candidate => candidate !== targetSlot && getUniverseEquipment(row[candidate])?.modFamily === item.modFamily))
         return fail('Deux modules de la même famille ne peuvent pas occuper les deux ports de cette arme.');
     }
@@ -286,7 +308,7 @@ export function equipChronicleItem(session, actorId, itemId, slot) {
 }
 
 const neutralEffects = () => ({ hp: 0, shield: 0, attack: 0, defense: 0, weaponHeatMultiplier: 1,
-  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1, weaponDamageMultiplier: 1 });
+  weaponCoolingBonus: 0, controlResistance: 0, bioticMultiplier: 1, techMultiplier: 1, weaponDamageMultiplier: 1, powerCooldownMultiplier: 1 });
 
 /** Base hp/shield/attack/defense are added once by the chronicles compositor. */
 export function getChronicleEquipmentEffects(session, actorId) {
@@ -301,7 +323,7 @@ export function getChronicleEquipmentEffects(session, actorId) {
       if (!item) continue;
       for (const key of ['hp', 'shield', 'attack', 'defense', 'weaponCoolingBonus', 'controlResistance'])
         if (Number.isFinite(item.bonuses[key])) effects[key] += item.bonuses[key];
-      for (const key of ['weaponHeatMultiplier', 'bioticMultiplier', 'techMultiplier', 'weaponDamageMultiplier'])
+      for (const key of ['weaponHeatMultiplier', 'bioticMultiplier', 'techMultiplier', 'weaponDamageMultiplier', 'powerCooldownMultiplier'])
         if (Number.isFinite(item.bonuses[key]) && item.bonuses[key] > 0) effects[key] *= item.bonuses[key];
       if (Number.isFinite(item.bonuses.magazineCapacityMultiplier) && item.bonuses.magazineCapacityMultiplier > 0)
         capacityMultiplier *= item.bonuses.magazineCapacityMultiplier;

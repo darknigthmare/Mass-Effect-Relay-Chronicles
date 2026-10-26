@@ -15,9 +15,9 @@ const packageMetadata = JSON.parse(await readFile(new URL('../package.json', imp
 const report = {
   version: packageMetadata.version, at: new Date().toISOString(), passed: false,
   mode: 'Production HTTP fallback after file:// was blocked by the managed browser',
-  scope: 'Real dist bundles over HTTP in Linux Chromium: native WebGL, resources, campaign and Chronicle save UI, workshops, reading, special weapons, finite grenades, actual autonomous support deployment, saved ammo preferences and generated portrait delivery. No Electron executable or Windows launch is tested.',
+  scope: 'Real dist bundles over HTTP in Linux Chromium: native WebGL, resources, campaign and Chronicle save UI, workshops, reading, special weapons, finite grenades, autonomous support, saved ammo and portraits. Arsenal additions sample an actual interrupted/released Arc charge, saved edition armor and an SMG cooldown module, one sourced opposition bench and documentary NPC/fleet images. No Electron executable, Windows launch or global 1:1 fidelity is tested.',
   fileURLValidation: { status: 'blocked-by-managed-browser-policy', error: 'ERR_BLOCKED_BY_ADMINISTRATOR', evidence: 'test-results/production-v02-report.json', policyBypassAttempted: false },
-  entry: entry.href, buildEntry: 'dist/index.html', browser: null, checks: [], bundles: [], bundleStatuses: [], servedBundles: [], portraitStatuses: [], errors: [], failedRequests: [], assetRequests: [],
+  entry: entry.href, buildEntry: 'dist/index.html', browser: null, checks: [], bundles: [], bundleStatuses: [], servedBundles: [], portraitStatuses: [], atlasStatuses: [], servedAtlases: [], errors: [], failedRequests: [], assetRequests: [],
 };
 for (const filename of (await readdir(new URL('../dist/assets/', import.meta.url))).filter(name => name.endsWith('.js')).sort()) {
   const bytes = await readFile(new URL(`../dist/assets/${filename}`, import.meta.url));
@@ -29,6 +29,17 @@ const registryBundles = report.bundles.filter(bundle => /\/universe-data-[^/]+\.
 assert.ok(registryBundles.length > 0, 'The documentary registry has a separate production bundle');
 const portraitBytes = await readFile(new URL('../dist/assets/chronicle-portraits-me2-me3.png', import.meta.url));
 const portraitExpected = { path: 'dist/assets/chronicle-portraits-me2-me3.png', bytes: portraitBytes.length, sha256: createHash('sha256').update(portraitBytes).digest('hex') };
+const arsenalMetadata = JSON.parse(await readFile(new URL('../public/assets/arsenal-visuals.json', import.meta.url), 'utf8'));
+const atlasExpected = await Promise.all(arsenalMetadata.atlases.map(async atlas => {
+  const filename = atlas.path.split('/').at(-1), path = `dist/assets/${filename}`;
+  assert.match(filename, /^arsenal-[a-z-]+\.png$/);
+  const bytes = await readFile(new URL(`../${path}`, import.meta.url));
+  const sha256 = createHash('sha256').update(bytes).digest('hex');
+  assert.equal(sha256, atlas.sha256, `${filename}: the real build contains the final declared atlas`);
+  return { path, bytes: bytes.length, sha256 };
+}));
+assert.equal(atlasExpected.length, 4); assert.equal(new Set(atlasExpected.map(atlas => atlas.path)).size, 4);
+report.expectedAtlases = atlasExpected;
 const requestedBundles = () => [...requests].map(address => {
   const parsed = new URL(address);
   return parsed.origin === entry.origin ? `dist${parsed.pathname}` : null;
@@ -51,11 +62,12 @@ page.on('requestfailed', request => report.failedRequests.push(`${request.url()}
 page.on('response', response => {
   const status = response.status();
   if (status >= 400) report.failedRequests.push(`${status} ${response.url()}`);
-  const address = new URL(response.url()), filename = address.pathname.split('/').at(-1);
-  const portrait = filename === 'chronicle-portraits-me2-me3.png';
-  const expected = portrait ? portraitExpected : report.bundles.find(bundle => bundle.path === `dist/assets/${filename}`);
+  const address = new URL(response.url()), resourcePath = `dist${address.pathname}`;
+  const portrait = resourcePath === portraitExpected.path;
+  const atlas = atlasExpected.find(expected => expected.path === resourcePath);
+  const expected = portrait ? portraitExpected : atlas || report.bundles.find(bundle => bundle.path === resourcePath);
   if (address.origin !== entry.origin || !expected) return;
-  (portrait ? report.portraitStatuses : report.bundleStatuses).push({ url: response.url(), path: expected.path, status });
+  (portrait ? report.portraitStatuses : atlas ? report.atlasStatuses : report.bundleStatuses).push({ url: response.url(), path: expected.path, status });
   // Redirects and cache revalidations cannot satisfy the full 200 requirement.
   // Reserve the first 200 immediately: reloads can expose another 200 whose
   // cached body is unavailable, and cannot replace a failed first collection.
@@ -64,8 +76,8 @@ page.on('response', response => {
   bundleResponses.push((async () => {
     const bytes = await response.body();
     const observed = { url: response.url(), path: expected.path, status, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') };
-    if (portrait) report.servedPortrait = observed; else report.servedBundles.push(observed);
-  })().catch(error => { report.failedRequests.push(`Could not inspect bundle ${response.url()}: ${error.message}`); }));
+    if (portrait) report.servedPortrait = observed; else if (atlas) report.servedAtlases.push(observed); else report.servedBundles.push(observed);
+  })().catch(error => { report.failedRequests.push(`Could not inspect production resource ${response.url()}: ${error.message}`); }));
 });
 // Count calls to the native graphics API without exposing or modifying game state.
 await page.addInitScript(() => {
@@ -167,7 +179,25 @@ try {
 
   assert.ok(registryBundles.every(bundle => !requestedBundles().includes(bundle.path)), 'The complete ME1 path does not request the documentary registry');
   const campaignPreviouslySaved = await savedState();
-  await action('close').click(); await page.waitForTimeout(300); await page.keyboard.press('Escape');
+  await action('close').click();
+  await page.waitForFunction(() => !document.hidden && document.querySelector('#overlay')?.childElementCount === 0
+    && !document.querySelector('#transition.active'), null, { polling: 100, timeout: 60000 });
+  report.explorationResume = await page.evaluate(() => new Promise((resolve, reject) => {
+    const timestamps = [];
+    const timeout = setTimeout(() => reject(new Error('Three native exploration frames did not complete')), 60000);
+    const observe = timestamp => {
+      if (document.hidden || document.querySelector('#overlay')?.childElementCount !== 0 || document.querySelector('#transition.active')) {
+        clearTimeout(timeout); reject(new Error('Exploration was interrupted before its entry checkpoint')); return;
+      }
+      timestamps.push(timestamp);
+      if (timestamps.length < 3) requestAnimationFrame(observe);
+      else { clearTimeout(timeout); resolve({ nativeFrames: timestamps.length, timestamps, overlayEmpty: true, transitionInactive: true }); }
+    };
+    requestAnimationFrame(observe);
+  }));
+  assert.equal(report.explorationResume.nativeFrames, 3);
+  assert.ok(report.explorationResume.timestamps.every((timestamp, index, timestamps) => index === 0 || timestamp > timestamps[index - 1]));
+  await page.keyboard.press('Escape');
   await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
   // Entering Chronicles checkpoints recent ME1 play before its simulation pauses.
   // The immutable baseline starts after that legitimate campaign save.
@@ -460,6 +490,172 @@ try {
     savedProfileId: 'ME3-POW-AMMO-CRYO', battleProfileId: 'ME3-POW-AMMO-DISRUPTOR', weaponAmmunitionUnchanged: ammoBeforeSwitch,
     exactSavedPreparationRestored: true, runtimeDevelopmentHarness: 'absent' });
 
+  const prepareProductionScenario = async (mediaId, periodId, scenarioId) => {
+    if (!await page.locator('.universe-screen').count()) {
+      await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+      await captureEntryCheckpoint(`Arsenal ${scenarioId} entry`);
+    }
+    if (await page.locator('#chronicle-media').inputValue() !== mediaId) await page.locator('#chronicle-media').selectOption(mediaId);
+    if (await page.locator('#chronicle-period').inputValue() !== periodId) await page.locator('#chronicle-period').selectOption(periodId);
+    await action('universe-tab', 'session').click(); await page.locator('#chronicle-scenario').selectOption(scenarioId);
+    await action('chronicle-start').click();
+  };
+  const soloProductionParty = async actorId => {
+    const selected = await page.locator('.universe-party-choice.selected').evaluateAll(buttons => buttons.map(button => button.dataset.id));
+    assert.ok(selected.includes(actorId));
+    for (const id of selected.filter(id => id !== actorId)) await action('chronicle-party', id).click();
+    assert.deepEqual(await page.locator('.universe-party-choice.selected').evaluateAll(buttons => buttons.map(button => button.dataset.id)), [actorId]);
+  };
+  const parseClips = text => {
+    const match = text.match(/(\d+)\/(\d+)\s+au chargeur\s*·\s*réserve\s+(\d+)/);
+    assert.ok(match, `An actual finite clip display is present: ${text}`);
+    return { ammo: Number(match[1]), capacity: Number(match[2]), reserve: Number(match[3]) };
+  };
+  const clipsDisplay = async () => parseClips(await page.locator('[data-chronicle-ammo]').innerText());
+  const firstEnemyDisplay = () => page.locator('[data-chronicle-unit="chronicle-enemy-0"] [data-chronicle-hp-label]').innerText();
+
+  await prepareProductionScenario('ME3', 'me3', 'me3-equipment-workshop');
+  await soloProductionParty(me3ActorId); await me3Build.selectOption('engineer');
+  await gear(me3ActorId, 'weapon').selectOption('ME3-WPN-ARC');
+  assert.match(await me3Card.innerText(), /Charge fixe et interruptible de 1 s ATB/);
+  await action('chronicle-battle').click();
+  await page.locator('[data-do="chronicle-action"][data-id="shoot"]:not([disabled])').waitFor();
+  const chargeInitial = await clipsDisplay(), chargeEnemyInitial = await firstEnemyDisplay();
+  await action('chronicle-action', 'shoot').click();
+  // Native DOM clicks in one task make cancellation deterministic before the
+  // next animation frame; no live game state or development hook is accessed.
+  const cancelledCharge = await page.evaluate(() => {
+    const snapshot = () => ({ channelVisible: !!document.querySelector('[data-chronicle-channel]'),
+      ammo: document.querySelector('[data-chronicle-ammo]')?.textContent,
+      enemyHp: document.querySelector('[data-chronicle-unit="chronicle-enemy-0"] [data-chronicle-hp-label]')?.textContent });
+    const target = document.querySelector('[data-do="chronicle-target"][data-id="chronicle-enemy-0"]:not([disabled])');
+    if (!target) throw new Error('A visible production Arc target is required'); target.click();
+    const charging = snapshot(), cancel = document.querySelector('[data-do="chronicle-action"][data-id="cancelChannel"]:not([disabled])');
+    if (!cancel) throw new Error('The production charge exposes native cancellation'); cancel.click();
+    return { charging, cancelled: snapshot() };
+  });
+  assert.equal(cancelledCharge.charging.channelVisible, true); assert.equal(cancelledCharge.cancelled.channelVisible, false);
+  assert.deepEqual(parseClips(cancelledCharge.charging.ammo), chargeInitial);
+  assert.deepEqual(parseClips(cancelledCharge.cancelled.ammo), chargeInitial);
+  assert.equal(cancelledCharge.charging.enemyHp, chargeEnemyInitial); assert.equal(cancelledCharge.cancelled.enemyHp, chargeEnemyInitial);
+  await page.locator('[data-do="chronicle-action"][data-id="shoot"]:not([disabled])').waitFor();
+  await action('chronicle-action', 'shoot').click();
+  const releasedChargeStart = await page.evaluate(() => {
+    const target = document.querySelector('[data-do="chronicle-target"][data-id="chronicle-enemy-0"]:not([disabled])');
+    if (!target) throw new Error('A production target is required for the second Arc charge'); target.click();
+    return { channelVisible: !!document.querySelector('[data-chronicle-channel]'), ammo: document.querySelector('[data-chronicle-ammo]')?.textContent,
+      enemyHp: document.querySelector('[data-chronicle-unit="chronicle-enemy-0"] [data-chronicle-hp-label]')?.textContent };
+  });
+  assert.equal(releasedChargeStart.channelVisible, true); assert.deepEqual(parseClips(releasedChargeStart.ammo), chargeInitial);
+  assert.equal(releasedChargeStart.enemyHp, chargeEnemyInitial);
+  await page.waitForFunction(initial => {
+    const counter = document.querySelector('[data-chronicle-ammo]')?.textContent || '', match = counter.match(/(\d+)\/(\d+)/);
+    return !document.querySelector('[data-chronicle-channel]') && match && Number(match[1]) === initial - 1;
+  }, chargeInitial.ammo, { polling: 50 });
+  const chargeReleased = await clipsDisplay();
+  assert.deepEqual(chargeReleased, { ...chargeInitial, ammo: chargeInitial.ammo - 1 });
+  assert.ok(Number.parseInt(await firstEnemyDisplay(), 10) < Number.parseInt(chargeEnemyInitial, 10));
+  await page.waitForTimeout(350); assert.deepEqual(await clipsDisplay(), chargeReleased, 'A completed charge never spends a second clip');
+  await assertCampaignFrozen('Production Arc cancellation and release'); await capture('arsenal-arc-released');
+  await action('chronicle-preparation').click();
+  record({ name: 'Production Arc starts and cancels a native charge without ammo or damage, then emits exactly one paid impact',
+    weaponId: 'ME3-WPN-ARC', initial: chargeInitial, cancelledCharge, releasedChargeStart, released: chargeReleased,
+    singlePaidEmission: true, actualWallClockCharge: true, runtimeDevelopmentHarness: 'absent' });
+
+  await prepareProductionScenario('ME3', 'me3', 'me3-legendary-equipment-workshop');
+  await soloProductionParty(me3ActorId); await me3Build.selectOption('engineer');
+  await gear(me3ActorId, 'weapon').selectOption('ME3-WPN-SHURIKEN');
+  await gear(me3ActorId, 'armor').selectOption('ME3-EQP-TERMINUS');
+  await gear(me3ActorId, 'weaponMod2').selectOption('ME3-EQP-ULTRALIGHT');
+  assert.match(await me3Card.innerText(), /Recharges de pouvoirs ×0,9 ATB/);
+  assert.match(await me3Card.innerText(), /SMG ME3 conventionnelle uniquement/);
+  assert.equal(await me3Card.locator('[data-universe-visual="ME3-EQP-TERMINUS"]').count(), 1);
+  await action('chronicle-save').click(); const editionPacket = await chroniclePacket(me3Key);
+  assert.equal(editionPacket.session.scenarioId, 'me3-legendary-equipment-workshop');
+  assert.equal(editionPacket.session.loadouts[me3ActorId].armor, 'ME3-EQP-TERMINUS');
+  assert.equal(editionPacket.session.loadouts[me3ActorId].weaponMod2, 'ME3-EQP-ULTRALIGHT');
+  await page.reload({ waitUntil: 'networkidle' }); assert.equal(await page.evaluate(() => typeof window.__RELAY_TEST__), 'undefined');
+  await action('chronicles').click(); await page.locator('.universe-screen').waitFor();
+  await captureEntryCheckpoint('Arsenal edition restored entry');
+  await page.locator('#chronicle-media').selectOption('ME3'); await page.locator('#chronicle-period').selectOption('me3');
+  await action('universe-tab', 'session').click(); await action('chronicle-load').click();
+  assert.equal(await gear(me3ActorId, 'armor').inputValue(), 'ME3-EQP-TERMINUS');
+  assert.equal(await gear(me3ActorId, 'weaponMod2').inputValue(), 'ME3-EQP-ULTRALIGHT');
+  assert.match(await me3Card.innerText(), /Recharges de pouvoirs ×0,9 ATB/);
+  assertExact(await chroniclePacket(me3Key), editionPacket, 'The exact prepared edition armor and cooldown module resume through the real production save UI');
+  await capture('arsenal-edition-ultralight'); await action('chronicle-battle').click();
+  await page.locator('[data-do="chronicle-action"][data-id="overload"]:not([disabled])').waitFor();
+  const powerClipsBefore = await clipsDisplay(), powerHpBefore = await firstEnemyDisplay();
+  await action('chronicle-action', 'overload').click(); await action('chronicle-target', 'chronicle-enemy-0').click();
+  const powerHpAfter = await firstEnemyDisplay(); assert.ok(Number.parseInt(powerHpAfter, 10) < Number.parseInt(powerHpBefore, 10));
+  assert.deepEqual(await clipsDisplay(), powerClipsBefore); assert.equal(await action('chronicle-action', 'overload').isDisabled(), true);
+  assertExact(await chroniclePacket(me3Key), editionPacket, 'The actual power cast never rewrites the saved equipment');
+  await action('chronicle-preparation').click(); await gear(me3ActorId, 'weapon').selectOption('ME3-WPN-AVENGER');
+  assert.equal(await gear(me3ActorId, 'weaponMod2').inputValue(), '');
+  assert.doesNotMatch(await me3Card.innerText(), /Recharges de pouvoirs ×0,9 ATB/);
+  // Playwright retargets an option inside a label to its enabled select. Read
+  // the actual option contract, as the legacy blockedGearOption checks do.
+  const incompatibleUltralight = await gear(me3ActorId, 'weaponMod2').locator('option[value="ME3-EQP-ULTRALIGHT"]').evaluate(option => ({
+    disabled: option.disabled, hasDisabledAttribute: option.hasAttribute('disabled'), label: option.textContent,
+  }));
+  assert.equal(incompatibleUltralight.disabled, true); assert.equal(incompatibleUltralight.hasDisabledAttribute, true);
+  assert.match(incompatibleUltralight.label, /mitraillette ME3 conventionnelle à clips thermiques/);
+  await action('chronicle-save').click(); assert.equal((await chroniclePacket(me3Key)).session.loadouts[me3ActorId].weaponMod2, null);
+  await assertCampaignFrozen('Production edition armor and adapted cooldown module');
+  record({ name: 'Production edition armor and SMG cooldown preparation resume, execute real Overload and clear the module on incompatible parent replacement',
+    scenarioId: editionPacket.session.scenarioId, armorId: 'ME3-EQP-TERMINUS', moduleId: 'ME3-EQP-ULTRALIGHT',
+    visibleCooldownMultiplier: .9, actualPowerCast: true, ammunitionUnchanged: powerClipsBefore, enemyHealthBefore: powerHpBefore, enemyHealthAfter: powerHpAfter,
+    exactSavedPreparationRestored: true, replacingParentRemovesModule: true, incompatibleUltralight,
+    numericalCooldownScope: '8→7.2 seconds is verified by unit/development QA. The production DOM displays ×0.9 and rounded countdowns; no exact 7.2-second DOM reading is claimed.', runtimeDevelopmentHarness: 'absent' });
+
+  await prepareProductionScenario('ME2', 'me2', 'me2-security-opposition');
+  assert.match(await page.locator('.universe-opponent-brief').innerText(), /Profil partiel/);
+  await action('chronicle-battle').click();
+  const oppositionCard = page.locator('[data-chronicle-unit="chronicle-enemy-0"]');
+  assert.equal(await oppositionCard.locator('[data-universe-visual="ME2-ENM-LOKI"]').count(), 1);
+  assert.equal(await page.locator('[data-universe-visual="ME2-ENM-YMIR"]').count(), 1);
+  assert.match(await oppositionCard.innerText(), /Illustration de prototype/);
+  assert.match(await oppositionCard.locator('[data-chronicle-opponent-limits="ME2-ENM-LOKI"]').innerText(), /Profil partiel/);
+  assert.ok(await oppositionCard.locator('.chronicle-opponent-limits li').count() > 0);
+  assert.equal(await oppositionCard.locator('[data-do="chronicle-actor"]').count(), 0);
+  await action('chronicle-actor', 'ME2-CHR-SHEPARD').click();
+  await page.locator('[data-do="chronicle-action"][data-id="shoot"]:not([disabled])').waitFor();
+  const oppositionHpBefore = await firstEnemyDisplay();
+  await action('chronicle-action', 'shoot').click(); await action('chronicle-target', 'chronicle-enemy-0').click();
+  const oppositionHpAfter = await firstEnemyDisplay(); assert.ok(Number.parseInt(oppositionHpAfter, 10) < Number.parseInt(oppositionHpBefore, 10));
+  await assertCampaignFrozen('Production sourced opposition bench'); await capture('arsenal-opposition');
+  await action('chronicle-preparation').click();
+  record({ name: 'Production opposition bench uses actual sourced enemies with catalog-bound illustrations, explicit missing mechanics and real HP damage',
+    scenarioId: 'me2-security-opposition', picturedCatalogIds: ['ME2-ENM-LOKI', 'ME2-ENM-YMIR'],
+    enemyHealthBefore: oppositionHpBefore, enemyHealthAfter: oppositionHpAfter, originalBossPhasesOrMissionClaimed: false, runtimeDevelopmentHarness: 'absent' });
+
+  const documentaryStorage = () => page.evaluate(() => Object.fromEntries(Object.keys(localStorage)
+    .filter(key => key.startsWith('relay-chronicles.chronicle.')).sort().map(key => [key, localStorage.getItem(key)])));
+  const documentaryBefore = await documentaryStorage(), references = [];
+  for (const [mediaId, periodId, recordId] of [
+    ['ME2', 'me2', 'ME2-NPC-ARIA'], ['ME3', 'me3', 'ME3-NPC-TRAYNOR'],
+    ['ME1', 'me1', 'REF-VEH-M35-MAKO-ME1'], ['ME1', 'me1', 'REF-SHP-NORMANDY-SR1-ME1'],
+    ['MEA', 'mea', 'MEA-EQP-NOMAD-UPGRADES'], ['ME2', 'me2', 'ME2-EQP-HAMMERHEAD'],
+    ['ME2', 'me2', 'ME2-ZON-NORMANDY-CIC'], ['MEA', 'mea', 'MEA-ZON-TEMPEST-BRIDGE'],
+  ]) {
+    if (await page.locator('#chronicle-media').inputValue() !== mediaId) await page.locator('#chronicle-media').selectOption(mediaId);
+    if (await page.locator('#chronicle-period').inputValue() !== periodId) await page.locator('#chronicle-period').selectOption(periodId);
+    await action('universe-tab', 'references').click(); await action('universe-group', 'all').click();
+    await page.locator('#universe-search').fill(recordId); await action('universe-record', recordId).click();
+    const detail = page.locator(`[data-universe-record="${recordId}"]`), visual = detail.locator(`[data-universe-visual="${recordId}"]`);
+    await visual.waitFor(); assert.match(await detail.innerText(), /Illustration de prototype/);
+    assert.equal(await detail.locator('[data-do="chronicle-party"],[data-do="chronicle-battle"],[data-chronicle-stat]').count(), 0);
+    const clipping = await visual.evaluate(svg => ({ viewBox: svg.getAttribute('viewBox'), innerViewBox: svg.querySelector('svg')?.getAttribute('viewBox'), overflow: svg.querySelector('svg')?.getAttribute('overflow') }));
+    assert.equal(clipping.innerViewBox, clipping.viewBox); assert.equal(clipping.overflow, 'hidden');
+    references.push({ mediaId, periodId, recordId, ...clipping });
+  }
+  assertExact(await documentaryStorage(), documentaryBefore, 'Reading NPC, vehicle and ship illustrations grants no saved party, mission or pilot state');
+  await assertCampaignFrozen('Production documentary illustrations'); await capture('arsenal-documentary-fleet');
+  await action('chronicle-back').click(); await page.getByRole('button', { name: /Nouvelle campagne/ }).waitFor();
+  record({ name: 'Production reference details show two NPCs and six fleet subjects without recruitment, combat controls, piloting or saved gameplay grants',
+    references, exactChronicleStoragePreserved: true, exactCampaignCheckpointPreserved: true, runtimeDevelopmentHarness: 'absent' });
+
+  await page.waitForLoadState('networkidle');
   const femaleRequests = [...completed].filter(address => /shepard-female-(?:walk|combat)-atlas\.png$/.test(address));
   assert.equal(femaleRequests.length, 2, 'Both female PNG atlases completed HTTP loading');
   assert.ok(femaleRequests.every(address => new URL(address).origin === entry.origin));
@@ -467,7 +663,10 @@ try {
   assert.deepEqual(jsonAnimationRequests, [], 'Animation metadata is bundled, with no JSON fetch');
   const remoteRequests = [...requests].filter(address => /^https?:/.test(address) && new URL(address).origin !== entry.origin);
   assert.deepEqual(remoteRequests, [], 'All game resources come from the production preview origin');
-  const expectedImages = ['crew-atlas.png', 'enemy-atlas.png', 'boss-atlas.png', 'props-atlas.png', 'npc-atlas.png', 'vehicle-atlas.png', 'shepard-walk-atlas.png', 'shepard-female-walk-atlas.png', 'shepard-female-combat-atlas.png', 'citadel-keyart.png', 'chronicle-portraits-me2-me3.png'];
+  const legacyExpectedImages = ['crew-atlas.png', 'enemy-atlas.png', 'boss-atlas.png', 'props-atlas.png', 'npc-atlas.png', 'vehicle-atlas.png', 'shepard-walk-atlas.png', 'shepard-female-walk-atlas.png', 'shepard-female-combat-atlas.png', 'citadel-keyart.png', 'chronicle-portraits-me2-me3.png'];
+  const expectedImages = [...legacyExpectedImages, ...atlasExpected.map(atlas => atlas.path.split('/').at(-1))];
+  assert.equal(expectedImages.length, 15);
+  assert.deepEqual((await readdir(new URL('../dist/assets/', import.meta.url))).filter(name => name.endsWith('.png')).sort(), [...expectedImages].sort(), 'All fifteen final PNG assets are exercised');
   for (const filename of expectedImages) assert.ok([...completed].some(address => new URL(address).origin === entry.origin && new URL(address).pathname.endsWith(`/assets/${filename}`)), `${filename} completed production HTTP loading`);
   await Promise.all(bundleResponses);
   for (const expected of report.bundles) {
@@ -480,7 +679,17 @@ try {
   }
   assert.equal(report.servedPortrait?.sha256, portraitExpected.sha256); assert.equal(report.servedPortrait?.bytes, portraitExpected.bytes);
   report.assetRequests = [...completed].filter(address => /\.(?:png|js|css)(?:\?|$)/.test(address)).map(address => `dist${new URL(address).pathname}`).sort();
-  record({ name: 'Eleven production images, exact generated portrait bytes, embedded metadata and exact bundle hashes', imagesLoaded: expectedImages.length, femaleAtlasesLoaded: 2, animationJsonRequests: 0, remoteRequests: 0, developmentHarnessInBundles: 'absent', servedBundleHashesMatchDist: true, servedPortraitMatchesDist: true });
+  record({ name: 'Eleven production images, exact generated portrait bytes, embedded metadata and exact bundle hashes', imagesLoaded: legacyExpectedImages.length, femaleAtlasesLoaded: 2, animationJsonRequests: 0, remoteRequests: 0, developmentHarnessInBundles: 'absent', servedBundleHashesMatchDist: true, servedPortraitMatchesDist: true });
+  for (const expected of atlasExpected) {
+    const observed = report.servedAtlases.filter(atlas => atlas.path === expected.path && atlas.status === 200);
+    assert.equal(observed.length, 1, `The first complete HTTP 200 response is retained once for ${expected.path}`);
+    assert.equal(observed[0].sha256, expected.sha256, `Atlas HTTP SHA256 matches ${expected.path}`);
+    assert.equal(observed[0].bytes, expected.bytes, `Atlas HTTP byte length matches ${expected.path}`);
+  }
+  report.imagesLoaded = expectedImages.length;
+  record({ name: 'All fifteen production PNG assets load and the first HTTP 200 bodies of four new atlases match dist bytes exactly',
+    imagesLoaded: expectedImages.length, newAtlasCount: atlasExpected.length, servedAtlasesMatchDist: true,
+    dynamicJavaScriptBundleCount: report.bundles.length, firstCompleteResponseReserved: true, runtimeDevelopmentHarness: 'absent' });
   assert.deepEqual(report.errors, []); assert.deepEqual(report.failedRequests, []);
   report.passed = true;
   console.log(JSON.stringify({ passed: true, checks: report.checks.length, errors: report.errors, failedRequests: report.failedRequests }));

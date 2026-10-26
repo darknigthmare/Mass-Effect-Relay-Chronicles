@@ -1,8 +1,12 @@
 # État de livraison — 0.3.0
 
-Mise à jour : **25 octobre 2026**. La branche de personnalisation `7bf6c937a2f09cc759d3506ef7be7f3d2eaef8a0` intègre le socle `main` `1310a84ff132e80f5b00e14b19e4930cbe9d27d5`. L’atelier, ses choix cosmétiques et son application atomique sont conservés avec l’inventaire à neuf emplacements, les formations et toutes les Chroniques récentes.
+Mise à jour : **26 octobre 2026**. La branche de personnalisation intègre main `7ef342a1c7fb2152cb9f614917575886da4fcb8f`.
 
-Le principal contient **1 380 fiches = 1 330 fiches main conservées + 50 fiches de personnalisation inchangées** ; avec les 5 326 fiches supplémentaires, le registre compte **6 706 références**. Les sources et métadonnées des deux branches sont réunies ; les classeurs de l’univers conservent leurs derniers exports. Le registre fusionné réunit 453 sources, dont 43 dans le principal. Le [contrôle actuel du classeur](qa/customization-support-sync-workbook-report.json) est distinct des rapports historiques. La synchronisation contre `1310a84` passe **492 tests Node**, la compilation, **neuf contrôles de personnalisation** et **douze contrôles HTTP de production**, sans erreur JavaScript ni requête échouée. Les nouvelles preuves sont rassemblées dans le [rapport courant](qa/customization-support-sync-report.json), le [parcours de personnalisation](qa/customization-support-sync-customization-report.json) et le [parcours de production](qa/customization-support-sync-production-report.json). La [fusion précédente](qa/pr1-final-report.json), ses 415 tests Node et ses neuf/dix contrôles navigateur restent historiques, comme le [premier rapport de fusion](qa/pr1-merge-report.json).
+La branche 0.3.0 conserve les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.
+
+Les **556 tests Node** et le build de **56 modules en 4,10 secondes** passent. Le [parcours actuel](qa/customization-arsenal-sync-customization-report.json) passe neuf contrôles de personnalisation, dont la reprise du build compilé ; les **17 contrôles HTTP de production** passent avec quinze PNG et sept bundles servis vérifiés par empreinte. Le [contrôle du principal](qa/customization-arsenal-sync-workbook-report.json) conserve les fiches et sources des deux branches, 28 feuilles et 26 tableaux filtrés. Les synchronisations [soutiens](qa/customization-support-sync-report.json) et [précédente](qa/pr1-final-report.json) restent historiques.
+
+ La livraison initiale 0.2.0 reprenait `27daea0`. Le complément équipement reprend **`c614a452b1cdd2712d34ad2344471c01d2c8d209`**, conserve ses opérations, son matériel, les animations féminines et le correctif Windows, puis ajoute les outils et les formations décrits ci-dessous.
 
 ## Personnalisation de Shepard
 
@@ -39,9 +43,9 @@ Le [rapport de livraison 0.3.0](qa/v0.3.0-report.json) réunit les résultats et
 
 Les contrôles du modèle couvrent le brouillon détaché, l’application atomique, l’équipement partagé, l’interdiction en combat, la migration et le refus de données malformées. Ils vérifient aussi les couleurs, le casque, les valeurs par défaut et la libération des textures générées.
 
-Le parcours navigateur utilise les commandes réelles de création, d’achat, de personnalisation et de sauvegarde. Il vérifie la reprise automatique, un export JSON téléchargé puis importé et une restauration manuelle nommée. Le contrôle du rendu constate 16 812 pixels RGB modifiés sur la texture de Shepard et une transparence identique. Les deux sauvegardes préparées pour la migration et les restrictions d’inventaire sont des fixtures importées explicitement ; elles ne représentent pas du matériel obtenu en campagne.
+Le parcours navigateur utilise les commandes réelles de création, d’achat, de personnalisation et de sauvegarde. Il vérifie la reprise automatique, un export JSON téléchargé puis importé et une restauration manuelle nommée. Le contrôle historique du rendu constatait 16 812 pixels RGB modifiés sur la texture de Shepard et une transparence identique. Les deux sauvegardes préparées pour la migration et les restrictions d’inventaire sont des fixtures importées explicitement ; elles ne représentent pas du matériel obtenu en campagne.
 
-Les trois onglets ont été contrôlés à **360 × 800** et l’atelier bureau à **1 440 × 1 000**, sans débordement horizontal ni bouton tronqué. Le build de production reprend les choix après rechargement et n’expose pas l’API de développement. Les captures [création](screenshots/customization-creation.png), [armure](screenshots/customization-armor.png), [armes](screenshots/customization-weapons-desktop.png), [mobile](screenshots/customization-mobile.png) et [production](screenshots/customization-production.png) sont issues de ces essais. Le casque du sprite reste un masque coloré schématique sur la silhouette d’origine, comme indiqué dans la revue visuelle du rapport.
+Les trois onglets ont été contrôlés à **360 × 800** et l’atelier bureau à **1 440 × 1 000**, sans débordement horizontal ni bouton tronqué. Le build de production reprend les choix après rechargement et n’expose pas l’API de développement. Les captures historiques [création](screenshots/customization-creation.png), [armure](screenshots/customization-armor.png), [armes](screenshots/customization-weapons-desktop.png), [mobile](screenshots/customization-mobile.png) et [production](screenshots/customization-production.png) sont issues de ces essais. Le casque du sprite reste un masque coloré schématique sur la silhouette d’origine, comme indiqué dans la revue visuelle du rapport.
 
 ## Distribution et preuves de la branche de personnalisation
 
@@ -51,13 +55,40 @@ La correction Windows de la base `c614a45` est conservée : le fichier de catalo
 
 Les configurations Electron, Vercel et les workflows GitHub restent présents. Les résultats des builds publiés sont à consulter dans GitHub Actions. Aucun nouveau déploiement Vercel n’est annoncé ici ; voir [DEPLOYMENT.md](DEPLOYMENT.md). Le [rapport Windows 0.1.0](qa/build-v0.1.0-report.json) et le [rapport d’équilibrage antérieur](qa/balance-report.json) restent historiques.
 
-## Socle main `cefa0b1` conservé
+## Socle main `7ef342a` conservé
 
-Les rapports et résultats ci-dessous portent sur les sources de main avant personnalisation ; leurs empreintes ne sont pas réécrites pour la PR. Les 50 fiches de personnalisation portent le principal fusionné à 1 380 et le registre à 6 706.
+Les rapports et résultats ci-dessous portent sur les sources de main avant personnalisation ; leurs empreintes ne sont pas réécrites pour la PR. Les 50 fiches de personnalisation portent le principal fusionné à 1 382 et le registre à 6 708.
 
-## Complément soutiens, munitions et portraits — 25 octobre 2026
+## Complément arsenal de main — 26 octobre 2026
 
-Le lot de main `cefa0b1` est basé sur `748b965`. Il raccorde **quatre fiches de soutien à trois actions** : Drone de combat ME2/ME3, Tourelle de garde ME3 et Drone de défense ME3. Chaque invocation devient une entité ciblable, dotée de PV, d’une durée et d’un propriétaire. Les soutiens ne sont pas commandables, ne reçoivent pas les soins du groupe et ne comptent pas dans la détermination des vainqueurs. Les plafonds, cadences, durées, retrait lorsque le propriétaire tombe et réaction défensive sont des choix ATB explicités, sans simulation de proximité originale.
+Le complément reprend `1310a84`. Il conserve les soutiens, munitions, préparations, lectures et portraits précédents, puis ajoute **huit profils d’armes**, dont quatre à charge automatique ATB, **quinze armures** et une famille de module ultraléger pour mitraillette ME3 conventionnelle à clips. Les ateliers atteignent **100 équipements : 72 armes, 25 armures et trois familles de modules**. Quatorze des armures ajoutées sont limitées aux ateliers Legendary Edition ME2/ME3 ou Deluxe Andromeda ; la quinzième est une protection Reliquats agrégée. Acquisition, rangs, apparences et valeurs originales restent partiels.
+
+Les huit armes sont le fusil à particules, le Lancer, l’Arc, le Graal et le Javelin ME3, puis l’Equalizer, le Scattershot et le Venom Andromeda. Arc, Graal, Javelin et Venom utilisent une charge automatique interruptible d’une seconde ATB ; les clips sont dépensés au tir. Le Javelin ignore seulement le couvert binaire ATB, sans traversée géométrique du décor. Le module ultraléger applique un multiplicateur de 0,9 aux délais de pouvoirs ATB, sans simuler le poids original ni donner de pouvoir.
+
+**Six bancs d’opposition et trois ateliers d’édition** portent les essais à **25**. Les nouveaux bancs emploient **16 profils d’adversaires, dont trois boss**, avec actions génériques et mécaniques manquantes visibles. Les phases, orbes, possession, vol et sous-cibles non reconstitués restent signalés. Les **42 profils de personnages sélectionnables**, les **61 fiches de pouvoirs / 30 commandes**, les six modes de munitions et les **16 lectures / 52 pages** restent inchangés. Aucun de ces bancs ne reconstitue une campagne complète.
+
+Quatre atlas RGBA ajoutent **24 illustrations fixes et partielles** : quatre bustes de personnages, deux de PNJ, six silhouettes d’adversaires, six équipements et six véhicules ou vaisseaux. Ils complètent les trois portraits historiques, qui gardent leur priorité. Les PNJ et la flotte restent documentaires ; aucun pilotage ou droit de sélection n’est déduit d’une image. Les quinze PNG courants n’ajoutent pas de nouveau cycle animé ni de modèle complet. Le [manifeste arsenal](../public/assets/arsenal-visuals.json) conserve quatre empreintes et six cadrages irréguliers ; toutes les entrées restent `primaryVisualVerified: false`.
+
+Dans main `7ef342a`, le registre compte **6 658 fiches et 450 sources** : 1 332 fiches et 40 sources principales, puis 5 326 fiches et 410 sources supplémentaires. Deux nouvelles références ME1 documentent uniquement l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les anciennes fiches d’adaptation ne sont pas requalifiées. Les **52 promotions Prototype sont appliquées**. Les statuts de main sont **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**.
+
+Le [rapport global arsenal](qa/arsenal-report.json) relie les validations finales suivantes.
+
+| Contrôle du main arsenal, conservé à l’identique | Résultat et portée |
+|---|---|
+| Tests Node | 537 réussis sur 537, aucun échec ni test ignoré |
+| Build web | 52 modules compilés en 3,31 secondes |
+| Nouveau parcours navigateur | Six contrôles : huit armes, quinze armures, un module, seize adversaires dont trois boss, 24 visuels et six victoires réelles |
+| Régression des Chroniques | Six contrôles et 25 victoires ; tous les essais exposés |
+| Production HTTP | 17 contrôles ; quinze PNG et sept bundles servis vérifiés par empreinte ; les quatre atlas répondent HTTP 200 avec les SHA exacts |
+| Différentiel ME1 | Aucune divergence sur 30 graines et 1 755 ordres acceptés |
+| Classeurs | 28 XLSX vérifiés, 21 exports univers reconstruits ; 93 panneaux ciblés de trois classeurs supplémentaires et trois panneaux du principal revus |
+| Conservation | Sources, faits historiques et archives préservés dans les exceptions déclarées du rapport |
+
+Preuves : [nouveau parcours](qa/arsenal-browser-report.json), [régression](qa/arsenal-legacy-universe-report.json), [production](qa/arsenal-production-report.json), [conservation](qa/arsenal-preservation-report.json), [exports](qa/arsenal-workbook-export-report.json), [revue univers](qa/arsenal-workbook-visual-report.json) et [principal](qa/arsenal-main-workbook-report.json). Les [six réserves bibliographiques](qa/arsenal-source-reservations.json) restent ouvertes ; la [corroboration primaire limitée](qa/arsenal-additional-source-check.json) de Brute, Banshee et Husk ne valide ni kits ni illustrations. La revue ne porte pas sur toutes les feuilles des classeurs. Aucun nouveau parcours ME1 complet, lancement Windows ou contrôle mobile n’est annoncé. Les preuves des lots ci-dessous restent historiques et ne sont pas réécrites pour ce code. Les [références visuelles inspectées](research/arsenal-visual-sources.md), [limites artistiques](ASSETS.md) et [périmètres des essais](CHRONICLES.md) distinguent adaptation fonctionnelle et fidélité 1:1 non certifiée. La personnalisation 0.3.0 reste dans la PR nº1, séparée de `main`.
+
+## Complément soutiens, munitions et portraits — historique du 25 octobre 2026
+
+Ce lot historique reprenait `748b965`. Il raccorde **quatre fiches de soutien à trois actions** : Drone de combat ME2/ME3, Tourelle de garde ME3 et Drone de défense ME3. Chaque invocation devient une entité ciblable, dotée de PV, d’une durée et d’un propriétaire. Les soutiens ne sont pas commandables, ne reçoivent pas les soins du groupe et ne comptent pas dans la détermination des vainqueurs. Les plafonds, cadences, durées, retrait lorsque le propriétaire tombe et réaction défensive sont des choix ATB explicités, sans simulation de proximité originale.
 
 **Dix fiches de munitions exposées donnent six actions de modes exclusifs**, plus leur désactivation. Les modes appris demandent le kit, l’œuvre et une arme conventionnelle à clips compatibles. Activation et désactivation consomment un ordre ATB sans remplir les réserves ; les effets restent limités aux tirs, avec dégâts par couche et états après perte réelle de santé. Pouvoirs, invocations, armes à chaleur et six armes spéciales restent exclus. Warp Ammo ME3 et les consommables de munitions Andromeda restent fermés. Les **61 fiches de pouvoirs exposées correspondent désormais à 30 commandes**, hors désactivation.
 
@@ -67,7 +98,7 @@ Un onzième PNG local fournit **trois bustes de prototype**, limités à Miranda
 
 Le lot ajoute **17 promotions Prototype** : quatre pouvoirs de soutien, dix de munitions et trois portraits partiels. Dans main `cefa0b1`, le décompte vérifié après reconstruction est de **530 Prototype, 6 120 Défini, trois Intégré et trois Validé**, soit **6 656 fiches et 449 sources**. Le [rapport global](qa/chronicle-support-report.json) relie les résultats suivants à leurs sources. Ces preuves restent celles du main 0.2.0 publié ; les contrôles du `main.js` personnalisé 0.3.0 figurent dans le [rapport de synchronisation](qa/customization-support-sync-report.json).
 
-| Validation du socle main `cefa0b1` | Résultat et portée |
+| Validation historique du lot soutiens | Résultat et portée |
 |---|---|
 | Tests Node | 473 réussis sur 473, aucun échec ni test ignoré |
 | Build web | Compilation réussie de 47 modules |
@@ -139,7 +170,7 @@ Cette livraison est un prototype jouable de l’adaptation ATB. La reconstitutio
 | Sauvegardes | Auto hors combat, 6 emplacements manuels, import/export JSON et migration des anciennes parties v1 |
 | Narration | 9 interlocuteurs et 18 sujets conditionnels au Normandy, conseil à Garrus mémorisé, 16 notices de codex progressives |
 | Carte et journal | Filtres, légende, repères lisibles, étapes et conditions de blocage, suivi d’une opération |
-| Art | 11 PNG, 48 sujets d’atlas historiques, 32 images de marche, 4 poses de combat féminines, une illustration d’accueil et trois bustes partiels des Chroniques |
+| Art | 15 PNG : sujets et animations historiques, trois bustes des Chroniques et 24 illustrations fixes partielles sur quatre atlas arsenal |
 | Son | Ambiances et effets locaux Web Audio ; aucun doublage |
 | Distribution | Compilation Vite, configuration Electron/Windows, configuration Vercel et workflows GitHub existants |
 

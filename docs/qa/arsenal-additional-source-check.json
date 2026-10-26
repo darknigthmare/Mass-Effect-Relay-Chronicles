@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-26T10:09:04.039627+00:00",
+  "reviewComplete": true,
+  "scope": "Additional local-only primary-reference check for exact named enemies/weapons and narrow stated roles; not original-game fidelity certification.",
+  "globalFidelityCertified": false,
+  "networkRequestsMade": false,
+  "browserStarted": false,
+  "gpuStarted": false,
+  "appFilesModified": false,
+  "catalogueFilesModified": false,
+  "historicalReportsModified": false,
+  "primarySourceAcquisitionRecord": {
+    "path": "docs/qa/arsenal-visual-reference-report.json",
+    "sha256": "647610b990c3f7d609720c1da4d7e4fac11b1ebf608c804d2d763058b11045ca",
+    "relationship": "Existing record of successful official-PDF acquisition; this check reuses those exact local PDF bytes."
+  },
+  "inheritedReservationRecord": {
+    "path": "docs/qa/arsenal-source-reservations.json",
+    "sha256": "68014007c91105516b042f3f1d9e310aff95b04d48ca1f748d7b68d570df4d1c",
+    "entriesReviewed": 6,
+    "modified": false
+  },
+  "sources": [
+    {
+      "mediaId": "ME3",
+      "localPdfPath": "/tmp/relay-arsenal-refs/me3-manual-en.pdf",
+      "bytes": 1886992,
+      "sha256": "07ee7dc469e5c6beb85d2050b333647aa29ee9900d83695cfbe28be51726da01",
+      "pdfPages": 27,
+      "validPdfSignature": true,
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_PC.pdf",
+      "acquisition": "Previously acquired official EA PDF, reused locally. No new network request was made in this check.",
+      "textSearchScope": "Complete pdftotext -layout extraction of all PDF pages.",
+      "actuallyViewedRenderedPdfPages": [
+        23,
+        24,
+        25,
+        26
+      ],
+      "pageNumbering": "PDF page and printed page coincide for the pages cited here."
+    },
+    {
+      "mediaId": "MEA",
+      "localPdfPath": "/tmp/relay-arsenal-refs/mea-manual-en.pdf",
+      "bytes": 847754,
+      "sha256": "a5e3bfc40a63695fb20d8fcb2db4b590a6fa65bf24c90b01c9eae555190f817f",
+      "pdfPages": 30,
+      "validPdfSignature": true,
+      "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-andromeda-pc-en.pdf",
+      "acquisition": "Previously acquired official EA PDF, reused locally. No new network request was made in this check.",
+      "textSearchScope": "Complete pdftotext -layout extraction of all PDF pages.",
+      "actuallyViewedRenderedPdfPages": [
+        11,
+        14,
+        17,
+        26,
+        29
+      ],
+      "pageNumbering": "PDF page and printed page coincide for the pages cited here."
+    }
+  ],
+  "textSearchResults": [
+    {
+      "mediaId": "ME3",
+      "term": "Assault Trooper",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [],
+      "extractedTextFound": false
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Marauder",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [
+        25
+      ],
+      "extractedTextFound": true
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Husk",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [
+        24,
+        25
+      ],
+      "extractedTextFound": true
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Brute",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [
+        24
+      ],
+      "extractedTextFound": true
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Banshee",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [
+        24
+      ],
+      "extractedTextFound": true
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Lancer",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [],
+      "extractedTextFound": false
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Phantom",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [
+        25
+      ],
+      "extractedTextFound": true
+    },
+    {
+      "mediaId": "ME3",
+      "term": "Suppressor",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [],
+      "extractedTextFound": false
+    },
+    {
+      "mediaId": "MEA",
+      "term": "Destroyer",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [],
+      "extractedTextFound": false
+    },
+    {
+      "mediaId": "MEA",
+      "term": "Assembler",
+      "matchRule": "case-insensitive whole term, allowing plural s",
+      "pdfPages": [],
+      "extractedTextFound": false
+    }
+  ],
+  "findings": [
+    {
+      "recordId": "ME3-ENM-ASSAULT",
+      "requestedName": "Cerberus Assault Trooper",
+      "directNamedEvidenceFound": false,
+      "pages": [],
+      "verifiedSmallFacts": [],
+      "reservation": "Neither Assault Trooper nor its plural appears in the complete extracted ME3 manual. The Phantom entry on p.25 concerns a different named enemy and does not establish an Assault Trooper identity, role, model or kit. General Cerberus-defense tips on p.24 do not establish the individual model."
+    },
+    {
+      "recordId": "ME3-ENM-MARAUDER",
+      "requestedName": "Marauder",
+      "directNamedEvidenceFound": true,
+      "pages": [
+        25
+      ],
+      "shortQuote": "Marauders buff Husks and Cannibals by giving them armored plating.",
+      "verifiedSmallFacts": [
+        "The manual directly names Marauder.",
+        "It says Marauders grant armored plating to Husks and Cannibals and recommends taking out the Marauder first."
+      ],
+      "reservation": "This is a direct named reference, not an indirect-page reservation. It does not certify the prototype statistics, weapon, timing, visual model, full kit or every faction/species claim."
+    },
+    {
+      "recordId": "ME3-ENM-HUSK",
+      "requestedName": "Husk",
+      "directNamedEvidenceFound": true,
+      "pages": [
+        24,
+        25
+      ],
+      "verifiedSmallFacts": [
+        "The Cannibal entry on p.24 says Cannibals form armored plating by reclaiming fallen Cannibals and Husks.",
+        "The Marauder entry on p.25 says Husks and Cannibals receive armored plating from Marauders."
+      ],
+      "reservation": "Husks are named within other enemy entries; there is no standalone Husk tactics entry in this manual. These statements establish named existence and those interactions only, not a complete Husk role, melee kit, animation, source-model identity or prototype values."
+    },
+    {
+      "recordId": "ME3-ENM-BRUTE",
+      "requestedName": "Brute",
+      "directNamedEvidenceFound": true,
+      "pages": [
+        24
+      ],
+      "shortQuote": "Brutes are vicious opponents that can instantly kill you.",
+      "verifiedSmallFacts": [
+        "A standalone Brute entry warns not to let a Brute get close and says Brutes can instantly kill the player."
+      ],
+      "reservation": "The manual supports that limited close-range danger statement. It does not establish the full original moveset, prototype strike formula, speed, resistances, health, exact appearance or complete behavior."
+    },
+    {
+      "recordId": "ME3-ENM-BANSHEE",
+      "requestedName": "Banshee",
+      "directNamedEvidenceFound": true,
+      "pages": [
+        24
+      ],
+      "shortQuote": "Stop a Banshee when she becomes charged by damaging her while she uses biotic jumps to close in.",
+      "verifiedSmallFacts": [
+        "A standalone Banshee entry describes biotic jumps used to close the distance and damaging her during those jumps to stop her when charged."
+      ],
+      "reservation": "This is limited named behavior evidence. No complete teleport/control/instant-kill kit, prototype values, timings, appearance or full model fidelity is certified."
+    },
+    {
+      "recordId": "ME3-WPN-LANCER",
+      "requestedName": "M-7 Lancer",
+      "directNamedEvidenceFound": false,
+      "pages": [],
+      "verifiedSmallFacts": [],
+      "reservation": "Lancer and Suppressor are absent from the complete extracted ME3 manual. The generic thermal-clip discussion on pp.23/26 does not establish the named Lancer or its heat/recharge mechanism, DLC availability or model. A secondary page titled M-11 Suppressor cannot be represented as a direct primary Lancer reference."
+    },
+    {
+      "recordId": "MEA-ENM-DESTROYER",
+      "requestedName": "Destroyer",
+      "directNamedEvidenceFound": false,
+      "pages": [],
+      "verifiedSmallFacts": [],
+      "reservation": "Neither Destroyer nor Assembler appears in the complete extracted 30-page MEA manual. P.11 names Remnant devices/consoles and hostile-turret control; p.14 names Remnant research data. Neither passage identifies a Destroyer or establishes its individual role, faction attribution, weapon, phases or appearance. General enemy health/shields on p.17 and multiplayer enemies on pp.26/29 are not individual-model evidence."
+    }
+  ],
+  "renderInspections": [
+    {
+      "mediaId": "ME3",
+      "pdfPage": 23,
+      "path": "/tmp/arsenal-additional-source-check/me3-p23.png",
+      "sha256": "d04be87816b7d47c37dde68b1c3652b0dfe2de72144938717ada437bafedc706",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "ME3",
+      "pdfPage": 24,
+      "path": "/tmp/arsenal-additional-source-check/me3-p24.png",
+      "sha256": "dd7b97babc5fb3633716bb854197a7e7fdf6a6bef86dcd7f47619b21b06d0826",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "ME3",
+      "pdfPage": 25,
+      "path": "/tmp/arsenal-additional-source-check/me3-p25.png",
+      "sha256": "b5d7c1981b97ca1c7335ab45f0e4aa6871c876b16ff6da04dba81b41ba1185dd",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "ME3",
+      "pdfPage": 26,
+      "path": "/tmp/arsenal-additional-source-check/me3-p26.png",
+      "sha256": "bfd256301ac6ba51910e2672952b6c1712ee9a5dff2dbba4ecee7a5800734ffe",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "MEA",
+      "pdfPage": 11,
+      "path": "/tmp/arsenal-additional-source-check/mea-p11.png",
+      "sha256": "23c6b60c3e5ced409c1e704de0d27d766440f32e0d2d646ecae7ae2fb77741aa",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "MEA",
+      "pdfPage": 14,
+      "path": "/tmp/arsenal-additional-source-check/mea-p14.png",
+      "sha256": "6e165a9241c561090c7fa7768976eadea749b499a6ea6517a9f7a89bf1241ef0",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "MEA",
+      "pdfPage": 17,
+      "path": "/tmp/arsenal-additional-source-check/mea-p17.png",
+      "sha256": "e05d1c5be1972d45146fc5362d328820764048da02052141211910d354bf9f45",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "MEA",
+      "pdfPage": 26,
+      "path": "/tmp/arsenal-additional-source-check/mea-p26.png",
+      "sha256": "c0aa90b7f24da9abed14eec9e29e389c2e25b473d51984f99ffc9a3dceb3fad2",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    },
+    {
+      "mediaId": "MEA",
+      "pdfPage": 29,
+      "path": "/tmp/arsenal-additional-source-check/mea-p29.png",
+      "sha256": "16b544d94010e4ef35b63acbbc962b616c5541a185de4219cac40e81c0660faf",
+      "actuallyOpened": true,
+      "method": "pdftoppm render viewed with view_image at original detail; no browser or image-pixel editing."
+    }
+  ],
+  "conclusion": {
+    "directStandaloneNamedEntries": [
+      "ME3-ENM-MARAUDER",
+      "ME3-ENM-BRUTE",
+      "ME3-ENM-BANSHEE"
+    ],
+    "namedOnlyWithinOtherEntries": [
+      "ME3-ENM-HUSK"
+    ],
+    "noNamedEvidenceLocated": [
+      "ME3-ENM-ASSAULT",
+      "ME3-WPN-LANCER",
+      "MEA-ENM-DESTROYER"
+    ],
+    "noInheritedCitationRewritten": true,
+    "functionalPrototypeQaUnaffected": true,
+    "limitations": [
+      "A negative extracted-text search is bounded to these two official manual PDFs, not every official source or every image in the games.",
+      "The nine rendered pages listed above were actually viewed. The remaining pages were searched as extracted text, not claimed as visual enemy-model review.",
+      "Primary named evidence for a narrow fact does not automatically validate an inherited unrelated secondary URL, full kit, artwork, original timing or any ATB parameter.",
+      "No external Fandom page, blocked endpoint, proxy bypass, source record or catalogue fact was accessed or changed."
+    ]
+  }
+}

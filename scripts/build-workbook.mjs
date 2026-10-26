@@ -228,6 +228,16 @@ for(const [categoryId,ids,filename] of [
  await fs.writeFile(path.join(previewDir,`${filename}.png`),new Uint8Array(await preview.arrayBuffer()));
  console.log(`Rendered ${filename}`);
 }
+// The new documentary references need both their identity and source/limit columns visible.
+const propsCategory=catalog.categories.find(category=>category.id==='props');
+if(propsCategory&&(!renderOnly||renderOnly.has(propsCategory.sheetName))){
+ const props=catalog.entries.filter(entry=>entry.category==='props');
+ const rows=['REF-VEH-M35-MAKO-ME1','REF-SHP-NORMANDY-SR1-ME1'].map(id=>props.findIndex(entry=>entry.id===id)+7);
+ if(rows.every(row=>row>=7))for(const [name,start,end] of [['Arsenal-references-identity','A','I'],['Arsenal-references-sources','J','Q']]){
+  const preview=await wb.render({sheetName:propsCategory.sheetName,range:`${start}${Math.min(...rows)}:${end}${Math.max(...rows)}`,scale:1.25,format:'png'});
+  await fs.writeFile(path.join(previewDir,`${name}.png`),new Uint8Array(await preview.arrayBuffer()));
+ }
+}
 if(!renderOnly||renderOnly.has('Guide')){
  const preview=await wb.render({sheetName:'Guide',range:`A${Math.max(30,29+catalog.sources.length-2)}:D${guideFooter+3}`,scale:1.25,format:'png'});
  await fs.writeFile(path.join(previewDir,'Guide-sources-focus.png'),new Uint8Array(await preview.arrayBuffer()));

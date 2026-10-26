@@ -343,7 +343,7 @@ try {
   mark('separate-chronicle-saves');
   await prepare('MEA', 'mea', 'mea-equipment-workshop');
   await blockedGearOption('MEA-CHR-CORA', 'armor', 'MEA-EQP-PATHFINDER');
-  await blockedGearOption('MEA-CHR-RYDER', 'weapon', 'MEA-WPN-EQUALIZER');
+  await blockedGearOption('MEA-CHR-RYDER', 'weapon', 'MEA-WPN-LANAT', 'Unverified charging behavior remains closed while Equalizer is now implemented');
   await gear('MEA-CHR-RYDER', 'armor').selectOption('MEA-EQP-PATHFINDER');
   await gear('MEA-CHR-RYDER', 'weapon').selectOption('MEA-WPN-AVENGER');
   await action('chronicle-save').click(); const savedMEA = await chronicle();
@@ -370,12 +370,28 @@ try {
   assert.equal(await page.locator('.universe-feedback.error').count(), 1);
   await action('chronicle-party', 'ME3-CHR-ASHLEY').click();
   for (const id of ['ME3-CHR-LIARA', 'ME3-CHR-JAMES']) await action('chronicle-party', id).click();
-  await blockedGearOption('ME3-CHR-SHEPARD', 'weapon', 'ME3-WPN-GRAAL');
+  await blockedGearOption('ME3-CHR-SHEPARD', 'weapon', 'ME3-WPN-REEGAR', 'The unverified ME3 pack remains closed while Graal is now implemented');
   await blockedGearOption('ME3-CHR-LIARA', 'armor', 'ME3-EQP-N7');
   await gear('ME3-CHR-SHEPARD', 'weapon').selectOption('ME3-WPN-AVENGER');
   await action('chronicle-battle').click(); report.tacticalVictories.push(await winChronicle());
-  const exposed = await page.evaluate(async () => (await import('/src/universe-actors.js')).CHRONICLE_SCENARIOS
-    .map(scenario => [scenario.context.mediaId, scenario.context.periodId, scenario.id]));
+  const publicScenarios = await page.evaluate(async () => {
+    const { listChronicleScenarios } = await import('/src/chronicles.js');
+    const { listMediaPeriods } = await import('/src/continuity.js');
+    const { HISTORICAL_CHRONICLE_SCENARIOS } = await import('/src/universe-actors.js');
+    const scenarios = listMediaPeriods().flatMap(work => work.periods.flatMap(period =>
+      listChronicleScenarios({ mediaId: work.id, periodId: period.id })))
+      .map(scenario => [scenario.context.mediaId, scenario.context.periodId, scenario.id]);
+    return { scenarios, historicalIds: HISTORICAL_CHRONICLE_SCENARIOS.map(scenario => scenario.id) };
+  });
+  const historicalIds = ['me2-freedoms-progress', 'me3-earth-prologue', 'mea-habitat7', 'inf-security', 'gal-jacob',
+    'pl-collectors', 'red-liara-feron', 'me2-equipment-workshop', 'me3-equipment-workshop', 'mea-equipment-workshop',
+    'me2-dlc-specialists', 'me2-shadow-broker', 'me3-from-ashes', 'me3-omega', 'me3-citadel-wrex', 'inf-incarceration'];
+  assert.deepEqual(publicScenarios.historicalIds, historicalIds, 'The sixteen historical prototypes remain present and ordered');
+  const exposed = publicScenarios.scenarios;
+  assert.equal(exposed.length, 25); assert.equal(new Set(exposed.map(([, , id]) => id)).size, 25);
+  assert.ok(historicalIds.every(id => exposed.some(([, , scenarioId]) => scenarioId === id)));
+  report.scenarioCoverage = { source: 'public listChronicleScenarios over every registered work/period', historicalIds,
+    expectedScenarios: exposed.length, addedScenarioIds: exposed.map(([, , id]) => id).filter(id => !historicalIds.includes(id)) };
   const alreadyWon = new Set(report.tacticalVictories.map(result => result.scenarioId));
   const remaining = exposed.filter(([, , scenarioId]) => !alreadyWon.has(scenarioId));
   for (const [mediaId, periodId, scenarioId] of remaining) {

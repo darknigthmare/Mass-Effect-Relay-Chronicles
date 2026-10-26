@@ -4,7 +4,7 @@
   "medium": "Jeu vidéo",
   "filename": "Mass_Effect_2_Production.xlsx",
   "scope": "Campagne solo ME2 et Legendary Edition ; recrutements, loyautés, affectations N7 et hubs ; Kasumi, Zaeed, Normandy Crash Site, Firewalker, Overlord, Lair of the Shadow Broker et Arrival. Genesis est identifié comme récapitulatif interactif ; aucun mode multijoueur ME2 ajouté au canon.",
-  "summary": "670 fiches de production ; 52 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral 1:1 revendiqué.",
+  "summary": "670 fiches de production ; 71 fiches au stade Prototype de portée partielle. Les autres livrables restent des spécifications ; aucun achèvement intégral1:1 revendiqué.",
   "canonNote": "Les faits de l’œuvre sont limités au champ description et à leur référence. Toutes les règles ATB, les valeurs de réglage, les découpages d’arènes, les mouvements combinés et les ressources proposées sont des créations d’adaptation. Les variantes de choix sont mutuellement conditionnelles ; aucune partie type ne devient canon universel. Les sources wiki restent secondaires et les intitulés anglais servent de clés de recherche, pas de traduction française officielle.",
   "sources": [
     {
@@ -6335,7 +6335,7 @@
       "id": "ME2-ENM-LOKI",
       "category": "enemies",
       "name": "LOKI Mech",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Méca de sécurité.",
@@ -6344,7 +6344,7 @@
       "visual": "Humanoïde blanc, articulations fines et optique rouge.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/enemies/loki ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "",
       "acceptance": "Le livrable « LOKI Mech » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -6352,7 +6352,28 @@
         "ME2-SRC-ENEMIES"
       ],
       "reference": "Bestiaire ME2 / rencontres associées",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Comportement et arme du modèle original. Aucune mission, décision de campagne, survie ou récompense originale accordée. Une illustration fixe de prototype est visible dans l’UI ; ressemblance originale, modèle animé et tenue portée non certifiés. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js",
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-opponents.png"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EMV-LOKI",
@@ -6381,7 +6402,7 @@
       "id": "ME2-ENM-FENRIS",
       "category": "enemies",
       "name": "FENRIS Mech",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Méca quadrupède.",
@@ -6390,7 +6411,7 @@
       "visual": "Châssis canin métallique.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/enemies/fenris ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "",
       "acceptance": "Le livrable « FENRIS Mech » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -6398,7 +6419,21 @@
         "ME2-SRC-ENEMIES"
       ],
       "reference": "Bestiaire ME2 / rencontres associées",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Déplacements quadrupèdes et attaques de proximité propres au modèle. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EMV-FENRIS",
@@ -6427,7 +6462,7 @@
       "id": "ME2-ENM-YMIR",
       "category": "enemies",
       "name": "YMIR Mech",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Méca lourd.",
@@ -6436,7 +6471,7 @@
       "visual": "Buste massif, bras d’armes et pas lourds.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/enemies/ymir ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "",
       "acceptance": "Le livrable « YMIR Mech » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -6444,7 +6479,28 @@
         "ME2-SRC-ENEMIES"
       ],
       "reference": "Bestiaire ME2 / rencontres associées",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Armement, protections et destruction du modèle original. Aucune mission, décision de campagne, survie ou récompense originale accordée. Une illustration fixe de prototype est visible dans l’UI ; ressemblance originale, modèle animé et tenue portée non certifiés. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js",
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-opponents.png"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EMV-YMIR",
@@ -6933,7 +6989,7 @@
       "id": "ME2-ENM-COLLECTOR-DRONE",
       "category": "enemies",
       "name": "Collector Drone",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Infanterie des Collecteurs.",
@@ -6942,7 +6998,7 @@
       "visual": "Chitine brune, aile repliée et arme organique.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/enemies/collector-drone ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "",
       "acceptance": "Le livrable « Collector Drone » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -6950,7 +7006,21 @@
         "ME2-SRC-COLLECTOR"
       ],
       "reference": "Bestiaire ME2 / rencontres associées",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Armement et comportement d’infanterie des Collecteurs. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EMV-COLLECTOR-DRONE",
@@ -7071,7 +7141,7 @@
       "id": "ME2-ENM-HARBINGER",
       "category": "enemies",
       "name": "Collecteur possédé par Harbinger",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Harbinger prend le contrôle d’hôtes.",
@@ -7080,7 +7150,7 @@
       "visual": "Chitine embrasée et tête éclairée.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/enemies/harbinger ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "",
       "acceptance": "Le livrable « Collecteur possédé par Harbinger » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7088,7 +7158,21 @@
         "ME2-SRC-COLLECTOR"
       ],
       "reference": "Bestiaire ME2 / rencontres associées",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Prise et transfert de possession non simulés. Attaques propres de l’hôte possédé non reproduites. Le profil représente un hôte Collecteur possédé, sans contrôle d’un vaisseau. Aucune mission, décision de campagne, survie ou récompense originale accordée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EMV-HARBINGER",
@@ -7117,7 +7201,7 @@
       "id": "ME2-ENM-PRAETORIAN",
       "category": "enemies",
       "name": "Praetorian",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Boss volant des rencontres Collecteurs.",
@@ -7126,7 +7210,7 @@
       "visual": "Carapace noire, membres pendants, plusieurs visages regroupés.",
       "animation": "Prévoir attente, orientation et réaction au contexte ; conserver les repères décrits dans la silhouette pendant les changements de direction. Les mouvements sont des créations du fan game.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/enemies/praetorian ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de profil ennemi : src/universe-opponents.js ; banc et contexte dans src/universe-opposition-scenarios.js ; résolution ATB et limites affichées dans les Chroniques. Phases, kit original et rencontre intégrale non reproduits.",
       "conditions": "",
       "acceptance": "Le livrable « Praetorian » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -7134,7 +7218,28 @@
         "ME2-SRC-PRAETORIAN"
       ],
       "reference": "Bestiaire ME2 / rencontres associées",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Profil ATB partiel dans un banc d’étude indépendant de cette œuvre/période ; actions génériques, statistiques et protections adaptées. Pouvoirs nommés non attribués. Restent à produire : Vol et poursuite non simulés. Cycle de barrières et phases de boss non reproduits. Aucune mission, décision de campagne, survie ou récompense originale accordée. Une illustration fixe de prototype est visible dans l’UI ; ressemblance originale, modèle animé et tenue portée non certifiés. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-opponents.js",
+        "src/universe-opposition-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-ui.js",
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-opponents.png"
+      ],
+      "evidence": [
+        "tests/universe-opponents.test.js",
+        "tests/universe-opposition-scenarios.test.js",
+        "tests/chronicles.test.js",
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EMV-PRAETORIAN",
@@ -8565,7 +8670,7 @@
       "id": "ME2-EQP-KESTREL",
       "category": "equipment",
       "name": "Ensemble Kestrel",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Ensemble personnalisable de ME2.",
@@ -8574,7 +8679,7 @@
       "visual": "Plaques technologiques anguleuses et casque opaque.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/kestrel ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Ensemble Kestrel » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8582,13 +8687,26 @@
         "ME2-SRC-KESTREL"
       ],
       "reference": "Ensemble Kestrel",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé au protagoniste Shepard dans l’atelier explicitement configuré Legendary Edition de cette œuvre. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EQP-CERBERUS",
       "category": "equipment",
       "name": "Armure d’assaut Cerberus",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Ensemble additionnel.",
@@ -8597,7 +8715,7 @@
       "visual": "Blanc, noir et jaune Cerberus.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/cerberus ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Armure d’assaut Cerberus » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8605,13 +8723,26 @@
         "ME2-SRC-EA-DLC"
       ],
       "reference": "Armure d’assaut Cerberus",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé au protagoniste Shepard dans l’atelier explicitement configuré Legendary Edition de cette œuvre. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EQP-COLLECTOR",
       "category": "equipment",
       "name": "Armure des Collecteurs",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Ensemble additionnel.",
@@ -8620,7 +8751,7 @@
       "visual": "Chitine sombre, surfaces organiques.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/collector ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Armure des Collecteurs » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8628,13 +8759,26 @@
         "ME2-SRC-EA-LE"
       ],
       "reference": "Armure des Collecteurs",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé au protagoniste Shepard dans l’atelier explicitement configuré Legendary Edition de cette œuvre. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EQP-TERMINUS",
       "category": "equipment",
       "name": "Armure Terminus",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Ensemble additionnel.",
@@ -8643,7 +8787,7 @@
       "visual": "Plaques noires lourdes et visière rouge.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/terminus ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Armure Terminus » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8651,13 +8795,26 @@
         "ME2-SRC-EA-LE"
       ],
       "reference": "Armure Terminus",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé au protagoniste Shepard dans l’atelier explicitement configuré Legendary Edition de cette œuvre. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EQP-BLOOD-DRAGON",
       "category": "equipment",
       "name": "Armure Blood Dragon",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Ensemble promotionnel.",
@@ -8666,7 +8823,7 @@
       "visual": "Rouge et noir, motif dragon stylisé.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/blood-dragon ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Armure Blood Dragon » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8674,13 +8831,26 @@
         "ME2-SRC-EA-LE"
       ],
       "reference": "Armure Blood Dragon",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé au protagoniste Shepard dans l’atelier explicitement configuré Legendary Edition de cette œuvre. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EQP-INFERNO",
       "category": "equipment",
       "name": "Armure Inferno",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Établi",
       "priority": "P1",
       "description": "Ensemble additionnel.",
@@ -8689,7 +8859,7 @@
       "visual": "Orange vif et segments de protection fermés.",
       "animation": "Préparer état de repos, anticipation, activation et retour au repos ; aligner les événements visuels sur la résolution de l’action ATB.",
       "audio": "Créer des bruitages et ambiances originaux adaptés au livrable ; sous-titrer les indices utiles et proposer un réglage indépendant des effets. Aucune extraction audio demandée.",
-      "implementation": "Prévu : fiche de données me2/equipment/inferno ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Prototype de protection agrégée dans src/universe-equipment.js ; porteur et profil d’édition contrôlés par src/universe-equipment-scenarios.js et src/chronicles.js. Les mannequins d’atelier ne reproduisent aucune mission.",
       "conditions": "",
       "acceptance": "Le livrable « Armure Inferno » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
       "dependencies": [],
@@ -8697,7 +8867,27 @@
         "ME2-SRC-EA-LE"
       ],
       "reference": "Armure Inferno",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Ensemble de protection statistique partiel. Réservé au protagoniste Shepard dans l’atelier explicitement configuré Legendary Edition de cette œuvre. Bonus agrégés adaptés à l’ATB ; aucune recette, acquisition, pièce modulaire, valeur ou rang d’origine reconstitué. Aucune nouvelle tenue portée ni animation ajoutée. Une illustration fixe de prototype est visible dans l’UI ; ressemblance originale, modèle animé et tenue portée non certifiés. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-equipment.js",
+        "src/universe-equipment-scenarios.js",
+        "src/universe-actors.js",
+        "src/chronicles.js",
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-equipment.png"
+      ],
+      "evidence": [
+        "tests/universe-armor-editions.test.js",
+        "tests/universe-equipment.test.js",
+        "tests/chronicles.test.js",
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-EQP-RECON",
@@ -15310,7 +15500,7 @@
       "id": "ME2-SPR-CHR-MORDIN",
       "category": "sprites",
       "name": "Planche sprites — Mordin Solus",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Mordin Solus.",
@@ -15319,7 +15509,7 @@
       "visual": "Visage anguleux, crête asymétrique, manteau clair ; gestes précis.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Mordin Solus. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/chr-mordin ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-people.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, Mordin Solus est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15327,7 +15517,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme buste allié de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-people.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-CHR-GARRUS",
@@ -15402,7 +15607,7 @@
       "id": "ME2-SPR-CHR-TALI",
       "category": "sprites",
       "name": "Planche sprites — Tali’Zorah vas Neema / vas Normandy",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Tali’Zorah vas Neema / vas Normandy.",
@@ -15411,7 +15616,7 @@
       "visual": "Capuche violette, visière opaque lumineuse, jambes et mains quariens.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Tali’Zorah vas Neema / vas Normandy. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/chr-tali ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-people.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "Nom selon étape du procès ; ne pas l’uniformiser.",
       "acceptance": "À l’échelle de jeu, Tali’Zorah vas Neema / vas Normandy est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15419,7 +15624,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme buste allié de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-people.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-CHR-THANE",
@@ -15462,7 +15682,7 @@
       "id": "ME2-SPR-CHR-SAMARA",
       "category": "sprites",
       "name": "Planche sprites — Samara",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Samara.",
@@ -15471,7 +15691,7 @@
       "visual": "Armure rouge, tête bleue et posture verticale ; mains ouvertes en préparation.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Samara. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/chr-samara ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-people.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, Samara est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15479,7 +15699,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme buste allié de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-people.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-CHR-MORINTH",
@@ -15508,7 +15743,7 @@
       "id": "ME2-SPR-CHR-LEGION",
       "category": "sprites",
       "name": "Planche sprites — Legion",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Legion.",
@@ -15517,7 +15752,7 @@
       "visual": "Optique unique, plaques geth, partie d’armure N7 rapportée et trou thoracique.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Legion. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/chr-legion ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-people.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "Décision d’activation ; disponibilité tardive.",
       "acceptance": "À l’échelle de jeu, Legion est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15525,7 +15760,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme buste allié de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-people.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-CHR-KASUMI",
@@ -15922,7 +16172,7 @@
       "id": "ME2-SPR-ENM-LOKI",
       "category": "sprites",
       "name": "Planche sprites — LOKI Mech",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — LOKI Mech.",
@@ -15931,7 +16181,7 @@
       "visual": "Humanoïde blanc, articulations fines et optique rouge.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour LOKI Mech. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/enm-loki ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-opponents.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, LOKI Mech est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15939,7 +16189,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme silhouette ennemie de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-opponents.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-ENM-FENRIS",
@@ -15968,7 +16233,7 @@
       "id": "ME2-SPR-ENM-YMIR",
       "category": "sprites",
       "name": "Planche sprites — YMIR Mech",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — YMIR Mech.",
@@ -15977,7 +16242,7 @@
       "visual": "Buste massif, bras d’armes et pas lourds.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour YMIR Mech. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/enm-ymir ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-opponents.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, YMIR Mech est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -15985,7 +16250,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme silhouette ennemie de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-opponents.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-ENM-GETH-TROOPER",
@@ -16313,7 +16593,7 @@
       "id": "ME2-SPR-ENM-PRAETORIAN",
       "category": "sprites",
       "name": "Planche sprites — Praetorian",
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Livrable original proposé : Planche sprites — Praetorian.",
@@ -16322,7 +16602,7 @@
       "visual": "Carapace noire, membres pendants, plusieurs visages regroupés.",
       "animation": "Prévoir un état neutre, déplacement, préparation de l’action signature, impact reçu, mise à terre et retour en contrôle pour Praetorian. Éviter la duplication miroir des signes asymétriques.",
       "audio": "Sans bande sonore embarquée dans la planche ; émettre uniquement des événements nommés vers le système audio pour éviter les doublons.",
-      "implementation": "Prévu : fiche de données me2/sprites/enm-praetorian ; rattacher les ressources et états cités à cet identifiant. Aucun fichier de jeu créé par ce catalogue.",
+      "implementation": "Illustration partielle de prototype : public/assets/arsenal-opponents.png ; cellule et contexte dans src/arsenal-visual-data.js ; accès borné par src/universe-visuals.js ; affichage avec découpage dans src/universe-ui.js. La planche complète et les animations restent à produire.",
       "conditions": "",
       "acceptance": "À l’échelle de jeu, Praetorian est identifiable en silhouette ; pivot aux pieds, masque de profondeur et huit orientations proposés restent stables devant les couverts.",
       "dependencies": [
@@ -16330,7 +16610,22 @@
       ],
       "sourceIds": [],
       "reference": "Adaptation originale — spécification de production",
-      "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre."
+      "notes": "Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Illustration fixe générée intégrée comme silhouette ennemie de prototype pour ME2/me2, avec cellule d’atlas bornée et découpage explicite dans l’UI. Le profil conserve sprite:null. Corps entier, huit directions, marche, attaques et transitions animées restent à produire. Textures, proportions et détails du modèle original non certifiés1:1. Nature Extrapolation et sources de ligne vides conservées ; provenance de génération et limites dans public/assets/arsenal-visuals.json et docs/qa/arsenal-visual-reference-report.json. Validation du périmètre partiel : docs/qa/arsenal-browser-report.json ; aucune fidélité globale1:1 revendiquée.",
+      "implementationPaths": [
+        "src/universe-visuals.js",
+        "src/arsenal-visual-data.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "public/assets/arsenal-visuals.json",
+        "public/assets/arsenal-opponents.png"
+      ],
+      "evidence": [
+        "tests/universe-visuals.test.js",
+        "tests/universe-visual-ui.test.js",
+        "docs/qa/arsenal-visual-reference-report.json",
+        "scripts/arsenal-browser.mjs",
+        "docs/qa/arsenal-browser-report.json"
+      ]
     },
     {
       "id": "ME2-SPR-ENM-OCULUS",
@@ -16682,6 +16977,11 @@
       "area": "Complément soutiens, munitions et portraits partiels",
       "covered": "1 fiches de soutien et 6 pouvoirs de munitions supplémentaires effectivement utilisés, plus 2 portraits de buste générés intégrés aux seuls acteurs/contextes autorisés. Vérification navigateur complète post-correction liée à docs/qa/chronicle-support-browser-report.json ; les chemins de preuves sont inscrits sur les seules fiches promues.",
       "remaining": "Budgets et effets adaptés à l’ATB ; acquisition, rangs et simulation originale complète restent à vérifier. Les bustes ne livrent ni corps entier, dos, huit orientations, déplacement, animation, arme ou costume variable. Warp Ammo ME3 reste Défini ; les consommables de munitions MEA ne sont pas implémentés et leur durée ou quantité originale n’est pas inventée."
+    },
+    {
+      "area": "Complément arsenal, oppositions et illustrations partielles",
+      "covered": "Six profils ennemis de banc indépendant, dont le Praetorian partiel ; six ensembles réservés à l’atelier Legendary ; quatre bustes alliés et trois silhouettes ennemies fixes contextualisés. Deux bancs d’opposition et un atelier d’édition ajoutés.",
+      "remaining": "Comportements des mécas, possession de Harbinger, vol et phases du Praetorian ; bonus et acquisition d’origine des armures ; corps entiers, huit directions et animations. PNJ et flotte illustrés restent documentaires."
     }
   ]
 }
