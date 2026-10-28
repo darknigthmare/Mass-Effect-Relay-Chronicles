@@ -78,6 +78,12 @@ Les changements restent dans un **brouillon** jusqu’à la validation. La compa
 
 Le portrait détaillé est un dessin 2D de conception. Le mannequin réutilise le vrai sprite dans quatre directions ; les couleurs, motifs, finitions et réglages du casque sont transmis au rendu du terrain. Les formes de visage et de coiffure restent visibles sur le portrait de l’atelier. Les silhouettes exactes de chaque armure et de chaque arme restent à produire. Les ensembles complets et modules suivent l’organisation ME1 ; les revêtements et la retouche pendant la campagne sont des extensions de cette adaptation. Voir [le périmètre de personnalisation](docs/CUSTOMIZATION.md) et [les références par opus](docs/research/customization-sources.md).
 
+## Simulation indépendante : cinq lots de 40 références
+
+Dans **Chroniques → œuvre et période → Simulation**, 200 fiches d’étude permettent **145 épreuves partielles** ; 55 références restent en consultation avec leur motif de fermeture. Les cinq familles couvrent personnages/PNJ, armures/équipements, armes, vaisseaux/véhicules et ennemis. Les phases, effets et assets non reproduits restent indiqués ; ce lot ne termine pas les missions ou modèles originaux 1:1.
+
+Le [périmètre et les commandes](docs/EXPANSION_SIMULATIONS.md), le [classeur de suivi des 200 fiches](docs/Expansion_Simulations_200.xlsx) et les [preuves de livraison](docs/qa/expansion-report.json) distinguent les simulations ajoutées des références historiques conservées. La personnalisation de la PR nº1, fusionnée dans `main` au commit `6182756`, reste disponible.
+
 ## Contenu effectivement présent
 
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.

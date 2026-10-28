@@ -1,0 +1,958 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-28T07:48:18.920Z",
+  "baseCommit": "6182756578e50f44d668b3c0a2ac1561a8e0275e",
+  "passed": true,
+  "globalFidelityCertified": false,
+  "scope": "Forty distinct existing factual/contextual study references, not forty unique physical hulls. Independent generic logistics budgets only. Station/group/unresolved dossiers remain inspection-only. No original catalogue, source, UI, workbook or campaign state is modified by this module.",
+  "counts": {
+    "references": 40,
+    "works": 11,
+    "accessibleInAtLeastOnePublishedContext": 40,
+    "logisticsEligible": 27,
+    "inspectionOnly": 13,
+    "byRole": {
+      "ground-vehicle": 3,
+      "spacecraft": 24,
+      "unresolved-reference": 4,
+      "aircraft": 1,
+      "fleet-group": 3,
+      "station": 5
+    }
+  },
+  "validation": {
+    "syntax": {
+      "command": "node --check src/expansion-fleet.js",
+      "passed": true
+    },
+    "unit": {
+      "command": "node --test tests/expansion-fleet.test.js",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 161.202277
+    },
+    "browserRun": false,
+    "fullRepositorySuiteRun": false
+  },
+  "sourceFiles": {
+    "src/expansion-fleet.js": "3a16f9c725135861a0a75631dad9ccde1ceb4c06807e4caf70d0f95bca1717c0",
+    "tests/expansion-fleet.test.js": "a64986e871d675e1f915a6b4fba2086bd2349c8415e0db48aa6ac18a4992bbda",
+    "src/universe-data.js": "f168c0264a6206f4e7965e66dfe4df8b793037e978e9c1e1bb089a872d27933a",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "docs/content-catalog.json": "ff323e5fdc3746ce73f5272c2345953c81840458b07b5bfbe9a53b06beab4a70"
+  },
+  "constraints": {
+    "immutableNestedData": true,
+    "allAttackBudgetsZero": true,
+    "blockedBudgetsAllZero": true,
+    "sourceDescriptionsAndConditionsPreserved": true,
+    "exactContextChecksRequiredByService": true,
+    "independentOfCampaignSaveSchema": true,
+    "noNewCanonicalShipIdentity": true,
+    "sourceValidation": "Uses the existing catalogue provenance. No external source, original performance, full ship kit, visual model, flight physics or historic event has been newly verified."
+  },
+  "logisticsMapping": {
+    "hp": "original integrity budget, unitless",
+    "shield": "original abstract reserve, not a canonical shield",
+    "attack": "always0; no ship combat",
+    "defense": "original margin",
+    "speed": "original mobility budget, not canonical velocity"
+  },
+  "references": [
+    {
+      "recordId": "REF-VEH-M35-MAKO-ME1",
+      "name": "Référence visuelle — Mako ME1",
+      "mediaId": "ME1",
+      "category": "props",
+      "nature": "Établi",
+      "role": "ground-vehicle",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME1",
+          "periodId": "me1",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME1-MANUAL-X360-EN"
+      ],
+      "originalDescriptionSha256": "ac5e8c0aa419ad6377d562de7e272728dbbc3c47af0b58407236218ddae39b5c",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "REF-SHP-NORMANDY-SR1-ME1",
+      "name": "Référence visuelle — Normandy SR-1 ME1",
+      "mediaId": "ME1",
+      "category": "props",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME1",
+          "periodId": "me1",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME1-MANUAL-X360-EN"
+      ],
+      "originalDescriptionSha256": "6540e17424bc1be0447471b3d53465e7bc18cbdcc139877c95ee599427c9888e",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-MQ-SAVE-JOKER",
+      "name": "Prologue: Save Joker",
+      "mediaId": "ME2",
+      "category": "main_quests",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2-opening",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-GUIDE"
+      ],
+      "originalDescriptionSha256": "9b70c02a2633161d6fd6c1db85ca54ebe80067e44c4769b35f6beea7930e2a07",
+      "originalConditionsSha256": "768c923f30ee489e2208988b4b9df0ccab1d38e6e27fc5d6dfaea37535ae98ea"
+    },
+    {
+      "recordId": "ME2-ZON-NORMANDY-CIC",
+      "name": "Normandy SR-2 — CIC",
+      "mediaId": "ME2",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-STORY"
+      ],
+      "originalDescriptionSha256": "cb1de66e8b8a3c96eb7cee358ece0e07799132c71aef6795c13986a25e1b467c",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-ZON-PURGATORY",
+      "name": "Purgatory — blocs de détention",
+      "mediaId": "ME2",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-CONVICT"
+      ],
+      "originalDescriptionSha256": "06b732890bd73cbb53378b982b3d03dcb1821b2685e801b18742cbc2c62dc72f",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-ZON-COLLECTOR-SHIP",
+      "name": "Vaisseau des Collecteurs",
+      "mediaId": "ME2",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-SHIP"
+      ],
+      "originalDescriptionSha256": "72a28c4a651483afc943185b547e9e846e25ec279d9b2cbc75b3b4bca9ef38d3",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-ZON-ALAREI",
+      "name": "Alarei",
+      "mediaId": "ME2",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-TREASON"
+      ],
+      "originalDescriptionSha256": "bbe224594b558b58ceb271df2f91e5a69fbe42d68dfded74e38ee0372ea337fc",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-ZON-HAGALAZ-HULL",
+      "name": "Hagalaz — coque extérieure",
+      "mediaId": "ME2",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "unresolved-reference",
+      "inspectionOnly": true,
+      "blockedReason": "La fiche décrit un lieu sur une coque ; son identité technique reste insuffisante pour une épreuve logistique.",
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-SHADOW"
+      ],
+      "originalDescriptionSha256": "447ceaf49d4b43dac935557cf5175ff254656bbedfe572ce12d3944dca32c521",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-ENM-GUNSHIP",
+      "name": "Aéronef de combat",
+      "mediaId": "ME2",
+      "category": "enemies",
+      "nature": "Établi",
+      "role": "aircraft",
+      "inspectionOnly": true,
+      "blockedReason": "La référence désigne un type d’aéronef, sans modèle individuel suffisamment établi pour la simulation.",
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-ARCHANGEL",
+        "ME2-SRC-KASUMI"
+      ],
+      "originalDescriptionSha256": "719c3d09c8b6f68b544140d78ae6797648f307aae13e7a1dcab550db4fdd6db6",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-EQP-HAMMERHEAD",
+      "name": "M-44 Hammerhead",
+      "mediaId": "ME2",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "ground-vehicle",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-FIRE",
+        "ME2-SRC-OVERLORD"
+      ],
+      "originalDescriptionSha256": "bffce198df953b58418a5ab6fbd6f68ee759d1fff5c7ff8c54b4ac6581d9b1ef",
+      "originalConditionsSha256": "e3d25ec18649fc34e54eb25d4a66f7985305a647569dc44aa16860775cd57618"
+    },
+    {
+      "recordId": "ME2-LOR-FLOTILLA",
+      "name": "Flotte migrante et procès",
+      "mediaId": "ME2",
+      "category": "lore",
+      "nature": "Établi",
+      "role": "fleet-group",
+      "inspectionOnly": true,
+      "blockedReason": "Une flotte entière ne possède pas de budget de véhicule individuel dans cette épreuve.",
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-TREASON"
+      ],
+      "originalDescriptionSha256": "122f6545fc1cf8cfa65789b0c039f807f096e9717ae0fb26fa1ba4c697541768",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME3-ZON-NORM-CIC",
+      "name": "Normandy — CIC et salle de guerre",
+      "mediaId": "ME3",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME3",
+          "periodId": "me3",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME3-SRC-GUIDE"
+      ],
+      "originalDescriptionSha256": "c2a6c9f907be478b8bc64388006cc3922bb2b0b29d492e9cba837beceea157f5",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME3-ZON-GETH-DREAD",
+      "name": "Cuirassé geth — canon",
+      "mediaId": "ME3",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ME3",
+          "periodId": "me3",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME3-SRC-MISSIONS"
+      ],
+      "originalDescriptionSha256": "455ea36b60b5e6864dfce62d61ed7d361cf8fb02c1a83c745010cb8ce921465e",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-WRL-NEXUS",
+      "name": "Nexus",
+      "mediaId": "MEA",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "station",
+      "inspectionOnly": true,
+      "blockedReason": "Une station n’est pas un véhicule individuel disponible pour le parcours logistique.",
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-LOCATIONS"
+      ],
+      "originalDescriptionSha256": "fcc835d229326b037618dd258684ec3f33317f738850728d7085dec61bf3da13",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-WRL-HYPERION",
+      "name": "Hyperion",
+      "mediaId": "MEA",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-GUIDE",
+        "MEA-SRC-EPILOGUE"
+      ],
+      "originalDescriptionSha256": "6f88995d6ad1ba0d30d9e81bb6bf996586590b9b9f6ef69f72549c2cde1d38fe",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-WRL-LEUSINIA",
+      "name": "Leusinia",
+      "mediaId": "MEA",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-CORA-LOYAL"
+      ],
+      "originalDescriptionSha256": "5d41d0dbd42d3cbaad9c94bbef65dec4d510b33082c5d02e856481048b20c68b",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-WRL-NATANUS",
+      "name": "Natanus",
+      "mediaId": "MEA",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-MISSING-ARKS"
+      ],
+      "originalDescriptionSha256": "f0ddde34714568288bab9495a0ddc4ac99a71d565b85b6a323d659f6b321416f",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-WRL-PAARCHERO",
+      "name": "Paarchero",
+      "mediaId": "MEA",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-ARCHON"
+      ],
+      "originalDescriptionSha256": "28555233a8bd5b3629954218a572e34de2e9437b19b2fac2acc1bd3ea4d9f412",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-ZON-TEMPEST-BRIDGE",
+      "name": "Tempest — passerelle",
+      "mediaId": "MEA",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-CHAR"
+      ],
+      "originalDescriptionSha256": "78378d7e424f72ecf3f243c990e3d71050a5f76439ef865486aa5211e509a80a",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-ZON-LIAM-SHIP",
+      "name": "Vaisseau de Calot Gurting",
+      "mediaId": "MEA",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-LIAM-LOYAL"
+      ],
+      "originalDescriptionSha256": "448b4f7e293c633fca789545268b54ea831d45dea63bce0e78723c800254caa2",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-ZON-KETT-FLAGSHIP",
+      "name": "Vaisseau de l’Archonte",
+      "mediaId": "MEA",
+      "category": "zones",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-ARCHON"
+      ],
+      "originalDescriptionSha256": "99b59fd4c4db7a06d32a4eddc2b68aa1bcfeeb14d0be62ae7c959cb5e0b266c1",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-LOR-ARKS",
+      "name": "Arches et Pionniers",
+      "mediaId": "MEA",
+      "category": "lore",
+      "nature": "Établi",
+      "role": "fleet-group",
+      "inspectionOnly": true,
+      "blockedReason": "Cette fiche regroupe plusieurs arches ; elle ne définit pas un véhicule simulable unique.",
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-MISSING-ARKS"
+      ],
+      "originalDescriptionSha256": "32f2e331255f774e8476250feed9879fd783f86a7f2d355761e383189d5b8880",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-LOR-QUARIAN",
+      "name": "Signal du Keelah Si’yah",
+      "mediaId": "MEA",
+      "category": "lore",
+      "nature": "Établi",
+      "role": "unresolved-reference",
+      "inspectionOnly": true,
+      "blockedReason": "Un signal documentaire ne fournit pas une coque présente et disponible pour une épreuve dans ce contexte.",
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-EPILOGUE",
+        "MEA-SRC-BW-FINAL"
+      ],
+      "originalDescriptionSha256": "8b5416054c89f9a4fd50ceceb9f1b4d2f451f781a8e49a93de078a81d200ced1",
+      "originalConditionsSha256": "ab01ad79c34bd883591165427c8accfb0b7ac4672d384f8461d6c4f3a75d4e9b"
+    },
+    {
+      "recordId": "MEA-EQP-NOMAD-UPGRADES",
+      "name": "Améliorations du Nomad",
+      "mediaId": "MEA",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "ground-vehicle",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-MISSIONS",
+        "MEA-SRC-MANUAL"
+      ],
+      "originalDescriptionSha256": "d0b5882441b55b50090c6377b73585ba3d2e1e8d6c66855e184de5f4cccb3b2f",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "MEA-WRL-MOONYARD",
+      "name": "Chantier lunaire de Drack",
+      "mediaId": "MEA",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "unresolved-reference",
+      "inspectionOnly": true,
+      "blockedReason": "La fiche décrit un chantier et un transport non identifié ; aucun véhicule individuel fiable n’en est déduit.",
+      "contexts": [
+        {
+          "mediaId": "MEA",
+          "periodId": "mea",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "MEA-SRC-DRACK-LOYAL"
+      ],
+      "originalDescriptionSha256": "1ae675e8ad14beffb3f2cafbe40b8d766761354428400e062166f2fb3290679e",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "REV-REF-HASTINGS",
+      "name": "SSV Hastings",
+      "mediaId": "REV",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "REV-SRC-DAH"
+      ],
+      "originalDescriptionSha256": "c14e55e2b46126c273e87a5a56291ccb66fc8a2986c1145c4cd5eee48e25ff6e",
+      "originalConditionsSha256": "bed613c5f696adc8967cd5782c5bf859a3206fcd41a3925f05fa18befd6865d2"
+    },
+    {
+      "recordId": "REV-REF-IWO",
+      "name": "SSV Iwo Jima",
+      "mediaId": "REV",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "REV-SRC-IWO"
+      ],
+      "originalDescriptionSha256": "240c2a9ec601e75d2c1a6d1b7e4c9b9cd35fc9ffb83d6639e5b6963c3d3b7d92",
+      "originalConditionsSha256": "bed613c5f696adc8967cd5782c5bf859a3206fcd41a3925f05fa18befd6865d2"
+    },
+    {
+      "recordId": "ASC-REF-FLEET",
+      "name": "Flotte nomade",
+      "mediaId": "ASC",
+      "category": "lore",
+      "nature": "Établi",
+      "role": "fleet-group",
+      "inspectionOnly": true,
+      "blockedReason": "Le groupement n’est pas une coque ; ses effectifs et ses budgets ne sont pas reconstruits.",
+      "contexts": [
+        {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ASC-SRC-HEN"
+      ],
+      "originalDescriptionSha256": "766373046cfa1ed15e39b3ba656433743e4e54abe890b4338b091d96dfe53133",
+      "originalConditionsSha256": "456356399bccfd429dae34e5d971e4aa97e2cb07d9d505d0e43fbb7fb3ab73f9"
+    },
+    {
+      "recordId": "ASC-REF-IDENNA",
+      "name": "Idenna",
+      "mediaId": "ASC",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ASC-SRC-IDENNA"
+      ],
+      "originalDescriptionSha256": "07d0f5152e26517478c1780339dc34d1bd0f059c5c7351b7da30f479d1aa7a95",
+      "originalConditionsSha256": "456356399bccfd429dae34e5d971e4aa97e2cb07d9d505d0e43fbb7fb3ab73f9"
+    },
+    {
+      "recordId": "ASC-REF-CYNIAD",
+      "name": "Cyniad",
+      "mediaId": "ASC",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ASC-SRC-HILO"
+      ],
+      "originalDescriptionSha256": "801a170757baa660144cc36c0c6f5d462a0852241b4031a28eb6029e21df9ce0",
+      "originalConditionsSha256": "456356399bccfd429dae34e5d971e4aa97e2cb07d9d505d0e43fbb7fb3ab73f9"
+    },
+    {
+      "recordId": "RET-REF-SHUTTLE",
+      "name": "Navette d’extraction",
+      "mediaId": "RET",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "RET",
+          "periodId": "ret",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "RET-SRC-KAI"
+      ],
+      "originalDescriptionSha256": "e497b63d2b299b25bd98afd82f22f8f0a2f477f12ba1c93850991d422f3cb704",
+      "originalConditionsSha256": "3cce9c972993d3678b199d638c7ccf7ca1002ab2383aa4a711eddde2e9caccf9"
+    },
+    {
+      "recordId": "NEX-REF-NEXUS",
+      "name": "Nexus",
+      "mediaId": "NEX",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "station",
+      "inspectionOnly": true,
+      "blockedReason": "Le dossier porte sur une station pendant une crise ; aucun pilotage ou budget de transport individuel n’est établi.",
+      "contexts": [
+        {
+          "mediaId": "NEX",
+          "periodId": "nex",
+          "galaxy": "andromeda"
+        }
+      ],
+      "sourceIds": [
+        "NEX-SRC-WIKI"
+      ],
+      "originalDescriptionSha256": "d0441835e33ed838ded59c1cb59b33ed861458b2beede6c3174382c3c74e23e3",
+      "originalConditionsSha256": "24f9c6d0e57db228824d2fe6878d77e40d3f0f45012eee014a021020e1b0f5e8"
+    },
+    {
+      "recordId": "INI-REF-HYPERION",
+      "name": "Hyperion",
+      "mediaId": "INI",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "INI",
+          "periodId": "ini",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "INI-SRC-SAME"
+      ],
+      "originalDescriptionSha256": "8d253b50a5531e5577983ef9b21a43402a24e6c62406af91442c06ce162296d3",
+      "originalConditionsSha256": "bb664c5c5400502ef90800edab1dab60e1d097f704499aee90dc2a459b69d657"
+    },
+    {
+      "recordId": "INI-REF-AUDACITY",
+      "name": "Audacity",
+      "mediaId": "INI",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "INI",
+          "periodId": "ini",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "INI-SRC-STORY"
+      ],
+      "originalDescriptionSha256": "9fc6779298e20fa3e4ba52abc9cf204611ddcb77056c7c9b208f1b6950e8bbbc",
+      "originalConditionsSha256": "bb664c5c5400502ef90800edab1dab60e1d097f704499aee90dc2a459b69d657"
+    },
+    {
+      "recordId": "ANN-REF-ARK",
+      "name": "Keelah Si’yah",
+      "mediaId": "ANN",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "ANN",
+          "periodId": "ann",
+          "galaxy": "unknown"
+        }
+      ],
+      "sourceIds": [
+        "ANN-SRC-BW"
+      ],
+      "originalDescriptionSha256": "b117794d4f3ae32b053936d12461ef16140b7dfc16d7204a7b1894d698b09e39",
+      "originalConditionsSha256": "acbc5bd11cecac155aedfd8c27814cfd41d8ef793a0e8a10aa5e0381e70cf2d3"
+    },
+    {
+      "recordId": "INI-REF-THEIA",
+      "name": "Station Theia",
+      "mediaId": "INI",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "station",
+      "inspectionOnly": true,
+      "blockedReason": "Station documentaire : aucun véhicule individuel ou modèle de déplacement n’est défini.",
+      "contexts": [
+        {
+          "mediaId": "INI",
+          "periodId": "ini",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "INI-SRC-STORY"
+      ],
+      "originalDescriptionSha256": "f5770f8903746ccde3c42a38b23dede008ae07227ed60bdcbe0f89a0359c7b1c",
+      "originalConditionsSha256": "bb664c5c5400502ef90800edab1dab60e1d097f704499aee90dc2a459b69d657"
+    },
+    {
+      "recordId": "PL-REF-BROODSHIP",
+      "name": "Vaisseau de Brood",
+      "mediaId": "PL",
+      "category": "equipment",
+      "nature": "Établi",
+      "role": "spacecraft",
+      "inspectionOnly": false,
+      "blockedReason": null,
+      "contexts": [
+        {
+          "mediaId": "PL",
+          "periodId": "pl-collectors",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "PL-SRC-BROOD"
+      ],
+      "originalDescriptionSha256": "a709da8b7c950d4595284407194251516e5a276cf7fa35a7a2c524c18fe2dc8e",
+      "originalConditionsSha256": "c7911ad7777268af1a36cca580764c6f78458a992e1a85d467d60cf0f904b0c3"
+    },
+    {
+      "recordId": "INI-REF-HOMEAWAY",
+      "name": "Home Away",
+      "mediaId": "INI",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "station",
+      "inspectionOnly": true,
+      "blockedReason": "La référence concerne une station, sans véhicule individuel disponible pour une épreuve logistique.",
+      "contexts": [
+        {
+          "mediaId": "INI",
+          "periodId": "ini",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "INI-SRC-STORY"
+      ],
+      "originalDescriptionSha256": "10bf247d569de830f047ac49b7c212eb84377d2c2a17ec41dd0e097f33826b55",
+      "originalConditionsSha256": "bb664c5c5400502ef90800edab1dab60e1d097f704499aee90dc2a459b69d657"
+    },
+    {
+      "recordId": "ME2-WRL-OMEGA",
+      "name": "Omega",
+      "mediaId": "ME2",
+      "category": "worlds",
+      "nature": "Établi",
+      "role": "station",
+      "inspectionOnly": true,
+      "blockedReason": "Une station entière ne dispose pas d’un budget de véhicule individuel dans cet exercice.",
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-OMEGA"
+      ],
+      "originalDescriptionSha256": "470b0c41e80773837558675699ae969c04c21e67e4297af4fb8d089466b143bb",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "recordId": "ME2-SQ-N7-CRASH",
+      "name": "N7: Imminent Ship Crash",
+      "mediaId": "ME2",
+      "category": "side_quests",
+      "nature": "Établi",
+      "role": "unresolved-reference",
+      "inspectionOnly": true,
+      "blockedReason": "Le dossier d’urgence ne définit pas une coque individuelle ou des caractéristiques utilisables.",
+      "contexts": [
+        {
+          "mediaId": "ME2",
+          "periodId": "me2",
+          "galaxy": "milky-way"
+        }
+      ],
+      "sourceIds": [
+        "ME2-SRC-ASSIGN"
+      ],
+      "originalDescriptionSha256": "ad05aec521a1e1152463aeee7cb5c5e7d8e131b41f7cea1cff7e737c1347b184",
+      "originalConditionsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "The same ship may have separate references in different works or periods; distinct record IDs do not establish distinct physical hulls.",
+    "A location anchor identifies only the named documentary vessel; cabins, labs, skin cards and upgrades do not create additional ships.",
+    "All forty have at least one authorized factual context; adapted sprites, speculative/cut/fictional dossiers and entries without a published segment were excluded.",
+    "Stations, aggregate fleets, a signal and insufficiently identified transports have no runnable individual-vehicle budget.",
+    "No actual piloting, planetary/spatial physics, geometry, interior exploration, weapons, crew, fuel, original speed or narrative voyage is provided.",
+    "No fleet battle, recruitment, source mission completion, consequence, reward, campaign progression or cross-work travel is granted."
+  ]
+}

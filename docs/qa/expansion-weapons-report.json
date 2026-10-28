@@ -1,0 +1,1813 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-28T07:46:49.496Z",
+  "passed": true,
+  "scope": "Data and native-command unit evidence for forty independent Simulation weapon dossiers; no browser or whole-game fidelity certification.",
+  "globalFidelityCertified": false,
+  "statsBasis": "ATB adaptation",
+  "counts": {
+    "dossiers": 40,
+    "existingSpecialWeaponProfiles": 14,
+    "partialMeleeContactTrials": 8,
+    "closedInspectionOnly": 18,
+    "executableDefinitions": 22,
+    "standardExecutableDefinitions": 20,
+    "legendaryOnlyDefinitions": 2,
+    "originalNewMechanicsCertified": 0,
+    "sourceStatusAtReview": {
+      "Prototype": 14,
+      "Défini": 26
+    }
+  },
+  "exports": {
+    "array": "EXPANSION_WEAPONS",
+    "lookup": "getExpansionWeapon(recordId)",
+    "identityLookupIsNotPermission": true
+  },
+  "validation": {
+    "command": "node --test tests/expansion-weapons.test.js",
+    "tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "syntaxCommand": "node --check src/expansion-weapons.js",
+    "syntaxPassed": true,
+    "coverage": [
+      "Exact forty identities, uniqueness and recursive immutability.",
+      "Factual catalogue names, descriptions, source IDs and conditions preserved.",
+      "Own-work period access and foreign-work refusals for every record.",
+      "Eighteen closed records have no fallback simulation or borrowed homonym mechanics.",
+      "Two prepared Legendary constraints; unverified packs remain closed even with a broad edition selection.",
+      "Eight real native strike commands from an injured fixture; no gun actions, ammunition, extra powers, model-specific healing or cryogenic status granted.",
+      "Three heat beams: four real pulses, heat expenditure, no clips or reload.",
+      "Three thermal bursts: real multi-hit damage, heat and subsequent cooling.",
+      "Three delayed explosions: one clip spent, no early damage, real main/splash impact.",
+      "Four charged profiles: native cancellation without emitted clips, release expenditure and delayed Venom area impact.",
+      "Reegar channel: real per-pulse ammunition and cancellation without refund or extra future hits.",
+      "Lookup rejects forged objects without getter execution or coercion."
+    ]
+  },
+  "filesChanged": [
+    "src/expansion-weapons.js",
+    "tests/expansion-weapons.test.js",
+    "docs/qa/expansion-weapons-report.json"
+  ],
+  "sourceSnapshots": {
+    "src/expansion-weapons.js": "bffaa316a6aca541ddcac9f6fab75380ed96b3f9b8d79cef9742801c718f8a15",
+    "tests/expansion-weapons.test.js": "6eb5cdcf230a942538feddc38972e64da90af39d3fb13ae3e486d202798f8921",
+    "src/combat.js": "b91a02c8d2a6334c2f6a2a36b695a9ee96e4784636b8a0402f7cc8cc07d74ed7",
+    "src/universe-weapon-profiles.js": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/universe-data.js": "f168c0264a6206f4e7965e66dfe4df8b793037e978e9c1e1bb089a872d27933a",
+    "docs/universe/catalogs/ME2.json": "cd9e23766eeb6a385141130dd2a32933decb7619444021e07601c7b21bb9b8e0",
+    "docs/universe/catalogs/ME3.json": "1cb08754410020f96f23ed67df70c1bba5bdc79ba82e2c8bdd4c8adcfad04dee",
+    "docs/universe/catalogs/MEA.json": "5b82ea5fefc6b4479c5a07d0d3b52032d5f0d17e7f48f0d896525f06ed62b9b1"
+  },
+  "networkRequestsMade": false,
+  "browserStarted": false,
+  "gpuStarted": false,
+  "legacyGameFilesModified": false,
+  "catalogueFilesModified": false,
+  "sourceRecordsModified": false,
+  "statusesPromoted": false,
+  "records": [
+    {
+      "recordId": "ME3-WPN-FALCON",
+      "name": "M-37 Falcon",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Lance-grenades classé fusil.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-FALCON",
+        "mode": "delayed-area",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Explosion après 0.8 s ATB ; cible principale et dégâts réduits sur le groupe adverse."
+      ],
+      "limitations": [
+        "Zone adaptée au groupe ATB ; trajectoire, rebonds, collision avec le décor et dégâts alliés ne sont pas reproduits.",
+        "Les détails du mécanisme original restent à vérifier ; l’identification vient du catalogue secondaire.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-SCORPION",
+      "name": "Scorpion",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet à projectile explosif.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-SCORPION",
+        "mode": "delayed-area",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Explosion après 1.2 s ATB ; cible principale et dégâts réduits sur le groupe adverse."
+      ],
+      "limitations": [
+        "Zone adaptée au groupe ATB ; trajectoire, rebonds, collision avec le décor et dégâts alliés ne sont pas reproduits.",
+        "Les détails du mécanisme original restent à vérifier ; l’identification vient du catalogue secondaire.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-SCORPION",
+      "name": "Scorpion",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet explosif.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-SCORPION",
+        "mode": "delayed-area",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Explosion après 1.2 s ATB ; cible principale et dégâts réduits sur le groupe adverse."
+      ],
+      "limitations": [
+        "Zone adaptée au groupe ATB ; trajectoire, rebonds, collision avec le décor et dégâts alliés ne sont pas reproduits.",
+        "Les détails du mécanisme original restent à vérifier ; l’identification vient du catalogue secondaire.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-PAW",
+      "name": "P.A.W.",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme à rayon.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-PAW",
+        "mode": "heat-beam",
+        "weaponSystem": "heat"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Rayon canalisé pendant 2 s ATB ; dégâts et chaleur par impulsion, arrêt à la surchauffe ou à l’interruption."
+      ],
+      "limitations": [
+        "Canalisation ATB sans simulation du suivi du viseur, des obstacles ou de la portée d’origine.",
+        "La fiche atteste une arme à rayon ; gestion thermique et paramètres de ce prototype restent sans vérification primaire.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-REEGAR",
+      "name": "Reegar Carbine",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil électrique.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-REEGAR",
+        "mode": "clip-channel",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Jet électrique canalisé pendant 2 s ATB ; une munition par impulsion, arrêt si le chargeur est vide."
+      ],
+      "limitations": [
+        "Jet sur une cible ATB ; cône, portée et collision avec les obstacles ne sont pas reproduits.",
+        "La fiche atteste une arme électrique ; cadence et dépense par impulsion sont des réglages ATB non certifiés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-SWEEPER",
+      "name": "Sweeper",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil reliquat.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-SWEEPER"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-SWEEPER",
+          "title": "Sweeper",
+          "url": "https://masseffect.fandom.com/wiki/Sweeper",
+          "kind": "wiki",
+          "scope": "Arme reliquate",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-SWEEPER",
+        "mode": "heat-burst",
+        "weaponSystem": "heat"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Salve énergétique en trois impacts ATB ; jauge de chaleur et refroidissement, sans clip thermique."
+      ],
+      "limitations": [
+        "Répartition des impacts et cycle thermique adaptés à l’ATB ; dispersion et cadence originales non reproduites.",
+        "Le modèle reliquat possède une source individuelle secondaire ; aucune table originale de valeurs n’est certifiée.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-PARTICLE",
+      "name": "Particle Rifle",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": "legendary"
+      },
+      "blockedReason": null,
+      "identityFact": "Arme prothéenne de From Ashes.",
+      "conditions": "DLC / Legendary.",
+      "sourceIds": [
+        "ME3-SRC-PARTICLE"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-PARTICLE",
+          "title": "Particle Rifle",
+          "url": "https://masseffect.fandom.com/wiki/Particle_Rifle",
+          "kind": "wiki",
+          "scope": "Fusil prothéen et index arsenal",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-PARTICLE",
+        "mode": "heat-beam",
+        "weaponSystem": "heat"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Rayon de prototype canalisé pendant 2 s ATB ; quatre impulsions et chaleur, interruption ou surchauffe sans clip thermique.",
+        "From Ashes présent : atelier Legendary explicitement préparé ; aucune attribution à une mission ou acquisition inventée."
+      ],
+      "limitations": [
+        "Le cycle thermique et la canalisation sont une proposition ATB, sans vérification primaire du modèle.",
+        "Portée, suivi du viseur, géométrie et éventuelle montée en puissance d’origine ne sont pas reproduits.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-LANCER",
+      "name": "M-7 Lancer",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": "legendary"
+      },
+      "blockedReason": null,
+      "identityFact": "Arme du DLC Citadel.",
+      "conditions": "DLC Citadel.",
+      "sourceIds": [
+        "ME3-SRC-SUPPRESSOR"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-SUPPRESSOR",
+          "title": "M-11 Suppressor",
+          "url": "https://masseffect.fandom.com/wiki/M-11_Suppressor",
+          "kind": "wiki",
+          "scope": "Arme de Citadel et index arsenal",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-LANCER",
+        "mode": "heat-burst",
+        "weaponSystem": "heat"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "3 impacts énergétiques dans l’ordre ATB ; chaleur et refroidissement, sans réserve de clips. Ce nombre d’impacts est un budget de prototype.",
+        "Citadel présent : atelier Legendary explicitement préparé ; cette fiche ne donne aucun accès dans l’atelier standard."
+      ],
+      "limitations": [
+        "Les impacts ATB ne certifient ni le nombre de projectiles, ni la cadence ou le cycle thermique d’origine.",
+        "Dispersion, cône, portée, collisions et gestion des munitions modifiées d’origine ne sont pas simulés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale.",
+        "La bibliographie héritée cite ME3-SRC-SUPPRESSOR, page secondaire intitulée pour un autre modèle ; aucune validation primaire du Lancer n’est revendiquée."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-ARC",
+      "name": "Arc Pistol",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet énergétique.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-ARC",
+        "mode": "charged-shot",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Charge fixe et interruptible de 1 s ATB avant l’impact ; le clip est consommé au tir. Annuler ne restitue ni le tour ni la concentration dépensée."
+      ],
+      "limitations": [
+        "Charge automatique complète de prototype : maintien manuel, tir court, niveaux partiels et progression d’origine non reproduits.",
+        "Temps, facteur de dégâts, nombre de pointes, capacité et réserve sont des réglages ATB sans certification primaire.",
+        "Trajectoires, rebonds, portée et collision du projectile avec le décor ne sont pas simulés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-GRAAL",
+      "name": "Graal Spike Thrower",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme à pointes.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-GRAAL",
+        "mode": "charged-shot",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Charge fixe et interruptible de 1 s ATB avant l’impact ; le clip est consommé au tir. Annuler ne restitue ni le tour ni la concentration dépensée."
+      ],
+      "limitations": [
+        "Charge automatique complète de prototype : maintien manuel, tir court, niveaux partiels et progression d’origine non reproduits.",
+        "Temps, facteur de dégâts, nombre de pointes, capacité et réserve sont des réglages ATB sans certification primaire.",
+        "Trajectoires, rebonds, portée et collision du projectile avec le décor ne sont pas simulés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-JAVELIN",
+      "name": "Javelin",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil geth de précision.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "ME3-WPN-JAVELIN",
+        "mode": "charged-shot",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Charge fixe et interruptible de 1 s ATB avant l’impact ; le clip est consommé au tir. Annuler ne restitue ni le tour ni la concentration dépensée."
+      ],
+      "limitations": [
+        "Charge automatique complète de prototype : maintien manuel, tir court, niveaux partiels et progression d’origine non reproduits.",
+        "Temps, facteur de dégâts, nombre de pointes, capacité et réserve sont des réglages ATB sans certification primaire.",
+        "Trajectoires, rebonds, portée et collision du projectile avec le décor ne sont pas simulés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-EQUALIZER",
+      "name": "Equalizer",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet reliquat.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-EQUALIZER",
+        "mode": "heat-beam",
+        "weaponSystem": "heat"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Rayon de prototype canalisé pendant 2 s ATB ; quatre impulsions et chaleur, interruption ou surchauffe sans clip thermique."
+      ],
+      "limitations": [
+        "Le cycle thermique et la canalisation sont une proposition ATB, sans vérification primaire du modèle.",
+        "Portée, suivi du viseur, géométrie et éventuelle montée en puissance d’origine ne sont pas reproduits.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-SCATTERSHOT",
+      "name": "Scattershot",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil reliquat.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-SCATTERSHOT",
+        "mode": "heat-burst",
+        "weaponSystem": "heat"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "5 impacts énergétiques dans l’ordre ATB ; chaleur et refroidissement, sans réserve de clips. Ce nombre d’impacts est un budget de prototype."
+      ],
+      "limitations": [
+        "Les impacts ATB ne certifient ni le nombre de projectiles, ni la cadence ou le cycle thermique d’origine.",
+        "Dispersion, cône, portée, collisions et gestion des munitions modifiées d’origine ne sont pas simulés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-VENOM",
+      "name": "Venom",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "behaviorKind": "existing-weapon-profile",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à projectiles explosifs.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingProfile": true,
+        "profileId": "MEA-WPN-VENOM",
+        "mode": "charged-area",
+        "weaponSystem": "thermal-clip"
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit.",
+        "Charge fixe de 1 s ATB, puis lancement consommant le clip et explosion après 0,4 s de vol ; aucun impact avant ces phases."
+      ],
+      "limitations": [
+        "Charge automatique complète de prototype : maintien manuel, tir court, niveaux partiels et progression d’origine non reproduits.",
+        "Temps, facteur de dégâts, nombre de pointes, capacité et réserve sont des réglages ATB sans certification primaire.",
+        "Trajectoires, rebonds, portée et collision du projectile avec le décor ne sont pas simulés.",
+        "Le comportement est réutilisé à l’identique depuis un profil existant ; cette nouvelle fiche Simulation ne constitue pas une nouvelle mécanique originale."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-OMNIBLADE",
+      "name": "Omni-Blade",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Fente, portée au sol, cellule de retour, mouvement et animation de lame non reproduits.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-ASARI-SWORD",
+      "name": "Asari Sword",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Approche biotique, déplacement, invulnérabilité éventuelle, collisions et animation de lame non reproduits ; aucun pouvoir biotique accordé.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-KROGAN-HAMMER",
+      "name": "Krogan Hammer",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Préparation lourde, choc au sol, zone et animation du marteau non reproduits ; une seule cible abstraite est frappée.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-FIRAAN",
+      "name": "Angaran Firaan",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée angara.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Combo, direction des coups, reprise et animation de la lame angara non reproduits.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-CARFALON",
+      "name": "Kett Carfalon",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée kett.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Propriétés de soin, forme du contact, mouvement et animation non reproduits ; aucun soin accordé.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-VAKARSH",
+      "name": "Kett Vakarsh",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée kett.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Vitesse, forme du contact, mouvement et animation propres à cette lame kett non reproduits.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-CRYO-GAUNTLET",
+      "name": "Remnant Cryo-Gauntlet",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée reliquate.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Effet cryogénique, ralentissement, résistances et animation du gantelet non reproduits ; aucun gel ni pouvoir accordé.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-BIOTIC-AMP",
+      "name": "Biotic Amplifier",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "melee-family-prototype",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme de mêlée biotique.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-MELEE"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-MELEE",
+          "title": "Melee Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Melee_Weapons",
+          "kind": "wiki",
+          "scope": "Armes de contact",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": {
+        "reuseExistingPrimitive": true,
+        "primaryAction": "strike",
+        "weaponSystem": "melee",
+        "grantedPowers": []
+      },
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Impulsion biotique, dépense propre, interactions et animation non reproduites ; aucun pouvoir biotique accordé.",
+        "Un seul ordre de contact ATB natif sur une cible abstraite ; aucune distance, collision, zone, combo, animation ou valeur propre au modèle ne sont certifiés.",
+        "Les huit modèles partagent cette même primitive de contact : ils ne constituent pas huit mécanismes originaux distincts."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-GETH-SHOTGUN",
+      "name": "Geth Plasma Shotgun",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Le tir chargé propre à ce modèle ME2 reste à établir. Le profil Graal de ME3 ne constitue pas une preuve ni un remplacement.",
+      "identityFact": "Fusil plasma geth.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-GETH-SG"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-GETH-SG",
+          "title": "Geth Plasma Shotgun",
+          "url": "https://masseffect.fandom.com/wiki/Geth_Plasma_Shotgun",
+          "kind": "wiki",
+          "scope": "Arme geth",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Le tir chargé propre à ce modèle ME2 reste à établir. Le profil Graal de ME3 ne constitue pas une preuve ni un remplacement.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-GRENADE",
+      "name": "M-100 Grenade Launcher",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde ME2 : réserve de cellules, trajectoire et explosion propres au modèle non reconstituées ; aucun clip conventionnel de secours.",
+      "identityFact": "Arme lourde de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-HEAVY",
+          "title": "Heavy Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+          "kind": "wiki",
+          "scope": "Armes lourdes ME2",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde ME2 : réserve de cellules, trajectoire et explosion propres au modèle non reconstituées ; aucun clip conventionnel de secours.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-MISSILE",
+      "name": "ML-77 Missile Launcher",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde de recherche ME2 : acquisition, cellules et guidage ne sont pas reconstitués.",
+      "identityFact": "Arme lourde de recherche.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-HEAVY",
+          "title": "Heavy Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+          "kind": "wiki",
+          "scope": "Armes lourdes ME2",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde de recherche ME2 : acquisition, cellules et guidage ne sont pas reconstitués.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-AVALANCHE",
+      "name": "M-622 Avalanche",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde cryogénique ME2 : cellules, rayon ou projectile, gel et portée ne sont pas reconstitués.",
+      "identityFact": "Arme lourde cryogénique.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-HEAVY",
+          "title": "Heavy Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+          "kind": "wiki",
+          "scope": "Armes lourdes ME2",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde cryogénique ME2 : cellules, rayon ou projectile, gel et portée ne sont pas reconstitués.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-CAIN",
+      "name": "M-920 Cain",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde à charge ME2 : réserve, seuil de charge et explosion propres au Cain ne sont pas reconstitués.",
+      "identityFact": "Arme lourde à charge.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-CAIN"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-CAIN",
+          "title": "M-920 Cain",
+          "url": "https://masseffect.fandom.com/wiki/M-920_Cain",
+          "kind": "wiki",
+          "scope": "Arme lourde chargée",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde à charge ME2 : réserve, seuil de charge et explosion propres au Cain ne sont pas reconstitués.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-PARTICLE",
+      "name": "Collector Particle Beam",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde à faisceau ME2 : cellules et faisceau propres au Collector Particle Beam non reconstitués. Le Particle Rifle de ME3 ne donne aucune permission.",
+      "identityFact": "Arme lourde de faisceau.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-HEAVY",
+          "title": "Heavy Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+          "kind": "wiki",
+          "scope": "Armes lourdes ME2",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde à faisceau ME2 : cellules et faisceau propres au Collector Particle Beam non reconstitués. Le Particle Rifle de ME3 ne donne aucune permission.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-FIRESTORM",
+      "name": "M-451 Firestorm",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Mission de Zaeed et édition non établies pour cet essai ; réserve lourde et jet incendiaire non reconstitués.",
+      "identityFact": "Arme lourde incendiaire.",
+      "conditions": "Mission de Zaeed / disponibilité à confirmer par édition.",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-HEAVY",
+          "title": "Heavy Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+          "kind": "wiki",
+          "scope": "Armes lourdes ME2",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Mission de Zaeed et édition non établies pour cet essai ; réserve lourde et jet incendiaire non reconstitués.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-ARC",
+      "name": "Arc Projector",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde Cerberus ME2 : contenu additionnel, cellules et décharges propres à Arc Projector non reconstitués. Le pistolet Arc de ME3 est distinct.",
+      "identityFact": "Arme lourde Cerberus.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-HEAVY",
+        "ME2-SRC-EA-DLC"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-EA-DLC",
+          "title": "How to download and buy DLC for classic EA games",
+          "url": "https://help.ea.com/en//articles/orders-and-rewards/dlc-for-classic-games/",
+          "kind": "source officielle",
+          "scope": "Noms des packs et distribution historique",
+          "note": "Source officielle consultée le 22 octobre 2026 ; portée limitée au sujet annoncé."
+        },
+        {
+          "id": "ME2-SRC-HEAVY",
+          "title": "Heavy Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+          "kind": "wiki",
+          "scope": "Armes lourdes ME2",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde Cerberus ME2 : contenu additionnel, cellules et décharges propres à Arc Projector non reconstitués. Le pistolet Arc de ME3 est distinct.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-CHAKRAM",
+      "name": "Chakram Launcher",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Pack, édition et mécanisme de projectile propres à Chakram Launcher non établis ; aucun accès déduit de Legendary.",
+      "identityFact": "Arme additionnelle de ME3.",
+      "conditions": "Disponibilité selon édition et pack.",
+      "sourceIds": [
+        "ME3-SRC-CHAKRAM"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-CHAKRAM",
+          "title": "Chakram Launcher",
+          "url": "https://masseffect.fandom.com/wiki/Chakram_Launcher",
+          "kind": "wiki",
+          "scope": "Arme additionnelle",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Pack, édition et mécanisme de projectile propres à Chakram Launcher non établis ; aucun accès déduit de Legendary.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-ADAS",
+      "name": "Adas Anti-Synthetic Rifle",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Pack, édition et projectile électrique propres à Adas non établis ; aucun profil de fusil à clips substitué.",
+      "identityFact": "Fusil de l’arsenal étendu.",
+      "conditions": "Pack / édition à vérifier.",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Pack, édition et projectile électrique propres à Adas non établis ; aucun profil de fusil à clips substitué.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-ACOLYTE",
+      "name": "Acolyte",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Pack, édition et projectile chargé propres à Acolyte non établis ; aucun profil Arc substitué.",
+      "identityFact": "Arme de l’arsenal étendu.",
+      "conditions": "Pack / édition à vérifier.",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Pack, édition et projectile chargé propres à Acolyte non établis ; aucun profil Arc substitué.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-REEGAR",
+      "name": "Reegar Carbine",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Pack et édition ME3 non établis ; le profil Reegar MEA ne peut pas être transposé par homonymie.",
+      "identityFact": "Arme électrique de courte portée.",
+      "conditions": "Pack / édition à vérifier.",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Pack et édition ME3 non établis ; le profil Reegar MEA ne peut pas être transposé par homonymie.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-VENOM",
+      "name": "Venom",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Disponibilité solo selon pack et variante multijoueur distincte ; le profil Venom MEA ne donne aucune permission ME3.",
+      "identityFact": "Arme de l’arsenal étendu.",
+      "conditions": "Solo selon pack ; aussi Reckoning multi.",
+      "sourceIds": [
+        "ME3-SRC-EQUIP",
+        "ME3-SRC-BW-CITADEL"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-BW-CITADEL",
+          "title": "Citadel & Reckoning DLC Announced",
+          "url": "https://blog.bioware.com/2013/02/21/mass-effect-3-citadel-reckoning-dlc-announced/",
+          "kind": "source officielle",
+          "scope": "Citadel solo, Armax et Reckoning multi",
+          "note": "Source officielle consultée le 22 octobre 2026 ; portée limitée au sujet annoncé."
+        },
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Disponibilité solo selon pack et variante multijoueur distincte ; le profil Venom MEA ne donne aucune permission ME3.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-HYDRA",
+      "name": "M-560 Hydra — local",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde locale du site de bombe : scène, ramassage, réserve et lanceur Hydra non reconstitués.",
+      "identityFact": "Lanceur lourd local.",
+      "conditions": "Rencontre du site de bombe.",
+      "sourceIds": [
+        "ME3-SRC-HYDRA"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-HYDRA",
+          "title": "M-560 Hydra",
+          "url": "https://masseffect.fandom.com/wiki/M-560_Hydra",
+          "kind": "wiki",
+          "scope": "Lanceur local de Tuchanka",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde locale du site de bombe : scène, ramassage, réserve et lanceur Hydra non reconstitués.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-BLACKSTAR",
+      "name": "Reaper Blackstar — local",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Arme lourde ramassée en mission : emplacement, réserve et effet Blackstar non reconstitués ; aucun inventaire permanent accordé.",
+      "identityFact": "Arme lourde trouvée en mission.",
+      "conditions": "Ramassage en mission compatible.",
+      "sourceIds": [
+        "ME3-SRC-BLACKSTAR"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-BLACKSTAR",
+          "title": "Reaper Blackstar",
+          "url": "https://masseffect.fandom.com/wiki/Reaper_Blackstar",
+          "kind": "wiki",
+          "scope": "Arme lourde locale",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Arme lourde ramassée en mission : emplacement, réserve et effet Blackstar non reconstitués ; aucun inventaire permanent accordé.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-LANAT",
+      "name": "Lanat",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Mécanisme de charge et de projectile propre au Lanat non établi ; son nom et sa famille ne justifient pas un profil de sniper à clips.",
+      "identityFact": "Fusil angara de précision.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Mécanisme de charge et de projectile propre au Lanat non établi ; son nom et sa famille ne justifient pas un profil de sniper à clips.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-PIONEER",
+      "name": "Pathfinder Pioneer",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Pack Pathfinder Elite, édition, acquisition et fonctionnement propre à Pioneer non établis ; aucun accès déduit de Deluxe.",
+      "identityFact": "Arme du pack Pathfinder Elite.",
+      "conditions": "Pack Pathfinder Elite / édition compatible ; vérifier la voie d’acquisition.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Pack Pathfinder Elite, édition, acquisition et fonctionnement propre à Pioneer non établis ; aucun accès déduit de Deluxe.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-DEEP-IMPACT",
+      "name": "Pathfinder Deep Impact",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Défini",
+      "nature": "Établi",
+      "behaviorKind": "inspection-only",
+      "executableDefinition": false,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": "Pack Pathfinder Elite, édition, acquisition et fonctionnement propre à Deep Impact non établis ; aucun accès déduit de Deluxe.",
+      "identityFact": "Arme du pack Pathfinder Elite.",
+      "conditions": "Pack Pathfinder Elite / édition compatible ; vérifier la voie d’acquisition.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "mechanism": null,
+      "notes": [
+        "Simulation indépendante sur porteur et cible abstraits ; budgets ATB, aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, recherche, compétence, déblocage, stock ou permission de porteur/scène transféré à la campagne ou aux Chroniques.",
+        "Dossier de cette œuvre et de ce segment uniquement ; aucun rang, mode multijoueur ou homonyme d’une autre œuvre n’est déduit."
+      ],
+      "limitations": [
+        "Pack Pathfinder Elite, édition, acquisition et fonctionnement propre à Deep Impact non établis ; aucun accès déduit de Deluxe.",
+        "Cette fiche ne crée aucun combat et ne remplace pas le mécanisme manquant par un tir conventionnel."
+      ]
+    }
+  ],
+  "limitations": [
+    "Forty dossiers do not mean forty original mechanics or forty newly usable campaign weapons. Fourteen reuse exact existing profiles; eight share one native ATB contact primitive; eighteen cannot run.",
+    "The shared 300 HP / 40 shield / 24 attack / 3 defense / 1 speed budget represents an abstract simulation carrier, not original weapon or character statistics.",
+    "Melee movement, collision, combo, range, model-specific cryogenic/biotic/healing effects and original animations remain absent and explicitly listed per model.",
+    "The Lancer retains an inherited indirect secondary citation titled for Suppressor; no new primary source corroboration is claimed.",
+    "Conditional Legendary trials do not unlock acquisitions, campaign stocks, classes, squad equipment or scenarios. Undefined packs, local heavy weapons and foreign-work homonyms remain closed.",
+    "This report contains targeted data/native-command unit evidence only. Parent-owned service integration, browser rendering, persistence and production checks require their own evidence."
+  ]
+}

@@ -12,6 +12,12 @@ Le complément spécialistes du **25 octobre**, basé sur `7fe7a88`, conservait 
 
 Le lot historique basé sur `748b965` ajoutait **17 promotions : quatre fiches de soutien, dix de munitions exposées et trois portraits partiels**. Ses catalogues et exports vérifiés comptaient **530 Prototype, 6 120 Défini, trois Intégré et trois Validé**, pour **6 656 fiches et 449 sources**. Le [rapport historique](qa/chronicle-support-report.json) conserve ses résultats et les [contrôles de conservation](qa/chronicle-support-preservation-report.json). Sa nouvelle source primaire ME3 ne certifie pas par elle-même toutes les attributions, les règles d’invocation ou les détails des portraits.
 
+## Études indépendantes du 28 octobre
+
+Le [lot Simulation](EXPANSION_SIMULATIONS.md) ajoute cinq lots de 40 références contextuelles : 145 épreuves exécutables sous leurs gardes et 55 consultations fermées. Les 40 adversaires sont supplémentaires aux 16 profils d’adversaires des bancs historiques ; les 22 exercices d’armes comprennent 14 profils réutilisés et huit contacts Andromeda génériques. Les personnes et vaisseaux récurrents sont comptés par occurrence documentaire, sans fusion interœuvre.
+
+Les paramètres d’exercice sont des adaptations, y compris les budgets logistiques. Ils ne certifient aucune statistique, physique, mécanique originale ou acquisition narrative. Aucune nouvelle image, animation, géométrie ou voix n’est produite par ce lot. Les statuts des 6 708 fiches historiques restent inchangés ; un classeur séparé suit les nouveaux livrables et les preuves. Voir le [rapport](qa/expansion-report.json) et les [145 exécutions rejouées](qa/expansion-native-report.json).
+
 ## Dossier de Shepard
 
 Le jeu propose les deux apparences, les origines Stellaire/Colon/Terrien et les profils Rescapé/Héros de guerre/Impitoyable. Les choix sont conservés dans les sauvegardes, les exports et les imports. Le dossier reste consultable depuis la pause et le commando. Les anciennes sauvegardes v1 reçoivent les valeurs par défaut uniquement lorsque les nouveaux champs sont absents ; les valeurs explicitement invalides sont rejetées.

@@ -1,0 +1,302 @@
+{
+  "version": "0.3.0",
+  "at": "2026-10-28T07:55:07.042Z",
+  "passed": true,
+  "browser": "154.0.8037.57",
+  "scope": "Real creation/customization/equipment UI, draft cancellation and commit, keyboard, mobile layout, save/reload/export/import, and explicit imported-save fixtures. State and world are observed, never overwritten through the development harness. This does not establish pixel-perfect canon art or a native Windows launch.",
+  "urls": {
+    "development": "http://127.0.0.1:4173",
+    "production": "http://127.0.0.1:4174"
+  },
+  "checks": [
+    {
+      "name": "Creation customization and equipment survive a class change and reach the campaign",
+      "identity": "Jane Custom",
+      "appearance": "female",
+      "skin": "tan",
+      "armor": "alliance",
+      "classChangedAfterCustomization": "engineer",
+      "weapon": "storm-i"
+    },
+    {
+      "name": "Cancel and Escape discard detached drafts",
+      "liveStateUntouchedWhileEditing": true,
+      "inventoryUntouched": true
+    },
+    {
+      "name": "Real purchased modules, customization, comparison and atomic application",
+      "creditsSpent": 210,
+      "directions": [
+        {
+          "direction": "front",
+          "signature": "d2fa5627cafc2747ebe2f5905d3b9f7399043473041467e23218b8803b7cb793"
+        },
+        {
+          "direction": "right",
+          "signature": "e61f6003601ac6ff30ff7d73c61604c053f4c9a31382a62858ba342924a90b75"
+        },
+        {
+          "direction": "back",
+          "signature": "15acadeca9ed543ed363015a69cc3b8836f3f2ecca7a9e8af0a5ead211598648"
+        },
+        {
+          "direction": "left",
+          "signature": "14456e0b55e7f91aebec9764f7d348a52b3e8417949690f7ecdd6fa901cd1bef"
+        }
+      ],
+      "keyboardActivation": true,
+      "equipment": {
+        "weapon": "storm-i",
+        "armor": "onyx-human-i",
+        "weaponMod": "heat-sink-i",
+        "ammoMod": null,
+        "armorMod": "armor-plating-i",
+        "weaponMod2": null,
+        "armorMod2": null,
+        "omniTool": null,
+        "bioticAmp": null
+      },
+      "desktop": {
+        "label": "1440 × 1000",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "screenWidth": 1378,
+        "screenContentWidth": 1378,
+        "clipped": [],
+        "preview": {
+          "width": 612.453125,
+          "height": 630
+        },
+        "visibleControls": 39
+      }
+    },
+    {
+      "name": "Committed customization reaches the rendered world",
+      "appearance": "female",
+      "customization": {
+        "version": 1,
+        "face": {
+          "preset": "veteran",
+          "skinTone": "brown",
+          "eyeColor": "green",
+          "hairColor": "black",
+          "hairStyle": "tied"
+        },
+        "armor": {
+          "primary": "teal",
+          "secondary": "black",
+          "accent": "orange",
+          "pattern": "split",
+          "finish": "gloss",
+          "helmet": "visible"
+        }
+      },
+      "actorKey": "femshep",
+      "draws": 103,
+      "triangles": 10090,
+      "canvasTexture": true,
+      "changedPixels": 16812,
+      "alphaDifferences": 0,
+      "materialDataKeys": [
+        "commanderCustomization"
+      ],
+      "assetErrors": []
+    },
+    {
+      "name": "Automatic resume, downloaded JSON export/import and named manual restore",
+      "exactCustomizationPreserved": true,
+      "exactInventoryPreserved": true,
+      "manualSlot": 1
+    },
+    {
+      "name": "Mobile tabs, scrollable controls and draft-only reset",
+      "mobile": [
+        {
+          "label": "360 × 800 / character",
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "documentWidth": 360,
+          "screenWidth": 344,
+          "screenContentWidth": 344,
+          "clipped": [],
+          "preview": {
+            "width": 343.59375,
+            "height": 466.296875
+          },
+          "visibleControls": 39
+        },
+        {
+          "label": "360 × 800 / armor",
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "documentWidth": 360,
+          "screenWidth": 344,
+          "screenContentWidth": 344,
+          "clipped": [],
+          "preview": {
+            "width": 343.59375,
+            "height": 481.59375
+          },
+          "visibleControls": 59
+        },
+        {
+          "label": "360 × 800 / weapons",
+          "viewport": {
+            "width": 360,
+            "height": 800
+          },
+          "documentWidth": 360,
+          "screenWidth": 344,
+          "screenContentWidth": 344,
+          "clipped": [],
+          "preview": {
+            "width": 343.59375,
+            "height": 527.59375
+          },
+          "visibleControls": 29
+        }
+      ]
+    },
+    {
+      "name": "Legacy save without customization migrates without losing inventory or identity",
+      "defaults": {
+        "version": 1,
+        "face": {
+          "preset": "standard",
+          "skinTone": "fair",
+          "eyeColor": "blue",
+          "hairColor": "auburn",
+          "hairStyle": "short"
+        },
+        "armor": {
+          "primary": "graphite",
+          "secondary": "silver",
+          "accent": "red",
+          "pattern": "classic",
+          "finish": "standard",
+          "helmet": "hidden"
+        }
+      },
+      "preservedName": "Jane Custom"
+    },
+    {
+      "name": "Explicit inventory fixture excludes or disables incompatible, over-level, reserved and unowned gear",
+      "liveInventoryPreserved": true
+    },
+    {
+      "name": "Built production game creates, applies and resumes customization through UI",
+      "status": "passed",
+      "uiCreation": true,
+      "uiApplication": true,
+      "reload": true,
+      "developmentHarness": "absent",
+      "layout": {
+        "label": "Production 1440 × 1000",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "documentWidth": 1440,
+        "screenWidth": 1378,
+        "screenContentWidth": 1378,
+        "clipped": [],
+        "preview": {
+          "width": 612.453125,
+          "height": 637.59375
+        },
+        "visibleControls": 59
+      },
+      "webgl": {
+        "available": true,
+        "lost": false,
+        "width": 1440,
+        "height": 1000
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "pre-customization-save",
+      "source": "actual UI export",
+      "changes": [
+        "customization field removed"
+      ],
+      "importedViaUI": true
+    },
+    {
+      "name": "inventory-restrictions",
+      "source": "actual UI export",
+      "changes": [
+        "owned Turian armor",
+        "owned level-6 armor at level 1",
+        "Jenkins reserves the only Avenger I"
+      ],
+      "importedViaUI": true
+    }
+  ],
+  "command": "CUSTOMIZATION_REPORT_PREFIX=expansion-customization-final CUSTOMIZATION_BASE_MAIN=6182756578e50f44d668b3c0a2ac1561a8e0275e PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium GAME_URL=http://127.0.0.1:4173 PRODUCTION_GAME_URL=http://127.0.0.1:4174 node scripts/customization-browser.mjs",
+  "errors": [],
+  "failedRequests": [],
+  "screenshots": [
+    "docs/screenshots/expansion-customization-final-creation-initial.png",
+    "docs/screenshots/expansion-customization-final-creation.png",
+    "docs/screenshots/expansion-customization-final-weapons-desktop.png",
+    "docs/screenshots/expansion-customization-final-character-desktop.png",
+    "docs/screenshots/expansion-customization-final-armor-desktop.png",
+    "docs/screenshots/expansion-customization-final-armor.png",
+    "docs/screenshots/expansion-customization-final-world.png",
+    "docs/screenshots/expansion-customization-final-character-mobile.png",
+    "docs/screenshots/expansion-customization-final-mobile.png",
+    "docs/screenshots/expansion-customization-final-armor-mobile.png",
+    "docs/screenshots/expansion-customization-final-weapons-mobile.png",
+    "docs/screenshots/expansion-customization-final-production.png"
+  ],
+  "production": {
+    "status": "passed",
+    "uiCreation": true,
+    "uiApplication": true,
+    "reload": true,
+    "developmentHarness": "absent",
+    "layout": {
+      "label": "Production 1440 × 1000",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "documentWidth": 1440,
+      "screenWidth": 1378,
+      "screenContentWidth": 1378,
+      "clipped": [],
+      "preview": {
+        "width": 612.453125,
+        "height": 637.59375
+      },
+      "visibleControls": 59
+    },
+    "webgl": {
+      "available": true,
+      "lost": false,
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "baseMain": "6182756578e50f44d668b3c0a2ac1561a8e0275e",
+  "sources": {
+    "src/main.js": "5fffffcfe9d34f6a7469553858c1b0d9892bca7b1aa92303089036a897770b7f",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/world.js": "cf4070fcabdfa1fe7a3cf30806cfe87bf6589a84ef6dfc67c83fb2623498db21",
+    "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+    "src/customization-ui.js": "e9218ef9ebfb61e773cab1dc90469bd10a17ba97964de331cd63ae128b523808",
+    "src/customization-ui.css": "b020ea5e41f3d2dd6b5c50a173591d63882d234462a0af01e27f1e42eb544562",
+    "src/customization-render.js": "35e9691806ce6cdf9a170951a26f9ba13d889015fc97712ab9bd7f83b93967a6",
+    "src/loadout.js": "ffeeebcf66d64cc13f45f6513c0e8a7872863a32bca078eb6ee206b26aeb6b9f",
+    "scripts/customization-browser.mjs": "713f9c7863bc18afe9de9f9dc9b379b22cd16cdccbe67d4fbfe52308e44eccf9"
+  }
+}

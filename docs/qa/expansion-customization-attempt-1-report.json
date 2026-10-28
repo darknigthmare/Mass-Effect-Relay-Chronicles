@@ -1,0 +1,46 @@
+{
+  "version": "0.3.0",
+  "at": "2026-10-28T07:50:09.954Z",
+  "passed": false,
+  "browser": "154.0.8037.57",
+  "scope": "Real creation/customization/equipment UI, draft cancellation and commit, keyboard, mobile layout, save/reload/export/import, and explicit imported-save fixtures. State and world are observed, never overwritten through the development harness. This does not establish pixel-perfect canon art or a native Windows launch.",
+  "urls": {
+    "development": "http://127.0.0.1:4173",
+    "production": null
+  },
+  "checks": [
+    {
+      "name": "Creation customization and equipment survive a class change and reach the campaign",
+      "identity": "Jane Custom",
+      "appearance": "female",
+      "skin": "tan",
+      "armor": "alliance",
+      "classChangedAfterCustomization": "engineer",
+      "weapon": "storm-i"
+    }
+  ],
+  "fixtures": [],
+  "command": "CUSTOMIZATION_REPORT_PREFIX=expansion-customization CUSTOMIZATION_BASE_MAIN=6182756578e50f44d668b3c0a2ac1561a8e0275e PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium GAME_URL=http://127.0.0.1:4173 node scripts/customization-browser.mjs",
+  "errors": [],
+  "failedRequests": [],
+  "screenshots": [
+    "docs/screenshots/expansion-customization-creation-initial.png",
+    "docs/screenshots/expansion-customization-creation.png"
+  ],
+  "production": {
+    "status": "not-requested"
+  },
+  "baseMain": "6182756578e50f44d668b3c0a2ac1561a8e0275e",
+  "sources": {
+    "src/main.js": "5fffffcfe9d34f6a7469553858c1b0d9892bca7b1aa92303089036a897770b7f",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/world.js": "cf4070fcabdfa1fe7a3cf30806cfe87bf6589a84ef6dfc67c83fb2623498db21",
+    "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+    "src/customization-ui.js": "e9218ef9ebfb61e773cab1dc90469bd10a17ba97964de331cd63ae128b523808",
+    "src/customization-ui.css": "b020ea5e41f3d2dd6b5c50a173591d63882d234462a0af01e27f1e42eb544562",
+    "src/customization-render.js": "35e9691806ce6cdf9a170951a26f9ba13d889015fc97712ab9bd7f83b93967a6",
+    "src/loadout.js": "ffeeebcf66d64cc13f45f6513c0e8a7872863a32bca078eb6ee206b26aeb6b9f",
+    "scripts/customization-browser.mjs": "713f9c7863bc18afe9de9f9dc9b379b22cd16cdccbe67d4fbfe52308e44eccf9"
+  },
+  "failure": "locator.click: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-do=\"custom-cancel\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"secondary\" data-do=\"custom-cancel\">Annuler</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\u001b[2m    - waiting for \"http://127.0.0.1:4173/?qa\" navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"http://127.0.0.1:4173/?qa\"\u001b[22m\n\n    at /workspace/Mass-Effect-Relay-Chronicles/scripts/customization-browser.mjs:184:33"
+}

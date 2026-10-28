@@ -1,0 +1,1821 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-28T07:44:26.425Z",
+  "baseCommit": "6182756578e50f44d668b3c0a2ac1561a8e0275e",
+  "passed": true,
+  "scope": "Data and CPU combat verification of forty new independent ATB enemy samples; not source-mission encounters.",
+  "fidelityCertified": false,
+  "canonicalStatsCertified": false,
+  "visualsReviewed": false,
+  "browserRun": false,
+  "counts": {
+    "profiles": 40,
+    "uniqueRecordIds": 40,
+    "newRelativeToExistingSixteen": 40,
+    "executable": 36,
+    "closedInspection": 4,
+    "media": {
+      "ME2": 16,
+      "ME3": 12,
+      "MEA": 12
+    },
+    "namedPowers": 0,
+    "nativeEnemyActionChecks": 36,
+    "nativePartyVictories": 36
+  },
+  "checks": {
+    "command": "node --test tests/expansion-enemies.test.js",
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "whitespaceCheck": "git diff --check",
+    "whitespaceCheckPassed": true,
+    "assertions": [
+      "Exact forty unique factual contextual enemy identities, all absent from the existing sixteen.",
+      "Existing source IDs and record descriptions/conditions preserved; no catalogue modification.",
+      "Deeply frozen, bounded data; no reward, recruitment or narrative result fields.",
+      "Four DLC records closed independently of broad campaign-period availability.",
+      "Canonical occurrence checked across every published work/period; no prologue or multiplayer opening.",
+      "No named powers, camouflage, boss phases or encounter outcome inferred from role labels.",
+      "Every open sample acts and damages an abstract target through the native combat engine.",
+      "Every open sample can be defeated using only real shoot orders from three abstract test actors."
+    ]
+  },
+  "protocol": {
+    "enemyAction": {
+      "mode": "active",
+      "difficulty": "normal (native default)",
+      "seed": 41,
+      "ticks": 100,
+      "deltaSeconds": 0.25,
+      "target": {
+        "id": "test-target",
+        "hp": 2500,
+        "shield": 0,
+        "defense": 0,
+        "powers": []
+      }
+    },
+    "partyVictory": {
+      "mode": "active",
+      "difficulty": "normal (native default)",
+      "seed": 13,
+      "maxTicks": 1500,
+      "deltaSeconds": 0.1,
+      "partySize": 3,
+      "partyDefinition": {
+        "hp": 260,
+        "shield": 45,
+        "attack": 20,
+        "defense": 5,
+        "speed": 1,
+        "powers": []
+      },
+      "orders": [
+        "shoot"
+      ],
+      "stateMutation": "Native tickBattle and performAction only; no direct hp, atb or winner assignments."
+    },
+    "closedProfiles": "The four blocked DLC samples are inspected as immutable data only; no combat execution is claimed for them."
+  },
+  "limitations": [
+    "These are forty new identity profiles, not forty canonical encounters or completed source missions.",
+    "Stats, shields, cadence and basic shoot/strike actions are ATB adaptation values.",
+    "Published secondary catalogue evidence identifies enemies; no new primary kit, numeric or model validation was performed.",
+    "DLC entitlement is not represented by the independent main-period context. Vasir, the yahg Broker, Rampart and Adjutant remain closed.",
+    "The piloted Atlas is not treated as an autonomous synthetic target, avoiding an unsupported automatic hacking classification.",
+    "Camouflage, flight, physical shields, unit support, giant scale and boss phases remain explicitly incomplete where applicable.",
+    "No campaign, chronicle story, source catalogue, existing opponent, UI, save format or combat source was modified by this task.",
+    "No rendered art, animation, audio, browser integration or artistic 1:1 fidelity was verified."
+  ],
+  "artifacts": [
+    {
+      "path": "src/expansion-enemies.js",
+      "sha256": "e24f81d54aeda3c178f9d4f91f95ce2ef957ff5ce1031a8b9bfff4f5de90b8c3"
+    },
+    {
+      "path": "tests/expansion-enemies.test.js",
+      "sha256": "9b7f64775eb65742bd0f3af9fdea73ff43e06c3e212de26aa5773e63a9e9079a"
+    },
+    {
+      "path": "src/universe-data.js",
+      "sha256": "f168c0264a6206f4e7965e66dfe4df8b793037e978e9c1e1bb089a872d27933a"
+    },
+    {
+      "path": "src/universe-opponents.js",
+      "sha256": "1ac2f66218ae205bfe89e4db3e907ab48c94b1adbc88d469108ff70336f2d0e7"
+    },
+    {
+      "path": "src/combat.js",
+      "sha256": "b91a02c8d2a6334c2f6a2a36b695a9ee96e4784636b8a0402f7cc8cc07d74ed7"
+    },
+    {
+      "path": "docs/universe/catalogs/ME2.json",
+      "sha256": "cd9e23766eeb6a385141130dd2a32933decb7619444021e07601c7b21bb9b8e0"
+    },
+    {
+      "path": "docs/universe/catalogs/ME3.json",
+      "sha256": "1cb08754410020f96f23ed67df70c1bba5bdc79ba82e2c8bdd4c8adcfad04dee"
+    },
+    {
+      "path": "docs/universe/catalogs/MEA.json",
+      "sha256": "5b82ea5fefc6b4479c5a07d0d3b52032d5f0d17e7f48f0d896525f06ed62b9b1"
+    }
+  ],
+  "documentarySources": [
+    {
+      "id": "ME2-SRC-COLLECTOR",
+      "title": "Collector",
+      "url": "https://masseffect.fandom.com/wiki/Collector",
+      "kind": "wiki",
+      "scope": "Collecteurs et principaux types",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME2-SRC-ENEMIES",
+      "title": "Prison Guard — index de bestiaire ME2",
+      "url": "https://masseffect.fandom.com/wiki/Prison_Guard",
+      "kind": "wiki",
+      "scope": "Index des unités de factions en pied de page",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME2-SRC-TALI",
+      "title": "Dossier: Tali",
+      "url": "https://masseffect.fandom.com/wiki/Dossier%3A_Tali",
+      "kind": "wiki",
+      "scope": "Haestrom et radiation solaire",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME2-SRC-SHADOW",
+      "title": "Lair of the Shadow Broker (mission)",
+      "url": "https://masseffect.fandom.com/wiki/Lair_of_the_Shadow_Broker_%28mission%29",
+      "kind": "wiki",
+      "scope": "Illium, Vasir, Hagalaz et yahg",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME3-SRC-OMEGA",
+      "title": "Omega: Aria T’Loak (Mass Effect 3)",
+      "url": "https://masseffect.fandom.com/wiki/Omega%3A_Aria_T%27Loak_%28Mass_Effect_3%29",
+      "kind": "wiki",
+      "scope": "Campagne DLC, Nyreen et Petrovsky",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME3-SRC-PHANTOM",
+      "title": "Phantom",
+      "url": "https://masseffect.fandom.com/wiki/Phantom",
+      "kind": "wiki",
+      "scope": "Unité Cerberus et index bestiaire",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME3-SRC-MARAUDER",
+      "title": "Marauder",
+      "url": "https://masseffect.fandom.com/wiki/Marauder",
+      "kind": "wiki",
+      "scope": "Unité Moissonneur et index bestiaire",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME3-SRC-RAVAGER",
+      "title": "Ravager",
+      "url": "https://masseffect.fandom.com/wiki/Ravager",
+      "kind": "wiki",
+      "scope": "Unité d’artillerie et index bestiaire",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "ME3-SRC-HARVESTER",
+      "title": "Harvester (enemy)",
+      "url": "https://masseffect.fandom.com/wiki/Harvester_%28enemy%29",
+      "kind": "wiki",
+      "scope": "Boss volant",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "MEA-SRC-MISSIONS",
+      "title": "Missions (Mass Effect: Andromeda)",
+      "url": "https://masseffect.fandom.com/wiki/Missions_%28Mass_Effect%3A_Andromeda%29",
+      "kind": "wiki",
+      "scope": "Index des missions et catégories de journal",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "MEA-SRC-AGENT",
+      "title": "Agent",
+      "url": "https://masseffect.fandom.com/wiki/Agent",
+      "kind": "wiki",
+      "scope": "Unité hors-la-loi et index bestiaire",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "MEA-SRC-CHOSEN",
+      "title": "Chosen",
+      "url": "https://masseffect.fandom.com/wiki/Chosen",
+      "kind": "wiki",
+      "scope": "Unité kett et index bestiaire",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "MEA-SRC-ASSEMBLER",
+      "title": "Assembler",
+      "url": "https://masseffect.fandom.com/wiki/Assembler",
+      "kind": "wiki",
+      "scope": "Unité reliquate et renforts",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    },
+    {
+      "id": "MEA-SRC-CORA-LOYAL",
+      "title": "Cora Harper: At Duty’s Edge",
+      "url": "https://masseffect.fandom.com/wiki/Cora_Harper%3A_At_Duty%27s_Edge",
+      "kind": "wiki",
+      "scope": "Arche asari et Sarissa",
+      "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+    }
+  ],
+  "records": [
+    {
+      "recordId": "ME2-ENM-BS-TROOPER",
+      "name": "Blue Suns Trooper",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "mercenary-infantry",
+      "simulation": {
+        "hp": 135,
+        "shield": 10,
+        "attack": 13,
+        "defense": 3,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armement et tactiques propres au Blue Suns Trooper non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-BS-HEAVY",
+      "name": "Blue Suns Heavy",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "mercenary-heavy",
+      "simulation": {
+        "hp": 185,
+        "shield": 20,
+        "attack": 16,
+        "defense": 5,
+        "speed": 0.8,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Arme lourde, projectiles et protections du modèle original non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-EC-ENGINEER",
+      "name": "Eclipse Engineer",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "mercenary-engineer",
+      "simulation": {
+        "hp": 135,
+        "shield": 20,
+        "attack": 12,
+        "defense": 3,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Actions de soutien et éventuels dispositifs de l’ingénieur non attribués sans kit vérifié.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-EC-VANGUARD",
+      "name": "Eclipse Vanguard",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "biotic-mercenary",
+      "simulation": {
+        "hp": 160,
+        "shield": 25,
+        "attack": 15,
+        "defense": 4,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le rôle biotique ne suffit pas à attribuer une liste de pouvoirs ; aucun pouvoir nommé n’est activé.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-EC-COMMANDO",
+      "name": "Eclipse Commando",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "mercenary-commando",
+      "simulation": {
+        "hp": 175,
+        "shield": 25,
+        "attack": 16,
+        "defense": 4,
+        "speed": 0.95,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armes et capacités propres à la combattante Eclipse non reconstituées.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-BP-WARRIOR",
+      "name": "Blood Pack Warrior",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "krogan-mercenary",
+      "simulation": {
+        "hp": 230,
+        "shield": 0,
+        "attack": 18,
+        "defense": 6,
+        "speed": 0.8,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Kit krogan, réactions et protections du Warrior non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-BP-PYRO",
+      "name": "Blood Pack Pyro",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-ENEMIES"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "incendiary-mercenary",
+      "simulation": {
+        "hp": 165,
+        "shield": 10,
+        "attack": 15,
+        "defense": 4,
+        "speed": 0.9,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "L’armement incendiaire est seulement documenté ; le tir ATB générique ne produit ni jet de flamme ni brûlure.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-GETH-ROCKET",
+      "name": "Geth Rocket Trooper",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-TALI"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "synthetic-rocket-infantry",
+      "simulation": {
+        "hp": 150,
+        "shield": 20,
+        "attack": 16,
+        "defense": 3,
+        "speed": 0.9,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le tir générique ne reproduit ni trajectoire de roquette ni explosion de zone.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-GETH-HUNTER",
+      "name": "Geth Hunter",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-TALI"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "cloaked-synthetic",
+      "simulation": {
+        "hp": 165,
+        "shield": 25,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1.15,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Camouflage et comportement du Hunter non simulés.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-GETH-PRIME",
+      "name": "Geth Prime",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-TALI"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "heavy-synthetic",
+      "simulation": {
+        "hp": 290,
+        "shield": 45,
+        "attack": 20,
+        "defense": 7,
+        "speed": 0.65,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armement et soutien propres à la plateforme lourde non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-GETH-COLOSSUS",
+      "name": "Geth Colossus",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-TALI"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "synthetic-boss",
+      "simulation": {
+        "hp": 460,
+        "shield": 65,
+        "attack": 23,
+        "defense": 9,
+        "speed": 0.55,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": true,
+        "powers": []
+      },
+      "limitations": [
+        "La rencontre de Haestrom, son terrain, ses objectifs et ses phases ne sont pas rejoués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-ABOMINATION",
+      "name": "Abomination",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-COLLECTOR"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "collector-creature",
+      "simulation": {
+        "hp": 115,
+        "shield": 0,
+        "attack": 13,
+        "defense": 2,
+        "speed": 1.15,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Capacités propres à l’Abomination non spécifiées ici ; aucun effet secondaire ou de mort n’est appliqué.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-SCION",
+      "name": "Scion",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-COLLECTOR"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "heavy-collector-creature",
+      "simulation": {
+        "hp": 270,
+        "shield": 15,
+        "attack": 20,
+        "defense": 6,
+        "speed": 0.65,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Attaques, portée et protections propres au Scion non reconstituées.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-COLLECTOR-GUARDIAN",
+      "name": "Collector Guardian",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-COLLECTOR"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "collector-protector",
+      "simulation": {
+        "hp": 185,
+        "shield": 30,
+        "attack": 15,
+        "defense": 4,
+        "speed": 0.9,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le comportement protecteur de l’unité n’est pas reproduit ; le bouclier ATB n’en constitue pas une spécification.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-VASIR",
+      "name": "Tela Vasir — boss",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-SHADOW"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": false,
+      "blockedReason": "Accès au DLC Lair of the Shadow Broker non attesté par ce contexte de simulation ; profil consultable seulement.",
+      "role": "asari-boss",
+      "simulation": {
+        "hp": 380,
+        "shield": 55,
+        "attack": 21,
+        "defense": 7,
+        "speed": 1.1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": true,
+        "powers": []
+      },
+      "limitations": [
+        "La confrontation contre Shepard et Liara, ses déplacements et son kit ne sont pas rejoués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-BROKER",
+      "name": "Courtier de l’Ombre — yahg",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-SHADOW"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "executable": false,
+      "blockedReason": "Accès au DLC Lair of the Shadow Broker non attesté par ce contexte de simulation ; profil consultable seulement.",
+      "role": "yahg-boss",
+      "simulation": {
+        "hp": 450,
+        "shield": 60,
+        "attack": 23,
+        "defense": 9,
+        "speed": 0.65,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": true,
+        "powers": []
+      },
+      "limitations": [
+        "Le combat du yahg, ses protections et ses phases ne sont pas reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-CENTURION",
+      "name": "Cerberus Centurion",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-PHANTOM"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "cerberus-infantry",
+      "simulation": {
+        "hp": 160,
+        "shield": 25,
+        "attack": 15,
+        "defense": 4,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armement et tactiques du Centurion non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-ENGINEER",
+      "name": "Cerberus Combat Engineer",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-PHANTOM"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "cerberus-engineer",
+      "simulation": {
+        "hp": 140,
+        "shield": 20,
+        "attack": 12,
+        "defense": 3,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le soutien de l’ingénieur et ses constructions ne sont pas simulés ; aucune tourelle n’est invoquée.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-GUARDIAN",
+      "name": "Cerberus Guardian",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-PHANTOM"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "shield-carrier",
+      "simulation": {
+        "hp": 190,
+        "shield": 0,
+        "attack": 15,
+        "defense": 7,
+        "speed": 0.75,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le bouclier porté, sa direction et ses ouvertures ne sont pas simulés par la défense numérique ATB.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-NEMESIS",
+      "name": "Cerberus Nemesis",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-PHANTOM"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "cerberus-marksman",
+      "simulation": {
+        "hp": 135,
+        "shield": 20,
+        "attack": 18,
+        "defense": 3,
+        "speed": 1.05,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Distance, visée et comportement de tireuse de précision non simulés.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-PHANTOM",
+      "name": "Cerberus Phantom",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-PHANTOM"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "cerberus-close-assault",
+      "simulation": {
+        "hp": 185,
+        "shield": 30,
+        "attack": 18,
+        "defense": 4,
+        "speed": 1.2,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "L’assaut rapproché est générique ; armes, défenses et enchaînements propres à la Phantom ne sont pas reproduits.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-ATLAS",
+      "name": "Atlas",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne ; variantes de pilotage à vérifier.",
+      "sourceIds": [
+        "ME3-SRC-PHANTOM"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "piloted-mech",
+      "simulation": {
+        "hp": 380,
+        "shield": 60,
+        "attack": 22,
+        "defense": 8,
+        "speed": 0.55,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Cockpit, pilotage, sous-cibles et armement du méca ne sont pas simulés ; aucune prise de contrôle n’est accordée.",
+        "Le méca piloté n’est pas classé comme cible synthétique autonome par cette simulation.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-CANNIBAL",
+      "name": "Cannibal",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-MARAUDER"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "reaper-infantry",
+      "simulation": {
+        "hp": 155,
+        "shield": 0,
+        "attack": 14,
+        "defense": 3,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Actions et réactions propres au Cannibal non reconstituées.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-RAVAGER",
+      "name": "Ravager",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-RAVAGER"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "reaper-artillery",
+      "simulation": {
+        "hp": 255,
+        "shield": 10,
+        "attack": 20,
+        "defense": 6,
+        "speed": 0.65,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le rôle d’artillerie n’est représenté que par des réglages ATB ; trajectoires et portée ne sont pas simulées.",
+        "Le lien avec les petites unités Swarmer n’entraîne aucune apparition automatique.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-SWARMER",
+      "name": "Swarmer",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Campagne et simulation.",
+      "sourceIds": [
+        "ME3-SRC-RAVAGER"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "small-reaper-creature",
+      "simulation": {
+        "hp": 80,
+        "shield": 0,
+        "attack": 11,
+        "defense": 1,
+        "speed": 1.3,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Cette cible isolée ne reproduit ni groupe de Swarmers ni apparition associée à un Ravager.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-HARVESTER",
+      "name": "Harvester",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "Rencontres terrestres prévues.",
+      "sourceIds": [
+        "ME3-SRC-HARVESTER"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "flying-creature",
+      "simulation": {
+        "hp": 420,
+        "shield": 35,
+        "attack": 22,
+        "defense": 8,
+        "speed": 0.55,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Vol, relief, mouvements et rencontres terrestres du Harvester non reproduits.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-RAMPART",
+      "name": "Rampart Mech",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "DLC Omega.",
+      "sourceIds": [
+        "ME3-SRC-OMEGA"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": false,
+      "blockedReason": "Accès au DLC Omega non attesté par ce contexte de simulation ; profil consultable seulement.",
+      "role": "omega-mech",
+      "simulation": {
+        "hp": 210,
+        "shield": 30,
+        "attack": 17,
+        "defense": 5,
+        "speed": 0.9,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le robot d’Omega conserve une identité distincte ; son armement et ses capacités ne sont pas reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "ME3-ENM-ADJUTANT",
+      "name": "Adjutant",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "conditions": "DLC Omega.",
+      "sourceIds": [
+        "ME3-SRC-OMEGA"
+      ],
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "executable": false,
+      "blockedReason": "Accès au DLC Omega non attesté par ce contexte de simulation ; profil consultable seulement.",
+      "role": "omega-creature",
+      "simulation": {
+        "hp": 245,
+        "shield": 15,
+        "attack": 19,
+        "defense": 6,
+        "speed": 1.05,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Déplacements et capacités propres à la créature d’Omega non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-ANOINTED",
+      "name": "Kett Anointed",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Campagne / multi selon rencontre.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "kett-infantry",
+      "simulation": {
+        "hp": 180,
+        "shield": 20,
+        "attack": 16,
+        "defense": 4,
+        "speed": 0.9,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armement et comportement propres à l’Anointed non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-DESTINED",
+      "name": "Kett Destined",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Campagne / multi selon rencontre.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "kett-support",
+      "simulation": {
+        "hp": 165,
+        "shield": 25,
+        "attack": 14,
+        "defense": 4,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Actions de soutien du Destined non attribuées faute de kit vérifié.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-WRAITH",
+      "name": "Kett Wraith",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Campagne / multi selon rencontre.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "cloaked-kett-creature",
+      "simulation": {
+        "hp": 150,
+        "shield": 0,
+        "attack": 15,
+        "defense": 3,
+        "speed": 1.2,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Camouflage non simulé ; le contact ATB générique ne constitue pas le kit de la créature.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-FIEND",
+      "name": "Kett Fiend",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Campagne / multi selon rencontre.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "large-kett-creature",
+      "simulation": {
+        "hp": 295,
+        "shield": 0,
+        "attack": 21,
+        "defense": 7,
+        "speed": 0.7,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "La taille, les mouvements et les attaques propres à la grande créature ne sont pas simulés.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-INVICTOR",
+      "name": "Invictor",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Defeating the Kett.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "named-kett-boss",
+      "simulation": {
+        "hp": 380,
+        "shield": 55,
+        "attack": 22,
+        "defense": 8,
+        "speed": 0.7,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": true,
+        "powers": []
+      },
+      "limitations": [
+        "Defeating the Kett, ses objectifs et les capacités du boss ne sont pas rejoués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-ARCHON-SWORD",
+      "name": "Archon’s Sword",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Rencontre de campagne.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "named-kett-opponent",
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 20,
+        "defense": 6,
+        "speed": 0.85,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "L’adversaire nommé n’est pas l’Archonte ; sa rencontre de campagne et son kit restent non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-VALIANT",
+      "name": "Valiant",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Rencontre liée à l’arche asari.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN",
+        "MEA-SRC-CORA-LOYAL"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "named-kett-opponent",
+      "simulation": {
+        "hp": 320,
+        "shield": 45,
+        "attack": 20,
+        "defense": 7,
+        "speed": 0.8,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "La rencontre liée à l’arche asari et ses conséquences ne sont pas rejouées ; aucun résultat de loyauté n’est accordé.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-BEHEMOTH",
+      "name": "Behemoth",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Rencontres de campagne / multi selon profil.",
+      "sourceIds": [
+        "MEA-SRC-CHOSEN"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "heavy-kett-creature",
+      "simulation": {
+        "hp": 330,
+        "shield": 0,
+        "attack": 22,
+        "defense": 8,
+        "speed": 0.65,
+        "synthetic": false,
+        "primaryAction": "strike",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Le contact ATB ne reproduit ni la morphologie ni les attaques propres au Behemoth.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-RAIDER",
+      "name": "Raider hors-la-loi",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Campagne / multi selon rencontre.",
+      "sourceIds": [
+        "MEA-SRC-AGENT"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "outlaw-infantry",
+      "simulation": {
+        "hp": 145,
+        "shield": 15,
+        "attack": 14,
+        "defense": 3,
+        "speed": 1,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armement et comportement propres au Raider non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-BERSERKER",
+      "name": "Berserker hors-la-loi",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Campagne / multi selon rencontre.",
+      "sourceIds": [
+        "MEA-SRC-AGENT"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "heavy-outlaw",
+      "simulation": {
+        "hp": 265,
+        "shield": 15,
+        "attack": 20,
+        "defense": 6,
+        "speed": 0.8,
+        "synthetic": false,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Armement, capacités et réactions propres au Berserker non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-NULLIFIER",
+      "name": "Nullifier",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Sites reliquats.",
+      "sourceIds": [
+        "MEA-SRC-ASSEMBLER"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "protected-remnant",
+      "simulation": {
+        "hp": 270,
+        "shield": 45,
+        "attack": 19,
+        "defense": 7,
+        "speed": 0.65,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Les protections de la machine ne sont pas reproduites par le simple bouclier numérique ATB.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-ARCHITECT",
+      "name": "Architecte reliquat",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "category": "enemies",
+      "availability": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "conditions": "Rencontres Eos/Voeld/Kadara/Elaaden à parametrer séparément.",
+      "sourceIds": [
+        "MEA-SRC-ASSEMBLER",
+        "MEA-SRC-MISSIONS"
+      ],
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "executable": true,
+      "blockedReason": null,
+      "role": "giant-remnant",
+      "simulation": {
+        "hp": 520,
+        "shield": 65,
+        "attack": 24,
+        "defense": 10,
+        "speed": 0.5,
+        "synthetic": true,
+        "primaryAction": "shoot",
+        "boss": false,
+        "powers": []
+      },
+      "limitations": [
+        "Les rencontres d’Eos, Voeld, Kadara et Elaaden restent distinctes et ne sont pas fusionnées en mission.",
+        "Échelle, sous-cibles, phases et déplacement de la machine géante non reconstitués.",
+        "Aucun pouvoir nommé attribué ; le kit original, les animations et le modèle visuel ne sont pas reconstitués.",
+        "Aucun recrutement, choix narratif, récompense ou résultat de campagne n’est accordé."
+      ]
+    }
+  ],
+  "independentReview": {
+    "reviewer": "/root/excel_inventory",
+    "mode": "Read-only review of the forty selected profiles against the published registry and existing sixteen opponents",
+    "passed": true,
+    "findings": [],
+    "verified": [
+      "All forty enemy IDs factual, contextual and linked to existing source IDs.",
+      "No duplicate of the sixteen existing opponents.",
+      "Original source IDs and conditions preserved in the documentary link.",
+      "Vasir/Broker Shadow Broker and Rampart/Adjutant Omega access stays closed; broad main periods do not imply DLC entitlement.",
+      "All powers arrays empty; generic actions and numeric values explicitly adapted.",
+      "Colossus, Invictor and Architect remain independent samples without source phases, mission or original scale."
+    ],
+    "primaryKitVerificationClaimed": false
+  }
+}
