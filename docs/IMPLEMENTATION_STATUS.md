@@ -2,7 +2,9 @@
 
 Mise à jour : **28 octobre 2026**. La PR de personnalisation a été fusionnée dans main `6182756578e50f44d668b3c0a2ac1561a8e0275e`. Le [lot Simulation](EXPANSION_SIMULATIONS.md) ajoute 200 fiches d’étude, 145 épreuves possibles et 55 consultations fermées, sans modifier les catalogues et classeurs historiques. Ses [preuves finales](qa/expansion-report.json) restent distinctes de la synchronisation de la PR.
 
-Les chiffres et preuves ci-dessous décrivent la livraison de personnalisation du 26 octobre avant ce nouveau lot.
+Le [second lot Simulation](EXPANSION2_SIMULATIONS.md) ajoute ensuite 176 références distinctes, dont 97 exercices et 79 consultations. Le cumul est de 376 références et 242 exercices. Les neuf bancs d’équipement utilisent les ordres natifs ; les 145 résultats publiés du premier lot sont inchangés. Voir les [preuves du second lot](qa/expansion2-report.json).
+
+Les chiffres et preuves ci-dessous décrivent la livraison de personnalisation du 26 octobre avant ces lots.
 
 La branche 0.3.0 conserve les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.
 

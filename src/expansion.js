@@ -9,6 +9,13 @@ import { EXPANSION_ARMOR } from './expansion-armor.js';
 import { EXPANSION_WEAPONS } from './expansion-weapons.js';
 import { EXPANSION_FLEET } from './expansion-fleet.js';
 import { EXPANSION_ENEMIES } from './expansion-enemies.js';
+import { EXPANSION2_CHARACTERS } from './expansion2-characters.js';
+import { EXPANSION2_ARMOR } from './expansion2-armor.js';
+import { EXPANSION2_WEAPONS } from './expansion2-weapons.js';
+import { EXPANSION2_FLEET } from './expansion2-fleet.js';
+import { EXPANSION2_ENEMIES } from './expansion2-enemies.js';
+import { getUniverseEquipment } from './universe-equipment.js';
+import { canRunExpansionBench, runExpansionBench } from './expansion-bench.js';
 
 const freeze = value => {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -28,7 +35,14 @@ const sourceValid = record => {
   return !!work && record.fact && record.sourceIds.length > 0
     && record.sourceIds.every(id => work.sources.some(source => source.id === id));
 };
-const entries = EXPANSION_GROUPS.flatMap(group => group.entries.map(entry => {
+export const EXPANSION2_GROUPS = freeze([
+  { id: 'actor', label: 'Personnages et PNJ', entries: EXPANSION2_CHARACTERS },
+  { id: 'armor', label: 'Équipements et modules', entries: EXPANSION2_ARMOR },
+  { id: 'weapon', label: 'Armes', entries: EXPANSION2_WEAPONS },
+  { id: 'fleet', label: 'Vaisseaux et véhicules', entries: EXPANSION2_FLEET },
+  { id: 'enemy', label: 'Ennemis et boss', entries: EXPANSION2_ENEMIES },
+]);
+const compileGroups = groups => groups.flatMap(group => group.entries.map(entry => {
   const record = getUniverseRecord(entry.recordId);
   if (!record || entry.mode !== group.id) throw new Error(`Invalid study identity: ${entry.recordId}`);
   return freeze({ ...entry, id: entry.recordId, record,
@@ -38,9 +52,15 @@ const entries = EXPANSION_GROUPS.flatMap(group => group.entries.map(entry => {
     limitations: [...entry.limitations], notes: [...entry.notes],
   });
 }));
+const entries = compileGroups(EXPANSION_GROUPS);
+export const EXPANSION2_ENTRIES = freeze(compileGroups(EXPANSION2_GROUPS));
+export const EXPANSION_ALL_ENTRIES = freeze([...entries, ...EXPANSION2_ENTRIES]);
+export const EXPANSION_ALL_GROUPS = freeze(EXPANSION2_GROUPS.map(group => ({ id: group.id, label: group.label, entries: EXPANSION_ALL_ENTRIES.filter(entry => entry.mode === group.id) })));
+export const EXPANSION_BATCHES = freeze([{ id: 'lot1', label: 'Lot 1', count: entries.length }, { id: 'lot2', label: 'Lot 2', count: EXPANSION2_ENTRIES.length }]);
+if (new Set(EXPANSION_ALL_ENTRIES.map(entry => entry.id)).size !== EXPANSION_ALL_ENTRIES.length) throw new Error('Duplicate study identity across batches');
 if (new Set(entries.map(entry => entry.id)).size !== entries.length) throw new Error('Duplicate study identity');
 export const EXPANSION_ENTRIES = freeze(entries);
-const byId = new Map(entries.map(entry => [entry.id, entry]));
+const byId = new Map(EXPANSION_ALL_ENTRIES.map(entry => [entry.id, entry]));
 
 export function getExpansionEntry(id, rawContext) {
   const context = normalizeContext(rawContext), entry = typeof id === 'string' && byId.get(id);
@@ -48,10 +68,11 @@ export function getExpansionEntry(id, rawContext) {
 }
 
 /** Inspection is contextual too, including profiles whose mechanics stay closed. */
-export function listExpansionEntries(rawContext, mode = 'all') {
+export function listExpansionEntries(rawContext, mode = 'all', batch = 'lot1') {
   const context = normalizeContext(rawContext);
-  if (!context || mode !== 'all' && !EXPANSION_GROUPS.some(group => group.id === mode)) return [];
-  return entries.filter(entry => (mode === 'all' || entry.mode === mode)
+  if (!context || !['lot1', 'lot2', 'all'].includes(batch) || mode !== 'all' && !EXPANSION_GROUPS.some(group => group.id === mode)) return [];
+  const selected = batch === 'lot1' ? entries : batch === 'lot2' ? EXPANSION2_ENTRIES : EXPANSION_ALL_ENTRIES;
+  return selected.filter(entry => (mode === 'all' || entry.mode === mode)
     && canAccessContent(entry.id, context).ok);
 }
 
@@ -97,6 +118,15 @@ function validatedStats(entry) {
       } : {}) });
     else if (stats.primaryAction === 'strike' && stats.weaponSystem === 'melee') {
       result.primaryAction = 'strike'; result.weaponType = 'melee';
+    } else if (stats.equipmentProfileId === entry.id) {
+      const item = getUniverseEquipment(entry.id);
+      if (!item?.runtimeSupported || !item.fact || item.kind !== 'weapon' || item.category !== 'weapons'
+        || item.weaponSystem !== 'thermal-clip' || item.weaponProfileId
+        || item.requiredCapabilities?.length !== 1 || item.requiredCapabilities[0] !== 'thermal-clip'
+        || !Number.isInteger(item.magazineCapacity) || item.magazineCapacity < 1
+        || !Number.isInteger(item.ammo) || !Number.isInteger(item.reserveAmmo)
+        || item.requiresEdition && entry.constraints?.editionProfile !== item.requiredEditionProfile) return null;
+      Object.assign(result, Object.fromEntries(['weaponType', 'weaponSystem', 'magazineCapacity', 'ammo', 'reserveAmmo'].map(key => [key, item[key]])));
     } else return null;
   }
   return result;
@@ -113,7 +143,9 @@ export function canRunExpansionEntry(id, rawContext, rawOptions) {
     reason: `Choisissez le profil ${edition === 'legendary' ? 'Legendary Edition' : 'Deluxe'} pour cet essai indépendant.` };
   if (options.edition === 'legendary' && !['ME2', 'ME3'].includes(context.mediaId)
     || options.edition === 'deluxe' && context.mediaId !== 'MEA') return { ok: false, reason: 'Ce profil d’édition ne correspond pas à cette œuvre.' };
+  if (options.edition === 'legendary' && context.periodId === 'me3-multiplayer') return { ok: false, reason: 'Le multijoueur de ME3 appartient à l’édition originale, pas à Legendary Edition.' };
   if (!validatedStats(entry)) return { ok: false, reason: 'Le mécanisme de cette fiche reste en consultation uniquement.' };
+  if (entry.bench) return canRunExpansionBench(entry, context);
   return { ok: true, reason: null };
 }
 
@@ -180,11 +212,12 @@ export function runExpansionTrial(id, rawContext, rawOptions) {
   const access = canRunExpansionEntry(id, rawContext, rawOptions);
   if (!access.ok) return access;
   const entry = getExpansionEntry(id, rawContext), options = normalizeOptions(rawOptions), stats = validatedStats(entry);
-  const result = entry.mode === 'fleet' ? logistics(stats, options)
+  const result = entry.bench ? runExpansionBench(entry, normalizeContext(rawContext), options)
+    : entry.mode === 'fleet' ? logistics(stats, options)
     : duel({ ...stats, id: `study:${entry.id}`, catalogId: entry.id, name: entry.record.name,
       mediaId: entry.record.mediaId }, entry.mode, options);
   let control = null;
-  if (entry.mode === 'armor') control = duel({ ...TOOL, hp: 120, maxHp: 120, shield: 30, maxShield: 30,
+  if (entry.mode === 'armor' && !entry.bench) control = duel({ ...TOOL, hp: 120, maxHp: 120, shield: 30, maxShield: 30,
     attack: 16, defense: 4, speed: 1, id: 'study:baseline', name: 'Porteur témoin sans pièce source' }, 'armor', options);
   return { ok: true, recordId: entry.id, context: normalizeContext(rawContext), options,
     statsBasis: 'ATB adaptation', partial: true, result, control };

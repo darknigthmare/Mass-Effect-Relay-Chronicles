@@ -1,0 +1,1591 @@
+{
+  "schemaVersion": 1,
+  "id": "expansion2-equipment-benches",
+  "declaredTaskBaseline": "64c305f",
+  "generatedAt": "2026-10-28T09:37:37.327Z",
+  "scope": "Thirty new contextual equipment study references, not forty armours, newly established canonical facts or thirty newly unlocked original mechanisms.",
+  "status": "data-and-contract-tests-passed-native-service-integration-pending",
+  "globalFidelityCertified": false,
+  "counts": {
+    "remainingFactualEquipment": 35,
+    "remainingContextualEquipment": 34,
+    "reservedForFleet": 4,
+    "selected": 30,
+    "uniqueIds": 30,
+    "newNamedArmours": 0,
+    "benchDefinitions": 9,
+    "inspectionOnly": 21,
+    "overlapWithFirst200": 0
+  },
+  "inventoryExclusions": {
+    "fleet": [
+      "ME2-EQP-NORMANDY-ARMOR",
+      "ME2-EQP-NORMANDY-SHIELD",
+      "ME2-EQP-NORMANDY-GUN",
+      "MEA-EQP-NOMAD-SKINS"
+    ],
+    "noPublishedSegment": [
+      "PL-REF-MAKO"
+    ]
+  },
+  "files": {
+    "src/expansion2-armor.js": "b470732bef5b085196d73302e376850588624d2752b3b64fbcd8a61278a5968f",
+    "tests/expansion2-armor.test.js": "513eca98f72febee9f93ea0ca22f23b12c3a8144bd2d0070867340a6ecd278aa"
+  },
+  "verification": {
+    "command": "node --test tests/expansion2-armor.test.js",
+    "passed": 8,
+    "failed": 0,
+    "scope": "Data identity, exact canonical metadata, exclusion/non-overlap, immutable controls, native parent compatibility and narrow historical-source references. Does not execute the parent-owned bench service or browser.",
+    "nativeBenchEndToEndValidated": false
+  },
+  "fixture": {
+    "hp": 120,
+    "shield": 30,
+    "attack": 16,
+    "defense": 4,
+    "speed": 1,
+    "basis": "Absolute abstract fixture budget, not bonuses to named armour. A bench must execute its explicit native mechanism instead of a generic armour duel."
+  },
+  "nativeContracts": [
+    {
+      "recordId": "EQP-omni-outil",
+      "kind": "tool",
+      "parentRecordId": "PWR-surcharge",
+      "equipmentId": "omni-tool-upgraded",
+      "actionId": "overload"
+    },
+    {
+      "recordId": "EQP-amplificateur-biotique",
+      "kind": "tool",
+      "parentRecordId": "PWR-projection",
+      "equipmentId": "biotic-amp-upgraded",
+      "actionId": "throw"
+    },
+    {
+      "recordId": "ME2-EQP-THERMAL",
+      "kind": "thermal-clips",
+      "parentRecordId": "ME2-WPN-AVENGER",
+      "actionId": "reload"
+    },
+    {
+      "recordId": "ME3-EQP-BARREL",
+      "kind": "weapon-mod",
+      "parentRecordId": "ME3-WPN-AVENGER",
+      "equipmentId": "ME3-EQP-BARREL",
+      "actionId": "shoot"
+    },
+    {
+      "recordId": "ME3-EQP-MAGAZINE",
+      "kind": "weapon-mod",
+      "parentRecordId": "ME3-WPN-AVENGER",
+      "equipmentId": "ME3-EQP-MAGAZINE",
+      "actionId": "reload"
+    },
+    {
+      "recordId": "ME3-EQP-ULTRALIGHT",
+      "kind": "weapon-mod",
+      "parentRecordId": "ME3-WPN-SHURIKEN",
+      "equipmentId": "ME3-EQP-ULTRALIGHT",
+      "actionId": "overload"
+    },
+    {
+      "recordId": "ME3-EQP-GRENADE-STOCK",
+      "kind": "grenade-stock",
+      "parentRecordId": "ME3-POW-FRAG",
+      "actionId": "fragGrenade"
+    },
+    {
+      "recordId": "ME3-EQP-THERMAL",
+      "kind": "thermal-clips",
+      "parentRecordId": "ME3-WPN-AVENGER",
+      "actionId": "reload"
+    },
+    {
+      "recordId": "MEA-EQP-POWER-CELLS",
+      "kind": "power-cells",
+      "parentRecordId": "MEA-POW-FRAG",
+      "actionId": "fragGrenade"
+    }
+  ],
+  "primaryEvidenceReused": {
+    "reportPath": "docs/qa/chronicle-specialist-reference-report.json",
+    "reportSha256": "071c291d5038689ff749fe826874c4c96d0b44e2dcfcfa7e7a463e02db6dca59",
+    "corroboratingReportPath": "docs/qa/chronicle-support-reference-report.json",
+    "corroboratingReportSha256": "c7896d41033facaeb7c75616e5b5d688405d15bee40111ee6b2b6ca528470c0b",
+    "manualUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-andromeda-pc-en.pdf",
+    "manualSha256": "a5e3bfc40a63695fb20d8fcb2db4b590a6fa65bf24c90b01c9eae555190f817f",
+    "printedPage": 19,
+    "established": "Numbered powers use finite Power Cells replenished at ammo caches and have no recharge time; unnumbered powers use cooldown.",
+    "notEstablished": [
+      "Named power attribution",
+      "Initial or original cell counts",
+      "Original numerical grenade properties",
+      "ATB action economy",
+      "Special ammunition consumable duration or clip/shot consumption"
+    ],
+    "actionFixture": "MEA-POW-FRAG / fragGrenade is an existing ATB demonstration command, not a new primary certification that this named power uses the manual’s generic cell rule.",
+    "newNetworkRequests": 0,
+    "newPdfInspection": false
+  },
+  "limitations": [
+    "No edition entitlement, developer pack, new model or missing anatomy compatibility inferred.",
+    "The nine benches reuse two existing generic tools, three existing ME3 module effects and existing resource/action primitives; they are not nine newly certified original mechanics.",
+    "Unity currently implements the ME1 Spectre talent without a medi-gel dose; conscious-target medigel is a different action. ME2/ME3 rescue remains closed rather than silently borrowing either.",
+    "A scope cannot become a damage or defence bonus. Crafting augmentations, Fusion Mods, weapon mods, power cells and ammunition consumables remain distinct.",
+    "The historical five blocked ME2 armour-piece edition cases remain unresolved; no old module or lock was modified.",
+    "No catalogue, Excel, actor, old loadout, UI, combat source, source ID, historical status, art or campaign state changed by this owned module."
+  ],
+  "records": [
+    {
+      "recordId": "EQP-omni-outil",
+      "mediaId": "ME1",
+      "nature": "Établi",
+      "originalStatus": "Prototype",
+      "identityFact": "Interface technologique de l’équipier.",
+      "conditions": "",
+      "sourceIds": [
+        "ME1-MANUAL"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME1",
+          "periodIds": [
+            "me1"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/content-catalog.json",
+        "sourceIds": [
+          "ME1-MANUAL"
+        ],
+        "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+        "reference": "Manuel PC FR p.24 (PDF14), existence et rôle général de l’outil. Aucun fabricant, rang, prix ou chiffre original certifié.",
+        "continuityReferences": [
+          "Catalogue ME1 ; périmètre de la campagne de référence"
+        ]
+      },
+      "bench": {
+        "kind": "tool",
+        "parentRecordId": "PWR-surcharge",
+        "equipmentId": "omni-tool-upgraded",
+        "actionId": "overload"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Interface technologique de l’équipier.",
+        "Comparer Surcharge déjà maîtrisée sur une fixture technologique avec et sans l’outil générique amélioré existant.",
+        "Le multiplicateur technologique 1,15 est celui du prototype ; il ne renforce ni les tirs ni la biotique."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Le manuel ME1 p.24 établit le rôle général de l’outil, aucun fabricant, rang, prix ou coefficient original.",
+        "Le pouvoir est préappris par la fixture ; l’omni-outil n’accorde aucune compétence."
+      ]
+    },
+    {
+      "recordId": "EQP-amplificateur-biotique",
+      "mediaId": "ME1",
+      "nature": "Établi",
+      "originalStatus": "Prototype",
+      "identityFact": "Équipement réservé aux utilisateurs biotiques.",
+      "conditions": "",
+      "sourceIds": [
+        "ME1-MANUAL"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME1",
+          "periodIds": [
+            "me1"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/content-catalog.json",
+        "sourceIds": [
+          "ME1-MANUAL"
+        ],
+        "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
+        "reference": "Manuel PC FR p.24 (PDF14), existence et rôle général de l’outil. Aucun fabricant, rang, prix ou chiffre original certifié.",
+        "continuityReferences": [
+          "Catalogue ME1 ; périmètre de la campagne de référence"
+        ]
+      },
+      "bench": {
+        "kind": "tool",
+        "parentRecordId": "PWR-projection",
+        "equipmentId": "biotic-amp-upgraded",
+        "actionId": "throw"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Équipement réservé aux utilisateurs biotiques.",
+        "Comparer Projection déjà maîtrisée sur une fixture biotique avec et sans l’amplificateur générique amélioré existant.",
+        "Le multiplicateur biotique 1,15 est celui du prototype ; aucun avantage technologique ou de tir."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Le manuel ME1 p.24 atteste l’équipement biotique, pas les caractéristiques d’un modèle nommé.",
+        "L’amplificateur ne crée aucune aptitude biotique ; la fixture est déjà formée."
+      ]
+    },
+    {
+      "recordId": "ME2-EQP-MEDIGEL",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Le medi-gel permet de relever les équipiers.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "sourceIds": [
+          "ME2-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Medi-gel / Unity",
+        "continuityReferences": [
+          "Catalogue ME2 ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Réanimation ME2 avec dépense de médi-gel non raccordée à ce banc ; le talent Unity ME1 ne peut pas lui être substitué.",
+      "notes": [
+        "Le medi-gel permet de relever les équipiers.",
+        "Le catalogue distingue une ressource de secours permettant de relever les équipiers.",
+        "Unity natif est actuellement un talent Spectre sans dépense de dose ; medigel natif soigne un allié conscient."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucune réanimation gratuite, quantité, effet médical, recharge ou règle ME1 importée dans ME2."
+      ]
+    },
+    {
+      "recordId": "ME2-EQP-THERMAL",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Les armes conventionnelles emploient des clips.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS",
+        "ME2-SRC-MANUAL-FR"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "sourceIds": [
+          "ME2-SRC-WEAPONS",
+          "ME2-SRC-MANUAL-FR"
+        ],
+        "sourceUrl": "",
+        "reference": "Clips thermiques",
+        "continuityReferences": [
+          "Catalogue ME2 ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "thermal-clips",
+        "parentRecordId": "ME2-WPN-AVENGER",
+        "actionId": "reload"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Les armes conventionnelles emploient des clips.",
+        "Banc de recharge d’une arme ME2 conventionnelle explicitement choisie : Avenger.",
+        "Chargeur et réserve finie sont séparés ; une recharge transfère des unités disponibles et ne crée pas de munitions."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Le manuel ME2 français confirme le principe des dissipateurs amovibles, pas les capacités ATB choisies.",
+        "Les armes lourdes, armes à chaleur propre et règles de ramassage de chaque scène sont exclues."
+      ]
+    },
+    {
+      "recordId": "ME2-EQP-CELLS",
+      "mediaId": "ME2",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Les armes lourdes utilisent des cellules.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "sourceIds": [
+          "ME2-SRC-HEAVY"
+        ],
+        "sourceUrl": "",
+        "reference": "Cellules d’armes lourdes",
+        "continuityReferences": [
+          "Catalogue ME2 ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Aucun modèle lourd, coût de cellule ou comportement propre vérifié pour ce banc ; aucune conversion en clips conventionnels.",
+      "notes": [
+        "Les armes lourdes utilisent des cellules.",
+        "L’existence d’une réserve lourde ne fournit pas un système de tir complet ni une quantité originale."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Cellules d’armes lourdes ME2 distinctes des clips thermiques et des cellules de pouvoirs MEA."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-WEAPON-MODS",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Les armes reçoivent des modifications.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-EQUIP"
+        ],
+        "sourceUrl": "",
+        "reference": "Mods d’armes",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Cette fiche générale ne désigne aucun module précis ni compatibilité ; elle ne crée pas un quatrième module universel.",
+      "notes": [
+        "Les armes reçoivent des modifications.",
+        "Les bancs séparés Barrel, Magazine et Ultralight conservent leurs propres identifiants et restrictions."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun fabricant, rang, port supplémentaire ou parent d’arme déduit de cette entrée générale."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-BARREL",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Prototype",
+      "identityFact": "Famille de modification.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-EQUIP"
+        ],
+        "sourceUrl": "",
+        "reference": "Canon et dégâts — mod",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "weapon-mod",
+        "parentRecordId": "ME3-WPN-AVENGER",
+        "equipmentId": "ME3-EQP-BARREL",
+        "actionId": "shoot"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Famille de modification.",
+        "Comparer un tir d’Avenger ME3 conventionnel à clips, avec et sans la famille Barrel existante.",
+        "weaponDamageMultiplier 1,12 appartient au prototype et doit être appliqué une seule fois au tir."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun bonus d’attaque global, technologique ou biotique ; aucun profil d’arme spéciale ou d’une autre œuvre.",
+        "Famille seulement : modèle, fabricant, rang et bonus numérique original non certifiés."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-SCOPE",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Famille de modification.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-EQUIP"
+        ],
+        "sourceUrl": "",
+        "reference": "Lunette — mod",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Visée, zoom, précision et perception dans la fumée ne sont pas implémentés par ce banc ; aucun bonus de dégâts ou de défense ne les remplace.",
+      "notes": [
+        "Famille de modification.",
+        "La présence d’une famille de lunettes ne prouve ni un modèle particulier ni une compatibilité universelle."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun effet de couvert, de ciblage, de portée ou de visée originale certifié."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-MAGAZINE",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Prototype",
+      "identityFact": "Famille de modification.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-EQUIP"
+        ],
+        "sourceUrl": "",
+        "reference": "Chargeur — mod",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "weapon-mod",
+        "parentRecordId": "ME3-WPN-AVENGER",
+        "equipmentId": "ME3-EQP-MAGAZINE",
+        "actionId": "reload"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Famille de modification.",
+        "Comparer les réserves finies de l’Avenger ME3 avec et sans le module Magazine existant.",
+        "Dans le réglage ATB existant : capacité 18→23, réserve initiale 72→67 ; les 90 unités totales sont conservées."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Pas de remplissage gratuit, de réserve infinie ou de changement du système thermique.",
+        "Prototype limité au parent conventionnel à clips ; aucun rang ou chiffre original certifié."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-ULTRALIGHT",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Prototype",
+      "identityFact": "Famille de modification.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-EQUIP"
+        ],
+        "sourceUrl": "",
+        "reference": "Matériaux ultralégers — mod",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "weapon-mod",
+        "parentRecordId": "ME3-WPN-SHURIKEN",
+        "equipmentId": "ME3-EQP-ULTRALIGHT",
+        "actionId": "overload"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Famille de modification.",
+        "Parent explicite : mitraillette Shuriken ME3 conventionnelle à clips ; la fixture technologique connaît déjà Surcharge.",
+        "powerCooldownMultiplier 0,9 est le réglage existant : délai ATB 8→7,2 secondes, sans renforcer les dégâts."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun calcul du poids original ni effet sur une action sans recharge ; le module n’accorde pas Surcharge.",
+        "Aucun fusil d’assaut, modèle spécial, autre œuvre ou compatibilité universelle déduit."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-MEDIGEL",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Ressource de secours.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Medi-gel",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Le banc ne reconstitue pas encore les cibles relevables et la consommation de médi-gel ME3 ; aucun Unity ME1 de remplacement.",
+      "notes": [
+        "Ressource de secours.",
+        "La fiche atteste une ressource de secours ; elle ne fournit pas une table complète de traitement et de consommation."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucune valeur de soin, dose, réanimation ou recharge originale supposée."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-GRENADE-STOCK",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Plusieurs pouvoirs utilisent des grenades.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-POWERS"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-POWERS"
+        ],
+        "sourceUrl": "",
+        "reference": "Réserve de grenades",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "grenade-stock",
+        "parentRecordId": "ME3-POW-FRAG",
+        "actionId": "fragGrenade"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Plusieurs pouvoirs utilisent des grenades.",
+        "Banc de la commande ATB existante de fragmentation : réserve de grenades distincte du chargeur d’arme.",
+        "Les charges d’essai sont finies ; une réserve vide interdit un nouvel ordre et le temps ne la remplit pas."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Quantité, dégâts, cadence et zone ATB ne sont pas des valeurs originales certifiées.",
+        "Le banc ne reconstitue ni ramassage de mission, classe originale ni toutes les familles de grenades."
+      ]
+    },
+    {
+      "recordId": "ME3-EQP-THERMAL",
+      "mediaId": "ME3",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Munition commune aux armes compatibles.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "sourceIds": [
+          "ME3-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Clips thermiques",
+        "continuityReferences": [
+          "Catalogue ME3 ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "thermal-clips",
+        "parentRecordId": "ME3-WPN-AVENGER",
+        "actionId": "reload"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Munition commune aux armes compatibles.",
+        "Banc de recharge de l’Avenger ME3 conventionnel ; chargeur et réserve finie restent distincts.",
+        "La recharge native déplace les unités disponibles ; une arme à chaleur propre n’entre pas dans ce banc."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Pas de partage de munitions interœuvre ni de quantité originale certifiée.",
+        "Répartition des ramassages, acquisitions et règles des armes spéciales non reproduites."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-AUGMENT",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Modifications intégrées lors de fabrication.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-RESEARCH",
+        "MEA-SRC-ARMOR"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-RESEARCH",
+          "MEA-SRC-ARMOR"
+        ],
+        "sourceUrl": "",
+        "reference": "Augmentations de fabrication",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Aucune augmentation nommée, recette ou effet vérifié ; la fabrication n’est pas remplacée par un module équipé après coup.",
+      "notes": [
+        "Modifications intégrées lors de fabrication.",
+        "Les augmentations sont intégrées lors de la fabrication ; cette étape reste distincte des ports de modules."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucune augmentation générique inventée, recette, matériau, rang ou combinaison accordés."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-FUSION",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Modifications d’armure spécifiques.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-ARMOR"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-ARMOR"
+        ],
+        "sourceUrl": "",
+        "reference": "Mods de fusion",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "La famille ne donne aucun modèle de fusion ni compromis chiffré ; aucun module de défense générique ne lui est substitué.",
+      "notes": [
+        "Modifications d’armure spécifiques.",
+        "Les modules de fusion sont distincts des modules d’arme et des augmentations de fabrication."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun modèle précis, avantage, contrepartie ou compatibilité d’armure originale déduit."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-WEAPON-MODS",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Modifications équipables.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS",
+        "MEA-SRC-LOADOUT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-WEAPONS",
+          "MEA-SRC-LOADOUT"
+        ],
+        "sourceUrl": "",
+        "reference": "Mods d’armes",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Entrée générale sans module nommé ni parent compatible établi ; aucun receiver, canon ou chargeur MEA inventé par analogie avec ME3.",
+      "notes": [
+        "Modifications équipables.",
+        "L’existence de modifications équipables ne suffit pas à créer des modèles précis ou des statistiques."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun nouveau port, fabricant, rang, compatibilité universelle ou module ME3 transféré dans MEA."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-WEIGHT",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "L’équipement affecte le profil de jeu.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-LOADOUT",
+        "MEA-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-LOADOUT",
+          "MEA-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Masse du loadout",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Table des masses et relation complète avec les recharges non reconstituées ; aucune formule originale ou bonus de défense déduit.",
+      "notes": [
+        "L’équipement affecte le profil de jeu.",
+        "La fiche atteste que l’équipement affecte le profil de jeu, sans fournir une formule complète de poids."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun Ultralight ME3 transféré, masse de modèle ou courbe de récupération originale simulés."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-AMMO-FIRE",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "MEA utilise des consommables de munitions.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Munitions incendiaires — consommable",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Durée, nombre de tirs ou de clips et consommation de ce consommable MEA non établis ; aucun mode-pouvoir persistant de ME2/ME3 importé.",
+      "notes": [
+        "MEA utilise des consommables de munitions.",
+        "Le manuel MEA décrit un onglet de consommables mais ne spécifie pas la règle de ce type de munition."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun feu, gel, multiplicateur, réserve ou règle de Power Cells déduit de son seul nom."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-AMMO-CRYO",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Type de consommable.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Munitions cryogéniques — consommable",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Durée, nombre de tirs ou de clips et consommation de ce consommable MEA non établis ; aucun mode-pouvoir persistant de ME2/ME3 importé.",
+      "notes": [
+        "Type de consommable.",
+        "Le manuel MEA décrit un onglet de consommables mais ne spécifie pas la règle de ce type de munition."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun feu, gel, multiplicateur, réserve ou règle de Power Cells déduit de son seul nom."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-AMMO-DISRUPT",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Type de consommable.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Munitions disruptives — consommable",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Durée, nombre de tirs ou de clips et consommation de ce consommable MEA non établis ; aucun mode-pouvoir persistant de ME2/ME3 importé.",
+      "notes": [
+        "Type de consommable.",
+        "Le manuel MEA décrit un onglet de consommables mais ne spécifie pas la règle de ce type de munition."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun feu, gel, multiplicateur, réserve ou règle de Power Cells déduit de son seul nom."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-SHIELD-CAP",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Consommable de protection.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Shield Capacitor",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Déclenchement, réserve, durée et effet propre du Shield Capacitor non établis ; aucune Barrière ou régénération de substitution.",
+      "notes": [
+        "Consommable de protection.",
+        "La fiche atteste un consommable de protection, sans fournir son protocole complet d’utilisation."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucune restauration, capacité de bouclier, immunité ou durée originale inventée."
+      ]
+    },
+    {
+      "recordId": "MEA-EQP-POWER-CELLS",
+      "mediaId": "MEA",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Certaines compétences ont une réserve limitée.",
+      "conditions": "",
+      "sourceIds": [
+        "MEA-SRC-OMNI-GRENADE",
+        "MEA-SRC-SKILLS"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "sourceIds": [
+          "MEA-SRC-OMNI-GRENADE",
+          "MEA-SRC-SKILLS"
+        ],
+        "sourceUrl": "",
+        "reference": "Cellules de pouvoirs",
+        "continuityReferences": [
+          "Catalogue MEA ; campagne solo"
+        ]
+      },
+      "bench": {
+        "kind": "power-cells",
+        "parentRecordId": "MEA-POW-FRAG",
+        "actionId": "fragGrenade"
+      },
+      "simulation": {
+        "hp": 120,
+        "shield": 30,
+        "attack": 16,
+        "defense": 4,
+        "speed": 1
+      },
+      "blockedReason": null,
+      "notes": [
+        "Certaines compétences ont une réserve limitée.",
+        "Manuel MEA anglais p.19 : les pouvoirs numérotés utilisent des cellules finies, ravitaillées aux caches, sans recharge temporelle.",
+        "Frag Grenade sert de fixture ATB existante pour observer une réserve de charges ; la preuve primaire générale ne certifie pas son attribution à un pouvoir nommé.",
+        "Preuve locale : docs/qa/chronicle-specialist-reference-report.json ; même règle générale dans docs/qa/chronicle-support-reference-report.json."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Le manuel ne donne ici ni quantité originale, ni règle chiffrée de ramassage, ni économie d’actions ATB.",
+        "Cellules de pouvoirs, clips d’arme et consommables de munitions restent séparés ; attendre ne rend aucune charge."
+      ]
+    },
+    {
+      "recordId": "INF-EQ-INTEL",
+      "mediaId": "INF",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Ressource du parcours.",
+      "conditions": "",
+      "sourceIds": [
+        "INF-OFFICIAL"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "INF",
+          "periodIds": [
+            "inf"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INF.json",
+        "sourceIds": [
+          "INF-OFFICIAL"
+        ],
+        "sourceUrl": "",
+        "reference": "Conception du fan game",
+        "continuityReferences": [
+          "Campagne de Randall ; catalogue INF"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Les données de Cerberus sont une ressource du parcours, sans mécanique de combat ou de protection établie pour ce banc.",
+      "notes": [
+        "Ressource du parcours.",
+        "Cette occurrence reste dans Infiltrator ; elle n’ajoute ni renseignement de campagne ni armure."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun score, conversion, amélioration, objectif, renseignement ou lien de campagne originale accordé."
+      ]
+    },
+    {
+      "recordId": "GAL-EQ-SHIELD",
+      "mediaId": "GAL",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Protection rechargeable dans Galaxy.",
+      "conditions": "",
+      "sourceIds": [
+        "GAL-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "GAL",
+          "periodIds": [
+            "gal"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/GAL.json",
+        "sourceIds": [
+          "GAL-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Conception du fan game",
+        "continuityReferences": [
+          "GAL-CNT-DATE"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Délais, vitesse et déclenchement de recharge de Galaxy non relevés ; la recharge native ME1 ne constitue pas une preuve de cette règle.",
+      "notes": [
+        "Protection rechargeable dans Galaxy.",
+        "Le registre atteste des boucliers rechargeables dans Galaxy, sans table chiffrée du mécanisme."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun délai, capacité, couvert ou système d’équipement d’une autre œuvre importé."
+      ]
+    },
+    {
+      "recordId": "GAL-EQ-MED",
+      "mediaId": "GAL",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Ramassages présents dans les arènes.",
+      "conditions": "",
+      "sourceIds": [
+        "GAL-COMBAT"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "GAL",
+          "periodIds": [
+            "gal"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/GAL.json",
+        "sourceIds": [
+          "GAL-COMBAT"
+        ],
+        "sourceUrl": "",
+        "reference": "Conception du fan game",
+        "continuityReferences": [
+          "GAL-CNT-DATE"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Valeur, conditions et déclenchement du ramassage de soin Galaxy non établis ; aucun médi-gel d’une autre œuvre substitué.",
+      "notes": [
+        "Ramassages présents dans les arènes.",
+        "La fiche atteste des ramassages dans les arènes ; elle ne désigne pas un équipement de protection porté."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun soin, stock, réanimation ou règle de mission originale déduit."
+      ]
+    },
+    {
+      "recordId": "RET-REF-IMPLANTS",
+      "mediaId": "RET",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Grayson reçoit une technologie modifiée des Moissonneurs.",
+      "conditions": "Préserver le parcours de Grayson et les états nécessaires à Deception et ME3. Les rencontres proposées n’offrent ni guérison canonique de Grayson ni élimination définitive de Kai Leng.",
+      "sourceIds": [
+        "RET-SRC-PUB"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "RET",
+          "periodIds": [
+            "ret"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/RET.json",
+        "sourceIds": [
+          "RET-SRC-PUB"
+        ],
+        "sourceUrl": "",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "continuityReferences": [
+          "RET-CON-01"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Implants expérimentaux liés au parcours de Grayson ; aucune mécanique précise de kit ou de protection reconstituée.",
+      "notes": [
+        "Grayson reçoit une technologie modifiée des Moissonneurs.",
+        "Préserver le parcours de Grayson et les états nécessaires à Deception et ME3. Les rencontres proposées n’offrent ni guérison canonique de Grayson ni élimination définitive de Kai Leng.",
+        "Le caractère modifié de cette technologie n’accorde ni contrôle libre ni capacités de Moissonneur au joueur."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucune guérison de Grayson, issue alternative, transformation ou compétence originale attribuée."
+      ]
+    },
+    {
+      "recordId": "NEX-REF-CRYO",
+      "mediaId": "NEX",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Morda est réveillée de cryostase pendant la crise.",
+      "conditions": "Préserver la crise précédant Mass Effect Andromeda : les choix locaux ne suppriment ni la révolte ni l’exil de Sloane et des autres personnes concernées. Ne pas résoudre dans ce module les mystères révélés plus tard par Ryder.",
+      "sourceIds": [
+        "NEX-SRC-MORDA"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "NEX",
+          "periodIds": [
+            "nex"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/NEX.json",
+        "sourceIds": [
+          "NEX-SRC-MORDA"
+        ],
+        "sourceUrl": "",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "continuityReferences": [
+          "NEX-CON-01"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Référence narrative au réveil de Morda, sans protocole cryogénique ou mécanisme de combat documenté pour ce banc.",
+      "notes": [
+        "Morda est réveillée de cryostase pendant la crise.",
+        "Préserver la crise précédant Mass Effect Andromeda : les choix locaux ne suppriment ni la révolte ni l’exil de Sloane et des autres personnes concernées. Ne pas résoudre dans ce module les mystères révélés plus tard par Ryder.",
+        "La capsule ne devient ni protection portée ni pouvoir de gel utilisable en combat."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun réveil anticipé, suppression de la révolte ou exil alternatif accordé."
+      ]
+    },
+    {
+      "recordId": "INI-REF-IMPLANT",
+      "mediaId": "INI",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Il permet à SAM-E d’assister ses perceptions et aptitudes.",
+      "conditions": "L’action reste dans la Voie lactée avant le départ des arches. SAM-E ne devient pas un compagnon durable disponible dans Andromeda ; préserver les limites et conséquences de son lien avec Cora.",
+      "sourceIds": [
+        "INI-SRC-SAME"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "INI",
+          "periodIds": [
+            "ini"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INI.json",
+        "sourceIds": [
+          "INI-SRC-SAME"
+        ],
+        "sourceUrl": "",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "continuityReferences": [
+          "INI-CON-01 ; périmètre du roman"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Lien de Cora avec SAM-E dans Initiation ; aucune table de perceptions, aptitude ou implantation jouable reconstituée.",
+      "notes": [
+        "Il permet à SAM-E d’assister ses perceptions et aptitudes.",
+        "L’action reste dans la Voie lactée avant le départ des arches. SAM-E ne devient pas un compagnon durable disponible dans Andromeda ; préserver les limites et conséquences de son lien avec Cora.",
+        "Cette occurrence reste dans la Voie lactée avant le départ des arches ; aucun kit MEA n’est importé."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "SAM-E ne devient pas un compagnon durable ; aucune capacité, rang ou lien narratif alternatif accordé."
+      ]
+    },
+    {
+      "recordId": "ANN-REF-CRYO",
+      "mediaId": "ANN",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Les passagers voyagent dans des capsules cryogéniques.",
+      "conditions": "Préserver le mystère et l’issue du roman. La maladie ne transforme pas les espèces en bestiaire de zombies ; les procédures médicales restent fictives et abstraites. Aucun sauvetage par Ryder ni prolongement officiel de MEA n’est inventé.",
+      "sourceIds": [
+        "ANN-SRC-BW"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ANN",
+          "periodIds": [
+            "ann"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ANN.json",
+        "sourceIds": [
+          "ANN-SRC-BW"
+        ],
+        "sourceUrl": "",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "continuityReferences": [
+          "ANN-CON-03 ; ANN-REF-DARKSPACE"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Cryostase de transport documentée dans Annihilation ; aucune procédure médicale ou aptitude de combat établie.",
+      "notes": [
+        "Les passagers voyagent dans des capsules cryogéniques.",
+        "Préserver le mystère et l’issue du roman. La maladie ne transforme pas les espèces en bestiaire de zombies ; les procédures médicales restent fictives et abstraites. Aucun sauvetage par Ryder ni prolongement officiel de MEA n’est inventé.",
+        "Les capsules de voyage ne deviennent ni armure ni commande cryogénique offensive."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucun traitement, sauvetage par Ryder, changement du mystère ou prolongement officiel de MEA inventé."
+      ]
+    },
+    {
+      "recordId": "ANN-REF-MICROSCOPE",
+      "mediaId": "ANN",
+      "nature": "Établi",
+      "originalStatus": "Défini",
+      "identityFact": "Anax recherche du matériel pour examiner la cause de la crise.",
+      "conditions": "Préserver le mystère et l’issue du roman. La maladie ne transforme pas les espèces en bestiaire de zombies ; les procédures médicales restent fictives et abstraites. Aucun sauvetage par Ryder ni prolongement officiel de MEA n’est inventé.",
+      "sourceIds": [
+        "ANN-SRC-ANAX"
+      ],
+      "contextScopes": [
+        {
+          "mediaId": "ANN",
+          "periodIds": [
+            "ann"
+          ]
+        }
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ANN.json",
+        "sourceIds": [
+          "ANN-SRC-ANAX"
+        ],
+        "sourceUrl": "",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "continuityReferences": [
+          "ANN-CON-03 ; ANN-REF-DARKSPACE"
+        ]
+      },
+      "bench": null,
+      "simulation": null,
+      "blockedReason": "Matériel recherché par Anax pour l’enquête ; aucun protocole d’analyse ou effet de combat vérifié pour ce banc.",
+      "notes": [
+        "Anax recherche du matériel pour examiner la cause de la crise.",
+        "Préserver le mystère et l’issue du roman. La maladie ne transforme pas les espèces en bestiaire de zombies ; les procédures médicales restent fictives et abstraites. Aucun sauvetage par Ryder ni prolongement officiel de MEA n’est inventé.",
+        "Cette référence reste un instrument documentaire ; le nom ne justifie aucun pouvoir technologique."
+      ],
+      "limitations": [
+        "Référence du registre existant : aucune nouvelle armure, pièce nommée, gamme ou variante originale inventée.",
+        "Les nombres et commandes du banc sont des adaptations ATB sur des fixtures abstraites ; aucune fidélité mécanique, numérique ou visuelle 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, slot, recette, droit de porteur, récompense ou progression transféré dans les anciens inventaires ou campagnes.",
+        "Aucun nouveau visuel, modèle, costume, animation ou équipement porté produit par cette fiche.",
+        "Aucune procédure médicale réelle, guérison, décision finale ou résultat d’analyse canonique produit."
+      ]
+    }
+  ]
+}

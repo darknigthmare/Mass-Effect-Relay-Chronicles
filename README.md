@@ -84,6 +84,12 @@ Dans **Chroniques → œuvre et période → Simulation**, 200 fiches d’étude
 
 Le [périmètre et les commandes](docs/EXPANSION_SIMULATIONS.md), le [classeur de suivi des 200 fiches](docs/Expansion_Simulations_200.xlsx) et les [preuves de livraison](docs/qa/expansion-report.json) distinguent les simulations ajoutées des références historiques conservées. La personnalisation de la PR nº1, fusionnée dans `main` au commit `6182756`, reste disponible.
 
+## Second lot de Simulation
+
+Le filtre **Lot de contenu** donne accès à **176 références supplémentaires**, dont **97 exercices exécutables** et 79 consultations fermées : 40 personnages/PNJ, 30 équipements, 40 armes, 26 références de flotte et 40 adversaires. Les neuf bancs d’équipement exécutent les effets des outils, modules, rechargements et charges finies sur des porteurs abstraits. Les périodes APEX/prologue et les éditions restent contrôlées.
+
+Les deux lots réunissent **376 références et 242 exercices partiels**. Le premier lot, ses 145 résultats et ses fichiers de production sont conservés. Voir le [périmètre du lot 2](docs/EXPANSION2_SIMULATIONS.md), le [nouveau classeur](docs/Expansion2_Simulations.xlsx) et ses [preuves](docs/qa/expansion2-report.json). Les effectifs reflètent les sources disponibles ; ce ne sont pas 40 nouvelles armures ni 40 véhicules pilotables.
+
 ## Contenu effectivement présent
 
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.

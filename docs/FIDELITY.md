@@ -18,6 +18,12 @@ Le [lot Simulation](EXPANSION_SIMULATIONS.md) ajoute cinq lots de 40 référence
 
 Les paramètres d’exercice sont des adaptations, y compris les budgets logistiques. Ils ne certifient aucune statistique, physique, mécanique originale ou acquisition narrative. Aucune nouvelle image, animation, géométrie ou voix n’est produite par ce lot. Les statuts des 6 708 fiches historiques restent inchangés ; un classeur séparé suit les nouveaux livrables et les preuves. Voir le [rapport](qa/expansion-report.json) et les [145 exécutions rejouées](qa/expansion-native-report.json).
 
+## Second lot : sources disponibles et bancs natifs
+
+Le [lot 2](EXPANSION2_SIMULATIONS.md) ajoute 176 références sans doublon du premier : 97 exercices et 79 consultations. Les 40 armes utilisent leurs profils conventionnels exacts existants ; les neuf bancs vérifient de vrais effets ATB d’outils, modules et ressources. Cela n’ajoute aucune armure nommée, aucun kit original complet ou acquisition de campagne. Les sept archétypes APEX ne sont ni sept personnes nommées, ni des compagnons solo. Les 26 dossiers de flotte ne sont pas 26 nouvelles coques.
+
+Les 145 résultats natifs du premier lot restent exactement identiques à leurs preuves publiées. Les catalogues, leurs statuts et les anciens exports restent inchangés ; le nouveau classeur suit séparément les livrables SIM. Les 52 références auparavant Défini disposant d’un nouvel exercice demeurent Défini dans leur catalogue d’origine. Le [bilan](qa/expansion2-report.json) distingue ces essais de toute certification 1:1.
+
 ## Dossier de Shepard
 
 Le jeu propose les deux apparences, les origines Stellaire/Colon/Terrien et les profils Rescapé/Héros de guerre/Impitoyable. Les choix sont conservés dans les sauvegardes, les exports et les imports. Le dossier reste consultable depuis la pause et le commando. Les anciennes sauvegardes v1 reçoivent les valeurs par défaut uniquement lorsque les nouveaux champs sont absents ; les valeurs explicitement invalides sont rejetées.

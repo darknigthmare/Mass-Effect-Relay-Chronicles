@@ -41,7 +41,7 @@ const newCommanderForm = () => ({name:'Shepard',classId:'soldier',difficulty:'no
 let hudStamp = '', touchKey = null;
 let state = null, battle = null, running = false, battlePOI = null, lastBattleEvent = 0, combatStamp = '', lastFrame = performance.now(), uiAccumulator = 0, saveAccumulator = 0;
 let universePromise, universeModules, chronicleSession=null, chronicleBattle=null, chroniclePaused=false, chronicleFinished=false, chronicleStamp='', chronicleView=null, expansionResult=null;
-const universeUI={mediaId:'',periodId:'',scenarioId:'',readingId:null,group:'all',query:'',recordId:null,visibleCount:30,tab:'references',actorId:null,actionId:'shoot',feedback:null,returnScreen:'title',expansionMode:'all',expansionId:null,expansionSeed:1,expansionDifficulty:'normal',expansionEdition:'standard'};
+const universeUI={mediaId:'',periodId:'',scenarioId:'',readingId:null,group:'all',query:'',recordId:null,visibleCount:30,tab:'references',actorId:null,actionId:'shoot',feedback:null,returnScreen:'title',expansionMode:'all',expansionBatch:'all',expansionId:null,expansionSeed:1,expansionDifficulty:'normal',expansionEdition:'standard'};
 const ui = { screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, customTab:'character', customSlot:'weapon', customView:'front', customCompare:false, customShowAll:false, customWeaponFilter:'all', customizationDraft:null, customizationBase:null, customReturn:null, customCreation:false, customItem:null, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
 $('#app').innerHTML = `<div id="world"></div><div class="vignette"></div><div id="hud" class="hidden"></div><div id="battle-ui"></div><div id="overlay"></div><div id="toasts" aria-live="polite"></div><div id="transition" class="transition-cover"><span class="eyebrow">Normandy · liaison opérationnelle</span><h2></h2><div class="spinner"></div></div><div class="scanlines"></div><input type="file" id="save-import" accept="application/json,.json" hidden><input type="file" id="chronicle-import" accept="application/json,.json" hidden>`;
 const audio = new AudioDirector();
@@ -130,11 +130,11 @@ function universeView(){
   if(!readings.some(reading=>reading.id===universeUI.readingId))universeUI.readingId=readings[0]?.id||null;
   const reading=chronicleSession&&universeUI.readingId?engine.getChronicleReading(chronicleSession,universeUI.readingId):null;
   const study=universeModules.expansion;
-  const studyEntries=context?study.listExpansionEntries(context,universeUI.expansionMode):[];
+  const studyEntries=context?study.listExpansionEntries(context,universeUI.expansionMode,universeUI.expansionBatch):[];
   if(!studyEntries.some(entry=>entry.id===universeUI.expansionId))universeUI.expansionId=studyEntries[0]?.id||null;
   const studySelected=studyEntries.find(entry=>entry.id===universeUI.expansionId);
   const studyAccess=study.canRunExpansionEntry(universeUI.expansionId,context,expansionOptions());
-  return {expansion:{entries:studyEntries,selected:studySelected,access:studyAccess,groups:study.EXPANSION_GROUPS,result:expansionResult},works:universeModules.data.UNIVERSE_WORKS,context,records,scenarios:context?engine.listChronicleScenarios(context):[],session:chronicleSession,roster,gearByActor,gearByActorSlot,actors,buildsByActor,ammoModesByActor,actionLabels:ACTIONS,readings,reading,battle:chronicleBattle,feedback:universeUI.feedback,paused:chroniclePaused,...chronicleCommands()};
+  return {expansion:{entries:studyEntries,selected:studySelected,access:studyAccess,groups:study.EXPANSION_ALL_GROUPS,batches:study.EXPANSION_BATCHES,result:expansionResult},works:universeModules.data.UNIVERSE_WORKS,context,records,scenarios:context?engine.listChronicleScenarios(context):[],session:chronicleSession,roster,gearByActor,gearByActorSlot,actors,buildsByActor,ammoModesByActor,actionLabels:ACTIONS,readings,reading,battle:chronicleBattle,feedback:universeUI.feedback,paused:chroniclePaused,...chronicleCommands()};
 }
 function expansionOptions(){return {seed:universeUI.expansionSeed,difficulty:universeUI.expansionDifficulty,edition:universeUI.expansionEdition};}
 function runExpansion(){
@@ -689,7 +689,7 @@ document.addEventListener('input',e=>{if(e.target.id==='universe-search'&&ui.scr
 document.addEventListener('change',e=>{
   const {id,value,checked}=e.target;
   if(ui.screen==='chronicles'){
-    const expansionFields={'expansion-mode':'expansionMode','expansion-record':'expansionId','expansion-seed':'expansionSeed','expansion-difficulty':'expansionDifficulty','expansion-edition':'expansionEdition'};
+    const expansionFields={'expansion-batch':'expansionBatch','expansion-mode':'expansionMode','expansion-record':'expansionId','expansion-seed':'expansionSeed','expansion-difficulty':'expansionDifficulty','expansion-edition':'expansionEdition'};
     if(Object.hasOwn(expansionFields,id)){
       const field=expansionFields[id];universeUI[field]=id==='expansion-seed'?Number(value):value;expansionResult=null;renderScreen();
       document.getElementById(id)?.focus({preventScroll:true});return;

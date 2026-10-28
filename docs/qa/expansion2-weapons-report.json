@@ -1,0 +1,2969 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-28T09:33:35.144Z",
+  "passed": true,
+  "baseReportedByParent": "64c305f",
+  "scope": "Second independent Simulation selection: forty conventional weapon dossiers using exact existing equipment resource profiles. Targeted data and native-command unit proof only.",
+  "globalFidelityCertified": false,
+  "statsBasis": "ATB adaptation",
+  "newOriginalMechanicsCertified": 0,
+  "counts": {
+    "dossiers": 40,
+    "executableDefinitions": 40,
+    "inspectionOnly": 0,
+    "standardDefinitions": 40,
+    "firstSelectionOverlap": 0,
+    "firstSelectionSize": 200,
+    "perMedia": {
+      "ME2": 10,
+      "ME3": 16,
+      "MEA": 14
+    },
+    "perWeaponFamily": {
+      "pistol": 11,
+      "smg": 3,
+      "assault": 10,
+      "shotgun": 9,
+      "sniper": 7
+    },
+    "sourceStatusAtReview": {
+      "Prototype": 40
+    }
+  },
+  "exports": {
+    "array": "EXPANSION2_WEAPONS",
+    "lookup": "getExpansion2Weapon(recordId)",
+    "lookupIsNotPermission": true
+  },
+  "profileContract": {
+    "exactEquipmentField": "simulation.equipmentProfileId === recordId",
+    "resourceFieldsFromExactEquipment": [
+      "weaponType",
+      "weaponSystem",
+      "magazineCapacity",
+      "ammo",
+      "reserveAmmo"
+    ],
+    "specialWeaponProfileIdPresent": false,
+    "actorPowers": [],
+    "fixedAbstractCarrier": {
+      "hp": 300,
+      "shield": 40,
+      "attack": 24,
+      "defense": 3,
+      "speed": 1
+    },
+    "sourceGuards": [
+      "fact === true",
+      "category === weapons",
+      "kind === weapon",
+      "runtimeSupported === true",
+      "weaponSystem === thermal-clip",
+      "No special weaponProfileId",
+      "Exactly thermal-clip capability",
+      "Finite consistent capacity/ammo/reserve",
+      "Any future edition profile must be explicitly recognized; no unresolved edition bypass"
+    ],
+    "failClosed": "Any selected record whose canonical profile no longer satisfies the guards becomes simulation:null with blockedReason; no homonym or fallback clip profile is created."
+  },
+  "validation": {
+    "syntaxCommand": "node --check src/expansion2-weapons.js",
+    "syntaxPassed": true,
+    "command": "node --test tests/expansion2-weapons.test.js",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "coverage": [
+      "Forty unique recursively immutable dossiers, disjoint from all first200 identities.",
+      "All resource fields match each exact supported conventional equipment record; no name or foreign-profile matching.",
+      "Names, factual descriptions, conditions and source IDs agree with established catalogue records.",
+      "All forty pass their own factual context and reject ME1 and a foreign-work context.",
+      "Forty actual native shoot commands spend one clip round, deal damage and generate zero heat.",
+      "Forty actual native reload commands run after natural ATB readiness and transfer precisely one round from reserve.",
+      "Forty empty-clip fixtures reject shoot atomically without changing battle state.",
+      "All five weapon families correctly preserve finite partial reserve during reload.",
+      "Class-specialization, unconfigured DLC, local heavy, heat, charge and unknown models remain outside this selection.",
+      "Unknown/forged lookup values cannot invoke client getters or coercion."
+    ],
+    "nativeShootCases": 40,
+    "nativeReloadCases": 40,
+    "emptyClipAtomicRefusals": 40,
+    "partialReserveFamilyCases": 5,
+    "fixtureNote": "Unit fixtures may begin at a defined readiness or depleted-ammunition state; no live campaign, browser actor or progression state is overridden."
+  },
+  "filesChanged": [
+    "src/expansion2-weapons.js",
+    "tests/expansion2-weapons.test.js",
+    "docs/qa/expansion2-weapons-report.json"
+  ],
+  "sourceSnapshots": {
+    "src/expansion2-weapons.js": "533e2da01e7a2804aa8c51c678214aae2e59269da018aee755626c5c500651d7",
+    "tests/expansion2-weapons.test.js": "0ffbebd9661adc8c92ec31117350cdbf1ccdf98bc48602ba94838d993a523a62",
+    "src/universe-equipment.js": "802041a1a41a378b4e2f81abbaaf5a83900e6112510a70489dfcc048229b0591",
+    "src/universe-weapon-profiles.js": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d",
+    "src/combat.js": "b91a02c8d2a6334c2f6a2a36b695a9ee96e4784636b8a0402f7cc8cc07d74ed7",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/universe-data.js": "f168c0264a6206f4e7965e66dfe4df8b793037e978e9c1e1bb089a872d27933a",
+    "docs/universe/catalogs/ME2.json": "cd9e23766eeb6a385141130dd2a32933decb7619444021e07601c7b21bb9b8e0",
+    "docs/universe/catalogs/ME3.json": "1cb08754410020f96f23ed67df70c1bba5bdc79ba82e2c8bdd4c8adcfad04dee",
+    "docs/universe/catalogs/MEA.json": "5b82ea5fefc6b4479c5a07d0d3b52032d5f0d17e7f48f0d896525f06ed62b9b1"
+  },
+  "records": [
+    {
+      "recordId": "ME2-WPN-PREDATOR",
+      "name": "M-3 Predator",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-PREDATOR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-PREDATOR",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Pistolet ME2 : seule la gestion des clips du profil existant est reprise.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-CARNIFEX",
+      "name": "M-6 Carnifex",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet obtenu auprès de Mordin.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-PROF"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-PROF",
+          "title": "Dossier: The Professor",
+          "url": "https://masseffect.fandom.com/wiki/Dossier%3A_The_Professor",
+          "kind": "wiki",
+          "scope": "Peste d’Omega, ventilation et Mordin",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-CARNIFEX",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-CARNIFEX",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "L’obtention auprès de Mordin n’est ni jouée ni accordée par cet essai.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-SHURIKEN",
+      "name": "M-4 Shuriken",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet mitrailleur de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-SHURIKEN",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-SHURIKEN",
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le tir de famille ATB ne reconstitue pas la séquence de rafale du modèle.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-TEMPEST",
+      "name": "M-9 Tempest",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Arme récupérable sur Haestrom.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-TALI"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-TALI",
+          "title": "Dossier: Tali",
+          "url": "https://masseffect.fandom.com/wiki/Dossier%3A_Tali",
+          "kind": "wiki",
+          "scope": "Haestrom et radiation solaire",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-TEMPEST",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-TEMPEST",
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "L’acquisition à Haestrom n’est ni jouée ni accordée par cet essai.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-AVENGER",
+      "name": "M-8 Avenger",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil d’assaut de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-AVENGER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-AVENGER",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Fusil d’assaut ME2 : aucun rang, amélioration ou kit de porteur n’est déduit.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-VINDICATOR",
+      "name": "M-15 Vindicator",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à rafales.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-VINDICATOR"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-VINDICATOR",
+          "title": "M-15 Vindicator",
+          "url": "https://masseffect.fandom.com/wiki/M-15_Vindicator",
+          "kind": "wiki",
+          "scope": "Arme à rafales",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-VINDICATOR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-VINDICATOR",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La fiche nomme un fusil à rafales ; le nombre et le rythme des projectiles originaux ne sont pas reproduits.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-KATANA",
+      "name": "M-23 Katana",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-KATANA",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-KATANA",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Aucun cône de plombs, chute des dégâts ou capacité originale n’est reconstruit.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-SCIMITAR",
+      "name": "M-27 Scimitar",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-SCIMITAR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-SCIMITAR",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La cadence et la dispersion propres au Scimitar ne sont pas reconstituées.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-MANTIS",
+      "name": "M-92 Mantis",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-MANTIS",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-MANTIS",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le zoom, la balistique et la capacité propre au Mantis ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME2-WPN-VIPER",
+      "name": "M-97 Viper",
+      "mediaId": "ME2",
+      "periodId": "me2",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision de ME2.",
+      "conditions": "",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "ME2-SRC-WEAPONS",
+          "title": "Weapons",
+          "url": "https://masseffect.fandom.com/wiki/Weapons",
+          "kind": "wiki",
+          "scope": "Familles et recharge par clips thermiques",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME2-WPN-VIPER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME2-WPN-VIPER",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le rythme des tirs de précision et la capacité propre au Viper ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-AVENGER",
+      "name": "M-8 Avenger",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil d’assaut.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-AVENGER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-AVENGER",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le modèle ME3 reste distinct du même nom dans ME2 ou Andromeda.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-MATTOCK",
+      "name": "M-96 Mattock",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil semi-automatique.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-MATTOCK",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-MATTOCK",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le tir semi-automatique réel et ses intervalles ne sont pas reconstitués par l’ordre ATB.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-PHAESTON",
+      "name": "Phaeston",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil turien.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-PHAESTON"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-PHAESTON",
+          "title": "Phaeston",
+          "url": "https://masseffect.fandom.com/wiki/Phaeston",
+          "kind": "wiki",
+          "scope": "Fusil turien et index arsenal",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-PHAESTON",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-PHAESTON",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La provenance turienne n’accorde ni talent racial ni équipement à un personnage nommé.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-SABER",
+      "name": "M-99 Saber",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil lourd.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-SABER"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-SABER",
+          "title": "M-99 Saber",
+          "url": "https://masseffect.fandom.com/wiki/M-99_Saber",
+          "kind": "wiki",
+          "scope": "Fusil lourd",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-SABER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-SABER",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La qualification de fusil lourd n’ajoute aucune réserve de cellules ou permission d’arme lourde locale.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-GETH-RIFLE",
+      "name": "Geth Pulse Rifle",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil geth.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-GETH-RIFLE",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-GETH-RIFLE",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La provenance geth n’accorde ni effet synthétique, ni montée en cadence, ni pouvoir.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-PREDATOR",
+      "name": "M-3 Predator",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-PREDATOR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-PREDATOR",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Pistolet ME3 : aucun rang, amélioration ou droit de porteur n’est déduit.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-PHALANX",
+      "name": "M-5 Phalanx",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet lourd.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-PHALANX",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-PHALANX",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Ce profil ME3 n’ouvre pas la variante de contenu additionnel ME2.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-CARNIFEX",
+      "name": "M-6 Carnifex",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet lourd.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-CARNIFEX",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-CARNIFEX",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La capacité et les dégâts du prototype ne sont pas les valeurs originales du Carnifex.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-PALADIN",
+      "name": "M-77 Paladin",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet lourd.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-PALADIN",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-PALADIN",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La capacité et les dégâts du prototype ne sont pas les valeurs originales du Paladin.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-KATANA",
+      "name": "M-23 Katana",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-KATANA",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-KATANA",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le tir ATB ne reproduit pas le cône de plombs ni les distances originales du Katana.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-SCIMITAR",
+      "name": "M-27 Scimitar",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-SCIMITAR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-SCIMITAR",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le tir ATB ne reproduit pas la cadence ni la dispersion propres au Scimitar.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-EVISCERATOR",
+      "name": "M-22 Eviscerator",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-EVISCERATOR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-EVISCERATOR",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Ce profil ME3 n’ouvre pas la variante de contenu additionnel ME2.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-DISCIPLE",
+      "name": "Disciple",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe asari.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-DISCIPLE",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-DISCIPLE",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La provenance asari ne donne aucun pouvoir biotique au porteur abstrait.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-MANTIS",
+      "name": "M-92 Mantis",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-MANTIS",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-MANTIS",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le zoom, la balistique et la capacité propre au Mantis ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-BLACK-WIDOW",
+      "name": "Black Widow",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-BLACK-WIDOW",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-BLACK-WIDOW",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La pénétration du couvert, le zoom et la capacité propres au modèle ne sont pas reproduits.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "ME3-WPN-SHURIKEN",
+      "name": "M-4 Shuriken",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet mitrailleur.",
+      "conditions": "",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sources": [
+        {
+          "id": "ME3-SRC-EQUIP",
+          "title": "Equipment Guide (Mass Effect 3)",
+          "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+          "kind": "wiki",
+          "scope": "Équipement et lieux de collecte",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "ME3-WPN-SHURIKEN",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "ME3-WPN-SHURIKEN",
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le tir de famille ATB ne reconstitue pas la séquence de rafale du modèle.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-AVENGER",
+      "name": "Avenger",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil d’assaut.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-AVENGER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-AVENGER",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Solo MEA : aucune version de rang ou variante multijoueur déduite.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-MATTOCK",
+      "name": "Mattock",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil semi-automatique.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-MATTOCK",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-MATTOCK",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le tir semi-automatique réel n’est pas reconstitué par l’ordre ATB.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-VALKYRIE",
+      "name": "Valkyrie",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil d’assaut.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-VALKYRIE",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-VALKYRIE",
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La séquence de rafale et les propriétés originales du modèle ne sont pas reconstituées.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-PREDATOR",
+      "name": "Predator",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-PREDATOR",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-PREDATOR",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le modèle MEA reste distinct des Predator ME2 et ME3.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-CARNIFEX",
+      "name": "Carnifex",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet lourd.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-CARNIFEX",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-CARNIFEX",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La capacité et les dégâts du prototype ne sont pas les valeurs originales du Carnifex.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-PHALANX",
+      "name": "Phalanx",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-PHALANX",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-PHALANX",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Ce profil MEA n’ouvre pas la variante de contenu additionnel ME2.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-EAGLE",
+      "name": "Eagle",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet automatique.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-EAGLE",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-EAGLE",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La cadence automatique réelle et les améliorations de fabrication ne sont pas reproduites.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-CHARGER",
+      "name": "Charger",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Pistolet automatique.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-CHARGER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-CHARGER",
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La cadence automatique réelle et les améliorations de fabrication ne sont pas reproduites.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-KATANA",
+      "name": "Katana",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-KATANA",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-KATANA",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Aucun cône de plombs, chute des dégâts ou capacité originale n’est reconstruit.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-DISCIPLE",
+      "name": "Disciple",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil asari.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-DISCIPLE",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-DISCIPLE",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La provenance asari ne donne aucun pouvoir biotique au porteur abstrait.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-PIRANHA",
+      "name": "N7 Piranha",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil à pompe.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-PIRANHA",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-PIRANHA",
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "La cadence et la dispersion propres au Piranha ne sont pas reconstituées.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-MANTIS",
+      "name": "Mantis",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-MANTIS",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-MANTIS",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le zoom, la balistique et la capacité propre au Mantis ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-VIPER",
+      "name": "Viper",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-VIPER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-VIPER",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Le rythme des tirs de précision et la capacité propre au Viper ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    },
+    {
+      "recordId": "MEA-WPN-VANQUISHER",
+      "name": "Vanquisher",
+      "mediaId": "MEA",
+      "periodId": "mea",
+      "sourceStatusAtReview": "Prototype",
+      "nature": "Établi",
+      "absentFromFirst200": true,
+      "behaviorKind": "existing-conventional-equipment",
+      "executableDefinition": true,
+      "constraints": {
+        "editionProfile": null
+      },
+      "blockedReason": null,
+      "identityFact": "Fusil de précision.",
+      "conditions": "Solo ; les valeurs, versions de rang et adaptations multijoueurs sont des données séparées.",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sources": [
+        {
+          "id": "MEA-SRC-WEAPONS",
+          "title": "Weapons (Mass Effect: Andromeda)",
+          "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+          "kind": "wiki",
+          "scope": "Familles et armes",
+          "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+        }
+      ],
+      "existingEquipmentProfile": {
+        "id": "MEA-WPN-VANQUISHER",
+        "runtimeSupported": true,
+        "requiresEdition": false,
+        "requiredEditionProfile": null,
+        "requiredCapabilities": [
+          "thermal-clip"
+        ],
+        "weaponProfileId": null,
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "simulation": {
+        "hp": 300,
+        "shield": 40,
+        "attack": 24,
+        "defense": 3,
+        "speed": 1,
+        "equipmentProfileId": "MEA-WPN-VANQUISHER",
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8,
+        "powers": []
+      },
+      "notes": [
+        "Porteur et cible abstraits : valeurs et réserves de famille ATB ; aucune fidélité numérique, visuelle ou mécanique 1:1 certifiée.",
+        "Aucun objet, crédit, compétence, rang, acquisition, formation, droit de porteur ou de scène transféré à la campagne ou aux Chroniques.",
+        "Profil de ressource exact repris par identifiant depuis getUniverseEquipment ; sa capacité et sa réserve restent des réglages ATB existants, pas une table officielle.",
+        "La présence d’une fiche n’accorde aucune arme de même nom dans une autre œuvre, une édition ou un mode multijoueur."
+      ],
+      "limitations": [
+        "Aucun rang, recette de fabrication ou bonus propre au Vanquisher n’est accordé.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Ce dossier réutilise une primitive de tir et un budget déjà présents ; il ne constitue pas une nouvelle mécanique originale.",
+        "Les restrictions de classe, recherche et acquisition restent hors de cet essai sur porteur abstrait et ne sont jamais levées dans le jeu."
+      ]
+    }
+  ],
+  "newExternalSourcesConsulted": false,
+  "networkRequestsMade": false,
+  "browserStarted": false,
+  "gpuStarted": false,
+  "legacyGameFilesModified": false,
+  "catalogueFilesModified": false,
+  "statusesPromoted": false,
+  "limitations": [
+    "Forty newly listed Simulation dossiers reuse existing conventional fire/clip mechanics and family budgets. They do not constitute forty new original mechanics or newly granted campaign weapons.",
+    "The common carrier budget and equipment capacities/reserves are ATB adaptation values, not official original weapon statistics, ranks or balancing.",
+    "Native single-order shots do not fully reproduce a model’s automatic/burst sequence, shotgun spread, range, zoom, penetration, recoil, sound, animation or geometry; per-model limitations remain visible.",
+    "All selected profiles are standard and already supported. Unconfigured editions, research/class restrictions, local heavy weapons, heat weapons, charge/beam models and foreign-work homonyms were deliberately excluded.",
+    "This module grants no named character equipment, scenario eligibility, acquisition, research, stock, economy, powers or multiplayer variants.",
+    "Existing catalogue bibliography is preserved without a new external or primary-source claim; source presence alone does not certify every original model property.",
+    "Parent-owned root service, UI/browser, persistence and production checks are outside this targeted report and require their own evidence."
+  ]
+}
