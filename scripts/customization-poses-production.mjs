@@ -42,7 +42,7 @@ const report = {
     three: JSON.parse(await readFile(new URL('node_modules/three/package.json', root), 'utf8')).version, chromium: null },
   profile: { fresh: true, path: profile, launches: 0, completeShutdowns: 0 },
   sources: {}, buildFiles: {}, servedFiles: [], fixture: null, exports: [],
-  checks: [], previews: [], activations: [], screenshots: [], errors: [], failedRequests: [], sourceRequests: [],
+  checks: [], previews: [], activations: [], focusTransitions: [], screenshots: [], errors: [], failedRequests: [], sourceRequests: [],
 };
 const action = (name, id) => page.locator(`[data-do="${name}"]${id === undefined ? '' : `[data-id="${id}"]`}`).first();
 const choice = (field, id) => page.locator(`[data-do="custom-choice"][data-field="${field}"][data-id="${id}"]`);
@@ -74,6 +74,25 @@ async function activate(target) {
   assert.ok(observed.width > 0 && observed.height > 0 && observed.inViewport, 'The focused control is visible in the viewport.');
   report.activations.push(observed);
   await page.keyboard.press('Enter');
+}
+
+async function waitForPublicFocus(selector, phase) {
+  const target = page.locator(selector).first();
+  await target.waitFor({ state: 'visible' });
+  // Opening/closing the workshop renders its DOM before the game's next-frame
+  // focus handoff. Observe that handoff before another control can take focus;
+  // do not focus/retry here, which would conceal a missing game-side handoff.
+  await page.waitForFunction(selector => {
+    const element = document.querySelector(selector);
+    return element && document.activeElement === element;
+  }, selector, { polling: 'raf' });
+  assert.equal(await target.isEnabled(), true, `The ${phase} focus destination is enabled.`);
+  const observed = await target.evaluate(element => ({
+    action: element.dataset.do, id: element.dataset.id, focused: document.activeElement === element,
+  }));
+  assert.equal(observed.focused, true, `The game's ${phase} focus handoff has completed.`);
+  report.focusTransitions.push({ phase, ...observed });
+  console.log(JSON.stringify({ focusTransition: phase, ...observed }));
 }
 
 function stableState(state) {
@@ -158,6 +177,14 @@ async function pause() {
 
 async function openWorkshop() {
   await activate(action('customization')); await page.locator('.customization-screen').waitFor({ state: 'visible' });
+  await waitForPublicFocus('.customization-screen [data-do="custom-tab"][data-id="character"]', 'workshop opening');
+}
+
+async function workshopReturnReady() {
+  await page.locator('.customization-screen').waitFor({ state: 'hidden' });
+  // Every workshop entry in this journey comes from Pause, whose newly rendered
+  // opener receives focus asynchronously after Apply, Escape, or Cancel.
+  await waitForPublicFocus('#overlay [data-do="customization"]', 'workshop return to Pause');
 }
 
 async function screenshot(name, selector = null) {
@@ -295,7 +322,7 @@ try {
     authoredPoses: 8, cosmeticRows, alphaPreserved: true, comparedAppearance: 'female', preparedAppearance: 'male',
   });
 
-  await activate(action('custom-apply')); await page.locator('.customization-screen').waitFor({ state: 'hidden' });
+  await activate(action('custom-apply')); await workshopReturnReady();
   const applied = await exportedState('applied');
   const expectedCustomization = initialCustomization('male'); expectedCustomization.armor.primary = 'teal'; expectedCustomization.armor.helmet = 'combat';
   assert.equal(applied.appearance, 'male'); assert.deepEqual(applied.customization, expectedCustomization);
@@ -319,7 +346,7 @@ try {
   await activate(action('custom-tab', 'weapons')); await activate(action('custom-slot', 'omniTool'));
   await activate(page.locator('[data-do="custom-equip"][data-slot="omniTool"][data-id="omni-tool-upgraded"]'));
   assert.equal(Number(await page.locator('[data-stat="techMultiplier"]').getAttribute('data-after')), 1.15);
-  await page.keyboard.press('Escape'); await page.locator('.customization-screen').waitFor({ state: 'hidden' });
+  await page.keyboard.press('Escape'); await workshopReturnReady();
   const cancelled = await exportedState('cancelled');
   assert.deepEqual(stableState(cancelled), stableState(applied));
   assert.deepEqual(combatProfile(cancelled), originalProfile);
@@ -349,7 +376,7 @@ try {
     browserLaunches: report.profile.launches, completeShutdownBeforeResume: report.profile.completeShutdowns,
     exactStateExceptElapsedPlayTime: true, exactInventory: true, exactPreviewPixels: true, transientPose: 'field', terrain,
   });
-  await activate(action('custom-cancel')); await page.locator('.customization-screen').waitFor({ state: 'hidden' });
+  await activate(action('custom-cancel')); await workshopReturnReady();
   assert.deepEqual(await noHarness(), { ownProperty: false, type: 'undefined', developmentClient: false });
   assert.deepEqual(report.errors, []); assert.deepEqual(report.failedRequests, []); assert.deepEqual(report.sourceRequests, []);
   record('No JavaScript errors, failed resources, development source requests or QA harness occur throughout the production journey');
