@@ -194,8 +194,14 @@
     ],
     "sourceHashReferences": 26,
     "uniqueSourceFiles": 16,
-    "allSourceHashesMatchRepositoryFiles": true,
-    "allCopiedFilesByteIdentical": true
+    "allCopiedFilesByteIdentical": true,
+    "verifiedAgainst": {
+      "kind": "git-commit",
+      "sourceCommit": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
+      "method": "SHA-256 des contenus git show du commit testé ; portée limitée aux sources des trois rapports originaux."
+    },
+    "allSourceHashesMatchTestedCommit": true,
+    "copiedFilesScope": "33 fichiers de l’artefact original 12918492832 ; les validations de suivi sont décrites séparément."
   },
   "priorAttempts": [
     {
@@ -224,21 +230,49 @@
       "worktreeModified": true,
       "provesReportedCommit": false,
       "reason": "Délai de lecture de pixels dépassé ; modifications non commitées présentes dans les fichiers testés."
+    },
+    {
+      "id": "production-ci-focus-attempt-3",
+      "passed": false,
+      "sourceCommit": "fcf3c95b11984c828f6e8ca3d2ce3d8dd74c0860",
+      "gameSourcesUnchangedFrom": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
+      "runId": 40924555822,
+      "runUrl": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40924555822",
+      "jobId": 123626466814,
+      "jobUrl": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40924555822/job/123626466814",
+      "artifactId": 12920610106,
+      "artifactArchiveSHA256": "44233697cd1b19a7002e445d658a4b1e08ad6dcb4f9352ed0cd9a814a0b79950",
+      "reason": "Course de disponibilité du test : le focus Armure est repris par le focus initial Personnage planifié via requestAnimationFrame. La capture conserve ce focus Personnage ; la production échoue avant le premier aperçu.",
+      "observedProductionChecks": 2,
+      "observedProductionPreviews": 0,
+      "otherScenariosPassed": {
+        "world": 12,
+        "keyboard": 14
+      },
+      "errors": [],
+      "failedRequests": [],
+      "testReadinessCorrectionResult": "success",
+      "testReadinessCorrectionSourceCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+      "testReadinessCorrectionRunId": 40925514808,
+      "testReadinessCorrectionEvidence": "validation-ea396cb/customization-poses-production-report.json"
     }
   ],
   "relocation": {
     "reportsModified": false,
     "originalPrefix": "test-results/",
     "currentEvidencePrefix": "docs/qa/shepard-atelier-ci-20261029/",
-    "note": "Les chemins internes des rapports restent inchangés. Les fichiers historiques renommés sont associés à originalPath dans files. Les chemins de build, de runner et de profil décrivent leurs environnements originaux."
+    "note": "Les chemins internes des rapports restent inchangés. Les fichiers historiques renommés sont associés à originalPath dans files. Les chemins de build, de runner et de profil décrivent leurs environnements originaux. Pour le suivi ea396cb, seuls les 12 fichiers sélectionnés sont relocalisés dans validation-ea396cb/ ; les autres chemins test-results des nouveaux rapports désignent l’artefact CI complet.",
+    "followUpEvidencePrefix": "docs/qa/shepard-atelier-ci-20261029/validation-ea396cb/"
   },
   "summary": {
     "successfulFiles": 33,
     "successfulBytes": 10250680,
-    "priorFiles": 4,
-    "priorBytes": 431049,
-    "copiedFiles": 37,
-    "copiedBytes": 10681729
+    "priorFiles": 6,
+    "priorBytes": 752389,
+    "copiedFiles": 51,
+    "copiedBytes": 12652334,
+    "followUpFiles": 12,
+    "followUpBytes": 1649265
   },
   "files": [
     {
@@ -345,6 +379,20 @@
       "sha256": "6aee543830357786ce75443ccba14bd5f19d06c3eb806205a67964a1e9e6b376",
       "origin": "keyboard-ci-attempt-1",
       "originalPath": "test-results/customization-keyboard-failure.png"
+    },
+    {
+      "path": "prior-attempts/production-ci-focus-attempt-3-report.json",
+      "bytes": 13707,
+      "sha256": "5b38547a1d1edd551a94da0cde4783d984fb014950b9a8d45e2936d7f8aa2f82",
+      "origin": "production-ci-focus-attempt-3",
+      "originalPath": "test-results/customization-poses-production-report.json"
+    },
+    {
+      "path": "prior-attempts/production-ci-focus-attempt-3.png",
+      "bytes": 307633,
+      "sha256": "b500ce12d005de71fabdb16111159120a612d22f8c9a2b2eb14a4dfca6187abd",
+      "origin": "production-ci-focus-attempt-3",
+      "originalPath": "test-results/customization-poses-production-failure.png"
     },
     {
       "path": "prior-attempts/production-local-attempt-1.json",
@@ -499,12 +547,96 @@
       "sha256": "4b5e57043b54680b2b0229d528d76d3d72d8b0fb34531cceec274833aa781ca2",
       "origin": "successful-ci",
       "originalPath": "test-results/shepard-combat-world-report.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-keyboard-report.json",
+      "bytes": 19971,
+      "sha256": "40e2c957d743df7ae7f9ff01150dfb64c79c8d29624fbd7690b5fc082cba5f7f",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-keyboard-report.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-applied-save.json",
+      "bytes": 2498,
+      "sha256": "888a5620d0a720c0285ef74285d708dbad230cf52ace6b7451a7373928944332",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-applied-save.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-baseline-save.json",
+      "bytes": 2503,
+      "sha256": "2520c4e71655a82265ca3be77333e852d92eb22b916384544b879af9867cef07",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-baseline-save.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-cancelled-save.json",
+      "bytes": 2516,
+      "sha256": "b963ac5be89b8d4902bbbb524924b14b4ae9ecd668d91cc3f1ec62590aded676",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-cancelled-save.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-fixture.json",
+      "bytes": 2493,
+      "sha256": "0e4d2a4fb6a032e4f2a20c2b0b02f34d834254e2713b6727508d4e8237ae27c7",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-fixture.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-male-down-prepared.png",
+      "bytes": 169407,
+      "sha256": "cd602230e8bb16034a86306d1c202241054297f431d751fd8febecb1f9a76582",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-male-down-prepared.png"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-male-down-resumed.png",
+      "bytes": 169991,
+      "sha256": "d6045380decdd89608549b587d1a8acd4d5bc0b7a9b2ea160e7393518a0bde6d",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-male-down-resumed.png"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-male-terrain-applied.png",
+      "bytes": 607570,
+      "sha256": "6a3b94933b9f0df16e06d3ec9385e807cfd571c4d55e0c43a43557a3528b9b5d",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-male-terrain-applied.png"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-male-terrain-resumed.png",
+      "bytes": 606654,
+      "sha256": "9094bb886a7b104df227af142b4a6e5ca629e405c6a2f883adaf54566af9705c",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-male-terrain-resumed.png"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-report.json",
+      "bytes": 40403,
+      "sha256": "9074cf2c449ca1c7328ba5297e4d36303d7afdd3706d688e065dbc4d2739f280",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-report.json"
+    },
+    {
+      "path": "validation-ea396cb/customization-poses-production-resumed-save.json",
+      "bytes": 2515,
+      "sha256": "eec7aeaabf4920086d37953b468b67674c2c4c3a1c135f8d164854cf976137d0",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/customization-poses-production-resumed-save.json"
+    },
+    {
+      "path": "validation-ea396cb/shepard-combat-world-report.json",
+      "bytes": 22744,
+      "sha256": "375597b2a27edf8120a984a9ac1f5a2550f4a71269ce97a855170e9694c73ea2",
+      "origin": "validation-ea396cb",
+      "originalPath": "test-results/shepard-combat-world-report.json"
     }
   ],
   "documentation": {
     "path": "README.md",
-    "bytes": 4898,
-    "sha256": "8c92f093a23bef843ff676e267126f61e246c3ec57dc63eddff93202d4dc51dd"
+    "bytes": 8784,
+    "sha256": "e67369013fa474cdfdd2f705358ed0ba425bcd7088b64a6f5eb67c94eaf048ee"
   },
   "limitations": [
     "Three narrow browser scopes, not a complete campaign or exhaustive QA.",
@@ -512,5 +644,255 @@
     "No native Windows, native Excel, physical mobile device, controller or performance test.",
     "Historical local reports describe modified worktrees based on 79f3567, not executions of that committed tree.",
     "No browser profile or ZIP included."
+  ],
+  "updatedAt": "2026-10-29T18:00:18.062381Z",
+  "followUpValidations": [
+    {
+      "id": "validation-ea396cb",
+      "sourceCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+      "conclusion": "success",
+      "workflowPath": ".github/workflows/shepard-atelier.yml",
+      "runId": 40925514808,
+      "runUrl": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40925514808",
+      "jobId": 123629834800,
+      "jobUrl": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40925514808/job/123629834800",
+      "archiveMode": "selective",
+      "selection": "Trois rapports, une fixture synthétique et quatre exports JSON, quatre captures de production. Les captures WorldView/clavier et les journaux de cette répétition restent dans l’artefact CI complet.",
+      "artifact": {
+        "id": 12921140386,
+        "name": "Relay-Chronicles-Shepard-Atelier",
+        "archiveBytes": 10147090,
+        "archiveSHA256": "ce6a0a58daa864d4e2b646b0ec79ff886ce34db4ed7f37b36638efce4fb47303",
+        "archiveIncluded": false,
+        "copiedFiles": 12,
+        "copiedBytes": 1649265
+      },
+      "verification": {
+        "verifiedAgainst": {
+          "kind": "repository-working-tree",
+          "repositoryHead": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+          "method": "SHA-256 des fichiers du dépôt courant lors de l’archivage."
+        },
+        "reports": [
+          {
+            "report": "validation-ea396cb/shepard-combat-world-report.json",
+            "passed": true,
+            "sourceHead": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+            "checkField": "cases",
+            "checks": 12,
+            "errors": [],
+            "failedRequests": [],
+            "sourceHashField": "sourceHashes",
+            "sourceHashesVerified": [
+              {
+                "path": "src/world.js",
+                "sha256": "2ee89b25a52943884eba1a5c9f7725e999347155642dc90988d5cf6c074a0c8b",
+                "matches": true
+              },
+              {
+                "path": "src/customization-render.js",
+                "sha256": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+                "matches": true
+              },
+              {
+                "path": "vite.config.js",
+                "sha256": "ed11662b4064b813facf79236fc0976a2fb062ac4c322aa2614ec15330b808d0",
+                "matches": true
+              },
+              {
+                "path": "scripts/shepard-combat-world-browser.mjs",
+                "sha256": "b9ad10a9e484b9fa242c171a62c9d93ce9eb472487ec157d2d734fa4f8677e15",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-male-animation.json",
+                "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-male-combat-atlas.png",
+                "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-female-animation.json",
+                "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-female-combat-atlas.png",
+                "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+                "matches": true
+              }
+            ],
+            "assetErrors": []
+          },
+          {
+            "report": "validation-ea396cb/customization-keyboard-report.json",
+            "passed": true,
+            "sourceHead": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+            "checkField": "checks",
+            "checks": 14,
+            "errors": [],
+            "failedRequests": [],
+            "sourceHashField": "sourceHashes",
+            "sourceHashesVerified": [
+              {
+                "path": "src/main.js",
+                "sha256": "2e7ba37616c750ed0d16868ae00e60e15c712c3a346bc595048eba59030ca79e",
+                "matches": true
+              },
+              {
+                "path": "src/customization-ui.js",
+                "sha256": "9feb08b36c5c6dba5d229a8f53927491805321a091a89dab95805057aeb361eb",
+                "matches": true
+              },
+              {
+                "path": "src/customization-ui.css",
+                "sha256": "e3f3a73309cdecf8720a662b6fb2c08cde1698ff60e57adb36267b35b619059e",
+                "matches": true
+              },
+              {
+                "path": "scripts/customization-keyboard-browser.mjs",
+                "sha256": "e02631f4f7dcfc2a82a668379a94f297e44be79fc7a3e49c50a9e400ad1d0dad",
+                "matches": true
+              }
+            ]
+          },
+          {
+            "report": "validation-ea396cb/customization-poses-production-report.json",
+            "passed": true,
+            "sourceHead": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+            "checkField": "checks",
+            "checks": 7,
+            "errors": [],
+            "failedRequests": [],
+            "sourceHashField": "sources",
+            "sourceHashesVerified": [
+              {
+                "path": "package.json",
+                "sha256": "dea840c142cc75ac85799e75b837eb4aa975c854323013473daee3e498474a1d",
+                "matches": true
+              },
+              {
+                "path": "src/main.js",
+                "sha256": "2e7ba37616c750ed0d16868ae00e60e15c712c3a346bc595048eba59030ca79e",
+                "matches": true
+              },
+              {
+                "path": "src/world.js",
+                "sha256": "2ee89b25a52943884eba1a5c9f7725e999347155642dc90988d5cf6c074a0c8b",
+                "matches": true
+              },
+              {
+                "path": "src/customization-ui.js",
+                "sha256": "9feb08b36c5c6dba5d229a8f53927491805321a091a89dab95805057aeb361eb",
+                "matches": true
+              },
+              {
+                "path": "src/customization-ui.css",
+                "sha256": "e3f3a73309cdecf8720a662b6fb2c08cde1698ff60e57adb36267b35b619059e",
+                "matches": true
+              },
+              {
+                "path": "src/customization-render.js",
+                "sha256": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+                "matches": true
+              },
+              {
+                "path": "src/customization.js",
+                "sha256": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+                "matches": true
+              },
+              {
+                "path": "src/state.js",
+                "sha256": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+                "matches": true
+              },
+              {
+                "path": "vite.config.js",
+                "sha256": "ed11662b4064b813facf79236fc0976a2fb062ac4c322aa2614ec15330b808d0",
+                "matches": true
+              },
+              {
+                "path": "scripts/customization-poses-production.mjs",
+                "sha256": "a47461a030234b9bc6ebfb0f98808ac2071846c84915ad9575f4d4697b8623ac",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-male-animation.json",
+                "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-male-combat-atlas.png",
+                "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-female-animation.json",
+                "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f",
+                "matches": true
+              },
+              {
+                "path": "public/assets/shepard-female-combat-atlas.png",
+                "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+                "matches": true
+              }
+            ],
+            "previews": 18,
+            "screenshots": 4,
+            "exports": 4,
+            "sourceRequests": [],
+            "focusTransitionsObserved": 6,
+            "allFocusTransitionsFocused": true,
+            "focusTransitions": [
+              {
+                "phase": "workshop opening",
+                "action": "custom-tab",
+                "id": "character",
+                "focused": true
+              },
+              {
+                "phase": "workshop return to Pause",
+                "action": "customization",
+                "focused": true
+              },
+              {
+                "phase": "workshop opening",
+                "action": "custom-tab",
+                "id": "character",
+                "focused": true
+              },
+              {
+                "phase": "workshop return to Pause",
+                "action": "customization",
+                "focused": true
+              },
+              {
+                "phase": "workshop opening",
+                "action": "custom-tab",
+                "id": "character",
+                "focused": true
+              },
+              {
+                "phase": "workshop return to Pause",
+                "action": "customization",
+                "focused": true
+              }
+            ]
+          }
+        ],
+        "sourceHashReferences": 26,
+        "uniqueSourceFiles": 16,
+        "allSourceHashesMatchRepositoryFiles": true,
+        "allCopiedFilesByteIdentical": true,
+        "changedReportedSourcesSinceOriginalRun": [
+          "scripts/customization-poses-production.mjs"
+        ],
+        "productionScriptSHA256": "a47461a030234b9bc6ebfb0f98808ac2071846c84915ad9575f4d4697b8623ac"
+      },
+      "resolvesPriorAttempt": "production-ci-focus-attempt-3"
+    }
   ]
 }

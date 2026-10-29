@@ -20,7 +20,7 @@
         "failures": 0,
         "cancelled": 0,
         "skipped": 0,
-        "runId": 40921771862
+        "runId": 40925514641
       }
     },
     "build": {
@@ -33,7 +33,7 @@
         "modules": 69,
         "vite": "7.3.7",
         "three": "0.180.0",
-        "runId": 40921771862,
+        "runId": 40925514641,
         "limitations": [
           "Les avertissements existants de taille des bundles restent présents."
         ]
@@ -90,7 +90,7 @@
       "campaignPreserved": true,
       "errors": 0,
       "failedRequests": 0,
-      "evidence": "docs/qa/shepard-atelier-ci-20261029/shepard-combat-world-report.json",
+      "evidence": "docs/qa/shepard-atelier-ci-20261029/validation-ea396cb/shepard-combat-world-report.json",
       "scope": "WorldView réel en développement, combat et poses maintenues par une fixture de rendu. Ce contrôle ne constitue pas un combat joué de bout en bout."
     },
     "keyboard": {
@@ -116,7 +116,7 @@
       "centerHitTest": true,
       "errors": 0,
       "failedRequests": 0,
-      "evidence": "docs/qa/shepard-atelier-ci-20261029/customization-keyboard-report.json",
+      "evidence": "docs/qa/shepard-atelier-ci-20261029/validation-ea396cb/customization-keyboard-report.json",
       "scope": "Navigation dans le véritable atelier, au clavier ; le harness DEV sert seulement aux observations. Mobile émulé avec texte agrandi."
     },
     "production": {
@@ -129,7 +129,7 @@
       "buildManifestFiles": 33,
       "browserLaunches": 2,
       "completeBrowserShutdowns": 2,
-      "durationSeconds": 52.54,
+      "durationSeconds": 52.85,
       "actualExports": [
         "baseline",
         "applied",
@@ -147,11 +147,13 @@
       "developmentRequests": 0,
       "errors": 0,
       "failedRequests": 0,
-      "evidence": "docs/qa/shepard-atelier-ci-20261029/customization-poses-production-report.json",
+      "evidence": "docs/qa/shepard-atelier-ci-20261029/validation-ea396cb/customization-poses-production-report.json",
       "scope": "Compiled workshop pose previews, cosmetic application, cancellation with prepared equipment, real exported saves, and a complete Chromium shutdown/restart using its own persistent profile. Buttons are focused and activated with native Enter after visibility/enabled/focus checks; this is not an exhaustive Tab-order test. The browser does not read/write storage directly, import source modules, or use a QA observer. Terrain screenshots and WebGL availability are recorded; combat events, physical devices, performance, Windows and artistic 1:1 fidelity are outside this check.",
       "modifiedDraftCancellationPath": "Escape ; le bouton Annuler est activé ensuite, sans second export d’un autre brouillon modifié.",
       "terrainEvidence": "La mesure WebGL chiffrée précède la première fermeture. La capture réelle male-terrain-resumed montre la scène après reprise ; il n’y a pas de second relevé isContextLost après reprise.",
-      "pixelEqualityScope": "Canvas d’aperçu Hors combat uniquement ; les captures complètes du terrain ne sont pas comparées pixel à pixel."
+      "pixelEqualityScope": "Canvas d’aperçu Hors combat uniquement ; les captures complètes du terrain ne sont pas comparées pixel à pixel.",
+      "observedFocusTransitions": 6,
+      "focusReadiness": "Le test attend le focus public réellement installé par le jeu à chaque ouverture et retour au menu Pause avant de poursuivre ; aucune temporisation fixe ni correction forcée du focus dans cette attente."
     }
   },
   "pending": [],
@@ -165,9 +167,9 @@
     "Le classeur a été vérifié par Open XML, sans exécution dans Microsoft Excel. Les formats actifs sont préservés ; le fichier exporté contient des définitions de styles différentiels inutilisées et n’est pas identique octet pour octet au précédent."
   ],
   "passed": true,
-  "testedCommit": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
+  "testedCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
   "implementationCommit": "875802def8bdbc17b2ba8708ceff5f5949fa5489",
-  "verifiedAt": "2026-10-29T17:37:45.590Z",
+  "verifiedAt": "2026-10-29T17:58:15.816164Z",
   "evidenceBinding": {
     "testedSourceHashes": {
       "src/world.js": "2ee89b25a52943884eba1a5c9f7725e999347155642dc90988d5cf6c074a0c8b",
@@ -185,7 +187,7 @@
       "package.json": "dea840c142cc75ac85799e75b837eb4aa975c854323013473daee3e498474a1d",
       "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
       "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
-      "scripts/customization-poses-production.mjs": "d044498e8b9774dcbb4e674ec24ed0938873b507b04cfcea0c7a47fdead7e931"
+      "scripts/customization-poses-production.mjs": "a47461a030234b9bc6ebfb0f98808ac2071846c84915ad9575f4d4697b8623ac"
     },
     "runtimeMatchesTestedCommit": true,
     "verifiedPaths": [
@@ -198,31 +200,31 @@
       "package-lock.json",
       "vite.config.js"
     ],
-    "note": "Le commit de preuves ne modifie que la documentation et les captures. Les trois rapports bruts gardent les chemins test-results de leur exécution ; les mêmes fichiers sont conservés dans le dossier de preuves."
+    "note": "Les trois rapports bruts les plus récents sont conservés sans modification dans validation-ea396cb. Leurs chemins internes test-results restent ceux du runner ; le manifeste décrit les copies et les captures complémentaires dans l’artefact CI. Le commit de preuves ne change que des documents et des captures, sans modifier les sources, tests ou workflows du commit testé."
   },
   "ci": {
     "browser": {
-      "runId": 40921772352,
-      "jobId": 123616630701,
-      "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40921772352",
+      "runId": 40925514808,
+      "jobId": 123629834800,
+      "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40925514808",
       "status": "completed",
       "conclusion": "success",
-      "headCommit": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
-      "checkoutCommit": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
-      "artifactId": 12918492832,
+      "headCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+      "checkoutCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+      "artifactId": 12921140386,
       "artifactName": "Relay-Chronicles-Shepard-Atelier",
-      "artifactSHA256": "e46e2316cc0c97e5425839278c48c6d77f9351680bd55e68b8b778911dc130f2",
-      "artifactBytes": 10148270,
+      "artifactSHA256": "ce6a0a58daa864d4e2b646b0ec79ff886ce34db4ed7f37b36638efce4fb47303",
+      "artifactBytes": 10147090,
       "manifest": "docs/qa/shepard-atelier-ci-20261029/manifest.json"
     },
     "unitAndBuild": {
-      "runId": 40921771862,
-      "jobId": 123616629340,
-      "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40921771862",
+      "runId": 40925514641,
+      "jobId": 123629835111,
+      "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40925514641",
       "status": "completed",
       "conclusion": "success",
-      "headCommit": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
-      "checkoutCommit": "fd2535aa4aca4b9fa33b1b52145c7fbde58d782d",
+      "headCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+      "checkoutCommit": "1c2165588bc4fee05dc02532a503a4977067d6e3",
       "checkoutKind": "GitHub pull-request merge commit against main 3670047499b90aa94e701bd00991bf5b2d15badc",
       "windowsJob": "skipped"
     }
@@ -271,6 +273,25 @@
       "cssReference": "https://www.w3.org/TR/css-overflow-3/#overflow-propagation",
       "evidence": "docs/qa/shepard-atelier-ci-20261029/prior-attempts/keyboard-ci-attempt-1-report.json",
       "screenshot": "docs/qa/shepard-atelier-ci-20261029/prior-attempts/keyboard-ci-attempt-1.png"
+    },
+    {
+      "environment": "GitHub Actions",
+      "passed": false,
+      "runId": 40924555822,
+      "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/40924555822",
+      "headCommit": "fcf3c95b11984c828f6e8ca3d2ce3d8dd74c0860",
+      "worldCasesPassed": 12,
+      "keyboardChecksCompleted": 14,
+      "productionChecksCompleted": 2,
+      "productionPreviewsRecorded": 0,
+      "reason": "Le test activait Armure avant que le focus initial Personnage, planifié par requestAnimationFrame, ait été installé. La capture montre cette reprise de focus ; le test échouait avant le premier aperçu. Le correctif attend le focus public initial et celui du bouton de retour, tout en conservant les assertions strictes avant Entrée.",
+      "fixCommit": "ea396cbbb0cbe3e804438d00b12e813790de1f25",
+      "fixScriptSHA256": "a47461a030234b9bc6ebfb0f98808ac2071846c84915ad9575f4d4697b8623ac",
+      "correctedRunId": 40925514808,
+      "correctionVerified": true,
+      "evidence": "docs/qa/shepard-atelier-ci-20261029/prior-attempts/production-ci-focus-attempt-3-report.json",
+      "screenshot": "docs/qa/shepard-atelier-ci-20261029/prior-attempts/production-ci-focus-attempt-3.png"
     }
-  ]
+  ],
+  "originalVerifiedCommit": "756ed424fb13c9abb8ef34fbac0c1293263b2389"
 }
