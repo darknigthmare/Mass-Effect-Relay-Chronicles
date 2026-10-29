@@ -62,13 +62,13 @@ Les classes déterminent les aptitudes de Shepard ; le Soldat ne reçoit pas de 
 
 ### Progression actuelle
 
-La victoire donne expérience et crédits. Les niveaux renforcent automatiquement les statistiques. L’armurerie conserve les calibrations permanentes de la version précédente et les doses de médi-gel. Elle vend aussi 48 références : 20 armes, 16 armures, quatre modules d’arme, quatre modifications de munitions et quatre modules d’armure. L’inventaire partagé compte au plus 150 objets, équipement compris, et 20 exemplaires par référence. Les stocks et les cinq emplacements de chaque personnage sont sauvegardés.
+La victoire donne expérience et crédits. Les niveaux renforcent automatiquement les statistiques. L’armurerie conserve les calibrations permanentes de la version précédente et les doses de médi-gel. Elle vend aussi 52 références : 20 armes, 16 armures, quatre modules d’arme, quatre modifications de munitions, quatre modules d’armure et quatre outils OmniTech/amplificateurs biotiques. L’inventaire partagé compte au plus 150 objets, équipement compris, et 20 exemplaires par référence. Les stocks et les neuf emplacements de chaque personnage sont sauvegardés : arme, armure, deux modules d’arme, modification de munitions, deux modules d’armure, OmniTech et amplificateur biotique.
 
 Le jeu contrôle le niveau, l’espèce et la classe avant d’équiper une armure. Une arme non entraînée ne fournit que la moitié de son bonus d’attaque. La comparaison montre les valeurs résultantes avant l’achat ou l’équipement. Un objet porté ne peut pas être vendu ; le matériel d’un compagnon disparu reste récupérable. Les bonus sont appliqués une seule fois, depuis les statistiques de base. L’équipement de départ ne renforce pas les statistiques du prototype précédent, afin de préserver son équilibre.
 
 Les modules peuvent modifier la chaleur, le refroidissement, les dégâts contre les organiques ou synthétiques, la pénétration du bouclier et la résistance au contrôle. Le coût thermique annoncé par l’action correspond à celui du tir. Les valeurs, prix et stocks relèvent de l’adaptation ATB ; les variantes visuelles d’armes et de tenues ne changent pas encore avec l’équipement.
 
-Santé et boucliers sont restaurés au début d’une rencontre : c’est une simplification volontaire de cette version, à reconsidérer avec une campagne plus longue. Le catalogue conserve les familles, qualités et objets du jeu d’origine qui ne font pas partie de ces 48 références.
+Santé et boucliers sont restaurés au début d’une rencontre : c’est une simplification volontaire de cette version, à reconsidérer avec une campagne plus longue. Le catalogue conserve les familles, qualités et objets du jeu d’origine qui ne font pas partie de ces 52 références.
 
 ### Opérations annexes
 

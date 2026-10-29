@@ -4,6 +4,12 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
+## Cadre de développement
+
+Le [guide gamedev du projet](docs/GAMEDEV_GUIDANCE.md) adapte une sélection de **12 guides** de [awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) aux chantiers du jeu : RPG/ATB, personnalisation, assets, narration, sauvegardes, cartes et rendu Three.js. Les [références sont épinglées](docs/gamedev-sources.json) et les [instructions aux agents](AGENTS.md) relient chaque changement aux contrôles et au suivi Excel existants.
+
+Le cadre conserve Three.js **0.180.0** et la direction sprites 2D HD / décors 3D. Il distingue les éléments produits, intégrés et vérifiés dans le jeu ; les exemples externes ciblant des versions plus récentes doivent être adaptés avant utilisation.
+
 ![Capture réelle du prototype : exploration de la Citadelle](docs/screenshots/citadel.png)
 
 ## Jouer
