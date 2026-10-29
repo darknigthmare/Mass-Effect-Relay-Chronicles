@@ -14,6 +14,7 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `props-atlas.png` | 1536 × 1024 | 16 objets, grille 4 × 4 | Habillage 2D des décors 3D |
 | `vehicle-atlas.png` | 1312 × 1199 | 4 véhicules / machines ; régions irrégulières | Mako statique et Sovereign distant ; autres images en réserve |
 | `shepard-walk-atlas.png` | 1269 × 1240 | 16 poses, quatre directions | Marche de Shepard masculin |
+| `shepard-male-combat-atlas.png` | 1536 × 1024 | Visée, pouvoir, impact, hors combat | Combat masculin et aperçu de l’atelier |
 | `shepard-female-walk-atlas.png` | 1254 × 1254 | 16 poses, quatre directions | Marche féminine, création, dossier et équipement |
 | `shepard-female-combat-atlas.png` | 1536 × 1024 | Visée, pouvoir, impact, hors combat | Poses de combat féminines |
 | `chronicle-portraits-me2-me3.png` | 1536 × 1024 | Trois bustes : Miranda ME2, Thane ME2, Garrus ME3 | Portraits de prototype dans leurs contextes Chroniques autorisés |
@@ -22,7 +23,7 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `arsenal-equipment.png` | 1536 × 1024 | Deux armes, deux costumes et deux modules | Illustrations fixes des dossiers et préparations compatibles |
 | `arsenal-fleet.png` | 1536 × 1024 | Trois véhicules et trois vaisseaux | Références documentaires uniquement, sans pilotage |
 
-Les **quinze PNG courants** comprennent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat supplémentaires et une illustration d’accueil —, l’atlas des trois bustes partiels et les quatre atlas arsenal de **24 illustrations fixes**. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **seize PNG courants** comprennent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et le nouvel atlas de **quatre poses de combat masculines**. Les deux apparences disposent donc de huit poses clés de combat au total. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -131,6 +132,12 @@ Les dix-huit cellules des trois autres atlas mesurent 512 × 512. Le découpage 
 | `arsenal-fleet.png` | `efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5` |
 
 Les [manuels inspectés et leurs limites](research/arsenal-visual-sources.md) ne fournissent pas une référence primaire complète pour chaque cellule. Les visages, silhouettes, costumes, reliefs, proportions et géométries générés restent à contrôler. Ces images fixes ne livrent ni modèle complet, animation, vue arrière, huit directions ou apparence interchangeable d’équipement. Le [parcours arsenal](qa/arsenal-browser-report.json) vérifie les 24 visuels et leurs restrictions. La [revue ciblée de l’interface](qa/arsenal-ui-visual-review.json) et la [revue des images générées](qa/arsenal-generated-art-review.json) distinguent lisibilité, cadrages et conformité canonique non certifiée. Les 17 contrôles de production HTTP chargent les quinze PNG et les sept bundles de cette version ; aucun résultat historique n’est réutilisé comme preuve actuelle. Ces contrôles Linux Chromium ne certifient ni rendu mobile, ni exécutable Windows, ni modèle ou kit original.
+
+## Poses de combat masculines — 29 octobre 2026
+
+Le nouvel atlas conserve l’identité visuelle N7 de l’atlas de marche masculin. Ses quatre rectangles irréguliers, pivots et hauteurs sont définis dans `shepard-male-animation.json` et repris par le manifeste. Le sprite de repli demeure disponible pendant le chargement. L’atelier affiche les mêmes poses avec un angle trois-quarts fixe et une échelle commune ; la pose couchée reste près du sol. Les régions de tête et leur axe sont partagés avec le traitement des couleurs et du casque, également appliqué aux quatre poses féminines existantes.
+
+Le PNG de génération est copié sans retouche de pixels. Les [références, prompts et limites](research/shepard-male-combat-art.md), le [contrôle de l’alpha et des cadrages](qa/shepard-combat-art-report.json) et le [rapport de livraison](qa/shepard-combat-poses-report.json) documentent ce lot. Les poses restent fixes et le fusil illustré reste générique ; les transitions, vues supplémentaires et variantes exactes d’équipement restent à produire. Les anciens nombres de PNG mentionnés dans les rapports historiques décrivent leur version propre.
 
 ## Critères d’acceptation de l’art final
 

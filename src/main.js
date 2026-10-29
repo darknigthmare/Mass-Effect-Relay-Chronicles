@@ -6,7 +6,7 @@ import './operations-ui.css';
 import './local-map.css';
 import { renderLoadoutScreen } from './loadout-ui.js';
 import { createCustomizationDraft, commitCustomization, initialCustomization, validateCustomizationDraft, prepareCustomizationEquipment } from './customization.js';
-import { CUSTOMIZATION_FIELDS, renderCustomizationScreen, renderCustomizationFooter, paintCustomizationPreview, customizationFaceSVG } from './customization-ui.js';
+import { CUSTOMIZATION_FIELDS, CUSTOMIZATION_POSES, renderCustomizationScreen, renderCustomizationFooter, paintCustomizationPreview, customizationFaceSVG } from './customization-ui.js';
 import { equipItem, unequipItem, buyItem, sellItem, equipmentFor, trainArmor, SLOTS } from './loadout.js';
 import { listOperations, operationPOIs, getOperationInteraction, advanceOperation, getOperationEncounter, finishOperationBattle, operationEffects } from './operations.js';
 import { renderOperationsJournal } from './operations-ui.js';
@@ -42,7 +42,7 @@ let hudStamp = '', touchKey = null;
 let state = null, battle = null, running = false, battlePOI = null, lastBattleEvent = 0, combatStamp = '', lastFrame = performance.now(), uiAccumulator = 0, saveAccumulator = 0;
 let universePromise, universeModules, chronicleSession=null, chronicleBattle=null, chroniclePaused=false, chronicleFinished=false, chronicleStamp='', chronicleView=null, expansionResult=null;
 const universeUI={mediaId:'',periodId:'',scenarioId:'',readingId:null,group:'all',query:'',recordId:null,visibleCount:30,tab:'references',actorId:null,actionId:'shoot',feedback:null,returnScreen:'title',expansionMode:'all',expansionBatch:'all',expansionId:null,expansionSeed:1,expansionDifficulty:'normal',expansionEdition:'standard'};
-const ui = { screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, customTab:'character', customSlot:'weapon', customView:'front', customCompare:false, customShowAll:false, customWeaponFilter:'all', customizationDraft:null, customizationBase:null, customReturn:null, customCreation:false, customItem:null, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
+const ui = { screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, customTab:'character', customSlot:'weapon', customView:'front', customPose:'field', customCompare:false, customShowAll:false, customWeaponFilter:'all', customizationDraft:null, customizationBase:null, customReturn:null, customCreation:false, customItem:null, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
 $('#app').innerHTML = `<div id="world"></div><div class="vignette"></div><div id="hud" class="hidden"></div><div id="battle-ui"></div><div id="overlay"></div><div id="toasts" aria-live="polite"></div><div id="transition" class="transition-cover"><span class="eyebrow">Normandy · liaison opérationnelle</span><h2></h2><div class="spinner"></div></div><div class="scanlines"></div><input type="file" id="save-import" accept="application/json,.json" hidden><input type="file" id="chronicle-import" accept="application/json,.json" hidden>`;
 const audio = new AudioDirector();
 let world;
@@ -75,7 +75,7 @@ function openCustomization(creation=false){
   const base=creation?newGame(ui.form):state;
   if(creation&&ui.form.initialEquipment){const saved=createCustomizationDraft(base);saved.equipment={...ui.form.initialEquipment};commitCustomization(base,saved);}
   ui.customCreation=creation;ui.customizationBase=creation?base:null;ui.customReturn=ui.screen;ui.customPrevious=ui.previous;
-  ui.customizationDraft=createCustomizationDraft(base);ui.customTab='character';ui.customSlot='weapon';ui.customItem=null;ui.customView='front';ui.customCompare=false;ui.customShowAll=false;ui.customWeaponFilter='all';
+  ui.customizationDraft=createCustomizationDraft(base);ui.customTab='character';ui.customSlot='weapon';ui.customItem=null;ui.customView='front';ui.customPose='field';ui.customCompare=false;ui.customShowAll=false;ui.customWeaponFilter='all';
   openScreen('customization');
   requestAnimationFrame(()=>$('#overlay [data-do="custom-tab"]')?.focus({preventScroll:true}));
 }
@@ -90,7 +90,18 @@ function refreshCustomization(){
   if($('.customization-screen .screen-body'))$('.customization-screen .screen-body').scrollTop=scroll;
   if($('.custom-controls'))$('.custom-controls').scrollTop=controls;
   if($('.custom-inspector'))$('.custom-inspector').scrollTop=inspector;
-  if(focus){const button=[...document.querySelectorAll('.customization-screen [data-do]')].find(element=>element.dataset.do===focus.action&&element.dataset.id===focus.id&&element.dataset.field===focus.field&&element.dataset.slot===focus.slot);button?.focus({preventScroll:true});}
+  if(focus){
+    const buttons=[...document.querySelectorAll('.customization-screen [data-do]')];
+    let button=buttons.find(element=>element.dataset.do===focus.action&&element.dataset.id===focus.id&&element.dataset.field===focus.field&&element.dataset.slot===focus.slot);
+    const priorButton=button;
+    // Preparing/removing an item and resetting the draft disable their trigger.
+    // Keep focus on the same item, emptied slot, or adjacent footer control.
+    if(button?.disabled&&focus.action==='custom-equip')button=focus.id
+      ?buttons.find(element=>element.dataset.do==='custom-inspect'&&element.dataset.id===focus.id)
+      :buttons.find(element=>element.dataset.do==='custom-slot'&&element.dataset.id===focus.slot);
+    if(button?.disabled&&focus.action==='custom-reset')button=buttons.find(element=>element.dataset.do==='custom-compare');
+    if(!button?.disabled)button?.focus({preventScroll:button===priorButton});
+  }
 }
 function applyCustomization(){
   if(ui.screen!=='customization'||!ui.customizationDraft||battle)return;
@@ -626,7 +637,8 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'customization-create':if(ui.screen==='new')openCustomization(true);break;
     case 'custom-tab':if(ui.screen==='customization'&&['character','armor','weapons'].includes(id)){ui.customTab=id;ui.customSlot=id==='armor'?'armor':'weapon';ui.customItem=ui.customizationDraft.equipment[ui.customSlot];refreshCustomization();$('.customization-screen .screen-body').scrollTop=0;$('.custom-controls').scrollTop=0;}break;
     case 'custom-slot':if(ui.screen==='customization'&&SLOTS.includes(id)){ui.customSlot=id;ui.customItem=ui.customizationDraft.equipment[id];refreshCustomization();}break;
-    case 'custom-view':if(ui.screen==='customization'&&['front','right','back','left'].includes(id)){ui.customView=id;refreshCustomization();}break;
+    case 'custom-view':if(ui.screen==='customization'&&ui.customPose==='field'&&['front','right','back','left'].includes(id)){ui.customView=id;refreshCustomization();}break;
+    case 'custom-pose':if(ui.screen==='customization'&&Object.hasOwn(CUSTOMIZATION_POSES,id)){ui.customPose=id;refreshCustomization();}break;
     case 'custom-compare':if(ui.screen==='customization'){ui.customCompare=!ui.customCompare;refreshCustomization();}break;
     case 'custom-show-all':if(ui.screen==='customization'){ui.customShowAll=!ui.customShowAll;refreshCustomization();}break;
     case 'custom-inspect':if(ui.screen==='customization'){ui.customItem=id;refreshCustomization();}break;

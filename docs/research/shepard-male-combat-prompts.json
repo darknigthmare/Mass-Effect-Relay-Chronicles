@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "date": "2026-10-29",
+  "tool": "image_gen.imagegen",
+  "sourceReference": "public/assets/shepard-walk-atlas.png",
+  "output": "public/assets/shepard-male-combat-atlas.png",
+  "requests": [
+    {
+      "id": "male-combat-v1",
+      "operation": "identity-preserving derivative",
+      "reference": "public/assets/shepard-walk-atlas.png",
+      "transparentBackground": true,
+      "generatedFile": "exec-ced7f32f-2d44-4b76-bbf8-868345a61625.png",
+      "sha256": "33fdb375d28a003ce8bef077407b86d6f0c2afd514d14741de9c2ec24eef7c6b",
+      "selected": false,
+      "prompt": "Use case: identity-preserve. Asset type: a production RGBA combat sprite atlas for the existing French fan RPG Mass Effect — Relay Chronicles.\nInput image 1 is the existing male Shepard walk atlas: use it as the identity, adult body proportions, N7 armor, texture, colors and lighting reference. Derive a NEW combat atlas from that character; do not change his face, close-cropped dark hair, clean jawline, build or dark graphite armor with the same red-and-white shoulder stripe.\nRequired output: one landscape 1536 by 1024 transparent PNG, a precisely separated 2-column by 2-row sheet containing exactly FOUR full-body poses of this SAME adult male character. No cell borders, labels, captions, background scenery, floor, shadow plane, watermark or interface. Generous transparent gutters and clear margins around each entire figure. Match the reference's high-definition prerendered 3D look, realistic adult proportions, material detail, sharp silhouette and soft light from upper left; not pixel art, chibi, a cartoon, or an illustration poster.\nTop-left cell: AIM — standing braced, front three-quarter facing screen right, holding a compact generic science-fiction assault rifle with both hands, butt at shoulder and muzzle pointing right; whole body, both feet, all of rifle visible.\nTop-right cell: POWER — same camera/facing/identity/armor scale, feet planted, left hand extended forward with open palm in a purposeful ability-casting gesture; right hand close to body. No rifle in this pose, no glow, no electricity, no aura or baked special effect: the engine adds effects separately.\nBottom-left cell: HIT — same camera/facing/identity/armor and body proportions, visibly recoiling from an impact, knees bent, torso leaning back slightly, one arm bracing the torso. No blood, no wound, no projectile, no floating gun, both feet fully visible. His standing body size must remain consistent despite the bend.\nBottom-right cell: DOWN — the same character lying horizontally on his back, head on the left and boots on the right, arms resting beside the body, eyes closed, peaceful unconscious pose. Complete head, hands and boots fit wholly within the bottom-right cell, generously inset from its edges. No blood. His body must not be compressed or enlarged: it is the same adult proportions seen from the same elevated orthographic game camera.\nArrange the cells so no body, weapon or effect crosses a gutter. The first row fits entirely above the sheet midpoint. Keep the N7 chest insignia and red/white armor markings consistent with the supplied identity reference. Preserve a real transparent alpha channel throughout empty space."
+    },
+    {
+      "id": "male-combat-v2",
+      "operation": "transparency cleanup edit",
+      "reference": "exec-ced7f32f-2d44-4b76-bbf8-868345a61625.png",
+      "transparentBackground": true,
+      "generatedFile": "exec-f1ba4ea4-e54d-40ba-ae3b-6bfeb8aec7df.png",
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+      "selected": true,
+      "prompt": "Edit only the transparency of this four-pose male Shepard combat atlas. Preserve the existing 1536×1024 size, all four poses, their positions, body proportions, exact face and hair, armor markings, weapon, material shading and detail. Remove every diffuse reddish/gray halo, bloom, glow, cast shadow and fog outside the actual character/weapon silhouettes. The empty space around and between the figures must be fully transparent (alpha 0), not a dark backdrop or checkerboard. Keep clean, naturally antialiased cutout edges. No new light, no repositioning, no redesign, no text. Keep all four complete bodies and the rifle intact; this is a transparency cleanup only."
+    }
+  ],
+  "notes": [
+    "The selected native image is copied byte-for-byte into the project. No crop, alpha rewrite, recolour or other pixel edit was applied to that file.",
+    "The second generation retains the intended identity and poses but changes some local details. Exact pixel identity with the first output is not claimed.",
+    "Low-opacity pixels remain. Runtime slicing uses measured irregular rectangles rather than the requested regular grid.",
+    "No claim of canonical 1:1 fidelity or complete motion cycles."
+  ]
+}

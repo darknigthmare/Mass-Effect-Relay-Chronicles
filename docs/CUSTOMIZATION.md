@@ -41,6 +41,16 @@ Le mannequin et le portrait de l’atelier sont des aperçus 2D originaux. Les c
 
 Les silhouettes exactes de chaque modèle d’armure et d’arme, leurs accessoires dans toutes les directions, les coiffures animées et les transitions propres au matériel restent à produire. Aucun niveau de fidélité artistique 1:1 n’est déclaré par cette livraison.
 
+## Consulter les poses et poursuivre au clavier
+
+L’aperçu propose **Terrain / Visée / Pouvoir / Impact / Hors combat** pour les deux apparences de Shepard. Terrain conserve quatre directions ; les quatre poses de combat sont des dessins en trois-quarts fixe. Les boutons de direction sont alors désactivés et la direction de terrain choisie est restaurée au retour. Le fusil illustré dans Visée est générique, indépendant de la dotation.
+
+La pose d’aperçu appartient à l’interface, sans modifier le brouillon, les statistiques, les PV, les pouvoirs ou la sauvegarde. Le comparatif visuel actuel/préparé utilise la même pose. Le cadrage respecte les pivots et hauteurs du renderer : le corps couché conserve son échelle et son ancrage, au lieu d’être agrandi à la hauteur du personnage debout. Les régions de tête et leur axe local guident la teinte de peau, les cheveux et le casque ; les pixels source et leur alpha restent conservés.
+
+Après **Préparer**, si le bouton devient indisponible parce que la pièce est déjà préparée, le focus revient au bouton **Inspecter** de cette même pièce. Après **Retirer**, il rejoint le port vidé ; après **Réinitialiser le brouillon**, il rejoint le bouton de comparaison voisin qui reste actif. Le contrôle de repli est remis dans la partie visible du panneau. Le filtre d’armes conserve aussi son focus après un changement. **Tab / Maj+Tab** restent dans l’atelier et **Échap** conserve son rôle d’annulation.
+
+Le [rapport du lot de poses](qa/shepard-combat-poses-report.json) rassemble les tests, les captures réelles de l’atelier, la scène isolée du renderer et les contrôles du build. La [provenance artistique](research/shepard-male-combat-art.md) distingue les quatre nouvelles poses masculines des poses féminines existantes. Le catalogue et l’Excel précisent six fiches existantes, soit vingt cellules, sans changer leurs statuts Prototype ni le nombre de lignes.
+
 ## Suivi dans le classeur
 
 Le catalogue principal et son classeur reçoivent **50 fiches de personnalisation** : 20 systèmes et éléments d’interface, 6 d’armure et équipement, 4 d’armes, 5 de sprites, 3 d’animations et 12 scénarios QA. La fusion finale conserve les **1 332 fiches du main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales** et **6 708 références** avec les 5 326 fiches supplémentaires. Les 44 sources principales sont conservées, avec les annotations récentes de main pour les sources partagées. Les 57 fiches de la feuille Trilogie et les six statuts avancés historiques restent inchangés.

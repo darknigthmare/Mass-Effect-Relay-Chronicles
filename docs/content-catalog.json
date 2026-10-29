@@ -15302,24 +15302,31 @@
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Planche de combat dédiée aux actions réellement disponibles pour Shepard.",
-      "acceptance": "Attente, action, impact, KO et récupération sans cadre coupé.",
+      "description": "Shepard masculin N7 rejoint l’atlas féminin avec quatre poses clés de combat : visée, pouvoir, impact et hors combat.",
+      "acceptance": "Contrôler les poses aim/power/hit/down des deux apparences, sans découpe ni rotation supplémentaire de la pose couchée. Récupération animée à produire.",
       "dependencies": [
         "CHR-shepard"
       ],
       "priority": "P0",
       "plannedPath": "assets/sprites/characters/shepard/battle.png",
-      "assetPath": "public/assets/crew-atlas.png",
+      "assetPath": "public/assets/shepard-male-combat-atlas.png",
       "gameKey": "shepard",
-      "notes": "Shepard masculin conserve la pose de l’atlas commando. Shepard femme utilise quatre poses aim/power/hit/down ; hauteur couchée 0,245 sans rotation supplémentaire. Les séquences de transition et variantes par arme restent à produire.",
+      "notes": "Quatre poses clés en 3/4 fixe. Fusil illustré générique, transitions et variantes par arme à produire. Référence : docs/research/shepard-male-combat-art.md. QA : docs/qa/shepard-combat-poses-report.json.",
       "deliveryVersion": "0.2.0",
       "implementationPaths": [
         "src/world.js",
         "public/assets/shepard-female-combat-atlas.png",
-        "public/assets/shepard-female-animation.json"
+        "public/assets/shepard-female-animation.json",
+        "public/assets/shepard-male-combat-atlas.png",
+        "public/assets/shepard-male-animation.json",
+        "src/customization-render.js",
+        "scripts/check-shepard-combat-art.mjs"
       ],
       "evidence": [
-        "docs/research/shepard-female-art.md"
+        "docs/research/shepard-female-art.md",
+        "docs/research/shepard-male-combat-art.md",
+        "docs/qa/shepard-combat-art-report.json",
+        "docs/qa/shepard-combat-poses-report.json"
       ]
     },
     {
@@ -32125,8 +32132,8 @@
       "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
       "sourceId": "PROJECT",
       "sourceUrl": "",
-      "description": "Contrôles natifs nommés, focus visible et fermeture cohérente avec le reste des menus.",
-      "acceptance": "Sélectionner des options et valider ou annuler au clavier. Échap n’applique aucune modification du brouillon.",
+      "description": "Commandes d’atelier nommées, focus visible et continuité après Préparer ou un changement de pose.",
+      "acceptance": "Sélectionner, appliquer ou annuler au clavier. Après Préparer, le focus rejoint une commande active. Échap ne valide pas le brouillon.",
       "dependencies": [
         "CUST-UI-workshop"
       ],
@@ -32134,13 +32141,16 @@
       "plannedPath": "src/customization-ui.js",
       "assetPath": "src/customization-ui.js",
       "gameKey": "customization:UI-keyboard",
-      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "notes": "Focus de Préparer rétabli après rendu de l’interface. Pose d’aperçu temporaire. Contrôles : docs/qa/shepard-combat-poses-report.json.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "src/customization-ui.js"
+        "src/customization-ui.js",
+        "src/main.js",
+        "src/customization-ui.css"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "docs/qa/shepard-combat-poses-report.json"
       ],
       "recordType": "customization-feature"
     },
@@ -32499,8 +32509,8 @@
       "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
       "sourceId": "PROJECT",
       "sourceUrl": "",
-      "description": "Silhouette inspectable du commandant, indiquant les couleurs, le motif et le casque choisis.",
-      "acceptance": "Le corps reste lisible avec le casque affiché ou masqué et les couleurs de la palette. Les options ne recouvrent pas les commandes.",
+      "description": "Aperçus Terrain, Visée, Pouvoir, Impact et Hors combat pour les deux apparences, avec les couleurs, le motif et le casque choisis.",
+      "acceptance": "Corps lisible et casque aligné, y compris couché, sans masquer les commandes. Combat en 3/4 fixe ; quatre directions disponibles en mode Terrain.",
       "dependencies": [
         "CUST-UI-workshop"
       ],
@@ -32508,13 +32518,22 @@
       "plannedPath": "src/customization-ui.js",
       "assetPath": "src/customization-ui.js",
       "gameKey": "customization:ART-armor-preview",
-      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "notes": "La pose est un état temporaire d’aperçu : aucun effet sur les pouvoirs, les PV ou la sauvegarde. Contrôles : docs/qa/shepard-combat-poses-report.json. Modèles d’armures exacts à produire.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "src/customization-ui.js"
+        "src/customization-ui.js",
+        "src/customization-render.js",
+        "src/customization-ui.css",
+        "src/main.js",
+        "public/assets/shepard-male-combat-atlas.png",
+        "public/assets/shepard-male-animation.json",
+        "public/assets/shepard-female-combat-atlas.png",
+        "public/assets/shepard-female-animation.json"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "docs/research/shepard-male-combat-art.md",
+        "docs/qa/shepard-combat-poses-report.json"
       ],
       "recordType": "customization-feature"
     },
@@ -32561,8 +32580,8 @@
       "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
       "sourceId": "PROJECT",
       "sourceUrl": "",
-      "description": "Transmettre les couleurs prises en charge par le rendu de Shepard à l’exploration et au combat.",
-      "acceptance": "Vérifier les limites du masque ou de la recoloration sur toutes les directions et poses. Aucun changement d’apparence d’un autre équipier.",
+      "description": "Transmettre couleurs, motif et casque aux sprites de Shepard sur le terrain et dans les poses de combat, pour les deux apparences.",
+      "acceptance": "Vérifier les quatre directions de terrain et quatre poses de combat. Palette et casque suivent la tête, y compris couchée. Aucun autre équipier modifié.",
       "dependencies": [
         "CUST-UI-workshop"
       ],
@@ -32570,13 +32589,17 @@
       "plannedPath": "src/world.js",
       "assetPath": "src/world.js",
       "gameKey": "customization:ART-world-palette",
-      "notes": "La recoloration d’un atlas ne remplace pas les silhouettes d’armures ou coiffures par des assets dédiés.",
+      "notes": "La région de tête par pose guide la recoloration et le casque. Contrôles : docs/qa/shepard-combat-poses-report.json. Les silhouettes exactes d’armure restent à produire.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "src/world.js"
+        "src/world.js",
+        "src/customization-render.js",
+        "public/assets/shepard-male-animation.json",
+        "public/assets/shepard-female-animation.json"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "docs/qa/shepard-combat-poses-report.json"
       ],
       "recordType": "customization-feature"
     },
@@ -32652,8 +32675,8 @@
       "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
       "sourceId": "PROJECT",
       "sourceUrl": "",
-      "description": "Maintenir les options visuelles prises en charge pendant les poses de visée, pouvoir, impact et hors combat.",
-      "acceptance": "Vérifier la persistance de la palette et des ancrages lors du passage exploration/combat puis du retour sur la carte.",
+      "description": "Conserver palette, motif et casque dans les quatre poses clés aim/power/hit/down des deux apparences.",
+      "acceptance": "Contrôler ancrage, proportions et couleurs à l’entrée en combat, pendant les poses et au retour terrain. La pose couchée utilise son cadrage et sa région de tête.",
       "dependencies": [
         "CUST-UI-workshop"
       ],
@@ -32661,13 +32684,22 @@
       "plannedPath": "src/world.js",
       "assetPath": "src/world.js",
       "gameKey": "customization:ANI-combat-colors",
-      "notes": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "notes": "Poses clés en 3/4 fixe. Transitions et variantes propres aux armes à produire. Contrôles : docs/qa/shepard-combat-poses-report.json.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "src/world.js"
+        "src/world.js",
+        "src/customization-render.js",
+        "public/assets/shepard-male-combat-atlas.png",
+        "public/assets/shepard-male-animation.json",
+        "public/assets/shepard-female-combat-atlas.png",
+        "public/assets/shepard-female-animation.json",
+        "tests/shepard-combat-world.test.js"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "docs/research/shepard-male-combat-art.md",
+        "docs/qa/shepard-combat-art-report.json",
+        "docs/qa/shepard-combat-poses-report.json"
       ],
       "recordType": "customization-feature"
     },
@@ -33022,22 +33054,25 @@
       "reference": "Atelier de Relay Chronicles. Interface et réglages propres au fan game ; contrôle de fidélité distinct.",
       "sourceId": "PROJECT",
       "sourceUrl": "",
-      "description": "Changer les contrôles au clavier, parcourir les onglets puis fermer sans appliquer.",
-      "acceptance": "Le focus reste visible et Échap ne valide pas le brouillon.",
+      "description": "Parcourir poses, onglets et objets au clavier, préparer une pièce puis annuler ou quitter.",
+      "acceptance": "Le focus reste visible après Préparer et les changements de pose. Échap ferme sans appliquer le brouillon. Le parcours reste possible sans souris.",
       "dependencies": [
         "CUST-UI-keyboard"
       ],
       "priority": "P0",
       "plannedPath": "scripts/customization-browser.mjs",
-      "assetPath": "scripts/customization-browser.mjs",
+      "assetPath": "scripts/customization-poses-browser.mjs",
       "gameKey": "customization:QA-keyboard",
-      "notes": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "notes": "Scénario des poses et de la continuité du focus : docs/qa/shepard-combat-poses-report.json. Lire les résultats dans ce rapport. Le scénario seul ne valide pas la fonctionnalité.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "scripts/customization-browser.mjs"
+        "scripts/customization-browser.mjs",
+        "scripts/customization-poses-browser.mjs",
+        "tests/customization-preview-poses.test.js"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "docs/qa/shepard-combat-poses-report.json"
       ],
       "recordType": "acceptance-scenario"
     },

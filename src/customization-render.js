@@ -8,6 +8,13 @@ const rgb = hex => [1, 3, 5].map(index => Number.parseInt(hex.slice(index, index
 const clamp = value => Math.max(0, Math.min(255, Math.round(value)));
 const brightness = color => color[0] * .299 + color[1] * .587 + color[2] * .114;
 
+// Head bounds are relative to the sliced frame, not the full atlas. Legacy
+// walk/static sprites retain their original top-of-image heuristic.
+const normalizedHeadRegion = region => Array.isArray(region) && region.length === 4
+  && region.every(Number.isFinite) && region[0] >= 0 && region[1] >= 0
+  && region[2] > 0 && region[3] > 0 && region[0] + region[2] <= 1 + 1e-9
+  && region[1] + region[3] <= 1 + 1e-9 ? region : null;
+
 export function hasVisualCustomization(customization, appearance = 'male', inCombat = false) {
   const current = normalizeCustomization(customization, appearance) || initialCustomization(appearance);
   const base = initialCustomization(appearance);
@@ -17,7 +24,7 @@ export function hasVisualCustomization(customization, appearance = 'male', inCom
 }
 
 /** Mutates and returns an ImageData-like object; no DOM or WebGL is required. */
-export function tintCustomizationPixels(imageData, customization, { appearance = 'male', direction = 'front', inCombat = false } = {}) {
+export function tintCustomizationPixels(imageData, customization, { appearance = 'male', direction = 'front', inCombat = false, headRegion, headAxis = 'y' } = {}) {
   const current = normalizeCustomization(customization, appearance) || initialCustomization(appearance);
   if (!hasVisualCustomization(current, appearance, inCombat)) return imageData;
   const { data, width, height } = imageData;
@@ -25,6 +32,7 @@ export function tintCustomizationPixels(imageData, customization, { appearance =
   const base = initialCustomization(appearance), palette = Object.fromEntries(Object.entries(getCustomizationPalette(current)).map(([key, value]) => [key, rgb(value)]));
   const helmet = current.armor.helmet === 'visible' || current.armor.helmet === 'combat' && inCombat;
   const skinChanged = current.face.skinTone !== base.face.skinTone, hairChanged = current.face.hairColor !== base.face.hairColor;
+  const head = normalizedHeadRegion(headRegion);
   const paint = (index, color, value, reference, strength = 1) => {
     const shade = Math.max(.25, Math.min(1.55, value / reference));
     for (let channel = 0; channel < 3; channel++) data[index + channel] = clamp(data[index + channel] * (1 - strength) + color[channel] * shade * strength);
@@ -34,18 +42,22 @@ export function tintCustomizationPixels(imageData, customization, { appearance =
     if (data[index + 3] < 24) continue;
     const color = [data[index], data[index + 1], data[index + 2]], [r, g, b] = color, value = brightness(color);
     const v = y / height, u = x / width;
-    const skin = v < .25 && r > 92 && g > 56 && b > 35 && r > g * 1.09 && g > b * 1.08;
-    const hair = v < .18 && !skin && r > 27 && r > g * 1.08 && r >= b && value < 130;
+    const inHead = head && u >= head[0] && u < head[0] + head[2] && v >= head[1] && v < head[1] + head[3];
+    const headV = head ? headAxis === 'x' ? (u - head[0]) / head[2] : (v - head[1]) / head[3] : v;
+    const skin = (head ? inHead : v < .25) && r > 92 && g > 56 && b > 35 && r > g * 1.09 && g > b * 1.08;
+    const hair = (head ? inHead : v < .18) && !skin && r > 27 && r > g * 1.08 && r >= b && value < 130;
     if ((skin || hair) && helmet) {
       // The existing head silhouette becomes a closed helmet. A luminous visor
       // is visible on front/side views; the back view stays an opaque shell.
-      const visor = direction !== 'back' && skin && v > .075 && v < .125;
+      const visor = direction !== 'back' && skin && (head ? headV > .3 && headV < .5 : v > .075 && v < .125);
       paint(index, visor ? [91, 208, 219] : palette.primary, visor ? 150 : value, visor ? 145 : skin ? 150 : 78);
       continue;
     }
     if (skin) { if (skinChanged) paint(index, palette.skin, value, 180); continue; }
     if (hair) { if (hairChanged) paint(index, palette.hair, value, appearance === 'female' ? 56 : 45); continue; }
-    if (v <= .19 || v >= .95 || value < 15 || value > 241) continue;
+    // Authored head regions let horizontal poses tint their armour all the way
+    // across the frame without treating the boots/shoulders as a face.
+    if ((head ? inHead : v <= .19 || v >= .95) || value < 15 || value > 241) continue;
     const redPlate = r > g * 1.3 && r > b * 1.25 && r - g > 23;
     const neutralPlate = Math.max(r, g, b) - Math.min(r, g, b) < 45;
     if (!redPlate && !neutralPlate) continue;

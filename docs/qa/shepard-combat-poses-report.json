@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "status": "verification-in-progress",
+  "repository": "darknigthmare/Mass-Effect-Relay-Chronicles",
+  "branch": "docs/gamedev-guidance-20261029",
+  "baseCommit": "79f3567eb5ce89d8f6873c96ee27a16333821e86",
+  "scope": "Four fixed male Shepard combat poses, shared appearance preview and head-aware cosmetic rendering, keyboard focus after prepare/remove/reset, production application/cancellation/save/resume.",
+  "completed": {
+    "node": {
+      "passed": true,
+      "tests": 692,
+      "failures": 0,
+      "command": "node --test --test-concurrency=1 tests/*.test.js",
+      "evidence": "docs/qa/shepard-combat-node-tests.txt"
+    },
+    "build": {
+      "passed": true,
+      "modules": 69,
+      "command": "npm run build",
+      "evidence": "docs/qa/shepard-combat-build.txt"
+    },
+    "art": {
+      "passed": true,
+      "assets": 2,
+      "checks": 3,
+      "evidence": "docs/qa/shepard-combat-art-report.json"
+    },
+    "workbook": {
+      "passed": true,
+      "changedEntries": 6,
+      "changedTextCells": 20,
+      "totalEntries": 1382,
+      "unchangedEntries": 1376,
+      "sheets": 28,
+      "tables": 26,
+      "formulas": 274,
+      "evidence": "docs/qa/shepard-combat-workbook-preservation.json"
+    }
+  },
+  "pending": [
+    "Production cancellation and real browser restart",
+    "Keyboard and pose previews on development build",
+    "Isolated world renderer poses"
+  ],
+  "limitations": [
+    "Prototype key poses, not full animation cycles or exact weapon silhouettes.",
+    "No artistic 1:1 certification.",
+    "No physical mobile, gamepad, Electron or native Windows validation.",
+    "Spreadsheet preservation verified through Open XML, not Microsoft Excel."
+  ]
+}

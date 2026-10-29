@@ -43,6 +43,10 @@ function statMarkup({ key, label, max, lower, format, before, after, diff }, ins
   return `<div class="custom-stat" ${inspected ? 'data-item-stat' : 'data-stat'}="${key}" data-before="${before}" data-after="${after}"><div><span>${label}</span><b>${display(before)}<span> → </span>${display(after)}</b></div><div class="custom-stat-bar" aria-hidden="true"><i style="width:${width(before)}%"></i><i class="${improved ? 'improved' : diff ? 'reduced' : ''}" style="width:${width(after)}%"></i></div>${diff ? `<small class="${improved ? 'positive' : 'negative'}">${delta}</small>` : ''}</div>`;
 }
 
+export const CUSTOMIZATION_POSES = Object.freeze({
+  field: 'Terrain', aim: 'Visée', power: 'Pouvoir', hit: 'Impact', down: 'Hors combat',
+});
+
 export const CUSTOMIZATION_FIELDS = Object.freeze({
   'face.preset': 'facePresets', 'face.skinTone': 'skinTones', 'face.eyeColor': 'eyeColors',
   'face.hairColor': 'hairColors', 'face.hairStyle': 'hairStyles',
@@ -159,19 +163,30 @@ function weaponDiagram(item) {
   return `<svg viewBox="0 0 400 150" class="custom-weapon-diagram" role="img" aria-label="Schéma de catégorie : ${esc(WEAPON_LABELS[type])}"><defs><linearGradient id="custom-weapon-metal" x2="0" y2="1"><stop stop-color="#8398a5"/><stop offset=".44" stop-color="#344959"/><stop offset="1" stop-color="#142430"/></linearGradient></defs><path d="M${short ? 114 : 48} 58L${short ? 155 : 88} 47H${short ? 236 : 290}L${short ? 259 : 308} 65V85H${short ? 192 : 243}L${short ? 170 : 222} 116H${short ? 146 : 196}L${short ? 153 : 207} 84H${short ? 114 : 100}L${short ? 105 : 70} 103H${short ? 92 : 37}Z" fill="url(#custom-weapon-metal)" stroke="#90b5c4" stroke-width="1.5"/><path d="M${short ? 235 : 283} 60H${sniper ? 379 : short ? 286 : 350}V76H${short ? 235 : 283}Z" fill="#324754" stroke="#9ebbc8"/><path d="M${short ? 129 : 117} 56H${short ? 206 : 248}V64H${short ? 129 : 117}Z" fill="#b0c3c8"/><path d="M${short ? 135 : 143} 69H${short ? 183 : 203}" stroke="#e16758" stroke-width="5"/>${sniper ? '<path d="M160 34H246V45H160Z" fill="#6d8999"/><rect x="171" y="28" width="61" height="15" rx="5" fill="#233b4b" stroke="#9bb8c5"/>' : ''}${shotgun ? '<path d="M248 87H344V96H248Z" fill="#3c5666" stroke="#86a1af"/>' : ''}<path d="M27 132H376" stroke="#7190a2" stroke-opacity=".25"/><text x="200" y="145" text-anchor="middle" fill="#90acbc" font-family="Arial,sans-serif" font-size="8" letter-spacing="3">${esc(WEAPON_LABELS[type].toUpperCase())}</text></svg>`;
 }
 
+function animationFor(appearance) {
+  if (appearance === 'female') return typeof __RELAY_FEMSHEP_ANIMATION__ === 'undefined' ? null : __RELAY_FEMSHEP_ANIMATION__;
+  return typeof __RELAY_MALESHEP_ANIMATION__ === 'undefined' ? null : __RELAY_MALESHEP_ANIMATION__;
+}
+
 function previewMarkup(state, ui) {
   const draft = ui.customCompare ? createCustomizationDraft(state) : ui.customizationDraft, tab = ui.customTab;
+  const pose = Object.hasOwn(CUSTOMIZATION_POSES, ui.customPose) ? ui.customPose : 'field', combat = pose !== 'field';
+  const portrait = tab === 'character' && !combat;
   const armor = ITEMS[draft.equipment.armor], weapon = ITEMS[draft.equipment.weapon];
-  return `<section class="customization-preview ${tab === 'character' ? 'custom-portrait-mode' : ''}" aria-label="Aperçu de la personnalisation" data-preview-appearance="${draft.appearance}" data-preview-mode="${ui.customCompare ? 'current' : 'draft'}">
+  const combatFrames = animationFor(draft.appearance)?.combat?.frames;
+  const spriteLabel = combat ? `Pose ${CUSTOMIZATION_POSES[pose].toLowerCase()} de Shepard, vue trois-quarts fixe` : 'Aperçu du sprite de Shepard avec les couleurs choisies';
+  return `<section class="customization-preview ${portrait ? 'custom-portrait-mode' : ''} ${combat ? 'custom-combat-mode' : ''}" aria-label="Aperçu de la personnalisation" data-preview-appearance="${draft.appearance}" data-preview-mode="${ui.customCompare ? 'current' : 'draft'}" data-preview-pose="${pose}">
     <div class="custom-preview-top"><span>${ui.customCompare ? 'Configuration actuelle' : 'Aperçu des modifications'}</span><span class="custom-n7">N<span>7</span></span></div>
     <div class="custom-stage"><div class="custom-stage-grid"></div><div class="custom-orbit custom-orbit-one"></div><div class="custom-orbit custom-orbit-two"></div>
-    ${tab === 'character' ? `<div class="custom-portrait-frame">${customizationFaceSVG(draft)}<span class="custom-portrait-caption">Portrait de conception 2D</span></div><div class="custom-terrain-preview"><canvas class="custom-sprite-canvas" data-custom-canvas width="360" height="480" role="img" aria-label="Sprite de terrain personnalisé"></canvas><span>Sprite de terrain</span></div>` : `<canvas class="custom-sprite-canvas" data-custom-canvas width="720" height="900" role="img" aria-label="Aperçu du sprite de Shepard avec les couleurs choisies"></canvas>`}
+    ${portrait ? `<div class="custom-portrait-frame">${customizationFaceSVG(draft)}<span class="custom-portrait-caption">Portrait de conception 2D</span></div><div class="custom-terrain-preview"><canvas class="custom-sprite-canvas" data-custom-canvas width="360" height="480" role="img" aria-label="Sprite de terrain personnalisé"></canvas><span>Sprite de terrain</span></div>` : `<canvas class="custom-sprite-canvas" data-custom-canvas width="${combat ? 960 : 720}" height="${combat ? 720 : 900}" role="img" aria-label="${esc(spriteLabel)}"></canvas>`}
     <p class="custom-preview-loading" data-preview-status role="status">Chargement de l’aperçu…</p>
     </div>
     <div class="custom-preview-identity"><div class="eyebrow">${draft.appearance === 'female' ? 'Commandante' : 'Commandant'} · ${esc(CLASSES[state.classId].name)}</div><h3>${esc(state.name)}</h3><p>${esc(tab === 'weapons' ? weapon?.name || 'Dotation de base' : armor?.name || 'Dotation de base')}</p></div>
-    <div class="custom-view-controls" aria-label="Vue du sprite">${VIEWS.map(([id, label]) => `<button data-do="custom-view" data-id="${id}" aria-pressed="${(ui.customView || 'front') === id}" aria-label="Vue ${label.toLowerCase()}" class="${(ui.customView || 'front') === id ? 'selected' : ''}">${label}</button>`).join('')}</div>
+    <div class="custom-pose-controls" role="group" aria-label="Pose de l’aperçu">${Object.entries(CUSTOMIZATION_POSES).map(([id, label]) => `<button data-do="custom-pose" data-id="${id}" aria-pressed="${pose === id}" class="${pose === id ? 'selected' : ''}" ${id !== 'field' && !combatFrames?.[id] ? 'disabled title="Pose indisponible pour cette apparence"' : ''}>${label}</button>`).join('')}</div>
+    <div class="custom-view-controls" aria-label="Vue du sprite" ${combat ? 'aria-describedby="custom-pose-view-note"' : ''}>${VIEWS.map(([id, label]) => `<button data-do="custom-view" data-id="${id}" aria-pressed="${!combat && (ui.customView || 'front') === id}" aria-label="Vue ${label.toLowerCase()}" class="${!combat && (ui.customView || 'front') === id ? 'selected' : ''}" ${combat ? 'disabled' : ''}>${label}</button>`).join('')}</div>
+    ${combat ? '<p class="custom-pose-note" id="custom-pose-view-note">Vue trois-quarts fixe. Retrouvez les quatre directions en mode Terrain.</p>' : ''}
     ${tab === 'weapons' ? `<div class="custom-equipped-weapon">${weaponDiagram(weapon)}<span>Schéma de catégorie</span></div>` : ''}
-    <p class="custom-render-note">${tab === 'character' ? 'Traits et coiffure sur le portrait. Teint et couleurs repris en jeu.' : 'Couleurs affichées sur la tenue N7. Les objets sélectionnés déterminent les bonus.'}${draft.customization.armor.helmet === 'combat' ? ' Casque présenté en situation de combat.' : ''}</p>
+    <p class="custom-render-note">${combat ? 'Pose N7. Arme illustrée générique ; consultez la fiche pour le matériel équipé.' : tab === 'character' ? 'Traits et coiffure sur le portrait. Teint et couleurs repris en jeu.' : 'Couleurs affichées sur la tenue N7. Les objets sélectionnés déterminent les bonus.'}${draft.customization.armor.helmet === 'combat' ? combat ? ' Casque de combat affiché.' : ' Casque réservé aux poses de combat.' : ''}</p>
     </section>`;
 }
 
@@ -228,33 +243,69 @@ async function loadImage(file) {
   return images.get(file);
 }
 
-function frameFor(appearance, direction) {
-  if (appearance === 'female' && typeof __RELAY_FEMSHEP_ANIMATION__ !== 'undefined') {
-    const config = __RELAY_FEMSHEP_ANIMATION__;
-    return { file: config.file, rect: config.frames.find(frame => frame.direction === direction && frame.index === 0)?.rect || config.frames[0].rect };
+function frameFor(appearance, direction, pose = 'field') {
+  const config = animationFor(appearance);
+  if (pose !== 'field') {
+    const combat = config?.combat, frame = combat?.frames?.[pose];
+    if (!combat?.file || !frame?.rect) throw new Error('Pose indisponible pour cette apparence. Revenez au mode Terrain.');
+    return { ...frame, file: combat.file, family: Object.values(combat.frames), combat: true };
+  }
+  if (appearance === 'female' && config?.frames?.length) {
+    const frame = config.frames.find(frame => frame.direction === direction && frame.index === 0) || config.frames[0];
+    return { ...frame, file: config.file, combat: false };
   }
   const frames = { front: [46, 1, 298, 313], back: [46, 316, 298, 304], right: [46, 622, 298, 297], left: [46, 921, 298, 318] };
-  return { file: 'shepard-walk-atlas.png', rect: frames[direction] || frames.front };
+  return { file: 'shepard-walk-atlas.png', rect: frames[direction] || frames.front, combat: false };
+}
+
+function combatPlacement(target, frame) {
+  // One nominal actor height for the entire family. Like WorldView, preserve
+  // authored rect/pivot/heightScale; a low down pose must not become standing-sized.
+  let left = 0, right = 0, above = 0, below = 0;
+  for (const pose of frame.family) {
+    const [, , width, height] = pose.rect, scale = pose.heightScale || 1;
+    const [px, py] = pose.pivot || [width / 2, height];
+    left = Math.max(left, scale * px / height); right = Math.max(right, scale * (width - px) / height);
+    above = Math.max(above, scale * py / height); below = Math.max(below, scale * (height - py) / height);
+  }
+  const nominalHeight = Math.min(target.height * .86 / Math.max(1, above + below), target.width * .84 / (2 * Math.max(left, right)));
+  const [, , width, height] = frame.rect, pivot = frame.pivot || [width / 2, height];
+  const drawnHeight = nominalHeight * (frame.heightScale || 1), drawnWidth = drawnHeight * width / height;
+  const anchorX = target.width / 2, baselineY = target.height * .95 - below * nominalHeight;
+  return { x: anchorX - pivot[0] / width * drawnWidth, y: baselineY - pivot[1] / height * drawnHeight,
+    width: drawnWidth, height: drawnHeight };
 }
 
 export async function paintCustomizationPreview(root, state, ui) {
   const target = root.querySelector('[data-custom-canvas]'); if (!target) return;
   const status = root.querySelector('[data-preview-status]');
   const draft = ui.customCompare ? createCustomizationDraft(state) : ui.customizationDraft;
-  const direction = ui.customView || 'front', frame = frameFor(draft.appearance, direction);
+  const pose = Object.hasOwn(CUSTOMIZATION_POSES, ui.customPose) ? ui.customPose : 'field', combat = pose !== 'field';
+  const direction = ui.customView || 'front';
   try {
+    const frame = frameFor(draft.appearance, direction, pose);
     const source = await loadImage(frame.file); if (!target.isConnected) return;
     const crop = document.createElement('canvas'); crop.width = frame.rect[2]; crop.height = frame.rect[3];
     crop.getContext('2d').drawImage(source, ...frame.rect, 0, 0, crop.width, crop.height);
-    const tinted = renderCustomizationSprite(crop, draft.customization, { appearance: draft.appearance, direction, inCombat: draft.customization.armor.helmet === 'combat' });
-    const context = target.getContext('2d'), pixels = tinted.getContext('2d').getImageData(0, 0, tinted.width, tinted.height);
-    let left = tinted.width, top = tinted.height, right = 0, bottom = 0;
-    for (let y = 0; y < tinted.height; y++) for (let x = 0; x < tinted.width; x++) if (pixels.data[(y * tinted.width + x) * 4 + 3] > 80) { left = Math.min(left, x); right = Math.max(right, x); top = Math.min(top, y); bottom = Math.max(bottom, y); }
-    if (right <= left || bottom <= top) { left = 0; top = 0; right = tinted.width - 1; bottom = tinted.height - 1; }
-    const width = right - left + 1, height = bottom - top + 1, scale = Math.min(target.width * .76 / width, target.height * .91 / height);
+    const tinted = renderCustomizationSprite(crop, draft.customization, { appearance: draft.appearance,
+      direction: combat ? 'front' : direction, inCombat: combat, headRegion: frame.headRegion, headAxis: frame.headAxis });
+    const context = target.getContext('2d');
     context.clearRect(0, 0, target.width, target.height); context.imageSmoothingEnabled = true; context.imageSmoothingQuality = 'high';
-    context.drawImage(tinted, left, top, width, height, (target.width - width * scale) / 2, target.height * .96 - height * scale, width * scale, height * scale);
-    target.dataset.ready = 'true'; target.dataset.direction = direction; target.dataset.palette = JSON.stringify(getCustomizationPalette(draft.customization));
+    if (combat) {
+      const placement = combatPlacement(target, frame);
+      context.drawImage(tinted, 0, 0, tinted.width, tinted.height, placement.x, placement.y, placement.width, placement.height);
+    } else {
+      const pixels = tinted.getContext('2d').getImageData(0, 0, tinted.width, tinted.height);
+      let left = tinted.width, top = tinted.height, right = 0, bottom = 0;
+      for (let y = 0; y < tinted.height; y++) for (let x = 0; x < tinted.width; x++) if (pixels.data[(y * tinted.width + x) * 4 + 3] > 80) { left = Math.min(left, x); right = Math.max(right, x); top = Math.min(top, y); bottom = Math.max(bottom, y); }
+      if (right <= left || bottom <= top) { left = 0; top = 0; right = tinted.width - 1; bottom = tinted.height - 1; }
+      const width = right - left + 1, height = bottom - top + 1, scale = Math.min(target.width * .76 / width, target.height * .91 / height);
+      context.drawImage(tinted, left, top, width, height, (target.width - width * scale) / 2, target.height * .96 - height * scale, width * scale, height * scale);
+    }
+    target.dataset.ready = 'true'; target.dataset.direction = combat ? 'three-quarter' : direction;
+    target.dataset.pose = pose; target.dataset.frame = frame.id || `${draft.appearance}-field-${direction}`;
+    target.dataset.source = frame.file; target.dataset.heightScale = String(frame.heightScale || 1);
+    target.dataset.palette = JSON.stringify(getCustomizationPalette(draft.customization));
     if (status) { status.textContent = ''; status.hidden = true; }
   } catch (error) { if (status?.isConnected) { status.textContent = error.message; status.classList.add('error'); } }
 }

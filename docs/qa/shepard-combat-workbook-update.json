@@ -1,0 +1,548 @@
+{
+  "baseCommit": "79f3567eb5ce89d8f6873c96ee27a16333821e86",
+  "sourceWorkbook": "/tmp/relay-complete-review/outputs/shepard-combat-20261029/baseline/Mass_Effect_Relay_Chronicles_Production.xlsx",
+  "sourceCatalog": "/tmp/relay-complete-review/outputs/shepard-combat-20261029/baseline/content-catalog.json",
+  "workbookPath": "/tmp/relay-complete-review/outputs/shepard-combat-20261029/Mass_Effect_Relay_Chronicles_Production.xlsx",
+  "sourceHashes": {
+    "workbook": "ee92f5c59750af8be0ee5e06b756b4c01b658f280a38e061e465e3a5d5b29566",
+    "catalogue": "4f2e2a116b301d190f166a3dca26c656c22aeed1c63d989ff1433f4efb456339"
+  },
+  "catalogueEntries": 1382,
+  "changedIds": [
+    "SPR-shepard-combat",
+    "CUST-ART-armor-preview",
+    "CUST-ART-world-palette",
+    "CUST-ANI-combat-colors",
+    "CUST-UI-keyboard",
+    "CUST-QA-keyboard"
+  ],
+  "catalogueChanges": [
+    {
+      "id": "SPR-shepard-combat",
+      "field": "description",
+      "before": "Planche de combat dédiée aux actions réellement disponibles pour Shepard.",
+      "after": "Shepard masculin N7 rejoint l’atlas féminin avec quatre poses clés de combat : visée, pouvoir, impact et hors combat."
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "field": "acceptance",
+      "before": "Attente, action, impact, KO et récupération sans cadre coupé.",
+      "after": "Contrôler les poses aim/power/hit/down des deux apparences, sans découpe ni rotation supplémentaire de la pose couchée. Récupération animée à produire."
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "field": "assetPath",
+      "before": "public/assets/crew-atlas.png",
+      "after": "public/assets/shepard-male-combat-atlas.png"
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "field": "notes",
+      "before": "Shepard masculin conserve la pose de l’atlas commando. Shepard femme utilise quatre poses aim/power/hit/down ; hauteur couchée 0,245 sans rotation supplémentaire. Les séquences de transition et variantes par arme restent à produire.",
+      "after": "Quatre poses clés en 3/4 fixe. Fusil illustré générique, transitions et variantes par arme à produire. Référence : docs/research/shepard-male-combat-art.md. QA : docs/qa/shepard-combat-poses-report.json."
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "field": "implementationPaths",
+      "before": [
+        "src/world.js",
+        "public/assets/shepard-female-combat-atlas.png",
+        "public/assets/shepard-female-animation.json"
+      ],
+      "after": [
+        "src/world.js",
+        "public/assets/shepard-female-combat-atlas.png",
+        "public/assets/shepard-female-animation.json",
+        "public/assets/shepard-male-combat-atlas.png",
+        "public/assets/shepard-male-animation.json",
+        "src/customization-render.js",
+        "scripts/check-shepard-combat-art.mjs"
+      ]
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "field": "evidence",
+      "before": [
+        "docs/research/shepard-female-art.md"
+      ],
+      "after": [
+        "docs/research/shepard-female-art.md",
+        "docs/research/shepard-male-combat-art.md",
+        "docs/qa/shepard-combat-art-report.json",
+        "docs/qa/shepard-combat-poses-report.json"
+      ]
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "field": "description",
+      "before": "Silhouette inspectable du commandant, indiquant les couleurs, le motif et le casque choisis.",
+      "after": "Aperçus Terrain, Visée, Pouvoir, Impact et Hors combat pour les deux apparences, avec les couleurs, le motif et le casque choisis."
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "field": "acceptance",
+      "before": "Le corps reste lisible avec le casque affiché ou masqué et les couleurs de la palette. Les options ne recouvrent pas les commandes.",
+      "after": "Corps lisible et casque aligné, y compris couché, sans masquer les commandes. Combat en 3/4 fixe ; quatre directions disponibles en mode Terrain."
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "La pose est un état temporaire d’aperçu : aucun effet sur les pouvoirs, les PV ou la sauvegarde. Contrôles : docs/qa/shepard-combat-poses-report.json. Modèles d’armures exacts à produire."
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "field": "implementationPaths",
+      "before": [
+        "src/customization-ui.js"
+      ],
+      "after": [
+        "src/customization-ui.js",
+        "src/customization-render.js",
+        "src/customization-ui.css",
+        "src/main.js",
+        "public/assets/shepard-male-combat-atlas.png",
+        "public/assets/shepard-male-animation.json",
+        "public/assets/shepard-female-combat-atlas.png",
+        "public/assets/shepard-female-animation.json"
+      ]
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "field": "evidence",
+      "before": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "after": [
+        "docs/CUSTOMIZATION.md",
+        "docs/research/shepard-male-combat-art.md",
+        "docs/qa/shepard-combat-poses-report.json"
+      ]
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "field": "description",
+      "before": "Transmettre les couleurs prises en charge par le rendu de Shepard à l’exploration et au combat.",
+      "after": "Transmettre couleurs, motif et casque aux sprites de Shepard sur le terrain et dans les poses de combat, pour les deux apparences."
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "field": "acceptance",
+      "before": "Vérifier les limites du masque ou de la recoloration sur toutes les directions et poses. Aucun changement d’apparence d’un autre équipier.",
+      "after": "Vérifier les quatre directions de terrain et quatre poses de combat. Palette et casque suivent la tête, y compris couchée. Aucun autre équipier modifié."
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "field": "notes",
+      "before": "La recoloration d’un atlas ne remplace pas les silhouettes d’armures ou coiffures par des assets dédiés.",
+      "after": "La région de tête par pose guide la recoloration et le casque. Contrôles : docs/qa/shepard-combat-poses-report.json. Les silhouettes exactes d’armure restent à produire."
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "field": "implementationPaths",
+      "before": [
+        "src/world.js"
+      ],
+      "after": [
+        "src/world.js",
+        "src/customization-render.js",
+        "public/assets/shepard-male-animation.json",
+        "public/assets/shepard-female-animation.json"
+      ]
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "field": "evidence",
+      "before": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "after": [
+        "docs/CUSTOMIZATION.md",
+        "docs/qa/shepard-combat-poses-report.json"
+      ]
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "field": "description",
+      "before": "Maintenir les options visuelles prises en charge pendant les poses de visée, pouvoir, impact et hors combat.",
+      "after": "Conserver palette, motif et casque dans les quatre poses clés aim/power/hit/down des deux apparences."
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "field": "acceptance",
+      "before": "Vérifier la persistance de la palette et des ancrages lors du passage exploration/combat puis du retour sur la carte.",
+      "after": "Contrôler ancrage, proportions et couleurs à l’entrée en combat, pendant les poses et au retour terrain. La pose couchée utilise son cadrage et sa région de tête."
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "Poses clés en 3/4 fixe. Transitions et variantes propres aux armes à produire. Contrôles : docs/qa/shepard-combat-poses-report.json."
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "field": "implementationPaths",
+      "before": [
+        "src/world.js"
+      ],
+      "after": [
+        "src/world.js",
+        "src/customization-render.js",
+        "public/assets/shepard-male-combat-atlas.png",
+        "public/assets/shepard-male-animation.json",
+        "public/assets/shepard-female-combat-atlas.png",
+        "public/assets/shepard-female-animation.json",
+        "tests/shepard-combat-world.test.js"
+      ]
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "field": "evidence",
+      "before": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "after": [
+        "docs/CUSTOMIZATION.md",
+        "docs/research/shepard-male-combat-art.md",
+        "docs/qa/shepard-combat-art-report.json",
+        "docs/qa/shepard-combat-poses-report.json"
+      ]
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "field": "description",
+      "before": "Contrôles natifs nommés, focus visible et fermeture cohérente avec le reste des menus.",
+      "after": "Commandes d’atelier nommées, focus visible et continuité après Préparer ou un changement de pose."
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "field": "acceptance",
+      "before": "Sélectionner des options et valider ou annuler au clavier. Échap n’applique aucune modification du brouillon.",
+      "after": "Sélectionner, appliquer ou annuler au clavier. Après Préparer, le focus rejoint une commande active. Échap ne valide pas le brouillon."
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "Focus de Préparer rétabli après rendu de l’interface. Pose d’aperçu temporaire. Contrôles : docs/qa/shepard-combat-poses-report.json."
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "field": "implementationPaths",
+      "before": [
+        "src/customization-ui.js"
+      ],
+      "after": [
+        "src/customization-ui.js",
+        "src/main.js",
+        "src/customization-ui.css"
+      ]
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "field": "evidence",
+      "before": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "after": [
+        "docs/CUSTOMIZATION.md",
+        "docs/qa/shepard-combat-poses-report.json"
+      ]
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "field": "description",
+      "before": "Changer les contrôles au clavier, parcourir les onglets puis fermer sans appliquer.",
+      "after": "Parcourir poses, onglets et objets au clavier, préparer une pièce puis annuler ou quitter."
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "field": "acceptance",
+      "before": "Le focus reste visible et Échap ne valide pas le brouillon.",
+      "after": "Le focus reste visible après Préparer et les changements de pose. Échap ferme sans appliquer le brouillon. Le parcours reste possible sans souris."
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "field": "assetPath",
+      "before": "scripts/customization-browser.mjs",
+      "after": "scripts/customization-poses-browser.mjs"
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "field": "notes",
+      "before": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "after": "Scénario des poses et de la continuité du focus : docs/qa/shepard-combat-poses-report.json. Lire les résultats dans ce rapport. Le scénario seul ne valide pas la fonctionnalité."
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "field": "implementationPaths",
+      "before": [
+        "scripts/customization-browser.mjs"
+      ],
+      "after": [
+        "scripts/customization-browser.mjs",
+        "scripts/customization-poses-browser.mjs",
+        "tests/customization-preview-poses.test.js"
+      ]
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "field": "evidence",
+      "before": [
+        "docs/CUSTOMIZATION.md"
+      ],
+      "after": [
+        "docs/CUSTOMIZATION.md",
+        "docs/qa/shepard-combat-poses-report.json"
+      ]
+    }
+  ],
+  "cellChanges": [
+    {
+      "id": "SPR-shepard-combat",
+      "sheet": "Sprites",
+      "address": "H8",
+      "field": "description",
+      "before": "Planche de combat dédiée aux actions réellement disponibles pour Shepard.",
+      "after": "Shepard masculin N7 rejoint l’atlas féminin avec quatre poses clés de combat : visée, pouvoir, impact et hors combat."
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "sheet": "Sprites",
+      "address": "I8",
+      "field": "acceptance",
+      "before": "Attente, action, impact, KO et récupération sans cadre coupé.",
+      "after": "Contrôler les poses aim/power/hit/down des deux apparences, sans découpe ni rotation supplémentaire de la pose couchée. Récupération animée à produire."
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "sheet": "Sprites",
+      "address": "L8",
+      "field": "assetPath",
+      "before": "public/assets/crew-atlas.png",
+      "after": "public/assets/shepard-male-combat-atlas.png"
+    },
+    {
+      "id": "SPR-shepard-combat",
+      "sheet": "Sprites",
+      "address": "Q8",
+      "field": "notes",
+      "before": "Shepard masculin conserve la pose de l’atlas commando. Shepard femme utilise quatre poses aim/power/hit/down ; hauteur couchée 0,245 sans rotation supplémentaire. Les séquences de transition et variantes par arme restent à produire.",
+      "after": "Quatre poses clés en 3/4 fixe. Fusil illustré générique, transitions et variantes par arme à produire. Référence : docs/research/shepard-male-combat-art.md. QA : docs/qa/shepard-combat-poses-report.json."
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "sheet": "Sprites",
+      "address": "H85",
+      "field": "description",
+      "before": "Silhouette inspectable du commandant, indiquant les couleurs, le motif et le casque choisis.",
+      "after": "Aperçus Terrain, Visée, Pouvoir, Impact et Hors combat pour les deux apparences, avec les couleurs, le motif et le casque choisis."
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "sheet": "Sprites",
+      "address": "I85",
+      "field": "acceptance",
+      "before": "Le corps reste lisible avec le casque affiché ou masqué et les couleurs de la palette. Les options ne recouvrent pas les commandes.",
+      "after": "Corps lisible et casque aligné, y compris couché, sans masquer les commandes. Combat en 3/4 fixe ; quatre directions disponibles en mode Terrain."
+    },
+    {
+      "id": "CUST-ART-armor-preview",
+      "sheet": "Sprites",
+      "address": "Q85",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "La pose est un état temporaire d’aperçu : aucun effet sur les pouvoirs, les PV ou la sauvegarde. Contrôles : docs/qa/shepard-combat-poses-report.json. Modèles d’armures exacts à produire."
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "sheet": "Sprites",
+      "address": "H87",
+      "field": "description",
+      "before": "Transmettre les couleurs prises en charge par le rendu de Shepard à l’exploration et au combat.",
+      "after": "Transmettre couleurs, motif et casque aux sprites de Shepard sur le terrain et dans les poses de combat, pour les deux apparences."
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "sheet": "Sprites",
+      "address": "I87",
+      "field": "acceptance",
+      "before": "Vérifier les limites du masque ou de la recoloration sur toutes les directions et poses. Aucun changement d’apparence d’un autre équipier.",
+      "after": "Vérifier les quatre directions de terrain et quatre poses de combat. Palette et casque suivent la tête, y compris couchée. Aucun autre équipier modifié."
+    },
+    {
+      "id": "CUST-ART-world-palette",
+      "sheet": "Sprites",
+      "address": "Q87",
+      "field": "notes",
+      "before": "La recoloration d’un atlas ne remplace pas les silhouettes d’armures ou coiffures par des assets dédiés.",
+      "after": "La région de tête par pose guide la recoloration et le casque. Contrôles : docs/qa/shepard-combat-poses-report.json. Les silhouettes exactes d’armure restent à produire."
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "sheet": "Animations",
+      "address": "H68",
+      "field": "description",
+      "before": "Maintenir les options visuelles prises en charge pendant les poses de visée, pouvoir, impact et hors combat.",
+      "after": "Conserver palette, motif et casque dans les quatre poses clés aim/power/hit/down des deux apparences."
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "sheet": "Animations",
+      "address": "I68",
+      "field": "acceptance",
+      "before": "Vérifier la persistance de la palette et des ancrages lors du passage exploration/combat puis du retour sur la carte.",
+      "after": "Contrôler ancrage, proportions et couleurs à l’entrée en combat, pendant les poses et au retour terrain. La pose couchée utilise son cadrage et sa région de tête."
+    },
+    {
+      "id": "CUST-ANI-combat-colors",
+      "sheet": "Animations",
+      "address": "Q68",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "Poses clés en 3/4 fixe. Transitions et variantes propres aux armes à produire. Contrôles : docs/qa/shepard-combat-poses-report.json."
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "sheet": "UI_systemes",
+      "address": "H71",
+      "field": "description",
+      "before": "Contrôles natifs nommés, focus visible et fermeture cohérente avec le reste des menus.",
+      "after": "Commandes d’atelier nommées, focus visible et continuité après Préparer ou un changement de pose."
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "sheet": "UI_systemes",
+      "address": "I71",
+      "field": "acceptance",
+      "before": "Sélectionner des options et valider ou annuler au clavier. Échap n’applique aucune modification du brouillon.",
+      "after": "Sélectionner, appliquer ou annuler au clavier. Après Préparer, le focus rejoint une commande active. Échap ne valide pas le brouillon."
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "sheet": "UI_systemes",
+      "address": "Q71",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "Focus de Préparer rétabli après rendu de l’interface. Pose d’aperçu temporaire. Contrôles : docs/qa/shepard-combat-poses-report.json."
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "sheet": "QA",
+      "address": "H69",
+      "field": "description",
+      "before": "Changer les contrôles au clavier, parcourir les onglets puis fermer sans appliquer.",
+      "after": "Parcourir poses, onglets et objets au clavier, préparer une pièce puis annuler ou quitter."
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "sheet": "QA",
+      "address": "I69",
+      "field": "acceptance",
+      "before": "Le focus reste visible et Échap ne valide pas le brouillon.",
+      "after": "Le focus reste visible après Préparer et les changements de pose. Échap ferme sans appliquer le brouillon. Le parcours reste possible sans souris."
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "sheet": "QA",
+      "address": "L69",
+      "field": "assetPath",
+      "before": "scripts/customization-browser.mjs",
+      "after": "scripts/customization-poses-browser.mjs"
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "sheet": "QA",
+      "address": "Q69",
+      "field": "notes",
+      "before": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "after": "Scénario des poses et de la continuité du focus : docs/qa/shepard-combat-poses-report.json. Lire les résultats dans ce rapport. Le scénario seul ne valide pas la fonctionnalité."
+    }
+  ],
+  "beforeStatuses": {
+    "Défini": 1038,
+    "Prototype": 338,
+    "Intégré": 3,
+    "Validé": 3
+  },
+  "dashboardTotal": 1382,
+  "formulaErrorInspection": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "dashboardInspection": "{\"kind\":\"table\",\"sheet\":\"Dashboard\",\"address\":\"A37:K37\",\"rows\":1,\"cols\":11,\"values\":[[\"TOTAL\",1382,1038,338,3,3,19,522,841,1320,57]]}",
+  "previews": [
+    {
+      "file": "shepard-combat-sprite-criteria.png",
+      "sheetName": "Sprites",
+      "range": "H8:I8"
+    },
+    {
+      "file": "shepard-combat-sprite-path.png",
+      "sheetName": "Sprites",
+      "range": "K8:L8"
+    },
+    {
+      "file": "shepard-combat-sprite-tracking.png",
+      "sheetName": "Sprites",
+      "range": "P8:Q8"
+    },
+    {
+      "file": "shepard-combat-armor-preview-criteria.png",
+      "sheetName": "Sprites",
+      "range": "H85:I85"
+    },
+    {
+      "file": "shepard-combat-armor-preview-tracking.png",
+      "sheetName": "Sprites",
+      "range": "P85:Q85"
+    },
+    {
+      "file": "shepard-combat-palette-criteria.png",
+      "sheetName": "Sprites",
+      "range": "H87:I87"
+    },
+    {
+      "file": "shepard-combat-palette-tracking.png",
+      "sheetName": "Sprites",
+      "range": "P87:Q87"
+    },
+    {
+      "file": "shepard-combat-combat-colors-criteria.png",
+      "sheetName": "Animations",
+      "range": "H68:I68"
+    },
+    {
+      "file": "shepard-combat-combat-colors-tracking.png",
+      "sheetName": "Animations",
+      "range": "P68:Q68"
+    },
+    {
+      "file": "shepard-combat-keyboard-criteria.png",
+      "sheetName": "UI_systemes",
+      "range": "H71:I71"
+    },
+    {
+      "file": "shepard-combat-keyboard-tracking.png",
+      "sheetName": "UI_systemes",
+      "range": "P71:Q71"
+    },
+    {
+      "file": "shepard-combat-keyboard-qa-criteria.png",
+      "sheetName": "QA",
+      "range": "H69:I69"
+    },
+    {
+      "file": "shepard-combat-keyboard-qa-path.png",
+      "sheetName": "QA",
+      "range": "K69:L69"
+    },
+    {
+      "file": "shepard-combat-keyboard-qa-tracking.png",
+      "sheetName": "QA",
+      "range": "P69:Q69"
+    }
+  ],
+  "limits": [
+    "Native Microsoft Excel was not executed.",
+    "Gameplay, browser and art checks are recorded separately in the linked reports.",
+    "Prototype statuses and artistic limitations are preserved."
+  ]
+}

@@ -156,7 +156,17 @@ Le registre `src/universe-data.js` est régénéré depuis le catalogue avec `np
 
 Le catalogue et l'Excel mettent à jour les cinq fiches existantes `CUST-UI-weapons`, `CUST-UI-comparison`, `CUST-QA-stats`, `CUST-QA-draft-pure` et `CUST-QA-roundtrip`, sans changer leurs statuts **Prototype**. La portée artistique reste inchangée : aucune nouvelle silhouette, animation ou fidélité de modèle n'est revendiquée. Les résultats historiques restent dans leurs rapports d'origine.
 
-## 7. Prochaine application recommandée : terminer une variante vérifiable
+## 7. Deuxième application : poses de combat et inspection dans l’atelier
+
+La seconde livraison du **29 octobre 2026** applique `create-game-assets` et `game-ui-ux` à une famille identifiée : `SPR-shepard-combat`. L’atlas masculin dérive de l’identité N7 existante et fournit visée, pouvoir, impact et hors combat. Il est intégré au renderer avec un repli de chargement, des pivots mesurés et la priorité correcte du KO. L’atelier expose les poses des deux apparences, à échelle cohérente, et indique l’angle fixe ainsi que le caractère générique du fusil illustré. Le choix de pose ne modifie pas les données de jeu.
+
+La région de tête et son axe sont propres à chaque pose et partagés par le monde et l’aperçu ; ils corrigent le traitement des couleurs et du casque sur le corps couché. Les commandes qui deviennent désactivées disposent d’un repli de focus actif et visible : la même pièce après Préparer, le port vidé après Retirer et le bouton de comparaison après Réinitialiser. La marche masculine existante est conservée. Les [prompts, coordonnées et limites artistiques](research/shepard-male-combat-art.md) et le [rapport de livraison](qa/shepard-combat-poses-report.json) relient le résultat à ses sources et contrôles.
+
+Les six fiches existantes `SPR-shepard-combat`, `CUST-ART-armor-preview`, `CUST-ART-world-palette`, `CUST-ANI-combat-colors`, `CUST-UI-keyboard` et `CUST-QA-keyboard` sont précisées dans le catalogue et le classeur. Leurs statuts restent Prototype : quatre images fixes ne prouvent ni des transitions complètes, ni les silhouettes exactes de chaque arme. Le registre de l’univers est régénéré après l’édition du catalogue ; les preuves historiques restent intactes.
+
+Le workflow [Verify Shepard atelier](../.github/workflows/shepard-atelier.yml) exécute sur la révision exacte de la PR les scénarios `shepard-combat-world-browser.mjs`, `customization-keyboard-browser.mjs` et `customization-poses-production.mjs`, successivement. Il installe le Chromium correspondant à la version verrouillée de Playwright, sert séparément le développement et le build compilé, puis conserve les rapports et captures dans l’artefact **Relay-Chronicles-Shepard-Atelier**. Les profils de navigateur restent exclus de cet artefact. La présence du workflow ne vaut pas réussite : consulter le résultat associé au commit et le rapport de livraison.
+
+## 8. Prochaine application recommandée : terminer une variante vérifiable
 
 À la prochaine intervention sur les manquants, choisir dans le catalogue courant une variante de personnage, d'armure ou d'arme avec un identifiant stable. Ce choix doit dépendre des fichiers et des besoins actuels, pas d'un ancien total de manquants.
 
