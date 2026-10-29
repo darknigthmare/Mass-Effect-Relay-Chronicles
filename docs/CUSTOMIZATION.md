@@ -20,6 +20,21 @@ Les changements du brouillon n’achètent aucun objet et ne réservent aucun ex
 
 La configuration enregistrée contient les choix cosmétiques dans `state.customization`. L’apparence générale reste dans `state.appearance` et les objets dans `state.inventory.equipped.shepard`. Les sauvegardes antérieures sans champ de personnalisation reçoivent les valeurs par défaut. Une structure présente mais invalide est refusée. Le modèle vérifie les valeurs permises et refuse les accesseurs, cycles et clés interdites sans exécuter de getter.
 
+## Comparer la dotation et consulter une pièce
+
+L’atelier distingue deux niveaux de comparaison :
+
+| Zone | Comparaison | Ce qu’elle permet de décider |
+|---|---|---|
+| Profil de combat | **Dotation actuelle → Configuration préparée** | Évaluer l’ensemble des changements du brouillon avant de les appliquer. |
+| Fiche de la pièce consultée | **Brouillon actuel → Avec cet objet** | Voir les statistiques qui changeraient en préparant cette pièce, en conservant les autres choix du brouillon. |
+
+Les deux niveaux utilisent les valeurs calculées par `actorFor`. Le profil de combat affiche désormais les multiplicateurs de puissance technologique et biotique, auparavant absents, avec deux décimales, par exemple **×1,00 → ×1,15**. Ces multiplicateurs renforcent uniquement les pouvoirs déjà disponibles au personnage.
+
+Consulter une pièce construit une configuration candidate temporaire avec les mêmes règles que **Préparer**. Cette consultation ne modifie ni la partie, ni le brouillon, ni les quantités d’inventaire. Le bouton **+** prépare explicitement l’objet dans le brouillon ; **Appliquer** reste nécessaire pour modifier la dotation de la partie. Une pièce non possédée, sans exemplaire disponible ou incompatible affiche le motif réel du refus, sans statistiques de gain projetées. La fiche suit l’emplacement actif parmi les neuf emplacements ; un emplacement sans objet indique **Emplacement vide**.
+
+Lorsqu’une arme ou une armure remplace une pièce porteuse, la fiche indique les modules qui seraient remis dans le stock. Leur retrait est inclus dans les statistiques de la configuration candidate. Cette liste décrit l’effet de l’application future ; la simple consultation ne rend, ne réserve et ne consomme aucun exemplaire.
+
 ## Portée visuelle
 
 Le mannequin et le portrait de l’atelier sont des aperçus 2D originaux. Les couleurs et préférences prises en charge par le rendu sont transmises au sprite de Shepard. Le terrain garde les silhouettes et les coupes de cheveux des atlas existants. Les préréglages de visage, formes de coiffure et yeux détaillés se lisent sur l’aperçu de l’atelier ; ils ne déforment pas un modèle facial 3D.
@@ -43,14 +58,40 @@ Voir les [références officielles et différences entre opus](research/customiz
 | `src/state.js` | Migration et validation à l’import des sauvegardes |
 | `src/world.js` et `src/customization-render.js` | Application des options prises en charge par le rendu des sprites |
 | `tests/customization.test.js` | Invariants du brouillon, de la dotation et des sauvegardes |
+| `tests/customization-comparison.test.js` | Comparaisons, multiplicateurs, consultation sans mutation, refus et restitution des modules |
 | `scripts/customization-browser.mjs` | Parcours de l’atelier dans le navigateur |
+| `scripts/customization-comparison-browser.mjs` | Parcours de comparaison et de consultation, ordinateur/mobile et texte agrandi |
 | `scripts/build-workbook.mjs` | Génération courante du principal fusionné à 1 382 fiches |
 | `scripts/verify-customization-workbook.py` | Comparaison de la fusion avec les deux bases Git et contrôle natif du classeur |
+| `scripts/update-customization-comparison-workbook.mjs` | Mise à jour ciblée des cinq fiches de comparaison et de consultation avec artifact-tool |
+| `scripts/verify-customization-comparison-workbook.py` | Contrôle des quatorze cellules modifiées et de la préservation native du reste du classeur |
 | `scripts/update-customization-catalog.mjs` | Outil historique du premier lot, avec sa base et ses garde-fous initiaux |
 | `scripts/update-customization-workbook.mjs` | Outil historique d’ajout ciblé sur le classeur de la première livraison |
 
-La synchronisation actuelle avec main `7ef342a` passe **556 tests Node**, la compilation de **56 modules** et **neuf contrôles de personnalisation**, dont le build compilé. Les **17 contrôles HTTP de production** passent, avec quinze PNG et sept bundles servis vérifiés par empreinte. Le [rapport courant](qa/customization-arsenal-sync-report.json) distingue les vérifications de cette branche des preuves antérieures. Les rapports de [personnalisation](qa/customization-arsenal-sync-customization-report.json) et de [production HTTP](qa/customization-arsenal-sync-production-report.json) identifient les sources et ressources du build combiné. Le [rapport précédent](qa/pr1-final-report.json) conserve ses 415 tests Node, neuf contrôles de personnalisation et dix contrôles HTTP sur le socle `748b965` ; il reste historique.
+### Livraison comparaison et consultation — 29 octobre 2026
 
-Le [contrôle actuel du classeur](qa/customization-arsenal-sync-workbook-report.json) compare les 1 332 fiches de main, les 50 fiches de la PR et les 23 494 cellules de catalogue ; il vérifie aussi les 28 feuilles, 26 tableaux filtrés, validations, formules et volets gelés. La génération courante utilise `scripts/build-workbook.mjs`, puis le mode de fusion de `scripts/verify-customization-workbook.py`. Les outils `update-customization-*` restent ceux du lot initial, dont les hypothèses anciennes ne décrivent pas la base fusionnée.
+Les **neuf nouveaux tests Node** couvrent la comparaison, la consultation et les invariants associés : **0/9 passent avec l’ancienne interface, 9/9 avec la correction**. Les **100 tests ciblés** de personnalisation, équipement, dotation, migration, sauvegarde et état passent, ainsi que la **suite complète de 674 tests**. Le build avec **Vite 7.3.7 et Three.js 0.180.0** réussit. Le [rapport de cette livraison](qa/customization-comparison-report.json) rassemble les commandes, résultats et limites ; les **huit parcours navigateur** passent sur ordinateur (1440 × 1000) et mobile (390 × 844), en texte normal et agrandi, et les **six contrôles de production** passent sans exposer le harness QA. Les 15 captures proviennent des interfaces réellement exécutées.
+
+Le test Node de régression se lance avec :
+
+```bash
+node --test tests/customization-comparison.test.js
+```
+
+Le parcours navigateur dispose de sa commande dédiée, après démarrage du serveur de développement avec `RELAY_QA=1` :
+
+```bash
+CUSTOMIZATION_BASE_MAIN=3670047499b90aa94e701bd00991bf5b2d15badc RELAY_BUILD_KIND=vite-development npm run test:customization:comparison
+```
+
+`CUSTOMIZATION_BASE_MAIN` doit toujours identifier le vrai commit de référence du contrôle. Le script accepte aussi `GAME_URL`, `PLAYWRIGHT_EXECUTABLE_PATH` et `CUSTOMIZATION_REPORT_PREFIX` ; voir le [guide des vérifications](GAMEDEV_GUIDANCE.md#5-vérifications-adaptées-au-changement). La commande navigateur et le test Node apportent des preuves différentes.
+
+Le suivi conserve **1 382 fiches** et les statuts existants : seules cinq fiches de comparaison/consultation sont précisées, soit quatorze cellules du catalogue et du classeur. Aucun nouvel asset ni progrès de fidélité artistique n’est déclaré.
+
+### Résultats des livraisons précédentes
+
+La synchronisation avec main `7ef342a` a passé **556 tests Node**, la compilation de **56 modules** et **neuf contrôles de personnalisation**, dont le build compilé. Les **17 contrôles HTTP de production** passaient, avec quinze PNG et sept bundles servis vérifiés par empreinte. Le [rapport de cette synchronisation](qa/customization-arsenal-sync-report.json) distingue les vérifications de cette branche des preuves antérieures. Les rapports de [personnalisation](qa/customization-arsenal-sync-customization-report.json) et de [production HTTP](qa/customization-arsenal-sync-production-report.json) identifient les sources et ressources du build combiné. Le [rapport précédent](qa/pr1-final-report.json) conserve ses 415 tests Node, neuf contrôles de personnalisation et dix contrôles HTTP sur le socle `748b965` ; il reste historique.
+
+Le [contrôle du classeur lors de cette synchronisation](qa/customization-arsenal-sync-workbook-report.json) compare les 1 332 fiches de main, les 50 fiches de la PR et les 23 494 cellules de catalogue ; il vérifie aussi les 28 feuilles, 26 tableaux filtrés, validations, formules et volets gelés. La génération courante utilise `scripts/build-workbook.mjs`, puis le mode de fusion de `scripts/verify-customization-workbook.py`. Les outils `update-customization-catalog.mjs` et `update-customization-workbook.mjs` restent ceux du lot initial, dont les hypothèses anciennes ne décrivent pas la base fusionnée.
 
 Les rapports initiaux [customization-verification.json](workbook-previews/customization-verification.json), [customization-native-check.json](workbook-previews/customization-native-check.json) et [v0.3.0-report.json](qa/v0.3.0-report.json) restent des archives de leur livraison 1 321→1 371. Le [premier contrôle de fusion](workbook-previews/customization-merge-native-check.json) porte sur `0d2192a`. Ces preuves historiques ne sont pas réécrites pour la synchronisation finale. Aucun de ces contrôles n’est un essai de Microsoft Excel ou de l’exécutable Windows natif.

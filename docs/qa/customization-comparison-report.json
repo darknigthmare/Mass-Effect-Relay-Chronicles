@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-29T13:24:45.978264+00:00",
+  "passed": true,
+  "feature": "Comparaison des multiplicateurs et effet de la pièce consultée dans l’atelier de personnalisation",
+  "repository": "darknigthmare/Mass-Effect-Relay-Chronicles",
+  "baseMain": "3670047499b90aa94e701bd00991bf5b2d15badc",
+  "parentCommit": "7381fc2654c26adfe93ae4314b41d69c3b9467ca",
+  "sourceSnapshot": {
+    "identification": "Parent de branche et empreintes des fichiers effectivement vérifiés ; le commit de livraison est celui qui contient ce rapport.",
+    "sha256": {
+      "package.json": "dea840c142cc75ac85799e75b837eb4aa975c854323013473daee3e498474a1d",
+      "package-lock.json": "4c59f9c380cc361c0feac5ce669db68b7469f1c0361cdb7eac65256a88e22937",
+      "src/customization-ui.js": "16dba47c48b4bbf890dd6aaf3ede0462c9fb121b8cb7a9654eabfe0ea7dfad13",
+      "src/customization-ui.css": "240eed91dce35960370c0cc52cb65d3986a2c7fbe31c3f543f4de82b4a00dbd8",
+      "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+      "src/main.js": "36df5236eb13fb538dd8704a819e1a0c1ad167fe7aa9b4eccac4c93eda358f5d",
+      "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+      "src/loadout.js": "ffeeebcf66d64cc13f45f6513c0e8a7872863a32bca078eb6ee206b26aeb6b9f",
+      "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+      "src/universe-data.js": "579499086820e7b380dda088f3d2194bd32de85d23d2567e6976f1ea5a0997ae",
+      "tests/customization-comparison.test.js": "40e5beaeee8918534c7d88588f20454380675280cdd63ce603e91d0eeb11263c",
+      "scripts/customization-comparison-browser.mjs": "b8baffa06f6429b6646680e83cdebb1ee42f56c44febd4082f75904351d6c2c4",
+      "scripts/customization-comparison-production.mjs": "1149b34a48d068c4adc50fddee4d282650cd8017762603eabdc34b9bd61b6dbd",
+      "scripts/update-customization-comparison-workbook.mjs": "bf0b210c656492e3d949cd840cd1cc9f8227e68472a5d53e109d8a121a9c009a",
+      "scripts/verify-customization-comparison-workbook.py": "70cb3fbeaa73cc81b11dd822b052ce53e22284bb6342a81842b1f6976e00d177",
+      "scripts/build-universe-runtime.mjs": "2ba529a2b90de5bfa0f25fcee46ef66045f23999ec40c8f7540bc60d57b63bb7",
+      "docs/content-catalog.json": "4f2e2a116b301d190f166a3dca26c656c22aeed1c63d989ff1433f4efb456339",
+      "docs/Mass_Effect_Relay_Chronicles_Production.xlsx": "ee92f5c59750af8be0ee5e06b756b4c01b658f280a38e061e465e3a5d5b29566",
+      "docs/gamedev-sources.json": "f9c0cbd8f3618347124b63d5a1776bd9f2713185c4120bbb025e72914a548fff"
+    }
+  },
+  "guidance": {
+    "references": "docs/gamedev-sources.json",
+    "upstreamCommit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+    "applied": [
+      "game-ui-ux",
+      "rpg",
+      "save-systems"
+    ]
+  },
+  "changes": [
+    "Les multiplicateurs technologique et biotique auparavant absents du profil sont affichés avec deux décimales françaises.",
+    "Le profil compare la dotation actuelle au brouillon ; la fiche consultée compare séparément le brouillon à une dotation candidate validée.",
+    "La consultation n’assigne aucun état, brouillon ou stock ; les motifs de refus sont réels et ne projettent pas de gain.",
+    "Le remplacement d’une arme ou armure inclut les effets et noms de ses modules restitués ; la fiche suit le port actif, y compris vide.",
+    "Le catalogue, le classeur et le registre généré sont synchronisés sur les cinq fiches concernées."
+  ],
+  "verification": {
+    "tools": {
+      "node": "v24.22.1",
+      "playwright": "1.64.1",
+      "vite": "7.3.7",
+      "browser": "153.0.8010.0",
+      "three": "0.180.0",
+      "spreadsheetArtifactTool": "2.8.106"
+    },
+    "newRegressionTests": {
+      "command": "node --test --test-isolation=none --test-reporter=tap tests/customization-comparison.test.js",
+      "before": {
+        "tests": 9,
+        "pass": 0,
+        "fail": 9,
+        "log": "docs/qa/customization-comparison-before.tap"
+      },
+      "after": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "log": "docs/qa/customization-comparison-after.tap"
+      },
+      "interpretation": "Les neuf tests couvrent les comportements et invariants du nouveau comparateur ; ils ne représentent pas neuf anciens bugs distincts."
+    },
+    "targetedTests": {
+      "command": "node --test --test-isolation=none --test-reporter=tap tests/customization.test.js tests/customization-comparison.test.js tests/equipment-combat.test.js tests/loadout.test.js tests/loadout-migration.test.js tests/save-slots.test.js tests/save-continuity.test.js tests/save-v02.test.js tests/state.test.js",
+      "tests": 100,
+      "pass": 100,
+      "fail": 0,
+      "log": "docs/qa/customization-comparison-targeted.tap"
+    },
+    "fullSuite": {
+      "command": "npm test",
+      "checkout": "Checkout complet du parent avec toutes les modifications, y compris le catalogue et son registre régénéré.",
+      "result": {
+        "tests": 674,
+        "pass": 674,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "durationMs": 5326.055218,
+      "log": "docs/qa/customization-comparison-full-tests.txt"
+    },
+    "build": {
+      "command": "npm run build",
+      "passed": true,
+      "modulesTransformed": 69,
+      "durationSeconds": 2.65,
+      "files": 31,
+      "manifestSha256": "4e1c740ddd6cb5b52d9ced437cac52104a4d34e98b09daa6c8e8ca4dfdfc09e4",
+      "manifestDefinition": "SHA-256 de JSON.stringify(buildFiles), comme consigné par le runner production.",
+      "log": "docs/qa/customization-comparison-build.txt",
+      "warnings": [
+        "Avertissement existant sur certains chunks supérieurs à 500 kB ; seuils et configuration de découpage inchangés."
+      ]
+    },
+    "developmentBrowser": {
+      "passed": true,
+      "checks": 8,
+      "layouts": [
+        {
+          "label": "desktop 1440 × 1000",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "largeText": false,
+          "documentWidth": 1440,
+          "screenWidth": 1378,
+          "screenContentWidth": 1378,
+          "inspectorWidth": 382,
+          "inspectorContentWidth": 382,
+          "comparedElements": 23,
+          "overflowing": []
+        },
+        {
+          "label": "mobile",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "largeText": false,
+          "documentWidth": 390,
+          "screenWidth": 372,
+          "screenContentWidth": 372,
+          "inspectorWidth": 372,
+          "inspectorContentWidth": 372,
+          "comparedElements": 26,
+          "overflowing": []
+        },
+        {
+          "label": "desktop-large-text",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "largeText": true,
+          "documentWidth": 1440,
+          "screenWidth": 1378,
+          "screenContentWidth": 1378,
+          "inspectorWidth": 382,
+          "inspectorContentWidth": 382,
+          "comparedElements": 26,
+          "overflowing": []
+        },
+        {
+          "label": "mobile-large-text",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "largeText": true,
+          "documentWidth": 390,
+          "screenWidth": 372,
+          "screenContentWidth": 372,
+          "inspectorWidth": 372,
+          "inspectorContentWidth": 372,
+          "comparedElements": 26,
+          "overflowing": []
+        }
+      ],
+      "screenshots": 12,
+      "report": "docs/qa/customization-comparison-browser-report.json",
+      "scopeNote": "Les huit parcours portent sur les sources UI finales. La synchronisation ultérieure des neuf textes documentaires du registre a été validée par la suite complète et le parcours production final."
+    },
+    "productionBrowser": {
+      "passed": true,
+      "checks": 6,
+      "screenshots": 3,
+      "report": "docs/qa/customization-comparison-production-report.json",
+      "servedFilesVerified": 4,
+      "finalBuildHashesRechecked": 31,
+      "qaHarnessAbsent": true
+    },
+    "workbook": {
+      "passed": true,
+      "changedIds": [
+        "CUST-UI-weapons",
+        "CUST-UI-comparison",
+        "CUST-QA-stats",
+        "CUST-QA-draft-pure",
+        "CUST-QA-roundtrip"
+      ],
+      "changedTextCells": 14,
+      "catalogueEntries": 1382,
+      "productionStatusesUnchanged": true,
+      "nativeChecks": {
+        "sheets": 28,
+        "tables": 26,
+        "formulas": 274,
+        "dataValidations": 130,
+        "conditionalRules": 130,
+        "catalogueCells": 23494,
+        "xmlParts": 87,
+        "referencedDifferentialStyles": 130,
+        "unreferencedDifferentialStylesAfterExport": 130
+      },
+      "preservationReport": "docs/qa/customization-comparison-workbook-preservation.json",
+      "changesReport": "docs/qa/customization-comparison-workbook-update.json",
+      "visualReview": "Huit zones modifiées rendues et revues ; deux rendus représentatifs joints au dépôt.",
+      "microsoftExcelExecuted": false
+    },
+    "generatedRegistry": {
+      "command": "npm run build:universe",
+      "passed": true,
+      "recordCount": 6708,
+      "changedRecords": 5,
+      "changedTexts": 9,
+      "changedDigest": "docs/content-catalog.json",
+      "report": "docs/qa/customization-comparison-registry.json",
+      "explanation": "Le registre exporte description et notes, mais pas acceptance : les 14 champs catalogue/Excel correspondent à neuf textes du registre."
+    },
+    "visualReview": {
+      "reviewedBy": "Inspection des captures réelles par les agents, dont revue principale des comparatifs desktop, mobile, texte agrandi et restitution de modules.",
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "largeText": true,
+      "observed": "Chiffres, libellés et motifs lisibles sans débordement horizontal observé ; actions de préparation et annulation utilisables.",
+      "artFidelityReviewed": false
+    }
+  },
+  "artifactIndex": "docs/qa/customization-comparison-artifacts.json",
+  "executionNotes": [
+    "Une première exécution navigateur a été interrompue par ENOSPC pendant une capture ; les sorties ont été déplacées et le scénario complet rejoué.",
+    "La navigation du runner a été corrigée pour fermer Options par son vrai bouton : Escape est ignoré par le jeu existant lorsque la case de réglage garde le focus. Aucun runtime modifié pour ce point.",
+    "La validation globale après mise à jour du catalogue a détecté deux incohérences du registre généré. La génération officielle les a résolues ; la suite finale passe 674/674 et le nouveau build passe six contrôles production."
+  ],
+  "limitations": [
+    "Les ressources des fixtures navigateur proviennent d’une préparation explicite en Node, pas d’un parcours complet de campagne.",
+    "Les dimensions mobiles sont simulées dans Chromium ; aucun appareil mobile physique ni benchmark FPS n’est certifié.",
+    "Electron et le lancement Windows natif ne sont pas testés dans cette livraison.",
+    "Microsoft Excel natif n’a pas été exécuté : validation artifact-tool, Open XML et rendus.",
+    "Ce lot ne produit aucun nouvel asset, modèle ou animation et ne certifie pas de fidélité artistique 1:1.",
+    "Les résultats de CI sont à lire sur le commit de la PR ; les preuves locales de ce rapport sont distinctes."
+  ]
+}

@@ -4,11 +4,44 @@ import { CUSTOMIZATION_OPTIONS, createCustomizationDraft, customizationPreviewSt
 import { renderCustomizationSprite } from './customization-render.js';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
-const signed = value => `${value > 0 ? '+' : ''}${Math.round(value * 100) / 100}`;
+const signed = value => `${value > 0 ? '+' : ''}${String(Math.round(value * 100) / 100).replace('.', ',')}`;
 const BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
 const VIEWS = [['front', 'Face'], ['right', 'Profil droit'], ['back', 'Dos'], ['left', 'Profil gauche']];
 const TABS = [['character', '01', 'Personnage'], ['armor', '02', 'Armure'], ['weapons', '03', 'Armes']];
 const images = new Map();
+
+// Values come from actorFor after the existing transactional draft validation.
+// Multipliers use a neutral value of one, unlike additive bonuses.
+const COMPARISON_STATS = [
+  ['maxHp', 'Santé', 600], ['maxShield', 'Bouclier', 400],
+  ['attack', 'Puissance', 100], ['defense', 'Défense', 50],
+  ['weaponHeatMultiplier', 'Chaleur / tir', 2, true, 'multiplier'],
+  ['weaponCoolingBonus', 'Refroidissement / s', 10],
+  ['techMultiplier', 'Puissance technologique', 2, false, 'multiplier'],
+  ['bioticMultiplier', 'Puissance biotique', 2, false, 'multiplier'],
+  ['syntheticDamageBonus', 'Dégâts synthétiques', 1, false, 'percent'],
+  ['organicDamageBonus', 'Dégâts organiques', 1, false, 'percent'],
+  ['shieldBypass', 'Traversée bouclier', 1, false, 'percent'],
+  ['controlResistance', 'Résistance contrôle', 1, false, 'percent'],
+];
+
+function comparisonRows(current, proposed, changesOnly = false) {
+  return COMPARISON_STATS.map(([key, label, max, lower, format], index) => {
+    const before = current[key] ?? (format === 'multiplier' ? 1 : 0);
+    const after = proposed[key] ?? (format === 'multiplier' ? 1 : 0);
+    const diff = Math.round((after - before) * 1e9) / 1e9;
+    return { key, label, max, lower, format, before, after, diff, always: index < 8 };
+  }).filter(row => changesOnly ? row.diff !== 0 : row.always || row.before || row.after);
+}
+
+function statMarkup({ key, label, max, lower, format, before, after, diff }, inspected = false) {
+  const display = value => format === 'percent' ? `${Math.round(value * 100)} %`
+    : format === 'multiplier' ? `× ${value.toFixed(2).replace('.', ',')}` : Math.round(value * 100) / 100;
+  const improved = diff && (lower ? diff < 0 : diff > 0);
+  const width = value => Math.max(0, Math.min(100, value / max * 100));
+  const delta = `${signed(diff * (format === 'percent' ? 100 : 1))}${format === 'percent' ? ' points' : format === 'multiplier' ? ' au multiplicateur' : ''}`;
+  return `<div class="custom-stat" ${inspected ? 'data-item-stat' : 'data-stat'}="${key}" data-before="${before}" data-after="${after}"><div><span>${label}</span><b>${display(before)}<span> → </span>${display(after)}</b></div><div class="custom-stat-bar" aria-hidden="true"><i style="width:${width(before)}%"></i><i class="${improved ? 'improved' : diff ? 'reduced' : ''}" style="width:${width(after)}%"></i></div>${diff ? `<small class="${improved ? 'positive' : 'negative'}">${delta}</small>` : ''}</div>`;
+}
 
 export const CUSTOMIZATION_FIELDS = Object.freeze({
   'face.preset': 'facePresets', 'face.skinTone': 'skinTones', 'face.eyeColor': 'eyeColors',
@@ -142,21 +175,38 @@ function previewMarkup(state, ui) {
     </section>`;
 }
 
+function inspectedEquipmentMarkup(state, ui, proposed) {
+  if (!['armor', 'weapons'].includes(ui.customTab)) return '';
+  const slots = ui.customTab === 'armor' ? ['armor', 'armorMod', 'armorMod2'] : ['weapon', 'weaponMod', 'weaponMod2', 'ammoMod', 'omniTool', 'bioticAmp'];
+  const slot = slots.includes(ui.customSlot) ? ui.customSlot : slots[0];
+  const itemSlot = slot === 'weaponMod2' ? 'weaponMod' : slot === 'armorMod2' ? 'armorMod' : slot;
+  const requested = Object.hasOwn(ITEMS, ui.customItem) ? ITEMS[ui.customItem] : null;
+  const detailed = requested?.slot === itemSlot ? requested : ITEMS[ui.customizationDraft.equipment[slot]];
+  if (!detailed) return `<section class="custom-item-detail" data-custom-inspection="" data-inspection-id="" data-inspection-slot="${slot}" data-inspection-status="empty"><span class="eyebrow">${esc(SLOT_LABELS[slot])}</span><h4>Emplacement vide</h4><p>Consultez un objet pour voir son effet avant de le préparer.</p></section>`;
+
+  // Use the same stock, compatibility and attachment-return rules as Préparer.
+  // This detached operation never assigns the resulting draft to the UI/state.
+  const trial = prepareCustomizationEquipment(state, ui.customizationDraft, slot, detailed.id);
+  const candidate = trial.ok ? customizationPreviewState(state, trial.draft) : null;
+  const selected = ui.customizationDraft.equipment[slot] === detailed.id;
+  const status = !candidate ? 'unavailable' : selected ? 'prepared' : 'available';
+  const rows = candidate ? comparisonRows(proposed, actorFor('shepard', candidate), true) : [];
+  const warning = candidate ? itemCompatibility(candidate, 'shepard', detailed.id).warning : null;
+  const returned = candidate ? trial.returnedMods : [];
+  return `<section class="custom-item-detail" data-custom-inspection="${esc(detailed.id)}" data-inspection-id="${esc(detailed.id)}" data-inspection-slot="${slot}" data-inspection-status="${status}"><span class="eyebrow">Objet consulté · ${esc(itemCategory(detailed))}</span><h4>${esc(detailed.name)}</h4><p class="custom-maker">${esc(detailed.manufacturer)}</p><p>${esc(detailed.detail || detailed.description)}</p><dl><div><dt>Niveau requis</dt><dd>${detailed.level}</dd></div><div><dt>Emplacement</dt><dd>${esc(SLOT_LABELS[slot])}</dd></div>${detailed.spectre ? '<div><dt>Accès</dt><dd>Spectre</dd></div>' : ''}</dl>
+    <div class="custom-item-effects"><h5>Effet sur la configuration préparée</h5>${status === 'unavailable' ? `<p class="custom-item-unavailable" role="status">${esc(trial.reason || 'Cette dotation ne peut pas être préparée.')}</p>` : status === 'prepared' ? '<p>Cet objet est déjà préparé.</p>' : `<p class="custom-item-comparison-caption">Brouillon actuel → Avec cet objet</p>${rows.length ? rows.map(row => statMarkup(row, true)).join('') : '<p>Aucune variation de ces statistiques.</p>'}<p>Utilisez le bouton + pour préparer cet objet.</p>`}
+    ${returned.length ? `<div class="custom-returned-modules"><p>Modules remis dans le stock au remplacement :</p><ul>${returned.map(id => `<li>${esc(ITEMS[id]?.name || id)}</li>`).join('')}</ul></div>` : ''}
+    ${warning ? `<p class="custom-training-warning">${esc(warning)}</p>` : ''}</div></section>`;
+}
+
 function statsMarkup(state, ui) {
   const preview = customizationPreviewState(state, ui.customizationDraft), current = actorFor('shepard', state), proposed = preview ? actorFor('shepard', preview) : current;
-  const stats = [['maxHp', 'Santé', 600, false], ['maxShield', 'Bouclier', 400, false], ['attack', 'Puissance', 100, false], ['defense', 'Défense', 50, false], ['weaponHeatMultiplier', 'Chaleur / tir', 2, true], ['weaponCoolingBonus', 'Refroidissement / s', 10, false], ['syntheticDamageBonus', 'Dégâts synthétiques', 1, false], ['organicDamageBonus', 'Dégâts organiques', 1, false], ['shieldBypass', 'Traversée bouclier', 1, false], ['controlResistance', 'Résistance contrôle', 1, false]];
-  const percent = key => ['syntheticDamageBonus', 'organicDamageBonus', 'shieldBypass', 'controlResistance'].includes(key);
-  const display = (key, value) => percent(key) ? `${Math.round(value * 100)} %` : key === 'weaponHeatMultiplier' ? `× ${value.toFixed(2)}` : Math.round(value * 100) / 100;
-  const detailed = ui.customItem && ITEMS[ui.customItem] ? ITEMS[ui.customItem] : ITEMS[ui.customizationDraft.equipment[ui.customTab === 'armor' ? 'armor' : 'weapon']];
   const preparedWeapon = ui.customizationDraft.equipment.weapon, training = preparedWeapon ? itemCompatibility(state, 'shepard', preparedWeapon).warning : null;
   return `<aside class="custom-inspector"><div class="custom-section-title"><span>Profil de combat</span><small>Niveau ${Math.floor(state.xp / 300) + 1}</small></div>
-    <p class="custom-stats-caption">Dotation actuelle <span>→ Aperçu</span></p><div class="custom-stats">${stats.filter(([key], index) => index < 6 || current[key] || proposed[key]).map(([key, label, max, lower]) => {
-      const before = current[key] ?? (key === 'weaponHeatMultiplier' ? 1 : 0), after = proposed[key] ?? (key === 'weaponHeatMultiplier' ? 1 : 0), diff = after - before;
-      return `<div class="custom-stat" data-stat="${key}" data-before="${before}" data-after="${after}"><div><span>${label}</span><b>${display(key, before)}<span> → </span>${display(key, after)}</b></div><div class="custom-stat-bar"><i style="width:${Math.min(100, before / max * 100)}%"></i><i class="${diff && (lower ? diff < 0 : diff > 0) ? 'improved' : diff ? 'reduced' : ''}" style="width:${Math.min(100, after / max * 100)}%"></i></div>${diff ? `<small class="${lower ? diff < 0 ? 'positive' : 'negative' : diff > 0 ? 'positive' : 'negative'}">${signed(diff * (percent(key) ? 100 : 1))}${percent(key) ? ' points' : ''}</small>` : ''}</div>`;
-    }).join('')}</div>${training ? `<p class="custom-training-warning" role="status">${esc(training)}</p>` : ''}
-    ${detailed ? `<section class="custom-item-detail"><span class="eyebrow">${esc(itemCategory(detailed))}</span><h4>${esc(detailed.name)}</h4><p class="custom-maker">${esc(detailed.manufacturer)}</p><p>${esc(detailed.detail || detailed.description)}</p><dl><div><dt>Niveau requis</dt><dd>${detailed.level}</dd></div><div><dt>Emplacement</dt><dd>${esc(SLOT_LABELS[detailed.slot])}</dd></div>${detailed.spectre ? '<div><dt>Accès</dt><dd>Spectre</dd></div>' : ''}</dl></section>` : ''}
+    <p class="custom-stats-caption">Dotation actuelle <span>→ Configuration préparée</span></p><div class="custom-stats">${comparisonRows(current, proposed).map(row => statMarkup(row)).join('')}</div>${training ? `<p class="custom-training-warning" role="status">${esc(training)}</p>` : ''}
+    ${inspectedEquipmentMarkup(state, ui, proposed)}
     <section class="custom-loadout-summary"><h4>Configuration préparée</h4>${Object.entries(ui.customizationDraft.equipment).map(([slot, id]) => `<p><span>${esc(SLOT_LABELS[slot])}</span><b>${esc(itemName(id, slot))}</b></p>`).join('')}</section>
-    <p class="custom-game-note">Les statistiques tiennent compte de votre classe, de votre niveau et de vos calibrations. Les couleurs ne donnent aucun bonus.</p></aside>`;
+    <p class="custom-game-note">Les statistiques tiennent compte de votre classe, de votre niveau et de vos calibrations. Les outils renforcent uniquement les pouvoirs déjà disponibles. Les couleurs ne donnent aucun bonus.</p></aside>`;
 }
 
 /** The caller owns the draft, all mutation, persistence, and focus management. */

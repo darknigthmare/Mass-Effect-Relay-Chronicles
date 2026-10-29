@@ -55,6 +55,8 @@ Les emplacements sont : arme, armure, deux modules d'arme, modification de munit
 
 Les statistiques se calculent depuis les valeurs de base et la configuration équipée. Rééquiper, prévisualiser ou charger une sauvegarde ne cumule pas les bonus. Un choix cosmétique ne donne pas de statistiques, un outil ne crée pas de pouvoir absent et une image d'arme n'est pas une preuve de son comportement de combat. Voir [CUSTOMIZATION.md](CUSTOMIZATION.md).
 
+Le profil compare **dotation actuelle → configuration préparée** ; la fiche d'une pièce compare **brouillon actuel → avec cet objet**. Les deux calculs utilisent `actorFor`, y compris les multiplicateurs technologique et biotique affichés sous la forme **×1,00 → ×1,15**. La consultation construit un candidat détaché avec `prepareCustomizationEquipment` et les validations existantes : elle ne modifie ni le brouillon, ni la partie, ni le stock. Une pièce indisponible ou incompatible expose le refus réel sans gain projeté. Le remplacement d'une arme ou d'une armure inclut le retrait de ses modules et indique leur restitution ; aucun mouvement de stock n'a lieu pendant l'inspection. La fiche suit le port actif parmi les neuf emplacements et indique explicitement un emplacement vide.
+
 ### Persistance et narration
 
 Les formats ont plusieurs versions : l'enveloppe de sauvegarde de la campagne et la version de l'inventaire ne doivent pas être confondues. Un ancien champ absent peut recevoir sa valeur de migration ; un champ explicitement présent mais invalide doit suivre le refus prévu par le validateur. Ne pas remplacer la partie courante avant la validation complète d'un import.
@@ -81,6 +83,7 @@ Une planche, un buste ou une illustration de concept ne valide pas les vues arri
 | Livrable | Source et outils | Vigilance |
 |---|---|---|
 | Classeur principal | `docs/content-catalog.json` → `scripts/build-workbook.mjs` → `docs/Mass_Effect_Relay_Chronicles_Production.xlsx` | `npm run workbook` nécessite `CODEX_PRIMARY_RUNTIME_NODE_MODULES` et `@oai/artifact-tool`. `npm ci` seul ne fournit pas ce runtime. |
+| Correction ciblée comparaison/consultation | `scripts/update-customization-comparison-workbook.mjs`, puis `scripts/verify-customization-comparison-workbook.py` | Partir des sources identifiées ; modifier les cinq IDs existants, contrôler les quatorze cellules et préserver les autres données, styles, tables et formules. |
 | Catalogues des œuvres et runtime des Chroniques | `docs/content-catalog.json` et `docs/universe/catalogs/` → `scripts/build-universe-runtime.mjs` → `src/universe-data.js` | `npm run build:universe` construit le module généré ; il ne met pas à jour les Excel. |
 | Classeurs des œuvres | `scripts/build-universe-workbooks.mjs`, `scripts/package-universe-workbooks.py`, `scripts/verify-universe-workbooks.py` | Lire les options et les sources d'entrée de chaque script ; contrôler les œuvres et lignes effectivement touchées. |
 | Deux lots Simulation | `scripts/build-expansion-workbook.py`, `scripts/build-expansion2-workbook.py` et outils `audit-` / `verify-` associés | Utiliser le pipeline du lot concerné et ses données courantes ; conserver les résultats et limites du premier lot. |
@@ -97,7 +100,7 @@ Une modification exclusivement documentaire de ces guides n'exige pas de changer
 
 ### Préparer les outils
 
-Les commandes npm ci-dessous existent dans `package.json` au commit de référence. Relire leur définition sur la branche de travail. Les tests Node et le build sont deux contrôles différents ; les tests de navigateur et la revue visuelle apportent des preuves supplémentaires.
+Relire dans `package.json` la définition des commandes npm sur la branche de travail. La commande `test:customization:comparison` est ajoutée par la livraison du 29 octobre décrite ci-dessous. Les tests Node et le build sont deux contrôles différents ; les tests de navigateur et la revue visuelle apportent des preuves supplémentaires.
 
 Pour un environnement de développement disposant des dépendances :
 
@@ -117,11 +120,15 @@ La syntaxe d'affectation ci-dessus est celle d'un shell POSIX. Lire dans chaque 
 
 Pour `scripts/customization-browser.mjs`, renseigner **`CUSTOMIZATION_BASE_MAIN` avec le vrai SHA de base** : sa valeur par défaut renvoie à une livraison historique. `GAME_URL`, `PRODUCTION_GAME_URL`, `PLAYWRIGHT_EXECUTABLE_PATH` et `CUSTOMIZATION_REPORT_PREFIX` permettent de choisir les cibles, le navigateur et les sorties pris en charge par ce script. Vérifier les paramètres des autres scripts séparément.
 
+Le nouveau parcours `npm run test:customization:comparison` exécute `scripts/customization-comparison-browser.mjs`. Il exige un `CUSTOMIZATION_BASE_MAIN` complet de 40 caractères ; `RELAY_BUILD_KIND` décrit le serveur réellement testé, par exemple `vite-development`. Il accepte `GAME_URL`, `PLAYWRIGHT_EXECUTABLE_PATH` et `CUSTOMIZATION_REPORT_PREFIX`. Le scénario importe des sauvegardes de test construites explicitement ; ses ressources ne sont pas présentées comme acquises en parcourant la campagne. Son résultat ne vaut ni contrôle du build de production ni lancement Electron/Windows.
+
+Le contrôle de production ciblé se lance après le parcours précédent (qui crée sa fixture), `npm run build` et le démarrage de `npm run preview -- --host 127.0.0.1 --port 4188`. Exécuter `CUSTOMIZATION_BASE_MAIN=3670047499b90aa94e701bd00991bf5b2d15badc GAME_URL=http://127.0.0.1:4188 node scripts/customization-comparison-production.mjs`, en adaptant le SHA au socle effectivement contrôlé. Le script vérifie les fichiers compilés servis et utilise les vrais contrôles du jeu, sans observateur QA.
+
 ### Choisir les scénarios utiles
 
 | Changement | Commandes/scénarios existants à sélectionner | Observation complémentaire |
 |---|---|---|
-| Personnalisation | `npm run test:customization`, `npm run test:loadout:extensions` ; `npm run test:saves` si persistance touchée | Tester appliquer/annuler, quatre directions, équipement indisponible et reprise. |
+| Personnalisation | `npm run test:customization`, `npm run test:customization:comparison`, `npm run test:loadout:extensions` ; `npm run test:saves` si persistance touchée | Tester appliquer/annuler, les deux niveaux de comparaison, consultation sans mutation, refus, restitution des modules, quatre directions et reprise. |
 | Inventaire et effets en combat | `npm test`, `npm run test:loadout`, `npm run test:balance` selon le système | Vérifier le stock, le calcul des bonus et les effets réels sur une rencontre. |
 | Sauvegardes | `npm run test:saves` et tests de migration concernés | Tester ancienne partie, import refusé, reprise après fermeture et erreur de stockage. |
 | Dialogues et progression | `npm run test:story`, `npm run test:assignments`, `npm run test:operations`, `npm run test:campaign` selon le périmètre | Vérifier les branches et les effets après reprise, sans répéter les récompenses. |
@@ -139,7 +146,17 @@ Le workflow existant [build.yml](../.github/workflows/build.yml) exécute les te
 
 Une preuve utile indique la branche/le commit, la commande ou le parcours, l'environnement, le résultat observé et les limites. Distinguer test automatisé, revue visuelle et mesure de performance. Une capture de l'écran réellement testé est plus pertinente qu'une illustration de conception. Utiliser le [modèle de PR](../.github/pull_request_template.md) pour rattacher ces preuves au changement.
 
-## 6. Première application recommandée : terminer une variante vérifiable
+## 6. Première application livrée : comparaison et consultation de l'équipement
+
+La livraison du **29 octobre 2026** applique `game-ui-ux`, `rpg` et `save-systems` à un défaut concret de l'atelier : le profil de combat omettait les multiplicateurs technologique et biotique et la fiche consultée ne permettait pas de comparer correctement une pièce au brouillon courant. La correction dans `src/customization-ui.js` utilise les calculs et les validations existants, distingue consultation, préparation et application, et respecte les neuf emplacements. Les refus de stock ou de compatibilité et les modules restitués font partie de l'information affichée.
+
+Les **neuf nouveaux tests de régression** de `tests/customization-comparison.test.js` couvrent la comparaison, la consultation et les invariants associés : ils échouaient tous sur l'ancienne interface et passent tous avec la correction. Les **100 tests ciblés** passent, la **suite Node complète passe 674/674**, et le build **Vite 7.3.7 / Three.js 0.180.0** réussit. Le test de régression seul se lance avec `node --test tests/customization-comparison.test.js`. Les **huit parcours navigateur** passent sur ordinateur (1440 × 1000) et mobile (390 × 844), en texte normal et agrandi ; leur commande est `npm run test:customization:comparison`, avec les prérequis décrits plus haut. Les **six contrôles ciblés du build de production** passent aussi : les fichiers servis correspondent au build local et le harness QA reste absent. Le [rapport de livraison](qa/customization-comparison-report.json) consigne les preuves et leurs limites.
+
+Le registre `src/universe-data.js` est régénéré depuis le catalogue avec `npm run build:universe` : neuf textes de description/notes et le digest du catalogue sont synchronisés, sans modifier les 6 708 entrées ni leurs statuts. Le contrôle de reproductibilité fait partie des 674 tests finaux.
+
+Le catalogue et l'Excel mettent à jour les cinq fiches existantes `CUST-UI-weapons`, `CUST-UI-comparison`, `CUST-QA-stats`, `CUST-QA-draft-pure` et `CUST-QA-roundtrip`, sans changer leurs statuts **Prototype**. La portée artistique reste inchangée : aucune nouvelle silhouette, animation ou fidélité de modèle n'est revendiquée. Les résultats historiques restent dans leurs rapports d'origine.
+
+## 7. Prochaine application recommandée : terminer une variante vérifiable
 
 À la prochaine intervention sur les manquants, choisir dans le catalogue courant une variante de personnage, d'armure ou d'arme avec un identifiant stable. Ce choix doit dépendre des fichiers et des besoins actuels, pas d'un ancien total de manquants.
 
