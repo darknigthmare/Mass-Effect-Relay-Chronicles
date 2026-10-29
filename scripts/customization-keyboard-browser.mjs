@@ -33,15 +33,31 @@ const observe = page => page.evaluate(() => ({
 async function focusInfo(page) {
   return page.evaluate(() => {
     const element = document.activeElement, rect = element.getBoundingClientRect();
+    const bounds = box => ({ left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: box.width, height: box.height });
+    const rootStyle = getComputedStyle(document.documentElement), bodyStyle = getComputedStyle(document.body);
+    // CSS Overflow 3 §3.3 propagates body overflow to the viewport when the
+    // HTML root has visible overflow. Here #app/#overlay are fixed, so body's
+    // own layout height is zero: it is not a second clipping rectangle.
+    // https://www.w3.org/TR/css-overflow-3/#overflow-propagation
+    const bodyUsesViewport = rootStyle.overflowX === 'visible' && rootStyle.overflowY === 'visible'
+      && rootStyle.contain === 'none' && bodyStyle.contain === 'none';
+    const clippingAncestors = [];
     let left = Math.max(0, rect.left), right = Math.min(innerWidth, rect.right);
     let top = Math.max(0, rect.top), bottom = Math.min(innerHeight, rect.bottom);
     for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+      // The viewport was intersected above; retain every real panel/scrollport.
+      if (parent === document.documentElement || parent === document.body && bodyUsesViewport) continue;
       const style = getComputedStyle(parent), box = parent.getBoundingClientRect();
-      if (/(auto|scroll|hidden|clip)/.test(style.overflowX)) { left = Math.max(left, box.left); right = Math.min(right, box.right); }
-      if (/(auto|scroll|hidden|clip)/.test(style.overflowY)) { top = Math.max(top, box.top); bottom = Math.min(bottom, box.bottom); }
+      const clipsX = /^(auto|scroll|hidden|clip)$/.test(style.overflowX), clipsY = /^(auto|scroll|hidden|clip)$/.test(style.overflowY);
+      if (clipsX || clipsY) clippingAncestors.push({ tag: parent.tagName, id: parent.id, className: parent.className, clipsX, clipsY, bounds: bounds(box) });
+      if (clipsX) { left = Math.max(left, box.left); right = Math.min(right, box.right); }
+      if (clipsY) { top = Math.max(top, box.top); bottom = Math.min(bottom, box.bottom); }
     }
+    const visible = right > left && bottom > top;
+    const hit = visible ? document.elementFromPoint((left + right) / 2, (top + bottom) / 2) : null;
     return { action: element.dataset.do || null, id: element.dataset.id ?? null, htmlId: element.id || null,
-      inside: !!element.closest('.customization-screen'), visible: right > left && bottom > top,
+      inside: !!element.closest('.customization-screen'), visible, centerUnobscured: !!hit && element.contains(hit),
+      bounds: bounds(rect), bodyBounds: bounds(document.body.getBoundingClientRect()), bodyUsesViewport, clippingAncestors,
       visibleFraction: rect.width && rect.height ? Math.max(0, right - left) * Math.max(0, bottom - top) / (rect.width * rect.height) : 0 };
   });
 }
@@ -49,7 +65,10 @@ async function expectFocus(page, selector, visible = true) {
   assert.equal(await page.evaluate(selector => document.activeElement.matches(selector), selector), true, `focus should stay on ${selector}`);
   const info = await focusInfo(page);
   assert.equal(info.inside, true);
-  if (visible) assert.ok(info.visibleFraction > .95, `focused control must remain visible: ${JSON.stringify(info)}`);
+  if (visible) {
+    assert.ok(info.visibleFraction > .95, `focused control must remain visible: ${JSON.stringify(info)}`);
+    assert.equal(info.centerUnobscured, true, `focused control must not be covered by another element: ${JSON.stringify(info)}`);
+  }
   return info;
 }
 async function tabTo(page, selector) {

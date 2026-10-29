@@ -76,9 +76,28 @@ jobs:
           wait_for_http http://127.0.0.1:4193 "${server_pids[0]}"
           wait_for_http http://127.0.0.1:4194 "${server_pids[1]}"
 
-          GAME_URL=http://127.0.0.1:4193 node scripts/shepard-combat-world-browser.mjs 2>&1 | tee test-results/shepard-atelier-world.log
-          GAME_URL=http://127.0.0.1:4193 node scripts/customization-keyboard-browser.mjs 2>&1 | tee test-results/shepard-atelier-keyboard.log
-          GAME_URL=http://127.0.0.1:4194 PRODUCTION_GAME_URL=http://127.0.0.1:4194 node scripts/customization-poses-production.mjs 2>&1 | tee test-results/shepard-atelier-production.log
+          failed_browser_scenarios=()
+          run_browser_scenario() {
+            local label="$1" log="$2"
+            shift 2
+            if "$@" 2>&1 | tee "$log"; then
+              printf 'Browser scenario passed: %s\n' "$label"
+            else
+              local result=$?
+              failed_browser_scenarios+=("$label (exit $result)")
+              printf 'Browser scenario failed: %s (exit %s)\n' "$label" "$result" >&2
+            fi
+          }
+
+          run_browser_scenario 'Combat poses' test-results/shepard-atelier-world.log env GAME_URL=http://127.0.0.1:4193 node scripts/shepard-combat-world-browser.mjs
+          run_browser_scenario 'Keyboard navigation' test-results/shepard-atelier-keyboard.log env GAME_URL=http://127.0.0.1:4193 node scripts/customization-keyboard-browser.mjs
+          run_browser_scenario 'Production saves' test-results/shepard-atelier-production.log env GAME_URL=http://127.0.0.1:4194 PRODUCTION_GAME_URL=http://127.0.0.1:4194 node scripts/customization-poses-production.mjs
+
+          if ((${#failed_browser_scenarios[@]})); then
+            printf 'Browser verification failed:\n' >&2
+            printf ' - %s\n' "${failed_browser_scenarios[@]}" >&2
+            exit 1
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
