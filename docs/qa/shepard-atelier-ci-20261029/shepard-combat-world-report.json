@@ -1,0 +1,912 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-29T17:35:29.424Z",
+  "passed": true,
+  "scope": "Scène de rendu isolée sur le vrai WorldView en développement. Combat créé par createBattle, événements transmis au renderer, poses maintenues pour les captures et PV de la fixture mis à zéro pour le KO. Apparence et couleurs modifiées sur le renderer seul. Aucun parcours complet, victoire, équilibrage, contrôle de sauvegarde, build de production ou certification de fidélité artistique.",
+  "sourceHead": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
+  "sourceHashes": {
+    "src/world.js": "2ee89b25a52943884eba1a5c9f7725e999347155642dc90988d5cf6c074a0c8b",
+    "src/customization-render.js": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+    "vite.config.js": "ed11662b4064b813facf79236fc0976a2fb062ac4c322aa2614ec15330b808d0",
+    "scripts/shepard-combat-world-browser.mjs": "b9ad10a9e484b9fa242c171a62c9d93ce9eb472487ec157d2d734fa4f8677e15",
+    "public/assets/shepard-male-animation.json": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52",
+    "public/assets/shepard-male-combat-atlas.png": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+    "public/assets/shepard-female-animation.json": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f",
+    "public/assets/shepard-female-combat-atlas.png": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+  },
+  "url": "http://127.0.0.1:4193",
+  "buildKind": "vite-development",
+  "viewport": {
+    "width": 1280,
+    "height": 800,
+    "deviceScaleFactor": 1
+  },
+  "node": "v24.22.1",
+  "playwright": "1.64.1",
+  "cases": [
+    {
+      "appearance": "male",
+      "pose": "aim",
+      "variant": "default",
+      "key": "shepard",
+      "frameId": "shepard-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/shepard-male-combat-atlas.png",
+      "rect": [
+        222,
+        9,
+        430,
+        527
+      ],
+      "pivot": [
+        190,
+        521
+      ],
+      "repeat": [
+        0.2799479166666667,
+        0.5146484375
+      ],
+      "offset": [
+        0.14453125,
+        0.4765625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 1,
+      "displayWidth": 2.325426944971537,
+      "displayHeight": 2.85,
+      "rotationZ": 0,
+      "groundAnchorError": 4.163336342344337e-17,
+      "headRegion": [
+        0.381395,
+        0.005693,
+        0.188372,
+        0.172676
+      ],
+      "headAxis": "y",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.2799479166666667,
+        0.5146484375
+      ],
+      "textureOffset": [
+        0.14453125,
+        0.4765625
+      ],
+      "projectedBounds": {
+        "left": 557.751146967231,
+        "top": 256.12334124430544,
+        "right": 635.2653784662822,
+        "bottom": 329.66911248160363
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 51,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-male-aim.png",
+      "passed": true
+    },
+    {
+      "appearance": "male",
+      "pose": "power",
+      "variant": "default",
+      "key": "shepard",
+      "frameId": "shepard-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/shepard-male-combat-atlas.png",
+      "rect": [
+        930,
+        9,
+        424,
+        527
+      ],
+      "pivot": [
+        168,
+        521
+      ],
+      "repeat": [
+        0.2760416666666667,
+        0.5146484375
+      ],
+      "offset": [
+        0.60546875,
+        0.4765625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 1,
+      "displayWidth": 2.292979127134725,
+      "displayHeight": 2.85,
+      "rotationZ": 0,
+      "groundAnchorError": 4.163336342344337e-17,
+      "headRegion": [
+        0.334906,
+        0.005693,
+        0.191038,
+        0.178368
+      ],
+      "headAxis": "y",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.2760416666666667,
+        0.5146484375
+      ],
+      "textureOffset": [
+        0.60546875,
+        0.4765625
+      ],
+      "projectedBounds": {
+        "left": 561.3797358844059,
+        "top": 256.03899775544636,
+        "right": 637.8123734555634,
+        "bottom": 329.58476899274456
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 53,
+      "triangles": 7552,
+      "screenshot": "shepard-combat-world-male-power.png",
+      "passed": true
+    },
+    {
+      "appearance": "male",
+      "pose": "hit",
+      "variant": "default",
+      "key": "shepard",
+      "frameId": "shepard-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/shepard-male-combat-atlas.png",
+      "rect": [
+        214,
+        534,
+        421,
+        468
+      ],
+      "pivot": [
+        226,
+        461
+      ],
+      "repeat": [
+        0.2740885416666667,
+        0.45703125
+      ],
+      "offset": [
+        0.13932291666666666,
+        0.021484375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.88,
+      "displayWidth": 2.2561282051282054,
+      "displayHeight": 2.508,
+      "rotationZ": 0,
+      "groundAnchorError": 4.460365043975677e-16,
+      "headRegion": [
+        0.083135,
+        0.00641,
+        0.209026,
+        0.185897
+      ],
+      "headAxis": "y",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.2740885416666667,
+        0.45703125
+      ],
+      "textureOffset": [
+        0.13932291666666666,
+        0.021484375
+      ],
+      "projectedBounds": {
+        "left": 550.4689668809891,
+        "top": 264.60738750037984,
+        "right": 625.6732403852626,
+        "bottom": 329.32766618920215
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 51,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-male-hit.png",
+      "passed": true
+    },
+    {
+      "appearance": "male",
+      "pose": "down",
+      "variant": "default",
+      "key": "shepard",
+      "frameId": "shepard-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/shepard-male-combat-atlas.png",
+      "rect": [
+        799,
+        800,
+        707,
+        181
+      ],
+      "pivot": [
+        353,
+        174
+      ],
+      "repeat": [
+        0.4602864583333333,
+        0.1767578125
+      ],
+      "offset": [
+        0.5201822916666666,
+        0.0419921875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.25,
+      "displayWidth": 2.7830801104972376,
+      "displayHeight": 0.7125,
+      "rotationZ": 0,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "headRegion": [
+        0.005658,
+        0.104972,
+        0.145686,
+        0.519337
+      ],
+      "headAxis": "x",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.4602864583333333,
+        0.1767578125
+      ],
+      "textureOffset": [
+        0.5201822916666666,
+        0.0419921875
+      ],
+      "projectedBounds": {
+        "left": 544.750300028963,
+        "top": 310.8261101077072,
+        "right": 637.5196370455376,
+        "bottom": 329.21255291703176
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 51,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-male-down.png",
+      "passed": true
+    },
+    {
+      "appearance": "male",
+      "pose": "down",
+      "variant": "colors",
+      "key": "shepard",
+      "frameId": "shepard-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/shepard-male-combat-atlas.png",
+      "rect": [
+        799,
+        800,
+        707,
+        181
+      ],
+      "pivot": [
+        353,
+        174
+      ],
+      "repeat": [
+        0.4602864583333333,
+        0.1767578125
+      ],
+      "offset": [
+        0.5201822916666666,
+        0.0419921875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.25,
+      "displayWidth": 2.7830801104972376,
+      "displayHeight": 0.7125,
+      "rotationZ": 0,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "headRegion": [
+        0.005658,
+        0.104972,
+        0.145686,
+        0.519337
+      ],
+      "headAxis": "x",
+      "metadataMatchesFrame": true,
+      "tintCanvas": true,
+      "textureRepeat": [
+        1,
+        1
+      ],
+      "textureOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 545.1646423018861,
+        "top": 311.05781369284034,
+        "right": 637.9339793184607,
+        "bottom": 329.4442565021649
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 6112,
+        "changedOutsideHead": 57240,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 50,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-male-down-colors.png",
+      "passed": true
+    },
+    {
+      "appearance": "male",
+      "pose": "down",
+      "variant": "helmet",
+      "key": "shepard",
+      "frameId": "shepard-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/shepard-male-combat-atlas.png",
+      "rect": [
+        799,
+        800,
+        707,
+        181
+      ],
+      "pivot": [
+        353,
+        174
+      ],
+      "repeat": [
+        0.4602864583333333,
+        0.1767578125
+      ],
+      "offset": [
+        0.5201822916666666,
+        0.0419921875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.25,
+      "displayWidth": 2.7830801104972376,
+      "displayHeight": 0.7125,
+      "rotationZ": 0,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "headRegion": [
+        0.005658,
+        0.104972,
+        0.145686,
+        0.519337
+      ],
+      "headAxis": "x",
+      "metadataMatchesFrame": true,
+      "tintCanvas": true,
+      "textureRepeat": [
+        1,
+        1
+      ],
+      "textureOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 545.0822576431212,
+        "top": 311.0159280009502,
+        "right": 637.8515946596959,
+        "bottom": 329.40237081027476
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 6112,
+        "changedOutsideHead": 57240,
+        "helmetChangedInHead": 6112,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 1072,
+        "visorAxisMin": 0.3009688679423521,
+        "visorAxisMax": 0.49514362145352186
+      },
+      "drawCalls": 50,
+      "triangles": 7520,
+      "nativeTexture": "shepard-combat-world-male-down-helmet-texture.png",
+      "screenshot": "shepard-combat-world-male-down-helmet.png",
+      "passed": true
+    },
+    {
+      "appearance": "female",
+      "pose": "aim",
+      "variant": "default",
+      "key": "femshep",
+      "frameId": "femshep-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/shepard-female-combat-atlas.png",
+      "rect": [
+        214,
+        19,
+        436,
+        549
+      ],
+      "pivot": [
+        195,
+        549
+      ],
+      "repeat": [
+        0.2838541666666667,
+        0.5361328125
+      ],
+      "offset": [
+        0.13932291666666666,
+        0.4453125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 1,
+      "displayWidth": 2.263387978142077,
+      "displayHeight": 2.85,
+      "rotationZ": 0,
+      "groundAnchorError": 4.163336342344337e-17,
+      "headRegion": [
+        0.270642,
+        0.009107,
+        0.291284,
+        0.182149
+      ],
+      "headAxis": "y",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.2838541666666667,
+        0.5361328125
+      ],
+      "textureOffset": [
+        0.13932291666666666,
+        0.4453125
+      ],
+      "projectedBounds": {
+        "left": 557.7617517470175,
+        "top": 255.20233401902263,
+        "right": 633.2080176850867,
+        "bottom": 328.7481052563208
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 54,
+      "triangles": 7592,
+      "screenshot": "shepard-combat-world-female-aim.png",
+      "passed": true
+    },
+    {
+      "appearance": "female",
+      "pose": "power",
+      "variant": "default",
+      "key": "femshep",
+      "frameId": "femshep-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/shepard-female-combat-atlas.png",
+      "rect": [
+        916,
+        28,
+        507,
+        550
+      ],
+      "pivot": [
+        188,
+        544
+      ],
+      "repeat": [
+        0.330078125,
+        0.537109375
+      ],
+      "offset": [
+        0.5963541666666666,
+        0.435546875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 1,
+      "displayWidth": 2.627181818181818,
+      "displayHeight": 2.85,
+      "rotationZ": 0,
+      "groundAnchorError": 1.1857187100668868e-16,
+      "headRegion": [
+        0.191321,
+        0.003636,
+        0.260355,
+        0.196364
+      ],
+      "headAxis": "y",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.330078125,
+        0.537109375
+      ],
+      "textureOffset": [
+        0.5963541666666666,
+        0.435546875
+      ],
+      "projectedBounds": {
+        "left": 559.4380605187657,
+        "top": 256.2239523956468,
+        "right": 647.0107877914929,
+        "bottom": 329.769723632945
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 52,
+      "triangles": 7552,
+      "screenshot": "shepard-combat-world-female-power.png",
+      "passed": true
+    },
+    {
+      "appearance": "female",
+      "pose": "hit",
+      "variant": "default",
+      "key": "femshep",
+      "frameId": "femshep-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/shepard-female-combat-atlas.png",
+      "rect": [
+        307,
+        568,
+        296,
+        437
+      ],
+      "pivot": [
+        153,
+        431
+      ],
+      "repeat": [
+        0.19270833333333334,
+        0.4267578125
+      ],
+      "offset": [
+        0.19986979166666666,
+        0.0185546875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.8,
+      "displayWidth": 1.5443478260869568,
+      "displayHeight": 2.2800000000000002,
+      "rotationZ": 0,
+      "groundAnchorError": 4.163336342344337e-17,
+      "headRegion": [
+        0.091216,
+        0.004577,
+        0.429054,
+        0.194508
+      ],
+      "headAxis": "y",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.19270833333333334,
+        0.4267578125
+      ],
+      "textureOffset": [
+        0.19986979166666666,
+        0.0185546875
+      ],
+      "projectedBounds": {
+        "left": 564.1843384355109,
+        "top": 270.33604082960557,
+        "right": 615.6625993050761,
+        "bottom": 329.1726578194441
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 51,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-female-hit.png",
+      "passed": true
+    },
+    {
+      "appearance": "female",
+      "pose": "down",
+      "variant": "default",
+      "key": "femshep",
+      "frameId": "femshep-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/shepard-female-combat-atlas.png",
+      "rect": [
+        734,
+        850,
+        698,
+        136
+      ],
+      "pivot": [
+        349,
+        130
+      ],
+      "repeat": [
+        0.4544270833333333,
+        0.1328125
+      ],
+      "offset": [
+        0.4778645833333333,
+        0.037109375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.245,
+      "displayWidth": 3.583665441176471,
+      "displayHeight": 0.69825,
+      "rotationZ": 0,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "headRegion": [
+        0.004298,
+        0.014706,
+        0.180516,
+        0.830882
+      ],
+      "headAxis": "x",
+      "metadataMatchesFrame": true,
+      "tintCanvas": false,
+      "textureRepeat": [
+        0.4544270833333333,
+        0.1328125
+      ],
+      "textureOffset": [
+        0.4778645833333333,
+        0.037109375
+      ],
+      "projectedBounds": {
+        "left": 531.3302861181703,
+        "top": 311.2839974334854,
+        "right": 650.7858008240527,
+        "bottom": 329.3027113866234
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 0,
+        "changedOutsideHead": 0,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 51,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-female-down.png",
+      "passed": true
+    },
+    {
+      "appearance": "female",
+      "pose": "down",
+      "variant": "colors",
+      "key": "femshep",
+      "frameId": "femshep-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/shepard-female-combat-atlas.png",
+      "rect": [
+        734,
+        850,
+        698,
+        136
+      ],
+      "pivot": [
+        349,
+        130
+      ],
+      "repeat": [
+        0.4544270833333333,
+        0.1328125
+      ],
+      "offset": [
+        0.4778645833333333,
+        0.037109375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.245,
+      "displayWidth": 3.583665441176471,
+      "displayHeight": 0.69825,
+      "rotationZ": 0,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "headRegion": [
+        0.004298,
+        0.014706,
+        0.180516,
+        0.830882
+      ],
+      "headAxis": "x",
+      "metadataMatchesFrame": true,
+      "tintCanvas": true,
+      "textureRepeat": [
+        1,
+        1
+      ],
+      "textureOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 532.0676670161425,
+        "top": 311.68161576894386,
+        "right": 651.5231817220249,
+        "bottom": 329.70032972208185
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 9166,
+        "changedOutsideHead": 37298,
+        "helmetChangedInHead": 0,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 0,
+        "visorAxisMin": 1,
+        "visorAxisMax": 0
+      },
+      "drawCalls": 51,
+      "triangles": 7520,
+      "screenshot": "shepard-combat-world-female-down-colors.png",
+      "passed": true
+    },
+    {
+      "appearance": "female",
+      "pose": "down",
+      "variant": "helmet",
+      "key": "femshep",
+      "frameId": "femshep-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/shepard-female-combat-atlas.png",
+      "rect": [
+        734,
+        850,
+        698,
+        136
+      ],
+      "pivot": [
+        349,
+        130
+      ],
+      "repeat": [
+        0.4544270833333333,
+        0.1328125
+      ],
+      "offset": [
+        0.4778645833333333,
+        0.037109375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "heightScale": 0.245,
+      "displayWidth": 3.583665441176471,
+      "displayHeight": 0.69825,
+      "rotationZ": 0,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "headRegion": [
+        0.004298,
+        0.014706,
+        0.180516,
+        0.830882
+      ],
+      "headAxis": "x",
+      "metadataMatchesFrame": true,
+      "tintCanvas": true,
+      "textureRepeat": [
+        1,
+        1
+      ],
+      "textureOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 531.707158716705,
+        "top": 311.4872331966241,
+        "right": 651.1626734225872,
+        "bottom": 329.5059471497622
+      },
+      "pixels": {
+        "alphaChanged": 0,
+        "changedInHead": 9166,
+        "changedOutsideHead": 37298,
+        "helmetChangedInHead": 9165,
+        "helmetChangedOutsideHead": 0,
+        "visorPixels": 132,
+        "visorAxisMin": 0.3015868677254462,
+        "visorAxisMax": 0.4999993015882328
+      },
+      "drawCalls": 50,
+      "triangles": 7520,
+      "nativeTexture": "shepard-combat-world-female-down-helmet-texture.png",
+      "screenshot": "shepard-combat-world-female-down-helmet.png",
+      "passed": true
+    }
+  ],
+  "servedAssets": [
+    {
+      "path": "public/assets/shepard-male-combat-atlas.png",
+      "status": 200,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    {
+      "path": "public/assets/shepard-female-combat-atlas.png",
+      "status": 200,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "chromium": "156.0.8078.4",
+  "campaignPreserved": true,
+  "assetErrors": [],
+  "helmetLimit": "Le casque est une recoloration heuristique de la silhouette et des cheveux existants. La frange cyan est bornée à la tête et l’alpha est conservé ; son alignement artistique sur les yeux, notamment avec les cheveux longs, n’est pas certifié. Les textures natives sont des sorties réelles du renderer, distinctes de l’échelle terrain des captures."
+}

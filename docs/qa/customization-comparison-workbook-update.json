@@ -1,0 +1,182 @@
+{
+  "sourceWorkbook": "/workspace/scratch/4d309d2d2171/evidence/production-workbook-baseline/Mass_Effect_Relay_Chronicles_Production.xlsx",
+  "sourceCatalog": "/workspace/scratch/4d309d2d2171/evidence/production-workbook-baseline/content-catalog.json",
+  "workbookPath": "/workspace/scratch/4d309d2d2171/outputs/relay-customization-20261029/Mass_Effect_Relay_Chronicles_Production.xlsx",
+  "catalogueEntries": 1382,
+  "changedIds": [
+    "CUST-UI-weapons",
+    "CUST-UI-comparison",
+    "CUST-QA-stats",
+    "CUST-QA-draft-pure",
+    "CUST-QA-roundtrip"
+  ],
+  "cellChanges": [
+    {
+      "id": "CUST-UI-weapons",
+      "sheet": "UI_systemes",
+      "address": "H56",
+      "field": "description",
+      "before": "Choix de l’arme, de son module et de ses munitions spéciales à partir de l’inventaire partagé.",
+      "after": "Choix de l’arme, des modules, des munitions et des outils à partir de l’inventaire partagé. La fiche consultée compare son effet au brouillon sans l’appliquer."
+    },
+    {
+      "id": "CUST-UI-weapons",
+      "sheet": "UI_systemes",
+      "address": "I56",
+      "field": "acceptance",
+      "before": "La sélection respecte les emplacements existants et permet le retour à la dotation précédente avant validation.",
+      "after": "La fiche suit l’emplacement actif, y compris vide. Une pièce absente ou incompatible affiche son refus. Remplacer une arme indique les modules restitués."
+    },
+    {
+      "id": "CUST-UI-weapons",
+      "sheet": "UI_systemes",
+      "address": "Q56",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "Consultation et préparation restent distinctes. Les valeurs projetées suivent les règles d’équipement. Suivi : docs/qa/customization-comparison-report.json. Aucun nouveau modèle visuel."
+    },
+    {
+      "id": "CUST-UI-comparison",
+      "sheet": "UI_systemes",
+      "address": "H66",
+      "field": "description",
+      "before": "L’atelier présente les valeurs équipées et les valeurs projetées du brouillon : santé, bouclier, puissance, défense et effets des modules.",
+      "after": "L’atelier compare l’équipement actuel, le brouillon et la pièce consultée : santé, bouclier, puissance, défense et multiplicateurs technologiques/biotiques."
+    },
+    {
+      "id": "CUST-UI-comparison",
+      "sheet": "UI_systemes",
+      "address": "I66",
+      "field": "acceptance",
+      "before": "Les différences affichées correspondent aux règles d’équipement existantes, y compris chaleur, refroidissement et bonus spécialisés.",
+      "after": "Les valeurs suivent actorFor. Afficher les multiplicateurs au format ×1,00 → ×1,15, sans arrondir à 1. La consultation valide le brouillon candidat et indique les modules restitués."
+    },
+    {
+      "id": "CUST-UI-comparison",
+      "sheet": "UI_systemes",
+      "address": "Q66",
+      "field": "notes",
+      "before": "Implémentation de prototype. Les valeurs de combat restent celles de l’adaptation ATB.",
+      "after": "La fiche ne projette aucun gain pour une sélection refusée. État, brouillon et stock restent inchangés avant préparation. Suivi : docs/qa/customization-comparison-report.json."
+    },
+    {
+      "id": "CUST-QA-stats",
+      "sheet": "QA",
+      "address": "H67",
+      "field": "description",
+      "before": "Comparer la projection du brouillon au calcul d’acteur après application.",
+      "after": "Comparer les valeurs de l’atelier et de la fiche de pièce au calcul d’acteur, avant préparation puis après application."
+    },
+    {
+      "id": "CUST-QA-stats",
+      "sheet": "QA",
+      "address": "I67",
+      "field": "acceptance",
+      "before": "Les différences numériques correspondent à la dotation et aux effets des modules.",
+      "after": "Les multiplicateurs technologiques/biotiques gardent leur précision. Les chiffres projetés et modules restitués concordent avec une dotation valide ; aucun gain n’est projeté pour un refus."
+    },
+    {
+      "id": "CUST-QA-stats",
+      "sheet": "QA",
+      "address": "Q67",
+      "field": "notes",
+      "before": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "after": "Scénarios de comparaison et de projection : docs/qa/customization-comparison-report.json. Lire les résultats d’exécution dans ce rapport. Statut de prototype conservé."
+    },
+    {
+      "id": "CUST-QA-draft-pure",
+      "sheet": "QA",
+      "address": "H59",
+      "field": "description",
+      "before": "Modifier toutes les catégories du brouillon et comparer l’état de campagne avant validation.",
+      "after": "Consulter plusieurs pièces et modifier les options du brouillon, puis comparer la partie et les stocks avant validation."
+    },
+    {
+      "id": "CUST-QA-draft-pure",
+      "sheet": "QA",
+      "address": "I59",
+      "field": "acceptance",
+      "before": "L’état actif et les quantités restent strictement inchangés.",
+      "after": "La consultation ne modifie ni la partie, ni le brouillon, ni les quantités. Pour une pièce, seule la préparation modifie la dotation du brouillon. La partie reste intacte jusqu’à Appliquer."
+    },
+    {
+      "id": "CUST-QA-draft-pure",
+      "sheet": "QA",
+      "address": "Q59",
+      "field": "notes",
+      "before": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "after": "Vérifier les refus de stock/compatibilité et la restitution projetée des modules : docs/qa/customization-comparison-report.json. L’aperçu seul ne réserve aucun objet."
+    },
+    {
+      "id": "CUST-QA-roundtrip",
+      "sheet": "QA",
+      "address": "I65",
+      "field": "acceptance",
+      "before": "L’apparence et les cinq emplacements de dotation retrouvés sont identiques aux choix validés.",
+      "after": "L’apparence et les neuf emplacements de dotation retrouvés sont identiques aux choix validés."
+    },
+    {
+      "id": "CUST-QA-roundtrip",
+      "sheet": "QA",
+      "address": "Q65",
+      "field": "notes",
+      "before": "Scénario à vérifier avec les rapports de la version 0.3.0. La présence du test ne suffit pas à déclarer la fonctionnalité terminée.",
+      "after": "Critère actualisé pour les neuf emplacements. Contrôles de cette livraison et limites : docs/qa/customization-comparison-report.json. Le statut reste Prototype."
+    }
+  ],
+  "beforeStatuses": {
+    "Défini": 1038,
+    "Prototype": 338,
+    "Intégré": 3,
+    "Validé": 3
+  },
+  "dashboardTotal": 1382,
+  "formulaErrorInspection": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "dashboardInspection": "{\"kind\":\"table\",\"sheet\":\"Dashboard\",\"address\":\"A37:K37\",\"rows\":1,\"cols\":11,\"values\":[[\"TOTAL\",1382,1038,338,3,3,19,522,841,1320,57]]}",
+  "previews": [
+    {
+      "file": "comparison-criteria.png",
+      "sheetName": "UI_systemes",
+      "range": "H66:I66"
+    },
+    {
+      "file": "comparison-tracking.png",
+      "sheetName": "UI_systemes",
+      "range": "P66:Q66"
+    },
+    {
+      "file": "inspection-criteria.png",
+      "sheetName": "UI_systemes",
+      "range": "H56:I56"
+    },
+    {
+      "file": "inspection-tracking.png",
+      "sheetName": "UI_systemes",
+      "range": "P56:Q56"
+    },
+    {
+      "file": "draft-criteria.png",
+      "sheetName": "QA",
+      "range": "H59:I59"
+    },
+    {
+      "file": "draft-tracking.png",
+      "sheetName": "QA",
+      "range": "P59:Q59"
+    },
+    {
+      "file": "qa-roundtrip-and-stats.png",
+      "sheetName": "QA",
+      "range": "H65:I67"
+    },
+    {
+      "file": "qa-tracking.png",
+      "sheetName": "QA",
+      "range": "P65:Q67"
+    }
+  ],
+  "limits": [
+    "Native Microsoft Excel was not executed.",
+    "Gameplay verification is recorded separately in the linked runtime report."
+  ]
+}

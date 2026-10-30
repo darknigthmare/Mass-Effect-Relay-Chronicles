@@ -1,0 +1,728 @@
+{
+  "at": "2026-10-29T17:36:21.786Z",
+  "passed": true,
+  "url": "http://127.0.0.1:4193/?qa=",
+  "buildKind": "vite-development",
+  "sourceHead": "756ed424fb13c9abb8ef34fbac0c1293263b2389",
+  "sourceHashes": {
+    "src/main.js": "2e7ba37616c750ed0d16868ae00e60e15c712c3a346bc595048eba59030ca79e",
+    "src/customization-ui.js": "9feb08b36c5c6dba5d229a8f53927491805321a091a89dab95805057aeb361eb",
+    "src/customization-ui.css": "e3f3a73309cdecf8720a662b6fb2c08cde1698ff60e57adb36267b35b619059e",
+    "scripts/customization-keyboard-browser.mjs": "e02631f4f7dcfc2a82a668379a94f297e44be79fc7a3e49c50a9e400ad1d0dad"
+  },
+  "scope": "Keyboard navigation inside the actual customization workshop after opening it: prepare/remove/reset/filter, Space/Enter, Tab/Shift-Tab containment, visible fallback focus and Escape cancellation. Explicit save fixtures imported through the file chooser. Desktop and emulated mobile with enlarged text; no physical-device, production-build or gamepad claim.",
+  "checks": [
+    {
+      "layout": "desktop",
+      "name": "Tab and Shift-Tab wrap inside the workshop",
+      "passed": true
+    },
+    {
+      "layout": "desktop",
+      "name": "Preparing an object keeps focus on its inspection control",
+      "passed": true
+    },
+    {
+      "layout": "desktop",
+      "name": "Removing an object focuses the emptied slot and Tab advances to the next slot",
+      "passed": true,
+      "focus": {
+        "action": "custom-slot",
+        "id": "omniTool",
+        "htmlId": null,
+        "inside": true,
+        "visible": true,
+        "centerUnobscured": true,
+        "bounds": {
+          "left": 53,
+          "top": 484,
+          "right": 390.765625,
+          "bottom": 538.5,
+          "width": 337.765625,
+          "height": 54.5
+        },
+        "bodyBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 1440,
+          "bottom": 0,
+          "width": 1440,
+          "height": 0
+        },
+        "bodyUsesViewport": true,
+        "clippingAncestors": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "custom-controls",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 31,
+              "top": 168,
+              "right": 413.765625,
+              "bottom": 798,
+              "width": 382.765625,
+              "height": 630
+            }
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "screen-body",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 31,
+              "top": 117,
+              "right": 1409,
+              "bottom": 899.984375,
+              "width": 1378,
+              "height": 782.984375
+            }
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "screen customization-screen",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 30,
+              "top": 29,
+              "right": 1410,
+              "bottom": 970.984375,
+              "width": 1380,
+              "height": 941.984375
+            }
+          }
+        ],
+        "visibleFraction": 1
+      }
+    },
+    {
+      "layout": "desktop",
+      "name": "Reset focuses the adjacent enabled footer control and Tab skips the disabled reset button",
+      "passed": true,
+      "focus": {
+        "action": "custom-compare",
+        "id": null,
+        "htmlId": null,
+        "inside": true,
+        "visible": true,
+        "centerUnobscured": true,
+        "bounds": {
+          "left": 56,
+          "top": 915.984375,
+          "right": 203.890625,
+          "bottom": 954.984375,
+          "width": 147.890625,
+          "height": 39
+        },
+        "bodyBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 1440,
+          "bottom": 0,
+          "width": 1440,
+          "height": 0
+        },
+        "bodyUsesViewport": true,
+        "clippingAncestors": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "screen customization-screen",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 30,
+              "top": 29,
+              "right": 1410,
+              "bottom": 970.984375,
+              "width": 1380,
+              "height": 941.984375
+            }
+          }
+        ],
+        "visibleFraction": 1
+      }
+    },
+    {
+      "layout": "desktop",
+      "name": "Changing the weapon category by keyboard preserves select focus and navigation",
+      "passed": true,
+      "filter": "pistol",
+      "focus": {
+        "action": null,
+        "id": null,
+        "htmlId": "custom-weapon-filter",
+        "inside": true,
+        "visible": true,
+        "centerUnobscured": true,
+        "bounds": {
+          "left": 230.765625,
+          "top": 616,
+          "right": 390.765625,
+          "bottom": 651,
+          "width": 160,
+          "height": 35
+        },
+        "bodyBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 1440,
+          "bottom": 0,
+          "width": 1440,
+          "height": 0
+        },
+        "bodyUsesViewport": true,
+        "clippingAncestors": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "custom-controls",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 31,
+              "top": 168,
+              "right": 413.765625,
+              "bottom": 798,
+              "width": 382.765625,
+              "height": 630
+            }
+          },
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "screen-body",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 31,
+              "top": 117,
+              "right": 1409,
+              "bottom": 899.984375,
+              "width": 1378,
+              "height": 782.984375
+            }
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "screen customization-screen",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 30,
+              "top": 29,
+              "right": 1410,
+              "bottom": 970.984375,
+              "width": 1380,
+              "height": 941.984375
+            }
+          }
+        ],
+        "visibleFraction": 1
+      }
+    },
+    {
+      "layout": "desktop",
+      "name": "Space selects a pose without changing the draft; its focused control is visible and all pose labels fit without horizontal overflow",
+      "passed": true,
+      "geometry": {
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "largeText": false,
+        "documentWidth": 1440,
+        "screenWidth": 1378,
+        "screenContentWidth": 1378,
+        "groupWidth": 566,
+        "groupContentWidth": 566,
+        "buttons": [
+          {
+            "id": "field",
+            "label": "Terrain",
+            "width": 107,
+            "contentWidth": 107,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "aim",
+            "label": "Visée",
+            "width": 107,
+            "contentWidth": 107,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "power",
+            "label": "Pouvoir",
+            "width": 107,
+            "contentWidth": 107,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "hit",
+            "label": "Impact",
+            "width": 107,
+            "contentWidth": 107,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "down",
+            "label": "Hors combat",
+            "width": 107,
+            "contentWidth": 107,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          }
+        ]
+      }
+    },
+    {
+      "layout": "desktop",
+      "name": "Escape restores opener focus and preserves campaign and saved data",
+      "passed": true
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Tab and Shift-Tab wrap inside the workshop",
+      "passed": true
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Preparing an object keeps focus on its inspection control",
+      "passed": true
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Removing an object focuses the emptied slot and Tab advances to the next slot",
+      "passed": true,
+      "focus": {
+        "action": "custom-slot",
+        "id": "omniTool",
+        "htmlId": null,
+        "inside": true,
+        "visible": true,
+        "centerUnobscured": true,
+        "bounds": {
+          "left": 27.796875,
+          "top": 276.75,
+          "right": 362.1875,
+          "bottom": 331.25,
+          "width": 334.390625,
+          "height": 54.5
+        },
+        "bodyBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 390,
+          "bottom": 0,
+          "width": 390,
+          "height": 0
+        },
+        "bodyUsesViewport": true,
+        "clippingAncestors": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "screen-body",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 8.796875,
+              "top": 108.875,
+              "right": 381.1875,
+              "bottom": 727.109375,
+              "width": 372.390625,
+              "height": 618.234375
+            }
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "screen customization-screen",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 7.796875,
+              "top": 16.875,
+              "right": 382.1875,
+              "bottom": 827.109375,
+              "width": 374.390625,
+              "height": 810.234375
+            }
+          }
+        ],
+        "visibleFraction": 1
+      }
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Reset focuses the adjacent enabled footer control and Tab skips the disabled reset button",
+      "passed": true,
+      "focus": {
+        "action": "custom-compare",
+        "id": null,
+        "htmlId": null,
+        "inside": true,
+        "visible": true,
+        "centerUnobscured": true,
+        "bounds": {
+          "left": 20.796875,
+          "top": 738.109375,
+          "right": 145.8125,
+          "bottom": 768.109375,
+          "width": 125.015625,
+          "height": 30
+        },
+        "bodyBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 390,
+          "bottom": 0,
+          "width": 390,
+          "height": 0
+        },
+        "bodyUsesViewport": true,
+        "clippingAncestors": [
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "screen customization-screen",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 7.796875,
+              "top": 16.875,
+              "right": 382.1875,
+              "bottom": 827.109375,
+              "width": 374.390625,
+              "height": 810.234375
+            }
+          }
+        ],
+        "visibleFraction": 1
+      }
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Changing the weapon category by keyboard preserves select focus and navigation",
+      "passed": true,
+      "filter": "pistol",
+      "focus": {
+        "action": null,
+        "id": null,
+        "htmlId": "custom-weapon-filter",
+        "inside": true,
+        "visible": true,
+        "centerUnobscured": true,
+        "bounds": {
+          "left": 202.1875,
+          "top": 400.75,
+          "right": 362.1875,
+          "bottom": 435.75,
+          "width": 160,
+          "height": 35
+        },
+        "bodyBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 390,
+          "bottom": 0,
+          "width": 390,
+          "height": 0
+        },
+        "bodyUsesViewport": true,
+        "clippingAncestors": [
+          {
+            "tag": "DIV",
+            "id": "",
+            "className": "screen-body",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 8.796875,
+              "top": 108.875,
+              "right": 381.1875,
+              "bottom": 727.109375,
+              "width": 372.390625,
+              "height": 618.234375
+            }
+          },
+          {
+            "tag": "SECTION",
+            "id": "",
+            "className": "screen customization-screen",
+            "clipsX": true,
+            "clipsY": true,
+            "bounds": {
+              "left": 7.796875,
+              "top": 16.875,
+              "right": 382.1875,
+              "bottom": 827.109375,
+              "width": 374.390625,
+              "height": 810.234375
+            }
+          }
+        ],
+        "visibleFraction": 1
+      }
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Space selects a pose without changing the draft; its focused control is visible and all pose labels fit without horizontal overflow",
+      "passed": true,
+      "geometry": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "largeText": true,
+        "documentWidth": 390,
+        "screenWidth": 372,
+        "screenContentWidth": 372,
+        "groupWidth": 336,
+        "groupContentWidth": 336,
+        "buttons": [
+          {
+            "id": "field",
+            "label": "Terrain",
+            "width": 106,
+            "contentWidth": 106,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "aim",
+            "label": "Visée",
+            "width": 106,
+            "contentWidth": 106,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "power",
+            "label": "Pouvoir",
+            "width": 106,
+            "contentWidth": 106,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "hit",
+            "label": "Impact",
+            "width": 163,
+            "contentWidth": 163,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          },
+          {
+            "id": "down",
+            "label": "Hors combat",
+            "width": 163,
+            "contentWidth": 163,
+            "height": 36,
+            "contentHeight": 36,
+            "targetHeight": 38
+          }
+        ]
+      }
+    },
+    {
+      "layout": "mobile-large-text",
+      "name": "Escape restores opener focus and preserves campaign and saved data",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "screenshots": [
+    "customization-keyboard-desktop.png",
+    "customization-keyboard-mobile-large-text.png"
+  ],
+  "startup": [
+    {
+      "layout": "desktop",
+      "phase": "after-navigation",
+      "url": "http://127.0.0.1:4193/?qa=",
+      "readyState": "complete",
+      "hasHarness": true,
+      "title": "Mass Effect — Relay Chronicles",
+      "overlay": "ARCHIVES DE L’ALLIANCE\n2183 · ESPACE CONCILIEN\nSSV NORMANDY SR-1\nUNE GALAXIE. VOS DÉCISIONS.\nMASS EFFECT\nRELAY CHRONICLES\n\nTraversez les relais. Rassemblez votre commando.\nUne aventure cinématographique en 2D/3D,\nau rythme de vos décisions.\n\nNOUVELLE CAMPAGNE\n→\nCHARGER UNE PARTIE\n→\nCHRONIQUES\n→\nIMPORTER UNE SAUVEGARDE\n↗\nOPTIONS\n＋\nCRÉDITS\n＋\n01 / 2183\nLES CHRONIQUES DES RELAIS\nPROJET DE FAN NON OFFICIEL · CAMPAGNE CONDENSÉE\nVERSION 0.3.0 · PC",
+      "entryModules": [
+        "/@vite/client",
+        "/src/main.js"
+      ],
+      "canvases": [
+        {
+          "width": 1440,
+          "height": 1000
+        }
+      ]
+    },
+    {
+      "layout": "mobile-large-text",
+      "phase": "after-navigation",
+      "url": "http://127.0.0.1:4193/?qa=",
+      "readyState": "complete",
+      "hasHarness": true,
+      "title": "Mass Effect — Relay Chronicles",
+      "overlay": "UNE GALAXIE. VOS DÉCISIONS.\nMASS EFFECT\nRELAY CHRONICLES\n\nTraversez les relais. Rassemblez votre commando.\nUne aventure cinématographique en 2D/3D,\nau rythme de vos décisions.\n\nNOUVELLE CAMPAGNE\n→\nCHARGER UNE PARTIE\n→\nCHRONIQUES\n→\nIMPORTER UNE SAUVEGARDE\n↗\nOPTIONS\n＋\nCRÉDITS\n＋\nPROJET DE FAN NON OFFICIEL · CAMPAGNE CONDENSÉE\nVERSION 0.3.0 · PC",
+      "entryModules": [
+        "/@vite/client",
+        "/src/main.js"
+      ],
+      "canvases": [
+        {
+          "width": 390,
+          "height": 844
+        }
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "largeText": false,
+      "documentWidth": 1440,
+      "screenWidth": 1378,
+      "screenContentWidth": 1378,
+      "groupWidth": 566,
+      "groupContentWidth": 566,
+      "buttons": [
+        {
+          "id": "field",
+          "label": "Terrain",
+          "width": 107,
+          "contentWidth": 107,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "aim",
+          "label": "Visée",
+          "width": 107,
+          "contentWidth": 107,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "power",
+          "label": "Pouvoir",
+          "width": 107,
+          "contentWidth": 107,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "hit",
+          "label": "Impact",
+          "width": 107,
+          "contentWidth": 107,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "down",
+          "label": "Hors combat",
+          "width": 107,
+          "contentWidth": 107,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        }
+      ]
+    },
+    {
+      "name": "mobile-large-text",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "largeText": true,
+      "documentWidth": 390,
+      "screenWidth": 372,
+      "screenContentWidth": 372,
+      "groupWidth": 336,
+      "groupContentWidth": 336,
+      "buttons": [
+        {
+          "id": "field",
+          "label": "Terrain",
+          "width": 106,
+          "contentWidth": 106,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "aim",
+          "label": "Visée",
+          "width": 106,
+          "contentWidth": 106,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "power",
+          "label": "Pouvoir",
+          "width": 106,
+          "contentWidth": 106,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "hit",
+          "label": "Impact",
+          "width": 163,
+          "contentWidth": 163,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        },
+        {
+          "id": "down",
+          "label": "Hors combat",
+          "width": 163,
+          "contentWidth": 163,
+          "height": 36,
+          "contentHeight": 36,
+          "targetHeight": 38
+        }
+      ]
+    }
+  ],
+  "tools": {
+    "node": "v24.22.1",
+    "playwright": "1.64.1",
+    "chromium": "156.0.8078.4"
+  },
+  "finishedAt": "2026-10-29T17:36:52.675Z"
+}

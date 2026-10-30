@@ -1,0 +1,112 @@
+name: Verify Shepard atelier
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'public/assets/shepard*'
+      - 'tests/shepard*'
+      - 'scripts/*customization*'
+      - 'scripts/shepard-combat*'
+      - 'package*'
+      - 'vite.config.js'
+      - '.github/workflows/shepard-atelier.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+      CUSTOMIZATION_BASE_MAIN: ${{ github.event.pull_request.base.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Verify combat poses, keyboard navigation and production saves
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p test-results
+          PLAYWRIGHT_EXECUTABLE_PATH="$(node --input-type=module -e 'import { chromium } from "playwright"; process.stdout.write(chromium.executablePath());')"
+          export PLAYWRIGHT_EXECUTABLE_PATH
+          test -x "$PLAYWRIGHT_EXECUTABLE_PATH"
+
+          server_pids=()
+          cleanup() {
+            if ((${#server_pids[@]})); then
+              kill "${server_pids[@]}" 2>/dev/null || true
+              wait "${server_pids[@]}" 2>/dev/null || true
+            fi
+          }
+          trap cleanup EXIT
+
+          RELAY_QA=1 node node_modules/vite/bin/vite.js --host 127.0.0.1 --port 4193 --strictPort > test-results/shepard-atelier-dev-server.log 2>&1 &
+          server_pids+=("$!")
+          node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4194 --strictPort > test-results/shepard-atelier-production-server.log 2>&1 &
+          server_pids+=("$!")
+
+          wait_for_http() {
+            local url="$1" pid="$2" deadline=$((SECONDS + 60))
+            while ((SECONDS < deadline)); do
+              if curl --fail --silent --max-time 1 "$url" --output /dev/null; then
+                return 0
+              fi
+              if ! kill -0 "$pid" 2>/dev/null; then
+                printf 'Server stopped before becoming ready: %s\n' "$url" >&2
+                return 1
+              fi
+              sleep 1
+            done
+            printf 'Timed out waiting for HTTP: %s\n' "$url" >&2
+            return 1
+          }
+
+          wait_for_http http://127.0.0.1:4193 "${server_pids[0]}"
+          wait_for_http http://127.0.0.1:4194 "${server_pids[1]}"
+
+          failed_browser_scenarios=()
+          run_browser_scenario() {
+            local label="$1" log="$2"
+            shift 2
+            if "$@" 2>&1 | tee "$log"; then
+              printf 'Browser scenario passed: %s\n' "$label"
+            else
+              local result=$?
+              failed_browser_scenarios+=("$label (exit $result)")
+              printf 'Browser scenario failed: %s (exit %s)\n' "$label" "$result" >&2
+            fi
+          }
+
+          run_browser_scenario 'Combat poses' test-results/shepard-atelier-world.log env GAME_URL=http://127.0.0.1:4193 node scripts/shepard-combat-world-browser.mjs
+          run_browser_scenario 'Keyboard navigation' test-results/shepard-atelier-keyboard.log env GAME_URL=http://127.0.0.1:4193 node scripts/customization-keyboard-browser.mjs
+          run_browser_scenario 'Production saves' test-results/shepard-atelier-production.log env GAME_URL=http://127.0.0.1:4194 PRODUCTION_GAME_URL=http://127.0.0.1:4194 node scripts/customization-poses-production.mjs
+
+          if ((${#failed_browser_scenarios[@]})); then
+            printf 'Browser verification failed:\n' >&2
+            printf ' - %s\n' "${failed_browser_scenarios[@]}" >&2
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Relay-Chronicles-Shepard-Atelier
+          # Top-level evidence only: browser profiles and node_modules are excluded.
+          path: |
+            test-results/*.json
+            test-results/*.png
+            test-results/*.txt
+            test-results/*.log
+          if-no-files-found: warn
+          retention-days: 30

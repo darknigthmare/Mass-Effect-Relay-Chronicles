@@ -4,6 +4,12 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
+## Cadre de développement
+
+Le [guide gamedev du projet](docs/GAMEDEV_GUIDANCE.md) adapte une sélection de **12 guides** de [awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) aux chantiers du jeu : RPG/ATB, personnalisation, assets, narration, sauvegardes, cartes et rendu Three.js. Les [références sont épinglées](docs/gamedev-sources.json) et les [instructions aux agents](AGENTS.md) relient chaque changement aux contrôles et au suivi Excel existants.
+
+Le cadre conserve Three.js **0.180.0** et la direction sprites 2D HD / décors 3D. Il distingue les éléments produits, intégrés et vérifiés dans le jeu ; les exemples externes ciblant des versions plus récentes doivent être adaptés avant utilisation.
+
 ![Capture réelle du prototype : exploration de la Citadelle](docs/screenshots/citadel.png)
 
 ## Jouer
@@ -72,7 +78,9 @@ En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode *
 | Armure | Armure complète et module possédés, trois canaux de couleur, quatre motifs, trois finitions et casque masqué, visible ou réservé au combat |
 | Armes | Arme, module d’arme et amélioration de munitions ; filtres et consultation du catalogue, avec disponibilité et restrictions expliquées |
 
-Les changements restent dans un **brouillon** jusqu’à la validation. La comparaison montre la configuration actuelle et les statistiques calculées ; **Annuler** ou **Échap** abandonne les retouches. L’application valide les neuf emplacements ensemble contre l’inventaire courant. Elle ne crée ni objet ni crédit. Les couleurs sont cosmétiques ; l’équipement conserve ses effets réels en combat. Les choix sont conservés dans les sauvegardes automatiques, manuelles et exportées.
+Les changements restent dans un **brouillon** jusqu’à la validation. Le comparatif **Dotation actuelle → Configuration préparée** affiche les statistiques calculées, y compris les multiplicateurs technologique et biotique. La fiche de l’**objet consulté** présente séparément son effet sur le brouillon : la consultation ne prépare aucun objet et ne réserve aucun exemplaire. Un refus de stock ou de compatibilité est expliqué ; un remplacement tient compte des modules restitués. **Annuler** ou **Échap** abandonne les retouches. L’application valide les neuf emplacements ensemble contre l’inventaire courant. Elle ne crée ni objet ni crédit. Les couleurs sont cosmétiques ; l’équipement conserve ses effets réels en combat. Les choix sont conservés dans les sauvegardes automatiques, manuelles et exportées.
+
+L’aperçu propose **Terrain / Visée / Pouvoir / Impact / Hors combat** pour les deux apparences. Le choix de vue reste temporaire et ne change pas la partie. En combat, l’angle trois-quarts est fixe et le fusil illustré est générique ; les directions de terrain redeviennent disponibles en revenant à Terrain. Après **Préparer**, le focus clavier reste sur la pièce concernée. Les [preuves et limites du lot](docs/qa/shepard-combat-poses-report.json) sont conservées séparément des livraisons précédentes.
 
 ![Atelier de personnalisation : création du personnage et aperçu du sprite](docs/screenshots/customization-creation.png)
 
@@ -101,10 +109,10 @@ Les deux lots réunissent **376 références et 242 exercices partiels**. Le pre
 - Journal, 16 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
 - Conversations avec Nihlus, Joker, Chakwas et les six compagnons, selon leur recrutement, leur survie et les événements connus. Le conseil donné à Garrus est mémorisé et repris dans un échange ultérieur.
 - Quatorze assignations : Retour à la maison, Affaire familiale et Le Fan sont conservées ; onze opérations supplémentaires ajoutent 43 étapes à la Citadelle et sur Féros, avec quatre combats annexes. Le journal conserve étapes, choix, conditions et récompenses uniques.
-- Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; 16 images de marche pour chaque apparence de Shepard et quatre poses de combat féminines.
+- Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; 16 images de marche pour chaque apparence de Shepard et quatre poses de combat pour chacune des deux apparences.
 - Ambiances et effets générés localement par Web Audio.
 
-Le dossier de Shepard permet de choisir une apparence masculine ou féminine, les trois origines et les trois profils psychologiques. Ces choix sont conservés dans les sauvegardes et consultables depuis la pause ou le commando. Les portraits et sprites suivent l’apparence choisie en exploration et en combat. La variante féminine utilise désormais un cycle de marche dans quatre directions et des poses de visée, pouvoir, impact et hors combat. Les atlas et transitions restent au stade Prototype.
+Le dossier de Shepard permet de choisir une apparence masculine ou féminine, les trois origines et les trois profils psychologiques. Ces choix sont conservés dans les sauvegardes et consultables depuis la pause ou le commando. Les portraits et sprites suivent l’apparence choisie en exploration et en combat. Les deux apparences utilisent leur marche dans quatre directions et disposent de poses de visée, pouvoir, impact et hors combat. L’atelier permet de consulter ces poses en trois-quarts fixe, y compris avec les couleurs et le casque choisis. Ce sont des poses clés de prototype ; les transitions et variantes exactes d’équipement restent à produire.
 
 Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la pause. Chaque emplacement conserve un nom, une date, une zone et l’identité du commandant. Un remplacement ou une suppression demande confirmation. Ces emplacements restent séparés de la sauvegarde automatique ; le chargement et l’enregistrement sont indisponibles en combat.
 
@@ -157,7 +165,9 @@ npm test
 npm run build
 ```
 
-Les tests Node vérifient le combat, l’équipement, la personnalisation, les opérations, les sauvegardes, les Chroniques et la portabilité Windows. Le [rapport initial de personnalisation](docs/qa/customization-unit-report.json) conserve ses 217 tests historiques ; il ne décrit pas la validation de cette fusion. La synchronisation actuelle au socle `7ef342a` passe **556 tests Node**, la compilation de **56 modules** et **neuf contrôles de personnalisation**, y compris le build compilé. Les **17 contrôles HTTP de production** passent avec quinze PNG et sept bundles de taille et empreinte exactes ; les résultats courants sont conservés dans [customization-arsenal-sync-report.json](docs/qa/customization-arsenal-sync-report.json). La [synchronisation précédente](docs/qa/customization-support-sync-report.json) conserve ses 492 tests et neuf/douze contrôles sur le socle `cefa0b1` ; elle reste historique. La fusion précédente au socle `748b965` conserve ses 415 tests Node, neuf contrôles de personnalisation et dix contrôles HTTP dans [pr1-final-report.json](docs/qa/pr1-final-report.json) ; ce rapport est historique. Le [premier rapport de fusion](docs/qa/pr1-merge-report.json) conserve les 377 tests de `0d2192a` sur l’ancienne base `7fe7a88`. Les tests navigateur requièrent Playwright et Chromium :
+Les tests Node vérifient le combat, l’équipement, la personnalisation, les opérations, les sauvegardes, les Chroniques et la portabilité Windows. Le [rapport initial de personnalisation](docs/qa/customization-unit-report.json) conserve ses 217 tests historiques ; il ne décrit pas la validation de cette fusion. La synchronisation historique au socle `7ef342a` conserve **556 tests Node**, la compilation de **56 modules** et **neuf contrôles de personnalisation**, y compris le build compilé. Les **17 contrôles HTTP de production** passent avec quinze PNG et sept bundles de taille et empreinte exactes ; ces résultats historiques sont conservés dans [customization-arsenal-sync-report.json](docs/qa/customization-arsenal-sync-report.json). La [synchronisation précédente](docs/qa/customization-support-sync-report.json) conserve ses 492 tests et neuf/douze contrôles sur le socle `cefa0b1` ; elle reste historique. La fusion précédente au socle `748b965` conserve ses 415 tests Node, neuf contrôles de personnalisation et dix contrôles HTTP dans [pr1-final-report.json](docs/qa/pr1-final-report.json) ; ce rapport est historique. Le [premier rapport de fusion](docs/qa/pr1-merge-report.json) conserve les 377 tests de `0d2192a` sur l’ancienne base `7fe7a88`. Le [rapport du comparateur d’équipement](docs/qa/customization-comparison-report.json) documente l’application du cadre gamedev sur le socle `3670047` : **674 tests Node**, dont neuf nouveaux tests de non-régression, et compilation Vite **7.3.7** de **69 modules** avec les dépendances du projet. Les huit parcours navigateur et les six contrôles ciblés de production passent également, avec revue des dispositions ordinateur/mobile et du texte agrandi. Le rapport distingue ces preuves, les captures et les contrôles du classeur de leurs limites.
+
+Les tests navigateur requièrent Playwright et Chromium :
 
 ```bash
 npx playwright install chromium
@@ -181,6 +191,14 @@ npm run test:chronicle:specialists
 
 Variables facultatives : `GAME_URL` pour changer le serveur testé, `PLAYWRIGHT_EXECUTABLE_PATH` pour un Chromium existant. `RELAY_QA=1` coupe le rechargement automatique du serveur pendant un parcours. Les tests de campagne accélèrent le temps simulé ; ils ne remplacent pas les dégâts, les statistiques ou les conditions de progression. Les captures et rapports historiques sont écrits dans `test-results/`. Le parcours de personnalisation consigne ses preuves dans `docs/qa/customization-report.json` et `docs/screenshots/customization-*.png`.
 
+Le parcours ciblé du comparateur utilise un serveur de développement avec les observateurs QA en lecture seule. Il importe deux sauvegardes de test par le sélecteur de fichier du jeu et écrit ses preuves dans `test-results/`. Le SHA doit correspondre au socle effectivement vérifié :
+
+```bash
+CUSTOMIZATION_BASE_MAIN=3670047499b90aa94e701bd00991bf5b2d15badc \
+RELAY_BUILD_KIND=vite-development \
+npm run test:customization:comparison
+```
+
 Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les ressources et la reprise du build sous URLs locales dans Chromium. `node scripts/femshep-poses-browser.mjs` inspecte les quatre poses dans une scène de rendu isolée avec le serveur dev actif. Ces contrôles ne remplacent pas un lancement de l’exécutable Windows.
 
 `npm run test:assignments -- --late-conrad` vérifie le premier contact avec Conrad après deux missions et l’attente d’une nouvelle mission, y compris après rechargement.
@@ -191,7 +209,7 @@ Après `npm run build`, `node scripts/production-v02-browser.mjs` vérifie les r
 
 Le classeur livré est directement ouvrable dans un tableur. Sa régénération avec `npm run workbook` requiert le runtime `@oai/artifact-tool` et sa variable `CODEX_PRIMARY_RUNTIME_NODE_MODULES` ; cette dépendance d’édition n’est pas nécessaire pour jouer ou compiler le jeu.
 
-La génération historique de l’extension ciblée 0.3.0 utilise `scripts/update-customization-catalog.mjs` et `scripts/update-customization-workbook.mjs` sur la base indiquée dans ces scripts. Elle préserve les feuilles, cellules et styles antérieurs. Les résultats de recalcul, de comparaison des cellules et de contrôle des tableaux se trouvent dans [customization-verification.json](docs/workbook-previews/customization-verification.json) et [customization-native-check.json](docs/workbook-previews/customization-native-check.json). Le [premier contrôle de fusion](docs/workbook-previews/customization-merge-native-check.json) reste historique ; le classeur actuel est vérifié dans [customization-arsenal-sync-workbook-report.json](docs/qa/customization-arsenal-sync-workbook-report.json).
+La génération historique de l’extension ciblée 0.3.0 utilise `scripts/update-customization-catalog.mjs` et `scripts/update-customization-workbook.mjs` sur la base indiquée dans ces scripts. Elle préserve les feuilles, cellules et styles antérieurs. Les résultats de recalcul, de comparaison des cellules et de contrôle des tableaux se trouvent dans [customization-verification.json](docs/workbook-previews/customization-verification.json) et [customization-native-check.json](docs/workbook-previews/customization-native-check.json). Le [premier contrôle de fusion](docs/workbook-previews/customization-merge-native-check.json) reste historique ; le contrôle de cette synchronisation est conservé dans [customization-arsenal-sync-workbook-report.json](docs/qa/customization-arsenal-sync-workbook-report.json). La mise à jour ciblée du comparateur porte sur cinq fiches existantes et quatorze cellules, sans changer les statuts ; sa [vérification de préservation](docs/qa/customization-comparison-workbook-preservation.json) couvre les 28 feuilles, 26 tables, 274 formules et les règles actives du classeur.
 
 ## Structure
 
