@@ -1,0 +1,932 @@
+{
+  "passed": false,
+  "generatedAt": "2026-11-01T01:43:15.259Z",
+  "entry": "http://127.0.0.1:4194/",
+  "mode": "production",
+  "stage": "Save, reload and exercise ME2-WPN-INCISOR",
+  "baselineCommit": "105d03727dc51c6121ed1bd2811b0146d047cbb2",
+  "command": "GAME_URL=http://127.0.0.1:4194 PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium node scripts/legendary-weapon-access-browser.mjs",
+  "scope": "Five existing ME2 weapons selected only in the prepared Legendary workshop through public DOM controls, saved and restored after real reloads, then used for one native shot and reload each. A genuine UI-created ME1 autosave and manual slot remain byte-identical. No canonical acquisition, original numerical fidelity, new weapon artwork or integral 1:1 certification.",
+  "observationMethods": {
+    "actions": "Public buttons, selects and keyboard navigation only.",
+    "storage": "Read-only localStorage observation verifies bytes and the session actually written by public UI actions. There are no storage writes, save injections or private state assignments from the runner.",
+    "runtime": "DOM observations and verification that the development harness is absent; no browser source imports or hidden game API calls.",
+    "expectedResources": "Node reads the separate native proof; resource changes in this run are observed from the actual public combat DOM."
+  },
+  "sources": [
+    {
+      "path": "scripts/legendary-weapon-access-browser.mjs",
+      "bytes": 20619,
+      "sha256": "daa778eef37cfd253959c39b1d04bda7afc96428ce5a25689631c1063a7d6f62"
+    },
+    {
+      "path": "src/universe-equipment.js",
+      "bytes": 25145,
+      "sha256": "0746d0ec155c1815db04e819d521db04c86eb9c19d9622d4c4cc433938498752"
+    },
+    {
+      "path": "src/universe-equipment-scenarios.js",
+      "bytes": 4705,
+      "sha256": "4e759ff15180b8e47f0bad2d0c0f3a0492a07ede3eec492c0f113bb3e49eb210"
+    },
+    {
+      "path": "src/universe-data.js",
+      "bytes": 3311669,
+      "sha256": "00c8914a2fb5ff02d090f4a2780f30b1935f69f28fee74b177c04bef7051652b"
+    },
+    {
+      "path": "src/universe-actors.js",
+      "bytes": 26673,
+      "sha256": "3618812eca16a9914d2d27b323d729953800dc00187b8a6606d8db822e955ee0"
+    },
+    {
+      "path": "src/universe-ui.js",
+      "bytes": 30614,
+      "sha256": "44f467d12f67c26600f7744a84a96b45dd3c1e1a32572f3885eb74c7a183f8ca"
+    },
+    {
+      "path": "src/main.js",
+      "bytes": 105817,
+      "sha256": "2e7ba37616c750ed0d16868ae00e60e15c712c3a346bc595048eba59030ca79e"
+    },
+    {
+      "path": "src/chronicles.js",
+      "bytes": 21980,
+      "sha256": "5a782b862058ece78e53c7d05ead2d421ada72c3270f494002fd7f47c458fdf2"
+    },
+    {
+      "path": "src/continuity.js",
+      "bytes": 10556,
+      "sha256": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9"
+    },
+    {
+      "path": "src/continuity-data.js",
+      "bytes": 16478,
+      "sha256": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03"
+    },
+    {
+      "path": "src/combat.js",
+      "bytes": 70738,
+      "sha256": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a"
+    },
+    {
+      "path": "src/style.css",
+      "bytes": 27783,
+      "sha256": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612"
+    },
+    {
+      "path": "public/assets/manifest.json",
+      "bytes": 40304,
+      "sha256": "81f2a59bec448d6334dd750b52f87118dc7d9ad630b41ca43017899dc7d489fe"
+    },
+    {
+      "path": "docs/qa/legendary-weapon-access-native-report.json",
+      "bytes": 123505,
+      "sha256": "0783efdbe65dceabb6be0f0f1d9c2438348046904c41e2a9d3137d3f755aa1f9"
+    },
+    {
+      "path": "docs/qa/legendary-weapon-access-reference-report.json",
+      "bytes": 7047,
+      "sha256": "e7cdb4e47b3a6dba09ee14160c0f68d7aa9480f50974d4640083636f10a67396"
+    }
+  ],
+  "distSnapshot": [
+    {
+      "path": "dist/assets/arsenal-equipment.png",
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    {
+      "path": "dist/assets/arsenal-fleet.png",
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    {
+      "path": "dist/assets/arsenal-opponents.png",
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    {
+      "path": "dist/assets/arsenal-people.png",
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    {
+      "path": "dist/assets/boss-atlas.png",
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    {
+      "path": "dist/assets/chronicle-portraits-me2-me3.png",
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    {
+      "path": "dist/assets/chronicles-CcmJ23AA.js",
+      "bytes": 26590,
+      "sha256": "f2bf889914b3734f6f6a96f632b4757ab3e805075755f58c886914b2c7cee0e1"
+    },
+    {
+      "path": "dist/assets/citadel-keyart.png",
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    {
+      "path": "dist/assets/companion-ashley-combat.png",
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    {
+      "path": "dist/assets/companion-garrus-combat.png",
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    {
+      "path": "dist/assets/companion-kaidan-combat.png",
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    {
+      "path": "dist/assets/companion-liara-combat.png",
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    {
+      "path": "dist/assets/companion-tali-combat.png",
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    {
+      "path": "dist/assets/companion-wrex-combat.png",
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    {
+      "path": "dist/assets/continuity-BMDjqG8O.js",
+      "bytes": 5783,
+      "sha256": "190fae9293349adfb3e867b5b8747d8fd198a6cf5ee7885d9e2bed076da33621"
+    },
+    {
+      "path": "dist/assets/crew-atlas.png",
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    {
+      "path": "dist/assets/enemy-atlas.png",
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    {
+      "path": "dist/assets/expansion-C7DixTHW.js",
+      "bytes": 162056,
+      "sha256": "4915905c1cae60659c7a843f15462b6751b95eb2e4716ec9bc8e2e7ed14cdc4f"
+    },
+    {
+      "path": "dist/assets/index-Sj4igwqD.js",
+      "bytes": 405435,
+      "sha256": "736e600745fa332f713834d1d39d06db6f844cdd8b32eb0433ae2f5fe169b316"
+    },
+    {
+      "path": "dist/assets/index-lnZlHzHI.css",
+      "bytes": 62382,
+      "sha256": "7b07acfb6ef0404095f4d4e625d2d319ee440af4bddd641d2c8fe573937879e2"
+    },
+    {
+      "path": "dist/assets/npc-atlas.png",
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    {
+      "path": "dist/assets/props-atlas.png",
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    {
+      "path": "dist/assets/shepard-female-combat-atlas.png",
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    {
+      "path": "dist/assets/shepard-female-walk-atlas.png",
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    {
+      "path": "dist/assets/shepard-male-combat-atlas.png",
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    {
+      "path": "dist/assets/shepard-walk-atlas.png",
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    {
+      "path": "dist/assets/three-DyDnihTw.js",
+      "bytes": 525536,
+      "sha256": "ab30f47d09df906cf8e1ecc7ea39771658a550cd5b8cc15fd923050264d8afe2"
+    },
+    {
+      "path": "dist/assets/universe-actors-5oo488nS.js",
+      "bytes": 43893,
+      "sha256": "9d5928ec612b930c0b659710f0d68a2601bf6c5ac1044ad32b257e9e2a932b53"
+    },
+    {
+      "path": "dist/assets/universe-data-wHAUnKi1.js",
+      "bytes": 3313867,
+      "sha256": "5fe2c18928d6594f886c3dbaff134d4b665cce0505eef9aca6a46204818d84b2"
+    },
+    {
+      "path": "dist/assets/universe-equipment-Dx_FATq7.js",
+      "bytes": 15878,
+      "sha256": "9febe70459cf93d1dd7d31d9e7a36c1e1fbb78f7dfeb1d4d6e75062f8a7eb84d"
+    },
+    {
+      "path": "dist/assets/universe-ui-CcnUo4Uq.css",
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    {
+      "path": "dist/assets/universe-ui-DvD_yY2L.js",
+      "bytes": 52649,
+      "sha256": "55171bbc7c021021eab7d6189fb18664f0180de863b2ae7ec4456a9cc545769e"
+    },
+    {
+      "path": "dist/assets/vehicle-atlas.png",
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 660,
+      "sha256": "78ae547a4d4add6d14d77aa4833ecb71dc074d57df3d2202d7b5cfdeb508abb2"
+    }
+  ],
+  "servedResources": [
+    {
+      "path": "dist/index.html",
+      "url": "http://127.0.0.1:4194/",
+      "status": 200,
+      "bytes": 660,
+      "sha256": "78ae547a4d4add6d14d77aa4833ecb71dc074d57df3d2202d7b5cfdeb508abb2"
+    },
+    {
+      "path": "dist/assets/index-lnZlHzHI.css",
+      "url": "http://127.0.0.1:4194/assets/index-lnZlHzHI.css",
+      "status": 200,
+      "bytes": 62382,
+      "sha256": "7b07acfb6ef0404095f4d4e625d2d319ee440af4bddd641d2c8fe573937879e2"
+    },
+    {
+      "path": "dist/assets/index-Sj4igwqD.js",
+      "url": "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+      "status": 200,
+      "bytes": 405435,
+      "sha256": "736e600745fa332f713834d1d39d06db6f844cdd8b32eb0433ae2f5fe169b316"
+    },
+    {
+      "path": "dist/assets/three-DyDnihTw.js",
+      "url": "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+      "status": 200,
+      "bytes": 525536,
+      "sha256": "ab30f47d09df906cf8e1ecc7ea39771658a550cd5b8cc15fd923050264d8afe2"
+    },
+    {
+      "path": "dist/assets/vehicle-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/vehicle-atlas.png",
+      "status": 200,
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    {
+      "path": "dist/assets/crew-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/crew-atlas.png",
+      "status": 200,
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    {
+      "path": "dist/assets/enemy-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/enemy-atlas.png",
+      "status": 200,
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    {
+      "path": "dist/assets/npc-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/npc-atlas.png",
+      "status": 200,
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    {
+      "path": "dist/assets/shepard-female-walk-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/shepard-female-walk-atlas.png",
+      "status": 200,
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    {
+      "path": "dist/assets/shepard-walk-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/shepard-walk-atlas.png",
+      "status": 200,
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    {
+      "path": "dist/assets/boss-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/boss-atlas.png",
+      "status": 200,
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    {
+      "path": "dist/assets/props-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/props-atlas.png",
+      "status": 200,
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    {
+      "path": "dist/assets/shepard-female-combat-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/shepard-female-combat-atlas.png",
+      "status": 200,
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    {
+      "path": "dist/assets/shepard-male-combat-atlas.png",
+      "url": "http://127.0.0.1:4194/assets/shepard-male-combat-atlas.png",
+      "status": 200,
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    {
+      "path": "dist/assets/companion-ashley-combat.png",
+      "url": "http://127.0.0.1:4194/assets/companion-ashley-combat.png",
+      "status": 200,
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    {
+      "path": "dist/assets/companion-kaidan-combat.png",
+      "url": "http://127.0.0.1:4194/assets/companion-kaidan-combat.png",
+      "status": 200,
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    {
+      "path": "dist/assets/companion-garrus-combat.png",
+      "url": "http://127.0.0.1:4194/assets/companion-garrus-combat.png",
+      "status": 200,
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    {
+      "path": "dist/assets/companion-tali-combat.png",
+      "url": "http://127.0.0.1:4194/assets/companion-tali-combat.png",
+      "status": 200,
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    {
+      "path": "dist/assets/companion-wrex-combat.png",
+      "url": "http://127.0.0.1:4194/assets/companion-wrex-combat.png",
+      "status": 200,
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    {
+      "path": "dist/assets/companion-liara-combat.png",
+      "url": "http://127.0.0.1:4194/assets/companion-liara-combat.png",
+      "status": 200,
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    {
+      "path": "dist/assets/citadel-keyart.png",
+      "url": "http://127.0.0.1:4194/assets/citadel-keyart.png",
+      "status": 200,
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    {
+      "path": "dist/assets/universe-ui-CcnUo4Uq.css",
+      "url": "http://127.0.0.1:4194/assets/universe-ui-CcnUo4Uq.css",
+      "status": 200,
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    {
+      "path": "dist/assets/universe-ui-DvD_yY2L.js",
+      "url": "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+      "status": 200,
+      "bytes": 52649,
+      "sha256": "55171bbc7c021021eab7d6189fb18664f0180de863b2ae7ec4456a9cc545769e"
+    },
+    {
+      "path": "dist/assets/continuity-BMDjqG8O.js",
+      "url": "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+      "status": 200,
+      "bytes": 5783,
+      "sha256": "190fae9293349adfb3e867b5b8747d8fd198a6cf5ee7885d9e2bed076da33621"
+    },
+    {
+      "path": "dist/assets/universe-actors-5oo488nS.js",
+      "url": "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+      "status": 200,
+      "bytes": 43893,
+      "sha256": "9d5928ec612b930c0b659710f0d68a2601bf6c5ac1044ad32b257e9e2a932b53"
+    },
+    {
+      "path": "dist/assets/chronicles-CcmJ23AA.js",
+      "url": "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+      "status": 200,
+      "bytes": 26590,
+      "sha256": "f2bf889914b3734f6f6a96f632b4757ab3e805075755f58c886914b2c7cee0e1"
+    },
+    {
+      "path": "dist/assets/universe-equipment-Dx_FATq7.js",
+      "url": "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+      "status": 200,
+      "bytes": 15878,
+      "sha256": "9febe70459cf93d1dd7d31d9e7a36c1e1fbb78f7dfeb1d4d6e75062f8a7eb84d"
+    },
+    {
+      "path": "dist/assets/expansion-C7DixTHW.js",
+      "url": "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js",
+      "status": 200,
+      "bytes": 162056,
+      "sha256": "4915905c1cae60659c7a843f15462b6751b95eb2e4716ec9bc8e2e7ed14cdc4f"
+    },
+    {
+      "path": "dist/assets/universe-data-wHAUnKi1.js",
+      "url": "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+      "status": 200,
+      "bytes": 3313867,
+      "sha256": "5fe2c18928d6594f886c3dbaff134d4b665cce0505eef9aca6a46204818d84b2"
+    },
+    {
+      "path": "dist/assets/chronicle-portraits-me2-me3.png",
+      "url": "http://127.0.0.1:4194/assets/chronicle-portraits-me2-me3.png",
+      "status": 200,
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    {
+      "path": "dist/assets/arsenal-people.png",
+      "url": "http://127.0.0.1:4194/assets/arsenal-people.png",
+      "status": 200,
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-standard-refusals.png",
+      "bytes": 306867,
+      "sha256": "4bd7a7fbaed82a33d95c70359ed1d4e456c6889ef994c1ccbef1e1e6ceabe304"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-legendary-selection.png",
+      "bytes": 345586,
+      "sha256": "b77e9fa119fdce4b47ecee7540e9ce703c15b7526b4b75784b63948aafa71c0f"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-phalanx-prepared.png",
+      "bytes": 329760,
+      "sha256": "1419d07cb702db2414b44f057d0575bc8bdaee2072a061a749d75a1126afe6eb"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-phalanx-native-reload.png",
+      "bytes": 245301,
+      "sha256": "12a35663e2dabbad40b955d00dc60ba64dfc846ff7d948e85a289767a694889e"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-locust-prepared.png",
+      "bytes": 331225,
+      "sha256": "3c5bef079c8a9c387d062a4eb9ddfa6858ece3f55a073f35ee0202102c5bb60f"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-mattock-prepared.png",
+      "bytes": 331567,
+      "sha256": "c302afffa56f476a2a6946294f1e67d81ec49d087aad4002974149cec0b7ef7c"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-eviscerator-prepared.png",
+      "bytes": 331255,
+      "sha256": "0cb00214800dd23fc9ad34e94c779e3c7fcbab5564f6ae51d6a6a861c3562a2c"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-incisor-prepared.png",
+      "bytes": 330986,
+      "sha256": "f2329f306ecc861df380ec1884f70e82919dd0207ec00cecca160de83ef21a98"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-me2-wpn-incisor-native-reload.png",
+      "bytes": 249129,
+      "sha256": "e3a206493ee1ae63604415ae3d2665d8dd913ac73bf3288a770fffead637b1bb"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-mobile-restored-incisor.png",
+      "bytes": 91360,
+      "sha256": "d95d5c094fc2cb4bf471ee792cf94a7e31f62314b58f0826a86a0d00154cdfd7"
+    },
+    {
+      "path": "docs/screenshots/legendary-weapon-access-attempt-4-failure.png",
+      "bytes": 91382,
+      "sha256": "fd992afaaa4d04ea717e613df666a1eb7e33d87204e4b74d648a135662cd91eb"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Two genuine ME1 witnesses were created without storage injection"
+    },
+    {
+      "name": "Five edition-only options are disabled in Standard and absent from ME3"
+    },
+    {
+      "name": "Five canonical Legendary options are enabled; Collector remains disabled and no class right is changed"
+    },
+    {
+      "name": "All five preparations survive real page reloads and perform one public native shot and reload each"
+    },
+    {
+      "name": "ME1 autosave/manual bytes remain exact after all Chronicle changes and the restored mobile selector remains visible"
+    }
+  ],
+  "standardRefusals": [
+    {
+      "id": "ME2-WPN-PHALANX",
+      "disabled": true,
+      "reason": "M-5 Phalanx — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.",
+      "optionHtml": "<option value=\"ME2-WPN-PHALANX\" disabled=\"\">M-5 Phalanx — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.</option>"
+    },
+    {
+      "id": "ME2-WPN-LOCUST",
+      "disabled": true,
+      "reason": "M-12 Locust — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.",
+      "optionHtml": "<option value=\"ME2-WPN-LOCUST\" disabled=\"\">M-12 Locust — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.</option>"
+    },
+    {
+      "id": "ME2-WPN-MATTOCK",
+      "disabled": true,
+      "reason": "M-96 Mattock — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.",
+      "optionHtml": "<option value=\"ME2-WPN-MATTOCK\" disabled=\"\">M-96 Mattock — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.</option>"
+    },
+    {
+      "id": "ME2-WPN-EVISCERATOR",
+      "disabled": true,
+      "reason": "M-22 Eviscerator — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.",
+      "optionHtml": "<option value=\"ME2-WPN-EVISCERATOR\" disabled=\"\">M-22 Eviscerator — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.</option>"
+    },
+    {
+      "id": "ME2-WPN-INCISOR",
+      "disabled": true,
+      "reason": "M-29 Incisor — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.",
+      "optionHtml": "<option value=\"ME2-WPN-INCISOR\" disabled=\"\">M-29 Incisor — Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition.</option>"
+    }
+  ],
+  "foreignContextChecks": [
+    {
+      "id": "ME2-WPN-PHALANX",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "listed": false
+    },
+    {
+      "id": "ME2-WPN-LOCUST",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "listed": false
+    },
+    {
+      "id": "ME2-WPN-MATTOCK",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "listed": false
+    },
+    {
+      "id": "ME2-WPN-EVISCERATOR",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "listed": false
+    },
+    {
+      "id": "ME2-WPN-INCISOR",
+      "mediaId": "ME3",
+      "periodId": "me3",
+      "listed": false
+    }
+  ],
+  "collectorRefusal": {
+    "id": "ME2-WPN-COLLECTOR-RIFLE",
+    "disabled": true,
+    "reason": "Collector Assault Rifle — Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai.",
+    "optionHtml": "<option value=\"ME2-WPN-COLLECTOR-RIFLE\" disabled=\"\">Collector Assault Rifle — Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai.</option>"
+  },
+  "preparations": [
+    {
+      "id": "ME2-WPN-PHALANX",
+      "scenarioId": "me2-legendary-equipment-workshop",
+      "savedWeapon": "ME2-WPN-PHALANX",
+      "restoredWeapon": "ME2-WPN-PHALANX",
+      "savedPacketSha256": "8a455a96ef269a0addaecfdd9a2e3efa010ba2e0b0fe4cd04a42f430b7bc015a",
+      "savedPacketBytes": 462,
+      "publicPageReload": true,
+      "nativePublicCombat": {
+        "initial": {
+          "ammo": 8,
+          "magazineCapacity": 8,
+          "reserveAmmo": 32,
+          "text": "8/8 au chargeur · réserve 32"
+        },
+        "afterShot": {
+          "ammo": 7,
+          "magazineCapacity": 8,
+          "reserveAmmo": 32,
+          "text": "7/8 au chargeur · réserve 32"
+        },
+        "afterReload": {
+          "ammo": 8,
+          "magazineCapacity": 8,
+          "reserveAmmo": 31,
+          "text": "8/8 au chargeur · réserve 31"
+        },
+        "shotLog": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Tir contrôlé.\n\nCible mécanique — banc ATB subit 27 dégâts (25 sur les boucliers).",
+        "reloadLog": "Commandant Shepard subit 9 dégâts (9 sur les boucliers).\n\nCommandant Shepard : Recharger.\n\nCommandant Shepard recharge son arme.",
+        "method": "One real shot and reload through native public command/target buttons, naturally ready ATB; no time, actor or ammunition setter."
+      }
+    },
+    {
+      "id": "ME2-WPN-LOCUST",
+      "scenarioId": "me2-legendary-equipment-workshop",
+      "savedWeapon": "ME2-WPN-LOCUST",
+      "restoredWeapon": "ME2-WPN-LOCUST",
+      "savedPacketSha256": "cfe1b0a36d949b0c000df9ff51d75f5f8e6344d0cb2ca30ffa7feec415c219d6",
+      "savedPacketBytes": 461,
+      "publicPageReload": true,
+      "nativePublicCombat": {
+        "initial": {
+          "ammo": 24,
+          "magazineCapacity": 24,
+          "reserveAmmo": 96,
+          "text": "24/24 au chargeur · réserve 96"
+        },
+        "afterShot": {
+          "ammo": 23,
+          "magazineCapacity": 24,
+          "reserveAmmo": 96,
+          "text": "23/24 au chargeur · réserve 96"
+        },
+        "afterReload": {
+          "ammo": 24,
+          "magazineCapacity": 24,
+          "reserveAmmo": 95,
+          "text": "24/24 au chargeur · réserve 95"
+        },
+        "shotLog": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Tir contrôlé.\n\nCible mécanique — banc ATB subit 27 dégâts (25 sur les boucliers).",
+        "reloadLog": "Commandant Shepard subit 9 dégâts (9 sur les boucliers).\n\nCommandant Shepard : Recharger.\n\nCommandant Shepard recharge son arme.",
+        "method": "One real shot and reload through native public command/target buttons, naturally ready ATB; no time, actor or ammunition setter."
+      }
+    },
+    {
+      "id": "ME2-WPN-MATTOCK",
+      "scenarioId": "me2-legendary-equipment-workshop",
+      "savedWeapon": "ME2-WPN-MATTOCK",
+      "restoredWeapon": "ME2-WPN-MATTOCK",
+      "savedPacketSha256": "a07a79c7e7a12a678905dea633f762ba11db8ce7851b3cd3fd9f97cd70d565ff",
+      "savedPacketBytes": 462,
+      "publicPageReload": true,
+      "nativePublicCombat": {
+        "initial": {
+          "ammo": 18,
+          "magazineCapacity": 18,
+          "reserveAmmo": 72,
+          "text": "18/18 au chargeur · réserve 72"
+        },
+        "afterShot": {
+          "ammo": 17,
+          "magazineCapacity": 18,
+          "reserveAmmo": 72,
+          "text": "17/18 au chargeur · réserve 72"
+        },
+        "afterReload": {
+          "ammo": 18,
+          "magazineCapacity": 18,
+          "reserveAmmo": 71,
+          "text": "18/18 au chargeur · réserve 71"
+        },
+        "shotLog": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Tir contrôlé.\n\nCible mécanique — banc ATB subit 27 dégâts (25 sur les boucliers).",
+        "reloadLog": "Commandant Shepard subit 9 dégâts (9 sur les boucliers).\n\nCommandant Shepard : Recharger.\n\nCommandant Shepard recharge son arme.",
+        "method": "One real shot and reload through native public command/target buttons, naturally ready ATB; no time, actor or ammunition setter."
+      }
+    },
+    {
+      "id": "ME2-WPN-EVISCERATOR",
+      "scenarioId": "me2-legendary-equipment-workshop",
+      "savedWeapon": "ME2-WPN-EVISCERATOR",
+      "restoredWeapon": "ME2-WPN-EVISCERATOR",
+      "savedPacketSha256": "f3570cffef843dd8d2983a7d97a9daa6fc5e6b45da26e083c68d26d2a331cac6",
+      "savedPacketBytes": 466,
+      "publicPageReload": true,
+      "nativePublicCombat": {
+        "initial": {
+          "ammo": 4,
+          "magazineCapacity": 4,
+          "reserveAmmo": 16,
+          "text": "4/4 au chargeur · réserve 16"
+        },
+        "afterShot": {
+          "ammo": 3,
+          "magazineCapacity": 4,
+          "reserveAmmo": 16,
+          "text": "3/4 au chargeur · réserve 16"
+        },
+        "afterReload": {
+          "ammo": 4,
+          "magazineCapacity": 4,
+          "reserveAmmo": 15,
+          "text": "4/4 au chargeur · réserve 15"
+        },
+        "shotLog": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Tir contrôlé.\n\nCible mécanique — banc ATB subit 27 dégâts (25 sur les boucliers).",
+        "reloadLog": "Commandant Shepard subit 9 dégâts (9 sur les boucliers).\n\nCommandant Shepard : Recharger.\n\nCommandant Shepard recharge son arme.",
+        "method": "One real shot and reload through native public command/target buttons, naturally ready ATB; no time, actor or ammunition setter."
+      }
+    },
+    {
+      "id": "ME2-WPN-INCISOR",
+      "scenarioId": "me2-legendary-equipment-workshop",
+      "savedWeapon": "ME2-WPN-INCISOR",
+      "restoredWeapon": "ME2-WPN-INCISOR",
+      "savedPacketSha256": "27fbdc10cd0152d6a4ed819954c4f7c92e2c09bed00435c1429603ed41d1c722",
+      "savedPacketBytes": 462,
+      "publicPageReload": true,
+      "nativePublicCombat": {
+        "initial": {
+          "ammo": 2,
+          "magazineCapacity": 2,
+          "reserveAmmo": 8,
+          "text": "2/2 au chargeur · réserve 8"
+        },
+        "afterShot": {
+          "ammo": 1,
+          "magazineCapacity": 2,
+          "reserveAmmo": 8,
+          "text": "1/2 au chargeur · réserve 8"
+        },
+        "afterReload": {
+          "ammo": 2,
+          "magazineCapacity": 2,
+          "reserveAmmo": 7,
+          "text": "2/2 au chargeur · réserve 7"
+        },
+        "shotLog": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Tir contrôlé.\n\nCible mécanique — banc ATB subit 27 dégâts (25 sur les boucliers).",
+        "reloadLog": "Commandant Shepard subit 9 dégâts (9 sur les boucliers).\n\nCommandant Shepard : Recharger.\n\nCommandant Shepard recharge son arme.",
+        "method": "One real shot and reload through native public command/target buttons, naturally ready ATB; no time, actor or ammunition setter."
+      }
+    }
+  ],
+  "preparationHandoffs": [
+    {
+      "mediaId": "ME2",
+      "scenarioId": "me2-equipment-workshop",
+      "savedScenarioId": "me2-equipment-workshop",
+      "publicPrepareButton": true,
+      "packetSha256": "7775c9f7d97d4ecc66ab219ea977c2ecb2f6000f4d83de818f8e7111290a2bf4"
+    },
+    {
+      "mediaId": "ME3",
+      "scenarioId": "me3-equipment-workshop",
+      "savedScenarioId": "me3-equipment-workshop",
+      "publicPrepareButton": true,
+      "packetSha256": "21a8cab98eced965e9e282b1b52fc16fef6ebaa84abdb4322cf9a90d95f9eca8"
+    },
+    {
+      "mediaId": "ME2",
+      "scenarioId": "me2-legendary-equipment-workshop",
+      "savedScenarioId": "me2-legendary-equipment-workshop",
+      "publicPrepareButton": true,
+      "packetSha256": "21f9758d8fd0d54128e8ed1f74515798a6cbfed23689f66365ed37201d177e4e"
+    }
+  ],
+  "witnessBefore": [
+    {
+      "key": "relay-chronicles.manual-save.v1.1",
+      "bytes": 2602,
+      "sha256": "866a7b32ec94b5b0b25d82f9471121df649083ab15dae560c2013b8571638875"
+    },
+    {
+      "key": "relay-chronicles.save.v1",
+      "bytes": 2499,
+      "sha256": "52783d53381f32e7e0f4cdb055aae2978edebc3d1c55849247941cd8f7b1658a"
+    }
+  ],
+  "witnessAfter": [
+    {
+      "key": "relay-chronicles.manual-save.v1.1",
+      "bytes": 2602,
+      "sha256": "866a7b32ec94b5b0b25d82f9471121df649083ab15dae560c2013b8571638875"
+    },
+    {
+      "key": "relay-chronicles.save.v1",
+      "bytes": 2499,
+      "sha256": "52783d53381f32e7e0f4cdb055aae2978edebc3d1c55849247941cd8f7b1658a"
+    }
+  ],
+  "requestedScripts": [
+    "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+    "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+    "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+    "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+    "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+    "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+    "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+    "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+    "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js",
+    "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+    "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+    "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+    "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+    "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+    "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+    "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+    "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+    "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js",
+    "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+    "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+    "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+    "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+    "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+    "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+    "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+    "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+    "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js",
+    "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+    "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+    "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+    "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+    "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+    "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+    "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+    "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+    "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js",
+    "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+    "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+    "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+    "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+    "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+    "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+    "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+    "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+    "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js",
+    "http://127.0.0.1:4194/assets/index-Sj4igwqD.js",
+    "http://127.0.0.1:4194/assets/three-DyDnihTw.js",
+    "http://127.0.0.1:4194/assets/universe-ui-DvD_yY2L.js",
+    "http://127.0.0.1:4194/assets/continuity-BMDjqG8O.js",
+    "http://127.0.0.1:4194/assets/universe-data-wHAUnKi1.js",
+    "http://127.0.0.1:4194/assets/universe-actors-5oo488nS.js",
+    "http://127.0.0.1:4194/assets/chronicles-CcmJ23AA.js",
+    "http://127.0.0.1:4194/assets/universe-equipment-Dx_FATq7.js",
+    "http://127.0.0.1:4194/assets/expansion-C7DixTHW.js"
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)'\n+ ]\n- []\n\n    at file:///workspace/Mass-Effect-Relay-Chronicles/scripts/legendary-weapon-access-browser.mjs:257:47"
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "failedRequests": [],
+  "limitations": [
+    "The collective EA inclusion proof and inherited individual catalogue identities are qualified in the separate source report.",
+    "The resource figures displayed and exercised are existing ATB family budgets, not original weapon-model statistics.",
+    "Each saved preparation is independently restored by a real page reload; only one saved loadout per context exists at a time.",
+    "Only one shot and one reload per model are exercised here; depletion, forgery and historical outcomes have native proofs.",
+    "Captures document the actual interface and prototype representations. No new original weapon geometry, audio, animation or artistic fidelity is validated."
+  ],
+  "browser": "154.0.8037.57",
+  "mobileLayout": {
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "select": {
+      "left": 44.796875,
+      "right": 345.1875,
+      "width": 300.390625,
+      "height": 42
+    },
+    "selectedText": "M-29 Incisor",
+    "expectedMinimumHeight": 42,
+    "basis": "Existing src/style.css input/select min-height:42px rule"
+  },
+  "archivedRunner": {
+    "path": "docs/qa/legendary-weapon-access-browser-attempt-4-runner.mjs",
+    "sha256": "daa778eef37cfd253959c39b1d04bda7afc96428ce5a25689631c1063a7d6f62"
+  },
+  "archiveNote": "All five functional cases and the42px mobile rule passed. The final console check found seven generic404 resource messages despite zero public page request failures and zero JS exceptions. A separate minimal Chromium network diagnostic identifies the resource before any classification."
+}

@@ -273,6 +273,12 @@ La reprise sur `main` fusionné `1b3444f` conserve les poses de Shepard et les c
 
 Les effectifs suivent les sources : **zéro nouvelle armure et zéro nouvelle coque**. Les 242 résultats et contrôles publiés des deux premiers lots restent exacts. Le cumul atteint **498 références et 280 exercices partiels**. Les 745 tests Node et le build de 76 modules passent ; les [preuves du lot](qa/expansion3-report.json) regroupent les parcours navigateur, la conservation des sauvegardes et le [nouveau suivi Excel](Expansion3_Simulations.xlsx). Les statuts des catalogues et les anciens classeurs sont conservés. Aucun nouvel asset visuel complet ni fidélité intégrale 1:1 n’est annoncé.
 
+## Compagnons ME1 et armes Legendary — 1er novembre 2026
+
+La reprise sur `105d037` ajoute **six atlas natifs, soit 24 poses clés** des compagnons ME1 existants, avec intégration des événements visuels de combat, cadrages, pivots, priorité KO et retour à la visée. Elle ajoute également **cinq préparations d’armes ME2 Legendary**, portant l’équipement des ateliers à 105 profils fonctionnels, dont 77 armes. Les budgets restent ATB ; acquisition et statistiques d’origine ne sont pas déduites.
+
+Le suivi met à jour seulement six lignes SPR : les 1 376 autres entrées du catalogue principal et les statuts sont préservés. Le registre reste à 6 708 fiches et 454 sources. Les 280 résultats Simulation et leurs 218 consultations sont conservés, avec les 25 combats/dotations historiques par défaut. Les [preuves courantes](qa/companion-combat-report.json) relient génération, contrôle technique, rendu isolé, parcours public, sauvegardes et [classeur principal](Mass_Effect_Relay_Chronicles_Production.xlsx). Les poses fixes et armes dessinées génériques ne terminent pas les cycles, costumes et modèles complets 1:1.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.

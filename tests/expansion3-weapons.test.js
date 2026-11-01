@@ -63,9 +63,9 @@ test('forty identities, source references, original statuses and context scopes 
   assert.deepEqual(works, { ME3: 10, MEA: 8, ME2: 11, INF: 4, GAL: 2, REV: 1, ASC: 1, RET: 1, INI: 1, ANN: 1 });
 });
 
-test('all eighteen remaining supported conventional profiles use their exact identity and unchanged finite family resources', () => {
+test('all eighteen remaining standard conventional profiles use their exact identity and unchanged finite family resources', () => {
   const remaining = UNIVERSE_RECORDS.filter(record => record.fact && record.category === 'weapons' && record.availability.length
-    && !oldIds.has(record.id) && getUniverseEquipment(record.id)?.runtimeSupported);
+    && !oldIds.has(record.id) && getUniverseEquipment(record.id)?.runtimeSupported && !getUniverseEquipment(record.id).requiresEdition);
   assert.deepEqual(open.map(entry => entry.recordId).sort(), remaining.map(record => record.id).sort());
   for (const entry of open) {
     const item = getUniverseEquipment(entry.recordId);
@@ -131,10 +131,9 @@ test('depleted new profiles refuse shoot atomically and incomplete reserves neve
   }
 });
 
-test('twenty-two consultations retain exact unsupported reasons and contain no alternate combat statistics or resource fallback', () => {
+test('twenty-two historical consultations retain their refusal even if a separate edition workshop later gains access', () => {
   for (const entry of closed) {
     const item = getUniverseEquipment(entry.recordId);
-    assert.equal(item.runtimeSupported, false, entry.recordId);
     assert.equal(entry.behaviorKind, 'inspection-only'); assert.equal(entry.simulation, null); assert.equal(entry.statsBasis, null);
     assert.ok(entry.blockedReason.startsWith(item.lockReason));
     for (const key of ['hp', 'attack', 'defense', 'speed', 'weaponSystem', 'ammo', 'reserveAmmo']) assert.equal(Object.hasOwn(entry, key), false);

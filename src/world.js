@@ -4,6 +4,7 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 import { WORLD_ZONES } from './world-data.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
 import { hasVisualCustomization, renderCustomizationSprite } from './customization-render.js';
+import { COMPANION_ANIMATION_IDS, normalizeCompanionAnimation, canShowCompanionAnimation } from './companion-animation-data.js';
 
 const CREW_KEYS = ['shepard', 'ashley', 'kaidan', 'jenkins', 'garrus', 'tali', 'wrex', 'liara'];
 const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', 'rachni', 'creeper', 'asari'];
@@ -107,23 +108,50 @@ export class WorldView {
     this.enableWalkAtlas();
     if (typeof __RELAY_FEMSHEP_ANIMATION__ !== 'undefined') this.registerCharacterAnimation('femshep', __RELAY_FEMSHEP_ANIMATION__);
     if (typeof __RELAY_MALESHEP_ANIMATION__ !== 'undefined') this.registerCharacterAnimation('shepard', __RELAY_MALESHEP_ANIMATION__);
+    if (typeof __RELAY_COMPANION_ANIMATIONS__ !== 'undefined') for (const config of __RELAY_COMPANION_ANIMATIONS__)
+      this.registerCharacterAnimation(config.characterId, config);
     this.setZone('normandy'); this.resize();
   }
 
   _loadAtlas(name, url) {
-    new THREE.TextureLoader().load(url, texture => {
-      if (this._disposed) { texture.dispose(); return; }
+    if (this._disposed) return false;
+    const requests = this._atlasRequests ||= new Map(), urls = this._atlasUrls ||= new Map();
+    if (requests.get(name)?.url === url || urls.get(name) === url && this.atlases[name]) return false;
+    const request = { url }; requests.set(name, request);
+    const failed = () => {
+      if (this._disposed || requests.get(name) !== request) return;
+      requests.delete(name); this.assetErrors?.push(`Asset indisponible : ${url}`);
+    };
+    try { new THREE.TextureLoader().load(url, texture => {
+      if (this._disposed || requests.get(name) !== request) { texture.dispose(); return; }
+      requests.delete(name);
+      const key = name.startsWith('combat-') ? name.slice(7) : null;
+      const config = COMPANION_ANIMATION_IDS.includes(key) && this.characterAnimations?.[key]?.combat;
+      if (config && (texture.image?.width !== config.width || texture.image?.height !== config.height)) {
+        texture.dispose(); this.assetErrors?.push(`Dimensions d’animation incompatibles : ${url}`); return;
+      }
       texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4; texture.magFilter = THREE.LinearFilter;
-      this.atlases[name] = texture;
+      const previous = this.atlases[name]; this.atlases[name] = texture; urls.set(name, url);
       for (const [key, tex] of this.spriteCache) if (key.startsWith(`${name}:`)) { tex.dispose(); this.spriteCache.delete(key); }
-      this.characters.traverse(o => { if (o.userData.characterKey && o.material) o.material.map = this._spriteTexture(o.userData.characterKey, o.userData.enemy); });
+      if (previous && previous !== texture) previous.dispose();
+      // A new combat family must never reset an unrelated actor or customized
+      // Shepard to a base texture. The next update selects its current pose.
+      if (!name.startsWith('combat-') && !name.startsWith('motion-') && name !== 'walk') this.characters.traverse(o => {
+        if (o.userData.characterKey && o.material && this._spriteAtlasName(o.userData.characterKey, o.userData.enemy) === name)
+          o.material.map = this._spriteTexture(o.userData.characterKey, o.userData.enemy);
+      });
       if (name === 'props') { for (const args of this._pendingProps || []) this._propSprite(...args); this._pendingProps = []; }
       if (name === 'vehicles') { for (const args of this._pendingVehicles || []) this._vehicleSprite(...args); this._pendingVehicles = []; }
-    }, undefined, () => { this.assetErrors?.push(`Asset indisponible : ${url}`); });
+    }, undefined, failed); } catch { failed(); return false; }
+    return true;
+  }
+
+  _spriteAtlasName(key, enemy = false) {
+    return NPC_KEYS.includes(key) ? 'npc' : enemy && BOSS_KEYS.includes(key) ? 'boss' : enemy ? 'enemy' : 'crew';
   }
 
   _spriteTexture(key = 'shepard', enemy = false) {
-    const name = NPC_KEYS.includes(key) ? 'npc' : enemy && BOSS_KEYS.includes(key) ? 'boss' : enemy ? 'enemy' : 'crew', cacheKey = `${name}:${key}`;
+    const name = this._spriteAtlasName(key, enemy), cacheKey = `${name}:${key}`;
     if (this.spriteCache.has(cacheKey)) return this.spriteCache.get(cacheKey);
     let texture;
     if (this.atlases[name]) {
@@ -230,19 +258,54 @@ export class WorldView {
 
   // Metadata is bundled by Vite, so Electron loadFile needs no file:// fetch.
   registerCharacterAnimation(key, config) {
+    if (this._disposed) return false;
+    if (COMPANION_ANIMATION_IDS.includes(key)) {
+      config = normalizeCompanionAnimation(key, config);
+      if (!config) return false;
+      if (JSON.stringify(this.characterAnimations[key]) === JSON.stringify(config)) return true;
+      for (const [cacheKey, texture] of this.spriteCache) if (cacheKey.startsWith(`combat-${key}:`)) {
+        texture.dispose(); this.spriteCache.delete(cacheKey);
+      }
+    } else if (!['shepard', 'femshep'].includes(key)) return false;
     const hasWalk = Array.isArray(config?.frames) && config.frames.length > 0 && typeof config.file === 'string' && config.file.length > 0;
     const hasCombat = typeof config?.combat?.file === 'string' && config.combat.file.length > 0
       && ['aim', 'power', 'hit', 'down'].some(pose => Array.isArray(config.combat.frames?.[pose]?.rect));
-    if (!hasWalk && !hasCombat) return;
+    if (!hasWalk && !hasCombat) return false;
     this.characterAnimations[key] = config;
     // A combat-only family must not replace the masculine exploration atlas.
     if (hasWalk) this._loadAtlas(`motion-${key}`, `${ASSET_BASE}${config.file}`);
     if (hasCombat) this._loadAtlas(`combat-${key}`, `${ASSET_BASE}${config.combat.file}`);
+    return true;
+  }
+
+  _combatAnimationConfig(actor, state = actor.state) {
+    const config = this.characterAnimations?.[actor.key];
+    if (!config?.combat) return null;
+    if (COMPANION_ANIMATION_IDS.includes(actor.key)) return canShowCompanionAnimation(actor, state)
+      && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
+    return config.combat;
+  }
+
+  _releaseBattleActorTextures(actor) {
+    for (const [key, texture] of this.spriteCache) if (key.startsWith('combat-') && key.endsWith(`:${actor.id}`)) {
+      texture.dispose(); this.spriteCache.delete(key);
+    }
+  }
+
+  _fallbackCombatFrame(actor) {
+    actor.body.material.map = this._spriteTexture(actor.key, actor.enemy);
+    actor.body.scale.set(1, actor.alive && actor.state?.cover ? .88 : 1, 1);
+    actor.body.position.x = 0; actor.body.position.z = 0;
+    actor.body.rotation.z = actor.alive ? 0 : -.9; actor.animationFrame = null;
   }
 
   _applyAnimationFrame(actor, atlasName, frame, { cover = false } = {}) {
     const atlas = this.atlases[atlasName], rect = frame?.rect;
     if (!atlas?.image?.width || !atlas.image.height || !Array.isArray(rect) || rect.length !== 4 || !rect.every(Number.isFinite)) return false;
+    if (COMPANION_ANIMATION_IDS.includes(actor.key) && atlasName === `combat-${actor.key}`) {
+      const config = this._combatAnimationConfig(actor);
+      if (!config || atlas.image.width !== config.width || atlas.image.height !== config.height) return false;
+    }
     const [x, y, width, height] = rect;
     if (x < 0 || y < 0 || width <= 0 || height <= 0 || x + width > atlas.image.width || y + height > atlas.image.height) return false;
     const cacheKey = `${atlasName}:${actor.id}`;
@@ -250,7 +313,7 @@ export class WorldView {
     const texture = this.spriteCache.get(cacheKey);
     texture.userData.relayAnimationFrame = frame;
     texture.repeat.set(width / atlas.image.width, height / atlas.image.height);
-    texture.offset.set(x / atlas.image.width, 1 - (y + height) / atlas.image.height); texture.needsUpdate = true;
+    texture.offset.set(x / atlas.image.width, 1 - (y + height) / atlas.image.height);
     const displayHeight = actor.height * (frame.heightScale || 1) * (cover ? .88 : 1);
     const displayWidth = displayHeight * width / height;
     const pivot = frame.pivot || [width / 2, height];
@@ -925,10 +988,10 @@ export class WorldView {
 
   setBattle(battle) {
     this.battle = battle;
-    if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); } this.battleActors.clear(); return; }
+    if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); } this.battleActors.clear(); return; }
     const entries = battle.actors || [...(battle.party || []).map(a => ({ ...a, team: 'party' })), ...(battle.enemies || []).map(a => ({ ...a, team: 'enemy' }))];
     const active = new Set(entries.map(a => a.id));
-    for (const [id, actor] of this.battleActors) if (!active.has(id)) { this.characters.remove(actor.group); disposeObject(actor.group); this.battleActors.delete(id); }
+    for (const [id, actor] of this.battleActors) if (!active.has(id)) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); this.battleActors.delete(id); }
     let partyIndex = 0, enemyIndex = 0;
     for (const state of entries) {
       const enemy = state.team === 'enemy', index = enemy ? enemyIndex++ : partyIndex++;
@@ -940,7 +1003,12 @@ export class WorldView {
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
       if (actor.lastHp !== null && state.hp < actor.lastHp) { actor.poseTime = .35; this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.3, 0)), enemy ? 0xffae79 : 0xf0c7a7); }
       if (actor.lastShield !== null && state.shield < actor.lastShield) actor.shieldFlash = .35;
-      if (this.characterAnimations?.[actor.key]?.combat && actor.alive !== (state.hp > 0)) { actor.combatPose = null; actor.combatPoseTime = 0; }
+      const animationAllowed = !!this._combatAnimationConfig(actor, state);
+      if (animationAllowed && actor.alive !== (state.hp > 0)
+        || COMPANION_ANIMATION_IDS.includes(actor.key) && actor.animationAllowed !== animationAllowed) {
+        actor.combatPose = null; actor.combatPoseTime = 0;
+      }
+      actor.animationAllowed = animationAllowed;
       actor.alive = state.hp > 0; actor.state = state; actor.lastHp = state.hp; actor.lastShield = state.shield;
       actor.body.material.opacity = actor.alive ? 1 : .32; actor.group.visible = this.mode === 'combat';
       actor.body.rotation.z = actor.alive ? 0 : -.9;
@@ -954,13 +1022,13 @@ export class WorldView {
     const action = String(event.actionId || event.power || '').toLowerCase();
     if (source) {
       source.poseTime = .3;
-      const posed = this.characterAnimations?.[source.key]?.combat;
+      const posed = this._combatAnimationConfig(source);
       const canShowAction = !posed || source.alive && !(source.combatPose === 'hit' && source.combatPoseTime > 0);
       if (type === 'action' && canShowAction) { source.combatPose = ['shoot', 'burst', 'signature'].includes(action) ? 'aim' : 'power'; source.combatPoseTime = .7; }
     }
     if (target) {
       target.poseTime = .24;
-      if (type === 'damage' && (!this.characterAnimations?.[target.key]?.combat || target.alive)) { target.combatPose = 'hit'; target.combatPoseTime = .4; }
+      if (type === 'damage' && (!this._combatAnimationConfig(target) || target.alive)) { target.combatPose = 'hit'; target.combatPoseTime = .4; }
     }
     if (type === 'heal' || type === 'revive' || ['medigel', 'unity', 'barrier', 'cover', 'reposition'].includes(action)) {
       const actor = target || source; if (actor) this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.1, 0)), ['medigel', 'unity'].includes(action) || type === 'heal' ? 0x84e3bb : 0x80bddd, 1.5);
@@ -1200,7 +1268,7 @@ export class WorldView {
       actor.body.scale.y = actor.alive && actor.state?.cover ? .88 : 1;
       actor.body.position.y = actor.height / 2 * actor.body.scale.y + .05 + (actor.alive ? Math.sin(this.time * 2 + actor.group.position.z) * .025 : -.5);
       actor.body.material.color.set(actor.poseTime > .15 ? 0xffd6b2 : 0xffffff);
-      const combatConfig = this.characterAnimations?.[actor.key]?.combat;
+      const combatConfig = this._combatAnimationConfig(actor);
       if (combatConfig) {
         if (!actor.alive) { actor.combatPose = null; actor.combatPoseTime = 0; }
         else actor.combatPoseTime = Math.max(0, (actor.combatPoseTime || 0) - dt);
@@ -1208,12 +1276,9 @@ export class WorldView {
         if (!this._applyAnimationFrame(actor, `combat-${actor.key}`, combatConfig.frames?.[pose], { cover: actor.alive && actor.state?.cover })) {
           // Keep a complete, correctly scaled actor while its atlas is loading,
           // or if a frame is unavailable; never retain the preceding pose's crop.
-          actor.body.material.map = this._spriteTexture(actor.key, actor.enemy);
-          actor.body.scale.set(1, actor.alive && actor.state?.cover ? .88 : 1, 1);
-          actor.body.position.x = 0; actor.body.position.z = 0;
-          actor.body.rotation.z = actor.alive ? 0 : -.9; actor.animationFrame = null;
+          this._fallbackCombatFrame(actor);
         }
-      }
+      } else if (COMPANION_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     for (const item of this.animations) {
@@ -1252,7 +1317,10 @@ export class WorldView {
     this.resizeObserver?.disconnect(); window.removeEventListener('keydown', this._keydown); window.removeEventListener('keyup', this._keyup); window.removeEventListener('blur', this._blur);
     this.renderer.domElement.removeEventListener('pointerdown', this._pointerdown);
     this._clearCommanderTextures();
-    disposeObject(this.scene); for (const texture of this.spriteCache.values()) texture.dispose(); for (const texture of this.textureCache.values()) texture.dispose(); for (const texture of Object.values(this.atlases)) texture.dispose();
+    disposeObject(this.scene);
+    for (const texture of new Set([...this.spriteCache.values(), ...this.textureCache.values(), ...Object.values(this.atlases)])) texture.dispose();
+    this.spriteCache.clear(); this.textureCache.clear(); this.atlases = {};
+    this._atlasRequests?.clear(); this._atlasUrls?.clear();
     this.renderer.dispose(); this.renderer.domElement.remove(); this.labels.remove();
   }
 }

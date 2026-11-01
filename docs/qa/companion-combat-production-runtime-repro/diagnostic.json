@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "scope": "Isolated Chromium154 native Blob download/restart diagnostic, without the game or its assets. The source included is the final writable-cache variant; the earlier logs use the same minimal button and restart loop with the options listed below.",
+  "browser": "Chromium154.0.8037.57 Debian13",
+  "applicationInvolved": false,
+  "variants": [
+    {
+      "name": "default",
+      "firstDownload": "passed",
+      "reopenedDownload": "browser process SIGTRAP",
+      "options": "Native acceptDownloads true; default Playwright download directory"
+    },
+    {
+      "name": "fixed-target",
+      "firstDownload": "passed",
+      "reopenedDownload": "browser process SIGTRAP",
+      "options": "Native acceptDownloads true; one explicit downloadsPath shared by both launches"
+    },
+    {
+      "name": "writable-cache",
+      "firstDownload": "passed",
+      "reopenedDownload": "browser process SIGSEGV",
+      "options": "Shared downloadsPath plus task-owned writable XDG_CACHE_HOME and XDG_CONFIG_HOME"
+    }
+  ],
+  "conclusion": "A full browser restart plus new download is blocked by the current system Chromium. It is not counted as a successful game export or hidden-state roundtrip. The production journey uses real exports and reloads in its first process, then a real restart checked via public UI with no subsequent download.",
+  "productSourceModified": false
+}

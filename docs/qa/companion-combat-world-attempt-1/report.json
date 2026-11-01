@@ -1,0 +1,1654 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "at": "2026-11-01T01:03:54.725Z",
+  "url": "http://127.0.0.1:4193",
+  "sourceHead": "105d03727dc51c6121ed1bd2811b0146d047cbb2",
+  "scope": "Isolated development render fixture using the actual WorldView, native actorFor/createBattle and detached newGame data. Three Shepard/companion pairs, twenty-four key-pose cases, actual native KO/Unity events, UV/pivot/scope checks and exploration return. The app stays at its title; no campaign is started, recruited, progressed or saved. This is separate from the public production gameplay/save journey. No original animation cycles, exact equipment or integral artistic fidelity certified.",
+  "buildKind": "vite-development-isolated-renderer",
+  "sourceHashes": {
+    "src/world.js": "f7c8b27810951f374c1f261e739bd20ad0c321bc8b4219d8f7f4fedbf7ad330d",
+    "src/companion-animation-data.js": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/customization-render.js": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+    "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+    "vite.config.js": "1357101b39988bc33ffb5dbc452aa7a8a9a35ad1e05093cb96ced1c46b6756e3",
+    "scripts/companion-combat-world-browser.mjs": "9569312925f53f21a1ba1ffd1ce60e8cfc8fb5dbace2bc859352ae0c030388b2",
+    "public/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "public/assets/companion-ashley-animation.json": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022",
+    "public/assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "public/assets/companion-kaidan-animation.json": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b",
+    "public/assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+    "public/assets/companion-garrus-animation.json": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b",
+    "public/assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "public/assets/companion-tali-animation.json": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812",
+    "public/assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "public/assets/companion-wrex-animation.json": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702",
+    "public/assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "public/assets/companion-liara-animation.json": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef",
+    "public/assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+  },
+  "cases": [
+    {
+      "key": "garrus",
+      "pose": "aim",
+      "frameId": "garrus-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/companion-garrus-combat.png",
+      "textureUUID": "4e34eec3-d974-4de9-8963-666d727b5d01",
+      "rect": [
+        209,
+        8,
+        451,
+        534
+      ],
+      "pivot": [
+        201,
+        526
+      ],
+      "repeat": [
+        0.2936197916666667,
+        0.521484375
+      ],
+      "offset": [
+        0.13606770833333334,
+        0.470703125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 480.0500753990258,
+        "top": 295.6352364017789,
+        "right": 560.2841577960295,
+        "bottom": 369.1810076390771
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 50,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-aim.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-aim.png"
+    },
+    {
+      "key": "wrex",
+      "pose": "aim",
+      "frameId": "wrex-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/companion-wrex-combat.png",
+      "textureUUID": "0492f67e-01ba-449d-9e29-a624daa87f8d",
+      "rect": [
+        175,
+        0,
+        477,
+        515
+      ],
+      "pivot": [
+        217,
+        507
+      ],
+      "repeat": [
+        0.310546875,
+        0.5029296875
+      ],
+      "offset": [
+        0.11393229166666667,
+        0.4970703125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 420.16354964117824,
+        "top": 338.93434397305214,
+        "right": 520.5033554664209,
+        "bottom": 422.80232871733955
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 50,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-aim.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-aim.png"
+    },
+    {
+      "key": "garrus",
+      "pose": "power",
+      "frameId": "garrus-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/companion-garrus-combat.png",
+      "textureUUID": "4e34eec3-d974-4de9-8963-666d727b5d01",
+      "rect": [
+        916,
+        0,
+        440,
+        552
+      ],
+      "pivot": [
+        168,
+        544
+      ],
+      "repeat": [
+        0.2864583333333333,
+        0.5390625
+      ],
+      "offset": [
+        0.5963541666666666,
+        0.4609375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1.02,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 486.4439715974694,
+        "top": 294.34097765250857,
+        "right": 563.6831020322519,
+        "bottom": 369.3576643145527
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 52,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-power.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-power.png"
+    },
+    {
+      "key": "wrex",
+      "pose": "power",
+      "frameId": "wrex-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/companion-wrex-combat.png",
+      "textureUUID": "0492f67e-01ba-449d-9e29-a624daa87f8d",
+      "rect": [
+        860,
+        3,
+        529,
+        524
+      ],
+      "pivot": [
+        217,
+        516
+      ],
+      "repeat": [
+        0.3444010416666667,
+        0.51171875
+      ],
+      "offset": [
+        0.5598958333333334,
+        0.4853515625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1.02,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 420.17707622888804,
+        "top": 337.45148404959826,
+        "right": 531.7314655418652,
+        "bottom": 422.99682848877137
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 52,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-power.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-power.png"
+    },
+    {
+      "key": "garrus",
+      "pose": "hit",
+      "frameId": "garrus-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/companion-garrus-combat.png",
+      "textureUUID": "4e34eec3-d974-4de9-8963-666d727b5d01",
+      "rect": [
+        210,
+        551,
+        467,
+        445
+      ],
+      "pivot": [
+        265,
+        437
+      ],
+      "repeat": [
+        0.3040364583333333,
+        0.4345703125
+      ],
+      "offset": [
+        0.13671875,
+        0.02734375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.83,
+      "groundAnchorError": 4.460365043975677e-16,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 469.44538408660674,
+        "top": 308.63405962187255,
+        "right": 552.1935863337977,
+        "bottom": 369.6770497488301
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-hit.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-hit.png"
+    },
+    {
+      "key": "wrex",
+      "pose": "hit",
+      "frameId": "wrex-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/companion-wrex-combat.png",
+      "textureUUID": "0492f67e-01ba-449d-9e29-a624daa87f8d",
+      "rect": [
+        192,
+        522,
+        482,
+        484
+      ],
+      "pivot": [
+        251,
+        476
+      ],
+      "repeat": [
+        0.3138020833333333,
+        0.47265625
+      ],
+      "offset": [
+        0.125,
+        0.017578125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.94,
+      "groundAnchorError": 1.8041124150158794e-16,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 413.59303682294455,
+        "top": 344.46714157899726,
+        "right": 515.0055712582061,
+        "bottom": 423.30304723862736
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-hit.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-hit.png"
+    },
+    {
+      "key": "garrus",
+      "pose": "down",
+      "frameId": "garrus-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/companion-garrus-combat.png",
+      "textureUUID": "4e34eec3-d974-4de9-8963-666d727b5d01",
+      "rect": [
+        791,
+        805,
+        689,
+        180
+      ],
+      "pivot": [
+        344,
+        172
+      ],
+      "repeat": [
+        0.4485677083333333,
+        0.17578125
+      ],
+      "offset": [
+        0.5149739583333334,
+        0.0380859375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.27,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 467.9344339194081,
+        "top": 349.9306782671482,
+        "right": 566.116933919408,
+        "bottom": 369.7880365012187
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-down.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-down.png"
+    },
+    {
+      "key": "wrex",
+      "pose": "down",
+      "frameId": "wrex-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/companion-wrex-combat.png",
+      "textureUUID": "0492f67e-01ba-449d-9e29-a624daa87f8d",
+      "rect": [
+        792,
+        719,
+        680,
+        265
+      ],
+      "pivot": [
+        340,
+        257
+      ],
+      "repeat": [
+        0.4427083333333333,
+        0.2587890625
+      ],
+      "offset": [
+        0.515625,
+        0.0390625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.39,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 412.74918321639547,
+        "top": 390.60472677402765,
+        "right": 521.1642775560181,
+        "bottom": 423.3132408242998
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-garrus-wrex-down.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-down.png"
+    },
+    {
+      "key": "liara",
+      "pose": "aim",
+      "frameId": "liara-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/companion-liara-combat.png",
+      "textureUUID": "9e8f6d91-e8a1-4373-a5cb-abb2f9fa2eb2",
+      "rect": [
+        202,
+        3,
+        335,
+        532
+      ],
+      "pivot": [
+        162,
+        524
+      ],
+      "repeat": [
+        0.21809895833333334,
+        0.51953125
+      ],
+      "offset": [
+        0.13151041666666666,
+        0.4775390625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.98,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 487.46861387801243,
+        "top": 297.08234633824947,
+        "right": 546.0936138780124,
+        "bottom": 369.1572021508017
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 50,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-aim.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-aim.png"
+    },
+    {
+      "key": "tali",
+      "pose": "aim",
+      "frameId": "tali-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/companion-tali-combat.png",
+      "textureUUID": "5d80321f-af7c-43ff-af82-fdb09932aa19",
+      "rect": [
+        177,
+        2,
+        479,
+        559
+      ],
+      "pivot": [
+        222,
+        551
+      ],
+      "repeat": [
+        0.3118489583333333,
+        0.5458984375
+      ],
+      "offset": [
+        0.115234375,
+        0.4521484375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 428.09282447719045,
+        "top": 349.0004586326897,
+        "right": 509.49711785822797,
+        "bottom": 422.5462298699878
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 50,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-aim.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-aim.png"
+    },
+    {
+      "key": "liara",
+      "pose": "power",
+      "frameId": "liara-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/companion-liara-combat.png",
+      "textureUUID": "9e8f6d91-e8a1-4373-a5cb-abb2f9fa2eb2",
+      "rect": [
+        911,
+        3,
+        362,
+        544
+      ],
+      "pivot": [
+        167,
+        536
+      ],
+      "repeat": [
+        0.23567708333333334,
+        0.53125
+      ],
+      "offset": [
+        0.5930989583333334,
+        0.4658203125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 486.7764493445134,
+        "top": 295.8034969437131,
+        "right": 549.9933611092193,
+        "bottom": 369.3492681810113
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 52,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-power.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-power.png"
+    },
+    {
+      "key": "tali",
+      "pose": "power",
+      "frameId": "tali-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/companion-tali-combat.png",
+      "textureUUID": "5d80321f-af7c-43ff-af82-fdb09932aa19",
+      "rect": [
+        850,
+        2,
+        481,
+        560
+      ],
+      "pivot": [
+        205,
+        552
+      ],
+      "repeat": [
+        0.3131510416666667,
+        0.546875
+      ],
+      "offset": [
+        0.5533854166666666,
+        0.451171875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 431.1655630382029,
+        "top": 349.19292209783475,
+        "right": 512.7637773239172,
+        "bottom": 422.73869333513295
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 52,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-power.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-power.png"
+    },
+    {
+      "key": "liara",
+      "pose": "hit",
+      "frameId": "liara-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/companion-liara-combat.png",
+      "textureUUID": "9e8f6d91-e8a1-4373-a5cb-abb2f9fa2eb2",
+      "rect": [
+        177,
+        529,
+        374,
+        485
+      ],
+      "pivot": [
+        200,
+        477
+      ],
+      "repeat": [
+        0.24348958333333334,
+        0.4736328125
+      ],
+      "offset": [
+        0.115234375,
+        0.009765625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.8999999999999999,
+      "groundAnchorError": 4.460365043975677e-16,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 481.14552628881876,
+        "top": 303.4789665403568,
+        "right": 547.0774850517053,
+        "bottom": 369.6701606539251
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-hit.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-hit.png"
+    },
+    {
+      "key": "tali",
+      "pose": "hit",
+      "frameId": "tali-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/companion-tali-combat.png",
+      "textureUUID": "5d80321f-af7c-43ff-af82-fdb09932aa19",
+      "rect": [
+        206,
+        555,
+        384,
+        466
+      ],
+      "pivot": [
+        191,
+        458
+      ],
+      "repeat": [
+        0.25,
+        0.455078125
+      ],
+      "offset": [
+        0.13411458333333334,
+        0.0029296875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.835,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 433.89251823369364,
+        "top": 361.6422161684015,
+        "right": 499.2590418388438,
+        "bottom": 423.05293515154546
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-hit.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-hit.png"
+    },
+    {
+      "key": "liara",
+      "pose": "down",
+      "frameId": "liara-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/companion-liara-combat.png",
+      "textureUUID": "9e8f6d91-e8a1-4373-a5cb-abb2f9fa2eb2",
+      "rect": [
+        778,
+        797,
+        711,
+        158
+      ],
+      "pivot": [
+        355,
+        150
+      ],
+      "repeat": [
+        0.462890625,
+        0.154296875
+      ],
+      "offset": [
+        0.5065104166666666,
+        0.0673828125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.245,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 464.6604047282964,
+        "top": 351.79849891035116,
+        "right": 569.3979047282963,
+        "bottom": 369.8172128634892
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-down.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-down.png"
+    },
+    {
+      "key": "tali",
+      "pose": "down",
+      "frameId": "tali-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/companion-tali-combat.png",
+      "textureUUID": "5d80321f-af7c-43ff-af82-fdb09932aa19",
+      "rect": [
+        766,
+        814,
+        700,
+        168
+      ],
+      "pivot": [
+        350,
+        160
+      ],
+      "repeat": [
+        0.4557291666666667,
+        0.1640625
+      ],
+      "offset": [
+        0.4986979166666667,
+        0.041015625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.26,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 415.49946279847063,
+        "top": 404.1138658249818,
+        "right": 518.4161294651373,
+        "bottom": 423.2357663466794
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-liara-tali-down.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-down.png"
+    },
+    {
+      "key": "ashley",
+      "pose": "aim",
+      "frameId": "ashley-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/companion-ashley-combat.png",
+      "textureUUID": "7ee48407-74ab-4c5f-b8ab-fe17114c6fee",
+      "rect": [
+        188,
+        6,
+        446,
+        565
+      ],
+      "pivot": [
+        198,
+        558
+      ],
+      "repeat": [
+        0.2903645833333333,
+        0.5517578125
+      ],
+      "offset": [
+        0.12239583333333333,
+        0.4423828125
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 482.5271033578106,
+        "top": 295.43835166157146,
+        "right": 557.5182538002884,
+        "bottom": 368.9841228988696
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 50,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-aim.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-aim.png"
+    },
+    {
+      "key": "kaidan",
+      "pose": "aim",
+      "frameId": "kaidan-combat-aim",
+      "texture": "http://127.0.0.1:4193/assets/companion-kaidan-combat.png",
+      "textureUUID": "e083f0c0-b7ff-4780-a870-19cebdf9135a",
+      "rect": [
+        191,
+        11,
+        421,
+        559
+      ],
+      "pivot": [
+        201,
+        552
+      ],
+      "repeat": [
+        0.2740885416666667,
+        0.5458984375
+      ],
+      "offset": [
+        0.12434895833333333,
+        0.443359375
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 431.6622223426963,
+        "top": 348.8684585778455,
+        "right": 503.2096284249861,
+        "bottom": 422.41422981514364
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 50,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-aim.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-aim.png"
+    },
+    {
+      "key": "ashley",
+      "pose": "power",
+      "frameId": "ashley-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/companion-ashley-combat.png",
+      "textureUUID": "7ee48407-74ab-4c5f-b8ab-fe17114c6fee",
+      "rect": [
+        910,
+        4,
+        431,
+        593
+      ],
+      "pivot": [
+        190,
+        586
+      ],
+      "repeat": [
+        0.2805989583333333,
+        0.5791015625
+      ],
+      "offset": [
+        0.5924479166666666,
+        0.4169921875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1.049558,
+      "groundAnchorError": 1.8041124150158794e-16,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 483.99338301984017,
+        "top": 291.9881424003229,
+        "right": 556.4624425645281,
+        "bottom": 369.1786949685991
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 52,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-power.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-power.png"
+    },
+    {
+      "key": "kaidan",
+      "pose": "power",
+      "frameId": "kaidan-combat-power",
+      "texture": "http://127.0.0.1:4193/assets/companion-kaidan-combat.png",
+      "textureUUID": "e083f0c0-b7ff-4780-a870-19cebdf9135a",
+      "rect": [
+        936,
+        11,
+        496,
+        583
+      ],
+      "pivot": [
+        196,
+        576
+      ],
+      "repeat": [
+        0.3229166666666667,
+        0.5693359375
+      ],
+      "offset": [
+        0.609375,
+        0.419921875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 1.042934,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 432.6331094145861,
+        "top": 345.90541625784715,
+        "right": 516.9265057782225,
+        "bottom": 422.60880163744747
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 52,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-power.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-power.png"
+    },
+    {
+      "key": "ashley",
+      "pose": "hit",
+      "frameId": "ashley-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/companion-ashley-combat.png",
+      "textureUUID": "7ee48407-74ab-4c5f-b8ab-fe17114c6fee",
+      "rect": [
+        183,
+        573,
+        470,
+        432
+      ],
+      "pivot": [
+        282,
+        425
+      ],
+      "repeat": [
+        0.3059895833333333,
+        0.421875
+      ],
+      "offset": [
+        0.119140625,
+        0.0185546875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.764602,
+      "groundAnchorError": 3.447170978769293e-16,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 468.98743189147797,
+        "top": 313.2561934835462,
+        "right": 548.0140043451817,
+        "bottom": 369.4894372631269
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-hit.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-hit.png"
+    },
+    {
+      "key": "kaidan",
+      "pose": "hit",
+      "frameId": "kaidan-combat-hit",
+      "texture": "http://127.0.0.1:4193/assets/companion-kaidan-combat.png",
+      "textureUUID": "e083f0c0-b7ff-4780-a870-19cebdf9135a",
+      "rect": [
+        168,
+        570,
+        490,
+        437
+      ],
+      "pivot": [
+        292,
+        430
+      ],
+      "repeat": [
+        0.3190104166666667,
+        0.4267578125
+      ],
+      "offset": [
+        0.109375,
+        0.0166015625
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.781753,
+      "groundAnchorError": 4.163336342344337e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 416.78135096093365,
+        "top": 365.424916449284,
+        "right": 500.0550400913684,
+        "bottom": 422.9195437513556
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-hit.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-hit.png"
+    },
+    {
+      "key": "ashley",
+      "pose": "down",
+      "frameId": "ashley-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/companion-ashley-combat.png",
+      "textureUUID": "7ee48407-74ab-4c5f-b8ab-fe17114c6fee",
+      "rect": [
+        786,
+        779,
+        689,
+        189
+      ],
+      "pivot": [
+        344,
+        183
+      ],
+      "repeat": [
+        0.4485677083333333,
+        0.1845703125
+      ],
+      "offset": [
+        0.51171875,
+        0.0546875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.274311,
+      "groundAnchorError": 6.938893903907228e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 469.52442546293287,
+        "top": 349.3708707737162,
+        "right": 564.5245657010281,
+        "bottom": 369.5452848275907
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-down.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-down.png"
+    },
+    {
+      "key": "kaidan",
+      "pose": "down",
+      "frameId": "kaidan-combat-down",
+      "texture": "http://127.0.0.1:4193/assets/companion-kaidan-combat.png",
+      "textureUUID": "e083f0c0-b7ff-4780-a870-19cebdf9135a",
+      "rect": [
+        773,
+        778,
+        700,
+        187
+      ],
+      "pivot": [
+        350,
+        181
+      ],
+      "repeat": [
+        0.4557291666666667,
+        0.1826171875
+      ],
+      "offset": [
+        0.5032552083333334,
+        0.0576171875
+      ],
+      "atlas": {
+        "width": 1536,
+        "height": 1024
+      },
+      "relativeHeight": 0.267143,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "rotationZ": 0,
+      "metadataMatches": true,
+      "sourceAtlasUntouched": true,
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "sourceMapDistinct": true,
+      "projectedBounds": {
+        "left": 419.4578260524716,
+        "top": 403.30830867360766,
+        "right": 514.4578768546105,
+        "bottom": 422.9555466392532
+      },
+      "battleUnchanged": true,
+      "saveUnchanged": true,
+      "drawCalls": 54,
+      "triangles": 7520,
+      "shepardMapUnchanged": true,
+      "screenshot": "docs/screenshots/companion-combat-world-ashley-kaidan-down.png",
+      "passed": true,
+      "archivedScreenshot": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-down.png"
+    }
+  ],
+  "nativeEvents": [
+    {
+      "key": "garrus",
+      "damageOK": true,
+      "damageEvents": [
+        "action",
+        "damage",
+        "defeat"
+      ],
+      "koFrame": "garrus-combat-down",
+      "reviveOK": true,
+      "revivalEvent": true,
+      "aliveFrame": "garrus-combat-aim",
+      "battleUnchangedByRender": true,
+      "powersUnchanged": true
+    },
+    {
+      "key": "wrex",
+      "damageOK": true,
+      "damageEvents": [
+        "action",
+        "damage",
+        "defeat"
+      ],
+      "koFrame": "wrex-combat-down",
+      "reviveOK": true,
+      "revivalEvent": true,
+      "aliveFrame": "wrex-combat-aim",
+      "battleUnchangedByRender": true,
+      "powersUnchanged": true
+    },
+    {
+      "key": "liara",
+      "damageOK": true,
+      "damageEvents": [
+        "action",
+        "damage",
+        "defeat"
+      ],
+      "koFrame": "liara-combat-down",
+      "reviveOK": true,
+      "revivalEvent": true,
+      "aliveFrame": "liara-combat-aim",
+      "battleUnchangedByRender": true,
+      "powersUnchanged": true
+    },
+    {
+      "key": "tali",
+      "damageOK": true,
+      "damageEvents": [
+        "action",
+        "damage",
+        "defeat"
+      ],
+      "koFrame": "tali-combat-down",
+      "reviveOK": true,
+      "revivalEvent": true,
+      "aliveFrame": "tali-combat-aim",
+      "battleUnchangedByRender": true,
+      "powersUnchanged": true
+    },
+    {
+      "key": "ashley",
+      "damageOK": true,
+      "damageEvents": [
+        "action",
+        "damage",
+        "defeat"
+      ],
+      "koFrame": "ashley-combat-down",
+      "reviveOK": true,
+      "revivalEvent": true,
+      "aliveFrame": "ashley-combat-aim",
+      "battleUnchangedByRender": true,
+      "powersUnchanged": true
+    },
+    {
+      "key": "kaidan",
+      "damageOK": true,
+      "damageEvents": [
+        "action",
+        "damage",
+        "defeat"
+      ],
+      "koFrame": "kaidan-combat-down",
+      "reviveOK": true,
+      "revivalEvent": true,
+      "aliveFrame": "kaidan-combat-aim",
+      "battleUnchangedByRender": true,
+      "powersUnchanged": true
+    }
+  ],
+  "priorities": [
+    {
+      "key": "garrus",
+      "impactFrame": "garrus-combat-hit",
+      "downFrame": "garrus-combat-down"
+    },
+    {
+      "key": "wrex",
+      "impactFrame": "wrex-combat-hit",
+      "downFrame": "wrex-combat-down"
+    },
+    {
+      "key": "liara",
+      "impactFrame": "liara-combat-hit",
+      "downFrame": "liara-combat-down"
+    },
+    {
+      "key": "tali",
+      "impactFrame": "tali-combat-hit",
+      "downFrame": "tali-combat-down"
+    },
+    {
+      "key": "ashley",
+      "impactFrame": "ashley-combat-hit",
+      "downFrame": "ashley-combat-down"
+    },
+    {
+      "key": "kaidan",
+      "impactFrame": "kaidan-combat-hit",
+      "downFrame": "kaidan-combat-down"
+    }
+  ],
+  "exploration": [
+    {
+      "key": "garrus",
+      "frame": null,
+      "texture": "http://127.0.0.1:4193/assets/crew-atlas.png",
+      "battleActors": 0,
+      "saveUnchanged": true
+    },
+    {
+      "key": "wrex",
+      "frame": null,
+      "texture": "http://127.0.0.1:4193/assets/crew-atlas.png",
+      "battleActors": 0,
+      "saveUnchanged": true
+    },
+    {
+      "key": "liara",
+      "frame": null,
+      "texture": "http://127.0.0.1:4193/assets/crew-atlas.png",
+      "battleActors": 0,
+      "saveUnchanged": true
+    },
+    {
+      "key": "tali",
+      "frame": null,
+      "texture": "http://127.0.0.1:4193/assets/crew-atlas.png",
+      "battleActors": 0,
+      "saveUnchanged": true
+    },
+    {
+      "key": "ashley",
+      "frame": null,
+      "texture": "http://127.0.0.1:4193/assets/crew-atlas.png",
+      "battleActors": 0,
+      "saveUnchanged": true
+    },
+    {
+      "key": "kaidan",
+      "frame": null,
+      "texture": "http://127.0.0.1:4193/assets/crew-atlas.png",
+      "battleActors": 0,
+      "saveUnchanged": true
+    }
+  ],
+  "scopeClosures": [
+    {
+      "id": "ME3-CHR-GARRUS",
+      "sprite": "garrus",
+      "mediaId": "ME3",
+      "frame": null,
+      "sourceIsCrew": true
+    },
+    {
+      "id": "garrus",
+      "sprite": "garrus",
+      "mediaId": "ME3",
+      "frame": null,
+      "sourceIsCrew": true
+    },
+    {
+      "id": "tali",
+      "sprite": "tali",
+      "periodId": "me2",
+      "frame": null,
+      "sourceIsCrew": true
+    },
+    {
+      "id": "liara",
+      "sprite": "tali",
+      "mediaId": "ME1",
+      "frame": null,
+      "sourceIsCrew": true
+    }
+  ],
+  "captureArtifacts": [
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-aim.png",
+      "bytes": 550436,
+      "sha256": "3c4885e80d9737321f83d35fc571bf4acdacef50d8ad559250f9214f5538c1f4",
+      "originalPath": "docs/screenshots/companion-combat-world-garrus-wrex-aim.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-power.png",
+      "bytes": 555232,
+      "sha256": "2fe333e76f6c8f316cdca2fe841109a09168183d53a45f6ca9715db878cdaeec",
+      "originalPath": "docs/screenshots/companion-combat-world-garrus-wrex-power.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-hit.png",
+      "bytes": 560459,
+      "sha256": "a8a92f64cb9bb2707101eb9145c6e0edb41614116c0b931255455606a7a9d232",
+      "originalPath": "docs/screenshots/companion-combat-world-garrus-wrex-hit.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-down.png",
+      "bytes": 555810,
+      "sha256": "2d1b79bd569bbccf044b9712fcc24be60e4637736faa47317a53e5d9e69f642d",
+      "originalPath": "docs/screenshots/companion-combat-world-garrus-wrex-down.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-garrus-wrex-exploration.png",
+      "bytes": 570521,
+      "sha256": "1668e9a7d1db5c155cd00c3f8548c923ebd8997b5949c5d78a8b874f18a1693b",
+      "originalPath": "docs/screenshots/companion-combat-world-garrus-wrex-exploration.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-aim.png",
+      "bytes": 547365,
+      "sha256": "8e1f5552eaf0460429d8b9ca2eb58c9717383ab943362c205d7e301c6cfe07b8",
+      "originalPath": "docs/screenshots/companion-combat-world-liara-tali-aim.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-power.png",
+      "bytes": 554232,
+      "sha256": "7f47c60ece294e984f362368a766603b2daa9ef18069d6aa3d6af84a4a8d3cb8",
+      "originalPath": "docs/screenshots/companion-combat-world-liara-tali-power.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-hit.png",
+      "bytes": 559458,
+      "sha256": "83d8000a3b3e76cdc33ae47f04e1ac712043ab5298ced1c3f6115f224e180e24",
+      "originalPath": "docs/screenshots/companion-combat-world-liara-tali-hit.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-down.png",
+      "bytes": 555299,
+      "sha256": "5ca90814c369216070a7bce59bd68f2d790a50d222f3de406e03dc97825d523f",
+      "originalPath": "docs/screenshots/companion-combat-world-liara-tali-down.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-liara-tali-exploration.png",
+      "bytes": 572445,
+      "sha256": "0dd52f8f840772130d92c0a093444a5ba94e3df8ef762166876d4493ec76d7dc",
+      "originalPath": "docs/screenshots/companion-combat-world-liara-tali-exploration.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-aim.png",
+      "bytes": 548301,
+      "sha256": "a2a0a86032028724bcc77785e4718659f5895e1c7c0e611812544fb74193e61b",
+      "originalPath": "docs/screenshots/companion-combat-world-ashley-kaidan-aim.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-power.png",
+      "bytes": 554821,
+      "sha256": "993d20719378baf36918fd7b729d663733974d17efbf8ec9b659738ed252790e",
+      "originalPath": "docs/screenshots/companion-combat-world-ashley-kaidan-power.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-hit.png",
+      "bytes": 560648,
+      "sha256": "87fbf58e60bf964d514c1472717d551011bde3db42898f225a90eec48fdb0531",
+      "originalPath": "docs/screenshots/companion-combat-world-ashley-kaidan-hit.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-down.png",
+      "bytes": 555883,
+      "sha256": "bc285f233639777ad762b2a04ea9db561b3fda76c08ec0443486dc6d0647cbcf",
+      "originalPath": "docs/screenshots/companion-combat-world-ashley-kaidan-down.png"
+    },
+    {
+      "path": "docs/qa/companion-combat-world-attempt-1/companion-combat-world-ashley-kaidan-exploration.png",
+      "bytes": 570400,
+      "sha256": "6e69dfcf7ba6c9c7a8b210469b4807195d58e372d7e94cbe5d9b8b3b99e9c731",
+      "originalPath": "docs/screenshots/companion-combat-world-ashley-kaidan-exploration.png"
+    }
+  ],
+  "servedAssets": [
+    {
+      "path": "public/assets/companion-ashley-combat.png",
+      "status": 200,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    {
+      "path": "public/assets/companion-kaidan-combat.png",
+      "status": 200,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    {
+      "path": "public/assets/companion-garrus-combat.png",
+      "status": 200,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    {
+      "path": "public/assets/companion-tali-combat.png",
+      "status": 200,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    {
+      "path": "public/assets/companion-wrex-combat.png",
+      "status": 200,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    {
+      "path": "public/assets/companion-liara-combat.png",
+      "status": 200,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "assetErrors": [],
+  "viewport": {
+    "width": 1280,
+    "height": 800,
+    "deviceScaleFactor": 1
+  },
+  "node": "v24.19.0",
+  "chromium": "154.0.8037.57",
+  "appBefore": {
+    "state": null,
+    "storage": {}
+  },
+  "fallbackBeforeLoad": {
+    "frame": null,
+    "visible": true,
+    "opacity": 1
+  },
+  "applicationPreserved": true,
+  "archive": {
+    "originalReportSha256": "c6ce6ed1852337d391bd98a549e9f65eb01e47f748400d173828c984d82390ea",
+    "runnerPath": "docs/qa/companion-combat-world-attempt-1/runner.mjs",
+    "reason": "Technical assertions passed, but transient native impact effects partially obscured KO poses. Final runner waits for actual visual effects to expire before measuring and capturing the maintained pose."
+  }
+}

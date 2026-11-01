@@ -12,7 +12,8 @@ const freeze = value => {
 const definitions = [
   { id: 'me2-legendary-equipment-workshop', mediaId: 'ME2', editionEquipmentProfile: 'legendary',
     name: 'ME2 — atelier des équipements Legendary Edition',
-    additionalEquipmentIds: ['ME2-EQP-KESTREL', 'ME2-EQP-CERBERUS', 'ME2-EQP-COLLECTOR', 'ME2-EQP-TERMINUS', 'ME2-EQP-BLOOD-DRAGON', 'ME2-EQP-INFERNO'],
+    additionalEquipmentIds: ['ME2-EQP-KESTREL', 'ME2-EQP-CERBERUS', 'ME2-EQP-COLLECTOR', 'ME2-EQP-TERMINUS', 'ME2-EQP-BLOOD-DRAGON', 'ME2-EQP-INFERNO',
+      'ME2-WPN-PHALANX', 'ME2-WPN-LOCUST', 'ME2-WPN-MATTOCK', 'ME2-WPN-EVISCERATOR', 'ME2-WPN-INCISOR'],
     contentCondition: 'Legendary Edition de ME2 et contenus d’équipement correspondants supposés présents dans cet état de test.' },
   { id: 'me3-legendary-equipment-workshop', mediaId: 'ME3', editionEquipmentProfile: 'legendary',
     name: 'ME3 — atelier des équipements Legendary Edition',

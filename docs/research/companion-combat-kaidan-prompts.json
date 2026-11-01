@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "characterId": "kaidan",
+  "mediaId": "ME1",
+  "tool": "image_gen.imagegen",
+  "transparentBackground": true,
+  "baselineCommit": "105d037",
+  "requests": [
+    {
+      "attempt": 1,
+      "prompt": "EDIT THE PROVIDED REFERENCE into a production 2D HD combat sprite sheet for a French Mass Effect 1 fan RPG. The reference crew-atlas.png is 1536x1024 with 8 people. Select ONLY KAIDAN ALENKO, the human man in the THIRD cell of the TOP row, pixel rectangle x768 y0 width384 height512. Do not depict any of the other seven characters. Preserve that Kaidan identity: adult athletic realistic human male, warm olive skin, short dark brown-black hair swept upward at front, clean-shaven serious face, navy-blue and muted blue-grey Alliance military armor with pale scuffed steel-blue shoulder, forearm and knee plates, charcoal flexible undersuit, black armored boots. Preserve his existing ME1 costume from this reference. NO Shepard N7 insignia or red-white stripes, NO later ME3 blue-officer redesign, no new emblems or helmet.\nCreate ONE transparent RGBA landscape atlas, ideally 1536x1024, FOUR separate full-body key poses of the SAME Kaidan, arranged as a generous separated 2x2 sheet. Top left: AIM — three-quarter facing right, stable feet, holding and aiming a compact generic science-fiction pistol toward right with two hands. Top right: POWER — same three-quarter body, one hand extended in a neutral tech/biotic-action gesture, the pistol safely lowered in the other hand; no visible glow or energy effect, the gesture itself is all that is drawn. Bottom left: HIT — same armor and identity, recoiling backward from a non-graphic impact, knees flexed, entire body and both boots visible, not sitting. Bottom right: DOWN — the same fully armored body lying horizontally on its side, head to the left and boots to the right, harmless knocked-out pose, no injury or blood. Maintain the SAME man's anatomy, head, exact armor panel design and palette in every frame, not four different men. Use at least 25px transparent outer padding around every figure and clear empty gutters between figures. All entire heads, fingers, boots and weapons stay inside their individual separated areas; no overlapping figures or cropped edges. Standing poses use consistent anatomical scale and realistic adult proportions. Down pose must keep the same body proportions and not become a tiny icon. Fixed orthographic three-quarter camera, soft top-left diffuse studio light, detailed pre-rendered HD JRPG sprite art, material rendering and clean silhouette matching the source. Isolated figures on TRUE transparent background, no painted checkerboard, no floor or cast shadow plate, no vignette, colored backdrop, text, pose labels, frame borders, UI, signatures, watermark or incorporated VFX. This is four fixed prototype key poses, not a complete animation. Return the generated PNG unchanged for direct integration.",
+      "referencePaths": [
+        "public/assets/crew-atlas.png"
+      ],
+      "outputFile": "exec-add2036b-6747-4136-866f-0e6e7d526aea.png",
+      "selected": false,
+      "rejectionReason": "Visible pixels of aim and hit overlap their rectangular crops."
+    },
+    {
+      "attempt": 2,
+      "prompt": "RELAY CHRONICLES — correct atlas layout while preserving the same Kaidan Alenko ME1 identity and armor. Image1 is crew-atlas.png: Kaidan is ONLY the THIRD human in the TOP row (blue-grey Alliance armor, dark hair). Image2 is the first four-pose Kaidan draft. The draft's upper-left aim and lower-left impact bounding boxes overlap. Regenerate a cleanly separated full-body sprite atlas with NO overlap of any pose's rectangular bounding box.\nUse a NEW LAYOUT: THREE standing poses side-by-side across the TOP 70 percent of a 1536x1024 landscape canvas, then ONE horizontal down pose centered across the BOTTOM 24 percent. Empty transparent horizontal gutter from y720 through y770; all top-row boot soles MUST end above y710, all down-pose pixels MUST start below y790. Top three cells are left x0–511 AIM, center x512–1023 POWER, right x1024–1535 HIT, each with at least 28px empty side padding and complete bodies. Keep all pixels away from the canvas edge. Bottom lying body head to left, feet right, entirely below y790 and above y1000. Use realistic consistent adult body proportions. Standing figures height about640px, down figure body length about800px, body thickness about170px.\nSUBJECT in every pose: the SAME adult olive-skinned clean-shaven dark-haired human male Kaidan from the ME1 reference, navy-blue and muted blue-grey military armor with scuffed pale steel-blue shoulder/forearm/knee panels, charcoal undersuit, black armored boots. Preserve the original game's costume, face and materials; NO Shepard N7 badge or red-white stripes, no ME3 variant. AIM pose holds a compact generic sci-fi PISTOL toward the right with both hands. POWER pose extends one hand in a neutral action gesture with pistol lowered in other hand; absolutely no incorporated biotic, magic or technological VFX. HIT pose recoils from non-graphic impact, entire body visible. DOWN pose is the same body lying on its side, harmless knocked-out, no blood or wounds. All poses use fixed orthographic three-quarter view, softly lit from top-left, detailed pre-rendered HD JRPG sprite rendering coherent with the reference. Native RGBA transparent background; no colored backdrop, no painted checkerboard, no floor, cast shadow plate, vignetting, text, labels, borders, UI, watermarks, detached parts or extra people. Four separate fixed prototype poses only. Return the complete newly generated atlas PNG unchanged; do not composite the earlier incorrect layout.",
+      "referencePaths": [
+        "public/assets/crew-atlas.png",
+        "exec-add2036b-6747-4136-866f-0e6e7d526aea.png"
+      ],
+      "outputFile": "exec-822b58d6-685f-4c7c-9948-6a0a4de6655f.png",
+      "selected": false,
+      "rejectionReason": "Visible pixels of the middle power and right hit pose still overlap their rectangular crops."
+    },
+    {
+      "attempt": 3,
+      "prompt": "Create ONE cleanly separated transparent combat sprite atlas for KAIDAN ALENKO from MASS EFFECT 1, preserving the existing project reference. Image1 is crew-atlas.png: Kaidan is ONLY the THIRD person in the TOP row, rectangle [768,0,384,512], adult human male with short dark hair, olive skin, clean-shaven face, navy and blue-grey Alliance armor, pale scuffed steel-blue plates, black undersuit and armored boots. Image2 is the Ashley combat atlas: use ONLY its FOUR-POSE COMPOSITION and rendering family, NEVER its female identity, white/pink armor or rifle. Draw Kaidan in his ME1 blue-grey armor in all four poses; no N7 lettering, no red/white Shepard stripe and no later ME3 costume.\nCRITICAL GAME IMPORT REQUIREMENT: Each entire figure must fit inside its own RECTANGULAR SAFE AREA. Native output should be1536x1024 RGBA. Preserve LARGE EMPTY transparent gutters and unused space. Do not enlarge figures to fill the canvas. Use a 2x2 arrangement with these maximum safe areas: AIM top-left x90..650 y40..470; POWER top-right x850..1450 y40..470; HIT bottom-left x90..650 y560..990; DOWN bottom-right x850..1450 y730..960. Absolutely no character, weapon, finger, shadow or limb may escape its own safe rectangle. In particular no top-row boots below y470, no lower-left head or hand above y560; this leaves a90px empty horizontal gutter. The DOWN pose must lie entirely to the right of x850, without reaching the lower-left figure. The three standing figures are about420px tall and need not fill their wide cells. Four full bodies only, no borders or labels.\nAIM: Kaidan standing in three-quarter facing right, compact generic sci-fi PISTOL held with both hands aiming right. POWER: same man, same armor, neutral open-hand action gesture, pistol lowered in the other hand, no glow, energy or incorporated VFX. HIT: same man fully visible, knees flexed and torso recoiling from a harmless non-graphic impact. DOWN: same armored body lying on its side horizontally, head left and boots right; harmless knocked-out pose, no wounds or blood. Keep consistent adult anatomy, head, costume panels, face, palette and soft top-left studio lighting. Detailed pre-rendered HD JRPG sprite style coherent with the references. Use TRUE native transparent background; no painted checkerboard, scenery, floor, cast shadow plate, vignette, text, logos, UI, watermarks, detached parts or extra characters. This is four fixed prototype poses, not a complete animation. Return the resulting PNG unchanged.",
+      "referencePaths": [
+        "public/assets/crew-atlas.png",
+        "public/assets/companion-ashley-combat.png"
+      ],
+      "outputFile": "exec-07a13a87-b9ed-49bb-96dc-1b0bee3e875d.png",
+      "selected": true
+    }
+  ],
+  "notes": [
+    "Exact prompts retained; PNG outputs are copied byte for byte without pixel editing.",
+    "Generated identity/costume derives from the existing project prototype, not a newly certified original game model."
+  ]
+}

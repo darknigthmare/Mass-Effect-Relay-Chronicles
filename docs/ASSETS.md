@@ -22,8 +22,14 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `arsenal-opponents.png` | 1536 × 1024 | Six silhouettes d’adversaires, dont deux boss | Références et portraits de combat dans leurs seuls bancs autorisés |
 | `arsenal-equipment.png` | 1536 × 1024 | Deux armes, deux costumes et deux modules | Illustrations fixes des dossiers et préparations compatibles |
 | `arsenal-fleet.png` | 1536 × 1024 | Trois véhicules et trois vaisseaux | Références documentaires uniquement, sans pilotage |
+| `companion-ashley-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat d’Ashley ME1 |
+| `companion-kaidan-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Kaidan ME1 |
+| `companion-garrus-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Garrus ME1 |
+| `companion-tali-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Tali ME1 |
+| `companion-wrex-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Wrex ME1 |
+| `companion-liara-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Liara ME1 |
 
-Les **seize PNG courants** comprennent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et le nouvel atlas de **quatre poses de combat masculines**. Les deux apparences disposent donc de huit poses clés de combat au total. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **22 PNG courants** comprennent les seize images précédentes et les six atlas de compagnons. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard et les 24 des compagnons portent le total à **32 poses clés de combat**. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -72,7 +78,7 @@ Le complément équipement conserve les dix PNG et les animations de 0.2.0. Il a
 
 Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne remplacent pas la géométrie des bâtiments, sols, coursives, volumes et routes. Les silhouettes conservent un seuil alpha de 0,2 pour limiter les franges de transparence. La taille et les proportions du plan dépendent du type d’atlas, notamment pour les boss.
 
-Shepard dispose d’une animation par images ; les compagnons et les ennemis utilisent encore leurs poses de base avec transformations procédurales. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
+Shepard dispose d’une animation par images. Les six compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Les ennemis gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
 
 La variante féminine sélectionnable utilise deux atlas propres. Les rectangles et pivots sont décrits dans `shepard-female-animation.json`, puis inclus dans le JavaScript compilé pour fonctionner aussi avec le chargement local d’Electron. La marche garde la dernière direction à l’arrêt, utilise sept images par seconde et accélère pendant la course. En combat, les événements déclenchent les poses de visée, pouvoir et impact ; la pose couchée dispose d’une hauteur et d’un pivot spécifiques. Il s’agit de quatre poses clés, pas de quatre cycles complets.
 
@@ -138,6 +144,14 @@ Les [manuels inspectés et leurs limites](research/arsenal-visual-sources.md) ne
 Le nouvel atlas conserve l’identité visuelle N7 de l’atlas de marche masculin. Ses quatre rectangles irréguliers, pivots et hauteurs sont définis dans `shepard-male-animation.json` et repris par le manifeste. Le sprite de repli demeure disponible pendant le chargement. L’atelier affiche les mêmes poses avec un angle trois-quarts fixe et une échelle commune ; la pose couchée reste près du sol. Les régions de tête et leur axe sont partagés avec le traitement des couleurs et du casque, également appliqué aux quatre poses féminines existantes.
 
 Le PNG de génération est copié sans retouche de pixels. Les [références, prompts et limites](research/shepard-male-combat-art.md), le [contrôle de l’alpha et des cadrages](qa/shepard-combat-art-report.json) et le [rapport de livraison](qa/shepard-combat-poses-report.json) documentent ce lot. Les poses restent fixes et le fusil illustré reste générique ; les transitions, vues supplémentaires et variantes exactes d’équipement restent à produire. Les anciens nombres de PNG mentionnés dans les rapports historiques décrivent leur version propre.
+
+## Six compagnons ME1 — 1er novembre 2026
+
+Six PNG natifs de 1536 × 1024 ajoutent **24 poses clés** pour Ashley, Kaidan, Garrus, Tali, Wrex et Liara. Les seize PNG précédents sont conservés. Le manifeste principal compte désormais **32 poses clés de combat**, avec les huit de Shepard. Les six familles restent Prototype ; les métriques de personnages et de marche ne sont pas gonflées par ces nouveaux dessins.
+
+Le renderer utilise des rectangles et pivots mesurés pour visée, action, impact et hors combat. Le KO a priorité sur les événements et le retour à la vie revient à la visée. Les identités, sprites, équipes et contextes sont vérifiés : les homonymes ME2/ME3 et les identités falsifiées n’utilisent pas ces atlas. Les textures UV de chaque acteur restent distinctes ; les sprites de terrain et les couleurs/casque de Shepard sont conservés.
+
+Les [références, prompts et limites artistiques](research/companion-combat-art.md), le [contrôle technique des six atlas](qa/companion-combat-art-report.json) et les [preuves de livraison](qa/companion-combat-report.json) délimitent les validations. Les PNG sont copiés sans retouche ; leurs très faibles franges d’alpha restent documentées. Les armes illustrées sont génériques, les transitions et autres directions manquent. Aucun modèle original complet, nouvelle armure équipable, animation intégrale ou fidélité 1:1 n’est certifié par ces 24 poses.
 
 ## Critères d’acceptation de l’art final
 

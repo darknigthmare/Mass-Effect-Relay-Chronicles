@@ -1,0 +1,2537 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-11-01T01:32:05.703Z",
+  "passed": true,
+  "baselineCommit": "105d03727dc51c6121ed1bd2811b0146d047cbb2",
+  "sourceHead": "105d03727dc51c6121ed1bd2811b0146d047cbb2",
+  "url": "http://127.0.0.1:4194/?qa=",
+  "buildKind": "production-dist",
+  "scope": "Three public ME1 squad journeys: Garrus/Wrex, Liara/Tali and Ashley/Kaidan. Explicit Node-prepared fixtures place all six recruited companions after Therum and before Virmire. The browser selects each pair aboard Normandy, imports a separately declared Feros deployment, issues real native shots and compares actual exported saves after public reload/Continue in one browser process. A final complete Chromium shutdown/restart verifies the final party, loadout, inventory and journal through public UI only: no download after that restart is claimed. Current system Chromium154 crashes on a minimal Blob download after restart without this game; that isolated runtime diagnostic is preserved. This journey does not force all24 poses, certify1:1 likeness or claim played-through recruitment.",
+  "command": {
+    "script": "node scripts/companion-combat-production.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4194/?qa=",
+      "COMPANION_BASE_MAIN": "105d03727dc51c6121ed1bd2811b0146d047cbb2",
+      "PLAYWRIGHT_EXECUTABLE_PATH": "/usr/bin/chromium"
+    }
+  },
+  "profile": {
+    "fresh": true,
+    "path": "/workspace/Mass-Effect-Relay-Chronicles/test-results/companion-combat-production-profile-J56NsZ",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "launches": 2,
+    "completeShutdowns": 2
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "chromium": "154.0.8037.57"
+  },
+  "sources": {
+    "src/world.js": "d5ba3f50175b7695389f9545e66e61ebdaa123b7c2503c93713c4aaf9e97b3d6",
+    "src/main.js": "2e7ba37616c750ed0d16868ae00e60e15c712c3a346bc595048eba59030ca79e",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/story.js": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "vite.config.js": "1357101b39988bc33ffb5dbc452aa7a8a9a35ad1e05093cb96ced1c46b6756e3",
+    "scripts/companion-combat-production.mjs": "64268089b42ea3e83958a6be352ecc4e2ea3f363f82db8a9290f854d729b2d0d",
+    "public/assets/companion-garrus-animation.json": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b",
+    "public/assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "public/assets/companion-wrex-animation.json": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702",
+    "public/assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "public/assets/companion-liara-animation.json": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef",
+    "public/assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+    "public/assets/companion-tali-animation.json": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812",
+    "public/assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "public/assets/companion-ashley-animation.json": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022",
+    "public/assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "public/assets/companion-kaidan-animation.json": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b",
+    "public/assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+  },
+  "buildFiles": {
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-CcmJ23AA.js": {
+      "bytes": 26590,
+      "sha256": "f2bf889914b3734f6f6a96f632b4757ab3e805075755f58c886914b2c7cee0e1"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuity-BMDjqG8O.js": {
+      "bytes": 5783,
+      "sha256": "190fae9293349adfb3e867b5b8747d8fd198a6cf5ee7885d9e2bed076da33621"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/expansion-C7DixTHW.js": {
+      "bytes": 162056,
+      "sha256": "4915905c1cae60659c7a843f15462b6751b95eb2e4716ec9bc8e2e7ed14cdc4f"
+    },
+    "assets/index-lnZlHzHI.css": {
+      "bytes": 62382,
+      "sha256": "7b07acfb6ef0404095f4d4e625d2d319ee440af4bddd641d2c8fe573937879e2"
+    },
+    "assets/index-Sj4igwqD.js": {
+      "bytes": 405435,
+      "sha256": "736e600745fa332f713834d1d39d06db6f844cdd8b32eb0433ae2f5fe169b316"
+    },
+    "assets/manifest.json": {
+      "bytes": 40304,
+      "sha256": "81f2a59bec448d6334dd750b52f87118dc7d9ad630b41ca43017899dc7d489fe"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-DyDnihTw.js": {
+      "bytes": 525536,
+      "sha256": "ab30f47d09df906cf8e1ecc7ea39771658a550cd5b8cc15fd923050264d8afe2"
+    },
+    "assets/universe-actors-5oo488nS.js": {
+      "bytes": 43893,
+      "sha256": "9d5928ec612b930c0b659710f0d68a2601bf6c5ac1044ad32b257e9e2a932b53"
+    },
+    "assets/universe-data-wHAUnKi1.js": {
+      "bytes": 3313867,
+      "sha256": "5fe2c18928d6594f886c3dbaff134d4b665cce0505eef9aca6a46204818d84b2"
+    },
+    "assets/universe-equipment-Dx_FATq7.js": {
+      "bytes": 15878,
+      "sha256": "9febe70459cf93d1dd7d31d9e7a36c1e1fbb78f7dfeb1d4d6e75062f8a7eb84d"
+    },
+    "assets/universe-ui-CcnUo4Uq.css": {
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    "assets/universe-ui-DvD_yY2L.js": {
+      "bytes": 52649,
+      "sha256": "55171bbc7c021021eab7d6189fb18664f0180de863b2ae7ec4456a9cc545769e"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "78ae547a4d4add6d14d77aa4833ecb71dc074d57df3d2202d7b5cfdeb508abb2"
+    }
+  },
+  "servedFiles": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 660,
+      "sha256": "78ae547a4d4add6d14d77aa4833ecb71dc074d57df3d2202d7b5cfdeb508abb2",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/index-Sj4igwqD.js",
+      "status": 200,
+      "bytes": 405435,
+      "sha256": "736e600745fa332f713834d1d39d06db6f844cdd8b32eb0433ae2f5fe169b316",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/three-DyDnihTw.js",
+      "status": 200,
+      "bytes": 525536,
+      "sha256": "ab30f47d09df906cf8e1ecc7ea39771658a550cd5b8cc15fd923050264d8afe2",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/index-lnZlHzHI.css",
+      "status": 200,
+      "bytes": 62382,
+      "sha256": "7b07acfb6ef0404095f4d4e625d2d319ee440af4bddd641d2c8fe573937879e2",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-garrus-combat.png",
+      "status": 200,
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-wrex-combat.png",
+      "status": 200,
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-liara-combat.png",
+      "status": 200,
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-tali-combat.png",
+      "status": 200,
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-ashley-combat.png",
+      "status": 200,
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 200,
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+      "matchesDist": true
+    }
+  ],
+  "fixtures": [
+    {
+      "label": "initial-normandy",
+      "path": "docs/qa/companion-combat-production-initial-normandy-fixture.json",
+      "bytes": 3435,
+      "sha256": "dc1d4ea9e982ad91adf860ab49fcf265cc116ad8d96d4b6bfda8d7dbb14b273c",
+      "origin": "Explicit Node setup using newGame and native recordVisit/winEncounter/completeZone/recruit for Eden Prime, Citadel and Therum. These campaign events and recruitments are NOT claimed as played in Chromium.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "normandy",
+      "position": null,
+      "completed": [
+        "eden-prime",
+        "citadel",
+        "therum"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex",
+        "liara"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "garrus-wrex-feros",
+      "path": "docs/qa/companion-combat-production-garrus-wrex-feros-fixture.json",
+      "bytes": 3456,
+      "sha256": "a15409968ff454cf76c5ceb4f9bfaf2610ab16ac09d6df1379b2a641396306f0",
+      "origin": "Separately declared Feros encounter1 deployment based on the latest real selected-squad export; only zone and position changed in Node. Therum stays completed and all six companions remain recruited before Virmire.",
+      "party": [
+        "shepard",
+        "garrus",
+        "wrex"
+      ],
+      "zone": "feros",
+      "position": {
+        "x": 5,
+        "z": 6
+      },
+      "completed": [
+        "eden-prime",
+        "citadel",
+        "therum"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex",
+        "liara"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "garrus-wrex-return-normandy",
+      "path": "docs/qa/companion-combat-production-garrus-wrex-return-normandy-fixture.json",
+      "bytes": 3458,
+      "sha256": "4239dd4fc0e8aaba7066a8dd612ee9da9119965980707b0576d5f80972e81505",
+      "origin": "Explicit Node return to Normandy based on the latest real pre-combat recovery export; no mission reward or recruitment added.",
+      "party": [
+        "shepard",
+        "garrus",
+        "wrex"
+      ],
+      "zone": "normandy",
+      "position": null,
+      "completed": [
+        "eden-prime",
+        "citadel",
+        "therum"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex",
+        "liara"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "liara-tali-feros",
+      "path": "docs/qa/companion-combat-production-liara-tali-feros-fixture.json",
+      "bytes": 3463,
+      "sha256": "4fb6a24b019a8d12919dacc2523d336b6a492fcbfbb416db6bc9e8033d156558",
+      "origin": "Separately declared Feros encounter1 deployment based on the latest real selected-squad export; only zone and position changed in Node. Therum stays completed and all six companions remain recruited before Virmire.",
+      "party": [
+        "shepard",
+        "liara",
+        "tali"
+      ],
+      "zone": "feros",
+      "position": {
+        "x": 5,
+        "z": 6
+      },
+      "completed": [
+        "eden-prime",
+        "citadel",
+        "therum"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex",
+        "liara"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "liara-tali-return-normandy",
+      "path": "docs/qa/companion-combat-production-liara-tali-return-normandy-fixture.json",
+      "bytes": 3457,
+      "sha256": "36f9a26cd1adc1c3eafd5207fee509a6352141cee229aefe960a3b26c67d0150",
+      "origin": "Explicit Node return to Normandy based on the latest real pre-combat recovery export; no mission reward or recruitment added.",
+      "party": [
+        "shepard",
+        "liara",
+        "tali"
+      ],
+      "zone": "normandy",
+      "position": null,
+      "completed": [
+        "eden-prime",
+        "citadel",
+        "therum"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex",
+        "liara"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "ashley-kaidan-feros",
+      "path": "docs/qa/companion-combat-production-ashley-kaidan-feros-fixture.json",
+      "bytes": 3466,
+      "sha256": "6111ae386cab18e01e6861d09d970d719af78db9bb2ec373f4081980a2eeabb6",
+      "origin": "Separately declared Feros encounter1 deployment based on the latest real selected-squad export; only zone and position changed in Node. Therum stays completed and all six companions remain recruited before Virmire.",
+      "party": [
+        "shepard",
+        "ashley",
+        "kaidan"
+      ],
+      "zone": "feros",
+      "position": {
+        "x": 5,
+        "z": 6
+      },
+      "completed": [
+        "eden-prime",
+        "citadel",
+        "therum"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex",
+        "liara"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "garrus-wrex-before-selection",
+      "path": "docs/qa/companion-combat-production-garrus-wrex-before-selection-save.json",
+      "sha256": "62ebc3c530d426616e93f54b4b7e7988ed1bc9858c4a16c781f899f6cc6feebd",
+      "bytes": 3463,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "5d8e9a00137c78dac177a69fe401e47f464b18a1da101c55464d20290d45725e"
+    },
+    {
+      "label": "garrus-wrex-selected",
+      "path": "docs/qa/companion-combat-production-garrus-wrex-selected-save.json",
+      "sha256": "f49c6239a001b63c946839c5cb8b72a8fb5256b5ae8725f755d73c21d77d28cd",
+      "bytes": 3460,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "garrus",
+        "wrex"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "6ca97e113f6a27022162e171c992656b2acf7f61d426fa5a573dbb92752cdd71"
+    },
+    {
+      "label": "garrus-wrex-precombat",
+      "path": "docs/qa/companion-combat-production-garrus-wrex-precombat-save.json",
+      "sha256": "2214b9a60c078c9e318f6eccf7b7822e578f961c13bc64fa445c7c6f43b57e98",
+      "bytes": 3464,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "garrus",
+        "wrex"
+      ],
+      "zone": "feros",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "3325f740379df2f77e51cb1ae683feb0ca7246b9f03f2d0b195fe13e1bc9dde7"
+    },
+    {
+      "label": "garrus-wrex-precombat-resumed",
+      "path": "docs/qa/companion-combat-production-garrus-wrex-precombat-resumed-save.json",
+      "sha256": "337042fd74a10591c50928ca0cf5162a6a0d0a0f2237a4c5fbfcce30110e7acb",
+      "bytes": 3464,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "garrus",
+        "wrex"
+      ],
+      "zone": "feros",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "3325f740379df2f77e51cb1ae683feb0ca7246b9f03f2d0b195fe13e1bc9dde7"
+    },
+    {
+      "label": "liara-tali-before-selection",
+      "path": "docs/qa/companion-combat-production-liara-tali-before-selection-save.json",
+      "sha256": "c7d006b898d6b8469f6928c5b2ad2ab67f402b28c4bd55c0d3b72d2461c2196e",
+      "bytes": 3468,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "garrus",
+        "wrex"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "5969234bdea84fd7179de4cd4994069de5fa9e5c45acc1932f080e6939092236"
+    },
+    {
+      "label": "liara-tali-selected",
+      "path": "docs/qa/companion-combat-production-liara-tali-selected-save.json",
+      "sha256": "877d389741be0ca4bc82add2e29008c4dd166e0212c63677bb911121ca960779",
+      "bytes": 3467,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "liara",
+        "tali"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "9617f7deac3807252efc99e53ab9be55e93b97a302be6d62e0775ce202949fc6"
+    },
+    {
+      "label": "liara-tali-precombat",
+      "path": "docs/qa/companion-combat-production-liara-tali-precombat-save.json",
+      "sha256": "8806d6e37db1586298cedae7ac0843e10567e7ef81d61fbe0e6db98501b03583",
+      "bytes": 3463,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "liara",
+        "tali"
+      ],
+      "zone": "feros",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "1839861216361efeb31ec364a4813a5e42d17a6a6111c6065f67706509576bee"
+    },
+    {
+      "label": "liara-tali-precombat-resumed",
+      "path": "docs/qa/companion-combat-production-liara-tali-precombat-resumed-save.json",
+      "sha256": "0c047ed77a822e16290c849612853877931162fcaa185eddb4527dadf34058e5",
+      "bytes": 3463,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "liara",
+        "tali"
+      ],
+      "zone": "feros",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "1839861216361efeb31ec364a4813a5e42d17a6a6111c6065f67706509576bee"
+    },
+    {
+      "label": "ashley-kaidan-before-selection",
+      "path": "docs/qa/companion-combat-production-ashley-kaidan-before-selection-save.json",
+      "sha256": "ccc5411bc819bc8077b5b5da09e3d606760244946031c346669555ad72ffa3ca",
+      "bytes": 3467,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "liara",
+        "tali"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "9617f7deac3807252efc99e53ab9be55e93b97a302be6d62e0775ce202949fc6"
+    },
+    {
+      "label": "ashley-kaidan-selected",
+      "path": "docs/qa/companion-combat-production-ashley-kaidan-selected-save.json",
+      "sha256": "417cdc325a37d5616dd4ca7b2c27d4d72615ebeedd9b17639a077d0516c01999",
+      "bytes": 3470,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "ashley",
+        "kaidan"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "0e772dbb6b1f36854eb835b34043e38227c415ae9cd8e94844c4e169b3e8be54"
+    },
+    {
+      "label": "ashley-kaidan-precombat",
+      "path": "docs/qa/companion-combat-production-ashley-kaidan-precombat-save.json",
+      "sha256": "da7296b3b0ab4aa6bea5461e71df5cb1af7ca7e710f5083d4c65d1b6576f11ea",
+      "bytes": 3465,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "ashley",
+        "kaidan"
+      ],
+      "zone": "feros",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "d1c52ee2a9d4178f54a5b2afe264bfafb202c8b7881108d470f1675563fb74ec"
+    },
+    {
+      "label": "ashley-kaidan-precombat-resumed",
+      "path": "docs/qa/companion-combat-production-ashley-kaidan-precombat-resumed-save.json",
+      "sha256": "9554ac05b3be24881ef6b187c62e1da67e3da9c18bc7e0f0d8e7ea2721e2c916",
+      "bytes": 3466,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "ashley",
+        "kaidan"
+      ],
+      "zone": "feros",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "d1c52ee2a9d4178f54a5b2afe264bfafb202c8b7881108d470f1675563fb74ec"
+    }
+  ],
+  "squads": [
+    {
+      "pair": [
+        "garrus",
+        "wrex"
+      ],
+      "selectionExportPreservedExceptPartyAndElapsedTime": true,
+      "selectedExportValidated": true,
+      "firstFerosArrival": "Only the native recordVisit transition is expected at first arrival, before the pre-combat baseline is exported.",
+      "nativeCompanionShots": [
+        {
+          "pair": "garrus-wrex",
+          "actorId": "garrus",
+          "actionId": "shoot",
+          "targetId": "geth-0",
+          "atbBefore": 100,
+          "atbAfter": 0,
+          "targetTextBefore": "Soldat geth",
+          "publicLogAfter": "QA compagnons ME1 : Couverture.\n\nGarrus Vakarian : Tir contrôlé.\n\nSoldat geth subit 36 dégâts (35 sur les boucliers).",
+          "nativeActivation": true,
+          "requiredCompanion": true
+        },
+        {
+          "pair": "garrus-wrex",
+          "actorId": "wrex",
+          "actionId": "shoot",
+          "targetId": "geth-0",
+          "atbBefore": 100,
+          "atbAfter": 0,
+          "targetTextBefore": "Soldat geth",
+          "publicLogAfter": "Soldat geth subit 36 dégâts (35 sur les boucliers).\n\nUrdnot Wrex : Tir contrôlé.\n\nSoldat geth subit 33 dégâts.",
+          "nativeActivation": true,
+          "requiredCompanion": true
+        }
+      ],
+      "precombatReloadExactExceptElapsedTime": true,
+      "noBattleRewardClaimed": true
+    },
+    {
+      "pair": [
+        "liara",
+        "tali"
+      ],
+      "selectionExportPreservedExceptPartyAndElapsedTime": true,
+      "selectedExportValidated": true,
+      "firstFerosArrival": "Only the native recordVisit transition is expected at first arrival, before the pre-combat baseline is exported.",
+      "nativeCompanionShots": [
+        {
+          "pair": "liara-tali",
+          "actorId": "liara",
+          "actionId": "shoot",
+          "targetId": "geth-0",
+          "atbBefore": 100,
+          "atbAfter": 0,
+          "targetTextBefore": "Soldat geth",
+          "publicLogAfter": "Contact hostile. Le commando attend vos ordres.\n\nLiara T’Soni : Tir contrôlé.\n\nSoldat geth subit 24 dégâts (24 sur les boucliers).",
+          "nativeActivation": true,
+          "requiredCompanion": true
+        },
+        {
+          "pair": "liara-tali",
+          "actorId": "tali",
+          "actionId": "shoot",
+          "targetId": "geth-0",
+          "atbBefore": 100,
+          "atbAfter": 0,
+          "targetTextBefore": "Soldat geth",
+          "publicLogAfter": "Soldat geth subit 24 dégâts (24 sur les boucliers).\n\nTali’Zorah nar Rayya : Tir contrôlé.\n\nSoldat geth subit 23 dégâts (11 sur les boucliers).",
+          "nativeActivation": true,
+          "requiredCompanion": true
+        }
+      ],
+      "precombatReloadExactExceptElapsedTime": true,
+      "noBattleRewardClaimed": true
+    },
+    {
+      "pair": [
+        "ashley",
+        "kaidan"
+      ],
+      "selectionExportPreservedExceptPartyAndElapsedTime": true,
+      "selectedExportValidated": true,
+      "firstFerosArrival": "Only the native recordVisit transition is expected at first arrival, before the pre-combat baseline is exported.",
+      "nativeCompanionShots": [
+        {
+          "pair": "ashley-kaidan",
+          "actorId": "ashley",
+          "actionId": "shoot",
+          "targetId": "geth-0",
+          "atbBefore": 100,
+          "atbAfter": 0,
+          "targetTextBefore": "Soldat geth",
+          "publicLogAfter": "Soldat geth subit 26 dégâts (26 sur les boucliers).\n\nAshley Williams : Tir contrôlé.\n\nSoldat geth subit 31 dégâts (9 sur les boucliers).",
+          "nativeActivation": true,
+          "requiredCompanion": true
+        },
+        {
+          "pair": "ashley-kaidan",
+          "actorId": "kaidan",
+          "actionId": "shoot",
+          "targetId": "geth-0",
+          "atbBefore": 100,
+          "atbAfter": 0,
+          "targetTextBefore": "Soldat geth",
+          "publicLogAfter": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat geth subit 26 dégâts (26 sur les boucliers).",
+          "nativeActivation": true,
+          "requiredCompanion": true
+        }
+      ],
+      "precombatReloadExactExceptElapsedTime": true,
+      "noBattleRewardClaimed": true
+    }
+  ],
+  "nativeOrders": [
+    {
+      "pair": "garrus-wrex",
+      "actorId": "garrus",
+      "actionId": "shoot",
+      "targetId": "geth-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "targetTextBefore": "Soldat geth",
+      "publicLogAfter": "QA compagnons ME1 : Couverture.\n\nGarrus Vakarian : Tir contrôlé.\n\nSoldat geth subit 36 dégâts (35 sur les boucliers).",
+      "nativeActivation": true,
+      "requiredCompanion": true
+    },
+    {
+      "pair": "garrus-wrex",
+      "actorId": "wrex",
+      "actionId": "shoot",
+      "targetId": "geth-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "targetTextBefore": "Soldat geth",
+      "publicLogAfter": "Soldat geth subit 36 dégâts (35 sur les boucliers).\n\nUrdnot Wrex : Tir contrôlé.\n\nSoldat geth subit 33 dégâts.",
+      "nativeActivation": true,
+      "requiredCompanion": true
+    },
+    {
+      "pair": "liara-tali",
+      "actorId": "liara",
+      "actionId": "shoot",
+      "targetId": "geth-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "targetTextBefore": "Soldat geth",
+      "publicLogAfter": "Contact hostile. Le commando attend vos ordres.\n\nLiara T’Soni : Tir contrôlé.\n\nSoldat geth subit 24 dégâts (24 sur les boucliers).",
+      "nativeActivation": true,
+      "requiredCompanion": true
+    },
+    {
+      "pair": "liara-tali",
+      "actorId": "tali",
+      "actionId": "shoot",
+      "targetId": "geth-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "targetTextBefore": "Soldat geth",
+      "publicLogAfter": "Soldat geth subit 24 dégâts (24 sur les boucliers).\n\nTali’Zorah nar Rayya : Tir contrôlé.\n\nSoldat geth subit 23 dégâts (11 sur les boucliers).",
+      "nativeActivation": true,
+      "requiredCompanion": true
+    },
+    {
+      "pair": "ashley-kaidan",
+      "actorId": "kaidan",
+      "actionId": "shoot",
+      "targetId": "geth-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "targetTextBefore": "Soldat geth",
+      "publicLogAfter": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat geth subit 26 dégâts (26 sur les boucliers).",
+      "nativeActivation": true,
+      "requiredCompanion": true
+    },
+    {
+      "pair": "ashley-kaidan",
+      "actorId": "ashley",
+      "actionId": "shoot",
+      "targetId": "geth-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "targetTextBefore": "Soldat geth",
+      "publicLogAfter": "Soldat geth subit 26 dégâts (26 sur les boucliers).\n\nAshley Williams : Tir contrôlé.\n\nSoldat geth subit 31 dégâts (9 sur les boucliers).",
+      "nativeActivation": true,
+      "requiredCompanion": true
+    }
+  ],
+  "progressionOrders": [
+    {
+      "pair": "garrus-wrex",
+      "actorId": "shepard",
+      "actionId": "cover",
+      "method": "Native self-target command to let slower companions become ready."
+    }
+  ],
+  "readiness": [
+    {
+      "pair": "garrus-wrex",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "garrus",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "wrex",
+          "ready": false,
+          "atb": "0%"
+        }
+      ],
+      "ready": [
+        "shepard"
+      ],
+      "wallSeconds": 26.51,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    },
+    {
+      "pair": "garrus-wrex",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "garrus",
+          "ready": false,
+          "atb": "96.3168%"
+        },
+        {
+          "id": "wrex",
+          "ready": false,
+          "atb": "82.2706%"
+        }
+      ],
+      "ready": [
+        "garrus"
+      ],
+      "wallSeconds": 1.2,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    },
+    {
+      "pair": "garrus-wrex",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "8.336%"
+        },
+        {
+          "id": "garrus",
+          "ready": false,
+          "atb": "4.16256%"
+        },
+        {
+          "id": "wrex",
+          "ready": false,
+          "atb": "89.1061%"
+        }
+      ],
+      "ready": [
+        "wrex"
+      ],
+      "wallSeconds": 4.07,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    },
+    {
+      "pair": "liara-tali",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "liara",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "tali",
+          "ready": false,
+          "atb": "0%"
+        }
+      ],
+      "ready": [
+        "liara"
+      ],
+      "wallSeconds": 24.62,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    },
+    {
+      "pair": "liara-tali",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "92.66%"
+        },
+        {
+          "id": "liara",
+          "ready": false,
+          "atb": "1.8326%"
+        },
+        {
+          "id": "tali",
+          "ready": true,
+          "atb": "100%"
+        }
+      ],
+      "ready": [
+        "tali"
+      ],
+      "wallSeconds": 0.02,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    },
+    {
+      "pair": "ashley-kaidan",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "ashley",
+          "ready": false,
+          "atb": "0%"
+        },
+        {
+          "id": "kaidan",
+          "ready": false,
+          "atb": "0%"
+        }
+      ],
+      "ready": [
+        "kaidan"
+      ],
+      "wallSeconds": 23.79,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    },
+    {
+      "pair": "ashley-kaidan",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "before": [
+        {
+          "id": "shepard",
+          "ready": false,
+          "atb": "97.998%"
+        },
+        {
+          "id": "ashley",
+          "ready": false,
+          "atb": "99.958%"
+        },
+        {
+          "id": "kaidan",
+          "ready": false,
+          "atb": "2.1%"
+        }
+      ],
+      "ready": [
+        "ashley"
+      ],
+      "wallSeconds": 0.29,
+      "method": "Natural public ATB progression; no stepping, clock override or actor mutation. Software-WebGL delay is not a hardware FPS measurement."
+    }
+  ],
+  "reloads": [
+    {
+      "label": "garrus-wrex-precombat",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "liara-tali-precombat",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "ashley-kaidan-precombat",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    }
+  ],
+  "canvases": [
+    {
+      "label": "garrus-wrex-normandy",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 3808,
+      "glError": 0
+    },
+    {
+      "label": "garrus-wrex-public-battle",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 4167,
+      "glError": 0
+    },
+    {
+      "label": "liara-tali-normandy",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 3828,
+      "glError": 0
+    },
+    {
+      "label": "liara-tali-public-battle",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 4114,
+      "glError": 0
+    },
+    {
+      "label": "ashley-kaidan-normandy",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 3815,
+      "glError": 0
+    },
+    {
+      "label": "ashley-kaidan-public-battle",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 4129,
+      "glError": 0
+    },
+    {
+      "label": "after-full-restart",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 3538,
+      "glError": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/screenshots/companion-combat-production-garrus-wrex-normandy-selected.png",
+      "sha256": "710768a9d1e8f12e65d2000b2f0791845b42901860bde1f1afb16d9c42f65bfd",
+      "bytes": 436277,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-garrus-wrex-garrus-native-shot.png",
+      "sha256": "f5a4cf16a480dc31e6f547b2bc9078358410eb002ef7e9a6341a579cfae2f662",
+      "bytes": 683434,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-garrus-wrex-wrex-native-shot.png",
+      "sha256": "a1157ee4c4521d21109385483e5ed68e4148b90b0865585006146044430967b3",
+      "bytes": 680852,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-garrus-wrex-public-battle.png",
+      "sha256": "0f4ef042d9dcfc4138e332d152451beecaf4629a656322e5ce403e3dbc4285ba",
+      "bytes": 682362,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-liara-tali-normandy-selected.png",
+      "sha256": "cdf8246654db97e2bbcbab4d87b74db7de3bf9fb2b7a9dd565c0429e2a958c1a",
+      "bytes": 436112,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-liara-tali-liara-native-shot.png",
+      "sha256": "eba9636e9942e8598291a3c939474a81decd92781f5981b2dae0f34bfeed70a2",
+      "bytes": 644631,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-liara-tali-tali-native-shot.png",
+      "sha256": "528ef0a359c92e90e520952afb9467d2255aeff8ea57e8bd5a691e5f236af6df",
+      "bytes": 685080,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-liara-tali-public-battle.png",
+      "sha256": "936302f60181825d95755581c52d2433abbc19f90256c8574516b2700bf5c102",
+      "bytes": 684292,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-ashley-kaidan-normandy-selected.png",
+      "sha256": "3c2dd2f9201c5c0c0907261f2501cc932f776af7094d94387d5a1b000174d20e",
+      "bytes": 441760,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-ashley-kaidan-kaidan-native-shot.png",
+      "sha256": "cb17a07211dc00350f1c8ae94b024e92a0eab2d18f699855712820ffb7e8afb5",
+      "bytes": 643586,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-ashley-kaidan-ashley-native-shot.png",
+      "sha256": "1ca5ba050c2305e09b1456c0a5e33d6c888a4de9956408ca829c81b60a5037c0",
+      "bytes": 721896,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-ashley-kaidan-public-battle.png",
+      "sha256": "682e030409b19bc58cdb88fa4e1329581e3b4da083b24f2d277d0e8ddcf9be41",
+      "bytes": 685787,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-before-full-restart-inventory.png",
+      "sha256": "84d415db458326bc05885f3106f47e63d7a98335da36a1269b6e9cbbf7d581c2",
+      "bytes": 235748,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-before-full-restart-journal.png",
+      "sha256": "e06159878bd747ae8bacc4a589c2db02b5c321f94cd3890b06dbc8e694a4e445",
+      "bytes": 288838,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-after-full-restart-terrain.png",
+      "sha256": "492e36b62f89c2521604fafc28ab883f17460ee5e0caa54a62d9c221b4f73ba9",
+      "bytes": 800999,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-after-full-restart-inventory.png",
+      "sha256": "8674b5313c2a1a461e4147c4b2910530d9c586909a15848e1565babbeebdb7b9",
+      "bytes": 235549,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/companion-combat-production-after-full-restart-journal.png",
+      "sha256": "0340615c71e9f889606d1fb6d1d97d4700c65af7a23b158bda28073295da9612",
+      "bytes": 290107,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    }
+  ],
+  "activations": [
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "squad",
+      "focused": true,
+      "width": 110.46875,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "ashley",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "kaidan",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "garrus",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "wrex",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-confirm",
+      "focused": true,
+      "width": 227.71875,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 181.75,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "shepard",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "cover",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "garrus",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "wrex",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "squad",
+      "focused": true,
+      "width": 110.46875,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "garrus",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "wrex",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "liara",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "tali",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-confirm",
+      "focused": true,
+      "width": 227.71875,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 181.75,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "liara",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "tali",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "squad",
+      "focused": true,
+      "width": 110.46875,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "tali",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "liara",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "ashley",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-select",
+      "id": "kaidan",
+      "focused": true,
+      "width": 253,
+      "height": 299,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "crew-confirm",
+      "focused": true,
+      "width": 227.71875,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 181.75,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "ashley",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "equipment",
+      "focused": true,
+      "width": 108.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "eq-tab",
+      "id": "loadout",
+      "focused": true,
+      "width": 75.140625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "eq-tab",
+      "id": "inventory",
+      "focused": true,
+      "width": 84.015625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "journal",
+      "focused": true,
+      "width": 86.59375,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "equipment",
+      "focused": true,
+      "width": 108.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "eq-tab",
+      "id": "loadout",
+      "focused": true,
+      "width": 75.140625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "eq-tab",
+      "id": "inventory",
+      "focused": true,
+      "width": 84.015625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "journal",
+      "focused": true,
+      "width": 86.59375,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Compiled HTML/JS/CSS and six exact native atlas PNGs return HTTP200 with hashes matching dist and inspected source files",
+      "passed": true
+    },
+    {
+      "name": "garrus-wrex: public squad selection is present in a valid real export with unchanged inventory, equipment and progression",
+      "passed": true
+    },
+    {
+      "name": "garrus-wrex: both companions issue native public shots; reload/Continue restores the exact exported pre-combat inventory, party and progression",
+      "passed": true
+    },
+    {
+      "name": "liara-tali: public squad selection is present in a valid real export with unchanged inventory, equipment and progression",
+      "passed": true
+    },
+    {
+      "name": "liara-tali: both companions issue native public shots; reload/Continue restores the exact exported pre-combat inventory, party and progression",
+      "passed": true
+    },
+    {
+      "name": "ashley-kaidan: public squad selection is present in a valid real export with unchanged inventory, equipment and progression",
+      "passed": true
+    },
+    {
+      "name": "ashley-kaidan: both companions issue native public shots; reload/Continue restores the exact exported pre-combat inventory, party and progression",
+      "passed": true
+    },
+    {
+      "name": "After a complete Chromium shutdown and reopen, Continue restores the final pair and identical visible loadout/inventory/journal without any new download",
+      "passed": true
+    },
+    {
+      "name": "All six companion atlas PNGs were requested by the actual compiled page; two real browser launches/shutdowns, three pre-combat reloads and no JS/HTTP/source/harness errors",
+      "passed": true
+    }
+  ],
+  "pageAtlasRequests": [
+    {
+      "launch": 1,
+      "path": "assets/companion-ashley-combat.png",
+      "status": 200,
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 200,
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-garrus-combat.png",
+      "status": 200,
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-tali-combat.png",
+      "status": 200,
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-wrex-combat.png",
+      "status": 200,
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-liara-combat.png",
+      "status": 200,
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-tali-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-garrus-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-ashley-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-wrex-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-liara-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-ashley-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-garrus-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-tali-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-wrex-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-liara-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-ashley-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-garrus-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-tali-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-wrex-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/companion-liara-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/companion-ashley-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/companion-garrus-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/companion-liara-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/companion-wrex-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/companion-tali-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    }
+  ],
+  "responseEvidenceErrors": [],
+  "sourceRequests": [],
+  "errors": [],
+  "failedRequests": [],
+  "browserEvents": [
+    {
+      "launch": 1,
+      "type": "page-close",
+      "intentional": true
+    },
+    {
+      "launch": 1,
+      "type": "context-close",
+      "intentional": true
+    },
+    {
+      "launch": 1,
+      "type": "browser-disconnected",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "page-close",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "context-close",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "browser-disconnected",
+      "intentional": true
+    }
+  ],
+  "limitations": [
+    "Recruitment and completed chapters are prepared with native Node state functions, not played through in Chromium.",
+    "Feros deployment changes only zone/position in a separately declared valid fixture based on the latest actual export.",
+    "Combat is intentionally left unresolved, then the real pre-combat automatic save is resumed. No encounter reward is claimed.",
+    "Only public native actions occur here; no exact24-pose coverage is inferred from ordinary combat screenshots.",
+    "Canvas reads inspect actual WebGL pixels but do not expose private world/actor objects or certify original likeness.",
+    "An independent minimal Blob diagnostic reproduces a system Chromium154 crash on a new download after full restart. Exact JSON roundtrips here follow public reloads in the first process; the final full restart is checked via visible UI, without a new export."
+  ],
+  "buildManifestSha256": "f88c3900c8d061193575c438b523b279f8b30fff40b3edfa6f434bd241d6c80a",
+  "fullRestart": {
+    "browserProcesses": 2,
+    "noPostRestartDownloadAttempted": true,
+    "verification": "Exact visible public party/loadout/inventory/journal text comparison, not a new serialized export",
+    "finalPair": [
+      "ashley",
+      "kaidan"
+    ],
+    "before": {
+      "party": "QA compagnons ME1\nSoldat\nAshley Williams\nSoldate\nKaidan Alenko\nBiotique / technologie",
+      "loadout": "1300 CRÉDITS · 9 MÉDI-GELS\nÉquipement du commando\n×\nQA compagnons ME1\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nLiara T’Soni\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nCOMMANDEMENT\nQA compagnons ME1\n\nPréparez un rôle précis pour chaque membre du commando.\n\n292\nSANTÉ\n164\nBOUCLIER\n33\nPUISSANCE\n10\nDÉFENSE\nChaleur des tirs\n× 1.00\nRefroidissement\n+0/s\nRésistance aux contrôles\n0 %\nPuissance biotique\n× 1.00\nPuissance technologique\n× 1.00\nARMES MAÎTRISÉES\nPistolet, Fusil d’assaut, Fusil à pompe, Fusil de précision\nARMURES AUTORISÉES\nLégère, Intermédiaire\nOUTILS SPÉCIALISÉS\nAucun\nFormation d’armure\n\n3 points disponibles\n\nLourde\n\nCoût : 1 point.\n\nAPPRENDRE · 1 POINT\nARME\nLancer I\n\nStatistiques de base\n\nRETIRER\nARMURE\nOnyx I · humains / Asari\n\nStatistiques de base\n\nRETIRER\nMODULE D’ARME\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMUNITIONS\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARME 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nOMNITECH\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nAMPLIFICATEUR BIOTIQUE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nCHOISIR DANS L’INVENTAIRE →\n\nLes changements se répercutent sur le prochain combat. Les calibrations permanentes restent attachées au personnage.\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "inventory": "1300 CRÉDITS · 9 MÉDI-GELS\nÉquipement du commando\n×\nQA compagnons ME1\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nLiara T’Soni\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nTout\nArmes\nArmures\nModules d’arme\nMunitions\nModules d’armure\nOutils\n\nUn exemplaire ne peut équiper qu’une personne. Retirez les objets pour les transférer ou les vendre.\n\nPISTOLET\nNIV. 1\nKessler I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 28 CR\nFUSIL D’ASSAUT\nNIV. 1\nLancer I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA compagnons ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 34 CR\nFUSIL À POMPE\nNIV. 1\nStorm I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 40 CR\nFUSIL DE PRÉCISION\nNIV. 1\nAvenger I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 46 CR\nARMURE LÉGÈRE\nNIV. 1\nOnyx I · humains / Asari\n\nAldrin Labs\n\nStatistiques de base\n\nLégère pour humains / Asari. Protection de départ, sans bonus supplémentaire.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA compagnons ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 32 CR\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "journal": "MISSIONS · ASSIGNATIONS · RAPPORTS\nJournal de mission\n×\nMissions\nAssignations\nRapports\nCAMPAGNE\n✓ Eden Prime\n\nMission accomplie.\n\n✓ Citadelle\n\nMission accomplie.\n\n✓ Therum\n\nMission accomplie.\n\nFeros\n\nProtéger la colonie, atteindre ExoGeni et neutraliser le Thorien.\n\nNoveria\n\nAccéder aux laboratoires, affronter Bénézia et décider du sort de la reine rachni.\n\nConciliation 0 · Pragmatisme 0\nNiveau 4 · 980 EXP"
+    },
+    "after": {
+      "party": "QA compagnons ME1\nSoldat\nAshley Williams\nSoldate\nKaidan Alenko\nBiotique / technologie",
+      "loadout": "1300 CRÉDITS · 9 MÉDI-GELS\nÉquipement du commando\n×\nQA compagnons ME1\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nLiara T’Soni\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nCOMMANDEMENT\nQA compagnons ME1\n\nPréparez un rôle précis pour chaque membre du commando.\n\n292\nSANTÉ\n164\nBOUCLIER\n33\nPUISSANCE\n10\nDÉFENSE\nChaleur des tirs\n× 1.00\nRefroidissement\n+0/s\nRésistance aux contrôles\n0 %\nPuissance biotique\n× 1.00\nPuissance technologique\n× 1.00\nARMES MAÎTRISÉES\nPistolet, Fusil d’assaut, Fusil à pompe, Fusil de précision\nARMURES AUTORISÉES\nLégère, Intermédiaire\nOUTILS SPÉCIALISÉS\nAucun\nFormation d’armure\n\n3 points disponibles\n\nLourde\n\nCoût : 1 point.\n\nAPPRENDRE · 1 POINT\nARME\nLancer I\n\nStatistiques de base\n\nRETIRER\nARMURE\nOnyx I · humains / Asari\n\nStatistiques de base\n\nRETIRER\nMODULE D’ARME\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMUNITIONS\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARME 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nOMNITECH\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nAMPLIFICATEUR BIOTIQUE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nCHOISIR DANS L’INVENTAIRE →\n\nLes changements se répercutent sur le prochain combat. Les calibrations permanentes restent attachées au personnage.\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "inventory": "1300 CRÉDITS · 9 MÉDI-GELS\nÉquipement du commando\n×\nQA compagnons ME1\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nLiara T’Soni\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nTout\nArmes\nArmures\nModules d’arme\nMunitions\nModules d’armure\nOutils\n\nUn exemplaire ne peut équiper qu’une personne. Retirez les objets pour les transférer ou les vendre.\n\nPISTOLET\nNIV. 1\nKessler I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 28 CR\nFUSIL D’ASSAUT\nNIV. 1\nLancer I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA compagnons ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 34 CR\nFUSIL À POMPE\nNIV. 1\nStorm I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 40 CR\nFUSIL DE PRÉCISION\nNIV. 1\nAvenger I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 46 CR\nARMURE LÉGÈRE\nNIV. 1\nOnyx I · humains / Asari\n\nAldrin Labs\n\nStatistiques de base\n\nLégère pour humains / Asari. Protection de départ, sans bonus supplémentaire.\n\nCompatible avec QA compagnons ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA compagnons ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 32 CR\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "journal": "MISSIONS · ASSIGNATIONS · RAPPORTS\nJournal de mission\n×\nMissions\nAssignations\nRapports\nCAMPAGNE\n✓ Eden Prime\n\nMission accomplie.\n\n✓ Citadelle\n\nMission accomplie.\n\n✓ Therum\n\nMission accomplie.\n\nFeros\n\nProtéger la colonie, atteindre ExoGeni et neutraliser le Thorien.\n\nNoveria\n\nAccéder aux laboratoires, affronter Bénézia et décider du sort de la reine rachni.\n\nConciliation 0 · Pragmatisme 0\nNiveau 4 · 980 EXP"
+    },
+    "exactPublicUI": true
+  },
+  "finishedAt": "2026-11-01T01:35:16.913Z",
+  "elapsedSeconds": 191.21
+}

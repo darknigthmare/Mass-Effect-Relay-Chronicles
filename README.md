@@ -86,6 +86,12 @@ L’aperçu propose **Terrain / Visée / Pouvoir / Impact / Hors combat** pour l
 
 Le portrait détaillé est un dessin 2D de conception. Le mannequin réutilise le vrai sprite dans quatre directions ; les couleurs, motifs, finitions et réglages du casque sont transmis au rendu du terrain. Les formes de visage et de coiffure restent visibles sur le portrait de l’atelier. Les silhouettes exactes de chaque armure et de chaque arme restent à produire. Les ensembles complets et modules suivent l’organisation ME1 ; les revêtements et la retouche pendant la campagne sont des extensions de cette adaptation. Voir [le périmètre de personnalisation](docs/CUSTOMIZATION.md) et [les références par opus](docs/research/customization-sources.md).
 
+## Poses des six compagnons et armes Legendary
+
+Ashley, Kaidan, Garrus, Tali, Wrex et Liara disposent maintenant de **24 poses clés de combat** dans six nouveaux atlas : visée, action, impact et hors combat. Le renderer les applique aux seuls personnages ME1 correspondants, avec leurs cadrages et ancrages mesurés. Le terrain conserve les sprites existants ; la personnalisation de Shepard reste distincte. Ce sont des poses fixes de prototype, avec armes illustrées génériques ; les cycles complets, directions supplémentaires et variantes exactes d’équipement restent à produire.
+
+L’atelier **ME2 Legendary** ajoute les préparations **Phalanx, Locust, Mattock, Eviscerator et Incisor**, avec leurs clips et réserves ATB finis. Les ateliers standard les refusent. Le Collector reste fermé faute de complément de source précis. Les ateliers réunissent désormais **105 équipements fonctionnels, dont 77 armes**. Voir les [sources artistiques et limites](docs/research/companion-combat-art.md), les [conditions d’édition](docs/research/legendary-weapon-access-sources.md), les [preuves du lot](docs/qa/companion-combat-report.json) et le [classeur principal actualisé](docs/Mass_Effect_Relay_Chronicles_Production.xlsx).
+
 ## Simulation indépendante : cinq lots de 40 références
 
 Dans **Chroniques → œuvre et période → Simulation**, 200 fiches d’étude permettent **145 épreuves partielles** ; 55 références restent en consultation avec leur motif de fermeture. Les cinq familles couvrent personnages/PNJ, armures/équipements, armes, vaisseaux/véhicules et ennemis. Les phases, effets et assets non reproduits restent indiqués ; ce lot ne termine pas les missions ou modèles originaux 1:1.
@@ -128,7 +134,7 @@ Les assignations utilisent des dialogues concis et des cartes condensées ; les 
 
 ## Chroniques indépendantes
 
-Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Vingt-cinq essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Le complément arsenal ajoute six bancs d’opposition et trois ateliers d’édition aux seize essais précédents. Les **42 profils partiels de personnages restent sélectionnables dans leurs seuls essais autorisés**. Les ateliers proposent **100 équipements : 72 armes, 25 armures et trois familles de modules ME3**.
+Depuis le titre ou la pause, **Chroniques** ouvre un registre de **28 œuvres et 48 segments** avec sources et conditions de présence. **Vingt-cinq essais ATB** sont proposés dans ME2, ME3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Le complément arsenal ajoute six bancs d’opposition et trois ateliers d’édition aux seize essais précédents. Les **42 profils partiels de personnages restent sélectionnables dans leurs seuls essais autorisés**. Les ateliers proposent **105 équipements : 77 armes, 25 armures et trois familles de modules ME3**.
 
 Les nouveaux bancs utilisent **16 profils d’adversaires, dont trois boss**, avec actions génériques et mécaniques manquantes affichées. Ils ne reproduisent pas les rencontres ni les phases des boss d’origine. Quatorze protections supplémentaires sont réservées aux ateliers Legendary Edition de ME2/ME3 ou Deluxe d’Andromeda ; une quinzième propose une protection Reliquats agrégée. Le module de matériaux ultralégers réduit de 10 % les délais de pouvoirs dans ce réglage ATB, uniquement avec une mitraillette ME3 conventionnelle à clips compatible.
 

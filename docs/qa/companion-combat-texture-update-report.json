@@ -1,0 +1,458 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-01T01:31:11.371Z",
+  "command": "node scripts/check-companion-texture-updates.mjs",
+  "nodeVersion": "v24.19.0",
+  "threeRevision": "180",
+  "sourceHashes": {
+    "scripts/check-companion-texture-updates.mjs": "c1d52081c502330fae41d00a968d42e97240501bc2fb580c1084a0ba1a8a2ed1",
+    "docs/qa/companion-combat-texture-before-world.js": "f7c8b27810951f374c1f261e739bd20ad0c321bc8b4219d8f7f4fedbf7ad330d",
+    "src/world.js": "d5ba3f50175b7695389f9545e66e61ebdaa123b7c2503c93713c4aaf9e97b3d6",
+    "src/companion-animation-data.js": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+    "public/assets/shepard-male-animation.json": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52",
+    "node_modules/three/package.json": "aa42494664dba4cf76d89c6975ee38321a402f09a048672e190bad6f13beec93",
+    "node_modules/three/src/textures/Texture.js": "ca120e07c101c3137fa25b13a2fc07ac7baf58c7e85690f0a584f7f39393bc87",
+    "node_modules/three/src/textures/Source.js": "54d1056f3ad8f29846b83a448ea5df6a84004bc7b2e35d4286cb0b928d093439",
+    "node_modules/three/src/renderers/webgl/WebGLMaterials.js": "7f388b17feb29d5bfac07d6f9fcda3bc0ccb9e2ea5c8ed72a79550fa20007395",
+    "node_modules/three/src/renderers/webgl/WebGLTextures.js": "b163f0d958d36ed9985ebecfa8b69e6496642bb26e56a5af1b499a92b350ff79",
+    "node_modules/three/src/renderers/WebGLRenderer.js": "35cea4871231c3fddc3517dcd03fc876bdb8f9e73f1a77042b35e3de0498c4cd"
+  },
+  "scope": "Measured texture/source invalidation counters and actual native UV uniform refresh; no WebGL upload counters, frame time, FPS or cause of the observed slow production battle is established.",
+  "archiveExecution": {
+    "path": "docs/qa/companion-combat-texture-before-world.js",
+    "sha256": "f7c8b27810951f374c1f261e739bd20ad0c321bc8b4219d8f7f4fedbf7ad330d",
+    "expectedHashMatched": true,
+    "importsResolved": 7,
+    "methodTextUnchanged": true,
+    "helperResolution": "Archived static imports resolve to the same installed Three package and current local src helper modules; the archived _applyAnimationFrame text is unchanged."
+  },
+  "initialReadOnlyObservation": {
+    "recordedBeforeCoreEdit": true,
+    "calls": 50,
+    "firstTextureVersion": 2,
+    "firstSourceVersion": 2,
+    "lastTextureVersion": 51,
+    "lastSourceVersion": 51,
+    "note": "The initial inline probe was actually executed before the patch. The before block below is a new reproducible replay of its exact archived implementation, not an invented reconstruction."
+  },
+  "before": {
+    "calls": 50,
+    "fixture": "One static MeshBasicMaterial body, one 1536x1024 Texture and one shared Source; actual Shepard AIM metadata.",
+    "initial": {
+      "atlasVersion": 0,
+      "sourceVersion": 0
+    },
+    "observations": [
+      {
+        "call": 1,
+        "textureVersion": 2,
+        "sourceVersion": 2,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      },
+      {
+        "call": 2,
+        "textureVersion": 3,
+        "sourceVersion": 3,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      },
+      {
+        "call": 10,
+        "textureVersion": 11,
+        "sourceVersion": 11,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      },
+      {
+        "call": 50,
+        "textureVersion": 51,
+        "sourceVersion": 51,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      }
+    ],
+    "uniqueActorTextureClones": 1,
+    "finalAtlas": {
+      "textureVersion": 0,
+      "sourceVersion": 51,
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
+  "after": {
+    "calls": 50,
+    "fixture": "One static MeshBasicMaterial body, one 1536x1024 Texture and one shared Source; actual Shepard AIM metadata.",
+    "initial": {
+      "atlasVersion": 0,
+      "sourceVersion": 0
+    },
+    "observations": [
+      {
+        "call": 1,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      },
+      {
+        "call": 2,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      },
+      {
+        "call": 10,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      },
+      {
+        "call": 50,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ]
+      }
+    ],
+    "uniqueActorTextureClones": 1,
+    "finalAtlas": {
+      "textureVersion": 0,
+      "sourceVersion": 1,
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
+  "nativeUniformProbe": {
+    "calls": 50,
+    "alternatingPoses": [
+      "aim",
+      "down"
+    ],
+    "api": "Three180 WebGLMaterials.refreshMaterialUniforms, actual MeshBasicMaterial mapTransform uniform",
+    "matrixAutoUpdate": true,
+    "initialTextureVersionAfterClone": 1,
+    "finalTextureVersion": 1,
+    "initialSourceVersionAfterClone": 1,
+    "finalSourceVersion": 1,
+    "allUniformTransformsMatched": true,
+    "allGroundPivotsMatched": true,
+    "observations": [
+      {
+        "call": 1,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ],
+        "mapTransformUniform": [
+          0.2799479166666667,
+          0,
+          0,
+          0,
+          0.5146484375,
+          0,
+          0.14453125,
+          0.4765625,
+          1
+        ]
+      },
+      {
+        "call": 2,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-down",
+        "repeat": [
+          0.4602864583333333,
+          0.1767578125
+        ],
+        "offset": [
+          0.5201822916666666,
+          0.0419921875
+        ],
+        "bodyPosition": [
+          0.001498303319673482,
+          0.37869475138121544,
+          -0.0012763324574996328
+        ],
+        "bodyScale": [
+          1.3252762430939227,
+          0.25,
+          1
+        ],
+        "mapTransformUniform": [
+          0.4602864583333333,
+          0,
+          0,
+          0,
+          0.1767578125,
+          0,
+          0.5201822916666666,
+          0.0419921875,
+          1
+        ]
+      },
+      {
+        "call": 49,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-aim",
+        "repeat": [
+          0.2799479166666667,
+          0.5146484375
+        ],
+        "offset": [
+          0.14453125,
+          0.4765625
+        ],
+        "bodyPosition": [
+          0.10291950696808001,
+          1.442552182163188,
+          -0.08767217260243852
+        ],
+        "bodyScale": [
+          1.1073461642721603,
+          1,
+          1
+        ],
+        "mapTransformUniform": [
+          0.2799479166666667,
+          0,
+          0,
+          0,
+          0.5146484375,
+          0,
+          0.14453125,
+          0.4765625,
+          1
+        ]
+      },
+      {
+        "call": 50,
+        "textureVersion": 1,
+        "sourceVersion": 1,
+        "sourceSharedWithAtlas": true,
+        "frameId": "shepard-combat-down",
+        "repeat": [
+          0.4602864583333333,
+          0.1767578125
+        ],
+        "offset": [
+          0.5201822916666666,
+          0.0419921875
+        ],
+        "bodyPosition": [
+          0.001498303319673482,
+          0.37869475138121544,
+          -0.0012763324574996328
+        ],
+        "bodyScale": [
+          1.3252762430939227,
+          0.25,
+          1
+        ],
+        "mapTransformUniform": [
+          0.4602864583333333,
+          0,
+          0,
+          0,
+          0.1767578125,
+          0,
+          0.5201822916666666,
+          0.0419921875,
+          1
+        ]
+      }
+    ]
+  },
+  "inspectedThreeBehavior": [
+    "Texture.needsUpdate=true increments Texture.version and marks the shared Source for update; Source.needsUpdate=true increments Source.version.",
+    "Texture.copy invoked by clone marks the new texture once for its initial upload; that initialization is retained.",
+    "WebGLMaterials refreshTransformUniform calls map.updateMatrix when matrixAutoUpdate is true, then copies the UV matrix to the material uniform.",
+    "WebGLRenderer resets the current material identity at the end of rendering, so subsequent material refreshes update UV transform uniforms.",
+    "WebGLTextures.setTexture2D checks texture versions; uploadTexture checks Source.version and contains the image upload and conditional mipmap path. This source inspection is not a measured GPU upload count."
+  ],
+  "limitations": [
+    "Synthetic native Texture/Source and mesh objects, no browser or GPU renderer timing.",
+    "Only the per-frame image invalidation assignment in _applyAnimationFrame is evaluated; walk, texture loading and other optimization paths are outside this change.",
+    "UV, body scale and ground pivot equality establish preserved frame application for these fixtures, not every visual or artistic condition.",
+    "The production browser run is a separate validation. No FPS gain or full causal explanation of its slow ATB progress is asserted."
+  ]
+}

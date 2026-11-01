@@ -25,9 +25,17 @@ const definitions = {};
 const editionSpecificIds = new Set([
   'ME2-WPN-LOCUST', 'ME2-WPN-COLLECTOR-RIFLE', 'ME2-EQP-KESTREL',
 ]);
+// Existing DLC identities plus EA's Legendary collection/integration evidence.
+// No acquisition, class training or original model statistics are supplied.
+// The Collector rifle remains excluded: its edition link needs a stronger
+// model-specific source than the catalogue's generic Weapons citation.
+const legendaryMe2WeaponIds = new Set(['PHALANX', 'LOCUST', 'MATTOCK', 'EVISCERATOR', 'INCISOR']
+  .map(suffix => `ME2-WPN-${suffix}`));
+const unconfiguredEditionReason = 'Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai.';
 // Only these documented additions have an explicit prepared edition bench.
 // A broad DLC/edition text match never grants availability on its own.
 const editionRequirements = Object.freeze(Object.fromEntries([
+  ...[...legendaryMe2WeaponIds].map(id => [id, 'legendary']),
   ...['KESTREL', 'CERBERUS', 'COLLECTOR', 'TERMINUS', 'BLOOD-DRAGON', 'INFERNO'].map(id => [`ME2-EQP-${id}`, 'legendary']),
   ...['AJAX', 'INFERNO', 'BLOOD-DRAGON', 'COLLECTOR', 'TERMINUS', 'CERBERUS'].map(id => [`ME3-EQP-${id}`, 'legendary']),
   ...['SCAVENGER', 'DEEP-SPACE'].map(id => [`MEA-EQP-${id}`, 'deluxe']),
@@ -153,7 +161,7 @@ export const UNIVERSE_EQUIPMENT = freeze(records.filter(record => record.mediaId
     requiredEditionProfile,
     lockReason: definition?.unsupportedReason || (requiresEdition && requiredEditionProfile
       ? `Ce modèle exige un atelier d’équipement explicitement configuré pour ${requiredEditionProfile === 'legendary' ? 'Legendary Edition' : 'les bonus Deluxe'}.` : requiresEdition
-      ? 'Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai.' : supported
+      ? unconfiguredEditionReason : supported
       ? 'Choisissez un porteur et une scène attestant explicitement ce modèle.'
       : 'Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués.'),
     statsBasis: 'ATB adaptation', tuningNote: TUNING_NOTE, acquisitionNote: PREPARATION_NOTE,

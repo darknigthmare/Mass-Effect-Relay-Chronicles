@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "date": "2026-11-01",
+  "baseMain": "105d037",
+  "tool": "image_gen.imagegen",
+  "characterId": "garrus",
+  "name": "Garrus Vakarian",
+  "mediaId": "ME1",
+  "sourceReference": "public/assets/crew-atlas.png",
+  "sourceReferenceSha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+  "sourceReferenceRect": [
+    0,
+    512,
+    384,
+    512
+  ],
+  "sourceReferenceRectActuallyExtracted": false,
+  "output": "public/assets/companion-garrus-combat.png",
+  "requests": [
+    {
+      "id": "garrus-combat-v1",
+      "operation": "identity-preserving derivative",
+      "reference": "public/assets/crew-atlas.png",
+      "transparentBackground": true,
+      "generatedFile": "exec-7cdffda0-1240-4b7f-8efa-32f44d0f9f3b.png",
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+      "selected": true,
+      "prompt": "ROLE/PURPOSE: identity-preserving derivative combat sprite atlas for the existing French fan RPG Mass Effect — Relay Chronicles.\nThe attached reference image is an existing 4-column by 2-row crew sheet. Select ONLY GARRUS, the blue-armored turian in the BOTTOM-LEFT cell (pixel region x0..384,y512..1024). Ignore all other figures. Create exactly FOUR full-body poses of that same Garrus identity, costume, adult proportions, materials and upper-left soft lighting. Preserve his narrow plated turian head, mandibles, digitigrade legs and three taloned fingers. Preserve the blue and black ME1 armor and small blue targeting visor. His face is the unscarred Mass Effect 1 face, not the later ME2/ME3 scarred or damaged armor variant.\nVIEW: a fixed elevated orthographic front three-quarter game camera, facing screen right; realistic HD prerendered game sprite look, same material detail as reference, no chibi and no pixel art.\nTECHNICAL OUTPUT: one landscape 1536x1024 PNG with a REAL TRANSPARENT ALPHA background, exactly 2 columns by 2 rows of generously separated complete figures. No background gradients, fog, aura, cast shadows, floor, labels, frame borders or text. Empty areas and gutters must be fully alpha 0. Keep substantial transparent padding at every image edge and between poses. Every head, limb, boot and weapon must fit within its cell.\nTOP LEFT cell AIM: same Garrus standing braced, holding the same generic long science-fiction firearm from his reference with both hands, stock to shoulder and barrel pointing right. Complete rifle and both feet visible.\nTOP RIGHT cell POWER: same Garrus, same armor and body scale, no weapon in hands, feet planted and one arm extended in a measured technical command gesture. No glowing omni-tool, biotic aura, hologram, electricity, projectile or other baked effect. This is a neutral action key pose; the engine supplies effects separately.\nBOTTOM LEFT cell HIT: same Garrus recoiling from an impact, knees bent, torso leaning back and one arm bracing the body. No blood or injury, no floating weapon. His build and armor volume stay consistent with the standing poses; entire body and feet remain visible.\nBOTTOM RIGHT cell DOWN: same Garrus lying unconscious horizontally on his back, head to the left, feet to the right and arms resting alongside. Entire turian head, mandibles, hands and feet visible with generous inset. Same body proportions, same blue armor and same soft light; no blood. Body must stay wholly in this cell.\nThe first row must fit entirely above the horizontal midpoint. All poses must stay within their own quadrant with clean transparent gutters and no overlapping neighboring silhouette. No other person, duplicate outside the four poses, costume redesign, later-era scars or added power effects."
+    }
+  ],
+  "notes": [
+    "The native image generator read the whole existing atlas; the prompt identifies one exact source cell. No raster crop was made for the reference.",
+    "The native generated file was copied byte-for-byte. No PNG pixel transformation, alpha rewrite, crop, recolour or resize was applied.",
+    "RGBA transparency was verified separately. Low-opacity pixels remain below the renderer alpha threshold of 0.2.",
+    "Four fixed combat key poses are delivered, not full motion cycles, equipment variants or new gameplay powers.",
+    "The existing artwork supplies an art-direction reference, not a primary canonical model reference. Original Mass Effect 1 fidelity is not certified."
+  ]
+}

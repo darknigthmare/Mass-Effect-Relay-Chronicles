@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "date": "2026-11-01",
+  "baseMain": "105d037",
+  "tool": "image_gen.imagegen",
+  "characterId": "wrex",
+  "name": "Urdnot Wrex",
+  "mediaId": "ME1",
+  "sourceReference": "public/assets/crew-atlas.png",
+  "sourceReferenceSha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+  "sourceReferenceRect": [
+    768,
+    512,
+    384,
+    512
+  ],
+  "sourceReferenceRectActuallyExtracted": false,
+  "output": "public/assets/companion-wrex-combat.png",
+  "requests": [
+    {
+      "id": "wrex-combat-v1",
+      "operation": "identity-preserving derivative",
+      "reference": "public/assets/crew-atlas.png",
+      "transparentBackground": true,
+      "generatedFile": "exec-366fd5c1-ec42-4f53-bfbc-4d3d32f64037.png",
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+      "selected": true,
+      "prompt": "ROLE/PURPOSE: identity-preserving derivative combat sprite atlas for the existing French fan RPG Mass Effect — Relay Chronicles.\nThe input is an existing 4-column by 2-row crew sheet. Select ONLY WREX, the massive RED-ARMORED KROGAN in the BOTTOM ROW, THIRD COLUMN (pixel region x768..1152,y512..1024). Ignore the other seven characters. Derive exactly FOUR complete-body poses of that same Wrex identity and existing ME1 costume.\nIDENTITY LOCK: broad low heavy krogan body, huge armored shoulder hump, short thick neck, wide reptilian tan face, red cranial crest, small amber eyes, massive forearms and short powerful legs. Match the reference's red segmented armor, dark joints, wear, circular knee plates, broad clawed feet, flesh and crest. No humanized body, narrow torso, beard, human hair, later-game costume or newly invented equipment.\nVIEW/ART: fixed elevated orthographic front three-quarter game view facing screen right; HD prerendered realistic materials, same detail density and soft upper-left light as existing sprite. No pixel art, chibi, comic illustration or poster.\nTECHNICAL OUTPUT: one landscape 1536x1024 RGBA PNG, REAL TRANSPARENT EMPTY SPACE, precisely FOUR poses in a spacious 2-column by 2-row atlas. Each pose complete inside its quadrant; generous transparent gutters and margins around head, hump, hands, feet and weapon. All empty pixels must have alpha0. No floor, gradient, fog, shadow plane, backlight halo, colored glow, frame borders, captions, labels, text or watermarks.\nTOP LEFT AIM: Wrex stands braced with his same generic compact bulky science-fiction firearm from the reference shouldered in both hands, barrel pointing right. Entire body, hump, both feet, complete muzzle and stock visible.\nTOP RIGHT POWER: same Wrex and armor scale, no weapon in hands, feet planted, one large hand extended forward in a forceful neutral command gesture and the other held near chest. No biotic effect, hologram, electricity, aura, projectile or glow. This is a neutral ability key pose and does not define any new power.\nBOTTOM LEFT HIT: same Wrex and armor volume visibly bracing against impact, knees slightly bent, torso recoiling, one arm held defensively. No blood, wound or detached weapon. Keep the broad hump and heavy build coherent with the standing poses. Both feet and full body visible.\nBOTTOM RIGHT DOWN: same Wrex unconscious lying horizontally on his back, head on the left, feet on the right, arms resting beside his heavy body, complete crest/hump/head/hands/feet included. No blood. Same adult proportions and armor, rendered from same elevated orthographic view; do not squeeze or enlarge the body to fill the quadrant.\nNo pose may cross a quadrant boundary, overlap a neighbor, or touch the image edge. Keep the top row wholly above the horizontal midpoint. The background must be a clean real alpha cutout with NO diffuse red-gray aura inherited from the reference."
+    }
+  ],
+  "notes": [
+    "The native image generator read the whole existing atlas; the prompt identifies one exact source cell. No raster crop was made for the reference.",
+    "The native generated file was copied byte-for-byte. No PNG pixel transformation, alpha rewrite, crop, recolour or resize was applied.",
+    "RGBA transparency was verified separately. Low-opacity pixels remain below the renderer alpha threshold of 0.2.",
+    "Four fixed combat key poses are delivered, not full motion cycles, equipment variants or new gameplay powers.",
+    "The existing artwork supplies an art-direction reference, not a primary canonical model reference. Original Mass Effect 1 fidelity is not certified."
+  ]
+}
