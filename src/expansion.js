@@ -14,8 +14,14 @@ import { EXPANSION2_ARMOR } from './expansion2-armor.js';
 import { EXPANSION2_WEAPONS } from './expansion2-weapons.js';
 import { EXPANSION2_FLEET } from './expansion2-fleet.js';
 import { EXPANSION2_ENEMIES } from './expansion2-enemies.js';
+import { EXPANSION3_CHARACTERS } from './expansion3-characters.js';
+import { EXPANSION3_ARMOR } from './expansion3-armor.js';
+import { EXPANSION3_WEAPONS } from './expansion3-weapons.js';
+import { EXPANSION3_FLEET } from './expansion3-fleet.js';
+import { EXPANSION3_ENEMIES } from './expansion3-enemies.js';
 import { getUniverseEquipment } from './universe-equipment.js';
 import { canRunExpansionBench, runExpansionBench } from './expansion-bench.js';
+import { canRunMedicalBench, runMedicalBench } from './expansion-medical-bench.js';
 
 const freeze = value => {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -42,11 +48,21 @@ export const EXPANSION2_GROUPS = freeze([
   { id: 'fleet', label: 'Vaisseaux et véhicules', entries: EXPANSION2_FLEET },
   { id: 'enemy', label: 'Ennemis et boss', entries: EXPANSION2_ENEMIES },
 ]);
-const compileGroups = groups => groups.flatMap(group => group.entries.map(entry => {
+export const EXPANSION3_GROUPS = freeze([
+  { id: 'actor', label: 'Personnages et PNJ', entries: EXPANSION3_CHARACTERS },
+  { id: 'armor', label: 'Équipements et secours', entries: EXPANSION3_ARMOR },
+  { id: 'weapon', label: 'Armes', entries: EXPANSION3_WEAPONS },
+  { id: 'fleet', label: 'Vaisseaux et véhicules', entries: EXPANSION3_FLEET },
+  { id: 'enemy', label: 'Ennemis et boss', entries: EXPANSION3_ENEMIES },
+]);
+const compileGroups = (groups, includeSupporting = false) => groups.flatMap(group => group.entries.map(entry => {
   const record = getUniverseRecord(entry.recordId);
   if (!record || entry.mode !== group.id) throw new Error(`Invalid study identity: ${entry.recordId}`);
+  const sourceIds = includeSupporting ? [...new Set([...record.sourceIds, ...(entry.sourceIds || [])])] : [...record.sourceIds];
+  if (includeSupporting && sourceIds.some(id => !getUniverseWork(record.mediaId)?.sources.some(source => source.id === id)))
+    throw new Error(`Invalid supporting source in study: ${entry.recordId}`);
   return freeze({ ...entry, id: entry.recordId, record,
-    sourceIds: [...record.sourceIds], availability: record.availability,
+    sourceIds, availability: record.availability,
     statsBasis: 'ATB adaptation', partial: true,
     identitySourceVerified: sourceValid(record),
     limitations: [...entry.limitations], notes: [...entry.notes],
@@ -54,9 +70,10 @@ const compileGroups = groups => groups.flatMap(group => group.entries.map(entry 
 }));
 const entries = compileGroups(EXPANSION_GROUPS);
 export const EXPANSION2_ENTRIES = freeze(compileGroups(EXPANSION2_GROUPS));
-export const EXPANSION_ALL_ENTRIES = freeze([...entries, ...EXPANSION2_ENTRIES]);
-export const EXPANSION_ALL_GROUPS = freeze(EXPANSION2_GROUPS.map(group => ({ id: group.id, label: group.label, entries: EXPANSION_ALL_ENTRIES.filter(entry => entry.mode === group.id) })));
-export const EXPANSION_BATCHES = freeze([{ id: 'lot1', label: 'Lot 1', count: entries.length }, { id: 'lot2', label: 'Lot 2', count: EXPANSION2_ENTRIES.length }]);
+export const EXPANSION3_ENTRIES = freeze(compileGroups(EXPANSION3_GROUPS, true));
+export const EXPANSION_ALL_ENTRIES = freeze([...entries, ...EXPANSION2_ENTRIES, ...EXPANSION3_ENTRIES]);
+export const EXPANSION_ALL_GROUPS = freeze(EXPANSION3_GROUPS.map(group => ({ id: group.id, label: group.label, entries: EXPANSION_ALL_ENTRIES.filter(entry => entry.mode === group.id) })));
+export const EXPANSION_BATCHES = freeze([{ id: 'lot1', label: 'Lot 1', count: entries.length }, { id: 'lot2', label: 'Lot 2', count: EXPANSION2_ENTRIES.length }, { id: 'lot3', label: 'Lot 3', count: EXPANSION3_ENTRIES.length }]);
 if (new Set(EXPANSION_ALL_ENTRIES.map(entry => entry.id)).size !== EXPANSION_ALL_ENTRIES.length) throw new Error('Duplicate study identity across batches');
 if (new Set(entries.map(entry => entry.id)).size !== entries.length) throw new Error('Duplicate study identity');
 export const EXPANSION_ENTRIES = freeze(entries);
@@ -70,8 +87,8 @@ export function getExpansionEntry(id, rawContext) {
 /** Inspection is contextual too, including profiles whose mechanics stay closed. */
 export function listExpansionEntries(rawContext, mode = 'all', batch = 'lot1') {
   const context = normalizeContext(rawContext);
-  if (!context || !['lot1', 'lot2', 'all'].includes(batch) || mode !== 'all' && !EXPANSION_GROUPS.some(group => group.id === mode)) return [];
-  const selected = batch === 'lot1' ? entries : batch === 'lot2' ? EXPANSION2_ENTRIES : EXPANSION_ALL_ENTRIES;
+  if (!context || !['lot1', 'lot2', 'lot3', 'all'].includes(batch) || mode !== 'all' && !EXPANSION_GROUPS.some(group => group.id === mode)) return [];
+  const selected = batch === 'lot1' ? entries : batch === 'lot2' ? EXPANSION2_ENTRIES : batch === 'lot3' ? EXPANSION3_ENTRIES : EXPANSION_ALL_ENTRIES;
   return selected.filter(entry => (mode === 'all' || entry.mode === mode)
     && canAccessContent(entry.id, context).ok);
 }
@@ -145,7 +162,7 @@ export function canRunExpansionEntry(id, rawContext, rawOptions) {
     || options.edition === 'deluxe' && context.mediaId !== 'MEA') return { ok: false, reason: 'Ce profil d’édition ne correspond pas à cette œuvre.' };
   if (options.edition === 'legendary' && context.periodId === 'me3-multiplayer') return { ok: false, reason: 'Le multijoueur de ME3 appartient à l’édition originale, pas à Legendary Edition.' };
   if (!validatedStats(entry)) return { ok: false, reason: 'Le mécanisme de cette fiche reste en consultation uniquement.' };
-  if (entry.bench) return canRunExpansionBench(entry, context);
+  if (entry.bench) return entry.bench.kind === 'medical' ? canRunMedicalBench(entry, context) : canRunExpansionBench(entry, context);
   return { ok: true, reason: null };
 }
 
@@ -212,7 +229,7 @@ export function runExpansionTrial(id, rawContext, rawOptions) {
   const access = canRunExpansionEntry(id, rawContext, rawOptions);
   if (!access.ok) return access;
   const entry = getExpansionEntry(id, rawContext), options = normalizeOptions(rawOptions), stats = validatedStats(entry);
-  const result = entry.bench ? runExpansionBench(entry, normalizeContext(rawContext), options)
+  const result = entry.bench ? (entry.bench.kind === 'medical' ? runMedicalBench(entry, normalizeContext(rawContext), options) : runExpansionBench(entry, normalizeContext(rawContext), options))
     : entry.mode === 'fleet' ? logistics(stats, options)
     : duel({ ...stats, id: `study:${entry.id}`, catalogId: entry.id, name: entry.record.name,
       mediaId: entry.record.mediaId }, entry.mode, options);

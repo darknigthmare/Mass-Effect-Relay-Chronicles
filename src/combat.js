@@ -9,6 +9,7 @@
 import { getUniverseWeaponProfile } from './universe-weapon-profiles.js';
 import { SUMMON_PROFILES, getSummonProfile, isSummon, isVictoryParticipant, planSummon, planSummonTick } from './combat-summons.js';
 import { UNIVERSE_AMMO_PROFILES, getAmmoActionProfile, validateAmmoMode, canActivateAmmoProfile, activateAmmoProfile, getAmmoHitModifiers, getAmmoPostHit } from './universe-ammo.js';
+import { MEDICAL_ACTION_IDS, getMedicalBenchProfile, medicalActionIds, planMedicalBenchAction } from './combat-medical.js';
 
 const SUMMON_ACTIONS = new Set(SUMMON_PROFILES.map(profile => profile.actionId));
 const AMMO_ACTIONS = new Set(UNIVERSE_AMMO_PROFILES.map(profile => profile.actionId));
@@ -25,6 +26,8 @@ export const ACTIONS = Object.freeze({
   cover: { label: 'Couverture', description: 'Réduit les tirs jusqu’à la prochaine action, accélère la recharge des boucliers et laisse refroidir l’arme.', target: 'self' },
   reposition: { label: 'Contournement', description: 'Le prochain tir ignore la couverture adverse pendant huit secondes.', target: 'self' },
   medigel: { label: 'Médi-gel', description: 'Soigne un allié conscient. Consomme une dose partagée.', target: 'ally' },
+  unityMedigel: { label: 'Unité · médi-gel ME2', description: 'Banc ME2 : relève les équipiers KO avec une dose partagée. Valeurs et cible de groupe adaptées à l’ATB.', target: 'allies' },
+  firstAid: { label: 'Premiers secours · médi-gel ME3', description: 'Banc ME3 : secours à distance des équipiers KO avec une dose partagée. Valeurs et cible de groupe adaptées à l’ATB.', target: 'allies' },
   overload: { label: 'Surcharge', description: 'Attaque les boucliers ; peut aussi endommager les synthétiques.', target: 'enemy', cooldown: 8 },
   sabotage: { label: 'Sabotage', description: 'Neutralise les armes adverses pendant six secondes.', target: 'enemy', cooldown: 10 },
   lift: { label: 'Lévitation', description: 'Soulève et neutralise la cible pendant quatre secondes.', target: 'enemy', cooldown: 10 },
@@ -272,7 +275,7 @@ function normalizeActor(input, team, index) {
 }
 
 /** Creates a fresh battle without changing the supplied actor definitions. */
-export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3 } = {}) {
+export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench } = {}) {
   if (!Array.isArray(party) || !party.length || !Array.isArray(enemies) || !enemies.length) {
     throw new TypeError('Un combat nécessite au moins un allié et un adversaire.');
   }
@@ -289,6 +292,7 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
     mode: mode === 'active' ? 'active' : 'wait',
     seed,
     medigel: Math.max(0, Math.floor(finite(medigel, 3))),
+    ...(getMedicalBenchProfile(medicalBench) ? { medicalBench } : {}),
     log: [],
     events: [],
     winner: null,
@@ -342,7 +346,7 @@ function friends(battle, actor) {
   return battle.actors.filter(target => target.team === actor.team && !isSummon(target));
 }
 
-function actionIds(actor) {
+function actionIds(actor, battle) {
   if (isSummon(actor)) return [];
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
@@ -350,7 +354,8 @@ function actionIds(actor) {
   if (actor.channel) ids.push('cancelChannel');
   if (actor.team === 'party') ids.push('medigel');
   ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel', 'ammoOff'].includes(id)
-    && (!AMMO_ACTIONS.has(id) || getAmmoActionProfile(actor.mediaId, id))));
+    && !MEDICAL_ACTION_IDS.includes(id) && (!AMMO_ACTIONS.has(id) || getAmmoActionProfile(actor.mediaId, id))));
+  ids.push(...medicalActionIds(battle, actor));
   if (actor.ammoModeId) ids.push('ammoOff');
   if (actor.team === 'party' && !organic) ids.push('signature');
   return [...new Set(ids)];
@@ -405,6 +410,10 @@ function unavailableReason(battle, actor, actionId) {
     if (!friends(battle, actor).some(target => living(target) && target.hp < target.maxHp - EPSILON)) return 'Aucun allié conscient à soigner.';
   }
   if (actionId === 'unity' && !friends(battle, actor).some(target => !living(target))) return 'Aucun équipier hors combat.';
+  if (MEDICAL_ACTION_IDS.includes(actionId)) {
+    const plan = planMedicalBenchAction(battle, actor, actionId);
+    if (!plan.ok) return plan.reason;
+  }
   if (actionId === 'sabotage' && !opponents(battle, actor).some(armed)) return 'Aucune arme adverse à saboter.';
   if (action.syntheticOnly && !opponents(battle, actor).some(target => synthetic(target) && !target.hackImmune)) return 'Aucune cible synthétique piratable.';
   if (RESTRICTED_ACTIONS.has(actionId) && !opponents(battle, actor).some(target => !futureTargetReason(target, actionId))) return 'Aucune cible compatible avec ce pouvoir.';
@@ -416,7 +425,7 @@ function unavailableReason(battle, actor, actionId) {
 export function getActions(battle, actorId) {
   const actor = battle.actors.find(candidate => candidate.id === actorId);
   if (!actor) return [];
-  return actionIds(actor).map(id => {
+  return actionIds(actor, battle).map(id => {
     const reason = unavailableReason(battle, actor, id);
     const profile = WEAPON_ACTIONS.has(id) ? weaponProfile(actor) : null;
     const clipShot = WEAPON_ACTIONS.has(id) && usesClips(actor);
@@ -660,6 +669,12 @@ function addHeat(battle, actor, amount) {
 function resolveTargets(battle, actor, actionId, targetId) {
   const definition = ACTIONS[actionId];
   const target = targetId == null ? null : battle.actors.find(candidate => candidate.id === targetId);
+  if (MEDICAL_ACTION_IDS.includes(actionId)) {
+    const plan = planMedicalBenchAction(battle, actor, actionId);
+    if (!plan.ok) return { error: plan.reason };
+    if (targetId != null && !plan.targets.some(candidate => candidate.id === targetId)) return { error: 'Choisissez un équipier KO de combat relevable.' };
+    return { targets: plan.targets };
+  }
   if (definition.target === 'self') {
     if (targetId != null && targetId !== actor.id) return { error: 'Cette action vise son utilisateur.' };
     return { targets: [actor] };
@@ -688,7 +703,7 @@ function resolveTargets(battle, actor, actionId, targetId) {
 /** Validates first; a rejected order never spends ATB, inventory, heat or randomness. */
 export function performAction(battle, { actorId, actionId, targetId } = {}) {
   const actor = battle.actors.find(candidate => candidate.id === actorId);
-  if (!actor || !ACTIONS[actionId] || !actionIds(actor).includes(actionId)) return { ok: false, reason: 'Action inconnue ou non maîtrisée.', events: [] };
+  if (!actor || !ACTIONS[actionId] || !actionIds(actor, battle).includes(actionId)) return { ok: false, reason: 'Action inconnue ou non maîtrisée.', events: [] };
   const reason = unavailableReason(battle, actor, actionId);
   if (reason) return { ok: false, reason, events: [] };
   const resolution = resolveTargets(battle, actor, actionId, targetId);
@@ -788,6 +803,25 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     battle.medigel -= 1;
     actor.focus = clamp(actor.focus + 10, 0, 100);
     emit(battle, { type: 'heal', actorId, targetId: target.id, amount, message: `${target.name} récupère ${Math.round(amount)} points de santé.` });
+  } else if (MEDICAL_ACTION_IDS.includes(actionId)) {
+    const profile = getMedicalBenchProfile(battle.medicalBench);
+    battle.medigel -= profile.cost;
+    emit(battle, { type: 'medicalResource', actorId, actionId, spent: profile.cost, remaining: battle.medigel,
+      message: `Une dose de médi-gel consommée ; ${battle.medigel} restante(s).` });
+    for (const ally of targets) {
+      ally.hp = ally.maxHp * profile.healthRatio;
+      ally.shield = 0;
+      ally.atb = 0;
+      ally.focus = 0;
+      ally.cover = false;
+      ally.statuses = {};
+      ally.cryoStacks = 0;
+      ally.fortificationShield = 0;
+      ally._slamDamage = 0;
+      ally.lastDamagedAt = battle.elapsed;
+      emit(battle, { type: 'revive', actorId, actionId, targetId: ally.id, amount: ally.hp,
+        message: `${ally.name} reprend le combat avec le secours médical du banc.` });
+    }
   } else if (actionId === 'unity') {
     for (const ally of targets.filter(candidate => !living(candidate))) {
       ally.hp = ally.maxHp * 0.3;

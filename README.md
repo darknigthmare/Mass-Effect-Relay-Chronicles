@@ -98,6 +98,12 @@ Le filtre **Lot de contenu** donne accès à **176 références supplémentaires
 
 Les deux lots réunissent **376 références et 242 exercices partiels**. Le premier lot, ses 145 résultats et ses fichiers de production sont conservés. Voir le [périmètre du lot 2](docs/EXPANSION2_SIMULATIONS.md), le [nouveau classeur](docs/Expansion2_Simulations.xlsx) et ses [preuves](docs/qa/expansion2-report.json). Les effectifs reflètent les sources disponibles ; ce ne sont pas 40 nouvelles armures ni 40 véhicules pilotables.
 
+## Troisième lot de Simulation
+
+**Lot 3** ajoute **122 dossiers** : 40 personnages/PNJ, 40 armes, 40 adversaires et deux pouvoirs de secours médicaux. **38 exercices** sont exécutables ; 84 dossiers restent en consultation. Unité ME2 et Premiers secours ME3 exécutent une réanimation native avec consommation de médi-gel sur des équipiers de test, avec des valeurs ATB déclarées. Aucune nouvelle armure ou coque n’est comptée lorsque le stock documentaire est épuisé.
+
+Le cumul atteint **498 références et 280 exercices partiels**. Les restrictions par œuvre, prologue, mode et édition restent actives. Voir le [périmètre du lot 3](docs/EXPANSION3_SIMULATIONS.md), le [classeur correspondant](docs/Expansion3_Simulations.xlsx) et les [preuves de livraison](docs/qa/expansion3-report.json). Les 242 résultats des lots précédents sont conservés ; ce lot ne certifie pas la réalisation intégrale 1:1.
+
 ## Contenu effectivement présent
 
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.

@@ -15,14 +15,14 @@ const run = id => { const entry = EXPANSION2_ENTRIES.find(entry => entry.id === 
 
 test('second lot uses actual stock and keeps all old identities separate', () => {
   assert.equal(EXPANSION_ENTRIES.length, 200); assert.equal(EXPANSION2_ENTRIES.length, 176);
-  assert.equal(EXPANSION_ALL_ENTRIES.length, 376);
-  assert.equal(new Set(EXPANSION_ALL_ENTRIES.map(entry => entry.id)).size, 376);
+  assert.deepEqual(EXPANSION_ALL_ENTRIES.slice(0, 376), [...EXPANSION_ENTRIES, ...EXPANSION2_ENTRIES]);
+  assert.equal(new Set(EXPANSION_ALL_ENTRIES.map(entry => entry.id)).size, EXPANSION_ALL_ENTRIES.length);
   assert.deepEqual(Object.fromEntries(['actor', 'armor', 'weapon', 'fleet', 'enemy'].map(mode =>
     [mode, EXPANSION2_ENTRIES.filter(entry => entry.mode === mode).length])), { actor: 40, armor: 30, weapon: 40, fleet: 26, enemy: 40 });
   for (const context of contexts) {
     assert.deepEqual(listExpansionEntries(context), listExpansionEntries(context, 'all', 'lot1'));
     assert.equal(listExpansionEntries(context, 'all', 'all').length,
-      listExpansionEntries(context, 'all', 'lot1').length + listExpansionEntries(context, 'all', 'lot2').length);
+      listExpansionEntries(context, 'all', 'lot1').length + listExpansionEntries(context, 'all', 'lot2').length + listExpansionEntries(context, 'all', 'lot3').length);
     assert.deepEqual(listExpansionEntries(context, 'all', 'forged'), []);
   }
 });

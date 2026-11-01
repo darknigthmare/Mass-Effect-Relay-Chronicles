@@ -1,0 +1,2001 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-01T00:22:52.747Z",
+  "baselineCommit": "1b3444f67ca1d159f5c71f4e4c4d8991f67abef5",
+  "scope": "Forty previously unselected contextual weapon dossiers, not forty new mechanics, acquisitions or original assets. Eighteen reuse existing conventional finite-clip ATB profiles; twenty-two remain inspection-only. No primary-source certification, new canonical facts or 1:1 completion is claimed.",
+  "cards": 40,
+  "executable": 18,
+  "consultationOnly": 22,
+  "priorWeaponDossiers": 80,
+  "overlapWithPreviousWeaponSelections": 0,
+  "inventoryBeforeSelection": {
+    "contextualFactualWeapons": 59,
+    "supportedProfiles": 18
+  },
+  "inventoryAfterSelection": {
+    "contextualFactualWeapons": 19,
+    "supportedProfiles": 0
+  },
+  "works": {
+    "ME3": {
+      "cards": 10,
+      "executable": 10,
+      "consultationOnly": 0
+    },
+    "MEA": {
+      "cards": 8,
+      "executable": 8,
+      "consultationOnly": 0
+    },
+    "ME2": {
+      "cards": 11,
+      "executable": 0,
+      "consultationOnly": 11
+    },
+    "INF": {
+      "cards": 4,
+      "executable": 0,
+      "consultationOnly": 4
+    },
+    "GAL": {
+      "cards": 2,
+      "executable": 0,
+      "consultationOnly": 2
+    },
+    "REV": {
+      "cards": 1,
+      "executable": 0,
+      "consultationOnly": 1
+    },
+    "ASC": {
+      "cards": 1,
+      "executable": 0,
+      "consultationOnly": 1
+    },
+    "RET": {
+      "cards": 1,
+      "executable": 0,
+      "consultationOnly": 1
+    },
+    "INI": {
+      "cards": 1,
+      "executable": 0,
+      "consultationOnly": 1
+    },
+    "ANN": {
+      "cards": 1,
+      "executable": 0,
+      "consultationOnly": 1
+    }
+  },
+  "tests": {
+    "command": "node --test tests/expansion3-weapons.test.js",
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "nativeShotAndReloadProfiles": 18,
+    "finiteReserveExhaustionProfiles": 18
+  },
+  "sourceHashes": {
+    "src/expansion3-weapons.js": "36a4316b8f135849f053b3fe0d2f7d24c96db4cc47b0c3dfb6ca24d812537241",
+    "tests/expansion3-weapons.test.js": "82666267a50f35173d1ad40b1dbbb01db4ae4055c5a42659a8edb5762d3fac98",
+    "src/universe-equipment.js": "802041a1a41a378b4e2f81abbaaf5a83900e6112510a70489dfcc048229b0591",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "docs/universe/catalogs/ME3.json": "1cb08754410020f96f23ed67df70c1bba5bdc79ba82e2c8bdd4c8adcfad04dee",
+    "docs/universe/catalogs/MEA.json": "5b82ea5fefc6b4479c5a07d0d3b52032d5f0d17e7f48f0d896525f06ed62b9b1",
+    "docs/universe/catalogs/ME2.json": "cd9e23766eeb6a385141130dd2a32933decb7619444021e07601c7b21bb9b8e0",
+    "docs/universe/catalogs/INF.json": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+    "docs/universe/catalogs/GAL.json": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+    "docs/universe/catalogs/REV.json": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+    "docs/universe/catalogs/ASC.json": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+    "docs/universe/catalogs/RET.json": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+    "docs/universe/catalogs/INI.json": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+    "docs/universe/catalogs/ANN.json": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d"
+  },
+  "guidesRead": [
+    "AGENTS.md",
+    "README.md",
+    "docs/GAMEDEV_GUIDANCE.md",
+    "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/genres/rpg/SKILL.md"
+  ],
+  "entries": [
+    {
+      "id": "ME3-WPN-VINDICATOR",
+      "name": "M-15 Vindicator",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-VINDICATOR",
+      "resourceProfile": {
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La rafale originale et le nombre de projectiles ne sont pas reconstitués par un ordre de tir ATB.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-15 Vindicator",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-REVENANT",
+      "name": "M-76 Revenant",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-REVENANT",
+      "resourceProfile": {
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Le gabarit ME3 ne déverrouille pas le Revenant ME2, dont les restrictions de spécialisation restent fermées.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-76 Revenant",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-TALON",
+      "name": "M-358 Talon",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-TALON",
+      "resourceProfile": {
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La dispersion du pistolet ne reçoit ni cône de plombs ni dégâts par projectile inventés.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-358 Talon",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-CLAYMORE",
+      "name": "M-300 Claymore",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-CLAYMORE",
+      "resourceProfile": {
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Ce profil ME3 ne lève aucune restriction de porteur, recherche ou spécialisation du Claymore ME2.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-300 Claymore",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-VIPER",
+      "name": "M-97 Viper",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-VIPER",
+      "resourceProfile": {
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Le zoom, les intervalles semi-automatiques et la capacité originale du modèle restent non reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-97 Viper",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-WIDOW",
+      "name": "M-98 Widow",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-WIDOW",
+      "resourceProfile": {
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La pénétration, le zoom et la capacité originale de la Widow ne sont pas reproduits ; aucun droit de recherche ME2 n’est accordé.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-98 Widow",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-RAPTOR",
+      "name": "M-13 Raptor",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-RAPTOR",
+      "resourceProfile": {
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La séquence semi-automatique originale n’est pas certifiée par la cadence des ordres ATB.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-13 Raptor",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-TEMPEST",
+      "name": "M-9 Tempest",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-TEMPEST",
+      "resourceProfile": {
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La cadence automatique et le comportement original du modèle ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-9 Tempest",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-LOCUST",
+      "name": "M-12 Locust",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-LOCUST",
+      "resourceProfile": {
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Le profil ME3 n’accorde ni mission Kasumi ni arme de la version ME2.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-12 Locust",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME3-WPN-HORNET",
+      "name": "M-25 Hornet",
+      "mediaId": "ME3",
+      "contextScopes": [
+        {
+          "mediaId": "ME3",
+          "periodIds": [
+            "me3"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "ME3-SRC-EQUIP"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "ME3-WPN-HORNET",
+      "resourceProfile": {
+        "weaponType": "smg",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 24,
+        "ammo": 24,
+        "reserveAmmo": 96
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La séquence de rafale originale n’est pas reproduite par le tir générique de famille.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME3.json",
+        "reference": "M-25 Hornet",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME3-SRC-EQUIP",
+            "title": "Equipment Guide (Mass Effect 3)",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_Guide_%28Mass_Effect_3%29",
+            "kind": "wiki",
+            "scope": "Équipement et lieux de collecte",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-CYCLONE",
+      "name": "Cyclone",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-CYCLONE",
+      "resourceProfile": {
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La montée en cadence, les rangs et les améliorations de fabrication ne sont pas reconstitués.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Cyclone",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-REVENANT",
+      "name": "Revenant",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-REVENANT",
+      "resourceProfile": {
+        "weaponType": "assault",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 18,
+        "ammo": 18,
+        "reserveAmmo": 72
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Le profil solo MEA n’accorde aucune variante ME2, ME3 ou multijoueur.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Revenant",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-HORNET",
+      "name": "Hornet",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-HORNET",
+      "resourceProfile": {
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La classification pistolet provient du profil MEA exact ; aucune classification de mitraillette ME3 n’est importée.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Hornet",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-SIDEWINDER",
+      "name": "Sidewinder",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-SIDEWINDER",
+      "resourceProfile": {
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Le mécanisme de revolver, les animations et les valeurs originales ne sont pas reproduits.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Sidewinder",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-TALON",
+      "name": "Talon",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-TALON",
+      "resourceProfile": {
+        "weaponType": "pistol",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La dispersion propre au pistolet et les améliorations de fabrication restent non reconstituées.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Talon",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-RUZAD",
+      "name": "Ruzad",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-RUZAD",
+      "resourceProfile": {
+        "weaponType": "shotgun",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Aucune formation krogan, dispersion, recette ou statistique originale n’est déduite du nom.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Ruzad",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-BLACK-WIDOW",
+      "name": "Black Widow",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-BLACK-WIDOW",
+      "resourceProfile": {
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "blockedReason": null,
+      "limitations": [
+        "La pénétration, le zoom et la capacité originale ne sont pas reproduits ; aucun rang ni recette n’est accordé.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Black Widow",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "MEA-WPN-INDRA",
+      "name": "Indra",
+      "mediaId": "MEA",
+      "contextScopes": [
+        {
+          "mediaId": "MEA",
+          "periodIds": [
+            "mea"
+          ]
+        }
+      ],
+      "originalStatus": "Prototype",
+      "sourceIds": [
+        "MEA-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": true,
+      "exactEquipmentProfileId": "MEA-WPN-INDRA",
+      "resourceProfile": {
+        "weaponType": "sniper",
+        "weaponSystem": "thermal-clip",
+        "magazineCapacity": 2,
+        "ammo": 2,
+        "reserveAmmo": 8
+      },
+      "blockedReason": null,
+      "limitations": [
+        "Le tir automatique de précision original ne reçoit pas sa cadence, son zoom ou ses valeurs d’origine.",
+        "Le tir natif de famille ne reproduit ni cadence, précision, dispersion, recul, portée, zoom, pénétration, sons, animations ou géométrie propres au modèle.",
+        "Cet essai réutilise une primitive et un budget existants ; il ne constitue pas une nouvelle mécanique originale.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/MEA.json",
+        "reference": "Indra",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "MEA-SRC-WEAPONS",
+            "title": "Weapons (Mass Effect: Andromeda)",
+            "url": "https://masseffect.fandom.com/wiki/Weapons_%28Mass_Effect%3A_Andromeda%29",
+            "kind": "wiki",
+            "scope": "Familles et armes",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-PHALANX",
+      "name": "M-5 Phalanx",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-EA-DLC"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. Le contenu additionnel ME2 n’a pas de droit d’édition configuré pour cet essai ; aucun accès Legendary implicite.",
+      "limitations": [
+        "Le contenu additionnel ME2 n’a pas de droit d’édition configuré pour cet essai ; aucun accès Legendary implicite.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-5 Phalanx",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-EA-DLC",
+            "title": "How to download and buy DLC for classic EA games",
+            "url": "https://help.ea.com/en//articles/orders-and-rewards/dlc-for-classic-games/",
+            "kind": "source officielle",
+            "scope": "Noms des packs et distribution historique",
+            "note": "Source officielle consultée le 22 octobre 2026 ; portée limitée au sujet annoncé."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-LOCUST",
+      "name": "M-12 Locust",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-LOCUST",
+        "ME2-SRC-KASUMI"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. La mission Kasumi et son accès ne sont pas reproduits ; le Locust ME3 ne remplace pas cette occurrence.",
+      "limitations": [
+        "La mission Kasumi et son accès ne sont pas reproduits ; le Locust ME3 ne remplace pas cette occurrence.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-12 Locust",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-LOCUST",
+            "title": "M-12 Locust",
+            "url": "https://masseffect.fandom.com/wiki/M-12_Locust",
+            "kind": "wiki",
+            "scope": "Arme de Kasumi",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          },
+          {
+            "id": "ME2-SRC-KASUMI",
+            "title": "Kasumi: Stealing Memory",
+            "url": "https://masseffect.fandom.com/wiki/Kasumi%3A_Stealing_Memory",
+            "kind": "wiki",
+            "scope": "Bekenstein et graybox",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-REVENANT",
+      "name": "M-76 Revenant",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Les restrictions de porteur et de spécialisation de ce modèle restent à reconstituer. Les restrictions de porteur et de spécialisation ME2 restent à reconstituer ; le profil ME3 ne les contourne pas.",
+      "limitations": [
+        "Les restrictions de porteur et de spécialisation ME2 restent à reconstituer ; le profil ME3 ne les contourne pas.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-76 Revenant",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-WEAPONS",
+            "title": "Weapons",
+            "url": "https://masseffect.fandom.com/wiki/Weapons",
+            "kind": "wiki",
+            "scope": "Familles et recharge par clips thermiques",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-MATTOCK",
+      "name": "M-96 Mattock",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-EA-DLC"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. Le contenu additionnel ME2 et son acquisition restent à configurer ; aucune conversion du Mattock ME3 ou MEA.",
+      "limitations": [
+        "Le contenu additionnel ME2 et son acquisition restent à configurer ; aucune conversion du Mattock ME3 ou MEA.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-96 Mattock",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-EA-DLC",
+            "title": "How to download and buy DLC for classic EA games",
+            "url": "https://help.ea.com/en//articles/orders-and-rewards/dlc-for-classic-games/",
+            "kind": "source officielle",
+            "scope": "Noms des packs et distribution historique",
+            "note": "Source officielle consultée le 22 octobre 2026 ; portée limitée au sujet annoncé."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-GETH-RIFLE",
+      "name": "Geth Pulse Rifle",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-TALI"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. La condition d’obtention à Haestrom selon édition et difficulté reste à vérifier ; aucune autorisation de porteur n’est accordée.",
+      "limitations": [
+        "La condition d’obtention à Haestrom selon édition et difficulté reste à vérifier ; aucune autorisation de porteur n’est accordée.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "Geth Pulse Rifle",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-TALI",
+            "title": "Dossier: Tali",
+            "url": "https://masseffect.fandom.com/wiki/Dossier%3A_Tali",
+            "kind": "wiki",
+            "scope": "Haestrom et radiation solaire",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-COLLECTOR-RIFLE",
+      "name": "Collector Assault Rifle",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-WEAPONS"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. La disponibilité du contenu de cette occurrence reste non configurée ; l’association aux Collecteurs ne constitue pas un droit d’équipement.",
+      "limitations": [
+        "La disponibilité du contenu de cette occurrence reste non configurée ; l’association aux Collecteurs ne constitue pas un droit d’équipement.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "Collector Assault Rifle",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-WEAPONS",
+            "title": "Weapons",
+            "url": "https://masseffect.fandom.com/wiki/Weapons",
+            "kind": "wiki",
+            "scope": "Familles et recharge par clips thermiques",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-CLAYMORE",
+      "name": "M-300 Claymore",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-SQUAD"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Les restrictions de porteur et de spécialisation de ce modèle restent à reconstituer. Les règles de classe et de recherche pour Shepard ou Grunt restent obligatoires ; aucun droit de porteur n’est fabriqué.",
+      "limitations": [
+        "Les règles de classe et de recherche pour Shepard ou Grunt restent obligatoires ; aucun droit de porteur n’est fabriqué.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-300 Claymore",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-SQUAD",
+            "title": "Squad Members Guide (Mass Effect 2)",
+            "url": "https://masseffect.fandom.com/wiki/Squad_Members_Guide_%28Mass_Effect_2%29",
+            "kind": "wiki",
+            "scope": "Armes et capacités des équipiers",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-EVISCERATOR",
+      "name": "M-22 Eviscerator",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-EA-DLC"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. Le contenu additionnel ME2 reste non configuré ; aucune permission n’est empruntée au modèle ME3.",
+      "limitations": [
+        "Le contenu additionnel ME2 reste non configuré ; aucune permission n’est empruntée au modèle ME3.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-22 Eviscerator",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-EA-DLC",
+            "title": "How to download and buy DLC for classic EA games",
+            "url": "https://help.ea.com/en//articles/orders-and-rewards/dlc-for-classic-games/",
+            "kind": "source officielle",
+            "scope": "Noms des packs et distribution historique",
+            "note": "Source officielle consultée le 22 octobre 2026 ; portée limitée au sujet annoncé."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-WIDOW",
+      "name": "M-98 Widow",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-SQUAD"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Les restrictions de porteur et de spécialisation de ce modèle restent à reconstituer. Les choix, porteurs et recherches appropriés de ME2 restent à reconstituer ; la Widow ME3 ne les remplace pas.",
+      "limitations": [
+        "Les choix, porteurs et recherches appropriés de ME2 restent à reconstituer ; la Widow ME3 ne les remplace pas.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-98 Widow",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-SQUAD",
+            "title": "Squad Members Guide (Mass Effect 2)",
+            "url": "https://masseffect.fandom.com/wiki/Squad_Members_Guide_%28Mass_Effect_2%29",
+            "kind": "wiki",
+            "scope": "Armes et capacités des équipiers",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-INCISOR",
+      "name": "M-29 Incisor",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-EA-DLC"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai. Le contenu additionnel et la disponibilité ME2 restent non configurés ; aucun profil d’Infiltrator n’est substitué.",
+      "limitations": [
+        "Le contenu additionnel et la disponibilité ME2 restent non configurés ; aucun profil d’Infiltrator n’est substitué.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-29 Incisor",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-EA-DLC",
+            "title": "How to download and buy DLC for classic EA games",
+            "url": "https://help.ea.com/en//articles/orders-and-rewards/dlc-for-classic-games/",
+            "kind": "source officielle",
+            "scope": "Noms des packs et distribution historique",
+            "note": "Source officielle consultée le 22 octobre 2026 ; portée limitée au sujet annoncé."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ME2-WPN-BLACKSTORM",
+      "name": "M-490 Blackstorm",
+      "mediaId": "ME2",
+      "contextScopes": [
+        {
+          "mediaId": "ME2",
+          "periodIds": [
+            "me2"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ME2-SRC-HEAVY"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Arme lourde : réserve de cellules, ciblage et effet propre à implémenter. La réserve de cellules, le ciblage et l’effet propre de l’arme lourde restent absents ; aucun chargeur conventionnel de secours.",
+      "limitations": [
+        "La réserve de cellules, le ciblage et l’effet propre de l’arme lourde restent absents ; aucun chargeur conventionnel de secours.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ME2.json",
+        "reference": "M-490 Blackstorm",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "ME2-SRC-HEAVY",
+            "title": "Heavy Weapons",
+            "url": "https://masseffect.fandom.com/wiki/Heavy_Weapons",
+            "kind": "wiki",
+            "scope": "Armes lourdes ME2",
+            "note": "Consulté le 22 octobre 2026 via les résultats indexés du moteur de recherche ; index communautaire secondaire, ouverture directe Fandom limitée par robots/402. Titres et faits brefs paraphrasés ; aucune capture ni validation exhaustive en jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "INF-WPN-MATTOCK",
+      "name": "M-96 Mattock Auto",
+      "mediaId": "INF",
+      "contextScopes": [
+        {
+          "mediaId": "INF",
+          "periodIds": [
+            "inf"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "INF-EQUIP",
+        "INF-STORE"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite. Mattock Auto d’Infiltrator : le nom ne permet ni recharge ME2 ni système thermique ME1 ; la mécanique propre reste fermée.",
+      "limitations": [
+        "Mattock Auto d’Infiltrator : le nom ne permet ni recharge ME2 ni système thermique ME1 ; la mécanique propre reste fermée.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INF.json",
+        "reference": "Armes",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "INF-EQUIP",
+            "title": "Équipement Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Quatre armes de Randall et équipement.",
+            "note": "Ouverture directe refusée ; résultats indexés consultés."
+          },
+          {
+            "id": "INF-STORE",
+            "title": "Boutique Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Store_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Listes armes, biotiques, capacités, mêlée.",
+            "note": "Résultats indexés consultés. Fiche à confirmer dans une capture du jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "INF-WPN-EVISCERATOR",
+      "name": "M-22 Eviscerator",
+      "mediaId": "INF",
+      "contextScopes": [
+        {
+          "mediaId": "INF",
+          "periodIds": [
+            "inf"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "INF-EQUIP",
+        "INF-STORE"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite. La mécanique propre à Infiltrator reste non reconstituée ; aucun système d’un Eviscerator ME2 ou ME3 n’est importé.",
+      "limitations": [
+        "La mécanique propre à Infiltrator reste non reconstituée ; aucun système d’un Eviscerator ME2 ou ME3 n’est importé.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INF.json",
+        "reference": "Armes",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "INF-EQUIP",
+            "title": "Équipement Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Quatre armes de Randall et équipement.",
+            "note": "Ouverture directe refusée ; résultats indexés consultés."
+          },
+          {
+            "id": "INF-STORE",
+            "title": "Boutique Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Store_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Listes armes, biotiques, capacités, mêlée.",
+            "note": "Résultats indexés consultés. Fiche à confirmer dans une capture du jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "INF-WPN-INCISOR",
+      "name": "M-29 Incisor",
+      "mediaId": "INF",
+      "contextScopes": [
+        {
+          "mediaId": "INF",
+          "periodIds": [
+            "inf"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "INF-EQUIP",
+        "INF-STORE"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite. La mécanique propre à Infiltrator reste non reconstituée ; aucune rafale ou réserve d’un autre opus n’est attribuée.",
+      "limitations": [
+        "La mécanique propre à Infiltrator reste non reconstituée ; aucune rafale ou réserve d’un autre opus n’est attribuée.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INF.json",
+        "reference": "Armes",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "INF-EQUIP",
+            "title": "Équipement Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Quatre armes de Randall et équipement.",
+            "note": "Ouverture directe refusée ; résultats indexés consultés."
+          },
+          {
+            "id": "INF-STORE",
+            "title": "Boutique Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Store_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Listes armes, biotiques, capacités, mêlée.",
+            "note": "Résultats indexés consultés. Fiche à confirmer dans une capture du jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "INF-WPN-PARTICLE",
+      "name": "M-333 Particle Beam",
+      "mediaId": "INF",
+      "contextScopes": [
+        {
+          "mediaId": "INF",
+          "periodIds": [
+            "inf"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "INF-EQUIP",
+        "INF-STORE"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Système d’arme propre à Infiltrator à vérifier ; aucune recharge ME2 ni chauffe ME1 déduite. Le rayon d’Infiltrator reste non reconstitué ; aucune réserve à clips ou chauffe d’un homonyme n’est attribuée.",
+      "limitations": [
+        "Le rayon d’Infiltrator reste non reconstitué ; aucune réserve à clips ou chauffe d’un homonyme n’est attribuée.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INF.json",
+        "reference": "Armes",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "INF-EQUIP",
+            "title": "Équipement Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Equipment_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Quatre armes de Randall et équipement.",
+            "note": "Ouverture directe refusée ; résultats indexés consultés."
+          },
+          {
+            "id": "INF-STORE",
+            "title": "Boutique Infiltrator",
+            "url": "https://masseffect.fandom.com/wiki/Store_(Mass_Effect:_Infiltrator)",
+            "kind": "Wiki indexé",
+            "scope": "Listes armes, biotiques, capacités, mêlée.",
+            "note": "Résultats indexés consultés. Fiche à confirmer dans une capture du jeu."
+          }
+        ]
+      }
+    },
+    {
+      "id": "GAL-WPN-AVENGER",
+      "name": "M-8 Avenger",
+      "mediaId": "GAL",
+      "contextScopes": [
+        {
+          "mediaId": "GAL",
+          "periodIds": [
+            "gal"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "GAL-COMBAT"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Système d’arme de Galaxy à vérifier ; le nom seul ne détermine pas sa gestion thermique. L’Avenger de Jacob dans Galaxy ne reçoit ni gestion thermique ME1 ni clips ME2 sur la seule base du nom.",
+      "limitations": [
+        "L’Avenger de Jacob dans Galaxy ne reçoit ni gestion thermique ME1 ni clips ME2 sur la seule base du nom.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/GAL.json",
+        "reference": "Conception du fan game",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "GAL-COMBAT",
+            "title": "Combat dans Galaxy",
+            "url": "https://masseffect.fandom.com/wiki/Combat_(Mass_Effect_Galaxy)",
+            "kind": "Wiki indexé",
+            "scope": "M-8 Avenger, déplacement, protections et verrouillage de cible.",
+            "note": "Consulté le 22/10/2026."
+          }
+        ]
+      }
+    },
+    {
+      "id": "GAL-WPN-GRENADE",
+      "name": "Attaque lourde",
+      "mediaId": "GAL",
+      "contextScopes": [
+        {
+          "mediaId": "GAL",
+          "periodIds": [
+            "gal"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "GAL-ABIL"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués. La fiche décrit un projectile du système de pouvoirs, sans modèle d’arme équipable ni quantité de grenades attestée.",
+      "limitations": [
+        "La fiche décrit un projectile du système de pouvoirs, sans modèle d’arme équipable ni quantité de grenades attestée.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/GAL.json",
+        "reference": "Conception du fan game",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "id": "GAL-ABIL",
+            "title": "Pouvoirs dans Galaxy",
+            "url": "https://masseffect.fandom.com/wiki/Abilities_(Mass_Effect_Galaxy)",
+            "kind": "Wiki indexé",
+            "scope": "Stase, attaque lourde et surcharge, progressions liées aux pistes.",
+            "note": "Consulté le 22/10/2026."
+          }
+        ]
+      }
+    },
+    {
+      "id": "REV-REF-CANNON",
+      "name": "Canon accélérateur portatif",
+      "mediaId": "REV",
+      "contextScopes": [
+        {
+          "mediaId": "REV",
+          "periodIds": [
+            "rev"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "REV-SRC-IWO"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués. Le canon de Skarr reste un objet narratif : aucun modèle lourd, munition, dégât ou résultat contre l’Iwo Jima n’est inventé.",
+      "limitations": [
+        "Le canon de Skarr reste un objet narratif : aucun modèle lourd, munition, dégât ou résultat contre l’Iwo Jima n’est inventé.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/REV.json",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "title": "Mass Effect Wiki — SSV Iwo Jima",
+            "url": "https://masseffect.fandom.com/wiki/SSV_Iwo_Jima",
+            "kind": "wiki",
+            "scope": "Frégate et canon de Skarr ; résultat indexé",
+            "note": "Consulté le 22 octobre 2026. Faits courts uniquement ; la publication originale reste nécessaire pour contrôler les détails.",
+            "id": "REV-SRC-IWO"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ASC-REF-STUN",
+      "name": "Arme étourdissante",
+      "mediaId": "ASC",
+      "contextScopes": [
+        {
+          "mediaId": "ASC",
+          "periodIds": [
+            "asc"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ASC-SRC-HEN"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués. L’étourdisseur de Jiro ne devient ni Surcharge ni un pistolet nommé ; aucune attaque ou conséquence du récit n’est reproduite.",
+      "limitations": [
+        "L’étourdisseur de Jiro ne devient ni Surcharge ni un pistolet nommé ; aucune attaque ou conséquence du récit n’est reproduite.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ASC.json",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "title": "Mass Effect Wiki — Hendel Mitra",
+            "url": "https://masseffect.fandom.com/wiki/Hendel_Mitra",
+            "kind": "wiki",
+            "scope": "Rôle, pouvoirs et accompagnement de Gillian",
+            "note": "Consulté le 22 octobre 2026. Faits courts uniquement ; la publication originale reste nécessaire pour contrôler les détails.",
+            "id": "ASC-SRC-HEN"
+          }
+        ]
+      }
+    },
+    {
+      "id": "RET-REF-SHOTGUN",
+      "name": "Fusil à pompe d’Anderson",
+      "mediaId": "RET",
+      "contextScopes": [
+        {
+          "mediaId": "RET",
+          "periodIds": [
+            "ret"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "RET-SRC-KAI"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués. Le fusil à pompe d’Anderson n’est pas identifié à un modèle précis ; aucun Katana, clip, dégât ou résultat contre Grayson n’est déduit.",
+      "limitations": [
+        "Le fusil à pompe d’Anderson n’est pas identifié à un modèle précis ; aucun Katana, clip, dégât ou résultat contre Grayson n’est déduit.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/RET.json",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "title": "Mass Effect Wiki — Kai Leng",
+            "url": "https://masseffect.fandom.com/wiki/Kai_Leng",
+            "kind": "wiki",
+            "scope": "Opération sur Omega, expérience, académie et survie de Leng",
+            "note": "Consulté le 22 octobre 2026. Faits courts uniquement ; la publication originale reste nécessaire pour contrôler les détails.",
+            "id": "RET-SRC-KAI"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INI-REF-RIFLES",
+      "name": "Armes d’assaut des survivants",
+      "mediaId": "INI",
+      "contextScopes": [
+        {
+          "mediaId": "INI",
+          "periodIds": [
+            "ini"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "INI-SRC-QUIET"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués. Les modèles précis restent à vérifier : aucun fusil nommé, stock ou kit de combat n’est attribué aux survivants.",
+      "limitations": [
+        "Les modèles précis restent à vérifier : aucun fusil nommé, stock ou kit de combat n’est attribué aux survivants.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/INI.json",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "title": "Mass Effect Wiki — Quiet Eddy",
+            "url": "https://masseffect.fandom.com/wiki/Quiet_Eddy",
+            "kind": "wiki",
+            "scope": "Installation, survivants et évacuation",
+            "note": "Consulté le 22 octobre 2026. Faits courts uniquement ; la publication originale reste nécessaire pour contrôler les détails.",
+            "id": "INI-SRC-QUIET"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ANN-REF-LOCKER",
+      "name": "Armes de l’armoire de sécurité",
+      "mediaId": "ANN",
+      "contextScopes": [
+        {
+          "mediaId": "ANN",
+          "periodIds": [
+            "ann"
+          ]
+        }
+      ],
+      "originalStatus": "Défini",
+      "sourceIds": [
+        "ANN-SRC-ANAX"
+      ],
+      "sourceBasis": "existing-equipment-profile-and-catalogue",
+      "primarySourceVerified": false,
+      "executable": false,
+      "exactEquipmentProfileId": null,
+      "resourceProfile": null,
+      "blockedReason": "Fiche documentaire : modèle précis, emplacement ou mécanique non reconstitués. L’armoire de sécurité n’atteste pas de modèles précis ; aucun inventaire, calibre ou permission d’emploi n’est créé.",
+      "limitations": [
+        "L’armoire de sécurité n’atteste pas de modèles précis ; aucun inventaire, calibre ou permission d’emploi n’est créé.",
+        "Les paramètres et comportements manquants gardent l’exercice fermé, y compris si une édition est choisie manuellement.",
+        "Aucun nouveau sprite, son, animation ou modèle original n’est fourni par ce dossier."
+      ],
+      "provenance": {
+        "catalogPath": "docs/universe/catalogs/ANN.json",
+        "reference": "Rubrique consultée ou synopsis éditorial ; localisation précise dans l’œuvre à relever.",
+        "verification": "Faits brefs des sources existantes ; aucun nouveau contrôle primaire des statistiques ou de la mécanique originale.",
+        "sources": [
+          {
+            "title": "Mass Effect Wiki — Anax Therion",
+            "url": "https://masseffect.fandom.com/wiki/Anax_Therion",
+            "kind": "wiki",
+            "scope": "Analyste drell, biotique et recherche de matériel",
+            "note": "Consulté le 22 octobre 2026. Faits courts uniquement ; la publication originale reste nécessaire pour contrôler les détails.",
+            "id": "ANN-SRC-ANAX"
+          }
+        ]
+      }
+    }
+  ],
+  "limits": [
+    "No original appearance, sound, animation, recoil, spread, rate, range, scope or penetration is reconstructed by this dataset.",
+    "Unconfigured editions and ME2 specializations stay closed; choosing Legendary cannot open a null simulation.",
+    "Galaxy powers and unspecified novel objects receive no borrowed weapon resource system.",
+    "Source references are inherited documentary facts, often secondary or indirect, not fresh primary-source verification.",
+    "Global registry/UI/build/browser and workbook integration are separate parent-agent work and were not claimed by these profile tests."
+  ]
+}

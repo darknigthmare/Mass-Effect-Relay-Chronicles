@@ -267,6 +267,12 @@ L’intégration Git Vercel est observée dans les contrôles de la PR nº 1 : l
 
 Le premier workflow du commit `3aad710` a réussi la compilation web. Windows a détecté un nom de périphérique réservé lors du checkout : `docs/universe/catalogs/CON.json`. Le catalogue Conviction et son rapport sont renommés `CONVICTION.json`, avec leurs octets et l’ID interne `CON` conservés. Les générateurs et chemins actifs sont adaptés et un test de portabilité couvre cette régression. Le [diagnostic CI](qa/windows-path-fix.json) consigne l’échec initial ; le résultat du workflow suivant reste consultable dans GitHub Actions. Les 27 classeurs n’ont pas été régénérés pour ce changement de chemins.
 
+## Lot 3 de Simulation — 1er novembre 2026
+
+La reprise sur `main` fusionné `1b3444f` conserve les poses de Shepard et les corrections de l’atelier. Elle ajoute **122 références**, avec **38 exercices** : 3 occurrences de personnages, 18 armes conventionnelles, 15 adversaires et deux bancs médicaux natifs. Les 84 autres dossiers restent en consultation. Les secours ME2/ME3 consomment réellement le médi-gel du banc et refusent les cibles exclues et les stocks vides ; leurs paramètres restent adaptés à l’ATB.
+
+Les effectifs suivent les sources : **zéro nouvelle armure et zéro nouvelle coque**. Les 242 résultats et contrôles publiés des deux premiers lots restent exacts. Le cumul atteint **498 références et 280 exercices partiels**. Les 745 tests Node et le build de 76 modules passent ; les [preuves du lot](qa/expansion3-report.json) regroupent les parcours navigateur, la conservation des sauvegardes et le [nouveau suivi Excel](Expansion3_Simulations.xlsx). Les statuts des catalogues et les anciens classeurs sont conservés. Aucun nouvel asset visuel complet ni fidélité intégrale 1:1 n’est annoncé.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.

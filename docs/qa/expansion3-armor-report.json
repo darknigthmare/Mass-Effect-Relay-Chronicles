@@ -1,0 +1,388 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-01T00:26:39.764Z",
+  "baselineCommit": "1b3444f67ca1d159f5c71f4e4c4d8991f67abef5",
+  "scope": "Two new contextual power study identities supporting medical equipment; zero new armour sets, costumes, equipment facts, sprites or original kits. Native medical orders are opt-in fixtures; original manual evidence establishes revival with medi-gel, while group cost and health amounts are adaptations.",
+  "newReferences": 2,
+  "newArmorSets": 0,
+  "newGameVisuals": 0,
+  "runnable": 2,
+  "consultationOnly": 0,
+  "ownTests": 17,
+  "targetedTests": 54,
+  "sourceHashes": {
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/combat-medical.js": "0a376ec845b04b8c21a014076048fcb3672b1a5c95b7ee3d7a6721a0f676d806",
+    "src/expansion-medical-bench.js": "6e087b29f39c066ce70c2d1b928ac1aaf12a7564d580b8e2a7fc3add9345ba90",
+    "src/expansion3-armor.js": "d183556a83d09ed0954c4fd85fac8338e0a31203ad697b7902330047e200b964",
+    "tests/expansion3-armor.test.js": "6c28c41adcdba8a62fd97a39b9ba290a09ad16c6f8135ac23ba9d5eb75e4998e",
+    "docs/qa/expansion3-medical-reference-report.json": "a60ec58086574dc4deb4aeb03f7cd8684f080b17eddbce80533bd00b80abcc92",
+    "docs/qa/expansion3-medical-targeted.tap": "908ae505d63e47ce0a92dd4a507f76d4c1ce487f8fed66076e7e9867f773e30c",
+    "docs/research/expansion3-medical-sources.md": "d7cee214d974a285352e9d30f9e60bff688a12dc185fa3b2227f1643c625312e"
+  },
+  "contextClosures": 94,
+  "nativeCases": [
+    {
+      "recordId": "ME2-POW-UNITY",
+      "context": {
+        "mediaId": "ME2",
+        "periodId": "me2"
+      },
+      "options": {
+        "seed": 17,
+        "difficulty": "normal",
+        "edition": "standard"
+      },
+      "result": {
+        "kind": "equipment-bench",
+        "medical": true,
+        "outcome": "observed",
+        "benchKind": "medical",
+        "actionId": "unityMedigel",
+        "actionLabel": "Unité · médi-gel ME2",
+        "before": {
+          "doses": 1,
+          "conscious": 2,
+          "medicAtb": 100,
+          "patients": [
+            {
+              "id": "medical:patient-a",
+              "hp": 0,
+              "maxHp": 120,
+              "shield": 0,
+              "atb": 0
+            },
+            {
+              "id": "medical:patient-b",
+              "hp": 0,
+              "maxHp": 180,
+              "shield": 0,
+              "atb": 0
+            }
+          ],
+          "woundedHp": 70,
+          "excludedHp": 0
+        },
+        "after": {
+          "doses": 0,
+          "conscious": 4,
+          "medicAtb": 0,
+          "patients": [
+            {
+              "id": "medical:patient-a",
+              "hp": 36,
+              "maxHp": 120,
+              "shield": 0,
+              "atb": 0
+            },
+            {
+              "id": "medical:patient-b",
+              "hp": 54,
+              "maxHp": 180,
+              "shield": 0,
+              "atb": 0
+            }
+          ],
+          "woundedHp": 70,
+          "excludedHp": 0
+        },
+        "control": {
+          "doses": 1,
+          "conscious": 2,
+          "medicAtb": 100,
+          "patients": [
+            {
+              "id": "medical:patient-a",
+              "hp": 0,
+              "maxHp": 120,
+              "shield": 0,
+              "atb": 0
+            },
+            {
+              "id": "medical:patient-b",
+              "hp": 0,
+              "maxHp": 180,
+              "shield": 0,
+              "atb": 0
+            }
+          ],
+          "woundedHp": 70,
+          "excludedHp": 0
+        },
+        "rows": [
+          {
+            "label": "Doses partagées",
+            "before": 1,
+            "control": 1,
+            "sample": 0,
+            "unit": "Un ordre de secours consomme une dose du banc"
+          },
+          {
+            "label": "Équipiers KO relevés",
+            "before": 0,
+            "control": 0,
+            "sample": 2,
+            "unit": "Cible de groupe de cette adaptation ATB"
+          },
+          {
+            "label": "Santé de l’équipier A",
+            "before": 0,
+            "control": 0,
+            "sample": 36,
+            "unit": "30 % du budget de santé ATB"
+          },
+          {
+            "label": "Santé de l’équipier B",
+            "before": 0,
+            "control": 0,
+            "sample": 54,
+            "unit": "30 % du budget de santé ATB"
+          },
+          {
+            "label": "Santé du témoin conscient",
+            "before": 70,
+            "control": 70,
+            "sample": 70,
+            "unit": "Soin conscient hors de ce banc"
+          },
+          {
+            "label": "Témoin explicitement exclu",
+            "before": 0,
+            "control": 0,
+            "sample": 0,
+            "unit": "Aucune réanimation narrative"
+          },
+          {
+            "label": "ATB du secouriste",
+            "before": 100,
+            "control": 100,
+            "sample": 0,
+            "unit": "Vrai ordre natif ; ATB consommée"
+          }
+        ],
+        "nativeOrders": 1,
+        "revived": [
+          "medical:patient-a",
+          "medical:patient-b"
+        ],
+        "resourceEvents": [
+          {
+            "id": 2,
+            "at": 0,
+            "type": "medicalResource",
+            "actorId": "medical:medic",
+            "actionId": "unityMedigel",
+            "spent": 1,
+            "remaining": 0,
+            "message": "Une dose de médi-gel consommée ; 0 restante(s)."
+          }
+        ],
+        "rejectedExhaustedOrder": true,
+        "exhaustionReason": "Plus de médi-gel pour relever les équipiers.",
+        "exhaustionReadyAtb": 100,
+        "exhaustedPatientHp": 0,
+        "rejectedExcludedTarget": true,
+        "excludedReason": "Choisissez un équipier KO de combat relevable.",
+        "rejectedNoPatient": true,
+        "noPatientReason": "Aucun équipier KO de combat relevable.",
+        "actionsAvailable": [
+          {
+            "id": "unityMedigel",
+            "available": false,
+            "reason": "Plus de médi-gel pour relever les équipiers."
+          }
+        ],
+        "log": [
+          "Contact hostile. Le commando attend vos ordres.",
+          "Secouriste abstrait : Unité · médi-gel ME2.",
+          "Une dose de médi-gel consommée ; 0 restante(s).",
+          "Équipier abstrait A · KO reprend le combat avec le secours médical du banc.",
+          "Équipier abstrait B · KO reprend le combat avec le secours médical du banc."
+        ],
+        "note": "Commande native contextuelle sur des équipiers de test, comparée à un ordre refusé sur une cible exclue. Le principe du secours avec médi-gel est documenté ; une dose de groupe, 30 % de santé et les jauges ATB sont des choix de démonstration. Aucun inventaire ni décès de campagne modifié."
+      }
+    },
+    {
+      "recordId": "ME3-POW-FIRST-AID",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3"
+      },
+      "options": {
+        "seed": 17,
+        "difficulty": "normal",
+        "edition": "standard"
+      },
+      "result": {
+        "kind": "equipment-bench",
+        "medical": true,
+        "outcome": "observed",
+        "benchKind": "medical",
+        "actionId": "firstAid",
+        "actionLabel": "Premiers secours · médi-gel ME3",
+        "before": {
+          "doses": 1,
+          "conscious": 2,
+          "medicAtb": 100,
+          "patients": [
+            {
+              "id": "medical:patient-a",
+              "hp": 0,
+              "maxHp": 120,
+              "shield": 0,
+              "atb": 0
+            },
+            {
+              "id": "medical:patient-b",
+              "hp": 0,
+              "maxHp": 180,
+              "shield": 0,
+              "atb": 0
+            }
+          ],
+          "woundedHp": 70,
+          "excludedHp": 0
+        },
+        "after": {
+          "doses": 0,
+          "conscious": 4,
+          "medicAtb": 0,
+          "patients": [
+            {
+              "id": "medical:patient-a",
+              "hp": 36,
+              "maxHp": 120,
+              "shield": 0,
+              "atb": 0
+            },
+            {
+              "id": "medical:patient-b",
+              "hp": 54,
+              "maxHp": 180,
+              "shield": 0,
+              "atb": 0
+            }
+          ],
+          "woundedHp": 70,
+          "excludedHp": 0
+        },
+        "control": {
+          "doses": 1,
+          "conscious": 2,
+          "medicAtb": 100,
+          "patients": [
+            {
+              "id": "medical:patient-a",
+              "hp": 0,
+              "maxHp": 120,
+              "shield": 0,
+              "atb": 0
+            },
+            {
+              "id": "medical:patient-b",
+              "hp": 0,
+              "maxHp": 180,
+              "shield": 0,
+              "atb": 0
+            }
+          ],
+          "woundedHp": 70,
+          "excludedHp": 0
+        },
+        "rows": [
+          {
+            "label": "Doses partagées",
+            "before": 1,
+            "control": 1,
+            "sample": 0,
+            "unit": "Un ordre de secours consomme une dose du banc"
+          },
+          {
+            "label": "Équipiers KO relevés",
+            "before": 0,
+            "control": 0,
+            "sample": 2,
+            "unit": "Cible de groupe de cette adaptation ATB"
+          },
+          {
+            "label": "Santé de l’équipier A",
+            "before": 0,
+            "control": 0,
+            "sample": 36,
+            "unit": "30 % du budget de santé ATB"
+          },
+          {
+            "label": "Santé de l’équipier B",
+            "before": 0,
+            "control": 0,
+            "sample": 54,
+            "unit": "30 % du budget de santé ATB"
+          },
+          {
+            "label": "Santé du témoin conscient",
+            "before": 70,
+            "control": 70,
+            "sample": 70,
+            "unit": "Soin conscient hors de ce banc"
+          },
+          {
+            "label": "Témoin explicitement exclu",
+            "before": 0,
+            "control": 0,
+            "sample": 0,
+            "unit": "Aucune réanimation narrative"
+          },
+          {
+            "label": "ATB du secouriste",
+            "before": 100,
+            "control": 100,
+            "sample": 0,
+            "unit": "Vrai ordre natif ; ATB consommée"
+          }
+        ],
+        "nativeOrders": 1,
+        "revived": [
+          "medical:patient-a",
+          "medical:patient-b"
+        ],
+        "resourceEvents": [
+          {
+            "id": 2,
+            "at": 0,
+            "type": "medicalResource",
+            "actorId": "medical:medic",
+            "actionId": "firstAid",
+            "spent": 1,
+            "remaining": 0,
+            "message": "Une dose de médi-gel consommée ; 0 restante(s)."
+          }
+        ],
+        "rejectedExhaustedOrder": true,
+        "exhaustionReason": "Plus de médi-gel pour relever les équipiers.",
+        "exhaustionReadyAtb": 100,
+        "exhaustedPatientHp": 0,
+        "rejectedExcludedTarget": true,
+        "excludedReason": "Choisissez un équipier KO de combat relevable.",
+        "rejectedNoPatient": true,
+        "noPatientReason": "Aucun équipier KO de combat relevable.",
+        "actionsAvailable": [
+          {
+            "id": "firstAid",
+            "available": false,
+            "reason": "Plus de médi-gel pour relever les équipiers."
+          }
+        ],
+        "log": [
+          "Contact hostile. Le commando attend vos ordres.",
+          "Secouriste abstrait : Premiers secours · médi-gel ME3.",
+          "Une dose de médi-gel consommée ; 0 restante(s).",
+          "Équipier abstrait A · KO reprend le combat avec le secours médical du banc.",
+          "Équipier abstrait B · KO reprend le combat avec le secours médical du banc."
+        ],
+        "note": "Commande native contextuelle sur des équipiers de test, comparée à un ordre refusé sur une cible exclue. Le principe du secours avec médi-gel est documenté ; une dose de groupe, 30 % de santé et les jauges ATB sont des choix de démonstration. Aucun inventaire ni décès de campagne modifié."
+      }
+    }
+  ],
+  "previousExactOutcomeReplays": 242,
+  "errors": []
+}

@@ -110,6 +110,14 @@ Les contrôles dédiés se trouvent dans `tests/continuity*.test.js`, `tests/sav
 
 Le [rapport historique soutiens, munitions et portraits](qa/chronicle-support-report.json) conserve ses **473 tests Node**, build de **47 modules**, cinq nouveaux contrôles navigateur, douze contrôles de production et régression de seize essais. Son différentiel ME1 couvre 30 graines et 1 755 ordres ; ses revues ciblées concernent ses propres classeurs et sept captures de portraits. Ces résultats ne constituent pas une preuve du complément arsenal et ne sont pas réécrits. Aucun lancement Windows ni fidélité 1:1 n’est annoncé.
 
+## Troisième lot de Simulation — 1er novembre 2026
+
+Le [troisième lot](EXPANSION3_SIMULATIONS.md) ajoute **122 dossiers distincts**, avec **38 exercices et 84 consultations** : 40 personnages/PNJ, 40 armes, 40 adversaires et deux pouvoirs médicaux. Les exercices de tir et d’opposition gardent leurs budgets et actions génériques ATB ; les identités trop peu documentées restent fermées. Les références de romans, comics, prologue et DLC gardent leurs œuvres, segments et conditions d’édition.
+
+Unité ME2 et Premiers secours ME3 utilisent deux commandes natives isolées qui consomment le médi-gel du banc et relèvent des KO de combat autorisés. Les [deux manuels primaires inspectés](research/expansion3-medical-sources.md) attestent ce principe ; coût de groupe, 30 % de santé et jauges restent adaptés. Le secours gratuit de proximité ME3 et les effets complets d’origine sont absents. Ces deux dossiers sont des pouvoirs, sans nouvelle armure ni costume. Le stock vérifié ne fournit aucune coque supplémentaire.
+
+Les trois lots totalisent **498 références, 280 exercices partiels et 218 consultations**. Les **242 résultats natifs précédents** et leurs contrôles restent identiques ; les anciennes fiches de médi-gel conservent leur fermeture. Le [classeur du lot 3](Expansion3_Simulations.xlsx) sépare les nouveaux états SIM des statuts documentaires inchangés. Aucun nouveau fait canonique, asset visuel complet, recrutement, inventaire ou résultat narratif n’est accordé par ces exercices. Les [preuves de livraison](qa/expansion3-report.json) délimitent les contrôles fonctionnels et les revues effectuées.
+
 ## État du contenu restant
 
 Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les variantes visuelles d’équipement, les animations et les campagnes ultérieures intégrales restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
