@@ -5,6 +5,10 @@ import { WORLD_ZONES } from './world-data.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
 import { hasVisualCustomization, renderCustomizationSprite } from './customization-render.js';
 import { COMPANION_ANIMATION_IDS, normalizeCompanionAnimation, canShowCompanionAnimation } from './companion-animation-data.js';
+import { ENEMY_ANIMATION_IDS, normalizeEnemyAnimation, canShowEnemyAnimation } from './enemy-animation-data.js';
+import { normalizeJokerSeated, canShowJokerSeated } from './joker-seated-data.js';
+
+const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS];
 
 const CREW_KEYS = ['shepard', 'ashley', 'kaidan', 'jenkins', 'garrus', 'tali', 'wrex', 'liara'];
 const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', 'rachni', 'creeper', 'asari'];
@@ -110,6 +114,9 @@ export class WorldView {
     if (typeof __RELAY_MALESHEP_ANIMATION__ !== 'undefined') this.registerCharacterAnimation('shepard', __RELAY_MALESHEP_ANIMATION__);
     if (typeof __RELAY_COMPANION_ANIMATIONS__ !== 'undefined') for (const config of __RELAY_COMPANION_ANIMATIONS__)
       this.registerCharacterAnimation(config.characterId, config);
+    if (typeof __RELAY_ENEMY_ANIMATIONS__ !== 'undefined') for (const config of __RELAY_ENEMY_ANIMATIONS__)
+      this.registerCharacterAnimation(config.characterId, config);
+    if (typeof __RELAY_JOKER_SEATED__ !== 'undefined') this.registerJokerSeated(__RELAY_JOKER_SEATED__);
     this.setZone('normandy'); this.resize();
   }
 
@@ -126,7 +133,8 @@ export class WorldView {
       if (this._disposed || requests.get(name) !== request) { texture.dispose(); return; }
       requests.delete(name);
       const key = name.startsWith('combat-') ? name.slice(7) : null;
-      const config = COMPANION_ANIMATION_IDS.includes(key) && this.characterAnimations?.[key]?.combat;
+      const config = GUARDED_COMBAT_ANIMATION_IDS.includes(key) ? this.characterAnimations?.[key]?.combat
+        : name === 'seated-joker' ? this.jokerSeatedConfig : null;
       if (config && (texture.image?.width !== config.width || texture.image?.height !== config.height)) {
         texture.dispose(); this.assetErrors?.push(`Dimensions d’animation incompatibles : ${url}`); return;
       }
@@ -259,8 +267,8 @@ export class WorldView {
   // Metadata is bundled by Vite, so Electron loadFile needs no file:// fetch.
   registerCharacterAnimation(key, config) {
     if (this._disposed) return false;
-    if (COMPANION_ANIMATION_IDS.includes(key)) {
-      config = normalizeCompanionAnimation(key, config);
+    if (GUARDED_COMBAT_ANIMATION_IDS.includes(key)) {
+      config = ENEMY_ANIMATION_IDS.includes(key) ? normalizeEnemyAnimation(key, config) : normalizeCompanionAnimation(key, config);
       if (!config) return false;
       if (JSON.stringify(this.characterAnimations[key]) === JSON.stringify(config)) return true;
       for (const [cacheKey, texture] of this.spriteCache) if (cacheKey.startsWith(`combat-${key}:`)) {
@@ -278,10 +286,37 @@ export class WorldView {
     return true;
   }
 
+  registerJokerSeated(input) {
+    if (this._disposed) return false;
+    const config = normalizeJokerSeated(input);
+    if (!config) return false;
+    if (JSON.stringify(config) === JSON.stringify(this.jokerSeatedConfig)) return true;
+    for (const [key, texture] of this.spriteCache) if (key.startsWith('seated-joker:')) {
+      texture.dispose(); this.spriteCache.delete(key);
+    }
+    this.jokerSeatedConfig = config;
+    this._loadAtlas('seated-joker', `${ASSET_BASE}${config.file}`);
+    return true;
+  }
+
+  _applySeatedJoker(actor) {
+    if (!canShowJokerSeated(actor, this.zoneId)) {
+      if (actor.animationFrame?.startsWith('joker-seated-')) this._fallbackCombatFrame(actor);
+      return false;
+    }
+    const config = this.jokerSeatedConfig, atlas = this.atlases['seated-joker'];
+    if (config && atlas?.image?.width === config.width && atlas.image.height === config.height
+      && this._applyAnimationFrame(actor, 'seated-joker', config.frames.idle)) return true;
+    if (actor.animationFrame?.startsWith('joker-seated-')) this._fallbackCombatFrame(actor);
+    return false;
+  }
+
   _combatAnimationConfig(actor, state = actor.state) {
     const config = this.characterAnimations?.[actor.key];
     if (!config?.combat) return null;
     if (COMPANION_ANIMATION_IDS.includes(actor.key)) return canShowCompanionAnimation(actor, state)
+      && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
+    if (ENEMY_ANIMATION_IDS.includes(actor.key)) return canShowEnemyAnimation(actor, state)
       && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
     return config.combat;
   }
@@ -302,7 +337,7 @@ export class WorldView {
   _applyAnimationFrame(actor, atlasName, frame, { cover = false } = {}) {
     const atlas = this.atlases[atlasName], rect = frame?.rect;
     if (!atlas?.image?.width || !atlas.image.height || !Array.isArray(rect) || rect.length !== 4 || !rect.every(Number.isFinite)) return false;
-    if (COMPANION_ANIMATION_IDS.includes(actor.key) && atlasName === `combat-${actor.key}`) {
+    if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && atlasName === `combat-${actor.key}`) {
       const config = this._combatAnimationConfig(actor);
       if (!config || atlas.image.width !== config.width || atlas.image.height !== config.height) return false;
     }
@@ -940,11 +975,16 @@ export class WorldView {
       ? [...(!this.storyContext ? [['chakwas', 5.2, 10.5], ['joker', .5, -15.3]] : []), ...(!this.cleared.has('eden-prime:boss') ? [['anderson', -5.2, -3.8]] : [])]
       : this.zoneId === 'citadel' ? [['anderson', .8, 11.2], ['udina', 1.1, -17.9]]
       : this.zoneId === 'virmire' ? [['kirrahe', .8, 11.2]] : [];
-    for (const [key, x, z] of npcs) { const actor = this._makeActor(key, `npc:${key}`); actor.group.position.set(x, 0, z); actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor); }
+    for (const [key, x, z] of npcs) {
+      const actor = this._makeActor(key, `npc:${key}`);
+      if (key === 'joker' && this.zoneId === 'normandy') actor.stationRole = 'normandy-pilot';
+      actor.group.position.set(x, 0, z); actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
+    }
     const active = new Set(this.actors.map(actor => actor.id));
     for (const poi of this.getConversationPOIs()) {
       if (active.has(poi.characterId)) continue;
       const actor = this._makeActor(poi.characterId, `npc:${poi.characterId}`);
+      if (poi.characterId === 'joker' && this.zoneId === 'normandy') actor.stationRole = 'normandy-pilot';
       actor.conversationId = poi.conversationId; actor.poiId = poi.id;
       actor.group.position.set(poi.actorPosition.x, 0, poi.actorPosition.z);
       actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
@@ -1005,7 +1045,7 @@ export class WorldView {
       if (actor.lastShield !== null && state.shield < actor.lastShield) actor.shieldFlash = .35;
       const animationAllowed = !!this._combatAnimationConfig(actor, state);
       if (animationAllowed && actor.alive !== (state.hp > 0)
-        || COMPANION_ANIMATION_IDS.includes(actor.key) && actor.animationAllowed !== animationAllowed) {
+        || GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationAllowed !== animationAllowed) {
         actor.combatPose = null; actor.combatPoseTime = 0;
       }
       actor.animationAllowed = animationAllowed;
@@ -1255,7 +1295,11 @@ export class WorldView {
         actor.body.scale.x = moving ? actor.walkAspect / (2.1 / actor.height) : 1;
       }
     });
-    for (const actor of this.ambientActors || []) { actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + Math.sin(this.time * 1.5 + actor.group.position.x) * .02; }
+    for (const actor of this.ambientActors || []) {
+      actor.body.rotation.y = facing;
+      actor.body.position.y = actor.height / 2 + .05 + Math.sin(this.time * 1.5 + actor.group.position.x) * .02;
+      this._applySeatedJoker(actor);
+    }
     for (const actor of this.battleActors.values()) {
       actor.body.rotation.y = facing; actor.poseTime = Math.max(0, actor.poseTime - dt);
       actor.shieldFlash = Math.max(0, (actor.shieldFlash || 0) - dt);
@@ -1278,7 +1322,7 @@ export class WorldView {
           // or if a frame is unavailable; never retain the preceding pose's crop.
           this._fallbackCombatFrame(actor);
         }
-      } else if (COMPANION_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
+      } else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     for (const item of this.animations) {

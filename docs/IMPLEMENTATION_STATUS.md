@@ -279,6 +279,12 @@ La reprise sur `105d037` ajoute **six atlas natifs, soit 24 poses clés** des co
 
 Le suivi met à jour seulement six lignes SPR : les 1 376 autres entrées du catalogue principal et les statuts sont préservés. Le registre reste à 6 708 fiches et 454 sources. Les 280 résultats Simulation et leurs 218 consultations sont conservés, avec les 25 combats/dotations historiques par défaut. Les [preuves courantes](qa/companion-combat-report.json) relient génération, contrôle technique, rendu isolé, parcours public, sauvegardes et [classeur principal](Mass_Effect_Relay_Chronicles_Production.xlsx). Les poses fixes et armes dessinées génériques ne terminent pas les cycles, costumes et modèles complets 1:1.
 
+## Ennemis ME1, Joker et armes ME3 Legendary — 2 novembre 2026
+
+La reprise sur `05d1f03` ajoute quatre familles de poses aux ennemis existants et une planche assise de Joker : **cinq PNG, 16 poses de combat et deux dessins assis**. Idle est intégré au poste du Normandy ; pilot reste produit sans nouveau cycle. Les cinq lignes SPR deviennent Prototype, avec les 1 377 autres entrées préservées. Le lot ajoute deux préparations ME3 Legendary — Suppressor et Raider — portant le total des ateliers à **107 équipements, dont 79 armes**.
+
+Les [preuves courantes](qa/me1-enemy-poses-report.json) relient les références, les fichiers natifs, le renderer, les parcours publics, les sauvegardes et le classeur principal. Les représentations restent des prototypes à angles fixes ; elles ne terminent pas la fidélité artistique ou les modèles 1:1 des jeux d’origine.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.

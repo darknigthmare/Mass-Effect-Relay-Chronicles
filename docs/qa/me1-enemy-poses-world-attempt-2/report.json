@@ -1,0 +1,983 @@
+{
+  "schemaVersion": 1,
+  "passed": false,
+  "at": "2026-11-02T04:38:25.057Z",
+  "url": "http://127.0.0.1:4195",
+  "sourceHead": "05d1f030dab0925d57d4ba8c5bdb9ccde8db1ad0",
+  "sourceHashes": {
+    "src/world.js": "0f7483299c60b673681efdc9675d73bdc492a1394e1b8141ab24b8cecadcc792",
+    "src/enemy-animation-data.js": "56e3a024dda3204b9463fcbb6e5cd3a1d2935e2dfcf66b0d819786f4743e4ab8",
+    "src/joker-seated-data.js": "9eb8c43955787f0b04c3b85587198cf5431e190fca5c7eb85f4844775524b29c",
+    "src/companion-animation-data.js": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/customization-render.js": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+    "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+    "vite.config.js": "c7143b06d5fcc0ee22f221a1b00499b9c382a89cda28b391b8d285d52127d1e2",
+    "scripts/me1-enemy-poses-world-browser.mjs": "16eaf0dd5bc7e9ea5a18ec8fe41482ffe053b4fd3b115188ef5d5f5ea9e818d6",
+    "public/assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+    "public/assets/npc-atlas.png": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
+    "public/assets/joker-seated.png": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+    "public/assets/joker-seated.json": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb",
+    "public/assets/enemy-geth-animation.json": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363",
+    "public/assets/enemy-geth-combat.png": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+    "public/assets/enemy-geth-sniper-animation.json": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092",
+    "public/assets/enemy-geth-sniper-combat.png": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+    "public/assets/enemy-geth-destroyer-animation.json": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04",
+    "public/assets/enemy-geth-destroyer-combat.png": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+    "public/assets/enemy-husk-animation.json": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754",
+    "public/assets/enemy-husk-combat.png": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+  },
+  "scope": "Detached development fixture on the actual WorldView. Sixteen held enemy key-pose states, four real native enemy action/KO sequences, exact metadata/UV/pivot checks, Normandy pilot idle, a separately requested pilot drawing, and three retained Shepard/companion render regressions. Native IDs and actors come from the existing ME1 definitions. The application stays at its title and its save/storage bytes are compared unchanged. This is not the public campaign journey, an animation cycle, a new enemy kit or original-game fidelity certification.",
+  "buildKind": "vite-development-isolated-renderer",
+  "viewport": {
+    "width": 1280,
+    "height": 800,
+    "deviceScaleFactor": 1
+  },
+  "node": "v24.19.0",
+  "cases": [
+    {
+      "id": "geth-0",
+      "key": "geth",
+      "frameId": "geth-combat-aim",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-combat.png",
+      "textureUUID": "395c5096-440b-441f-9068-33ae3f2d3131",
+      "rect": [
+        150,
+        0,
+        480,
+        558
+      ],
+      "pivot": [
+        281,
+        544
+      ],
+      "repeat": [
+        0.3125,
+        0.544921875
+      ],
+      "offset": [
+        0.09765625,
+        0.455078125
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 734.8443609727445,
+        "top": 358.97983735147534,
+        "right": 816.5647910802714,
+        "bottom": 432.5256085887735
+      },
+      "pose": "aim",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-aim.png",
+      "passed": true
+    },
+    {
+      "id": "husk-1",
+      "key": "husk",
+      "frameId": "husk-combat-aim",
+      "texture": "http://127.0.0.1:4195/assets/enemy-husk-combat.png",
+      "textureUUID": "3c6238a7-9f59-42b5-8a52-a4f049c4788b",
+      "rect": [
+        180,
+        0,
+        450,
+        510
+      ],
+      "pivot": [
+        286,
+        503
+      ],
+      "repeat": [
+        0.29296875,
+        0.498046875
+      ],
+      "offset": [
+        0.1171875,
+        0.501953125
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 684.4876042976477,
+        "top": 414.3008347112107,
+        "right": 768.3111337094125,
+        "bottom": 487.8466059485089
+      },
+      "pose": "aim",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-aim.png",
+      "passed": true
+    },
+    {
+      "id": "geth-0",
+      "key": "geth",
+      "frameId": "geth-combat-power",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-combat.png",
+      "textureUUID": "395c5096-440b-441f-9068-33ae3f2d3131",
+      "rect": [
+        900,
+        0,
+        435,
+        576
+      ],
+      "pivot": [
+        239,
+        561
+      ],
+      "repeat": [
+        0.283203125,
+        0.5625
+      ],
+      "offset": [
+        0.5859375,
+        0.4375
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1.032258064516129,
+      "groundAnchorError": 2.636779683484747e-16,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 741.2899630054867,
+        "top": 357.3316744189021,
+        "right": 815.3491027904328,
+        "bottom": 433.2498898896615
+      },
+      "pose": "power",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-power.png",
+      "passed": true
+    },
+    {
+      "id": "husk-1",
+      "key": "husk",
+      "frameId": "husk-combat-power",
+      "texture": "http://127.0.0.1:4195/assets/enemy-husk-combat.png",
+      "textureUUID": "3c6238a7-9f59-42b5-8a52-a4f049c4788b",
+      "rect": [
+        770,
+        35,
+        735,
+        485
+      ],
+      "pivot": [
+        537,
+        469
+      ],
+      "repeat": [
+        0.478515625,
+        0.4736328125
+      ],
+      "offset": [
+        0.5013020833333334,
+        0.4921875
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.9509803921568628,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 637.0277667351969,
+        "top": 419.79636497050404,
+        "right": 773.9395314410792,
+        "bottom": 489.73695134322884
+      },
+      "pose": "power",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-power.png",
+      "passed": true
+    },
+    {
+      "id": "geth-0",
+      "key": "geth",
+      "frameId": "geth-combat-hit",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-combat.png",
+      "textureUUID": "395c5096-440b-441f-9068-33ae3f2d3131",
+      "rect": [
+        195,
+        564,
+        430,
+        460
+      ],
+      "pivot": [
+        203,
+        443
+      ],
+      "repeat": [
+        0.2799479166666667,
+        0.44921875
+      ],
+      "offset": [
+        0.126953125,
+        0
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.8243727598566308,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 747.2220600470448,
+        "top": 372.9324806703441,
+        "right": 820.4299453517042,
+        "bottom": 433.56161108102003
+      },
+      "pose": "hit",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-hit.png",
+      "passed": true
+    },
+    {
+      "id": "husk-1",
+      "key": "husk",
+      "frameId": "husk-combat-hit",
+      "texture": "http://127.0.0.1:4195/assets/enemy-husk-combat.png",
+      "textureUUID": "3c6238a7-9f59-42b5-8a52-a4f049c4788b",
+      "rect": [
+        175,
+        510,
+        445,
+        504
+      ],
+      "pivot": [
+        267,
+        483
+      ],
+      "repeat": [
+        0.2897135416666667,
+        0.4921875
+      ],
+      "offset": [
+        0.11393229166666667,
+        0.009765625
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.9882352941176472,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 687.1249491657494,
+        "top": 417.8255777228724,
+        "right": 770.0171060284946,
+        "bottom": 490.506104592673
+      },
+      "pose": "hit",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-hit.png",
+      "passed": true
+    },
+    {
+      "id": "geth-0",
+      "key": "geth",
+      "frameId": "geth-combat-down",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-combat.png",
+      "textureUUID": "395c5096-440b-441f-9068-33ae3f2d3131",
+      "rect": [
+        780,
+        780,
+        710,
+        200
+      ],
+      "pivot": [
+        345,
+        179
+      ],
+      "repeat": [
+        0.4622395833333333,
+        0.1953125
+      ],
+      "offset": [
+        0.5078125,
+        0.04296875
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.35842293906810035,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 723.0667323354022,
+        "top": 407.76234846752084,
+        "right": 843.9448685361191,
+        "bottom": 434.12283995042344
+      },
+      "pose": "down",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-down.png",
+      "passed": true
+    },
+    {
+      "id": "husk-1",
+      "key": "husk",
+      "frameId": "husk-combat-down",
+      "texture": "http://127.0.0.1:4195/assets/enemy-husk-combat.png",
+      "textureUUID": "3c6238a7-9f59-42b5-8a52-a4f049c4788b",
+      "rect": [
+        790,
+        760,
+        726,
+        216
+      ],
+      "pivot": [
+        358,
+        195
+      ],
+      "repeat": [
+        0.47265625,
+        0.2109375
+      ],
+      "offset": [
+        0.5143229166666666,
+        0.046875
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.4235294117647059,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 670.1942683020934,
+        "top": 459.39132640250386,
+        "right": 805.4295624197405,
+        "bottom": 490.5401236324184
+      },
+      "pose": "down",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-husk-down.png",
+      "passed": true
+    },
+    {
+      "id": "sniper-0",
+      "key": "geth-sniper",
+      "frameId": "geth-sniper-combat-aim",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-sniper-combat.png",
+      "textureUUID": "9d6463da-bb17-4d21-85a4-53b651be2a33",
+      "rect": [
+        105,
+        4,
+        480,
+        527
+      ],
+      "pivot": [
+        332,
+        519
+      ],
+      "repeat": [
+        0.3125,
+        0.5146484375
+      ],
+      "offset": [
+        0.068359375,
+        0.4814453125
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 722.2787800081278,
+        "top": 359.10358329644606,
+        "right": 808.8062942396268,
+        "bottom": 432.6493545337442
+      },
+      "pose": "aim",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-aim.png",
+      "passed": true
+    },
+    {
+      "id": "destroyer-1",
+      "key": "geth-destroyer",
+      "frameId": "geth-destroyer-combat-aim",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-destroyer-combat.png",
+      "textureUUID": "631ae57c-fe1e-4041-bab7-f091aaac8fd1",
+      "rect": [
+        120,
+        1,
+        477,
+        537
+      ],
+      "pivot": [
+        316,
+        529
+      ],
+      "repeat": [
+        0.310546875,
+        0.5244140625
+      ],
+      "offset": [
+        0.078125,
+        0.474609375
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1,
+      "groundAnchorError": 9.164595183352473e-16,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 673.4550046038719,
+        "top": 405.0711353860812,
+        "right": 769.6840548832015,
+        "bottom": 488.9391201303686
+      },
+      "pose": "aim",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-aim.png",
+      "passed": true
+    },
+    {
+      "id": "sniper-0",
+      "key": "geth-sniper",
+      "frameId": "geth-sniper-combat-power",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-sniper-combat.png",
+      "textureUUID": "9d6463da-bb17-4d21-85a4-53b651be2a33",
+      "rect": [
+        850,
+        5,
+        560,
+        532
+      ],
+      "pivot": [
+        336,
+        524
+      ],
+      "repeat": [
+        0.3645833333333333,
+        0.51953125
+      ],
+      "offset": [
+        0.5533854166666666,
+        0.4755859375
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1.01,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 721.2316794173616,
+        "top": 358.2100404377543,
+        "right": 822.2316794173618,
+        "bottom": 432.49126938742546
+      },
+      "pose": "power",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-power.png",
+      "passed": true
+    },
+    {
+      "id": "destroyer-1",
+      "key": "geth-destroyer",
+      "frameId": "geth-destroyer-combat-power",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-destroyer-combat.png",
+      "textureUUID": "631ae57c-fe1e-4041-bab7-f091aaac8fd1",
+      "rect": [
+        810,
+        12,
+        619,
+        537
+      ],
+      "pivot": [
+        427,
+        529
+      ],
+      "repeat": [
+        0.4029947916666667,
+        0.5244140625
+      ],
+      "offset": [
+        0.52734375,
+        0.4638671875
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 1,
+      "groundAnchorError": 2.2591401799415137e-16,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 650.7667830197454,
+        "top": 404.91248362327144,
+        "right": 775.6426365268838,
+        "bottom": 488.7804683675588
+      },
+      "pose": "power",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-power.png",
+      "passed": true
+    },
+    {
+      "id": "sniper-0",
+      "key": "geth-sniper",
+      "frameId": "geth-sniper-combat-hit",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-sniper-combat.png",
+      "textureUUID": "9d6463da-bb17-4d21-85a4-53b651be2a33",
+      "rect": [
+        175,
+        543,
+        538,
+        453
+      ],
+      "pivot": [
+        270,
+        445
+      ],
+      "repeat": [
+        0.3502604166666667,
+        0.4423828125
+      ],
+      "offset": [
+        0.11393229166666667,
+        0.02734375
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.86,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 733.0675390561133,
+        "top": 369.20488082253684,
+        "right": 830.0975611311685,
+        "bottom": 432.4542440866133
+      },
+      "pose": "hit",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-hit.png",
+      "passed": true
+    },
+    {
+      "id": "destroyer-1",
+      "key": "geth-destroyer",
+      "frameId": "geth-destroyer-combat-hit",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-destroyer-combat.png",
+      "textureUUID": "631ae57c-fe1e-4041-bab7-f091aaac8fd1",
+      "rect": [
+        109,
+        548,
+        518,
+        460
+      ],
+      "pivot": [
+        301,
+        452
+      ],
+      "repeat": [
+        0.3372395833333333,
+        0.44921875
+      ],
+      "offset": [
+        0.07096354166666667,
+        0.015625
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.86,
+      "groundAnchorError": 3.447170978769293e-16,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 675.8767488341327,
+        "top": 416.6219439973192,
+        "right": 780.7905169500747,
+        "bottom": 488.74841087740634
+      },
+      "pose": "hit",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-hit.png",
+      "passed": true
+    },
+    {
+      "id": "sniper-0",
+      "key": "geth-sniper",
+      "frameId": "geth-sniper-combat-down",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-sniper-combat.png",
+      "textureUUID": "9d6463da-bb17-4d21-85a4-53b651be2a33",
+      "rect": [
+        795,
+        724,
+        716,
+        217
+      ],
+      "pivot": [
+        358,
+        209
+      ],
+      "repeat": [
+        0.4661458333333333,
+        0.2119140625
+      ],
+      "offset": [
+        0.517578125,
+        0.0810546875
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.31,
+      "groundAnchorError": 1.3877787807814457e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 733.264549688576,
+        "top": 409.4257069248731,
+        "right": 830.4359782600046,
+        "bottom": 432.2248960084355
+      },
+      "pose": "down",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-down.png",
+      "passed": true
+    },
+    {
+      "id": "destroyer-1",
+      "key": "geth-destroyer",
+      "frameId": "geth-destroyer-combat-down",
+      "texture": "http://127.0.0.1:4195/assets/enemy-geth-destroyer-combat.png",
+      "textureUUID": "631ae57c-fe1e-4041-bab7-f091aaac8fd1",
+      "rect": [
+        736,
+        714,
+        754,
+        263
+      ],
+      "pivot": [
+        377,
+        255
+      ],
+      "repeat": [
+        0.4908854166666667,
+        0.2568359375
+      ],
+      "offset": [
+        0.4791666666666667,
+        0.0458984375
+      ],
+      "rotationZ": 0,
+      "relativeHeight": 0.35,
+      "groundAnchorError": 4.163336342344337e-17,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "saveUnchanged": true,
+      "drawCalls": 53,
+      "triangles": 7548,
+      "projectedBounds": {
+        "left": 682.5754874276038,
+        "top": 459.08024934187273,
+        "right": 791.2795431943972,
+        "bottom": 488.43404400237335
+      },
+      "pose": "down",
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-down.png",
+      "passed": true
+    }
+  ],
+  "nativeEvents": [
+    {
+      "key": "geth",
+      "actorId": "geth-0",
+      "actionId": "shoot",
+      "actionOK": true,
+      "actionFrame": "geth-combat-aim",
+      "damageOK": true,
+      "downFrame": "geth-combat-down",
+      "hpAfterDamage": 0,
+      "powersUnchanged": true,
+      "rendererPreservesNativeBattle": true
+    },
+    {
+      "key": "geth-sniper",
+      "actorId": "sniper-0",
+      "actionId": "sabotage",
+      "actionOK": true,
+      "actionFrame": "geth-sniper-combat-power",
+      "damageOK": false,
+      "downFrame": "geth-sniper-combat-aim",
+      "hpAfterDamage": 1,
+      "powersUnchanged": true,
+      "rendererPreservesNativeBattle": true
+    },
+    {
+      "key": "geth-destroyer",
+      "actorId": "destroyer-0",
+      "actionId": "overload",
+      "actionOK": true,
+      "actionFrame": "geth-destroyer-combat-power",
+      "damageOK": true,
+      "downFrame": "geth-destroyer-combat-down",
+      "hpAfterDamage": 0,
+      "powersUnchanged": true,
+      "rendererPreservesNativeBattle": true
+    },
+    {
+      "key": "husk",
+      "actorId": "husk-0",
+      "actionId": "strike",
+      "actionOK": true,
+      "actionFrame": "husk-combat-power",
+      "damageOK": true,
+      "downFrame": "husk-combat-down",
+      "hpAfterDamage": 0,
+      "powersUnchanged": true,
+      "rendererPreservesNativeBattle": true
+    }
+  ],
+  "joker": [],
+  "regressions": [],
+  "scopeClosures": [],
+  "captureArtifacts": [
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-husk-aim.png",
+      "bytes": 553545,
+      "sha256": "dd34808277498d1fcd98d03fd952eff37929e257692d5396f081466697fde2bc"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-husk-power.png",
+      "bytes": 553125,
+      "sha256": "f2416f9f67a4ba76fe3c1cc40c52188db1194b8b5dc7fbbdd8fd25447bfba548"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-husk-hit.png",
+      "bytes": 553674,
+      "sha256": "b9d37003aba24a48688a347765852124f06f27f4cf2353051496e7e71216e662"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-husk-down.png",
+      "bytes": 550769,
+      "sha256": "eb9ccb4ab976e820f9c60bf34fef5d6259c021dd3be9af9937679360dd364c74"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-aim.png",
+      "bytes": 554357,
+      "sha256": "cff32898dfe743341b73fbd3cb7ccacb0d901c1f96b212025fa9232201db1fbe"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-power.png",
+      "bytes": 554576,
+      "sha256": "9c5fa5d173d9b2b15aa2a3bf161291c8838f25d6d94d5c15748d27b2b5f6e291"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-hit.png",
+      "bytes": 554722,
+      "sha256": "29884be65e23b667e8a654f713fe8aa53ca0ced47d8072512070fd331b7c78cd"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-down.png",
+      "bytes": 550291,
+      "sha256": "0c3922d37e032cf6aed3bb1c4a8fb03d9c1d762b6e2c6406daa8e68eeb6bda03"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-world-failure.png",
+      "bytes": 548497,
+      "sha256": "b1c3482f4c4afef45c10acee2df37beb35e2ac8aca9572b40f982b7e8c915b78"
+    }
+  ],
+  "servedAssets": [
+    {
+      "path": "public/assets/enemy-geth-combat.png",
+      "status": 200,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    {
+      "path": "public/assets/enemy-geth-sniper-combat.png",
+      "status": 200,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    {
+      "path": "public/assets/enemy-geth-destroyer-combat.png",
+      "status": 200,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    {
+      "path": "public/assets/enemy-husk-combat.png",
+      "status": 200,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    {
+      "path": "public/assets/joker-seated.png",
+      "status": 200,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "assetErrors": [],
+  "chromium": "154.0.8037.57",
+  "appBefore": {
+    "state": null,
+    "storage": {}
+  },
+  "fallbackBeforeLoad": {
+    "frame": null,
+    "visible": true,
+    "opacity": 1
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///workspace/Mass-Effect-Relay-Chronicles/scripts/me1-enemy-poses-world-browser.mjs:159:48"
+}

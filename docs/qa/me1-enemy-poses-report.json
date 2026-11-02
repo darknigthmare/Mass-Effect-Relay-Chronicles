@@ -1,0 +1,458 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-02T05:02:33.824Z",
+  "baseline": "05d1f030dab0925d57d4ba8c5bdb9ccde8db1ad0",
+  "scope": "Four existing ME1 enemy families gain16 fixed poses; Joker gains two seated drawings with idle integrated at Normandy. Two existing ME3 DLC weapon profiles gain explicit Legendary-workshop access. Five existing SPR records become Prototype. No new canonical character, enemy kit, armour, vehicle or ship is counted.",
+  "additions": {
+    "nativeGeneratedPNG": 5,
+    "enemyFamilies": 4,
+    "fixedEnemyCombatPoses": 16,
+    "seatedDrawings": 2,
+    "runtimeSeatedStates": [
+      "idle"
+    ],
+    "newCanonicalCharacters": 0,
+    "newEnemyMechanicalKits": 0,
+    "newArmourSets": 0,
+    "newPilotableHulls": 0,
+    "newlyPermittedME3LegendaryPreparations": 2,
+    "supportedEquipment": 107,
+    "supportedWeapons": 79,
+    "manifestCombatKeyPoses": 48,
+    "preservedHistoricalPNG": 22
+  },
+  "validation": {
+    "nodeTests": 785,
+    "compiledModules": 79,
+    "compiledJavaScript": 9,
+    "compiledPNG": 27,
+    "protectedBaselineFiles": 1724,
+    "rendererCases": 16,
+    "rendererCaptures": 21,
+    "publicEncounters": 3,
+    "publicNativeShots": 3,
+    "publicActualExports": 8,
+    "publicBrowserLaunches": 2,
+    "publicBrowserShutdowns": 2,
+    "publicCaptures": 13,
+    "uiImagesActuallyReviewed": 34,
+    "weaponPreparationsRestored": 2,
+    "oldSimulationOutcomesExact": 280,
+    "oldSimulationConsultationsClosed": 218,
+    "oldDefaultScenarioOutcomesExact": 25,
+    "workbookComparedCells": 23494,
+    "workbookPanelsActuallyOpened": 22
+  },
+  "workbook": {
+    "path": "docs/Mass_Effect_Relay_Chronicles_Production.xlsx",
+    "sha256": "60c83c78c5e927d6c5aa8eb836197592b474c07393745fdcb45737a057fcc5f4",
+    "changedSpriteIds": [
+      "SPR-soldat-geth-ennemi",
+      "SPR-sniper-geth-ennemi",
+      "SPR-destructeur-geth-ennemi",
+      "SPR-husk-ennemi",
+      "SPR-NPC-joker-assis"
+    ],
+    "changedWorkbookCells": 33,
+    "explicitPrototypePromotions": 5,
+    "otherEntriesUnchanged": 1377,
+    "nativeChecks": {
+      "sheets": 28,
+      "tables": 26,
+      "formulas": 274,
+      "dataValidations": 130,
+      "conditionalRules": 130,
+      "catalogueCells": 23494,
+      "xmlParts": 87,
+      "recalculatedFormulaCaches": {
+        "C30": 38,
+        "D30": 44,
+        "C37": 1033,
+        "D37": 343
+      },
+      "differentialStyleDefinitionsBefore": 520,
+      "differentialStyleDefinitionsAfter": 650,
+      "referencedDifferentialStyles": 130,
+      "unreferencedDifferentialStylesAfterExport": 520
+    },
+    "formatQualification": "All active styles,274formulas,26tables,130validations and130conditionalrules are preserved. Artifact Tool retains130additional unused differential-style definitions (520to650); referenced differential styles remain130. Native XML verification compares effective formats at their consumers."
+  },
+  "rendererProofQualification": {
+    "kind": "explicit-composite-renderer-proof",
+    "strictFullRunPassed": false,
+    "originalFailurePreserved": true,
+    "fullRunRepeatedForSummary": false,
+    "phaseMethods": {
+      "poseCasesObserved": 16,
+      "poseMatrixRepeatedByCompletion": false,
+      "identicalRuntimeMetadataAndPNGSourceHashes": true,
+      "completionCasesObserved": {
+        "nativeEvents": 4,
+        "negativeScopes": 6,
+        "retainedSquadRenders": 3,
+        "fixedPilotDrawings": 2
+      },
+      "nativeKOFixture": "Both allies begin ready in detached data. The enemy targets Shepard. Ashley performs the controlled KO witness with test attack5000 against the target at1HP; Sabotage is neither cleared nor bypassed on Shepard.",
+      "completionReportScope": "The completion input retains the full script description, but phase=completion and cases=[] identify the targeted invocation actually executed."
+    },
+    "limitations": [
+      "All18 drawings are fixed prototype poses, with incomplete original likeness, equipment silhouettes, animation cycles and extra directions.",
+      "The sixteen enemy states are held explicitly in detached fixtures. The four native action/KO sequences supplement them without turning the held matrix into ordinary gameplay.",
+      "Joker uses idle at his authored ME1 Normandy pilot station. The pilot drawing is measured and shown in a separate forced preview only, with no new animation or dialogue state.",
+      "Existing campaign rules, save schemas, recruitment, inventory and enemy statistical profiles are not modified by these render fixtures."
+    ]
+  },
+  "unitCollectionQualification": {
+    "collectedAt": "2026-11-02T04:49:15.617Z",
+    "newTestRunForSummary": false,
+    "rawReport": {
+      "path": "docs/qa/me1-enemy-poses-unit-collection/raw-report.json",
+      "sha256": "40247be287f0f767954fc742e78680cdb7ae017ec54b6778a0eeb20e70ad6534"
+    },
+    "rawOutput": {
+      "path": "docs/qa/me1-enemy-poses-unit-collection/output.txt",
+      "sha256": "6253a9071a516e016f26a99ed32d90d2270b2a520e36aeeeeca170af62f9f6a3"
+    },
+    "parser": {
+      "path": "scripts/verify-me1-enemy-poses-build.mjs",
+      "sha256": "ce46f2a1e09668cd3295f96899b56a4bdde8502b18536e1b669155c3e9f78fdf"
+    },
+    "qualification": "The actual successful785-test process emitted spec output. These exact bytes are reparsed; the original wrapper failure and runner are archived. Game and test source hashes remain identical."
+  },
+  "productionLimitations": [
+    "Prepared fixtures use the native completion functions for earlier encounters; those prior victories are not played in Chromium.",
+    "Each actual encounter remains unresolved and resumes its automatic pre-combat save. No new victory reward is claimed.",
+    "Public frames and source asset loads do not alone certify16-pose coverage; the independent renderer fixture supplies that inspection.",
+    "Joker idle is integrated at the Normandy cockpit. The second pilot drawing is produced but is not an additional timed animation.",
+    "The historical Chromium154 post-restart download failure is avoided: exports follow same-process page reloads; final complete restart is checked through public UI only.",
+    "Console resource warnings are recorded with locations. The historical implicit favicon404 is distinguished from game resource failures."
+  ],
+  "weaponLimitations": [
+    "EA inclusion/integration evidence is collective; model/extension links are inherited explicit catalogue facts, not newly downloaded individual articles.",
+    "The seven generic extended-arsenal candidates remain closed because their individual model/content association is insufficiently documented here.",
+    "Capacities, reserve budgets, damage and generic firing primitives remain pre-existing ATB adaptations. Headshots, spread, recoil, exact model cadence, geometry, sound and animation are not reproduced.",
+    "Twenty-five historical default battles include their existing loss against the ME3 Reaper opposition; exact preservation is not a claim of twenty-five victories.",
+    "This native proof does not establish public UI behavior, original weapon artwork, real-device performance or integral1:1 fidelity. Browser and production build have separate reports."
+  ],
+  "productionConsoleReserve": {
+    "fullConsoleClean": false,
+    "consoleObservations": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "resourceWarnings": []
+  },
+  "weaponBrowserConsoleReserve": {
+    "fullConsoleClean": false,
+    "consoleObservations": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "nonBlockingFindings": [
+      {
+        "kind": "missing-implicit-favicon",
+        "consoleMessages": 4,
+        "unlocatedConsoleMessages": 0,
+        "localizedCDPFaviconMessages": 4,
+        "qualification": "Every observed console404 explicitly names favicon.ico; the missing browser icon is retained as a non-blocking reserve.",
+        "effect": "No interruption of the two weapon preparations, saves, restores, native shots or reloads."
+      }
+    ]
+  },
+  "visualObservations": [
+    {
+      "kind": "fixture-architecture-occlusion",
+      "severity": "review-limitation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-world-geth-husk-aim.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-husk-power.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-husk-hit.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-husk-down.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-aim.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-power.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-hit.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-down.png"
+      ],
+      "detail": "An existing Normandy structural bar obscures the lower enemy in both held-pose pairs, especially the husk/destroyer torso and parts of the down silhouettes. No PNG crop or neighboring-cell fragment is indicated; full-body visibility cannot be certified from these eight views alone. A targeted open-environment visual supplement has been requested from the renderer agent, without replaying native/saving/regression cases.",
+      "resolution": "Eight additional actual Eden Prime images have now been opened. The same four families and all sixteen fixed pose states are visible without the Normandy bar occlusion; this resolves the full-body visual coverage gap while retaining the initial obstructed captures as bounded observations."
+    },
+    {
+      "kind": "low-contrast-ko",
+      "severity": "informational",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-world-geth-husk-down.png",
+        "docs/screenshots/me1-enemy-poses-world-geth-sniper-geth-destroyer-down.png"
+      ],
+      "detail": "The inherited translucent defeated rendering is pale against the dark floor. The lower actor also has the architecture occlusion above."
+    },
+    {
+      "kind": "retained-companions-and-commander",
+      "severity": "observation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-world-regression-garrus-wrex.png",
+        "docs/screenshots/me1-enemy-poses-world-regression-liara-tali.png",
+        "docs/screenshots/me1-enemy-poses-world-regression-ashley-kaidan.png"
+      ],
+      "detail": "The six retained companion aim silhouettes and both commander appearances are recognizable and show complete visible bodies with anchored feet. Garrus/Wrex frame includes transient native wireframe effect rings around Shepard and the opposing geth; these effects are distinct from the new PNG source art."
+    },
+    {
+      "kind": "seated-joker",
+      "severity": "observation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-world-joker-idle.png",
+        "docs/screenshots/me1-enemy-poses-world-joker-pilot.png"
+      ],
+      "detail": "Joker is visibly seated with chair/base and feet on the Normandy floor in both images. The cap and compact seated silhouette are readable at the captured size. Idle is the actual integrated drawing; the pilot variant is explicitly a held requested drawing, not an observed autonomous animation cycle."
+    },
+    {
+      "kind": "open-environment-poses",
+      "severity": "observation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-aim.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-power.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-hit.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-down.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-aim.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-power.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-hit.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-down.png"
+      ],
+      "detail": "All four enemy families show complete held aim/action/hit/down drawings on the real renderer in the declared open Eden Prime fixture. Standing and impact feet remain at ground contact; down bodies lie horizontally without a second rotation. No neighboring-pose fragment or missing limb caused by a rectangle crop is visible. The sniper remains red/slender with a long rifle, destroyer broad blue-gray/red, ordinary geth pale, and husk organic blue. The inherited KO opacity is still faint on the ground."
+    },
+    {
+      "kind": "background-ambient-occlusion",
+      "severity": "informational",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-aim.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-power.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-hit.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-husk-down.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-aim.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-power.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-hit.png",
+        "docs/screenshots/me1-enemy-poses-visible-geth-sniper-geth-destroyer-down.png"
+      ],
+      "detail": "A separate small background figure is partly occluded behind the foreground building in the Eden fixture. It remains unchanged across the eight views and is spatially separate from the two battle actors; it is not a fragment of their new atlas rectangles."
+    },
+    {
+      "kind": "public-enemy-and-shot-frames",
+      "severity": "observation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-1-public-battle.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-1-native-shot.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-2-public-battle.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-2-native-shot.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-boss-public-battle.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-boss-native-shot.png"
+      ],
+      "detail": "The three actual public encounters show pale geth, blue organic husks, the slim red sniper and broad gray/red destroyer as separate whole battle silhouettes above the command panels. No rectangle crop or neighboring-pose piece is visible. Shot frames contain native beams, shield wireframes or impact tint; these transient effects partly overlay the target and do not replace the separate held-pose coverage."
+    },
+    {
+      "kind": "public-joker-and-retained-portrait",
+      "severity": "observation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-production-joker-seated-cockpit.png",
+        "docs/screenshots/me1-enemy-poses-production-joker-conversation.png"
+      ],
+      "detail": "The Normandy scene shows Joker seated with chair and visible feet. The public conversation has a readable JOKER heading and choices while the scene retains the seated figure. The dialogue portrait intentionally remains the historical standing NPC image; the new seated drawings do not claim a new portrait family."
+    },
+    {
+      "kind": "public-hud-label-overlap",
+      "severity": "informational",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-1-public-battle.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-1-native-shot.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-2-public-battle.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-encounter-2-native-shot.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-boss-public-battle.png",
+        "docs/screenshots/me1-enemy-poses-production-eden-boss-native-shot.png",
+        "docs/screenshots/me1-enemy-poses-production-joker-seated-cockpit.png"
+      ],
+      "detail": "At 1280×800 the combat-title badge overlaps part of the disabled Journal navigation label. In the seated cockpit frame the world JOKER label reaches the top navigation area, while the full seated body and bottom interaction label remain visible. This is a bounded existing HUD/framing limitation, with no new art rectangle failure observed."
+    },
+    {
+      "kind": "public-restart-visible-state",
+      "severity": "observation",
+      "images": [
+        "docs/screenshots/me1-enemy-poses-production-before-full-restart-inventory.png",
+        "docs/screenshots/me1-enemy-poses-production-before-full-restart-journal.png",
+        "docs/screenshots/me1-enemy-poses-production-after-full-restart-inventory.png",
+        "docs/screenshots/me1-enemy-poses-production-after-full-restart-journal.png",
+        "docs/screenshots/me1-enemy-poses-production-after-full-restart-world.png"
+      ],
+      "detail": "Before/after restart inventory views retain the three party tabs,420 credits,4 medigels,5/150 items and the visible Kessler I/Lancer I entries. Journal views retain Eden Prime, level 1 and130 XP. The final exploration frame shows the party and the unresolved beacon-defence interaction. These are visual UI checks; exact save-byte comparisons are supplied separately by the production runner, and no post-restart export is claimed by this review."
+    }
+  ],
+  "limitations": [
+    "The primary references inspected supply partial named busts and seated posture; complete original silhouettes, equipment, uniforms and likeness are not certified1:1.",
+    "Four single combat poses per enemy do not supply motion cycles or extra directions. Generic illustrated weapons never grant a new attack or equipment.",
+    "Only Joker idle is integrated at the cockpit. Pilot is a produced drawing inspected through an explicit fixture, not a second timed gameplay state.",
+    "The public journey declares prepared saves and checks actual commands/reloads; it does not play through every previous encounter or certify all16 states from ordinary gameplay alone.",
+    "Legacy meta.prototypeCoverage summary text remains as in the baseline; current entry statuses and equipment tallies are measured separately in these proofs.",
+    "Weapon edition evidence combines collective EA DLC inclusion with the inherited model-to-extension associations. Purchases, unlocks and individual original statistics remain unreconstructed.",
+    "Native low-alpha fringes remain in the generated files. Visible-pixel framing uses the renderer alpha-test threshold without pixel cleanup.",
+    "Software-WebGL observations and CI packaging do not establish hardware FPS or a native Windows launch."
+  ],
+  "aggregationTool": {
+    "path": "scripts/summarize-me1-enemy-poses.mjs",
+    "sha256": "a414dd6ddd963a80565adbb9c76f216b54bf4f1079ceff7c992e081f28d83f17"
+  },
+  "proofs": {
+    "me1-enemy-poses-art-report": {
+      "path": "docs/qa/me1-enemy-poses-art-report.json",
+      "bytes": 12021,
+      "sha256": "2afd99fc838e887488a3711c6bee55512bb4bbf5302c51d23db95163b0a93dc9"
+    },
+    "me1-enemy-poses-native-report": {
+      "path": "docs/qa/me1-enemy-poses-native-report.json",
+      "bytes": 242095,
+      "sha256": "2a418fa8b2a56279a5f70f84120d7718e145c266a888a929e6bc3c8678cfa4b0"
+    },
+    "me1-enemy-poses-unit-report": {
+      "path": "docs/qa/me1-enemy-poses-unit-report.json",
+      "bytes": 22367,
+      "sha256": "f290bd1c5cfac90dfe3f0df1e204663a60e50f61f17dc62162e5bb42c706ecd2"
+    },
+    "me1-enemy-poses-build-report": {
+      "path": "docs/qa/me1-enemy-poses-build-report.json",
+      "bytes": 30977,
+      "sha256": "8939cd1143b882d557f86ec9ae6f2a586390baafaca70160c77b6320c76bf251"
+    },
+    "me1-enemy-poses-world-report": {
+      "path": "docs/qa/me1-enemy-poses-world-report.json",
+      "bytes": 46403,
+      "sha256": "51ecba0907f8fb4569fa8e5ed819cf1a79f1c9e2e7864a906a0f68c4e4a72c12"
+    },
+    "me1-enemy-poses-production-report": {
+      "path": "docs/qa/me1-enemy-poses-production-report.json",
+      "bytes": 61333,
+      "sha256": "682dd7ed8afe0abd63d4ae7182281e0eff8576426d1dd59bc2b11a5c562f53c8"
+    },
+    "me3-legendary-weapons-native-report": {
+      "path": "docs/qa/me3-legendary-weapons-native-report.json",
+      "bytes": 114703,
+      "sha256": "dc949efcc3a41f2b3ea8c2c6cae14d216aa7aeb359b0c7a7ee156f973d84ace7"
+    },
+    "me3-legendary-weapons-browser-report": {
+      "path": "docs/qa/me3-legendary-weapons-browser-report.json",
+      "bytes": 41430,
+      "sha256": "62c39cfb59391ca2c7db94e6b7f4d67115b7e3648a0de714692de7819066c55f"
+    },
+    "me1-enemy-poses-workbook-preservation": {
+      "path": "docs/qa/me1-enemy-poses-workbook-preservation.json",
+      "bytes": 3800,
+      "sha256": "cc91b60a2d56657317d4725ecc52dba0f15e4ba4c23c15c78f40c4bdc8bf9e2d"
+    },
+    "me1-enemy-poses-workbook-visual-report": {
+      "path": "docs/qa/me1-enemy-poses-workbook-visual-report.json",
+      "bytes": 14933,
+      "sha256": "317e23a22de16d316d3087509d7115c0d1d9c193001032aaf63af0f0a399c101"
+    },
+    "me1-enemy-poses-native-art-review": {
+      "path": "docs/qa/me1-enemy-poses-native-art-review.json",
+      "bytes": 1754,
+      "sha256": "7008ed6a256ed4808db6be53f46ae9155fa24bdc764446272cd25d41478cb3fb"
+    },
+    "me1-enemy-poses-ui-visual-review": {
+      "path": "docs/qa/me1-enemy-poses-ui-visual-review.json",
+      "bytes": 26861,
+      "sha256": "32eb43b4a33d4fb50408b7816ef619b75e920998dbd696a6938411415ae6039c"
+    }
+  }
+}

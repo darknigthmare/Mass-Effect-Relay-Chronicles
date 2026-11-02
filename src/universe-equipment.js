@@ -31,11 +31,15 @@ const editionSpecificIds = new Set([
 // model-specific source than the catalogue's generic Weapons citation.
 const legendaryMe2WeaponIds = new Set(['PHALANX', 'LOCUST', 'MATTOCK', 'EVISCERATOR', 'INCISOR']
   .map(suffix => `ME2-WPN-${suffix}`));
+// These two catalogue records explicitly associate the model with Citadel or
+// Leviathan. The other extended-arsenal models lack that individual link here.
+const legendaryMe3WeaponIds = new Set(['SUPPRESSOR', 'RAIDER'].map(suffix => `ME3-WPN-${suffix}`));
 const unconfiguredEditionReason = 'Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai.';
 // Only these documented additions have an explicit prepared edition bench.
 // A broad DLC/edition text match never grants availability on its own.
 const editionRequirements = Object.freeze(Object.fromEntries([
   ...[...legendaryMe2WeaponIds].map(id => [id, 'legendary']),
+  ...[...legendaryMe3WeaponIds].map(id => [id, 'legendary']),
   ...['KESTREL', 'CERBERUS', 'COLLECTOR', 'TERMINUS', 'BLOOD-DRAGON', 'INFERNO'].map(id => [`ME2-EQP-${id}`, 'legendary']),
   ...['AJAX', 'INFERNO', 'BLOOD-DRAGON', 'COLLECTOR', 'TERMINUS', 'CERBERUS'].map(id => [`ME3-EQP-${id}`, 'legendary']),
   ...['SCAVENGER', 'DEEP-SPACE'].map(id => [`MEA-EQP-${id}`, 'deluxe']),

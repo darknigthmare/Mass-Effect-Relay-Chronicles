@@ -1,0 +1,1750 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "at": "2026-11-02T04:56:08.868Z",
+  "baselineCommit": "05d1f030dab0925d57d4ba8c5bdb9ccde8db1ad0",
+  "sourceHead": "05d1f030dab0925d57d4ba8c5bdb9ccde8db1ad0",
+  "scope": "Public production journey: Joker cockpit conversation, three actual Eden Prime encounters containing the four existing enemy types, one native player shot per encounter and three pre-combat save restores. Fixtures are explicitly prepared in Node with native state functions. The isolated renderer proof separately inspects all16 poses. No original-game likeness, complete recruitment playthrough or new enemy mechanic is certified.",
+  "url": "http://127.0.0.1:4194/?qa=",
+  "buildKind": "production-dist",
+  "command": "ME1_ENEMY_BASE_MAIN=<baseline> PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium node scripts/me1-enemy-poses-production.mjs",
+  "profile": {
+    "fresh": true,
+    "path": "/workspace/Mass-Effect-Relay-Chronicles/test-results/me1-enemy-poses-production-profile-JmRSpF",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "launches": 2,
+    "completeShutdowns": 2
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "chromium": "154.0.8037.57"
+  },
+  "sources": {
+    "src/world.js": "0f7483299c60b673681efdc9675d73bdc492a1394e1b8141ab24b8cecadcc792",
+    "src/enemy-animation-data.js": "56e3a024dda3204b9463fcbb6e5cd3a1d2935e2dfcf66b0d819786f4743e4ab8",
+    "src/joker-seated-data.js": "9eb8c43955787f0b04c3b85587198cf5431e190fca5c7eb85f4844775524b29c",
+    "vite.config.js": "c7143b06d5fcc0ee22f221a1b00499b9c382a89cda28b391b8d285d52127d1e2",
+    "src/main.js": "2e7ba37616c750ed0d16868ae00e60e15c712c3a346bc595048eba59030ca79e",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/story.js": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/companion-animation-data.js": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+    "scripts/me1-enemy-poses-production.mjs": "6b95ca83b484b0de7725dbdf4036195e2cd737d4834ea5b54bc2e3413c289a01",
+    "public/assets/enemy-geth-combat.png": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+    "public/assets/enemy-geth-animation.json": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363",
+    "public/assets/enemy-geth-sniper-combat.png": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+    "public/assets/enemy-geth-sniper-animation.json": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092",
+    "public/assets/enemy-geth-destroyer-combat.png": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+    "public/assets/enemy-geth-destroyer-animation.json": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04",
+    "public/assets/enemy-husk-combat.png": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+    "public/assets/enemy-husk-animation.json": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754",
+    "public/assets/joker-seated.png": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+    "public/assets/joker-seated.json": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+  },
+  "buildFiles": {
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-DGFxjmPC.js": {
+      "bytes": 26590,
+      "sha256": "7c25c90ff6b39cb6f06d24ffef0135011b6a2b4bfa0968abffd4d9a77a9194ff"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuity-Cw8O1mgK.js": {
+      "bytes": 5783,
+      "sha256": "5fe5da683080e3e510b15f6630c7881017ff320eb8201e2119d2d8d8c4f9fefa"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/enemy-geth-animation.json": {
+      "bytes": 2239,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363"
+    },
+    "assets/enemy-geth-combat.png": {
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    "assets/enemy-geth-destroyer-animation.json": {
+      "bytes": 2431,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04"
+    },
+    "assets/enemy-geth-destroyer-combat.png": {
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    "assets/enemy-geth-sniper-animation.json": {
+      "bytes": 2412,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092"
+    },
+    "assets/enemy-geth-sniper-combat.png": {
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    "assets/enemy-husk-animation.json": {
+      "bytes": 2233,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754"
+    },
+    "assets/enemy-husk-combat.png": {
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    "assets/expansion-Oi2vK_Ke.js": {
+      "bytes": 162056,
+      "sha256": "57d83fdec7dff570773121550d11db9823fc2434cb584719537c8d6a0d5559a5"
+    },
+    "assets/index-Bq6x6UBx.js": {
+      "bytes": 412737,
+      "sha256": "aaa216c122c65d3c7c472ce821190a40af9b4ca4f19dc2c65d849415acd5a34c"
+    },
+    "assets/index-lnZlHzHI.css": {
+      "bytes": 62382,
+      "sha256": "7b07acfb6ef0404095f4d4e625d2d319ee440af4bddd641d2c8fe573937879e2"
+    },
+    "assets/joker-seated.json": {
+      "bytes": 2106,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+    },
+    "assets/joker-seated.png": {
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    "assets/manifest.json": {
+      "bytes": 50904,
+      "sha256": "049b0c012e0156d6c962a2ef3b604db6adb52b96bfa381dff9b6c95da29810b0"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-DyDnihTw.js": {
+      "bytes": 525536,
+      "sha256": "ab30f47d09df906cf8e1ecc7ea39771658a550cd5b8cc15fd923050264d8afe2"
+    },
+    "assets/universe-actors-RpQvssdb.js": {
+      "bytes": 43942,
+      "sha256": "e88fa953313513067b2af66dcf6bc25fb8e77face62fdfbc2dd7a9cdb1b3d6a7"
+    },
+    "assets/universe-data-C5yA7JXy.js": {
+      "bytes": 3315352,
+      "sha256": "c8a477b28a0948ae4bea52b7a5d3864b8c93fac0b50817e566af02e12fe7465b"
+    },
+    "assets/universe-equipment-CPu2vrjo.js": {
+      "bytes": 15972,
+      "sha256": "7e88c5a6a00fe6cb4d8e223cf2296d39ca7ca1a939e97971ba1e52ecc66ac8cf"
+    },
+    "assets/universe-ui-CcnUo4Uq.css": {
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    "assets/universe-ui-Qnc4vzUf.js": {
+      "bytes": 52649,
+      "sha256": "0cc4dbbde7eb43a292a998230c27c733339456ebb0769ed95164b3ac62da2b71"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "a95858718ad56abf3965ad42522c7de8f7352d0590e9687f46ea299e9400a703"
+    }
+  },
+  "servedFiles": [
+    {
+      "path": "assets/enemy-geth-combat.png",
+      "status": 200,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-animation.json",
+      "status": 200,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 200,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-sniper-animation.json",
+      "status": 200,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 200,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-destroyer-animation.json",
+      "status": 200,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-husk-combat.png",
+      "status": 200,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-husk-animation.json",
+      "status": 200,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/joker-seated.png",
+      "status": 200,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/joker-seated.json",
+      "status": 200,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb",
+      "matchesDist": true
+    }
+  ],
+  "fixtures": [
+    {
+      "label": "joker-cockpit",
+      "path": "docs/qa/me1-enemy-poses-production-joker-cockpit-fixture.json",
+      "bytes": 2489,
+      "sha256": "e2d1be41f837280ca8318829b49e0bcd18899f876b86da9c054cb86004c9ed96",
+      "origin": "Explicit newGame fixture placed next to the existing public Joker conversation point; no story completion or recruitment is claimed.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "normandy",
+      "position": {
+        "x": 0,
+        "z": -13.2
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "lost": [],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "eden-encounter-1",
+      "path": "docs/qa/me1-enemy-poses-production-eden-encounter-1-fixture.json",
+      "bytes": 2500,
+      "sha256": "3acfd9b41c1f793d110e5dbf13bffa570954bc2cbcc3e550ca142cdda9c86c29",
+      "origin": "Node newGame/recordVisit and exactly0 native earlier encounter completions; only this encounter is entered through real public controls.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "position": {
+        "x": 5,
+        "z": 6
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "lost": [],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "eden-encounter-2",
+      "path": "docs/qa/me1-enemy-poses-production-eden-encounter-2-fixture.json",
+      "bytes": 2786,
+      "sha256": "4560726aa35c72302cbdfba38173f8911ab523708a546f248d6299e0adfaba1c",
+      "origin": "Node newGame/recordVisit and exactly1 native earlier encounter completions; only this encounter is entered through real public controls.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "eden-prime",
+      "position": {
+        "x": -7,
+        "z": -5
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "eden-boss",
+      "path": "docs/qa/me1-enemy-poses-production-eden-boss-fixture.json",
+      "bytes": 2812,
+      "sha256": "3095e297bb9dd00960e3684952a83d425ed748d3c3d0d0e6a1a1e5e1d9c5012e",
+      "origin": "Node newGame/recordVisit and exactly2 native earlier encounter completions; only this encounter is entered through real public controls.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "eden-prime",
+      "position": {
+        "x": 5,
+        "z": -10
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "joker-before-reload",
+      "path": "docs/qa/me1-enemy-poses-production-joker-before-reload-save.json",
+      "sha256": "b7f715f5316053558b7030dda28b20cbc1d33b4112bfbf6c7c73ff027c7dcf75",
+      "bytes": 2505,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "88075ca20f945ffff3039fa14597cc1bad6e6eff3ab07a548e32c6a8f8ba30e0"
+    },
+    {
+      "label": "joker-after-reload",
+      "path": "docs/qa/me1-enemy-poses-production-joker-after-reload-save.json",
+      "sha256": "1f776521d9fa036a8fbc121ea015f7ebbea3e83aff8f0be96c3db63b132dfa4a",
+      "bytes": 2506,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "normandy",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "88075ca20f945ffff3039fa14597cc1bad6e6eff3ab07a548e32c6a8f8ba30e0"
+    },
+    {
+      "label": "eden-encounter-1-precombat",
+      "path": "docs/qa/me1-enemy-poses-production-eden-encounter-1-precombat-save.json",
+      "sha256": "de95b24ad00593e74da36c7d871a202599f92165f22145cc63fcf1892eed9dca",
+      "bytes": 2518,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "e876ce6c1c64ae337b7c3d5c6c7369900a1da2d7acc0f6e05ca42f914f1ba519"
+    },
+    {
+      "label": "eden-encounter-1-resumed",
+      "path": "docs/qa/me1-enemy-poses-production-eden-encounter-1-resumed-save.json",
+      "sha256": "df3cf415520cd489f26296683fc988aa21c5afc7c2b1ddecb6e96baa099c2df9",
+      "bytes": 2517,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "e876ce6c1c64ae337b7c3d5c6c7369900a1da2d7acc0f6e05ca42f914f1ba519"
+    },
+    {
+      "label": "eden-encounter-2-precombat",
+      "path": "docs/qa/me1-enemy-poses-production-eden-encounter-2-precombat-save.json",
+      "sha256": "d50154060d31642eb5bf3c2572f5ab7be09cdfa25dbea21d9104af12d45e0fca",
+      "bytes": 2804,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "3ca369cc92375cc7d301864767b8521e304e8cf804c9112d98734eb2ad613f92"
+    },
+    {
+      "label": "eden-encounter-2-resumed",
+      "path": "docs/qa/me1-enemy-poses-production-eden-encounter-2-resumed-save.json",
+      "sha256": "6e8e8a1b4d4639732cd797894bb1c8c7f5aa3494417981228d51292010f9a112",
+      "bytes": 2803,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "3ca369cc92375cc7d301864767b8521e304e8cf804c9112d98734eb2ad613f92"
+    },
+    {
+      "label": "eden-boss-precombat",
+      "path": "docs/qa/me1-enemy-poses-production-eden-boss-precombat-save.json",
+      "sha256": "f49eda20a2cba841573cc7963f53b8f09272e49724adca996baa6bd81cafe823",
+      "bytes": 2830,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "f40e384aea201ec57560b6c822b20ce00b306f3172e182ee19fc94ad11178790"
+    },
+    {
+      "label": "eden-boss-resumed",
+      "path": "docs/qa/me1-enemy-poses-production-eden-boss-resumed-save.json",
+      "sha256": "45e5a4de6f2321658b94f263ddc956911437dc0e44b916b5a8ea5fb6d96e510a",
+      "bytes": 2830,
+      "source": "Actual Exporter button and Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "f40e384aea201ec57560b6c822b20ce00b306f3172e182ee19fc94ad11178790"
+    }
+  ],
+  "encounters": [
+    {
+      "label": "eden-encounter-1",
+      "poiId": "eden-prime:encounter-1",
+      "enemyIds": [
+        "geth-0",
+        "geth-1"
+      ],
+      "spriteKeys": [
+        "geth",
+        "geth"
+      ],
+      "targetNames": [
+        "Soldat geth",
+        "Soldat geth"
+      ],
+      "nativePlayerShot": true,
+      "actualPrecombatReload": true,
+      "saveExactExceptElapsedTime": true,
+      "noVictoryRewardClaimed": true
+    },
+    {
+      "label": "eden-encounter-2",
+      "poiId": "eden-prime:encounter-2",
+      "enemyIds": [
+        "husk-0",
+        "husk-1",
+        "geth-2"
+      ],
+      "spriteKeys": [
+        "husk",
+        "husk",
+        "geth"
+      ],
+      "targetNames": [
+        "Zombie",
+        "Zombie",
+        "Soldat geth"
+      ],
+      "nativePlayerShot": true,
+      "actualPrecombatReload": true,
+      "saveExactExceptElapsedTime": true,
+      "noVictoryRewardClaimed": true
+    },
+    {
+      "label": "eden-boss",
+      "poiId": "eden-prime:boss",
+      "enemyIds": [
+        "destroyer-0",
+        "sniper-1"
+      ],
+      "spriteKeys": [
+        "geth-destroyer",
+        "geth-sniper"
+      ],
+      "targetNames": [
+        "Destructeur geth",
+        "Tireur geth"
+      ],
+      "nativePlayerShot": true,
+      "actualPrecombatReload": true,
+      "saveExactExceptElapsedTime": true,
+      "noVictoryRewardClaimed": true
+    }
+  ],
+  "nativeOrders": [
+    {
+      "label": "eden-encounter-1",
+      "actorId": "kaidan",
+      "targetId": "geth-0",
+      "targetName": "Soldat geth",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "actionId": "shoot",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat geth subit 22 dégâts (22 sur les boucliers).",
+      "method": "Public native command and target buttons with natural ATB readiness; no clock, pose, ammunition or actor setter."
+    },
+    {
+      "label": "eden-encounter-2",
+      "actorId": "kaidan",
+      "targetId": "husk-0",
+      "targetName": "Zombie",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "actionId": "shoot",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nZombie subit 21 dégâts.",
+      "method": "Public native command and target buttons with natural ATB readiness; no clock, pose, ammunition or actor setter."
+    },
+    {
+      "label": "eden-boss",
+      "actorId": "kaidan",
+      "targetId": "destroyer-0",
+      "targetName": "Destructeur geth",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "actionId": "shoot",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nDestructeur geth subit 21 dégâts (21 sur les boucliers).",
+      "method": "Public native command and target buttons with natural ATB readiness; no clock, pose, ammunition or actor setter."
+    }
+  ],
+  "reloads": [
+    {
+      "label": "joker-cockpit",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "eden-encounter-1",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "eden-encounter-2",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "eden-boss",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    }
+  ],
+  "canvases": [
+    {
+      "label": "joker-cockpit",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 3766,
+      "glError": 0
+    },
+    {
+      "label": "eden-encounter-1",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 6473,
+      "glError": 0
+    },
+    {
+      "label": "eden-encounter-2",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 6609,
+      "glError": 0
+    },
+    {
+      "label": "eden-boss",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 6545,
+      "glError": 0
+    },
+    {
+      "label": "after-full-restart",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 6543,
+      "glError": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-joker-seated-cockpit.png",
+      "sha256": "10461e9d4b661833191e215896db4f26ff8bb9b41b9076143a3ebf90312d3414",
+      "bytes": 659200,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-joker-conversation.png",
+      "sha256": "b93ebb675ee1aae27e0a83562f07a44b0337e5b197b06064c49523ee5dceb627",
+      "bytes": 628165,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-eden-encounter-1-public-battle.png",
+      "sha256": "d8d92bdea76a5d062d0fb8f46633e54625e495ff7ec2ff54a75d1a07ef266d8c",
+      "bytes": 872542,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-eden-encounter-1-native-shot.png",
+      "sha256": "d17d1fff0da050231f342a81bcdf7af65d4026085d62ad08e469e9917a4eebaf",
+      "bytes": 800633,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-eden-encounter-2-public-battle.png",
+      "sha256": "f27fee35737bf67cce56d664737777b657de6b2370c020043d4ffb514d0e6254",
+      "bytes": 878702,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-eden-encounter-2-native-shot.png",
+      "sha256": "2b9ad44fb01487e6bb7ec14b16df956570490113d1c4cc429e62ec719fa98b05",
+      "bytes": 795087,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-eden-boss-public-battle.png",
+      "sha256": "194648997ae5618c4a7a4de077f1b90fd4837b0c90d23c9ba010020b92819481",
+      "bytes": 882918,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-eden-boss-native-shot.png",
+      "sha256": "08190cc413258ac08403918185d8929f17037c789241af2d456183b1805e064e",
+      "bytes": 803955,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-before-full-restart-inventory.png",
+      "sha256": "8e6ffbbe7953196c140bb8dd7bbb73e9a644bc147b085bc6577a7ad0bae065e8",
+      "bytes": 221384,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-before-full-restart-journal.png",
+      "sha256": "cf9c457c21fc497d9c7f5a25ced5f542f2db404da8549c29030db8c5adaf13df",
+      "bytes": 257772,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-after-full-restart-inventory.png",
+      "sha256": "4b44bd2a4f86be1ddcca7e54497010dfffe73c6e2b9a26df93edc955ae286d17",
+      "bytes": 225273,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-after-full-restart-journal.png",
+      "sha256": "a72aa3b4e1d538e31224ba4503597c8faaefcfe6d0fc13dd5e7d96f4eaca5bc1",
+      "bytes": 258633,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/me1-enemy-poses-production-after-full-restart-world.png",
+      "sha256": "35fea6b13bcb41a5597d427a4f012b025b9088422fff40ce3f66a9f45be68f32",
+      "bytes": 1048196,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    }
+  ],
+  "activations": [
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 108.359375,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "dialogue-choice",
+      "focused": true,
+      "width": 774,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 155.734375,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 201.109375,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "husk-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 187.765625,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "destroyer-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "equipment",
+      "focused": true,
+      "width": 108.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "eq-tab",
+      "id": "loadout",
+      "focused": true,
+      "width": 75.140625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "eq-tab",
+      "id": "inventory",
+      "focused": true,
+      "width": 84.015625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "journal",
+      "focused": true,
+      "width": 86.59375,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "equipment",
+      "focused": true,
+      "width": 108.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "eq-tab",
+      "id": "loadout",
+      "focused": true,
+      "width": 75.140625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "eq-tab",
+      "id": "inventory",
+      "focused": true,
+      "width": 84.015625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "journal",
+      "focused": true,
+      "width": 86.59375,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Five new PNGs and their metadata are served byte-exact from the production build without a development harness",
+      "passed": true
+    },
+    {
+      "name": "Seated Joker remains a real public conversation contact and the actual downloaded save survives a page reload",
+      "passed": true
+    },
+    {
+      "name": "eden-encounter-1: actual enemy identities, native public shot and exact pre-combat save restoration",
+      "passed": true
+    },
+    {
+      "name": "eden-encounter-2: actual enemy identities, native public shot and exact pre-combat save restoration",
+      "passed": true
+    },
+    {
+      "name": "eden-boss: actual enemy identities, native public shot and exact pre-combat save restoration",
+      "passed": true
+    },
+    {
+      "name": "The four enemy families and Joker are actually requested by the compiled page; a full browser restart preserves visible party, equipment, inventory and journal",
+      "passed": true
+    }
+  ],
+  "pageAtlasRequests": [
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-combat.png",
+      "status": 200,
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 200,
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 200,
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-husk-combat.png",
+      "status": 200,
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/joker-seated.png",
+      "status": 200,
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-husk-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/joker-seated.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-husk-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/joker-seated.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-husk-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/joker-seated.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-husk-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/joker-seated.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/enemy-geth-combat.png",
+      "status": 200,
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+      "matchesDist": true
+    },
+    {
+      "launch": 2,
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 200,
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+      "matchesDist": true
+    },
+    {
+      "launch": 2,
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 200,
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+      "matchesDist": true
+    },
+    {
+      "launch": 2,
+      "path": "assets/enemy-husk-combat.png",
+      "status": 200,
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+      "matchesDist": true
+    },
+    {
+      "launch": 2,
+      "path": "assets/joker-seated.png",
+      "status": 200,
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+      "matchesDist": true
+    }
+  ],
+  "responseEvidenceErrors": [],
+  "sourceRequests": [],
+  "errors": [],
+  "failedRequests": [],
+  "browserEvents": [
+    {
+      "launch": 1,
+      "type": "page-close",
+      "intentional": true
+    },
+    {
+      "launch": 1,
+      "type": "context-close",
+      "intentional": true
+    },
+    {
+      "launch": 1,
+      "type": "browser-disconnected",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "page-close",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "context-close",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "browser-disconnected",
+      "intentional": true
+    }
+  ],
+  "consoleObservations": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "resourceWarnings": [],
+  "limitations": [
+    "Prepared fixtures use the native completion functions for earlier encounters; those prior victories are not played in Chromium.",
+    "Each actual encounter remains unresolved and resumes its automatic pre-combat save. No new victory reward is claimed.",
+    "Public frames and source asset loads do not alone certify16-pose coverage; the independent renderer fixture supplies that inspection.",
+    "Joker idle is integrated at the Normandy cockpit. The second pilot drawing is produced but is not an additional timed animation.",
+    "The historical Chromium154 post-restart download failure is avoided: exports follow same-process page reloads; final complete restart is checked through public UI only.",
+    "Console resource warnings are recorded with locations. The historical implicit favicon404 is distinguished from game resource failures."
+  ],
+  "joker": {
+    "actualConversation": true,
+    "text": "JOKER\n\nDe quoi souhaitez-vous parler ?\n\nLe Normandy\nReprendre la mission.",
+    "exactSaveAfterPageReload": true,
+    "animationClaim": "idle only; pilot drawing retained without a timed cycle"
+  },
+  "fullRestart": {
+    "exactPublicUI": true,
+    "launches": 2,
+    "noPostRestartDownloadAttempted": true,
+    "before": {
+      "party": "QA ennemis ME1\nSoldat\nKaidan Alenko\nBiotique / technologie\nAshley Williams\nSoldate",
+      "loadout": "420 CRÉDITS · 4 MÉDI-GELS\nÉquipement du commando\n×\nQA ennemis ME1\nKaidan Alenko\nAshley Williams\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nCOMMANDEMENT\nQA ennemis ME1\n\nPréparez un rôle précis pour chaque membre du commando.\n\n250\nSANTÉ\n140\nBOUCLIER\n30\nPUISSANCE\n10\nDÉFENSE\nChaleur des tirs\n× 1.00\nRefroidissement\n+0/s\nRésistance aux contrôles\n0 %\nPuissance biotique\n× 1.00\nPuissance technologique\n× 1.00\nARMES MAÎTRISÉES\nPistolet, Fusil d’assaut, Fusil à pompe, Fusil de précision\nARMURES AUTORISÉES\nLégère, Intermédiaire\nOUTILS SPÉCIALISÉS\nAucun\nFormation d’armure\n\n0 point disponible\n\nLourde\n\nUn point de formation est nécessaire.\n\nAPPRENDRE · 1 POINT\nARME\nLancer I\n\nStatistiques de base\n\nRETIRER\nARMURE\nOnyx I · humains / Asari\n\nStatistiques de base\n\nRETIRER\nMODULE D’ARME\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMUNITIONS\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARME 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nOMNITECH\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nAMPLIFICATEUR BIOTIQUE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nCHOISIR DANS L’INVENTAIRE →\n\nLes changements se répercutent sur le prochain combat. Les calibrations permanentes restent attachées au personnage.\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "inventory": "420 CRÉDITS · 4 MÉDI-GELS\nÉquipement du commando\n×\nQA ennemis ME1\nKaidan Alenko\nAshley Williams\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nTout\nArmes\nArmures\nModules d’arme\nMunitions\nModules d’armure\nOutils\n\nUn exemplaire ne peut équiper qu’une personne. Retirez les objets pour les transférer ou les vendre.\n\nPISTOLET\nNIV. 1\nKessler I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 28 CR\nFUSIL D’ASSAUT\nNIV. 1\nLancer I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA ennemis ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 34 CR\nFUSIL À POMPE\nNIV. 1\nStorm I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 40 CR\nFUSIL DE PRÉCISION\nNIV. 1\nAvenger I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 46 CR\nARMURE LÉGÈRE\nNIV. 1\nOnyx I · humains / Asari\n\nAldrin Labs\n\nStatistiques de base\n\nLégère pour humains / Asari. Protection de départ, sans bonus supplémentaire.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA ennemis ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 32 CR\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "journal": "MISSIONS · ASSIGNATIONS · RAPPORTS\nJournal de mission\n×\nMissions\nAssignations\nRapports\nCAMPAGNE\nEden Prime\n\nSécuriser les approches, puis rejoindre la balise prothéenne.\n\nConciliation 0 · Pragmatisme 0\nNiveau 1 · 130 EXP"
+    },
+    "after": {
+      "party": "QA ennemis ME1\nSoldat\nKaidan Alenko\nBiotique / technologie\nAshley Williams\nSoldate",
+      "loadout": "420 CRÉDITS · 4 MÉDI-GELS\nÉquipement du commando\n×\nQA ennemis ME1\nKaidan Alenko\nAshley Williams\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nCOMMANDEMENT\nQA ennemis ME1\n\nPréparez un rôle précis pour chaque membre du commando.\n\n250\nSANTÉ\n140\nBOUCLIER\n30\nPUISSANCE\n10\nDÉFENSE\nChaleur des tirs\n× 1.00\nRefroidissement\n+0/s\nRésistance aux contrôles\n0 %\nPuissance biotique\n× 1.00\nPuissance technologique\n× 1.00\nARMES MAÎTRISÉES\nPistolet, Fusil d’assaut, Fusil à pompe, Fusil de précision\nARMURES AUTORISÉES\nLégère, Intermédiaire\nOUTILS SPÉCIALISÉS\nAucun\nFormation d’armure\n\n0 point disponible\n\nLourde\n\nUn point de formation est nécessaire.\n\nAPPRENDRE · 1 POINT\nARME\nLancer I\n\nStatistiques de base\n\nRETIRER\nARMURE\nOnyx I · humains / Asari\n\nStatistiques de base\n\nRETIRER\nMODULE D’ARME\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMUNITIONS\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARME 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nOMNITECH\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nAMPLIFICATEUR BIOTIQUE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nCHOISIR DANS L’INVENTAIRE →\n\nLes changements se répercutent sur le prochain combat. Les calibrations permanentes restent attachées au personnage.\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "inventory": "420 CRÉDITS · 4 MÉDI-GELS\nÉquipement du commando\n×\nQA ennemis ME1\nKaidan Alenko\nAshley Williams\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nTout\nArmes\nArmures\nModules d’arme\nMunitions\nModules d’armure\nOutils\n\nUn exemplaire ne peut équiper qu’une personne. Retirez les objets pour les transférer ou les vendre.\n\nPISTOLET\nNIV. 1\nKessler I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 28 CR\nFUSIL D’ASSAUT\nNIV. 1\nLancer I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA ennemis ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 34 CR\nFUSIL À POMPE\nNIV. 1\nStorm I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 40 CR\nFUSIL DE PRÉCISION\nNIV. 1\nAvenger I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 46 CR\nARMURE LÉGÈRE\nNIV. 1\nOnyx I · humains / Asari\n\nAldrin Labs\n\nStatistiques de base\n\nLégère pour humains / Asari. Protection de départ, sans bonus supplémentaire.\n\nCompatible avec QA ennemis ME1.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA ennemis ME1\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 32 CR\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "journal": "MISSIONS · ASSIGNATIONS · RAPPORTS\nJournal de mission\n×\nMissions\nAssignations\nRapports\nCAMPAGNE\nEden Prime\n\nSécuriser les approches, puis rejoindre la balise prothéenne.\n\nConciliation 0 · Pragmatisme 0\nNiveau 1 · 130 EXP"
+    }
+  },
+  "finishedAt": "2026-11-02T04:59:17.445Z",
+  "elapsedSeconds": 188.58
+}

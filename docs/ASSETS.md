@@ -28,8 +28,13 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `companion-tali-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Tali ME1 |
 | `companion-wrex-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Wrex ME1 |
 | `companion-liara-combat.png` | 1536 × 1024 | Visée, action, impact, hors combat | Combat de Liara ME1 |
+| `enemy-geth-combat.png` | 1536 × 1024 | Quatre poses fixes | Soldat geth ME1 en combat |
+| `enemy-geth-sniper-combat.png` | 1536 × 1024 | Quatre poses fixes | Sniper geth ME1 en combat |
+| `enemy-geth-destroyer-combat.png` | 1536 × 1024 | Quatre poses fixes | Destructeur geth ME1 en combat |
+| `enemy-husk-combat.png` | 1536 × 1024 | Quatre poses fixes | Husk ME1 en combat |
+| `joker-seated.png` | 1536 × 1024 | Deux dessins assis | Idle au cockpit ; pilot produit sans cycle animé |
 
-Les **22 PNG courants** comprennent les seize images précédentes et les six atlas de compagnons. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard et les 24 des compagnons portent le total à **32 poses clés de combat**. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **27 PNG courants** comprennent les seize images précédentes, les six atlas de compagnons, quatre atlas d’ennemis et la planche assise de Joker. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard, les 24 des compagnons et les 16 des ennemis portent le total à **48 poses clés de combat**, séparées des deux dessins assis de Joker. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -78,13 +83,13 @@ Le complément équipement conserve les dix PNG et les animations de 0.2.0. Il a
 
 Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne remplacent pas la géométrie des bâtiments, sols, coursives, volumes et routes. Les silhouettes conservent un seuil alpha de 0,2 pour limiter les franges de transparence. La taille et les proportions du plan dépendent du type d’atlas, notamment pour les boss.
 
-Shepard dispose d’une animation par images. Les six compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Les ennemis gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
+Shepard dispose d’une animation par images. Les six compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Quatre ennemis ME1 disposent aussi de quatre poses fixes chacun ; les autres gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
 
 La variante féminine sélectionnable utilise deux atlas propres. Les rectangles et pivots sont décrits dans `shepard-female-animation.json`, puis inclus dans le JavaScript compilé pour fonctionner aussi avec le chargement local d’Electron. La marche garde la dernière direction à l’arrêt, utilise sept images par seconde et accélère pendant la course. En combat, les événements déclenchent les poses de visée, pouvoir et impact ; la pose couchée dispose d’une hauteur et d’un pivot spécifiques. Il s’agit de quatre poses clés, pas de quatre cycles complets.
 
 Les deux nouveaux PNG conservent leur transparence native. Les marges et pivots sont mesurés par frame, sans extraction ou retouche des pixels. Certains contacts du cycle restent proches, les effets de pouvoir sont inclus dans l’illustration et la cohérence de costume demande encore une revue artistique. Voir [la provenance et les limites](research/shepard-female-art.md).
 
-Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Wong possède une interaction de quête ; son image de l’atlas PNJ reste disponible pour une intégration de portrait et son personnage dédié dans le monde reste à produire. Joker est représenté debout ; sa pose assise reste un livrable distinct à produire.
+Nihlus est placé au Normandy avant le premier départ sur Eden Prime. Emily Wong possède une interaction de quête ; son image de l’atlas PNJ reste disponible pour une intégration de portrait et son personnage dédié dans le monde reste à produire. Joker utilise désormais le dessin assis idle au poste de pilotage du Normandy. Sa pose debout historique reste dans l’atlas PNJ pour les autres usages ; le second dessin assis pilot ne constitue pas un cycle animé.
 
 ## Présentation des Chroniques
 
@@ -147,11 +152,17 @@ Le PNG de génération est copié sans retouche de pixels. Les [références, pr
 
 ## Six compagnons ME1 — 1er novembre 2026
 
-Six PNG natifs de 1536 × 1024 ajoutent **24 poses clés** pour Ashley, Kaidan, Garrus, Tali, Wrex et Liara. Les seize PNG précédents sont conservés. Le manifeste principal compte désormais **32 poses clés de combat**, avec les huit de Shepard. Les six familles restent Prototype ; les métriques de personnages et de marche ne sont pas gonflées par ces nouveaux dessins.
+Six PNG natifs de 1536 × 1024 ajoutent **24 poses clés** pour Ashley, Kaidan, Garrus, Tali, Wrex et Liara. Les seize PNG précédents sont conservés. Ce lot portait le manifeste principal à **32 poses clés de combat**, avec les huit de Shepard. Les six familles restent Prototype ; les métriques de personnages et de marche ne sont pas gonflées par ces nouveaux dessins.
 
 Le renderer utilise des rectangles et pivots mesurés pour visée, action, impact et hors combat. Le KO a priorité sur les événements et le retour à la vie revient à la visée. Les identités, sprites, équipes et contextes sont vérifiés : les homonymes ME2/ME3 et les identités falsifiées n’utilisent pas ces atlas. Les textures UV de chaque acteur restent distinctes ; les sprites de terrain et les couleurs/casque de Shepard sont conservés.
 
 Les [références, prompts et limites artistiques](research/companion-combat-art.md), le [contrôle technique des six atlas](qa/companion-combat-art-report.json) et les [preuves de livraison](qa/companion-combat-report.json) délimitent les validations. Les PNG sont copiés sans retouche ; leurs très faibles franges d’alpha restent documentées. Les armes illustrées sont génériques, les transitions et autres directions manquent. Aucun modèle original complet, nouvelle armure équipable, animation intégrale ou fidélité 1:1 n’est certifié par ces 24 poses.
+
+## Ennemis ME1 et Joker assis — 2 novembre 2026
+
+Quatre atlas natifs ajoutent **16 poses fixes** au soldat geth, au sniper geth, au destructeur geth et au husk déjà présents. Une planche distincte produit **deux dessins assis de Joker** : seul `idle` est intégré au poste du Normandy, sans nouvelle animation temporelle. Les 22 PNG historiques restent conservés.
+
+Les rectangles, pivots et hauteurs relatifs sont mesurés. Les contextes étrangers, mauvais identifiants, sprites et équipes n’ouvrent pas ces familles ; un repli garde la pose historique lors du chargement. Les repères primaires sont partiels et les dessins restent Prototype. Les [références et limites](research/me1-enemy-poses-art.md) et les [preuves de livraison](qa/me1-enemy-poses-report.json) séparent génération, contrôle technique, inspection du renderer et parcours public. Aucun nouveau moveset, modèle original complet ou fidélité intégrale 1:1 n’est certifié.
 
 ## Critères d’acceptation de l’art final
 

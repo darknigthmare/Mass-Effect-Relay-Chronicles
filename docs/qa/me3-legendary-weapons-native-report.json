@@ -1,0 +1,3446 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-02T04:51:10.109Z",
+  "baselineCommit": "05d1f030dab0925d57d4ba8c5bdb9ccde8db1ad0",
+  "scope": "Two existing conventional ME3 profiles, individually associated in the inherited catalogue with Citadel or Leviathan, become prepared choices only in the exact ME3 Legendary workshop. No new canonical identity, ability, bonus, economy, mission acquisition or original numerical fidelity is supplied.",
+  "sourceHashes": {
+    "src/universe-equipment.js": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+    "src/universe-equipment-scenarios.js": "a7c596b35a96ff608e8cbe431b5896997fc8cbf70ff69df8e516b4fbfac2561a",
+    "src/universe-actors.js": "3618812eca16a9914d2d27b323d729953800dc00187b8a6606d8db822e955ee0",
+    "src/universe-data.js": "a4b7d670616748a235b46f83c88ebf7fec7da5264333548523286e72f1e4868d",
+    "src/chronicles.js": "5a782b862058ece78e53c7d05ead2d421ada72c3270f494002fd7f47c458fdf2",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/expansion.js": "f1b7f206028c93c44734b503ecbfe9523923fa0cc8e968b59d572aec182cd022",
+    "tests/me3-legendary-weapons.test.js": "dd7616e57c6ee65e0386314bfaf97c05c619d9d0f18925bf8f645b2833e79801",
+    "tests/legendary-weapon-access.test.js": "c70e4298b6013dfad811c5fa04b1432f440f021b1751519e7237804b50db0d33",
+    "scripts/me3-legendary-weapons-native.mjs": "3da546e6275d968f11c055badc308488cd6d2de4578e362634e231a87ec5686e",
+    "docs/qa/me3-legendary-weapons-baseline.json": "258537f9ad2daf4d0540f0821019e74bf871bc1a1f8d101d3f832f9786f73e06",
+    "docs/qa/me3-legendary-weapons-reference-report.json": "38d09f97cd94b222a0571fc4fc9462b30743c1bf905bd57ba7810ec68280e8ca",
+    "docs/research/me3-legendary-weapons-sources.md": "a2670aa69fc8042657ee9f8b8793edb850739cd5692510c00430219323cc4f02"
+  },
+  "equipmentBefore": {
+    "profiles": 224,
+    "supported": 105,
+    "weapons": 77,
+    "armor": 25,
+    "weaponMods": 3
+  },
+  "equipmentAfter": {
+    "profiles": 224,
+    "supported": 107,
+    "weapons": 79,
+    "armor": 25,
+    "weaponMods": 3
+  },
+  "changedProfiles": [
+    {
+      "id": "ME3-WPN-SUPPRESSOR",
+      "changedFields": [
+        "runtimeSupported",
+        "requiredEditionProfile",
+        "lockReason"
+      ],
+      "before": {
+        "runtimeSupported": false,
+        "requiredEditionProfile": null,
+        "lockReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai."
+      },
+      "after": {
+        "runtimeSupported": true,
+        "requiredEditionProfile": "legendary",
+        "lockReason": "Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition."
+      }
+    },
+    {
+      "id": "ME3-WPN-RAIDER",
+      "changedFields": [
+        "runtimeSupported",
+        "requiredEditionProfile",
+        "lockReason"
+      ],
+      "before": {
+        "runtimeSupported": false,
+        "requiredEditionProfile": null,
+        "lockReason": "Édition ou contenu additionnel requis : sa disponibilité n’est pas configurée dans cet essai."
+      },
+      "after": {
+        "runtimeSupported": true,
+        "requiredEditionProfile": "legendary",
+        "lockReason": "Ce modèle exige un atelier d’équipement explicitement configuré pour Legendary Edition."
+      }
+    }
+  ],
+  "changedScenarios": [
+    {
+      "id": "me3-legendary-equipment-workshop",
+      "changedFields": [
+        "allowedEquipmentIds",
+        "additionalEquipmentIds",
+        "sourceEntryIds",
+        "sourceIds",
+        "description",
+        "preparedConditions"
+      ],
+      "appendedEquipmentIds": [
+        "ME3-WPN-SUPPRESSOR",
+        "ME3-WPN-RAIDER"
+      ],
+      "addedPreparedContentCondition": "Leviathan"
+    }
+  ],
+  "preservedModules": {
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/chronicles.js": "5a782b862058ece78e53c7d05ead2d421ada72c3270f494002fd7f47c458fdf2",
+    "src/universe-actors.js": "3618812eca16a9914d2d27b323d729953800dc00187b8a6606d8db822e955ee0",
+    "src/universe-weapon-profiles.js": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d",
+    "src/expansion-characters.js": "6f80bf7d53b3c4d8e35a2ebe2b75d4b696afb4c2dfa4a68042153511c60991c0",
+    "src/expansion-armor.js": "a2db8546c188ddf1fc4916f08ea29342b76385a80de154c920cbf1cd6783b7a2",
+    "src/expansion-weapons.js": "bffaa316a6aca541ddcac9f6fab75380ed96b3f9b8d79cef9742801c718f8a15",
+    "src/expansion-fleet.js": "3a16f9c725135861a0a75631dad9ccde1ceb4c06807e4caf70d0f95bca1717c0",
+    "src/expansion-enemies.js": "e24f81d54aeda3c178f9d4f91f95ce2ef957ff5ce1031a8b9bfff4f5de90b8c3",
+    "src/expansion2-characters.js": "1684f22aae4063981821ab7556fbe21191e54170ce085646e668501e33c412ed",
+    "src/expansion2-armor.js": "b470732bef5b085196d73302e376850588624d2752b3b64fbcd8a61278a5968f",
+    "src/expansion2-weapons.js": "533e2da01e7a2804aa8c51c678214aae2e59269da018aee755626c5c500651d7",
+    "src/expansion2-fleet.js": "309ca5cfa614eab577ed4b64a8b44286362062ea5da17414a17130cdbe20a307",
+    "src/expansion2-enemies.js": "6ca45119a90e1bcd2a2cb67f83aec948871ca548efc1b343b372cfd6a57c4e5f",
+    "src/expansion3-characters.js": "a7441b34dab20a3667b682fc5a598f30a639d4119152a3ddea7d523f49a9ccda",
+    "src/expansion3-armor.js": "d183556a83d09ed0954c4fd85fac8338e0a31203ad697b7902330047e200b964",
+    "src/expansion3-weapons.js": "36a4316b8f135849f053b3fe0d2f7d24c96db4cc47b0c3dfb6ca24d812537241",
+    "src/expansion3-fleet.js": "c9fe1eb06b910c4693ff11f93c985de5decf92ed647b67348763003b5ccc2f16",
+    "src/expansion3-enemies.js": "b107a293a757713016a42b0be5c5b5758ccbe76d5fa87a757278091b14a56ac3"
+  },
+  "newNativePreparations": [
+    {
+      "id": "ME3-WPN-SUPPRESSOR",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-legendary-equipment-workshop",
+      "actorId": "ME3-CHR-SHEPARD",
+      "sourceIds": [
+        "ME3-SRC-SUPPRESSOR"
+      ],
+      "originalStatus": "Défini",
+      "weaponType": "pistol",
+      "exactResourceProfile": {
+        "magazineCapacity": 8,
+        "ammo": 8,
+        "reserveAmmo": 32
+      },
+      "initial": {
+        "ammo": 8,
+        "magazineCapacity": 8,
+        "reserveAmmo": 32,
+        "heat": 0,
+        "atb": 100,
+        "powers": []
+      },
+      "afterShot": {
+        "ammo": 7,
+        "magazineCapacity": 8,
+        "reserveAmmo": 32,
+        "heat": 0,
+        "atb": 0,
+        "powers": []
+      },
+      "afterReload": {
+        "ammo": 8,
+        "magazineCapacity": 8,
+        "reserveAmmo": 31,
+        "heat": 0,
+        "atb": 0,
+        "powers": []
+      },
+      "realChronicleShot": true,
+      "serializationRoundTrip": true,
+      "foreignScenarioRefusals": 24
+    },
+    {
+      "id": "ME3-WPN-RAIDER",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-legendary-equipment-workshop",
+      "actorId": "ME3-CHR-SHEPARD",
+      "sourceIds": [
+        "ME3-SRC-BW-LEV"
+      ],
+      "originalStatus": "Défini",
+      "weaponType": "shotgun",
+      "exactResourceProfile": {
+        "magazineCapacity": 4,
+        "ammo": 4,
+        "reserveAmmo": 16
+      },
+      "initial": {
+        "ammo": 4,
+        "magazineCapacity": 4,
+        "reserveAmmo": 16,
+        "heat": 0,
+        "atb": 100,
+        "powers": []
+      },
+      "afterShot": {
+        "ammo": 3,
+        "magazineCapacity": 4,
+        "reserveAmmo": 16,
+        "heat": 0,
+        "atb": 0,
+        "powers": []
+      },
+      "afterReload": {
+        "ammo": 4,
+        "magazineCapacity": 4,
+        "reserveAmmo": 15,
+        "heat": 0,
+        "atb": 0,
+        "powers": []
+      },
+      "realChronicleShot": true,
+      "serializationRoundTrip": true,
+      "foreignScenarioRefusals": 24
+    }
+  ],
+  "previousTrialReplays": [
+    {
+      "id": "ME2-NPC-RENEGAR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "574ef28eb42bac7f882a9562125210d8d29611f4bab0029441c837836ab4ba4b"
+    },
+    {
+      "id": "ME2-NPC-JEDORE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "745bdc3dc639daedbc71ed97b99f59007e211f9aab2f5dfb15278c5bf6d0ff52"
+    },
+    {
+      "id": "ME2-NPC-VASIR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e7f374dcd6bdb0ba587568be9cb57a250b7cd365a4ae862d3ec32eca157606bd"
+    },
+    {
+      "id": "ME3-CHR-ARENA-GRUNT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "98a02805e269414c029cbe5b26eea17d3be04c67ca0012e9d858a2a7d5a54c90"
+    },
+    {
+      "id": "ME3-CHR-ARENA-JACK",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c5846dc2f34b334e49f73111ca5c2522211ecb1afcf6b0326141f3aad5e2d421"
+    },
+    {
+      "id": "ME3-CHR-ARENA-JACOB",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "704098d41459f4f13d65d56f4cc9773129e031db01a1a2806c470ddb3ffb1888"
+    },
+    {
+      "id": "ME3-CHR-ARENA-KASUMI",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "fa652ff61b305342c86bd32e730bd37c7000a4e32e5b5da535026f36b8c1a888"
+    },
+    {
+      "id": "ME3-CHR-ARENA-MIRANDA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "30537f38aa6090d360e55d09264f674f820fcecbdd61b0bde06dc3576a49b6d3"
+    },
+    {
+      "id": "ME3-CHR-ARENA-SAMARA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "bb870fc171f32d0f0533c4864d932c8a9fa3b66314a252d8866d86a20a337104"
+    },
+    {
+      "id": "ME3-CHR-ARENA-ZAEED",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "ba15b78c797d60da6129ce8453c7a4563d66a4b989c459aed183582623027118"
+    },
+    {
+      "id": "ME3-NPC-TARQUIN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "a70ebd2230e9a17be00beb4bc3d7aaf572125717e7d839e78f102bcae7eb8c6b"
+    },
+    {
+      "id": "MEA-NPC-KANDROS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "f2244cee89e9d7cc0cc8ffdd933b0c6939fb2df86f88131d6bc4463a1c459bb4"
+    },
+    {
+      "id": "MEA-NPC-EVFRA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "9ae69592e33a46147c8188914f9b253dc3d331c63ea3e281c704555bc0f6d159"
+    },
+    {
+      "id": "REV-CHR-ANDERSON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "6b648439e7c93c15b30680a68f3f413be7dfb36533b539e519c2763a42d6ab6d"
+    },
+    {
+      "id": "REV-CHR-SAREN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e755a292cc4750ff5970b8f8dfbebb30476f6e42f28f7ae641298e8b66906236"
+    },
+    {
+      "id": "REV-CHR-SKARR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c854f2f32b2b9150bb04eb1d0bbbedcc84e49ca09f5dadb4c91af5ca0b278126"
+    },
+    {
+      "id": "REV-CHR-JILL",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "709d42440a7b82ad8ac969dc01220eaf22e316b9994e1bbb2ccdcd9c618f3933"
+    },
+    {
+      "id": "ASC-CHR-HENDEL",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "850aab94309ba70fbcc75001867c8b946409dd0e1c887a953142565e5cb14384"
+    },
+    {
+      "id": "RET-CHR-KAILENG",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8f89ab0024dd718512aa39c0262eb2dae2f6acfc32d8a182704d20b5fe1928bc"
+    },
+    {
+      "id": "RET-CHR-SANAK",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "a89a7db3db353d6dbfabb621d8e0173ba09ad0fa220abf42247109fac50715eb"
+    },
+    {
+      "id": "INI-CHR-YGARA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "a30bad56e0bc515f1d50242916587c0b16592ea2fb95cd1f8c680a558f64461d"
+    },
+    {
+      "id": "INI-CHR-ZAHRA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "02714044794da0c5433f8cc7880659df7f58009aab0110c8d64b99dceb88d16f"
+    },
+    {
+      "id": "INV-ACT-ARIA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "d968d9f834ebbf27fedf22c46380803590943ffcfad7c8acaa914e15403e57f8"
+    },
+    {
+      "id": "INC-ACT-ARIA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "cae78170a844a3aa1635dfd7322aee46c8244ad06adc96b50d7cca925eb0be6c"
+    },
+    {
+      "id": "PL-CHR-ARCHUK",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "3d88ceb553e422588103ce55c147d4fd4b1542a44d6b4db568f7cdd0e50bcc86"
+    },
+    {
+      "id": "ME2-EQP-N7",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "1d553b5f951552ab8bd4b66b8e16a90b5f933d6d45fc54ea61679b112c30be17"
+    },
+    {
+      "id": "ME2-EQP-KESTREL",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "db6f0c003ffddee78b7306f0cab7c3f1d9aa4eb02e651df0aeeac1e46a8f5572"
+    },
+    {
+      "id": "ME2-EQP-CERBERUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "363c18e3fcdf61534ed96ec60da9a6e6d82a80352ad719b473d2a09101f3e5aa"
+    },
+    {
+      "id": "ME2-EQP-COLLECTOR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "7833685092a354606819089ef8531be4d1ee91f590e2f087c522c6efd08ecca0"
+    },
+    {
+      "id": "ME2-EQP-TERMINUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "786ea2c9828bdc4ccadb0c5aabb9ab7fb6d9a64036615f6efccecc0b7c8da8e1"
+    },
+    {
+      "id": "ME2-EQP-BLOOD-DRAGON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8e1364811581ce58e97a1c4bc7aad58b4e95d2748f783b680409933f5dd763d3"
+    },
+    {
+      "id": "ME2-EQP-INFERNO",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "7ed00bb6bac1a36c0c64786fe4123d5f419600f29adbe6c8c7b7e9ec683b0855"
+    },
+    {
+      "id": "ME2-EQP-RECON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "27f8af40d59f7bdbc6a096577c3c8a41bb25dbbd358777da4697353f834f8baf"
+    },
+    {
+      "id": "ME3-EQP-N7",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "5521690ec02210a8f9b6c1db83f6b6b5ff814dc2032e7e1fe3539b27c8f47e31"
+    },
+    {
+      "id": "ME3-EQP-AJAX",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "fce1f6162e822947a881257be90538ee4c8727245595d26eca5c9623ea8dd54e"
+    },
+    {
+      "id": "ME3-EQP-INFERNO",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "354d260683ae1acaf3e769915352d37ffe54e4335a4aaf27394c8e04ce7c4fba"
+    },
+    {
+      "id": "ME3-EQP-BLOOD-DRAGON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "93baf310c1b993dc8a93f89aacd578aad03656ca8b7d38ccc6296b55e345ea58"
+    },
+    {
+      "id": "ME3-EQP-COLLECTOR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "88afa34a32c91b6aa3873cddb6f7ecd909c8875b85787a0bb4083c1a77b5be72"
+    },
+    {
+      "id": "ME3-EQP-TERMINUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "bc97f4d3f37506f4135e01b84eb485b2169316785bd00f23c4c5937390122489"
+    },
+    {
+      "id": "ME3-EQP-CERBERUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "77e9991c3e23305f4b5dfb6634d820d5ad3979693db2c7d049258ce3ebd96337"
+    },
+    {
+      "id": "ME3-EQP-ROSENKOV",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "55bd82a3771ded0435a84ebfd571d26409d71910d79114e636740a45499e5488"
+    },
+    {
+      "id": "ME3-EQP-SERRICE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "009d5547b0bfd3f81211f6e1bdf53361b79ef04166cc1a6fe4989ba435bf0d10"
+    },
+    {
+      "id": "ME3-EQP-HANNES",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c15818f7b81809fe5594b27636812ac5b72e8f3ff646447154f176a226d67d5a"
+    },
+    {
+      "id": "ME3-EQP-KASSA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "464e2be5906f663d64d7027ac7054d398a5ae20956142c79c13499ea21cd3207"
+    },
+    {
+      "id": "ME3-EQP-ARIAKE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "ce5b446dc5bc43fc467110fc8bae90955cd3e5648574495362dbfaa0fa623307"
+    },
+    {
+      "id": "ME3-EQP-SENTRY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "cfd5ff9378f3dc5956890bf1780fc55298c5e36070428d535d5fb5fb20fa71ca"
+    },
+    {
+      "id": "ME3-EQP-DEATH-MASK",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "455ceb0ca15d37bf91f86ca2161282297f41061a61a6e584a5444387f24e33d2"
+    },
+    {
+      "id": "MEA-EQP-INITIATIVE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e341da3f1caf5e9a88fa450c322b56b7997f33435b62afa6614558f4a7ff155f"
+    },
+    {
+      "id": "MEA-EQP-PATHFINDER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "aa8489a85d150f0a7dbf1a5d523da87836bb75d2df84ad8610d2b74a4399fddc"
+    },
+    {
+      "id": "MEA-EQP-N7",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "f1c9d3908d9e193b3915bde809f59e6dfb83599fb10c00ed1b493f2b27438c4b"
+    },
+    {
+      "id": "MEA-EQP-HYPERGUARDIAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "16e68097135f06b10fbb2da2ae16de506db7462cc31dc09f2ed134b2a8d30415"
+    },
+    {
+      "id": "MEA-EQP-MAVERICK",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "555600e9e08183db9615ee131c7dd617cc2b276f09f7de72387adbc5619de6a4"
+    },
+    {
+      "id": "MEA-EQP-ANGARAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8244f09430f4c548c4dd443f9e8bc749a954b2c02b05c484ba3dd8f821e78cab"
+    },
+    {
+      "id": "MEA-EQP-KETT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "75a19c6eea9316b1c82507e9e6f850bf3b70dbecb10ba15e4f0174eec9916794"
+    },
+    {
+      "id": "MEA-EQP-REMNANT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "095b5723aa5cd228d4638a522281523dfc8947bcbaaada623e86d634507ae8df"
+    },
+    {
+      "id": "MEA-EQP-HELEUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "1fdbffcf742cc1958a997e93cb435c07c8dc160131516a0471253e41d096c1b1"
+    },
+    {
+      "id": "MEA-EQP-SCAVENGER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8a2e482673c452afb88b94485f30e35998dd28d5d865095faca5a41cbbb2a1ab"
+    },
+    {
+      "id": "MEA-EQP-DEEP-SPACE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "6d2c2054540ca2b2cf067d1cf11a9a96a1125e19da8048bd78320493d22366cf"
+    },
+    {
+      "id": "INF-EQ-BODY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "58cf2c2da1e606faf43d9d52bc4eeff25019b66c2bbd279fc08e56c1294b218d"
+    },
+    {
+      "id": "ASC-REF-SUIT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "95e3c60c801389f77ea03bfb711b44e9b522a65b318ba3237627895b8ea02a50"
+    },
+    {
+      "id": "ME3-WPN-FALCON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8f1362ab16f46343ce5a98da0cc001eacf8a6a5245c78992c6b3c7ed0680868f"
+    },
+    {
+      "id": "ME3-WPN-SCORPION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "45328433d1d88ffd0fba42c9761df377beeaa917379bbf4664b90cc6fdef034c"
+    },
+    {
+      "id": "MEA-WPN-SCORPION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e9d8c2dae745729862b9e4b071dc92b285a956d28cb2a53a35479f162ac9cfd5"
+    },
+    {
+      "id": "MEA-WPN-PAW",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "d51e01c650ab6cc60ef2f41e30a757466d9b0b0ca8fc55ec409b9899d233f9b7"
+    },
+    {
+      "id": "MEA-WPN-REEGAR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e68d7f3af55f222c00139a1c363cf7561f047679a5396dc81ef23e16ee8b2512"
+    },
+    {
+      "id": "MEA-WPN-SWEEPER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "ad53c8cb2bcaf6c0e79795f4cd6bdf7aa983845c77665fe0b9acf0c4aeeeb200"
+    },
+    {
+      "id": "ME3-WPN-PARTICLE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "286522cdbffa63549cc496fa21f41a27b084d79f3cb4eeb8e3d72a984c568d97"
+    },
+    {
+      "id": "ME3-WPN-LANCER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "348abd6d3f444dd65b172560cbe3be54d2325e00a061a56c88f97360db01a687"
+    },
+    {
+      "id": "ME3-WPN-ARC",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e26ed76b28c69f8061265ad53ff39edc67089d425150768b1edd2b09e78cc3c6"
+    },
+    {
+      "id": "ME3-WPN-GRAAL",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "47b6f1c2d786ec0954ea3cc638907d30de348048e29a9bcfe737b8d1cbd863f8"
+    },
+    {
+      "id": "ME3-WPN-JAVELIN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "6826a4aa8f4ec81a6b66fd8a7673ddc35eeace73f10d2dde8e99f613fba69aac"
+    },
+    {
+      "id": "MEA-WPN-EQUALIZER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8c6fdf70ea37dc56e2cb31e55858cf28c74ec038792fc200b8858debbdbb38f3"
+    },
+    {
+      "id": "MEA-WPN-SCATTERSHOT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "3cd18949ba72af0169804eb0ccceadde8e8000300149f9fe3d45e75ad10feb1c"
+    },
+    {
+      "id": "MEA-WPN-VENOM",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "707c25ed1b7c1af26eb89da8126483dd575040d703646248a34858f01d155bc5"
+    },
+    {
+      "id": "MEA-WPN-OMNIBLADE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "0a35577bb531386de0d02943e37c6b2c4ef132dc3421efa1e6a29f49b1fc224a"
+    },
+    {
+      "id": "MEA-WPN-ASARI-SWORD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "6231f2a24a9e1c48afd5b0acfc5f4641e8e924b52ebc33f7fb0902fa33acccb4"
+    },
+    {
+      "id": "MEA-WPN-KROGAN-HAMMER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "d83a93920c174ad8d08e67cd983c3ee0bf3de3e5f3d70e83b8ad7766aa831502"
+    },
+    {
+      "id": "MEA-WPN-FIRAAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "2cff2d0becef99ec25d532aa5f4b36a98e77c727d8715528c02e090a548c4a26"
+    },
+    {
+      "id": "MEA-WPN-CARFALON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "45cfa7dc36afbca2c6ed157aef21ede4414f19f6c84299836fa56a0a91b41ef8"
+    },
+    {
+      "id": "MEA-WPN-VAKARSH",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "33f38f75395334fe6937ca0919068334d8a457e4d1c084b20fb7f1270d37b6f8"
+    },
+    {
+      "id": "MEA-WPN-CRYO-GAUNTLET",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "647546018c50bc4f23adb84d7ca878e420199a503af58bf525059952f4ecad80"
+    },
+    {
+      "id": "MEA-WPN-BIOTIC-AMP",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "dd0d7726a5ab1db468d68211483284b422f816ec358fc733da7df0344d440e84"
+    },
+    {
+      "id": "REF-VEH-M35-MAKO-ME1",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "295fa82cf7a5c982ec5ddee4c14af182b3d8790e6b61ef4e6c956fdcc866a57d"
+    },
+    {
+      "id": "REF-SHP-NORMANDY-SR1-ME1",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-MQ-SAVE-JOKER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-ZON-NORMANDY-CIC",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-ZON-PURGATORY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-ZON-COLLECTOR-SHIP",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-ZON-ALAREI",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-EQP-HAMMERHEAD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "295fa82cf7a5c982ec5ddee4c14af182b3d8790e6b61ef4e6c956fdcc866a57d"
+    },
+    {
+      "id": "ME3-ZON-NORM-CIC",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME3-ZON-GETH-DREAD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-WRL-HYPERION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-WRL-LEUSINIA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-WRL-NATANUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-WRL-PAARCHERO",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-ZON-TEMPEST-BRIDGE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-ZON-LIAM-SHIP",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-ZON-KETT-FLAGSHIP",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-EQP-NOMAD-UPGRADES",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "295fa82cf7a5c982ec5ddee4c14af182b3d8790e6b61ef4e6c956fdcc866a57d"
+    },
+    {
+      "id": "REV-REF-HASTINGS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "REV-REF-IWO",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ASC-REF-IDENNA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ASC-REF-CYNIAD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "RET-REF-SHUTTLE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "INI-REF-HYPERION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "INI-REF-AUDACITY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ANN-REF-ARK",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "PL-REF-BROODSHIP",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-ENM-BS-TROOPER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "0af063a3d783c8d97aace7ab5520789ed0f426c132f9350601a46b59d056e7cf"
+    },
+    {
+      "id": "ME2-ENM-BS-HEAVY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "620c2b95855dd46ee9274b0f5d06ba8deba49eba0f8973055fcdb4bd9c11526c"
+    },
+    {
+      "id": "ME2-ENM-EC-ENGINEER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "9963c0114370053ef328b3cf978bcfa0aed1b3d6ac9ea1add61bd58a34a7411b"
+    },
+    {
+      "id": "ME2-ENM-EC-VANGUARD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8846a84e5129561a44eee50f936ed86210db699703d5a5e9db300eb3b5064a12"
+    },
+    {
+      "id": "ME2-ENM-EC-COMMANDO",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "eab5b7178fdf81775c91e3d091ee5bc6cc02455cb1ddcd6f29f6dd57d596894b"
+    },
+    {
+      "id": "ME2-ENM-BP-WARRIOR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "86f4a76ebce2a7de3594340e48be69868623b4cde3fcecb0c68f6902b14cdcdb"
+    },
+    {
+      "id": "ME2-ENM-BP-PYRO",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "6bb545cbd4080aa06f46dd3ed5163f82da7f9b07a2fe6c2e34d977147a89b6bb"
+    },
+    {
+      "id": "ME2-ENM-GETH-ROCKET",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "f6415bc04f45b15c0285f7acd19e8f577853ad86ef09bb7e583364412f7e6b11"
+    },
+    {
+      "id": "ME2-ENM-GETH-HUNTER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "8b61aa276915b6d8412fd72060d3730ca311afdd1b9cfb3575a183e26da02190"
+    },
+    {
+      "id": "ME2-ENM-GETH-PRIME",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "3cd69208d23556a6acb86fb506903a5d6d4ef7ca892d6aa8c0920d7f5d6318ff"
+    },
+    {
+      "id": "ME2-ENM-GETH-COLOSSUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "136e4f885156390b5bd0cbb1bf7389ffa73d783e97c0b90c293f7021bc91f82e"
+    },
+    {
+      "id": "ME2-ENM-ABOMINATION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "0cc1499b79cf018600ef2b8f95dceb5a6343950bc2ed277f03fd0a5ff079458c"
+    },
+    {
+      "id": "ME2-ENM-SCION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "786def3bcc726a50965e67279bd636f5a1b540c9637684a9437cf3f01c3efdca"
+    },
+    {
+      "id": "ME2-ENM-COLLECTOR-GUARDIAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "ff5fa6061719bf3124e04179ad8fbf22f28aec40ef939814a2696bc307b9c09e"
+    },
+    {
+      "id": "ME3-ENM-CENTURION",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "39d3dd8423c43facdee5d8e2cfdc06acb072d1543e6853928f44baced81faa65"
+    },
+    {
+      "id": "ME3-ENM-ENGINEER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "d82fabfb3880fa8b5ad42a49117b8de202815dc00af8ab8819a34033c72564a0"
+    },
+    {
+      "id": "ME3-ENM-GUARDIAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "e92a5aa1997e0f464ec430c30f72c40ea44ef2172803bec6e9b3dd0cb37fafbe"
+    },
+    {
+      "id": "ME3-ENM-NEMESIS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "eb54b3f0ee54f59944b90fad81241e506865d2b8b0b78f97c21545e15257f910"
+    },
+    {
+      "id": "ME3-ENM-PHANTOM",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "a022a9af5899241c39fb984a0b6b790a21839b0471e06f8e6bfb64e0e4480275"
+    },
+    {
+      "id": "ME3-ENM-ATLAS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "3c96a6a2635d3bf7e043c474837237e9191273008c2ee776fe1ebf6be1696324"
+    },
+    {
+      "id": "ME3-ENM-CANNIBAL",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "c524863e9d33e2ada0757d8f6407f17feb3530ae88a479544fedc5e860e296d1"
+    },
+    {
+      "id": "ME3-ENM-RAVAGER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "54b85efe74e300fcedbed79831ea98cabd09ed35999abc260d0d23307c903bdb"
+    },
+    {
+      "id": "ME3-ENM-SWARMER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "1a10469d02802559bfca7ba3db07218a27d5c570f0a4c5d5f9d37e11aa2d700c"
+    },
+    {
+      "id": "ME3-ENM-HARVESTER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "268504130034810ca852d6767846aa7f4d2f032613929e517c32aac4134128c0"
+    },
+    {
+      "id": "MEA-ENM-ANOINTED",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "9f758187de51d9fe7bb049acfdb02ae17e699b156430df3108402c782ba3f543"
+    },
+    {
+      "id": "MEA-ENM-DESTINED",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "ce2e6445053917cb19984f2b1b73d9fd417ae669287f8bdfb8f651881977e2dc"
+    },
+    {
+      "id": "MEA-ENM-WRAITH",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "761d3193e35dba19bbca7a2e0bad02a019fd71edaaf133c3fddbf909638dc8f7"
+    },
+    {
+      "id": "MEA-ENM-FIEND",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "787aadd6ced0533f73027b81afd70d680c2897505dfba314e5a5f1e3013d752f"
+    },
+    {
+      "id": "MEA-ENM-INVICTOR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "71b10a7760743ad1cb97017769db05b1e8ac8aa8ddfa2d9c0fe4e4388772700f"
+    },
+    {
+      "id": "MEA-ENM-ARCHON-SWORD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "f058dc477a8d209a5491a29d42d93b0b7e1b995bef238e2d3b7883f124a60cd7"
+    },
+    {
+      "id": "MEA-ENM-VALIANT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "514886bfc875c95f521437693b63c9863543d18668703ffe62958db4f436c0a5"
+    },
+    {
+      "id": "MEA-ENM-BEHEMOTH",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "eaf9068bab0c5bde6ac7507770ba4e00a508b11c5927e5a3e9960b6c00f996ef"
+    },
+    {
+      "id": "MEA-ENM-RAIDER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "a5dbc03388c08e48d07cb9c107ca60b69573d8d6c5d853c8b5c887d074f569b3"
+    },
+    {
+      "id": "MEA-ENM-BERSERKER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "130b52b7ab3179000aa97f7adcd86903e72d14170b2e58d858591264b7a84254"
+    },
+    {
+      "id": "MEA-ENM-NULLIFIER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "ce11d12dccc546234dd8f2761081ebfd7e78c6fb055b77276e4f97ae8b27bf7a"
+    },
+    {
+      "id": "MEA-ENM-ARCHITECT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "exact": true,
+      "resultSha256": "3a53c37966c2065bba39d3adbe1a55301f7b0cdc8ca484ce466919812715ce28"
+    },
+    {
+      "id": "MEA-CHR-MP-HUMAN-KINETICIST",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "9d684b83b332837d4dfb880f37d36ea375f8fcc4647a4dd3ec43717958de5310"
+    },
+    {
+      "id": "MEA-CHR-MP-ASARI-DUELIST",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "8a4d39c8445a9b24c8225148b567404aadd7247713fdfa6895ae8a8018175dda"
+    },
+    {
+      "id": "MEA-CHR-MP-TURIAN-HAVOC",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "8dcdccc6eafb59d7aae3711b4aeda1b836401eed5ec22370d1d91cd53a178a90"
+    },
+    {
+      "id": "MEA-CHR-MP-KROGAN-ENGINEER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "5eefa0351094b241450bc8ea133a3ec0271fc388617e8a073a4bf0a74d124eb5"
+    },
+    {
+      "id": "MEA-CHR-MP-SALARIAN-ARCHITECT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "a508b975f824c583c60d6a72b5df441c1add5381a8dce95d05cfbbf59e955536"
+    },
+    {
+      "id": "MEA-CHR-MP-ANGARA-AVENGER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "63b355ae272ec9236c94d5b2afba60cbcd3918e6b5ae8df67ecebf7cc32c52c5"
+    },
+    {
+      "id": "MEA-CHR-MP-BATARIAN-VANGUARD",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "d4a30f98a830e2f435932d6de34041c4a2e373c7819e27364902c523d8596034"
+    },
+    {
+      "id": "ME3-NPC-JACOB",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "b6b3c8916385d8521f600b34d676b566014b522f6a6271c11a7b73bd46043987"
+    },
+    {
+      "id": "ME3-NPC-KAI",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "cdf98ba25516dc849a2f53bd26ec9f4213f7f5d029cc07bb6ea55f4a40805314"
+    },
+    {
+      "id": "ME3-NPC-PETROVSKY",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "88766788b765d83c965af37904d944f0a876f99a767431192cd53618414040c8"
+    },
+    {
+      "id": "ASC-CHR-PEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "12ed71aad6ee2f9ea5e60a042f52fad09569d83ae12e3e843c7ed1ea37ab7d2f"
+    },
+    {
+      "id": "INI-CHR-VLASSIA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "667078fcdce604f679a255fff66357f1809df6eba786042460608eabaa4e92b0"
+    },
+    {
+      "id": "EQP-omni-outil",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "f408a02651a8ef4497c15559e1aaf8d56ccf38b0a525968da805e693b9e0433d"
+    },
+    {
+      "id": "EQP-amplificateur-biotique",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "540c4f297849e72fc46cfe164aaf20204563591449db135749075ea735e9ff81"
+    },
+    {
+      "id": "ME2-EQP-THERMAL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "4d3d825d138390e31e9cb13ea9b16ea54910a8a5e0a313de5652b590203fd1c6"
+    },
+    {
+      "id": "ME3-EQP-BARREL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "fb498693c72104506ac68490ab6ecfc2cd83dca581bd1c62951d79d21441e79c"
+    },
+    {
+      "id": "ME3-EQP-MAGAZINE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "33dc669ef478a4033ee6df5f06814ecef63298ed52e71e3be746c00c35f99a25"
+    },
+    {
+      "id": "ME3-EQP-ULTRALIGHT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "e04deb58ae326ce577441cb4ae899fbf7b2595247b7d8dab1c5d513573b91ed4"
+    },
+    {
+      "id": "ME3-EQP-GRENADE-STOCK",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "fb12148359c06e0683f2f6052d3cac92dfb00e6c494babfe926a01881b2282ec"
+    },
+    {
+      "id": "ME3-EQP-THERMAL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "4d3d825d138390e31e9cb13ea9b16ea54910a8a5e0a313de5652b590203fd1c6"
+    },
+    {
+      "id": "MEA-EQP-POWER-CELLS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "6ff81bd4af8c49f3f04dbb8a93302d0a351c962a74aa9d14f1ffaccc97daed87"
+    },
+    {
+      "id": "ME2-WPN-PREDATOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "14b2ddf34c59dd9ce4e9afd553fe05f1eeae3ee8126752c918acc4379aff0f62"
+    },
+    {
+      "id": "ME2-WPN-CARNIFEX",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "acec470173aed9615d3c4cd80e0b5c2751cc00179d49b5decb28faf8df2cdd0b"
+    },
+    {
+      "id": "ME2-WPN-SHURIKEN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "b7f5316a4fbcd5a817d44cd2312c40cd41e8581b99590e65c8c61143209c5d45"
+    },
+    {
+      "id": "ME2-WPN-TEMPEST",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "8e0e437857463e4138dde5a0bcb32141faad1ad052dbc28ec0133f61b5518dda"
+    },
+    {
+      "id": "ME2-WPN-AVENGER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "cc5c19d2656a4b681150d06d13c1aa701dbe44a46f3d9294defc4b6bd9b702a1"
+    },
+    {
+      "id": "ME2-WPN-VINDICATOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "32f957de98786d72c2b85cdac596d6c010ca6b08d1a6a60b6c51e1c7a32b42ea"
+    },
+    {
+      "id": "ME2-WPN-KATANA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "437c28102213372102a936179e6c4a6f4f41071f659f106606a60013d5e5030e"
+    },
+    {
+      "id": "ME2-WPN-SCIMITAR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "bd940a11161d2b02c3b105d0430ba2b92d3d2512965f1bffa74ec7db2b5f133d"
+    },
+    {
+      "id": "ME2-WPN-MANTIS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "f8596ba999b69dab2713b736d9b15d4fc9cac1c5ef5571f4cb9fac7fc72ddb57"
+    },
+    {
+      "id": "ME2-WPN-VIPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "70b83c5e15a4d3ebc5b297816c031da401216aae4ccba23d2d6c812e9b971476"
+    },
+    {
+      "id": "ME3-WPN-AVENGER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "bfadf939adc86a702205ee4cd9404f5b58ad08240f0554a65dbe44743b6b6dde"
+    },
+    {
+      "id": "ME3-WPN-MATTOCK",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "3115bc346d12944a5a3162eaf92146552e65d357ae9aaf1f1fc678562aec0488"
+    },
+    {
+      "id": "ME3-WPN-PHAESTON",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "dbdbd845010ebb36883a451ab83a4e4450da194d451a4d9bf1395b0393fc303d"
+    },
+    {
+      "id": "ME3-WPN-SABER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "eea177cecd8b390a810536b0cacff4dd3639dd992c7f872e1c2c88670cb503c8"
+    },
+    {
+      "id": "ME3-WPN-GETH-RIFLE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "6317848d62bc55ecb3e610be298d2053fa308d68951d120f0198a1f3183fb381"
+    },
+    {
+      "id": "ME3-WPN-PREDATOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c5f16586a57a1f84037689f3b85b79cbc2d3614216536b9746677552867a7586"
+    },
+    {
+      "id": "ME3-WPN-PHALANX",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "70f6fc9c37027566fe5e2aaa66c09ea564ccaa19985864bc2c5f4966a2c8f7e3"
+    },
+    {
+      "id": "ME3-WPN-CARNIFEX",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "cdfb1b69eecde15c3a78845affff175183b0e27abb842ac3a303a225087bab81"
+    },
+    {
+      "id": "ME3-WPN-PALADIN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "a18094ac9eddd44456603e25e015ab69df0806e18ce03303cc260509bbe60474"
+    },
+    {
+      "id": "ME3-WPN-KATANA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "56f52814bd82ac78caea1dc8bb3ff5f16c17f7b5c88355308df5cb631bb4b74a"
+    },
+    {
+      "id": "ME3-WPN-SCIMITAR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "78523ec4cad08a3fd4a60f00bd6b2f4feeab6b6d89c452ee9e915b91adb226ed"
+    },
+    {
+      "id": "ME3-WPN-EVISCERATOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "bee3974a35fa26d571ae8d315242356dddd6b89b54c26d80332afa59bfb83e55"
+    },
+    {
+      "id": "ME3-WPN-DISCIPLE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "67ca766cc434b72c1becc523af39b20bbac76898e36c35c32d476e4b178d0405"
+    },
+    {
+      "id": "ME3-WPN-MANTIS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "3c23cf87023964e772bef19f41d36bce8214f12aa12bf70a6fd314e1d34b674c"
+    },
+    {
+      "id": "ME3-WPN-BLACK-WIDOW",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "d63792399f5a19530e54c33817085bab35defb0b2782f0b01751eafa1db17427"
+    },
+    {
+      "id": "ME3-WPN-SHURIKEN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "6a117746f51ae0a8fe9a9d749efc1d2bf56cb028e8c3ea0239f7ac913980c00e"
+    },
+    {
+      "id": "MEA-WPN-AVENGER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "fb7efda0f027cc1b22fd3145e3fd4455db79a8b0edc288a6b535381467b6d5af"
+    },
+    {
+      "id": "MEA-WPN-MATTOCK",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "45d7c19df841c4659db031f82e541d3a9989b4ecdbcd497a45c6b25d3cd2bd6d"
+    },
+    {
+      "id": "MEA-WPN-VALKYRIE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "a33a38c8d7f7df92e256f59af3ef52b2887bad4a314725b489a5d64a707fb7de"
+    },
+    {
+      "id": "MEA-WPN-PREDATOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c5a80758c4801b70975ac87d15ac12ccaf2f78b862fb4274a0bfc414d5798011"
+    },
+    {
+      "id": "MEA-WPN-CARNIFEX",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "2fe3dd304e40a3a94e65fe57d929b63deea7cbd163eaa7c9ea9ca31822d1817f"
+    },
+    {
+      "id": "MEA-WPN-PHALANX",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "6bf5213fd2cca2a9695e97d15134b29cf7b323b54bb34ada8d1b66885826867f"
+    },
+    {
+      "id": "MEA-WPN-EAGLE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "26c679379a118f68f7b433e2a1e18d8f83dc4af03f4b2d516bc2ffdb774121dd"
+    },
+    {
+      "id": "MEA-WPN-CHARGER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "9d519bb47e00fdfa8fdefaaf78b28dd80cb5fcd4f7890e38c8429eb5f049624b"
+    },
+    {
+      "id": "MEA-WPN-KATANA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c3780810daabfad2f715ac5c84611cc3e82a6f45c0a739d540e69f2682c02a1c"
+    },
+    {
+      "id": "MEA-WPN-DISCIPLE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "882976931b824387508ba79919813223075ebf6334504533d3e27e1a5688593d"
+    },
+    {
+      "id": "MEA-WPN-PIRANHA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "6028f5479e2a7ed1ee27e3d0f32d5dec8d7df0686f3f33a635535873c65b62ec"
+    },
+    {
+      "id": "MEA-WPN-MANTIS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "28d288bf3bd069d7931bc4d726e628b19d06c5687b2f6e59645f07441583cada"
+    },
+    {
+      "id": "MEA-WPN-VIPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "a2ead54c702359b845c2881f22c990f22039e2ff4501a0ea3da40d8e18ffa9bb"
+    },
+    {
+      "id": "MEA-WPN-VANQUISHER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "780cd4d596c79ad9c1c296676b36767df7e23c5f91073df1af97a0ebcb8e4e0c"
+    },
+    {
+      "id": "GAL-LOC-JADE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "MEA-MQ-HYPERION",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c0d2d2dd71844e29df2ab2ef6ac1c3e745f7c13546cc90d6709bf58cb3dd345b"
+    },
+    {
+      "id": "ME2-ENM-BS-CENTURION",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "8c4c4ad1835a871635fc89264bbe670eda73162c0f0820014e620d8ac4bdafcd"
+    },
+    {
+      "id": "ME2-ENM-BS-LEGION",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c3f7e2a5071d332033fdd26c6f5c9f219457b4a395f7b2841675deffa22d6daa"
+    },
+    {
+      "id": "ME2-ENM-EC-TROOPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "5f5b891176ad2998ca9e174dfd6e706afd3827ecc36cf5eebeb2f21c77b6b448"
+    },
+    {
+      "id": "ME2-ENM-EC-HEAVY",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "cf468d348182b81e91fce0abef84112a81e7d850bf19632445734087b48ddf1b"
+    },
+    {
+      "id": "ME2-ENM-BP-TROOPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "cd17e8993859646011ba25fa0fbc4940ad6a1726e0e90799ced2a4ce93b7924b"
+    },
+    {
+      "id": "ME2-ENM-BP-BOOM",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "09b37aacc221c4d2801cc152e20b9f0151334832b8791eb41c81923caf325dfc"
+    },
+    {
+      "id": "ME2-ENM-GETH-TROOPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "46dfa36e46b4e1d35574fa41fbdfc47871a56d5057486881be2c96d3afee8b67"
+    },
+    {
+      "id": "ME2-ENM-GETH-DESTROYER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "f5598d502608a95570a30adc810ad3c24c2a2b71e1077dbe93c64b069ad659e6"
+    },
+    {
+      "id": "ME2-ENM-GETH-DRONE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "97ba0ee19d5822a819cc77a6fb57e8402a77e3cda8eeecbf465ad82e4fb86fe8"
+    },
+    {
+      "id": "ME2-ENM-HUSK",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "f8217fb605f15600d56c2c00d8bd2594ae9c037b65554904ba309c49dd411947"
+    },
+    {
+      "id": "ME2-ENM-COLLECTOR-ASSASSIN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "c5c0fd66ff5177fcdae6616b6f30279f8675c6d585dc6f8006a420a09b5ac9b1"
+    },
+    {
+      "id": "ME2-ENM-OCULUS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "8fe1056095d558f3623c6dbabc47dd6fbd139174973d21b9721c86a5e3947f99"
+    },
+    {
+      "id": "ME2-ENM-VARRREN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "2c6398cd269e1d6356786b9fd0c0cfacdaf8787b12521e9ca29ac2630b57e649"
+    },
+    {
+      "id": "ME2-ENM-THRESHER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "0d7c5711a6e00f8e230ddd2f9d63cb5e0751e667d1a2bc9fd037612c03e2ab1b"
+    },
+    {
+      "id": "ME3-ENM-GETH-TROOPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "e11b47ef8bf9c42316b002c2fd45104cd8f26d939b7ff9b754994f113d41abbc"
+    },
+    {
+      "id": "ME3-ENM-GETH-ROCKET",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "ac80f5b5b5ffd8975ac6d45ed78a91e509de2aea75521b1ed84ec061f539726c"
+    },
+    {
+      "id": "ME3-ENM-GETH-HUNTER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "775551ee604fd3e944d033b1fba0441dda7c35ab2c8ad39597b6876c5b04f77f"
+    },
+    {
+      "id": "ME3-ENM-GETH-PYRO",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "23fe01f300baee911896662570ab40c975cf2be01ccdc4c5ba29f4424cc04dbc"
+    },
+    {
+      "id": "ME3-ENM-GETH-PRIME",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "efdeddef6cb2bb58431249e0448e0094a771ab6a83ebf1b8bae12d1f47fcc0db"
+    },
+    {
+      "id": "MEA-ENM-AGENT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "582725aed098975e47742da23af57f7169892fdf7fec7d953e40acf9f86ad1d5"
+    },
+    {
+      "id": "MEA-ENM-ANARCHIST",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "7e4b73b477cfa31c7f08d18c65a889da35fe565d667240266d21709e2743adac"
+    },
+    {
+      "id": "MEA-ENM-HYDRA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "077b7533d39b2e50c38bd9f4eced5d6acce7340f0a28ca4d3a770e6e377e7916"
+    },
+    {
+      "id": "MEA-ENM-PARIAH",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "60805255c2d00b0ffac672b1fce8baa3a850f76275eca7762bd23eaca028673a"
+    },
+    {
+      "id": "MEA-ENM-SABOTEUR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "e4d02c1520a614c3ea958065b0fdcbf7d2fd90e5bae2f75813117da4f632d392"
+    },
+    {
+      "id": "MEA-ENM-SHARPSHOOTER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "f50182831be730e8041d24e05821b92b94ef219328970dd5888cbfb12d91190d"
+    },
+    {
+      "id": "MEA-ENM-ASSEMBLER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "dc99a619429d98736e744d359e619968679448e4f84d97faa30617535d2de03a"
+    },
+    {
+      "id": "MEA-ENM-BREACHER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "5a4a319c99411eeb46e1e4805c2c0c86256ada5cdd38d73efd79349cf5c20f93"
+    },
+    {
+      "id": "MEA-ENM-CREEPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "2c66e679a0759da12e83d9934b1eaf9c4a912ae36d3d3a74243ba6e3b110da8e"
+    },
+    {
+      "id": "MEA-ENM-PROGENITOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "16fe8c5d799f6e2bc0ef4b52bb3b1fc53b63910a2d527b7090423950ac0aa866"
+    },
+    {
+      "id": "INF-ENM-TROOPER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "0ca1735c5ef2bd502bc815ed4e4c5adb81b3815751b55b6daddb530aa80a21e5"
+    },
+    {
+      "id": "INF-ENM-X1",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "f9c90c85e348fecb55cdae38514f200f98bc5d498709f9a9222acdd218cb92da"
+    },
+    {
+      "id": "INF-ENM-INALI",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "4adf60e1ed8b9e7d102a46d2dfb80ede34491fbf330e79e071c1a1832bf8d676"
+    },
+    {
+      "id": "GAL-ENM-CLINT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "ff99065e98655128e498b66e2e95b53ade22b09543a18773ee652fd9a478afe1"
+    },
+    {
+      "id": "GAL-ENM-ROBOT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "exact": true,
+      "resultSha256": "338041600f34a0b6a426796af1fde0a01f98843d54d9dcaa1499d30f01b7347a"
+    },
+    {
+      "id": "ME3-NPC-BROOKS",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "da3c515b14daec8de5d213c6c5b252eb44f7c0da426adb25852060f7949f87e5"
+    },
+    {
+      "id": "RET-CHR-ANDERSON",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "9ed615149d879a9188b3d5a8d76fb63164ecb66b7fd163611c16f006fa5e1eff"
+    },
+    {
+      "id": "INV-ACT-DEFENDERS",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "0e50923bd115254ebddd69fc0f3531e523cd906b105e70631df3c31f788aa28d"
+    },
+    {
+      "id": "ME2-POW-UNITY",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "f50147d9faf345be01de75d318125dc4b1ece3cf522386abce184fabb0ce58f4"
+    },
+    {
+      "id": "ME3-POW-FIRST-AID",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "e7600e0d0a873376d49ec055b887c989eb488ac54e4c266668b887a9d872372b"
+    },
+    {
+      "id": "ME3-WPN-VINDICATOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "2c2c920fd5c9ee52e5365309d4221f1f83aa473956875393002deb73f7b8b212"
+    },
+    {
+      "id": "ME3-WPN-REVENANT",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "c616a74699ba7307cfcfb04a1a7f1902d4a43874cc9e51eda5bdc429011bd2bd"
+    },
+    {
+      "id": "ME3-WPN-TALON",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "1780294ae5167803fcde302ab318e3c5a5670a6dbd253af6395e6e07bbdf1d67"
+    },
+    {
+      "id": "ME3-WPN-CLAYMORE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "8465e111467378a59abeeb7bfdad684416b10c8a78d43f10cbe1443be6c1036a"
+    },
+    {
+      "id": "ME3-WPN-VIPER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "b0514aa053fe6f2f4390014bd760404e3280cfd9dcf9beba6a5fd3507a11adad"
+    },
+    {
+      "id": "ME3-WPN-WIDOW",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "4df7a9ee6e08b3bf6a9d0a3ae9298f79f3e208696bd9b574b73b54f1acd81833"
+    },
+    {
+      "id": "ME3-WPN-RAPTOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "5af423d9a2adc5a96a8589e483a1742bf625104ddc687d04724326999c9e375f"
+    },
+    {
+      "id": "ME3-WPN-TEMPEST",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "2c176c26ca24af90a9667ecea4460fd813c8687af0263bf06badeaf830800442"
+    },
+    {
+      "id": "ME3-WPN-LOCUST",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "774afe0c6d627cab76a56b628ef1539acabb51be7a77745c881fcce6b0ec7643"
+    },
+    {
+      "id": "ME3-WPN-HORNET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "634fbc667155e89380d864792c7068789067ecc3fd68a0a57c4b3f0a27820de3"
+    },
+    {
+      "id": "MEA-WPN-CYCLONE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "652299cc03097fa0735fa33bb7bd63e79be33dfbfa722a7904648035e4ec74fe"
+    },
+    {
+      "id": "MEA-WPN-REVENANT",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "ac5a7d7f81bbf70e7cfb5b81002ae336dee3d3f8d92addead98d612cdf9ae014"
+    },
+    {
+      "id": "MEA-WPN-HORNET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "976be9d6fd1afbce4f656c6e108ced3ef79efdf238f8ab2dbf72a5d831a3b5db"
+    },
+    {
+      "id": "MEA-WPN-SIDEWINDER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "ba2ad3385b9cf3f1b481196b7a00e813d455928746838b648f40c82c34dd238a"
+    },
+    {
+      "id": "MEA-WPN-TALON",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "544c645efd236d01a414a5d41cc72f77c4a83ca66c17affb6dbcf986fef9e9c7"
+    },
+    {
+      "id": "MEA-WPN-RUZAD",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "cce91453014e4bb607892b26ddcc486a2b6634c34a08fbf19ddc2600314a7f92"
+    },
+    {
+      "id": "MEA-WPN-BLACK-WIDOW",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "310ed55d3e4f39a9d7e915b99457cd7cfe8604bbf1949c5adf052fdd601ecfad"
+    },
+    {
+      "id": "MEA-WPN-INDRA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "47d5ee5ee37006e3118a8dff71fe6fbaa3e24bfad2f69cc50391e8bc00687103"
+    },
+    {
+      "id": "ME2-ENM-BROKER-AGENT",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "66042374adaf8846053e2df17b04128c3210120d8e3cf3a69b19bf016e9aa6bc"
+    },
+    {
+      "id": "ME2-ENM-BROKER-VANGUARD",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "e39c3357a2124d1d43cf3e7b249c6e34d031673e7aa88b242672d83e134f61c1"
+    },
+    {
+      "id": "ME2-ENM-PROJECT-GUARD",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "b0330f90797066d88763e5978fafc504c9a492c7b4afb174534abd5c757d3415"
+    },
+    {
+      "id": "ME2-ENM-PROJECT-PYRO",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "945243f94a53174109110a00bda22b7ea8d959fc6d521bb2c9272c0067e0774c"
+    },
+    {
+      "id": "ME2-ENM-PRISON-GUARD",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "37ac78dc4c12417d7b36204366ba41781bc773e23fe0d25d93e3512905c064c0"
+    },
+    {
+      "id": "ME3-ENM-TURRET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "f233e391d740a9efd61413d88002692cb0c4d1aa8688d5afb0e16e0c43e43de5"
+    },
+    {
+      "id": "ME3-ENM-GETH-TURRET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "931faacf5b40a2f5cbdec136b37f333d52e1b91f7fc86970745aee233ede5304"
+    },
+    {
+      "id": "MEA-ENM-KETT-TURRET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "c147230b124055ca5bf66ff83fb3a54a353b7474fe696d8b16935942f8739eec"
+    },
+    {
+      "id": "MEA-ENM-OUTLAW-TURRET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "96e368fc57a6ce5aa229894539c967dfdfbe2169c633de30c88ef9cba24cecf2"
+    },
+    {
+      "id": "MEA-ENM-ADHI-TRAINED",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "912f2156e04668457b7961ebfa2cd258bbc72618050c808b24c6a3d4c68d3d64"
+    },
+    {
+      "id": "MEA-ENM-REM-TURRET",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "a5af1a95e719fabd5259b4ebc6469a1422a76c99a8a560d681057b22bdca6723"
+    },
+    {
+      "id": "INF-ENM-MECH",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "068f55414ca44a8edf5ebb6f8b30615ef54170a7420226d09f7b42f4c6005a78"
+    },
+    {
+      "id": "INF-ENM-SUBJECT",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "d14643cdf85f8d5b4e2bcabaf82534f0e81df12ff3b6112ed2f52e88674d8b23"
+    },
+    {
+      "id": "GAL-ENM-TURIAN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "c0ae3358f54ba5e09dbc2e36815969bd520a0a42769f587f68525771200f4490"
+    },
+    {
+      "id": "INC-EN-COLLECTOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "exact": true,
+      "resultSha256": "f2cfc5e9d247d011ae76d324e0158f0945bc8cbc69f5cbc42d7d4af339f93e67"
+    }
+  ],
+  "previousClosures": [
+    {
+      "id": "ME2-CHR-KENSON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-JOKER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-EDI",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-TRAYNOR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-CHR-MIRANDA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-NPC-INALI",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-SLOANE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-KESH",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-CHR-CORA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-ANAX",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-SENNA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "HOM-ACT-LIARA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "FOU-ACT-MIRANDA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INQ-ACT-BAILEY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "DIS-ACT-TIRAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-SENTRY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-ARCHON",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-CAPACITOR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-LIFE-SUPPORT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-ORDNANCE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-GETH-SHOTGUN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-GRENADE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-MISSILE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-AVALANCHE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-CAIN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-PARTICLE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-FIRESTORM",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-ARC",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-CHAKRAM",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-ADAS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-ACOLYTE",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-REEGAR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-VENOM",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-HYDRA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WPN-BLACKSTAR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-WPN-LANAT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-WPN-PIONEER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-WPN-DEEP-IMPACT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ZON-HAGALAZ-HULL",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ENM-GUNSHIP",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-LOR-FLOTILLA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-WRL-NEXUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-LOR-ARKS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-LOR-QUARIAN",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-WRL-MOONYARD",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-REF-FLEET",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-REF-NEXUS",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-REF-THEIA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-REF-HOMEAWAY",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WRL-OMEGA",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-SQ-N7-CRASH",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ENM-VASIR",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ENM-BROKER",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-RAMPART",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-ADJUTANT",
+      "sourceReport": "docs/qa/expansion-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-KELLY",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-CHAKWAS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-KEN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-GABBY",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-VEETOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-OKEER",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-DAVID",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RED-ACT-TIM",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-CORTEZ",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-MICHEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-ADAMS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-ALLERS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-LEXI",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-KALLO",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-SUVI",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-GIL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-CHR-KAHLEE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-CHR-GRISSOM",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-CHR-EDAN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-CHR-GILLIAN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-CHR-PAUL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-CHR-LISELLE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-CALIX",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-IRIDA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-CHR-SAME",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-YORRIK",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-BORBALA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-IRIT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-MEDIGEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-CELLS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-EQP-WEAPON-MODS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-EQP-SCOPE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-EQP-MEDIGEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-AUGMENT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-FUSION",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-WEAPON-MODS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-WEIGHT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-AMMO-FIRE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-AMMO-CRYO",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-AMMO-DISRUPT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-SHIELD-CAP",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-EQ-INTEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-EQ-SHIELD",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-EQ-MED",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-REF-IMPLANTS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-REF-CRYO",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-REF-IMPLANT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-REF-CRYO",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-REF-MICROSCOPE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ZON-DERELICT",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-NORMANDY-ARMOR",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-NORMANDY-SHIELD",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-EQP-NORMANDY-GUN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-EQP-NOMAD-SKINS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WRL-CITADEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WRL-HERETIC",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-SQ-N7-RESEARCH",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-SQ-N7-ENDANGERED",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WRL-CITADEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WRL-OMEGA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-WRL-CERBERUS",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-LOC-BARN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-LOC-CARTAGENA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-LOC-AHN",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-LOC-CITADEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-REF-CITADEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-REF-OMEGA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-REF-OMEGA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-REF-CITADEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RED-WRL-OMEGA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INV-WRL-OMEGA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INC-WRL-OMEGA",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INQ-WRL-CITADEL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-CAT6-HEAVY",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-CLONE",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-DRAGOON",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-REAPER-RANNOCH",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-ARCHON-FINAL",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-SCIENTIST",
+      "sourceReport": "docs/qa/expansion2-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-KURIL",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-HOCK",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-KEIJI",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-NPC-BAILEY",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-THANE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-JACK",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-SAMARA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-LEGION",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-NPC-MIRANDA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-FISHER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-GREER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-KIRKLAND",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-SAM",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-TWIN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-NPC-RAEKA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-CHR-JELLA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-CHR-QIAN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-CHR-GROTO",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-CHR-KAHLEE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-CHR-LEMM",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-CHR-GOLO",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-CHR-NICK",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-CHR-GRAYSON",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-CHR-KAHLEE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-CHR-ORINIA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-KANDROS",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-GARSON",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "NEX-CHR-SPENDER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-CHR-ALEC",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-CHR-MEDEA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-CHR-JENSEN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-YSSES",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-QETSI",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-CHR-SOVAL",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RED-ACT-BROKER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "FOU-ACT-JACOB",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "PL-CHR-LIARA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-PHALANX",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-LOCUST",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-REVENANT",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-MATTOCK",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-GETH-RIFLE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-COLLECTOR-RIFLE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-CLAYMORE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-EVISCERATOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-WIDOW",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-INCISOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-WPN-BLACKSTORM",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-WPN-MATTOCK",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-WPN-EVISCERATOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-WPN-INCISOR",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-WPN-PARTICLE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-WPN-AVENGER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-WPN-GRENADE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "REV-REF-CANNON",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ASC-REF-STUN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "RET-REF-SHOTGUN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INI-REF-RIFLES",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ANN-REF-LOCKER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ENM-HUMAN-REAPER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME2-ENM-OVERLORD",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-EVA",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-CAT6-MERC",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-CAT6-SPECIALIST",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-DISRUPTION",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-BROOKS",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-COLLECTOR-TROOPER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-COLLECTOR-CAPTAIN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-ABOMINATION",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-SCION",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "ME3-ENM-PRAETORIAN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-OBSERVER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-CALOT",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-MERIWEATHER",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-ADHI-WILD",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-ANCIENT-EIROCH",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-KAERKYN",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-SPITBUG",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-TAURG",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "MEA-ENM-CHALLYRION",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-ENM-OGRE",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INF-ENM-ORCUS",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "GAL-ENM-JATH",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    },
+    {
+      "id": "INV-EN-CERBERUS",
+      "sourceReport": "docs/qa/expansion3-native-report.json",
+      "stillClosed": true,
+      "reasonUnchanged": true
+    }
+  ],
+  "defaultScenarioReplays": [
+    {
+      "id": "me2-freedoms-progress",
+      "initialBattleSha256": "3fa417481d3540ea8e890b59bdeb2c7bf9d8177177fe40604ac8e6a0457843e5",
+      "completedBattleSha256": "503a3c2ad534b33cbab1357f3034b073d1a922e8f987992a93483803d33b30ab",
+      "winner": "party",
+      "elapsed": 20.00000000000015,
+      "orders": 16,
+      "exact": true
+    },
+    {
+      "id": "me3-earth-prologue",
+      "initialBattleSha256": "83a0eea4d5db998ae9e8aeda2d8327ae3b8b3f47bfc2d526ebea1d51cc9ade38",
+      "completedBattleSha256": "9da2dd613dec3004c6c40ded7999bfd051691e6c98f8aeb83c8bfb27c84ad9f5",
+      "winner": "party",
+      "elapsed": 25.00000000000022,
+      "orders": 15,
+      "exact": true
+    },
+    {
+      "id": "mea-habitat7",
+      "initialBattleSha256": "e8dfb78dd9e61d31dcb9122c00bdf5819173c9b33b767d54e8ad4540611c13ad",
+      "completedBattleSha256": "5155d46101dc552eea078e3d632309b49c40dfb69d909a54597af62eb8d9661b",
+      "winner": "party",
+      "elapsed": 25.00000000000022,
+      "orders": 15,
+      "exact": true
+    },
+    {
+      "id": "inf-security",
+      "initialBattleSha256": "cbe3671abe5a7f3cb9deb62117eb6f33ead8d12cc15a40cf034bc3d2558c6442",
+      "completedBattleSha256": "9650b74246d506d7b5dd24d4a4b95d61a5726bf5cca3502b01fde5a9218194be",
+      "winner": "party",
+      "elapsed": 49.9999999999993,
+      "orders": 20,
+      "exact": true
+    },
+    {
+      "id": "gal-jacob",
+      "initialBattleSha256": "6e9d261d1f0d8807edf7a386db70bafac15fbca26fe98b8dfb3df1672bd1d827",
+      "completedBattleSha256": "41ccacd3d82302a0113f50736a0613a328b2815054aa4a62fb36b14a2d1be729",
+      "winner": "party",
+      "elapsed": 59.99999999999873,
+      "orders": 25,
+      "exact": true
+    },
+    {
+      "id": "pl-collectors",
+      "initialBattleSha256": "679a030619d81cadd3b9e5158be9fa9dae63d39d472d4b551af1006b50c1bfa1",
+      "completedBattleSha256": "ab2c0c4c33df868f3dedc8a237a9a9339009eb1ef48cb5c395f16fd516952584",
+      "winner": "party",
+      "elapsed": 25.00000000000022,
+      "orders": 8,
+      "exact": true
+    },
+    {
+      "id": "red-liara-feron",
+      "initialBattleSha256": "27c0d9611c8ff354a6a1e03dfac4cbd6f88ca70c08be3cc8a1935f2e5e1e9799",
+      "completedBattleSha256": "b8f69f2c3ea0092524d2f772bc2ac63e28b9535e769d1f2f1c2ecf7d92aac329",
+      "winner": "party",
+      "elapsed": 30.00000000000029,
+      "orders": 18,
+      "exact": true
+    },
+    {
+      "id": "me2-equipment-workshop",
+      "initialBattleSha256": "4b9ed63d0cc7ba30113ffaf2e3ae519aa5c8b3fa394193b51685401193106a8c",
+      "completedBattleSha256": "7c97104fd9753e78c65097693bc042d24f722a2e50b9b35d68eafc85c0e79340",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 33,
+      "exact": true
+    },
+    {
+      "id": "me3-equipment-workshop",
+      "initialBattleSha256": "8cb30b7083c872228a12c5835743b5b7eb5b07eb9108bc2d27bfb2d26e716cda",
+      "completedBattleSha256": "683f253f0f6cf63af88c70022b1d610f339b990126dc8fb2cc13a5e4d2c11f49",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 33,
+      "exact": true
+    },
+    {
+      "id": "mea-equipment-workshop",
+      "initialBattleSha256": "8f8607889eef0d90a55cda60d9804c1a585561b7852d4b625bd160b0f36d0707",
+      "completedBattleSha256": "7a138575248070fb0784e140e219bfd54985bb34eb7b15283805cce463075ea4",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 33,
+      "exact": true
+    },
+    {
+      "id": "me2-dlc-specialists",
+      "initialBattleSha256": "cd3e2120d74cad3b0795226a1b1c21ae8779c4bfb6751b30bebdf4706f8e8ecb",
+      "completedBattleSha256": "1d3d7ccfbc963864e7de93bf2022270a77a5516ca3712a17b4c8416073ed6690",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 32,
+      "exact": true
+    },
+    {
+      "id": "me2-shadow-broker",
+      "initialBattleSha256": "2192c49f609d180d51ba9482175313f85b076072ce54dc356934e8701a8046dc",
+      "completedBattleSha256": "a4051e92dba1af89f2ff80df86d7cc54cdabce548ba2569afc7a47995d14737b",
+      "winner": "party",
+      "elapsed": 69.99999999999817,
+      "orders": 43,
+      "exact": true
+    },
+    {
+      "id": "me3-from-ashes",
+      "initialBattleSha256": "ff95ce9320b839d76c1bfd591eba45cb0852ee42a5532d01cb79c5b3011309af",
+      "completedBattleSha256": "563a8dbe90cc5f421ef1a8075ee9c4217bb397c64bee53cb918a8c78180cbdd7",
+      "winner": "party",
+      "elapsed": 64.99999999999845,
+      "orders": 39,
+      "exact": true
+    },
+    {
+      "id": "me3-omega",
+      "initialBattleSha256": "f0df6dd4a89a6b967ccc78cce5d58525981aca87f2d55884d2076a3b40bca8ef",
+      "completedBattleSha256": "22bda5d6c878c2ce3cc8b4eeb367e5111b000b068be6d660f2a08e53f3c28e6e",
+      "winner": "party",
+      "elapsed": 49.9999999999993,
+      "orders": 39,
+      "exact": true
+    },
+    {
+      "id": "me3-citadel-wrex",
+      "initialBattleSha256": "a59f093851c565995bea3e5c239002af457d053e44a0517d487a23abb5c0d1ee",
+      "completedBattleSha256": "babdefa7985955734cca2a21d039246f5c5c8a502e5a45fa0dfb0ee4d0559d5f",
+      "winner": "party",
+      "elapsed": 64.89999999999846,
+      "orders": 37,
+      "exact": true
+    },
+    {
+      "id": "inf-incarceration",
+      "initialBattleSha256": "9c2d4bc4355dd677353d92ceef9d4245d1f5e9af6b649b05a67bfbc608429a9e",
+      "completedBattleSha256": "dee9b9e4f273eda89edfcf5b49a9aa39e8745decc8eebeb593d410bd8487711e",
+      "winner": "party",
+      "elapsed": 104.99999999999618,
+      "orders": 45,
+      "exact": true
+    },
+    {
+      "id": "me2-security-opposition",
+      "initialBattleSha256": "c2f8113bc4b99581e7deeef246986e10422a7f5ff076c0363fab3f8d445bf036",
+      "completedBattleSha256": "79968fa75e2d85104a598569a2f9fc93f7aa7dde399036aeba7276f94199fcd6",
+      "winner": "party",
+      "elapsed": 59.99999999999873,
+      "orders": 49,
+      "exact": true
+    },
+    {
+      "id": "me2-collector-opposition",
+      "initialBattleSha256": "ac1572d84739a4addb73e9558cdf1f6b48499b8bca845b0dd63ca6718bc215da",
+      "completedBattleSha256": "2ca2ce8b94bef54632203b02be7e8e04f796c2571875dbb9936815ee2d1dc0f0",
+      "winner": "party",
+      "elapsed": 114.99999999999561,
+      "orders": 76,
+      "exact": true
+    },
+    {
+      "id": "me3-cerberus-opposition",
+      "initialBattleSha256": "ca142bcd42f961b9851c418ac5e72b99d1a6233a58343f142da15bc103d2b566",
+      "completedBattleSha256": "1f226ef2304eb14ee17b2e87f26319b01f31aa9b55f60f0200f5b8708831bf3d",
+      "winner": "party",
+      "elapsed": 68.24999999999827,
+      "orders": 53,
+      "exact": true
+    },
+    {
+      "id": "me3-reaper-opposition",
+      "initialBattleSha256": "b93c27fc5bf9d0dc9f6ba4d30ce21acd80b2a366d116461d88bb2933d1d82769",
+      "completedBattleSha256": "9e767965a369688360f19a3e7fee3eb08314b8e9a43f09adba12e24f6827abcc",
+      "winner": "enemy",
+      "elapsed": 120.04999999999532,
+      "orders": 77,
+      "exact": true
+    },
+    {
+      "id": "mea-kett-opposition",
+      "initialBattleSha256": "edf57d9a753e0dffaec3039e041f72e1d472bca2f2814b3659a2fc6ae321de92",
+      "completedBattleSha256": "262e55a8f851ca11cfbb6fe0d41ee1987fb252fa08d0948ea3aeb72f21402860",
+      "winner": "party",
+      "elapsed": 112.09999999999577,
+      "orders": 75,
+      "exact": true
+    },
+    {
+      "id": "mea-remnant-opposition",
+      "initialBattleSha256": "7e58698f48bd7038d4aec00d122eeedba284a32e0f254cbacef6e0c3697d86ed",
+      "completedBattleSha256": "a84a386378c0853fd1f9d13b51cb5393708a476a86f9c7d24f04b4b90a3e8835",
+      "winner": "party",
+      "elapsed": 49.9999999999993,
+      "orders": 34,
+      "exact": true
+    },
+    {
+      "id": "me2-legendary-equipment-workshop",
+      "initialBattleSha256": "0f0323b614300e4e111bbc33f2fb5b1b4da78871d09b1ce74eac4a5e942479b1",
+      "completedBattleSha256": "8c324b87c12cad3e879a29710fdbb84c4cd5cdac02b2962189db2e3c62b5f941",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 33,
+      "exact": true
+    },
+    {
+      "id": "me3-legendary-equipment-workshop",
+      "initialBattleSha256": "8cb30b7083c872228a12c5835743b5b7eb5b07eb9108bc2d27bfb2d26e716cda",
+      "completedBattleSha256": "683f253f0f6cf63af88c70022b1d610f339b990126dc8fb2cc13a5e4d2c11f49",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 33,
+      "exact": true
+    },
+    {
+      "id": "mea-deluxe-equipment-workshop",
+      "initialBattleSha256": "8f8607889eef0d90a55cda60d9804c1a585561b7852d4b625bd160b0f36d0707",
+      "completedBattleSha256": "7a138575248070fb0784e140e219bfd54985bb34eb7b15283805cce463075ea4",
+      "winner": "party",
+      "elapsed": 39.999999999999865,
+      "orders": 33,
+      "exact": true
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "EA inclusion/integration evidence is collective; model/extension links are inherited explicit catalogue facts, not newly downloaded individual articles.",
+    "The seven generic extended-arsenal candidates remain closed because their individual model/content association is insufficiently documented here.",
+    "Capacities, reserve budgets, damage and generic firing primitives remain pre-existing ATB adaptations. Headshots, spread, recoil, exact model cadence, geometry, sound and animation are not reproduced.",
+    "Twenty-five historical default battles include their existing loss against the ME3 Reaper opposition; exact preservation is not a claim of twenty-five victories.",
+    "This native proof does not establish public UI behavior, original weapon artwork, real-device performance or integral1:1 fidelity. Browser and production build have separate reports."
+  ],
+  "referenceProof": {
+    "path": "docs/qa/me3-legendary-weapons-reference-report.json",
+    "sha256": "38d09f97cd94b222a0571fc4fc9462b30743c1bf905bd57ba7810ec68280e8ca",
+    "primaryScope": "Collective EA inclusion/integration only; explicit individual model/extension links are inherited catalogue evidence."
+  },
+  "tests": {
+    "path": "docs/qa/me3-legendary-weapons-tests.json",
+    "sha256": "08a82d406c2fa6b98b3b525401a9513746de32ec4d4cc150b3c32643376d15f0",
+    "total": 43,
+    "ownNewTests": 8
+  }
+}

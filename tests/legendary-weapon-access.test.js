@@ -30,11 +30,11 @@ const order = (battle, actionId) => performAction(battle, {
   actorId, actionId, targetId: actionId === 'reload' ? actorId : 'target',
 });
 
-test('exactly five existing profiles gain a Legendary preparation flag, with all identities, resources and other profiles preserved', () => {
+test('exactly five existing ME2 profiles gain a Legendary preparation flag, with their identities, resources and other ME2 profiles preserved', () => {
   assert.equal(before.baselineCommit, '105d03727dc51c6121ed1bd2811b0146d047cbb2');
   assert.equal(UNIVERSE_EQUIPMENT.length, before.equipment.length);
   assert.deepEqual(UNIVERSE_EQUIPMENT.map(item => item.id), before.equipment.map(item => item.id));
-  for (const old of before.equipment) {
+  for (const old of before.equipment.filter(item => item.mediaId === 'ME2')) {
     const current = getUniverseEquipment(old.id);
     if (!ids.includes(old.id)) { assert.deepEqual(current, old); continue; }
     assert.equal(old.runtimeSupported, false); assert.equal(old.requiredEditionProfile, null);
@@ -48,13 +48,13 @@ test('exactly five existing profiles gain a Legendary preparation flag, with all
     assert.deepEqual(current.requiredCapabilities, ['thermal-clip']); assert.equal(current.weaponProfileId, undefined);
     assert.equal(current.requiresEdition, true); assert.equal(current.statsBasis, 'ATB adaptation');
   }
-  assert.equal(UNIVERSE_EQUIPMENT.filter(item => item.runtimeSupported).length, 105);
-  assert.equal(UNIVERSE_EQUIPMENT.filter(item => item.runtimeSupported && item.kind === 'weapon').length, 77);
+  assert.equal(UNIVERSE_EQUIPMENT.filter(item => item.mediaId === 'ME2' && item.runtimeSupported).length, 22);
+  assert.equal(UNIVERSE_EQUIPMENT.filter(item => item.mediaId === 'ME2' && item.runtimeSupported && item.kind === 'weapon').length, 15);
 });
 
-test('only the existing ME2 Legendary workshop appends five choices while all twenty-five default parties, enemies and old choices stay intact', () => {
+test('only the existing ME2 Legendary workshop appends five choices among ME2 scenes, preserving their default parties, enemies and old choices', () => {
   assert.equal(SCENARIOS.length, 25);
-  for (const old of before.scenarios) {
+  for (const old of before.scenarios.filter(scenario => scenario.context.mediaId === 'ME2')) {
     const current = SCENARIOS.find(candidate => candidate.id === old.id);
     if (current.id !== scene.id) { assert.deepEqual(current, old); continue; }
     assert.deepEqual(omit(current, ['allowedEquipmentIds', 'additionalEquipmentIds', 'sourceEntryIds', 'sourceIds']),
