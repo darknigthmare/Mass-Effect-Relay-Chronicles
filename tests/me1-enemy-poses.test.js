@@ -13,7 +13,7 @@ import { WORLD_ZONES } from '../src/world-data.js';
 import { initialCustomization } from '../src/customization.js';
 
 const texture = (width = 100, height = 100) => new THREE.Texture({ width, height });
-const nativeKey = { geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk' };
+const nativeKey = { geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk', krogan: 'krogan', rachni: 'rachni' };
 const config = key => ({ version: 1, characterId: key, mediaId: 'ME1', periodId: 'me1', combat: {
   file: `enemy-${key}-combat.png`, width: 100, height: 100, direction: 'three-quarter', frames: {
     aim: { id: `${key}-combat-aim`, pose: 'aim', rect: [0, 0, 40, 50], pivot: [16, 48], heightScale: 1 },
@@ -62,7 +62,7 @@ function checkFrame(world, actor, frame, atlasName = `combat-${actor.key}`) {
   assert.equal(actor.body.rotation.z, 0);
 }
 
-test('enemy metadata accepts four complete ME1 families while rejecting malformed scopes, identities, local paths and frames', () => {
+test('enemy metadata accepts existing complete ME1 families while rejecting malformed scopes, identities, local paths and frames', () => {
   for (const key of IDS) {
     const raw = config(key), parsed = normalizeEnemyAnimation(key, raw);
     assert.ok(parsed); assert.ok(Object.isFrozen(parsed.combat.frames.aim.rect));
@@ -107,7 +107,7 @@ test('combat-only enemy registrations are deduplicated and cannot install explor
   assert.deepEqual(loads, IDS.map(key => ({ name: `combat-${key}`, url: `./assets/enemy-${key}-combat.png` })));
 });
 
-test('sixteen enemy frames keep native battle/save data intact and remove stale crops after foreign scope transitions', () => {
+test('all shipped enemy frames keep native battle/save data intact and remove stale crops after foreign scope transitions', () => {
   for (const key of IDS) {
     const world = fixture(), { state, battle } = battleFor(world, [key]), beforeSave = structuredClone(state);
     const native = battle.actors.find(actor => actor.team === 'enemy'), view = world.battleActors.get(native.id);
@@ -133,8 +133,8 @@ test('real native enemy actions, native damage and KO honor action/impact/down p
       enemies: [{ ...ENEMIES[nativeKey[key]], id: `${nativeKey[key]}-0`, atb: 100 }], mode: 'wait', seed: 2183 });
     world.setBattle(battle);
     const native = battle.actors.find(actor => actor.team === 'enemy'), view = world.battleActors.get(native.id), powers = [...native.powers];
-    const actionId = native.primaryAction === 'strike' ? 'strike' : native.powers[0] || 'shoot';
-    const action = performAction(battle, { actorId: native.id, actionId, targetId: 'shepard' });
+    const actionId = native.primaryAction || native.powers[0] || 'shoot';
+    const action = performAction(battle, { actorId: native.id, actionId, targetId: actionId === 'barrier' ? native.id : 'shepard' });
     assert.equal(action.ok, true); world.setBattle(battle); for (const event of action.events) world.playEvent(event); world.update(0);
     assert.equal(view.animationFrame, `${key}-combat-${actionId === 'shoot' ? 'aim' : 'power'}`);
     world.playEvent({ type: 'damage', targetId: native.id }); world.playEvent({ type: 'action', actorId: native.id, actionId: 'shoot' }); world.update(0);
@@ -218,7 +218,7 @@ test('seated Joker loads deduplicate, reject mismatched dimensions and recover w
   checkFrame(world, joker, world.jokerSeatedConfig.frames.idle, 'seated-joker');
 });
 
-test('shipped enemy and pilot metadata matches five native PNG headers and eighteen unique measured pose IDs', () => {
+test('shipped enemy and pilot metadata matches native PNG headers and globally unique measured pose IDs', () => {
   const families = IDS.map(key => normalizeEnemyAnimation(key, JSON.parse(readFileSync(new URL(`../public/assets/enemy-${key}-animation.json`, import.meta.url)))));
   assert.ok(families.every(Boolean));
   const joker = normalizeJokerSeated(JSON.parse(readFileSync(new URL('../public/assets/joker-seated.json', import.meta.url)))); assert.ok(joker);
@@ -229,5 +229,5 @@ test('shipped enemy and pilot metadata matches five native PNG headers and eight
     assert.equal(bytes.readUInt32BE(16), family.width); assert.equal(bytes.readUInt32BE(20), family.height);
     assert.equal(bytes[25], 6, 'native RGBA'); poses.push(...Object.values(family.frames).map(frame => frame.id));
   }
-  assert.equal(poses.length, 18); assert.equal(new Set(poses).size, 18);
+  assert.equal(poses.length, IDS.length * 4 + 2); assert.equal(new Set(poses).size, IDS.length * 4 + 2);
 });

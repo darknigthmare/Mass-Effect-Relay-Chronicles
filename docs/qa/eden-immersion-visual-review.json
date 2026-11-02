@@ -1,0 +1,958 @@
+{
+  "passed": true,
+  "reviewComplete": true,
+  "state": "complete-with-documented-nonblocking-residuals",
+  "generatedAt": "2026-11-02T06:31:14.669410+00:00",
+  "reviewer": "Independent terrain_art agent visual inspection",
+  "baselineCommit": "533efaa2ca88c34be21eb53aa30fafcfedd79707",
+  "scope": "Independent image review of five baseline, five original intermediate, three corrected intermediate, thirteen final detached NAV, four final held SPR and fifteen final public production captures (45 PNGs actually opened). The public captures include real keyboard travel and native shots plus separately declared imported save fixtures. Phase and fixture provenance are preserved. Review does not certify complete original1:1 geography/likeness, every retained arena, full motion cycles, full campaign progression, mobile gameplay HUD or performance.",
+  "inputReports": [
+    {
+      "path": "docs/qa/eden-immersion-before-report.json",
+      "sha256": "3af354b3952e5d580709d00933465d04e7cc9dff791be1d090039f5f5a6e2ca5",
+      "category": "before",
+      "passed": true
+    },
+    {
+      "path": "docs/qa/eden-immersion-inspection-report.json",
+      "sha256": "ba24bc5557ab942d990996d1ab16c5315785b7f9d43aa6632424e9765a8a31f4",
+      "category": "intermediate-inspection",
+      "passed": true,
+      "metadataQualification": "The owner added an explicit sourceArchive after collection without rewriting the five PNGs. This qualified report was re-read; the earlier unqualified report digest is not asserted here.",
+      "sourceArchiveQualification": {
+        "changedBeforeSnapshotUnavailable": [
+          "vite.config.js"
+        ],
+        "method": "After actual collection, archive only files still byte-equal to the recorded executed-source digest; no later file is misattributed to the earlier phase."
+      }
+    },
+    {
+      "path": "docs/qa/eden-immersion-inspection-corrected-report.json",
+      "sha256": "b9d72acf435383b38ea6ae88bda448f7010e09c8606000ca7819300636262e26",
+      "category": "corrected-intermediate-inspection",
+      "passed": true
+    },
+    {
+      "path": "docs/qa/eden-immersion-world-report.json",
+      "sha256": "ab80b3489e37c3ff94a3a73a988bc136984f327b82665249561c8b5d8b4406f4",
+      "category": "final-navigation-private-fixture",
+      "passed": true,
+      "scope": "Detached actual WorldView fixture. Geometry, collisions, route planning, actual locomotion update ticks, camera and input are inspected without starting the application campaign or reading/writing game saves. Accelerated route traversal uses every native update(.05) movement/collision tick and samples the actual WebGL renderer every12ticks; it never assigns intermediate player coordinates. Real keyboard/canvas-click checks separately run through the ordinary requestAnimationFrame loop. The public gameplay/save journey is separate."
+    },
+    {
+      "path": "docs/qa/eden-immersion-sprites-report.json",
+      "sha256": "8e6a22ed9d0c6f9dab73d7245e9fe099e6b8b4b2f1c63c87c2e72b786bbf3ab5",
+      "category": "final-sprites-private-held-fixture",
+      "passed": true,
+      "scope": "Eight held key poses for the existing krogan/rachni families on the actual WorldView, native barrier/acid/hit/KO events, twelve closed identity contexts and four retained-family aim checks. No campaign is played, no new enemy or power is granted, and no complete1:1 likeness or movement cycle is certified."
+    },
+    {
+      "path": "docs/qa/eden-immersion-production-report.json",
+      "sha256": "41fd253f34d5818a698124c167eca103ee6895fd82664c95dd64c474942f176e",
+      "category": "final-public-production",
+      "passed": true,
+      "scope": "Public production controls: actual keyboard travel through the expanded Eden landing/patrol route, local map/radar and mobile inspection, save outside the old rectangle, page reload and complete-browser restart. Separately declared valid fixtures show freight/beacon areas and real krogan/rachni campaign encounters. No source imports, private harness, pose setter or storage injection is used in Chromium.",
+      "qualification": "Actual public production UI with explicitly imported Node-prepared saves. Only the Eden landing-to-patrol prefix is publicly walked; freight, beacon, Therum and Noveria are separate declared fixtures, not a played campaign progression."
+    }
+  ],
+  "imagesReviewed": [
+    {
+      "path": "docs/screenshots/eden-immersion-before-spawn.png",
+      "sha256": "948ff5784f7a57a00852d33137686afb14b7c6730bfb2cd8a97b263a294c65a5",
+      "bytes": 908384,
+      "label": "spawn",
+      "category": "before",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-before-patrol.png",
+      "sha256": "f08caeeb2aa7058d9edadaa81eb15a8dae52680e2515acce295a0b3dbfc2dfc1",
+      "bytes": 938832,
+      "label": "patrol",
+      "category": "before",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-before-husks.png",
+      "sha256": "3def489d117a6ed6de3ed20a5d73de979abc4874b9ccd77e850d4f6cb5e93b59",
+      "bytes": 969400,
+      "label": "husks",
+      "category": "before",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-before-beacon.png",
+      "sha256": "0952310457b7f97cb7bd877d050cb9ee324084a78c91564e0770a5aee30e46ca",
+      "bytes": 955642,
+      "label": "beacon",
+      "category": "before",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-before-overview.png",
+      "sha256": "0a2448a0705514e7b78d7c946a9720d77b9fa54ef7ae2d22454a11e6f2ba966d",
+      "bytes": 417734,
+      "label": "overview",
+      "category": "before",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-landing.png",
+      "sha256": "286adf74b985ecd0a1bbd84130a58410c45dbc2f4eafb843de5d0029785e2e13",
+      "bytes": 1238537,
+      "category": "intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-patrol.png",
+      "sha256": "75afc6101cfe7d7d51c9605542bf8dffc48aa31f3bdce10a1ceb650dc9eb06e2",
+      "bytes": 1503406,
+      "category": "intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-farm.png",
+      "sha256": "d6a55a7c33387d3f850b9a47daa71b4f5e751b00c4c512ab75eb083699a7d7ca",
+      "bytes": 1308543,
+      "category": "intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-quays.png",
+      "sha256": "cf6f19e1cb99f3af2d5435f6efb870fdb1f772d9fcb0409a2f1300dc2b78a6ec",
+      "bytes": 1336071,
+      "category": "intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-beacon.png",
+      "sha256": "3c42cc4bcfd865a2abb082f38fab7eb441440dac94aa28c6a08144f1926a2f16",
+      "bytes": 1282797,
+      "category": "intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-corrected-landing.png",
+      "sha256": "ae4c473a41d2e7646bc2799634ef66a879aded252b5f1ce5721afb1a3a745a07",
+      "bytes": 1436956,
+      "category": "corrected-intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-corrected-quays.png",
+      "sha256": "a448697ee6b969cca6c30c52bcfdd5d08941df7e0c92162b5bc3a6e77a43e780",
+      "bytes": 1350926,
+      "category": "corrected-intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-corrected-beacon.png",
+      "sha256": "81fdb55113a2a1e7be2ab746a066ba1d49d647b0fc14e70c76a263a25cc08202",
+      "bytes": 1443344,
+      "category": "corrected-intermediate-inspection",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-spawn.png",
+      "label": "spawn",
+      "bytes": 1428615,
+      "sha256": "288ad9f898f44d5d538637b8d5bc5fd6d8de833a12a3a43eb132d1967e7098f8",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-arrival.png",
+      "label": "arrival",
+      "bytes": 1448286,
+      "sha256": "4b01740d9b74ff829d27fb100c4aad162a1d33e34be3597ed2d936d7ff253fa3",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-cache.png",
+      "label": "cache",
+      "bytes": 1480095,
+      "sha256": "b2211341e312b141191f0a31d5091551f78d930d3d48eb5e9f0858cb42959c51",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-encounter-1.png",
+      "label": "encounter-1",
+      "bytes": 1496487,
+      "sha256": "37fd95937a6b66874a1b56afaa9078e5d3f6449db580ea04a8fbf54a09b7447c",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-encounter-2.png",
+      "label": "encounter-2",
+      "bytes": 1323252,
+      "sha256": "14b9f70ef52f000a7315c7d04a6b50bd70a0a017bbac5f03911d7f741042de9b",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-boss.png",
+      "label": "boss",
+      "bytes": 1358041,
+      "sha256": "759cf3c22bb8b4bac3ecc062ae92d7e01fadbbc02372586641d872ed364bfc21",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-objective.png",
+      "label": "objective",
+      "bytes": 1444573,
+      "sha256": "7514f1907fb94ec10f02fd8c3f9ccb4f9bc35fd78f0e167a45466dd9b560c99a",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-exit.png",
+      "label": "exit",
+      "bytes": 1425782,
+      "sha256": "914267fa34f84cde56536937dab2c550a697455b798f7f3e512f1c8e0ad89a0a",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-overview.png",
+      "label": "overview",
+      "bytes": 412563,
+      "sha256": "47cdce8d12c2f048bfe346ac2a2d2f18cb53b4ec63ac18ce08606758a0ce6156",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-battle-encounter-1.png",
+      "label": "battle-encounter-1",
+      "bytes": 1496401,
+      "sha256": "3f0b9cea8e35fe1bde90c8202df67c1d9a0b5860bdedc968d338e1990e6a0307",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-battle-encounter-2.png",
+      "label": "battle-encounter-2",
+      "bytes": 1448963,
+      "sha256": "d6f4e4270b898b6a24de23590b9e24523dd8abddb838b4b673a2bb30be39cd9c",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-battle-boss.png",
+      "label": "battle-boss",
+      "bytes": 1469115,
+      "sha256": "8512f846031a60b68e7265ff306807b8ddeefa948ce4170ddccac6e0a5a7ab12",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-world-keyboard-click.png",
+      "label": "keyboard-click",
+      "bytes": 1427975,
+      "sha256": "930b9b01a4959ab86a5bab537c96367383aab5cde664cc692b86cf815d8c282f",
+      "category": "final-navigation-private-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-sprites-aim.png",
+      "bytes": 1500862,
+      "sha256": "de4c240b0dbb91d2592921f5db699261871f60e1e2366acd96a6c5d483b47488",
+      "category": "final-sprites-private-held-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-sprites-power.png",
+      "bytes": 1498951,
+      "sha256": "57cffc4d6b0c0f3809b4f52c56d68b58bf517f3174dd0eb2616410e4195d7170",
+      "category": "final-sprites-private-held-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-sprites-hit.png",
+      "bytes": 1500019,
+      "sha256": "5a7a9edf0373d2623283872f96b1bbd649f5fe482d5fb0a6d15b084713e830fb",
+      "category": "final-sprites-private-held-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-sprites-down.png",
+      "bytes": 1495624,
+      "sha256": "fb68f8891aafa0ca514ff02d72b106a2b7708a265200ee35647af9e16f0d2426",
+      "category": "final-sprites-private-held-fixture",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-landing.png",
+      "sha256": "4723885c3774a4f25b195e02898380627b53876591b3a4b5faaf8199bdf358d8",
+      "bytes": 1395755,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "landing",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public UI from the initial landing save imported with the real chooser; map/tracking interactions are real controls.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-map-desktop.png",
+      "sha256": "e09b0abd76edb24226283fd0bed5af5f2045bb7d27b141623c3a09ddbd6e7915",
+      "bytes": 284432,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "map-desktop",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public UI from the initial landing save imported with the real chooser; map/tracking interactions are real controls.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-map-mobile.png",
+      "sha256": "6f458c071dadb38b3a07b7757bf080ef986edac418746228ac9285e43fd697a5",
+      "bytes": 140381,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "map-mobile",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public UI from the initial landing save imported with the real chooser; map/tracking interactions are real controls.",
+      "dimensions": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-patrol-arrival.png",
+      "sha256": "91fc0a38d7199487a1a22d50e0c7fb151bd9e27885995a9009a480d3205d8c21",
+      "bytes": 1456003,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "patrol-arrival",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Actual public keyboard-travelled Eden prefix and native encounter/order; no held pose setter.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-eden-patrol-native-shot.png",
+      "sha256": "2f216f8f56a23ec89236c499657502c133660a860e425af76c8503c0379ecfc5",
+      "bytes": 1105472,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "eden-patrol-native-shot",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Actual public keyboard-travelled Eden prefix and native encounter/order; no held pose setter.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-quays-public.png",
+      "sha256": "d5d501342bc39d0aa34849390773d94f4d3fdfefe587bdd1bb53a23258e23eb0",
+      "bytes": 1312452,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "quays-public",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Explicitly declared coordinate fixture imported with the real save chooser, not publicly walked to this sector.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-beacon-public.png",
+      "sha256": "f7cf4422c87da8b32cca392d3511d2a96288761b5e7c44e837316ef584ea11df",
+      "bytes": 1409883,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "beacon-public",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Explicitly declared coordinate fixture imported with the real save chooser, not publicly walked to this sector.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-krogan-public-battle.png",
+      "sha256": "6e27037eacd79eb4d5fd6488d824cf2deecc2c7c45ec4bd5733d191aceb38e04",
+      "bytes": 562244,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "krogan-public-battle",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Node-prepared native progression fixture imported with the real chooser; current encounter and shot are public native game actions, prior victories are not played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-krogan-native-shot.png",
+      "sha256": "d3e5e5ad2b5c3a5c8a2518037208f8ebd472e685f73565daeb16f0f36c36d185",
+      "bytes": 510607,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "krogan-native-shot",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Node-prepared native progression fixture imported with the real chooser; current encounter and shot are public native game actions, prior victories are not played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-rachni-public-battle.png",
+      "sha256": "b7dcc7b707fe71819fd67e719d4f382b6c86845532d7d9a62cb4245f56cd80d7",
+      "bytes": 564343,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "rachni-public-battle",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Node-prepared native progression fixture imported with the real chooser; current encounter and shot are public native game actions, prior victories are not played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-rachni-native-shot.png",
+      "sha256": "a8c565fb51fc7016c6b6172c881e7a739fd9a9147486e76cc31d2f65ec9f5c85",
+      "bytes": 534229,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "rachni-native-shot",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Node-prepared native progression fixture imported with the real chooser; current encounter and shot are public native game actions, prior victories are not played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-before-full-restart-inventory.png",
+      "sha256": "063300c3df2d393308458651decce7d842ae7ccb05e17521dc0b9b8327badce6",
+      "bytes": 256156,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "before-full-restart-inventory",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public inventory/journal before or after complete Chromium restart of the declared saved fixture; displayed prior progress is not presented as played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-before-full-restart-journal.png",
+      "sha256": "6fcef793ad1ebb62450d316bb950778538ce8e351cb440a8a776c9af9e08b394",
+      "bytes": 316632,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "before-full-restart-journal",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public inventory/journal before or after complete Chromium restart of the declared saved fixture; displayed prior progress is not presented as played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-after-full-restart-inventory.png",
+      "sha256": "521addf89b86a8c30893dea774763459213453163cfffe98c9b41ebbd8fc8efe",
+      "bytes": 252968,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "after-full-restart-inventory",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public inventory/journal before or after complete Chromium restart of the declared saved fixture; displayed prior progress is not presented as played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-after-full-restart-journal.png",
+      "sha256": "456488881855dca8bfc9a28f79dcf89939d6efadc7cf181d5862b1169acb0622",
+      "bytes": 316143,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used",
+      "category": "final-public-production",
+      "label": "after-full-restart-journal",
+      "actuallyOpened": true,
+      "method": "view_image of the referenced exact PNG bytes",
+      "evidenceRole": "Public inventory/journal before or after complete Chromium restart of the declared saved fixture; displayed prior progress is not presented as played here.",
+      "dimensions": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "beforeReviewComplete": true,
+  "intermediateReviewComplete": true,
+  "finalNavigationReviewComplete": true,
+  "finalSpriteReviewComplete": true,
+  "finalPublicReviewComplete": true,
+  "counts": {
+    "before": 5,
+    "intermediate": 5,
+    "finalNavigation": 13,
+    "finalSprites": 4,
+    "finalPublic": 15,
+    "correctedIntermediate": 3
+  },
+  "observations": [
+    {
+      "category": "before",
+      "finding": "The five original views repeatedly show the same small central road, four similar buildings and nearby objective markers; the overview shows one rectangular slab surrounded by low-poly mountain cones."
+    },
+    {
+      "category": "intermediate",
+      "finding": "The new landing, farm, freight and beacon views have separate landmarks and no longer expose all mission points at once. The five viewpoints therefore give a clearer sense of travelling between sectors."
+    },
+    {
+      "category": "intermediate",
+      "finding": "Generated grass and dirt remain visually quiet at the captured view scale. No obvious high-contrast texture grid or hard repeating seam was observed in these five world views."
+    },
+    {
+      "category": "intermediate",
+      "finding": "Landing and patrol still have broad flat open grass and sparse repeated conical trees. Paths remain wide angular ribbons with abrupt shoulders. These are prototype visual limits rather than evidence of original1:1 terrain."
+    },
+    {
+      "category": "fixture-qualification",
+      "finding": "The held room-centre fixture places party actors together. This review does not treat their overlap as proof of a public party-following regression; actual navigation/public views remain pending."
+    },
+    {
+      "category": "corrected-intermediate",
+      "finding": "Landing/quays/beacon now show continuous surrounding terrain rather than a pale cut-out edge, no conical vegetation on train containers or beacon pad, and readable party feet at the quays. The targeted correction resolves the three reported placement/boundary issues in these exact views."
+    },
+    {
+      "category": "final-navigation",
+      "finding": "Five sectors have distinct tent/arrival, side-cache, patrol fork, agricultural rows/buildings, freight train and isolated beacon landmarks. The ordinary travelled views no longer show every mission marker together. Spacing and visible landmark changes improve the sense of travel relative to the baseline."
+    },
+    {
+      "category": "final-navigation",
+      "finding": "All thirteen frozen views were opened, including the technical overview and three encounter arenas. The original roof/platform trees, foreground feet occlusion and exposed pale ground edge do not recur in ordinary captured views. Party and enemy body extremities remain within the three arena views."
+    },
+    {
+      "category": "final-navigation",
+      "finding": "Grass/dirt repeats stay quiet at ordinary gameplay scale; no high-contrast material seam was seen. Ground remains broad, dark and sparsely furnished in places. Conical vegetation, abrupt angular dirt shoulders and low-poly boundary relief remain visible prototype limits. The distant overview exposes the finite terrain mesh and is separately labelled a technical view."
+    },
+    {
+      "category": "final-navigation",
+      "finding": "Some party silhouettes partially overlap in the brief arrival/click view although other travel screenshots show staggered full bodies. The detached input fixture does not establish whether this is an obstruction to public interaction."
+    },
+    {
+      "category": "final-sprites",
+      "finding": "The four actually opened held-pose views show eight distinct krogan/rachni drawings (aim, power, hit, down). Arms, legs and rachni extremities fit within visible cropped frames without adjacent-cell fragments or obvious ground penetration. This validates these fixed states visually, not the full motion cycles or original-game likeness."
+    },
+    {
+      "category": "final-sprites",
+      "finding": "The down view has low corpse contrast against dark grass, especially the rachni. The executed world source explicitly applies native KO opacity .32; no opacity or image has been altered for the review. The body outline is present but less readable than the living poses."
+    },
+    {
+      "category": "final-public-Eden",
+      "finding": "The public landing and keyboard-reached patrol show separate sector names, consistent expanded radar ground and a readable mission objective. Freight and beacon imported-sector views preserve the corrected continuous ground, clear landmark roofs/platforms and visible actor feet. The generation provides greater separation and landmark variety than the five baseline views while retaining prototype angular shapes."
+    },
+    {
+      "category": "final-public-combat",
+      "finding": "The Eden patrol and Therum krogan encounter show full living bodies above the combat HUD, recognizable enemies, a visible selected target and native shot/impact evidence. Noveria has a separate scenery occlusion recorded below, so full body visibility is not generalized to every public encounter."
+    },
+    {
+      "category": "final-public-UI",
+      "finding": "Desktop exploration and combat HUD text, party/target bars and top navigation are readable in the captured 1280x800 views. The local map depicts the same elongated sector/route structure as the radar. The 390x844 screenshot fits the map modal horizontally but has bottom-edge/toast limits recorded below."
+    },
+    {
+      "category": "final-public-restart",
+      "finding": "The actually opened inventory and journal pairs show the same currency, medi-gel, roster tabs, item names, counts, mission completion labels and level/experience before and after full-browser restart. The transient save toast differs; exact state equality is attributed to the production report, not inferred from pixels."
+    }
+  ],
+  "blockingFindings": [],
+  "pendingEvidence": [],
+  "globalFidelityCertified": false,
+  "limitations": [
+    "Screenshots validate the visible states and framing shown; report functional claims about movement, collisions, save equality, native effects and browser cleanup remain attributed to the original runners.",
+    "Only the public Eden landing-to-patrol prefix was keyboard-walked in the production proof. Freight/beacon coordinates and Therum/Noveria prior progression are explicit imported save fixtures.",
+    "The retained Noveria scenery occlusion, map edge/toast overlap, faint KO states, sparse/angular prototype terrain and occasional party silhouette overlaps remain documented; there is no blanket all-arena or mobile gameplay visual certification.",
+    "Only fixed aim/power/hit/down drawings are shown for krogan/rachni. No original-game exact likeness, equipment reconstruction, full movement cycles, complete campaign fidelity, PBR texture certification or performance is inferred.",
+    "All45 PNGs were actually opened and their unchanged file hashes/byte counts were verified alongside six input reports. No source, atlas, terrain image, screenshot or build was modified by this visual-review follow-up."
+  ],
+  "initialReportedFindings": [
+    {
+      "id": "vegetation-intersects-landmarks",
+      "status": "resolved-in-corrected-and-final-private-navigation-views",
+      "severity": "medium",
+      "paths": [
+        "docs/screenshots/eden-immersion-inspection-quays.png",
+        "docs/screenshots/eden-immersion-inspection-beacon.png"
+      ],
+      "finding": "A conical tree protrudes from the upper-right freight container roof; another stands on the beacon platform. These are visible placement intersections.",
+      "requestedAction": "Exclude vegetation from constructed landmark footprints, train containers and platform pads; inspect corrected views.",
+      "resolutionInput": "docs/qa/eden-immersion-inspection-corrected-report.json",
+      "resolution": "The three corrected views were actually opened: trees no longer intersect train/platform, quays feet are clear, and the pale uncovered boundary is replaced by continuous decorative terrain/relief.",
+      "resolutionInputs": [
+        "docs/qa/eden-immersion-inspection-corrected-report.json",
+        "docs/qa/eden-immersion-world-report.json"
+      ]
+    },
+    {
+      "id": "visible-uncovered-terrain-boundary",
+      "status": "resolved-in-corrected-and-final-private-navigation-views",
+      "severity": "medium",
+      "paths": [
+        "docs/screenshots/eden-immersion-inspection-landing.png",
+        "docs/screenshots/eden-immersion-inspection-farm.png",
+        "docs/screenshots/eden-immersion-inspection-beacon.png"
+      ],
+      "finding": "Large uniform pale areas are exposed immediately beyond abrupt ground edges in normal camera views, giving the impression of a flat cut-out island.",
+      "requestedAction": "Extend non-traversable decorative surroundings or provide coherent relief/fog treatment without changing the walkable contract.",
+      "resolutionInput": "docs/qa/eden-immersion-inspection-corrected-report.json",
+      "resolution": "The three corrected views were actually opened: trees no longer intersect train/platform, quays feet are clear, and the pale uncovered boundary is replaced by continuous decorative terrain/relief.",
+      "resolutionInputs": [
+        "docs/qa/eden-immersion-inspection-corrected-report.json",
+        "docs/qa/eden-immersion-world-report.json"
+      ]
+    },
+    {
+      "id": "foreground-tree-over-player-feet",
+      "status": "resolved-in-corrected-and-final-private-navigation-views",
+      "severity": "medium",
+      "paths": [
+        "docs/screenshots/eden-immersion-inspection-quays.png"
+      ],
+      "finding": "The foreground conical tree at the party position obscures part of the feet in the quays inspection.",
+      "requestedAction": "Keep foreground vegetation clear of the camera-facing actor approach/inspection space and verify in actual traversal.",
+      "resolutionInput": "docs/qa/eden-immersion-inspection-corrected-report.json",
+      "resolution": "The three corrected views were actually opened: trees no longer intersect train/platform, quays feet are clear, and the pale uncovered boundary is replaced by continuous decorative terrain/relief.",
+      "resolutionInputs": [
+        "docs/qa/eden-immersion-inspection-corrected-report.json",
+        "docs/qa/eden-immersion-world-report.json"
+      ]
+    }
+  ],
+  "correctedInspectionReviewComplete": true,
+  "inputReportsSHAs": {
+    "docs/qa/eden-immersion-before-report.json": "3af354b3952e5d580709d00933465d04e7cc9dff791be1d090039f5f5a6e2ca5",
+    "docs/qa/eden-immersion-inspection-report.json": "ba24bc5557ab942d990996d1ab16c5315785b7f9d43aa6632424e9765a8a31f4",
+    "docs/qa/eden-immersion-inspection-corrected-report.json": "b9d72acf435383b38ea6ae88bda448f7010e09c8606000ca7819300636262e26",
+    "docs/qa/eden-immersion-world-report.json": "ab80b3489e37c3ff94a3a73a988bc136984f327b82665249561c8b5d8b4406f4",
+    "docs/qa/eden-immersion-sprites-report.json": "8e6a22ed9d0c6f9dab73d7245e9fe099e6b8b4b2f1c63c87c2e72b786bbf3ab5",
+    "docs/qa/eden-immersion-production-report.json": "41fd253f34d5818a698124c167eca103ee6895fd82664c95dd64c474942f176e"
+  },
+  "poseStatesReviewed": 8,
+  "acceptance": "Qualified pass for complete independent review of the required frozen evidence and the Eden immersion change. This is not a claim that every retained scene, mobile gameplay view, fixed pose or original-game detail is visually certified.",
+  "passCriteria": {
+    "requiredReportsPresentAndPassed": true,
+    "requiredCapturesActuallyOpened": true,
+    "allReferencedReportAndImageHashesVerified": true,
+    "edenChangeHasNoObservedBlockingVisualRegression": true,
+    "allResidualsExplicitlyRecorded": true,
+    "allRetainedScenesPerfect": false,
+    "mobileGameplayHUDCertified": false,
+    "originalOneToOneFidelityCertified": false
+  },
+  "residualFindings": [
+    {
+      "id": "prototype-environment-shapes-and-density",
+      "severity": "low",
+      "scope": "Eden ordinary navigation and public views",
+      "status": "open-prototype-limit",
+      "finding": "Broad sparse grass spaces, repeated conical trees and wide abrupt angular path shoulders remain visible. The technical overview still exposes a finite low-poly landscape. The new variety and travel separation do not establish original-game geographic fidelity.",
+      "paths": [
+        "docs/screenshots/eden-immersion-world-overview.png",
+        "docs/screenshots/eden-immersion-production-landing.png",
+        "docs/screenshots/eden-immersion-production-patrol-arrival.png"
+      ],
+      "blockingForEdenChange": false
+    },
+    {
+      "id": "low-contrast-native-KO",
+      "severity": "low",
+      "scope": "Two new held down drawings",
+      "status": "open-native-display-limit",
+      "finding": "KO bodies are faint on dark grass, especially the rachni. Executed world.js explicitly applies native .32 opacity to dead actors. Fixed silhouettes are present; no alpha, runtime or PNG was modified by this reviewer.",
+      "paths": [
+        "docs/screenshots/eden-immersion-sprites-down.png"
+      ],
+      "blockingForEdenChange": false
+    },
+    {
+      "id": "map-bottom-edge-and-mobile-toast",
+      "severity": "low",
+      "scope": "Captured local map views",
+      "status": "open-visual-limit",
+      "finding": "At desktop the extraction marker7 meets the lower modal edge and appears partially clipped in the captured initial scroll position. On mobile the tracking toast crosses the bottom of the plan near extraction; the list continues below the visible viewport. This image review does not establish unreachable functionality or certify every marker after scrolling.",
+      "paths": [
+        "docs/screenshots/eden-immersion-production-map-desktop.png",
+        "docs/screenshots/eden-immersion-production-map-mobile.png"
+      ],
+      "blockingForEdenChange": false
+    },
+    {
+      "id": "retained-noveria-foreground-beam-occlusion",
+      "severity": "medium",
+      "scope": "Retained non-Eden public Noveria encounter",
+      "status": "open-retained-scene-issue",
+      "finding": "A large diagonal foreground scenery beam hides most of Ashley's torso, leaving her legs visible, and overlaps parts of two rachni both before and after the native shot. Full body visibility is therefore not certified for this public arena. The separate held SPR fixture verifies complete drawings but does not resolve scenery occlusion. This is reported as an observed retained-scene issue; no pre-change Noveria comparison exists here to classify it as new.",
+      "paths": [
+        "docs/screenshots/eden-immersion-production-rachni-public-battle.png",
+        "docs/screenshots/eden-immersion-production-rachni-native-shot.png"
+      ],
+      "blockingForEdenChange": false
+    },
+    {
+      "id": "brief-party-silhouette-overlap",
+      "severity": "low",
+      "scope": "Some arrival/click and imported-sector poses",
+      "status": "open-visual-limit",
+      "finding": "Some party silhouettes overlap even though distinct full feet or other separated travel views are present. These exact views do not prove a public pathing or collision defect.",
+      "paths": [
+        "docs/screenshots/eden-immersion-world-arrival.png",
+        "docs/screenshots/eden-immersion-world-keyboard-click.png",
+        "docs/screenshots/eden-immersion-production-quays-public.png"
+      ],
+      "blockingForEdenChange": false
+    }
+  ],
+  "coverageQualifications": {
+    "baseline": "Five actual baseline views of the small original Eden layout, no public HUD.",
+    "intermediate": "Five initial placement views and three targeted corrected views are historical fixtures, not final public gameplay.",
+    "finalNavigation": "All13 final actual WorldView fixture captures; native movement ticks and technical overview as qualified in the NAV report.",
+    "finalSprites": "All4 fixed-pose captures, showing8 drawings from2 existing families; held states/separation are fixture inputs.",
+    "finalPublic": "All15 production browser captures, including public UI, actual keyboard prefix/native shots, declared imported sector/progression fixtures and restart UI pairs.",
+    "mobile": "Only the390x844 local-map modal is supplied. Exploration/combat HUD and radar at mobile size are not visually certified because the modal obscures them.",
+    "historicalFailedProductionAttempt": "The failed first driver attempt is archived separately by root; its captures are not counted as final public evidence."
+  }
+}

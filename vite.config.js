@@ -12,6 +12,8 @@ const companionAnimations = COMPANION_ANIMATION_IDS.map(key => {
   if (!animation) throw new Error(`Invalid ME1 companion animation metadata: ${key}`);
   return animation;
 });
+// Include every explicitly registered ME1 family, including organic enemies;
+// Electron keeps the same local metadata without a runtime JSON fetch.
 const enemyAnimations = ENEMY_ANIMATION_IDS.map(key => {
   const raw = JSON.parse(readFileSync(new URL(`./public/assets/enemy-${key}-animation.json`, import.meta.url), 'utf8'));
   const animation = normalizeEnemyAnimation(key, raw);

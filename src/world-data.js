@@ -1,4 +1,5 @@
 /** Original fan-game staging; story milestones live in game-data.js and story-data.js. */
+import { EDEN_LAYOUT } from './level-layout-data.js';
 const poi = (zone, suffix, label, type, x, z, extra = {}) => ({
   id: `${zone}:${suffix}`, label, type, x, z, ...extra,
 });
@@ -69,6 +70,15 @@ export const WORLD_ZONES = {
     'Retour à la Citadelle', 'Canal de l’Alliance', 'Tour envahie', 'Ascension de la tour', 'Saren', 'Le destin du Conseil', 'Fin de l’opération',
   ]),
 };
+
+// Eden has its own authored ground plan. Its seven stable interaction IDs,
+// encounter order and progression rules remain owned by the existing campaign.
+const eden = WORLD_ZONES['eden-prime'];
+eden.layoutId = EDEN_LAYOUT.id;
+eden.bounds = { ...EDEN_LAYOUT.bounds };
+eden.spawn = { ...EDEN_LAYOUT.spawn };
+eden.arena = { ...EDEN_LAYOUT.arena };
+for (const poi of eden.pois) Object.assign(poi, EDEN_LAYOUT.pois[poi.id.slice('eden-prime:'.length)]);
 
 for (const suffix of ['encounter-1', 'encounter-2', 'boss']) {
   WORLD_ZONES.citadel.pois.find(p => p.id === `citadel:${suffix}`).type = 'dialogue';

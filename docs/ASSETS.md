@@ -33,8 +33,12 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `enemy-geth-destroyer-combat.png` | 1536 × 1024 | Quatre poses fixes | Destructeur geth ME1 en combat |
 | `enemy-husk-combat.png` | 1536 × 1024 | Quatre poses fixes | Husk ME1 en combat |
 | `joker-seated.png` | 1536 × 1024 | Deux dessins assis | Idle au cockpit ; pilot produit sans cycle animé |
+| `enemy-krogan-combat.png` | 1536 × 1024 | Quatre poses fixes | Krogan ME1 en combat |
+| `enemy-rachni-combat.png` | 1536 × 1024 | Quatre poses fixes | Soldat rachni ME1 en combat |
+| `eden-ground-grass.png` | 1254 × 1254 | Texture RGB opaque | Prairie sur géométrie 3D d’Eden Prime |
+| `eden-ground-dirt.png` | 1254 × 1254 | Texture RGB opaque | Terre et passages d’Eden Prime |
 
-Les **27 PNG courants** comprennent les seize images précédentes, les six atlas de compagnons, quatre atlas d’ennemis et la planche assise de Joker. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard, les 24 des compagnons et les 16 des ennemis portent le total à **48 poses clés de combat**, séparées des deux dessins assis de Joker. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **31 PNG courants** comprennent les seize images précédentes, les six atlas de compagnons, six atlas d’ennemis, la planche assise de Joker et deux textures de sol Eden. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard, les 24 des compagnons et les 24 des ennemis portent le total à **56 poses clés de combat**, séparées des deux dessins assis de Joker et des deux textures de sol. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -83,7 +87,7 @@ Le complément équipement conserve les dix PNG et les animations de 0.2.0. Il a
 
 Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne remplacent pas la géométrie des bâtiments, sols, coursives, volumes et routes. Les silhouettes conservent un seuil alpha de 0,2 pour limiter les franges de transparence. La taille et les proportions du plan dépendent du type d’atlas, notamment pour les boss.
 
-Shepard dispose d’une animation par images. Les six compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Quatre ennemis ME1 disposent aussi de quatre poses fixes chacun ; les autres gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
+Shepard dispose d’une animation par images. Les six compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Six ennemis ME1 disposent aussi de quatre poses fixes chacun ; les autres gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
 
 La variante féminine sélectionnable utilise deux atlas propres. Les rectangles et pivots sont décrits dans `shepard-female-animation.json`, puis inclus dans le JavaScript compilé pour fonctionner aussi avec le chargement local d’Electron. La marche garde la dernière direction à l’arrêt, utilise sept images par seconde et accélère pendant la course. En combat, les événements déclenchent les poses de visée, pouvoir et impact ; la pose couchée dispose d’une hauteur et d’un pivot spécifiques. Il s’agit de quatre poses clés, pas de quatre cycles complets.
 
@@ -163,6 +167,12 @@ Les [références, prompts et limites artistiques](research/companion-combat-art
 Quatre atlas natifs ajoutent **16 poses fixes** au soldat geth, au sniper geth, au destructeur geth et au husk déjà présents. Une planche distincte produit **deux dessins assis de Joker** : seul `idle` est intégré au poste du Normandy, sans nouvelle animation temporelle. Les 22 PNG historiques restent conservés.
 
 Les rectangles, pivots et hauteurs relatifs sont mesurés. Les contextes étrangers, mauvais identifiants, sprites et équipes n’ouvrent pas ces familles ; un repli garde la pose historique lors du chargement. Les repères primaires sont partiels et les dessins restent Prototype. Les [références et limites](research/me1-enemy-poses-art.md) et les [preuves de livraison](qa/me1-enemy-poses-report.json) séparent génération, contrôle technique, inspection du renderer et parcours public. Aucun nouveau moveset, modèle original complet ou fidélité intégrale 1:1 n’est certifié.
+
+## Eden Prime, krogan et rachni — 2 novembre 2026
+
+Deux atlas natifs ajoutent huit poses fixes aux profils krogan et rachni déjà jouables. Barrière et acide conservent leurs commandes natives ; les images ne donnent aucun nouveau pouvoir. Les dessins dérivent des identités de prototype existantes, sans référence corporelle primaire supplémentaire obtenue pour ces espèces. Les deux premières compositions refusées et les générations retenues sont distinguées dans les notes [krogan](research/eden-immersion-krogan.md) et [rachni](research/eden-immersion-rachni.md).
+
+Les textures de [prairie et terre](research/eden-immersion-terrain-art.md) sont deux PNG RGB opaques natifs, copiés sans retouche. Leur répétition 3 × 3 est inspectée ; de légers motifs et variations de ton restent visibles. Elles habillent les meshes du nouveau parcours d’Eden, sans remplacer les bâtiments ou le relief par une image plate. Les 27 PNG précédents sont conservés. Les [preuves du lot](qa/eden-immersion-report.json) séparent l’art, la navigation, les états des sprites, les parcours publics et la revue Excel. Aucun matériau original, modèle complet, animation intégrale ou fidélité 1:1 n’est certifié.
 
 ## Critères d’acceptation de l’art final
 

@@ -1,0 +1,62 @@
+{
+  "passed": false,
+  "reviewComplete": true,
+  "phase": "intermediate-visual-review",
+  "at": "2026-11-02T05:49:29.972596+00:00",
+  "inputReport": {
+    "path": "docs/qa/eden-immersion-inspection-report.json",
+    "sha256": "ba24bc5557ab942d990996d1ab16c5315785b7f9d43aa6632424e9765a8a31f4"
+  },
+  "images": [
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-landing.png",
+      "sha256": "286adf74b985ecd0a1bbd84130a58410c45dbc2f4eafb843de5d0029785e2e13",
+      "bytes": 1238537,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-patrol.png",
+      "sha256": "75afc6101cfe7d7d51c9605542bf8dffc48aa31f3bdce10a1ceb650dc9eb06e2",
+      "bytes": 1503406,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-farm.png",
+      "sha256": "d6a55a7c33387d3f850b9a47daa71b4f5e751b00c4c512ab75eb083699a7d7ca",
+      "bytes": 1308543,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-quays.png",
+      "sha256": "cf6f19e1cb99f3af2d5435f6efb870fdb1f772d9fcb0409a2f1300dc2b78a6ec",
+      "bytes": 1336071,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-inspection-beacon.png",
+      "sha256": "3c42cc4bcfd865a2abb082f38fab7eb441440dac94aa28c6a08144f1926a2f16",
+      "bytes": 1282797,
+      "actuallyOpened": true
+    }
+  ],
+  "blockingFindings": [
+    {
+      "id": "vegetation-scenery-intersection",
+      "scope": "quays wagon roof; beacon plinth; landing structure",
+      "observation": "Generated vegetation visibly intersects occupied scenery bounds. The vegetation placement checked route reservations but not existing scenery collider footprints.",
+      "requestedCorrection": "Exclude existing scenery colliders for tree and rock placement."
+    },
+    {
+      "id": "stacked-party-after-position-restore",
+      "scope": "all held inspection viewpoints",
+      "observation": "Three party members share one initial trail point after setPosition, so their bodies and heads overlap until ordinary walking separates them.",
+      "requestedCorrection": "Initialize distinct nearby walkable follower positions without moving them outside the ground mask."
+    }
+  ],
+  "otherObservations": [
+    "The five views expose distinct landing, patrol, agricultural, freight and beacon landmarks. The main path is no longer limited to a single small central rectangle.",
+    "The exterior coast/relief appears as broad light polygons in these views; this is recorded for art review, not classified as a navigation failure."
+  ],
+  "originalGeographyCertified": false,
+  "pixelEditingApplied": false
+}

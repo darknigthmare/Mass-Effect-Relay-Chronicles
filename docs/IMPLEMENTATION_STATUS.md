@@ -285,6 +285,12 @@ La reprise sur `05d1f03` ajoute quatre familles de poses aux ennemis existants e
 
 Les [preuves courantes](qa/me1-enemy-poses-report.json) relient les références, les fichiers natifs, le renderer, les parcours publics, les sauvegardes et le classeur principal. Les représentations restent des prototypes à angles fixes ; elles ne terminent pas la fidélité artistique ou les modèles 1:1 des jeux d’origine.
 
+## Eden Prime : level design, navigation et génération — 2 novembre 2026
+
+La reprise sur `533efaa` remplace le tableau rectangulaire partagé d’Eden par cinq secteurs et trois chemins reliés. La géométrie, le décor, la caméra, les arènes, la navigation, la restauration des positions et la carte/radar suivent le même plan. Les sept points de progression restent stables ; les neuf repères ne sont pas neuf missions ou sous-zones originales complètes.
+
+Deux familles ennemies existantes reçoivent huit poses fixes et deux textures de sol sont produites : **quatre PNG**, portant le total à 31 PNG et 56 poses de combat. Les cinq promotions Prototype du suivi restent appuyées par leurs parcours distincts. Les [preuves courantes](qa/eden-immersion-report.json) relient l’état avant, les corrections, le rendu final, la navigation, les commandes publiques, les sauvegardes et l’Excel. Les autres zones et les ateliers à 107 équipements/79 armes restent conservés.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.

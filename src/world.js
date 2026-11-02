@@ -7,6 +7,9 @@ import { hasVisualCustomization, renderCustomizationSprite } from './customizati
 import { COMPANION_ANIMATION_IDS, normalizeCompanionAnimation, canShowCompanionAnimation } from './companion-animation-data.js';
 import { ENEMY_ANIMATION_IDS, normalizeEnemyAnimation, canShowEnemyAnimation } from './enemy-animation-data.js';
 import { normalizeJokerSeated, canShowJokerSeated } from './joker-seated-data.js';
+import { getLevelLayout, isLevelGround, nearestLevelGround } from './level-layout-data.js';
+import { findLevelPath } from './world-navigation.js';
+import { buildEdenScene } from './eden-scene.js';
 
 const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS];
 
@@ -196,6 +199,7 @@ export class WorldView {
   }
 
   _dressScene() {
+    if (this.levelLayout) return;
     const placements = {
       normandy: [[1, 5.7, -1.5, 1.65], [4, -5.5, 7.7, 2.5], [2, 5.7, 11.7, .9], [7, -5.4, -1.9, 1.6]],
       eden: [[0, -8, 4.5, 1.25], [12, -6.5, 9, 2.2], [6, 7.8, 10.8, 1.8], [3, 6.7, 4.4, 1.35]],
@@ -390,6 +394,46 @@ export class WorldView {
     this.materialCache.set(key, material); return material;
   }
 
+  _edenTerrainMaterial(kind, color = 0xffffff, vertexColors = false) {
+    const materialKey = `eden-native-material:${kind}:${color}:${vertexColors}`;
+    if (this.materialCache.has(materialKey)) return this.materialCache.get(materialKey);
+    const textureKey = `eden-native-terrain:${kind}`;
+    let texture = this.textureCache.get(textureKey);
+    if (!texture) {
+      const rand = randomGenerator(hash(`eden-fallback:${kind}`));
+      texture = canvasTexture(128, 128, (c, w, h) => {
+        c.fillStyle = kind === 'dirt' ? '#9c8971' : '#73805a'; c.fillRect(0, 0, w, h);
+        for (let i = 0; i < 1800; i++) {
+          const value = Math.floor(80 + rand() * 85); c.fillStyle = `rgba(${value},${value},${value},.19)`;
+          c.fillRect(rand() * w, rand() * h, 1 + rand() * 3, 1 + rand() * 3);
+        }
+      });
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      texture.userData.edenTerrain = 'fallback'; this.textureCache.set(textureKey, texture);
+    }
+    const material = new THREE.MeshStandardMaterial({ color, map: texture, roughness: 1, metalness: 0, vertexColors });
+    material.userData.edenTerrainKind = kind; this.materialCache.set(materialKey, material);
+    const requests = this._terrainRequests ||= new Map();
+    if (texture.userData.edenTerrain !== 'native' && !requests.has(kind) && !this._disposed) {
+      const request = {}; requests.set(kind, request);
+      const failed = () => {
+        if (this._disposed || requests.get(kind) !== request) return;
+        requests.delete(kind); this.assetErrors?.push(`Texture de terrain indisponible : eden-ground-${kind}.png`);
+      };
+      try { new THREE.TextureLoader().load(`${ASSET_BASE}eden-ground-${kind}.png`, loaded => {
+        if (this._disposed || requests.get(kind) !== request) { loaded.dispose(); return; }
+        requests.delete(kind); loaded.colorSpace = THREE.SRGBColorSpace; loaded.wrapS = loaded.wrapT = THREE.RepeatWrapping;
+        loaded.magFilter = THREE.LinearFilter; loaded.anisotropy = 4; loaded.userData.edenTerrain = 'native';
+        const previous = this.textureCache.get(textureKey); this.textureCache.set(textureKey, loaded);
+        for (const value of this.materialCache.values()) if (value.userData.edenTerrainKind === kind) {
+          value.map = loaded; value.needsUpdate = true;
+        }
+        if (previous && previous !== loaded) previous.dispose();
+      }, undefined, failed); } catch { failed(); }
+    }
+    return material;
+  }
+
   _mesh(geometry, material, x = 0, y = 0, z = 0, parent = this.stage) {
     const mesh = new THREE.Mesh(geometry, material); mesh.position.set(x, y, z); mesh.castShadow = true; mesh.receiveShadow = true; parent.add(mesh); return mesh;
   }
@@ -484,6 +528,15 @@ export class WorldView {
     const key = new THREE.DirectionalLight(main, 3.1); key.position.set(-22, 33, -15); key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048); key.shadow.camera.left = -45; key.shadow.camera.right = 45; key.shadow.camera.top = 45; key.shadow.camera.bottom = -45;
     key.shadow.camera.near = 1; key.shadow.camera.far = 110; key.shadow.bias = -.0005; key.shadow.normalBias = .08; this.stage.add(key);
+    if (this.levelLayout) {
+      const b = this.levelLayout.bounds, center = new THREE.Vector3((b.minX + b.maxX) / 2, 0, (b.minZ + b.maxZ) / 2);
+      key.position.copy(center).add(new THREE.Vector3(-60, 110, -55)); key.target.position.copy(center); this.stage.add(key.target);
+      const extent = Math.max(b.maxX - b.minX, b.maxZ - b.minZ) * .82;
+      Object.assign(key.shadow.camera, { left: -extent, right: extent, top: extent, bottom: -extent, far: 350 });
+      key.shadow.camera.updateProjectionMatrix();
+      hemi.intensity = 1.15; key.intensity = 2.65;
+      this.scene.background.set(0x4c5b55); this.scene.fog.color.set(0x4c5b55); this.scene.fog.density = .0055;
+    }
     const fill = new THREE.DirectionalLight(0x83b4cf, .8); fill.position.set(12, 14, 25); this.stage.add(fill);
     if (['normandy', 'finale', 'citadel'].includes(theme)) this._stars();
   }
@@ -602,6 +655,7 @@ export class WorldView {
   }
 
   _eden() {
+    if (this.levelLayout) { buildEdenScene(this, this.levelLayout); return; }
     this._landscape(0x75816a, 0x4a5b51);
     this._road([[0, 22], [0, 11], [-3, 1], [0, -9], [0, -21]], 5.4, this._texturedMaterial(0x999b83, 'stone', 8));
     this._building(-15, 2, 8, 7, 5.8, 0xa7a99c); this._building(14, -1, 9, 8, 4.5, 0x989f98);
@@ -798,7 +852,8 @@ export class WorldView {
   setZone(zoneId, { party, cleared, stage } = {}) {
     const zone = WORLD_ZONES[zoneId] || WORLD_ZONES.normandy;
     this.operationPois = [];
-    this.zone = zone; this.zoneId = zone.id; this.stageState = stage; this.rand = randomGenerator(hash(zone.id));
+    this.zone = zone; this.zoneId = zone.id; this.levelLayout = getLevelLayout(zone.id); this.battleArena = null;
+    this.stageState = stage; this.rand = randomGenerator(hash(zone.id));
     this.cleared = new Set(cleared instanceof Set ? cleared : Array.isArray(cleared) ? cleared : []);
     this._clearEffects(); this.animations = []; this.colliders = []; this.combatOccluders = []; this.targetPath = null; this.pendingPOI = null; this._pendingProps = []; this._pendingVehicles = [];
     this.setBattle(null);
@@ -809,7 +864,8 @@ export class WorldView {
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
     this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
     this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
-    this.cameraTarget.set(this.player.x * .42, 0, this.player.z * .42);
+    if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
+    else this.cameraTarget.set(this.player.x * .42, 0, this.player.z * .42);
     this._makeMarkers(); this.setParty(party || this.party);
     if (this.zoneId !== 'normandy' || !this.storyContext) this._makeAmbientCharacters();
     this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget); this.resize();
@@ -951,7 +1007,9 @@ export class WorldView {
       const key = typeof member === 'string' ? member : member.sprite || member.id || 'shepard';
       const actor = this._makeActor(key, typeof member === 'string' ? member : member.id || key);
       actor.stationPosition = conversations.find(poi => poi.conversationId === actor.id)?.actorPosition;
-      actor.group.position.set(actor.stationPosition?.x ?? this.player.x + (i === 1 ? -1.2 : i === 2 ? 1.2 : 0), 0, actor.stationPosition?.z ?? this.player.z + i * .8);
+      const levelPoint = this.levelLayout ? this.trail[Math.min(this.trail.length - 1, i * 11)] || this.player : null;
+      actor.group.position.set(actor.stationPosition?.x ?? levelPoint?.x ?? this.player.x + (i === 1 ? -1.2 : i === 2 ? 1.2 : 0), 0,
+        actor.stationPosition?.z ?? levelPoint?.z ?? this.player.z + i * .8);
       actor.group.visible = this.mode !== 'combat'; return actor;
     });
     if (this.zoneId === 'normandy' && this.storyContext) this._makeAmbientCharacters();
@@ -1018,7 +1076,10 @@ export class WorldView {
 
   setMode(mode) {
     this.mode = mode; if (mode !== 'explore') { this.keys.clear(); this.targetPath = null; this.pendingPOI = null; }
-    for (const object of this.combatOccluders) object.visible = mode !== 'combat';
+    for (const object of this.combatOccluders) {
+      const scenery = object.userData.levelScenery, arena = this.battleArena || this.zone.arena;
+      object.visible = mode !== 'combat' || !!this.levelLayout && !!scenery && Math.hypot(scenery.x - arena.x, scenery.z - arena.z) > 24;
+    }
     for (const actor of this.actors) actor.group.visible = mode !== 'combat';
     for (const actor of this.ambientActors || []) actor.group.visible = mode !== 'combat' && (!actor.poiId || !this.cleared.has(actor.poiId));
     for (const actor of this.battleActors.values()) actor.group.visible = mode === 'combat';
@@ -1027,8 +1088,13 @@ export class WorldView {
   }
 
   setBattle(battle) {
+    if (battle && battle !== this.battle && this.levelLayout) {
+      this.battleArena = Object.values(this.levelLayout.arenas).reduce((best, arena) =>
+        Math.hypot(arena.x - this.player.x, arena.z - this.player.z) < Math.hypot(best.x - this.player.x, best.z - this.player.z) ? arena : best,
+      this.zone.arena);
+    }
     this.battle = battle;
-    if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); } this.battleActors.clear(); return; }
+    if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); } this.battleActors.clear(); this.battleArena = null; return; }
     const entries = battle.actors || [...(battle.party || []).map(a => ({ ...a, team: 'party' })), ...(battle.enemies || []).map(a => ({ ...a, team: 'enemy' }))];
     const active = new Set(entries.map(a => a.id));
     for (const [id, actor] of this.battleActors) if (!active.has(id)) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); this.battleActors.delete(id); }
@@ -1038,7 +1104,7 @@ export class WorldView {
       const key = state.sprite || state.id || (enemy ? 'geth' : 'shepard');
       let actor = this.battleActors.get(state.id);
       if (!actor) { actor = this._makeActor(key, state.id, enemy); this.battleActors.set(state.id, actor); }
-      const arena = this.zone.arena;
+      const arena = this.battleArena || this.zone.arena;
       actor.basePosition = new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * 2.9);
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
       if (actor.lastHp !== null && state.hp < actor.lastHp) { actor.poseTime = .35; this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.3, 0)), enemy ? 0xffae79 : 0xf0c7a7); }
@@ -1124,17 +1190,52 @@ export class WorldView {
 
   getPosition() { return { x: this.player.x, z: this.player.z }; }
   _resetTrail() {
+    if (this.levelLayout) {
+      const formation = [{ ...this.player }], choices = [[-1.1, .7], [1.1, 1.1]];
+      for (let member = 0; member < 2; member++) {
+        const offsets = [choices[member], ...Array.from({ length: 16 }, (_, i) => [Math.cos(i / 16 * TAU) * 1.35, Math.sin(i / 16 * TAU) * 1.35])];
+        const next = offsets.map(([dx, dz]) => ({ x: this.player.x + dx, z: this.player.z + dz }))
+          .find(point => this._walkable(point.x, point.z) && formation.every(other => Math.hypot(point.x - other.x, point.z - other.z) >= .7));
+        formation.push(next || { ...this.player });
+      }
+      this.trail = Array.from({ length: 32 }, (_, i) => ({ ...formation[Math.min(2, Math.floor(i / 11))] })); return;
+    }
     this.trail = Array.from({ length: 32 }, (_, i) => ({
       x: this.player.x,
       z: clamp(this.player.z + i * .13, this.zone.bounds.minZ + .5, this.zone.bounds.maxZ - .5),
     }));
   }
+
+  _resolveLevelPosition(position) {
+    const layout = this.levelLayout;
+    if (!layout || !position || ![position.x, position.z].every(Number.isFinite)) return null;
+    if (this._walkable(position.x, position.z)) return { x: position.x, z: position.z };
+    const nearest = nearestLevelGround(layout, position);
+    if (nearest && this._walkable(nearest.x, nearest.z)) return nearest;
+    const origins = [nearest, ...layout.rooms.map(room => room.center), layout.spawn].filter(Boolean), candidates = [];
+    for (const origin of origins) {
+      for (let radius = 0; radius <= 9; radius += .75) for (let i = 0; i < (radius ? 16 : 1); i++) {
+        const angle = i / 16 * TAU, x = origin.x + Math.cos(angle) * radius, z = origin.z + Math.sin(angle) * radius;
+        if (this._walkable(x, z)) candidates.push({ x, z });
+      }
+    }
+    return candidates.sort((a, b) => Math.hypot(a.x - position.x, a.z - position.z) - Math.hypot(b.x - position.x, b.z - position.z))[0] || null;
+  }
+
   setPosition(position = {}) {
     if (!Number.isFinite(position.x) || !Number.isFinite(position.z)) return;
-    const b = this.zone.bounds; const x = clamp(position.x, b.minX + .5, b.maxX - .5), z = clamp(position.z, b.minZ + .5, b.maxZ - .5);
+    const b = this.zone.bounds, recovered = this.levelLayout ? this._resolveLevelPosition(position) : null;
+    if (this.levelLayout && !recovered) return false;
+    const x = recovered?.x ?? clamp(position.x, b.minX + .5, b.maxX - .5), z = recovered?.z ?? clamp(position.z, b.minZ + .5, b.maxZ - .5);
     if (!this._walkable(x, z)) return;
+    if (this.levelLayout) this.lastPositionRecovery = { requested: { x: position.x, z: position.z }, resolved: { x, z }, changed: x !== position.x || z !== position.z };
     this.player = { x, z }; this._resetTrail(); this.targetPath = null;
-    this.actors.forEach((actor, i) => actor.group.position.set(actor.stationPosition?.x ?? x, 0, actor.stationPosition?.z ?? z + i * .8));
+    this.actors.forEach((actor, i) => {
+      const point = this.levelLayout ? this.trail[Math.min(this.trail.length - 1, i * 11)] : null;
+      actor.group.position.set(actor.stationPosition?.x ?? point?.x ?? x, 0, actor.stationPosition?.z ?? point?.z ?? z + i * .8);
+    });
+    if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
+    if (this.levelLayout) return true;
   }
   getBounds() { return { ...this.zone.bounds }; }
   getPOIs() { return this.zone.pois.map(poi => ({ ...poi, cleared: this.cleared.has(poi.id) })); }
@@ -1207,10 +1308,12 @@ export class WorldView {
   }
   _walkable(x, z) {
     const b = this.zone.bounds; if (x < b.minX + .4 || x > b.maxX - .4 || z < b.minZ + .4 || z > b.maxZ - .4) return false;
+    if (this.levelLayout && !isLevelGround(this.levelLayout, x, z)) return false;
     return !this.colliders.some(c => this._insideCollider(x, z, c));
   }
 
   _pathTo(destination) {
+    if (this.levelLayout) return findLevelPath({ bounds: this.zone.bounds, start: this.player, destination, isWalkable: (x, z) => this._walkable(x, z) });
     const step = .75, b = this.zone.bounds;
     const cell = (x, z) => [Math.round((x - b.minX) / step), Math.round((z - b.minZ) / step)];
     const coords = ([x, z]) => ({ x: b.minX + x * step, z: b.minZ + z * step });
@@ -1248,6 +1351,15 @@ export class WorldView {
     this.targetPath = this._pathTo(destination); this.pendingPOI = this.targetPath ? poi : null;
   }
 
+  _cameraFocus(point, mode = this.mode) {
+    if (this.levelLayout) {
+      const camera = this.levelLayout.camera, b = camera.limits;
+      return new THREE.Vector3(clamp(point.x * camera.follow, b.minX, b.maxX), mode === 'combat' ? .3 : 0,
+        clamp(point.z * camera.follow, b.minZ, b.maxZ));
+    }
+    return new THREE.Vector3(clamp(point.x * .48, -9, 9), mode === 'combat' ? .3 : 0, clamp(point.z * .48, -10, 10));
+  }
+
   update(dt = 1 / 60) {
     if (this._disposed) return;
     dt = clamp(Number.isFinite(dt) ? dt : 1 / 60, 0, .05); this.time += dt;
@@ -1278,8 +1390,8 @@ export class WorldView {
       }
       this._moveReport -= dt; if (moving && this._moveReport <= 0) { this._moveReport = .12; this.onMove?.({ ...this.player, zone: this.zoneId }); }
     }
-    const cameraPoint = this.mode === 'combat' ? this.zone.arena : this.player;
-    const desired = new THREE.Vector3(clamp(cameraPoint.x * .48, -9, 9), this.mode === 'combat' ? .3 : 0, clamp(cameraPoint.z * .48, -10, 10));
+    const cameraPoint = this.mode === 'combat' ? this.battleArena || this.zone.arena : this.player;
+    const desired = this._cameraFocus(cameraPoint, this.mode);
     this.cameraTarget.lerp(desired, 1 - Math.exp(-dt * 3)); this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget);
     const facing = Math.atan2(this.cameraOffset.x, this.cameraOffset.z);
     this.actors.forEach((actor, index) => {
@@ -1287,6 +1399,10 @@ export class WorldView {
       const actorMoving = moving && !actor.stationPosition;
       actor.group.position.x = THREE.MathUtils.lerp(actor.group.position.x, target.x, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
       actor.group.position.z = THREE.MathUtils.lerp(actor.group.position.z, target.z, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
+      if (this.levelLayout && !this._walkable(actor.group.position.x, actor.group.position.z)) {
+        const safe = this._resolveLevelPosition({ x: actor.group.position.x, z: actor.group.position.z }) || this.player;
+        actor.group.position.x = safe.x; actor.group.position.z = safe.z;
+      }
       actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : Math.sin(this.time * 1.8 + index) * .016);
       actor.body.rotation.z = actorMoving ? Math.sin(this.time * 10 - index) * .018 : 0;
       if (this._animateCharacter(actor, actorMoving, movementX, movementZ)) return;
@@ -1352,7 +1468,7 @@ export class WorldView {
     if (this._disposed) return;
     const rect = this.container.getBoundingClientRect(); const width = Math.max(1, rect.width), height = Math.max(1, rect.height);
     this.width = width; this.height = height; this.renderer.setSize(width, height, false);
-    const aspect = width / height, span = this.zoneId === 'normandy' ? 24 : 29;
+    const aspect = width / height, span = this.levelLayout?.camera.span || (this.zoneId === 'normandy' ? 24 : 29);
     this.camera.left = -span * aspect / 2; this.camera.right = span * aspect / 2; this.camera.top = span / 2; this.camera.bottom = -span / 2; this.camera.updateProjectionMatrix();
   }
 
@@ -1366,5 +1482,6 @@ export class WorldView {
     this.spriteCache.clear(); this.textureCache.clear(); this.atlases = {};
     this._atlasRequests?.clear(); this._atlasUrls?.clear();
     this.renderer.dispose(); this.renderer.domElement.remove(); this.labels.remove();
+    this._terrainRequests?.clear();
   }
 }

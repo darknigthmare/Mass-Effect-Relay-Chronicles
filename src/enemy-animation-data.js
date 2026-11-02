@@ -1,8 +1,8 @@
-// Visual metadata for four existing ME1 campaign enemies. No actor, attack,
+// Visual metadata for existing ME1 campaign enemies. No actor, attack,
 // equipment or statistical profile is created by these drawings.
-export const ENEMY_ANIMATION_IDS = Object.freeze(['geth', 'geth-sniper', 'geth-destroyer', 'husk']);
+export const ENEMY_ANIMATION_IDS = Object.freeze(['geth', 'geth-sniper', 'geth-destroyer', 'husk', 'krogan', 'rachni']);
 export const ENEMY_COMBAT_POSES = Object.freeze(['aim', 'power', 'hit', 'down']);
-const actorPrefixes = Object.freeze({ geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk' });
+const actorPrefixes = Object.freeze({ geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk', krogan: 'krogan', rachni: 'rachni' });
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const plain = value => !!value && typeof value === 'object' && !Array.isArray(value)
   && [Object.prototype, null].includes(Object.getPrototypeOf(value));
@@ -42,7 +42,7 @@ export function normalizeEnemyAnimation(key, input) {
   } catch { return null; }
 }
 
-/** Native campaign IDs are geth-N, sniper-N, destroyer-N and husk-N. */
+/** Native campaign IDs retain their family prefix and numeric instance suffix. */
 export function canShowEnemyAnimation(actor, state = actor?.state) {
   if (!actor || !ENEMY_ANIMATION_IDS.includes(actor.key) || actor.enemy !== true || !state
     || state.id !== actor.id || state.sprite !== actor.key || state.team !== 'enemy') return false;

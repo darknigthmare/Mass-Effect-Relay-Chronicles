@@ -1,0 +1,3267 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "at": "2026-11-02T06:21:01.498Z",
+  "baselineCommit": "533efaa2ca88c34be21eb53aa30fafcfedd79707",
+  "sourceHead": "533efaa2ca88c34be21eb53aa30fafcfedd79707",
+  "url": "http://127.0.0.1:4194/?qa=",
+  "buildKind": "production-dist",
+  "command": "EDEN_BASE_MAIN=<baseline> PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium node scripts/eden-immersion-production.mjs",
+  "scope": "Public production controls: actual keyboard travel through the expanded Eden landing/patrol route, local map/radar and mobile inspection, save outside the old rectangle, page reload and complete-browser restart. Separately declared valid fixtures show freight/beacon areas and real krogan/rachni campaign encounters. No source imports, private harness, pose setter or storage injection is used in Chromium.",
+  "profile": {
+    "fresh": true,
+    "path": "/workspace/Mass-Effect-Relay-Chronicles/test-results/eden-immersion-production-profile-2lAXRU",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "launches": 2,
+    "completeShutdowns": 2
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "chromium": "154.0.8037.57"
+  },
+  "sources": {
+    "src/world.js": "cbd1f70830c90865e96811e9ad90b9ba73db46286ea1af7f378df318f39873a2",
+    "src/world-data.js": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf",
+    "src/eden-scene.js": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948",
+    "src/world-navigation.js": "0663590a5a80eaec6252e97a26636a14f1477d15fdf3422e16e7efe3dc5c54f0",
+    "src/level-layout-data.js": "318d0df18bf65f804d6ad2a4737ef80e7b295d127c11924bc93faac256832b07",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/main.js": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "src/local-map.css": "c6e9ca6ef1ad5870365faa8bc008698ef277287ed78d0d6bda7f77bcecf7a67a",
+    "src/enemy-animation-data.js": "4be363caf9ffd481c71ddf893152c3ac5cfe403e24b719f32c759c935fb169e5",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "vite.config.js": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+    "scripts/eden-immersion-production.mjs": "1a70d09cbef95aeffdc5a4ed8814f05db2ade6dd94d66f39f2dafc140a1a73f5",
+    "public/assets/enemy-krogan-combat.png": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+    "public/assets/enemy-krogan-animation.json": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f",
+    "public/assets/enemy-rachni-combat.png": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+    "public/assets/enemy-rachni-animation.json": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1",
+    "public/assets/eden-ground-grass.png": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce",
+    "public/assets/eden-ground-dirt.png": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d"
+  },
+  "buildFiles": {
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-CWQSbucg.js": {
+      "bytes": 26590,
+      "sha256": "687e6a5dcd4a3edae5487e072a036c96eeab8d68a22179b8eb2b0a6419773629"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuity-Bh_jqSA5.js": {
+      "bytes": 5783,
+      "sha256": "28484baf3f43fae19084b62aeeddd06c8cf6592e982b110220c14a706f7e97ae"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/eden-ground-dirt.png": {
+      "bytes": 4408187,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d"
+    },
+    "assets/eden-ground-grass.png": {
+      "bytes": 4741123,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/enemy-geth-animation.json": {
+      "bytes": 2239,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363"
+    },
+    "assets/enemy-geth-combat.png": {
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    "assets/enemy-geth-destroyer-animation.json": {
+      "bytes": 2431,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04"
+    },
+    "assets/enemy-geth-destroyer-combat.png": {
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    "assets/enemy-geth-sniper-animation.json": {
+      "bytes": 2412,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092"
+    },
+    "assets/enemy-geth-sniper-combat.png": {
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    "assets/enemy-husk-animation.json": {
+      "bytes": 2233,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754"
+    },
+    "assets/enemy-husk-combat.png": {
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    "assets/enemy-krogan-animation.json": {
+      "bytes": 2247,
+      "sha256": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f"
+    },
+    "assets/enemy-krogan-combat.png": {
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    "assets/enemy-rachni-animation.json": {
+      "bytes": 2255,
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+    },
+    "assets/enemy-rachni-combat.png": {
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    "assets/expansion-BKw4yPNq.js": {
+      "bytes": 162056,
+      "sha256": "cca1341e9367b2c3864352a1fe9bceff3a30f90c041448bc3ba05ee41ed12469"
+    },
+    "assets/index-B8ze02ML.js": {
+      "bytes": 435877,
+      "sha256": "34dc921b8bbbd8c1199e64431da4b5b4e9e0fdc2549c54658bd9134a4ad4a33f"
+    },
+    "assets/index-CKR09dq6.css": {
+      "bytes": 63100,
+      "sha256": "c328f6987c2717011e09591239311949a5ea19f558008ab72da7668bd2962fb7"
+    },
+    "assets/joker-seated.json": {
+      "bytes": 2106,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+    },
+    "assets/joker-seated.png": {
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    "assets/manifest.json": {
+      "bytes": 57876,
+      "sha256": "8725a2d90f7e5e11334d309de0980d613098bb3a7df9fb2ccc8cb19fbfcd6549"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-DSrZE7m-.js": {
+      "bytes": 525536,
+      "sha256": "aa18e8030121687e388ddd65839513b1b47274895e2d1c972c644d6e4b4bf163"
+    },
+    "assets/universe-actors-CHE_m7Dw.js": {
+      "bytes": 43942,
+      "sha256": "081502d445fc9a47ff7ae32ddb8f896eb1d1972bd18262952810a67a39a90ab2"
+    },
+    "assets/universe-data-D0MlcRDn.js": {
+      "bytes": 3317033,
+      "sha256": "440a4409a74bffeee32d7301678381c74e5bbef50cc98e31e520d5cfeb502295"
+    },
+    "assets/universe-equipment-B2SOs0FX.js": {
+      "bytes": 15972,
+      "sha256": "2dea35fcc36d02fe5c25f4ca10ac86d17050211ac47bda78bd3ae5a8971813ac"
+    },
+    "assets/universe-ui-CcnUo4Uq.css": {
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    "assets/universe-ui-CdYYPmiL.js": {
+      "bytes": 52649,
+      "sha256": "ff201773e4da14d689a5713e919057d9792864d8b984bca6f2331906c7d98850"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "5b0bf93f04c44f1a38ac52fa4afac9ff09360591baa0c0a09ac94a4a2421bdb9"
+    }
+  },
+  "servedFiles": [
+    {
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 200,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-krogan-animation.json",
+      "status": 200,
+      "sha256": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 200,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-rachni-animation.json",
+      "status": 200,
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/eden-ground-grass.png",
+      "status": 200,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/eden-ground-dirt.png",
+      "status": 200,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d",
+      "matchesDist": true
+    }
+  ],
+  "fixtures": [
+    {
+      "label": "landing",
+      "path": "docs/qa/eden-immersion-production-landing-fixture.json",
+      "bytes": 2506,
+      "sha256": "eb6bef57cb57a2fe72a3b2b571ae7f27b3f0eb1f397a4cd1a7ef4d9559215f78",
+      "origin": "Explicit native newGame fixture at the new Eden spawn; no prior story victory added.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "position": {
+        "x": -20,
+        "z": 44
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "lost": [],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "quays",
+      "path": "docs/qa/eden-immersion-production-quays-fixture.json",
+      "bytes": 2523,
+      "sha256": "4a338177f09823723dd2e9cc3bafce1c4f8dd04f9e7cf9f54b0d0ca253bb28eb",
+      "origin": "Separately declared public save fixture based on the actual recovered export; only location coordinates are changed.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "position": {
+        "x": 20,
+        "z": -48
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "lost": [],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "beacon",
+      "path": "docs/qa/eden-immersion-production-beacon-fixture.json",
+      "bytes": 2523,
+      "sha256": "15c80f59edbb4b7df7f5f8c7898d4a885a262a5f684ee4fdd5310bfbdc5fd126",
+      "origin": "Separately declared public save fixture based on the actual recovered export; only location coordinates are changed.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "position": {
+        "x": 10,
+        "z": -78
+      },
+      "completed": [],
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "lost": [],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "krogan-encounter",
+      "path": "docs/qa/eden-immersion-production-krogan-encounter-fixture.json",
+      "bytes": 3289,
+      "sha256": "a599ce3914cf0f7607673012170fac8ffe0f9cf409e02a79f3f986d3cd056dbf",
+      "origin": "Node-native completion of Eden/Citadel and earlier encounters prepares this encounter; these previous victories are not played here.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "therum",
+      "position": {
+        "x": 5,
+        "z": -10
+      },
+      "completed": [
+        "eden-prime",
+        "citadel"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "rachni-encounter",
+      "path": "docs/qa/eden-immersion-production-rachni-encounter-fixture.json",
+      "bytes": 3270,
+      "sha256": "3902a9d64993d909596868dadef0ab3655a16be93d60272af6453e951e9a75cf",
+      "origin": "Node-native completion of Eden/Citadel and earlier encounters prepares this encounter; these previous victories are not played here.",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "noveria",
+      "position": {
+        "x": -7,
+        "z": -5
+      },
+      "completed": [
+        "eden-prime",
+        "citadel"
+      ],
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "garrus",
+        "tali",
+        "wrex"
+      ],
+      "lost": [
+        "jenkins"
+      ],
+      "importedViaPublicChooser": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "outside-old-rectangle",
+      "path": "docs/qa/eden-immersion-production-outside-old-rectangle-save.json",
+      "sha256": "c3748f592fb206633b2b12ece5c2a0dede81edb49f9639ab60b6289b026e8cb8",
+      "bytes": 2554,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "7ad480a4ca1bc9b35240b91a2d7885839af80c02434f35d619847d7908c6a4c9"
+    },
+    {
+      "label": "outside-old-rectangle-restored",
+      "path": "docs/qa/eden-immersion-production-outside-old-rectangle-restored-save.json",
+      "sha256": "d9bf28d40bad3fdfd3a379d63ea37a3e7693a5109e41323964172ca3be51d9b1",
+      "bytes": 2554,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "7ad480a4ca1bc9b35240b91a2d7885839af80c02434f35d619847d7908c6a4c9"
+    },
+    {
+      "label": "patrol-precombat",
+      "path": "docs/qa/eden-immersion-production-patrol-precombat-save.json",
+      "sha256": "d544d66065037743b8292e01da4fd8434063eaf74adf0b7d8256d65746e666e4",
+      "bytes": 2554,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "db07e0e7a92ec5fd05c9d98a71419f58b1317bf25901680551a4ab1f2fe2a169"
+    },
+    {
+      "label": "patrol-resumed",
+      "path": "docs/qa/eden-immersion-production-patrol-resumed-save.json",
+      "sha256": "c5e56931ecda961885acb1d92108b09d7c70025a5d31c64d6534d8807acd6320",
+      "bytes": 2554,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "zone": "eden-prime",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "db07e0e7a92ec5fd05c9d98a71419f58b1317bf25901680551a4ab1f2fe2a169"
+    },
+    {
+      "label": "krogan-precombat",
+      "path": "docs/qa/eden-immersion-production-krogan-precombat-save.json",
+      "sha256": "74a4d522e67700a5fb4009364ab3c394afb2d9a6336547ed32ee811bc8ddde98",
+      "bytes": 3306,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "therum",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "e29adf583c174fc9cd0b6efedf12b7cc90f010434f980e36c46cd7ed63cf43e4"
+    },
+    {
+      "label": "krogan-resumed",
+      "path": "docs/qa/eden-immersion-production-krogan-resumed-save.json",
+      "sha256": "fdb2ca6387c03bab35027b48b4268e0fef6c0b7840080cf361ce78d667c0f2a3",
+      "bytes": 3307,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "therum",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "e29adf583c174fc9cd0b6efedf12b7cc90f010434f980e36c46cd7ed63cf43e4"
+    },
+    {
+      "label": "rachni-precombat",
+      "path": "docs/qa/eden-immersion-production-rachni-precombat-save.json",
+      "sha256": "dc988313162656f3c336d689725144ab2ac99ce99a71675e797f4ddd98c5eabe",
+      "bytes": 3288,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "noveria",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "ff03884c0e9734a77ead7d0f02d8ce113d77c2c14e3f45601b9e075386bae088"
+    },
+    {
+      "label": "rachni-resumed",
+      "path": "docs/qa/eden-immersion-production-rachni-resumed-save.json",
+      "sha256": "3b59d72c16ed9d1b38b4415a3b760a53a15a68e225e8859f1b097fdf1975adae",
+      "bytes": 3288,
+      "publicSaveBeforeExport": true,
+      "source": "Actual Sauvegarder and Exporter buttons, then Chromium download",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "zone": "noveria",
+      "inventorySha256": "7534da6cf9f3b0e2851b460b4bad43d4e2b2e48af395dfb44bc6c7cc6c5fdbbd",
+      "stableStateSha256": "ff03884c0e9734a77ead7d0f02d8ce113d77c2c14e3f45601b9e075386bae088"
+    }
+  ],
+  "walks": [
+    {
+      "label": "landing-main-1",
+      "before": {
+        "x": -20.000000000000007,
+        "z": 44
+      },
+      "target": {
+        "x": -21,
+        "z": 35
+      },
+      "after": {
+        "x": -21.154849977044698,
+        "z": 35.29256176754589
+      },
+      "samples": [
+        {
+          "x": -20.000000000000007,
+          "z": 44,
+          "distance": 9.055385138137417
+        },
+        {
+          "x": -20.000000000000007,
+          "z": 44,
+          "distance": 9.055385138137417
+        },
+        {
+          "x": -20.000000000000007,
+          "z": 44,
+          "distance": 9.055385138137417
+        },
+        {
+          "x": -20.000000000000007,
+          "z": 44,
+          "distance": 9.055385138137417
+        },
+        {
+          "x": -20.000000000000007,
+          "z": 44,
+          "distance": 9.055385138137417
+        },
+        {
+          "x": -20.000000000000007,
+          "z": 44,
+          "distance": 9.055385138137417
+        },
+        {
+          "x": -19.942173150787667,
+          "z": 43.27716438484592,
+          "distance": 8.344486077445165
+        },
+        {
+          "x": -19.942173150787667,
+          "z": 43.27716438484592,
+          "distance": 8.344486077445165
+        },
+        {
+          "x": -19.942173150787667,
+          "z": 43.27716438484592,
+          "distance": 8.344486077445165
+        },
+        {
+          "x": -19.942173150787667,
+          "z": 43.27716438484592,
+          "distance": 8.344486077445165
+        },
+        {
+          "x": -19.942173150787667,
+          "z": 43.27716438484592,
+          "distance": 8.344486077445165
+        },
+        {
+          "x": -19.942173150787667,
+          "z": 43.27716438484592,
+          "distance": 8.344486077445165
+        },
+        {
+          "x": -19.872794807401554,
+          "z": 42.409935092519476,
+          "distance": 7.495180426218739
+        },
+        {
+          "x": -19.872794807401554,
+          "z": 42.409935092519476,
+          "distance": 7.495180426218739
+        },
+        {
+          "x": -19.872794807401554,
+          "z": 42.409935092519476,
+          "distance": 7.495180426218739
+        },
+        {
+          "x": -19.872794807401554,
+          "z": 42.409935092519476,
+          "distance": 7.495180426218739
+        },
+        {
+          "x": -19.872794807401554,
+          "z": 42.409935092519476,
+          "distance": 7.495180426218739
+        },
+        {
+          "x": -19.872794807401554,
+          "z": 42.409935092519476,
+          "distance": 7.495180426218739
+        },
+        {
+          "x": -19.803416464015427,
+          "z": 41.54270580019303,
+          "distance": 6.651226303958459
+        },
+        {
+          "x": -19.803416464015427,
+          "z": 41.54270580019303,
+          "distance": 6.651226303958459
+        },
+        {
+          "x": -19.803416464015427,
+          "z": 41.54270580019303,
+          "distance": 6.651226303958459
+        },
+        {
+          "x": -19.803416464015427,
+          "z": 41.54270580019303,
+          "distance": 6.651226303958459
+        },
+        {
+          "x": -19.803416464015427,
+          "z": 41.54270580019303,
+          "distance": 6.651226303958459
+        },
+        {
+          "x": -19.803416464015427,
+          "z": 41.54270580019303,
+          "distance": 6.651226303958459
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.7340381206293,
+          "z": 40.67547650786659,
+          "distance": 5.814954262190319
+        },
+        {
+          "x": -19.664659777243187,
+          "z": 39.80824721554015,
+          "distance": 4.990227930291542
+        },
+        {
+          "x": -19.664659777243187,
+          "z": 39.80824721554015,
+          "distance": 4.990227930291542
+        },
+        {
+          "x": -19.664659777243187,
+          "z": 39.80824721554015,
+          "distance": 4.990227930291542
+        },
+        {
+          "x": -19.601109214701502,
+          "z": 39.01386518376913,
+          "distance": 4.25064808501798
+        },
+        {
+          "x": -19.601109214701502,
+          "z": 39.01386518376913,
+          "distance": 4.25064808501798
+        },
+        {
+          "x": -19.601109214701502,
+          "z": 39.01386518376913,
+          "distance": 4.25064808501798
+        },
+        {
+          "x": -19.601109214701502,
+          "z": 39.01386518376913,
+          "distance": 4.25064808501798
+        },
+        {
+          "x": -19.601109214701502,
+          "z": 39.01386518376913,
+          "distance": 4.25064808501798
+        },
+        {
+          "x": -19.601109214701502,
+          "z": 39.01386518376913,
+          "distance": 4.25064808501798
+        },
+        {
+          "x": -20.16527503107332,
+          "z": 38.35158357324568,
+          "distance": 3.453965579185743
+        },
+        {
+          "x": -20.16527503107332,
+          "z": 38.35158357324568,
+          "distance": 3.453965579185743
+        },
+        {
+          "x": -20.16527503107332,
+          "z": 38.35158357324568,
+          "distance": 3.453965579185743
+        },
+        {
+          "x": -20.16527503107332,
+          "z": 38.35158357324568,
+          "distance": 3.453965579185743
+        },
+        {
+          "x": -20.16527503107332,
+          "z": 38.35158357324568,
+          "distance": 3.453965579185743
+        },
+        {
+          "x": -20.095896687687194,
+          "z": 37.484354280919234,
+          "distance": 2.6437509323793553
+        },
+        {
+          "x": -20.095896687687194,
+          "z": 37.484354280919234,
+          "distance": 2.6437509323793553
+        },
+        {
+          "x": -20.095896687687194,
+          "z": 37.484354280919234,
+          "distance": 2.6437509323793553
+        },
+        {
+          "x": -20.095896687687194,
+          "z": 37.484354280919234,
+          "distance": 2.6437509323793553
+        },
+        {
+          "x": -20.095896687687194,
+          "z": 37.484354280919234,
+          "distance": 2.6437509323793553
+        },
+        {
+          "x": -20.095896687687194,
+          "z": 37.484354280919234,
+          "distance": 2.6437509323793553
+        },
+        {
+          "x": -20.660062504059006,
+          "z": 36.822072670395784,
+          "distance": 1.853511887566372
+        },
+        {
+          "x": -20.660062504059006,
+          "z": 36.822072670395784,
+          "distance": 1.853511887566372
+        },
+        {
+          "x": -20.660062504059006,
+          "z": 36.822072670395784,
+          "distance": 1.853511887566372
+        },
+        {
+          "x": -20.660062504059006,
+          "z": 36.822072670395784,
+          "distance": 1.853511887566372
+        },
+        {
+          "x": -20.660062504059006,
+          "z": 36.822072670395784,
+          "distance": 1.853511887566372
+        },
+        {
+          "x": -20.660062504059006,
+          "z": 36.822072670395784,
+          "distance": 1.853511887566372
+        },
+        {
+          "x": -20.590684160672893,
+          "z": 35.954843378069356,
+          "distance": 1.0388769575685817
+        },
+        {
+          "x": -20.590684160672893,
+          "z": 35.954843378069356,
+          "distance": 1.0388769575685817
+        },
+        {
+          "x": -20.590684160672893,
+          "z": 35.954843378069356,
+          "distance": 1.0388769575685817
+        },
+        {
+          "x": -20.590684160672893,
+          "z": 35.954843378069356,
+          "distance": 1.0388769575685817
+        },
+        {
+          "x": -20.590684160672893,
+          "z": 35.954843378069356,
+          "distance": 1.0388769575685817
+        },
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 0.33101495920927715
+        }
+      ],
+      "method": "Actual public keyboard events, natural application clock; coordinates observed only from the visible radar SVG. No actor/world setter or time stepping."
+    },
+    {
+      "label": "landing-main-2",
+      "before": {
+        "x": -21.154849977044698,
+        "z": 35.29256176754589
+      },
+      "target": {
+        "x": -25,
+        "z": 27
+      },
+      "after": {
+        "x": -24.849422291057408,
+        "z": 27.478092663664455
+      },
+      "samples": [
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 9.140665149079522
+        },
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 9.140665149079522
+        },
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 9.140665149079522
+        },
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 9.140665149079522
+        },
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 9.140665149079522
+        },
+        {
+          "x": -21.154849977044698,
+          "z": 35.29256176754589,
+          "distance": 9.140665149079522
+        },
+        {
+          "x": -21.719015793416517,
+          "z": 34.63028015702244,
+          "distance": 8.305783084002414
+        },
+        {
+          "x": -21.719015793416517,
+          "z": 34.63028015702244,
+          "distance": 8.305783084002414
+        },
+        {
+          "x": -21.719015793416517,
+          "z": 34.63028015702244,
+          "distance": 8.305783084002414
+        },
+        {
+          "x": -21.719015793416517,
+          "z": 34.63028015702244,
+          "distance": 8.305783084002414
+        },
+        {
+          "x": -21.719015793416517,
+          "z": 34.63028015702244,
+          "distance": 8.305783084002414
+        },
+        {
+          "x": -22.18896591845425,
+          "z": 34.07859957545638,
+          "distance": 7.616330123968038
+        },
+        {
+          "x": -22.18896591845425,
+          "z": 34.07859957545638,
+          "distance": 7.616330123968038
+        },
+        {
+          "x": -22.18896591845425,
+          "z": 34.07859957545638,
+          "distance": 7.616330123968038
+        },
+        {
+          "x": -22.18896591845425,
+          "z": 34.07859957545638,
+          "distance": 7.616330123968038
+        },
+        {
+          "x": -22.18896591845425,
+          "z": 34.07859957545638,
+          "distance": 7.616330123968038
+        },
+        {
+          "x": -22.753131734826066,
+          "z": 33.41631796493293,
+          "distance": 6.79834930171779
+        },
+        {
+          "x": -22.753131734826066,
+          "z": 33.41631796493293,
+          "distance": 6.79834930171779
+        },
+        {
+          "x": -22.753131734826066,
+          "z": 33.41631796493293,
+          "distance": 6.79834930171779
+        },
+        {
+          "x": -22.753131734826066,
+          "z": 33.41631796493293,
+          "distance": 6.79834930171779
+        },
+        {
+          "x": -22.753131734826066,
+          "z": 33.41631796493293,
+          "distance": 6.79834930171779
+        },
+        {
+          "x": -23.31729755119788,
+          "z": 32.75403635440948,
+          "distance": 5.995033102416581
+        },
+        {
+          "x": -23.31729755119788,
+          "z": 32.75403635440948,
+          "distance": 5.995033102416581
+        },
+        {
+          "x": -23.31729755119788,
+          "z": 32.75403635440948,
+          "distance": 5.995033102416581
+        },
+        {
+          "x": -23.31729755119788,
+          "z": 32.75403635440948,
+          "distance": 5.995033102416581
+        },
+        {
+          "x": -23.31729755119788,
+          "z": 32.75403635440948,
+          "distance": 5.995033102416581
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.24795389698345,
+          "z": 31.887240676729206,
+          "distance": 5.191799974900038
+        },
+        {
+          "x": -23.812119713355266,
+          "z": 31.22495906620577,
+          "distance": 4.38877416672509
+        },
+        {
+          "x": -23.812119713355266,
+          "z": 31.22495906620577,
+          "distance": 4.38877416672509
+        },
+        {
+          "x": -23.812119713355266,
+          "z": 31.22495906620577,
+          "distance": 4.38877416672509
+        },
+        {
+          "x": -23.812119713355266,
+          "z": 31.22495906620577,
+          "distance": 4.38877416672509
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -23.742776059140837,
+          "z": 30.358163388525483,
+          "distance": 3.5857876933112474
+        },
+        {
+          "x": -24.306941875512653,
+          "z": 29.69588177800206,
+          "distance": 2.7835423698735884
+        },
+        {
+          "x": -24.306941875512653,
+          "z": 29.69588177800206,
+          "distance": 2.7835423698735884
+        },
+        {
+          "x": -24.306941875512653,
+          "z": 29.69588177800206,
+          "distance": 2.7835423698735884
+        },
+        {
+          "x": -24.306941875512653,
+          "z": 29.69588177800206,
+          "distance": 2.7835423698735884
+        },
+        {
+          "x": -24.306941875512653,
+          "z": 29.69588177800206,
+          "distance": 2.7835423698735884
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.243356623799265,
+          "z": 28.901066131584855,
+          "distance": 2.0461089011603106
+        },
+        {
+          "x": -24.80752244017108,
+          "z": 28.238784521061433,
+          "distance": 1.253648555480801
+        },
+        {
+          "x": -24.80752244017108,
+          "z": 28.238784521061433,
+          "distance": 1.253648555480801
+        },
+        {
+          "x": -24.80752244017108,
+          "z": 28.238784521061433,
+          "distance": 1.253648555480801
+        },
+        {
+          "x": -24.80752244017108,
+          "z": 28.238784521061433,
+          "distance": 1.253648555480801
+        },
+        {
+          "x": -24.80752244017108,
+          "z": 28.238784521061433,
+          "distance": 1.253648555480801
+        },
+        {
+          "x": -24.80752244017108,
+          "z": 28.238784521061433,
+          "distance": 1.253648555480801
+        },
+        {
+          "x": -24.849422291057408,
+          "z": 27.478092663664455,
+          "distance": 0.5012446922214476
+        }
+      ],
+      "method": "Actual public keyboard events, natural application clock; coordinates observed only from the visible radar SVG. No actor/world setter or time stepping."
+    },
+    {
+      "label": "landing-main-3",
+      "before": {
+        "x": -24.849422291057408,
+        "z": 27.478092663664455
+      },
+      "target": {
+        "x": -24,
+        "z": 18
+      },
+      "after": {
+        "x": -24.120914996331464,
+        "z": 18.371751479590813
+      },
+      "samples": [
+        {
+          "x": -24.849422291057408,
+          "z": 27.478092663664455,
+          "distance": 9.516078959821382
+        },
+        {
+          "x": -24.849422291057408,
+          "z": 27.478092663664455,
+          "distance": 9.516078959821382
+        },
+        {
+          "x": -24.849422291057408,
+          "z": 27.478092663664455,
+          "distance": 9.516078959821382
+        },
+        {
+          "x": -24.849422291057408,
+          "z": 27.478092663664455,
+          "distance": 9.516078959821382
+        },
+        {
+          "x": -24.79738853351782,
+          "z": 26.827670694419638,
+          "distance": 8.863610909922716
+        },
+        {
+          "x": -24.79738853351782,
+          "z": 26.827670694419638,
+          "distance": 8.863610909922716
+        },
+        {
+          "x": -24.79738853351782,
+          "z": 26.827670694419638,
+          "distance": 8.863610909922716
+        },
+        {
+          "x": -24.79738853351782,
+          "z": 26.827670694419638,
+          "distance": 8.863610909922716
+        },
+        {
+          "x": -24.79738853351782,
+          "z": 26.827670694419638,
+          "distance": 8.863610909922716
+        },
+        {
+          "x": -24.79738853351782,
+          "z": 26.827670694419638,
+          "distance": 8.863610909922716
+        },
+        {
+          "x": -24.728010190131695,
+          "z": 25.96044140209321,
+          "distance": 7.993661623630017
+        },
+        {
+          "x": -24.728010190131695,
+          "z": 25.96044140209321,
+          "distance": 7.993661623630017
+        },
+        {
+          "x": -24.728010190131695,
+          "z": 25.96044140209321,
+          "distance": 7.993661623630017
+        },
+        {
+          "x": -24.728010190131695,
+          "z": 25.96044140209321,
+          "distance": 7.993661623630017
+        },
+        {
+          "x": -24.728010190131695,
+          "z": 25.96044140209321,
+          "distance": 7.993661623630017
+        },
+        {
+          "x": -24.728010190131695,
+          "z": 25.96044140209321,
+          "distance": 7.993661623630017
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.65863184674558,
+          "z": 25.093212109766768,
+          "distance": 7.123724724025305
+        },
+        {
+          "x": -24.589253503359462,
+          "z": 24.225982817440354,
+          "distance": 6.253805380269195
+        },
+        {
+          "x": -24.589253503359462,
+          "z": 24.225982817440354,
+          "distance": 6.253805380269195
+        },
+        {
+          "x": -24.589253503359462,
+          "z": 24.225982817440354,
+          "distance": 6.253805380269195
+        },
+        {
+          "x": -24.589253503359462,
+          "z": 24.225982817440354,
+          "distance": 6.253805380269195
+        },
+        {
+          "x": -24.52563356247439,
+          "z": 23.43073355637702,
+          "distance": 5.456111949214287
+        },
+        {
+          "x": -24.52563356247439,
+          "z": 23.43073355637702,
+          "distance": 5.456111949214287
+        },
+        {
+          "x": -24.52563356247439,
+          "z": 23.43073355637702,
+          "distance": 5.456111949214287
+        },
+        {
+          "x": -24.52563356247439,
+          "z": 23.43073355637702,
+          "distance": 5.456111949214287
+        },
+        {
+          "x": -24.52563356247439,
+          "z": 23.43073355637702,
+          "distance": 5.456111949214287
+        },
+        {
+          "x": -24.52563356247439,
+          "z": 23.43073355637702,
+          "distance": 5.456111949214287
+        },
+        {
+          "x": -24.456255219088273,
+          "z": 22.563504264050607,
+          "distance": 4.586255552512677
+        },
+        {
+          "x": -24.456255219088273,
+          "z": 22.563504264050607,
+          "distance": 4.586255552512677
+        },
+        {
+          "x": -24.456255219088273,
+          "z": 22.563504264050607,
+          "distance": 4.586255552512677
+        },
+        {
+          "x": -24.456255219088273,
+          "z": 22.563504264050607,
+          "distance": 4.586255552512677
+        },
+        {
+          "x": -24.456255219088273,
+          "z": 22.563504264050607,
+          "distance": 4.586255552512677
+        },
+        {
+          "x": -24.456255219088273,
+          "z": 22.563504264050607,
+          "distance": 4.586255552512677
+        },
+        {
+          "x": -24.38687687570215,
+          "z": 21.696274971724165,
+          "distance": 3.7164663840195753
+        },
+        {
+          "x": -24.38687687570215,
+          "z": 21.696274971724165,
+          "distance": 3.7164663840195753
+        },
+        {
+          "x": -24.38687687570215,
+          "z": 21.696274971724165,
+          "distance": 3.7164663840195753
+        },
+        {
+          "x": -24.38687687570215,
+          "z": 21.696274971724165,
+          "distance": 3.7164663840195753
+        },
+        {
+          "x": -24.38687687570215,
+          "z": 21.696274971724165,
+          "distance": 3.7164663840195753
+        },
+        {
+          "x": -24.32329162398878,
+          "z": 20.901459325307002,
+          "distance": 2.919414956896718
+        },
+        {
+          "x": -24.32329162398878,
+          "z": 20.901459325307002,
+          "distance": 2.919414956896718
+        },
+        {
+          "x": -24.32329162398878,
+          "z": 20.901459325307002,
+          "distance": 2.919414956896718
+        },
+        {
+          "x": -24.32329162398878,
+          "z": 20.901459325307002,
+          "distance": 2.919414956896718
+        },
+        {
+          "x": -24.32329162398878,
+          "z": 20.901459325307002,
+          "distance": 2.919414956896718
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.253913280602653,
+          "z": 20.034230032980574,
+          "distance": 2.0500155563181828
+        },
+        {
+          "x": -24.18453493721653,
+          "z": 19.167000740654146,
+          "distance": 1.1815006863056972
+        },
+        {
+          "x": -24.18453493721653,
+          "z": 19.167000740654146,
+          "distance": 1.1815006863056972
+        },
+        {
+          "x": -24.18453493721653,
+          "z": 19.167000740654146,
+          "distance": 1.1815006863056972
+        },
+        {
+          "x": -24.18453493721653,
+          "z": 19.167000740654146,
+          "distance": 1.1815006863056972
+        },
+        {
+          "x": -24.18453493721653,
+          "z": 19.167000740654146,
+          "distance": 1.1815006863056972
+        },
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 0.3909214741041949
+        }
+      ],
+      "method": "Actual public keyboard events, natural application clock; coordinates observed only from the visible radar SVG. No actor/world setter or time stepping."
+    },
+    {
+      "label": "landing-main-4",
+      "before": {
+        "x": -24.120914996331464,
+        "z": 18.371751479590813
+      },
+      "target": {
+        "x": -14,
+        "z": 12
+      },
+      "after": {
+        "x": -13.93348240797107,
+        "z": 11.780965944095357
+      },
+      "samples": [
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 11.959604394821547
+        },
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 11.959604394821547
+        },
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 11.959604394821547
+        },
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 11.959604394821547
+        },
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 11.959604394821547
+        },
+        {
+          "x": -24.120914996331464,
+          "z": 18.371751479590813,
+          "distance": 11.959604394821547
+        },
+        {
+          "x": -23.458633385808024,
+          "z": 17.807585663219015,
+          "distance": 11.099270100450264
+        },
+        {
+          "x": -23.458633385808024,
+          "z": 17.807585663219015,
+          "distance": 11.099270100450264
+        },
+        {
+          "x": -23.458633385808024,
+          "z": 17.807585663219015,
+          "distance": 11.099270100450264
+        },
+        {
+          "x": -23.458633385808024,
+          "z": 17.807585663219015,
+          "distance": 11.099270100450264
+        },
+        {
+          "x": -23.458633385808024,
+          "z": 17.807585663219015,
+          "distance": 11.099270100450264
+        },
+        {
+          "x": -23.458633385808024,
+          "z": 17.807585663219015,
+          "distance": 11.099270100450264
+        },
+        {
+          "x": -22.79635177528459,
+          "z": 17.24341984684719,
+          "distance": 10.240569136764977
+        },
+        {
+          "x": -22.79635177528459,
+          "z": 17.24341984684719,
+          "distance": 10.240569136764977
+        },
+        {
+          "x": -22.79635177528459,
+          "z": 17.24341984684719,
+          "distance": 10.240569136764977
+        },
+        {
+          "x": -22.79635177528459,
+          "z": 17.24341984684719,
+          "distance": 10.240569136764977
+        },
+        {
+          "x": -22.79635177528459,
+          "z": 17.24341984684719,
+          "distance": 10.240569136764977
+        },
+        {
+          "x": -22.79635177528459,
+          "z": 17.24341984684719,
+          "distance": 10.240569136764977
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -22.189039538434628,
+          "z": 16.726079793234263,
+          "distance": 9.45495630735874
+        },
+        {
+          "x": -21.526757927911184,
+          "z": 16.16191397686245,
+          "distance": 8.600791408712158
+        },
+        {
+          "x": -21.526757927911184,
+          "z": 16.16191397686245,
+          "distance": 8.600791408712158
+        },
+        {
+          "x": -21.526757927911184,
+          "z": 16.16191397686245,
+          "distance": 8.600791408712158
+        },
+        {
+          "x": -21.526757927911184,
+          "z": 16.16191397686245,
+          "distance": 8.600791408712158
+        },
+        {
+          "x": -20.864476317387748,
+          "z": 15.597748160490625,
+          "distance": 7.750150123597021
+        },
+        {
+          "x": -20.864476317387748,
+          "z": 15.597748160490625,
+          "distance": 7.750150123597021
+        },
+        {
+          "x": -20.864476317387748,
+          "z": 15.597748160490625,
+          "distance": 7.750150123597021
+        },
+        {
+          "x": -20.864476317387748,
+          "z": 15.597748160490625,
+          "distance": 7.750150123597021
+        },
+        {
+          "x": -20.864476317387748,
+          "z": 15.597748160490625,
+          "distance": 7.750150123597021
+        },
+        {
+          "x": -20.864476317387748,
+          "z": 15.597748160490625,
+          "distance": 7.750150123597021
+        },
+        {
+          "x": -20.202194706864304,
+          "z": 15.033582344118813,
+          "distance": 6.904334944106129
+        },
+        {
+          "x": -20.202194706864304,
+          "z": 15.033582344118813,
+          "distance": 6.904334944106129
+        },
+        {
+          "x": -20.202194706864304,
+          "z": 15.033582344118813,
+          "distance": 6.904334944106129
+        },
+        {
+          "x": -20.202194706864304,
+          "z": 15.033582344118813,
+          "distance": 6.904334944106129
+        },
+        {
+          "x": -20.202194706864304,
+          "z": 15.033582344118813,
+          "distance": 6.904334944106129
+        },
+        {
+          "x": -20.202194706864304,
+          "z": 15.033582344118813,
+          "distance": 6.904334944106129
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -19.59521361081957,
+          "z": 14.516524373414029,
+          "distance": 6.135088448644196
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.932932000296134,
+          "z": 13.952358557042203,
+          "distance": 5.305235343959919
+        },
+        {
+          "x": -18.27065038977269,
+          "z": 13.388192740670391,
+          "distance": 4.490605063564998
+        },
+        {
+          "x": -18.27065038977269,
+          "z": 13.388192740670391,
+          "distance": 4.490605063564998
+        },
+        {
+          "x": -18.27065038977269,
+          "z": 13.388192740670391,
+          "distance": 4.490605063564998
+        },
+        {
+          "x": -18.27065038977269,
+          "z": 13.388192740670391,
+          "distance": 4.490605063564998
+        },
+        {
+          "x": -18.27065038977269,
+          "z": 13.388192740670391,
+          "distance": 4.490605063564998
+        },
+        {
+          "x": -17.60836877924926,
+          "z": 12.824026924298579,
+          "distance": 3.7012627060274683
+        },
+        {
+          "x": -17.60836877924926,
+          "z": 12.824026924298579,
+          "distance": 3.7012627060274683
+        },
+        {
+          "x": -17.60836877924926,
+          "z": 12.824026924298579,
+          "distance": 3.7012627060274683
+        },
+        {
+          "x": -17.60836877924926,
+          "z": 12.824026924298579,
+          "distance": 3.7012627060274683
+        },
+        {
+          "x": -17.60836877924926,
+          "z": 12.824026924298579,
+          "distance": 3.7012627060274683
+        },
+        {
+          "x": -17.60836877924926,
+          "z": 12.824026924298579,
+          "distance": 3.7012627060274683
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.741139486922833,
+          "z": 12.893405267684685,
+          "distance": 2.883057172359632
+        },
+        {
+          "x": -16.078857876399397,
+          "z": 12.329239451312873,
+          "distance": 2.104768083796552
+        },
+        {
+          "x": -16.078857876399397,
+          "z": 12.329239451312873,
+          "distance": 2.104768083796552
+        },
+        {
+          "x": -16.078857876399397,
+          "z": 12.329239451312873,
+          "distance": 2.104768083796552
+        },
+        {
+          "x": -16.078857876399397,
+          "z": 12.329239451312873,
+          "distance": 2.104768083796552
+        },
+        {
+          "x": -15.318599633648603,
+          "z": 12.287304911254836,
+          "distance": 1.349536626360833
+        },
+        {
+          "x": -15.318599633648603,
+          "z": 12.287304911254836,
+          "distance": 1.349536626360833
+        },
+        {
+          "x": -15.318599633648603,
+          "z": 12.287304911254836,
+          "distance": 1.349536626360833
+        },
+        {
+          "x": -15.318599633648603,
+          "z": 12.287304911254836,
+          "distance": 1.349536626360833
+        },
+        {
+          "x": -15.318599633648603,
+          "z": 12.287304911254836,
+          "distance": 1.349536626360833
+        },
+        {
+          "x": -15.318599633648603,
+          "z": 12.287304911254836,
+          "distance": 1.349536626360833
+        },
+        {
+          "x": -14.595764018494506,
+          "z": 12.345131760467169,
+          "distance": 0.6885133969763331
+        },
+        {
+          "x": -14.595764018494506,
+          "z": 12.345131760467169,
+          "distance": 0.6885133969763331
+        },
+        {
+          "x": -14.595764018494506,
+          "z": 12.345131760467169,
+          "distance": 0.6885133969763331
+        },
+        {
+          "x": -14.595764018494506,
+          "z": 12.345131760467169,
+          "distance": 0.6885133969763331
+        },
+        {
+          "x": -14.595764018494506,
+          "z": 12.345131760467169,
+          "distance": 0.6885133969763331
+        },
+        {
+          "x": -14.595764018494506,
+          "z": 12.345131760467169,
+          "distance": 0.6885133969763331
+        },
+        {
+          "x": -13.93348240797107,
+          "z": 11.780965944095357,
+          "distance": 0.22891157178125704
+        }
+      ],
+      "method": "Actual public keyboard events, natural application clock; coordinates observed only from the visible radar SVG. No actor/world setter or time stepping."
+    }
+  ],
+  "nativeOrders": [
+    {
+      "label": "eden-patrol",
+      "actorId": "kaidan",
+      "targetId": "geth-0",
+      "targetName": "Soldat geth",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "actionId": "shoot",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat geth subit 22 dégâts (22 sur les boucliers).",
+      "method": "Public native command and target buttons with natural ATB readiness; no clock, pose, ammunition or actor setter."
+    },
+    {
+      "label": "krogan",
+      "actorId": "kaidan",
+      "targetId": "krogan-0",
+      "targetName": "Mercenaire krogan",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "actionId": "shoot",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nMercenaire krogan subit 23 dégâts (23 sur les boucliers).",
+      "method": "Public native command and target buttons with natural ATB readiness; no clock, pose, ammunition or actor setter."
+    },
+    {
+      "label": "rachni",
+      "actorId": "kaidan",
+      "targetId": "rachni-0",
+      "targetName": "Soldat rachni",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "actionId": "shoot",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat rachni subit 18 dégâts.",
+      "method": "Public native command and target buttons with natural ATB readiness; no clock, pose, ammunition or actor setter."
+    }
+  ],
+  "encounters": [
+    {
+      "zone": "therum",
+      "key": "krogan",
+      "enemyIds": [
+        "krogan-0",
+        "geth-1",
+        "sniper-2"
+      ],
+      "actualNativeShot": true,
+      "exactPrecombatRestore": true,
+      "noVictoryRewardClaimed": true
+    },
+    {
+      "zone": "noveria",
+      "key": "rachni",
+      "enemyIds": [
+        "rachni-0",
+        "rachni-1",
+        "rachni-2"
+      ],
+      "actualNativeShot": true,
+      "exactPrecombatRestore": true,
+      "noVictoryRewardClaimed": true
+    }
+  ],
+  "reloads": [
+    {
+      "label": "outside-old-rectangle",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "patrol-precombat",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "krogan",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    },
+    {
+      "label": "rachni",
+      "browserLaunch": 1,
+      "status": 200,
+      "method": "Actual page.reload and Continue controls; same Chromium process, no direct storage access"
+    }
+  ],
+  "canvases": [
+    {
+      "label": "landing",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 5370,
+      "glError": 0
+    },
+    {
+      "label": "eden-patrol",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 5848,
+      "glError": 0
+    },
+    {
+      "label": "quays",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 6216,
+      "glError": 0
+    },
+    {
+      "label": "beacon",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 4948,
+      "glError": 0
+    },
+    {
+      "label": "krogan",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 2826,
+      "glError": 0
+    },
+    {
+      "label": "rachni",
+      "available": true,
+      "width": 1280,
+      "height": 800,
+      "sampledOpaque": 64000,
+      "distinctSampledColors": 2565,
+      "glError": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/screenshots/eden-immersion-production-landing.png",
+      "sha256": "4723885c3774a4f25b195e02898380627b53876591b3a4b5faaf8199bdf358d8",
+      "bytes": 1395755,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-map-desktop.png",
+      "sha256": "e09b0abd76edb24226283fd0bed5af5f2045bb7d27b141623c3a09ddbd6e7915",
+      "bytes": 284432,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-map-mobile.png",
+      "sha256": "6f458c071dadb38b3a07b7757bf080ef986edac418746228ac9285e43fd697a5",
+      "bytes": 140381,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-patrol-arrival.png",
+      "sha256": "91fc0a38d7199487a1a22d50e0c7fb151bd9e27885995a9009a480d3205d8c21",
+      "bytes": 1456003,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-eden-patrol-native-shot.png",
+      "sha256": "2f216f8f56a23ec89236c499657502c133660a860e425af76c8503c0379ecfc5",
+      "bytes": 1105472,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-quays-public.png",
+      "sha256": "d5d501342bc39d0aa34849390773d94f4d3fdfefe587bdd1bb53a23258e23eb0",
+      "bytes": 1312452,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-beacon-public.png",
+      "sha256": "f7cf4422c87da8b32cca392d3511d2a96288761b5e7c44e837316ef584ea11df",
+      "bytes": 1409883,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-krogan-public-battle.png",
+      "sha256": "6e27037eacd79eb4d5fd6488d824cf2deecc2c7c45ec4bd5733d191aceb38e04",
+      "bytes": 562244,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-krogan-native-shot.png",
+      "sha256": "d3e5e5ad2b5c3a5c8a2518037208f8ebd472e685f73565daeb16f0f36c36d185",
+      "bytes": 510607,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-rachni-public-battle.png",
+      "sha256": "b7dcc7b707fe71819fd67e719d4f382b6c86845532d7d9a62cb4245f56cd80d7",
+      "bytes": 564343,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-rachni-native-shot.png",
+      "sha256": "a8c565fb51fc7016c6b6172c881e7a739fd9a9147486e76cc31d2f65ec9f5c85",
+      "bytes": 534229,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-before-full-restart-inventory.png",
+      "sha256": "063300c3df2d393308458651decce7d842ae7ccb05e17521dc0b9b8327badce6",
+      "bytes": 256156,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-before-full-restart-journal.png",
+      "sha256": "6fcef793ad1ebb62450d316bb950778538ce8e351cb440a8a776c9af9e08b394",
+      "bytes": 316632,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-after-full-restart-inventory.png",
+      "sha256": "521addf89b86a8c30893dea774763459213453163cfffe98c9b41ebbd8fc8efe",
+      "bytes": 252968,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    },
+    {
+      "path": "docs/screenshots/eden-immersion-production-after-full-restart-journal.png",
+      "sha256": "456488881855dca8bfc9a28f79dcf89939d6efadc7cf181d5862b1169acb0622",
+      "bytes": 316143,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production browser viewport; no renderer object or pose setter used"
+    }
+  ],
+  "activations": [
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "map",
+      "focused": true,
+      "width": 79.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "track",
+      "id": "eden-prime:cache",
+      "focused": true,
+      "width": 456,
+      "height": 40,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "map",
+      "focused": true,
+      "width": 79.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 155.734375,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "geth-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 171.734375,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "krogan-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "quit",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "import",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "interact",
+      "focused": true,
+      "width": 210.4375,
+      "height": 50,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "width": 363.625,
+      "height": 56,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "width": 142.90625,
+      "height": 35,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "battle-target",
+      "id": "rachni-0",
+      "focused": true,
+      "width": 363.640625,
+      "height": 48,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "save",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "export",
+      "focused": true,
+      "width": 404,
+      "height": 42,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "equipment",
+      "focused": true,
+      "width": 108.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "eq-tab",
+      "id": "loadout",
+      "focused": true,
+      "width": 75.140625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "eq-tab",
+      "id": "inventory",
+      "focused": true,
+      "width": 84.015625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "journal",
+      "focused": true,
+      "width": 86.59375,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 1,
+      "action": "pause",
+      "focused": true,
+      "width": 83.140625,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "continue",
+      "focused": true,
+      "width": 265,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "equipment",
+      "focused": true,
+      "width": 108.75,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "eq-tab",
+      "id": "loadout",
+      "focused": true,
+      "width": 75.140625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "eq-tab",
+      "id": "inventory",
+      "focused": true,
+      "width": 84.015625,
+      "height": 44,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "journal",
+      "focused": true,
+      "width": 86.59375,
+      "height": 34,
+      "visible": true
+    },
+    {
+      "launch": 2,
+      "action": "close",
+      "focused": true,
+      "width": 34,
+      "height": 34,
+      "visible": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Public map and radar show the actual five-sector ground/three routes, preserve tracking and fit a390px viewport",
+      "passed": true
+    },
+    {
+      "name": "Natural keyboard travel crosses the old rectangle, page reload preserves its exact export and a real patrol shot resumes its pre-combat save",
+      "passed": true
+    },
+    {
+      "name": "Both generated enemy families appear in real campaign encounters and retain exact pre-combat saves; a full Chromium restart preserves public party/loadout/inventory/journal",
+      "passed": true
+    }
+  ],
+  "pageAtlasRequests": [
+    {
+      "launch": 1,
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 200,
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 200,
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/eden-ground-grass.png",
+      "status": 200,
+      "bytes": 4741123,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/eden-ground-dirt.png",
+      "status": 200,
+      "bytes": 4408187,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d",
+      "matchesDist": true
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/eden-ground-grass.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/eden-ground-dirt.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/eden-ground-grass.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/eden-ground-dirt.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 1,
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 304,
+      "cacheRevalidation": true,
+      "bodyNotRead": true,
+      "note": "A conditional or redirected response supplies no new body proof; HTTP200 responses are hashed separately."
+    },
+    {
+      "launch": 2,
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 200,
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+      "matchesDist": true
+    },
+    {
+      "launch": 2,
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 200,
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+      "matchesDist": true
+    }
+  ],
+  "responseEvidenceErrors": [],
+  "sourceRequests": [],
+  "errors": [],
+  "failedRequests": [],
+  "browserEvents": [
+    {
+      "launch": 1,
+      "type": "page-close",
+      "intentional": true
+    },
+    {
+      "launch": 1,
+      "type": "context-close",
+      "intentional": true
+    },
+    {
+      "launch": 1,
+      "type": "browser-disconnected",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "page-close",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "context-close",
+      "intentional": true
+    },
+    {
+      "launch": 2,
+      "type": "browser-disconnected",
+      "intentional": true
+    }
+  ],
+  "consoleObservations": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "resourceWarnings": [],
+  "limitations": [
+    "The expanded layout is an authored adaptation, not surveyed original ME1 geometry. Named landmarks do not constitute nine complete original sublevels.",
+    "Only the initial main-route section is walked through public native keyboard input here. The isolated navigation proof traverses the full seven-leg route through actual WorldView updates and declares its accelerated rendering cadence.",
+    "Freight, beacon and non-Eden encounters use explicit Node-prepared save fixtures, imported through the real chooser. Their prior story progression is not presented as played in Chromium.",
+    "The two new enemy families retain their old mechanical profiles; eight fixed pose drawings do not recreate original movement cycles or equipment geometry.",
+    "Final full-browser restart compares public UI without a new Blob download, following the independently documented Chromium154 post-restart download failure.",
+    "Console messages keep their original locations; the historical missing favicon is a separate browser-icon reserve."
+  ],
+  "mobileMap": {
+    "viewport": 390,
+    "document": 390,
+    "board": 328.59375
+  },
+  "extendedPositionRestore": {
+    "before": {
+      "x": -24.849422291057408,
+      "z": 27.478092663664455
+    },
+    "after": {
+      "x": -24.849422291057408,
+      "z": 27.478092663664455
+    },
+    "exact": true,
+    "oldBoundsExceeded": true
+  },
+  "edenPrecombatRestore": true,
+  "fullRestart": {
+    "exactPublicUI": true,
+    "noPostRestartDownloadAttempted": true,
+    "before": {
+      "party": "QA Eden immersive\nSoldat\nKaidan Alenko\nBiotique / technologie\nAshley Williams\nSoldate",
+      "loadout": "950 CRÉDITS · 8 MÉDI-GELS\nÉquipement du commando\n×\nQA Eden immersive\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nCOMMANDEMENT\nQA Eden immersive\n\nPréparez un rôle précis pour chaque membre du commando.\n\n278\nSANTÉ\n156\nBOUCLIER\n32\nPUISSANCE\n10\nDÉFENSE\nChaleur des tirs\n× 1.00\nRefroidissement\n+0/s\nRésistance aux contrôles\n0 %\nPuissance biotique\n× 1.00\nPuissance technologique\n× 1.00\nARMES MAÎTRISÉES\nPistolet, Fusil d’assaut, Fusil à pompe, Fusil de précision\nARMURES AUTORISÉES\nLégère, Intermédiaire\nOUTILS SPÉCIALISÉS\nAucun\nFormation d’armure\n\n2 points disponibles\n\nLourde\n\nCoût : 1 point.\n\nAPPRENDRE · 1 POINT\nARME\nLancer I\n\nStatistiques de base\n\nRETIRER\nARMURE\nOnyx I · humains / Asari\n\nStatistiques de base\n\nRETIRER\nMODULE D’ARME\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMUNITIONS\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARME 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nOMNITECH\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nAMPLIFICATEUR BIOTIQUE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nCHOISIR DANS L’INVENTAIRE →\n\nLes changements se répercutent sur le prochain combat. Les calibrations permanentes restent attachées au personnage.\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "inventory": "950 CRÉDITS · 8 MÉDI-GELS\nÉquipement du commando\n×\nQA Eden immersive\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nTout\nArmes\nArmures\nModules d’arme\nMunitions\nModules d’armure\nOutils\n\nUn exemplaire ne peut équiper qu’une personne. Retirez les objets pour les transférer ou les vendre.\n\nPISTOLET\nNIV. 1\nKessler I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 28 CR\nFUSIL D’ASSAUT\nNIV. 1\nLancer I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA Eden immersive\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 34 CR\nFUSIL À POMPE\nNIV. 1\nStorm I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 40 CR\nFUSIL DE PRÉCISION\nNIV. 1\nAvenger I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 46 CR\nARMURE LÉGÈRE\nNIV. 1\nOnyx I · humains / Asari\n\nAldrin Labs\n\nStatistiques de base\n\nLégère pour humains / Asari. Protection de départ, sans bonus supplémentaire.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA Eden immersive\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 32 CR\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "journal": "MISSIONS · ASSIGNATIONS · RAPPORTS\nJournal de mission\n×\nMissions\nAssignations\nRapports\nCAMPAGNE\n✓ Eden Prime\n\nMission accomplie.\n\n✓ Citadelle\n\nMission accomplie.\n\nTherum\n\nFranchir les installations et libérer Liara.\n\nFeros\n\nProtéger la colonie, atteindre ExoGeni et neutraliser le Thorien.\n\nNoveria\n\nAccéder aux laboratoires, affronter Bénézia et décider du sort de la reine rachni.\n\nConciliation 0 · Pragmatisme 0\nNiveau 3 · 610 EXP"
+    },
+    "after": {
+      "party": "QA Eden immersive\nSoldat\nKaidan Alenko\nBiotique / technologie\nAshley Williams\nSoldate",
+      "loadout": "950 CRÉDITS · 8 MÉDI-GELS\nÉquipement du commando\n×\nQA Eden immersive\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nCOMMANDEMENT\nQA Eden immersive\n\nPréparez un rôle précis pour chaque membre du commando.\n\n278\nSANTÉ\n156\nBOUCLIER\n32\nPUISSANCE\n10\nDÉFENSE\nChaleur des tirs\n× 1.00\nRefroidissement\n+0/s\nRésistance aux contrôles\n0 %\nPuissance biotique\n× 1.00\nPuissance technologique\n× 1.00\nARMES MAÎTRISÉES\nPistolet, Fusil d’assaut, Fusil à pompe, Fusil de précision\nARMURES AUTORISÉES\nLégère, Intermédiaire\nOUTILS SPÉCIALISÉS\nAucun\nFormation d’armure\n\n2 points disponibles\n\nLourde\n\nCoût : 1 point.\n\nAPPRENDRE · 1 POINT\nARME\nLancer I\n\nStatistiques de base\n\nRETIRER\nARMURE\nOnyx I · humains / Asari\n\nStatistiques de base\n\nRETIRER\nMODULE D’ARME\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMUNITIONS\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARME 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nMODULE D’ARMURE 2\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nOMNITECH\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nAMPLIFICATEUR BIOTIQUE\nAucun module\n\nAucun bonus supplémentaire.\n\n—\nCHOISIR DANS L’INVENTAIRE →\n\nLes changements se répercutent sur le prochain combat. Les calibrations permanentes restent attachées au personnage.\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "inventory": "950 CRÉDITS · 8 MÉDI-GELS\nÉquipement du commando\n×\nQA Eden immersive\nKaidan Alenko\nAshley Williams\nGarrus Vakarian\nTali’Zorah nar Rayya\nUrdnot Wrex\nDotation\nInventaire\nArmurerie\nCalibrations\n5/150 objets\nTout\nArmes\nArmures\nModules d’arme\nMunitions\nModules d’armure\nOutils\n\nUn exemplaire ne peut équiper qu’une personne. Retirez les objets pour les transférer ou les vendre.\n\nPISTOLET\nNIV. 1\nKessler I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 28 CR\nFUSIL D’ASSAUT\nNIV. 1\nLancer I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA Eden immersive\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 34 CR\nFUSIL À POMPE\nNIV. 1\nStorm I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 40 CR\nFUSIL DE PRÉCISION\nNIV. 1\nAvenger I\n\nHahne-Kedar\n\nStatistiques de base\n\nDotation de départ : aucune modification des statistiques de base.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 1 libre\n\nÉQUIPER\nVENDRE · 46 CR\nARMURE LÉGÈRE\nNIV. 1\nOnyx I · humains / Asari\n\nAldrin Labs\n\nStatistiques de base\n\nLégère pour humains / Asari. Protection de départ, sans bonus supplémentaire.\n\nCompatible avec QA Eden immersive.\n\nAucun changement de statistiques.\n\n1 possédé · 0 libre\nÉquipé : QA Eden immersive\n\nDÉJÀ ÉQUIPÉ\nVENDRE · 32 CR\n\nNoms de matériel ME1 · valeurs et seuils adaptés au combat ATB.\n\nAtelier de Shepard\n\nPersonnage, revêtement d’armure et configuration des armes.\n\nPERSONNALISER SHEPARD",
+      "journal": "MISSIONS · ASSIGNATIONS · RAPPORTS\nJournal de mission\n×\nMissions\nAssignations\nRapports\nCAMPAGNE\n✓ Eden Prime\n\nMission accomplie.\n\n✓ Citadelle\n\nMission accomplie.\n\nTherum\n\nFranchir les installations et libérer Liara.\n\nFeros\n\nProtéger la colonie, atteindre ExoGeni et neutraliser le Thorien.\n\nNoveria\n\nAccéder aux laboratoires, affronter Bénézia et décider du sort de la reine rachni.\n\nConciliation 0 · Pragmatisme 0\nNiveau 3 · 610 EXP"
+    }
+  },
+  "finishedAt": "2026-11-02T06:26:04.329Z",
+  "elapsedSeconds": 302.83
+}

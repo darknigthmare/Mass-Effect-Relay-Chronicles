@@ -132,6 +132,14 @@ Quatre familles existantes d’ennemis reçoivent 16 poses fixes et Joker deux d
 
 Deux modèles existants — Suppressor lié à Citadel et Raider lié à Leviathan — rejoignent le seul atelier ME3 Legendary, sans modifier leurs ressources ATB ni les formations des porteurs. Les sept autres candidats restent fermés faute d’association documentaire suffisante. Le total courant est de 107 équipements fonctionnels, dont 79 armes. Les [preuves du lot](qa/me1-enemy-poses-report.json) précisent les vérifications et les limites.
 
+## Eden Prime étendue et huit poses ennemies — 2 novembre 2026
+
+La carte d’Eden utilise un plan propre à cinq secteurs, trois chemins et neuf repères de production, avec les sept mêmes identifiants de progression. L’enveloppe fait 110 × 150 unités ; le masque de sol avant collisions occupe environ 6 134 unités². Ces valeurs sont des métriques de scène, pas des mètres ou dimensions recopiées du jeu original. Les autres zones gardent leur découpage antérieur. Les conditions narratives, récompenses et attaques ne sont pas réécrites par le plan.
+
+Les contrôles distinguent navigation native en fixture déclarée, commandes publiques, caméra, carte/radar, sauvegardes et reprise. Les anciennes positions hors du nouveau sol ou dans un obstacle sont replacées sur un point proche libre, sans changer le schéma de sauvegarde. La géographie reste une adaptation : trajet en train, survivants et charges chronométrées ne sont pas simulés par les repères décoratifs.
+
+Deux atlas fournissent les huit poses fixes krogan/rachni et deux textures habillent le sol 3D. Les corps, tenues, autres directions et cycles originaux restent non certifiés. Les huit fiches de suivi touchées et les métadonnées de couverture sont mises à jour séparément ; cinq fiches deviennent Prototype, aucune ne devient Intégrée ou Validée. Les [preuves du lot](qa/eden-immersion-report.json) précisent les mesures, sources et réserves visuelles restantes.
+
 ## État du contenu restant
 
 Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les variantes visuelles d’équipement, les animations et les campagnes ultérieures intégrales restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
