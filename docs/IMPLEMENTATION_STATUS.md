@@ -291,6 +291,8 @@ La reprise sur `533efaa` remplace le tableau rectangulaire partagé d’Eden par
 
 Deux familles ennemies existantes reçoivent huit poses fixes et deux textures de sol sont produites : **quatre PNG**, portant le total à 31 PNG et 56 poses de combat. Les cinq promotions Prototype du suivi restent appuyées par leurs parcours distincts. Les [preuves courantes](qa/eden-immersion-report.json) relient l’état avant, les corrections, le rendu final, la navigation, les commandes publiques, les sauvegardes et l’Excel. Les autres zones et les ateliers à 107 équipements/79 armes restent conservés.
 
+Le [correctif de lisibilité Novéria](qa/eden-occlusion-report.json), séparé de ce premier lot, retire temporairement les poutres suspendues de la vue de combat. Il conserve leur géométrie en exploration et ne modifie ni les collisions, ni les attaques, ni les données de progression. Les preuves du premier lot restent archivées telles quelles, avec leur réserve initiale ; le supplément contrôle la nouvelle arène et le défilement des cartes desktop/mobile.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.

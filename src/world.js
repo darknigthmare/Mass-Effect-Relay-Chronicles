@@ -777,8 +777,12 @@ export class WorldView {
     this._box(8.4, 3.5, .08, this._material(0x93abb7, .2, .6, 0x365570), 0, 2.2, -22.2);
     this._sign('PORT HANSHAN · RECHERCHE', 0, 6.1, -21.9, 9);
     for (const z of [-11, 10]) {
-      this._box(27, .8, 1.8, steel, 0, 10, z);
-      this._box(11, .06, .2, this._material(0xc6e8f1, .5, .1, 0x7aabbc), 0, 9.55, z);
+      for (const span of [this._box(27, .8, 1.8, steel, 0, 10, z),
+        this._box(11, .06, .2, this._material(0xc6e8f1, .5, .1, 0x7aabbc), 0, 9.55, z)]) {
+        // As on Feros, overhead spans yield to the tactical combat view.
+        span.userData.keep = true; span.userData.combatOccluder = true;
+        span.visible = this.mode !== 'combat'; this.combatOccluders.push(span);
+      }
     }
     this._console(-10.7, 5, Math.PI / 2); this._console(9, -13, -Math.PI / 2); this._crate(8, 3, 1);
     for (const [x, z, s] of [[-9, -17, 1.8], [9, 16, 1.4], [-9, 15, 1.1], [11, -3, .8]]) this._rock(x, z, s, 0xcbd8dd, .4);

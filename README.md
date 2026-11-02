@@ -104,6 +104,8 @@ Eden Prime quitte le tableau partagé de 40 × 42 unités pour un parcours propr
 
 Deux textures de sol et **huit poses fixes krogan/rachni** complètent ce lot. Le jeu totalise **56 poses clés de combat**, séparées des deux dessins assis de Joker ; les statistiques et attaques des ennemis restent celles de l’adaptation ATB. Les [références du parcours](docs/research/eden-level-layout.md), les [preuves courantes](docs/qa/eden-immersion-report.json) et le [classeur principal](docs/Mass_Effect_Relay_Chronicles_Production.xlsx) distinguent les parcours vérifiés des réserves restantes. Les neuf repères de production ne sont pas neuf sous-niveaux originaux terminés ; la géographie exacte, les cycles et les costumes 1:1 restent à compléter.
 
+Un correctif ultérieur masque les poutres suspendues de Novéria pendant le combat afin de dégager Ashley et les rachni ; elles reviennent en exploration. Les [preuves complémentaires](docs/qa/eden-occlusion-report.json) conservent séparément la première inspection et vérifient aussi l’accès par défilement au bas de la carte locale.
+
 ## Simulation indépendante : cinq lots de 40 références
 
 Dans **Chroniques → œuvre et période → Simulation**, 200 fiches d’étude permettent **145 épreuves partielles** ; 55 références restent en consultation avec leur motif de fermeture. Les cinq familles couvrent personnages/PNJ, armures/équipements, armes, vaisseaux/véhicules et ennemis. Les phases, effets et assets non reproduits restent indiqués ; ce lot ne termine pas les missions ou modèles originaux 1:1.

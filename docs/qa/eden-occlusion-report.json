@@ -1,0 +1,886 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-02T06:47:36.964Z",
+  "baselineCommit": "641fa6309d7eb04a28f981b8bcdd34210ffdd200",
+  "scope": "Four existing Noveria overhead structural/light meshes now yield to combat view and return in exploration. The existing combat-occluder mechanism handles visibility, while static merging preserves these meshes individually. Public production evidence also inspects the unchanged Eden map after real desktop/mobile scrolling.",
+  "additions": {
+    "combatOccluderMeshesRegistered": 4,
+    "newPNG": 0,
+    "newBodyPoses": 0,
+    "newEquipment": 0,
+    "newEncounterMechanics": 0,
+    "changedLayoutCoordinates": 0,
+    "changedWorkbookStatuses": 0
+  },
+  "patch": {
+    "changedMethod": "_noveria",
+    "registeredMeshes": 4,
+    "originalDimensionsRetained": true,
+    "currentWorldSha256": "5351a9d65384b71a01a5f01ba57d5efdc9834ad40457f4b3eda84cda75c2127a",
+    "baselineWorldSha256": "cbd1f70830c90865e96811e9ad90b9ba73db46286ea1af7f378df318f39873a2",
+    "exactScopedReplacementVerified": true,
+    "geometryLayoutDataPreserved": true,
+    "combatAndSaveModulesPreserved": true
+  },
+  "validation": {
+    "nodeTests": 802,
+    "addedMeaningfulTests": 1,
+    "stableSources": 216,
+    "compiledModules": 83,
+    "compiledPNG": 31,
+    "compiledJavaScriptBundles": 9,
+    "protectedBaselineFiles": 2166,
+    "publicCapturesActuallyOpened": 6,
+    "realDownloadedSavesCompared": 2,
+    "naturalATBShots": 1,
+    "publicCollectionExecutions": 3,
+    "acceptedEvidenceExecutions": 2,
+    "publicBrowserLaunches": 3,
+    "completeBrowserShutdowns": 3,
+    "desktopMobileMapBoardViews": 2,
+    "nativeMobileListBottomReached": true,
+    "newTestBuildOrBrowserRunForSummary": false
+  },
+  "previousEdenEvidence": {
+    "path": "docs/qa/eden-immersion-report.json",
+    "sha256": "508f078bc8f3ddc8ab4d81adec85fc92a4857ebb6b02af219bbebad6f04f91e5",
+    "qualification": "Byte-preserved historical evidence for the accepted Eden lot, including its inherited Noveria occlusion reserve. Its801-test and old renderer hashes remain phase-bound; current802-test and current production evidence belong to this subsequent patch.",
+    "acceptedCommit": "641fa6309d7eb04a28f981b8bcdd34210ffdd200"
+  },
+  "publicEvidence": {
+    "report": {
+      "path": "docs/qa/eden-occlusion-production-summary.json",
+      "bytes": 56288,
+      "sha256": "3e1afb91dc509c2a8651df323d29d859e6b94d390fe83a2a12a4e35a2b128f62"
+    },
+    "proofKind": "explicit-composite-public-proof",
+    "strictFullRunPassed": false,
+    "newFullRunPerformedForSummary": false,
+    "collectionExecutions": 3,
+    "acceptedEvidenceExecutions": 2,
+    "rawReports": [
+      {
+        "path": "docs/qa/eden-occlusion-production-report.json",
+        "bytes": 37763,
+        "sha256": "011b54546032c9724dcebed26cd7b2115b2dcc1e5f24f24663f6185b734bf3d5",
+        "passed": false,
+        "role": "Accepted native encounter sub-result from a globally failed map-assertion attempt"
+      },
+      {
+        "path": "docs/qa/eden-occlusion-map-production-report.json",
+        "bytes": 31473,
+        "sha256": "39ca33926db8c0a18b14f4b4a0d4609c29196e778b5fcbc3dbcedaabc42eedfc",
+        "passed": false,
+        "role": "Preserved diagnostic map failure from incorrect body clipping measurement"
+      },
+      {
+        "path": "docs/qa/eden-occlusion-map-production-final-report.json",
+        "bytes": 33781,
+        "sha256": "5d0ea35a0ba3fef01c8583a4d9e0aea8aac66908e6eb9ff7d250a76b87a86c30",
+        "passed": true,
+        "role": "Accepted positive map-only completion after correcting the driver observer"
+      }
+    ],
+    "executedDrivers": [
+      {
+        "execution": 1,
+        "rawReport": "docs/qa/eden-occlusion-production-report.json",
+        "path": "docs/qa/eden-occlusion-production-attempt1/scripts/eden-occlusion-production.mjs",
+        "bytes": 23454,
+        "sha256": "afbe30b65d539de5bfa6ca23d5bf6dedae9e3537723ee7737f4b2dacace0f344"
+      },
+      {
+        "execution": 2,
+        "rawReport": "docs/qa/eden-occlusion-map-production-report.json",
+        "path": "docs/qa/eden-occlusion-map-production-attempt1/scripts/eden-occlusion-production.mjs",
+        "bytes": 24492,
+        "sha256": "1fe7fb70b33aaf8480c0c0a41594d996622625482c13ddb52ea6facb51fee267"
+      },
+      {
+        "execution": 3,
+        "rawReport": "docs/qa/eden-occlusion-map-production-final-report.json",
+        "path": "docs/qa/eden-occlusion-map-production-final-source/scripts/eden-occlusion-production.mjs",
+        "bytes": 24804,
+        "sha256": "06c9c5879d5cf9b2ab163f63b0e0cc8e9d0339a396716e63ad4d2cbc43661d09"
+      }
+    ],
+    "collectionTool": {
+      "path": "scripts/collect-eden-occlusion-production.mjs",
+      "bytes": 8826,
+      "sha256": "94cf53fd9d259ea9cee25e88cff2f6a497d86b3c5618b1bf12a5e87a0c186942"
+    },
+    "collectorFailures": [
+      {
+        "failure": "AssertionError [ERR_ASSERTION]: map-desktop: entire map board fits the real viewport and clipping ancestors\n\nfalse !== true\n\n    at mapBoard (file:///workspace/Mass-Effect-Relay-Chronicles/scripts/eden-occlusion-production.mjs:171:10)\n    at async file:///workspace/Mass-Effect-Relay-Chronicles/scripts/eden-occlusion-production.mjs:275:23",
+        "completedEncounter": true
+      },
+      {
+        "failure": "AssertionError [ERR_ASSERTION]: map-desktop: entire map board fits the real viewport and clipping ancestors\n\nfalse !== true\n\n    at mapBoard (file:///workspace/Mass-Effect-Relay-Chronicles/scripts/eden-occlusion-production.mjs:187:10)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)\n    at async file:///workspace/Mass-Effect-Relay-Chronicles/scripts/eden-occlusion-production.mjs:292:23",
+        "completedEncounter": false
+      }
+    ],
+    "collectionArchives": [
+      {
+        "path": "docs/qa/eden-occlusion-production-attempt1/snapshot-manifest.json",
+        "sha256": "d3d10fd05e9a962c2b94c5a48ad394e99f8d61a005708cf436c9916de2bebde2",
+        "purpose": "Immutable failed first attempt: native public Noveria shot/export checks passed; desktop map visibility driver assertion failed before metrics were recorded. All original report/capture/export files remain unchanged.",
+        "files": [
+          {
+            "source": "docs/qa/eden-occlusion-production-report.json",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/qa/eden-occlusion-production-report.json",
+            "sha256": "011b54546032c9724dcebed26cd7b2115b2dcc1e5f24f24663f6185b734bf3d5"
+          },
+          {
+            "source": "docs/screenshots/eden-occlusion-production-noveria-field.png",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/screenshots/eden-occlusion-production-noveria-field.png",
+            "sha256": "1e7c6b98488c2d602bbaab210724ab4c1cafbaf297f6d0d06010647e1413a06b"
+          },
+          {
+            "source": "docs/screenshots/eden-occlusion-production-rachni-public-battle.png",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/screenshots/eden-occlusion-production-rachni-public-battle.png",
+            "sha256": "4d5ea7cb4344f012284ac90f8dc4d032a3a30b2075de490f3b2bbcc64502182d"
+          },
+          {
+            "source": "docs/screenshots/eden-occlusion-production-rachni-native-shot.png",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/screenshots/eden-occlusion-production-rachni-native-shot.png",
+            "sha256": "9043ddaa189f7abf3d5795d6dd04c883ea0ae4a5136e49823d30d725bab05dcd"
+          },
+          {
+            "source": "docs/screenshots/eden-occlusion-production-failure.png",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/screenshots/eden-occlusion-production-failure.png",
+            "sha256": "0eb6fdecfd7d3c83e0d003d00b45046988b64e97abd009fc41145ffa053321b5"
+          },
+          {
+            "source": "docs/qa/eden-occlusion-production-rachni-precombat-save.json",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/qa/eden-occlusion-production-rachni-precombat-save.json",
+            "sha256": "2c2a5ead053d4d065344aea146d64f2c69e356dce1ee1a7515c5724c501b060b"
+          },
+          {
+            "source": "docs/qa/eden-occlusion-production-rachni-restored-save.json",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/docs/qa/eden-occlusion-production-rachni-restored-save.json",
+            "sha256": "24fe22497bca4a6da7b69cd58f3382ed10b5615e453d3489e101df01c7325c60"
+          },
+          {
+            "source": "src/world.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/world.js",
+            "sha256": "5351a9d65384b71a01a5f01ba57d5efdc9834ad40457f4b3eda84cda75c2127a"
+          },
+          {
+            "source": "src/world-data.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/world-data.js",
+            "sha256": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf"
+          },
+          {
+            "source": "src/eden-scene.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/eden-scene.js",
+            "sha256": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948"
+          },
+          {
+            "source": "src/level-layout-data.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/level-layout-data.js",
+            "sha256": "318d0df18bf65f804d6ad2a4737ef80e7b295d127c11924bc93faac256832b07"
+          },
+          {
+            "source": "src/main.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/main.js",
+            "sha256": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6"
+          },
+          {
+            "source": "src/local-map.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/local-map.js",
+            "sha256": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f"
+          },
+          {
+            "source": "src/local-map.css",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/local-map.css",
+            "sha256": "c6e9ca6ef1ad5870365faa8bc008698ef277287ed78d0d6bda7f77bcecf7a67a"
+          },
+          {
+            "source": "src/style.css",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/style.css",
+            "sha256": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612"
+          },
+          {
+            "source": "src/level-map-render.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/level-map-render.js",
+            "sha256": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94"
+          },
+          {
+            "source": "src/state.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/state.js",
+            "sha256": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a"
+          },
+          {
+            "source": "src/combat.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/combat.js",
+            "sha256": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a"
+          },
+          {
+            "source": "src/game-data.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/game-data.js",
+            "sha256": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d"
+          },
+          {
+            "source": "src/enemy-animation-data.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/src/enemy-animation-data.js",
+            "sha256": "4be363caf9ffd481c71ddf893152c3ac5cfe403e24b719f32c759c935fb169e5"
+          },
+          {
+            "source": "vite.config.js",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/vite.config.js",
+            "sha256": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2"
+          },
+          {
+            "source": "scripts/eden-occlusion-production.mjs",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/scripts/eden-occlusion-production.mjs",
+            "sha256": "afbe30b65d539de5bfa6ca23d5bf6dedae9e3537723ee7737f4b2dacace0f344"
+          },
+          {
+            "source": "public/assets/enemy-rachni-combat.png",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/public/assets/enemy-rachni-combat.png",
+            "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+          },
+          {
+            "source": "public/assets/enemy-rachni-animation.json",
+            "archive": "docs/qa/eden-occlusion-production-attempt1/public/assets/enemy-rachni-animation.json",
+            "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+          }
+        ]
+      },
+      {
+        "path": "docs/qa/eden-occlusion-map-production-attempt1/snapshot-manifest.json",
+        "sha256": "08536ea158d9ae248c80e1c4fd33c85948d0b67ec233a6b15265419da08fa4c5",
+        "cause": "Driver measured zero-height body as clip for fixed overlay. Raw metrics show board and marker fully within actual modal/viewport. No game source changed.",
+        "files": [
+          {
+            "source": "docs/qa/eden-occlusion-map-production-report.json",
+            "archive": "docs/qa/eden-occlusion-map-production-attempt1/docs/qa/eden-occlusion-map-production-report.json",
+            "sha256": "39ca33926db8c0a18b14f4b4a0d4609c29196e778b5fcbc3dbcedaabc42eedfc"
+          },
+          {
+            "source": "scripts/eden-occlusion-production.mjs",
+            "archive": "docs/qa/eden-occlusion-map-production-attempt1/scripts/eden-occlusion-production.mjs",
+            "sha256": "1fe7fb70b33aaf8480c0c0a41594d996622625482c13ddb52ea6facb51fee267"
+          },
+          {
+            "source": "docs/screenshots/eden-occlusion-map-production-failure.png",
+            "archive": "docs/qa/eden-occlusion-map-production-attempt1/docs/screenshots/eden-occlusion-map-production-failure.png",
+            "sha256": "38666612a30b32252b9d255f31d3238cc21756a271371b83fdce7e749dfe0bcc"
+          }
+        ]
+      }
+    ],
+    "fixtureOrigins": [
+      {
+        "path": "docs/qa/eden-immersion-production-rachni-precombat-save.json",
+        "bytes": 3288,
+        "sha256": "dc988313162656f3c336d689725144ab2ac99ce99a71675e797f4ddd98c5eabe",
+        "origin": "Existing real public Sauvegarder/Exporter output from the previous Eden production run. Its declared earlier native fixture completed Eden/Citadel and Noveria encounter1 in Node, recruited the crew, and selected Shepard/Kaidan/Ashley. This new run does not manufacture or alter it.",
+        "zone": "noveria",
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "position": {
+          "x": -7,
+          "z": -5
+        },
+        "importedViaPublicChooser": true
+      },
+      {
+        "path": "docs/qa/eden-immersion-production-outside-old-rectangle-save.json",
+        "bytes": 2554,
+        "sha256": "c3748f592fb206633b2b12ece5c2a0dede81edb49f9639ab60b6289b026e8cb8",
+        "origin": "Existing real public exported checkpoint following native keyboard travel in the previous production journey. New run imports its unchanged bytes; no new fixture or coordinates are generated.",
+        "zone": "eden-prime",
+        "party": [
+          "shepard",
+          "kaidan",
+          "jenkins"
+        ],
+        "position": {
+          "x": -24.849422291057408,
+          "z": 27.478092663664455
+        },
+        "importedViaPublicChooser": true
+      }
+    ],
+    "encounter": {
+      "zone": "noveria",
+      "actualEnemyIDs": [
+        "rachni-0",
+        "rachni-1",
+        "rachni-2"
+      ],
+      "expectedEnemyIDs": [
+        "rachni-0",
+        "rachni-1",
+        "rachni-2"
+      ],
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "actualNaturalATBShot": true,
+      "exactPrecombatRestore": true,
+      "omittedStateFields": [
+        "playedSeconds"
+      ],
+      "noVictoryRewardClaimed": true
+    },
+    "nativeOrders": [
+      {
+        "actorId": "kaidan",
+        "targetId": "rachni-0",
+        "targetName": "Soldat rachni",
+        "actionId": "shoot",
+        "atbBefore": 100,
+        "atbAfter": 0,
+        "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat rachni subit 18 dégâts.",
+        "method": "Actual public actor/action/target controls after natural ATB readiness, no clock or combat setter"
+      }
+    ],
+    "mapViews": [
+      {
+        "label": "map-desktop",
+        "method": "Actual locator.scrollIntoViewIfNeeded/native mouse.wheel; no CSS injection or scrollTop assignment",
+        "scrolls": [
+          {
+            "method": "locator.scrollIntoViewIfNeeded",
+            "board": {
+              "rect": {
+                "left": 113,
+                "top": 190,
+                "right": 683,
+                "bottom": 760,
+                "width": 570,
+                "height": 570
+              },
+              "clip": {
+                "left": 80,
+                "top": 40,
+                "right": 1200,
+                "bottom": 760
+              },
+              "fullyVisible": true,
+              "viewport": {
+                "width": 1280,
+                "height": 800
+              },
+              "documentWidth": 1280,
+              "toasts": 0,
+              "scrollAncestors": [
+                {
+                  "className": "screen ",
+                  "scrollTop": 32,
+                  "scrollHeight": 779,
+                  "clientHeight": 718
+                }
+              ]
+            }
+          }
+        ],
+        "board": {
+          "rect": {
+            "left": 113,
+            "top": 190,
+            "right": 683,
+            "bottom": 760,
+            "width": 570,
+            "height": 570
+          },
+          "clip": {
+            "left": 80,
+            "top": 40,
+            "right": 1200,
+            "bottom": 760
+          },
+          "fullyVisible": true,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "toasts": 0,
+          "scrollAncestors": [
+            {
+              "className": "screen ",
+              "scrollTop": 32,
+              "scrollHeight": 779,
+              "clientHeight": 718
+            }
+          ]
+        },
+        "marker7": {
+          "rect": {
+            "left": 323.390625,
+            "top": 703.703125,
+            "right": 350.390625,
+            "bottom": 730.703125,
+            "width": 27,
+            "height": 27
+          },
+          "clip": {
+            "left": 113,
+            "top": 190,
+            "right": 683,
+            "bottom": 760
+          },
+          "fullyVisible": true,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "documentWidth": 1280,
+          "toasts": 0,
+          "scrollAncestors": [
+            {
+              "className": "screen ",
+              "scrollTop": 32,
+              "scrollHeight": 779,
+              "clientHeight": 718
+            }
+          ]
+        }
+      },
+      {
+        "label": "map-mobile",
+        "method": "Actual locator.scrollIntoViewIfNeeded/native mouse.wheel; no CSS injection or scrollTop assignment",
+        "scrolls": [
+          {
+            "method": "locator.scrollIntoViewIfNeeded",
+            "board": {
+              "rect": {
+                "left": 30.703125,
+                "top": 143.3125,
+                "right": 359.296875,
+                "bottom": 471.90625,
+                "width": 328.59375,
+                "height": 328.59375
+              },
+              "clip": {
+                "left": 11.703125,
+                "top": 25.3125,
+                "right": 378.296875,
+                "bottom": 818.671875
+              },
+              "fullyVisible": true,
+              "viewport": {
+                "width": 390,
+                "height": 844
+              },
+              "documentWidth": 390,
+              "toasts": 0,
+              "scrollAncestors": [
+                {
+                  "className": "screen ",
+                  "scrollTop": 32,
+                  "scrollHeight": 971,
+                  "clientHeight": 791
+                }
+              ]
+            }
+          }
+        ],
+        "board": {
+          "rect": {
+            "left": 30.703125,
+            "top": 143.3125,
+            "right": 359.296875,
+            "bottom": 471.90625,
+            "width": 328.59375,
+            "height": 328.59375
+          },
+          "clip": {
+            "left": 11.703125,
+            "top": 25.3125,
+            "right": 378.296875,
+            "bottom": 818.671875
+          },
+          "fullyVisible": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "toasts": 0,
+          "scrollAncestors": [
+            {
+              "className": "screen ",
+              "scrollTop": 32,
+              "scrollHeight": 971,
+              "clientHeight": 791
+            }
+          ]
+        },
+        "marker7": {
+          "rect": {
+            "left": 147.359375,
+            "top": 434.375,
+            "right": 172.359375,
+            "bottom": 459.375,
+            "width": 25,
+            "height": 25
+          },
+          "clip": {
+            "left": 30.703125,
+            "top": 143.3125,
+            "right": 359.296875,
+            "bottom": 471.90625
+          },
+          "fullyVisible": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "toasts": 0,
+          "scrollAncestors": [
+            {
+              "className": "screen ",
+              "scrollTop": 32,
+              "scrollHeight": 971,
+              "clientHeight": 791
+            }
+          ]
+        }
+      }
+    ],
+    "mapListEnd": {
+      "before": {
+        "rect": {
+          "left": 30.703125,
+          "top": 963.46875,
+          "right": 359.296875,
+          "bottom": 1003.46875,
+          "width": 328.59375,
+          "height": 40
+        },
+        "clip": {
+          "left": 30.703125,
+          "top": 687.46875,
+          "right": 359.296875,
+          "bottom": 818.671875
+        },
+        "fullyVisible": false,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentWidth": 390,
+        "toasts": 0,
+        "scrollAncestors": [
+          {
+            "className": "map-locations",
+            "scrollTop": 0,
+            "scrollHeight": 322,
+            "clientHeight": 260
+          },
+          {
+            "className": "screen ",
+            "scrollTop": 32,
+            "scrollHeight": 971,
+            "clientHeight": 791
+          }
+        ]
+      },
+      "after": {
+        "rect": {
+          "left": 30.703125,
+          "top": 754.46875,
+          "right": 359.296875,
+          "bottom": 794.46875,
+          "width": 328.59375,
+          "height": 40
+        },
+        "clip": {
+          "left": 30.703125,
+          "top": 540.46875,
+          "right": 359.296875,
+          "bottom": 800.46875
+        },
+        "fullyVisible": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentWidth": 390,
+        "toasts": 0,
+        "scrollAncestors": [
+          {
+            "className": "map-locations",
+            "scrollTop": 62,
+            "scrollHeight": 322,
+            "clientHeight": 260
+          },
+          {
+            "className": "screen ",
+            "scrollTop": 179,
+            "scrollHeight": 971,
+            "clientHeight": 791
+          }
+        ]
+      },
+      "listScroll": {
+        "top": 62,
+        "height": 322,
+        "client": 260
+      },
+      "method": "Actual scrollIntoViewIfNeeded and native mouse.wheel; no scrollTop/style assignment"
+    },
+    "fullConsoleClean": false,
+    "consoleObservations": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "resourceWarnings": [],
+    "limitations": [
+      "The imported Noveria export descends from the earlier explicit native progression fixture. Those prior encounters/recruitments are not played here.",
+      "The Eden export was obtained by real public keyboard travel outside the old rectangle in the previous production journey. This run imports that checkpoint and does not replay that travel.",
+      "Field/battle screenshots establish visible occlusion behavior only after human review. Public DOM inspection cannot count hidden Three.js meshes; the separate unit/source checks cover registration and static merging.",
+      "The rachni encounter remains unresolved. A single real shot does not establish a complete victory, reward or original-game fidelity.",
+      "390x844 is a Chromium viewport test, not a physical phone or touch-input performance claim.",
+      "Only playedSeconds is excluded from native downloaded state comparisons. Enclosing savedAt timestamps are not game state.",
+      "A missing favicon404 is qualified separately with its exact URL; other browser errors are failures.",
+      "This is an explicit composite of two useful executions among three attempts, not a passing full uninterrupted browser run. Original failed reports and driver versions are preserved.",
+      "The central rachni retains partial vertical-pillar occlusion. Only the targeted overhead-beam/Ashley obstruction is resolved; no complete visibility of all three rachni bodies is claimed."
+    ]
+  },
+  "visualEvidence": {
+    "report": {
+      "path": "docs/qa/eden-occlusion-visual-review.json",
+      "bytes": 20119,
+      "sha256": "6f235136898b19ac75681b9e921f99ca4e0d8bff1794a6f768fa65e053226ddf"
+    },
+    "observations": [
+      {
+        "id": "overhead-beam-targeted-occlusion-resolved",
+        "category": "Noveria field/combat comparison",
+        "finding": "The foreground overhead horizontal spans remain visible in the new field view, then no longer cross the party in the two combat views. Ashley now has a visible head, torso, arms and both legs before and after the native shot, unlike the two frozen historical combat frames. Two rachni silhouettes are unobscured. The central rachni has a separate remaining pillar occlusion, so this does not certify all three bodies as unobscured.",
+        "paths": [
+          "docs/screenshots/eden-occlusion-production-noveria-field.png",
+          "docs/screenshots/eden-occlusion-production-rachni-public-battle.png",
+          "docs/screenshots/eden-occlusion-production-rachni-native-shot.png"
+        ]
+      },
+      {
+        "id": "desktop-and-mobile-map-marker7-visible-after-scroll",
+        "category": "Eden map supplement",
+        "finding": "Both newly opened board captures show the complete extraction marker7 and its surrounding southern terrain inside the map board. No toast covers the plan. The map has been scrolled into view using real scrolling; the header can move partly above the viewport. This supplies the missing scrolled view without changing the historical initial map capture.",
+        "paths": [
+          "docs/screenshots/eden-occlusion-map-production-final-map-desktop.png",
+          "docs/screenshots/eden-occlusion-map-production-final-map-mobile.png"
+        ]
+      },
+      {
+        "id": "mobile-extraction-list-entry7-reachable",
+        "category": "Eden mobile map supplement",
+        "finding": "The final mobile capture shows the entire numbered extraction row7 and its label inside the visible list area after nested native scrolling. This demonstrates visible access after scrolling; it does not claim the complete plan, header and list always fit simultaneously or that a new extraction click was performed.",
+        "paths": [
+          "docs/screenshots/eden-occlusion-map-production-final-map-mobile-list-end.png"
+        ]
+      },
+      {
+        "id": "public-actions-and-state-provenance",
+        "category": "Scope and runner attribution",
+        "finding": "The preserved driver inputs import unchanged real exports with the public chooser. The Noveria export descends from the older explicitly prepared progression fixture; the Eden export comes from the prior actual keyboard-travelled checkpoint. The encounter report records one natural-ATB shot and exact downloaded precombat restoration. The map-only report records scrollIntoViewIfNeeded/native wheel and natural toast expiry, without CSS/scene/pose injection or direct scrollTop assignment. These functional claims remain attributed to their original reports rather than inferred from screenshots."
+      }
+    ],
+    "historicalComparisons": [
+      {
+        "path": "docs/screenshots/eden-immersion-production-rachni-public-battle.png",
+        "sha256": "b7dcc7b707fe71819fd67e719d4f382b6c86845532d7d9a62cb4245f56cd80d7",
+        "bytes": 564343,
+        "actuallyOpenedInHistoricalReview": true,
+        "historicalReview": "docs/qa/eden-immersion-visual-review.json",
+        "historicalReviewSHA256": "6436addaf50fe420a49e01fb3072a0bbffe38258d834a962e3bd4680af28dea0",
+        "countedAmongNewSix": false
+      },
+      {
+        "path": "docs/screenshots/eden-immersion-production-rachni-native-shot.png",
+        "sha256": "a8c565fb51fc7016c6b6172c881e7a739fd9a9147486e76cc31d2f65ec9f5c85",
+        "bytes": 534229,
+        "actuallyOpenedInHistoricalReview": true,
+        "historicalReview": "docs/qa/eden-immersion-visual-review.json",
+        "historicalReviewSHA256": "6436addaf50fe420a49e01fb3072a0bbffe38258d834a962e3bd4680af28dea0",
+        "countedAmongNewSix": false
+      },
+      {
+        "path": "docs/screenshots/eden-immersion-production-map-desktop.png",
+        "sha256": "e09b0abd76edb24226283fd0bed5af5f2045bb7d27b141623c3a09ddbd6e7915",
+        "bytes": 284432,
+        "actuallyOpenedInHistoricalReview": true,
+        "historicalReview": "docs/qa/eden-immersion-visual-review.json",
+        "historicalReviewSHA256": "6436addaf50fe420a49e01fb3072a0bbffe38258d834a962e3bd4680af28dea0",
+        "countedAmongNewSix": false
+      },
+      {
+        "path": "docs/screenshots/eden-immersion-production-map-mobile.png",
+        "sha256": "6f458c071dadb38b3a07b7757bf080ef986edac418746228ac9285e43fd697a5",
+        "bytes": 140381,
+        "actuallyOpenedInHistoricalReview": true,
+        "historicalReview": "docs/qa/eden-immersion-visual-review.json",
+        "historicalReviewSHA256": "6436addaf50fe420a49e01fb3072a0bbffe38258d834a962e3bd4680af28dea0",
+        "countedAmongNewSix": false
+      }
+    ],
+    "residualFindings": [
+      {
+        "id": "central-rachni-partial-vertical-pillar-occlusion",
+        "severity": "medium",
+        "status": "open-explicit-reserve",
+        "finding": "The middle rachni is still partially hidden by a foreground vertical side pillar in both new combat views. The targeted overhead beam/Ashley obstruction is corrected, but all three enemy silhouettes are not wholly unobscured.",
+        "paths": [
+          "docs/screenshots/eden-occlusion-production-rachni-public-battle.png",
+          "docs/screenshots/eden-occlusion-production-rachni-native-shot.png"
+        ]
+      },
+      {
+        "id": "map-initial-state-and-mobile-gameplay-not-recertified",
+        "severity": "low",
+        "status": "scope-limit",
+        "finding": "The supplement proves a clear map after natural toast expiry and actual scrolling. It does not remove the earlier initial map/toast overlap, certify gameplay HUD/radar at390px or establish a physical-phone interaction/performance result.",
+        "paths": [
+          "docs/screenshots/eden-occlusion-map-production-final-map-desktop.png",
+          "docs/screenshots/eden-occlusion-map-production-final-map-mobile.png",
+          "docs/screenshots/eden-occlusion-map-production-final-map-mobile-list-end.png"
+        ]
+      }
+    ],
+    "limitations": [
+      "The two negative raw reports retain passed:false and their original failures. Accepted encounter frames are a successful sub-result before a later faulty map observer; the separate final map-only execution supplies the map evidence. No complete uninterrupted rerun is represented.",
+      "Only visible states and framing were independently judged. Mesh registration, merge exclusions, collision behavior, native damage values, save restoration and browser cleanup are supported by the input runner/unit evidence rather than deduced from pixels.",
+      "Original campaign progression/recruitments before the imported Noveria export were not played in the new browser proof. The new map proof imports the prior real Eden checkpoint and does not replay the earlier walk.",
+      "The central rachni remains partly occluded by a side pillar. The old broader Eden prototype, low-contrast KO and mobile gameplay coverage limits remain historical and are not silently cleared.",
+      "The six accepted PNGs, six linked reports, runtime sources, all61 current dist files and the three executed archived driver hashes were checked. The reviewer modified only this new JSON supplement; no source, screenshot, atlas, older report or build was changed."
+    ]
+  },
+  "limitations": [
+    "This targets the overhead Noveria occluders only. It does not replay the full Eden route or add new enemy poses, equipment, story gates, map geometry or workbook statuses.",
+    "The three-rachni encounter uses the unchanged real public export from the previous explicitly prepared campaign fixture. One natural-ATB shot and its exact precombat restoration do not claim a completed victory or reward.",
+    "Six captures are actually opened; their visual conclusions apply to those views. Complete original-game geography, likeness, animation and1:1 fidelity remain unvalidated.",
+    "The public proof combines encounter evidence from an initially interrupted collector with a later positive map-only execution. Both negative collection traces are preserved. Three executions collected evidence; two contribute accepted captures. No fresh complete all-in-one public run is claimed.",
+    "The overhead beam obstruction is corrected in the reviewed battle views, but a foreground vertical pillar still partially covers the central rachni. Complete visibility of all three enemy silhouettes is not claimed.",
+    "The desktop/mobile map views use real scrolling and natural toast expiry. This is evidence of visibility after those actions, not a claim that CSS, the initial opening position or all mobile gameplay were changed or certified.",
+    "Historical Eden QA remains byte-preserved with its original limitations. No old renderer digest is reinterpreted as a current-source result.",
+    "Software WebGL and a390px Chromium viewport do not establish hardware FPS, physical-phone performance, controller behavior or a native Windows game launch.",
+    "The local production build is verified. Vercel project configuration is not evidence of a deployed playable application."
+  ],
+  "aggregationTool": {
+    "path": "scripts/summarize-eden-occlusion.mjs",
+    "sha256": "aa87e19e2b2290aa0b9a703fb910a73fd93f863f20df567a8f0c31614b18d3cc"
+  },
+  "verifiedFileCount": 2283,
+  "proofs": {
+    "docs/qa/eden-occlusion-native-report.json": {
+      "path": "docs/qa/eden-occlusion-native-report.json",
+      "bytes": 3272,
+      "sha256": "6e19cdb4e131950c46aa3fb8f678cfc892ed7f50b5334a1bc4cb638a6566fa1e"
+    },
+    "docs/qa/eden-occlusion-unit-report.json": {
+      "path": "docs/qa/eden-occlusion-unit-report.json",
+      "bytes": 22995,
+      "sha256": "e37c113dd5e48afb46b2e6bd2a8b408f0ea910c6ab3a7474c0ef24b56f1b6b55"
+    },
+    "docs/qa/eden-occlusion-build-report.json": {
+      "path": "docs/qa/eden-occlusion-build-report.json",
+      "bytes": 33525,
+      "sha256": "b3f535270bf4a69b6eb72af1cbea245064f55915dd42906737a84e58013841e0"
+    },
+    "docs/qa/eden-occlusion-production-summary.json": {
+      "path": "docs/qa/eden-occlusion-production-summary.json",
+      "bytes": 56288,
+      "sha256": "3e1afb91dc509c2a8651df323d29d859e6b94d390fe83a2a12a4e35a2b128f62"
+    },
+    "docs/qa/eden-occlusion-visual-review.json": {
+      "path": "docs/qa/eden-occlusion-visual-review.json",
+      "bytes": 20119,
+      "sha256": "6f235136898b19ac75681b9e921f99ca4e0d8bff1794a6f768fa65e053226ddf"
+    },
+    "docs/qa/eden-occlusion-production-report.json": {
+      "path": "docs/qa/eden-occlusion-production-report.json",
+      "bytes": 37763,
+      "sha256": "011b54546032c9724dcebed26cd7b2115b2dcc1e5f24f24663f6185b734bf3d5"
+    },
+    "docs/qa/eden-occlusion-map-production-report.json": {
+      "path": "docs/qa/eden-occlusion-map-production-report.json",
+      "bytes": 31473,
+      "sha256": "39ca33926db8c0a18b14f4b4a0d4609c29196e778b5fcbc3dbcedaabc42eedfc"
+    },
+    "docs/qa/eden-occlusion-map-production-final-report.json": {
+      "path": "docs/qa/eden-occlusion-map-production-final-report.json",
+      "bytes": 33781,
+      "sha256": "5d0ea35a0ba3fef01c8583a4d9e0aea8aac66908e6eb9ff7d250a76b87a86c30"
+    }
+  }
+}
