@@ -1,0 +1,66 @@
+{
+  "reports": [
+    {
+      "name": "public-development",
+      "path": "docs/qa/frontier-public-dev-03-report.json",
+      "allowWorldOnlyFinalAssertion": true,
+      "require": [
+        { "field": "mode", "equals": "dev" },
+        { "field": "checks", "length": 7 },
+        { "field": "captures", "length": 17 },
+        { "field": "maps", "length": 3 },
+        { "field": "orders", "length": 1 }
+      ]
+    },
+    {
+      "name": "eight-npc-interactions",
+      "path": "docs/qa/frontier-characters-final.json",
+      "requireCurrentWorld": true,
+      "require": [
+        { "field": "conversations", "length": 8 },
+        { "field": "captures", "length": 2 },
+        { "field": "functionalPassed", "equals": true },
+        { "field": "changedSourcesDuringRun", "length": 0 }
+      ]
+    },
+    {
+      "name": "eight-enemy-types",
+      "path": "docs/qa/frontier-enemies-browser.json",
+      "requireCurrentWorld": true,
+      "require": [
+        { "field": "observations", "length": 8 },
+        { "field": "captures", "length": 7 },
+        { "field": "ambient", "length": 1 }
+      ]
+    },
+    {
+      "name": "sixteen-existing-boss-drawings",
+      "path": "docs/qa/frontier-bosses-renderer-qualified.json",
+      "require": [
+        { "field": "cases", "length": 16 },
+        { "field": "captures", "length": 16 },
+        { "field": "nativeEvents", "length": 4 },
+        { "field": "scopeClosures", "length": 28 }
+      ]
+    },
+    {
+      "name": "fifteen-sector-viewpoints",
+      "path": "docs/qa/frontier-levels-final-03-report.json",
+      "require": [
+        { "field": "viewpoints", "length": 15 },
+        { "field": "screenshots", "length": 15 }
+      ]
+    }
+  ],
+  "reviewFiles": [
+    "docs/qa/frontier-public-dev-03-visual-review.json",
+    "docs/qa/frontier-characters-final-visual-review.json",
+    "docs/qa/frontier-enemies-world-review.json",
+    "docs/qa/frontier-bosses-renderer-visual-review.json",
+    "docs/qa/frontier-levels-visual-review.json"
+  ],
+  "rootReview": "docs/qa/frontier-root-visual-confirmations.json",
+  "worldQualification": "docs/qa/frontier-ilos-delta-report.json",
+  "captureReplacements": [],
+  "resolvedReviews": []
+}

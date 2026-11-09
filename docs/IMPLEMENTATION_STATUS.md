@@ -299,13 +299,27 @@ Le lot du **9 novembre 2026** reprend `main` au commit `d19197f`, qui inclut les
 
 La [bible de conception](DESIGN.md) est synchronisée avec l’atelier, le plan étendu d’Eden et les familles de poses actuelles. Le suivi principal actualise sept fiches existantes ; seules les deux fiches de sprites ennemis deviennent Prototype. Jenkins conserve son statut et ses conditions narratives ; les fiches du clone asari restent inchangées. Les [preuves du lot](qa/me1-prologue-enemies-report.json) relient la revue initiale de Novéria, les images natives, les contrôles du renderer et les sauvegardes publiques. Les 107 équipements des Chroniques et les 52 références de la boutique ME1 sont conservés.
 
+## Frontier : PNJ, ennemis, boss et grandes cartes — 9 novembre 2026
+
+Le lot reprend `main` à `ff8a1cf` et ajoute **huit conversations de PNJ / seize sujets** dans la campagne : Adams, Pressly, l’officier des réquisitions et Jenkins au Normandy ; Parasini, Anoleis, Lorik Qui’in et Lilihierax à Novéria. Sept nouveaux corps sont produits ; Jenkins réutilise sa silhouette et reste absent après son départ pour Eden. Les textes d’information sont réécrits, sans recrutement ou résolution des quêtes complètes de Novéria.
+
+**Huit types d’ennemis** rejoignent six formations ordinaires existantes, avec profils et corps dédiés. Les commandes restent adaptées à l’ATB ; vol, grimpe, projectiles explosifs et autodestruction d’origine restent ouverts. **Les quatre boss existants** reçoivent seize poses fixes ; leurs profils, phases et formations sont conservés. Les sept nouveaux PNG portent le registre à **41 images / 84 poses de combat**, distinctes des sept corps PNJ, huit corps ennemis et quatre directions du Mako.
+
+**Thérum, Novéria et Virmire** disposent chacune de cinq secteurs, trois chemins et trois arènes locales, avec thèmes, reliefs, bâtiments et masque de sol propres. Les sept points de mission par zone et les conditions narratives sont stables. Carte, radar, caméra et reprise des anciennes positions suivent ces plans. Les surfaces de masque sont des métriques de scène avant obstacles, pas des dimensions canoniques.
+
+**Le Mako est pilotable à Thérum** : embarquer, conduire, accélérer, éviter les obstacles et débarquer. Le commando descend avant les rencontres obligatoires ; leur progression ne peut pas être contournée en véhicule. Les commandes clavier et tactiles sont raccordées. La sauvegarde reprend à pied, avec véhicule recréé au stationnement. Canon, mitrailleuse, suspension et physique d’origine restent à réaliser.
+
+Les [preuves du lot](qa/frontier-report.json) distinguent génération native, garde des contextes, simulations de combat, parcours publics, sauvegardes et revue du classeur. Le suivi touche **34 fiches existantes**, dont **25 promotions partielles vers Prototype** ; les critères canoniques restent conservés. Aucune fiche ne devient Intégrée ou Validée. Les autres classeurs, 34 PNG historiques, outils IA, 52 articles de boutique ME1 et 107 équipements des Chroniques sont préservés. Le principal reste à 1 382 entrées : 375 Prototype, 1 001 Défini, trois Intégré et trois Validé. Avec les catalogues supplémentaires, le registre compte 6 708 fiches / 454 sources, dont 666 Prototype et 6 036 Défini ; les six statuts avancés sont inchangés.
+
+Les **854 tests Node** passent sans échec ni test ignoré. La [validation finale](qa/frontier-validation-report.json) inclut la synchronisation du registre et l’audit de ses dépendances. Le build compile **91 modules** ; le [contrôle des fichiers compilés](qa/frontier-build-report.json) vérifie les **69 fichiers publics**, dont 41 PNG, et l’exclusion de l’API de développement. Les preuves natives ciblées, les 57 captures DEV ouvertes et les 43 panneaux Excel sont reliés séparément dans le rapport du lot.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.
 - Produire les 51 autres quêtes du registre secondaire/DLC et les variantes complètes des 14 prototypes.
 - Compléter dialogues, cinématiques, romances et réactions aux antécédents de Shepard.
 - Nettoyer les cycles et produire tous les movesets, huit directions, expressions et variantes visuelles d’équipement.
-- Ajouter la conduite et le combat du Mako, les talents détaillés, licences et toute la gamme d’objets.
+- Compléter la conduite et le combat du Mako sur les autres mondes, sa physique, les talents détaillés, licences et toute la gamme d’objets.
 - Éprouver l’équilibrage avec des joueurs, les commandes manette, le mobile et les matériels réels.
 - Produire doublage et musique ; développer les campagnes des autres jeux et adaptations à partir de leurs catalogues.
 

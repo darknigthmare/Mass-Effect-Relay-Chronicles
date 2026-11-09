@@ -1,3 +1,4 @@
+import { FRONTIER_LAYOUTS } from './frontier-layout-data.js';
 // Authored spatial adaptation of the existing ME1 prologue. These coordinates
 // are not a surveyed reconstruction of the original game's map.
 const freeze = value => {
@@ -62,7 +63,7 @@ const eden = {
     url: 'https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf',
     limitation: 'The guide documents the sequence and named places. The authored ground contours, distances and landmark placements remain an adaptation; train travel, survivors and timed charges are not newly simulated.' },
 };
-export const LEVEL_LAYOUTS = freeze({ 'eden-prime': eden });
+export const LEVEL_LAYOUTS = freeze({ 'eden-prime': eden, ...FRONTIER_LAYOUTS });
 export const EDEN_LAYOUT = LEVEL_LAYOUTS['eden-prime'];
 export const getLevelLayout = zoneId => Object.hasOwn(LEVEL_LAYOUTS, zoneId) ? LEVEL_LAYOUTS[zoneId] : null;
 

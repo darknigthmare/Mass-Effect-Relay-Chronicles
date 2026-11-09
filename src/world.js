@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { WORLD_ZONES } from './world-data.js';
+import { ENCOUNTERS, ENEMIES } from './game-data.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
 import { hasVisualCustomization, renderCustomizationSprite } from './customization-render.js';
 import { COMPANION_ANIMATION_IDS, normalizeCompanionAnimation, canShowCompanionAnimation } from './companion-animation-data.js';
@@ -10,8 +11,13 @@ import { normalizeJokerSeated, canShowJokerSeated } from './joker-seated-data.js
 import { getLevelLayout, isLevelGround, nearestLevelGround } from './level-layout-data.js';
 import { findLevelPath } from './world-navigation.js';
 import { buildEdenScene } from './eden-scene.js';
+import { buildFrontierScene } from './frontier-scene.js';
+import { FRONTIER_NPCS, getFrontierNPC, frontierNPCVisible, normalizeFrontierNPCAtlas, getFrontierNPCFrame } from './frontier-characters.js';
+import { FRONTIER_ENEMY_IDS, normalizeFrontierEnemyAtlas, getFrontierEnemyVisual, getFrontierAmbientVisual } from './frontier-enemies.js';
+import { BOSS_ANIMATION_IDS, normalizeBossAnimation, canShowBossAnimation } from './boss-animation-data.js';
+import { createMakoState, boardMako, stepMako, dismountMako, makoDirectionFrame, normalizeMakoDirections } from './frontier-vehicles.js';
 
-const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS];
+const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS, ...BOSS_ANIMATION_IDS];
 
 const CREW_KEYS = ['shepard', 'ashley', 'kaidan', 'jenkins', 'garrus', 'tali', 'wrex', 'liara'];
 const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', 'rachni', 'creeper', 'asari'];
@@ -120,6 +126,11 @@ export class WorldView {
     if (typeof __RELAY_ENEMY_ANIMATIONS__ !== 'undefined') for (const config of __RELAY_ENEMY_ANIMATIONS__)
       this.registerCharacterAnimation(config.characterId, config);
     if (typeof __RELAY_JOKER_SEATED__ !== 'undefined') this.registerJokerSeated(__RELAY_JOKER_SEATED__);
+    if (typeof __RELAY_BOSS_ANIMATIONS__ !== 'undefined') for (const config of Object.values(__RELAY_BOSS_ANIMATIONS__))
+      this.registerCharacterAnimation(config.characterId, config);
+    if (typeof __RELAY_FRONTIER_ENEMY_ATLAS__ !== 'undefined') this.registerFrontierEnemyAtlas(__RELAY_FRONTIER_ENEMY_ATLAS__);
+    if (typeof __RELAY_FRONTIER_NPC_ATLAS__ !== 'undefined') this.registerFrontierNPCAtlas(__RELAY_FRONTIER_NPC_ATLAS__);
+    if (typeof __RELAY_MAKO_DIRECTIONS__ !== 'undefined') this.registerMakoDirections(__RELAY_MAKO_DIRECTIONS__);
     this.setZone('normandy'); this.resize();
   }
 
@@ -137,7 +148,7 @@ export class WorldView {
       requests.delete(name);
       const key = name.startsWith('combat-') ? name.slice(7) : null;
       const config = GUARDED_COMBAT_ANIMATION_IDS.includes(key) ? this.characterAnimations?.[key]?.combat
-        : name === 'seated-joker' ? this.jokerSeatedConfig : null;
+        : name === 'seated-joker' ? this.jokerSeatedConfig : name === 'frontier-enemies' ? this.frontierEnemyConfig : name === 'mako-directions' ? this.makoDirectionsConfig : name === 'frontier-npcs' ? this.frontierNPCConfig : null;
       if (config && (texture.image?.width !== config.width || texture.image?.height !== config.height)) {
         texture.dispose(); this.assetErrors?.push(`Dimensions d’animation incompatibles : ${url}`); return;
       }
@@ -152,6 +163,7 @@ export class WorldView {
           o.material.map = this._spriteTexture(o.userData.characterKey, o.userData.enemy);
       });
       if (name === 'props') { for (const args of this._pendingProps || []) this._propSprite(...args); this._pendingProps = []; }
+      if (name === 'mako-directions') this._syncMakoSprite();
       if (name === 'vehicles') { for (const args of this._pendingVehicles || []) this._vehicleSprite(...args); this._pendingVehicles = []; }
     }, undefined, failed); } catch { failed(); return false; }
     return true;
@@ -163,6 +175,7 @@ export class WorldView {
 
   _spriteTexture(key = 'shepard', enemy = false) {
     const name = this._spriteAtlasName(key, enemy), cacheKey = `${name}:${key}`;
+    if (FRONTIER_ENEMY_IDS.includes(key) || getFrontierNPC(key)?.visual.atlas) return this._neutralBodyTexture ||= new THREE.Texture();
     if (this.spriteCache.has(cacheKey)) return this.spriteCache.get(cacheKey);
     let texture;
     if (this.atlases[name]) {
@@ -272,7 +285,7 @@ export class WorldView {
   registerCharacterAnimation(key, config) {
     if (this._disposed) return false;
     if (GUARDED_COMBAT_ANIMATION_IDS.includes(key)) {
-      config = ENEMY_ANIMATION_IDS.includes(key) ? normalizeEnemyAnimation(key, config) : normalizeCompanionAnimation(key, config);
+      config = BOSS_ANIMATION_IDS.includes(key) ? normalizeBossAnimation(key, config) : ENEMY_ANIMATION_IDS.includes(key) ? normalizeEnemyAnimation(key, config) : normalizeCompanionAnimation(key, config);
       if (!config) return false;
       if (JSON.stringify(this.characterAnimations[key]) === JSON.stringify(config)) return true;
       for (const [cacheKey, texture] of this.spriteCache) if (cacheKey.startsWith(`combat-${key}:`)) {
@@ -288,6 +301,127 @@ export class WorldView {
     if (hasWalk) this._loadAtlas(`motion-${key}`, `${ASSET_BASE}${config.file}`);
     if (hasCombat) this._loadAtlas(`combat-${key}`, `${ASSET_BASE}${config.combat.file}`);
     return true;
+  }
+
+  registerFrontierNPCAtlas(input) {
+    const config = normalizeFrontierNPCAtlas(input); if (!config || this._disposed) return false;
+    this.frontierNPCConfig = config; this._loadAtlas('frontier-npcs', `${ASSET_BASE}${config.file}`); return true;
+  }
+
+  _applyFrontierNPCBody(actor) {
+    const npc = getFrontierNPC(actor.key);
+    const permitted = npc?.visual.atlas && !actor.enemy && actor.id === `npc:${npc.id}` && actor.conversationId === npc.conversationId
+      && this.zoneId === npc.zone && frontierNPCVisible({ ...this.storyContext, zone:this.zoneId }, npc);
+    const frame = permitted && getFrontierNPCFrame(actor.key,this.frontierNPCConfig);
+    if (frame) {
+      actor.height = frame.height;
+      if (this._applyAnimationFrame(actor,'frontier-npcs',frame)) return true;
+    }
+    if (npc?.visual.atlas && actor.animationFrame === npc.id) this._fallbackCombatFrame(actor);
+    return false;
+  }
+
+  registerFrontierEnemyAtlas(input) {
+    const config = normalizeFrontierEnemyAtlas(input); if (!config || this._disposed) return false;
+    this.frontierEnemyConfig = config; this._loadAtlas('frontier-enemies', `${ASSET_BASE}${config.file}`); return true;
+  }
+
+  _applyFrontierEnemyBody(actor) {
+    const poi = actor.poiId && this.zone.pois.find(p => p.id === actor.poiId && p.type === 'encounter');
+    const suffix = poi?.id.slice(this.zoneId.length + 1), index = ['encounter-1','encounter-2','boss'].indexOf(suffix);
+    const firstSprite = ENEMIES[ENCOUNTERS[this.zoneId]?.[index]?.[0]]?.sprite;
+    const native = getFrontierEnemyVisual(actor) || getFrontierAmbientVisual(actor,{zoneId:this.zoneId,poi,firstSprite,context:this.storyContext}), config = this.frontierEnemyConfig;
+    const frame = native && config?.frames[actor.key];
+    if (!frame || !this._applyAnimationFrame(actor, 'frontier-enemies', frame, { cover: actor.alive && actor.state?.cover })) {
+      if (actor.animationFrame?.endsWith('-body')) this._fallbackCombatFrame(actor);
+      return false;
+    }
+    actor.body.position.y += frame.hoverHeight || 0;
+    // This lot provides one body pose, retaining the existing ATB defeat cue.
+    actor.body.rotation.z = actor.alive ? 0 : -.9; return true;
+  }
+
+  registerMakoDirections(input) {
+    const config = normalizeMakoDirections(input); if (!config || this._disposed) return false;
+    this.makoDirectionsConfig = config; this._loadAtlas('mako-directions', `${ASSET_BASE}${config.file}`); return true;
+  }
+
+  _vehicleInPeriod() {
+    const context=this.storyContext;
+    return (context?.mediaId === undefined || context.mediaId === 'ME1') && (context?.periodId === undefined || context.periodId === 'me1')
+      && (context?.context?.mediaId === undefined || context.context.mediaId === 'ME1') && (context?.context?.periodId === undefined || context.context.periodId === 'me1');
+  }
+
+  isVehicleMounted() { return this.makoState?.mounted === true; }
+
+  _vehicleGround(x, z, radius = 1.45, { encounters = true } = {}) {
+    if (this.zoneId !== 'therum' || !this.levelLayout || !isLevelGround(this.levelLayout, x, z, radius)) return false;
+    if (this.colliders.some(c => this._insideCollider(x,z,c,radius))) return false;
+    // The condensed mission progresses northward. A vehicle cannot drive past
+    // an uncleared ATB checkpoint on an optional flank, or start combat aboard.
+    if (encounters && radius > .5) for (const suffix of ['encounter-1','encounter-2','boss']) {
+      const id = `therum:${suffix}`, p = this.levelLayout.pois[suffix];
+      if (!this.cleared.has(id) && z < p.z + 9 + radius) return false;
+    }
+    return true;
+  }
+
+  getNearbyVehicle() {
+    const state = this.makoState; if (!state || this.zoneId !== 'therum' || !this._vehicleInPeriod()) return null;
+    const distance = Math.hypot(state.position.x-this.player.x,state.position.z-this.player.z);
+    if (!state.mounted && distance > 4) return null;
+    return { id:'mako', name:'M35 Mako', label:'M35 Mako', mounted:state.mounted, distance,
+      available:this.mode === 'explore' && (state.mounted || distance <= 4), reason:this.mode === 'explore' ? null : 'mode' };
+  }
+
+  boardVehicle() {
+    if (!this._vehicleInPeriod()) return {ok:false,reason:'period'};
+    if (this.mode !== 'explore' || this.battle || this.zoneId !== 'therum') return {ok:false,reason:'mode'};
+    const state=this.makoState;if (!state || !this._vehicleGround(state.position.x,state.position.z)) return {ok:false,reason:'blocked'};
+    const distance=Math.hypot(state.position.x-this.player.x,state.position.z-this.player.z);
+    if(distance>4)return {ok:false,reason:'too-far'};
+    const samples=Math.max(1,Math.ceil(distance/.15));
+    for(let i=0;i<=samples;i++) if(!this._walkable(this.player.x+(state.position.x-this.player.x)*i/samples,this.player.z+(state.position.z-this.player.z)*i/samples)) return {ok:false,reason:'blocked'};
+    const result=boardMako(state,this.player,this.zoneId);if(!result.ok)return {ok:false,reason:result.reason};
+    this.makoState=result.state;this.player={...result.state.position};this.targetPath=null;this.pendingPOI=null;this._resetTrail();
+    for(const actor of this.actors)actor.group.visible=false;
+    this.onMove?.({...this.player,zone:this.zoneId});this._syncMakoSprite();return {ok:true,reason:null};
+  }
+
+  leaveVehicle() {
+    if(this.mode!=='explore' || this.battle)return {ok:false,reason:'mode'};
+    return this._dismountVehicle();
+  }
+
+  _dismountVehicle() {
+    const result=dismountMako(this.makoState,(x,z,radius)=>this._vehicleGround(x,z,radius,{encounters:false}));
+    if(!result.ok)return {ok:false,reason:result.reason};
+    this.makoState=result.state;this.setPosition(result.position);this.targetPath=null;this.pendingPOI=null;
+    for(const actor of this.actors)actor.group.visible=this.mode!=='combat';
+    this.onMove?.({...this.player,zone:this.zoneId});this._syncMakoSprite();return {ok:true,reason:null};
+  }
+
+  _syncMakoSprite() {
+    const state=this.makoState;if(!state || !this.stage || this.zoneId!=='therum')return;
+    if(!this.makoSprite){
+      const group=new THREE.Group();group.name='therum-driveable-mako';group.userData.keep=true;
+      const body=new THREE.Mesh(new THREE.PlaneGeometry(5,3),new THREE.MeshBasicMaterial({transparent:true,alphaTest:.2,side:THREE.DoubleSide,toneMapped:false}));
+      body.position.y=1.5;group.add(body);
+      const shadow=new THREE.Mesh(new THREE.CircleGeometry(1.65,24),new THREE.MeshBasicMaterial({color:0x070b10,transparent:true,opacity:.25,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.04;group.add(shadow);
+      this.stage.add(group);this.makoSprite={group,body};
+    }
+    const {group,body}=this.makoSprite;group.visible=this.mode!=='combat'&&this._vehicleInPeriod();group.position.set(state.position.x,0,state.position.z);body.rotation.y=Math.atan2(this.cameraOffset.x,this.cameraOffset.z);
+    const config=this.makoDirectionsConfig,atlas=this.atlases['mako-directions'],frame=config?.frames[makoDirectionFrame(state)];
+    if(atlas && frame && atlas.image?.width===config.width && atlas.image.height===config.height){
+      const [x,y,w,h]=frame.rect,key=`mako-directions:${frame.id}`;let texture=this.spriteCache.get(key);
+      if(!texture){texture=atlas.clone();texture.repeat.set(w/config.width,h/config.height);texture.offset.set(x/config.width,1-(y+h)/config.height);this.spriteCache.set(key,texture);}
+      body.material.map=texture;const height=config.displayHeight*(frame.heightScale||1),width=height*w/h;
+      body.scale.set(width/5,height/3,1);body.position.y=(frame.pivot[1]/h-.5)*height+.05;
+      const offset=(.5-frame.pivot[0]/w)*width,angle=body.rotation.y;body.position.x=Math.cos(angle)*offset;body.position.z=-Math.sin(angle)*offset;body.visible=true;
+    }else if(this.atlases.vehicles){
+      const key='mako-legacy-preview';let texture=this.spriteCache.get(key);if(!texture){const atlas=this.atlases.vehicles;texture=atlas.clone();texture.repeat.set(662/atlas.image.width,400/atlas.image.height);texture.offset.set(650/atlas.image.width,1-490/atlas.image.height);this.spriteCache.set(key,texture);}body.material.map=texture;body.scale.set(1,1,1);body.position.set(0,1.55,0);body.visible=true;
+    }else body.visible=false;
+    body.material.needsUpdate=true;
   }
 
   registerJokerSeated(input) {
@@ -322,11 +456,13 @@ export class WorldView {
       && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
     if (ENEMY_ANIMATION_IDS.includes(actor.key)) return canShowEnemyAnimation(actor, state)
       && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
+    if (BOSS_ANIMATION_IDS.includes(actor.key)) return canShowBossAnimation(actor, state)
+      && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
     return config.combat;
   }
 
   _releaseBattleActorTextures(actor) {
-    for (const [key, texture] of this.spriteCache) if (key.startsWith('combat-') && key.endsWith(`:${actor.id}`)) {
+    for (const [key, texture] of this.spriteCache) if ((key.startsWith('combat-') || key.startsWith('frontier-enemies:')) && key.endsWith(`:${actor.id}`)) {
       texture.dispose(); this.spriteCache.delete(key);
     }
   }
@@ -339,12 +475,15 @@ export class WorldView {
   }
 
   _applyAnimationFrame(actor, atlasName, frame, { cover = false } = {}) {
+    if (BOSS_ANIMATION_IDS.includes(actor.key) && atlasName !== `combat-${actor.key}`) return false;
     const atlas = this.atlases[atlasName], rect = frame?.rect;
     if (!atlas?.image?.width || !atlas.image.height || !Array.isArray(rect) || rect.length !== 4 || !rect.every(Number.isFinite)) return false;
     if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && atlasName === `combat-${actor.key}`) {
       const config = this._combatAnimationConfig(actor);
       if (!config || atlas.image.width !== config.width || atlas.image.height !== config.height) return false;
     }
+    const staticConfig = atlasName === 'frontier-enemies' ? this.frontierEnemyConfig : atlasName === 'frontier-npcs' ? this.frontierNPCConfig : null;
+    if (staticConfig && (atlas.image.width !== staticConfig.width || atlas.image.height !== staticConfig.height)) return false;
     const [x, y, width, height] = rect;
     if (x < 0 || y < 0 || width <= 0 || height <= 0 || x + width > atlas.image.width || y + height > atlas.image.height) return false;
     const cacheKey = `${atlasName}:${actor.id}`;
@@ -535,7 +674,8 @@ export class WorldView {
       Object.assign(key.shadow.camera, { left: -extent, right: extent, top: extent, bottom: -extent, far: 350 });
       key.shadow.camera.updateProjectionMatrix();
       hemi.intensity = 1.15; key.intensity = 2.65;
-      this.scene.background.set(0x4c5b55); this.scene.fog.color.set(0x4c5b55); this.scene.fog.density = .0055;
+      const mood = this.levelLayout.lighting || { background: 0x4c5b55, fog: .0055 };
+      this.scene.background.set(mood.background); this.scene.fog.color.set(mood.background); this.scene.fog.density = mood.fog;
     }
     const fill = new THREE.DirectionalLight(0x83b4cf, .8); fill.position.set(12, 14, 25); this.stage.add(fill);
     if (['normandy', 'finale', 'citadel'].includes(theme)) this._stars();
@@ -833,7 +973,13 @@ export class WorldView {
       this._rectCollider(x, z, 5.2, 6);
     }
     for (let i = 0; i < 14; i++) this._tree((i % 2 ? 1 : -1) * (17 + this.rand() * 8), -27 + this.rand() * 52, 1.0 + this.rand() * 1.3, 'alien');
-    for (const z of [-9, 8]) { this._box(30, 1.3, 3, stone, 0, 13, z); for (const x of [-7, 7]) this._pipe([x, 12, z], [x + .7, 1, z + 1.5], .2, dark); }
+    for (const z of [-9, 8]) {
+      const span = this._box(30, 1.3, 3, stone, 0, 13, z);
+      // Retain the field bridge but expose the native enemy sightline in ATB.
+      span.userData.keep = true; span.userData.combatOccluder = true;
+      span.visible = this.mode !== 'combat'; this.combatOccluders.push(span);
+      for (const x of [-7, 7]) this._pipe([x, 12, z], [x + .7, 1, z + 1.5], .2, dark);
+    }
     this._crate(-10.6, 5.0, .8, 0x6b7964);
     this._cylinder(2.3, .8, dark, 0, .4, -20);
     const vigil = this._mesh(new THREE.IcosahedronGeometry(1.5, 2), new THREE.MeshBasicMaterial({ color: 0xb7d9a0, transparent: true, opacity: .32, wireframe: true }), 0, 2.8, -20);
@@ -875,13 +1021,16 @@ export class WorldView {
     this.setBattle(null);
     disposeObject(this.stage, true); this.stage.clear(); this.materialCache.clear();
     this._lights(zone.theme);
-    ({ normandy: () => this._normandy(), eden: () => this._eden(), citadel: () => this._citadel(false), therum: () => this._therum(), feros: () => this._feros(), noveria: () => this._noveria(), virmire: () => this._virmire(), ilos: () => this._ilos(), finale: () => this._citadel(true) }[zone.theme] || (() => this._eden()))();
+    if (this.levelLayout?.renderer === 'frontier') buildFrontierScene(this, this.levelLayout);
+    else ({ normandy: () => this._normandy(), eden: () => this._eden(), citadel: () => this._citadel(false), therum: () => this._therum(), feros: () => this._feros(), noveria: () => this._noveria(), virmire: () => this._virmire(), ilos: () => this._ilos(), finale: () => this._citadel(true) }[zone.theme] || (() => this._eden()))();
     this._dressScene();
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
     this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
     this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
     if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
     else this.cameraTarget.set(this.player.x * .42, 0, this.player.z * .42);
+    this.makoState = zone.id === 'therum' ? createMakoState(this.levelLayout?.vehicleSpawn || { x: -7.2, z: 16 }) : null;
+    this.makoSprite = null; this._syncMakoSprite();
     this._makeMarkers(); this.setParty(party || this.party);
     if (this.zoneId !== 'normandy' || !this.storyContext) this._makeAmbientCharacters();
     this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget); this.resize();
@@ -977,20 +1126,25 @@ export class WorldView {
     }
     const next = context && typeof context === 'object' ? {
       recruited: strings(context.recruited), lost: strings(context.lost), completed: strings(context.completed),
-      visitedZones: strings(context.visitedZones ?? context.story?.visitedZones),
+      visitedZones: strings(context.visitedZones ?? context.story?.visitedZones), cleared: strings(context.cleared),
       flags: { jenkinsLost: context.flags?.jenkinsLost === true },
       assignmentContacts,
+      ...(context.mediaId !== undefined ? {mediaId:context.mediaId} : {}),
+      ...(context.periodId !== undefined ? {periodId:context.periodId} : {}),
+      ...(context.context !== undefined ? {context:{mediaId:context.context?.mediaId,periodId:context.context?.periodId}} : {}),
     } : null;
     if (next?.flags.jenkinsLost && !next.lost.includes('jenkins')) next.lost.push('jenkins');
     if (JSON.stringify(next) === JSON.stringify(this.storyContext)) return;
     this.storyContext = next;
+    if (!this._vehicleInPeriod() && this.isVehicleMounted()) this._dismountVehicle();
+    if (this.makoSprite) this.makoSprite.group.visible=this.mode!=='combat'&&this._vehicleInPeriod();
     if (!this.zone) return;
     if (this.pendingPOI && !this.getInteractivePOIs().some(poi => poi.id === this.pendingPOI.id)) {
       this.pendingPOI = null; this.targetPath = null;
     }
     this.setParty(this.party);
     if (this.zoneId === 'normandy') this._makeMarkers();
-    if (this.zoneId === 'citadel') { this._makeMarkers(); this._makeAmbientCharacters(); }
+    if (this.zoneId === 'citadel' || this.zoneId === 'noveria') { this._makeMarkers(); this._makeAmbientCharacters(); }
   }
 
   _makeActor(key, id, enemy = false, parent = this.characters) {
@@ -1036,7 +1190,8 @@ export class WorldView {
     this.ambientActors = [];
     for (const p of this.zone.pois) {
       if (p.type === 'encounter' && !this.cleared.has(p.id)) {
-        const key = this.zone.theme === 'noveria' && p.id.endsWith('encounter-2') ? 'rachni' : this.zone.theme === 'feros' && p.id.endsWith('encounter-2') ? 'creeper' : p.id.endsWith('encounter-2') && this.zone.theme === 'eden' ? 'husk' : 'geth';
+        const suffix=p.id.slice(this.zoneId.length+1), index=['encounter-1','encounter-2','boss'].indexOf(suffix);
+        const key=ENEMIES[ENCOUNTERS[this.zoneId]?.[index]?.[0]]?.sprite || 'geth';
         const actor = this._makeActor(key, `ambient:${p.id}`, true); actor.poiId = p.id; actor.group.position.set(p.x + .8, 0, p.z - .8); actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
       }
     }
@@ -1048,7 +1203,7 @@ export class WorldView {
     const npcs = this.zoneId === 'normandy'
       ? [...(!this.storyContext ? [['chakwas', 5.2, 10.5], ['joker', .5, -15.3]] : []), ...(!this.cleared.has('eden-prime:boss') ? [['anderson', -5.2, -3.8]] : [])]
       : this.zoneId === 'citadel' ? [['anderson', .8, 11.2], ['udina', 1.1, -17.9]]
-      : this.zoneId === 'virmire' ? [['kirrahe', .8, 11.2]] : [];
+      : this.zoneId === 'virmire' ? [['kirrahe', this.levelLayout?.campNPC?.x ?? .8, this.levelLayout?.campNPC?.z ?? 11.2]] : [];
     for (const [key, x, z] of npcs) {
       const actor = this._makeActor(key, `npc:${key}`);
       if (key === 'joker' && this.zoneId === 'normandy') actor.stationRole = 'normandy-pilot';
@@ -1092,11 +1247,12 @@ export class WorldView {
 
   setMode(mode) {
     this.mode = mode; if (mode !== 'explore') { this.keys.clear(); this.targetPath = null; this.pendingPOI = null; }
+    if (this.makoSprite) this.makoSprite.group.visible = mode !== 'combat' && this._vehicleInPeriod();
     for (const object of this.combatOccluders) {
       const scenery = object.userData.levelScenery, arena = this.battleArena || this.zone.arena;
       object.visible = mode !== 'combat' || !!this.levelLayout && !!scenery && Math.hypot(scenery.x - arena.x, scenery.z - arena.z) > 24;
     }
-    for (const actor of this.actors) actor.group.visible = mode !== 'combat';
+    for (const actor of this.actors) actor.group.visible = mode !== 'combat' && !this.isVehicleMounted();
     for (const actor of this.ambientActors || []) actor.group.visible = mode !== 'combat' && (!actor.poiId || !this.cleared.has(actor.poiId));
     for (const actor of this.battleActors.values()) actor.group.visible = mode === 'combat';
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
@@ -1104,6 +1260,7 @@ export class WorldView {
   }
 
   setBattle(battle) {
+    if (battle && this.isVehicleMounted()) this._dismountVehicle();
     if (battle && battle !== this.battle && this.levelLayout) {
       this.battleArena = Object.values(this.levelLayout.arenas).reduce((best, arena) =>
         Math.hypot(arena.x - this.player.x, arena.z - this.player.z) < Math.hypot(best.x - this.player.x, best.z - this.player.z) ? arena : best,
@@ -1257,9 +1414,11 @@ export class WorldView {
   getPOIs() { return this.zone.pois.map(poi => ({ ...poi, cleared: this.cleared.has(poi.id) })); }
   getConversationPOIs() {
     const context = this.storyContext;
-    if (this.zoneId !== 'normandy' || !context) return [];
+    if (!context) return [];
     return (this.zone.conversationPois || []).filter(poi => {
       const id = poi.conversationId;
+      if (poi.frontierNPC) return frontierNPCVisible({...context,zone:this.zoneId},poi.frontierNPC);
+      if (this.zoneId !== 'normandy') return false;
       if (context.lost.includes(id)) return false;
       if (id === 'joker' || id === 'chakwas') return true;
       if (id === 'nihlus') return !context.visitedZones.includes('eden-prime') && !context.completed.includes('eden-prime') && !context.flags.jenkinsLost;
@@ -1306,12 +1465,14 @@ export class WorldView {
   }
 
   getNearby() {
+    if (this.isVehicleMounted()) return null;
     let nearest = null, distance = 2.65;
     for (const poi of this.getInteractivePOIs()) { if (poi.type === 'encounter' && this.cleared.has(poi.id)) continue; const d = Math.hypot(this.player.x - poi.x, this.player.z - poi.z); if (d < distance) { distance = d; nearest = poi; } }
     return nearest ? { ...nearest, distance } : null;
   }
   interact() {
     if (this.mode !== 'explore') return null;
+    if (this.isVehicleMounted()) return null;
     const poi = this.getNearby(); if (!poi) return null;
     this.targetPath = null; this.pendingPOI = null;
     if (poi.type === 'encounter' && this.onEncounter) this.onEncounter(poi); else this.onInteract?.(poi);
@@ -1329,6 +1490,7 @@ export class WorldView {
   }
 
   _pathTo(destination) {
+    if (this.isVehicleMounted()) return findLevelPath({ bounds: this.zone.bounds, start: this.player, destination, isWalkable: (x,z) => this._vehicleGround(x,z,1.45) });
     if (this.levelLayout) return findLevelPath({ bounds: this.zone.bounds, start: this.player, destination, isWalkable: (x, z) => this._walkable(x, z) });
     const step = .75, b = this.zone.bounds;
     const cell = (x, z) => [Math.round((x - b.minX) / step), Math.round((z - b.minZ) / step)];
@@ -1359,7 +1521,7 @@ export class WorldView {
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.pointer.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    const hits = this.raycaster.intersectObjects(this.poiViews.filter(v => v.group.visible).map(v => v.icon));
+    const hits = this.isVehicleMounted() ? [] : this.raycaster.intersectObjects(this.poiViews.filter(v => v.group.visible).map(v => v.icon));
     let destination, poi;
     if (hits.length) { poi = hits[0].object.userData.poi; destination = { x: poi.x, z: poi.z }; }
     else { const p = new THREE.Vector3(); if (!this.raycaster.ray.intersectPlane(this.groundPlane, p)) return; destination = { x: p.x, z: p.z }; }
@@ -1390,10 +1552,16 @@ export class WorldView {
         const direction = side.multiplyScalar(right).add(up.multiplyScalar(forward)).normalize(); dx = direction.x; dz = direction.y;
       } else if (this.targetPath?.length) {
         const target = this.targetPath[0], x = target.x - this.player.x, z = target.z - this.player.z, d = Math.hypot(x, z);
-        if (d < .16) this.targetPath.shift(); else { dx = x / d; dz = z / d; }
+        if (d < (this.isVehicleMounted() ? .7 : .16)) this.targetPath.shift(); else { dx = x / d; dz = z / d; }
       }
       const speed = (this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') ? 6.6 : 4.35) * dt;
-      if (dx || dz) {
+      if (this.isVehicleMounted()) {
+        const previous = { ...this.player };
+        this.makoState = stepMako(this.makoState, { x: dx, z: dz, boost: this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') }, dt, (x,z,radius) => this._vehicleGround(x,z,radius));
+        this.player = { ...this.makoState.position };
+        moving = Math.hypot(this.player.x-previous.x,this.player.z-previous.z)>.001;
+        this._syncMakoSprite();
+      } else if (dx || dz) {
         const oldX = this.player.x, oldZ = this.player.z;
         if (this._walkable(this.player.x + dx * speed, this.player.z + dz * speed)) { this.player.x += dx * speed; this.player.z += dz * speed; }
         else { if (this._walkable(this.player.x + dx * speed, this.player.z)) this.player.x += dx * speed; if (this._walkable(this.player.x, this.player.z + dz * speed)) this.player.z += dz * speed; }
@@ -1411,6 +1579,7 @@ export class WorldView {
     this.cameraTarget.lerp(desired, 1 - Math.exp(-dt * 3)); this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget);
     const facing = Math.atan2(this.cameraOffset.x, this.cameraOffset.z);
     this.actors.forEach((actor, index) => {
+      actor.group.visible = this.mode !== 'combat' && !this.isVehicleMounted();
       const target = actor.stationPosition || (index === 0 ? this.player : this.trail[Math.min(this.trail.length - 1, index * 11)] || this.player);
       const actorMoving = moving && !actor.stationPosition;
       actor.group.position.x = THREE.MathUtils.lerp(actor.group.position.x, target.x, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
@@ -1430,7 +1599,8 @@ export class WorldView {
     for (const actor of this.ambientActors || []) {
       actor.body.rotation.y = facing;
       actor.body.position.y = actor.height / 2 + .05 + Math.sin(this.time * 1.5 + actor.group.position.x) * .02;
-      this._applySeatedJoker(actor);
+      this._applySeatedJoker(actor); this._applyFrontierNPCBody(actor);
+      if (FRONTIER_ENEMY_IDS.includes(actor.key)) this._applyFrontierEnemyBody(actor);
     }
     for (const actor of this.battleActors.values()) {
       actor.body.rotation.y = facing; actor.poseTime = Math.max(0, actor.poseTime - dt);
@@ -1454,7 +1624,8 @@ export class WorldView {
           // or if a frame is unavailable; never retain the preceding pose's crop.
           this._fallbackCombatFrame(actor);
         }
-      } else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
+      } else if (FRONTIER_ENEMY_IDS.includes(actor.key)) this._applyFrontierEnemyBody(actor);
+      else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     for (const item of this.animations) {
@@ -1494,7 +1665,7 @@ export class WorldView {
     this.renderer.domElement.removeEventListener('pointerdown', this._pointerdown);
     this._clearCommanderTextures();
     disposeObject(this.scene);
-    for (const texture of new Set([...this.spriteCache.values(), ...this.textureCache.values(), ...Object.values(this.atlases)])) texture.dispose();
+    for (const texture of new Set([...(this._neutralBodyTexture ? [this._neutralBodyTexture] : []), ...this.spriteCache.values(), ...this.textureCache.values(), ...Object.values(this.atlases)])) texture.dispose();
     this.spriteCache.clear(); this.textureCache.clear(); this.atlases = {};
     this._atlasRequests?.clear(); this._atlasUrls?.clear();
     this.renderer.dispose(); this.renderer.domElement.remove(); this.labels.remove();

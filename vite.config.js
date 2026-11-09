@@ -3,6 +3,10 @@ import { readFileSync } from 'node:fs';
 import { COMPANION_ANIMATION_IDS, normalizeCompanionAnimation } from './src/companion-animation-data.js';
 import { ENEMY_ANIMATION_IDS, normalizeEnemyAnimation } from './src/enemy-animation-data.js';
 import { normalizeJokerSeated } from './src/joker-seated-data.js';
+import { BOSS_ANIMATION_IDS, normalizeBossAnimation } from './src/boss-animation-data.js';
+import { normalizeFrontierNPCAtlas } from './src/frontier-characters.js';
+import { normalizeFrontierEnemyAtlas } from './src/frontier-enemies.js';
+import { normalizeMakoDirections } from './src/frontier-vehicles.js';
 
 const femaleAnimation = JSON.parse(readFileSync(new URL('./public/assets/shepard-female-animation.json', import.meta.url), 'utf8'));
 const maleAnimation = JSON.parse(readFileSync(new URL('./public/assets/shepard-male-animation.json', import.meta.url), 'utf8'));
@@ -22,11 +26,29 @@ const enemyAnimations = ENEMY_ANIMATION_IDS.map(key => {
 });
 const jokerSeated = normalizeJokerSeated(JSON.parse(readFileSync(new URL('./public/assets/joker-seated.json', import.meta.url), 'utf8')));
 if (!jokerSeated) throw new Error('Invalid ME1 Joker seated metadata');
+const bossAnimations = Object.fromEntries(BOSS_ANIMATION_IDS.map(key => {
+  const raw = JSON.parse(readFileSync(new URL(`./public/assets/boss-${key}-animation.json`, import.meta.url), 'utf8'));
+  const animation = normalizeBossAnimation(key, raw);
+  if (!animation) throw new Error(`Invalid ME1 boss animation metadata: ${key}`);
+  return [key, animation];
+}));
+const localAtlas = (file, normalize) => {
+  const atlas = normalize(JSON.parse(readFileSync(new URL(`./public/assets/${file}`, import.meta.url), 'utf8')));
+  if (!atlas) throw new Error(`Invalid ME1 local atlas metadata: ${file}`);
+  return atlas;
+};
+const frontierNPCAtlas = localAtlas('frontier-npcs.json', normalizeFrontierNPCAtlas);
+const frontierEnemyAtlas = localAtlas('frontier-enemies.json', normalizeFrontierEnemyAtlas);
+const makoDirections = localAtlas('vehicle-mako-directions.json', normalizeMakoDirections);
 export default defineConfig({
   base: './',
   define: { __RELAY_FEMSHEP_ANIMATION__: JSON.stringify(femaleAnimation), __RELAY_MALESHEP_ANIMATION__: JSON.stringify(maleAnimation),
     __RELAY_COMPANION_ANIMATIONS__: JSON.stringify(companionAnimations),
-    __RELAY_ENEMY_ANIMATIONS__: JSON.stringify(enemyAnimations), __RELAY_JOKER_SEATED__: JSON.stringify(jokerSeated) },
+    __RELAY_ENEMY_ANIMATIONS__: JSON.stringify(enemyAnimations), __RELAY_JOKER_SEATED__: JSON.stringify(jokerSeated),
+    __RELAY_BOSS_ANIMATIONS__: JSON.stringify(bossAnimations),
+    __RELAY_FRONTIER_NPC_ATLAS__: JSON.stringify(frontierNPCAtlas),
+    __RELAY_FRONTIER_ENEMY_ATLAS__: JSON.stringify(frontierEnemyAtlas),
+    __RELAY_MAKO_DIRECTIONS__: JSON.stringify(makoDirections) },
   build: { target: 'es2022', rollupOptions: { output: { manualChunks: { three: ['three'] } } } },
   server: { port: 4173, hmr: process.env.RELAY_QA === '1' ? false : undefined },
 });

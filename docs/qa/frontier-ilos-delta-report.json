@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "at": "2026-11-09T05:44:20.526Z",
+  "scope": "Exact source qualification for successful non-Ilos development checks. Ilos itself requires fresh native and browser checks on the changed source.",
+  "before": {
+    "path": "src/world.js",
+    "snapshot": "docs/qa/frontier-before-ilos-sources/src/world.js",
+    "sha256": "d5715efd8177ad71fffe0d107506b2046074a3deb6ac589cf16b14db6d784601"
+  },
+  "after": {
+    "path": "src/world.js",
+    "sha256": "2a17bdbe81eb46bccb05df0597e00df9a74b37ed746a9a73687ff69ebe5d6b1c"
+  },
+  "sourceHashes": {
+    "docs/qa/frontier-before-ilos-sources/src/world.js": "d5715efd8177ad71fffe0d107506b2046074a3deb6ac589cf16b14db6d784601",
+    "src/world.js": "2a17bdbe81eb46bccb05df0597e00df9a74b37ed746a9a73687ff69ebe5d6b1c",
+    "scripts/frontier-ilos-delta.mjs": "10783b2698a9f0846b645f3c9a54c006165e05a7653d876782f2398fde6ffd9f"
+  },
+  "outsideIlosUnchanged": true,
+  "geometryAndCollisionsUnchanged": true,
+  "permittedReplacement": {
+    "before": "    for (const z of [-9, 8]) { this._box(30, 1.3, 3, stone, 0, 13, z); for (const x of [-7, 7]) this._pipe([x, 12, z], [x + .7, 1, z + 1.5], .2, dark); }",
+    "after": "    for (const z of [-9, 8]) {\n      const span = this._box(30, 1.3, 3, stone, 0, 13, z);\n      // Retain the field bridge but expose the native enemy sightline in ATB.\n      span.userData.keep = true; span.userData.combatOccluder = true;\n      span.visible = this.mode !== 'combat'; this.combatOccluders.push(span);\n      for (const x of [-7, 7]) this._pipe([x, 12, z], [x + .7, 1, z + 1.5], .2, dark);\n    }"
+  },
+  "observations": [
+    "The two existing boxes retain dimensions 30×1.3×3, position (0,13,z), materials, and z=-9/8.",
+    "All support pipe calls and collider declarations remain byte-identical.",
+    "keep prevents static merging; combatOccluders/setMode hide only these spans in ATB and restore them in exploration.",
+    "Other methods, including maps, NPCs, Mako movement, portraits, camera, native actions and save paths, are byte-identical."
+  ],
+  "limitations": [
+    "Earlier captures still identify their actually executed pre-fix source. They are qualified for unchanged zones, never relabelled as new executions.",
+    "This audit does not replace the current-source Ilos visibility check or the final production browser journey."
+  ]
+}

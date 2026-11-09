@@ -40,6 +40,18 @@ Après la Citadelle, Thérum, Féros et Novéria peuvent être visitées dans l�
 
 Les cartes jouables représentent des condensations de plusieurs lieux. Les cent sous-zones et les liaisons du catalogue constituent un registre de travail distinct, qui doit être vérifié avant reconstruction intégrale.
 
+## Extension Frontier : présence, conduite et grands parcours ME1
+
+Thérum, Novéria et Virmire ont chacune un plan de cinq secteurs reliés par trois chemins : progression, détour facultatif et retour. Leur enveloppe de scène mesure 122 × 176 unités ; le sol réellement praticable suit des polygones et couloirs, avec relief périphérique et collisions. Les distances sont des valeurs de composition du prototype. Thérum associe basalte, lave, raffinerie et fouille ; Novéria associe Port Hanshan, garage, route enneigée et laboratoires ; Virmire associe côte, camp du GSI, périmètre et installation. Ces lieux reliés sans coupure ne reproduisent pas les dimensions ou toutes les transitions du jeu original.
+
+Chaque carte conserve ses sept identifiants de mission et trois arènes ATB locales. La caméra suit le commando ; carte et radar partagent le masque de sol du monde. Les positions d’anciennes sauvegardes sont replacées sur un point libre si nécessaire. Les autres cartes conservent leur plan, dont Eden Prime et ses cinq secteurs.
+
+Greg Adams, Charles Pressly, l’officier des réquisitions et Jenkins proposent deux sujets chacun au Normandy. Jenkins n’est présent qu’avant Eden Prime. Gianna Parasini, Anoleis, Lorik Qui’in et Lilihierax sont placés à Port Hanshan ou au garage, après la Citadelle. Ces huit conversations d’information n’ajoutent ni recrutement, ni récompense, ni résolution implicite des quêtes de Novéria. Les textes sont réécrits pour le prototype.
+
+Huit types adverses supplémentaires occupent six formations ordinaires existantes : drones de reconnaissance et d’assaut geth, lance-roquettes, soldat de choc, juggernaut, traqueur, rachni ouvrier et tourelle. Ils utilisent des corps dédiés et les commandes ATB présentes. Les projectiles explosifs, la grimpe, les trajectoires de vol et l’autodestruction d’origine restent à réaliser. Les quatre boss existants reçoivent chacun quatre dessins de combat ; cela ne crée aucune phase ou capacité supplémentaire.
+
+À Thérum, E permet d’embarquer près du Mako ou de descendre ; ZQSD/WASD/flèches pilotent et Maj accélère. Les commandes tactiles proposent aussi direction et accélérateur. La conduite teste le gabarit contre les sols et obstacles ; un passage non sécurisé bloque le véhicule avant la rencontre obligatoire. Le commando descend pour engager le combat. Le contrôleur est un prototype avec inertie adaptée, sans canon, simulation de suspension ou conduite sur toutes les planètes. La position du commando reste sauvegardée ; le véhicule est recréé à son stationnement et la reprise se fait à pied, sans changement du format de sauvegarde.
+
 ## Combat ATB
 
 Chaque acteur possède santé, bouclier, attaque, défense, vitesse, chaleur, concentration, jauge ATB, recharges et états temporaires. Une jauge pleine permet une action. La simulation découpe le temps en petites étapes pour conserver l’ordre des événements même lorsqu’un test accélère plusieurs secondes.

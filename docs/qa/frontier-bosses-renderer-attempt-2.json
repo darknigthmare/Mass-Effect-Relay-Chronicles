@@ -1,0 +1,165 @@
+{
+  "passed": false,
+  "at": "2026-11-09T05:34:08.057Z",
+  "url": "http://127.0.0.1:4173",
+  "sourceHashes": {
+    "src/world.js": "de2f00930be0a679d9ea5506f046e51ee85ea5ca8e32ad187acd410864540e3e",
+    "src/world-data.js": "7f8d9a4fe61f175f6a8b076a6dac3e7215bb59addf848ce73aa7c279c0269485",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/frontier-scene.js": "45a393b8cdd881654da63cf9785ab6fe1829648068e717ed0c2cc01ef1eb93eb",
+    "src/boss-animation-data.js": "e3a1613fb1feaf747dbc35a99d4225c3bda4281e66ac8bf3afa0398f3010a243",
+    "src/game-data.js": "48ecfa5f17ef07c9e536dd298fa922e27f07cabc1513c6d77d3abe61cd40a7b9",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "vite.config.js": "53bd43d7182432c800cb6862d14e3cbdf5755de491f5fe2a3a376d95196cd717",
+    "scripts/frontier-bosses-renderer.mjs": "7440a4bdf9e4a066172b1ebed7328a4ee20f5d6851ebf19cae4ccf1e642a286b",
+    "public/assets/boss-saren-combat.png": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318",
+    "public/assets/boss-saren-animation.json": "69ab0fe2e2eda2be4e235bec600ff0d9ea82a4cbcf69d2553a9ecddc46cc1ffa",
+    "public/assets/boss-benezia-combat.png": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788",
+    "public/assets/boss-benezia-animation.json": "afb12aa6053c332af0c6caba4a1eee15e9ad3b8761f8ef23f95cd619568ee2c8",
+    "public/assets/boss-thorian-combat.png": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37",
+    "public/assets/boss-thorian-animation.json": "8eae1a27117ed815adeffe6fa4e10680bdf3030b513584c8d071cbbc5f6dfd3b",
+    "public/assets/boss-saren-final-combat.png": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883",
+    "public/assets/boss-saren-final-animation.json": "76405c9cd6bf75e48bf22ffc6c635ac19483f4f32a96827328f52b6145060b9f"
+  },
+  "scope": "Detached development fixture using the actual WorldView, native boss encounter compositions and native party actor definitions. Sixteen held fixed drawings are inspected separately from four real performAction/hit/KO scratch-battle sequences. No application campaign is begun, no save is written, no victory is claimed and no route progression is represented. This is renderer/guard QA, not full original-game fidelity, complete animation, new boss phase or ordinary campaign-play evidence.",
+  "fixture": "New local state and renderer only; party Shepard/Garrus/Liara. Held pose events and HP0 inputs are explicit visual fixtures. Real KO sequence uses scratch HP1/shield0 and high attack override on Garrus, never canonical ENEMIES edits.",
+  "viewport": {
+    "width": 1280,
+    "height": 800,
+    "deviceScaleFactor": 1
+  },
+  "cases": [
+    {
+      "key": "saren",
+      "id": "saren-0",
+      "pose": "aim",
+      "zone": "virmire",
+      "index": 2,
+      "poi": "virmire:boss",
+      "arena": {
+        "x": -7,
+        "z": -77
+      },
+      "composition": [
+        "saren",
+        "geth"
+      ],
+      "frameId": "saren-combat-aim",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-combat.png",
+      "rect": [
+        149,
+        11,
+        464,
+        501
+      ],
+      "pivot": [
+        232,
+        493
+      ],
+      "repeat": [
+        0.3020833333333333,
+        0.4892578125
+      ],
+      "offset": [
+        0.09700520833333333,
+        0.5
+      ],
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 739.469383838464,
+        "right": 812.283755095949,
+        "top": 352.190235131996,
+        "bottom": 413.05570098355327
+      },
+      "saveUnchanged": true,
+      "drawCalls": 97,
+      "triangles": 9502,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-attempt-2-saren-aim.png",
+      "passed": true
+    }
+  ],
+  "nativeEvents": [],
+  "scopeClosures": [],
+  "captures": [
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-attempt-2-saren-aim.png",
+      "sha256": "35b5d14f6b36a26e2afe30c740a0eb2b6a0adb848647b417c311414f425eb379",
+      "bytes": 867716,
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-attempt-2-failure.png",
+      "sha256": "3047ddea2ecddf89d7ce684a1e35d03fc7ecbbe33e7da55614e3cca9d7ec1414",
+      "bytes": 867997,
+      "actuallyOpened": false
+    }
+  ],
+  "servedAssets": [
+    {
+      "key": "saren",
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    {
+      "key": "benezia",
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    {
+      "key": "thorian",
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    {
+      "key": "saren-final",
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "assetErrors": [],
+  "actuallyOpened": false,
+  "chromium": "154.0.8037.57",
+  "loaded": [
+    {
+      "key": "saren",
+      "characterId": "saren",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "key": "benezia",
+      "characterId": "benezia",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "key": "thorian",
+      "characterId": "thorian",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "key": "saren-final",
+      "characterId": "saren-final",
+      "width": 1536,
+      "height": 1024
+    }
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'saren-combat-aim'\n- 'saren-combat-power'\n                ^\n\n    at file:///workspace/Mass-Effect-Relay-Chronicles/scripts/frontier-bosses-renderer.mjs:90:12",
+  "historicalAttempt": 2,
+  "retainedAsCurrent": false,
+  "fixtureCorrection": "Select existing powers[0] before default shoot primaryAction when holding power pose; ordinary native action selection unchanged."
+}

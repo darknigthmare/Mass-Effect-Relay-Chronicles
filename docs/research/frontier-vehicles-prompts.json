@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "date": "2026-11-09",
+  "tool": "image_gen.imagegen",
+  "pixelEditingApplied": false,
+  "attempts": [
+    {
+      "id": 1,
+      "prompt": "Production sprite sheet for a French Mass Effect fan JRPG using high-definition prerendered vehicle sprites in a 3D orthographic scene. Produce ONE native transparent RGBA atlas, landscape 1536x1024, EXACTLY FOUR isolated complete views of the SAME ME1 M35 MAKO infantry fighting rover, arranged as an evenly separated 2 by 2 grid, with generous transparent margins and absolutely no background, floor, shadows on a ground plane, labels, lettering, panels, UI or frame lines. Upper left FRONT three-quarter view: nose aimed down toward viewer. Upper right BACK three-quarter view: rear aimed toward viewer, nose away upward. Lower left LEFT profile three-quarter view: nose aimed screen left. Lower right RIGHT profile three-quarter view: nose aimed screen right. Each rover occupies only its own quadrant without crossing the central empty gutters. Maintain consistent rover scale, camera elevation around 25 degrees, materials, lighting and hull geometry across all four drawings. The MAKO is the squat, angular, heavy white/light grey Alliance armored rover from MASS EFFECT 1, with exactly SIX huge black deeply treaded tires, THREE tires per side, broad low wedge-shaped armored nose, dark segmented windows, black underbody, compact top rotating cannon turret with long slender barrel and modest dark red Alliance panel accents. Keep its six-wheel heavy IFV silhouette; it is NOT the Nomad, not an eight-wheeler, not the hovering Hammerhead, not a tank on treads, no open cockpit. Side views must show three distinct near-side wheels with plausible far-side wheels behind them. Full tires, turret and barrel must fit comfortably inside each quadrant. No firing, muzzle flashes, combat effects, thruster effects or airborne pose. Reference image 1 is the existing vehicle atlas: use ONLY its upper-right Mako for the project's HD rendered materials and silhouette, ignore all spacecraft and robots. Reference image 2 is the official EA ME1 manual page 13: its MAKO terrain screenshot and text establish the ME1 six-wheel identity; do NOT reproduce any page, text or UI. This is a four-direction game sprite family, not four new designs. Crisp readable dark contours, weathered painted metal, soft neutral studio illumination, realistic proportions, no pixel art, no chibi, no cartoon. Every background pixel outside the objects must be truly transparent, including the full outer border and central gutters.",
+      "referencedImagePaths": [
+        "public/assets/vehicle-atlas.png",
+        "/tmp/relay-frontier-vehicles/me1-manual-page13.png"
+      ],
+      "transparentBackground": true,
+      "result": "/workspace/generated_images/exec-e2fe78c1-1c3a-44bb-840a-b4dbb01c1de9.png",
+      "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74",
+      "selected": true,
+      "reason": "Native Chromium checkerboard review confirms clean transparent cutouts. Four complete separated views; fewer low-alpha pixels than correction attempt."
+    },
+    {
+      "id": 2,
+      "prompt": "Edit this exact 2x2 Mako sprite atlas while preserving its FOUR vehicle drawings, all six-wheel geometry, identities, front/back/left/right order, proportions, camera, hard surface detail and colors. Mandatory correction: remove EVERY studio backdrop, smoky gray halo, luminous fog, ground shadow, faint gradient, black matte and residual background pixel outside the four vehicles. This output must be a truly clean RGBA cutout of the four isolated rovers on complete transparency. Only the actual vehicle surfaces may have alpha; outer canvas edge, central vertical gutter, central horizontal gutter, spaces between wheels and spaces surrounding all barrels must be clean zero alpha, not a fake checkerboard or black background. Keep all four complete rovers comfortably in their separate 768x512 quadrants of a 1536x1024 canvas; if necessary shrink all four drawings uniformly by 8 percent around each quadrant center to make a generous invisible margin. Do not crop a tire or muzzle, do not add details or text. The previous atlas has a smoky gray studio halo around each vehicle: that halo is the thing to remove. Maintain visually antialiased silhouette edges but no outer glow. This file will be drawn directly on a brightly lit lava terrain, so gray studio glow is unacceptable. Preserve three visible near-side wheels on each side view. No labels, lines, panels or scenery.",
+      "referencedImagePaths": [
+        "/workspace/generated_images/exec-e2fe78c1-1c3a-44bb-840a-b4dbb01c1de9.png"
+      ],
+      "transparentBackground": true,
+      "result": "/workspace/generated_images/exec-78d6d558-693e-4d68-b893-b46b8e6341a9.png",
+      "sha256": "4d41aa2fbb3bae3ee0d290b3cc9855a47bd5416baf2e96a20378a5eb561e5564",
+      "selected": false,
+      "reason": "Did not improve separation and increased low-alpha pixel count (75364 versus 44122 for alpha 1..32); first output retained."
+    }
+  ]
+}

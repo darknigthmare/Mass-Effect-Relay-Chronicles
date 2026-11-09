@@ -4,13 +4,15 @@ import { EDEN_LAYOUT, LEVEL_LAYOUTS, getLevelLayout, isLevelGround, nearestLevel
 import { WORLD_ZONES } from '../src/world-data.js';
 import { newGame, encodeSave, decodeSave, canStartEncounter, winEncounter, completeZone } from '../src/state.js';
 
-test('Eden uses its own immutable spatial plan while other zones retain their existing bounds and seven identities', () => {
+test('four authored immutable spatial plans preserve seven identities while the five legacy zones retain their bounds', () => {
   assert.equal(getLevelLayout('eden-prime'), EDEN_LAYOUT);
-  for (const id of Object.keys(WORLD_ZONES).filter(id => id !== 'eden-prime')) assert.equal(getLevelLayout(id), null);
+  const authored=['eden-prime','therum','noveria','virmire'];
+  for(const id of authored){const layout=getLevelLayout(id);assert.ok(layout);assert.deepEqual(WORLD_ZONES[id].bounds,layout.bounds);assert.ok(Object.isFrozen(layout));assert.deepEqual(WORLD_ZONES[id].pois.map(p=>p.id),['arrival','cache','encounter-1','encounter-2','boss','objective','exit'].map(suffix=>`${id}:${suffix}`));}
+  for (const id of Object.keys(WORLD_ZONES).filter(id => !authored.includes(id))) assert.equal(getLevelLayout(id), null);
   assert.equal(getLevelLayout('__proto__'), null);
   assert.ok(Object.isFrozen(LEVEL_LAYOUTS)); assert.ok(Object.isFrozen(EDEN_LAYOUT.rooms[0].polygon[0]));
   assert.throws(() => { EDEN_LAYOUT.paths[0].points.push([0, 0]); }, TypeError);
-  assert.deepEqual(WORLD_ZONES.therum.bounds, { minX: -20, maxX: 20, minZ: -21, maxZ: 21 });
+  for(const id of ['citadel','feros','ilos','citadel-finale'])assert.deepEqual(WORLD_ZONES[id].bounds,{minX:-20,maxX:20,minZ:-21,maxZ:21});
   assert.deepEqual(WORLD_ZONES.normandy.bounds, { minX: -7.5, maxX: 7.5, minZ: -17, maxZ: 16 });
   assert.deepEqual(WORLD_ZONES['eden-prime'].pois.map(poi => poi.id), ['arrival', 'cache', 'encounter-1', 'encounter-2', 'boss', 'objective', 'exit'].map(id => `eden-prime:${id}`));
 });

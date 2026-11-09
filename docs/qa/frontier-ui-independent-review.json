@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "at": "2026-11-09T05:32:56.813Z",
+  "checks": [
+    "Keyboard E boards/leaves once; the repeated event does not toggle twice.",
+    "CDP real two-finger direction plus boost stores both keys; ending boost preserves direction, final release clears all.",
+    "Escape pause during two-finger hold clears direction and boost; released touches do not resume motion.",
+    "Ending a touch after a forced HUD replacement clears its key.",
+    "Keyboard movement also clears on pause and does not stick after release."
+  ],
+  "errors": [],
+  "scope": "Independent review of frontier-ui.js/css and main integration. Native post-Council fixture is explicitly prepared with state callbacks; not an end-to-end campaign replay.",
+  "sourceReview": {
+    "files": [
+      "src/frontier-ui.js",
+      "src/frontier-ui.css",
+      "src/main.js"
+    ],
+    "findings": [],
+    "notes": [
+      "Visible prompt and keyboard/touch callback use the same getExploreInteraction target; mounted state prioritizes safe dismount. Boarding distance uses world vehicle availability and does not replace a closer or equally close POI.",
+      "Seven new SVG portraits use measured rect viewBoxes and the same normalized native metadata; the eighth Jenkins portrait uses legacy crew art.",
+      "Normandy directory adds the four new local speakers and calls getConversation for their actual presence gates. Noveria stays available through its in-world POIs."
+    ]
+  }
+}

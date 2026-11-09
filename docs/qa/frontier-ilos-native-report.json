@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "at": "2026-11-09T05:44:13.247Z",
+  "command": "node --test tests/frontier-ilos-occlusion.test.js",
+  "node": "v24.19.0",
+  "audit": {
+    "snapshot": "docs/qa/frontier-before-ilos-sources/src/world.js",
+    "snapshotSHA256": "d5715efd8177ad71fffe0d107506b2046074a3deb6ac589cf16b14db6d784601",
+    "currentSHA256": "2a17bdbe81eb46bccb05df0597e00df9a74b37ed746a9a73687ff69ebe5d6b1c",
+    "outsideIlosSHA256": "bedb1247a9b20b70e926cece5ee489b55a68d161ac0a3ad0ec01b921515c66f2",
+    "outsideIlosByteIdentical": true,
+    "scope": "Only two bridge spans inside _ilos() receive keep/combatOccluder tags and combat visibility. Dimensions, pipe supports and collisions unchanged."
+  },
+  "sourceHashes": {
+    "src/world.js": "2a17bdbe81eb46bccb05df0597e00df9a74b37ed746a9a73687ff69ebe5d6b1c",
+    "tests/frontier-ilos-occlusion.test.js": "9a27f43711e67bfbb4d3d02b5205a7aa321e3d2f586ecc7a7085947b7e16c77d"
+  },
+  "sourceStable": true,
+  "status": 0,
+  "output": "✔ the two retained Ilos spans expose the native first-enemy body sightline in combat without changing field geometry or collisions (63.399827ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 175.954578\n",
+  "stderr": "",
+  "limitation": "One native first-enemy body-envelope sightline plus two combat/exploration cycles, actual Three geometry and collision snapshot. The separate browser supplement must review the rendered stalker; this test does not certify every alpha pixel or every pose."
+}

@@ -1,0 +1,3661 @@
+{
+  "schemaVersion": 1,
+  "variant": "current-balance",
+  "sourceHashes": {
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/game-data.js": "48ecfa5f17ef07c9e536dd298fa922e27f07cabc1513c6d77d3abe61cd40a7b9",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "scripts/simulate-campaign.mjs": "8fc582ce222de904959a98bdc054496d6687e6a61af2ede5efc010e73b51dd36"
+  },
+  "parameters": {
+    "before": {
+      "shieldRecharge": {
+        "exposedDelay": 4,
+        "exposedRate": 6,
+        "coverDelay": 4,
+        "coverRate": 10
+      },
+      "difficulty": {
+        "story": {
+          "enemyDamage": 0.65,
+          "enemySpeed": 0.8,
+          "focusChance": 0
+        },
+        "easy": {
+          "enemyDamage": 0.8,
+          "enemySpeed": 0.9,
+          "focusChance": 0
+        },
+        "normal": {
+          "enemyDamage": 1,
+          "enemySpeed": 1,
+          "focusChance": 0
+        },
+        "hard": {
+          "enemyDamage": 1.22,
+          "enemySpeed": 1.12,
+          "focusChance": 0
+        }
+      }
+    },
+    "after": {
+      "shieldRecharge": {
+        "exposedDelay": 7,
+        "exposedRate": 1,
+        "coverDelay": 2,
+        "coverRate": 8
+      },
+      "difficulty": {
+        "story": {
+          "enemyDamage": 0.65,
+          "enemySpeed": 0.8,
+          "focusChance": 0.2
+        },
+        "easy": {
+          "enemyDamage": 0.8,
+          "enemySpeed": 0.9,
+          "focusChance": 0.4
+        },
+        "normal": {
+          "enemyDamage": 1.85,
+          "enemySpeed": 1.2,
+          "focusChance": 0.8
+        },
+        "hard": {
+          "enemyDamage": 2.25,
+          "enemySpeed": 1.35,
+          "focusChance": 0.9
+        }
+      }
+    }
+  },
+  "protocol": {
+    "classes": [
+      "soldier",
+      "engineer",
+      "adept",
+      "infiltrator",
+      "vanguard",
+      "sentinel"
+    ],
+    "difficulties": [
+      "normal"
+    ],
+    "mode": "wait",
+    "route": [
+      "eden-prime",
+      "citadel",
+      "therum",
+      "feros",
+      "noveria",
+      "virmire",
+      "ilos",
+      "citadel-finale"
+    ],
+    "decisions": {
+      "feros": "save",
+      "noveria": "release",
+      "virmire": "save-kaidan",
+      "citadel-finale": "save-council"
+    },
+    "encountersPerCampaign": 21,
+    "firstEncounterSeed": 2183,
+    "seedRule": "2183 + number of previously won encounters, matching the game UI",
+    "simulatedStepSeconds": 0.1,
+    "timeoutSeconds": 300,
+    "healBelowHealthFraction": 0.65,
+    "coverBelowShieldFraction": 0.2,
+    "coverBelowHealthFraction": 0.8,
+    "coverWhenEnemyAtbAbove": 40,
+    "purchases": "Only earned credits; rifle, shield and armor, in that order, up to five levels; no optional caches or medigel purchases.",
+    "squad": "Starting story squad; Garrus and Tali after Citadel; Garrus and Liara after Therum except Adept and Vanguard.",
+    "healthBetweenEncounters": "actorFor restores full health and shields at each encounter, matching current game behavior; medigel persists.",
+    "progression": "Unlocks, ordered encounter gates, recruitment, explicit choices and save/import round trips are checked.",
+    "baseline": "Previous balance parameters restored in memory; all other current engine logic and player policy remain identical.",
+    "limits": [
+      "One deterministic seed sequence and one campaign route per class.",
+      "Instant automated decisions in Wait mode; not a human usability or Active mode test.",
+      "Systematic upgrades and trained-power usage; casual play can be harder.",
+      "This is a regression and calibration report, not final human playtest balancing."
+    ]
+  },
+  "summary": {
+    "campaigns": 6,
+    "completedCampaigns": 6,
+    "encounters": 126,
+    "victories": 126,
+    "defeatsOrTimeouts": 0,
+    "partyKO": 0,
+    "encountersWithHealthDamage": 35,
+    "medigelUsed": 6,
+    "coverUsed": 17,
+    "healthRestored": 615.64,
+    "minHealthPercent": 58.052967,
+    "totalSeconds": 3636.25,
+    "validatedSaves": 174
+  },
+  "byDifficulty": {
+    "normal": {
+      "campaigns": 6,
+      "completedCampaigns": 6,
+      "encounters": 126,
+      "victories": 126,
+      "defeatsOrTimeouts": 0,
+      "partyKO": 0,
+      "encountersWithHealthDamage": 35,
+      "medigelUsed": 6,
+      "coverUsed": 17,
+      "healthRestored": 615.64,
+      "minHealthPercent": 58.052967,
+      "totalSeconds": 3636.25,
+      "validatedSaves": 174
+    }
+  },
+  "campaigns": [
+    {
+      "difficulty": "normal",
+      "classId": "soldier",
+      "won": 21,
+      "encounterCount": 21,
+      "endingReached": true,
+      "partyKO": 0,
+      "minHealthPercent": 62.92303,
+      "medigelUsed": 2,
+      "coverUsed": 0,
+      "healthRestored": 206.68,
+      "encountersWithHealthDamage": 5,
+      "totalSeconds": 524.35,
+      "medianSeconds": 22.75,
+      "maxSeconds": 55.95,
+      "validatedSaves": 29,
+      "failedAt": null,
+      "finalCredits": 95,
+      "finalMedigel": 9,
+      "encounters": [
+        {
+          "id": "eden-prime:encounter-1",
+          "seed": 2183,
+          "party": [
+            "shepard",
+            "kaidan",
+            "jenkins"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 8,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 4,
+            "lift": 1,
+            "throw": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:encounter-2",
+          "seed": 2184,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 9,
+          "minHealthPercent": 98.897198,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 5,
+            "throw": 1,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:boss",
+          "seed": 2185,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 19.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 5,
+            "shoot": 1,
+            "throw": 2,
+            "lift": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-1",
+          "seed": 2186,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 10.5,
+          "playerActions": 6,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 3,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-2",
+          "seed": 2187,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "burst": 3,
+            "hack": 1,
+            "sabotage": 2,
+            "shoot": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:boss",
+          "seed": 2188,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 37.2,
+          "playerActions": 22,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "burst": 10,
+            "shoot": 2,
+            "hack": 1,
+            "sabotage": 4
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-1",
+          "seed": 2189,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 6,
+            "sabotage": 1,
+            "lift": 1,
+            "shoot": 1,
+            "throw": 1,
+            "overload": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-2",
+          "seed": 2190,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 17,
+          "minHealthPercent": 93.260906,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 9,
+            "overload": 1,
+            "throw": 2,
+            "shoot": 2,
+            "lift": 1,
+            "sabotage": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:boss",
+          "seed": 2191,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 22.75,
+          "playerActions": 13,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 1,
+            "burst": 8,
+            "shoot": 2,
+            "warp": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-1",
+          "seed": 2192,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 1,
+            "burst": 4,
+            "overload": 1,
+            "throw": 1,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-2",
+          "seed": 2193,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 6,
+            "shoot": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:boss",
+          "seed": 2194,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 55.95,
+          "playerActions": 31,
+          "minHealthPercent": 62.92303,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 4,
+            "burst": 10,
+            "overload": 3,
+            "lift": 2,
+            "sabotage": 3,
+            "throw": 3,
+            "shoot": 2,
+            "signature": 3,
+            "medigel": 1
+          },
+          "medigelUsed": 1,
+          "healthRestored": 101.8,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-1",
+          "seed": 2195,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 6,
+            "sabotage": 2,
+            "lift": 2,
+            "shoot": 2,
+            "throw": 2,
+            "overload": 1,
+            "warp": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-2",
+          "seed": 2196,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 30,
+          "playerActions": 17,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "burst": 6,
+            "overload": 1,
+            "throw": 2,
+            "lift": 1,
+            "shoot": 3,
+            "sabotage": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:boss",
+          "seed": 2197,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 45,
+          "playerActions": 26,
+          "minHealthPercent": 63.127845,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "lift": 2,
+            "burst": 9,
+            "overload": 2,
+            "throw": 3,
+            "warp": 3,
+            "sabotage": 2,
+            "signature": 2,
+            "medigel": 1,
+            "shoot": 2
+          },
+          "medigelUsed": 1,
+          "healthRestored": 104.88,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-1",
+          "seed": 2198,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 1,
+            "burst": 3,
+            "shoot": 2,
+            "warp": 1,
+            "overload": 1,
+            "lift": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-2",
+          "seed": 2199,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 8,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 1,
+            "burst": 3,
+            "shoot": 1,
+            "warp": 1,
+            "overload": 1,
+            "lift": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:boss",
+          "seed": 2200,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 25,
+          "playerActions": 14,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 6,
+            "overload": 2,
+            "lift": 1,
+            "warp": 1,
+            "shoot": 1,
+            "throw": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-1",
+          "seed": 2201,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 25,
+          "playerActions": 14,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 5,
+            "overload": 2,
+            "lift": 1,
+            "shoot": 1,
+            "throw": 1,
+            "sabotage": 1,
+            "warp": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-2",
+          "seed": 2202,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 25,
+          "playerActions": 14,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "burst": 4,
+            "overload": 2,
+            "lift": 1,
+            "sabotage": 2,
+            "throw": 2,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:boss",
+          "seed": 2203,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 92.055311,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "burst": 6,
+            "overload": 2,
+            "lift": 2,
+            "sabotage": 2,
+            "throw": 2,
+            "signature": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        }
+      ]
+    },
+    {
+      "difficulty": "normal",
+      "classId": "engineer",
+      "won": 21,
+      "encounterCount": 21,
+      "endingReached": true,
+      "partyKO": 0,
+      "minHealthPercent": 60.618553,
+      "medigelUsed": 1,
+      "coverUsed": 5,
+      "healthRestored": 104.88,
+      "encountersWithHealthDamage": 7,
+      "totalSeconds": 649.4,
+      "medianSeconds": 26.25,
+      "maxSeconds": 78.75,
+      "validatedSaves": 29,
+      "failedAt": null,
+      "finalCredits": 95,
+      "finalMedigel": 9,
+      "encounters": [
+        {
+          "id": "eden-prime:encounter-1",
+          "seed": 2183,
+          "party": [
+            "shepard",
+            "kaidan",
+            "jenkins"
+          ],
+          "winner": "party",
+          "seconds": 19.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "burst": 3,
+            "lift": 1,
+            "hack": 1,
+            "throw": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:encounter-2",
+          "seed": 2184,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 14.85,
+          "playerActions": 8,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 4,
+            "hack": 1,
+            "throw": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:boss",
+          "seed": 2185,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 19.8,
+          "playerActions": 11,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "burst": 5,
+            "throw": 2,
+            "lift": 1,
+            "sabotage": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-1",
+          "seed": 2186,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 10.5,
+          "playerActions": 6,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "hack": 1,
+            "burst": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-2",
+          "seed": 2187,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 25,
+          "playerActions": 14,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 7,
+            "sabotage": 3,
+            "hack": 1,
+            "shoot": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:boss",
+          "seed": 2188,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 41.85,
+          "playerActions": 24,
+          "minHealthPercent": 98.469996,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 6,
+            "hack": 2,
+            "sabotage": 3,
+            "burst": 8,
+            "shoot": 5
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-1",
+          "seed": 2189,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 22.75,
+          "playerActions": 13,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 4,
+            "sabotage": 2,
+            "lift": 1,
+            "hack": 1,
+            "throw": 1,
+            "burst": 1,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-2",
+          "seed": 2190,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 36.75,
+          "playerActions": 21,
+          "minHealthPercent": 80.00854,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 4,
+            "sabotage": 3,
+            "throw": 3,
+            "burst": 7,
+            "lift": 2,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:boss",
+          "seed": 2191,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 2,
+            "burst": 9,
+            "shoot": 2,
+            "warp": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-1",
+          "seed": 2192,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 22.75,
+          "playerActions": 13,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 1,
+            "overload": 4,
+            "throw": 1,
+            "hack": 1,
+            "sabotage": 2,
+            "burst": 2,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-2",
+          "seed": 2193,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 11,
+          "minHealthPercent": 95.245475,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 5,
+            "shoot": 3,
+            "throw": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:boss",
+          "seed": 2194,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 78.75,
+          "playerActions": 43,
+          "minHealthPercent": 72.095826,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 6,
+            "overload": 10,
+            "sabotage": 7,
+            "lift": 3,
+            "burst": 5,
+            "throw": 5,
+            "shoot": 2,
+            "cover": 2,
+            "signature": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-1",
+          "seed": 2195,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 36.4,
+          "playerActions": 21,
+          "minHealthPercent": 99.659864,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 2,
+            "sabotage": 3,
+            "lift": 2,
+            "hack": 1,
+            "throw": 2,
+            "shoot": 3,
+            "burst": 6,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-2",
+          "seed": 2196,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 27.3,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 3,
+            "sabotage": 2,
+            "throw": 1,
+            "hack": 1,
+            "burst": 5,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:boss",
+          "seed": 2197,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 65,
+          "playerActions": 38,
+          "minHealthPercent": 60.618553,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "lift": 3,
+            "overload": 8,
+            "throw": 4,
+            "hack": 2,
+            "burst": 6,
+            "warp": 3,
+            "sabotage": 3,
+            "signature": 3,
+            "cover": 3,
+            "shoot": 2,
+            "medigel": 1
+          },
+          "medigelUsed": 1,
+          "healthRestored": 104.88,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-1",
+          "seed": 2198,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 2,
+            "overload": 3,
+            "sabotage": 2,
+            "lift": 1,
+            "hack": 1,
+            "burst": 1,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-2",
+          "seed": 2199,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 11,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 2,
+            "overload": 3,
+            "sabotage": 1,
+            "burst": 2,
+            "hack": 1,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:boss",
+          "seed": 2200,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 40,
+          "playerActions": 23,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 5,
+            "lift": 2,
+            "hack": 2,
+            "burst": 2,
+            "warp": 2,
+            "sabotage": 4,
+            "throw": 2,
+            "shoot": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-1",
+          "seed": 2201,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 40,
+          "playerActions": 23,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 6,
+            "sabotage": 4,
+            "lift": 2,
+            "hack": 2,
+            "throw": 2,
+            "burst": 2,
+            "shoot": 3,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-2",
+          "seed": 2202,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 4,
+            "lift": 1,
+            "hack": 1,
+            "sabotage": 2,
+            "throw": 1,
+            "burst": 2,
+            "barrier": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:boss",
+          "seed": 2203,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 35,
+          "playerActions": 20,
+          "minHealthPercent": 99.625551,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 3,
+            "overload": 5,
+            "lift": 2,
+            "sabotage": 3,
+            "burst": 3,
+            "throw": 2,
+            "signature": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        }
+      ]
+    },
+    {
+      "difficulty": "normal",
+      "classId": "adept",
+      "won": 21,
+      "encounterCount": 21,
+      "endingReached": true,
+      "partyKO": 0,
+      "minHealthPercent": 58.052967,
+      "medigelUsed": 2,
+      "coverUsed": 7,
+      "healthRestored": 199.2,
+      "encountersWithHealthDamage": 7,
+      "totalSeconds": 656,
+      "medianSeconds": 26.25,
+      "maxSeconds": 73.5,
+      "validatedSaves": 29,
+      "failedAt": null,
+      "finalCredits": 95,
+      "finalMedigel": 9,
+      "encounters": [
+        {
+          "id": "eden-prime:encounter-1",
+          "seed": 2183,
+          "party": [
+            "shepard",
+            "kaidan",
+            "jenkins"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "lift": 2,
+            "burst": 4,
+            "throw": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:encounter-2",
+          "seed": 2184,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 12,
+          "minHealthPercent": 91.754513,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 3,
+            "singularity": 1,
+            "throw": 3,
+            "shoot": 2,
+            "lift": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:boss",
+          "seed": 2185,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 19.8,
+          "playerActions": 11,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "burst": 2,
+            "lift": 2,
+            "shoot": 2,
+            "warp": 1,
+            "throw": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-1",
+          "seed": 2186,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "throw": 2,
+            "sabotage": 2,
+            "hack": 1,
+            "burst": 2,
+            "shoot": 2,
+            "lift": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-2",
+          "seed": 2187,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 18.6,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "lift": 1,
+            "hack": 1,
+            "throw": 1,
+            "sabotage": 1,
+            "burst": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:boss",
+          "seed": 2188,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 42,
+          "playerActions": 25,
+          "minHealthPercent": 94.831833,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "singularity": 1,
+            "hack": 1,
+            "throw": 3,
+            "burst": 7,
+            "lift": 2,
+            "shoot": 3,
+            "warp": 2,
+            "sabotage": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-1",
+          "seed": 2189,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "singularity": 1,
+            "sabotage": 2,
+            "hack": 1,
+            "throw": 2,
+            "lift": 2,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-2",
+          "seed": 2190,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 36.75,
+          "playerActions": 20,
+          "minHealthPercent": 71.25854,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "singularity": 1,
+            "sabotage": 2,
+            "burst": 10,
+            "throw": 2,
+            "shoot": 2,
+            "cover": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:boss",
+          "seed": 2191,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "burst": 8,
+            "lift": 2,
+            "shoot": 2,
+            "warp": 2,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-1",
+          "seed": 2192,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "lift": 1,
+            "hack": 1,
+            "throw": 1,
+            "burst": 1,
+            "sabotage": 1,
+            "warp": 1,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-2",
+          "seed": 2193,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 18.6,
+          "playerActions": 10,
+          "minHealthPercent": 80.09726,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "burst": 6,
+            "singularity": 1,
+            "shoot": 2,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:boss",
+          "seed": 2194,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 73.5,
+          "playerActions": 40,
+          "minHealthPercent": 58.052967,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 10,
+            "warp": 4,
+            "sabotage": 7,
+            "burst": 9,
+            "throw": 3,
+            "shoot": 2,
+            "signature": 3,
+            "medigel": 2
+          },
+          "medigelUsed": 2,
+          "healthRestored": 199.2,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-1",
+          "seed": 2195,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 37.2,
+          "playerActions": 22,
+          "minHealthPercent": 77.661967,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "singularity": 1,
+            "sabotage": 3,
+            "hack": 1,
+            "throw": 3,
+            "lift": 1,
+            "burst": 6,
+            "shoot": 1,
+            "warp": 1,
+            "cover": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-2",
+          "seed": 2196,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 47.25,
+          "playerActions": 28,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "warp": 3,
+            "hack": 2,
+            "throw": 3,
+            "sabotage": 5,
+            "burst": 5,
+            "lift": 1,
+            "shoot": 4
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:boss",
+          "seed": 2197,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 66,
+          "playerActions": 39,
+          "minHealthPercent": 78.349436,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 9,
+            "lift": 5,
+            "hack": 1,
+            "warp": 4,
+            "burst": 8,
+            "throw": 3,
+            "sabotage": 3,
+            "shoot": 1,
+            "signature": 2,
+            "cover": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-1",
+          "seed": 2198,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "lift": 1,
+            "hack": 1,
+            "throw": 2,
+            "burst": 2,
+            "warp": 1,
+            "sabotage": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-2",
+          "seed": 2199,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 11,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "lift": 1,
+            "hack": 1,
+            "warp": 1,
+            "burst": 2,
+            "shoot": 1,
+            "sabotage": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:boss",
+          "seed": 2200,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 35,
+          "playerActions": 20,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "singularity": 1,
+            "hack": 1,
+            "warp": 2,
+            "burst": 3,
+            "lift": 2,
+            "shoot": 2,
+            "cover": 1,
+            "throw": 1,
+            "sabotage": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-1",
+          "seed": 2201,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 35,
+          "playerActions": 20,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "singularity": 1,
+            "sabotage": 4,
+            "hack": 1,
+            "lift": 2,
+            "throw": 1,
+            "burst": 3,
+            "shoot": 2,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-2",
+          "seed": 2202,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 27.9,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "warp": 2,
+            "hack": 1,
+            "lift": 1,
+            "sabotage": 2,
+            "burst": 2,
+            "throw": 2,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:boss",
+          "seed": 2203,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 27.9,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "warp": 2,
+            "burst": 4,
+            "throw": 2,
+            "sabotage": 1,
+            "cover": 1,
+            "signature": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        }
+      ]
+    },
+    {
+      "difficulty": "normal",
+      "classId": "infiltrator",
+      "won": 21,
+      "encounterCount": 21,
+      "endingReached": true,
+      "partyKO": 0,
+      "minHealthPercent": 74.314668,
+      "medigelUsed": 0,
+      "coverUsed": 2,
+      "healthRestored": 0,
+      "encountersWithHealthDamage": 7,
+      "totalSeconds": 593.35,
+      "medianSeconds": 26.25,
+      "maxSeconds": 69.6,
+      "validatedSaves": 29,
+      "failedAt": null,
+      "finalCredits": 95,
+      "finalMedigel": 9,
+      "encounters": [
+        {
+          "id": "eden-prime:encounter-1",
+          "seed": 2183,
+          "party": [
+            "shepard",
+            "kaidan",
+            "jenkins"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 11,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "sabotage": 2,
+            "burst": 2,
+            "lift": 1,
+            "shoot": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:encounter-2",
+          "seed": 2184,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 9,
+          "minHealthPercent": 99.545455,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 4,
+            "shoot": 3,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:boss",
+          "seed": 2185,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "burst": 3,
+            "shoot": 3,
+            "throw": 2,
+            "lift": 1,
+            "sabotage": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-1",
+          "seed": 2186,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "sabotage": 2,
+            "hack": 1,
+            "shoot": 1,
+            "burst": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-2",
+          "seed": 2187,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 6,
+            "sabotage": 3,
+            "hack": 1,
+            "shoot": 1,
+            "burst": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:boss",
+          "seed": 2188,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 45,
+          "playerActions": 26,
+          "minHealthPercent": 77.401961,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 7,
+            "sabotage": 6,
+            "hack": 1,
+            "shoot": 6,
+            "burst": 6
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-1",
+          "seed": 2189,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "sabotage": 4,
+            "lift": 1,
+            "overload": 4,
+            "throw": 2,
+            "burst": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-2",
+          "seed": 2190,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 92.78684,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 2,
+            "sabotage": 3,
+            "throw": 2,
+            "burst": 7,
+            "lift": 2,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:boss",
+          "seed": 2191,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 22.75,
+          "playerActions": 13,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 1,
+            "burst": 8,
+            "shoot": 2,
+            "warp": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-1",
+          "seed": 2192,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 18.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 1,
+            "overload": 3,
+            "sabotage": 1,
+            "throw": 1,
+            "burst": 2,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-2",
+          "seed": 2193,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "burst": 6,
+            "shoot": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:boss",
+          "seed": 2194,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 69.6,
+          "playerActions": 39,
+          "minHealthPercent": 74.314668,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 5,
+            "overload": 10,
+            "sabotage": 6,
+            "lift": 2,
+            "burst": 6,
+            "throw": 3,
+            "shoot": 3,
+            "signature": 3,
+            "cover": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-1",
+          "seed": 2195,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 40,
+          "playerActions": 23,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "sabotage": 5,
+            "lift": 2,
+            "overload": 2,
+            "throw": 2,
+            "burst": 7,
+            "shoot": 2,
+            "warp": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-2",
+          "seed": 2196,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 3,
+            "sabotage": 3,
+            "throw": 2,
+            "burst": 4,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:boss",
+          "seed": 2197,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 50.05,
+          "playerActions": 30,
+          "minHealthPercent": 86.004508,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "lift": 2,
+            "overload": 7,
+            "throw": 4,
+            "sabotage": 4,
+            "burst": 7,
+            "shoot": 2,
+            "warp": 2,
+            "signature": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-1",
+          "seed": 2198,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 23,
+          "playerActions": 13,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 2,
+            "overload": 3,
+            "sabotage": 3,
+            "lift": 1,
+            "shoot": 2,
+            "burst": 1,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-2",
+          "seed": 2199,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 18.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 1,
+            "overload": 3,
+            "sabotage": 1,
+            "burst": 2,
+            "cover": 1,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:boss",
+          "seed": 2200,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 30,
+          "playerActions": 17,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 4,
+            "lift": 1,
+            "sabotage": 2,
+            "burst": 3,
+            "throw": 2,
+            "shoot": 2,
+            "warp": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-1",
+          "seed": 2201,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 88.512458,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 4,
+            "sabotage": 2,
+            "lift": 1,
+            "throw": 1,
+            "shoot": 3,
+            "burst": 2,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-2",
+          "seed": 2202,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 4,
+            "lift": 1,
+            "sabotage": 3,
+            "burst": 2,
+            "throw": 1,
+            "shoot": 4,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:boss",
+          "seed": 2203,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 27.3,
+          "playerActions": 16,
+          "minHealthPercent": 97.135952,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 4,
+            "lift": 2,
+            "sabotage": 1,
+            "burst": 3,
+            "throw": 1,
+            "signature": 2,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        }
+      ]
+    },
+    {
+      "difficulty": "normal",
+      "classId": "vanguard",
+      "won": 21,
+      "encounterCount": 21,
+      "endingReached": true,
+      "partyKO": 0,
+      "minHealthPercent": 64.928534,
+      "medigelUsed": 1,
+      "coverUsed": 3,
+      "healthRestored": 104.88,
+      "encountersWithHealthDamage": 5,
+      "totalSeconds": 573.7,
+      "medianSeconds": 21,
+      "maxSeconds": 79.05,
+      "validatedSaves": 29,
+      "failedAt": null,
+      "finalCredits": 95,
+      "finalMedigel": 9,
+      "encounters": [
+        {
+          "id": "eden-prime:encounter-1",
+          "seed": 2183,
+          "party": [
+            "shepard",
+            "kaidan",
+            "jenkins"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 8,
+          "minHealthPercent": 98.945341,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "throw": 2,
+            "burst": 3,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:encounter-2",
+          "seed": 2184,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 9,
+          "minHealthPercent": 99.574468,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 4,
+            "throw": 2,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:boss",
+          "seed": 2185,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 19.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 3,
+            "shoot": 2,
+            "throw": 2,
+            "warp": 1,
+            "lift": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-1",
+          "seed": 2186,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "throw": 2,
+            "sabotage": 2,
+            "hack": 1,
+            "burst": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-2",
+          "seed": 2187,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 18.6,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "throw": 2,
+            "hack": 1,
+            "burst": 2,
+            "sabotage": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:boss",
+          "seed": 2188,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "throw": 3,
+            "shoot": 2,
+            "hack": 1,
+            "warp": 2,
+            "sabotage": 3,
+            "burst": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-1",
+          "seed": 2189,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "throw": 2,
+            "shoot": 3,
+            "hack": 1,
+            "burst": 2,
+            "sabotage": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-2",
+          "seed": 2190,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 71.808063,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "throw": 2,
+            "sabotage": 2,
+            "burst": 7,
+            "shoot": 3,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:boss",
+          "seed": 2191,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "burst": 9,
+            "throw": 2,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-1",
+          "seed": 2192,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 18.6,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "throw": 1,
+            "hack": 1,
+            "burst": 2,
+            "sabotage": 1,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-2",
+          "seed": 2193,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "burst": 6,
+            "shoot": 1,
+            "barrier": 1,
+            "throw": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:boss",
+          "seed": 2194,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 79.05,
+          "playerActions": 42,
+          "minHealthPercent": 99.672131,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 11,
+            "warp": 5,
+            "sabotage": 8,
+            "burst": 9,
+            "barrier": 1,
+            "shoot": 2,
+            "signature": 3,
+            "throw": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-1",
+          "seed": 2195,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 36.75,
+          "playerActions": 21,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "throw": 3,
+            "shoot": 4,
+            "hack": 1,
+            "warp": 1,
+            "sabotage": 3,
+            "burst": 5,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-2",
+          "seed": 2196,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 42,
+          "playerActions": 25,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "warp": 3,
+            "hack": 2,
+            "throw": 2,
+            "sabotage": 4,
+            "burst": 5,
+            "shoot": 3,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:boss",
+          "seed": 2197,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 40.2,
+          "playerActions": 23,
+          "minHealthPercent": 64.928534,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "throw": 3,
+            "hack": 1,
+            "warp": 2,
+            "burst": 8,
+            "signature": 2,
+            "cover": 1,
+            "medigel": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 1,
+          "healthRestored": 104.88,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-1",
+          "seed": 2198,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 18.6,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "throw": 1,
+            "hack": 1,
+            "burst": 2,
+            "sabotage": 1,
+            "warp": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-2",
+          "seed": 2199,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 15.75,
+          "playerActions": 9,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "throw": 2,
+            "shoot": 1,
+            "burst": 2,
+            "warp": 1,
+            "sabotage": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:boss",
+          "seed": 2200,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 30,
+          "playerActions": 17,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "throw": 2,
+            "shoot": 2,
+            "hack": 1,
+            "warp": 2,
+            "sabotage": 3,
+            "barrier": 1,
+            "burst": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-1",
+          "seed": 2201,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 31.5,
+          "playerActions": 18,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "throw": 3,
+            "sabotage": 4,
+            "hack": 1,
+            "cover": 1,
+            "shoot": 2,
+            "burst": 2,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-2",
+          "seed": 2202,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 29.05,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "warp": 2,
+            "hack": 1,
+            "throw": 2,
+            "sabotage": 2,
+            "burst": 2,
+            "shoot": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:boss",
+          "seed": 2203,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 27.9,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 4,
+            "warp": 2,
+            "burst": 4,
+            "throw": 2,
+            "sabotage": 1,
+            "cover": 1,
+            "signature": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        }
+      ]
+    },
+    {
+      "difficulty": "normal",
+      "classId": "sentinel",
+      "won": 21,
+      "encounterCount": 21,
+      "endingReached": true,
+      "partyKO": 0,
+      "minHealthPercent": 84.374488,
+      "medigelUsed": 0,
+      "coverUsed": 0,
+      "healthRestored": 0,
+      "encountersWithHealthDamage": 4,
+      "totalSeconds": 639.45,
+      "medianSeconds": 26.25,
+      "maxSeconds": 67.1,
+      "validatedSaves": 29,
+      "failedAt": null,
+      "finalCredits": 95,
+      "finalMedigel": 9,
+      "encounters": [
+        {
+          "id": "eden-prime:encounter-1",
+          "seed": 2183,
+          "party": [
+            "shepard",
+            "kaidan",
+            "jenkins"
+          ],
+          "winner": "party",
+          "seconds": 15,
+          "playerActions": 8,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 2,
+            "burst": 2,
+            "lift": 1,
+            "throw": 2,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:encounter-2",
+          "seed": 2184,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 20,
+          "playerActions": 12,
+          "minHealthPercent": 90.344488,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "overload": 1,
+            "burst": 5,
+            "lift": 3,
+            "throw": 2,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "eden-prime:boss",
+          "seed": 2185,
+          "party": [
+            "shepard",
+            "kaidan",
+            "ashley"
+          ],
+          "winner": "party",
+          "seconds": 19.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "burst": 3,
+            "throw": 2,
+            "lift": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-1",
+          "seed": 2186,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 18.6,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 3,
+            "throw": 1,
+            "sabotage": 2,
+            "hack": 1,
+            "lift": 1,
+            "burst": 1,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:encounter-2",
+          "seed": 2187,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 5,
+            "sabotage": 3,
+            "hack": 1,
+            "lift": 2,
+            "throw": 2,
+            "shoot": 1,
+            "burst": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "therum:boss",
+          "seed": 2188,
+          "party": [
+            "shepard",
+            "garrus",
+            "tali"
+          ],
+          "winner": "party",
+          "seconds": 52.5,
+          "playerActions": 31,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "overload": 8,
+            "hack": 2,
+            "lift": 3,
+            "sabotage": 5,
+            "throw": 4,
+            "shoot": 2,
+            "burst": 7
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-1",
+          "seed": 2189,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 3,
+            "sabotage": 2,
+            "lift": 2,
+            "throw": 4,
+            "shoot": 3
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:encounter-2",
+          "seed": 2190,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 36.4,
+          "playerActions": 21,
+          "minHealthPercent": 84.374488,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 3,
+            "sabotage": 2,
+            "throw": 5,
+            "lift": 2,
+            "burst": 5,
+            "shoot": 2,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "feros:boss",
+          "seed": 2191,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 26.25,
+          "playerActions": 15,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 2,
+            "throw": 3,
+            "burst": 7,
+            "shoot": 1,
+            "warp": 1,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-1",
+          "seed": 2192,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 18.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "lift": 1,
+            "overload": 4,
+            "throw": 2,
+            "shoot": 2,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:encounter-2",
+          "seed": 2193,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 21,
+          "playerActions": 12,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "throw": 4,
+            "shoot": 3,
+            "burst": 3,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "noveria:boss",
+          "seed": 2194,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 67.1,
+          "playerActions": 37,
+          "minHealthPercent": 96.948571,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "warp": 4,
+            "overload": 9,
+            "lift": 5,
+            "throw": 5,
+            "sabotage": 4,
+            "barrier": 2,
+            "burst": 3,
+            "signature": 3,
+            "shoot": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-1",
+          "seed": 2195,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 40.95,
+          "playerActions": 24,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 4,
+            "sabotage": 3,
+            "lift": 2,
+            "throw": 4,
+            "shoot": 3,
+            "burst": 3,
+            "warp": 2,
+            "barrier": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:encounter-2",
+          "seed": 2196,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 30,
+          "playerActions": 17,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 3,
+            "sabotage": 2,
+            "throw": 5,
+            "burst": 3,
+            "shoot": 1,
+            "lift": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "virmire:boss",
+          "seed": 2197,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 59.15,
+          "playerActions": 34,
+          "minHealthPercent": 86.529605,
+          "healthDamageObserved": true,
+          "partyKO": 0,
+          "actions": {
+            "lift": 3,
+            "overload": 7,
+            "throw": 8,
+            "sabotage": 4,
+            "burst": 6,
+            "shoot": 2,
+            "warp": 2,
+            "signature": 2
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-1",
+          "seed": 2198,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 18.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 3,
+            "overload": 3,
+            "sabotage": 1,
+            "lift": 1,
+            "warp": 1,
+            "burst": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:encounter-2",
+          "seed": 2199,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 18.2,
+          "playerActions": 10,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "throw": 3,
+            "overload": 3,
+            "sabotage": 1,
+            "burst": 1,
+            "shoot": 1,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "ilos:boss",
+          "seed": 2200,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 35,
+          "playerActions": 20,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 5,
+            "lift": 3,
+            "throw": 4,
+            "shoot": 2,
+            "warp": 2,
+            "sabotage": 1,
+            "barrier": 1,
+            "signature": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-1",
+          "seed": 2201,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 27.3,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "singularity": 1,
+            "overload": 4,
+            "lift": 2,
+            "throw": 4,
+            "shoot": 2,
+            "sabotage": 1,
+            "burst": 1,
+            "warp": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:encounter-2",
+          "seed": 2202,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 27.3,
+          "playerActions": 16,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 2,
+            "overload": 3,
+            "lift": 2,
+            "throw": 4,
+            "sabotage": 2,
+            "burst": 2,
+            "shoot": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        },
+        {
+          "id": "citadel-finale:boss",
+          "seed": 2203,
+          "party": [
+            "shepard",
+            "garrus",
+            "liara"
+          ],
+          "winner": "party",
+          "seconds": 36.6,
+          "playerActions": 21,
+          "minHealthPercent": 100,
+          "healthDamageObserved": false,
+          "partyKO": 0,
+          "actions": {
+            "warp": 3,
+            "overload": 5,
+            "lift": 2,
+            "throw": 5,
+            "sabotage": 2,
+            "burst": 2,
+            "signature": 1,
+            "barrier": 1
+          },
+          "medigelUsed": 0,
+          "healthRestored": 0,
+          "endedByTimeout": false
+        }
+      ]
+    }
+  ],
+  "baselineNormal": null
+}

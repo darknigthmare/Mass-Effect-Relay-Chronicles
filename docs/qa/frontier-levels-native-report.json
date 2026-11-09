@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "at": "2026-11-09T05:40:33.397Z",
+  "command": "node --test tests/frontier-levels.test.js tests/story-world.test.js tests/level-renderer.test.js",
+  "node": "v24.19.0",
+  "sourceHashes": {
+    "src/world.js": "d5715efd8177ad71fffe0d107506b2046074a3deb6ac589cf16b14db6d784601",
+    "src/world-data.js": "7f8d9a4fe61f175f6a8b076a6dac3e7215bb59addf848ce73aa7c279c0269485",
+    "src/level-layout-data.js": "4ad40b98ec6985fcd0392ea3c4289439850d21c699f21016963ef5410b4a1765",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/frontier-scene.js": "45a393b8cdd881654da63cf9785ab6fe1829648068e717ed0c2cc01ef1eb93eb",
+    "src/world-navigation.js": "0663590a5a80eaec6252e97a26636a14f1477d15fdf3422e16e7efe3dc5c54f0",
+    "src/frontier-enemies.js": "216c0e04bb3039ffa6a5d4891dd4d006aad957a0a49fd549035196d59ab00eab",
+    "src/frontier-characters.js": "20b858785f29b8ac9f53cac53cba7c46acb13eb9fd243cba4d968bf3d802cd12",
+    "src/frontier-vehicles.js": "597b41bd174d9a5c1f3a5752bebf0bbd97692d6c2b524ee566773eee08f62191",
+    "src/boss-animation-data.js": "e3a1613fb1feaf747dbc35a99d4225c3bda4281e66ac8bf3afa0398f3010a243",
+    "tests/frontier-levels.test.js": "c58da46b134bfaf162918cbd0e47cb89f306f336733887e217ced60efefd479c",
+    "tests/story-world.test.js": "58a6e1adbff288220e3e6d5883b2e90a3daf3fb56e0ada7ed070d06234652de3",
+    "tests/level-renderer.test.js": "8597ed064c886bb3469a0999aa25ec49df46229117b38623c5b50302413d0cb4",
+    "scripts/frontier-levels-verify.mjs": "d73709b57c4abf72dfa8f4caef6f78c5497cef08fb064caa8039439feeef9005"
+  },
+  "scope": "Native Three geometry and renderer methods with actual scenery colliders, A* navigation, old-position recovery, party formation, projection, local battle arenas, static crop refusal and the transient Mako controller. Headless Node fixture stubs DOM labels and canvas textures; browser proof is separate. No surveyed geography, complete original mission, exact proportions or full vehicle physics claim.",
+  "nativeAssertions": {
+    "zones": [
+      "therum",
+      "noveria",
+      "virmire"
+    ],
+    "sectorsPerZone": 5,
+    "stableMissionPOIsPerZone": 7,
+    "arenasPerZone": 3,
+    "optionalPathsPerZone": 2,
+    "routeSamplingStep": 0.15,
+    "makoFootprintSamplingStep": 0.18,
+    "additionalNoveriaConversationRoutes": 4,
+    "makoRouteStartsAtAuthoredSpawn": true,
+    "oldPositionsRecovered": true,
+    "edenRegressionIncluded": true
+  },
+  "status": 0,
+  "signal": null,
+  "output": "✔ therum: seven stable interactions and both optional routes cross actual scenery continuously (3581.146537ms)\n✔ therum: old saves recover, native formation and three local battle arenas stay on ground (799.570905ms)\n✔ therum: real camera projects each sector at its native controlled-player focus (1.510615ms)\n✔ noveria: seven stable interactions and both optional routes cross actual scenery continuously (4133.953948ms)\n✔ noveria: old saves recover, native formation and three local battle arenas stay on ground (864.096486ms)\n✔ noveria: real camera projects each sector at its native controlled-player focus (0.767186ms)\n✔ virmire: seven stable interactions and both optional routes cross actual scenery continuously (3673.0545ms)\n✔ virmire: old saves recover, native formation and three local battle arenas stay on ground (1101.744259ms)\n✔ virmire: real camera projects each sector at its native controlled-player focus (0.750329ms)\n✔ Mako boards only in exploration, respects every uncleared mission checkpoint, and restores a safe foot party (807.073862ms)\n✔ Mako full driving footprint follows authored mining road and return route after checkpoints without touching scenery (895.88417ms)\n✔ four Novéria conversations remain reachable in their authored sectors and foreign media hide them (1075.381881ms)\n✔ native NPC crops reset on wrong identity, foreign scope, absent data or wrong image dimensions (1.949897ms)\n✔ every retained Eden objective and return branch has a continuous route through actual authored scenery (4374.933321ms)\n✔ legacy and newly obstructed saved positions recover to actual clear ground with a distinct safe party formation (2085.421398ms)\n✔ real Three camera projection follows all five large clearings while legacy zones retain their previous framing (1.742273ms)\n✔ each new native Eden battle keeps its nearest encounter arena stable without altering the battle (7.096537ms)\n✔ large-mask navigation rejects unreachable targets and cannot cut through a thin solid obstruction (15.668136ms)\n✔ terrain image loads deduplicate, replace only matching active materials and keep the fallback safe after failure or disposal (4.198493ms)\n✔ conversation points do not change the 63 authored mission and service routes (10.272149ms)\n✔ Nihlus never returns after visiting Eden Prime, and lost companions have no conversation (9.111412ms)\n✔ active and reserve companions each have exactly one body aboard, including after squad changes (9.725777ms)\n✔ context updates remove dead actors and pending interactions without rebuilding an unchanged context (4.568039ms)\n✔ all thirteen available conversations are reachable around actual Normandy geometry and dispatch interaction callbacks (41.341718ms)\n✔ recruiting on the Citadel removes only that recruit body, marker and pending interaction (2.545813ms)\n✔ Citadel squad changes and Normandy revisits never duplicate already recruited companions (4.115588ms)\nℹ tests 26\nℹ suites 0\nℹ pass 26\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 17091.612615\n",
+  "stderr": ""
+}

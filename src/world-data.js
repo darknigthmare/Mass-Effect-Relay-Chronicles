@@ -1,5 +1,6 @@
 /** Original fan-game staging; story milestones live in game-data.js and story-data.js. */
-import { EDEN_LAYOUT } from './level-layout-data.js';
+import { getLevelLayout } from './level-layout-data.js';
+import { FRONTIER_NPCS } from './frontier-characters.js';
 const poi = (zone, suffix, label, type, x, z, extra = {}) => ({
   id: `${zone}:${suffix}`, label, type, x, z, ...extra,
 });
@@ -73,12 +74,21 @@ export const WORLD_ZONES = {
 
 // Eden has its own authored ground plan. Its seven stable interaction IDs,
 // encounter order and progression rules remain owned by the existing campaign.
-const eden = WORLD_ZONES['eden-prime'];
-eden.layoutId = EDEN_LAYOUT.id;
-eden.bounds = { ...EDEN_LAYOUT.bounds };
-eden.spawn = { ...EDEN_LAYOUT.spawn };
-eden.arena = { ...EDEN_LAYOUT.arena };
-for (const poi of eden.pois) Object.assign(poi, EDEN_LAYOUT.pois[poi.id.slice('eden-prime:'.length)]);
+for (const zone of Object.values(WORLD_ZONES)) {
+  const layout = getLevelLayout(zone.id); if (!layout) continue;
+  zone.layoutId = layout.id; zone.bounds = { ...layout.bounds }; zone.spawn = { ...layout.spawn }; zone.arena = { ...layout.arena };
+  for (const poi of zone.pois) Object.assign(poi, layout.pois[poi.id.slice(zone.id.length + 1)]);
+}
+
+for (const npc of FRONTIER_NPCS) {
+  const zone = WORLD_ZONES[npc.zone], layout = getLevelLayout(npc.zone);
+  const anchor = layout?.npcAnchors?.[npc.sectorAnchor]?.[npc.id];
+  const actor = npc.actorPosition ? {x:npc.actorPosition[0],z:npc.actorPosition[1]} : anchor;
+  if (!zone || !actor) continue;
+  const position = npc.position ? {x:npc.position[0],z:npc.position[1]} : {x:actor.x+(actor.x<0?1.4:-1.4),z:actor.z};
+  (zone.conversationPois ||= []).push(poi(zone.id, `talk-${npc.id}`, npc.name, 'dialogue', position.x, position.z,
+    {conversationId:npc.conversationId,characterId:npc.characterKey,actorPosition:{...actor},frontierNPC:npc.id}));
+}
 
 for (const suffix of ['encounter-1', 'encounter-2', 'boss']) {
   WORLD_ZONES.citadel.pois.find(p => p.id === `citadel:${suffix}`).type = 'dialogue';

@@ -345,7 +345,7 @@ test('invalid saves cannot overwrite the last valid save and storage errors are 
 
 test('organic enemy definitions no longer assign guns or biotic Warp, and boss hacking is blocked', () => {
   assert.deepEqual(CLASSES.soldier.powers, []);
-  for (const id of ['husk', 'creeper']) assert.equal(ENEMIES[id].primaryAction, 'strike');
+  for (const id of ['husk', 'creeper', 'rachni-worker']) assert.equal(ENEMIES[id].primaryAction, 'strike');
   for (const id of ['rachni', 'thorian']) {
     assert.equal(ENEMIES[id].primaryAction, 'acid');
     assert.equal(ENEMIES[id].powers.includes('warp'), false);
@@ -353,5 +353,8 @@ test('organic enemy definitions no longer assign guns or biotic Warp, and boss h
   assert.equal(ENEMIES.thorian.hackImmune, true);
   assert.equal(ENEMIES['saren-final'].hackImmune, true);
   const enemies = enemiesFor('noveria', 1, newGame());
-  assert.ok(enemies.every(enemy => enemy.primaryAction === 'acid'));
+  assert.ok(enemies.some(enemy => enemy.primaryAction === 'acid'));
+  assert.ok(enemies.some(enemy => enemy.primaryAction === 'strike'));
+  assert.ok(enemies.every(enemy => ['acid', 'strike'].includes(enemy.primaryAction)));
+  assert.ok(enemies.every(enemy => !enemy.powers.includes('warp')));
 });

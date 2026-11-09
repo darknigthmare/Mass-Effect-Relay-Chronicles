@@ -1,0 +1,801 @@
+{
+  "passed": true,
+  "at": "2026-11-09T05:25:14.622Z",
+  "command": {
+    "script": "node scripts/frontier-levels-inspection.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4173",
+      "EDEN_INSPECTION_PREFIX": "frontier-levels-inspection",
+      "EDEN_INSPECTION_ROOMS": ""
+    }
+  },
+  "scope": "Intermediate visual inspection only on the actual detached WorldView. Fifteen authored sector-centre viewpoints use native settled camera focus; player/camera are held for inspection. This does not replay navigation, native actions, saves or ordinary public gameplay.",
+  "sourceHashes": {
+    "src/world.js": "2ab1738da86a6bc91369bca37af00aad96559d05b71c588ff8161aedac1ddc1b",
+    "src/world-data.js": "7f8d9a4fe61f175f6a8b076a6dac3e7215bb59addf848ce73aa7c279c0269485",
+    "src/level-layout-data.js": "4ad40b98ec6985fcd0392ea3c4289439850d21c699f21016963ef5410b4a1765",
+    "src/frontier-layout-data.js": "1a6bbfd5d31c6164c0d6218be6bc5945f65d8ee8c73d5cc7fc06272a19700213",
+    "src/frontier-scene.js": "8912a911226287a8f34351593b47aa3a4a1c0cad0c1b2256ceffd430ded1787f",
+    "src/frontier-characters.js": "20b858785f29b8ac9f53cac53cba7c46acb13eb9fd243cba4d968bf3d802cd12",
+    "src/frontier-enemies.js": "c3aef02a52a0713732e7763351a308022a1bd1f5cda5d04c3fd0f7494ebd115b",
+    "src/frontier-vehicles.js": "597b41bd174d9a5c1f3a5752bebf0bbd97692d6c2b524ee566773eee08f62191",
+    "src/boss-animation-data.js": "e3a1613fb1feaf747dbc35a99d4225c3bda4281e66ac8bf3afa0398f3010a243",
+    "public/assets/frontier-npcs.json": "4b4037bc3a7c29a6f3bab6fd3b92f8b952077f5b93715cb9ec61e9c58b93780d",
+    "public/assets/frontier-enemies.json": "328e9a2c6b24a526acabcc17b08bf4617ba3f3b16f9ab73221bc4eaf442be78b",
+    "public/assets/vehicle-mako-directions.json": "4e09bf1a8729e9a4301b198d780c1f55e72dbcf3c25fd7071be7a3c6e6e1e3d9",
+    "src/world-navigation.js": "0663590a5a80eaec6252e97a26636a14f1477d15fdf3422e16e7efe3dc5c54f0",
+    "vite.config.js": "53bd43d7182432c800cb6862d14e3cbdf5755de491f5fe2a3a376d95196cd717",
+    "scripts/frontier-levels-inspection.mjs": "60871c703d95a17336130f5aad5ba4e3938a895b69b9eb5fdf6827ccae12f075"
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-therum-landing.png",
+      "sha256": "1cfcf0af091c9f3933dc934e06cdf2752bd42a0e1161e6c24c4c9238a2084118",
+      "bytes": 806895
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-therum-refinery.png",
+      "sha256": "5006da1cf6446534ae8b06d34269d4c8f06f520928fd1757900e93ab447c16fa",
+      "bytes": 793954
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-therum-lava.png",
+      "sha256": "358ac9c47cd5ae1eb69dc38e906337543eb60677db70ffaa7ff654ad82c0896e",
+      "bytes": 796894
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-therum-ruins.png",
+      "sha256": "f20a912389cb2231cb68c8eb0770e9370bd1fa8e82618734247bab67d427c2d1",
+      "bytes": 828786
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-therum-dig.png",
+      "sha256": "6ce7611b9d49217bbbb624e13df630878ff93e43a7523a82382c09f27c46858d",
+      "bytes": 785199
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-noveria-port.png",
+      "sha256": "4f4c6c3a220f3f4464e0e1e9fb1d17170a874542322eda9b764b1ce2d478cd57",
+      "bytes": 952176
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-noveria-garage.png",
+      "sha256": "2d85fa234e72053c5b6b3a3f02bd94080278faf41c893378d1ecf7b8518018af",
+      "bytes": 949105
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-noveria-blizzard.png",
+      "sha256": "0e6215bad1f3e1854434097fb95046fc4d4d3e0c9bc7a0dd2ebb2c9862b5b941",
+      "bytes": 944377
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-noveria-labs.png",
+      "sha256": "11b83cd3f9b22a950485d4eccadd801e6e7599b115388308a51bcdfe0f0e2e01",
+      "bytes": 926174
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-noveria-chamber.png",
+      "sha256": "ad178993978143b26a641b8c9dcddf5cf8ae24c721009ec27fdfd5717a9feca6",
+      "bytes": 925888
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-virmire-coast.png",
+      "sha256": "5dc327c893ae782414f500483e19305ec9acf18efee7e67eeb9df8895704a556",
+      "bytes": 929346
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-virmire-camp.png",
+      "sha256": "f219d75986a3c86db4f8ddf11563885c2804bc4da103478be9f093d2d2d8a74c",
+      "bytes": 957437
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-virmire-perimeter.png",
+      "sha256": "fa850d6438d70f5001da210d4bcdc482112f705f8bd0d974ae3e0a6e8968c47d",
+      "bytes": 941004
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-virmire-facility.png",
+      "sha256": "b1c02a33b87b4b555992c1e134b61aaf84931c1edd74a43f01023662a97653ef",
+      "bytes": 922658
+    },
+    {
+      "path": "docs/screenshots/frontier-levels-inspection-virmire-extraction.png",
+      "sha256": "95cfc17c5435547398e29a0c6e598681f1df31728ae63af23e82480a123b47ed",
+      "bytes": 880111
+    }
+  ],
+  "viewpoints": [
+    {
+      "id": "therum:landing",
+      "position": {
+        "x": -25,
+        "z": 61
+      },
+      "cameraTarget": [
+        -25,
+        0,
+        61
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "therum",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8138,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 26
+      },
+      "walkable": true,
+      "drawCalls": 33,
+      "triangles": 8974,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "therum:refinery",
+      "position": {
+        "x": -17,
+        "z": 23
+      },
+      "cameraTarget": [
+        -17,
+        0,
+        23
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "therum",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8138,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 26
+      },
+      "walkable": true,
+      "drawCalls": 20,
+      "triangles": 8184,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "therum:lava",
+      "position": {
+        "x": 20,
+        "z": -8
+      },
+      "cameraTarget": [
+        20,
+        0,
+        -8
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "therum",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8138,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 26
+      },
+      "walkable": true,
+      "drawCalls": 22,
+      "triangles": 8494,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "therum:ruins",
+      "position": {
+        "x": 24,
+        "z": -43
+      },
+      "cameraTarget": [
+        24,
+        0,
+        -43
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "therum",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8138,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 26
+      },
+      "walkable": true,
+      "drawCalls": 28,
+      "triangles": 8280,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "therum:dig",
+      "position": {
+        "x": 1,
+        "z": -80
+      },
+      "cameraTarget": [
+        1,
+        0,
+        -80
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "therum",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8138,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 26
+      },
+      "walkable": true,
+      "drawCalls": 41,
+      "triangles": 9070,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "noveria:port",
+      "position": {
+        "x": 0,
+        "z": 62
+      },
+      "cameraTarget": [
+        0,
+        0,
+        62
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "noveria",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8713,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 36
+      },
+      "walkable": true,
+      "drawCalls": 43,
+      "triangles": 9326,
+      "npcs": [
+        {
+          "id": "npc:parasini",
+          "frame": "parasini",
+          "bodyMap": true,
+          "position": [
+            -12,
+            0,
+            62
+          ]
+        },
+        {
+          "id": "npc:anoleis",
+          "frame": "anoleis",
+          "bodyMap": true,
+          "position": [
+            13,
+            0,
+            59
+          ]
+        },
+        {
+          "id": "npc:lorik",
+          "frame": "lorik",
+          "bodyMap": true,
+          "position": [
+            -10,
+            0,
+            51
+          ]
+        },
+        {
+          "id": "npc:lilihierax",
+          "frame": "lilihierax",
+          "bodyMap": true,
+          "position": [
+            -35,
+            0,
+            32
+          ]
+        }
+      ],
+      "assetErrors": []
+    },
+    {
+      "id": "noveria:garage",
+      "position": {
+        "x": -24,
+        "z": 27
+      },
+      "cameraTarget": [
+        -24,
+        0,
+        27
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "noveria",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8713,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 36
+      },
+      "walkable": true,
+      "drawCalls": 99,
+      "triangles": 10402,
+      "npcs": [
+        {
+          "id": "npc:parasini",
+          "frame": "parasini",
+          "bodyMap": true,
+          "position": [
+            -12,
+            0,
+            62
+          ]
+        },
+        {
+          "id": "npc:anoleis",
+          "frame": "anoleis",
+          "bodyMap": true,
+          "position": [
+            13,
+            0,
+            59
+          ]
+        },
+        {
+          "id": "npc:lorik",
+          "frame": "lorik",
+          "bodyMap": true,
+          "position": [
+            -10,
+            0,
+            51
+          ]
+        },
+        {
+          "id": "npc:lilihierax",
+          "frame": "lilihierax",
+          "bodyMap": true,
+          "position": [
+            -35,
+            0,
+            32
+          ]
+        }
+      ],
+      "assetErrors": []
+    },
+    {
+      "id": "noveria:blizzard",
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "cameraTarget": [
+        6,
+        0,
+        -8
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "noveria",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8713,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 36
+      },
+      "walkable": true,
+      "drawCalls": 20,
+      "triangles": 8280,
+      "npcs": [
+        {
+          "id": "npc:parasini",
+          "frame": "parasini",
+          "bodyMap": true,
+          "position": [
+            -12,
+            0,
+            62
+          ]
+        },
+        {
+          "id": "npc:anoleis",
+          "frame": "anoleis",
+          "bodyMap": true,
+          "position": [
+            13,
+            0,
+            59
+          ]
+        },
+        {
+          "id": "npc:lorik",
+          "frame": "lorik",
+          "bodyMap": true,
+          "position": [
+            -10,
+            0,
+            51
+          ]
+        },
+        {
+          "id": "npc:lilihierax",
+          "frame": "lilihierax",
+          "bodyMap": true,
+          "position": [
+            -35,
+            0,
+            32
+          ]
+        }
+      ],
+      "assetErrors": []
+    },
+    {
+      "id": "noveria:labs",
+      "position": {
+        "x": 23,
+        "z": -43
+      },
+      "cameraTarget": [
+        23,
+        0,
+        -43
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "noveria",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8713,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 36
+      },
+      "walkable": true,
+      "drawCalls": 91,
+      "triangles": 10146,
+      "npcs": [
+        {
+          "id": "npc:parasini",
+          "frame": "parasini",
+          "bodyMap": true,
+          "position": [
+            -12,
+            0,
+            62
+          ]
+        },
+        {
+          "id": "npc:anoleis",
+          "frame": "anoleis",
+          "bodyMap": true,
+          "position": [
+            13,
+            0,
+            59
+          ]
+        },
+        {
+          "id": "npc:lorik",
+          "frame": "lorik",
+          "bodyMap": true,
+          "position": [
+            -10,
+            0,
+            51
+          ]
+        },
+        {
+          "id": "npc:lilihierax",
+          "frame": "lilihierax",
+          "bodyMap": true,
+          "position": [
+            -35,
+            0,
+            32
+          ]
+        }
+      ],
+      "assetErrors": []
+    },
+    {
+      "id": "noveria:chamber",
+      "position": {
+        "x": -2,
+        "z": -80
+      },
+      "cameraTarget": [
+        -2,
+        0,
+        -80
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "noveria",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8713,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 36
+      },
+      "walkable": true,
+      "drawCalls": 119,
+      "triangles": 11084,
+      "npcs": [
+        {
+          "id": "npc:parasini",
+          "frame": "parasini",
+          "bodyMap": true,
+          "position": [
+            -12,
+            0,
+            62
+          ]
+        },
+        {
+          "id": "npc:anoleis",
+          "frame": "anoleis",
+          "bodyMap": true,
+          "position": [
+            13,
+            0,
+            59
+          ]
+        },
+        {
+          "id": "npc:lorik",
+          "frame": "lorik",
+          "bodyMap": true,
+          "position": [
+            -10,
+            0,
+            51
+          ]
+        },
+        {
+          "id": "npc:lilihierax",
+          "frame": "lilihierax",
+          "bodyMap": true,
+          "position": [
+            -35,
+            0,
+            32
+          ]
+        }
+      ],
+      "assetErrors": []
+    },
+    {
+      "id": "virmire:coast",
+      "position": {
+        "x": -27,
+        "z": 61
+      },
+      "cameraTarget": [
+        -27,
+        0,
+        61
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "virmire",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8743,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 24
+      },
+      "walkable": true,
+      "drawCalls": 31,
+      "triangles": 8164,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "virmire:camp",
+      "position": {
+        "x": 18,
+        "z": 28
+      },
+      "cameraTarget": [
+        18,
+        0,
+        28
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "virmire",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8743,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 24
+      },
+      "walkable": true,
+      "drawCalls": 46,
+      "triangles": 8336,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "virmire:perimeter",
+      "position": {
+        "x": 2,
+        "z": -8
+      },
+      "cameraTarget": [
+        2,
+        0,
+        -8
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "virmire",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8743,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 24
+      },
+      "walkable": true,
+      "drawCalls": 30,
+      "triangles": 8144,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "virmire:facility",
+      "position": {
+        "x": 26,
+        "z": -43
+      },
+      "cameraTarget": [
+        26,
+        0,
+        -43
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "virmire",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8743,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 24
+      },
+      "walkable": true,
+      "drawCalls": 97,
+      "triangles": 9888,
+      "npcs": [],
+      "assetErrors": []
+    },
+    {
+      "id": "virmire:extraction",
+      "position": {
+        "x": -7,
+        "z": -80
+      },
+      "cameraTarget": [
+        -7,
+        0,
+        -80
+      ],
+      "bounds": {
+        "minX": -60,
+        "maxX": 62,
+        "minZ": -98,
+        "maxZ": 78
+      },
+      "metrics": {
+        "zoneId": "virmire",
+        "rooms": 5,
+        "paths": 3,
+        "groundAreaApprox": 8743,
+        "envelopeArea": 21472,
+        "units": "scene units; one-unit mask sampling",
+        "colliders": 24
+      },
+      "walkable": true,
+      "drawCalls": 116,
+      "triangles": 10294,
+      "npcs": [],
+      "assetErrors": []
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "chromium": "154.0.8037.57"
+}

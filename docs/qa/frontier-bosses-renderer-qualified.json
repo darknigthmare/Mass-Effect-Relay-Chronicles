@@ -1,0 +1,1707 @@
+{
+  "passed": true,
+  "at": "2026-11-09T05:45:38.650Z",
+  "actuallyOpened": true,
+  "command": "node scripts/qualify-frontier-bosses-renderer.mjs",
+  "scope": "Qualification of a successful pre-Ilos renderer execution for its four unchanged boss zones. No new renderer replay is claimed. Original executed sourceHashes and raw report bytes remain unchanged; the final source differs only by the exact audited Ilos bridge replacement.",
+  "rawRenderer": {
+    "path": "docs/qa/frontier-bosses-renderer.json",
+    "sha256": "14d64d1d4869a046754f8411a4d1ecff3664a969c77ed3923d5366fd2e92312b",
+    "passed": true
+  },
+  "visualReview": {
+    "path": "docs/qa/frontier-bosses-renderer-visual-review.json",
+    "sha256": "9c3cddca4fad323505127a3d3989987cc31906fb00f3ffee5a9bfe1058af9b4d",
+    "passed": true,
+    "actuallyOpened": true
+  },
+  "sourceQualification": {
+    "audit": {
+      "path": "docs/qa/frontier-ilos-delta-report.json",
+      "sha256": "b114cc8ce8d634e0424107e9a902d5f70b9683e551e77e3d3ce52c5a904afd31",
+      "passed": true
+    },
+    "snapshot": {
+      "path": "docs/qa/frontier-before-ilos-sources/src/world.js",
+      "sha256": "d5715efd8177ad71fffe0d107506b2046074a3deb6ac589cf16b14db6d784601"
+    },
+    "metadata": {
+      "path": "docs/qa/frontier-before-ilos-source.json",
+      "sha256": "514357054bc9e4ca2488ea8068a2b90af83928d3de592872e30df1d5ff7f8af3"
+    },
+    "currentWorld": {
+      "path": "src/world.js",
+      "sha256": "2a17bdbe81eb46bccb05df0597e00df9a74b37ed746a9a73687ff69ebe5d6b1c"
+    },
+    "outsideIlosUnchanged": true,
+    "exactSingleReplacementVerified": true,
+    "unchangedBossZones": [
+      "virmire",
+      "noveria",
+      "feros",
+      "citadel-finale"
+    ]
+  },
+  "sourceHashes": {
+    "src/world.js": "d5715efd8177ad71fffe0d107506b2046074a3deb6ac589cf16b14db6d784601",
+    "src/world-data.js": "7f8d9a4fe61f175f6a8b076a6dac3e7215bb59addf848ce73aa7c279c0269485",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/frontier-scene.js": "45a393b8cdd881654da63cf9785ab6fe1829648068e717ed0c2cc01ef1eb93eb",
+    "src/boss-animation-data.js": "e3a1613fb1feaf747dbc35a99d4225c3bda4281e66ac8bf3afa0398f3010a243",
+    "src/game-data.js": "48ecfa5f17ef07c9e536dd298fa922e27f07cabc1513c6d77d3abe61cd40a7b9",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "vite.config.js": "53bd43d7182432c800cb6862d14e3cbdf5755de491f5fe2a3a376d95196cd717",
+    "scripts/frontier-bosses-renderer.mjs": "abdf0c91f38a7df1dd0ce3125f0006157e58572fdf2c505607e66f1064dd4bf2",
+    "public/assets/boss-saren-combat.png": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318",
+    "public/assets/boss-saren-animation.json": "69ab0fe2e2eda2be4e235bec600ff0d9ea82a4cbcf69d2553a9ecddc46cc1ffa",
+    "public/assets/boss-benezia-combat.png": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788",
+    "public/assets/boss-benezia-animation.json": "afb12aa6053c332af0c6caba4a1eee15e9ad3b8761f8ef23f95cd619568ee2c8",
+    "public/assets/boss-thorian-combat.png": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37",
+    "public/assets/boss-thorian-animation.json": "8eae1a27117ed815adeffe6fa4e10680bdf3030b513584c8d071cbbc5f6dfd3b",
+    "public/assets/boss-saren-final-combat.png": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883",
+    "public/assets/boss-saren-final-animation.json": "76405c9cd6bf75e48bf22ffc6c635ac19483f4f32a96827328f52b6145060b9f"
+  },
+  "cases": [
+    {
+      "key": "saren",
+      "id": "saren-0",
+      "pose": "aim",
+      "zone": "virmire",
+      "index": 2,
+      "poi": "virmire:boss",
+      "arena": {
+        "x": -7,
+        "z": -77
+      },
+      "composition": [
+        "saren",
+        "geth"
+      ],
+      "frameId": "saren-combat-aim",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-combat.png",
+      "rect": [
+        149,
+        11,
+        464,
+        501
+      ],
+      "pivot": [
+        232,
+        493
+      ],
+      "repeat": [
+        0.3020833333333333,
+        0.4892578125
+      ],
+      "offset": [
+        0.09700520833333333,
+        0.5
+      ],
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 739.469383838464,
+        "right": 812.283755095949,
+        "top": 352.190235131996,
+        "bottom": 413.05570098355327
+      },
+      "saveUnchanged": true,
+      "drawCalls": 97,
+      "triangles": 9502,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-aim.png",
+      "passed": true
+    },
+    {
+      "key": "saren",
+      "id": "saren-0",
+      "pose": "power",
+      "zone": "virmire",
+      "index": 2,
+      "poi": "virmire:boss",
+      "arena": {
+        "x": -7,
+        "z": -77
+      },
+      "composition": [
+        "saren",
+        "geth"
+      ],
+      "frameId": "saren-combat-power",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-combat.png",
+      "rect": [
+        899,
+        8,
+        448,
+        510
+      ],
+      "pivot": [
+        224,
+        502
+      ],
+      "repeat": [
+        0.2916666666666667,
+        0.498046875
+      ],
+      "offset": [
+        0.5852864583333334,
+        0.494140625
+      ],
+      "relativeHeight": 1.017964,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 741.315582813774,
+        "right": 811.619108720468,
+        "top": 351.4153987924119,
+        "bottom": 413.3742518725267
+      },
+      "saveUnchanged": true,
+      "drawCalls": 97,
+      "triangles": 9502,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-power.png",
+      "passed": true
+    },
+    {
+      "key": "saren",
+      "id": "saren-0",
+      "pose": "hit",
+      "zone": "virmire",
+      "index": 2,
+      "poi": "virmire:boss",
+      "arena": {
+        "x": -7,
+        "z": -77
+      },
+      "composition": [
+        "saren",
+        "geth"
+      ],
+      "frameId": "saren-combat-hit",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-combat.png",
+      "rect": [
+        179,
+        524,
+        416,
+        487
+      ],
+      "pivot": [
+        208,
+        479
+      ],
+      "repeat": [
+        0.2708333333333333,
+        0.4755859375
+      ],
+      "offset": [
+        0.11653645833333333,
+        0.0126953125
+      ],
+      "relativeHeight": 0.9720560000000001,
+      "groundAnchorError": 1.8041124150158794e-16,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 742.514658949757,
+        "right": 807.796516549417,
+        "top": 353.5023011381019,
+        "bottom": 412.6669424119031
+      },
+      "saveUnchanged": true,
+      "drawCalls": 97,
+      "triangles": 9502,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-hit.png",
+      "passed": true
+    },
+    {
+      "key": "saren",
+      "id": "saren-0",
+      "pose": "down",
+      "zone": "virmire",
+      "index": 2,
+      "poi": "virmire:boss",
+      "arena": {
+        "x": -7,
+        "z": -77
+      },
+      "composition": [
+        "saren",
+        "geth"
+      ],
+      "frameId": "saren-combat-down",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-combat.png",
+      "rect": [
+        777,
+        768,
+        723,
+        227
+      ],
+      "pivot": [
+        361.5,
+        219
+      ],
+      "repeat": [
+        0.470703125,
+        0.2216796875
+      ],
+      "offset": [
+        0.505859375,
+        0.0283203125
+      ],
+      "relativeHeight": 0.45309400000000005,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 0.32,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 719.1163583305561,
+        "right": 832.5750053547091,
+        "top": 385.46126916547416,
+        "bottom": 413.03904655001975
+      },
+      "saveUnchanged": true,
+      "drawCalls": 97,
+      "triangles": 9502,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-down.png",
+      "passed": true
+    },
+    {
+      "key": "benezia",
+      "id": "benezia-0",
+      "pose": "aim",
+      "zone": "noveria",
+      "index": 2,
+      "poi": "noveria:boss",
+      "arena": {
+        "x": -2,
+        "z": -77
+      },
+      "composition": [
+        "benezia",
+        "asari"
+      ],
+      "frameId": "benezia-combat-aim",
+      "texture": "http://127.0.0.1:4173/assets/boss-benezia-combat.png",
+      "rect": [
+        260,
+        54,
+        265,
+        417
+      ],
+      "pivot": [
+        132.5,
+        409
+      ],
+      "repeat": [
+        0.17252604166666666,
+        0.4072265625
+      ],
+      "offset": [
+        0.16927083333333334,
+        0.5400390625
+      ],
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 750.8951752722176,
+        "right": 800.8579636621954,
+        "top": 352.3860142837752,
+        "bottom": 413.2514801353325
+      },
+      "saveUnchanged": true,
+      "drawCalls": 130,
+      "triangles": 10728,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-benezia-aim.png",
+      "passed": true
+    },
+    {
+      "key": "benezia",
+      "id": "benezia-0",
+      "pose": "power",
+      "zone": "noveria",
+      "index": 2,
+      "poi": "noveria:boss",
+      "arena": {
+        "x": -2,
+        "z": -77
+      },
+      "composition": [
+        "benezia",
+        "asari"
+      ],
+      "frameId": "benezia-combat-power",
+      "texture": "http://127.0.0.1:4173/assets/boss-benezia-combat.png",
+      "rect": [
+        935,
+        58,
+        340,
+        415
+      ],
+      "pivot": [
+        170,
+        407
+      ],
+      "repeat": [
+        0.22135416666666666,
+        0.4052734375
+      ],
+      "offset": [
+        0.6087239583333334,
+        0.5380859375
+      ],
+      "relativeHeight": 0.995204,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 744.4157404160616,
+        "right": 808.5189511181807,
+        "top": 352.99647620690865,
+        "bottom": 413.57003128424185
+      },
+      "saveUnchanged": true,
+      "drawCalls": 130,
+      "triangles": 10728,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-benezia-power.png",
+      "passed": true
+    },
+    {
+      "key": "benezia",
+      "id": "benezia-0",
+      "pose": "hit",
+      "zone": "noveria",
+      "index": 2,
+      "poi": "noveria:boss",
+      "arena": {
+        "x": -2,
+        "z": -77
+      },
+      "composition": [
+        "benezia",
+        "asari"
+      ],
+      "frameId": "benezia-combat-hit",
+      "texture": "http://127.0.0.1:4173/assets/boss-benezia-combat.png",
+      "rect": [
+        251,
+        559,
+        277,
+        405
+      ],
+      "pivot": [
+        138.5,
+        397
+      ],
+      "repeat": [
+        0.18033854166666666,
+        0.3955078125
+      ],
+      "offset": [
+        0.16341145833333334,
+        0.05859375
+      ],
+      "relativeHeight": 0.9712230000000001,
+      "groundAnchorError": 1.8041124150158794e-16,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 749.0429611902002,
+        "right": 801.2682143089739,
+        "top": 353.7487810852279,
+        "bottom": 412.862721425975
+      },
+      "saveUnchanged": true,
+      "drawCalls": 130,
+      "triangles": 10728,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-benezia-hit.png",
+      "passed": true
+    },
+    {
+      "key": "benezia",
+      "id": "benezia-0",
+      "pose": "down",
+      "zone": "noveria",
+      "index": 2,
+      "poi": "noveria:boss",
+      "arena": {
+        "x": -2,
+        "z": -77
+      },
+      "composition": [
+        "benezia",
+        "asari"
+      ],
+      "frameId": "benezia-combat-down",
+      "texture": "http://127.0.0.1:4173/assets/boss-benezia-combat.png",
+      "rect": [
+        902,
+        816,
+        483,
+        128
+      ],
+      "pivot": [
+        241.5,
+        120
+      ],
+      "repeat": [
+        0.314453125,
+        0.125
+      ],
+      "offset": [
+        0.5872395833333334,
+        0.078125
+      ],
+      "relativeHeight": 0.306954,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 0.32,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 730.313620560305,
+        "right": 821.3777431249605,
+        "top": 394.55192543403854,
+        "bottom": 413.2348236390377
+      },
+      "saveUnchanged": true,
+      "drawCalls": 130,
+      "triangles": 10728,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-benezia-down.png",
+      "passed": true
+    },
+    {
+      "key": "thorian",
+      "id": "thorian-0",
+      "pose": "aim",
+      "zone": "feros",
+      "index": 2,
+      "poi": "feros:boss",
+      "arena": {
+        "x": 0,
+        "z": -4
+      },
+      "composition": [
+        "thorian",
+        "creeper"
+      ],
+      "frameId": "thorian-combat-aim",
+      "texture": "http://127.0.0.1:4173/assets/boss-thorian-combat.png",
+      "rect": [
+        213,
+        8,
+        358,
+        500
+      ],
+      "pivot": [
+        179,
+        492
+      ],
+      "repeat": [
+        0.23307291666666666,
+        0.48828125
+      ],
+      "offset": [
+        0.138671875,
+        0.50390625
+      ],
+      "relativeHeight": 1,
+      "groundAnchorError": 1.8041124150158794e-16,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 759.7554722988634,
+        "right": 866.4147826436911,
+        "top": 270.95650689979243,
+        "bottom": 386.2805474606375
+      },
+      "saveUnchanged": true,
+      "drawCalls": 56,
+      "triangles": 12454,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-thorian-aim.png",
+      "passed": true
+    },
+    {
+      "key": "thorian",
+      "id": "thorian-0",
+      "pose": "power",
+      "zone": "feros",
+      "index": 2,
+      "poi": "feros:boss",
+      "arena": {
+        "x": 0,
+        "z": -4
+      },
+      "composition": [
+        "thorian",
+        "creeper"
+      ],
+      "frameId": "thorian-combat-power",
+      "texture": "http://127.0.0.1:4173/assets/boss-thorian-combat.png",
+      "rect": [
+        878,
+        3,
+        541,
+        506
+      ],
+      "pivot": [
+        270.5,
+        498
+      ],
+      "repeat": [
+        0.3522135416666667,
+        0.494140625
+      ],
+      "offset": [
+        0.5716145833333334,
+        0.5029296875
+      ],
+      "relativeHeight": 1.012,
+      "groundAnchorError": 6.245004513516506e-16,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 733.0855589436057,
+        "right": 894.2662485987782,
+        "top": 269.8911693706405,
+        "bottom": 386.59909841821565
+      },
+      "saveUnchanged": true,
+      "drawCalls": 56,
+      "triangles": 12454,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-thorian-power.png",
+      "passed": true
+    },
+    {
+      "key": "thorian",
+      "id": "thorian-0",
+      "pose": "hit",
+      "zone": "feros",
+      "index": 2,
+      "poi": "feros:boss",
+      "arena": {
+        "x": 0,
+        "z": -4
+      },
+      "composition": [
+        "thorian",
+        "creeper"
+      ],
+      "frameId": "thorian-combat-hit",
+      "texture": "http://127.0.0.1:4173/assets/boss-thorian-combat.png",
+      "rect": [
+        229,
+        551,
+        361,
+        465
+      ],
+      "pivot": [
+        180.5,
+        457
+      ],
+      "repeat": [
+        0.23502604166666666,
+        0.4541015625
+      ],
+      "offset": [
+        0.14908854166666666,
+        0.0078125
+      ],
+      "relativeHeight": 0.9299999999999999,
+      "groundAnchorError": 6.245004513516506e-16,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 758.5875940295199,
+        "right": 866.1406974777958,
+        "top": 278.6404310556426,
+        "bottom": 385.89178877722856
+      },
+      "saveUnchanged": true,
+      "drawCalls": 56,
+      "triangles": 12454,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-thorian-hit.png",
+      "passed": true
+    },
+    {
+      "key": "thorian",
+      "id": "thorian-0",
+      "pose": "down",
+      "zone": "feros",
+      "index": 2,
+      "poi": "feros:boss",
+      "arena": {
+        "x": 0,
+        "z": -4
+      },
+      "composition": [
+        "thorian",
+        "creeper"
+      ],
+      "frameId": "thorian-combat-down",
+      "texture": "http://127.0.0.1:4173/assets/boss-thorian-combat.png",
+      "rect": [
+        797,
+        701,
+        703,
+        280
+      ],
+      "pivot": [
+        351.5,
+        272
+      ],
+      "repeat": [
+        0.4576822916666667,
+        0.2734375
+      ],
+      "offset": [
+        0.5188802083333334,
+        0.0419921875
+      ],
+      "relativeHeight": 0.56,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 0.32,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 708.3314812260139,
+        "right": 917.7769984673932,
+        "top": 321.68242991056843,
+        "bottom": 386.2638926246417
+      },
+      "saveUnchanged": true,
+      "drawCalls": 56,
+      "triangles": 12454,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-thorian-down.png",
+      "passed": true
+    },
+    {
+      "key": "saren-final",
+      "id": "saren-final-0",
+      "pose": "aim",
+      "zone": "citadel-finale",
+      "index": 2,
+      "poi": "citadel-finale:boss",
+      "arena": {
+        "x": 0,
+        "z": 0
+      },
+      "composition": [
+        "saren-final"
+      ],
+      "frameId": "saren-final-combat-aim",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-final-combat.png",
+      "rect": [
+        146,
+        16,
+        479,
+        480
+      ],
+      "pivot": [
+        239.5,
+        472
+      ],
+      "repeat": [
+        0.3118489583333333,
+        0.46875
+      ],
+      "offset": [
+        0.09505208333333333,
+        0.515625
+      ],
+      "relativeHeight": 1,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 726.3248453292755,
+        "right": 825.4282936051375,
+        "top": 336.4824818584449,
+        "bottom": 413.3651755656749
+      },
+      "saveUnchanged": true,
+      "drawCalls": 83,
+      "triangles": 60364,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-final-aim.png",
+      "passed": true
+    },
+    {
+      "key": "saren-final",
+      "id": "saren-final-0",
+      "pose": "power",
+      "zone": "citadel-finale",
+      "index": 2,
+      "poi": "citadel-finale:boss",
+      "arena": {
+        "x": 0,
+        "z": 0
+      },
+      "composition": [
+        "saren-final"
+      ],
+      "frameId": "saren-final-combat-power",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-final-combat.png",
+      "rect": [
+        850,
+        2,
+        583,
+        493
+      ],
+      "pivot": [
+        291.5,
+        485
+      ],
+      "repeat": [
+        0.3795572916666667,
+        0.4814453125
+      ],
+      "offset": [
+        0.5533854166666666,
+        0.5166015625
+      ],
+      "relativeHeight": 1.027083,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 716.157020512872,
+        "right": 836.7776710213705,
+        "top": 334.718818406487,
+        "bottom": 413.68372610738993
+      },
+      "saveUnchanged": true,
+      "drawCalls": 83,
+      "triangles": 60364,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-final-power.png",
+      "passed": true
+    },
+    {
+      "key": "saren-final",
+      "id": "saren-final-0",
+      "pose": "hit",
+      "zone": "citadel-finale",
+      "index": 2,
+      "poi": "citadel-finale:boss",
+      "arena": {
+        "x": 0,
+        "z": 0
+      },
+      "composition": [
+        "saren-final"
+      ],
+      "frameId": "saren-final-combat-hit",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-final-combat.png",
+      "rect": [
+        149,
+        527,
+        493,
+        495
+      ],
+      "pivot": [
+        246.5,
+        487
+      ],
+      "repeat": [
+        0.3209635416666667,
+        0.4833984375
+      ],
+      "offset": [
+        0.09700520833333333,
+        0.001953125
+      ],
+      "relativeHeight": 1.03125,
+      "groundAnchorError": 1.8041124150158794e-16,
+      "opacity": 1,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 724.1555877495871,
+        "right": 826.1555877495871,
+        "top": 333.69113899668497,
+        "bottom": 412.97641688226594
+      },
+      "saveUnchanged": true,
+      "drawCalls": 83,
+      "triangles": 60364,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-final-hit.png",
+      "passed": true
+    },
+    {
+      "key": "saren-final",
+      "id": "saren-final-0",
+      "pose": "down",
+      "zone": "citadel-finale",
+      "index": 2,
+      "poi": "citadel-finale:boss",
+      "arena": {
+        "x": 0,
+        "z": 0
+      },
+      "composition": [
+        "saren-final"
+      ],
+      "frameId": "saren-final-combat-down",
+      "texture": "http://127.0.0.1:4173/assets/boss-saren-final-combat.png",
+      "rect": [
+        792,
+        758,
+        697,
+        242
+      ],
+      "pivot": [
+        348.5,
+        234
+      ],
+      "repeat": [
+        0.4537760416666667,
+        0.236328125
+      ],
+      "offset": [
+        0.515625,
+        0.0234375
+      ],
+      "relativeHeight": 0.504167,
+      "groundAnchorError": 4.163336342344337e-17,
+      "opacity": 0.32,
+      "rotationZ": 0,
+      "sourceMapDistinct": true,
+      "sourceRepeat": [
+        1,
+        1
+      ],
+      "sourceOffset": [
+        0,
+        0
+      ],
+      "projectedBounds": {
+        "left": 703.7421858950694,
+        "right": 847.9491777901961,
+        "top": 374.58680453857824,
+        "bottom": 413.34852157687135
+      },
+      "saveUnchanged": true,
+      "drawCalls": 83,
+      "triangles": 60364,
+      "heldDrawingOnly": true,
+      "battleUnchanged": true,
+      "screenshot": "docs/screenshots/frontier-bosses-renderer-saren-final-down.png",
+      "passed": true
+    }
+  ],
+  "nativeEvents": [
+    {
+      "key": "saren",
+      "actionId": "overload",
+      "actionOK": true,
+      "actionFrame": "saren-combat-power",
+      "hitFrame": "saren-combat-hit",
+      "damageOK": true,
+      "downFrame": "saren-combat-down",
+      "hp": 0,
+      "powersUnchanged": true,
+      "saveUnchanged": true,
+      "explicitKOFixtureInputs": {
+        "hp": 1,
+        "shield": 0,
+        "garrusAttack": 5000
+      },
+      "events": [
+        {
+          "id": 3,
+          "at": 0,
+          "type": "action",
+          "actorId": "garrus",
+          "actionId": "shoot",
+          "targetId": "saren-0",
+          "targetIds": [
+            "saren-0"
+          ],
+          "message": "Garrus Vakarian : Tir contrôlé."
+        },
+        {
+          "id": 4,
+          "at": 0,
+          "type": "damage",
+          "actorId": "garrus",
+          "targetId": "saren-0",
+          "actionId": "shoot",
+          "amount": 1,
+          "shieldDamage": 0,
+          "healthDamage": 1,
+          "message": "Saren Arterius subit 1 dégâts."
+        },
+        {
+          "id": 5,
+          "at": 0,
+          "type": "defeat",
+          "actorId": "garrus",
+          "targetId": "saren-0",
+          "message": "Saren Arterius est hors combat."
+        }
+      ]
+    },
+    {
+      "key": "benezia",
+      "actionId": "throw",
+      "actionOK": true,
+      "actionFrame": "benezia-combat-power",
+      "hitFrame": "benezia-combat-hit",
+      "damageOK": true,
+      "downFrame": "benezia-combat-down",
+      "hp": 0,
+      "powersUnchanged": true,
+      "saveUnchanged": true,
+      "explicitKOFixtureInputs": {
+        "hp": 1,
+        "shield": 0,
+        "garrusAttack": 5000
+      },
+      "events": [
+        {
+          "id": 4,
+          "at": 0,
+          "type": "action",
+          "actorId": "garrus",
+          "actionId": "shoot",
+          "targetId": "benezia-0",
+          "targetIds": [
+            "benezia-0"
+          ],
+          "message": "Garrus Vakarian : Tir contrôlé."
+        },
+        {
+          "id": 5,
+          "at": 0,
+          "type": "damage",
+          "actorId": "garrus",
+          "targetId": "benezia-0",
+          "actionId": "shoot",
+          "amount": 1,
+          "shieldDamage": 0,
+          "healthDamage": 1,
+          "message": "Matriarche Bénézia subit 1 dégâts."
+        },
+        {
+          "id": 6,
+          "at": 0,
+          "type": "defeat",
+          "actorId": "garrus",
+          "targetId": "benezia-0",
+          "message": "Matriarche Bénézia est hors combat."
+        }
+      ]
+    },
+    {
+      "key": "thorian",
+      "actionId": "acid",
+      "actionOK": true,
+      "actionFrame": "thorian-combat-power",
+      "hitFrame": "thorian-combat-hit",
+      "damageOK": true,
+      "downFrame": "thorian-combat-down",
+      "hp": 0,
+      "powersUnchanged": true,
+      "saveUnchanged": true,
+      "explicitKOFixtureInputs": {
+        "hp": 1,
+        "shield": 0,
+        "garrusAttack": 5000
+      },
+      "events": [
+        {
+          "id": 4,
+          "at": 0,
+          "type": "action",
+          "actorId": "garrus",
+          "actionId": "shoot",
+          "targetId": "thorian-0",
+          "targetIds": [
+            "thorian-0"
+          ],
+          "message": "Garrus Vakarian : Tir contrôlé."
+        },
+        {
+          "id": 5,
+          "at": 0,
+          "type": "damage",
+          "actorId": "garrus",
+          "targetId": "thorian-0",
+          "actionId": "shoot",
+          "amount": 1,
+          "shieldDamage": 0,
+          "healthDamage": 1,
+          "message": "Thorien — nœud central subit 1 dégâts."
+        },
+        {
+          "id": 6,
+          "at": 0,
+          "type": "defeat",
+          "actorId": "garrus",
+          "targetId": "thorian-0",
+          "message": "Thorien — nœud central est hors combat."
+        }
+      ]
+    },
+    {
+      "key": "saren-final",
+      "actionId": "overload",
+      "actionOK": true,
+      "actionFrame": "saren-final-combat-power",
+      "hitFrame": "saren-final-combat-hit",
+      "damageOK": true,
+      "downFrame": "saren-final-combat-down",
+      "hp": 0,
+      "powersUnchanged": true,
+      "saveUnchanged": true,
+      "explicitKOFixtureInputs": {
+        "hp": 1,
+        "shield": 0,
+        "garrusAttack": 5000
+      },
+      "events": [
+        {
+          "id": 3,
+          "at": 0,
+          "type": "action",
+          "actorId": "garrus",
+          "actionId": "shoot",
+          "targetId": "saren-final-0",
+          "targetIds": [
+            "saren-final-0"
+          ],
+          "message": "Garrus Vakarian : Tir contrôlé."
+        },
+        {
+          "id": 4,
+          "at": 0,
+          "type": "damage",
+          "actorId": "garrus",
+          "targetId": "saren-final-0",
+          "actionId": "shoot",
+          "amount": 1,
+          "shieldDamage": 0,
+          "healthDamage": 1,
+          "message": "Saren — enveloppe synthétique subit 1 dégâts."
+        },
+        {
+          "id": 5,
+          "at": 0,
+          "type": "defeat",
+          "actorId": "garrus",
+          "targetId": "saren-final-0",
+          "message": "Saren — enveloppe synthétique est hors combat."
+        },
+        {
+          "id": 6,
+          "at": 0,
+          "type": "victory",
+          "winner": "party",
+          "message": "Zone sécurisée. Victoire du commando."
+        }
+      ]
+    }
+  ],
+  "scopeClosures": [
+    {
+      "key": "saren",
+      "patch": {
+        "state": {
+          "mediaId": "ME3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren",
+      "patch": {
+        "state": {
+          "periodId": "me2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren",
+      "patch": {
+        "state": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren",
+      "patch": {
+        "actor": {
+          "mediaId": "ME2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren",
+      "patch": {
+        "actor": {
+          "periodId": "me3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren",
+      "patch": {
+        "actor": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren",
+      "patch": {
+        "state": {
+          "team": "party"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "state": {
+          "mediaId": "ME3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "state": {
+          "periodId": "me2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "state": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "actor": {
+          "mediaId": "ME2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "actor": {
+          "periodId": "me3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "actor": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "benezia",
+      "patch": {
+        "state": {
+          "team": "party"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "state": {
+          "mediaId": "ME3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "state": {
+          "periodId": "me2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "state": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "actor": {
+          "mediaId": "ME2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "actor": {
+          "periodId": "me3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "actor": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "thorian",
+      "patch": {
+        "state": {
+          "team": "party"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "state": {
+          "mediaId": "ME3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "state": {
+          "periodId": "me2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "state": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "actor": {
+          "mediaId": "ME2"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "actor": {
+          "periodId": "me3"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "actor": {
+          "context": {
+            "mediaId": "MEA"
+          }
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    },
+    {
+      "key": "saren-final",
+      "patch": {
+        "state": {
+          "team": "party"
+        }
+      },
+      "frame": null,
+      "configClosed": true,
+      "borrowedBossPose": false
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-aim.png",
+      "sha256": "35b5d14f6b36a26e2afe30c740a0eb2b6a0adb848647b417c311414f425eb379",
+      "bytes": 867716,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-power.png",
+      "sha256": "274f3ed18c8ce987de6112f84b8c7b617e5d6344b6ccf10c16e1e039bf0bad7e",
+      "bytes": 867965,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-hit.png",
+      "sha256": "02a8af1ba811717311908bf692d0d5c2dda178e9989a17cb7c91a469042189b1",
+      "bytes": 868447,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-down.png",
+      "sha256": "48a979a147d1494479ee31a90b80fee9230af53eb7826afa44a691634eb8d32a",
+      "bytes": 866132,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-benezia-aim.png",
+      "sha256": "bc04a04286b7c4b707b2b1ef219092b5f02fb6ac0e48e29958203d57cd9fe2fd",
+      "bytes": 871623,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-benezia-power.png",
+      "sha256": "fd2285a6504cada5c09fa6e48b2813e2c8468f675e2745ece6ac8f8225ad757c",
+      "bytes": 871559,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-benezia-hit.png",
+      "sha256": "b14fffe29c503b72861b6f5d185efc13387b204dff1a7edf920108e95a0cdedc",
+      "bytes": 870901,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-benezia-down.png",
+      "sha256": "f0d71b63b30dba3db1b0efa0b837f0d3481b46ee2ccc07f6ab3733cff1f285e2",
+      "bytes": 869660,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-thorian-aim.png",
+      "sha256": "9bfa7cd6f154fe1655f6b469deb4471acc07131177177254a7bd4ac247f6e2bd",
+      "bytes": 808884,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-thorian-power.png",
+      "sha256": "36ff5c2001970607cf166658270ef7a1645b0e6377d46a01a51badb0e5f1c3f3",
+      "bytes": 811067,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-thorian-hit.png",
+      "sha256": "83570af9804ac91061ba90a1d6c362ecb7b91520606271a9f83cc7ca20f15287",
+      "bytes": 807105,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-thorian-down.png",
+      "sha256": "9b9ca0bac4a1eda2bda01daf2b0836d0b41ed9ac28937361ac9f711e2ec2bbbe",
+      "bytes": 802032,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-final-aim.png",
+      "sha256": "dc459a4f62a8097ef81f000b08d63b3fbe4b63c1068a15f1bf2ce16028b3b322",
+      "bytes": 797107,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-final-power.png",
+      "sha256": "13117ac1e71b391e8ba0b615750c36be2b399863cedf84bd05a0a02e304886eb",
+      "bytes": 796744,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-final-hit.png",
+      "sha256": "bb36c73b1e9ddafc088a81e5ade05798cb19f06df31ba65632d9e6f2400d1b8d",
+      "bytes": 796288,
+      "actuallyOpened": true
+    },
+    {
+      "path": "docs/screenshots/frontier-bosses-renderer-saren-final-down.png",
+      "sha256": "340f630e459c3dac4b6d1df5aecf6ed99e3abc254ad6fa8252af7ca73ffb8854",
+      "bytes": 794081,
+      "actuallyOpened": true
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "assetErrors": [],
+  "storageUnchanged": true,
+  "reviewByFamily": {
+    "saren": "Complete turian cybernetic silhouette, four clearly distinct poses, kept separate from synthetic final shell. No cropping or meaningful enemy occlusion. Exact organic face/armour remains Prototype.",
+    "benezia": "Low fitted dark headpiece and dark dress visible in all four states, no fantasy tower horns. Clear chamber around existing asari ally. Exact original costume remains unverified.",
+    "thorian": "Organic anchored plant silhouette and four root/core states, clear of neighbouring creeper. KO opacity0.32 retained. Existing Feros outdoor stage does not reconstruct original subterranean lair.",
+    "saren-final": "Distinct skeletal cybernetic silhouette, four poses and proportional collapse. No extra wallclimb/phase mechanics."
+  },
+  "remainingLimitations": [
+    "Four fixed drawings per existing boss are not full animation cycles or complete original movesets.",
+    "All four sprite records remain Prototype; accessible full-body original reference comparison incomplete.",
+    "KO states keep existing low opacity0.32; original boss environments are not certified."
+  ]
+}

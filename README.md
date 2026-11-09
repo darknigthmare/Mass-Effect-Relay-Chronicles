@@ -4,6 +4,12 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
+## Extension ME1 Frontier
+
+Le lot Frontier ajoute huit conversations de PNJ, huit types d’ennemis dans les rencontres existantes, seize poses des quatre boss et un prototype de Mako pilotable à Thérum. Thérum, Novéria et Virmire disposent chacune de cinq secteurs et de trois chemins, avec relief, obstacles, caméra, carte et radar propres au lieu. Les récompenses, conditions de progression et sept points de mission par zone sont conservés.
+
+Les conversations sont des adaptations françaises condensées ; les profils et déplacements restent adaptés à l’ATB. Les nouvelles images restent Prototype. Le Mako permet d’embarquer, conduire, accélérer et débarquer ; son armement et la physique originale restent à réaliser. La sauvegarde reprend à pied. Voir la [conception](docs/DESIGN.md) et le [suivi de fidélité](docs/FIDELITY.md).
+
 ## Cadre de développement
 
 Le [guide gamedev du projet](docs/GAMEDEV_GUIDANCE.md) adapte une sélection de **12 guides** de [awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) aux chantiers du jeu : RPG/ATB, personnalisation, assets, narration, sauvegardes, cartes et rendu Three.js. Les [références sont épinglées](docs/gamedev-sources.json) et les [instructions aux agents](AGENTS.md) relient chaque changement aux contrôles et au suivi Excel existants.
@@ -55,7 +61,8 @@ Le [rapport initial de livraison 0.3.0](docs/qa/v0.3.0-report.json) conserve les
 | Action | Commande |
 |---|---|
 | Se déplacer | ZQSD, WASD ou flèches |
-| Courir | Majuscule |
+| Courir / accélérer le Mako | Majuscule |
+| Embarquer / descendre du Mako à Thérum | E près du véhicule ou bouton à l’écran |
 | Interagir | E, bouton à l’écran ou clic sur un marqueur |
 | Se rendre à un endroit | Clic sur le sol ; recherche de chemin avec collisions |
 | Journal / équipe / équipement | J / C / I |

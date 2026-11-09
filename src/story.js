@@ -1,5 +1,6 @@
 import { CODEX, CHAPTERS, CLASSES } from './game-data.js';
 import { STORY_CONVERSATIONS, STORY_CODEX } from './story-data.js';
+import { getFrontierNPC, frontierNPCVisible } from './frontier-characters.js';
 
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const ZONES = new Set(['normandy', ...Object.keys(CHAPTERS)]);
@@ -41,7 +42,7 @@ function gatePossible(state, story, gate, historical = false) {
   if (gate === 'before-eden') return historical || (!story.visitedZones.includes('eden-prime')
     && !legacyVisits(state).includes('eden-prime') && state?.flags?.jenkinsLost !== true);
   if (gate === 'garrus-advice') return OWN(story.choices, 'garrus:procedure');
-  const stages = { 'after-eden': 'eden-prime', 'after-therum': 'therum', 'after-feros': 'feros', 'after-ilos': 'ilos' };
+  const stages = { 'after-eden': 'eden-prime', 'after-citadel': 'citadel', 'after-therum': 'therum', 'after-feros': 'feros', 'after-ilos': 'ilos' };
   return OWN(stages, gate) && completed(state, stages[gate]);
 }
 
@@ -138,10 +139,12 @@ export function recordVisit(state, zone) {
 }
 
 export function getConversation(state, id) {
-  if (!state || state.zone !== 'normandy' || typeof id !== 'string' || !OWN(STORY_CONVERSATIONS, id)) return null;
+  if (!state || typeof id !== 'string' || !OWN(STORY_CONVERSATIONS, id)) return null;
+  const conversation = STORY_CONVERSATIONS[id];
+  if (state.zone !== (conversation.zone || 'normandy') || !zoneAvailable(state, state.zone)) return null;
+  if (getFrontierNPC(id) && !frontierNPCVisible(state, id)) return null;
   const story = migrateStoryState(state.story, state);
   if (!story) return null;
-  const conversation = STORY_CONVERSATIONS[id];
   if (conversation.companion && (state.lost || []).includes(conversation.companion)) return null;
   let topics = conversation.topics.filter(topic => topicPossible(state, story, conversation, topic)
     && !(topic.once && hasHeard(story, `${id}:${topic.id}`)));

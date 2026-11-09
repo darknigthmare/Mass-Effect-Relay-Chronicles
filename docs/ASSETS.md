@@ -9,10 +9,10 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `citadel-keyart.png` | 1672 × 940 | Vue conceptuelle de la Citadelle | Fond de l’écran titre |
 | `crew-atlas.png` | 1536 × 1024 | 8 personnages, grille 4 × 2 | Exploration, combat, portraits, équipe |
 | `enemy-atlas.png` | 1536 × 1024 | 8 silhouettes ennemies, grille 4 × 2 | Exploration et combat |
-| `boss-atlas.png` | 1024 × 1536 | 4 boss, grille 2 × 2 | Combats dédiés |
+| `boss-atlas.png` | 1024 × 1536 | 4 boss, grille 2 × 2 | Repli pendant le chargement des poses dédiées |
 | `npc-atlas.png` | 1536 × 1024 | 8 personnages, grille 4 × 2 | PNJ placés et portraits ; certaines images encore en réserve |
 | `props-atlas.png` | 1536 × 1024 | 16 objets, grille 4 × 4 | Habillage 2D des décors 3D |
-| `vehicle-atlas.png` | 1312 × 1199 | 4 véhicules / machines ; régions irrégulières | Mako statique et Sovereign distant ; autres images en réserve |
+| `vehicle-atlas.png` | 1312 × 1199 | 4 véhicules / machines ; régions irrégulières | Mako décoratif à Ilos, repli visuel à Thérum et Sovereign distant |
 | `shepard-walk-atlas.png` | 1269 × 1240 | 16 poses, quatre directions | Marche de Shepard masculin |
 | `shepard-male-combat-atlas.png` | 1536 × 1024 | Visée, pouvoir, impact, hors combat | Combat masculin et aperçu de l’atelier |
 | `shepard-female-walk-atlas.png` | 1254 × 1254 | 16 poses, quatre directions | Marche féminine, création, dossier et équipement |
@@ -40,8 +40,15 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `companion-jenkins-combat.png` | 1536 × 1024 | Quatre poses fixes | Jenkins au prologue ME1 |
 | `enemy-creeper-combat.png` | 1536 × 1024 | Quatre poses fixes | Creeper du Thorien ME1 |
 | `enemy-asari-combat.png` | 1536 × 1024 | Quatre poses fixes | Commando asari générique ME1 |
+| `frontier-npcs.png` | 1536 × 1024 | Sept corps fixes de PNJ | Conversations et présence ME1 à bord du Normandy et à Novéria |
+| `frontier-enemies.png` | 1536 × 1024 | Huit corps fixes | Nouveaux types dans six formations ME1 existantes |
+| `boss-saren-combat.png` | 1536 × 1024 | Quatre poses fixes | Saren à Virmire |
+| `boss-benezia-combat.png` | 1536 × 1024 | Quatre poses fixes | Bénézia à Novéria |
+| `boss-thorian-combat.png` | 1536 × 1024 | Quatre poses fixes | Thorien à Féros |
+| `boss-saren-final-combat.png` | 1536 × 1024 | Quatre poses fixes | Forme synthétique du final |
+| `vehicle-mako-directions.png` | 1536 × 1024 | Quatre directions fixes | Prototype de conduite à Thérum |
 
-Les **34 PNG courants** comprennent les seize images précédentes, les sept atlas de compagnons, huit atlas d’ennemis, la planche assise de Joker et deux textures de sol Eden. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard, les 28 des compagnons et les 32 des ennemis portent le total à **68 poses clés de combat**, séparées des deux dessins assis de Joker et des deux textures de sol. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **41 PNG courants** conservent les 34 précédents et ajoutent les sept atlas du lot Frontier. Les huit poses de Shepard, les 28 des compagnons, les 32 des huit familles ennemies précédentes et les seize des quatre boss portent le total à **84 poses clés de combat**. Les **sept corps de PNJ**, les **huit corps ennemis supplémentaires** et les **quatre directions du Mako** sont comptés séparément, comme les deux dessins assis de Joker et les deux textures de sol. Jenkins réutilise son corps existant pour la huitième conversation. Ces comptes ne représentent pas des personnages, des cycles ou des movesets complets. Les doublons d’une même identité sous plusieurs formes sont des sujets distincts d’atlas.
 
 ## Ordre des régions
 

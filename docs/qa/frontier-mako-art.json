@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "date": "2026-11-09",
+  "baseline": "ff8a1cf7fd343d2bb8df6b01d5f18f3f5e7723cd",
+  "scope": "Mako native RGBA atlas, immutable metadata and pure driving controller. In-game integration is a separate gate.",
+  "passed": true,
+  "asset": "public/assets/vehicle-mako-directions.png",
+  "metadata": "public/assets/vehicle-mako-directions.json",
+  "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74",
+  "nativeSource": "/workspace/generated_images/exec-e2fe78c1-1c3a-44bb-840a-b4dbb01c1de9.png",
+  "nativeCopyVerified": true,
+  "pixelEditingApplied": false,
+  "actuallyOpened": true,
+  "nativeReview": {
+    "method": "Chromium 1:1 1536x1024 CSS checkerboard, screenshot opened with view_image; source PNG unchanged.",
+    "screenshot": "docs/screenshots/frontier-mako-native.png",
+    "observations": [
+      "Four complete separated Mako views: front, rear, left and right.",
+      "Three visible near-side wheels in both profile views; six-wheel ME1 silhouette preserved.",
+      "No vehicle or barrel clipped at render alpha threshold. No studio halo visible on checkerboard.",
+      "Surface details, wheel/turret offsets and unobserved angles remain generated interpretations."
+    ]
+  },
+  "technical": {
+    "mode": "RGBA",
+    "width": 1536,
+    "height": 1024,
+    "alphaRange": [
+      0,
+      254
+    ],
+    "fullyTransparentPixels": 865574,
+    "lowAlphaPixels1to32": 44122,
+    "visiblePixelsOutsideAssignedFrames": 0,
+    "visibleBorderPixels": 0,
+    "majorConnectedComponents": [
+      {
+        "pixels": 171920,
+        "bounds": [
+          72,
+          35,
+          707,
+          464
+        ]
+      },
+      {
+        "pixels": 164035,
+        "bounds": [
+          785,
+          600,
+          1505,
+          961
+        ]
+      },
+      {
+        "pixels": 163637,
+        "bounds": [
+          32,
+          599,
+          745,
+          959
+        ]
+      },
+      {
+        "pixels": 162951,
+        "bounds": [
+          860,
+          52,
+          1467,
+          463
+        ]
+      }
+    ],
+    "minorConnectedComponents": 0,
+    "frames": {
+      "front": {
+        "id": "mako-front",
+        "rect": [
+          64,
+          26,
+          651,
+          446
+        ],
+        "pivot": [
+          325.5,
+          438
+        ],
+        "heightScale": 1.0
+      },
+      "back": {
+        "id": "mako-back",
+        "rect": [
+          852,
+          44,
+          623,
+          427
+        ],
+        "pivot": [
+          311.5,
+          419
+        ],
+        "heightScale": 0.957399
+      },
+      "left": {
+        "id": "mako-left",
+        "rect": [
+          24,
+          591,
+          729,
+          377
+        ],
+        "pivot": [
+          364.5,
+          369
+        ],
+        "heightScale": 0.845291
+      },
+      "right": {
+        "id": "mako-right",
+        "rect": [
+          777,
+          591,
+          736,
+          378
+        ],
+        "pivot": [
+          368.0,
+          370
+        ],
+        "heightScale": 0.847534
+      }
+    },
+    "analysisAlphaTest": 0.16,
+    "analysisThresholdInteger": 40,
+    "runtimeMaterialAlphaTestObserved": 0.2,
+    "thresholdQualification": "Analysis at alpha>40 (.16) is more permissive than the observed world material .2, so the zero-outside-frame check also covers that higher rendering threshold."
+  },
+  "controllerTests": {
+    "command": "node --test tests/frontier-vehicles.test.js",
+    "passed": 8,
+    "failed": 0,
+    "cases": [
+      "ME1/Therum proximity boarding and immutability",
+      "bounded acceleration, boost, inertia and frame dt",
+      "radius-aware collision and free-axis sliding",
+      "substeps prevent crossing narrow barrier",
+      "safe foot dismount paths and refusal across thin enclosing wall",
+      "camera-relative direction selection",
+      "untrusted state/input/time and missing collision callback",
+      "immutable validated metadata with malformed UV/media rejection"
+    ]
+  },
+  "primaryReference": {
+    "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+    "httpStatus": 200,
+    "downloadBytes": 1701003,
+    "sha256": "f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44",
+    "pdfPage": 13,
+    "printedPages": [
+      23,
+      24
+    ],
+    "figureObjectId": 233,
+    "figureNativeDimensions": [
+      443,
+      333
+    ],
+    "actuallyOpened": "Rendered PDF page13 via pdftoppm, opened with view_image. Extracted CMYK JPEG preview also opened; rendered page is correct-color generation reference.",
+    "facts": [
+      "Named MAKO and six-wheel screenshot.",
+      "Approach to enter; safe stable ground before exit.",
+      "Manual documents cannon, machine gun, jump and omni-gel repair; those systems are not implemented by this controller."
+    ],
+    "limits": [
+      "Single small terrain perspective, no complete orthographic reference, no canonical speed or collision dimensions established."
+    ]
+  },
+  "gates": {
+    "technical": "passed",
+    "nativeVisualReview": "passed with explicit prototype reservations",
+    "inGameDriving": "Owned by frontier level/UI integration; not claimed by this art report.",
+    "canonicalFidelity": "Not certified 1:1."
+  },
+  "limitations": [
+    "Transient renderer state; parked Mako reset on zone reload and campaign resumes on foot at saved legal position.",
+    "2D bounded adaptation: no suspension, slope solver, jump, cannon, machine gun, turret aiming, HP/shields or omni-gel repair.",
+    "Four fixed direction drawings only; no animated wheel rotation.",
+    "Other fleet entries remain existing media-scoped inspection references; no piloting of Nomad, Hammerhead, Normandy or Tempest added."
+  ]
+}

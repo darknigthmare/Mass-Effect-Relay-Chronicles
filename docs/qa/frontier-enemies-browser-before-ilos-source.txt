@@ -1,0 +1,127 @@
+// Targeted real-renderer checks. Detached native encounter fixtures use explicit
+// ready ATB inputs to inspect real engine attacks, without persisting a victory.
+import assert from 'node:assert/strict';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { chromium } from 'playwright';
+
+const root = new URL('../', import.meta.url), url = process.env.GAME_URL || 'http://127.0.0.1:4173';
+const hash = value => createHash('sha256').update(value).digest('hex');
+const paths = ['src/world.js', 'src/game-data.js', 'src/frontier-enemies.js', 'src/world-data.js',
+  'src/combat.js', 'src/state.js', 'vite.config.js', 'public/assets/frontier-enemies.png',
+  'public/assets/frontier-enemies.json', 'scripts/frontier-enemies-browser.mjs'];
+const sourceHashes = Object.fromEntries(await Promise.all(paths.map(async path => [path, hash(await readFile(new URL(path, root)))])));
+const report = { passed: false, generatedAt: new Date().toISOString(), url, sourceHashes,
+  scope: 'Eight bodies, six native authored encounter formations, actual engine attacks and ambient/scope rejection in real WebGL. Detached ready-ATB fixtures, not a campaign traversal or new multi-pose animation.',
+  setup: { party: ['shepard', 'kaidan', 'jenkins'], state: 'newGame story defaults, not persisted',
+    enemies: 'enemiesFor(actual zone/index), explicit atb:100 fixture input', arena: 'actual authored encounter vicinity, no arena override',
+    camera: 'computed steady native focus applied directly; no transition animation or continuous renderer loop' },
+  observations: [], ambient: [], captures: [], errors: [], failedRequests: [] };
+const slots = [['therum', 0], ['therum', 1], ['noveria', 1], ['virmire', 0], ['virmire', 1], ['ilos', 0]];
+let browser, page;
+async function capture(name) {
+  const path = `docs/screenshots/frontier-enemies-${name}.png`;
+  await page.screenshot({ path: fileURLToPath(new URL(path, root)) });
+  const bytes = await readFile(new URL(path, root)); report.captures.push({ path, sha256: hash(bytes), bytes: bytes.length });
+  return path;
+}
+try {
+  browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH || '/usr/bin/chromium',
+    args: ['--no-sandbox', '--no-zygote', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  report.chromium = browser.version(); page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  page.setDefaultTimeout(45000); page.on('pageerror', error => report.errors.push(error.message));
+  page.on('requestfailed', request => report.failedRequests.push(`${request.url()}: ${request.failure()?.errorText}`));
+  page.on('response', response => { if (response.status() >= 400) report.failedRequests.push(`${response.status()} ${response.url()}`); });
+  const harness = `${url}/__frontier-enemies-qa__`;
+  await page.route(harness, route => route.fulfill({ contentType: 'text/html', body: `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Frontier enemy QA</title></head><body style="margin:0;background:#071321"><div id="world" style="width:100vw;height:100vh;position:relative"></div><script type="module">
+    import '/@vite/client';
+    import { WorldView } from '/src/world.js';
+    import { newGame } from '/src/state.js';
+    import { actorFor, enemiesFor } from '/src/game-data.js';
+    import { createBattle, performAction } from '/src/combat.js';
+    import { FRONTIER_ENEMY_IDS, FRONTIER_ENEMY_VISUALS } from '/src/frontier-enemies.js';
+    const state = newGame({difficulty:'story'}), world = new WorldView(document.querySelector('#world'));
+    window.__FRONTIER_ENEMIES__ = { world, state, actorFor, enemiesFor, createBattle, performAction, ids:FRONTIER_ENEMY_IDS, frames:FRONTIER_ENEMY_VISUALS };
+  </script></body></html>` }));
+  await page.goto(harness, {waitUntil:'networkidle'}); await page.waitForFunction(() => !!window.__FRONTIER_ENEMIES__?.world.atlases['frontier-enemies']);
+  for (const [zone, index] of slots) {
+    const observations = await page.evaluate(([zone, index]) => {
+      const f = window.__FRONTIER_ENEMIES__, w = f.world; w.setBattle(null); w.setStoryContext(null); w.setZone(zone);
+      const id = `${zone}:encounter-${index + 1}`, poi = w.zone.pois.find(poi => poi.id === id); if (!poi) throw Error('Missing authored encounter');
+      w.setPosition(poi); f.battle = f.createBattle({ party:f.state.party.map(id=>f.actorFor(id,f.state)),
+        enemies:f.enemiesFor(zone,index,f.state).map(enemy=>({...enemy,atb:100})), difficulty:'story',mode:'wait',seed:2183 });
+      w.setBattle(f.battle); w.setMode('combat'); w.cameraTarget.copy(w._cameraFocus(w.battleArena||w.zone.arena,'combat'));w.update(0);
+      return f.battle.actors.filter(actor=>actor.team==='enemy'&&f.ids.includes(actor.sprite)).map(entry=>{
+        const actor=w.battleActors.get(entry.id), frame=f.frames[entry.sprite], map=actor.body.material.map;
+        return {zone,index,id:entry.id,key:entry.sprite,frameId:actor.animationFrame,source:map.image?.src,
+          actualUV:[map.offset.x,map.offset.y,map.repeat.x,map.repeat.y],expectedUV:[frame.rect[0]/frame.width,1-(frame.rect[1]+frame.rect[3])/frame.height,frame.rect[2]/frame.width,frame.rect[3]/frame.height],
+          arena:w.battleArena||w.zone.arena,visible:actor.group.visible,opacity:actor.body.material.opacity};
+      });
+    }, [zone, index]);
+    assert.ok(observations.length);
+    for (const observation of observations) {
+      assert.equal(observation.frameId, `${observation.key}-body`); assert.ok(observation.source.endsWith('/assets/frontier-enemies.png'));
+      assert.equal(observation.visible, true); assert.equal(observation.opacity, 1);
+      observation.actualUV.forEach((value, index) => assert.ok(Math.abs(value - observation.expectedUV[index]) < 1e-10));
+    }
+    const screenshot = await capture(`${zone}-${index + 1}-native`);
+    const actions = await page.evaluate(() => {
+      const f=window.__FRONTIER_ENEMIES__, w=f.world, snapshot=JSON.stringify(f.state);
+      return f.battle.actors.filter(actor=>actor.team==='enemy'&&f.ids.includes(actor.sprite)).map(entry=>{
+        const actionId=entry.primaryAction||'shoot', before=f.battle.actors[0].hp+f.battle.actors[0].shield;
+        const result=f.performAction(f.battle,{actorId:entry.id,actionId,targetId:'shepard'});
+        w.setBattle(f.battle);result.events.forEach(event=>w.playEvent(event));w.update(0);
+        return {id:entry.id,actionId,ok:result.ok,heat:entry.heat,atb:entry.atb,
+          damage:before-f.battle.actors[0].hp-f.battle.actors[0].shield,
+          frameId:w.battleActors.get(entry.id).animationFrame,persistentStateUnchanged:JSON.stringify(f.state)===snapshot};
+      });
+    });
+    for (const action of actions) {
+      assert.equal(action.ok, true); assert.equal(action.atb, 0); assert.ok(action.damage > 0);
+      assert.equal(action.heat, action.actionId === 'strike' ? 0 : 24); assert.equal(action.persistentStateUnchanged, true);
+    }
+    report.observations.push(...observations.map(observation => ({ ...observation, screenshot, action: actions.find(action => action.id === observation.id) })));
+    const negative = await page.evaluate(() => {
+      const f=window.__FRONTIER_ENEMIES__,w=f.world,entry=f.battle.actors.find(actor=>f.ids.includes(actor.sprite)),view=w.battleActors.get(entry.id);
+      entry.mediaId='ME2';w.setBattle(f.battle);w.update(0);const foreign={frame:view.animationFrame,nativeTexture:view.body.material.map.image===w.atlases['frontier-enemies'].image};
+      entry.mediaId='ME1';w.setBattle(f.battle);w.update(0);return {foreign,restored:view.animationFrame};
+    });
+    assert.equal(negative.foreign.frame, null); assert.equal(negative.foreign.nativeTexture, false);
+    assert.equal(negative.restored, `${observations[0].key}-body`);
+    report.observations.at(-1).negativeScope = negative;
+  }
+  assert.equal(report.observations.length, 8);
+  const ambient = await page.evaluate(() => {
+    const f=window.__FRONTIER_ENEMIES__,w=f.world;w.setBattle(null);w.setZone('therum');w.setMode('explore');
+    const poi=w.zone.pois.find(p=>p.id==='therum:encounter-1');w.setPosition({x:poi.x-3,z:poi.z+2});w.update(0);
+    const actor=w.ambientActors.find(actor=>actor.poiId===poi.id),snapshot=JSON.stringify(f.state);
+    const native={id:actor.id,key:actor.key,frame:actor.animationFrame,source:actor.body.material.map.image?.src};
+    w.setStoryContext({mediaId:'ME2',periodId:'me2'});w.update(0);
+    const foreign={frame:actor.animationFrame,nativeTexture:actor.body.material.map.image===w.atlases['frontier-enemies'].image};
+    w.setStoryContext(null);w.update(0);
+    const restored=actor.animationFrame;
+    actor.poiId='therum:boss';w.update(0);const wrongPOI=actor.animationFrame;
+    actor.poiId=poi.id;w.update(0);
+    return {native,foreign,restored,wrongPOI,persistentStateUnchanged:snapshot===JSON.stringify(f.state)};
+  });
+  assert.equal(ambient.native.frame, 'recon-drone-body'); assert.equal(ambient.foreign.frame, null);
+  assert.equal(ambient.foreign.nativeTexture, false); assert.equal(ambient.restored, 'recon-drone-body');
+  assert.equal(ambient.wrongPOI, null); assert.equal(ambient.persistentStateUnchanged, true);
+  ambient.screenshot=await capture('therum-ambient');report.ambient.push(ambient);
+  report.final = await page.evaluate(() => {
+    const f=window.__FRONTIER_ENEMIES__,w=f.world;w.setBattle(null);
+    const result={assetErrors:[...w.assetErrors],storageKeys:Object.keys(localStorage),
+      remainingEnemyBattleCrops:[...w.spriteCache.keys()].filter(key=>key.startsWith('frontier-enemies:')&&!key.includes(':ambient:'))};
+    w.dispose();return result;
+  });
+  assert.deepEqual(report.final.assetErrors, []);assert.deepEqual(report.final.storageKeys, []);
+  assert.deepEqual(report.final.remainingEnemyBattleCrops, []);assert.deepEqual(report.errors, []);assert.deepEqual(report.failedRequests, []);
+  for(const [path,expected]of Object.entries(sourceHashes))assert.equal(hash(await readFile(new URL(path,root))),expected,path);
+  report.passed=true;
+} catch(error) {
+  report.failure=error.stack||String(error);if(page)await capture('failure').catch(()=>{});process.exitCode=1;console.error(error);
+} finally {
+  await browser?.close();await writeFile(new URL('docs/qa/frontier-enemies-browser.json',root),JSON.stringify(report,null,2)+'\n');
+  console.log(JSON.stringify({passed:report.passed,bodies:report.observations.length,ambient:report.ambient.length,captures:report.captures.length}));
+}

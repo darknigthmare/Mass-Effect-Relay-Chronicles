@@ -1,0 +1,238 @@
+{
+  "passed": false,
+  "at": "2026-11-09T05:34:38.042Z",
+  "phase": "final-development-after-level-freeze",
+  "mode": "Two explicit native save fixtures from newGame/state callbacks, loaded through public save-import input. Eight real keyboard-E POI conversations; no encounters replayed. QA setPosition only stages contact/camera; walking routes are separate level QA.",
+  "fixtures": [
+    {
+      "zone": "normandy",
+      "path": "docs/qa/frontier-characters-fixture-normandy.json",
+      "sha256": "40298c9cb659c59972a33c0a28862a4e44e74844b304db642b7601279344837f",
+      "nativeDecodePassed": true,
+      "description": "newGame before first deployment; Jenkins present"
+    },
+    {
+      "zone": "noveria",
+      "path": "docs/qa/frontier-characters-fixture-noveria.json",
+      "sha256": "adcd48b15f98a8d01ef4aaec66a4b8995af12589975d5f7856f5c9be7e02580c",
+      "nativeDecodePassed": true,
+      "description": "Native callback fixture after Eden/Council, Jenkins permanently lost; Noveria visit recorded"
+    }
+  ],
+  "sourceHashes": {
+    "src/frontier-characters.js": "20b858785f29b8ac9f53cac53cba7c46acb13eb9fd243cba4d968bf3d802cd12",
+    "src/story.js": "fda2d3fad7f237e960688a358a5d0bf310bb89608e16079e6c9969b4900bf1a3",
+    "src/story-data.js": "3d26ada60706394ace4f81b4407c41a180026370342cc9d4fa1846fedf46c3f0",
+    "src/world.js": "de2f00930be0a679d9ea5506f046e51ee85ea5ca8e32ad187acd410864540e3e",
+    "src/world-data.js": "7f8d9a4fe61f175f6a8b076a6dac3e7215bb59addf848ce73aa7c279c0269485",
+    "src/main.js": "41819db013a5bb59c5b2a4b691462c81a074f7b79618a0c5b0d0ae2c69ce9ea5",
+    "src/frontier-ui.js": "fe17b8e83d7e6d5b17c9e4326c828a5c6e7f2ebfb1cec4ccb57874c530454b4a",
+    "src/frontier-ui.css": "c2f8eb3d84f73a7ad8c9d749d44ba2bdfaa87f6cfae356d9bcaa0afbc7969bc9",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/frontier-scene.js": "45a393b8cdd881654da63cf9785ab6fe1829648068e717ed0c2cc01ef1eb93eb",
+    "public/assets/frontier-npcs.json": "4b4037bc3a7c29a6f3bab6fd3b92f8b952077f5b93715cb9ec61e9c58b93780d",
+    "public/assets/frontier-npcs.png": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc",
+    "vite.config.js": "53bd43d7182432c800cb6862d14e3cbdf5755de491f5fe2a3a376d95196cd717"
+  },
+  "conversations": [
+    {
+      "id": "adams",
+      "zone": "normandy",
+      "topics": [
+        "engineering",
+        "stealth"
+      ],
+      "approach": {
+        "x": -3.4,
+        "z": -8.9
+      },
+      "actorId": "npc:adams",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "adams",
+      "materialAlphaTest": 0.2,
+      "nearby": "normandy:talk-adams",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "pressly",
+      "zone": "normandy",
+      "topics": [
+        "navigation",
+        "cooperation"
+      ],
+      "approach": {
+        "x": -1.8,
+        "z": -11
+      },
+      "actorId": "npc:pressly",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "pressly",
+      "materialAlphaTest": 0.2,
+      "nearby": "normandy:talk-pressly",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "requisitions-officer",
+      "zone": "normandy",
+      "topics": [
+        "equipment",
+        "compatibility"
+      ],
+      "approach": {
+        "x": 3.8,
+        "z": 2.8
+      },
+      "actorId": "npc:requisitions-officer",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "requisitions-officer",
+      "materialAlphaTest": 0.2,
+      "nearby": "normandy:talk-requisitions-officer",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "jenkins",
+      "zone": "normandy",
+      "topics": [
+        "deployment",
+        "eden-prime"
+      ],
+      "approach": {
+        "x": 3.6,
+        "z": 14
+      },
+      "actorId": "jenkins",
+      "bodySource": "http://127.0.0.1:4173/assets/crew-atlas.png",
+      "materialAlphaTest": 0.2,
+      "nearby": "normandy:talk-jenkins",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "parasini",
+      "zone": "noveria",
+      "topics": [
+        "reception",
+        "companies"
+      ],
+      "approach": {
+        "x": -10.6,
+        "z": 62
+      },
+      "actorId": "npc:parasini",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "parasini",
+      "materialAlphaTest": 0.2,
+      "nearby": "noveria:talk-parasini",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "anoleis",
+      "zone": "noveria",
+      "topics": [
+        "administration",
+        "access"
+      ],
+      "approach": {
+        "x": 11.6,
+        "z": 59
+      },
+      "actorId": "npc:anoleis",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "anoleis",
+      "materialAlphaTest": 0.2,
+      "nearby": "noveria:talk-anoleis",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "lorik",
+      "zone": "noveria",
+      "topics": [
+        "synthetic-insights",
+        "port"
+      ],
+      "approach": {
+        "x": -8.6,
+        "z": 51
+      },
+      "actorId": "npc:lorik",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "lorik",
+      "materialAlphaTest": 0.2,
+      "nearby": "noveria:talk-lorik",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    },
+    {
+      "id": "lilihierax",
+      "zone": "noveria",
+      "topics": [
+        "garage",
+        "weather"
+      ],
+      "approach": {
+        "x": -33.6,
+        "z": 32
+      },
+      "actorId": "npc:lilihierax",
+      "bodySource": "http://127.0.0.1:4173/assets/frontier-npcs.png",
+      "frame": "lilihierax",
+      "materialAlphaTest": 0.2,
+      "nearby": "noveria:talk-lilihierax",
+      "keyboardE": true,
+      "saveRoundtrip": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/qa/frontier-characters-final-adams.png",
+      "sha256": "37f2c5de66741dc802ed7251ad7949e96ea9aa99c9c2956914fca732ef00dfb0",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-pressly.png",
+      "sha256": "e121d5bf2e1f149d89d03db455daf5ef7aff07e2b058cae4f4c3886d533bb542",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-requisitions-officer.png",
+      "sha256": "ae6ed7591bc5e5b12276ea9ab8ec3ba50b2fcccfbd67eb00b96a5a45a4eb69d0",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-jenkins.png",
+      "sha256": "61e2aed7b2a49273cceaca85a647621193b4564003f67f0fbfc89de87cd47b9c",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-parasini.png",
+      "sha256": "1d61771ec6c2d3e41e9c455a4f02c953b2cc683b9c35b7442036dc2c49bcadb2",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-anoleis.png",
+      "sha256": "901d9fc376294614a96a5b05c1495a950ccc18d097cc95593755516738ef1e5e",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-lorik.png",
+      "sha256": "88e36bb02e51e63a86b07ebdf3fbda39aff2c1717286a857668e5d304d72ced7",
+      "actuallyOpened": false
+    },
+    {
+      "path": "docs/qa/frontier-characters-final-lilihierax.png",
+      "sha256": "70838c90d919e2e4d1f150f5ddab769d99eb204d821e945f615ae70329127c15",
+      "actuallyOpened": false
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "stage": "complete",
+  "changedSourcesDuringRun": [
+    "src/world.js"
+  ]
+}

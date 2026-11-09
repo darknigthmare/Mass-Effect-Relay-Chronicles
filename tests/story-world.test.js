@@ -35,9 +35,9 @@ test('conversation points do not change the 63 authored mission and service rout
   assert.deepEqual(world.getConversationPOIs(), []);
   assert.equal(world.getInteractivePOIs().length, 7);
   world.setStoryContext({ recruited: ['kaidan', 'jenkins'], lost: [], completed: [], flags: {}, visitedZones: ['normandy'] });
-  assert.deepEqual(conversationIds(world), ['joker', 'chakwas', 'nihlus', 'kaidan']);
+  assert.deepEqual(conversationIds(world), ['joker', 'chakwas', 'nihlus', 'kaidan', 'adams', 'pressly', 'requisitions-officer', 'jenkins']);
   assert.equal(world.getPOIs().length, 7);
-  assert.equal(world.getInteractivePOIs().length, 11);
+  assert.equal(world.getInteractivePOIs().length, 15);
   assert.ok(world.getConversationPOIs().every(poi => poi.id === `normandy:talk-${poi.conversationId}`));
 });
 
@@ -93,7 +93,7 @@ test('context updates remove dead actors and pending interactions without rebuil
   assert.ok(!world.storyContext.recruited.includes('unrelated'), 'The renderer keeps a snapshot, not mutable state arrays');
 });
 
-test('all nine conversations are reachable around actual Normandy geometry and dispatch interaction callbacks', () => {
+test('all thirteen available conversations are reachable around actual Normandy geometry and dispatch interaction callbacks', () => {
   const world = makeWorld({ recruited: companions, lost: [], completed: [], flags: {}, visitedZones: [] });
   world._texturedMaterial = color => world._material(color);
   world._sign = () => {};
@@ -101,7 +101,7 @@ test('all nine conversations are reachable around actual Normandy geometry and d
   world.setParty(['shepard', 'kaidan', 'wrex']);
   const received = [];
   world.onInteract = poi => received.push(poi);
-  assert.equal(world.getConversationPOIs().length, 9);
+  assert.equal(world.getConversationPOIs().length, 13);
   for (const poi of world.getConversationPOIs()) {
     world.setPosition(WORLD_ZONES.normandy.spawn);
     assert.equal(world._walkable(poi.x, poi.z), true, `${poi.id}: interaction is outside scenery`);

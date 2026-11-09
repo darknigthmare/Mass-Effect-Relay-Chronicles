@@ -1,20 +1,20 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-10-26** · Version 0.3.0
+Mise à jour : **2026-11-09** · Version 0.3.0
 
 Ce catalogue contient **1 382 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
-- [Générateur du classeur et de cette page](../scripts/build-workbook.mjs).
-- [Aperçu du tableau de bord](workbook-previews/customization-arsenal-sync-Dashboard.png) · [Vérification des formules](workbook-previews/customization-arsenal-sync-verification.json) · [Contrôle du fichier exporté](qa/customization-arsenal-sync-workbook-report.json).
+- [Générateur initial](../scripts/build-workbook.mjs) ; Frontier utilise une [mise à jour ciblée](../scripts/frontier-update-workbook.mjs) pour préserver les fiches et formats existants.
+- [Revue actuelle des 43 panneaux ciblés](qa/frontier-workbook-visual-report.json) · [Preuves de livraison](qa/frontier-report.json). Les aperçus et rapports des lots précédents restent historiques.
 
 ## État réel
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 1 038 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 338 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 1 001 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 375 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
 | Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
@@ -36,33 +36,35 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | --- | --- | --- |
 | Exploration | 9 zones jouables condensées : Normandy, Eden Prime, Citadelle, Thérum, Feros, Noveria, Virmire, Ilos et Citadelle assiégée | 8 destinations distinctes ; la Citadelle revient sous deux états. Les 100 sous-zones et 91 liaisons du catalogue restent un plan à produire. |
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
-| Dossier Shepard | Apparence masculine/féminine, trois origines et trois profils psychologiques, conservés après reprise et import | Portraits et sprites liés à l’apparence ; marche féminine et quatre poses de combat. Réactions narratives complètes aux antécédents, créateur facial et costumes définitifs restent à produire. |
+| Dossier Shepard | Deux apparences, trois origines, trois profils psychologiques et atelier avec préréglages de visage, couleurs et équipement sauvegardés | Portrait de conception et cosmétiques partagés avec les sprites ; morphing facial 3D, réactions narratives complètes et costumes exacts restent à produire. |
 | Combat | 21 rencontres de campagne et 4 rencontres annexes possibles, commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
 | Codex | 16 entrées à découverte progressive avec recherche | Les entrées dépendant de Liara, Féros, Virmire et Ilos sont conditionnées aux événements connus. Ne représente pas le codex complet de Mass Effect. |
-| Boss | Images de Saren, Bénézia, Thorien et Saren final | Quatre poses de prototype. Mise en scène, variantes et animations complètes à produire. |
-| PNJ | Anderson, Joker, Chakwas, Udina et Kirrahe placés ; Nihlus présent au Normandy avant Eden Prime ; Emily intervient dans son opération | Les nouveaux contacts utilisent des marqueurs et dialogues, sans sprites de terrain dédiés. L’image de Joker est debout ; sa pose assise reste à produire. Les positions appartiennent aux décors condensés de l’adaptation. |
-| Conversations | Neuf interlocuteurs, dix-huit sujets conditionnels au Normandy, avec conseil à Garrus mémorisé | Textes français réécrits, sans doublage. Les dialogues complets, les animations et leur conformité mot à mot restent à produire ou à vérifier. |
+| Boss | Saren, Bénézia, Thorien et Saren final : quatre familles de quatre poses fixes | Seize dessins de prototype ; phases, mise en scène originale, directions et cycles complets restent à produire. |
+| PNJ | PNJ historiques conservés ; Adams, Pressly, officier des réquisitions et Jenkins au Normandy ; Parasini, Anoleis, Lorik Qui’in et Lilihierax à Novéria | Sept nouveaux corps fixes et corps de Jenkins réutilisé ; Joker assis au poste. Présence conditionnée à ME1 et aux événements. Quêtes et dialogues complets restent à réaliser. |
+| Conversations | Dix-sept interlocuteurs et trente-quatre sujets : treize au Normandy, quatre à Novéria | Textes français réécrits, sans doublage. Jenkins avant Eden Prime ; Novéria après la Citadelle. Dialogues complets et conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | 14 quêtes annexes : trois historiques et 11 opérations ajoutées à la Citadelle et Féros, avec 43 nouvelles étapes | Trois assignations historiques et onze opérations supplémentaires. Quatre scans de veilleurs, dialogues réécrits, cartes condensées, quatre combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire. Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
 | Équipement | 52 articles jouables : 20 armes, 16 armures, 12 modules et 4 outils, achat/vente, comparaison et neuf emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Formations explicites, restrictions de morphologie, poids, niveau et bio/tech. Modules restitués au retrait de leur pièce. Prix, points et ports fixes adaptés ; l’arme et la tenue dessinées ne changent pas. Voir [complément et sources](research/loadout-extension-sources.md). |
-| Chroniques | 28 œuvres, 48 segments documentés, 25 essais tactiques, 42 personnages sélectionnables et 100 équipements | Sessions et sauvegardes séparées de ME1 ; vingt-cinq essais et seize lectures courtes. Huit armes supplémentaires dont des charges interruptibles, quinze armures et un module ultraléger bornés à leur contexte ; paramètres ATB explicitement adaptés. Vingt-quatre nouvelles illustrations fixes couvrent personnages, PNJ, ennemis et boss, costumes, armes, schémas de modules, véhicules et vaisseaux. Modèles, animations, rangs, phases de boss, pilotage et campagnes complètes restent à produire ; aucune fidélité 1:1 intégrale certifiée. Voir [périmètre et utilisation](CHRONICLES.md). |
+| Chroniques | 28 œuvres, 48 segments documentés, 25 essais tactiques, 42 personnages sélectionnables et 107 équipements (79 armes, 25 armures, trois modules) | Sessions et sauvegardes séparées de ME1 ; essais, lectures et préparations limités à leur contexte. Statistiques ATB adaptées ; acquisitions, modèles, phases et campagnes complètes restent à produire. Voir [périmètre et utilisation](CHRONICLES.md). |
 | Pouvoirs des Chroniques | 61 fiches reliées à 30 actions, dont 22 nouvelles ; 15 préparations de classe ou de compétences | Arbres et acquisition complets non simulés ; statistiques ATB de base conservées. Les familles canon et chargeur ME3 sont limitées aux fusils d’assaut conventionnels à clips ; les matériaux ultralégers demandent une mitraillette ME3 compatible. |
 | Lectures documentaires | 16 parcours et 52 pages sourcées | Paraphrases factuelles avec navigation et découvertes persistantes. Aucun personnage de livre rendu jouable, niveau créé, dialogue intégral ou choix canonique inventé. |
-| Véhicules | Mako et Sovereign placés comme décor ; illustrations de Normandy SR-1 et d’une armature geth | Aucune conduite, aucun tir depuis un véhicule, aucun pilotage spatial. L’armature illustrée n’est pas un ennemi spécifique jouable à ce stade. |
-| Animation | 32 images de marche pour les deux apparences de Shepard et 4 poses clés de combat féminines, au stade Prototype | 32 frames de marche pour les deux apparences de Shepard, quatre directions chacune ; quatre poses de combat féminines. Raccords, huit directions, variantes par arme et mouvements des compagnons restent à produire. Les contacts féminins 0 et 2 restent proches dans certaines orientations. |
+| Véhicules | Mako pilotable à Thérum ; Mako décoratif à Ilos, Sovereign distant et illustrations de flotte | Prototype de conduite, accélération, collisions et débarquement. Reprise à pied ; canon, mitrailleuse, physique originale, autres mondes et pilotage spatial restent à réaliser. |
+| Animation | 32 images de marche des deux apparences de Shepard et 84 poses clés de combat ; quatre directions Mako et deux dessins assis Joker comptés séparément | Poses fixes Prototype : huit Shepard, vingt-huit compagnons, trente-deux ennemis et seize boss. Sept nouveaux corps PNJ et huit corps ennemis sans nouveau cycle dessiné. Transitions, huit directions et variantes exactes restent à produire. |
 
-### Images existantes
+### Atlas repères (sélection)
 
 | Fichier | Contenu observable ou rôle de prototype | Statut |
 | --- | --- | --- |
 | [crew-atlas.png](../public/assets/crew-atlas.png) | 8 poses alliées ; portraits, combat et repli statique du terrain | Prototype |
 | [enemy-atlas.png](../public/assets/enemy-atlas.png) | 8 silhouettes ennemies de prototype | Prototype |
-| [boss-atlas.png](../public/assets/boss-atlas.png) | 4 poses de boss ; aucune planche animée complète | Prototype |
+| [boss-atlas.png](../public/assets/boss-atlas.png) | Quatre corps historiques de repli ; quatre familles dédiées fournissent désormais seize poses fixes | Prototype |
 | [npc-atlas.png](../public/assets/npc-atlas.png) | 8 poses dont Shepard féminin et 7 PNJ ; 6 PNJ placés, Nihlus seulement avant Eden Prime | Prototype |
 | [vehicle-atlas.png](../public/assets/vehicle-atlas.png) | 4 silhouettes de véhicules ou grande machine ; 2 placements décoratifs | Prototype |
 | [props-atlas.png](../public/assets/props-atlas.png) | Objets illustrés de décor | Prototype |
 | [shepard-walk-atlas.png](../public/assets/shepard-walk-atlas.png) | Shepard : 16 images / 4 directions ; cycle de marche à nettoyer, huit directions non validées | Prototype |
 | [shepard-female-walk-atlas.png](../public/assets/shepard-female-walk-atlas.png) | Shepard femme : 16 frames de marche / quatre directions ; cycle à nettoyer | Prototype |
 | [shepard-female-combat-atlas.png](../public/assets/shepard-female-combat-atlas.png) | Shepard femme : quatre poses clés aim, power, hit et down ; aucune transition dessinée | Prototype |
+
+Le registre actuel contient **41 PNG**. Les sept nouveaux atlas Frontier fournissent sept corps PNJ, huit corps ennemis, seize poses de boss et quatre directions du Mako. La [liste complète des images et usages](ASSETS.md) distingue les 84 poses de combat des autres dessins et textures. La sélection ci-dessus présente les atlas historiques ; les familles dédiées actuelles sont détaillées dans cette liste.
 
 Les images générées sont des propositions graphiques. Leur présence sur disque ne prouve ni l’exactitude du costume, ni une animation complète, ni un dialogue achevé. Les fiches de sprites renvoient au même atlas lorsqu’une seule pose sert à plusieurs usages.
 
@@ -73,14 +75,14 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Catégorie | Total | Défini | Prototype | Intégré | Validé | Périmètre |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | Personnages | 8 | 0 | 8 | 0 | 0 | Shepard, équipiers et identités jouables |
-| PNJ | 66 | 56 | 10 | 0 | 0 | Personnages de rencontre et services |
+| PNJ | 66 | 48 | 18 | 0 | 0 | Personnages de rencontre et services |
 | Espèces et factions | 36 | 29 | 7 | 0 | 0 | Espèces, organisations et règles culturelles |
 | Mondes | 32 | 24 | 8 | 0 | 0 | Destinations et identité environnementale |
 | Zones | 100 | 100 | 0 | 0 | 0 | Pièces, espaces extérieurs et points de passage |
 | Liaisons | 91 | 91 | 0 | 0 | 0 | Continuité spatiale et conditions de passage |
-| Décors | 35 | 34 | 1 | 0 | 0 | Architecture, matières et cadrages |
+| Décors | 35 | 31 | 4 | 0 | 0 | Architecture, matières et cadrages |
 | Props | 54 | 52 | 2 | 0 | 0 | Objets de décor et interactions |
-| Ennemis et boss | 39 | 31 | 8 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
+| Ennemis et boss | 39 | 23 | 16 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
 | Missions | 63 | 42 | 21 | 0 | 0 | Étapes de l’intrigue principale |
 | Secondaires et DLC | 108 | 51 | 57 | 0 | 0 | Missions annexes et extensions de ME1 |
 | Choix et relations | 34 | 31 | 0 | 3 | 0 | Conséquences persistantes et relations |
@@ -92,13 +94,13 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Movesets alliés | 50 | 50 | 0 | 0 | 0 | Actions et contraintes par équipier |
 | Movesets ennemis | 75 | 75 | 0 | 0 | 0 | Télégraphes, actions et réponses tactiques |
 | Animations | 63 | 40 | 23 | 0 | 0 | Bibliothèque d’animation pour sprites |
-| Sprites | 82 | 43 | 39 | 0 | 0 | Livrables 2D, portraits et variantes |
+| Sprites | 82 | 26 | 56 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 65 | 8 | 54 | 0 | 3 | Interface et règles de jeu |
+| Systèmes et UI | 65 | 7 | 55 | 0 | 3 | Interface et règles de jeu |
 | QA | 64 | 53 | 11 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 382** | **1 038** | **338** | **3** | **3** | |
+| **Total** | **1 382** | **1 001** | **375** | **3** | **3** | |
 
 ## Lire une fiche
 
