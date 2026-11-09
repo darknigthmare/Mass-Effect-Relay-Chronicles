@@ -1,0 +1,929 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "at": "2026-11-09T04:39:26.516Z",
+  "baselineCommit": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+  "sourceHead": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+  "buildKind": "vite-development-public-controls",
+  "url": "http://127.0.0.1:4243/",
+  "case": "development",
+  "command": {
+    "script": "node scripts/me1-prologue-enemies-public.mjs",
+    "environment": {
+      "ME1_BASE_MAIN": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+      "GAME_URL": "http://127.0.0.1:4243/",
+      "ME1_BUILD_KIND": "development",
+      "ME1_PUBLIC_PREFIX": "me1-prologue-enemies-public-development-final",
+      "PLAYWRIGHT_EXECUTABLE_PATH": "/usr/bin/chromium"
+    }
+  },
+  "scope": "Actual public controls, no QA harness or private state access. Node-prepared valid early-Eden and Feros encounter2 saves declare their origin. Development gates abbreviated native commands; production additionally plays the first Eden victory, claims its narrative consequence and checks save/reload. A separate unchanged historical save inspects the Noveria pillar correction. Prior prepared progression is never claimed as played.",
+  "fixtures": [
+    {
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-eden-fixture.json",
+      "bytes": 2504,
+      "sha256": "f34a609896ee9b3b97b84065ed60a4755ceb8e68c1e6b05d5393ecc0e199e8bc",
+      "origin": "Node-native newGame, explicit briefed flag/first-encounter position. No preceding encounter is won and Jenkins remains a legal initial party member.",
+      "zone": "eden-prime",
+      "party": [
+        "shepard",
+        "kaidan",
+        "jenkins"
+      ],
+      "position": {
+        "x": -14,
+        "z": 12
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-feros-fixture.json",
+      "bytes": 3262,
+      "sha256": "398ad43706965328deb09c2c12640989244ecd2463ea9ab6f61a61ea7c57f396",
+      "origin": "Node-native earlier Eden/Citadel completion, recruitment and Feros encounter1 prepare this encounter. Those previous victories are not played here.",
+      "zone": "feros",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "position": {
+        "x": -7,
+        "z": -5
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/eden-immersion-production-rachni-precombat-save.json",
+      "bytes": 3288,
+      "sha256": "dc988313162656f3c336d689725144ab2ac99ce99a71675e797f4ddd98c5eabe",
+      "origin": "Unchanged actual public export from the earlier explicitly prepared campaign fixture; this run compares the same native arena, without playing its prior story.",
+      "zone": "noveria",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "position": {
+        "x": -7,
+        "z": -5
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "sources": {
+    "src/world.js": "9a22fbcfc857c20ff41ff97efec6f06789919bf8bb673bd79e20c2acf8cd643d",
+    "src/world-data.js": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf",
+    "src/main.js": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6",
+    "src/companion-animation-data.js": "8e459efefc9d3a045457bb46ff9914ed95d77c440352d548b521625fa044cda0",
+    "src/enemy-animation-data.js": "7fe66817eb146f4c34893a76c16932378d00bdc2039ed8f997cbbe452c9110da",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/story.js": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+    "vite.config.js": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+    "scripts/me1-prologue-enemies-public.mjs": "d6ef8c068871e01c0b18b7583fde3a13ef62464674f5d745713da19d0a89db8d",
+    "public/assets/companion-jenkins-combat.png": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+    "public/assets/companion-jenkins-animation.json": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359",
+    "public/assets/enemy-creeper-combat.png": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+    "public/assets/enemy-creeper-animation.json": "4d0c9b23b7f36f546fa479fe10317df51e068779abb1ac1f675bdad40ddc9132",
+    "public/assets/enemy-asari-combat.png": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+    "public/assets/enemy-asari-animation.json": "4b299f599418299c62d230ebf682ad0e82175e056f638b7425b255ef2f6ee902"
+  },
+  "buildFiles": {},
+  "servedFiles": [
+    {
+      "path": "assets/companion-jenkins-combat.png",
+      "status": 200,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+      "matchesNativeSource": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/companion-jenkins-animation.json",
+      "status": 200,
+      "sha256": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359",
+      "matchesNativeSource": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/enemy-creeper-combat.png",
+      "status": 200,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+      "matchesNativeSource": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/enemy-creeper-animation.json",
+      "status": 200,
+      "sha256": "4d0c9b23b7f36f546fa479fe10317df51e068779abb1ac1f675bdad40ddc9132",
+      "matchesNativeSource": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/enemy-asari-combat.png",
+      "status": 200,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+      "matchesNativeSource": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/enemy-asari-animation.json",
+      "status": 200,
+      "sha256": "4b299f599418299c62d230ebf682ad0e82175e056f638b7425b255ef2f6ee902",
+      "matchesNativeSource": true,
+      "matchesDist": false
+    }
+  ],
+  "browserResponses": [
+    {
+      "path": "assets/companion-jenkins-combat.png",
+      "status": 200,
+      "bytes": 1634485,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+      "matchesDist": false,
+      "matchesNativeSource": true
+    },
+    {
+      "path": "assets/enemy-creeper-combat.png",
+      "status": 200,
+      "bytes": 1903380,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+      "matchesDist": false,
+      "matchesNativeSource": true
+    },
+    {
+      "path": "assets/enemy-asari-combat.png",
+      "status": 200,
+      "bytes": 1606367,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+      "matchesDist": false,
+      "matchesNativeSource": true
+    },
+    {
+      "path": "assets/companion-jenkins-combat.png",
+      "status": 304,
+      "bodyNotRead": true,
+      "qualification": "Cache revalidation; HTTP200 bodies are hashed separately"
+    },
+    {
+      "path": "assets/enemy-creeper-combat.png",
+      "status": 304,
+      "bodyNotRead": true,
+      "qualification": "Cache revalidation; HTTP200 bodies are hashed separately"
+    },
+    {
+      "path": "assets/enemy-asari-combat.png",
+      "status": 304,
+      "bodyNotRead": true,
+      "qualification": "Cache revalidation; HTTP200 bodies are hashed separately"
+    },
+    {
+      "path": "assets/companion-jenkins-combat.png",
+      "status": 304,
+      "bodyNotRead": true,
+      "qualification": "Cache revalidation; HTTP200 bodies are hashed separately"
+    },
+    {
+      "path": "assets/enemy-creeper-combat.png",
+      "status": 304,
+      "bodyNotRead": true,
+      "qualification": "Cache revalidation; HTTP200 bodies are hashed separately"
+    },
+    {
+      "path": "assets/enemy-asari-combat.png",
+      "status": 304,
+      "bodyNotRead": true,
+      "qualification": "Cache revalidation; HTTP200 bodies are hashed separately"
+    }
+  ],
+  "exports": [
+    {
+      "label": "eden-precombat",
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-eden-precombat-save.json",
+      "bytes": 2522,
+      "sha256": "86755d85397147bd396df4af2cdbcc10d99a0fa6c8422898c6e0dcbdafd41bc0",
+      "stableStateSHA256": "eea5dd45dd9373b787c91350e03c862892c348ee070d1b744152307b10cafd1e",
+      "source": "Actual public Sauvegarder/Exporter and Chromium download"
+    },
+    {
+      "label": "eden-precombat-restored",
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-eden-precombat-restored-save.json",
+      "bytes": 2521,
+      "sha256": "77ca067c9d363eec820632f272af774c7c45fc5d60f92d840ad1b9d76a7c5bed",
+      "stableStateSHA256": "eea5dd45dd9373b787c91350e03c862892c348ee070d1b744152307b10cafd1e",
+      "source": "Actual public Sauvegarder/Exporter and Chromium download"
+    },
+    {
+      "label": "feros-precombat",
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-feros-precombat-save.json",
+      "bytes": 3280,
+      "sha256": "ec3263c0cecaa8ea5c8a0746bca8f44a3340b9755bb016d0f55af5d50ef6cb0a",
+      "stableStateSHA256": "44442422d3e898fe9c0f0ab5b8fe702486d9d60bd027099a528ed1a103ab5dff",
+      "source": "Actual public Sauvegarder/Exporter and Chromium download"
+    },
+    {
+      "label": "feros-precombat-restored",
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-feros-precombat-restored-save.json",
+      "bytes": 3280,
+      "sha256": "8f77cf315a9fc52d83e1296e0f1d9c4300d923f10e36dc6ffc915414ba9d7824",
+      "stableStateSHA256": "44442422d3e898fe9c0f0ab5b8fe702486d9d60bd027099a528ed1a103ab5dff",
+      "source": "Actual public Sauvegarder/Exporter and Chromium download"
+    }
+  ],
+  "screenshots": [
+    {
+      "label": "eden-first-battle",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-eden-first-battle.png",
+      "bytes": 1214390,
+      "sha256": "1b2f55ca6d46436b864bb7b1b881f518b33ccea533ac124e98b720ac6c0c6b79",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "jenkins-native-cover",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-jenkins-native-cover.png",
+      "bytes": 1223141,
+      "sha256": "e1b00c606192f5c6ff068fe8318dfae7e7b5050193d9896247868d76c7253e19",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "feros-generic-enemies",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-feros-generic-enemies.png",
+      "bytes": 707943,
+      "sha256": "c8ff47105f6d626e2085ae68e0f399eeed3eeeddba3c828ce38e859cc9debc8c",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "feros-native-shot",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-feros-native-shot.png",
+      "bytes": 667812,
+      "sha256": "f181b5df64e3360b77e8b504503546f4f664e5b9d36a77f56b56942160b2faa2",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "noveria-field",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-field.png",
+      "bytes": 715671,
+      "sha256": "6d0d0b186f5ea104963b461772a379d08d0db3c8ad7ae52bd0d24b813ce99e9a",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "noveria-battle",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-battle.png",
+      "bytes": 599705,
+      "sha256": "273572b1cb9b62f47703ffe08faf54e037f65dec610113d00ef84a218abc40f3",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "noveria-mobile-battle",
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-mobile-battle.png",
+      "bytes": 255264,
+      "sha256": "ba31353eaeda1ada1517bf9db2a2b275eebae16cc47040db3e5184d1ba3385f4",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public Vite-development viewport, no CSS/scene/pose injection"
+    }
+  ],
+  "activations": [
+    {
+      "action": "import",
+      "focused": true,
+      "rect": {
+        "x": 102.390625,
+        "y": 545.578125,
+        "width": 265,
+        "height": 44
+      },
+      "visible": true
+    },
+    {
+      "action": "pause",
+      "focused": true,
+      "rect": {
+        "x": 1158.859375,
+        "y": 30,
+        "width": 83.140625,
+        "height": 34
+      },
+      "visible": true
+    },
+    {
+      "action": "save",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 224,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "export",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 328,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "close",
+      "focused": true,
+      "rect": {
+        "x": 808,
+        "y": 69,
+        "width": 34,
+        "height": 34
+      },
+      "visible": true
+    },
+    {
+      "action": "interact",
+      "focused": true,
+      "rect": {
+        "x": 562.1328125,
+        "y": 716,
+        "width": 155.734375,
+        "height": 50
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "rect": {
+        "x": 28,
+        "y": 585,
+        "width": 363.625,
+        "height": 56
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-action",
+      "id": "cover",
+      "focused": true,
+      "rect": {
+        "x": 716.4375,
+        "y": 572,
+        "width": 142.90625,
+        "height": 35
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-actor",
+      "id": "jenkins",
+      "focused": true,
+      "rect": {
+        "x": 28,
+        "y": 721,
+        "width": 363.625,
+        "height": 56
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-action",
+      "id": "cover",
+      "focused": true,
+      "rect": {
+        "x": 716.4375,
+        "y": 646,
+        "width": 142.90625,
+        "height": 35
+      },
+      "visible": true
+    },
+    {
+      "action": "continue",
+      "focused": true,
+      "rect": {
+        "x": 102.390625,
+        "y": 362.171875,
+        "width": 265,
+        "height": 44
+      },
+      "visible": true
+    },
+    {
+      "action": "pause",
+      "focused": true,
+      "rect": {
+        "x": 1158.859375,
+        "y": 30,
+        "width": 83.140625,
+        "height": 34
+      },
+      "visible": true
+    },
+    {
+      "action": "save",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 224,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "export",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 328,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "quit",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 640,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "import",
+      "focused": true,
+      "rect": {
+        "x": 102.390625,
+        "y": 574.171875,
+        "width": 265,
+        "height": 44
+      },
+      "visible": true
+    },
+    {
+      "action": "pause",
+      "focused": true,
+      "rect": {
+        "x": 1158.859375,
+        "y": 30,
+        "width": 83.140625,
+        "height": 34
+      },
+      "visible": true
+    },
+    {
+      "action": "save",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 224,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "export",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 328,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "close",
+      "focused": true,
+      "rect": {
+        "x": 808,
+        "y": 69,
+        "width": 34,
+        "height": 34
+      },
+      "visible": true
+    },
+    {
+      "action": "interact",
+      "focused": true,
+      "rect": {
+        "x": 557.125,
+        "y": 716,
+        "width": 165.75,
+        "height": 50
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-actor",
+      "id": "kaidan",
+      "focused": true,
+      "rect": {
+        "x": 28,
+        "y": 585,
+        "width": 363.625,
+        "height": 56
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-action",
+      "id": "shoot",
+      "focused": true,
+      "rect": {
+        "x": 420.625,
+        "y": 572,
+        "width": 142.90625,
+        "height": 35
+      },
+      "visible": true
+    },
+    {
+      "action": "battle-target",
+      "id": "creeper-0",
+      "focused": true,
+      "rect": {
+        "x": 888.359375,
+        "y": 523,
+        "width": 363.640625,
+        "height": 48
+      },
+      "visible": true
+    },
+    {
+      "action": "continue",
+      "focused": true,
+      "rect": {
+        "x": 102.390625,
+        "y": 362.171875,
+        "width": 265,
+        "height": 44
+      },
+      "visible": true
+    },
+    {
+      "action": "pause",
+      "focused": true,
+      "rect": {
+        "x": 1158.859375,
+        "y": 30,
+        "width": 83.140625,
+        "height": 34
+      },
+      "visible": true
+    },
+    {
+      "action": "save",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 224,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "export",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 328,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "quit",
+      "focused": true,
+      "rect": {
+        "x": 438,
+        "y": 640,
+        "width": 404,
+        "height": 42
+      },
+      "visible": true
+    },
+    {
+      "action": "import",
+      "focused": true,
+      "rect": {
+        "x": 102.390625,
+        "y": 574.171875,
+        "width": 265,
+        "height": 44
+      },
+      "visible": true
+    },
+    {
+      "action": "interact",
+      "focused": true,
+      "rect": {
+        "x": 534.78125,
+        "y": 716,
+        "width": 210.4375,
+        "height": 50
+      },
+      "visible": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Legal prologue Jenkins appears and issues his existing cover order; saves remain native and coherent",
+      "passed": true
+    },
+    {
+      "name": "Both new generic enemy families appear in their native Feros encounter; separate Noveria views inspect the pillar fix",
+      "passed": true
+    }
+  ],
+  "nativeOrders": [
+    {
+      "actorId": "kaidan",
+      "actionId": "cover",
+      "targetId": "kaidan",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Couverture.",
+      "method": "Actual public enabled actor/action/target controls with naturally ready ATB. Ready CSS alone is not treated as action availability."
+    },
+    {
+      "actorId": "jenkins",
+      "actionId": "cover",
+      "targetId": "jenkins",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Couverture.\n\nRichard Jenkins : Couverture.",
+      "method": "Actual public enabled actor/action/target controls with naturally ready ATB. Ready CSS alone is not treated as action availability."
+    },
+    {
+      "actorId": "kaidan",
+      "actionId": "shoot",
+      "targetId": "creeper-0",
+      "atbBefore": 100,
+      "atbAfter": 0,
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nRampant du Thorien subit 20 dégâts.",
+      "method": "Actual public enabled actor/action/target controls with naturally ready ATB. Ready CSS alone is not treated as action availability."
+    }
+  ],
+  "reloads": [
+    {
+      "method": "Real page.reload followed by public Continuer",
+      "responseStatus": 200
+    },
+    {
+      "method": "Real page.reload followed by public Continuer",
+      "responseStatus": 200
+    }
+  ],
+  "mapViews": [],
+  "sourceRequests": [
+    "http://127.0.0.1:4243/@vite/client",
+    "http://127.0.0.1:4243/src/main.js",
+    "http://127.0.0.1:4243/src/combat-summons.js",
+    "http://127.0.0.1:4243/src/style.css",
+    "http://127.0.0.1:4243/src/loadout-ui.css",
+    "http://127.0.0.1:4243/src/customization-ui.css",
+    "http://127.0.0.1:4243/src/operations-ui.css",
+    "http://127.0.0.1:4243/src/local-map.css",
+    "http://127.0.0.1:4243/src/loadout-ui.js",
+    "http://127.0.0.1:4243/src/customization.js",
+    "http://127.0.0.1:4243/src/customization-ui.js",
+    "http://127.0.0.1:4243/src/loadout.js",
+    "http://127.0.0.1:4243/src/operations.js",
+    "http://127.0.0.1:4243/src/operations-ui.js",
+    "http://127.0.0.1:4243/src/local-map.js",
+    "http://127.0.0.1:4243/src/level-layout-data.js",
+    "http://127.0.0.1:4243/src/level-map-render.js",
+    "http://127.0.0.1:4243/src/world.js",
+    "http://127.0.0.1:4243/src/world-data.js",
+    "http://127.0.0.1:4243/src/audio.js",
+    "http://127.0.0.1:4243/src/commander.js",
+    "http://127.0.0.1:4243/src/story.js",
+    "http://127.0.0.1:4243/src/assignments.js",
+    "http://127.0.0.1:4243/src/save-slots.js",
+    "http://127.0.0.1:4243/src/combat.js",
+    "http://127.0.0.1:4243/src/game-data.js",
+    "http://127.0.0.1:4243/src/state.js",
+    "http://127.0.0.1:4243/src/character-data.js",
+    "http://127.0.0.1:4243/src/tool-data.js",
+    "http://127.0.0.1:4243/src/customization-render.js",
+    "http://127.0.0.1:4243/src/operation-data.js",
+    "http://127.0.0.1:4243/src/assignment-data.js",
+    "http://127.0.0.1:4243/src/story-data.js",
+    "http://127.0.0.1:4243/src/companion-animation-data.js",
+    "http://127.0.0.1:4243/src/enemy-animation-data.js",
+    "http://127.0.0.1:4243/src/joker-seated-data.js",
+    "http://127.0.0.1:4243/src/world-navigation.js",
+    "http://127.0.0.1:4243/src/eden-scene.js",
+    "http://127.0.0.1:4243/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4243/src/universe-ammo.js",
+    "http://127.0.0.1:4243/src/combat-medical.js",
+    "http://127.0.0.1:4243/@vite/client",
+    "http://127.0.0.1:4243/src/main.js",
+    "http://127.0.0.1:4243/src/combat-summons.js",
+    "http://127.0.0.1:4243/src/style.css",
+    "http://127.0.0.1:4243/src/loadout-ui.css",
+    "http://127.0.0.1:4243/src/customization-ui.css",
+    "http://127.0.0.1:4243/src/operations-ui.css",
+    "http://127.0.0.1:4243/src/local-map.css",
+    "http://127.0.0.1:4243/src/loadout-ui.js",
+    "http://127.0.0.1:4243/src/customization.js",
+    "http://127.0.0.1:4243/src/customization-ui.js",
+    "http://127.0.0.1:4243/src/loadout.js",
+    "http://127.0.0.1:4243/src/operations.js",
+    "http://127.0.0.1:4243/src/operations-ui.js",
+    "http://127.0.0.1:4243/src/local-map.js",
+    "http://127.0.0.1:4243/src/level-layout-data.js",
+    "http://127.0.0.1:4243/src/level-map-render.js",
+    "http://127.0.0.1:4243/src/world.js",
+    "http://127.0.0.1:4243/src/world-data.js",
+    "http://127.0.0.1:4243/src/audio.js",
+    "http://127.0.0.1:4243/src/commander.js",
+    "http://127.0.0.1:4243/src/story.js",
+    "http://127.0.0.1:4243/src/assignments.js",
+    "http://127.0.0.1:4243/src/save-slots.js",
+    "http://127.0.0.1:4243/src/combat.js",
+    "http://127.0.0.1:4243/src/game-data.js",
+    "http://127.0.0.1:4243/src/state.js",
+    "http://127.0.0.1:4243/src/character-data.js",
+    "http://127.0.0.1:4243/src/operation-data.js",
+    "http://127.0.0.1:4243/src/customization-render.js",
+    "http://127.0.0.1:4243/src/tool-data.js",
+    "http://127.0.0.1:4243/src/story-data.js",
+    "http://127.0.0.1:4243/src/assignment-data.js",
+    "http://127.0.0.1:4243/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4243/src/universe-ammo.js",
+    "http://127.0.0.1:4243/src/combat-medical.js",
+    "http://127.0.0.1:4243/src/companion-animation-data.js",
+    "http://127.0.0.1:4243/src/enemy-animation-data.js",
+    "http://127.0.0.1:4243/src/joker-seated-data.js",
+    "http://127.0.0.1:4243/src/world-navigation.js",
+    "http://127.0.0.1:4243/src/eden-scene.js",
+    "http://127.0.0.1:4243/@vite/client",
+    "http://127.0.0.1:4243/src/main.js",
+    "http://127.0.0.1:4243/src/combat-summons.js",
+    "http://127.0.0.1:4243/src/style.css",
+    "http://127.0.0.1:4243/src/loadout-ui.css",
+    "http://127.0.0.1:4243/src/customization-ui.css",
+    "http://127.0.0.1:4243/src/operations-ui.css",
+    "http://127.0.0.1:4243/src/local-map.css",
+    "http://127.0.0.1:4243/src/loadout-ui.js",
+    "http://127.0.0.1:4243/src/customization.js",
+    "http://127.0.0.1:4243/src/customization-ui.js",
+    "http://127.0.0.1:4243/src/loadout.js",
+    "http://127.0.0.1:4243/src/operations.js",
+    "http://127.0.0.1:4243/src/operations-ui.js",
+    "http://127.0.0.1:4243/src/local-map.js",
+    "http://127.0.0.1:4243/src/level-layout-data.js",
+    "http://127.0.0.1:4243/src/level-map-render.js",
+    "http://127.0.0.1:4243/src/world.js",
+    "http://127.0.0.1:4243/src/world-data.js",
+    "http://127.0.0.1:4243/src/audio.js",
+    "http://127.0.0.1:4243/src/commander.js",
+    "http://127.0.0.1:4243/src/story.js",
+    "http://127.0.0.1:4243/src/assignments.js",
+    "http://127.0.0.1:4243/src/save-slots.js",
+    "http://127.0.0.1:4243/src/combat.js",
+    "http://127.0.0.1:4243/src/game-data.js",
+    "http://127.0.0.1:4243/src/state.js",
+    "http://127.0.0.1:4243/src/character-data.js",
+    "http://127.0.0.1:4243/src/operation-data.js",
+    "http://127.0.0.1:4243/src/customization-render.js",
+    "http://127.0.0.1:4243/src/tool-data.js",
+    "http://127.0.0.1:4243/src/assignment-data.js",
+    "http://127.0.0.1:4243/src/story-data.js",
+    "http://127.0.0.1:4243/src/companion-animation-data.js",
+    "http://127.0.0.1:4243/src/enemy-animation-data.js",
+    "http://127.0.0.1:4243/src/joker-seated-data.js",
+    "http://127.0.0.1:4243/src/world-navigation.js",
+    "http://127.0.0.1:4243/src/eden-scene.js",
+    "http://127.0.0.1:4243/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4243/src/universe-ammo.js",
+    "http://127.0.0.1:4243/src/combat-medical.js"
+  ],
+  "evidenceErrors": [],
+  "errors": [],
+  "failedRequests": [],
+  "consoleObservations": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4243/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4243/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4243/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4243/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "resourceWarnings": [],
+  "profile": {
+    "fresh": true,
+    "path": "/workspace/Mass-Effect-Relay-Chronicles/test-results/me1-prologue-enemies-public-development-final-profile-s6sVTV",
+    "launches": 1,
+    "completeShutdowns": 1
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "chromium": "154.0.8037.57"
+  },
+  "limitations": [
+    "The Eden fixture sets the native newGame to its first encounter. The Normandy briefing, landing walk and arrival scene are not played here.",
+    "The Feros fixture uses native Node completion of Eden/Citadel and Feros encounter1, with declared recruitment. Those preceding victories are not played in Chromium.",
+    "The Noveria comparison imports the unchanged historical public precombat export; its earlier prepared story progression remains explicitly outside this run.",
+    "Jenkins has no biotic powers. His existing cover command may use the power-labelled tactical pose; a pose file does not grant a skill.",
+    "A generic asari commando is drawn. This does not certify the Thorian clone identity or its summoning/disappearance phases.",
+    "A desktop/mobile Chromium viewport is not a physical device performance or complete original-game1:1 certificate."
+  ],
+  "noHarness": {
+    "own": false,
+    "type": "undefined",
+    "viteClient": true
+  },
+  "jenkinsNarrative": {
+    "nativeCoverPlayed": true,
+    "exactPrecombatRestore": true,
+    "victoryPlayed": false,
+    "jenkinsLossNotYetExercised": true
+  },
+  "ferosEncounter": {
+    "enemyIDs": [
+      "creeper-0",
+      "creeper-1",
+      "asari-2"
+    ],
+    "nativeShotPlayed": true,
+    "exactPrecombatRestore": true,
+    "noVictoryRewardClaimed": true,
+    "genericAsariOnly": true
+  },
+  "sourceFrozen": true,
+  "compiledDistApplicable": false,
+  "sourceAndDistFrozen": false,
+  "finishedAt": "2026-11-09T04:41:21.523Z",
+  "elapsedSeconds": 115.01
+}

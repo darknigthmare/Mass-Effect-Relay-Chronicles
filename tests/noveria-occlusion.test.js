@@ -14,7 +14,7 @@ test('Noveria overhead spans survive static merging and reveal combat bodies wit
     _texturedMaterial(color) { return this._material(color); },
   });
   world._noveria();
-  const colliders = structuredClone(world.colliders), spans = [...world.combatOccluders];
+  const colliders = structuredClone(world.colliders), spans = world.combatOccluders.filter(object => object.geometry.parameters.height < 1);
   assert.equal(spans.length, 4, 'Both structural spans and their light strips must yield.');
   assert.ok(spans.every(span => span.visible && span.userData.keep));
   world._mergeStatic();

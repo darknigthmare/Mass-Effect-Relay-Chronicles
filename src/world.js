@@ -318,7 +318,7 @@ export class WorldView {
   _combatAnimationConfig(actor, state = actor.state) {
     const config = this.characterAnimations?.[actor.key];
     if (!config?.combat) return null;
-    if (COMPANION_ANIMATION_IDS.includes(actor.key)) return canShowCompanionAnimation(actor, state)
+    if (COMPANION_ANIMATION_IDS.includes(actor.key)) return canShowCompanionAnimation(actor, state, this.storyContext)
       && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
     if (ENEMY_ANIMATION_IDS.includes(actor.key)) return canShowEnemyAnimation(actor, state)
       && config.characterId === actor.key && config.mediaId === 'ME1' ? config.combat : null;
@@ -750,7 +750,14 @@ export class WorldView {
       // Keep overhead spans separate so the combat camera can expose the arena.
       beam.userData.keep = true; beam.userData.combatOccluder = true;
       beam.visible = this.mode !== 'combat'; this.combatOccluders.push(beam);
-      for (const x of [-10, 10]) { this._box(1.3, 11, 2.8, trim, x, 5.5, z); this._rectCollider(x, z, 1.3, 2.8); }
+      for (const x of [-10, 10]) {
+        const pillar = this._box(1.3, 11, 2.8, trim, x, 5.5, z);
+        if (x > 0) {
+          pillar.userData.keep = true; pillar.userData.combatOccluder = true;
+          pillar.visible = this.mode !== 'combat'; this.combatOccluders.push(pillar);
+        }
+        this._rectCollider(x, z, 1.3, 2.8);
+      }
     }
     this._sign('EXOGENI · ZHU’S HOPE', -15, 4.5, 20.2, 7);
     for (const [x, z] of [[-7, -15], [7, 12], [-8, 0], [8, -17]]) this._tree(x, z, .8, 'alien');
@@ -769,8 +776,13 @@ export class WorldView {
       this._building(x, -2, 11, 43, 13, 0x92a4ab, 0x406b82);
       this._box(1.5, 4.8, 44, dark, x - Math.sign(x) * 6.2, 2.4, -2);
       for (let z = -20; z <= 20; z += 6.7) {
-        this._box(1.3, 10, 1.3, steel, x - Math.sign(x) * 6.6, 5, z);
-        this._box(.12, 5.5, .2, this._material(0xadcfe1, .5, .1, 0x517e96), x - Math.sign(x) * 7.3, 4.5, z + .6);
+        const pillar = this._box(1.3, 10, 1.3, steel, x - Math.sign(x) * 6.6, 5, z);
+        const light = this._box(.12, 5.5, .2, this._material(0xadcfe1, .5, .1, 0x517e96), x - Math.sign(x) * 7.3, 4.5, z + .6);
+        // The camera-facing row cuts across wide enemy silhouettes in combat.
+        if (x > 0) for (const object of [pillar, light]) {
+          object.userData.keep = true; object.userData.combatOccluder = true;
+          object.visible = this.mode !== 'combat'; this.combatOccluders.push(object);
+        }
       }
     }
     this._box(13, 4.3, .5, dark, 0, 2.2, -22.5);

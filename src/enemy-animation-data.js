@@ -1,8 +1,8 @@
 // Visual metadata for existing ME1 campaign enemies. No actor, attack,
 // equipment or statistical profile is created by these drawings.
-export const ENEMY_ANIMATION_IDS = Object.freeze(['geth', 'geth-sniper', 'geth-destroyer', 'husk', 'krogan', 'rachni']);
+export const ENEMY_ANIMATION_IDS = Object.freeze(['geth', 'geth-sniper', 'geth-destroyer', 'husk', 'krogan', 'rachni', 'creeper', 'asari']);
 export const ENEMY_COMBAT_POSES = Object.freeze(['aim', 'power', 'hit', 'down']);
-const actorPrefixes = Object.freeze({ geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk', krogan: 'krogan', rachni: 'rachni' });
+const actorPrefixes = Object.freeze({ geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk', krogan: 'krogan', rachni: 'rachni', creeper: 'creeper', asari: 'asari' });
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const plain = value => !!value && typeof value === 'object' && !Array.isArray(value)
   && [Object.prototype, null].includes(Object.getPrototypeOf(value));

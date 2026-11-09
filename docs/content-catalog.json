@@ -49,7 +49,7 @@
       "companionCount": 8,
       "encounterCount": 21,
       "codexCount": 16,
-      "visualLimit": "Deux cycles de marche de Shepard et 56 poses clés fixes : deux apparences, six compagnons et six familles ennemies ME1. Deux dessins assis de Joker, dont idle intégré. Costumes, anatomie, armes et mouvements complets non certifiés 1:1.",
+      "visualLimit": "Deux cycles de marche de Shepard et 68 poses clés fixes : deux apparences, sept compagnons et huit familles ennemies ME1. Jenkins reste limité au prologue ; le commando asari générique ne représente pas les clones du Thorien. Deux dessins assis de Joker, dont idle intégré. Corps, costumes, armes et cycles complets non certifiés 1:1.",
       "coverageLimit": "Les neuf zones restent des adaptations. Eden Prime possède cinq secteurs de production dans une enveloppe 110 × 150, reliés par un sol non rectangulaire. Ses neuf repères ne terminent pas neuf niveaux originaux. Les 100 sous-zones et 91 liaisons demandent encore leur reconstitution 1:1.",
       "vehicleLimit": "Mako et Sovereign décoratifs ; Normandy SR-1 et armature geth illustrés. Aucun véhicule pilotable.",
       "atlases": [
@@ -90,6 +90,10 @@
           "scope": "ME1 : visée, geste d’action, impact et hors combat en trois-quarts fixes. Les poses de terrain historiques restent distinctes."
         },
         {
+          "path": "public/assets/companion-jenkins-combat.png",
+          "scope": "ME1 : quatre poses fixes de Jenkins avant sa perte scénaristique ; action utilisée par Couverture. Aucun pouvoir, costume ou cycle complet ajouté."
+        },
+        {
           "path": "public/assets/companion-kaidan-combat.png",
           "scope": "ME1 : visée, geste d’action, impact et hors combat en trois-quarts fixes. Les poses de terrain historiques restent distinctes."
         },
@@ -118,8 +122,16 @@
           "scope": "Texture de prairie du nouvel Eden Prime, appliquée aux surfaces 3D ; aucun nouvel objet ou lieu canonique. Répétition à contrôler dans le jeu, sans matériau PBR original certifié."
         },
         {
+          "path": "public/assets/enemy-asari-combat.png",
+          "scope": "ME1 : quatre poses fixes du commando asari générique existant ; Projection et Barrière conservées. Aucun clone du Thorien ni personnage nommé attribué."
+        },
+        {
           "path": "public/assets/enemy-atlas.png",
           "scope": "Huit silhouettes ennemies de base conservées comme replis ; les planches de poses dédiées restent distinctes."
+        },
+        {
+          "path": "public/assets/enemy-creeper-combat.png",
+          "scope": "ME1 : quatre poses fixes du rampant existant ; assaut organique conservé, aucun tir ou kit supplémentaire."
         },
         {
           "path": "public/assets/enemy-geth-combat.png",
@@ -178,7 +190,7 @@
           "scope": "Quatre silhouettes décoratives de véhicules ou grande machine ; aucun pilotage."
         }
       ],
-      "animationLimit": "32 images de marche, quatre directions par apparence de Shepard. Les 56 poses de combat restent fixes ; transitions, directions supplémentaires et variantes exactes d’équipement manquent. Deux dessins assis ne constituent pas un cycle de pilotage.",
+      "animationLimit": "32 images de marche, quatre directions par apparence de Shepard. Les 68 poses de combat restent fixes ; transitions, directions supplémentaires et variantes exactes d’équipement manquent. Deux dessins assis ne constituent pas un cycle de pilotage.",
       "conversationPointCount": 9,
       "conversationTopicCount": 18,
       "assignmentCount": 14,
@@ -233,12 +245,12 @@
         "oppositionWorkshops": 6,
         "editionEquipmentWorkshops": 3
       },
-      "combatKeyPoseCount": 56,
-      "enemyCombatPoseCount": 24,
+      "combatKeyPoseCount": 68,
+      "enemyCombatPoseCount": 32,
       "maleCombatPoseCount": 4,
-      "companionCombatPoseCount": 24,
+      "companionCombatPoseCount": 28,
       "seatedDrawingCount": 2,
-      "nativePNGCount": 31,
+      "nativePNGCount": 34,
       "terrainTextureCount": 2
     },
     "v02Sources": {
@@ -863,14 +875,28 @@
       "reference": "Index secondaire ; capture du jeu requise avant validation",
       "sourceId": "SQUAD-INDEX",
       "sourceUrl": "https://masseffect.fandom.com/wiki/Squad",
-      "description": "Équipier temporaire du prologue.",
+      "description": "Équipier temporaire du prologue ; mêmes conditions de présence et de perte narrative.",
       "acceptance": "Disponibilité limitée au prologue et perte narrative persistante.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/characters/CHR-jenkins.json",
       "assetPath": "src/game-data.js",
       "gameKey": "CREW.jenkins",
-      "notes": "Personnage présent dans le prototype. Sprite statique en atlas et mouvements du moteur ; animation complète et fidélité visuelle finale à produire. Profil d’équipement dans src/character-data.js, compatibilités et formations explicites dans src/loadout.js ; pouvoirs et arbres de talents complets non reproduits. Aucun nouveau costume d’équipement."
+      "notes": "Quatre dessins fixes de combat ME1 ; aucun pouvoir ni nouveau costume. Le KO reste distinct de sa perte scénaristique persistante. Terrain, portrait, statistiques et restrictions conservés ; animations complètes et fidélité 1:1 non validées.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/game-data.js",
+        "src/companion-animation-data.js",
+        "public/assets/companion-jenkins-animation.json",
+        "public/assets/companion-jenkins-combat.png"
+      ],
+      "evidence": [
+        "docs/research/me1-prologue-enemies-jenkins.md",
+        "docs/qa/me1-prologue-enemies-jenkins-art.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json"
+      ]
     },
     {
       "id": "NPC-david-anderson",
@@ -8203,7 +8229,21 @@
       "plannedPath": "content/enemies/ENM-creeper-du-thorian.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Profil existant, dessins partiels : SPR-creeper-du-thorian-ennemi. Origine et mouvements non validés.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/game-data.js",
+        "src/enemy-animation-data.js",
+        "public/assets/enemy-creeper-animation.json",
+        "public/assets/enemy-creeper-combat.png"
+      ],
+      "evidence": [
+        "docs/research/me1-prologue-enemies-creeper.md",
+        "docs/qa/me1-prologue-enemies-creeper-art.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json"
+      ]
     },
     {
       "id": "ENM-clone-asari-du-thorian",
@@ -8392,7 +8432,21 @@
       "plannedPath": "content/enemies/ENM-commando-asari.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Profil natif Projection/Barrière ; dessins partiels SPR-commando-asari-ennemi. Aucun clone du Thorien.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/game-data.js",
+        "src/enemy-animation-data.js",
+        "public/assets/enemy-asari-animation.json",
+        "public/assets/enemy-asari-combat.png"
+      ],
+      "evidence": [
+        "docs/research/me1-prologue-enemies-asari.md",
+        "docs/qa/me1-prologue-enemies-asari-art.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json"
+      ]
     },
     {
       "id": "ENM-fanatique-biotique",
@@ -16013,16 +16067,30 @@
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Planche de combat dédiée aux actions réellement disponibles pour Jenkins.",
-      "acceptance": "Attente, action, impact, KO et récupération sans cadre coupé.",
+      "description": "Quatre poses fixes de Jenkins ME1 : visée, action, impact et hors combat.",
+      "acceptance": "Visée, action, impact et KO sans cadre coupé ; retour à la visée hors KO. Quatre poses partielles.",
       "dependencies": [
         "CHR-jenkins"
       ],
       "priority": "P0",
       "plannedPath": "assets/sprites/characters/jenkins/battle.png",
-      "assetPath": "public/assets/crew-atlas.png",
-      "gameKey": "jenkins",
-      "notes": "Atlas de poses uniques utilisé par le prototype. Les angles, mouvements, expressions et costumes complets ne sont pas produits."
+      "assetPath": "public/assets/companion-jenkins-combat.png",
+      "gameKey": "companion:jenkins",
+      "notes": "Pose action pour Couverture ; aucun pouvoir ajouté. Mort narrative, terrain et portraits conservés. Cycles et modèle 1:1 à produire.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/game-data.js",
+        "src/companion-animation-data.js",
+        "public/assets/companion-jenkins-animation.json",
+        "public/assets/companion-jenkins-combat.png"
+      ],
+      "evidence": [
+        "docs/research/me1-prologue-enemies-jenkins.md",
+        "docs/qa/me1-prologue-enemies-jenkins-art.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SPR-jenkins-portrait",
@@ -16447,21 +16515,35 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Silhouette et actions principales de Creeper du Thorian.",
-      "acceptance": "Silhouette référencée, attaques lisibles, transparence propre et échelle relative contrôlée.",
+      "description": "Quatre poses fixes du rampant organique de Féros ; aucune nouvelle attaque.",
+      "acceptance": "Silhouette référencée, attaques lisibles, alpha et échelle contrôlés ; cycles 1:1 non validés.",
       "dependencies": [
         "ENM-creeper-du-thorian"
       ],
       "priority": "P1",
       "plannedPath": "assets/sprites/enemies/creeper-du-thorian.png",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "public/assets/enemy-creeper-combat.png",
+      "gameKey": "enemy:creeper",
+      "notes": "Assaut natif conservé ; pas de tir ajouté. Silhouette, autres angles et cycles 1:1 non validés.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/game-data.js",
+        "src/enemy-animation-data.js",
+        "public/assets/enemy-creeper-animation.json",
+        "public/assets/enemy-creeper-combat.png"
+      ],
+      "evidence": [
+        "docs/research/me1-prologue-enemies-creeper.md",
+        "docs/qa/me1-prologue-enemies-creeper-art.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SPR-clone-asari-du-thorian-ennemi",
@@ -16676,21 +16758,35 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
-      "assetStatus": "À produire",
+      "status": "Prototype",
+      "assetStatus": "Prototype",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Silhouette et actions principales de Commando asari.",
-      "acceptance": "Silhouette référencée, attaques lisibles, transparence propre et échelle relative contrôlée.",
+      "description": "Quatre poses fixes du commando asari générique ME1 ; pas un clone du Thorien.",
+      "acceptance": "Silhouette référencée, attaques lisibles, alpha et échelle contrôlés ; cycles 1:1 non validés.",
       "dependencies": [
         "ENM-commando-asari"
       ],
       "priority": "P1",
       "plannedPath": "assets/sprites/enemies/commando-asari.png",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "public/assets/enemy-asari-combat.png",
+      "gameKey": "enemy:asari",
+      "notes": "Projection et barrière natives conservées. Aucun clone du Thorien ; costume et cycles 1:1 non validés.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/game-data.js",
+        "src/enemy-animation-data.js",
+        "public/assets/enemy-asari-animation.json",
+        "public/assets/enemy-asari-combat.png"
+      ],
+      "evidence": [
+        "docs/research/me1-prologue-enemies-asari.md",
+        "docs/qa/me1-prologue-enemies-asari-art.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SPR-fanatique-biotique-ennemi",
@@ -19145,7 +19241,7 @@
       "plannedPath": "src/",
       "assetPath": "src/world.js",
       "gameKey": "system:transitions-de-camera",
-      "notes": "Suivi et cadrages d’Eden uniquement. Les réglages des huit autres zones restent conservés ; aucune nouvelle cinématique complète annoncée. QA : docs/qa/eden-immersion-report.json.",
+      "notes": "Suivi Eden conservé. Novéria/Féros : volumes proches masqués en combat puis restaurés. Limites de visibilité dans la preuve du lot.",
       "implementationPaths": [
         "src/world.js",
         "src/world-data.js",
@@ -19156,7 +19252,12 @@
       "evidence": [
         "docs/qa/eden-immersion-before-report.json",
         "docs/research/eden-level-layout.md",
-        "docs/qa/eden-immersion-report.json"
+        "docs/qa/eden-immersion-report.json",
+        "tests/me1-prologue-enemies.test.js",
+        "docs/qa/me1-prologue-enemies-report.json",
+        "docs/qa/me1-prologue-enemies-workbook-visual-report.json",
+        "tests/noveria-occlusion.test.js",
+        "docs/qa/me1-prologue-enemies-production-report.json"
       ]
     },
     {

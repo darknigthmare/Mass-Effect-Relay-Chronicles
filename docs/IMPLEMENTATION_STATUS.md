@@ -293,6 +293,12 @@ Deux familles ennemies existantes reçoivent huit poses fixes et deux textures d
 
 Le [correctif de lisibilité Novéria](qa/eden-occlusion-report.json), séparé de ce premier lot, retire temporairement les poutres suspendues de la vue de combat. Il conserve leur géométrie en exploration et ne modifie ni les collisions, ni les attaques, ni les données de progression. Les preuves du premier lot restent archivées telles quelles, avec leur réserve initiale ; le supplément contrôle la nouvelle arène et le défilement des cartes desktop/mobile.
 
+## Jenkins, creepers et commandos asari — 9 novembre 2026
+
+Le lot du **9 novembre 2026** reprend `main` au commit `d19197f`, qui inclut les outils IA du dépôt. Il complète Jenkins et les familles creeper/asari déjà jouables avec trois PNG natifs et douze poses fixes, sans nouveau personnage, pouvoir ou objet. Le registre visuel totalise 34 PNG et 68 poses de combat. La rangée de piliers côté caméra à Novéria et les poteaux de premier plan à Féros suivent la même coupe de combat que les traverses, avec restauration en exploration et collisions conservées.
+
+La [bible de conception](DESIGN.md) est synchronisée avec l’atelier, le plan étendu d’Eden et les familles de poses actuelles. Le suivi principal actualise sept fiches existantes ; seules les deux fiches de sprites ennemis deviennent Prototype. Jenkins conserve son statut et ses conditions narratives ; les fiches du clone asari restent inchangées. Les [preuves du lot](qa/me1-prologue-enemies-report.json) relient la revue initiale de Novéria, les images natives, les contrôles du renderer et les sauvegardes publiques. Les 107 équipements des Chroniques et les 52 références de la boutique ME1 sont conservés.
+
 ## Travail restant
 
 - Reconstituer les 100 sous-zones et 91 liaisons, intérieurs et géographies exactes.

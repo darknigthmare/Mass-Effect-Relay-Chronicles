@@ -140,6 +140,12 @@ Les contrôles distinguent navigation native en fixture déclarée, commandes pu
 
 Deux atlas fournissent les huit poses fixes krogan/rachni et deux textures habillent le sol 3D. Les corps, tenues, autres directions et cycles originaux restent non certifiés. Les huit fiches de suivi touchées et les métadonnées de couverture sont mises à jour séparément ; cinq fiches deviennent Prototype, aucune ne devient Intégrée ou Validée. Les [preuves du lot](qa/eden-immersion-report.json) précisent les mesures, sources et réserves visuelles restantes.
 
+## Jenkins et ennemis ordinaires — 9 novembre 2026
+
+Le complément du 9 novembre reprend le main `d19197f`, avec ses nouveaux outils IA conservés. Il ajoute trois atlas et douze poses fixes pour des acteurs existants : Jenkins, creeper du Thorien et commando asari générique. Les sept compagnons et huit familles d’ennemis ordinaires ont quatre dessins chacun ; avec les huit de Shepard, le total est de 68 poses de combat. Les deux dessins assis de Joker restent distincts. Les [preuves du lot](qa/me1-prologue-enemies-report.json) séparent art natif, actions existantes, garde de présence de Jenkins, correction des piliers de Novéria et Féros, parcours publics et suivi Excel.
+
+Le commando asari reste une représentation générique réutilisée dans plusieurs rencontres du prototype. Les fiches du clone asari du Thorien et ses phases d’apparition/disparition ne sont pas terminées par cet atlas. La perte de Jenkins suit le premier affrontement validé de la campagne condensée et reste distincte du KO. Les nouvelles images ne changent ni ces règles, ni les statistiques, ni l’équipement. Deux fiches de sprites passent de Défini à Prototype ; les fiches d’ennemis plus larges gardent leur statut, et aucune validation 1:1 n’est déduite de la présence des fichiers.
+
 ## État du contenu restant
 
 Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le Mako pilotable, les variantes visuelles d’équipement, les animations et les campagnes ultérieures intégrales restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.

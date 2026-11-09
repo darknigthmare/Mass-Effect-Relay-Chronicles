@@ -1,0 +1,1605 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-09T04:58:06.414Z",
+  "baselineCommit": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+  "currentWorldSha256": "9a22fbcfc857c20ff41ff97efec6f06789919bf8bb673bd79e20c2acf8cd643d",
+  "specification": {
+    "path": "docs/research/me1-prologue-enemies-scope.md",
+    "sha256": "fb09eb9c6854f7c167963d847ad8f5b9bc97f742825b21668f015a1f55e76ff3"
+  },
+  "scope": "Three existing ME1 actors gain twelve fixed combat drawings. Existing Jenkins presence/loss rules and native commands remain intact; generic asari does not implement the Thorian clone. Twelve existing Noveria pillar/light meshes and two Feros foreground posts now yield in combat. The existing bible, catalogue and workbook are synchronized without a mechanics or engine migration.",
+  "additions": {
+    "nativePNG": 3,
+    "fixedCombatDrawings": 12,
+    "companionFamilies": 1,
+    "enemyFamilies": 2,
+    "newCanonicalCharacters": 0,
+    "newMechanicalKits": 0,
+    "newEquipment": 0,
+    "newPilotableVehiclesOrShips": 0,
+    "existingVisibilityMeshesRegistered": 14
+  },
+  "currentVisualTotals": {
+    "nativePNG": 34,
+    "coreManifestAssets": 29,
+    "combatKeyPoses": 68,
+    "shepard": 8,
+    "companions": 28,
+    "enemies": 32,
+    "seatedDrawings": 2,
+    "groundTextures": 2
+  },
+  "artwork": [
+    {
+      "characterId": "jenkins",
+      "kind": "companion",
+      "png": "public/assets/companion-jenkins-combat.png",
+      "metadata": "public/assets/companion-jenkins-animation.json",
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+      "nativeCopyVerified": true,
+      "fixedDrawings": 4,
+      "sourceReview": {
+        "path": "docs/qa/me1-prologue-enemies-jenkins-art.json",
+        "bytes": 9866,
+        "sha256": "b287bdebea9ccd89ec1164b689c090838d5fb4c5db00e1f8fd3f4b5a36d2b1a4"
+      },
+      "limitations": [
+        "Four fixed poses do not provide full motion cycles, extra directions, exact costume geometry or all transitions.",
+        "The generic illustrated rifle does not change or certify equipped inventory. The tactical gesture does not add a power; Jenkins native powers remain empty.",
+        "The down pose represents combat KO only. Narrative death and other-media availability remain owned by existing state/continuity rules and require separate integration checks.",
+        "Only native/source previews were inspected here. Actual WorldView rendering, native commands, availability guards and save/reload paths belong to the integration proof.",
+        "Low-alpha native pixels remain unchanged and are analyzed separately from the renderer threshold. No alpha cleanup, recoloring, crop rewrite or screenshot compositing into the asset was performed."
+      ]
+    },
+    {
+      "characterId": "creeper",
+      "kind": "enemy",
+      "png": "public/assets/enemy-creeper-combat.png",
+      "metadata": "public/assets/enemy-creeper-animation.json",
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+      "nativeCopyVerified": true,
+      "fixedDrawings": 4,
+      "sourceReview": {
+        "path": "docs/qa/me1-prologue-enemies-creeper-art.json",
+        "bytes": 6697,
+        "sha256": "36380e10f4ada52fdb3036470f2406a5ca84b5020b3cc5013ad1efb4bca7f035"
+      },
+      "limitations": [
+        "The only generation reference is the existing prototype enemy atlas, not an independently obtained primary full-body reference. Canonical anatomy, exact material and original geometry remain unverified1:1.",
+        "Four fixed drawings in one three-quarter direction do not provide complete movement cycles, transitions or all directions.",
+        "The native faint-alpha fringe and one interior single-pixel island remain unchanged. Rectangles are measured at the actual alpha-test threshold.",
+        "aim denotes organic readiness and power is a visual pose for the existing strike action; no weapon, new power, profile, reward or narrative state is supplied.",
+        "Native-scale browser inspection is not an in-game playback or save test. Renderer and public campaign evidence are recorded separately."
+      ]
+    },
+    {
+      "characterId": "asari",
+      "kind": "enemy",
+      "png": "public/assets/enemy-asari-combat.png",
+      "metadata": "public/assets/enemy-asari-animation.json",
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+      "nativeCopyVerified": true,
+      "fixedDrawings": 4,
+      "sourceReview": {
+        "path": "docs/qa/me1-prologue-enemies-asari-art.json",
+        "bytes": 7321,
+        "sha256": "2bf5ecd90e851dc1f376bb71481856b5934cd0cafc202b02da06b2506c13038a"
+      },
+      "limitations": [
+        "Quatre dessins fixes en trois-quarts ; cycles, transitions et directions supplémentaires non produits.",
+        "Identité du commando générique déjà présent dans le prototype ; aucun modèle primaire original complet obtenu ou fidélité intégrale 1:1 certifiée.",
+        "Ce lot ne constitue ni Bénézia ni le clone du Thorien, ses invocations ou ses phases distinctes.",
+        "Les franges natives de faible alpha sont conservées sans retouche.",
+        "Le geste power accompagne les actions throw/barrier existantes ; aucun pouvoir ou effet intégré au PNG supplémentaire."
+      ]
+    }
+  ],
+  "sourceScope": {
+    "preserved": {
+      "baselineFiles": 2233,
+      "explicitMutableFiles": [
+        "README.md",
+        "docs/ASSETS.md",
+        "docs/DESIGN.md",
+        "docs/FIDELITY.md",
+        "docs/IMPLEMENTATION_STATUS.md",
+        "docs/Mass_Effect_Relay_Chronicles_Production.xlsx",
+        "docs/content-catalog.json",
+        "public/assets/manifest.json",
+        "src/companion-animation-data.js",
+        "src/enemy-animation-data.js",
+        "src/universe-data.js",
+        "src/world.js",
+        "tests/companion-combat-world.test.js",
+        "tests/me1-enemy-poses.test.js",
+        "tests/noveria-occlusion.test.js"
+      ],
+      "actualChangedTrackedFiles": [
+        "README.md",
+        "docs/ASSETS.md",
+        "docs/DESIGN.md",
+        "docs/FIDELITY.md",
+        "docs/IMPLEMENTATION_STATUS.md",
+        "docs/Mass_Effect_Relay_Chronicles_Production.xlsx",
+        "docs/content-catalog.json",
+        "public/assets/manifest.json",
+        "src/companion-animation-data.js",
+        "src/enemy-animation-data.js",
+        "src/universe-data.js",
+        "src/world.js",
+        "tests/companion-combat-world.test.js",
+        "tests/me1-enemy-poses.test.js",
+        "tests/noveria-occlusion.test.js"
+      ],
+      "indexedNewFiles": [],
+      "protectedFiles": 2218,
+      "protectedUnchanged": 2218,
+      "protectedFileProof": {
+        "path": "docs/qa/me1-prologue-enemies-protected-files.json",
+        "sha256": "161be6c3642b64fce3f08f9e6cd44e8ec966a0277d40b8c3614584baf9a82b17",
+        "bytes": 718698
+      },
+      "latestAIToolingFiles": [
+        {
+          "path": ".ai-tools/.gitignore",
+          "baselineBlob": "43ae0e2a6c6d8fca34872506ca0f2e64194fec7c",
+          "currentBlob": "43ae0e2a6c6d8fca34872506ca0f2e64194fec7c",
+          "sha256": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+          "bytes": 23
+        },
+        {
+          "path": ".ai-tools/README.md",
+          "baselineBlob": "2645d90b5389135c935148006b06ac3c5fa8971e",
+          "currentBlob": "2645d90b5389135c935148006b06ac3c5fa8971e",
+          "sha256": "518ee93aab27bb8c9ad58478a14ff5db6b24bfbcf0c1346dbd7e5b4fefd0176e",
+          "bytes": 12174
+        },
+        {
+          "path": ".ai-tools/setup.py",
+          "baselineBlob": "9c21ce443e35cdb5f811c3b55e0330be2fdb0898",
+          "currentBlob": "9c21ce443e35cdb5f811c3b55e0330be2fdb0898",
+          "sha256": "968ba2b95144071ec237eb1cf1253ea14292bf47255f506ef28083cd737eb2ca",
+          "bytes": 14883
+        },
+        {
+          "path": ".ai-tools/sources.json",
+          "baselineBlob": "58178ca9e6867e7b2455883841dbd513c2e4ab35",
+          "currentBlob": "58178ca9e6867e7b2455883841dbd513c2e4ab35",
+          "sha256": "1ec97f618019ad4d9fdc655ae647817d22466c35ade391ff3f5681331f86ccb5",
+          "bytes": 2526
+        },
+        {
+          "path": ".ai-tools/tests/test_setup.py",
+          "baselineBlob": "840f176f173f152437bc03992c0d9bfdc1b183c8",
+          "currentBlob": "840f176f173f152437bc03992c0d9bfdc1b183c8",
+          "sha256": "fae354f034e04c63747eff525376fdd6e174e87851e73f6ad2101367c7037b75",
+          "bytes": 9407
+        },
+        {
+          "path": "AGENTS.md",
+          "baselineBlob": "cd8be609f7fcf3224dc8f380c21a80f8db77f5ce",
+          "currentBlob": "cd8be609f7fcf3224dc8f380c21a80f8db77f5ce",
+          "sha256": "a535ef8442ff18893b47bd855e23ba58c02bd99a447a8a0e9aedbdf671e70840",
+          "bytes": 7326
+        },
+        {
+          "path": "CLAUDE.md",
+          "baselineBlob": "61e8622024ad7e5067e7a9628346dbe9aa412d7a",
+          "currentBlob": "61e8622024ad7e5067e7a9628346dbe9aa412d7a",
+          "sha256": "7b05a38d786af6850a14a1c768a2b2665726f0ab7503a40830e6c5c792202987",
+          "bytes": 695
+        }
+      ],
+      "otherWorkbooks": [
+        {
+          "path": "docs/Expansion2_Simulations.xlsx",
+          "baselineBlob": "738c5cffa4e8d99d9b81e50008b1bfba5680ebe4",
+          "currentBlob": "738c5cffa4e8d99d9b81e50008b1bfba5680ebe4",
+          "sha256": "43955cb14b4adfd0ce1fa44a1a8c9f94de71d0a8a72ecbe97378b3c18d4a24a0",
+          "bytes": 59301
+        },
+        {
+          "path": "docs/Expansion3_Simulations.xlsx",
+          "baselineBlob": "9db7295f42b69443787cc769208b6791d32365d5",
+          "currentBlob": "9db7295f42b69443787cc769208b6791d32365d5",
+          "sha256": "77e30e6d7794a4c3404741d76fe43f2be013b4f75290389c26656800d7f2e461",
+          "bytes": 48304
+        },
+        {
+          "path": "docs/Expansion_Simulations_200.xlsx",
+          "baselineBlob": "b81aa470351e00ed8c92e321fc15a0042dc7705c",
+          "currentBlob": "b81aa470351e00ed8c92e321fc15a0042dc7705c",
+          "sha256": "58444892dbb26025ebd0edaa98635cb04b3180627731630d064bc3f6a768c1c1",
+          "bytes": 64261
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx",
+          "baselineBlob": "16965d0172d768a5be90315ff50c693c073327bd",
+          "currentBlob": "16965d0172d768a5be90315ff50c693c073327bd",
+          "sha256": "93598742c27bd446b0aef4bb941445cf4040fe21bf0b82fe4c8d9caf908247b9",
+          "bytes": 255264
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_3_Production.xlsx",
+          "baselineBlob": "eb40eb5a1820937012969f878538ecc7b21194da",
+          "currentBlob": "eb40eb5a1820937012969f878538ecc7b21194da",
+          "sha256": "2aae7d51997e84d2a6ba1195174fe49c74ebc5a1b0f8cfdab900fe9ab4c61cfd",
+          "bytes": 266910
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_4_Extrapolation_Production.xlsx",
+          "baselineBlob": "c6d24617c0e94811e58e7ae9594bb58b12e17ea6",
+          "currentBlob": "c6d24617c0e94811e58e7ae9594bb58b12e17ea6",
+          "sha256": "cecf1e892d8e636bd3483f98347597f3bb2f7493a2825263911a68a391f16f32",
+          "bytes": 119145
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Annihilation_Production.xlsx",
+          "baselineBlob": "dcf75abd638cee4c053dae56ea286a96ac5d2cce",
+          "currentBlob": "dcf75abd638cee4c053dae56ea286a96ac5d2cce",
+          "sha256": "1a8fed77c5f4a6b614094381b6fcaae2ed7c18abdd6d669cf2f05f44b949e19d",
+          "bytes": 129343
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Initiation_Production.xlsx",
+          "baselineBlob": "c529df9e769773f0b921d851c20adacd1c1179f0",
+          "currentBlob": "c529df9e769773f0b921d851c20adacd1c1179f0",
+          "sha256": "08bede1ed8df762a5d7995966c7653a1149f23378e93f6ac511a8b29a6fc229e",
+          "bytes": 127113
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Nexus_Uprising_Production.xlsx",
+          "baselineBlob": "0016e0c498b01b7130154a0ac643f506e97072d5",
+          "currentBlob": "0016e0c498b01b7130154a0ac643f506e97072d5",
+          "sha256": "5239f31a94a4eb1db40dae8c9521caa18bc17aa8bc806c3987a18651d43e9f9a",
+          "bytes": 124602
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Andromeda_Production.xlsx",
+          "baselineBlob": "366735af61c5da22f56f7f83bde72567b7eae6a4",
+          "currentBlob": "366735af61c5da22f56f7f83bde72567b7eae6a4",
+          "sha256": "37e61acf9e3e54c230e7f279f51554ac523e276f6adbacbfe644abda1cd7674e",
+          "bytes": 271968
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Ascension_Production.xlsx",
+          "baselineBlob": "8764023afc380ff2e1c68a49ac501cbe59d1560e",
+          "currentBlob": "8764023afc380ff2e1c68a49ac501cbe59d1560e",
+          "sha256": "8d3d1255250caeb367e52eb0dd55bc2eb12c468040f6d57e3f277d563ee69a0a",
+          "bytes": 126960
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Blasto_Eternity_is_Forever_Production.xlsx",
+          "baselineBlob": "724e2c27937a24c1349c0d6367479ff13bfb86fc",
+          "currentBlob": "724e2c27937a24c1349c0d6367479ff13bfb86fc",
+          "sha256": "e2e6e596a04ebd8e9b7335acd8eda9a76512d542237e64ac37182bfab462c2ea",
+          "bytes": 115528
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Contenus_Coupes_Production.xlsx",
+          "baselineBlob": "f9baa03900a2b9d5d2724acfa368ad0b6704ab42",
+          "currentBlob": "f9baa03900a2b9d5d2724acfa368ad0b6704ab42",
+          "sha256": "2e299d38b520da490017c72a55b6749bceab78aca72aea2c033c70537750a9d0",
+          "bytes": 116669
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Conviction_Production.xlsx",
+          "baselineBlob": "cd861335af26cba7412d9425a5a729eabb0b5f3f",
+          "currentBlob": "cd861335af26cba7412d9425a5a729eabb0b5f3f",
+          "sha256": "db6c4ba587345e0495a7a2f330d78ca3548fe863f6a89646ea631acf9dc9185b",
+          "bytes": 111445
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Deception_Production.xlsx",
+          "baselineBlob": "843cf48d52df6f380e3ba161d185cf5e178366dd",
+          "currentBlob": "843cf48d52df6f380e3ba161d185cf5e178366dd",
+          "sha256": "20239e6c1f78cb6ae71af1a5939c146bcbf9d8cf08864c40ec5d424d1aef7687",
+          "bytes": 126917
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Discovery_Production.xlsx",
+          "baselineBlob": "b6ba82b6d0bd1a1c2948c33a694118e15d5e9faf",
+          "currentBlob": "b6ba82b6d0bd1a1c2948c33a694118e15d5e9faf",
+          "sha256": "c8fb47f5154365db37df6a7497bf08385dae9f2ccdb90c5a6db0b7eca667e0c6",
+          "bytes": 135708
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Evolution_Production.xlsx",
+          "baselineBlob": "9e87bb4e6d4d6a5fa1dbd272dcb8ab99c870d878",
+          "currentBlob": "9e87bb4e6d4d6a5fa1dbd272dcb8ab99c870d878",
+          "sha256": "4ca16b3a7df301d56f11e7fa5ec1d8706252b8135e04add7c5b64c79498c77bc",
+          "bytes": 124975
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Foundation_Production.xlsx",
+          "baselineBlob": "bd9abb76f43dcdf02e6a51105f7e11bf88bf97b8",
+          "currentBlob": "bd9abb76f43dcdf02e6a51105f7e11bf88bf97b8",
+          "sha256": "597c2316494fff93e1714dabef203a0445fd240fefa2ae1b26f32359062cd8ac",
+          "bytes": 156447
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Galaxy_Production.xlsx",
+          "baselineBlob": "5f89c44af7e6f317aebff872d3c29d6d0b368a2f",
+          "currentBlob": "5f89c44af7e6f317aebff872d3c29d6d0b368a2f",
+          "sha256": "2392fa644af861b50b296a48d5f56e16df62fcee0ce19f3fa48472b1956da306",
+          "bytes": 110156
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_He_Who_Laughs_Best_Production.xlsx",
+          "baselineBlob": "d39d2ca33ff93d90b55a0861865e8dfff76f24ac",
+          "currentBlob": "d39d2ca33ff93d90b55a0861865e8dfff76f24ac",
+          "sha256": "5047a52522f4914f91c3432fc2b5ab430892b42eece85bb8e94a9915ffe3dcf8",
+          "bytes": 113299
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Homeworlds_Production.xlsx",
+          "baselineBlob": "9fd3c409c0b205fafa709fd494413591f2557119",
+          "currentBlob": "9fd3c409c0b205fafa709fd494413591f2557119",
+          "sha256": "b3d6d400b351f4c3596330162c80525e1875195232bc5880aaa40d65bf8f7ae9",
+          "bytes": 137877
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Incursion_Production.xlsx",
+          "baselineBlob": "e0911a1902923bbc73fdce7960fa8447d9a2731e",
+          "currentBlob": "e0911a1902923bbc73fdce7960fa8447d9a2731e",
+          "sha256": "783ebac1d7ead754046a05ddf0d0144c77bc69a3cf3eda4582c7804c012af8ff",
+          "bytes": 111277
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Infiltrator_Production.xlsx",
+          "baselineBlob": "7c0d05360afdecb6b76d8f89aa19ba5ca1426885",
+          "currentBlob": "7c0d05360afdecb6b76d8f89aa19ba5ca1426885",
+          "sha256": "4092088fd27ba0a7e3f6b8a61f3ac18377789d27ef98fef3e18a0b17e8339c4c",
+          "bytes": 110607
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Inquisition_Production.xlsx",
+          "baselineBlob": "eec4d57a0099b80ef641a5c238d1b06059f205fb",
+          "currentBlob": "eec4d57a0099b80ef641a5c238d1b06059f205fb",
+          "sha256": "67b350807c6c164a1932847bd6f02f4bc1ee835a3c1e07c14d584465605c6610",
+          "bytes": 110591
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Invasion_Production.xlsx",
+          "baselineBlob": "bc95a4c853e5c36356394f3503389d9fb9fd8aca",
+          "currentBlob": "bc95a4c853e5c36356394f3503389d9fb9fd8aca",
+          "sha256": "45c3021f80846aef87cd673ea36405d30a584ed24e26d72f001d29ac3484561b",
+          "bytes": 124092
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Library_Edition_Production.xlsx",
+          "baselineBlob": "0f3df4bd910a80850e8e4546232dce1eafd8dd32",
+          "currentBlob": "0f3df4bd910a80850e8e4546232dce1eafd8dd32",
+          "sha256": "9228e1cde614682abb69eebe9338c31464bd5486f955f1619a27645131261997",
+          "bytes": 109947
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Paragon_Lost_Production.xlsx",
+          "baselineBlob": "77eea5fce723c76c4d2dca92ab90e45dea801ef7",
+          "currentBlob": "77eea5fce723c76c4d2dca92ab90e45dea801ef7",
+          "sha256": "9511437801dafbe1efdb45090585fa1b243e559179a1046f00f7dce02a4b9564",
+          "bytes": 133968
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Redemption_Production.xlsx",
+          "baselineBlob": "cbd8049cffcfab4c5d73ffc5a67272b1fae45deb",
+          "currentBlob": "cbd8049cffcfab4c5d73ffc5a67272b1fae45deb",
+          "sha256": "2d14496d841b300133dc18d0ee968e6a9734609aa99415e7f868ffc7e941fdbe",
+          "bytes": 126575
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Retribution_Production.xlsx",
+          "baselineBlob": "e22c5bee792fa29cba093a3b3ada7cbbfb4334b4",
+          "currentBlob": "e22c5bee792fa29cba093a3b3ada7cbbfb4334b4",
+          "sha256": "0e9eb43c733c714289f863de2ea1e2883503bfbea14ba42fcd29438d37901ccd",
+          "bytes": 126864
+        },
+        {
+          "path": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Revelation_Production.xlsx",
+          "baselineBlob": "c8ae47c857776ee8a0bd35990f3b10effc01968a",
+          "currentBlob": "c8ae47c857776ee8a0bd35990f3b10effc01968a",
+          "sha256": "522d570271083f44ddcae7521054f3426aebe7951ae8fd136841329871fc6cd2",
+          "bytes": 126426
+        }
+      ],
+      "previousQAFileCount": 734,
+      "gameplayModules": [
+        {
+          "path": "src/state.js",
+          "baselineBlob": "538cd423d3bfa4231f11161bfdadacde0ccdb138",
+          "currentBlob": "538cd423d3bfa4231f11161bfdadacde0ccdb138",
+          "sha256": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+          "bytes": 21867
+        },
+        {
+          "path": "src/combat.js",
+          "baselineBlob": "c27d53fc9eb00cfd5394bbb4a3bc6fad157b3800",
+          "currentBlob": "c27d53fc9eb00cfd5394bbb4a3bc6fad157b3800",
+          "sha256": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+          "bytes": 70738
+        },
+        {
+          "path": "src/game-data.js",
+          "baselineBlob": "433fe02499ff95671fa457d50dde6db64e62b8c9",
+          "currentBlob": "433fe02499ff95671fa457d50dde6db64e62b8c9",
+          "sha256": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+          "bytes": 15942
+        },
+        {
+          "path": "src/story.js",
+          "baselineBlob": "9dc527fe62f2eca9228538bc239e650c003c7f63",
+          "currentBlob": "9dc527fe62f2eca9228538bc239e650c003c7f63",
+          "sha256": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+          "bytes": 10785
+        },
+        {
+          "path": "src/story-data.js",
+          "baselineBlob": "9b96293085bf5208f193f98fb5d721a0c606254e",
+          "currentBlob": "9b96293085bf5208f193f98fb5d721a0c606254e",
+          "sha256": "0cd052b5f99ec1e167782b6140716753c854fc1e3cd9defa55bd8ee5506a1a5c",
+          "bytes": 8607
+        },
+        {
+          "path": "src/loadout.js",
+          "baselineBlob": "ed81923c4989ccfeef9bc9a7e085bb97d9a76697",
+          "currentBlob": "ed81923c4989ccfeef9bc9a7e085bb97d9a76697",
+          "sha256": "ffeeebcf66d64cc13f45f6513c0e8a7872863a32bca078eb6ee206b26aeb6b9f",
+          "bytes": 29326
+        },
+        {
+          "path": "src/loadout-ui.js",
+          "baselineBlob": "ecee3a4e18db50f63bc7fd543f8e5c9d25547427",
+          "currentBlob": "ecee3a4e18db50f63bc7fd543f8e5c9d25547427",
+          "sha256": "40acca55a46efc6e0f8d17aee4db4f28f220245290cb53668ec7220c0f4c092a",
+          "bytes": 17157
+        },
+        {
+          "path": "src/character-data.js",
+          "baselineBlob": "73e0a9c35a304c70ede29510dad83f07a02eaff4",
+          "currentBlob": "73e0a9c35a304c70ede29510dad83f07a02eaff4",
+          "sha256": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+          "bytes": 7394
+        },
+        {
+          "path": "src/operations.js",
+          "baselineBlob": "914fb00fde1f6a02695e2986bfa83ec76dbb6936",
+          "currentBlob": "914fb00fde1f6a02695e2986bfa83ec76dbb6936",
+          "sha256": "c73f13cbc550c155e03d075ca3b008e2a046bb6afdf8455ee12db19dff3f895e",
+          "bytes": 15731
+        },
+        {
+          "path": "src/operation-data.js",
+          "baselineBlob": "0afa5f2d67df838076d9c3477b3d204cfd6b362f",
+          "currentBlob": "0afa5f2d67df838076d9c3477b3d204cfd6b362f",
+          "sha256": "b0650b5f0ed2884baab2bd1d1d8294585ed4efd4c8b3a237253bd67bd74f642d",
+          "bytes": 19604
+        },
+        {
+          "path": "src/universe-equipment.js",
+          "baselineBlob": "1e04ceb68337440c132e616370096d1c1b901415",
+          "currentBlob": "1e04ceb68337440c132e616370096d1c1b901415",
+          "sha256": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+          "bytes": 25465
+        },
+        {
+          "path": "src/universe-equipment-scenarios.js",
+          "baselineBlob": "5b2070186bc0f3371ac5ff9a181443c83f012c73",
+          "currentBlob": "5b2070186bc0f3371ac5ff9a181443c83f012c73",
+          "sha256": "a7c596b35a96ff608e8cbe431b5896997fc8cbf70ff69df8e516b4fbfac2561a",
+          "bytes": 4762
+        },
+        {
+          "path": "src/chronicles.js",
+          "baselineBlob": "74caba23b9d05d6d201c4e443aa3f25bb3b46855",
+          "currentBlob": "74caba23b9d05d6d201c4e443aa3f25bb3b46855",
+          "sha256": "5a782b862058ece78e53c7d05ead2d421ada72c3270f494002fd7f47c458fdf2",
+          "bytes": 21980
+        },
+        {
+          "path": "src/chronicle-story.js",
+          "baselineBlob": "97dcf215d04058eacd6586a016f6c5f65bb6ed6d",
+          "currentBlob": "97dcf215d04058eacd6586a016f6c5f65bb6ed6d",
+          "sha256": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+          "bytes": 18155
+        }
+      ]
+    },
+    "catalogue": {
+      "entries": 1382,
+      "changedIds": [
+        "CHR-jenkins",
+        "ENM-commando-asari",
+        "ENM-creeper-du-thorian",
+        "SPR-commando-asari-ennemi",
+        "SPR-creeper-du-thorian-ennemi",
+        "SPR-jenkins-combat",
+        "SYS-transitions-de-camera"
+      ],
+      "unchangedEntries": 1375,
+      "entryChanges": [
+        {
+          "id": "CHR-jenkins",
+          "fields": [
+            "description",
+            "evidence",
+            "implementationPaths",
+            "notes"
+          ]
+        },
+        {
+          "id": "ENM-creeper-du-thorian",
+          "fields": [
+            "evidence",
+            "implementationPaths",
+            "notes"
+          ]
+        },
+        {
+          "id": "ENM-commando-asari",
+          "fields": [
+            "evidence",
+            "implementationPaths",
+            "notes"
+          ]
+        },
+        {
+          "id": "SPR-jenkins-combat",
+          "fields": [
+            "acceptance",
+            "assetPath",
+            "description",
+            "evidence",
+            "gameKey",
+            "implementationPaths",
+            "notes"
+          ]
+        },
+        {
+          "id": "SPR-creeper-du-thorian-ennemi",
+          "fields": [
+            "acceptance",
+            "assetPath",
+            "assetStatus",
+            "description",
+            "evidence",
+            "gameKey",
+            "implementationPaths",
+            "notes",
+            "status"
+          ]
+        },
+        {
+          "id": "SPR-commando-asari-ennemi",
+          "fields": [
+            "acceptance",
+            "assetPath",
+            "assetStatus",
+            "description",
+            "evidence",
+            "gameKey",
+            "implementationPaths",
+            "notes",
+            "status"
+          ]
+        },
+        {
+          "id": "SYS-transitions-de-camera",
+          "fields": [
+            "evidence",
+            "notes"
+          ]
+        }
+      ],
+      "statusPromotions": [
+        {
+          "id": "SPR-creeper-du-thorian-ennemi",
+          "from": "Défini",
+          "to": "Prototype"
+        },
+        {
+          "id": "SPR-commando-asari-ennemi",
+          "from": "Défini",
+          "to": "Prototype"
+        }
+      ],
+      "assetStatusPromotions": [
+        {
+          "id": "SPR-creeper-du-thorian-ennemi",
+          "from": "À produire",
+          "to": "Prototype"
+        },
+        {
+          "id": "SPR-commando-asari-ennemi",
+          "from": "À produire",
+          "to": "Prototype"
+        }
+      ],
+      "integratedOrValidatedPromotions": 0,
+      "unchangedCloneIds": [
+        "ENM-clone-asari-du-thorian",
+        "EMV-clone-asari-du-thorian-apparition",
+        "EMV-clone-asari-du-thorian-controle-biotique",
+        "SPR-clone-asari-du-thorian-ennemi"
+      ],
+      "prototypeCoverageChangedKeys": [
+        "animationLimit",
+        "atlases",
+        "combatKeyPoseCount",
+        "companionCombatPoseCount",
+        "enemyCombatPoseCount",
+        "nativePNGCount",
+        "visualLimit"
+      ],
+      "otherMetadataPreserved": true,
+      "sourcesCategoriesAndCanonicalFieldsPreserved": true,
+      "coverageProof": {
+        "path": "docs/qa/me1-prologue-enemies-workbook-update.json",
+        "sha256": "9c21c71a4bc6887b41a9c6a68b1f2baff93ae0045a62828dca6767b9da044f29",
+        "bytes": 67282
+      }
+    },
+    "geometry": {
+      "zones": 9,
+      "unchangedZoneData": [
+        "normandy",
+        "eden-prime",
+        "citadel",
+        "therum",
+        "feros",
+        "noveria",
+        "virmire",
+        "ilos",
+        "citadel-finale"
+      ],
+      "unchangedOtherZones": [
+        "normandy",
+        "citadel",
+        "therum",
+        "feros",
+        "noveria",
+        "virmire",
+        "ilos",
+        "citadel-finale"
+      ],
+      "edenPOIIds": [
+        "eden-prime:arrival",
+        "eden-prime:cache",
+        "eden-prime:encounter-1",
+        "eden-prime:encounter-2",
+        "eden-prime:boss",
+        "eden-prime:objective",
+        "eden-prime:exit"
+      ],
+      "edenSceneAndNavigationPreserved": true,
+      "coordinateChanges": 0,
+      "worldRendererExactScopedReplacement": true,
+      "changedMethods": [
+        "_combatAnimationConfig",
+        "_feros",
+        "_noveria"
+      ],
+      "addedNoveriaOccluderMeshes": 12,
+      "addedFerosOccluderMeshes": 2,
+      "addedVisibilityRegistrations": 14,
+      "totalNoveriaVisibilityRegistrations": 16,
+      "totalFerosVisibilityRegistrations": 4,
+      "qualification": "World/layout/scene/navigation data sources are preserved. Only pure Jenkins context forwarding and the camera-facing Feros/Noveria pillar/light visibility registrations differ in the renderer; field geometry and progression remain unchanged."
+    },
+    "inheritedEquipment": {
+      "campaignItems": 52,
+      "documentaryChronicleItems": 224,
+      "supportedChronicleItems": 107,
+      "supportedChronicleWeapons": 79,
+      "implementationBytesPreserved": true,
+      "newEquipmentInThisLot": 0
+    },
+    "generatedUniverse": {
+      "reproducedWithoutWriting": true,
+      "recordCount": 6708,
+      "sourceCount": 454,
+      "workCount": 28,
+      "summary": {
+        "schemaVersion": 1,
+        "catalogCount": 28,
+        "recordCount": 6708,
+        "sourceCount": 454,
+        "factualCount": 1708,
+        "contextualCount": 1622,
+        "playableCount": 0,
+        "catalogDigests": {
+          "docs/content-catalog.json": "15cf43706e4d19383032be77234ccb986eb66fdb512670e10472876e3e2c8d90",
+          "docs/universe/catalogs/ME2.json": "cd9e23766eeb6a385141130dd2a32933decb7619444021e07601c7b21bb9b8e0",
+          "docs/universe/catalogs/ME3.json": "1cb08754410020f96f23ed67df70c1bba5bdc79ba82e2c8bdd4c8adcfad04dee",
+          "docs/universe/catalogs/MEA.json": "5b82ea5fefc6b4479c5a07d0d3b52032d5f0d17e7f48f0d896525f06ed62b9b1",
+          "docs/universe/catalogs/INF.json": "99f6857f2ebe22a86db5929c6fe2302d3aaa5b36157eb7e131b4b456b9afc6ec",
+          "docs/universe/catalogs/GAL.json": "6edc57e7f900c21d40ff22986ab9c00c4d2a43c44f74efed1fba33549da606f6",
+          "docs/universe/catalogs/REV.json": "a8be7e8e371b0a4f65cb15de6226bbc4dc32056a61ceb1dca8a42d7e9a2cacbe",
+          "docs/universe/catalogs/ASC.json": "f2b258e50543aaadb8f29e47917b88d35ecaad13e14eb8e62ed37f989188cb57",
+          "docs/universe/catalogs/RET.json": "667dd8c63942ffb98b255db3664c9ae413c33867ef842b820a6527d071440c64",
+          "docs/universe/catalogs/DEC.json": "e378ca023adc3787544651631093f06552233bdbe9f0c39bf713dd4babfcf18d",
+          "docs/universe/catalogs/NEX.json": "9c6592f2423434f4efc25a544918d4f0bc72cfbc0af6cbbe485bc51b27906ef0",
+          "docs/universe/catalogs/INI.json": "7d12d5943d0ea9fd87e47e5f956c866a96c6795c37fae044322b87edad5d6818",
+          "docs/universe/catalogs/ANN.json": "6291ebdd7f3a3adc4d8c70311e02776fb0befc4d1aa367e5926bba8614acf23d",
+          "docs/universe/catalogs/RED.json": "78f8edb0dc954b98327cd9b4c1cdcf56996c95f3abc338b20b219da4020a53ea",
+          "docs/universe/catalogs/EVO.json": "8d2bf1cd5d51e9e92ae17a1c1459158f584adb308064ef542895cb9ef823ff9a",
+          "docs/universe/catalogs/INV.json": "06c3cb0e49b59c09ed428d01da708f0d12811f71bd80f76573cc831848aebd70",
+          "docs/universe/catalogs/HOM.json": "30b13344debf6debc6e66956ef69c0583d2b23214e7bd30d3abebee5cc74499e",
+          "docs/universe/catalogs/FOU.json": "00f3a7c53c8fe19d56c665e91ceedec909dcacf4d357c6d4e821d803a1dd8f56",
+          "docs/universe/catalogs/INC.json": "9e57ceff9606a015dcf6eb084bf62adb04bd2835e540675d1eed24ce94e48fe6",
+          "docs/universe/catalogs/INQ.json": "14748c37209928f9e6430bdf067d090efbd0ed381145719c205f87daca139e68",
+          "docs/universe/catalogs/CONVICTION.json": "b5371291ba33fcc9c88567f60affcf18af8d27d70136a6b35dab91adb3ad6d05",
+          "docs/universe/catalogs/BLA.json": "6fedaa8a05795670544577d7ffd199406b5e4f0e737a7488cd0abd0576b7dc3c",
+          "docs/universe/catalogs/HWB.json": "5f0347a023aba0c5b63cdce5ff3483ac880be94630899d40dacbaeeb23f2c677",
+          "docs/universe/catalogs/LIB.json": "fca5389f4bb517921bb8146d2167d9b5493c6a2f45e0fc75dc6dd845fa262966",
+          "docs/universe/catalogs/DIS.json": "3a754f8e26f2815085eec8a5ad91022b27f1b08fd28d9a154b07907ff46cc63b",
+          "docs/universe/catalogs/PL.json": "9f124f811da5214fa91614e8d9e9ae447d1640fc609de90a7b7ed3e65d30c74a",
+          "docs/universe/catalogs/ME4.json": "3d1147f3a5d3badb94ca093330f4b4e03a59f4a9e4004246c093f5ce82419b11",
+          "docs/universe/catalogs/CUT.json": "da38577c736e863ecef924c426c51d4070b8e85d5454716fc7721edbd3c24081"
+        }
+      },
+      "changedRows": [
+        {
+          "id": "CHR-jenkins",
+          "tupleFields": [
+            8,
+            13
+          ]
+        },
+        {
+          "id": "ENM-creeper-du-thorian",
+          "tupleFields": [
+            13
+          ]
+        },
+        {
+          "id": "ENM-commando-asari",
+          "tupleFields": [
+            13
+          ]
+        },
+        {
+          "id": "SPR-jenkins-combat",
+          "tupleFields": [
+            8,
+            13
+          ]
+        },
+        {
+          "id": "SPR-creeper-du-thorian-ennemi",
+          "tupleFields": [
+            5,
+            8,
+            13
+          ]
+        },
+        {
+          "id": "SPR-commando-asari-ennemi",
+          "tupleFields": [
+            5,
+            8,
+            13
+          ]
+        },
+        {
+          "id": "SYS-transitions-de-camera",
+          "tupleFields": [
+            13
+          ]
+        }
+      ],
+      "untouchedRows": 6701,
+      "allowedTupleFieldMeaning": {
+        "5": "status",
+        "8": "description",
+        "13": "notes"
+      },
+      "qualification": "The existing generator is invoked as its side-effect-free data function only. No build CLI or output writer is executed."
+    }
+  },
+  "validation": {
+    "fullNodeTests": 806,
+    "targetedNativeTests": 29,
+    "compiledModules": 83,
+    "compiledJavaScriptBundles": 9,
+    "compiledPNG": 34,
+    "frozenSources": 235,
+    "currentHeldPoseCases": 12,
+    "currentNativeEventSequences": 4,
+    "currentForeignContextClosures": 18,
+    "currentNarrativeClosures": 3,
+    "earlierFamilyAimRegressions": 12,
+    "developmentPublicCaptures": 7,
+    "productionPublicCaptures": 9,
+    "productionNativeOrders": 11,
+    "developmentDownloadedSaves": 4,
+    "productionDownloadedSaves": 5,
+    "finalRuntimeCapturesActuallyOpened": 20,
+    "allVisualCapturesActuallyOpened": 37,
+    "workbookPanelsActuallyOpened": 30,
+    "newTestBuildBrowserOrWorkbookRunForSummary": false
+  },
+  "productionEvidence": {
+    "report": {
+      "path": "docs/qa/me1-prologue-enemies-production-report.json",
+      "bytes": 64201,
+      "sha256": "3e987aa384e591a78243484e3df9463394092e4bfb963ef1e0e37b1cbbcf4131"
+    },
+    "buildPreflight": {
+      "path": "docs/qa/me1-prologue-enemies-production-build-gate.json",
+      "bytes": 435,
+      "sha256": "3b20324a023079e06db985a07a708e0c386442976dd3474fabc4081b5e7050c3"
+    },
+    "uninterruptedPassingRun": true,
+    "nativeFirstEdenVictory": {
+      "nativeVictoryPlayed": true,
+      "additionalCommands": 8,
+      "claimedOnce": true,
+      "jenkinsLost": true,
+      "availableParty": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "ashleyRecruited": true,
+      "exactReloadRestore": true,
+      "rewardXP": 65,
+      "rewardCredits": 85,
+      "chronology": "The retained condensed campaign loses Jenkins when the first Eden victory is claimed. This is not represented as his original-game arrival timing."
+    },
+    "duplicateVictoryRefusedByNativeValidator": true,
+    "secondVictoryClaimAttemptedInBrowser": false,
+    "ferosEncounter": {
+      "enemyIDs": [
+        "creeper-0",
+        "creeper-1",
+        "asari-2"
+      ],
+      "nativeShotPlayed": true,
+      "exactPrecombatRestore": true,
+      "noVictoryRewardClaimed": true,
+      "genericAsariOnly": true
+    },
+    "preparedFixtureOrigins": [
+      {
+        "path": "docs/qa/me1-prologue-enemies-production-eden-fixture.json",
+        "bytes": 2504,
+        "sha256": "e1e248545b83c96e908d9c5627b3f023f59a04ff08fceccf61834de19e91f448",
+        "origin": "Node-native newGame, explicit briefed flag/first-encounter position. No preceding encounter is won and Jenkins remains a legal initial party member.",
+        "zone": "eden-prime",
+        "party": [
+          "shepard",
+          "kaidan",
+          "jenkins"
+        ],
+        "position": {
+          "x": -14,
+          "z": 12
+        },
+        "importedViaPublicChooser": true
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-production-feros-fixture.json",
+        "bytes": 3262,
+        "sha256": "bcf16fcf736bcc4a264659ca8736da27bccf84301a3e134ec668d10ddd8c13a1",
+        "origin": "Node-native earlier Eden/Citadel completion, recruitment and Feros encounter1 prepare this encounter. Those previous victories are not played here.",
+        "zone": "feros",
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "position": {
+          "x": -7,
+          "z": -5
+        },
+        "importedViaPublicChooser": true
+      },
+      {
+        "path": "docs/qa/eden-immersion-production-rachni-precombat-save.json",
+        "bytes": 3288,
+        "sha256": "dc988313162656f3c336d689725144ab2ac99ce99a71675e797f4ddd98c5eabe",
+        "origin": "Unchanged actual public export from the earlier explicitly prepared campaign fixture; this run compares the same native arena, without playing its prior story.",
+        "zone": "noveria",
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "position": {
+          "x": -7,
+          "z": -5
+        },
+        "importedViaPublicChooser": true
+      }
+    ],
+    "reloads": [
+      {
+        "method": "Real page.reload followed by public Continuer",
+        "responseStatus": 200
+      },
+      {
+        "method": "Real page.reload followed by public Continuer",
+        "responseStatus": 200
+      }
+    ],
+    "fullConsoleClean": false,
+    "consoleObservations": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4245/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4245/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4245/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "resourceWarnings": []
+  },
+  "workbook": {
+    "deliveries": {
+      "docs/content-catalog.json": "15cf43706e4d19383032be77234ccb986eb66fdb512670e10472876e3e2c8d90",
+      "docs/Mass_Effect_Relay_Chronicles_Production.xlsx": "113fa42f4ce02166de390994b43e0c24355ba2a5eee9ad217a4d5d0bb00d9863",
+      "public/assets/manifest.json": "7f45501d7ba6c9744285d3378ad9b32f4b8a934cb892f33c0cea07d8c1a03f79"
+    },
+    "changedIds": [
+      "SPR-jenkins-combat",
+      "CHR-jenkins",
+      "SPR-creeper-du-thorian-ennemi",
+      "ENM-creeper-du-thorian",
+      "SPR-commando-asari-ennemi",
+      "ENM-commando-asari",
+      "SYS-transitions-de-camera"
+    ],
+    "changedWorkbookCells": 24,
+    "changedTextCells": 20,
+    "changedStatusCells": 4,
+    "changedCatalogueFields": 37,
+    "changedMetadataFields": 13,
+    "prototypeCoverageKeysChanged": 7,
+    "prototypePromotions": 2,
+    "assetPrototypePromotions": 2,
+    "integratedOrValidatedPromotions": 0,
+    "otherEntriesUnchanged": 1375,
+    "nativeChecks": {
+      "sheets": 28,
+      "tables": 26,
+      "formulas": 274,
+      "dataValidations": 130,
+      "conditionalRules": 130,
+      "catalogueCells": 23494,
+      "xmlParts": 87,
+      "recalculatedFormulaCaches": {
+        "C30": 34,
+        "D30": 48,
+        "C37": 1026,
+        "D37": 350
+      },
+      "differentialStyleDefinitionsBefore": 780,
+      "differentialStyleDefinitionsAfter": 910,
+      "referencedDifferentialStyles": 130,
+      "unreferencedDifferentialStylesAfterExport": 780
+    },
+    "actualVisualReview": {
+      "record": "docs/qa/me1-prologue-enemies-workbook-visual-review-record.json",
+      "actuallyOpenedImages": 30,
+      "rowPanels": 28,
+      "dashboardPanels": 2,
+      "result": "PASS: all30final native Artifact Tool panels were actually opened; all targeted text, paths, IDs, statuses and dashboard totals are readable without cropping."
+    },
+    "limits": [
+      "Only the30targeted workbook panels were visually opened. Open XML checks compare all23,494catalogue cells and preserve native structures/effective formats; Microsoft Excel was not run.",
+      "Only the two enemy SPR records become Prototype. Their ENM parent records retain their content and asset statuses. Separate clone-asari/Thorian-phase records remain untouched.",
+      "Jenkins retains his temporary prologue availability and irreversible narrative loss. A combat KO drawing is not a resurrection, recruitment or new power.",
+      "Promotion gates use source-bound native fixtures, development public controls and actual image review; the separately collected final production journey is required by the root delivery before commit.",
+      "Twelve fixed drawings are not complete animation cycles, exact costumes, original movement or certified1:1 body references. The25armour/79weapon/3mod supported equipment counts are inherited and unchanged."
+    ],
+    "mainStatusCounts": {
+      "Prototype": 350,
+      "Défini": 1026,
+      "Validé": 3,
+      "Intégré": 3
+    },
+    "universeStatusCounts": {
+      "Prototype": 641,
+      "Défini": 6061,
+      "Validé": 3,
+      "Intégré": 3
+    }
+  },
+  "historicalEvidence": {
+    "baseline": {
+      "path": "docs/qa/me1-prologue-enemies-before-report.json",
+      "bytes": 26741,
+      "sha256": "52f6fcffdd3915e1b50c3c64613b347b6d9c7cba214525ade175769683f53287"
+    },
+    "baselineSourceArchive": [
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/world.js",
+        "originalPath": "src/world.js",
+        "sha256": "5351a9d65384b71a01a5f01ba57d5efdc9834ad40457f4b3eda84cda75c2127a",
+        "bytes": 107730
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/world-data.js",
+        "originalPath": "src/world-data.js",
+        "sha256": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf",
+        "bytes": 6135
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/eden-scene.js",
+        "originalPath": "src/eden-scene.js",
+        "sha256": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948",
+        "bytes": 11519
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/level-layout-data.js",
+        "originalPath": "src/level-layout-data.js",
+        "sha256": "318d0df18bf65f804d6ad2a4737ef80e7b295d127c11924bc93faac256832b07",
+        "bytes": 9002
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/main.js",
+        "originalPath": "src/main.js",
+        "sha256": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6",
+        "bytes": 106425
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/local-map.js",
+        "originalPath": "src/local-map.js",
+        "sha256": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+        "bytes": 3990
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/local-map.css",
+        "originalPath": "src/local-map.css",
+        "sha256": "c6e9ca6ef1ad5870365faa8bc008698ef277287ed78d0d6bda7f77bcecf7a67a",
+        "bytes": 2780
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/style.css",
+        "originalPath": "src/style.css",
+        "sha256": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+        "bytes": 27783
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/level-map-render.js",
+        "originalPath": "src/level-map-render.js",
+        "sha256": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+        "bytes": 3436
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/state.js",
+        "originalPath": "src/state.js",
+        "sha256": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+        "bytes": 21867
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/combat.js",
+        "originalPath": "src/combat.js",
+        "sha256": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+        "bytes": 70738
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/game-data.js",
+        "originalPath": "src/game-data.js",
+        "sha256": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+        "bytes": 15942
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/enemy-animation-data.js",
+        "originalPath": "src/enemy-animation-data.js",
+        "sha256": "4be363caf9ffd481c71ddf893152c3ac5cfe403e24b719f32c759c935fb169e5",
+        "bytes": 3716
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/src/companion-animation-data.js",
+        "originalPath": "src/companion-animation-data.js",
+        "sha256": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+        "bytes": 3908
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/vite.config.js",
+        "originalPath": "vite.config.js",
+        "sha256": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+        "bytes": 2223
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/scripts/me1-prologue-enemies-before.mjs",
+        "originalPath": "scripts/me1-prologue-enemies-before.mjs",
+        "sha256": "af665721c4efd3ec6c6d563a8a13a6b2ec320924ade64bd801b14a4cf43b5762",
+        "bytes": 22078
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/public/assets/enemy-rachni-combat.png",
+        "originalPath": "public/assets/enemy-rachni-combat.png",
+        "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+        "bytes": 2234953
+      },
+      {
+        "path": "docs/qa/me1-prologue-enemies-before-source/public/assets/enemy-rachni-animation.json",
+        "originalPath": "public/assets/enemy-rachni-animation.json",
+        "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1",
+        "bytes": 2255
+      }
+    ],
+    "reusedBuild": {
+      "report": "docs/qa/eden-occlusion-build-report.json",
+      "sha256": "b3f535270bf4a69b6eb72af1cbea245064f55915dd42906737a84e58013841e0",
+      "freshBuildPerformed": false,
+      "acceptedBaselineCommit": "d9d2208bff463d93f24a7e74b1ea1b9cd51fdf40",
+      "checkedSources": 216,
+      "checkedArtifacts": 61,
+      "qualification": "The two newer main commits add AI-tooling documentation only; executed game source bytes and every dist file are checked against the prior accepted build."
+    },
+    "baselineCommandQualification": {
+      "rawReportPreserved": true,
+      "issue": "The reused collector command.environment labels its baseline as EDEN_BASE_MAIN; this fresh collector actually reads ME1_BASE_MAIN. The raw report and executed runner are preserved byte-exact.",
+      "actualCommand": "ME1_BASE_MAIN=d19197ff43facd066abcc6ff4611e0ce0148609b GAME_URL=http://127.0.0.1:4244 PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium node scripts/me1-prologue-enemies-before.mjs"
+    },
+    "initialCandidateSourceArchive": {
+      "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/snapshot-manifest.json",
+      "sha256": "2b77ab96ebe70a1ac26ef67e0eb1f9212af20ca14509aa865ebed0e7ecbc1f95",
+      "bytes": 3811,
+      "reason": "Accepted first-candidate Eden/Thorian-family QA remains historical and unchanged. A subsequent bounded Feros foreground-post correction changes world.js only; final-candidate proofs use new prefixes. Existing captures remain at their original immutable paths.",
+      "files": [
+        {
+          "originalPath": "src/world.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/src/world.js",
+          "sha256": "5eea87ed7fbb6922b15504aed31060be25c3a1a339c87afafd97cd065e922405",
+          "bytes": 108090
+        },
+        {
+          "originalPath": "src/companion-animation-data.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/src/companion-animation-data.js",
+          "sha256": "8e459efefc9d3a045457bb46ff9914ed95d77c440352d548b521625fa044cda0",
+          "bytes": 4288
+        },
+        {
+          "originalPath": "src/enemy-animation-data.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/src/enemy-animation-data.js",
+          "sha256": "7fe66817eb146f4c34893a76c16932378d00bdc2039ed8f997cbbe452c9110da",
+          "bytes": 3772
+        },
+        {
+          "originalPath": "vite.config.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/vite.config.js",
+          "sha256": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+          "bytes": 2223
+        },
+        {
+          "originalPath": "scripts/me1-prologue-enemies-public.mjs",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/scripts/me1-prologue-enemies-public.mjs",
+          "sha256": "d194d92e003033b23150393f8f32fb1da779d464add233cd90e382ac3c0670ad",
+          "bytes": 24753
+        },
+        {
+          "originalPath": "scripts/me1-prologue-enemies-sprites.mjs",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/scripts/me1-prologue-enemies-sprites.mjs",
+          "sha256": "b4293e7c7fd2ed058a914f4731377241d93ddd1988acf055349e2ad911453221",
+          "bytes": 20415
+        },
+        {
+          "originalPath": "scripts/collect-me1-prologue-enemies-sprites.mjs",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/scripts/collect-me1-prologue-enemies-sprites.mjs",
+          "sha256": "ad898ff5525a75b0897acbb935a25ec9f4b55bee9741fc6b9d1f162f49e83530",
+          "bytes": 5875
+        },
+        {
+          "originalPath": "docs/qa/me1-prologue-enemies-public-development-report.json",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/docs/qa/me1-prologue-enemies-public-development-report.json",
+          "sha256": "17b93b708ee9180a33983639162e3727ab3b343df2f56adcc8c92253c849f811",
+          "bytes": 29210
+        },
+        {
+          "originalPath": "docs/qa/me1-prologue-enemies-sprites-report.json",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/docs/qa/me1-prologue-enemies-sprites-report.json",
+          "sha256": "a339d23b3ee2e54e838799aca0d7b1fef36b35b5229d94d3d3381f6b25037288",
+          "bytes": 22079
+        },
+        {
+          "originalPath": "docs/qa/me1-prologue-enemies-sprites-events-report.json",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/docs/qa/me1-prologue-enemies-sprites-events-report.json",
+          "sha256": "e58df4a70295d1b7af5d247618043eba0cb4a0c7ba385038988dc2add02a78fa",
+          "bytes": 14735
+        },
+        {
+          "originalPath": "docs/qa/me1-prologue-enemies-sprites-summary.json",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/docs/qa/me1-prologue-enemies-sprites-summary.json",
+          "sha256": "5d1c000b95d0833dd6ce1f07dd3a10b6a3034559bde7d931586edbec05f22fff",
+          "bytes": 29107
+        },
+        {
+          "originalPath": "docs/qa/me1-prologue-enemies-runtime-report.json",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/docs/qa/me1-prologue-enemies-runtime-report.json",
+          "sha256": "3636335248eee95a978ad9d1e2762208b361036361d3e19d6277ddc147ef4b22",
+          "bytes": 6997
+        }
+      ]
+    },
+    "initialCandidateRuntimeArchive": {
+      "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/snapshot-manifest.json",
+      "sha256": "844222ed39d45965a85aa7721ab6e2f6829cac9c699bf85ca11cdce093617aec",
+      "bytes": 1981,
+      "reason": "Supplement to the immutable12-file pre-Feros snapshot: all executed targeted runtime tests, their verifier and raw28-test output before the Feros correction.",
+      "files": [
+        {
+          "originalPath": "scripts/verify-me1-prologue-enemies-runtime.mjs",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/scripts/verify-me1-prologue-enemies-runtime.mjs",
+          "sha256": "c3dc65483f33ee9efe934b3e1004d01b208f07cfff3f8ec247a8d618a223ec1b",
+          "bytes": 6946
+        },
+        {
+          "originalPath": "tests/companion-combat-world.test.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/tests/companion-combat-world.test.js",
+          "sha256": "1d564864a2236c3cf5796b7e9144ed15b200a76c5066b7b6b2db7b53055c594a",
+          "bytes": 22883
+        },
+        {
+          "originalPath": "tests/me1-enemy-poses.test.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/tests/me1-enemy-poses.test.js",
+          "sha256": "e8414d4e53fe4187641f7fd7f2dee4664e5853d35d11fb5b59697175ec7861f6",
+          "bytes": 18307
+        },
+        {
+          "originalPath": "tests/noveria-occlusion.test.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/tests/noveria-occlusion.test.js",
+          "sha256": "d74926d9cc1b29902e82e16c30dd72613d40abf083ba20437973dcfe15e0c72b",
+          "bytes": 1614
+        },
+        {
+          "originalPath": "tests/me1-prologue-enemies.test.js",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/tests/me1-prologue-enemies.test.js",
+          "sha256": "3c74f7e9bdaf4d2ea7dea7e72bd5a7c469badde71d93b679f08126a30077806a",
+          "bytes": 8617
+        },
+        {
+          "originalPath": "docs/qa/me1-prologue-enemies-runtime-output.txt",
+          "path": "docs/qa/me1-prologue-enemies-before-feros-fix-runtime-sources/docs/qa/me1-prologue-enemies-runtime-output.txt",
+          "sha256": "81079a8849e45b9c0e44a326827286db36920cf354971d9aed0dce39ed3fdfab",
+          "bytes": 3500
+        }
+      ]
+    },
+    "initialManifestDrafts": {
+      "path": "docs/qa/me1-prologue-enemies-manifest-pre-feros-snapshot.json",
+      "sha256": "e10cd4ac01b89b8348f06502e8067e03ce538a11a3ac5212f95be43e6bbc267f",
+      "bytes": 1008,
+      "reason": "Historical provisional native-manifest metadata before the bounded Feros visibility correction. Not a gameplay or current-world integration gate. The retained initial manifest also referenced the initial sprite composite; the final candidate will reference the current final gate.",
+      "files": [
+        {
+          "original": "docs/qa/me1-prologue-enemies-manifest-update.json",
+          "snapshot": "docs/qa/me1-prologue-enemies-manifest-pre-feros-update.json",
+          "sha256": "fcddd4abd70dd95652d9edf51b54cd464fd529c68ade28a72c1f811a49c0694b"
+        },
+        {
+          "original": "docs/qa/me1-prologue-enemies-manifest-candidate.json",
+          "snapshot": "docs/qa/me1-prologue-enemies-manifest-pre-feros-candidate.json",
+          "sha256": "17946d108e14aec3fe67ddcc7fa959c7f1899f4f7822a672476f2810018a6121"
+        }
+      ]
+    },
+    "initialRuntimeTests": 28,
+    "initialSpriteComposite": {
+      "path": "docs/qa/me1-prologue-enemies-sprites-summary.json",
+      "bytes": 29107,
+      "sha256": "5d1c000b95d0833dd6ce1f07dd3a10b6a3034559bde7d931586edbec05f22fff"
+    },
+    "initialSpriteAttempt": {
+      "path": "docs/qa/me1-prologue-enemies-sprites-attempt1/snapshot-manifest.json",
+      "sha256": "514f6289a215cae951f7c4e59bffa301f8d949cdb9a895f9a1daab409f5d2483",
+      "bytes": 2376,
+      "reason": "Twelve held poses passed. Native event collector then reused the target Shepard as shooter after asari throw had natively staggered him. This is a test-input error; subsequent native-only collection uses unaffected Jenkins and leaves the engine unchanged.",
+      "files": [
+        {
+          "original": "docs/qa/me1-prologue-enemies-sprites-report.json",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites-report.json",
+          "sha256": "a339d23b3ee2e54e838799aca0d7b1fef36b35b5229d94d3d3381f6b25037288",
+          "bytes": 22079
+        },
+        {
+          "original": "scripts/me1-prologue-enemies-sprites.mjs",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites.mjs",
+          "sha256": "2464e69e213616df5796a7d8e94b8763f8dd670965ea9eacb722ebd0670afb0c",
+          "bytes": 20194
+        },
+        {
+          "original": "docs/screenshots/me1-prologue-enemies-sprites-aim.png",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites-aim.png",
+          "sha256": "90c0481741de106099762095e93f7708bf0869cdcce7bf1bbb7a39baffb1332a",
+          "bytes": 1491069
+        },
+        {
+          "original": "docs/screenshots/me1-prologue-enemies-sprites-power.png",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites-power.png",
+          "sha256": "98c44554e34b8f18e558f1c9b7ec8d6f43eb87f96cb54b3307aac98879bead6b",
+          "bytes": 1492156
+        },
+        {
+          "original": "docs/screenshots/me1-prologue-enemies-sprites-hit.png",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites-hit.png",
+          "sha256": "35afb191f8a232d98e05c941e1ba9347cd369e28d3ca3bf38c4bb59615fbff1c",
+          "bytes": 1491523
+        },
+        {
+          "original": "docs/screenshots/me1-prologue-enemies-sprites-down.png",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites-down.png",
+          "sha256": "86ab2aa3e553275b2d2a14bd210d7704baaa55d5984725056ad2c938bf82188c",
+          "bytes": 1486981
+        },
+        {
+          "original": "docs/screenshots/me1-prologue-enemies-sprites-failure.png",
+          "snapshot": "docs/qa/me1-prologue-enemies-sprites-attempt1/me1-prologue-enemies-sprites-failure.png",
+          "sha256": "b4095faa57407203e94f3f4cf0ea237f1835b57fe727145c9a2cfd7c9e95a5e6",
+          "bytes": 1496589
+        }
+      ]
+    },
+    "spriteCollectorFailure": {
+      "report": "docs/qa/me1-prologue-enemies-sprites-report.json",
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(r.actionOK && r.liveDamageOK && r.koOK && r.powersUnchanged && r.rendererPreservesBattle)\n\n    at file:///workspace/Mass-Effect-Relay-Chronicles/scripts/me1-prologue-enemies-sprites.mjs:129:49",
+      "correctedTestInput": "The unaffected Jenkins supplies the native damage/KO witness after asari throw; the battle engine and artwork remain unchanged."
+    },
+    "initialDevelopment": {
+      "path": "docs/qa/me1-prologue-enemies-public-development-report.json",
+      "bytes": 29210,
+      "sha256": "17b93b708ee9180a33983639162e3727ab3b343df2f56adcc8c92253c849f811"
+    },
+    "initialVisual": {
+      "path": "docs/qa/me1-prologue-enemies-development-initial-visual-review.json",
+      "bytes": 21954,
+      "sha256": "2bacc046e93ef9941ff86e53f322d406b6be1805de0f95e7552926820e160e13"
+    },
+    "qualification": "The original raw sprite collector remains negative; its12 held states were combined with a later native-only run and explicitly labelled composite. Those two executions and the initial development journey belong to the archived pre-Feros candidate. Fresh current-candidate held/development/production gates are verified separately. The initial development collector used production wording in screenshot metadata and an inapplicable dist-frozen label; its actual buildKind was development and its empty buildFiles are retained, without claiming a production build."
+  },
+  "visualReview": {
+    "report": {
+      "path": "docs/qa/me1-prologue-enemies-visual-review.json",
+      "bytes": 35285,
+      "sha256": "fd0cd491c180119bb06d95cf44fc0ee3821bb4c896fa37a032391582933efb64"
+    },
+    "observations": [
+      {
+        "category": "art-native",
+        "finding": "The three new families preserve coherent identities across complete fixed aim/action/hit/KO drawings: charcoal helmeted Alliance Jenkins, green-grey fungal creeper and blue black/violet generic asari. Actual native and110px Jenkins previews were opened; no cropped limb, muzzle or neighboring-cell fragment was seen."
+      },
+      {
+        "category": "historical-before",
+        "finding": "The first current-main Noveria desktop battle still hid part of the central rachni behind a vertical pillar, while field supports were visible. Those two actual public baseline frames remain separate from the later renderer."
+      },
+      {
+        "category": "historical-development",
+        "finding": "The initial renderer exposed Noveria desktop bodies but retained a Feros foreground post masking the generic asari left arm/weapon/body. The frozen initial review records this reserve and the separate initial sprite collector failure; those bytes are preserved."
+      },
+      {
+        "category": "current-held",
+        "finding": "All twelve current fixed states were opened from the final WorldView in four fresh captures. The three living silhouettes and ground contacts are coherent, with distinct Jenkins tactical hand, creeper reach and asari action gesture. Down outlines remain present but low in contrast because the existing KO opacity is retained."
+      },
+      {
+        "category": "current-development",
+        "finding": "The final development Feros encounter and native-shot views expose the generic asari full body, left arm and compact weapon after the two foreground posts yield to combat. The Noveria desktop battle exposes all three rachni; the matching exploration view retains its structure. These current views substantiate the two scoped desktop visibility improvements."
+      },
+      {
+        "category": "current-production",
+        "finding": "The final compiled application shows the three-member early-Eden roster including Richard Jenkins, his complete standing pose and his native Cover action. The blue cover effect is rendered separately from the fixed PNG and does not give Jenkins a biotic ability."
+      },
+      {
+        "category": "current-production",
+        "finding": "The actual native victory panel shows two neutralized enemies,13executed actions and the displayed65XP/85credits. The subsequent Kaidan dialogue states that Jenkins did not survive and Ashley accompanies the group; the field visibly shows Ashley replacing the helmeted Jenkins. Exact party/loss/reward persistence after reload is attributed to the separately validated public exports, not inferred from pixels alone."
+      },
+      {
+        "category": "current-production",
+        "finding": "Both Feros production views show two complete creepers and the generic asari with its previously obscured left arm/weapon now visible. The native-shot view shows the target impact and combat log without restoring the foreground post obstruction."
+      },
+      {
+        "category": "current-production",
+        "finding": "The Noveria production field retains its spans and supports, while its desktop battle exposes the party and all three rachni. The390x844 production view keeps party/action/target panels readable and places the rightmost rachni very close to the viewport edge. The earlier current-development mobile crop remains a framing reserve; complete mobile silhouette coverage is not generalized."
+      }
+    ],
+    "residualFindings": [
+      {
+        "kind": "low-ko-contrast",
+        "severity": "low",
+        "status": "retained-prototype-reserve",
+        "paths": [
+          "docs/screenshots/me1-prologue-enemies-sprites-final-down.png"
+        ],
+        "finding": "The three KO bodies remain faint against dirt/grass in the held fixture. No opacity or source image cleanup is applied."
+      },
+      {
+        "kind": "mobile-right-edge-framing",
+        "severity": "low",
+        "status": "retained-prototype-reserve",
+        "paths": [
+          "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-mobile-battle.png"
+        ],
+        "productionComparisonPath": "docs/screenshots/me1-prologue-enemies-production-noveria-mobile-battle.png",
+        "finding": "The current development mobile frame clips a rightmost rachni extremity; the production frame remains tightly framed at that edge. Full silhouettes throughout mobile timing/interaction states are not certified."
+      }
+    ],
+    "limitations": [
+      "A fixed four-drawing family is not a full animation cycle, all directions, canonical costume or exact original equipment geometry. No new direct primary-body likeness comparison was performed by this reviewer; all three remain Prototype.",
+      "Jenkins uses his existing Cover command and an empty native power list. The public run plays and claims the retained condensed first-Eden victory; this prototype loss timing is not presented as the original-game arrival/drone scene. Combat KO and narrative loss remain distinct.",
+      "The generic asari key is reused across the condensed campaign. These drawings do not validate a Thorian clone identity, summoning/disappearance phases, Benezia or a new enemy kit.",
+      "Feros earlier progression/recruitment and the Noveria historical save are declared prepared fixtures. Their previous victories and the entire campaign are not presented as played by this production run.",
+      "The Noveria field/combat structure is actually seen; Feros exploration restoration is covered by separate source/runtime tests, not by an additional field screenshot in these visual proofs.",
+      "The390px layout inspection uses Chromium, not a physical phone. Complete mobile framing, hardware FPS, controller support and native Windows execution remain unverified.",
+      "Workbook native preservation and its30targeted panels are reviewed separately by the workbook owner; they are not counted among these37game/artwork capture files.",
+      "Final local production verification is separate from a future GitHub/Vercel deployment. No remote runtime or packaged executable launch is certified by these captures."
+    ]
+  },
+  "limitations": [
+    "Sprites and ATB remain an authored adaptation. Four fixed drawings per family do not establish full cycles, additional directions, exact original bodies, equipment geometry or1:1 fidelity.",
+    "The generic asari profile is reused by the condensed campaign. The distinct Thorian clone records and summon/disappearance phases remain unfinished.",
+    "The real production victory validates the retained prototype timing: Jenkins is lost when the first Eden victory is claimed. It does not replay the original scripted drone death or the earlier Normandy/landing journey.",
+    "Feros and Noveria use explicit valid prepared saves. Their previous story victories and recruitment are not represented as played in Chromium; Feros shot/restore does not claim a new victory or reward.",
+    "The held renderer fixture explicitly prepares timing, shields and one-health KO witnesses. It is separate from natural public actions and ordinary campaign statistics.",
+    "KO contrast and mobile framing retain the capture-specific reserves in the final visual review. A390px software-WebGL viewport is not physical-phone, hardware-FPS or controller certification.",
+    "Workbook panels were visually inspected through the available rendering tool and native XML preservation checks. Microsoft Excel and the packaged Windows game were not launched here.",
+    "Historical evidence remains immutable and phase-bound. A composite collector does not become a fresh uninterrupted passing run, and old world hashes are not current-source results.",
+    "The final local HTTP production build is verified. Vercel deployment and remote application state require their separate service observations."
+  ],
+  "aggregationTool": {
+    "path": "scripts/summarize-me1-prologue-enemies.mjs",
+    "sha256": "e57aef75ba0ca07ad440c562ef0a7472131dc40c29b6da76e407765e4fe20a5a"
+  },
+  "verifiedFileCount": 2496,
+  "proofs": {
+    "native": {
+      "path": "docs/qa/me1-prologue-enemies-native-report.json",
+      "bytes": 48322,
+      "sha256": "ea48ccfe1faced09df691ca719d0d4e855640963ba2528d88575377bc10b1230"
+    },
+    "unit": {
+      "path": "docs/qa/me1-prologue-enemies-unit-report.json",
+      "bytes": 24959,
+      "sha256": "ca569034c39ed7fccd89c920aa624ef0f0c390071cd0066baeced938c2cf2bbc"
+    },
+    "build": {
+      "path": "docs/qa/me1-prologue-enemies-build-report.json",
+      "bytes": 36518,
+      "sha256": "f74e838d409e4e50c846faddf0d48e5d7f75ac4770bf61da08de77450cddb9e4"
+    },
+    "runtime-final": {
+      "path": "docs/qa/me1-prologue-enemies-runtime-final-report.json",
+      "bytes": 7817,
+      "sha256": "f6540c765778e8d6d4351388af8449da4496c662c67bff948beeb1a034acb6b2"
+    },
+    "sprites-final": {
+      "path": "docs/qa/me1-prologue-enemies-sprites-final-report.json",
+      "bytes": 27073,
+      "sha256": "4c681a8e5ad420828c2f31eb53f40db2ff864ab8de247265e9eadaa8b670e6ce"
+    },
+    "development-final": {
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-report.json",
+      "bytes": 29962,
+      "sha256": "838fa3948f9d12b172d0330c25093e1bf56bab9af45f897198edece450ab41ab"
+    },
+    "development-visual": {
+      "path": "docs/qa/me1-prologue-enemies-development-visual-review.json",
+      "bytes": 21103,
+      "sha256": "3a0dc8484d19786394654ad15756ecf84222c765177509e50ae3f309b8fb0af7"
+    },
+    "production": {
+      "path": "docs/qa/me1-prologue-enemies-production-report.json",
+      "bytes": 64201,
+      "sha256": "3e987aa384e591a78243484e3df9463394092e4bfb963ef1e0e37b1cbbcf4131"
+    },
+    "production-build-gate": {
+      "path": "docs/qa/me1-prologue-enemies-production-build-gate.json",
+      "bytes": 435,
+      "sha256": "3b20324a023079e06db985a07a708e0c386442976dd3474fabc4081b5e7050c3"
+    },
+    "visual-final": {
+      "path": "docs/qa/me1-prologue-enemies-visual-review.json",
+      "bytes": 35285,
+      "sha256": "fd0cd491c180119bb06d95cf44fc0ee3821bb4c896fa37a032391582933efb64"
+    },
+    "art-jenkins": {
+      "path": "docs/qa/me1-prologue-enemies-jenkins-art.json",
+      "bytes": 9866,
+      "sha256": "b287bdebea9ccd89ec1164b689c090838d5fb4c5db00e1f8fd3f4b5a36d2b1a4"
+    },
+    "art-creeper": {
+      "path": "docs/qa/me1-prologue-enemies-creeper-art.json",
+      "bytes": 6697,
+      "sha256": "36380e10f4ada52fdb3036470f2406a5ca84b5020b3cc5013ad1efb4bca7f035"
+    },
+    "art-asari": {
+      "path": "docs/qa/me1-prologue-enemies-asari-art.json",
+      "bytes": 7321,
+      "sha256": "2bf5ecd90e851dc1f376bb71481856b5934cd0cafc202b02da06b2506c13038a"
+    },
+    "before": {
+      "path": "docs/qa/me1-prologue-enemies-before-report.json",
+      "bytes": 26741,
+      "sha256": "52f6fcffdd3915e1b50c3c64613b347b6d9c7cba214525ade175769683f53287"
+    },
+    "before-visual": {
+      "path": "docs/qa/me1-prologue-enemies-before-visual-review.json",
+      "bytes": 2587,
+      "sha256": "30e17854b7adcea9063a9b0de236dc410138882e9ab8d9a3b8fa513cf9616b5c"
+    },
+    "runtime-initial": {
+      "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/docs/qa/me1-prologue-enemies-runtime-report.json",
+      "bytes": 6997,
+      "sha256": "3636335248eee95a978ad9d1e2762208b361036361d3e19d6277ddc147ef4b22"
+    },
+    "sprites-initial-composite": {
+      "path": "docs/qa/me1-prologue-enemies-sprites-summary.json",
+      "bytes": 29107,
+      "sha256": "5d1c000b95d0833dd6ce1f07dd3a10b6a3034559bde7d931586edbec05f22fff"
+    },
+    "sprites-initial-raw": {
+      "path": "docs/qa/me1-prologue-enemies-sprites-report.json",
+      "bytes": 22079,
+      "sha256": "a339d23b3ee2e54e838799aca0d7b1fef36b35b5229d94d3d3381f6b25037288"
+    },
+    "sprites-initial-events": {
+      "path": "docs/qa/me1-prologue-enemies-sprites-events-report.json",
+      "bytes": 14735,
+      "sha256": "e58df4a70295d1b7af5d247618043eba0cb4a0c7ba385038988dc2add02a78fa"
+    },
+    "development-initial": {
+      "path": "docs/qa/me1-prologue-enemies-public-development-report.json",
+      "bytes": 29210,
+      "sha256": "17b93b708ee9180a33983639162e3727ab3b343df2f56adcc8c92253c849f811"
+    },
+    "development-initial-visual": {
+      "path": "docs/qa/me1-prologue-enemies-development-initial-visual-review.json",
+      "bytes": 21954,
+      "sha256": "2bacc046e93ef9941ff86e53f322d406b6be1805de0f95e7552926820e160e13"
+    },
+    "workbook-update": {
+      "path": "docs/qa/me1-prologue-enemies-workbook-update.json",
+      "bytes": 67282,
+      "sha256": "9c21c71a4bc6887b41a9c6a68b1f2baff93ae0045a62828dca6767b9da044f29"
+    },
+    "manifest-current": {
+      "path": "docs/qa/me1-prologue-enemies-manifest-update.json",
+      "bytes": 2418,
+      "sha256": "a0a1ed4296f61efdd60f04cfe26d2e126239e4a6d34b578edfd59f5971f54090"
+    },
+    "workbook-native": {
+      "path": "docs/qa/me1-prologue-enemies-workbook-public-preservation.json",
+      "bytes": 2542,
+      "sha256": "5dc34422b13463a392862a1e7f41bb9d71c0e1dcabe0f91bf92123a270ba76b6"
+    },
+    "workbook-visual": {
+      "path": "docs/qa/me1-prologue-enemies-workbook-visual-report.json",
+      "bytes": 26501,
+      "sha256": "cb5fac1391c06bcec8f87d53ff93b0d5fa4acf99fc40403c98176b22368a4b47"
+    },
+    "workbook-render": {
+      "path": "docs/qa/me1-prologue-enemies-workbook-render-report.json",
+      "bytes": 10950,
+      "sha256": "7afaed8868d1772285a1e5cb4978f43c106a75a55e8242aa66aebc7fb1e0f50d"
+    },
+    "workbook-opened": {
+      "path": "docs/qa/me1-prologue-enemies-workbook-visual-review-record.json",
+      "bytes": 13042,
+      "sha256": "0228c11941686aefe83e9d72da784e8515435a5be0e5ac1044a61d7fed08be71"
+    }
+  }
+}

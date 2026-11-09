@@ -8,6 +8,8 @@ Le projet vise à terme une adaptation de ME1 complète et cohérente avec ses p
 
 **Livraison 0.2.0 :** la campagne condensée reste jouable du départ à la fin. Elle accueille un inventaire persistant, onze nouvelles opérations annexes et une première animation de Shepard féminine. Les règles suivantes décrivent cette implémentation lorsqu’elles sont indiquées comme présentes. Le catalogue Excel décrit en complément les éléments à réaliser pour l’ambition intégrale.
 
+La version 0.3.0 comprend aussi l’atelier de personnalisation avec brouillon atomique et neuf emplacements. Les compléments de novembre étendent le parcours d’Eden Prime et les familles de poses des acteurs ME1 ; leurs portées sont décrites ci-dessous. Le [classeur principal](Mass_Effect_Relay_Chronicles_Production.xlsx), les [Chroniques](CHRONICLES.md) et les [preuves de chaque lot](IMPLEMENTATION_STATUS.md) restent distincts : une fiche de production ou une pose dessinée n’équivaut pas à une campagne ou une animation complète.
+
 ## Boucle jouable
 
 1. Rejoindre le Normandy, consulter le briefing et préparer les deux compagnons.
@@ -60,6 +62,8 @@ La Stase immobilise sa cible et la protège contre les dégâts. Le piratage req
 
 Les classes déterminent les aptitudes de Shepard ; le Soldat ne reçoit pas de biotique. Les actions choisies constituent une adaptation ATB de la licence. Les dégâts chiffrés, la concentration et les durées sont des valeurs de jeu originales, sans prétention à reproduire les calculs de ME1.
 
+Jenkins participe au premier affrontement d’Eden Prime dans cette campagne condensée. Sa perte scénaristique est enregistrée à la validation de cette première victoire, puis Ashley rejoint le groupe. Le personnage reste indisponible après reprise ; une pose de KO ou une commande de soin ne modifie pas cette décision. Ce découpage propre au prototype ne reproduit pas la scène originale plan par plan.
+
 ### Progression actuelle
 
 La victoire donne expérience et crédits. Les niveaux renforcent automatiquement les statistiques. L’armurerie conserve les calibrations permanentes de la version précédente et les doses de médi-gel. Elle vend aussi 52 références : 20 armes, 16 armures, quatre modules d’arme, quatre modifications de munitions, quatre modules d’armure et quatre outils OmniTech/amplificateurs biotiques. L’inventaire partagé compte au plus 150 objets, équipement compris, et 20 exemplaires par référence. Les stocks et les neuf emplacements de chaque personnage sont sauvegardés : arme, armure, deux modules d’arme, modification de munitions, deux modules d’armure, OmniTech et amplificateur biotique.
@@ -92,15 +96,21 @@ Pour la version intégrale, chaque scène devra définir son lieu, les participa
 
 Les atlas PNG utilisent un canal alpha. Les matériaux des personnages sont des plans lisibles avec un seuil de transparence, des ombres au sol et une orientation vers la caméra. Les plans de personnages n’exigent pas un squelette 3D. Les portraits de dialogue et les cartes de commando réutilisent les régions d’atlas.
 
-La version actuelle dispose de poses HD du commando, des ennemis et boss, de personnages secondaires, d’objets et de véhicules. Les deux apparences de Shepard possèdent chacune une première marche en quatre directions et quatre images par direction. Shepard féminine dispose aussi de quatre poses de combat : visée, pouvoir, impact et KO. Les rectangles, pivots et hauteurs sont définis par frame et embarqués dans la compilation ; leur chargement ne demande pas de requête JSON externe.
+La version actuelle dispose de poses HD du commando, des ennemis et boss, de personnages secondaires, d’objets et de véhicules. Les deux apparences de Shepard possèdent chacune une première marche en quatre directions et quatre images par direction, ainsi que quatre poses de combat : visée, pouvoir, impact et KO. Les sept compagnons du parcours ME1, Jenkins compris, ont chacun quatre dessins de combat. Les huit familles d’ennemis ordinaires — soldat geth, sniper geth, destructeur geth, husk, krogan, rachni, creeper du Thorien et commando asari — disposent aussi de quatre poses chacune, soit **68 poses clés de combat** au total. Les deux dessins assis de Joker et les deux textures de sol sont comptés séparément. Les rectangles, pivots et hauteurs sont mesurés dans les images natives et embarqués dans la compilation ; leur chargement ne demande pas de requête JSON externe.
 
-Les autres mouvements restent des transformations de présentation : balancement, déplacement, impact, lévitation, couverture, disparition après KO. Les quatre poses féminines ne constituent pas quatre cycles animés. Une pose HD ne valide donc pas un moveset complet.
+Les poses accompagnent les actions déjà disponibles ; elles ne donnent aucun pouvoir, équipement ou recrutement supplémentaire. Le geste de Jenkins ne lui attribue pas de biotique. Le dessin du commando asari correspond à la famille générique déjà réutilisée par plusieurs rencontres : il ne produit pas les phases d’apparition et de disparition du clone asari du Thorien, qui garde ses fiches distinctes à réaliser.
+
+Les autres mouvements restent des transformations de présentation : balancement, déplacement, impact, lévitation, couverture, disparition après KO. Quatre poses ne constituent pas quatre cycles animés. L’exploration des compagnons conserve ses silhouettes de base ; les nouvelles familles concernent le combat. Les [références et contrôles du lot](qa/me1-prologue-enemies-report.json) distinguent les corps produits, leurs usages natifs, la perte narrative de Jenkins et les détails d’identité encore non certifiés 1:1.
 
 Pour une production finale, chaque personnage devra avoir une référence d’époque approuvée, des proportions et costumes stables, huit directions si le cadrage l’exige, repos, marche, course, tir, usage des pouvoirs, dégâts, KO et transitions. Une silhouette comparable à son personnage ne suffit pas à valider la fidélité des détails.
 
 ### Décors 3D
 
 Les neuf zones sont construites avec des volumes, matériaux, éclairages et éléments spécifiques. Les géométries statiques partageant un matériau sont regroupées pour réduire les appels de rendu. La végétation répétée est instanciée. Les façades côté caméra sont réduites en coupe pour éviter d’occulter le commando.
+
+Eden Prime possède un plan propre à cinq secteurs, un chemin principal, une boucle de ravitaillement et une piste de retour. Ses sept points de progression conservent leurs identifiants ; trois arènes locales évitent de ramener tous les combats au même endroit. Le masque de sol, les obstacles, les déplacements au clic, la caméra de suivi, la carte locale et le radar utilisent ce même plan. L’enveloppe de 110 × 150 unités comprend aussi du décor non praticable ; elle n’est ni une surface entièrement accessible, ni un relevé des dimensions originales. Les huit autres zones gardent leur découpage condensé. Les [références du parcours](research/eden-level-layout.md) précisent les neuf repères de production, qui ne constituent pas neuf sous-niveaux originaux complets.
+
+Les éléments de structure qui masquent les combattants à Novéria et les poteaux de premier plan à Féros sont gérés séparément de la fusion statique et peuvent s’effacer pendant le combat. Leur présence en exploration et leurs collisions sont conservées. Cette coupe de présentation ne change ni les accès ni la progression de la mission ; sa portée visuelle est contrôlée sur les captures réellement produites.
 
 Le déplacement possède des limites, des collisions et une navigation au clic par recherche A*. Les points d’intérêt utilisent des identifiants stables. Le renderer ne décide pas des récompenses : il émet une interaction que la couche de progression valide.
 

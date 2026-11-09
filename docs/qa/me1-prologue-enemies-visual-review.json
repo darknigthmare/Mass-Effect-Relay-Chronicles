@@ -1,0 +1,611 @@
+{
+  "passed": true,
+  "reviewComplete": true,
+  "phase": "final-production",
+  "reviewedAt": "2026-11-09T04:57:08.987054+00:00",
+  "baselineCommit": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+  "reviewer": "asari_art",
+  "reviewerQualification": "Independent of runtime integration and browser collectors. This reviewer also authored the generic asari native art; the other families and all integrated captures were actually opened here.",
+  "scope": "Actual visual review of37distinct capture files with explicit source phases:4native/scale artwork previews,2baseline Noveria views,11historical first-candidate integration views,11current development views and9fresh current production views. Only the current production group is evidence of the final compiled public application. The initial negative collector and earlier Feros obstruction remain historical, not reclassified as successful current observations.",
+  "sourceHashes": {
+    "src/world.js": "9a22fbcfc857c20ff41ff97efec6f06789919bf8bb673bd79e20c2acf8cd643d",
+    "src/world-data.js": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf",
+    "src/eden-scene.js": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948",
+    "src/level-layout-data.js": "318d0df18bf65f804d6ad2a4737ef80e7b295d127c11924bc93faac256832b07",
+    "src/companion-animation-data.js": "8e459efefc9d3a045457bb46ff9914ed95d77c440352d548b521625fa044cda0",
+    "src/enemy-animation-data.js": "7fe66817eb146f4c34893a76c16932378d00bdc2039ed8f997cbbe452c9110da",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/story.js": "fd1f19491e5e2e63b540e8cd0c45d140078a92e6b78bb51e2d530c0202ca0df0",
+    "vite.config.js": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+    "scripts/me1-prologue-enemies-sprites.mjs": "b4293e7c7fd2ed058a914f4731377241d93ddd1988acf055349e2ad911453221",
+    "public/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "public/assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+    "public/assets/companion-jenkins-combat.png": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+    "public/assets/companion-jenkins-animation.json": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359",
+    "public/assets/enemy-creeper-combat.png": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+    "public/assets/enemy-creeper-animation.json": "4d0c9b23b7f36f546fa479fe10317df51e068779abb1ac1f675bdad40ddc9132",
+    "public/assets/enemy-asari-combat.png": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+    "public/assets/enemy-asari-animation.json": "4b299f599418299c62d230ebf682ad0e82175e056f638b7425b255ef2f6ee902",
+    "public/assets/enemy-geth-combat.png": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+    "public/assets/enemy-geth-animation.json": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363",
+    "public/assets/enemy-husk-combat.png": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+    "public/assets/enemy-husk-animation.json": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754",
+    "public/assets/enemy-geth-sniper-combat.png": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+    "public/assets/enemy-geth-sniper-animation.json": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092",
+    "public/assets/enemy-geth-destroyer-combat.png": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+    "public/assets/enemy-geth-destroyer-animation.json": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04",
+    "public/assets/enemy-krogan-combat.png": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+    "public/assets/enemy-krogan-animation.json": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f",
+    "public/assets/enemy-rachni-combat.png": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+    "public/assets/enemy-rachni-animation.json": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1",
+    "public/assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "public/assets/companion-ashley-animation.json": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022",
+    "public/assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+    "public/assets/companion-kaidan-animation.json": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b",
+    "public/assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "public/assets/companion-garrus-animation.json": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b",
+    "public/assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "public/assets/companion-tali-animation.json": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812",
+    "public/assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "public/assets/companion-wrex-animation.json": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702",
+    "public/assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+    "public/assets/companion-liara-animation.json": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef",
+    "src/main.js": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6",
+    "scripts/me1-prologue-enemies-public.mjs": "d6ef8c068871e01c0b18b7583fde3a13ef62464674f5d745713da19d0a89db8d",
+    "docs/qa/me1-prologue-enemies-jenkins-art.json": "b287bdebea9ccd89ec1164b689c090838d5fb4c5db00e1f8fd3f4b5a36d2b1a4",
+    "docs/qa/me1-prologue-enemies-creeper-art.json": "36380e10f4ada52fdb3036470f2406a5ca84b5020b3cc5013ad1efb4bca7f035",
+    "docs/qa/me1-prologue-enemies-asari-art.json": "2bf5ecd90e851dc1f376bb71481856b5934cd0cafc202b02da06b2506c13038a",
+    "src/universe-data.js": "11e98f041788c339532985b80145685dec984c4000c97abddeef860106e446ae",
+    "docs/content-catalog.json": "15cf43706e4d19383032be77234ccb986eb66fdb512670e10472876e3e2c8d90",
+    "docs/Mass_Effect_Relay_Chronicles_Production.xlsx": "113fa42f4ce02166de390994b43e0c24355ba2a5eee9ad217a4d5d0bb00d9863",
+    "public/assets/manifest.json": "7f45501d7ba6c9744285d3378ad9b32f4b8a934cb892f33c0cea07d8c1a03f79"
+  },
+  "inputReports": [
+    {
+      "path": "docs/qa/me1-prologue-enemies-development-initial-visual-review.json",
+      "sha256": "2bacc046e93ef9941ff86e53f322d406b6be1805de0f95e7552926820e160e13",
+      "scope": "Qualified visual acceptance of the first development phase world5ee, before the later targeted Feros-post correction. Seventeen images were actually opened: native artwork/scale previews, historical Noveria before views, four held-pose WorldView views and seven public development views. This frozen report is not the subsequent renderer phase or a compiled-production validation."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-development-visual-review.json",
+      "sha256": "3a0dc8484d19786394654ad15756ecf84222c765177509e50ae3f309b8fb0af7",
+      "scope": "Current renderer world9a22: eleven newly opened final development images, comprising four actual held WorldView captures of twelve fixed states and seven public development controls captures. Historical native/baseline/initial development reviews remain separate and byte-preserved. This gate supports partial Prototype tracking, not compiled-production acceptance."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-production-report.json",
+      "sha256": "3e987aa384e591a78243484e3df9463394092e4bfb963ef1e0e37b1cbbcf4131",
+      "scope": "Actual public controls, no QA harness or private state access. Node-prepared valid early-Eden and Feros encounter2 saves declare their origin. Development gates abbreviated native commands; production additionally plays the first Eden victory, claims its narrative consequence and checks save/reload. A separate unchanged historical save inspects the Noveria pillar correction. Prior prepared progression is never claimed as played."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-sprites-final-report.json",
+      "sha256": "4c681a8e5ad420828c2f31eb53f40db2ff864ab8de247265e9eadaa8b670e6ce",
+      "scope": "Twelve held fixed poses in four actual WorldView captures, native existing actions and closed identity/story contexts. Detached fixtures do not play campaign progression, add powers or certify canonical bodies, movement cycles or the Thorian clone."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-public-development-final-report.json",
+      "sha256": "838fa3948f9d12b172d0330c25093e1bf56bab9af45f897198edece450ab41ab",
+      "scope": "Actual public controls, no QA harness or private state access. Node-prepared valid early-Eden and Feros encounter2 saves declare their origin. Development gates abbreviated native commands; production additionally plays the first Eden victory, claims its narrative consequence and checks save/reload. A separate unchanged historical save inspects the Noveria pillar correction. Prior prepared progression is never claimed as played."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-report.json",
+      "sha256": "52f6fcffdd3915e1b50c3c64613b347b6d9c7cba214525ade175769683f53287",
+      "scope": "Fresh baseline public Noveria field and native rachni arena at current main d191. Existing dist built at d9 is reused only after all216 build-source hashes and all61 compiled artifacts match. Existing actual public save is imported unchanged; no prior progression, new build, native shot, new poses or final implementation is claimed. No private harness, source import, storage injection or pose setter in Chromium."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-visual-review.json",
+      "sha256": "30e17854b7adcea9063a9b0de236dc410138882e9ab8d9a3b8fa513cf9616b5c",
+      "scope": "Actual visual review of two frozen baseline public production views only. This confirms the inherited pillar occlusion before the current change, not any new family integration or final acceptance."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-feros-fix-source/snapshot-manifest.json",
+      "sha256": "2b77ab96ebe70a1ac26ef67e0eb1f9212af20ca14509aa865ebed0e7ecbc1f95",
+      "scope": "Accepted first-candidate Eden/Thorian-family QA remains historical and unchanged. A subsequent bounded Feros foreground-post correction changes world.js only; final-candidate proofs use new prefixes. Existing captures remain at their original immutable paths."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-build-report.json",
+      "sha256": "f74e838d409e4e50c846faddf0d48e5d7f75ac4770bf61da08de77450cddb9e4",
+      "scope": null
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-unit-report.json",
+      "sha256": "ca569034c39ed7fccd89c920aa624ef0f0c390071cd0066baeced938c2cf2bbc",
+      "scope": null
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-jenkins-art.json",
+      "sha256": "b287bdebea9ccd89ec1164b689c090838d5fb4c5db00e1f8fd3f4b5a36d2b1a4",
+      "scope": "Native generated PNG, measured frames and actual source preview only. Runtime integration, native event validation and exact original-game likeness are separate."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-creeper-art.json",
+      "sha256": "36380e10f4ada52fdb3036470f2406a5ca84b5020b3cc5013ad1efb4bca7f035",
+      "scope": "Native copied artwork bytes, measured alpha51 framing and actual native-size visual review only. Runtime actions, game anchoring, saves and exact original-game fidelity require separate evidence."
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-asari-art.json",
+      "sha256": "2bf5ecd90e851dc1f376bb71481856b5934cd0cafc202b02da06b2506c13038a",
+      "scope": "Native generated artwork bytes, alpha51 framing and actual native-size image decoding/review. The browser checkerboard preview is detached artwork QA, not in-game integration or an original-game likeness certification."
+    }
+  ],
+  "openedImageRecord": {
+    "path": "docs/qa/me1-prologue-enemies-final-opened-images.json",
+    "sha256": "e22688ddb6955fb4bc1a3a1044383d819d3d99c9e1cfd5651d156421cb9b704f"
+  },
+  "imagesReviewed": [
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-asari-native.png",
+      "sha256": "67aa634addc5a6c83cec5b7ee25346d16b421bc4d417b509f418271acd99a90a",
+      "bytes": 586633,
+      "actuallyOpened": true,
+      "category": "art-native"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-creeper-art-native.png",
+      "sha256": "818044bbaa6e01edddae455932240cee3e617f1678c2036795992094be0c81d5",
+      "bytes": 752986,
+      "actuallyOpened": true,
+      "category": "art-native"
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-jenkins-source-preview.png",
+      "sha256": "4ffe2c3b5584605e45b26baaf88d532c1e6bd7de62da7a479a24723f2b7ba85f",
+      "bytes": 668165,
+      "actuallyOpened": true,
+      "category": "art-native"
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-jenkins-scale-preview.png",
+      "sha256": "c6f2b1fc92aa73df3a9be2abb3114f3739530cefc940b1af0dee4ebf8e99bcd2",
+      "bytes": 90391,
+      "actuallyOpened": true,
+      "category": "art-scale"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-before-noveria-field.png",
+      "sha256": "a385bfb1b020265bcd091ef641584e0e576306df3722fea05ee3c4ce82c5482b",
+      "bytes": 715958,
+      "actuallyOpened": true,
+      "category": "historical-before"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-before-rachni-public-battle.png",
+      "sha256": "ab8f1b8403910306b2b4899cce28b4eb7f890b0fd6e226772b0b7b51f1c3e896",
+      "bytes": 589869,
+      "actuallyOpened": true,
+      "category": "historical-before"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-aim.png",
+      "sha256": "90c0481741de106099762095e93f7708bf0869cdcce7bf1bbb7a39baffb1332a",
+      "bytes": 1491069,
+      "actuallyOpened": true,
+      "category": "historical-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-power.png",
+      "sha256": "98c44554e34b8f18e558f1c9b7ec8d6f43eb87f96cb54b3307aac98879bead6b",
+      "bytes": 1492156,
+      "actuallyOpened": true,
+      "category": "historical-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-hit.png",
+      "sha256": "35afb191f8a232d98e05c941e1ba9347cd369e28d3ca3bf38c4bb59615fbff1c",
+      "bytes": 1491523,
+      "actuallyOpened": true,
+      "category": "historical-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-down.png",
+      "sha256": "86ab2aa3e553275b2d2a14bd210d7704baaa55d5984725056ad2c938bf82188c",
+      "bytes": 1486981,
+      "actuallyOpened": true,
+      "category": "historical-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-eden-first-battle.png",
+      "sha256": "1b2f55ca6d46436b864bb7b1b881f518b33ccea533ac124e98b720ac6c0c6b79",
+      "bytes": 1214390,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-jenkins-native-cover.png",
+      "sha256": "4b894693b5e0744c2bc2bd58eb977a637069f3f051c27c8fc69a2340e5790d66",
+      "bytes": 1222527,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-feros-generic-enemies.png",
+      "sha256": "5076a40e89ef255cabc0a0cbc2a744b0bca6b89f701f3b0157c93975518c2de5",
+      "bytes": 679517,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-feros-native-shot.png",
+      "sha256": "f3990056ba9fd00646a258d59ac47c522735e3bf532573e2b857f32a4677908e",
+      "bytes": 643508,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-noveria-field.png",
+      "sha256": "f9b2a65e96fe7b1ea7e8ee270c73d9a2df609fc0100e4138f5bd35b66478dd6e",
+      "bytes": 714557,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-noveria-battle.png",
+      "sha256": "579247313998ac1452e00a4ace81ed3f598e07d4e1a6931d4aa8f7ea5c2de0ac",
+      "bytes": 597939,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-noveria-mobile-battle.png",
+      "sha256": "9e92d5903686a571ef5cedde13bb5a81b8bbefe374153c11f070ccd413e5d202",
+      "bytes": 255300,
+      "actuallyOpened": true,
+      "category": "historical-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-final-aim.png",
+      "sha256": "3bc733babff13f18616efa9911b2fd6bc9f28795c1ac2107007de868948d0ff4",
+      "bytes": 1489549,
+      "actuallyOpened": true,
+      "category": "current-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-final-power.png",
+      "sha256": "a3537a94d21ba451a1645ed4b6253fe459c94d4bba27e748d926c2a30dee2ca2",
+      "bytes": 1491354,
+      "actuallyOpened": true,
+      "category": "current-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-final-hit.png",
+      "sha256": "88b5f31e59dab266f7a6680e0a2c9832ef2e3affe682f1e8fdc2e6d3c65cd130",
+      "bytes": 1491851,
+      "actuallyOpened": true,
+      "category": "current-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-sprites-final-down.png",
+      "sha256": "9a6a7e565a84ebc1666915ce511fadc60e30852f9077885303202259d76ce16a",
+      "bytes": 1487240,
+      "actuallyOpened": true,
+      "category": "current-held"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-eden-first-battle.png",
+      "sha256": "1b2f55ca6d46436b864bb7b1b881f518b33ccea533ac124e98b720ac6c0c6b79",
+      "bytes": 1214390,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-jenkins-native-cover.png",
+      "sha256": "e1b00c606192f5c6ff068fe8318dfae7e7b5050193d9896247868d76c7253e19",
+      "bytes": 1223141,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-feros-generic-enemies.png",
+      "sha256": "c8ff47105f6d626e2085ae68e0f399eeed3eeeddba3c828ce38e859cc9debc8c",
+      "bytes": 707943,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-feros-native-shot.png",
+      "sha256": "f181b5df64e3360b77e8b504503546f4f664e5b9d36a77f56b56942160b2faa2",
+      "bytes": 667812,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-field.png",
+      "sha256": "6d0d0b186f5ea104963b461772a379d08d0db3c8ad7ae52bd0d24b813ce99e9a",
+      "bytes": 715671,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-battle.png",
+      "sha256": "273572b1cb9b62f47703ffe08faf54e037f65dec610113d00ef84a218abc40f3",
+      "bytes": 599705,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-mobile-battle.png",
+      "sha256": "ba31353eaeda1ada1517bf9db2a2b275eebae16cc47040db3e5184d1ba3385f4",
+      "bytes": 255264,
+      "actuallyOpened": true,
+      "category": "current-development"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-eden-first-battle.png",
+      "sha256": "1b2f55ca6d46436b864bb7b1b881f518b33ccea533ac124e98b720ac6c0c6b79",
+      "bytes": 1214390,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-jenkins-native-cover.png",
+      "sha256": "cff0966646904e1880854d8e85100a05754303ca59bc7fd6452c509ca9fcdc13",
+      "bytes": 1222314,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-eden-native-victory.png",
+      "sha256": "779ddc9f4d9c33211623c5223a015e31960b985cf87cc81c0350c96f6d5a56d7",
+      "bytes": 199682,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-jenkins-loss-dialogue.png",
+      "sha256": "0eb6846741e76149fda8e032f8c28b59992febf4793bb76bbeb4fe926e17fa12",
+      "bytes": 1308865,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-feros-generic-enemies.png",
+      "sha256": "64bbfe3461dcd50475c2e187bc130a452ab2da52eae8a343cc219835fbec5281",
+      "bytes": 708043,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-feros-native-shot.png",
+      "sha256": "38e59a189d63a78dce4ba1464731e278acf181b854743cfaf756214c8a4c70d0",
+      "bytes": 667832,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-noveria-field.png",
+      "sha256": "ccd748ea10a952feeb6df54410599e7c4e5f13eed8e9b18875af018bad78a508",
+      "bytes": 715758,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-noveria-battle.png",
+      "sha256": "84c7018e6eaa7da27167951a1651c694bb133152b1f7bf86b0c0f9dfc1a116d9",
+      "bytes": 601368,
+      "actuallyOpened": true,
+      "category": "current-production"
+    },
+    {
+      "path": "docs/screenshots/me1-prologue-enemies-production-noveria-mobile-battle.png",
+      "sha256": "5dbbd509dd576d662679055ce7eef3aa67d9b0b6f1c443f15c42523d7b833b34",
+      "bytes": 256827,
+      "actuallyOpened": true,
+      "category": "current-production"
+    }
+  ],
+  "counts": {
+    "art-native": 3,
+    "art-scale": 1,
+    "historical-before": 2,
+    "historical-held": 4,
+    "historical-development": 7,
+    "current-held": 4,
+    "current-development": 7,
+    "current-production": 9
+  },
+  "totalImagesActuallyOpened": 37,
+  "finalSpriteReviewComplete": true,
+  "finalDevelopmentReviewComplete": true,
+  "finalPublicReviewComplete": true,
+  "finalProductionReviewComplete": true,
+  "currentPoseStatesReviewed": 12,
+  "currentProductionCapturesReviewed": 9,
+  "observations": [
+    {
+      "category": "art-native",
+      "finding": "The three new families preserve coherent identities across complete fixed aim/action/hit/KO drawings: charcoal helmeted Alliance Jenkins, green-grey fungal creeper and blue black/violet generic asari. Actual native and110px Jenkins previews were opened; no cropped limb, muzzle or neighboring-cell fragment was seen."
+    },
+    {
+      "category": "historical-before",
+      "finding": "The first current-main Noveria desktop battle still hid part of the central rachni behind a vertical pillar, while field supports were visible. Those two actual public baseline frames remain separate from the later renderer."
+    },
+    {
+      "category": "historical-development",
+      "finding": "The initial renderer exposed Noveria desktop bodies but retained a Feros foreground post masking the generic asari left arm/weapon/body. The frozen initial review records this reserve and the separate initial sprite collector failure; those bytes are preserved."
+    },
+    {
+      "category": "current-held",
+      "finding": "All twelve current fixed states were opened from the final WorldView in four fresh captures. The three living silhouettes and ground contacts are coherent, with distinct Jenkins tactical hand, creeper reach and asari action gesture. Down outlines remain present but low in contrast because the existing KO opacity is retained."
+    },
+    {
+      "category": "current-development",
+      "finding": "The final development Feros encounter and native-shot views expose the generic asari full body, left arm and compact weapon after the two foreground posts yield to combat. The Noveria desktop battle exposes all three rachni; the matching exploration view retains its structure. These current views substantiate the two scoped desktop visibility improvements."
+    },
+    {
+      "category": "current-production",
+      "finding": "The final compiled application shows the three-member early-Eden roster including Richard Jenkins, his complete standing pose and his native Cover action. The blue cover effect is rendered separately from the fixed PNG and does not give Jenkins a biotic ability."
+    },
+    {
+      "category": "current-production",
+      "finding": "The actual native victory panel shows two neutralized enemies,13executed actions and the displayed65XP/85credits. The subsequent Kaidan dialogue states that Jenkins did not survive and Ashley accompanies the group; the field visibly shows Ashley replacing the helmeted Jenkins. Exact party/loss/reward persistence after reload is attributed to the separately validated public exports, not inferred from pixels alone."
+    },
+    {
+      "category": "current-production",
+      "finding": "Both Feros production views show two complete creepers and the generic asari with its previously obscured left arm/weapon now visible. The native-shot view shows the target impact and combat log without restoring the foreground post obstruction."
+    },
+    {
+      "category": "current-production",
+      "finding": "The Noveria production field retains its spans and supports, while its desktop battle exposes the party and all three rachni. The390x844 production view keeps party/action/target panels readable and places the rightmost rachni very close to the viewport edge. The earlier current-development mobile crop remains a framing reserve; complete mobile silhouette coverage is not generalized."
+    }
+  ],
+  "historicalComparisons": [
+    {
+      "kind": "feros-foreground-post",
+      "beforeReport": "docs/qa/me1-prologue-enemies-development-initial-visual-review.json",
+      "beforeReportSHA256": "2bacc046e93ef9941ff86e53f322d406b6be1805de0f95e7552926820e160e13",
+      "beforeImages": [
+        "docs/screenshots/me1-prologue-enemies-public-development-feros-generic-enemies.png",
+        "docs/screenshots/me1-prologue-enemies-public-development-feros-native-shot.png"
+      ],
+      "afterImages": [
+        "docs/screenshots/me1-prologue-enemies-public-development-final-feros-generic-enemies.png",
+        "docs/screenshots/me1-prologue-enemies-public-development-final-feros-native-shot.png"
+      ],
+      "result": "Generic asari body/left arm/weapon are no longer hidden by the foreground post in both final captured combat states."
+    },
+    {
+      "kind": "noveria-middle-pillar",
+      "beforeReport": "docs/qa/me1-prologue-enemies-before-report.json",
+      "beforeReportSHA256": "52f6fcffdd3915e1b50c3c64613b347b6d9c7cba214525ade175769683f53287",
+      "beforeImages": [
+        "docs/screenshots/me1-prologue-enemies-before-noveria-field.png",
+        "docs/screenshots/me1-prologue-enemies-before-rachni-public-battle.png"
+      ],
+      "afterImages": [
+        "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-field.png",
+        "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-battle.png"
+      ],
+      "result": "Desktop rachni bodies are clear of the former central pillar while the exploration supports remain visible."
+    }
+  ],
+  "resolvedPriorFindings": [
+    {
+      "kind": "feros-foreground-post-occlusion",
+      "status": "resolved-in-current-desktop-captures",
+      "historicalReport": "docs/qa/me1-prologue-enemies-development-initial-visual-review.json"
+    },
+    {
+      "kind": "noveria-middle-pillar-occlusion",
+      "status": "resolved-in-current-desktop-capture",
+      "historicalReport": "docs/qa/me1-prologue-enemies-before-visual-review.json"
+    }
+  ],
+  "residualFindings": [
+    {
+      "kind": "low-ko-contrast",
+      "severity": "low",
+      "status": "retained-prototype-reserve",
+      "paths": [
+        "docs/screenshots/me1-prologue-enemies-sprites-final-down.png"
+      ],
+      "finding": "The three KO bodies remain faint against dirt/grass in the held fixture. No opacity or source image cleanup is applied."
+    },
+    {
+      "kind": "mobile-right-edge-framing",
+      "severity": "low",
+      "status": "retained-prototype-reserve",
+      "paths": [
+        "docs/screenshots/me1-prologue-enemies-public-development-final-noveria-mobile-battle.png"
+      ],
+      "productionComparisonPath": "docs/screenshots/me1-prologue-enemies-production-noveria-mobile-battle.png",
+      "finding": "The current development mobile frame clips a rightmost rachni extremity; the production frame remains tightly framed at that edge. Full silhouettes throughout mobile timing/interaction states are not certified."
+    }
+  ],
+  "blockingFindings": [],
+  "productionBinding": {
+    "report": "docs/qa/me1-prologue-enemies-production-report.json",
+    "sha256": "3e987aa384e591a78243484e3df9463394092e4bfb963ef1e0e37b1cbbcf4131",
+    "worldSha256": "9a22fbcfc857c20ff41ff97efec6f06789919bf8bb673bd79e20c2acf8cd643d",
+    "universeRuntimeSha256": "11e98f041788c339532985b80145685dec984c4000c97abddeef860106e446ae",
+    "compiledArtifactsVerified": 67,
+    "publicSourceHashesVerified": 17,
+    "sourceAndDistFrozen": true,
+    "noHarness": {
+      "own": false,
+      "type": "undefined",
+      "viteClient": false
+    },
+    "nativeVictoryAndLossProof": {
+      "nativeVictoryPlayed": true,
+      "additionalCommands": 8,
+      "claimedOnce": true,
+      "jenkinsLost": true,
+      "availableParty": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "ashleyRecruited": true,
+      "exactReloadRestore": true,
+      "rewardXP": 65,
+      "rewardCredits": 85,
+      "chronology": "The retained condensed campaign loses Jenkins when the first Eden victory is claimed. This is not represented as his original-game arrival timing."
+    },
+    "ferosProof": {
+      "enemyIDs": [
+        "creeper-0",
+        "creeper-1",
+        "asari-2"
+      ],
+      "nativeShotPlayed": true,
+      "exactPrecombatRestore": true,
+      "noVictoryRewardClaimed": true,
+      "genericAsariOnly": true
+    },
+    "publicDownloads": 5,
+    "completeBrowserShutdowns": 1,
+    "fullConsoleClean": false,
+    "qualifiedConsoleObservations": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4245/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4245/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4245/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ]
+  },
+  "collectionQualification": {
+    "historicalInitialSprites": "The first held-pose/native collector is an explicitly retained interrupted run plus corrected native-only composite. It is not the final full sprite proof.",
+    "currentSprites": "The final positive full collector supplies twelve held observations/four actual captures plus native actions and identity/story refusals at currentworld9a22.",
+    "currentDevelopment": "Eleven actual final development views were reviewed before the scoped workbook export; they do not stand in for production.",
+    "currentProduction": "Nine fresh frames come from one actual public production run with no source imports, harness, storage injection or pose setters. Earlier native Node-prepared Feros/Noveria progression is explicitly declared.",
+    "historicalSourcesComparedToArchivedBytes": true,
+    "noHistoricalSourceReinterpretedAsCurrent": true
+  },
+  "acceptanceQualification": "Qualified PASS for partial fixed artwork, current renderer integration, the two desktop occlusion corrections and the scoped compiled-production journey. This does not certify complete original-game likeness, every animation cycle, all campaign areas or complete mobile framing.",
+  "limitations": [
+    "A fixed four-drawing family is not a full animation cycle, all directions, canonical costume or exact original equipment geometry. No new direct primary-body likeness comparison was performed by this reviewer; all three remain Prototype.",
+    "Jenkins uses his existing Cover command and an empty native power list. The public run plays and claims the retained condensed first-Eden victory; this prototype loss timing is not presented as the original-game arrival/drone scene. Combat KO and narrative loss remain distinct.",
+    "The generic asari key is reused across the condensed campaign. These drawings do not validate a Thorian clone identity, summoning/disappearance phases, Benezia or a new enemy kit.",
+    "Feros earlier progression/recruitment and the Noveria historical save are declared prepared fixtures. Their previous victories and the entire campaign are not presented as played by this production run.",
+    "The Noveria field/combat structure is actually seen; Feros exploration restoration is covered by separate source/runtime tests, not by an additional field screenshot in these visual proofs.",
+    "The390px layout inspection uses Chromium, not a physical phone. Complete mobile framing, hardware FPS, controller support and native Windows execution remain unverified.",
+    "Workbook native preservation and its30targeted panels are reviewed separately by the workbook owner; they are not counted among these37game/artwork capture files.",
+    "Final local production verification is separate from a future GitHub/Vercel deployment. No remote runtime or packaged executable launch is certified by these captures."
+  ]
+}

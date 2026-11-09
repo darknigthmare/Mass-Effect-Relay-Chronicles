@@ -13,7 +13,7 @@ import { WORLD_ZONES } from '../src/world-data.js';
 import { initialCustomization } from '../src/customization.js';
 
 const texture = (width = 100, height = 100) => new THREE.Texture({ width, height });
-const nativeKey = { geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk', krogan: 'krogan', rachni: 'rachni' };
+const nativeKey = { geth: 'geth', 'geth-sniper': 'sniper', 'geth-destroyer': 'destroyer', husk: 'husk', krogan: 'krogan', rachni: 'rachni', creeper: 'creeper', asari: 'asari' };
 const config = key => ({ version: 1, characterId: key, mediaId: 'ME1', periodId: 'me1', combat: {
   file: `enemy-${key}-combat.png`, width: 100, height: 100, direction: 'three-quarter', frames: {
     aim: { id: `${key}-combat-aim`, pose: 'aim', rect: [0, 0, 40, 50], pivot: [16, 48], heightScale: 1 },

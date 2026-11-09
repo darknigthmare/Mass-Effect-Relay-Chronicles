@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "reviewComplete": true,
+  "at": "2026-11-09T04:16:48.637182+00:00",
+  "scope": "Actual visual review of two frozen baseline public production views only. This confirms the inherited pillar occlusion before the current change, not any new family integration or final acceptance.",
+  "inputReport": {
+    "path": "docs/qa/me1-prologue-enemies-before-report.json",
+    "sha256": "52f6fcffdd3915e1b50c3c64613b347b6d9c7cba214525ade175769683f53287"
+  },
+  "images": [
+    {
+      "label": "noveria-field",
+      "path": "docs/screenshots/me1-prologue-enemies-before-noveria-field.png",
+      "bytes": 715958,
+      "sha256": "a385bfb1b020265bcd091ef641584e0e576306df3722fea05ee3c4ce82c5482b",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production viewport, no CSS/scene/pose injection",
+      "actuallyOpened": true
+    },
+    {
+      "label": "rachni-public-battle",
+      "path": "docs/screenshots/me1-prologue-enemies-before-rachni-public-battle.png",
+      "bytes": 589869,
+      "sha256": "ab8f1b8403910306b2b4899cce28b4eb7f890b0fd6e226772b0b7b51f1c3e896",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production viewport, no CSS/scene/pose injection",
+      "actuallyOpened": true
+    }
+  ],
+  "observations": [
+    "The field view retains its overhead spans and steel side columns. The actual imported commando/interaction and existing rachni are visible.",
+    "In the native three-rachni combat, the previous overhead-beam correction already exposes Ashley completely. The camera-facing vertical column still masks part of the central rachni; this is the baseline finding targeted by the new change.",
+    "No new body pose, primary-reference likeness, full campaign progression or fresh build is established by these screenshots."
+  ],
+  "commandRecordCorrection": {
+    "rawReportPreserved": true,
+    "issue": "The reused collector command.environment labels its baseline as EDEN_BASE_MAIN; this fresh collector actually reads ME1_BASE_MAIN. The raw report and executed runner are preserved byte-exact.",
+    "actualCommand": "ME1_BASE_MAIN=d19197ff43facd066abcc6ff4611e0ce0148609b GAME_URL=http://127.0.0.1:4244 PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium node scripts/me1-prologue-enemies-before.mjs"
+  },
+  "blockingBaselineDefects": [
+    {
+      "kind": "vertical-pillar-occlusion",
+      "capture": "docs/screenshots/me1-prologue-enemies-before-rachni-public-battle.png",
+      "status": "baseline-before-current-fix"
+    }
+  ]
+}

@@ -78,7 +78,7 @@ test('complete companion metadata is copied and frozen; wrong identities, scopes
   for (const key of ['jenkins', 'shepard', 'ME3-CHR-GARRUS', '__proto__']) assert.equal(normalizeCompanionAnimation(key, config('garrus')), null);
 });
 
-test('six combat-only registrations load exact local families once and never install an exploration animation', t => {
+test('combat-only companion registrations load exact local families once and never install an exploration animation', t => {
   const world = fixture({ loaded: false }), loads = [], base = world.atlases.crew;
   world.characterAnimations = {}; t.mock.method(world, '_loadAtlas', (name, url) => loads.push({ name, url }));
   for (const key of IDS) {
@@ -94,7 +94,7 @@ test('six combat-only registrations load exact local families once and never ins
   assert.equal(world.registerCharacterAnimation('garrus', config('wrex')), false);
 });
 
-test('all twenty-four companion poses use actual crop/pivot/relative height without mutating a native battle or save', () => {
+test('all registered companion poses use actual crop/pivot/relative height without mutating a native battle or save', () => {
   for (const key of IDS) {
     const world = fixture(), { state, battle } = battleFor(world, [key]), actor = world.battleActors.get(key), native = battle.actors.find(a => a.id === key);
     const originalSave = structuredClone(state);
@@ -112,7 +112,9 @@ test('all twenty-four companion poses use actual crop/pivot/relative height with
 });
 
 test('real native damage, KO and existing ME1 Unity events produce hit/down/revival without granting a skill', () => {
-  for (const key of IDS) {
+  // Jenkins is lost before Shepard can learn Unity in the campaign. His native
+  // prologue KO and persistent narrative death have their own regression case.
+  for (const key of IDS.filter(key => key !== 'jenkins')) {
     const world = fixture(), { battle } = battleFor(world, [key], { [key]: { hp: 1, shield: 0 } });
     const attacker = battle.actors.find(a => a.team === 'enemy'); attacker.attack = 500;
     const view = world.battleActors.get(key), native = battle.actors.find(a => a.id === key), powers = [...native.powers];
@@ -262,7 +264,7 @@ test('UV recropping reaches actual Three material uniforms without invalidating 
   assert.deepEqual(atlas.repeat.toArray(), [1, 1]); assert.deepEqual(atlas.offset.toArray(), [0, 0]);
 });
 
-test('shipped companion metadata matches six real PNG headers and has twenty-four globally distinct pose IDs', () => {
+test('shipped companion metadata matches real PNG headers and has globally distinct pose IDs', () => {
   const ids = [];
   for (const key of IDS) {
     const raw = JSON.parse(readFileSync(new URL(`../public/assets/companion-${key}-animation.json`, import.meta.url))), normalized = normalizeCompanionAnimation(key, raw);
@@ -272,5 +274,5 @@ test('shipped companion metadata matches six real PNG headers and has twenty-fou
     assert.equal(bytes.readUInt32BE(16), normalized.combat.width); assert.equal(bytes.readUInt32BE(20), normalized.combat.height);
     ids.push(...Object.values(normalized.combat.frames).map(frame => frame.id));
   }
-  assert.equal(ids.length, 24); assert.equal(new Set(ids).size, 24);
+  assert.equal(ids.length, IDS.length * 4); assert.equal(new Set(ids).size, IDS.length * 4);
 });

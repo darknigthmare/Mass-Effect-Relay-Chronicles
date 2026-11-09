@@ -37,8 +37,11 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `enemy-rachni-combat.png` | 1536 × 1024 | Quatre poses fixes | Soldat rachni ME1 en combat |
 | `eden-ground-grass.png` | 1254 × 1254 | Texture RGB opaque | Prairie sur géométrie 3D d’Eden Prime |
 | `eden-ground-dirt.png` | 1254 × 1254 | Texture RGB opaque | Terre et passages d’Eden Prime |
+| `companion-jenkins-combat.png` | 1536 × 1024 | Quatre poses fixes | Jenkins au prologue ME1 |
+| `enemy-creeper-combat.png` | 1536 × 1024 | Quatre poses fixes | Creeper du Thorien ME1 |
+| `enemy-asari-combat.png` | 1536 × 1024 | Quatre poses fixes | Commando asari générique ME1 |
 
-Les **31 PNG courants** comprennent les seize images précédentes, les six atlas de compagnons, six atlas d’ennemis, la planche assise de Joker et deux textures de sol Eden. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard, les 24 des compagnons et les 24 des ennemis portent le total à **56 poses clés de combat**, séparées des deux dessins assis de Joker et des deux textures de sol. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
+Les **34 PNG courants** comprennent les seize images précédentes, les sept atlas de compagnons, huit atlas d’ennemis, la planche assise de Joker et deux textures de sol Eden. Les seize images précédentes regroupent les dix images historiques — 48 sujets de sprites, 32 images de marche, quatre poses de combat féminines et une illustration d’accueil —, l’atlas des trois bustes partiels, les quatre atlas arsenal de **24 illustrations fixes**, et l’atlas de **quatre poses de combat masculines**. Les huit poses de Shepard, les 28 des compagnons et les 32 des ennemis portent le total à **68 poses clés de combat**, séparées des deux dessins assis de Joker et des deux textures de sol. Ces nombres ne correspondent pas à des personnages ou movesets complets. Les doublons d’un même personnage sous plusieurs formes sont comptés comme sujets distincts d’atlas.
 
 ## Ordre des régions
 
@@ -87,7 +90,7 @@ Le complément équipement conserve les dix PNG et les animations de 0.2.0. Il a
 
 Les personnages et objets sont des plans 2D dans un monde 3D. Les accessoires ne remplacent pas la géométrie des bâtiments, sols, coursives, volumes et routes. Les silhouettes conservent un seuil alpha de 0,2 pour limiter les franges de transparence. La taille et les proportions du plan dépendent du type d’atlas, notamment pour les boss.
 
-Shepard dispose d’une animation par images. Les six compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Six ennemis ME1 disposent aussi de quatre poses fixes chacun ; les autres gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
+Shepard dispose d’une animation par images. Les sept compagnons ME1 disposent de quatre poses clés de combat chacun ; leur terrain conserve les poses de base avec transformations procédurales. Les huit familles d’ennemis ordinaires ME1 disposent aussi de quatre poses fixes chacune ; les boss gardent leurs poses de base. Les tirs, impacts, soins, lévitations, couvertures et stases ont des effets visuels, mais ne fournissent pas toutes les animations corporelles finales.
 
 La variante féminine sélectionnable utilise deux atlas propres. Les rectangles et pivots sont décrits dans `shepard-female-animation.json`, puis inclus dans le JavaScript compilé pour fonctionner aussi avec le chargement local d’Electron. La marche garde la dernière direction à l’arrêt, utilise sept images par seconde et accélère pendant la course. En combat, les événements déclenchent les poses de visée, pouvoir et impact ; la pose couchée dispose d’une hauteur et d’un pivot spécifiques. Il s’agit de quatre poses clés, pas de quatre cycles complets.
 
@@ -173,6 +176,12 @@ Les rectangles, pivots et hauteurs relatifs sont mesurés. Les contextes étrang
 Deux atlas natifs ajoutent huit poses fixes aux profils krogan et rachni déjà jouables. Barrière et acide conservent leurs commandes natives ; les images ne donnent aucun nouveau pouvoir. Les dessins dérivent des identités de prototype existantes, sans référence corporelle primaire supplémentaire obtenue pour ces espèces. Les deux premières compositions refusées et les générations retenues sont distinguées dans les notes [krogan](research/eden-immersion-krogan.md) et [rachni](research/eden-immersion-rachni.md).
 
 Les textures de [prairie et terre](research/eden-immersion-terrain-art.md) sont deux PNG RGB opaques natifs, copiés sans retouche. Leur répétition 3 × 3 est inspectée ; de légers motifs et variations de ton restent visibles. Elles habillent les meshes du nouveau parcours d’Eden, sans remplacer les bâtiments ou le relief par une image plate. Les 27 PNG précédents sont conservés. Les [preuves du lot](qa/eden-immersion-report.json) séparent l’art, la navigation, les états des sprites, les parcours publics et la revue Excel. Aucun matériau original, modèle complet, animation intégrale ou fidélité 1:1 n’est certifié.
+
+## Jenkins et deux familles ennemies — 9 novembre 2026
+
+Le lot du 9 novembre ajoute trois atlas natifs de quatre poses : [Jenkins](research/me1-prologue-enemies-jenkins.md), [creeper du Thorien](research/me1-prologue-enemies-creeper.md) et [commando asari générique](research/me1-prologue-enemies-asari.md). Les PNG restent des copies sans retouche ; rectangles, pivots et hauteurs sont mesurés. Leurs aperçus natifs, états dans le renderer et commandes publiques sont distingués dans les [preuves du lot](qa/me1-prologue-enemies-report.json). Les 31 PNG précédents restent inchangés.
+
+Jenkins conserve l’armure Alliance casquée de la silhouette de prototype, sans marque N7 ni biotique ajoutée. Son geste d’action accompagne notamment la couverture déjà disponible et sa pose couchée représente le KO de combat ; sa perte narrative ferme sa disponibilité. Les deux nouvelles familles ennemies conservent leurs attaques organiques ou biotiques natives. L’asari générique ne réalise pas le clone du Thorien ni ses phases. Les armes dessinées, détails anatomiques, costumes, cycles et directions restent à comparer aux références originales.
 
 ## Critères d’acceptation de l’art final
 

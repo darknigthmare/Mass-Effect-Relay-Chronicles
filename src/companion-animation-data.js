@@ -1,6 +1,6 @@
-// Visual metadata only. The six short IDs belong to the retained ME1 campaign;
+// Visual metadata only. These short IDs belong to the retained ME1 campaign;
 // no equipment, skill, recruitment or later-game identity is supplied here.
-export const COMPANION_ANIMATION_IDS = Object.freeze(['ashley', 'kaidan', 'garrus', 'tali', 'wrex', 'liara']);
+export const COMPANION_ANIMATION_IDS = Object.freeze(['ashley', 'kaidan', 'garrus', 'tali', 'wrex', 'liara', 'jenkins']);
 export const COMPANION_COMBAT_POSES = Object.freeze(['aim', 'power', 'hit', 'down']);
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const plain = value => !!value && typeof value === 'object' && !Array.isArray(value)
@@ -48,7 +48,11 @@ export function normalizeCompanionAnimation(key, input) {
 }
 
 /** Legacy ME1 combat actors have no mediaId; an explicit foreign scope closes. */
-export function canShowCompanionAnimation(actor, state = actor?.state) {
+export function canShowCompanionAnimation(actor, state = actor?.state, campaignContext = null) {
+  if (actor?.id === 'jenkins' && campaignContext && typeof campaignContext === 'object'
+    && (campaignContext.flags?.jenkinsLost === true
+      || Array.isArray(campaignContext.lost) && campaignContext.lost.includes('jenkins')
+      || Array.isArray(campaignContext.completed) && campaignContext.completed.includes('eden-prime'))) return false;
   return !!actor && COMPANION_ANIMATION_IDS.includes(actor.id) && actor.key === actor.id && actor.enemy === false
     && !!state && state.id === actor.id && state.sprite === actor.key && state.team === 'party'
     && (state.mediaId === undefined || state.mediaId === 'ME1')

@@ -1,0 +1,734 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "at": "2026-11-09T04:15:23.624Z",
+  "baselineCommit": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+  "sourceHead": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+  "buildKind": "production-dist",
+  "url": "http://127.0.0.1:4244/",
+  "case": "before-nov-pillar",
+  "command": {
+    "script": "node scripts/me1-prologue-enemies-before.mjs",
+    "environment": {
+      "EDEN_BASE_MAIN": "d19197ff43facd066abcc6ff4611e0ce0148609b",
+      "GAME_URL": "http://127.0.0.1:4244/",
+      "PLAYWRIGHT_EXECUTABLE_PATH": "/usr/bin/chromium"
+    }
+  },
+  "scope": "Fresh baseline public Noveria field and native rachni arena at current main d191. Existing dist built at d9 is reused only after all216 build-source hashes and all61 compiled artifacts match. Existing actual public save is imported unchanged; no prior progression, new build, native shot, new poses or final implementation is claimed. No private harness, source import, storage injection or pose setter in Chromium.",
+  "fixtures": [
+    {
+      "path": "docs/qa/eden-immersion-production-rachni-precombat-save.json",
+      "bytes": 3288,
+      "sha256": "dc988313162656f3c336d689725144ab2ac99ce99a71675e797f4ddd98c5eabe",
+      "origin": "Unchanged actual public exported precombat save from the earlier explicitly prepared ME1 campaign fixture; this baseline does not play its prior progression.",
+      "zone": "noveria",
+      "party": [
+        "shepard",
+        "kaidan",
+        "ashley"
+      ],
+      "position": {
+        "x": -7,
+        "z": -5
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "sources": {
+    "src/world.js": "5351a9d65384b71a01a5f01ba57d5efdc9834ad40457f4b3eda84cda75c2127a",
+    "src/world-data.js": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf",
+    "src/eden-scene.js": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948",
+    "src/level-layout-data.js": "318d0df18bf65f804d6ad2a4737ef80e7b295d127c11924bc93faac256832b07",
+    "src/main.js": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "src/local-map.css": "c6e9ca6ef1ad5870365faa8bc008698ef277287ed78d0d6bda7f77bcecf7a67a",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "src/game-data.js": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+    "src/enemy-animation-data.js": "4be363caf9ffd481c71ddf893152c3ac5cfe403e24b719f32c759c935fb169e5",
+    "src/companion-animation-data.js": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+    "vite.config.js": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+    "scripts/me1-prologue-enemies-before.mjs": "af665721c4efd3ec6c6d563a8a13a6b2ec320924ade64bd801b14a4cf43b5762",
+    "public/assets/enemy-rachni-combat.png": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+    "public/assets/enemy-rachni-animation.json": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+  },
+  "buildFiles": {
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-C8XQtsJO.js": {
+      "bytes": 26590,
+      "sha256": "c805bde8accfd60d6c8b14798165fa23bd7d19958116a9c1650b8079f5b553d6"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuity-Bh_jqSA5.js": {
+      "bytes": 5783,
+      "sha256": "28484baf3f43fae19084b62aeeddd06c8cf6592e982b110220c14a706f7e97ae"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/eden-ground-dirt.png": {
+      "bytes": 4408187,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d"
+    },
+    "assets/eden-ground-grass.png": {
+      "bytes": 4741123,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/enemy-geth-animation.json": {
+      "bytes": 2239,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363"
+    },
+    "assets/enemy-geth-combat.png": {
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    "assets/enemy-geth-destroyer-animation.json": {
+      "bytes": 2431,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04"
+    },
+    "assets/enemy-geth-destroyer-combat.png": {
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    "assets/enemy-geth-sniper-animation.json": {
+      "bytes": 2412,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092"
+    },
+    "assets/enemy-geth-sniper-combat.png": {
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    "assets/enemy-husk-animation.json": {
+      "bytes": 2233,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754"
+    },
+    "assets/enemy-husk-combat.png": {
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    "assets/enemy-krogan-animation.json": {
+      "bytes": 2247,
+      "sha256": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f"
+    },
+    "assets/enemy-krogan-combat.png": {
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    "assets/enemy-rachni-animation.json": {
+      "bytes": 2255,
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+    },
+    "assets/enemy-rachni-combat.png": {
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    "assets/expansion-BTmcZZh_.js": {
+      "bytes": 162056,
+      "sha256": "157123ac728078030333c6278b114cd72f911176393d1efa061e366d883f952c"
+    },
+    "assets/index-BObhrGPb.js": {
+      "bytes": 436001,
+      "sha256": "afb996e91dddeda6a274a49357cd4ea8f6f17805408caf6e663670d84ab0c360"
+    },
+    "assets/index-CKR09dq6.css": {
+      "bytes": 63100,
+      "sha256": "c328f6987c2717011e09591239311949a5ea19f558008ab72da7668bd2962fb7"
+    },
+    "assets/joker-seated.json": {
+      "bytes": 2106,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+    },
+    "assets/joker-seated.png": {
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    "assets/manifest.json": {
+      "bytes": 57876,
+      "sha256": "8725a2d90f7e5e11334d309de0980d613098bb3a7df9fb2ccc8cb19fbfcd6549"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-DSrZE7m-.js": {
+      "bytes": 525536,
+      "sha256": "aa18e8030121687e388ddd65839513b1b47274895e2d1c972c644d6e4b4bf163"
+    },
+    "assets/universe-actors-DfZ9QwQs.js": {
+      "bytes": 43942,
+      "sha256": "e45b775931b10687ba91cbec842d3ed187a7af57dded13eb8e3acb536b9fd97d"
+    },
+    "assets/universe-data-D0MlcRDn.js": {
+      "bytes": 3317033,
+      "sha256": "440a4409a74bffeee32d7301678381c74e5bbef50cc98e31e520d5cfeb502295"
+    },
+    "assets/universe-equipment-DKI83uYi.js": {
+      "bytes": 15972,
+      "sha256": "12b69ac940c007707785abe57107209bbccb695a2d38c15064ef2972362f214f"
+    },
+    "assets/universe-ui-CcnUo4Uq.css": {
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    "assets/universe-ui-Duu98OIl.js": {
+      "bytes": 52649,
+      "sha256": "e75f6b1a4f4e7de9e75f248e472b5c0cff9ea02110961514ee32e2c6ed4a0955"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "7ce553209ad579c6e669e83165ef3f1ce0d69fa53ac57039b89aadbf6c4b05e1"
+    }
+  },
+  "servedFiles": [],
+  "browserResponses": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 660,
+      "sha256": "7ce553209ad579c6e669e83165ef3f1ce0d69fa53ac57039b89aadbf6c4b05e1",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/index-CKR09dq6.css",
+      "status": 200,
+      "bytes": 63100,
+      "sha256": "c328f6987c2717011e09591239311949a5ea19f558008ab72da7668bd2962fb7",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/index-BObhrGPb.js",
+      "status": 200,
+      "bytes": 436001,
+      "sha256": "afb996e91dddeda6a274a49357cd4ea8f6f17805408caf6e663670d84ab0c360",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/three-DSrZE7m-.js",
+      "status": 200,
+      "bytes": 525536,
+      "sha256": "aa18e8030121687e388ddd65839513b1b47274895e2d1c972c644d6e4b4bf163",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/shepard-walk-atlas.png",
+      "status": 200,
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/shepard-female-walk-atlas.png",
+      "status": 200,
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/crew-atlas.png",
+      "status": 200,
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/boss-atlas.png",
+      "status": 200,
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-atlas.png",
+      "status": 200,
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/npc-atlas.png",
+      "status": 200,
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/props-atlas.png",
+      "status": 200,
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/vehicle-atlas.png",
+      "status": 200,
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/shepard-female-combat-atlas.png",
+      "status": 200,
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/shepard-male-combat-atlas.png",
+      "status": 200,
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-ashley-combat.png",
+      "status": 200,
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-kaidan-combat.png",
+      "status": 200,
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-garrus-combat.png",
+      "status": 200,
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-tali-combat.png",
+      "status": 200,
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-wrex-combat.png",
+      "status": 200,
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/companion-liara-combat.png",
+      "status": 200,
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-combat.png",
+      "status": 200,
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "status": 200,
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "status": 200,
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-husk-combat.png",
+      "status": 200,
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-krogan-combat.png",
+      "status": 200,
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/joker-seated.png",
+      "status": 200,
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/enemy-rachni-combat.png",
+      "status": 200,
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+      "matchesDist": true
+    },
+    {
+      "path": "assets/citadel-keyart.png",
+      "status": 200,
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0",
+      "matchesDist": true
+    }
+  ],
+  "exports": [],
+  "screenshots": [
+    {
+      "label": "noveria-field",
+      "path": "docs/screenshots/me1-prologue-enemies-before-noveria-field.png",
+      "bytes": 715958,
+      "sha256": "a385bfb1b020265bcd091ef641584e0e576306df3722fea05ee3c4ce82c5482b",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production viewport, no CSS/scene/pose injection"
+    },
+    {
+      "label": "rachni-public-battle",
+      "path": "docs/screenshots/me1-prologue-enemies-before-rachni-public-battle.png",
+      "bytes": 589869,
+      "sha256": "ab8f1b8403910306b2b4899cce28b4eb7f890b0fd6e226772b0b7b51f1c3e896",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public production viewport, no CSS/scene/pose injection"
+    }
+  ],
+  "activations": [
+    {
+      "action": "import",
+      "focused": true,
+      "rect": {
+        "x": 102.390625,
+        "y": 545.578125,
+        "width": 265,
+        "height": 44
+      },
+      "visible": true
+    },
+    {
+      "action": "interact",
+      "focused": true,
+      "rect": {
+        "x": 534.78125,
+        "y": 716,
+        "width": 210.4375,
+        "height": 50
+      },
+      "visible": true
+    }
+  ],
+  "checks": [],
+  "nativeOrders": [],
+  "reloads": [],
+  "mapViews": [],
+  "sourceRequests": [],
+  "evidenceErrors": [],
+  "errors": [],
+  "failedRequests": [],
+  "consoleObservations": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4244/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4244/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "resourceWarnings": [],
+  "profile": {
+    "fresh": true,
+    "path": "/workspace/Mass-Effect-Relay-Chronicles/test-results/me1-prologue-enemies-before-profile-OrngdV",
+    "launches": 1,
+    "completeShutdowns": 1
+  },
+  "tools": {
+    "node": "v24.19.0",
+    "chromium": "154.0.8037.57"
+  },
+  "limitations": [
+    "The valid imported save descends from an explicitly prepared earlier campaign fixture. Prior victories are not played here.",
+    "Only two baseline public views and the actual native encounter entry are collected; no fresh build, pose integration or final fix acceptance is claimed."
+  ],
+  "reusedBuild": {
+    "report": "docs/qa/eden-occlusion-build-report.json",
+    "sha256": "b3f535270bf4a69b6eb72af1cbea245064f55915dd42906737a84e58013841e0",
+    "freshBuildPerformed": false,
+    "acceptedBaselineCommit": "d9d2208bff463d93f24a7e74b1ea1b9cd51fdf40",
+    "checkedSources": 216,
+    "checkedArtifacts": 61,
+    "qualification": "The two newer main commits add AI-tooling documentation only; executed game source bytes and every dist file are checked against the prior accepted build."
+  },
+  "sourceArchive": [
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/world.js",
+      "originalPath": "src/world.js",
+      "sha256": "5351a9d65384b71a01a5f01ba57d5efdc9834ad40457f4b3eda84cda75c2127a",
+      "bytes": 107730
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/world-data.js",
+      "originalPath": "src/world-data.js",
+      "sha256": "3c7d2e0b38cac716127cc34c7b1c0e87e0c51842515ff4f2bcee718cd7b7f8bf",
+      "bytes": 6135
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/eden-scene.js",
+      "originalPath": "src/eden-scene.js",
+      "sha256": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948",
+      "bytes": 11519
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/level-layout-data.js",
+      "originalPath": "src/level-layout-data.js",
+      "sha256": "318d0df18bf65f804d6ad2a4737ef80e7b295d127c11924bc93faac256832b07",
+      "bytes": 9002
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/main.js",
+      "originalPath": "src/main.js",
+      "sha256": "0eff23d5a5bb6e4dea56bd70d91445c6f7b2767e39b8b5d2f67a247b4ca341c6",
+      "bytes": 106425
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/local-map.js",
+      "originalPath": "src/local-map.js",
+      "sha256": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+      "bytes": 3990
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/local-map.css",
+      "originalPath": "src/local-map.css",
+      "sha256": "c6e9ca6ef1ad5870365faa8bc008698ef277287ed78d0d6bda7f77bcecf7a67a",
+      "bytes": 2780
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/style.css",
+      "originalPath": "src/style.css",
+      "sha256": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+      "bytes": 27783
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/level-map-render.js",
+      "originalPath": "src/level-map-render.js",
+      "sha256": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+      "bytes": 3436
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/state.js",
+      "originalPath": "src/state.js",
+      "sha256": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+      "bytes": 21867
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/combat.js",
+      "originalPath": "src/combat.js",
+      "sha256": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+      "bytes": 70738
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/game-data.js",
+      "originalPath": "src/game-data.js",
+      "sha256": "d52b811ed475266aebbe99e9dcadece0c557648bdd4d88ce0d0841fd0177e69d",
+      "bytes": 15942
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/enemy-animation-data.js",
+      "originalPath": "src/enemy-animation-data.js",
+      "sha256": "4be363caf9ffd481c71ddf893152c3ac5cfe403e24b719f32c759c935fb169e5",
+      "bytes": 3716
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/src/companion-animation-data.js",
+      "originalPath": "src/companion-animation-data.js",
+      "sha256": "155b793bacd54ea55724352a5c593413e9b4f8c973e2d820074a3fe1ee7cad00",
+      "bytes": 3908
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/vite.config.js",
+      "originalPath": "vite.config.js",
+      "sha256": "fd6a04144ab40e24dc76492d2573dc23295f03bfc887d07ec819342e59a0b3e2",
+      "bytes": 2223
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/scripts/me1-prologue-enemies-before.mjs",
+      "originalPath": "scripts/me1-prologue-enemies-before.mjs",
+      "sha256": "af665721c4efd3ec6c6d563a8a13a6b2ec320924ade64bd801b14a4cf43b5762",
+      "bytes": 22078
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/public/assets/enemy-rachni-combat.png",
+      "originalPath": "public/assets/enemy-rachni-combat.png",
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+      "bytes": 2234953
+    },
+    {
+      "path": "docs/qa/me1-prologue-enemies-before-source/public/assets/enemy-rachni-animation.json",
+      "originalPath": "public/assets/enemy-rachni-animation.json",
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1",
+      "bytes": 2255
+    }
+  ],
+  "noHarness": {
+    "own": false,
+    "type": "undefined",
+    "viteClient": false
+  },
+  "encounter": {
+    "zone": "noveria",
+    "actualEnemyIDs": [
+      "rachni-0",
+      "rachni-1",
+      "rachni-2"
+    ],
+    "nativeEncounterStarted": true,
+    "shotPerformed": false
+  },
+  "sourceAndDistFrozen": true,
+  "finishedAt": "2026-11-09T04:15:40.110Z",
+  "elapsedSeconds": 16.49
+}
