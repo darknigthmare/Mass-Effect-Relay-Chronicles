@@ -47,10 +47,13 @@ function roundtrip(state) {
   assert.deepEqual(decoded.operations, state.operations); return decoded;
 }
 
-test('extension contains eleven source-linked operations, forty-three steps and four actual encounter definitions', () => {
-  assert.equal(OPERATIONS.length, 11); assert.equal(OPERATIONS.reduce((n, entry) => n + entry.steps.length, 0), 43);
-  assert.equal(new Set(OPERATIONS.map(entry => entry.id)).size, 11); assert.equal(Object.keys(OPERATION_ENCOUNTERS).length, 4);
-  for (const entry of OPERATIONS) {
+test('the historical eleven operations keep their source, stage and encounter contracts beside the new fauna assignment', () => {
+  const historical = OPERATIONS.filter(entry => entry.id !== 'feros-varrens');
+  assert.equal(OPERATIONS.length, 12); assert.equal(historical.length, 11);
+  assert.equal(historical.reduce((n, entry) => n + entry.steps.length, 0), 43);
+  assert.equal(new Set(OPERATIONS.map(entry => entry.id)).size, 12);
+  assert.equal(Object.keys(OPERATION_ENCOUNTERS).filter(key => key !== 'feros-varrens-pack').length, 4);
+  for (const entry of historical) {
     assert.ok(entry.sourceUrls.every(url => new URL(url).hostname === 'masseffect.fandom.com'));
     assert.ok(entry.adaptationNote.length > 60);
     assert.equal(new Set(entry.steps.map(step => step.id)).size, entry.steps.length);
@@ -154,7 +157,7 @@ test('combat must be armed, survives a save and resumes without completing or aw
   take(state, id); assert.equal(state.xp, xp + 70); assert.equal(state.credits, credits + 90); roundtrip(state);
 });
 
-test('all eleven operations complete through their ordered interactions with four correctly typed encounters', () => {
+test('all twelve operations complete through ordered interactions with five correctly typed encounters', () => {
   const state = feros(), encountered = [], startXP = state.xp, startCredits = state.credits;
   const choices = { 'hanar': 'permit', 'blackmailer': 'fight' };
   for (const entry of OPERATIONS) {
@@ -171,11 +174,11 @@ test('all eleven operations complete through their ordered interactions with fou
     const before = snapshot(state), last = entry.steps.at(-1);
     assert.equal(advanceOperation(state, entry.id, last.id, last.choices[0].id).ok, false); assert.equal(snapshot(state), before);
   }
-  assert.equal(encountered.length, 4); assert.equal(encountered.reduce((sum, battle) => sum + battle.enemies.length, 0), 10);
+  assert.equal(encountered.length, 5); assert.equal(encountered.reduce((sum, battle) => sum + battle.enemies.length, 0), 13);
   assert.deepEqual(encountered[1].enemies.map(enemy => enemy.synthetic), [true, true, true]);
-  assert.deepEqual(listOperations(state).map(entry => entry.status), Array(11).fill('completed'));
-  assert.equal(state.xp - startXP, 680); assert.equal(state.credits - startCredits, 615);
-  assert.deepEqual(operationEffects(state), { medicalDiscount: .2, colonySupport: 3, researchRecovered: true });
+  assert.deepEqual(listOperations(state).map(entry => entry.status), Array(12).fill('completed'));
+  assert.equal(state.xp - startXP, 750); assert.equal(state.credits - startCredits, 695);
+  assert.deepEqual(operationEffects(state), { medicalDiscount: .2, colonySupport: 4, researchRecovered: true });
 });
 
 test('the Thorian closes unfinished Fai Dan work but a previously copied Gavin archive remains deliverable', () => {

@@ -1,10 +1,12 @@
 import { renderExpansion } from './expansion-ui.js';
 import { getUniversePortrait } from './universe-portraits.js';
 import { getUniverseVisual } from './universe-visuals.js';
+import { getHorizonReferenceVisual } from './horizon-reference-visuals.js';
+export { filterHorizonReferences } from './horizon-reference-visuals.js';
 import { getUniverseAmmoProfile } from './universe-ammo.js';
 import { isSummon } from './combat-summons.js';
 const escapeDefault = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-const GROUPS = [['all', 'Tout'], ['actors', 'Personnages'], ['equipment', 'Équipement'], ['powers', 'Pouvoirs'], ['story', 'Récits et lieux']];
+const GROUPS = [['all', 'Tout'], ['actors', 'Personnages'], ['equipment', 'Équipement'], ['powers', 'Pouvoirs'], ['story', 'Récits et lieux'], ['fleet', 'Vaisseaux illustrés'], ['fauna', 'Faune illustrée']];
 const GALAXIES = { 'milky-way': 'Voie lactée', andromeda: 'Andromède', unknown: 'Lieu non fixé' };
 const KINDS = { game: 'Jeu', 'mobile-game': 'Jeu mobile', novel: 'Roman', comic: 'Comic', anthology: 'Anthologie', collection: 'Collection', 'in-universe-fiction': 'Fiction dans l’univers', speculative: 'Référence', 'cut-content': 'Contenu coupé', film: 'Film' };
 const percent = (value, max) => Math.max(0, Math.min(100, value / Math.max(1, max) * 100));
@@ -56,7 +58,7 @@ function atlasImage(visual, name, esc, className, dataAttribute, recordId) {
   return `<svg class="${className}" viewBox="${box}" overflow="hidden" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${esc(name)} · ${className === 'chronicle-portrait' ? 'portrait' : 'illustration'} de prototype" ${dataAttribute}="${esc(recordId)}"><svg x="${x}" y="${y}" width="${width}" height="${height}" viewBox="${box}" overflow="hidden" preserveAspectRatio="xMidYMid meet"><image href="${esc(visual.src)}" width="${visual.atlasWidth}" height="${visual.atlasHeight}"/></svg></svg>`;
 }
 function visualEntry(recordId, context, options) {
-  return getUniverseVisual(recordId, context, options);
+  return (options?.usage === 'reference' ? getHorizonReferenceVisual(recordId, context, options) : null) || getUniverseVisual(recordId, context, options);
 }
 function actorVisualEntry(actor, view) {
   const recordId = actor.catalogId || actor.id, scenarioId = view.session?.scenarioId;

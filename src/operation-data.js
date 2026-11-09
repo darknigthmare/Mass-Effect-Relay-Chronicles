@@ -1,5 +1,5 @@
 /**
- * Eleven additional ME1 assignments, staged for the condensed ATB campaign.
+ * Additional ME1 assignments, staged for the condensed ATB campaign.
  * Canonical names and broad objectives are sourced in docs/research/operations-sources.md.
  * Dialogue, coordinates, rewards, persuasion thresholds and encounter statistics
  * are adaptation choices. These records do not replace the three existing assignments.
@@ -112,7 +112,7 @@ export const OPERATIONS = [
     id: 'feros-power', name: 'Féros : Cellules énergétiques', zone: 'feros',
     description: 'Récupérer des cellules dans une épave pour le générateur de May O’Connell.',
     sourceUrls: [wiki('Feros: Power Cells')], reward: reward(55, 60, { paragon: 4 }),
-    adaptationNote: `${zoneNote} La récupération sur l’épave est jouable ; le groupe de varrens et l’assignation de viande sont absents, sans ennemi de substitution.`,
+    adaptationNote: `${zoneNote} La récupération sur l’épave reste indépendante du ravitaillement de Davin. La nouvelle opération feros-varrens traite la meute et son alpha ; aucune victoire de cette meute ne valide automatiquement les cellules énergétiques.`,
     steps: [
       step('request', 'May O’Connell', 11, 14, 'Le générateur manque de cellules utilisables. Une épave sous la colonie en contient peut-être encore. Si elles sont intactes, je peux les adapter à notre installation.', accept),
       step('wreck', 'Épave du véhicule', 12, -5, 'Le logement énergétique a résisté à l’accident. Deux cellules peuvent être retirées sans endommager leurs connexions.', [choice('recover', 'Récupérer les cellules énergétiques.')]),
@@ -144,6 +144,18 @@ export const OPERATIONS = [
       step('report', 'Gavin Hossle', 11, 18, 'La copie est complète. Je pourrai reprendre ce travail lorsque nous serons en sécurité. Merci d’avoir pensé à ces recherches au milieu de l’évacuation.', [choice('deliver', 'Remettre la copie à Gavin.')]),
     ],
   },
+  {
+    id: 'feros-varrens', name: 'Féros : Viande de varren', zone: 'feros', deadline: 'colony-before-thorian',
+    description: 'Éliminer l’alpha varren du pont effondré et informer Davin Reynolds pour sécuriser le ravitaillement.',
+    sourceUrls: ['https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-noveria-and-feros/feros-assignments'],
+    reward: reward(70, 80, { paragon: 4 }),
+    adaptationNote: 'La meute est condensée en deux varrens et un alpha distinct, avec trois adversaires à vaincre. Le guide consulté ne donne pas son effectif original. Textes, géographie, statistiques et récompenses sont adaptés à l’ATB. Cette version exige la remise avant le Thorien ; le guide permet aussi une remise ultérieure si Davin survit, condition individuelle non représentée par le prototype.',
+    steps: [
+      step('request', 'Davin Reynolds · ravitaillement', -10, 52, 'Nos réserves s’épuisent. Les varrens des tunnels pourraient nourrir la colonie, mais un alpha nous empêche de les approcher. Si vous éliminez la meute près du pont effondré, nous pourrons de nouveau chasser.', [choice('accept', 'Sécuriser la zone de chasse.')], { portrait: 'davin' }),
+      step('pack', 'Meute du pont effondré', 12, 25, 'Deux varrens accompagnent un alpha plus imposant. Les prédateurs bloquent l’accès au secteur du pont effondré.', [choice('fight', 'Affronter la meute.', { combat: 'feros-varrens-pack', consequence: 'Combat ATB contre deux varrens et leur alpha.', outcome: 'Les deux varrens et l’alpha du groupe ont été vaincus.' })]),
+      step('report', 'Davin Reynolds · ravitaillement', -10, 52, 'L’alpha est mort et le passage est libre ? Nous pourrons nous occuper du ravitaillement sans exposer les colons à cette meute. Merci d’avoir pris ce risque pour Zhu’s Hope.', [choice('report', 'Confirmer que la meute a été éliminée.')], { portrait: 'davin' }),
+    ],
+  },
 ];
 
 for (const operation of OPERATIONS) {
@@ -155,4 +167,5 @@ export const OPERATION_ENCOUNTERS = {
   'tunnel-geth': { name: 'Défense geth des tunnels', enemies: ['sniper', 'sniper', 'destroyer'] },
   'tunnel-krogans': { name: 'Gardiens du transmetteur', enemies: ['krogan', 'krogan', 'krogan'] },
   'data-krogans': { name: 'Gardes du terminal ExoGeni', enemies: ['krogan', 'krogan', 'krogan'] },
+  'feros-varrens-pack': { name: 'La meute du pont effondré', enemies: ['varren', 'varren', 'alpha-varren'] },
 };

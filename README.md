@@ -4,6 +4,12 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
+## Horizon : faune, flotte et grands parcours
+
+Le [lot Horizon](docs/HORIZON.md) ajoute huit interlocuteurs à Féros et à la Citadelle, cinq profils ennemis et l’opération des varrens de Davin Reynolds, avec son alpha. Féros et Ilos disposent chacun de cinq secteurs et de trois chemins. La faune paisible d’Eden Prime peut être observée.
+
+**Pause → Codex → Faune et vaisseaux** ouvre les dossiers connus du commando. Huit visuels de coques et huit corps de faune complètent le contenu, avec des projections de reconnaissance ME1 et des illustrations limitées aux bons contextes ME2/ME3/Andromeda. Les Chroniques proposent les filtres **Vaisseaux illustrés** et **Faune illustrée**. Ces ajouts restent des prototypes ; ils ne terminent pas les campagnes ou mécaniques des autres épisodes.
+
 ## Extension ME1 Frontier
 
 Le lot Frontier ajoute huit conversations de PNJ, huit types d’ennemis dans les rencontres existantes, seize poses des quatre boss et un prototype de Mako pilotable à Thérum. Thérum, Novéria et Virmire disposent chacune de cinq secteurs et de trois chemins, avec relief, obstacles, caméra, carte et radar propres au lieu. Les récompenses, conditions de progression et sept points de mission par zone sont conservés.
@@ -183,7 +189,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 
 - **[27 classeurs supplémentaires — univers étendu](docs/universe/README.md)** : ME2, ME3, Andromeda, Infiltrator, Galaxy, les sept romans, les douze comics et collections demandés, Paragon Lost, le dossier d’extrapolation ME4 et les contenus coupés. Chaque classeur contient 28 onglets, ses sources et sa couverture restante.
 - **[Télécharger les 27 classeurs en ZIP](docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**.
-- **[Classeur de production — 1 382 fiches, 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA. La version 0.3.0 ajoute 50 fiches de personnalisation en conservant les 1 332 fiches de la branche principale, soit 6 708 références avec les 27 catalogues supplémentaires.
+- **[Classeur de production — 1 385 fiches, 28 onglets](docs/Mass_Effect_Relay_Chronicles_Production.xlsx)** : décors, mondes, cartes, connexions, personnages, PNJ, ennemis, boss, armes, pouvoirs, movesets, missions, choix, animations, sprites, audio, VFX, interface et QA. Horizon conserve les 1 382 fiches précédentes et ajoute trois fiches de sprites, soit 6 711 références avec les 27 catalogues supplémentaires.
 - [Guide et décompte du catalogue](docs/CATALOGUE.md).
 - [Catalogue JSON](docs/content-catalog.json), utilisé pour générer le classeur.
 - [Chroniques : périodes, personnages, équipement et sauvegardes séparées](docs/CHRONICLES.md).
@@ -191,7 +197,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 - [Registre des assets et limites artistiques](docs/ASSETS.md).
 - [État de livraison et vérifications](docs/IMPLEMENTATION_STATUS.md).
 
-Le registre courant de la branche 0.3.0 compte **6 708 fiches et 454 sources** : **1 382 fiches et 44 sources dans le principal**, dont les 50 fiches de personnalisation, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Les deux nouvelles références ME1 documentent uniquement la présence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Les statuts courants sont **641 Prototype, 6 061 Défini, trois Intégré et trois Validé**, dont 350 Prototype et 1 026 Défini dans le principal. Le principal fusionné est vérifié contre les deux bases. La revue historique de main `7ef342a` couvrait 93 panneaux ciblés de trois classeurs supplémentaires et trois panneaux du principal ; elle n’a pas été rejouée sur la PR. Trois nouveaux aperçus du principal fusionné sont [revus séparément](docs/qa/customization-arsenal-sync-workbook-visual-report.json). Ces revues ne constituent pas une inspection complète de toutes les feuilles.
+Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Les statuts courants sont **690 Prototype, 6 015 Défini, trois Intégré et trois Validé**, dont 399 Prototype et 980 Défini dans le principal. Horizon met à jour 28 fiches existantes et ajoute trois fiches de sprites, sans promotion vers Intégré ou Validé. Les 27 catalogues supplémentaires et les 31 autres classeurs restent inchangés. La [revue ciblée du classeur](docs/qa/horizon-workbook-visual-report.json) et le [rapport du lot](docs/qa/horizon-report.json) distinguent les vérifications natives, les panneaux réellement ouverts et les limites ; les revues précédentes restent historiques.
 
 **Une fiche de production ne signifie pas un élément terminé.** Le classeur sépare le statut du contenu, le statut de l’asset et le niveau de vérification canonique. Les liens vers des fichiers constituent des preuves localisables ; les noms d’assets futurs restent dans une colonne distincte. Une modification directe dans Excel n’est pas automatiquement réimportée dans le JSON.
 

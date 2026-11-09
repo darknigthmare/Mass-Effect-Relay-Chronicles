@@ -1,3 +1,23 @@
+# État de livraison — Horizon
+
+Mise à jour : **9 novembre 2026**. Le [lot Horizon](HORIZON.md) reprend `main` à `2ab3f7c`, après Frontier, et conserve les sprites HD, les décors 3D et les combats ATB. Il ajoute huit interlocuteurs et seize sujets réécrits, cinq silhouettes d’adversaires, huit illustrations de faune et huit de vaisseaux ou variantes de livrée. Féros et Ilos disposent chacun de cinq secteurs reliés, avec des positions de mission et des contacts cohérents avec ces plans.
+
+Les conversations de Fai Dan, Arcelia, Macha et Davin sont disponibles avant la confrontation avec le Thorien ; leur historique est conservé après leur retrait. Pallin, Harkin, Barla Von et Chloé Michel disposent de contacts à la Citadelle. Les conversations d’information ne distribuent aucune récompense. Quatre liens de proximité ouvrent les demandes natives de Fai Dan, Macha, Davin et Michel. La nouvelle opération des varrens de Davin utilise le combat ATB, puis remet les gains une seule fois au rapport.
+
+La faune paisible d’Eden est observable. Les représentations de vaisseaux dans les lieux jouables sont des projections de reconnaissance légendées. Les autres illustrations restent documentaires et ne s’affichent que dans l’œuvre et la période autorisées ; elles ne créent ni pilotage, ni recrutement, ni animal de compagnie dans le Normandy SR-1. Les dessins, dialogues, mécaniques et grands parcours restent des **prototypes partiels** ; aucune fidélité complète 1:1 n’est certifiée.
+
+Le principal compte **1 385 fiches : 980 Défini, 399 Prototype, trois Intégré et trois Validé**. Le registre univers atteint **6 711 références et 454 sources : 6 015 Défini, 690 Prototype, trois Intégré et trois Validé**. Le lot actualise 28 fiches existantes et ajoute trois fiches de sprites ; 21 statuts de production et 20 statuts d’asset sont promus en Prototype. Les critères canoniques historiques restent conservés. Cinq nouveaux PNG portent **29 dessins fixes**, pour **46 PNG au total** ; les **84 poses de combat** existantes restent inchangées.
+
+Les **135 tests ciblés** et les **915 tests de la suite complète** réussissent. La [validation finale](qa/horizon-validation-final-02-report.json) confirme aussi le build de **102 modules en 4,14 secondes** et l’audit de fidélité. Le [contrôle du build](qa/horizon-build-report.json) vérifie les octets des **79 fichiers publics copiés**. La [revue du développement](qa/horizon-visual-review.json) atteste l’ouverture réelle de **60 captures**, et la [revue du classeur](qa/horizon-workbook-visual-review-record.json) celle de **52 panneaux ciblés**. Ces contrôles ne certifient pas les apparences canoniques ni l’intégralité des feuilles Excel.
+
+La [première validation conservée](qa/horizon-validation-final-01-report.json) avait échoué sur une fixture héritée de Féros. Le test prépare désormais son contexte à la Citadelle ; les paramètres du produit n’ont pas changé pour obtenir le passage de la suite finale.
+
+La version compilée passe **huit contrôles publics**, avec **28 captures réellement ouvertes**, **13 exports JSON** et **neuf ordres joueur** dans la vraie victoire contre les varrens. Le rapport, le gain unique et la reprise de sauvegarde sont vérifiés ; les autres conditions narratives et les deux transferts de position restent des fixtures déclarées. Le [contrôle HTTP de production](qa/horizon-production-http-final-01-report.json) vérifie les **91 fichiers compilés**. Le brut faune garde son assertion finale en échec pour trois requêtes de favicon absente ; la [qualification séparée](qa/horizon-fauna-public-production-final-01-qualification.json) vérifie strictement ces seuls avertissements et les quatre résultats fonctionnels, sans réécrire le brut ni rejouer la victoire.
+
+Le [rapport Horizon](qa/horizon-report.json) est le point d’entrée des preuves du lot. Les rapports cités dans l’historique ci-dessous gardent leurs sources et leur portée d’origine ; ils ne constituent pas une nouvelle exécution de ces anciens parcours sur Horizon.
+
+---
+
 # État de livraison — 0.3.0
 
 Mise à jour : **28 octobre 2026**. La PR de personnalisation a été fusionnée dans main `6182756578e50f44d668b3c0a2ac1561a8e0275e`. Le [lot Simulation](EXPANSION_SIMULATIONS.md) ajoute 200 fiches d’étude, 145 épreuves possibles et 55 consultations fermées, sans modifier les catalogues et classeurs historiques. Ses [preuves finales](qa/expansion-report.json) restent distinctes de la synchronisation de la PR.

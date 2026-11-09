@@ -1,6 +1,7 @@
 /** Original fan-game staging; story milestones live in game-data.js and story-data.js. */
 import { getLevelLayout } from './level-layout-data.js';
 import { FRONTIER_NPCS } from './frontier-characters.js';
+import { HORIZON_NPCS } from './horizon-characters.js';
 const poi = (zone, suffix, label, type, x, z, extra = {}) => ({
   id: `${zone}:${suffix}`, label, type, x, z, ...extra,
 });
@@ -89,6 +90,19 @@ for (const npc of FRONTIER_NPCS) {
   (zone.conversationPois ||= []).push(poi(zone.id, `talk-${npc.id}`, npc.name, 'dialogue', position.x, position.z,
     {conversationId:npc.conversationId,characterId:npc.characterKey,actorPosition:{...actor},frontierNPC:npc.id}));
 }
+
+// These local anchors stage existing ME1 contacts within the retained condensed
+// Citadel scene. They do not claim original ward/clinic floor plans.
+const citadelHorizonAnchors={pallin:{x:8.4,z:14.5},harkin:{x:8.4,z:9.7},'barla-von':{x:-8.4,z:-10.5},michel:{x:-8.4,z:3}};
+for(const npc of HORIZON_NPCS){
+  const zone=WORLD_ZONES[npc.zone],layout=getLevelLayout(npc.zone),actor=layout?.npcAnchors?.[npc.sectorAnchor]?.[npc.id]||(npc.zone==='citadel'?citadelHorizonAnchors[npc.id]:null);
+  if(!zone||!actor)continue;
+  const x=actor.x+(actor.x<0?2.3:-2.3),z=actor.z;
+  (zone.conversationPois||=[]).push(poi(zone.id,`talk-${npc.id}`,npc.name,'dialogue',x,z,{conversationId:npc.conversationId,characterId:npc.characterKey,actorPosition:{...actor},horizonNPC:npc.id}));
+}
+
+WORLD_ZONES['eden-prime'].faunaPois=[poi('eden-prime','observe-gasbags','Faune paisible','dialogue',-31,37,{faunaId:'gasbag-me1'})];
+WORLD_ZONES.citadel.operationAnchors={'citadel-doctor-michel':{request:{x:-6.1,z:.3},report:{x:-6.1,z:.3}}};
 
 for (const suffix of ['encounter-1', 'encounter-2', 'boss']) {
   WORLD_ZONES.citadel.pois.find(p => p.id === `citadel:${suffix}`).type = 'dialogue';

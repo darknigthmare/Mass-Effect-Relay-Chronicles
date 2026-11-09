@@ -2,7 +2,11 @@
 
 Le périmètre retenu conserve les sprites et les combats ATB de Relay Chronicles. La fidélité du contenu demande des références distinctes pour les lieux, les personnages, les missions et les conséquences. Les statistiques et le rythme ATB restent des choix d’adaptation.
 
-La branche 0.3.0 conserve les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.
+Le suivi courant après Horizon compte **1 385 fiches principales et 6 711 références**, avec **454 sources**. Le principal comporte **399 Prototype, 980 Défini, trois Intégré et trois Validé** ; le registre complet, **690 Prototype, 6 015 Défini et les six statuts avancés inchangés**. Les 29 nouveaux dessins restent des prototypes fixes. Les [preuves Horizon](qa/horizon-report.json) séparent jeu, documentation, génération et vérification du classeur.
+
+## Historique des livraisons
+
+La synchronisation historique de la branche 0.3.0 conservait les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.
 
 Le complément arsenal de main, basé sur `1310a84` comprend **1 332 fiches principales et 5 326 fiches supplémentaires, soit 6 658 fiches**, avec **450 sources : 40 principales et 410 supplémentaires**. Les deux nouvelles références principales documentent l’existence et la vue nommée du Mako et du Normandy SR-1 dans le manuel officiel Xbox 360. Elles ne valident ni leur géométrie complète, ni le pilotage et ne changent pas la nature des anciennes fiches d’adaptation. Les **52 promotions Prototype sont appliquées** ; son bilan de main est de **582 Prototype, 6 070 Défini, trois Intégré et trois Validé**, sans modification des six statuts avancés historiques. Le [rapport arsenal](qa/arsenal-report.json) distingue la validation fonctionnelle de toute certification 1:1.
 
@@ -153,6 +157,16 @@ Le lot basé sur `ff8a1cf` produit sept corps de PNJ pour huit conversations (Je
 Les trois cartes de Thérum, Novéria et Virmire passent à cinq secteurs et trois chemins chacune. Les sols, obstacles, caméra, sept points de mission, trois arènes et reprise d’anciennes positions suivent le même plan. L’enveloppe est de 122 × 176 unités de scène, sans équivalence métrique avec le jeu d’origine. Les thèmes et noms sont cohérents avec ME1 ; les proportions, intérieurs, coupures et enchaînements restent condensés. La phrase historique « les autres zones gardent leur découpage antérieur » du lot Eden décrit sa livraison, avant ce complément.
 
 Le Mako de Thérum devient pilotable avec accélération, collisions et débarquement. Ses vitesses, inertie et protections de progression sont adaptées au prototype ; canon, mitrailleuse, suspensions, physique et disponibilité sur les autres planètes restent ouverts. La reprise d’une sauvegarde se fait à pied. Les nouveaux ennemis utilisent des commandes ATB existantes : ni projectile explosif, grimpe, autodestruction, volume de vol original ni nouveau système d’acquisition des tourelles n’est certifié. Les quatre boss conservent leurs profils et formations antérieurs ; leurs nouvelles poses ne terminent pas les phases de ME1. Le Thorien reste dans le décor extérieur historique de Féros ; son repaire souterrain original n’est pas reconstruit par ce lot.
+
+## Horizon : faune et flotte dans leurs contextes
+
+Le [lot Horizon](HORIZON.md), basé sur `2ab3f7c`, ajoute 29 dessins fixes : huit PNJ, cinq ennemis, huit corps de faune et huit coques ou variantes. Les cinq atlas supplémentaires portent le total à 46 PNG, sans augmenter les 84 poses clés de combat. Les tableaux de Féros et d’Ilos sont agrandis ; leurs noms, objectifs et ambiances sont contextualisés, mais leurs proportions, pièces et liaisons restent adaptées.
+
+La quête des varrens fonctionne avec briefing, véritable affrontement ATB et rapport unique. Sa formation de trois adversaires et ses gains sont des paramètres d’adaptation. La fermeture avant le Thorien est une limite explicite : le guide permet une remise ultérieure à Davin survivant, état individuel absent du prototype. Les nouveaux dialogues sont réécrits, sans doublage ni embranchements canoniques complets.
+
+Les coques du monde sont identifiées comme projections holographiques de reconnaissance ; elles ne certifient ni amarrage, ni vol, ni taille ou position originale. Sovereign et le Destiny Ascension n’ont plus de repère actif après le final ; leurs dossiers historiques restent consultables. Les variantes Cerberus/Alliance et les coques d’Andromeda ont des accès documentaires distincts, sans ouverture des grandes fiches restées verrouillées.
+
+Varren et alpha apparaissent dans leur opération à Féros ; la faune docile d’Eden est passive. Le Dévoreur, les varrens/pyjaks ME2 et les deux animaux d’Andromeda ont des dossiers, sans nouvelle adoption, déplacement ou hostilité déduite. Le passage Prima inspecté montre la faune paisible d’Eden, sans la nommer « gasbag » ; cette dénomination et les détails de corps restent à recouper.
 
 ## État du contenu restant
 

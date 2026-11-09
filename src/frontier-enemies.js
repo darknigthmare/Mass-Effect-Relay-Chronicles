@@ -262,13 +262,13 @@ export function getFrontierEnemyVisual(actor, state = actor?.state) {
   return FRONTIER_ENEMY_VISUALS[actor.key] || null;
 }
 
-// Independent of game-data/world imports: these are the six native substitution
-// rows, whose equality to ENCOUNTERS is checked by tests. The caller must still
-// pass the actual authored POI and actual first sprite from the current formation.
+// Independent of game-data/world imports: these are the currently authored
+// first-position Frontier patrols. Juggernaut moved to a later formation slot
+// in Horizon; the caller still supplies the actual POI and current first sprite.
 const ambientFirstSprites = freeze({
   'therum:encounter-1': 'recon-drone', 'therum:encounter-2': 'shock-geth',
   'noveria:encounter-2': 'rachni-worker', 'virmire:encounter-1': 'assault-drone',
-  'virmire:encounter-2': 'juggernaut', 'ilos:encounter-1': 'stalker',
+  'ilos:encounter-1': 'stalker',
 });
 
 /** A visible campaign patrol marker is separate from a native battle instance. */

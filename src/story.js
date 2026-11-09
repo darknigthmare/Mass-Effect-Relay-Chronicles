@@ -1,6 +1,7 @@
 import { CODEX, CHAPTERS, CLASSES } from './game-data.js';
 import { STORY_CONVERSATIONS, STORY_CODEX } from './story-data.js';
 import { getFrontierNPC, frontierNPCVisible } from './frontier-characters.js';
+import { getHorizonNPC, horizonNPCVisible } from './horizon-characters.js';
 
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const ZONES = new Set(['normandy', ...Object.keys(CHAPTERS)]);
@@ -143,6 +144,7 @@ export function getConversation(state, id) {
   const conversation = STORY_CONVERSATIONS[id];
   if (state.zone !== (conversation.zone || 'normandy') || !zoneAvailable(state, state.zone)) return null;
   if (getFrontierNPC(id) && !frontierNPCVisible(state, id)) return null;
+  if (getHorizonNPC(id) && !horizonNPCVisible(state, id)) return null;
   const story = migrateStoryState(state.story, state);
   if (!story) return null;
   if (conversation.companion && (state.lost || []).includes(conversation.companion)) return null;

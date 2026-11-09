@@ -2,6 +2,8 @@ import { applyLoadout } from './loadout.js';
 // Canonical names and settings; dialogue, encounter tuning and condensed layouts are adaptations.
 import { COMMANDER_APPEARANCES } from './commander.js';
 import { FRONTIER_ENEMIES } from './frontier-enemies.js';
+import { HORIZON_ENEMIES } from './horizon-enemies.js';
+import { HORIZON_FAUNA_ENEMIES } from './horizon-fauna.js';
 
 export const VERSION = '0.3.0';
 export const CLASSES = {
@@ -34,6 +36,8 @@ export const CHAPTERS = {
 };
 export const ENEMIES = {
   ...FRONTIER_ENEMIES,
+  ...HORIZON_ENEMIES,
+  ...HORIZON_FAUNA_ENEMIES,
   geth: { name: 'Soldat geth', sprite: 'geth', hp: 95, shield: 35, attack: 15, defense: 3, speed: .74, powers: [], synthetic: true },
   sniper: { name: 'Tireur geth', sprite: 'geth-sniper', hp: 85, shield: 40, attack: 24, defense: 2, speed: .57, powers: ['sabotage'], synthetic: true },
   destroyer: { name: 'Destructeur geth', sprite: 'geth-destroyer', hp: 170, shield: 65, attack: 23, defense: 7, speed: .58, powers: ['overload'], synthetic: true },
@@ -49,12 +53,12 @@ export const ENEMIES = {
 };
 export const ENCOUNTERS = {
   'eden-prime': [['geth', 'geth'], ['husk', 'husk', 'geth'], ['destroyer', 'sniper']],
-  therum: [['recon-drone', 'rocket-geth'], ['shock-geth', 'turret'], ['krogan', 'geth', 'sniper']],
-  feros: [['geth', 'geth', 'sniper'], ['creeper', 'creeper', 'asari'], ['thorian', 'creeper']],
-  noveria: [['geth', 'destroyer'], ['rachni-worker', 'rachni', 'rachni'], ['benezia', 'asari']],
-  virmire: [['assault-drone', 'sniper', 'krogan'], ['juggernaut', 'krogan'], ['saren', 'geth']],
-  ilos: [['stalker', 'destroyer'], ['destroyer', 'sniper'], ['destroyer', 'destroyer', 'sniper']],
-  'citadel-finale': [['geth', 'sniper', 'destroyer'], ['destroyer', 'asari'], ['saren-final']],
+  therum: [['recon-drone', 'rocket-geth'], ['shock-geth', 'turret'], ['battlemaster', 'geth', 'sniper']],
+  feros: [['armature', 'geth', 'sniper'], ['creeper', 'creeper', 'asari'], ['thorian', 'creeper']],
+  noveria: [['rocket-drone', 'destroyer'], ['rachni-worker', 'rachni', 'rachni'], ['benezia', 'asari']],
+  virmire: [['assault-drone', 'sniper', 'krogan'], ['colossus', 'krogan'], ['saren', 'geth']],
+  ilos: [['stalker', 'destroyer'], ['sapper', 'sniper'], ['destroyer', 'destroyer', 'sniper']],
+  'citadel-finale': [['geth', 'sniper', 'juggernaut'], ['destroyer', 'asari'], ['saren-final']],
 };
 export const CODEX = [
   { id: 'relay', name: 'Relais cosmodésiques', category: 'Technologie', text: 'Les relais structurent les grands déplacements galactiques. La carte du Normandy permet de choisir une destination accessible selon l’avancement de votre enquête.' },

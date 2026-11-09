@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "at": "2026-11-09T07:46:48.472697+00:00",
+  "scope": "Two lore-only descriptions and one world-only retirement guard changed since native visual collection. No art bytes, frames, normalizers, documentary/campaign dossier access, or reference adapter changed. No new image generation or native render collection is claimed. The new guard has fresh pure/native-renderer tests.",
+  "before": {
+    "path": "src/horizon-fleet.js",
+    "snapshot": "docs/qa/horizon-fleet-before-lore.js",
+    "sha256": "ef054d0ba34a38846501499daba680967929cdd74057c9673e450034c1cf84f9"
+  },
+  "after": {
+    "path": "src/horizon-fleet.js",
+    "sha256": "ab9970092a7f2219225b08cd0e3129d89bfde27bda67e8705dabf8662264caf0"
+  },
+  "exactReplacements": [
+    {
+      "before": "Le Destiny Ascension est le vaisseau amiral asari associé à la flotte de la Citadelle. Sa présence de repérage ne résout aucun choix concernant le Conseil.",
+      "after": "Le Destiny Ascension est le vaisseau amiral asari de la flotte de la Citadelle. Cette unité participe à la protection de la station et du Conseil."
+    },
+    {
+      "before": "Les geth utilisent des transports pour déployer leurs forces. Ce repère extérieur ne crée pas de nouvelle vague ennemie ou de combat aérien.",
+      "after": "Les geth utilisent des transports pour déployer leurs forces. Ces vaisseaux font partie des moyens logistiques de leurs opérations dans la Voie lactée."
+    },
+    {
+      "before": "    const entry = getHorizonFleetEntry(id, context, campaignState);\n    return !!entry && entry.mediaId === 'ME1' && campaignInScope(campaignState)",
+      "after": "    const entry = getHorizonFleetEntry(id, context, campaignState);\n    if (['sovereign', 'destiny-ascension'].includes(id) && Array.isArray(campaignState?.completed)\n      && campaignState.completed.includes('citadel-finale')) return false;\n    return !!entry && entry.mediaId === 'ME1' && campaignInScope(campaignState)"
+    }
+  ],
+  "nativeReport": {
+    "path": "docs/qa/horizon-fleet-native-report.json",
+    "sha256": "02702862ec946c617eb3b35432799a34505a4f9cae74feaeb51c221a90909d1b"
+  },
+  "visualReview": {
+    "path": "docs/qa/horizon-fleet-native-visual-review.json",
+    "sha256": "c90962fc19d9a14e1b7c7737aa450b020738b6cc86a94725410a7f5a06a52f62"
+  },
+  "sourceHashes": {
+    "docs/qa/horizon-fleet-before-lore.js": "ef054d0ba34a38846501499daba680967929cdd74057c9673e450034c1cf84f9",
+    "docs/qa/horizon-fleet-before-final-presence.js": "1f36a9f84ff22c2428402165242636f48fdb68bf71c480bc1c52c9b42536f6d6",
+    "src/horizon-fleet.js": "ab9970092a7f2219225b08cd0e3129d89bfde27bda67e8705dabf8662264caf0",
+    "src/horizon-fleet-reference.js": "7103013f67dd15ae5de3dd2db6ac4a7c528edfcd0486619528a3ea1e9fbce735",
+    "public/assets/horizon-fleet-me1.png": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+    "public/assets/horizon-fleet-me1.json": "57c94b9b27b852c7817beb5728689d78f5ceb8e3bc6e5ed388aa86a5ccd03462",
+    "public/assets/horizon-fleet-later.png": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a",
+    "public/assets/horizon-fleet-later.json": "f1dbc796cbc59723f07d0e09cb7ba643ae684110d7204f4bbf78f98ee3bbf4f0"
+  },
+  "imagesUnchanged": [
+    {
+      "path": "docs/screenshots/horizon-fleet-me1-native.png",
+      "label": "me1-native",
+      "sha256": "6bce3d80bafc68c0cd626bb8abf5967ac5c0049f2f6e4115454206933778214f",
+      "bytes": 922049,
+      "viewport": {
+        "width": 1576,
+        "height": 1108
+      },
+      "actuallyOpened": true,
+      "review": "docs/qa/horizon-fleet-native-visual-review.json"
+    },
+    {
+      "path": "docs/screenshots/horizon-fleet-me1-reference-scale.png",
+      "label": "me1-reference-scale",
+      "sha256": "4a5edd75a32282d9a3f11cb8dadccb66060ddb468d5206ae44f60bfdeaa5468b",
+      "bytes": 154482,
+      "viewport": {
+        "width": 1320,
+        "height": 320
+      },
+      "actuallyOpened": true,
+      "review": "docs/qa/horizon-fleet-native-visual-review.json"
+    },
+    {
+      "path": "docs/screenshots/horizon-fleet-later-native.png",
+      "label": "later-native",
+      "sha256": "a63d170772edabe3f8caaae0f765c9542c9d27e3c43d4b3ff033e726910001f6",
+      "bytes": 1043799,
+      "viewport": {
+        "width": 1576,
+        "height": 1108
+      },
+      "actuallyOpened": true,
+      "review": "docs/qa/horizon-fleet-native-visual-review.json"
+    },
+    {
+      "path": "docs/screenshots/horizon-fleet-later-reference-scale.png",
+      "label": "later-reference-scale",
+      "sha256": "eeb6a05d1d5d4cedca50442c2d75954636e9d73be7e51f37c668980fb4822da0",
+      "bytes": 192985,
+      "viewport": {
+        "width": 1320,
+        "height": 320
+      },
+      "actuallyOpened": true,
+      "review": "docs/qa/horizon-fleet-native-visual-review.json"
+    }
+  ],
+  "nativeArtAndFrameGeometryUnchanged": true,
+  "historicalDossierEligibilityUnchanged": true,
+  "worldGateChanged": {
+    "ids": [
+      "sovereign",
+      "destiny-ascension"
+    ],
+    "completed": "citadel-finale",
+    "effect": "hide only active world props; keep historical dossiers"
+  },
+  "verification": [
+    {
+      "path": "docs/qa/horizon-fleet-unit-report.json",
+      "sha256": "14982ab73feed3d2af2727a72182837d3ec928a5254148231d71bac241f49ced"
+    },
+    {
+      "path": "docs/qa/horizon-fleet-world-unit-report.json",
+      "sha256": "b65a246b489291955dc01424a51f73e6e9bd2ebd450e0a5f0dfa1d55636409cc"
+    }
+  ],
+  "qualification": "The four images retain their real, already opened native collection and review. Their unchanged bytes prove native art and crops only; current unit/renderer reports prove the new retirement guard. Final browser scenes are collected separately after the shared world freeze.",
+  "rendererQualification": {
+    "presentation": "recognition-projection",
+    "worldSHA256": "29b8a20a37e12cf979576f7f011a6c34bad858b24ce691eb4614a37eaa30e016",
+    "report": "docs/qa/horizon-fleet-world-unit-report.json",
+    "tests": 6,
+    "passed": true,
+    "scope": "Projection and hull hide together; native art capture is unchanged and does not depict the final world presentation."
+  }
+}

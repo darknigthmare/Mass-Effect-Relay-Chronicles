@@ -7,6 +7,10 @@ import { BOSS_ANIMATION_IDS, normalizeBossAnimation } from './src/boss-animation
 import { normalizeFrontierNPCAtlas } from './src/frontier-characters.js';
 import { normalizeFrontierEnemyAtlas } from './src/frontier-enemies.js';
 import { normalizeMakoDirections } from './src/frontier-vehicles.js';
+import { normalizeHorizonNPCAtlas } from './src/horizon-characters.js';
+import { normalizeHorizonEnemyAtlas } from './src/horizon-enemies.js';
+import { normalizeHorizonFleetAtlas } from './src/horizon-fleet.js';
+import { normalizeHorizonFaunaAtlas } from './src/horizon-fauna.js';
 
 const femaleAnimation = JSON.parse(readFileSync(new URL('./public/assets/shepard-female-animation.json', import.meta.url), 'utf8'));
 const maleAnimation = JSON.parse(readFileSync(new URL('./public/assets/shepard-male-animation.json', import.meta.url), 'utf8'));
@@ -40,6 +44,10 @@ const localAtlas = (file, normalize) => {
 const frontierNPCAtlas = localAtlas('frontier-npcs.json', normalizeFrontierNPCAtlas);
 const frontierEnemyAtlas = localAtlas('frontier-enemies.json', normalizeFrontierEnemyAtlas);
 const makoDirections = localAtlas('vehicle-mako-directions.json', normalizeMakoDirections);
+const horizonNPCAtlas = localAtlas('horizon-npcs.json', normalizeHorizonNPCAtlas);
+const horizonEnemyAtlas = localAtlas('horizon-enemies.json', normalizeHorizonEnemyAtlas);
+const horizonFleetAtlases = Object.fromEntries(['me1', 'later'].map(family => [family, localAtlas(`horizon-fleet-${family}.json`, raw => normalizeHorizonFleetAtlas(family, raw))]));
+const horizonFaunaAtlas = localAtlas('horizon-fauna.json', normalizeHorizonFaunaAtlas);
 export default defineConfig({
   base: './',
   define: { __RELAY_FEMSHEP_ANIMATION__: JSON.stringify(femaleAnimation), __RELAY_MALESHEP_ANIMATION__: JSON.stringify(maleAnimation),
@@ -48,7 +56,11 @@ export default defineConfig({
     __RELAY_BOSS_ANIMATIONS__: JSON.stringify(bossAnimations),
     __RELAY_FRONTIER_NPC_ATLAS__: JSON.stringify(frontierNPCAtlas),
     __RELAY_FRONTIER_ENEMY_ATLAS__: JSON.stringify(frontierEnemyAtlas),
-    __RELAY_MAKO_DIRECTIONS__: JSON.stringify(makoDirections) },
+    __RELAY_MAKO_DIRECTIONS__: JSON.stringify(makoDirections),
+    __RELAY_HORIZON_NPC_ATLAS__: JSON.stringify(horizonNPCAtlas),
+    __RELAY_HORIZON_ENEMY_ATLAS__: JSON.stringify(horizonEnemyAtlas),
+    __RELAY_HORIZON_FLEET_ATLASES__: JSON.stringify(horizonFleetAtlases),
+    __RELAY_HORIZON_FAUNA_ATLAS__: JSON.stringify(horizonFaunaAtlas) },
   build: { target: 'es2022', rollupOptions: { output: { manualChunks: { three: ['three'] } } } },
   server: { port: 4173, hmr: process.env.RELAY_QA === '1' ? false : undefined },
 });

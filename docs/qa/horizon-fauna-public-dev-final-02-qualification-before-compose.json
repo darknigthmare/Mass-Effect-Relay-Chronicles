@@ -1,0 +1,456 @@
+{
+  "passed": true,
+  "at": "2026-11-09T08:05:30.374Z",
+  "mode": "dev",
+  "scope": "Qualification of the preserved functional public journey and three favicon-only 404 console warnings; the raw report remains passed:false. No game replay or artifact rewriting.",
+  "command": [
+    "node",
+    "scripts/horizon-fauna-public-qualify.mjs",
+    "horizon-fauna-public-dev-final-02"
+  ],
+  "qualifierSHA256": "12a39075d14d100ff5b029bbafda10fc24102a8fa4f68723f7c059159ff4de4c",
+  "rawReport": {
+    "path": "docs/qa/horizon-fauna-public-dev-final-02-report.json",
+    "sha256": "0cdfd68c08b0c2c113e097a28d35fec7e5f6fdc6341fd5e257a19095f64fab70",
+    "passed": false,
+    "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     location: {\n+       column: 0,\n+       columnNumber: 0,\n+       line: 0,\n+       lineNumber: 0,\n+       url: 'http://127.0.0.1:4181/favicon.ico'\n+     },\n+     text: 'Failed to load resource: the server responded with a status of 404 (Not Found)'\n+   },\n+   {\n+     location: {\n+       column: 0,\n+       columnNumber: 0,\n+       line: 0,\n+       lineNumber: 0,\n+       url: 'http://127.0.0.1:4181/favicon.ico'\n+     },\n+     text: 'Failed to load resource: the server responded with a status of 404 (Not Found)'\n+   },\n+   {\n+     location: {\n+       column: 0,\n+       columnNumber: 0,\n+       line: 0,\n+       lineNumber: 0,\n+       url: 'http://127.0.0.1:4181/favicon.ico'\n+     },\n+     text: 'Failed to load resource: the server responded with a status of 404 (Not Found)'\n+   }\n+ ]\n- []\n\n    at file:///workspace/Mass-Effect-Relay-Chronicles/scripts/horizon-fauna-public.mjs:200:92"
+  },
+  "checks": [
+    {
+      "name": "Public Davin mission link accepts without reward",
+      "passed": true
+    },
+    {
+      "name": "Actual three-opponent victory advances only the pending step",
+      "passed": true
+    },
+    {
+      "name": "Report pays once and the completed mission link disappears",
+      "passed": true
+    },
+    {
+      "name": "Actual automatic-save reload preserves operation, resources and rewards exactly",
+      "passed": true
+    }
+  ],
+  "consoleWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4181/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "classification": "Browser request for absent favicon.ico; exact URL and 404 text verified, separate from game assets and JavaScript errors."
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4181/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "classification": "Browser request for absent favicon.ico; exact URL and 404 text verified, separate from game assets and JavaScript errors."
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4181/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "classification": "Browser request for absent favicon.ico; exact URL and 404 text verified, separate from game assets and JavaScript errors."
+    }
+  ],
+  "javascriptErrors": [],
+  "failedGameRequests": [],
+  "sourceHashes": {
+    "src/horizon-fauna.js": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/world.js": "29b8a20a37e12cf979576f7f011a6c34bad858b24ce691eb4614a37eaa30e016",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/main.js": "dc82f1d81c2fe23750e039d3531d8c1bde8a90c2ba37ce527927220af74565fa",
+    "src/horizon-ui.js": "81739bf336a7627df78733a815f313bc25ac873f1140da810f15ef849b4a3ddb",
+    "src/horizon-layout-data.js": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+    "src/horizon-characters.js": "eaff1d446004fab87bf88ca2b773a31be0723ef18db53033f1add46797384e33",
+    "src/story.js": "53b23f4819273eb24dd1e058e5e17d34ef27581df437a32aad7b193e6dbe75b0",
+    "src/game-data.js": "51e9e40b22dca8857041e9d721136b51c215cb3dc9b717ba4083f16398f7abe7",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/combat.js": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+    "vite.config.js": "bf2f5aa80d6e09c77b5b8eed4148d92163e5b45751e67e579bcb6bcbb184f3df",
+    "public/assets/horizon-fauna.png": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+    "public/assets/horizon-fauna.json": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10",
+    "public/assets/horizon-npcs.png": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601",
+    "public/assets/horizon-npcs.json": "06096a1b71c8043a8490793d00581b060473100aa608a0ed5f9b409fc4d6b36d",
+    "scripts/horizon-fauna-public.mjs": "0963deee6f2a64f1241255d9dd59702120acb1f609fd46f24aba5d05137c5f3d"
+  },
+  "verifiedSources": [
+    {
+      "path": "src/horizon-fauna.js",
+      "sha256": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/operation-data.js",
+      "sha256": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/operations.js",
+      "sha256": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/world.js",
+      "sha256": "29b8a20a37e12cf979576f7f011a6c34bad858b24ce691eb4614a37eaa30e016",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/world-data.js",
+      "sha256": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/main.js",
+      "sha256": "dc82f1d81c2fe23750e039d3531d8c1bde8a90c2ba37ce527927220af74565fa",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/horizon-ui.js",
+      "sha256": "81739bf336a7627df78733a815f313bc25ac873f1140da810f15ef849b4a3ddb",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/horizon-layout-data.js",
+      "sha256": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/horizon-characters.js",
+      "sha256": "eaff1d446004fab87bf88ca2b773a31be0723ef18db53033f1add46797384e33",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/story.js",
+      "sha256": "53b23f4819273eb24dd1e058e5e17d34ef27581df437a32aad7b193e6dbe75b0",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/game-data.js",
+      "sha256": "51e9e40b22dca8857041e9d721136b51c215cb3dc9b717ba4083f16398f7abe7",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/state.js",
+      "sha256": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+      "matchesRawRun": true
+    },
+    {
+      "path": "src/combat.js",
+      "sha256": "a6bdaac637035e6533f32014ab36b228775b95e50aff3195bdbf7a732855f67a",
+      "matchesRawRun": true
+    },
+    {
+      "path": "vite.config.js",
+      "sha256": "bf2f5aa80d6e09c77b5b8eed4148d92163e5b45751e67e579bcb6bcbb184f3df",
+      "matchesRawRun": true
+    },
+    {
+      "path": "public/assets/horizon-fauna.png",
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+      "matchesRawRun": true
+    },
+    {
+      "path": "public/assets/horizon-fauna.json",
+      "sha256": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10",
+      "matchesRawRun": true
+    },
+    {
+      "path": "public/assets/horizon-npcs.png",
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601",
+      "matchesRawRun": true
+    },
+    {
+      "path": "public/assets/horizon-npcs.json",
+      "sha256": "06096a1b71c8043a8490793d00581b060473100aa608a0ed5f9b409fc4d6b36d",
+      "matchesRawRun": true
+    },
+    {
+      "path": "scripts/horizon-fauna-public.mjs",
+      "sha256": "0963deee6f2a64f1241255d9dd59702120acb1f609fd46f24aba5d05137c5f3d",
+      "matchesRawRun": true
+    }
+  ],
+  "sourceFrozenAtQualification": true,
+  "captures": [
+    {
+      "label": "davin-briefing",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-davin-briefing.png",
+      "sha256": "fd170f03e1a0df25a8bb24e4ed07656aa6e645ded9ed4f5e332b2a3dc713e2b8",
+      "bytes": 796384,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    },
+    {
+      "label": "three-native-varrens",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-three-native-varrens.png",
+      "sha256": "cc8d8fe401b332df138ac90e3d7032a375b3f9e124c0d3e4a95556b7dbb270d5",
+      "bytes": 641313,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    },
+    {
+      "label": "first-native-order",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-first-native-order.png",
+      "sha256": "aaffc4b0a4a7f0d102b7809f41840e43a442ed022333305e57d05ef0c9bdf075",
+      "bytes": 607818,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    },
+    {
+      "label": "actual-victory",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-actual-victory.png",
+      "sha256": "c99b82c6a0d0de34643baeb0d9bfed3a869f335473c0d6c58699c471d8e0f637",
+      "bytes": 183395,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    },
+    {
+      "label": "davin-report",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-davin-report.png",
+      "sha256": "dcb093cfab92a721afca4ebe15afa899032916a4a2b0d489bc4e049b0b597cea",
+      "bytes": 795030,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    },
+    {
+      "label": "reloaded-complete",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-reloaded-complete.png",
+      "sha256": "82835c677d2f53ba3091c8b2c2a6c648601dd213d236ad0d4357915995d88e0a",
+      "bytes": 787368,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/horizon-fauna-public-dev-final-02-failure.png",
+      "sha256": "78fdabb0e8ebc64f91134123a341c47c89e4ed0e5b686d2962d4641d474b72b1",
+      "bytes": 787381,
+      "source": "Actual public viewport; no private state, CSS, pose or scene injection.",
+      "matchesRawRun": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "accepted",
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-accepted-save.json",
+      "sha256": "d22f1b5b59a3921f979e14ba9746c1ef5853aa245168de7cf93af467e8f954d8",
+      "bytes": 3220,
+      "operation": {
+        "stage": 1,
+        "choices": {
+          "request": "accept"
+        },
+        "victories": [],
+        "pendingBattle": null
+      },
+      "position": {
+        "x": -10.7,
+        "z": 52
+      }
+    },
+    {
+      "label": "pack-won",
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-pack-won-save.json",
+      "sha256": "3e9010c8d0898633e84f6ed6f23ef0e1e154c78898c199e4b2ef4706d0f7a64e",
+      "bytes": 3237,
+      "operation": {
+        "stage": 2,
+        "choices": {
+          "request": "accept",
+          "pack": "fight"
+        },
+        "victories": [
+          "pack"
+        ],
+        "pendingBattle": null
+      },
+      "position": {
+        "x": 12,
+        "z": 25
+      }
+    },
+    {
+      "label": "reported",
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-reported-save.json",
+      "sha256": "bead6f8937538bbd27303002d1d8c6fdde8d422011e8fb82de5e15505b5d19b2",
+      "bytes": 3247,
+      "operation": {
+        "stage": 3,
+        "choices": {
+          "request": "accept",
+          "pack": "fight",
+          "report": "report"
+        },
+        "victories": [
+          "pack"
+        ],
+        "pendingBattle": null
+      },
+      "position": {
+        "x": -10.7,
+        "z": 52
+      }
+    },
+    {
+      "label": "no-repeat",
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-no-repeat-save.json",
+      "sha256": "f20c65ea36eec9ff17533d6262678863418397875bcb50555474862850e1c9aa",
+      "bytes": 3247,
+      "operation": {
+        "stage": 3,
+        "choices": {
+          "request": "accept",
+          "pack": "fight",
+          "report": "report"
+        },
+        "victories": [
+          "pack"
+        ],
+        "pendingBattle": null
+      },
+      "position": {
+        "x": -10.7,
+        "z": 52
+      }
+    },
+    {
+      "label": "reloaded",
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-reloaded-save.json",
+      "sha256": "0cd8858f1582b1abf1f93f20c3bdd4a421ca947de21fd6aafeb5f4c43917ee24",
+      "bytes": 3248,
+      "operation": {
+        "stage": 3,
+        "choices": {
+          "request": "accept",
+          "pack": "fight",
+          "report": "report"
+        },
+        "victories": [
+          "pack"
+        ],
+        "pendingBattle": null
+      },
+      "position": {
+        "x": -10.7,
+        "z": 52
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-davin-ready-fixture.json",
+      "origin": {
+        "kind": "Native Node-prepared earlier story via callbacks",
+        "playedInThisBrowser": false
+      },
+      "sha256": "2c5ffd09f3f33d65f399d4282bf55a7bae27ad2ea2194bf38573a2cc38cc8011",
+      "position": {
+        "x": -10.7,
+        "z": 52
+      },
+      "operation": null,
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-accepted-at-pack-fixture.json",
+      "origin": {
+        "kind": "Position-only declared transfer from actual public export",
+        "parentExport": "docs/qa/horizon-fauna-public-dev-final-02-accepted-save.json",
+        "parentSHA256": "d22f1b5b59a3921f979e14ba9746c1ef5853aa245168de7cf93af467e8f954d8",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -10.7,
+              "z": 52
+            },
+            "after": {
+              "x": 12,
+              "z": 25
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "sha256": "f0b33a916c5f15f96f240b3cf1ef29d9773fba0fb0f39c86fc165b8e34f3f1c2",
+      "position": {
+        "x": 12,
+        "z": 25
+      },
+      "operation": {
+        "stage": 1,
+        "choices": {
+          "request": "accept"
+        },
+        "victories": [],
+        "pendingBattle": null
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/horizon-fauna-public-dev-final-02-won-at-davin-fixture.json",
+      "origin": {
+        "kind": "Position-only declared transfer from actual public export",
+        "parentExport": "docs/qa/horizon-fauna-public-dev-final-02-pack-won-save.json",
+        "parentSHA256": "3e9010c8d0898633e84f6ed6f23ef0e1e154c78898c199e4b2ef4706d0f7a64e",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 12,
+              "z": 25
+            },
+            "after": {
+              "x": -10.7,
+              "z": 52
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "sha256": "a64fd86a93368cb2dec93fab0f70d736e6bf967a3397481c2c318b2377151a76",
+      "position": {
+        "x": -10.7,
+        "z": 52
+      },
+      "operation": {
+        "stage": 2,
+        "choices": {
+          "request": "accept",
+          "pack": "fight"
+        },
+        "victories": [
+          "pack"
+        ],
+        "pendingBattle": null
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "publicPlayerOrders": 9,
+  "proof": "Decoded actual public exports independently verify stage 1 → 2 → 3, pending encounter completion, delayed rewards once, and reload equality except playedSeconds. Position-only fixtures independently match their actual parent exports outside position.",
+  "limitations": [
+    "Earlier Eden/Citadel progression and the first Feros encounter are prepared in Node through native callbacks, not played in this browser.",
+    "The walks from Davin to the pack and back are not played: position-only fixtures are derived from actual public exports. Native A* geometry coverage is separate.",
+    "Three opponents condense the source-described pack; no exact original enemy count, attack damage or reward is certified.",
+    "Creature body poses are static prototypes. This does not certify original locomotion, anatomy, biting animations or physical-device performance."
+  ]
+}

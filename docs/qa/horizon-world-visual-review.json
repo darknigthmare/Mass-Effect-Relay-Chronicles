@@ -1,0 +1,345 @@
+{
+  "at": "2026-11-09T07:57:19.519Z",
+  "reviewer": "horizon_world",
+  "result": "Prototype staging reviewed; no blocking party occlusion observed at the recorded positions.",
+  "captureReport": "docs/qa/horizon-world-final-inspection.json",
+  "sourceHashes": {
+    "src/world.js": "29b8a20a37e12cf979576f7f011a6c34bad858b24ce691eb4614a37eaa30e016",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/horizon-layout-data.js": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+    "src/horizon-scene.js": "b3ff51ed99d615e7548ab3d762511fcf7b8f0b35f82dcfa1474e84cccc4b370e",
+    "src/horizon-characters.js": "eaff1d446004fab87bf88ca2b773a31be0723ef18db53033f1add46797384e33",
+    "src/horizon-enemies.js": "351f414fb5f2b26fccceab3978d4eb41bc7be16836ae485ca97591f3ade491f0",
+    "src/horizon-fauna.js": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+    "src/horizon-fleet.js": "ab9970092a7f2219225b08cd0e3129d89bfde27bda67e8705dabf8662264caf0",
+    "src/game-data.js": "51e9e40b22dca8857041e9d721136b51c215cb3dc9b717ba4083f16398f7abe7",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/world-navigation.js": "0663590a5a80eaec6252e97a26636a14f1477d15fdf3422e16e7efe3dc5c54f0",
+    "vite.config.js": "bf2f5aa80d6e09c77b5b8eed4148d92163e5b45751e67e579bcb6bcbb184f3df",
+    "scripts/horizon-world-inspection.mjs": "dd8516434c3b620d4f48ec9e21225f56bcfcdabf9303caab9fef359c0d152f3b"
+  },
+  "scope": "Static inspection of detached native WorldView at legal party positions, source-based campaign fixtures and the normal steady camera focus. Native update transforms and camera settle with intermediate drawing suspended; one real final render is restored for each image. No CSS/geometry/pose injection. This is not a public campaign traversal or a performance measurement.",
+  "views": [
+    {
+      "label": "feros-colony",
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-colony.png",
+      "sha256": "1f924faac81413d6a2554053ff7f794062cfdbdefaa2507d6b25f7fb858fa8bc",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Foreground blocks moved behind/peripheral to the contact square; the three party bodies and four contacts are separate."
+    },
+    {
+      "label": "feros-tunnels",
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-tunnels.png",
+      "sha256": "de504221aa693e1d68d629717026a6cf317d530d05d5c27300803d819446aa55",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Roofless distribution frames, low walls, pipes and valves distinguish the tunnels; the optional three-body varren pack is separate from the party."
+    },
+    {
+      "label": "feros-skyway",
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-skyway.png",
+      "sha256": "67da5f4a038c2e716ab667ca80c021d80af393d3ada5d219873d2ad48fc9ba84",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Perimeter rails and plunging structural supports identify the exposed elevated way; no altitude simulation was added."
+    },
+    {
+      "label": "feros-exogeni",
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-exogeni.png",
+      "sha256": "f55a567cba5f687d4a7587948abb482ba235ccefbd717aa4dfb5805e9f3268e9",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Flanking industrial blocks and the research approach leave the party and encounter approach visible."
+    },
+    {
+      "label": "feros-thorian",
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-thorian.png",
+      "sha256": "5ceb9bc8bc9d925d2c519b95d15167321cae53dbbea69406c5178bd30ab6dd73",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Rooted perimeter and distant organic vault retain a roofless readable arena; the full original multi-floor lair remains open."
+    },
+    {
+      "label": "ilos-landing",
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-landing.png",
+      "sha256": "7921795c8208ff34617ce45f8cb79c6a644eff41d19d0c545e286e9224195046",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Ancient pillars, vegetation and a static Mako mark the landing sector. Only Therum has the drivable Mako."
+    },
+    {
+      "label": "ilos-gardens",
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-gardens.png",
+      "sha256": "d10501cc145a148285d7921971baed60d9f65daaa34e96a270fc4848b1b2887d",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "The party and distant geth contact are separate within the garden route."
+    },
+    {
+      "label": "ilos-archives",
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-archives.png",
+      "sha256": "e05d164760f7c6c72d7f6564ca93e10f45988b754ecac1829874bf6327eb2f81",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Peripheral galleries leave the three party bodies and locked passage contact visible."
+    },
+    {
+      "label": "ilos-cryogenic",
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-cryogenic.png",
+      "sha256": "cbe83776c277594988b75630a7afe80316e40a3448e43bcaff79562c96b716d7",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Cryostasis cylinders and ancient pillars flank the open tactical approach."
+    },
+    {
+      "label": "ilos-conduit",
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-conduit.png",
+      "sha256": "f1dde62b25cc344c4a2b437aaabcbc2017dcb44f11dcb8f428f15f0ecbb35b40",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Vigil and the framed Conduit are visible from the native party approach without a foreground roof."
+    },
+    {
+      "label": "fleet-normandy-sr1",
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-normandy-sr1.png",
+      "sha256": "52ae51260188872672151fccd07d4d650d68ef9f11fe1503388614306a12c2fd",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "The SR1 is an explicitly blue recognition projection with local projector/caption; the two passive Gasbags remain separate."
+    },
+    {
+      "label": "fleet-geth-dropship",
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-geth-dropship.png",
+      "sha256": "54cfec581f70f1faa62f27a303984de3d3647550683559deab7cd114e452d5ea",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "The transport is a blue local projection; its small caption meets existing sector signage, while hull, projector and party remain visible."
+    },
+    {
+      "label": "fleet-destiny-ascension",
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-destiny-ascension.png",
+      "sha256": "45b95bd452a8868c23e6807aa32af12762ff9c88cce5919c01b8a736af43c20b",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Both known Citadel vessels are local recognition projections, with captions and bases, rather than miniature physical ships above the Presidium."
+    },
+    {
+      "label": "fleet-sovereign",
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-sovereign.png",
+      "sha256": "76a6f21e202fd1e90eab115a66dbd48425e09eaab866ede16fca906a588b2d88",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Sovereign is a discreet blue local recognition projection, separate from the three visible combat contacts and the party. Full illustration is in the Codex."
+    },
+    {
+      "label": "fleet-michel-contact",
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-michel-contact.png",
+      "sha256": "13ae892ee966caf0dba9afeedaa2cc29274aa3a95736b20b86c382361d2c4f86",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "Michel, party and conversation approach remain visible beside the two recognition projections."
+    },
+    {
+      "label": "heavy-feros",
+      "path": "docs/screenshots/horizon-world-final-inspection-heavy-feros.png",
+      "sha256": "1c052856c2df7099ec2868a933c39167ace014ce94c0f7786243a556c291a8fd",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "The Armature has a separate body envelope from the two ordinary geth and all three party bodies."
+    },
+    {
+      "label": "heavy-virmire",
+      "path": "docs/screenshots/horizon-world-final-inspection-heavy-virmire.png",
+      "sha256": "462a0daaebf9015e3d26711c538f2010ba0c08e2f90dd8cfc8cde46a29b356d3",
+      "reviewedAtNativeScreenshotSize": true,
+      "blockingPartyOcclusionObserved": false,
+      "note": "The Colossus and Krogan retain separate body envelopes; no camera-facing building covers either formation."
+    }
+  ],
+  "limitations": [
+    "Original contours, distances, interiors, skyline scales and level transitions are not reconstructed 1:1. These remain authored prototype maps.",
+    "The snapshots use legal setPosition viewpoints, native campaign factories and settled native camera transforms. They are static inspection, not public traversal or FPS measurement.",
+    "The complete raw native artwork and detailed vessel/fauna views are assessed separately by their owning agents.",
+    "The tiny transport caption meets existing sector signage at the Therum spawn; the full ship dossier remains accessible in the Codex."
+  ],
+  "earlierEvidence": [
+    "docs/qa/horizon-levels-before-report.json",
+    "docs/qa/horizon-world-intermediate.json",
+    "docs/qa/horizon-world-intermediate-02.json",
+    "docs/qa/horizon-world-intermediate-03.json",
+    "docs/qa/horizon-world-intermediate-04.json",
+    "docs/qa/horizon-world-intermediate-05.json",
+    "docs/qa/horizon-world-projections.json",
+    "docs/qa/horizon-world-projections-02.json"
+  ],
+  "corrections": [
+    "Moved camera-facing Feros colony blocks away from the party/contact square.",
+    "Added visible roofless tunnel frames and skyway rails/supports.",
+    "Separated inspection approaches from encounter POI centers.",
+    "Converted physical-looking peripheral vessel miniatures into explicitly labelled blue recognition projections.",
+    "Moved transport and Sovereign projectors away from scenery and guard bodies.",
+    "Prevented menu transitions from reviving retired Feros contact markers."
+  ],
+  "imagesActuallyOpened": [
+    "docs/screenshots/horizon-world-final-inspection-feros-colony.png",
+    "docs/screenshots/horizon-world-final-inspection-feros-tunnels.png",
+    "docs/screenshots/horizon-world-final-inspection-feros-skyway.png",
+    "docs/screenshots/horizon-world-final-inspection-feros-exogeni.png",
+    "docs/screenshots/horizon-world-final-inspection-feros-thorian.png",
+    "docs/screenshots/horizon-world-final-inspection-ilos-landing.png",
+    "docs/screenshots/horizon-world-final-inspection-ilos-gardens.png",
+    "docs/screenshots/horizon-world-final-inspection-ilos-archives.png",
+    "docs/screenshots/horizon-world-final-inspection-ilos-cryogenic.png",
+    "docs/screenshots/horizon-world-final-inspection-ilos-conduit.png",
+    "docs/screenshots/horizon-world-final-inspection-fleet-normandy-sr1.png",
+    "docs/screenshots/horizon-world-final-inspection-fleet-geth-dropship.png",
+    "docs/screenshots/horizon-world-final-inspection-fleet-destiny-ascension.png",
+    "docs/screenshots/horizon-world-final-inspection-fleet-sovereign.png",
+    "docs/screenshots/horizon-world-final-inspection-fleet-michel-contact.png",
+    "docs/screenshots/horizon-world-final-inspection-heavy-feros.png",
+    "docs/screenshots/horizon-world-final-inspection-heavy-virmire.png"
+  ],
+  "blockingFindings": [],
+  "worldSHA256": "29b8a20a37e12cf979576f7f011a6c34bad858b24ce691eb4614a37eaa30e016",
+  "images": [
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-colony.png",
+      "sha256": "1f924faac81413d6a2554053ff7f794062cfdbdefaa2507d6b25f7fb858fa8bc",
+      "actuallyOpened": true,
+      "label": "feros-colony",
+      "note": "Foreground blocks moved behind/peripheral to the contact square; the three party bodies and four contacts are separate.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-tunnels.png",
+      "sha256": "de504221aa693e1d68d629717026a6cf317d530d05d5c27300803d819446aa55",
+      "actuallyOpened": true,
+      "label": "feros-tunnels",
+      "note": "Roofless distribution frames, low walls, pipes and valves distinguish the tunnels; the optional three-body varren pack is separate from the party.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-skyway.png",
+      "sha256": "67da5f4a038c2e716ab667ca80c021d80af393d3ada5d219873d2ad48fc9ba84",
+      "actuallyOpened": true,
+      "label": "feros-skyway",
+      "note": "Perimeter rails and plunging structural supports identify the exposed elevated way; no altitude simulation was added.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-exogeni.png",
+      "sha256": "f55a567cba5f687d4a7587948abb482ba235ccefbd717aa4dfb5805e9f3268e9",
+      "actuallyOpened": true,
+      "label": "feros-exogeni",
+      "note": "Flanking industrial blocks and the research approach leave the party and encounter approach visible.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-feros-thorian.png",
+      "sha256": "5ceb9bc8bc9d925d2c519b95d15167321cae53dbbea69406c5178bd30ab6dd73",
+      "actuallyOpened": true,
+      "label": "feros-thorian",
+      "note": "Rooted perimeter and distant organic vault retain a roofless readable arena; the full original multi-floor lair remains open.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-landing.png",
+      "sha256": "7921795c8208ff34617ce45f8cb79c6a644eff41d19d0c545e286e9224195046",
+      "actuallyOpened": true,
+      "label": "ilos-landing",
+      "note": "Ancient pillars, vegetation and a static Mako mark the landing sector. Only Therum has the drivable Mako.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-gardens.png",
+      "sha256": "d10501cc145a148285d7921971baed60d9f65daaa34e96a270fc4848b1b2887d",
+      "actuallyOpened": true,
+      "label": "ilos-gardens",
+      "note": "The party and distant geth contact are separate within the garden route.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-archives.png",
+      "sha256": "e05d164760f7c6c72d7f6564ca93e10f45988b754ecac1829874bf6327eb2f81",
+      "actuallyOpened": true,
+      "label": "ilos-archives",
+      "note": "Peripheral galleries leave the three party bodies and locked passage contact visible.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-cryogenic.png",
+      "sha256": "cbe83776c277594988b75630a7afe80316e40a3448e43bcaff79562c96b716d7",
+      "actuallyOpened": true,
+      "label": "ilos-cryogenic",
+      "note": "Cryostasis cylinders and ancient pillars flank the open tactical approach.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-ilos-conduit.png",
+      "sha256": "f1dde62b25cc344c4a2b437aaabcbc2017dcb44f11dcb8f428f15f0ecbb35b40",
+      "actuallyOpened": true,
+      "label": "ilos-conduit",
+      "note": "Vigil and the framed Conduit are visible from the native party approach without a foreground roof.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-normandy-sr1.png",
+      "sha256": "52ae51260188872672151fccd07d4d650d68ef9f11fe1503388614306a12c2fd",
+      "actuallyOpened": true,
+      "label": "fleet-normandy-sr1",
+      "note": "The SR1 is an explicitly blue recognition projection with local projector/caption; the two passive Gasbags remain separate.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-geth-dropship.png",
+      "sha256": "54cfec581f70f1faa62f27a303984de3d3647550683559deab7cd114e452d5ea",
+      "actuallyOpened": true,
+      "label": "fleet-geth-dropship",
+      "note": "The transport is a blue local projection; its small caption meets existing sector signage, while hull, projector and party remain visible.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-destiny-ascension.png",
+      "sha256": "45b95bd452a8868c23e6807aa32af12762ff9c88cce5919c01b8a736af43c20b",
+      "actuallyOpened": true,
+      "label": "fleet-destiny-ascension",
+      "note": "Both known Citadel vessels are local recognition projections, with captions and bases, rather than miniature physical ships above the Presidium.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-sovereign.png",
+      "sha256": "76a6f21e202fd1e90eab115a66dbd48425e09eaab866ede16fca906a588b2d88",
+      "actuallyOpened": true,
+      "label": "fleet-sovereign",
+      "note": "Sovereign is a discreet blue local recognition projection, separate from the three visible combat contacts and the party. Full illustration is in the Codex.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-fleet-michel-contact.png",
+      "sha256": "13ae892ee966caf0dba9afeedaa2cc29274aa3a95736b20b86c382361d2c4f86",
+      "actuallyOpened": true,
+      "label": "fleet-michel-contact",
+      "note": "Michel, party and conversation approach remain visible beside the two recognition projections.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-heavy-feros.png",
+      "sha256": "1c052856c2df7099ec2868a933c39167ace014ce94c0f7786243a556c291a8fd",
+      "actuallyOpened": true,
+      "label": "heavy-feros",
+      "note": "The Armature has a separate body envelope from the two ordinary geth and all three party bodies.",
+      "blockingFindings": []
+    },
+    {
+      "path": "docs/screenshots/horizon-world-final-inspection-heavy-virmire.png",
+      "sha256": "462a0daaebf9015e3d26711c538f2010ba0c08e2f90dd8cfc8cde46a29b356d3",
+      "actuallyOpened": true,
+      "label": "heavy-virmire",
+      "note": "The Colossus and Krogan retain separate body envelopes; no camera-facing building covers either formation.",
+      "blockingFindings": []
+    }
+  ]
+}

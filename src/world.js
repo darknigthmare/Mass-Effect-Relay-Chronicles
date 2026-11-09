@@ -12,8 +12,13 @@ import { getLevelLayout, isLevelGround, nearestLevelGround } from './level-layou
 import { findLevelPath } from './world-navigation.js';
 import { buildEdenScene } from './eden-scene.js';
 import { buildFrontierScene } from './frontier-scene.js';
+import { buildHorizonScene } from './horizon-scene.js';
 import { FRONTIER_NPCS, getFrontierNPC, frontierNPCVisible, normalizeFrontierNPCAtlas, getFrontierNPCFrame } from './frontier-characters.js';
 import { FRONTIER_ENEMY_IDS, normalizeFrontierEnemyAtlas, getFrontierEnemyVisual, getFrontierAmbientVisual } from './frontier-enemies.js';
+import { HORIZON_ENEMY_IDS, HORIZON_ENEMY_HEIGHTS, normalizeHorizonEnemyAtlas, getHorizonEnemyVisual, getHorizonAmbientVisual } from './horizon-enemies.js';
+import { getHorizonNPC, horizonNPCVisible, normalizeHorizonNPCAtlas, getHorizonNPCFrame } from './horizon-characters.js';
+import { HORIZON_FAUNA, normalizeHorizonFaunaAtlas, getHorizonFaunaFrame, getHorizonFaunaCombatVisual, horizonFaunaVisible } from './horizon-fauna.js';
+import { HORIZON_FLEET, normalizeHorizonFleetAtlas, getHorizonFleetFrame, canShowHorizonFleet } from './horizon-fleet.js';
 import { BOSS_ANIMATION_IDS, normalizeBossAnimation, canShowBossAnimation } from './boss-animation-data.js';
 import { createMakoState, boardMako, stepMako, dismountMako, makoDirectionFrame, normalizeMakoDirections } from './frontier-vehicles.js';
 
@@ -131,6 +136,10 @@ export class WorldView {
     if (typeof __RELAY_FRONTIER_ENEMY_ATLAS__ !== 'undefined') this.registerFrontierEnemyAtlas(__RELAY_FRONTIER_ENEMY_ATLAS__);
     if (typeof __RELAY_FRONTIER_NPC_ATLAS__ !== 'undefined') this.registerFrontierNPCAtlas(__RELAY_FRONTIER_NPC_ATLAS__);
     if (typeof __RELAY_MAKO_DIRECTIONS__ !== 'undefined') this.registerMakoDirections(__RELAY_MAKO_DIRECTIONS__);
+    if (typeof __RELAY_HORIZON_NPC_ATLAS__ !== 'undefined') this.registerHorizonNPCAtlas(__RELAY_HORIZON_NPC_ATLAS__);
+    if (typeof __RELAY_HORIZON_ENEMY_ATLAS__ !== 'undefined') this.registerHorizonEnemyAtlas(__RELAY_HORIZON_ENEMY_ATLAS__);
+    if (typeof __RELAY_HORIZON_FAUNA_ATLAS__ !== 'undefined') this.registerHorizonFaunaAtlas(__RELAY_HORIZON_FAUNA_ATLAS__);
+    if (typeof __RELAY_HORIZON_FLEET_ATLASES__ !== 'undefined') this.registerHorizonFleetAtlas('me1',__RELAY_HORIZON_FLEET_ATLASES__.me1);
     this.setZone('normandy'); this.resize();
   }
 
@@ -148,7 +157,7 @@ export class WorldView {
       requests.delete(name);
       const key = name.startsWith('combat-') ? name.slice(7) : null;
       const config = GUARDED_COMBAT_ANIMATION_IDS.includes(key) ? this.characterAnimations?.[key]?.combat
-        : name === 'seated-joker' ? this.jokerSeatedConfig : name === 'frontier-enemies' ? this.frontierEnemyConfig : name === 'mako-directions' ? this.makoDirectionsConfig : name === 'frontier-npcs' ? this.frontierNPCConfig : null;
+        : name === 'seated-joker' ? this.jokerSeatedConfig : name === 'frontier-enemies' ? this.frontierEnemyConfig : name === 'mako-directions' ? this.makoDirectionsConfig : name === 'frontier-npcs' ? this.frontierNPCConfig : this._horizonAtlasConfig(name);
       if (config && (texture.image?.width !== config.width || texture.image?.height !== config.height)) {
         texture.dispose(); this.assetErrors?.push(`Dimensions d’animation incompatibles : ${url}`); return;
       }
@@ -165,6 +174,7 @@ export class WorldView {
       if (name === 'props') { for (const args of this._pendingProps || []) this._propSprite(...args); this._pendingProps = []; }
       if (name === 'mako-directions') this._syncMakoSprite();
       if (name === 'vehicles') { for (const args of this._pendingVehicles || []) this._vehicleSprite(...args); this._pendingVehicles = []; }
+      if (name === 'horizon-fleet-me1') this._syncHorizonFleet();
     }, undefined, failed); } catch { failed(); return false; }
     return true;
   }
@@ -175,7 +185,8 @@ export class WorldView {
 
   _spriteTexture(key = 'shepard', enemy = false) {
     const name = this._spriteAtlasName(key, enemy), cacheKey = `${name}:${key}`;
-    if (FRONTIER_ENEMY_IDS.includes(key) || getFrontierNPC(key)?.visual.atlas) return this._neutralBodyTexture ||= new THREE.Texture();
+    if (FRONTIER_ENEMY_IDS.includes(key) || getFrontierNPC(key)?.visual.atlas || HORIZON_ENEMY_IDS.includes(key) || getHorizonNPC(key)
+      || ['varren','alpha-varren','gasbag-me1'].includes(key)) return this._neutralSpriteTexture();
     if (this.spriteCache.has(cacheKey)) return this.spriteCache.get(cacheKey);
     let texture;
     if (this.atlases[name]) {
@@ -185,6 +196,11 @@ export class WorldView {
       texture.offset.set((index % columns) / columns, .5 - Math.floor(index / columns) * .5); texture.needsUpdate = true;
     } else texture = fallbackCharacter(key, enemy);
     this.spriteCache.set(cacheKey, texture); return texture;
+  }
+
+  _neutralSpriteTexture() {
+    if(!this._neutralBodyTexture){this._neutralBodyTexture=new THREE.DataTexture(new Uint8Array([0,0,0,0]),1,1);this._neutralBodyTexture.needsUpdate=true;}
+    return this._neutralBodyTexture;
   }
 
   _material(color, roughness = 0.7, metalness = 0.15, emissive = null) {
@@ -346,6 +362,110 @@ export class WorldView {
     this.makoDirectionsConfig = config; this._loadAtlas('mako-directions', `${ASSET_BASE}${config.file}`); return true;
   }
 
+  _horizonAtlasConfig(name) {
+    return name==='horizon-npcs'?this.horizonNPCConfig:name==='horizon-enemies'?this.horizonEnemyConfig
+      :name==='horizon-fauna'?this.horizonFaunaConfig:name==='horizon-fleet-me1'?this.horizonFleetConfigs?.me1:null;
+  }
+
+  _horizonCampaignContext() {
+    const s=this.storyContext;if(!s)return null;
+    if([s,s.context].filter(Boolean).some(value=>value.mediaId!==undefined&&value.mediaId!=='ME1'||value.periodId!==undefined&&value.periodId!=='me1'))return null;
+    return {mediaId:'ME1',periodId:'me1'};
+  }
+
+  _horizonPresenceContext() {
+    const context=this.storyContext;return {...context,zone:this.zoneId,cleared:[...new Set([...(context?.cleared||[]),...this.cleared])]};
+  }
+
+  registerHorizonNPCAtlas(input) {
+    const config=normalizeHorizonNPCAtlas(input);if(!config||this._disposed)return false;
+    this.horizonNPCConfig=config;this._loadAtlas('horizon-npcs',`${ASSET_BASE}${config.file}`);return true;
+  }
+
+  _applyHorizonNPCBody(actor) {
+    const npc=getHorizonNPC(actor.key),permitted=npc&&!actor.enemy&&actor.id===`npc:${npc.id}`&&actor.conversationId===npc.conversationId
+      &&this.zoneId===npc.zone&&horizonNPCVisible(this._horizonPresenceContext(),npc);
+    const frame=permitted&&getHorizonNPCFrame(actor.key,this.horizonNPCConfig);
+    if(frame){actor.height=frame.height;if(this._applyAnimationFrame(actor,'horizon-npcs',frame))return true;}
+    if(npc&&actor.animationFrame===npc.id)this._fallbackCombatFrame(actor);return false;
+  }
+
+  registerHorizonEnemyAtlas(input) {
+    const config=normalizeHorizonEnemyAtlas(input);if(!config||this._disposed)return false;
+    this.horizonEnemyConfig=config;this._loadAtlas('horizon-enemies',`${ASSET_BASE}${config.file}`);return true;
+  }
+
+  _applyHorizonEnemyBody(actor) {
+    const poi=actor.poiId&&this.zone.pois.find(p=>p.id===actor.poiId&&p.type==='encounter'),suffix=poi?.id.slice(this.zoneId.length+1),index=['encounter-1','encounter-2','boss'].indexOf(suffix);
+    const firstSprite=ENEMIES[ENCOUNTERS[this.zoneId]?.[index]?.[0]]?.sprite;
+    const native=getHorizonEnemyVisual(actor)||getHorizonAmbientVisual(actor,{zoneId:this.zoneId,poi,firstSprite,context:this.storyContext});
+    const frame=native&&this.horizonEnemyConfig?.frames[actor.key];
+    if(frame&&this._applyAnimationFrame(actor,'horizon-enemies',frame,{cover:actor.alive&&actor.state?.cover})){
+      actor.body.position.y+=frame.hoverHeight||0;actor.body.rotation.z=actor.alive?0:-.9;return true;
+    }
+    if(HORIZON_ENEMY_IDS.includes(actor.key)&&actor.animationFrame)this._fallbackCombatFrame(actor);return false;
+  }
+
+  registerHorizonFaunaAtlas(input) {
+    const config=normalizeHorizonFaunaAtlas(input);if(!config||this._disposed)return false;
+    this.horizonFaunaConfig=config;this._loadAtlas('horizon-fauna',`${ASSET_BASE}${config.file}`);return true;
+  }
+
+  _applyHorizonFaunaBody(actor) {
+    const context=this._horizonCampaignContext(),worldContext=context&&{...context,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()};
+    const ambient=worldContext&&actor.faunaId&&actor.id===`fauna:${actor.faunaId}:${actor.faunaIndex}`&&[0,1,2].includes(actor.faunaIndex)
+      &&horizonFaunaVisible(actor.faunaId,worldContext);
+    const combat=worldContext&&this.zoneId==='feros'&&getHorizonFaunaCombatVisual(actor,this.horizonFaunaConfig);
+    const frame=combat||(ambient&&getHorizonFaunaFrame(actor.faunaId,this.horizonFaunaConfig));
+    if(frame&&this._applyAnimationFrame(actor,'horizon-fauna',frame)){
+      actor.body.position.y+=(frame.hoverHeight||0)+(actor.faunaId==='gasbag-me1'?Math.sin(this.time*1.4+actor.faunaIndex)*.07:0);
+      actor.body.rotation.z=actor.alive?0:-.9;return true;
+    }
+    if(['varren','alpha-varren','gasbag-me1'].includes(actor.key)&&actor.animationFrame)this._fallbackCombatFrame(actor);return false;
+  }
+
+  registerHorizonFleetAtlas(familyId,input) {
+    if(familyId!=='me1'||this._disposed)return false;const config=normalizeHorizonFleetAtlas(familyId,input);if(!config)return false;
+    this.horizonFleetConfigs={...this.horizonFleetConfigs,[familyId]:config};this._loadAtlas(`horizon-fleet-${familyId}`,`${ASSET_BASE}${config.file}`);return true;
+  }
+
+  _syncHorizonFleet() {
+    if(!this.zone||!this.stage)return;
+    this.horizonFleetViews ||= new Map();
+    const context=this._horizonCampaignContext(),config=this.horizonFleetConfigs?.me1,atlas=this.atlases?.['horizon-fleet-me1'];
+    for(const entry of HORIZON_FLEET.filter(entry=>entry.mediaId==='ME1')){
+      const frame=config&&getHorizonFleetFrame(entry.id,{me1:config}),permitted=context&&canShowHorizonFleet(entry.id,context,this.storyContext,this.zoneId)
+        &&atlas?.image?.width===config?.width&&atlas?.image?.height===config?.height;
+      let view=this.horizonFleetViews.get(entry.id);
+      if(permitted&&frame&&!view){
+        // These are explicitly local recognition projections. They do not put
+        // miniature physical hulls in the Presidium or assert a shared scale.
+        const positions={'normandy-sr1':[8,-6,2.8],'geth-dropship':[-9,-5,2.3],'destiny-ascension':[-6.8,-4,3],sovereign:[-6.8,-4,3.8]},[dx,dz,height]=positions[entry.id];
+        const citadel=this.zoneId==='citadel'||this.zoneId==='citadel-finale',anchor=citadel?{x:entry.id==='normandy-sr1'?6.8:dx,z:-4}:{x:this.zone.spawn.x+dx,z:this.zone.spawn.z+dz};
+        if(this.zoneId==='therum'&&entry.id==='geth-dropship'){anchor.x=this.zone.spawn.x-9;anchor.z=this.zone.spawn.z+7;}
+        if(this.zoneId==='citadel-finale'&&entry.id==='sovereign'){anchor.x=-6.5;anchor.z=13;}
+        const [x,top,width,depth]=frame.rect,key=`horizon-fleet-me1:${entry.id}`;
+        if(!this.spriteCache.has(key)){const texture=atlas.clone();texture.repeat.set(width/config.width,depth/config.height);texture.offset.set(x/config.width,1-(top+depth)/config.height);this.spriteCache.set(key,texture);}
+        const material=new THREE.MeshBasicMaterial({map:this.spriteCache.get(key),color:0x6ce5ff,opacity:.58,transparent:true,alphaTest:.04,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});
+        const mesh=new THREE.Mesh(new THREE.PlaneGeometry(height*width/depth,height),material);mesh.position.set(anchor.x,1.2+height/2,anchor.z);mesh.rotation.y=Math.atan2(this.cameraOffset.x,this.cameraOffset.z);mesh.userData.keep=true;mesh.userData.horizonFleet=entry.id;mesh.userData.presentation='recognition-projection';mesh.name=`horizon-fleet:${entry.id}`;
+        const projection=new THREE.Group();projection.name=`horizon-fleet-projector:${entry.id}`;projection.userData.keep=true;projection.userData.caption='Projection de reconnaissance';
+        const base=new THREE.Mesh(new THREE.CylinderGeometry(.85,1.05,.28,16),new THREE.MeshStandardMaterial({color:0x263e4c,roughness:.7,metalness:.4}));base.position.set(anchor.x,.14,anchor.z);projection.add(base);
+        const halo=new THREE.Mesh(new THREE.TorusGeometry(.78,.06,6,32),new THREE.MeshBasicMaterial({color:0x73dcff,transparent:true,opacity:.8,depthWrite:false}));halo.rotation.x=-Math.PI/2;halo.position.set(anchor.x,.3,anchor.z);projection.add(halo);
+        const beam=new THREE.Mesh(new THREE.CylinderGeometry(.28,.7,.85,16,1,true),new THREE.MeshBasicMaterial({color:0x4ebddf,transparent:true,opacity:.12,depthWrite:false,side:THREE.DoubleSide}));beam.position.set(anchor.x,.76,anchor.z);projection.add(beam);
+        if(typeof document!=='undefined')projection.add(this._sign('PROJECTION DE RECONNAISSANCE',anchor.x,.8,anchor.z+1.15,5.2,'#8be7ff',mesh.rotation.y));
+        this.stage.add(mesh,projection);view={id:entry.id,mesh,projection,frameId:frame.id};this.horizonFleetViews.set(entry.id,view);
+      }
+      if(view){
+        if(permitted&&frame){
+          const key=`horizon-fleet-me1:${entry.id}`;
+          if(!this.spriteCache.has(key)){const[x,y,w,h]=frame.rect,texture=atlas.clone();texture.repeat.set(w/config.width,h/config.height);texture.offset.set(x/config.width,1-(y+h)/config.height);this.spriteCache.set(key,texture);}
+          const texture=this.spriteCache.get(key);if(view.mesh.material.map!==texture){view.mesh.material.map=texture;view.mesh.material.needsUpdate=true;}
+        }
+        view.mesh.visible=!!permitted&&this.mode!=='combat';if(view.projection)view.projection.visible=view.mesh.visible;
+      }
+    }
+  }
+
   _vehicleInPeriod() {
     const context=this.storyContext;
     return (context?.mediaId === undefined || context.mediaId === 'ME1') && (context?.periodId === undefined || context.periodId === 'me1')
@@ -462,8 +582,14 @@ export class WorldView {
   }
 
   _releaseBattleActorTextures(actor) {
-    for (const [key, texture] of this.spriteCache) if ((key.startsWith('combat-') || key.startsWith('frontier-enemies:')) && key.endsWith(`:${actor.id}`)) {
+    for (const [key, texture] of this.spriteCache) if ((key.startsWith('combat-') || key.startsWith('frontier-enemies:') || key.startsWith('horizon-enemies:') || key.startsWith('horizon-fauna:')) && key.endsWith(`:${actor.id}`)) {
       texture.dispose(); this.spriteCache.delete(key);
+    }
+  }
+
+  _releaseAmbientActorTextures(actor) {
+    for(const[key,texture]of this.spriteCache)if(['frontier-npcs:','horizon-npcs:','horizon-enemies:','horizon-fauna:','frontier-enemies:'].some(prefix=>key.startsWith(prefix))&&key.endsWith(`:${actor.id}`)){
+      texture.dispose();this.spriteCache.delete(key);
     }
   }
 
@@ -482,7 +608,7 @@ export class WorldView {
       const config = this._combatAnimationConfig(actor);
       if (!config || atlas.image.width !== config.width || atlas.image.height !== config.height) return false;
     }
-    const staticConfig = atlasName === 'frontier-enemies' ? this.frontierEnemyConfig : atlasName === 'frontier-npcs' ? this.frontierNPCConfig : null;
+    const staticConfig = atlasName === 'frontier-enemies' ? this.frontierEnemyConfig : atlasName === 'frontier-npcs' ? this.frontierNPCConfig : this._horizonAtlasConfig(atlasName);
     if (staticConfig && (atlas.image.width !== staticConfig.width || atlas.image.height !== staticConfig.height)) return false;
     const [x, y, width, height] = rect;
     if (x < 0 || y < 0 || width <= 0 || height <= 0 || x + width > atlas.image.width || y + height > atlas.image.height) return false;
@@ -1020,13 +1146,16 @@ export class WorldView {
     this._clearEffects(); this.animations = []; this.colliders = []; this.combatOccluders = []; this.targetPath = null; this.pendingPOI = null; this._pendingProps = []; this._pendingVehicles = [];
     this.setBattle(null);
     disposeObject(this.stage, true); this.stage.clear(); this.materialCache.clear();
+    this.horizonFleetViews = new Map();
     this._lights(zone.theme);
-    if (this.levelLayout?.renderer === 'frontier') buildFrontierScene(this, this.levelLayout);
+    if (this.levelLayout?.renderer === 'horizon') buildHorizonScene(this, this.levelLayout);
+    else if (this.levelLayout?.renderer === 'frontier') buildFrontierScene(this, this.levelLayout);
     else ({ normandy: () => this._normandy(), eden: () => this._eden(), citadel: () => this._citadel(false), therum: () => this._therum(), feros: () => this._feros(), noveria: () => this._noveria(), virmire: () => this._virmire(), ilos: () => this._ilos(), finale: () => this._citadel(true) }[zone.theme] || (() => this._eden()))();
     this._dressScene();
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
     this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
     this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
+    this._syncHorizonFleet();
     if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
     else this.cameraTarget.set(this.player.x * .42, 0, this.player.z * .42);
     this.makoState = zone.id === 'therum' ? createMakoState(this.levelLayout?.vehicleSpawn || { x: -7.2, z: 16 }) : null;
@@ -1127,7 +1256,8 @@ export class WorldView {
     const next = context && typeof context === 'object' ? {
       recruited: strings(context.recruited), lost: strings(context.lost), completed: strings(context.completed),
       visitedZones: strings(context.visitedZones ?? context.story?.visitedZones), cleared: strings(context.cleared),
-      flags: { jenkinsLost: context.flags?.jenkinsLost === true },
+      flags: { jenkinsLost: context.flags?.jenkinsLost === true, briefed:context.flags?.briefed===true, spectre:context.flags?.spectre===true },
+      operations:{records:{'feros-varrens':{stage:Number.isInteger(context.operations?.records?.['feros-varrens']?.stage)?context.operations.records['feros-varrens'].stage:0}}},
       assignmentContacts,
       ...(context.mediaId !== undefined ? {mediaId:context.mediaId} : {}),
       ...(context.periodId !== undefined ? {periodId:context.periodId} : {}),
@@ -1143,15 +1273,16 @@ export class WorldView {
       this.pendingPOI = null; this.targetPath = null;
     }
     this.setParty(this.party);
-    if (this.zoneId === 'normandy') this._makeMarkers();
-    if (this.zoneId === 'citadel' || this.zoneId === 'noveria') { this._makeMarkers(); this._makeAmbientCharacters(); }
+    this._makeMarkers();
+    if (this.zoneId !== 'normandy') this._makeAmbientCharacters();
+    this._syncHorizonFleet();
   }
 
   _makeActor(key, id, enemy = false, parent = this.characters) {
     if (id === 'shepard' && !enemy) key = this.commanderAppearance === 'female' ? 'femshep' : 'shepard';
     const group = new THREE.Group(); group.userData.actorId = id; group.userData.key = key;
-    const boss = BOSS_KEYS.includes(key), large = ['wrex', 'krogan', 'geth-destroyer', 'thorian', 'saren-final'].includes(key);
-    const height = key === 'thorian' ? 5.4 : key === 'saren-final' ? 3.6 : large ? 3.25 : key === 'rachni' ? 2.45 : 2.85;
+    const boss = BOSS_KEYS.includes(key), large = ['wrex', 'krogan', 'geth-destroyer', 'thorian', 'saren-final','armature','colossus','battlemaster'].includes(key);
+    const height = HORIZON_ENEMY_HEIGHTS[key] || (key === 'thorian' ? 5.4 : key === 'saren-final' ? 3.6 : large ? 3.25 : key === 'rachni' ? 2.45 : 2.85);
     const material = new THREE.MeshBasicMaterial({ map: this._spriteTexture(key, enemy), transparent: true, alphaTest: .2, depthWrite: true, side: THREE.DoubleSide, toneMapped: false });
     const body = new THREE.Mesh(new THREE.PlaneGeometry(boss ? height * (2 / 3) : large ? 2.55 : 2.1, height), material); body.position.y = height / 2 + .05;
     body.userData.characterKey = key; body.userData.enemy = enemy; group.add(body);
@@ -1180,13 +1311,13 @@ export class WorldView {
       const levelPoint = this.levelLayout ? this.trail[Math.min(this.trail.length - 1, i * 11)] || this.player : null;
       actor.group.position.set(actor.stationPosition?.x ?? levelPoint?.x ?? this.player.x + (i === 1 ? -1.2 : i === 2 ? 1.2 : 0), 0,
         actor.stationPosition?.z ?? levelPoint?.z ?? this.player.z + i * .8);
-      actor.group.visible = this.mode !== 'combat'; return actor;
+      actor.group.visible = this.mode !== 'combat' && !this.isVehicleMounted(); return actor;
     });
     if (this.zoneId === 'normandy' && this.storyContext) this._makeAmbientCharacters();
   }
 
   _makeAmbientCharacters() {
-    for (const actor of this.ambientActors || []) { this.characters.remove(actor.group); disposeObject(actor.group); }
+    for (const actor of this.ambientActors || []) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseAmbientActorTextures(actor); }
     this.ambientActors = [];
     for (const p of this.zone.pois) {
       if (p.type === 'encounter' && !this.cleared.has(p.id)) {
@@ -1218,6 +1349,10 @@ export class WorldView {
       actor.group.position.set(poi.actorPosition.x, 0, poi.actorPosition.z);
       actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
     }
+    const scope=this._horizonCampaignContext(),fauna=scope&&{...scope,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()};
+    const placements=this.zoneId==='eden-prime'?[['gasbag-me1','gasbag-me1',-34,39],['gasbag-me1','gasbag-me1',-28,31]]
+      :this.zoneId==='feros'?[['varren-me1','varren',9,26],['varren-me1','varren',15,27],['alpha-varren-me1','alpha-varren',12,23]]:[];
+    placements.forEach(([id,key,x,z],index)=>{if(!fauna||!horizonFaunaVisible(id,fauna))return;const actor=this._makeActor(key,`fauna:${id}:${index}`,false);actor.faunaId=id;actor.faunaIndex=index;actor.group.position.set(x,0,z);actor.group.visible=this.mode!=='combat';this.ambientActors.push(actor);this._applyHorizonFaunaBody(actor);});
   }
 
   _makeMarkers() {
@@ -1241,8 +1376,16 @@ export class WorldView {
 
   setCleared(ids = []) {
     this.cleared = new Set(ids instanceof Set ? ids : Array.isArray(ids) ? ids : []);
-    for (const view of this.poiViews || []) { const hidden = this.cleared.has(view.poi.id) && view.poi.type === 'encounter'; view.group.visible = !hidden && this.mode !== 'combat'; if (hidden) view.label.style.opacity = '0'; }
-    for (const actor of this.ambientActors || []) if (actor.poiId) actor.group.visible = !this.cleared.has(actor.poiId) && this.mode !== 'combat';
+    for (const view of this.poiViews || []) { const hidden = this.cleared.has(view.poi.id) && view.poi.type === 'encounter' || view.poi.horizonNPC&&!horizonNPCVisible(this._horizonPresenceContext(),view.poi.horizonNPC); view.group.visible = !hidden && this.mode !== 'combat'; if (hidden) view.label.style.opacity = '0'; }
+    for (const actor of this.ambientActors || []) actor.group.visible=this._ambientActorVisible(actor);
+    if(this.pendingPOI&&!this.getInteractivePOIs().some(p=>p.id===this.pendingPOI.id)){this.pendingPOI=null;this.targetPath=null;}
+  }
+
+  _ambientActorVisible(actor) {
+    if(this.mode==='combat'||actor.poiId&&this.cleared.has(actor.poiId))return false;
+    if(getHorizonNPC(actor.key))return horizonNPCVisible(this._horizonPresenceContext(),actor.key);
+    if(actor.faunaId){const scope=this._horizonCampaignContext();return !!scope&&horizonFaunaVisible(actor.faunaId,{...scope,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()});}
+    return true;
   }
 
   setMode(mode) {
@@ -1253,16 +1396,18 @@ export class WorldView {
       object.visible = mode !== 'combat' || !!this.levelLayout && !!scenery && Math.hypot(scenery.x - arena.x, scenery.z - arena.z) > 24;
     }
     for (const actor of this.actors) actor.group.visible = mode !== 'combat' && !this.isVehicleMounted();
-    for (const actor of this.ambientActors || []) actor.group.visible = mode !== 'combat' && (!actor.poiId || !this.cleared.has(actor.poiId));
+    for (const actor of this.ambientActors || []) actor.group.visible = this._ambientActorVisible(actor);
+    this._syncHorizonFleet();
     for (const actor of this.battleActors.values()) actor.group.visible = mode === 'combat';
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
-    for (const view of this.poiViews || []) { view.group.visible = mode !== 'combat' && !(view.poi.type === 'encounter' && this.cleared.has(view.poi.id)); if (mode !== 'explore') view.label.style.opacity = '0'; }
+    const activePOIIds=new Set(this.poiViews?.length?this.getInteractivePOIs().map(poi=>poi.id):[]);
+    for (const view of this.poiViews || []) { view.group.visible = mode !== 'combat' && activePOIIds.has(view.poi.id) && !(view.poi.type === 'encounter' && this.cleared.has(view.poi.id)); if (mode !== 'explore') view.label.style.opacity = '0'; }
   }
 
   setBattle(battle) {
     if (battle && this.isVehicleMounted()) this._dismountVehicle();
     if (battle && battle !== this.battle && this.levelLayout) {
-      this.battleArena = Object.values(this.levelLayout.arenas).reduce((best, arena) =>
+      this.battleArena = Object.values({...this.levelLayout.arenas,...this.levelLayout.sideArenas}).reduce((best, arena) =>
         Math.hypot(arena.x - this.player.x, arena.z - this.player.z) < Math.hypot(best.x - this.player.x, best.z - this.player.z) ? arena : best,
       this.zone.arena);
     }
@@ -1272,13 +1417,14 @@ export class WorldView {
     const active = new Set(entries.map(a => a.id));
     for (const [id, actor] of this.battleActors) if (!active.has(id)) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); this.battleActors.delete(id); }
     let partyIndex = 0, enemyIndex = 0;
+    const enemySpacing=entries.some(entry=>entry.team==='enemy'&&['armature','colossus'].includes(entry.sprite))?5.6:2.9;
     for (const state of entries) {
       const enemy = state.team === 'enemy', index = enemy ? enemyIndex++ : partyIndex++;
       const key = state.sprite || state.id || (enemy ? 'geth' : 'shepard');
       let actor = this.battleActors.get(state.id);
       if (!actor) { actor = this._makeActor(key, state.id, enemy); this.battleActors.set(state.id, actor); }
       const arena = this.battleArena || this.zone.arena;
-      actor.basePosition = new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * 2.9);
+      actor.basePosition = new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * (enemy?enemySpacing:2.9));
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
       if (actor.lastHp !== null && state.hp < actor.lastHp) { actor.poseTime = .35; this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.3, 0)), enemy ? 0xffae79 : 0xf0c7a7); }
       if (actor.lastShield !== null && state.shield < actor.lastShield) actor.shieldFlash = .35;
@@ -1314,7 +1460,8 @@ export class WorldView {
       return;
     }
     if (source && target && type === 'action' && source !== target) {
-      const from = source.group.position.clone().add(new THREE.Vector3(0, 1.4, 0)), to = target.group.position.clone().add(new THREE.Vector3(0, 1.2, 0));
+      const fromHeight=['armature','colossus'].includes(source.key)?source.height*.62:1.4,toHeight=['armature','colossus'].includes(target.key)?target.height*.62:1.2;
+      const from = source.group.position.clone().add(new THREE.Vector3(0, fromHeight, 0)), to = target.group.position.clone().add(new THREE.Vector3(0, toHeight, 0));
       const biotic = /biotic|warp|lift|throw|singularity|stasis/.test(action), tech = /tech|overload|sabotage|hack/.test(action);
       const color = action === 'acid' ? 0xb6d16d : biotic ? 0xa9a2ff : tech ? 0x7ee5ed : 0xffcf96;
       if (action === 'strike') { source.group.position.add(to.clone().sub(from).normalize().multiplyScalar(.8)); this._impact(to, 0xf3b391, 1.3); return; }
@@ -1418,6 +1565,7 @@ export class WorldView {
     return (this.zone.conversationPois || []).filter(poi => {
       const id = poi.conversationId;
       if (poi.frontierNPC) return frontierNPCVisible({...context,zone:this.zoneId},poi.frontierNPC);
+      if (poi.horizonNPC) return horizonNPCVisible(this._horizonPresenceContext(),poi.horizonNPC);
       if (this.zoneId !== 'normandy') return false;
       if (context.lost.includes(id)) return false;
       if (id === 'joker' || id === 'chakwas') return true;
@@ -1430,7 +1578,11 @@ export class WorldView {
       const recruit = this.zoneId === 'citadel' && CITADEL_RECRUITS[poi.id];
       return !recruit || !this.storyContext || !this.storyContext.recruited.includes(recruit) && !this.storyContext.lost.includes(recruit);
     });
-    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs(), ...(this.operationPois || [])];
+    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs(), ...this.getFaunaPOIs(), ...(this.operationPois || [])];
+  }
+  getFaunaPOIs() {
+    const scope=this._horizonCampaignContext();if(!scope)return [];
+    return (this.zone.faunaPois||[]).filter(p=>horizonFaunaVisible(p.faunaId,{...scope,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()})).map(p=>({...p,cleared:false}));
   }
   getAssignmentPOIs() {
     if (this.zoneId !== 'citadel') return [];
@@ -1448,9 +1600,10 @@ export class WorldView {
     const occupied = this.getInteractivePOIs();
     for (const source of pois) {
       if (!source || source.zone !== this.zoneId || !Number.isFinite(source.x) || !Number.isFinite(source.z)) continue;
-      const candidates = [{ x: source.x, z: source.z }];
+      const anchor = (this.levelLayout?.operationAnchors || this.zone.operationAnchors)?.[source.operationId]?.[source.stepId] || source;
+      const candidates = [{ x: anchor.x, z: anchor.z }];
       for (let radius = .9; radius <= 7.2; radius += .9) for (let angle = 0; angle < TAU; angle += Math.PI / 6)
-        candidates.push({ x: source.x + Math.cos(angle) * radius, z: source.z + Math.sin(angle) * radius });
+        candidates.push({ x: anchor.x + Math.cos(angle) * radius, z: anchor.z + Math.sin(angle) * radius });
       const spot = candidates.find(point => this._walkable(point.x, point.z)
         && occupied.every(other => Math.hypot(other.x - point.x, other.z - point.z) >= 1.8)
         && this._pathTo(point)?.length);
@@ -1599,8 +1752,11 @@ export class WorldView {
     for (const actor of this.ambientActors || []) {
       actor.body.rotation.y = facing;
       actor.body.position.y = actor.height / 2 + .05 + Math.sin(this.time * 1.5 + actor.group.position.x) * .02;
-      this._applySeatedJoker(actor); this._applyFrontierNPCBody(actor);
+      actor.group.visible=this._ambientActorVisible(actor);
+      this._applySeatedJoker(actor); this._applyFrontierNPCBody(actor); this._applyHorizonNPCBody(actor);
       if (FRONTIER_ENEMY_IDS.includes(actor.key)) this._applyFrontierEnemyBody(actor);
+      if (HORIZON_ENEMY_IDS.includes(actor.key)) this._applyHorizonEnemyBody(actor);
+      if(actor.faunaId)this._applyHorizonFaunaBody(actor);
     }
     for (const actor of this.battleActors.values()) {
       actor.body.rotation.y = facing; actor.poseTime = Math.max(0, actor.poseTime - dt);
@@ -1625,6 +1781,8 @@ export class WorldView {
           this._fallbackCombatFrame(actor);
         }
       } else if (FRONTIER_ENEMY_IDS.includes(actor.key)) this._applyFrontierEnemyBody(actor);
+      else if (HORIZON_ENEMY_IDS.includes(actor.key)) this._applyHorizonEnemyBody(actor);
+      else if (['varren','alpha-varren'].includes(actor.key)) this._applyHorizonFaunaBody(actor);
       else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);

@@ -8,7 +8,9 @@ import { newGame } from '../src/state.js';
 
 test('the two retained Ilos spans expose the native first-enemy body sightline in combat without changing field geometry or collisions',()=>{
  const world=Object.create(WorldView.prototype);
- Object.assign(world,{stage:new THREE.Group(),materialCache:new Map(),animations:[],combatOccluders:[],colliders:[],zone:WORLD_ZONES.ilos,zoneId:'ilos',levelLayout:null,mode:'explore',keys:new Set(),actors:[],ambientActors:[],battleActors:new Map(),poiViews:[],cleared:new Set(),rand:()=>.5,_sign(){},_texturedMaterial(color){return this._material(color);}});
+ // Exercise the retained legacy chamber explicitly. Horizon's authored Ilos
+ // now has local arenas far from this old geometry and is covered separately.
+ Object.assign(world,{stage:new THREE.Group(),materialCache:new Map(),animations:[],combatOccluders:[],colliders:[],zone:{...WORLD_ZONES.ilos,arena:{x:0,z:0}},zoneId:'ilos',levelLayout:null,mode:'explore',keys:new Set(),actors:[],ambientActors:[],battleActors:new Map(),poiViews:[],cleared:new Set(),rand:()=>.5,_sign(){},_texturedMaterial(color){return this._material(color);}});
  world._ilos();const colliders=structuredClone(world.colliders),spans=[...world.combatOccluders];
  assert.equal(spans.length,2);assert.ok(spans.every(span=>span.userData.keep&&span.userData.combatOccluder));
  assert.deepEqual(spans.map(span=>span.position.toArray()),[[0,13,-9],[0,13,8]]);

@@ -1,0 +1,1275 @@
+{
+  "passed": true,
+  "startedAt": "2026-11-09T07:57:58.168Z",
+  "sourceHead": "2ab3f7c10d3bdd9ca04b7a962df9447aee2b3e75",
+  "mode": "development",
+  "url": "http://127.0.0.1:4181/",
+  "command": {
+    "script": "node scripts/horizon-archive-public.mjs",
+    "environment": {
+      "HORIZON_ARCHIVE_MODE": "development",
+      "HORIZON_ARCHIVE_PREFIX": "horizon-archive-dev-final-01",
+      "GAME_URL": "http://127.0.0.1:4181/",
+      "PLAYWRIGHT_EXECUTABLE_PATH": "/usr/bin/chromium"
+    }
+  },
+  "scope": "Actual public Codex/Faune-et-vaisseaux and Chronicle reference filters with three explicitly prepared native JSON fixtures; no QA API, private store, injected CSS or forced browser state.",
+  "fixtures": [
+    {
+      "label": "fresh",
+      "path": "docs/qa/horizon-archive-dev-final-01-fresh-fixture.json",
+      "sha256": "bb06a80bc9f48111514b8b4d494b73d206cfa386824e3a0acacea7bc4dd9ee47",
+      "bytes": 2467,
+      "origin": "Native Node preparation with newGame/recordVisit/winEncounter/recruit/completeZone/advanceOperation; prior story not played in Chromium.",
+      "preparedProgress": {
+        "completed": [],
+        "cleared": [],
+        "flags": {},
+        "operationStage": 0
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "council",
+      "path": "docs/qa/horizon-archive-dev-final-01-council-fixture.json",
+      "sha256": "fd8c811aa82193077150b3c6a60cd4201efd95d62195054e0a68471d5d5d22b1",
+      "bytes": 3352,
+      "origin": "Native Node preparation with newGame/recordVisit/winEncounter/recruit/completeZone/advanceOperation; prior story not played in Chromium.",
+      "preparedProgress": {
+        "completed": [
+          "eden-prime",
+          "citadel"
+        ],
+        "cleared": [
+          "eden-prime:encounter-1",
+          "eden-prime:encounter-2",
+          "eden-prime:boss",
+          "feros:encounter-1"
+        ],
+        "flags": {
+          "briefed": true,
+          "jenkinsLost": true,
+          "spectre": true
+        },
+        "operationStage": 1
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "label": "virmire",
+      "path": "docs/qa/horizon-archive-dev-final-01-virmire-fixture.json",
+      "sha256": "2a174b4d6be4c1202cca94ca6c4d64266a6aca86379258c5dc18832adbb9fac2",
+      "bytes": 3917,
+      "origin": "Native Node preparation with newGame/recordVisit/winEncounter/recruit/completeZone/advanceOperation; prior story not played in Chromium.",
+      "preparedProgress": {
+        "completed": [
+          "eden-prime",
+          "citadel",
+          "therum",
+          "noveria",
+          "virmire"
+        ],
+        "cleared": [
+          "eden-prime:encounter-1",
+          "eden-prime:encounter-2",
+          "eden-prime:boss",
+          "feros:encounter-1",
+          "therum:encounter-1",
+          "therum:encounter-2",
+          "therum:boss",
+          "noveria:encounter-1",
+          "noveria:encounter-2",
+          "noveria:boss",
+          "virmire:encounter-1",
+          "virmire:encounter-2",
+          "virmire:boss"
+        ],
+        "flags": {
+          "briefed": true,
+          "jenkinsLost": true,
+          "spectre": true
+        },
+        "operationStage": 1
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "sourceHashes": {
+    "src/main.js": "dc82f1d81c2fe23750e039d3531d8c1bde8a90c2ba37ce527927220af74565fa",
+    "src/universe-ui.js": "99b9e366e64335c68756f4226f1ecc5267bc315b8c0f7c00f6f9992ae4fdff0f",
+    "src/universe-ui.css": "6068614cf13f7ed0d79c19364bc284277b1921d1ea6e073fd49ecb23c2752566",
+    "src/horizon-archive-ui.js": "d8dec39550eaf21611e916e2ced270c2c7597e10ad2e491af3ab09fd4783fb5b",
+    "src/horizon-ui.js": "81739bf336a7627df78733a815f313bc25ac873f1140da810f15ef849b4a3ddb",
+    "src/horizon-ui.css": "c20881d2cc32b569d78b904ef3a9f6b052e0ef29c58c7905b6a588f3616b7447",
+    "src/horizon-reference-visuals.js": "46820e8c316615f29f2bf50a795c9c7f175b3e79f89f708fa73a13a60d221728",
+    "src/horizon-fleet.js": "ab9970092a7f2219225b08cd0e3129d89bfde27bda67e8705dabf8662264caf0",
+    "src/horizon-fleet-reference.js": "7103013f67dd15ae5de3dd2db6ac4a7c528edfcd0486619528a3ea1e9fbce735",
+    "src/horizon-fauna.js": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/story.js": "53b23f4819273eb24dd1e058e5e17d34ef27581df437a32aad7b193e6dbe75b0",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/world.js": "29b8a20a37e12cf979576f7f011a6c34bad858b24ce691eb4614a37eaa30e016",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/horizon-layout-data.js": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+    "src/horizon-scene.js": "b3ff51ed99d615e7548ab3d762511fcf7b8f0b35f82dcfa1474e84cccc4b370e",
+    "src/game-data.js": "51e9e40b22dca8857041e9d721136b51c215cb3dc9b717ba4083f16398f7abe7",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/continuity-data.js": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03",
+    "vite.config.js": "bf2f5aa80d6e09c77b5b8eed4148d92163e5b45751e67e579bcb6bcbb184f3df",
+    "scripts/horizon-archive-public.mjs": "405c159081ac62e4dded7a9d106c55383af148a8d9bc2bbeac7e20d3ee549e58",
+    "public/assets/horizon-fleet-me1.png": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+    "public/assets/horizon-fleet-me1.json": "57c94b9b27b852c7817beb5728689d78f5ceb8e3bc6e5ed388aa86a5ccd03462",
+    "public/assets/horizon-fleet-later.png": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a",
+    "public/assets/horizon-fleet-later.json": "f1dbc796cbc59723f07d0e09cb7ba643ae684110d7204f4bbf78f98ee3bbf4f0",
+    "public/assets/horizon-fauna.png": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+    "public/assets/horizon-fauna.json": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10"
+  },
+  "captures": [
+    {
+      "label": "fresh-fleet-desktop",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-fresh-fleet-desktop.png",
+      "sha256": "d0c2f83eaa9b070a6c1beb5a4ad10a2d3fa64bf20bffc40111e6d2cc42e29a8b",
+      "bytes": 347800,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "fresh-fauna-desktop",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-fresh-fauna-desktop.png",
+      "sha256": "b4d72adee20377a5b64d6f14c2b6b5c1ef566280bba1ddc11a87b6c4505cc090",
+      "bytes": 229022,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "council-fleet-desktop",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-council-fleet-desktop.png",
+      "sha256": "d3e5a9df7c0763095b0d475c7c68838a2915e763c4392359c1b0bd00609ad555",
+      "bytes": 365571,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "council-fauna-desktop",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-council-fauna-desktop.png",
+      "sha256": "d2889289486d11b5108531d8b8b8883b1f4ce890cb45cff97aa711c24e6a4db1",
+      "bytes": 373819,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "virmire-fleet-desktop",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-virmire-fleet-desktop.png",
+      "sha256": "950659a51fd468d9af9bd50875010f75d3308bd1b9f280cbdb12fea3d69ad4fb",
+      "bytes": 336002,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "virmire-fauna-desktop",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-virmire-fauna-desktop.png",
+      "sha256": "5d416197271d2f3374735f89f7e0d72d6d97b6adc6c811923fff1aaaccccb739",
+      "bytes": 331584,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "sovereign-mobile",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-sovereign-mobile.png",
+      "sha256": "a51c95775a9865eb1697298ab80783a1ed14c3f851e1e15b7083420fee5f3aef",
+      "bytes": 174373,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "fauna-mobile",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-fauna-mobile.png",
+      "sha256": "c3deb86fc9e1c6bf9beccb8f1b12cb97a3402c4173f6ed8aa6ec77690945980c",
+      "bytes": 164455,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-me2-sr2",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-me2-sr2.png",
+      "sha256": "209d4cc99a66a1c23bb1305143abefad849964f9582033e0fb440fa1436d1bad",
+      "bytes": 383370,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-me2-varren",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-me2-varren.png",
+      "sha256": "0d5de2756abcbbed272271fa198f54e592d567c5d1004a6eb35297788a371312",
+      "bytes": 375548,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-me2-pyjak",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-me2-pyjak.png",
+      "sha256": "667d0f5fde63aafca8b1927253e4bb8102a63ad0b1525d44d5c8ca47cf58c0c3",
+      "bytes": 354557,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-me2-opening-closed",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-me2-opening-closed.png",
+      "sha256": "f5d350917c155726fff31624e8d2f87d9d5c6ce2d0bc529692cf2d3b93244cbe",
+      "bytes": 256508,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-me3-sr2",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-me3-sr2.png",
+      "sha256": "bb7dfa0fd52d532e34147a53d9c52fc59193b4f0266a9f240fb82a1d171941be",
+      "bytes": 382853,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-mea-tempest",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-mea-tempest.png",
+      "sha256": "d56b2421e938db5e3c8bbf9c55b1d6cfa9fb53e94ac045c54d67f57e3ec983b1",
+      "bytes": 363207,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-mea-hyperion",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-mea-hyperion.png",
+      "sha256": "cda83ab685fad70d3d8a886fecad307d34aeb301576bb0d13a561968b1ff65cc",
+      "bytes": 411670,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-mea-adhi",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-mea-adhi.png",
+      "sha256": "ec46bcd5d64a6b8b36ac7333ba71675dbd3b8501f13dcf5a021be393cb0eac5a",
+      "bytes": 372018,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-mea-kaerkyn",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-mea-kaerkyn.png",
+      "sha256": "7e9333b3ab8ffa75408f365805da17f7d263d6950372c990d8e09aaa97273d8f",
+      "bytes": 372947,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-mea-prologue-hyperion",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-mea-prologue-hyperion.png",
+      "sha256": "70eb0e341b01b98bb71784530c7f6587ffbf811581ce659277f57cb9366fee46",
+      "bytes": 416152,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-apex-closed",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-apex-closed.png",
+      "sha256": "bd6f1cf4a8921b3c1f549c1c4a0ed6350e51a19b01bafb5d3649faf1b2b6ddd8",
+      "bytes": 256572,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-sr2-mobile",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-sr2-mobile.png",
+      "sha256": "200f2c2928c066e93912ea9a6ce27cfb29d63eb24bb4b432f02f618b58efeff9",
+      "bytes": 194880,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    },
+    {
+      "label": "chronicle-pyjak-mobile",
+      "path": "docs/screenshots/horizon-archive-dev-final-01-chronicle-pyjak-mobile.png",
+      "sha256": "d5a5b9a6ca3ea3671bcc938644687ef3f05d0526fa274e48c6ff84df567627f0",
+      "bytes": 198177,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public viewport without CSS, image, state or pose injection."
+    }
+  ],
+  "exports": [
+    {
+      "label": "fresh-before",
+      "path": "docs/qa/horizon-archive-dev-final-01-fresh-before-export.json",
+      "sha256": "e5a3e02c1ec21463d1151ba3df94045269761a721996d5a5087f1b56eca2a01d",
+      "bytes": 2495,
+      "stableSHA256": "bbddf0a75098b7cebe4bc631b0bbc9dbfd816a2e92c24a7c5bfe3487b0942e37",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "fresh-after",
+      "path": "docs/qa/horizon-archive-dev-final-01-fresh-after-export.json",
+      "sha256": "980ee21740a19a62f427f2ab1cfa521f682f0f563c431d1030ffa4a92d7ff605",
+      "bytes": 2495,
+      "stableSHA256": "bbddf0a75098b7cebe4bc631b0bbc9dbfd816a2e92c24a7c5bfe3487b0942e37",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "council-before",
+      "path": "docs/qa/horizon-archive-dev-final-01-council-before-export.json",
+      "sha256": "852160a09c3deb12e6e7de141e18ae1be3af4d0569393b3539d8c1863ca7fbd1",
+      "bytes": 3380,
+      "stableSHA256": "51c0ac2176dcc792800f37ca9fe05df6f75ba073044fbbd3ea1f9b40bec143a4",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "council-after",
+      "path": "docs/qa/horizon-archive-dev-final-01-council-after-export.json",
+      "sha256": "48042032cd4614b849722fb6676d6af43e5ca67248d1d8a5218b0d7f98f4949f",
+      "bytes": 3379,
+      "stableSHA256": "51c0ac2176dcc792800f37ca9fe05df6f75ba073044fbbd3ea1f9b40bec143a4",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "virmire-before",
+      "path": "docs/qa/horizon-archive-dev-final-01-virmire-before-export.json",
+      "sha256": "a1a150cd21016169b0932dc5dc1a725e08cca808591a7ce69bc81290eb0dc3c4",
+      "bytes": 3945,
+      "stableSHA256": "fa35f2bccdea117ac90a103c622109e0bd50f8974371e7cc0a9c327b9c17a597",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "virmire-after",
+      "path": "docs/qa/horizon-archive-dev-final-01-virmire-after-export.json",
+      "sha256": "7582432ca87ad34d674a3133e9566a92539ec5aad813f43b66a749c3397b8304",
+      "bytes": 3945,
+      "stableSHA256": "fa35f2bccdea117ac90a103c622109e0bd50f8974371e7cc0a9c327b9c17a597",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "before-chronicle-references",
+      "path": "docs/qa/horizon-archive-dev-final-01-before-chronicle-references-export.json",
+      "sha256": "be4ac23ca7a1d411c0c9c063c9ecddb6f0e8e3e7d8ddf055cbd4c4d23e90475c",
+      "bytes": 3945,
+      "stableSHA256": "fa35f2bccdea117ac90a103c622109e0bd50f8974371e7cc0a9c327b9c17a597",
+      "source": "Actual public save/export and downloaded JSON."
+    },
+    {
+      "label": "after-chronicle-references",
+      "path": "docs/qa/horizon-archive-dev-final-01-after-chronicle-references-export.json",
+      "sha256": "9a42829b5ddc640eb4c2170ebfe194620aba86227baf284cb3a2dd4feee759b1",
+      "bytes": 3945,
+      "stableSHA256": "fa35f2bccdea117ac90a103c622109e0bd50f8974371e7cc0a9c327b9c17a597",
+      "source": "Actual public save/export and downloaded JSON."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Campaign fresh: exact known dossier gates, measured clipping and no persistent inspection effect",
+      "passed": true
+    },
+    {
+      "name": "Campaign council: exact known dossier gates, measured clipping and no persistent inspection effect",
+      "passed": true
+    },
+    {
+      "name": "Campaign virmire: exact known dossier gates, measured clipping and no persistent inspection effect",
+      "passed": true
+    },
+    {
+      "name": "Chronicles: five contextual ship links, four animals, opening/prologue/APEX exclusions and desktop/mobile clipping without campaign mutation",
+      "passed": true
+    }
+  ],
+  "dossiers": [
+    {
+      "id": "normandy-sr1",
+      "viewBox": [
+        52,
+        92,
+        700,
+        359
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "normandy-sr1",
+      "viewBox": [
+        52,
+        92,
+        700,
+        359
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "normandy-sr1",
+      "viewBox": [
+        52,
+        92,
+        700,
+        359
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "destiny-ascension",
+      "viewBox": [
+        50,
+        535,
+        690,
+        450
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "geth-dropship",
+      "viewBox": [
+        803,
+        544,
+        716,
+        446
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "normandy-sr1",
+      "viewBox": [
+        52,
+        92,
+        700,
+        359
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "varren-me1",
+      "viewBox": [
+        66,
+        157,
+        266,
+        221
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "alpha-varren-me1",
+      "viewBox": [
+        425,
+        130,
+        316,
+        259
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "gasbag-me1",
+      "viewBox": [
+        861,
+        98,
+        190,
+        336
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "thresher-me1",
+      "viewBox": [
+        435,
+        565,
+        245,
+        367
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "alpha-varren-me1",
+      "viewBox": [
+        425,
+        130,
+        316,
+        259
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "normandy-sr1",
+      "viewBox": [
+        52,
+        92,
+        700,
+        359
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "sovereign",
+      "viewBox": [
+        872,
+        15,
+        573,
+        486
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "destiny-ascension",
+      "viewBox": [
+        50,
+        535,
+        690,
+        450
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "geth-dropship",
+      "viewBox": [
+        803,
+        544,
+        716,
+        446
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "sovereign",
+      "viewBox": [
+        872,
+        15,
+        573,
+        486
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "varren-me1",
+      "viewBox": [
+        66,
+        157,
+        266,
+        221
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "alpha-varren-me1",
+      "viewBox": [
+        425,
+        130,
+        316,
+        259
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "gasbag-me1",
+      "viewBox": [
+        861,
+        98,
+        190,
+        336
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "thresher-me1",
+      "viewBox": [
+        435,
+        565,
+        245,
+        367
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "thresher-me1",
+      "viewBox": [
+        435,
+        565,
+        245,
+        367
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 609.46875,
+      "height": 260
+    },
+    {
+      "id": "sovereign",
+      "viewBox": [
+        872,
+        15,
+        573,
+        486
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fleet-me1.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 294.59375,
+      "height": 210
+    },
+    {
+      "id": "gasbag-me1",
+      "viewBox": [
+        861,
+        98,
+        190,
+        336
+      ],
+      "overflow": "hidden",
+      "source": "/assets/horizon-fauna.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "innerClips": [
+        "hidden"
+      ],
+      "width": 294.59375,
+      "height": 210
+    }
+  ],
+  "referenceCases": [
+    {
+      "recordId": "ME2-ZON-NORMANDY-CIC",
+      "frameId": "normandy-sr2-cerberus",
+      "family": "fleet",
+      "viewBox": [
+        47,
+        90,
+        679,
+        350
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fleet-later.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "ME2-ENM-VARRREN",
+      "frameId": "varren-me2",
+      "family": "fauna",
+      "viewBox": [
+        1190,
+        153,
+        289,
+        230
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fauna.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "ME2-SQ-TUCH-PYJAK",
+      "frameId": "pyjak-me2",
+      "family": "fauna",
+      "viewBox": [
+        69,
+        638,
+        254,
+        251
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fauna.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "ME3-ZON-NORM-CIC",
+      "frameId": "normandy-sr2-alliance",
+      "family": "fleet",
+      "viewBox": [
+        816,
+        90,
+        679,
+        350
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fleet-later.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "MEA-ZON-TEMPEST-BRIDGE",
+      "frameId": "tempest",
+      "family": "fleet",
+      "viewBox": [
+        121,
+        565,
+        588,
+        404
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fleet-later.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "MEA-WRL-HYPERION",
+      "frameId": "hyperion",
+      "family": "fleet",
+      "viewBox": [
+        794,
+        547,
+        699,
+        388
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fleet-later.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-ADHI-WILD",
+      "frameId": "adhi-mea",
+      "family": "fauna",
+      "viewBox": [
+        797,
+        655,
+        319,
+        224
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fauna.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "MEA-ENM-KAERKYN",
+      "frameId": "kaerkyn-mea",
+      "family": "fauna",
+      "viewBox": [
+        1195,
+        659,
+        280,
+        221
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fauna.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "MEA-MQ-HYPERION",
+      "frameId": "hyperion",
+      "family": "fleet",
+      "viewBox": [
+        794,
+        547,
+        699,
+        388
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fleet-later.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "ME2-ZON-NORMANDY-CIC",
+      "frameId": "normandy-sr2-cerberus",
+      "family": "fleet",
+      "viewBox": [
+        47,
+        90,
+        679,
+        350
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fleet-later.png",
+      "innerClips": [
+        "hidden"
+      ]
+    },
+    {
+      "recordId": "ME2-SQ-TUCH-PYJAK",
+      "frameId": "pyjak-me2",
+      "family": "fauna",
+      "viewBox": [
+        69,
+        638,
+        254,
+        251
+      ],
+      "overflow": "hidden",
+      "source": "./assets/horizon-fauna.png",
+      "innerClips": [
+        "hidden"
+      ]
+    }
+  ],
+  "distFiles": {},
+  "servedFiles": [
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+      "status": 200,
+      "matchesNative": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/horizon-fleet-me1.json",
+      "sha256": "57c94b9b27b852c7817beb5728689d78f5ceb8e3bc6e5ed388aa86a5ccd03462",
+      "status": 200,
+      "matchesNative": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/horizon-fleet-later.png",
+      "sha256": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a",
+      "status": 200,
+      "matchesNative": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/horizon-fleet-later.json",
+      "sha256": "f1dbc796cbc59723f07d0e09cb7ba643ae684110d7204f4bbf78f98ee3bbf4f0",
+      "status": 200,
+      "matchesNative": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/horizon-fauna.png",
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+      "status": 200,
+      "matchesNative": true,
+      "matchesDist": false
+    },
+    {
+      "path": "assets/horizon-fauna.json",
+      "sha256": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10",
+      "status": 200,
+      "matchesNative": true,
+      "matchesDist": false
+    }
+  ],
+  "browserResponses": [
+    {
+      "path": "assets/horizon-fauna.png",
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fauna.png",
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fleet-later.png",
+      "sha256": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a",
+      "status": 200
+    },
+    {
+      "path": "assets/horizon-fauna.png",
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+      "status": 200
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4181/@vite/client",
+    "http://127.0.0.1:4181/src/main.js",
+    "http://127.0.0.1:4181/src/combat-summons.js",
+    "http://127.0.0.1:4181/src/style.css",
+    "http://127.0.0.1:4181/src/frontier-ui.css",
+    "http://127.0.0.1:4181/src/horizon-ui.css",
+    "http://127.0.0.1:4181/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4181/src/frontier-ui.js",
+    "http://127.0.0.1:4181/src/frontier-characters.js",
+    "http://127.0.0.1:4181/src/horizon-characters.js",
+    "http://127.0.0.1:4181/src/horizon-ui.js",
+    "http://127.0.0.1:4181/src/loadout-ui.css",
+    "http://127.0.0.1:4181/src/customization-ui.css",
+    "http://127.0.0.1:4181/src/operations-ui.css",
+    "http://127.0.0.1:4181/src/local-map.css",
+    "http://127.0.0.1:4181/src/loadout-ui.js",
+    "http://127.0.0.1:4181/src/customization.js",
+    "http://127.0.0.1:4181/src/customization-ui.js",
+    "http://127.0.0.1:4181/src/loadout.js",
+    "http://127.0.0.1:4181/src/operations.js",
+    "http://127.0.0.1:4181/src/operations-ui.js",
+    "http://127.0.0.1:4181/src/local-map.js",
+    "http://127.0.0.1:4181/src/level-layout-data.js",
+    "http://127.0.0.1:4181/src/level-map-render.js",
+    "http://127.0.0.1:4181/src/world.js",
+    "http://127.0.0.1:4181/src/world-data.js",
+    "http://127.0.0.1:4181/src/audio.js",
+    "http://127.0.0.1:4181/src/commander.js",
+    "http://127.0.0.1:4181/src/story.js",
+    "http://127.0.0.1:4181/src/assignments.js",
+    "http://127.0.0.1:4181/src/save-slots.js",
+    "http://127.0.0.1:4181/src/combat.js",
+    "http://127.0.0.1:4181/src/game-data.js",
+    "http://127.0.0.1:4181/src/state.js",
+    "http://127.0.0.1:4181/src/horizon-fleet.js",
+    "http://127.0.0.1:4181/src/horizon-fauna.js",
+    "http://127.0.0.1:4181/src/character-data.js",
+    "http://127.0.0.1:4181/src/operation-data.js",
+    "http://127.0.0.1:4181/src/customization-render.js",
+    "http://127.0.0.1:4181/src/tool-data.js",
+    "http://127.0.0.1:4181/src/frontier-layout-data.js",
+    "http://127.0.0.1:4181/src/horizon-layout-data.js",
+    "http://127.0.0.1:4181/src/story-data.js",
+    "http://127.0.0.1:4181/src/assignment-data.js",
+    "http://127.0.0.1:4181/src/companion-animation-data.js",
+    "http://127.0.0.1:4181/src/enemy-animation-data.js",
+    "http://127.0.0.1:4181/src/joker-seated-data.js",
+    "http://127.0.0.1:4181/src/world-navigation.js",
+    "http://127.0.0.1:4181/src/eden-scene.js",
+    "http://127.0.0.1:4181/src/frontier-scene.js",
+    "http://127.0.0.1:4181/src/horizon-scene.js",
+    "http://127.0.0.1:4181/src/frontier-enemies.js",
+    "http://127.0.0.1:4181/src/horizon-enemies.js",
+    "http://127.0.0.1:4181/src/boss-animation-data.js",
+    "http://127.0.0.1:4181/src/frontier-vehicles.js",
+    "http://127.0.0.1:4181/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4181/src/universe-ammo.js",
+    "http://127.0.0.1:4181/src/combat-medical.js",
+    "http://127.0.0.1:4181/src/continuity-data.js",
+    "http://127.0.0.1:4181/src/universe-ui.js",
+    "http://127.0.0.1:4181/src/chronicles.js",
+    "http://127.0.0.1:4181/src/continuity.js",
+    "http://127.0.0.1:4181/src/universe-data.js",
+    "http://127.0.0.1:4181/src/universe-ui.css",
+    "http://127.0.0.1:4181/src/expansion.js",
+    "http://127.0.0.1:4181/src/expansion-ui.js",
+    "http://127.0.0.1:4181/src/universe-portraits.js",
+    "http://127.0.0.1:4181/src/universe-visuals.js",
+    "http://127.0.0.1:4181/src/horizon-reference-visuals.js",
+    "http://127.0.0.1:4181/src/universe-actors.js",
+    "http://127.0.0.1:4181/src/universe-equipment.js",
+    "http://127.0.0.1:4181/src/chronicle-story.js",
+    "http://127.0.0.1:4181/src/expansion-characters.js",
+    "http://127.0.0.1:4181/src/expansion-armor.js",
+    "http://127.0.0.1:4181/src/expansion-weapons.js",
+    "http://127.0.0.1:4181/src/expansion-fleet.js",
+    "http://127.0.0.1:4181/src/expansion-enemies.js",
+    "http://127.0.0.1:4181/src/expansion2-characters.js",
+    "http://127.0.0.1:4181/src/expansion2-armor.js",
+    "http://127.0.0.1:4181/src/expansion2-weapons.js",
+    "http://127.0.0.1:4181/src/expansion2-fleet.js",
+    "http://127.0.0.1:4181/src/expansion2-enemies.js",
+    "http://127.0.0.1:4181/src/expansion3-characters.js",
+    "http://127.0.0.1:4181/src/expansion3-armor.js",
+    "http://127.0.0.1:4181/src/expansion3-weapons.js",
+    "http://127.0.0.1:4181/src/expansion3-fleet.js",
+    "http://127.0.0.1:4181/src/expansion3-enemies.js",
+    "http://127.0.0.1:4181/src/expansion-bench.js",
+    "http://127.0.0.1:4181/src/expansion-medical-bench.js",
+    "http://127.0.0.1:4181/src/arsenal-visual-data.js",
+    "http://127.0.0.1:4181/src/horizon-fleet-reference.js",
+    "http://127.0.0.1:4181/src/universe-specialist-scenarios.js",
+    "http://127.0.0.1:4181/src/universe-opposition-scenarios.js",
+    "http://127.0.0.1:4181/src/universe-equipment-scenarios.js",
+    "http://127.0.0.1:4181/src/universe-powers.js",
+    "http://127.0.0.1:4181/src/universe-opponents.js"
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4181/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4181/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "evidenceErrors": [],
+  "resourceWarnings": [],
+  "limitations": [
+    "Prior victories, recruitment, visits and operation acceptance are prepared by native Node functions, not played here.",
+    "Reference inspection grants no pet adoption, ship pilotage, actor, equipment, reward or original quest completion.",
+    "Artwork remains fixed Prototype drawings with incomplete primary comparisons. Public software-rendered viewports do not certify device performance or original-game1:1 fidelity.",
+    "The development documentary registry is fingerprinted as its executed input; the final post-workbook production registry is additionally source-frozen."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/horizon-archive-dev-final-01-collector.mjs",
+    "sha256": "405c159081ac62e4dded7a9d106c55383af148a8d9bc2bbeac7e20d3ee549e58",
+    "purpose": "Exact executed collector bytes preserved before any later attempt changes."
+  },
+  "documentaryRegistryAtExecution": {
+    "path": "src/universe-data.js",
+    "sha256": "1d27244723cbabe230ff4c5cf7b542a96c7c57e0b5d101f1e9ffe1759caf3bab",
+    "frozen": false
+  },
+  "chromium": "154.0.8037.57",
+  "noHarness": {
+    "own": false,
+    "type": "undefined",
+    "viteClient": true
+  },
+  "sourceFrozen": true,
+  "distFrozen": false,
+  "finishedAt": "2026-11-09T08:00:01.456Z"
+}

@@ -52,6 +52,16 @@ Huit types adverses supplémentaires occupent six formations ordinaires existant
 
 À Thérum, E permet d’embarquer près du Mako ou de descendre ; ZQSD/WASD/flèches pilotent et Maj accélère. Les commandes tactiles proposent aussi direction et accélérateur. La conduite teste le gabarit contre les sols et obstacles ; un passage non sécurisé bloque le véhicule avant la rencontre obligatoire. Le commando descend pour engager le combat. Le contrôleur est un prototype avec inertie adaptée, sans canon, simulation de suspension ou conduite sur toutes les planètes. La position du commando reste sauvegardée ; le véhicule est recréé à son stationnement et la reprise se fait à pied, sans changement du format de sauvegarde.
 
+## Horizon : Féros, Ilos et dossiers de reconnaissance
+
+Le [complément Horizon](HORIZON.md) étend Féros et Ilos en cinq secteurs et trois chemins chacun. Les sept points de mission et les trois arènes principales sont conservés ; les opérations de Féros sont relocalisées sur ce même plan, avec une arène annexe pour les varrens. Le Thorien possède une chambre à racines ouverte pour la caméra, sans prétendre reconstruire son repaire complet.
+
+Huit PNJ supplémentaires proposent deux sujets chacun. Leurs opérations partagées restent accessibles dans le dialogue lorsque le contact de mission est proche ; le lien n’active pas un objectif éloigné. Fai Dan et les autres corps ajoutés à Féros quittent la scène après le boss, tandis que l’historique des sujets reste sauvegardé.
+
+La nouvelle opération des varrens comprend demande, affrontement d’une meute avec alpha et rapport à Davin. Elle ferme avant le Thorien dans ce prototype, qui ne suit pas la survie de chaque colon. Les anciens états reçoivent son enregistrement initial, sans changer le format de sauvegarde. Les quatre aides à la colonie sont désormais eau, énergie, tunnels geth et viande.
+
+Le Codex donne accès à **Faune et vaisseaux**, selon la connaissance du commando. Les repères de vaisseaux sont des projections bleues sur bornes, sans présence physique de coques dans les promenades. Les dossiers des autres épisodes passent par l’accès documentaire existant et des filtres dédiés des Chroniques ; une image n’accorde ni pilotage, ni recrutement ou rencontre. Les cinq profils ennemis supplémentaires utilisent les ordres ATB existants. Le maître de guerre de Thérum garde le budget exact du krogan qu’il remplace.
+
 ## Combat ATB
 
 Chaque acteur possède santé, bouclier, attaque, défense, vitesse, chaleur, concentration, jauge ATB, recharges et états temporaires. Une jauge pleine permet une action. La simulation découpe le temps en petites étapes pour conserver l’ordre des événements même lorsqu’un test accélère plusieurs secondes.

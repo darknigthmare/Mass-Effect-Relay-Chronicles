@@ -1,0 +1,74 @@
+{
+  "at": "2026-11-09T08:04:09.254Z",
+  "reviewer": "horizon_world",
+  "mode": "independent read-only code/diff review",
+  "scope": "Current root UI/Vite changes and directly called scope/render helpers. Frozen product sources were not edited; no browser launched for this review.",
+  "sourceHashes": {
+    "src/main.js": "dc82f1d81c2fe23750e039d3531d8c1bde8a90c2ba37ce527927220af74565fa",
+    "src/horizon-ui.js": "81739bf336a7627df78733a815f313bc25ac873f1140da810f15ef849b4a3ddb",
+    "src/horizon-archive-ui.js": "d8dec39550eaf21611e916e2ced270c2c7597e10ad2e491af3ab09fd4783fb5b",
+    "src/horizon-reference-visuals.js": "46820e8c316615f29f2bf50a795c9c7f175b3e79f89f708fa73a13a60d221728",
+    "src/universe-ui.js": "99b9e366e64335c68756f4226f1ecc5267bc315b8c0f7c00f6f9992ae4fdff0f",
+    "vite.config.js": "bf2f5aa80d6e09c77b5b8eed4148d92163e5b45751e67e579bcb6bcbb184f3df",
+    "src/horizon-fleet-reference.js": "7103013f67dd15ae5de3dd2db6ac4a7c528edfcd0486619528a3ea1e9fbce735",
+    "src/horizon-fleet.js": "ab9970092a7f2219225b08cd0e3129d89bfde27bda67e8705dabf8662264caf0",
+    "src/horizon-fauna.js": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/state.js": "fddde628c0d1be35e12398488a622dc1251cab340d5448384b8bea1b76cf9c0a",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "tests/horizon-ui.test.js": "2d4395c0786d8a5a48feb0db9e17f5cdf0af20c2b6024b596aae4bff6a32a49c",
+    "tests/horizon-reference-visuals.test.js": "421e8275594bb57907e1a88545441adf03f4e1a8d90d66310206e8add9e1d009",
+    "tests/universe-ui.test.js": "af08fcbad322f425401fee15765773875b15a0464d30dd8d4eeffaa4db4aced4",
+    "tests/universe-visual-ui.test.js": "c4d36f5aa8f4188d6903a8378b01a8d3dee9c2a5920302794fc6ef747a1a93af",
+    "tests/save-continuity.test.js": "2ccc74c6bffd4ce9cf95ed15755d5618aacfe12b825280d5d1d1dcb86d15448b"
+  },
+  "findings": [],
+  "checks": [
+    {
+      "area": "Rewards and save boundaries",
+      "result": "Archive/card rendering and illustrated filters grant no inventory, actors, credits, XP or operation advancement. The new conversation link still passes through getOperationInteraction/advanceOperation and native current-step guards."
+    },
+    {
+      "area": "Remote activation",
+      "result": "showConversation obtains the actual current contact; nearbyConversationOperation requires its matching current operation marker within strictly less than four scene units. Opening dialogue stops exploration movement; distant objective/combat markers are not linked."
+    },
+    {
+      "area": "Period and dossier gates",
+      "result": "The campaign archive is fixed to ME1 knowledge gates; rejected record selections fall back only to known entries. Chronicle images require normalized catalogue context plus canAccessContent; Horizon references are bypassed for party and combat usages."
+    },
+    {
+      "area": "SVG neighboring cells",
+      "result": "Both atlasFrameSVG and universe atlasImage use an inner viewport clipped to the exact validated source rectangle. Numeric bounds and local image path restrictions prevent borrowing neighboring cells or arbitrary image paths."
+    },
+    {
+      "area": "Vite registration",
+      "result": "All four new macro families are read through their explicit normalizers at configuration time. Later fleet art is bundled as documentary data; WorldView registers only the ME1 family, reviewed separately."
+    }
+  ],
+  "verification": {
+    "command": [
+      "node",
+      "--test",
+      "tests/horizon-ui.test.js",
+      "tests/horizon-reference-visuals.test.js",
+      "tests/universe-ui.test.js",
+      "tests/universe-visual-ui.test.js",
+      "tests/save-continuity.test.js"
+    ],
+    "passed": 25,
+    "failed": 0,
+    "extraReadOnlyProbes": {
+      "passed": true,
+      "nativeCampaignStages": 4,
+      "archiveRendersWithoutStateOrDecodedSavePayloadMutation": 24,
+      "explicitForeignCampaignArchiveScopesClosed": 2,
+      "exactFourUnitContactBoundaryClosed": true,
+      "atlasFilenameTraversalRefused": true
+    },
+    "probeQualification": "An initial ad-hoc comparison incorrectly included encodeSave.savedAt; it was corrected to compare the actual game state and decoded save payload, excluding the intentionally changing envelope timestamp. No product defect was associated with that probe failure."
+  },
+  "limitations": [
+    "This code review does not replace the coordinated public browser interactions or native artwork review.",
+    "No claim of original-game visual identity, exhaustive content, production performance or full repository test coverage is made."
+  ]
+}

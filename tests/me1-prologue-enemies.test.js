@@ -31,7 +31,7 @@ function jenkinsWorld(state) {
     zone: WORLD_ZONES['eden-prime'], zoneId: 'eden-prime', player: { x: 0, z: 0 }, mode: 'combat',
     time: 0, keys: new Set(), trail: [], effects: [], animations: [], poiViews: [], combatOccluders: [],
     cleared: new Set(), operationPois: [], assetErrors: [], renderer: { render() {} },
-    getNearby() { return null; }, _walkable() { return true; },
+    getNearby() { return null; }, _walkable() { return true; }, _makeMarkers() {},
   });
   world.scene.add(world.characters, world.particles); world.setStoryContext(state); return world;
 }

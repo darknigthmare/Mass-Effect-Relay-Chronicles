@@ -47,8 +47,13 @@ Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dép
 | `boss-thorian-combat.png` | 1536 × 1024 | Quatre poses fixes | Thorien à Féros |
 | `boss-saren-final-combat.png` | 1536 × 1024 | Quatre poses fixes | Forme synthétique du final |
 | `vehicle-mako-directions.png` | 1536 × 1024 | Quatre directions fixes | Prototype de conduite à Thérum |
+| `horizon-npcs.png` | 1536 × 1024 | Huit corps fixes de PNJ | Féros et Citadelle, présence conditionnelle |
+| `horizon-enemies.png` | 1536 × 1024 | Cinq corps fixes | Six formations ME1, dont l’identité du maître de guerre à Thérum |
+| `horizon-fleet-me1.png` | 1536 × 1024 | Quatre illustrations de coques | Dossiers et projections de reconnaissance ME1 |
+| `horizon-fleet-later.png` | 1536 × 1024 | Quatre coques / variantes de livrée | Dossiers éligibles ME2, ME3 et Andromeda |
+| `horizon-fauna.png` | 1536 × 1024 | Huit corps fixes | Varrens et gasbag ME1 ; autres usages documentaires limités par contexte |
 
-Les **41 PNG courants** conservent les 34 précédents et ajoutent les sept atlas du lot Frontier. Les huit poses de Shepard, les 28 des compagnons, les 32 des huit familles ennemies précédentes et les seize des quatre boss portent le total à **84 poses clés de combat**. Les **sept corps de PNJ**, les **huit corps ennemis supplémentaires** et les **quatre directions du Mako** sont comptés séparément, comme les deux dessins assis de Joker et les deux textures de sol. Jenkins réutilise son corps existant pour la huitième conversation. Ces comptes ne représentent pas des personnages, des cycles ou des movesets complets. Les doublons d’une même identité sous plusieurs formes sont des sujets distincts d’atlas.
+Les **46 PNG courants** conservent les 41 précédents et ajoutent les cinq atlas Horizon, soit **29 dessins fixes** : huit PNJ, cinq adversaires, huit corps de faune et huit coques ou variantes. Le nombre de **poses clés de combat reste 84** : huit Shepard, 28 compagnons, 32 ennemis précédents et seize boss. Les nouvelles images fixes ne sont pas des familles de quatre poses. Les quatre directions du Mako, deux dessins assis de Joker et textures de sol restent comptés séparément. Une même espèce ou coque sous plusieurs variantes n’est pas comptée comme autant d’identités complètes.
 
 ## Ordre des régions
 
@@ -189,6 +194,12 @@ Les textures de [prairie et terre](research/eden-immersion-terrain-art.md) sont 
 Le lot du 9 novembre ajoute trois atlas natifs de quatre poses : [Jenkins](research/me1-prologue-enemies-jenkins.md), [creeper du Thorien](research/me1-prologue-enemies-creeper.md) et [commando asari générique](research/me1-prologue-enemies-asari.md). Les PNG restent des copies sans retouche ; rectangles, pivots et hauteurs sont mesurés. Leurs aperçus natifs, états dans le renderer et commandes publiques sont distingués dans les [preuves du lot](qa/me1-prologue-enemies-report.json). Les 31 PNG précédents restent inchangés.
 
 Jenkins conserve l’armure Alliance casquée de la silhouette de prototype, sans marque N7 ni biotique ajoutée. Son geste d’action accompagne notamment la couverture déjà disponible et sa pose couchée représente le KO de combat ; sa perte narrative ferme sa disponibilité. Les deux nouvelles familles ennemies conservent leurs attaques organiques ou biotiques natives. L’asari générique ne réalise pas le clone du Thorien ni ses phases. Les armes dessinées, détails anatomiques, costumes, cycles et directions restent à comparer aux références originales.
+
+## Horizon : corps, faune et coques
+
+Les [références et limites du lot](HORIZON.md) distinguent les nouveaux corps de leurs usages. Les PNG sont des copies natives sans retouche ; alpha, gouttières, rectangles, pieds et cadrages ont des contrôles séparés. Les dossiers et portraits utilisent un viewport SVG interne pour empêcher l’apparition d’une cellule voisine dans les marges.
+
+Le manuel officiel fournit une référence de silhouette au Normandy SR-1. Le Prima documente l’alpha varren et les créatures dociles d’Eden ; le nom « gasbag » n’est pas écrit dans ce dernier passage. Anatomies, tenues et coques restent des interprétations partielles. Les illustrations des autres médias ne forcent pas l’accès à leurs fiches, ne créent pas d’adoption et ne placent pas un animal ou vaisseau hors de sa période.
 
 ## Critères d’acceptation de l’art final
 

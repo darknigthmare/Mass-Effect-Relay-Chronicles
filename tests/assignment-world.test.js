@@ -48,8 +48,8 @@ test('assignment contacts have stable separate interaction ids without changing 
     assert.equal(poi.speaker, contact.speaker);
     assert.equal(poi.type, 'dialogue');
   }
-  assert.deepEqual(world.ambientActors.map(actor => actor.id).sort(), ['npc:anderson', 'npc:udina']);
-  assert.equal(world.characters.children.length, 4, 'Only Shepard, Kaidan and existing NPC sprites have bodies');
+  assert.deepEqual(world.ambientActors.map(actor => actor.id).sort(), ['npc:anderson', 'npc:barla-von', 'npc:harkin', 'npc:michel', 'npc:pallin', 'npc:udina']);
+  assert.equal(world.characters.children.length, 8, 'Shepard, Kaidan and the six named Citadel NPCs have bodies; assignment-only contacts do not gain duplicates');
 });
 
 test('four assignment contacts are navigable and dispatch interactions around the actual Citadel geometry', () => {

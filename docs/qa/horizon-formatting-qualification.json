@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "scope": "Formatting qualification of exact preserved raw artifacts. The unqualified whole-diff check remains failed; every other changed file passes the standard whitespace check. No raw output or prompt bytes were normalized.",
+  "baselineCommit": "2ab3f7c10d3bdd9ca04b7a962df9447aee2b3e75",
+  "unqualifiedCheck": {
+    "command": [
+      "git",
+      "diff",
+      "2ab3f7c10d3bdd9ca04b7a962df9447aee2b3e75",
+      "HEAD",
+      "--check"
+    ],
+    "exitCode": 2,
+    "output": "docs/qa/horizon-validation-final-01-unit-output.txt:935: trailing whitespace.\n+  \ndocs/qa/horizon-validation-final-01-unit-output.txt:943: trailing whitespace.\n+  \ndocs/research/horizon-fauna-prompts.json:24: new blank line at EOF.\n"
+  },
+  "sourceCheck": {
+    "command": [
+      "git",
+      "diff",
+      "2ab3f7c10d3bdd9ca04b7a962df9447aee2b3e75",
+      "HEAD",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/qa/horizon-validation-final-01-unit-output.txt",
+      ":(exclude)docs/research/horizon-fauna-prompts.json"
+    ],
+    "exitCode": 0,
+    "output": ""
+  },
+  "preservedRawArtifacts": [
+    {
+      "path": "docs/qa/horizon-validation-final-01-unit-output.txt",
+      "sha256": "b3e2376fd03805a014e4117f7d13efc4946ac6bb79e01853e36fbf259b6b3d00",
+      "reason": "Exact executed failure output or saved generation prompt, retained as provenance."
+    },
+    {
+      "path": "docs/research/horizon-fauna-prompts.json",
+      "sha256": "937dd97f130d9e5d7676fec0004048c7ed822024f8b35d7f8235e4a8463de99f",
+      "reason": "Exact executed failure output or saved generation prompt, retained as provenance."
+    }
+  ]
+}

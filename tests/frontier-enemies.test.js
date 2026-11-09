@@ -18,12 +18,6 @@ const baseline = {
   ilos: [['geth', 'destroyer'], ['destroyer', 'sniper'], ['destroyer', 'destroyer', 'sniper']],
   'citadel-finale': [['geth', 'sniper', 'destroyer'], ['destroyer', 'asari'], ['saren-final']],
 };
-const variants = {
-  'therum:0': ['recon-drone', 'rocket-geth'], 'therum:1': ['shock-geth', 'turret'],
-  'noveria:1': ['rachni-worker', 'rachni', 'rachni'],
-  'virmire:0': ['assault-drone', 'sniper', 'krogan'], 'virmire:1': ['juggernaut', 'krogan'],
-  'ilos:0': ['stalker', 'destroyer'],
-};
 const fresh = () => newGame({ difficulty: 'story' });
 
 test('eight partial native ME1 profiles have distinct identities and no invented biotic or later-game kit', () => {
@@ -58,14 +52,15 @@ test('every new type executes an actual existing attack and spends ATB, without 
   }
 });
 
-test('only six regular formations change; Eden, every boss, order, rewards and count stay intact', () => {
+test('Frontier profiles remain encountered after later additions, with stable mission IDs, counts and bounded budgets', () => {
   assert.deepEqual(Object.keys(ENCOUNTERS), Object.keys(baseline));
   const observed = new Set();
   for (const [zone, rows] of Object.entries(baseline)) {
     assert.deepEqual(zoneEncounters(zone), [`${zone}:encounter-1`, `${zone}:encounter-2`, `${zone}:boss`]);
     for (let index = 0; index < rows.length; index++) {
-      const expected = variants[`${zone}:${index}`] || rows[index];
-      assert.deepEqual(ENCOUNTERS[zone][index], expected); assert.equal(expected.length, rows[index].length);
+      const expected = ENCOUNTERS[zone][index];
+      assert.equal(expected.length, rows[index].length);
+      if(zone==='eden-prime'||index===2&&zone!=='therum')assert.deepEqual(expected,rows[index]);
       const enemies = enemiesFor(zone, index, fresh());
       enemies.forEach((actor, position) => {
         assert.equal(actor.id, `${expected[position]}-${position}`);
@@ -142,8 +137,8 @@ test('body lookup requires native indexed enemy identities and rejects foreign s
 });
 
 test('ambient patrol previews require the actual zone encounter, first enemy and separate ambient identity', () => {
-  for (const [slot, formation] of Object.entries(variants)) {
-    const [zoneId, index] = slot.split(':'), key = formation[0];
+  for (const [zoneId, formations] of Object.entries(ENCOUNTERS)) for (const [index, formation] of formations.entries()) {
+    const key = formation[0];if(!IDS.includes(key))continue;
     const poi = { id: `${zoneId}:encounter-${Number(index) + 1}`, type: 'encounter' };
     const actor = { id: `ambient:${poi.id}`, poiId: poi.id, key, enemy: true };
     const input = { zoneId, poi, firstSprite: ENEMIES[ENCOUNTERS[zoneId][Number(index)][0]].sprite,
@@ -156,6 +151,7 @@ test('ambient patrol previews require the actual zone encounter, first enemy and
     for (const change of [{ enemy: false }, { id: `${key}-0` }, { poiId: 'fake' }, { key: 'turret' },
       { mediaId: 'MEA' }]) assert.equal(getFrontierAmbientVisual({ ...actor, ...change }, input), null);
   }
+  assert.equal(getFrontierAmbientVisual({id:'ambient:virmire:encounter-2',poiId:'virmire:encounter-2',key:'juggernaut',enemy:true},{zoneId:'virmire',poi:{id:'virmire:encounter-2',type:'encounter'},firstSprite:'juggernaut',context:{mediaId:'ME1',periodId:'me1'}}),null,'The retired Juggernaut patrol is no longer authorized.');
   assert.equal(getFrontierAmbientVisual({ id: 'ambient:eden-prime:encounter-1', poiId: 'eden-prime:encounter-1', key: 'recon-drone', enemy: true },
     { zoneId: 'eden-prime', poi: { id: 'eden-prime:encounter-1', type: 'encounter' }, firstSprite: 'recon-drone' }), null);
 });

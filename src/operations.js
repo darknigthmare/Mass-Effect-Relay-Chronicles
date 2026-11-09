@@ -83,6 +83,7 @@ function gate(state, operation, record, operations) {
   if (record.stage === operation.steps.length) return { status: 'completed', reason: null };
   if (state?.ending || has(state?.completed, 'ilos')) return { status: 'unavailable', reason: 'Le passage du Conduit a fermé cette opération.' };
   if (operation.deadline === 'thorian' && has(state?.cleared, 'feros:boss')) return { status: 'unavailable', reason: 'Fai Dan n’est plus disponible après la confrontation avec le Thorien.' };
+  if (operation.deadline === 'colony-before-thorian' && has(state?.cleared, 'feros:boss')) return { status: 'unavailable', reason: 'Cette version doit remettre le rapport à Davin avant la confrontation avec le Thorien.' };
   if (operation.deadline === 'data-before-thorian' && record.stage < 3 && has(state?.cleared, 'feros:boss')) return { status: 'unavailable', reason: 'Les données de Gavin devaient être copiées avant la confrontation avec le Thorien.' };
   if (['feros-water', 'feros-power'].includes(operation.id) && state?.choices?.feros === 'force') return { status: 'unavailable', reason: 'Le sort de la colonie ne permet plus de remettre cette opération à son contact.' };
   if (!has(state?.completed, 'eden-prime')) return { status: 'locked', reason: 'Terminez la mission d’Eden Prime.' };
@@ -155,7 +156,8 @@ export function getOperationInteraction(state, id, stepId) {
   const choices = record.pendingBattle ? [{ id: 'resume', label: 'Reprendre le combat.', combat: true, disabled: false, reason: null, consequence: 'Le combat n’a pas encore été remporté.' }]
     : step.choices.map(choice => ({ id: choice.id, label: choice.label, consequence: choice.consequence || null, combat: !!choice.combat, disabled: !!choiceBlock(state, choice), reason: choiceBlock(state, choice) }));
   return { ok: true, id, stepId, name: operation.name, speaker: step.speaker, text: step.text,
-    choices: [...choices, { id: 'cancel', label: 'Revenir plus tard.', disabled: false, combat: false, reason: null }], pendingBattle: !!record.pendingBattle };
+    choices: [...choices, { id: 'cancel', label: 'Revenir plus tard.', disabled: false, combat: false, reason: null }], pendingBattle: !!record.pendingBattle,
+    ...(typeof step.portrait === 'string' ? { portrait: step.portrait } : {}) };
 }
 
 /** Returns a ready-to-use createBattle enemies array only after a combat choice is armed. */
@@ -224,6 +226,6 @@ export function operationEffects(state) {
   const operations = normalizeOperations(state?.operations, state);
   const done = id => !!operations && operations.records[id]?.stage === DEFINITIONS.get(id).steps.length;
   return { medicalDiscount: done('citadel-doctor-michel') ? .2 : 0,
-    colonySupport: ['feros-water', 'feros-power', 'feros-geth-tunnels'].filter(done).length,
+    colonySupport: ['feros-water', 'feros-power', 'feros-geth-tunnels', 'feros-varrens'].filter(done).length,
     researchRecovered: done('feros-data-recovery') };
 }

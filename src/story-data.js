@@ -1,9 +1,11 @@
 // Concise rewrites for this adaptation, not official quotations. Catalogue
 // references identify the intended subjects; they do not certify 1:1 fidelity.
 import { FRONTIER_STORY_CONVERSATIONS } from './frontier-characters.js';
+import { HORIZON_STORY_CONVERSATIONS } from './horizon-characters.js';
 
 export const STORY_CONVERSATIONS = {
   ...FRONTIER_STORY_CONVERSATIONS,
+  ...HORIZON_STORY_CONVERSATIONS,
   nihlus: {
     speaker: 'Nihlus Kryik', portrait: 'nihlus', gate: 'before-eden',
     topics: [

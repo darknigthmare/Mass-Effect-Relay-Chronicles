@@ -1,8 +1,12 @@
 import { isSummon } from './combat-summons.js';
 import './style.css';
 import './frontier-ui.css';
+import './horizon-ui.css';
+import { renderHorizonArchive } from './horizon-archive-ui.js';
 import { getExploreInteraction } from './frontier-ui.js';
 import { FRONTIER_NPCS, getFrontierNPCFrame } from './frontier-characters.js';
+import { getHorizonNPC, getHorizonNPCFrame } from './horizon-characters.js';
+import { atlasFrameSVG, nearbyConversationOperation } from './horizon-ui.js';
 import './loadout-ui.css';
 import './customization-ui.css';
 import './operations-ui.css';
@@ -37,9 +41,11 @@ const portraitStyle = (id,appearance=state?.appearance) => {
   return `background-image:url('${import.meta.env.BASE_URL}assets/${npc?'npc':'crew'}-atlas.png');background-position:${(index%4)/3*100}% ${Math.floor(index/4)*100}%`;
 };
 const frontierPortrait = id => {
-  const atlas=__RELAY_FRONTIER_NPC_ATLAS__,frame=getFrontierNPCFrame(id,atlas);
+  const horizon=__RELAY_HORIZON_NPC_ATLAS__;
+  const horizonFrame=getHorizonNPCFrame(id,horizon);
+  const atlas=horizonFrame?horizon:__RELAY_FRONTIER_NPC_ATLAS__,frame=horizonFrame||getFrontierNPCFrame(id,atlas);
   if(!frame)return '';
-  return `<svg viewBox="${frame.rect.join(' ')}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><image href="${import.meta.env.BASE_URL}assets/${atlas.file}" width="${atlas.width}" height="${atlas.height}"/></svg>`;
+  return atlasFrameSVG(atlas,frame,import.meta.env.BASE_URL);
 };
 const commanderArt = appearance => {
   if(appearance!=='female')return '';
@@ -53,7 +59,7 @@ const touchKeys = new Map();
 let state = null, battle = null, running = false, battlePOI = null, lastBattleEvent = 0, combatStamp = '', lastFrame = performance.now(), uiAccumulator = 0, saveAccumulator = 0;
 let universePromise, universeModules, chronicleSession=null, chronicleBattle=null, chroniclePaused=false, chronicleFinished=false, chronicleStamp='', chronicleView=null, expansionResult=null;
 const universeUI={mediaId:'',periodId:'',scenarioId:'',readingId:null,group:'all',query:'',recordId:null,visibleCount:30,tab:'references',actorId:null,actionId:'shoot',feedback:null,returnScreen:'title',expansionMode:'all',expansionBatch:'all',expansionId:null,expansionSeed:1,expansionDifficulty:'normal',expansionEdition:'standard'};
-const ui = { screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, customTab:'character', customSlot:'weapon', customView:'front', customPose:'field', customCompare:false, customShowAll:false, customWeaponFilter:'all', customizationDraft:null, customizationBase:null, customReturn:null, customCreation:false, customItem:null, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
+const ui = { horizonKind:'fleet', horizonRecord:null, screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, customTab:'character', customSlot:'weapon', customView:'front', customPose:'field', customCompare:false, customShowAll:false, customWeaponFilter:'all', customizationDraft:null, customizationBase:null, customReturn:null, customCreation:false, customItem:null, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
 $('#app').innerHTML = `<div id="world"></div><div class="vignette"></div><div id="hud" class="hidden"></div><div id="battle-ui"></div><div id="overlay"></div><div id="toasts" aria-live="polite"></div><div id="transition" class="transition-cover"><span class="eyebrow">Normandy · liaison opérationnelle</span><h2></h2><div class="spinner"></div></div><div class="scanlines"></div><input type="file" id="save-import" accept="application/json,.json" hidden><input type="file" id="chronicle-import" accept="application/json,.json" hidden>`;
 const audio = new AudioDirector();
 let world;
@@ -69,6 +75,7 @@ function syncMode(){if(ui.screen||ui.busy||battle)releaseTouch();world.setMode(b
 function syncStoryContext(){world.setStoryContext({...state,visitedZones:state.story.visitedZones,assignmentContacts:getAssignmentContacts(state)});}
 function refreshOperations(){
   if(!state)return;
+  syncStoryContext();
   world.setOperationPOIs(operationPOIs(state));
   const operation=listOperations(state).find(item=>item.id===state.trackedOperation);
   if(operation&&['completed','unavailable'].includes(operation.status)){state.trackedOperation=null;ui.tracked=null;}
@@ -143,7 +150,9 @@ function closeChronicles(){chroniclePaused=true;ui.screen=universeUI.returnScree
 function universeContext(){return universeModules?.continuity.normalizeContext({mediaId:universeUI.mediaId,periodId:universeUI.periodId})||null;}
 function universeView(){
   const context=universeContext(),engine=universeModules.engine;
-  const records=context?universeModules.continuity.listAvailable(context,{group:universeUI.group,query:universeUI.query}):[];
+  const referenceGroup=['fleet','fauna'].includes(universeUI.group)?'all':universeUI.group;
+  const availableRecords=context?universeModules.continuity.listAvailable(context,{group:referenceGroup,query:universeUI.query}):[];
+  const records=universeModules.renderer.filterHorizonReferences(availableRecords,context,universeUI.group);
   if(!records.some(record=>record.id===universeUI.recordId))universeUI.recordId=records[0]?.id||null;
   const roster=chronicleSession?engine.getChronicleRoster(chronicleSession):[];
   const gearByActor={},gearByActorSlot={},actors={},buildsByActor={},ammoModesByActor={};
@@ -259,7 +268,7 @@ function renderScreen(){
   else if(ui.screen==='chronicles-loading')html=screen('Chroniques','Archives des relais','<p class="brief-copy" role="status">Chargement des chroniques…</p>');
   else if(ui.screen==='chronicles'&&universeModules){chronicleView=universeView();html=screen('Chroniques','Œuvres et chapitres',universeModules.renderer.renderUniverseScreen(chronicleView,universeUI,{esc}),'<span class="small">Références et essais tactiques indépendants. Votre campagne Mass Effect conserve sa progression.</span><button class="secondary" data-do="chronicle-back">Retour</button>','universe-screen');}
   else if(ui.screen==='new')html=newGameScreen();
-  else if(ui.screen==='pause')html=screen('Mission en pause','Normandy · commando',`<div class="button-row"><button class="primary" data-do="close">Reprendre</button><button class="secondary" data-do="save" ${battle?'disabled':''}>Sauvegarder</button><button class="secondary" data-do="manual-saves" ${battle?'disabled':''}>Emplacements de sauvegarde</button><button class="secondary" data-do="export" ${battle?'disabled':''}>Exporter la sauvegarde</button><button class="secondary" data-do="dossier">Dossier Shepard</button><button class="secondary" data-do="customization" ${battle?'disabled':''}>Personnaliser Shepard</button><button class="secondary" data-do="chronicles" ${battle?'disabled':''}>Chroniques</button><button class="secondary" data-do="settings">Options</button><button class="secondary" data-do="help">Commandes</button><button class="danger" data-do="quit">Retour au titre</button></div>`,`<span class="small">${battle?'La reprise se fait avant le combat en cours.':'Sauvegarde automatique entre les rencontres.'}</span>`,'pause-screen');
+  else if(ui.screen==='pause')html=screen('Mission en pause','Normandy · commando',`<div class="button-row"><button class="primary" data-do="close">Reprendre</button><button class="secondary" data-do="save" ${battle?'disabled':''}>Sauvegarder</button><button class="secondary" data-do="manual-saves" ${battle?'disabled':''}>Emplacements de sauvegarde</button><button class="secondary" data-do="export" ${battle?'disabled':''}>Exporter la sauvegarde</button><button class="secondary" data-do="dossier">Dossier Shepard</button><button class="secondary" data-do="customization" ${battle?'disabled':''}>Personnaliser Shepard</button><button class="secondary" data-do="codex" ${battle?'disabled':''}>Codex</button><button class="secondary" data-do="chronicles" ${battle?'disabled':''}>Chroniques</button><button class="secondary" data-do="settings">Options</button><button class="secondary" data-do="help">Commandes</button><button class="danger" data-do="quit">Retour au titre</button></div>`,`<span class="small">${battle?'La reprise se fait avant le combat en cours.':'Sauvegarde automatique entre les rencontres.'}</span>`,'pause-screen');
   else if(ui.screen==='galaxy')html=galaxyScreen();
   else if(ui.screen==='squad')html=squadScreen();
   else if(ui.screen==='dossier')html=commanderScreen();
@@ -268,6 +277,7 @@ function renderScreen(){
   else if(ui.screen==='customization')html=customizationScreen();
   else if(ui.screen==='journal')html=journalScreen();
   else if(ui.screen==='codex')html=codexScreen();
+  else if(ui.screen==='horizon-archive')html=screen('Faune et vaisseaux','Archives de reconnaissance',renderHorizonArchive(state,{kind:ui.horizonKind,selectedId:ui.horizonRecord},import.meta.env.BASE_URL),'<button class="secondary" data-do="codex">Retour au Codex</button>');
   else if(ui.screen==='settings')html=settingsScreen();
   else if(ui.screen==='dialogue')html=dialogueScreen();
   else if(ui.screen==='victory')html=victoryScreen();
@@ -434,12 +444,12 @@ function codexContents(){
   return `<div class="codex-layout"><nav class="codex-list" aria-label="Dossiers du codex">${entries.map(item=>`<button class="codex-item ${item.id===ui.codex?'active':''}" data-do="codex-entry" data-id="${esc(item.id)}" aria-pressed="${item.id===ui.codex}">${esc(item.name)}</button>`).join('')}</nav><article class="codex-article"><span class="eyebrow">${esc(entry.category)}</span><h3>${esc(entry.name)}</h3><p>${esc(entry.text)}</p></article></div>`;
 }
 function codexScreen(){
-  return screen('Codex','Archives de l’Alliance',`<label class="field codex-search" for="codex-search"><span>Rechercher dans le codex</span><input type="search" id="codex-search" value="${esc(ui.codexQuery)}" placeholder="Nom, catégorie ou sujet" autocomplete="off"></label><div id="codex-results">${codexContents()}</div>`);
+  return screen('Codex','Archives de l’Alliance',`<label class="field codex-search" for="codex-search"><span>Rechercher dans le codex</span><input type="search" id="codex-search" value="${esc(ui.codexQuery)}" placeholder="Nom, catégorie ou sujet" autocomplete="off"></label><div id="codex-results">${codexContents()}</div>`,`<button class="secondary" data-do="horizon-archive">Faune et vaisseaux</button>`);
 }
 function settingsScreen(){const s=state?.settings||{sound:true,volume:.35,reducedMotion:false,largeText:false};return screen('Options','Affichage · audio · rythme',`<div class="setting-row"><label for="sound-setting">Ambiances et effets<small>Synthèse sonore originale</small></label><input id="sound-setting" type="checkbox" ${s.sound?'checked':''}></div><div class="setting-row"><label for="volume-setting">Volume général</label><input id="volume-setting" type="range" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting-row"><label for="motion-setting">Réduire les transitions</label><input id="motion-setting" type="checkbox" ${s.reducedMotion?'checked':''}></div><div class="setting-row"><label for="text-setting">Texte agrandi</label><input id="text-setting" type="checkbox" ${s.largeText?'checked':''}></div>${state?`<div class="setting-row"><label for="mode-setting">Jauges ATB<small>Le mode Attente suspend le temps lorsqu’un allié est prêt.</small></label><select id="mode-setting"><option value="wait" ${state.mode==='wait'?'selected':''}>Attente</option><option value="active" ${state.mode==='active'?'selected':''}>Actif</option></select></div><div class="setting-row"><label for="difficulty-setting">Difficulté<small>Appliquée aux prochains combats.</small></label><select id="difficulty-setting"><option value="story" ${state.difficulty==='story'?'selected':''}>Histoire</option><option value="normal" ${state.difficulty==='normal'?'selected':''}>Vétéran</option><option value="hard" ${state.difficulty==='hard'?'selected':''}>Difficile</option></select></div>`:''}<div class="setting-row"><label>Plein écran<small>F11 dans l’application PC</small></label><button class="secondary" data-do="fullscreen">Basculer</button></div>`);}
 function dialogueScreen(){
   const d=ui.dialogue;if(!d)return '';const frontierArt=frontierPortrait(d.portrait);
-  return `<div class="dialogue" role="dialog" aria-label="Dialogue" ${d.operationId?`data-operation-id="${esc(d.operationId)}" data-step-id="${esc(d.stepId)}"`: ''} ${d.assignmentContact?`data-assignment-contact="${esc(d.assignmentContact)}"`:''} ${d.assignmentId?`data-assignment-id="${esc(d.assignmentId)}"`:''} ${d.conversationId?`data-conversation-id="${esc(d.conversationId)}"`:''} ${d.topicId?`data-current-topic="${esc(d.topicId)}"`:''} ${d.replyId?`data-selected-reply="${esc(d.replyId)}"`:''}><div class="dialogue-portrait ${frontierArt?'frontier-portrait':d.portrait?'':'generic'}" style="${d.portrait&&!frontierArt?portraitStyle(d.portrait):''}">${frontierArt||(d.portrait?'':'◇')}</div><div class="dialogue-body"><div class="speaker">${esc(d.speaker)}</div><p class="dialogue-text">${esc(d.text)}</p>${d.rememberedReply?`<p class="dialogue-note">Votre réponse : ${esc(d.rememberedReply)}</p>`:''}<div class="dialogue-choices">${d.choices.map((choice,index)=>`<button class="choice ${choice.tone||''}" data-do="dialogue-choice" data-index="${index}" ${choice.disabled?'disabled':''} ${choice.operationChoice?`data-operation-choice="${esc(choice.operationChoice)}"`:''} ${choice.topicId?`data-topic-id="${esc(choice.topicId)}"`:''} ${choice.replyId?`data-reply-id="${esc(choice.replyId)}"`:''} ${choice.conversationBack?'data-conversation-back':''} ${choice.conversationEnd?'data-conversation-end':''} ${choice.assignmentChoice?`data-assignment-choice="${esc(choice.assignmentChoice)}"`:''} ${choice.assignmentEnd?'data-assignment-end':''} ${choice.assignmentBack?'data-assignment-back':''}>${esc(choice.label)}${choice.hint||choice.reason||choice.consequence?`<small>${esc(choice.reason||choice.hint||choice.consequence)}</small>`:''}</button>`).join('')}</div></div></div>`;
+  return `<div class="dialogue" role="dialog" aria-label="Dialogue" ${d.operationId?`data-operation-id="${esc(d.operationId)}" data-step-id="${esc(d.stepId)}"`: ''} ${d.assignmentContact?`data-assignment-contact="${esc(d.assignmentContact)}"`:''} ${d.assignmentId?`data-assignment-id="${esc(d.assignmentId)}"`:''} ${d.conversationId?`data-conversation-id="${esc(d.conversationId)}"`:''} ${d.topicId?`data-current-topic="${esc(d.topicId)}"`:''} ${d.replyId?`data-selected-reply="${esc(d.replyId)}"`:''}><div class="dialogue-portrait ${frontierArt?'frontier-portrait':d.portrait?'':'generic'}" style="${d.portrait&&!frontierArt?portraitStyle(d.portrait):''}">${frontierArt||(d.portrait?'':'◇')}</div><div class="dialogue-body"><div class="speaker">${esc(d.speaker)}</div><p class="dialogue-text">${esc(d.text)}</p>${d.rememberedReply?`<p class="dialogue-note">Votre réponse : ${esc(d.rememberedReply)}</p>`:''}<div class="dialogue-choices">${d.choices.map((choice,index)=>`<button class="choice ${choice.tone||''}" data-do="dialogue-choice" data-index="${index}" ${choice.disabled?'disabled':''} ${choice.operationChoice?`data-operation-choice="${esc(choice.operationChoice)}"`:''} ${choice.operationContact?`data-horizon-operation="${esc(choice.operationContact)}"`:''} ${choice.topicId?`data-topic-id="${esc(choice.topicId)}"`:''} ${choice.replyId?`data-reply-id="${esc(choice.replyId)}"`:''} ${choice.conversationBack?'data-conversation-back':''} ${choice.conversationEnd?'data-conversation-end':''} ${choice.assignmentChoice?`data-assignment-choice="${esc(choice.assignmentChoice)}"`:''} ${choice.assignmentEnd?'data-assignment-end':''} ${choice.assignmentBack?'data-assignment-back':''}>${esc(choice.label)}${choice.hint||choice.reason||choice.consequence?`<small>${esc(choice.reason||choice.hint||choice.consequence)}</small>`:''}</button>`).join('')}</div></div></div>`;
 }
 function localMapScreen(){return screen(WORLD_ZONES[state.zone].label,'Carte locale',renderLocalMap({bounds:world.getBounds(),position:world.getPosition(),pois:world.getInteractivePOIs(),objective:currentObjective(),tracked:ui.tracked,filter:ui.mapFilter,esc,layout:getLevelLayout(state.zone)}));}
 function victoryScreen(){
@@ -488,6 +498,12 @@ function showConversation(id){
   const conversation=getConversation(state,id);
   if(!conversation)return toast('Cette personne n’est pas disponible pour le moment.');
   const choices=conversation.topics.map(topic=>({label:topic.label,topicId:topic.id,run:()=>showConversationTopic(id,topic.id)}));
+  const npc=getHorizonNPC(id),contact=world.getConversationPOIs().find(poi=>poi.conversationId===id);
+  const operationPOI=nearbyConversationOperation(npc,contact,world.getInteractivePOIs());
+  if(operationPOI&&getOperationInteraction(state,operationPOI.operationId,operationPOI.stepId)?.ok){
+    const operation=listOperations(state).find(entry=>entry.id===operationPOI.operationId);
+    choices.push({label:`Votre demande : ${operation?.name||'la mission'}`,operationContact:operationPOI.operationId,run:()=>interactOperation(operationPOI)});
+  }
   choices.push({label:'Reprendre la mission.',conversationEnd:true,run:()=>closeScreen()});
   speak(conversation.speaker,'De quoi souhaitez-vous parler ?',choices,conversation.portrait,{conversationId:id});
 }
@@ -534,6 +550,7 @@ function beginGame(){const preferences=state?.settings;state=newGame(ui.form);if
 function continueGame(s=loadFrom(localStorage)){if(!s){toast('Aucune sauvegarde valide.',true);return;}state=s;ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;world.setBattle(null);audio.unlock();applySettings();loadZone(state.zone,{resume:true});}
 
 function interactPOI(poi){if(!poi||!running||battle||ui.screen||ui.busy)return;audio.play('ui');const zone=state.zone;
+  if(poi.faunaId){ui.horizonKind='fauna';ui.horizonRecord=poi.faunaId;return openScreen('horizon-archive');}
   if(poi.operationId)return interactOperation(poi);
   if(poi.assignmentContactId)return showAssignmentConversation(poi.assignmentContactId);
   if(poi.conversationId)return showConversation(poi.conversationId);
@@ -572,7 +589,7 @@ function finishObjective(){const zone=state.zone;if(state.completed.includes(zon
     noveria:choice==='release'?'La reine rachni est libérée. Votre décision aura un écho bien au-delà de Noveria.':'La reine rachni est détruite. Le dossier de Pic 15 est clos.',
     virmire:choice==='save-kaidan'?'Kaidan a été extrait. Ashley reste sur Virmire. Son sacrifice ne sera pas oublié.':'Ashley a été extraite. Kaidan reste sur Virmire. Son sacrifice ne sera pas oublié.',
     ilos:'Vigil révèle la fonction du Conduit. L’accès à la Citadelle est ouvert : il reste une dernière chance d’arrêter Saren.'};
-    const support=operationEffects(state);if(zone==='feros')texts.feros+=` Services de la colonie rétablis : ${support.colonySupport}/3.${support.researchRecovered?' Les données de Gavin Hossle ont été récupérées.':''}`;
+    const support=operationEffects(state);if(zone==='feros')texts.feros+=` Services de la colonie rétablis : ${support.colonySupport}/4.${support.researchRecovered?' Les données de Gavin Hossle ont été récupérées.':''}`;
     speak('Rapport de mission',texts[zone],[{label:zone==='ilos'?'Emprunter le Conduit.':'Retourner au Normandy.',run:()=>loadZone(zone==='ilos'?'citadel-finale':'normandy')}],zone==='therum'?'liara':null);
   };
   if(zone==='ilos')return speak('Vigil · le Conduit','Le Conduit mène à la confrontation finale. Les opérations de terrain inachevées de votre journal seront fermées après ce passage.',[{label:'Emprunter le Conduit et poursuivre la mission.',run:()=>finish()},{label:'Revenir à l’exploration.',run:()=>closeScreen()}]);
@@ -621,7 +638,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'chronicle-back':closeChronicles();break;
     case 'universe-tab':if(['references','session','reading','expansion'].includes(id)&&!(id==='reading'&&chronicleBattle&&!chronicleBattle.winner)){universeUI.tab=id;if(chronicleBattle&&!chronicleBattle.winner)chroniclePaused=true;if(id==='reading'&&chronicleSession&&universeUI.readingId)readChroniclePage();else renderScreen();}break;
     case 'expansion-run':if(universeUI.tab==='expansion')runExpansion();break;
-    case 'universe-group':if(['all','actors','equipment','powers','story'].includes(id)){universeUI.group=id;universeUI.visibleCount=30;renderScreen();}break;
+    case 'universe-group':if(['all','actors','equipment','powers','story','fleet','fauna'].includes(id)){universeUI.group=id;universeUI.visibleCount=30;renderScreen();}break;
     case 'universe-record':universeUI.recordId=id;renderScreen();break;
     case 'universe-more':universeUI.visibleCount+=30;renderScreen();break;
     case 'chronicle-start':prepareChronicle();break;
@@ -702,6 +719,9 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'travel':loadZone(id);break;
     case 'interact':interactWithWorld();break;
     case 'codex':openScreen('codex');break;
+    case 'horizon-archive':if(running&&!battle)openScreen('horizon-archive');break;
+    case 'horizon-kind':if(ui.screen==='horizon-archive'&&['fleet','fauna'].includes(id)){ui.horizonKind=id;ui.horizonRecord=null;renderScreen();}break;
+    case 'horizon-record':if(ui.screen==='horizon-archive'){ui.horizonRecord=id;renderScreen();}break;
     case 'conversation':if(state?.zone==='normandy'&&!battle)showConversation(id);break;
     case 'codex-entry':ui.codex=id;renderScreen();break;
     case 'settings':case 'title-settings':openScreen('settings');break;

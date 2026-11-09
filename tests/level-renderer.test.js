@@ -82,7 +82,8 @@ test('real Three camera projection follows all five large clearings while legacy
     const projected = new THREE.Vector3(world.player.x, 0, world.player.z).project(world.camera);
     assert.ok(Math.abs(projected.x) < .02 && Math.abs(projected.y) < .02, `${room.id}: the controlled actor remains central`);
   }
-  world.levelLayout = getLevelLayout('feros');
+  world.levelLayout = getLevelLayout('citadel');
+  assert.equal(world.levelLayout, null, 'The Citadel retains legacy camera limits; Feros now has an authored layout');
   const previous = world._cameraFocus({ x: 40, z: -50 }, 'combat');
   assert.deepEqual(previous.toArray(), [9, .3, -10]);
 });
