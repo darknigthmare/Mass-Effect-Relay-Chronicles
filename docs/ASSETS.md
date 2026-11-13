@@ -1,3 +1,5 @@
+Le [lot Advance](ADVANCE.md) conserve exactement les **79 fichiers publics**, dont **46 PNG et 33 métadonnées**. Les seize corps civils de Féros réemploient trois silhouettes Horizon nommées et treize corps civils génériques ; ils restent Prototype. Aucun nouveau portrait, costume, cycle, atlas ni statut d’asset n’est déclaré produit.
+
 Le [lot Continuation](CONTINUATION.md) conserve les 46 PNG et les 33 métadonnées publiques. Marches, hauteurs de sol et marqueurs de positions ATB utilisent la géométrie et l’interface ; aucun nouvel atlas, cycle ou statut d’asset n’est revendiqué.
 
 # Assets visuels — registre de livraison

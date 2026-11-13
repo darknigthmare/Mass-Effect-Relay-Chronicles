@@ -1,5 +1,6 @@
 import { OPERATIONS, OPERATION_ENCOUNTERS } from './operation-data.js';
 import { ENEMIES } from './game-data.js';
+import { advanceFerosCivilianAlive } from './advance-feros.js';
 
 export { OPERATIONS, OPERATION_ENCOUNTERS } from './operation-data.js';
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
@@ -81,6 +82,16 @@ export function normalizeOperations(raw, state = null) {
 
 function gate(state, operation, record, operations) {
   if (record.stage === operation.steps.length) return { status: 'completed', reason: null };
+  // These three existing contacts have individually recorded modern outcomes.
+  // Preserve completed history and physical work; only the request/report
+  // conversations depend on a living, liberated interlocutor.
+  const ferosContact = { 'feros-water': 'macha', 'feros-varrens': 'davin', 'feros-geth-tunnels': 'fai-dan' }[operation.id];
+  if (ferosContact && ['request', 'report'].includes(operation.steps[record.stage]?.id)) {
+    const alive = advanceFerosCivilianAlive(state, ferosContact);
+    if (alive === false) return { status: 'unavailable', reason: 'Cet interlocuteur n’est plus en vie. Cet échange n’est plus disponible.' };
+    if (alive === true && state.advanceFeros?.gasIssued && !has(state.cleared, 'feros:boss'))
+      return { status: 'unavailable', reason: 'Cet habitant reste sous l’influence du Thorien. Cet échange reprendra après sa libération.' };
+  }
   if (state?.ending || has(state?.completed, 'ilos')) return { status: 'unavailable', reason: 'Le passage du Conduit a fermé cette opération.' };
   if (operation.deadline === 'thorian' && has(state?.cleared, 'feros:boss')) return { status: 'unavailable', reason: 'Fai Dan n’est plus disponible après la confrontation avec le Thorien.' };
   if (operation.deadline === 'colony-before-thorian' && has(state?.cleared, 'feros:boss')) return { status: 'unavailable', reason: 'Cette version doit remettre le rapport à Davin avant la confrontation avec le Thorien.' };

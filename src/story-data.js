@@ -32,7 +32,7 @@ export const STORY_CONVERSATIONS = {
   kaidan: {
     speaker: 'Kaidan Alenko', portrait: 'kaidan', companion: 'kaidan',
     topics: [
-      { id: 'implants', label: 'Vos implants biotiques L2', text: 'Mes implants sont des L2, une ancienne génération d’implants biotiques humains. Ils m’aident à contrôler mes capacités, mais ils ont des effets secondaires, dont des migraines. Ce n’est pas un équipement interchangeable avec n’importe quelle génération plus récente.', codex: ['biotic'], catalogId: 'DIA-kaidan-implants' },
+      { id: 'implants', label: 'Vos implants biotiques L2', text: 'Mes implants sont des L2, une ancienne génération d’implants biotiques humains. Ils m’aident à contrôler mes capacités, mais ils ont des effets secondaires, dont des migraines. Ce n’est pas un équipement interchangeable avec n’importe quelle génération plus récente.', codex: ['biotic', 'human-l2'], catalogId: 'DIA-kaidan-implants' },
       { id: 'virmire-return', label: 'Le retour de Virmire', text: 'Nous devons continuer sans oublier ceux que nous avons perdus.', gate: 'after-virmire', catalogId: 'CHC-survivant-de-virmire' },
     ],
   },
@@ -57,9 +57,9 @@ export const STORY_CONVERSATIONS = {
   tali: {
     speaker: 'Tali’Zorah nar Rayya', portrait: 'tali', companion: 'tali',
     topics: [
-      { id: 'pilgrimage', label: 'Votre pèlerinage', text: 'Les jeunes Quariens quittent la Flotte pour leur pèlerinage. Nous devons découvrir la galaxie et rapporter quelque chose d’utile à la communauté qui nous accueillera. Ce voyage marque le passage à la vie adulte.', codex: ['quarian'], catalogId: 'DIA-tali-vie-de-la-flotte' },
-      { id: 'flotilla', label: 'La vie dans la Flotte', text: 'La Flotte nomade est notre foyer. Nous vivons sur des vaisseaux et devons entretenir ce que nous possédons. Nos combinaisons environnementales nous protègent ; les retirer hors d’un environnement contrôlé n’est pas un geste anodin.', codex: ['quarian'], catalogId: 'DIA-tali-vie-de-la-flotte' },
-      { id: 'geth', label: 'Les Quariens et les geth', text: 'Les geth ont été créés par les Quariens. Leur révolte nous a chassés de notre monde d’origine. Nous vivons depuis dans la Flotte nomade.', codex: ['quarian', 'geth'], catalogId: 'DIA-tali-vie-de-la-flotte' },
+      { id: 'pilgrimage', label: 'Votre pèlerinage', text: 'Les jeunes Quariens quittent la Flotte pour leur pèlerinage. Nous devons découvrir la galaxie et rapporter quelque chose d’utile à la communauté qui nous accueillera. Ce voyage marque le passage à la vie adulte.', codex: ['quarian', 'quarian-pilgrimage'], catalogId: 'DIA-tali-vie-de-la-flotte' },
+      { id: 'flotilla', label: 'La vie dans la Flotte', text: 'La Flotte nomade est notre foyer. Nous vivons sur des vaisseaux et devons entretenir ce que nous possédons. Nos combinaisons environnementales nous protègent ; les retirer hors d’un environnement contrôlé n’est pas un geste anodin.', codex: ['quarian', 'quarian-flotilla'], catalogId: 'DIA-tali-vie-de-la-flotte' },
+      { id: 'geth', label: 'Les Quariens et les geth', text: 'Les geth ont été créés par les Quariens. Leur révolte nous a chassés de notre monde d’origine. Nous vivons depuis dans la Flotte nomade.', codex: ['quarian', 'geth', 'quarian-geth'], catalogId: 'DIA-tali-vie-de-la-flotte' },
     ],
   },
   wrex: {
@@ -79,6 +79,10 @@ export const STORY_CONVERSATIONS = {
 };
 
 export const STORY_CODEX = [
+  { id: 'quarian-pilgrimage', name: 'Le pèlerinage quarien', category: 'Société', text: 'Les jeunes Quariens quittent la Flotte pour découvrir la galaxie et rapporter quelque chose d’utile à la communauté qui les accueillera. Tali décrit ce voyage comme le passage à la vie adulte.' },
+  { id: 'quarian-flotilla', name: 'Vivre dans la Flotte nomade', category: 'Société', text: 'La Flotte nomade est le foyer des Quariens. La vie à bord demande un entretien constant des vaisseaux et de leurs ressources. Leurs combinaisons environnementales assurent une protection essentielle hors des environnements contrôlés.' },
+  { id: 'quarian-geth', name: 'Les Quariens et la révolte geth', category: 'Histoire', text: 'Les geth ont été créés par les Quariens. Leur révolte a chassé leurs créateurs de leur monde d’origine. D’après Tali, la Flotte nomade est depuis devenue le foyer de son peuple.' },
+  { id: 'human-l2', name: 'Implants L2 de Kaidan', category: 'Technologie', text: 'Kaidan Alenko utilise des implants biotiques humains L2. Cette ancienne génération l’aide à contrôler ses capacités et provoque notamment des migraines.' },
   { id: 'protheans', name: 'Prothéens et balises', category: 'Histoire', text: 'Les vestiges prothéens comprennent des ruines et des balises capables de transmettre des informations. La balise d’Eden Prime a communiqué à Shepard des visions difficiles à interpréter.' },
   { id: 'cipher', name: 'Le Cipher', category: 'Histoire', text: 'La compréhension acquise à Féros aide Shepard à interpréter les informations prothéennes de la balise. Le Cipher concerne une manière de percevoir et de comprendre, au-delà d’une simple traduction.' },
   { id: 'sovereign', name: 'Sovereign', category: 'Menaces', text: 'La confrontation sur Virmire révèle que Sovereign est un Moissonneur, une intelligence qui dépasse le rôle d’un simple vaisseau au service de Saren.' },

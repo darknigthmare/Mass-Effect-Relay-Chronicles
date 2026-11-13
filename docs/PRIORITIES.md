@@ -1,12 +1,12 @@
 # Priorités P0/P1 — bilan historique du lot précédent
 
-Ce document conserve les résultats du lot P0/P1 basé sur `259d512`. Le [lot Continuation](CONTINUATION.md), depuis `5d933068`, poursuit le lot [Completion](COMPLETION.md). Son audit courant suit 6 581 critères ouverts ; les compteurs ci-dessous restent ceux du lot historique.
+Ce document conserve les résultats du lot P0/P1 basé sur `259d512`. Le [lot Advance](ADVANCE.md), depuis `d2e8432`, poursuit Continuation et Completion. Son [audit courant](qa/advance-tracking-current-final-01-audit.json) suit 6 560 critères ouverts : 664 P0  5 782 P1 et 114 P2 ; les compteurs ci-dessous restent ceux du lot historique.
 
 Le lot met en jeu les objectifs d’Eden Prime, de Mira et d’Ilos, les positions et ordres tactiques, les talents ME1, la navigation manette et les phases de Bénézia et du Thorien. Il renforce aussi l’horloge ATB, la pause au changement de focus, les sauvegardes et les comparatifs d’équipement. **51 fiches existantes** sont mises à jour ; **18 passent de Défini à Prototype** (11 P0 et sept P1). Les critères originaux restent ouverts lorsque l’adaptation ne les satisfait pas entièrement. Aucune fiche ne devient Intégré ou Validé et aucun asset n’est déclaré produit dans ce lot.
 
-Le [rapport de publication du catalogue et de l’Excel](qa/priority-workbook-visual-report.json) lie les preuves exécutées aux sources gelées. Le principal contient désormais **962 Défini, 417 Prototype, trois Intégré et trois Validé**, sur **1 385 fiches**. L’[audit des catalogues publics courants](qa/priority-current-audit.json) et son [registre exhaustif](qa/priority-current-open-ledger.json) donnent les critères encore ouverts, leurs dépendances, leurs chemins et leurs réserves. L’ensemble des 28 catalogues contient toujours **6 711 fiches**, dont **6 588 P0/P1 non Validé** : réaliser un prototype partiel ne clôt pas son critère.
+Le [rapport de publication du catalogue et de l’Excel](qa/priority-workbook-visual-report.json) lie les preuves exécutées aux sources gelées. Dans ce lot historique, le principal comptait **962 Défini, 417 Prototype, trois Intégré et trois Validé**, sur **1 385 fiches**. L’[audit historique des catalogues](qa/priority-current-audit.json) et son [registre exhaustif](qa/priority-current-open-ledger.json) donnent les critères encore ouverts, leurs dépendances, leurs chemins et leurs réserves. L’ensemble des 28 catalogues contient toujours **6 711 fiches**, dont **6 588 P0/P1 non Validé** : réaliser un prototype partiel ne clôt pas son critère.
 
-| Périmètre courant | P0 Défini | P0 Prototype | P0 Validé | P1 Défini | P1 Prototype | P1 Intégré |
+| Périmètre historique | P0 Défini | P0 Prototype | P0 Validé | P1 Défini | P1 Prototype | P1 Intégré |
 |---|---:|---:|---:|---:|---:|---:|
 | Principal — 1 385 fiches | 90 | 138 | 3 | 815 | 279 | 3 |
 | 27 catalogues supplémentaires — 5 326 fiches | 541 | 15 | 0 | 4 431 | 276 | 0 |
@@ -56,7 +56,7 @@ Il reste donc **784 P0 et 5 804 P1 non Validé**, soit **6 588 fiches**. Ce 
 | Images, animations, cinématiques, VFX et audio | 1 301 | Familles visuelles complètes et sources identifiées ; une image fixe ne termine pas une animation ou une scène |
 | Canon et contexte | 236 | Faits établis, adaptations et éléments incertains séparés, sans révélation anticipée |
 
-Les **101 P0 encore Défini dans le principal** comprennent 42 étapes de campagne, 52 cas QA et sept systèmes. Des fonctions correspondantes peuvent déjà exister partiellement. Par exemple, l’écran de crédits est jouable alors que sa fiche reste Défini ; les imports et morts narratives ont des tests, mais leurs lignes QA demandent leurs propres preuves courantes.
+Les **101 P0 encore Défini dans cet ancien bilan dans le principal** comprennent 42 étapes de campagne, 52 cas QA et sept systèmes. Des fonctions correspondantes peuvent déjà exister partiellement. Par exemple, l’écran de crédits est jouable alors que sa fiche reste Défini ; les imports et morts narratives ont des tests, mais leurs lignes QA demandent leurs propres preuves courantes.
 
 Les lacunes de fonctionnement identifiées au départ comprennent la manette, les bandes de portée et ordres coordonnés, les objectifs temporisés d’Eden Prime et d’Ilos, les réparations de Mira, les talents et les phases distinctes des boss. Les relations et ramifications complètes de campagne restent également ouvertes. La réalisation doit préserver la mort narrative de Jenkins et de Virmire, les récompenses uniques, les neuf emplacements et l’isolation des Chroniques.
 

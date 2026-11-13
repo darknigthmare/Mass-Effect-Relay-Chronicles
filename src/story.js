@@ -3,6 +3,7 @@ import { STORY_CONVERSATIONS, STORY_CODEX } from './story-data.js';
 import { getFrontierNPC, frontierNPCVisible } from './frontier-characters.js';
 import { getHorizonNPC, horizonNPCVisible } from './horizon-characters.js';
 import { narrativeTopicText } from './completion-narrative.js';
+import { normalizeAdvanceFerosState, advanceFerosCivilianAlive } from './advance-feros.js';
 import { isExplorationBanterKey, explorationBanterHistoryPossible } from './continuation-banter-data.js';
 
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
@@ -70,7 +71,7 @@ function automaticCodex(state) {
     ids.add('asari'); ids.add('biotic'); ids.add('stasis');
   }
   if (completed(state, 'eden-prime')) ids.add('protheans');
-  if (completed(state, 'feros')) ids.add('cipher');
+  if (completed(state, 'feros') || normalizeAdvanceFerosState(state?.advanceFeros, state)?.cipher === true) ids.add('cipher');
   if (completed(state, 'virmire')) ids.add('sovereign');
   if (completed(state, 'ilos')) ids.add('vigil');
   return ids;
@@ -146,11 +147,13 @@ export function recordVisit(state, zone) {
 }
 
 export function getConversation(state, id) {
-  if (!state || typeof id !== 'string' || !OWN(STORY_CONVERSATIONS, id)) return null;
+  if (!state || typeof id !== 'string' || !OWN(STORY_CONVERSATIONS, id)
+    || (state.context && (state.context.mediaId !== 'ME1' || state.context.periodId !== 'me1'))) return null;
   const conversation = STORY_CONVERSATIONS[id];
   if (state.zone !== (conversation.zone || 'normandy') || !zoneAvailable(state, state.zone)) return null;
   if (getFrontierNPC(id) && !frontierNPCVisible(state, id)) return null;
   if (getHorizonNPC(id) && !horizonNPCVisible(state, id)) return null;
+  if (conversation.zone === 'feros' && advanceFerosCivilianAlive(state, id) === false) return null;
   const story = migrateStoryState(state.story, state);
   if (!story) return null;
   if (conversation.companion && (state.lost || []).includes(conversation.companion)) return null;

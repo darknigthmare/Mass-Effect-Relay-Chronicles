@@ -4,7 +4,13 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 15 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
-## Suite P0/P1/P2
+## Progression, Féros et continuité
+
+Le [lot Advance](docs/ADVANCE.md) poursuit le travail sur les critères exacts du classeur. Le journal suit les jalons et le premier départ choisi, les recrutements de Garrus et Wrex ont des branches de refus/report, et les sujets de Tali et Kaidan ouvrent leurs dossiers dédiés. Les cartes expliquent les prérequis et représentent les obstacles ; le repli affiche son délai de terrain. Féros conserve les seize interventions, le Cipher et le sort de Shiala, puis le bilan de fin peut être consulté dans les Chroniques ME2/ME3 autorisées.
+
+Le suivi met à jour **36 fiches et 69 cellules**, dont **21 critères fermés : 11 P0 et dix P1**. Les quinze autres fiches restent partielles. Les **1 177 tests natifs**, les **29 captures DEV réellement relues** et les **68 panneaux Excel ouverts** sont liés dans le bilan. Les cinq parcours de production passent **23 groupes**, avec **29 captures fraîches réellement relues** et **93 fichiers HTTP conformes au build**. Aucun asset n’est promu. Le [rapport final](docs/qa/advance-report.json) relie les étapes distinctes de livraison.
+
+## Continuation P0/P1/P2 — lot précédent
 
 Le [lot Continuation](docs/CONTINUATION.md) ajoute des échanges contextuels du commando, quatre graphes de dialogue de campagne et le catalogue des 28 œuvres accessible depuis le titre et la pause. Les crédits donnent accès aux sources en distinguant campagne, Chroniques et Simulation. Le terrain suit les surfaces et marches praticables ; l’entrée de caméra est alignée sur son suivi.
 
@@ -178,7 +184,7 @@ Le cumul atteint **498 références et 280 exercices partiels**. Les restriction
 - Recrutement, choix de deux compagnons, expérience, niveaux, crédits et calibrations. Inventaire partagé de 150 objets, 52 références achetables, neuf emplacements par personnage, formations d’armure explicites et effets d’équipement en combat.
 - Tirs à chauffe, couverture, pouvoirs biotiques, technologie, attaques organiques, états temporaires et soin.
 - Décisions enregistrées pour Féros, la reine rachni, Virmire et le Conseil.
-- Journal, 16 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
+- Journal, 20 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
 - Conversations avec Nihlus, Joker, Chakwas et les six compagnons, selon leur recrutement, leur survie et les événements connus. Le conseil donné à Garrus est mémorisé et repris dans un échange ultérieur.
 - Quinze assignations : Retour à la maison, Affaire familiale et Le Fan sont conservées ; douze opérations supplémentaires ajoutent 46 étapes à la Citadelle et sur Féros, avec cinq combats annexes. Le journal conserve étapes, choix, conditions et récompenses uniques.
 - Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; 16 images de marche pour chaque apparence de Shepard et quatre poses de combat pour chacune des deux apparences.
@@ -224,7 +230,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 - [Registre des assets et limites artistiques](docs/ASSETS.md).
 - [État de livraison et vérifications](docs/IMPLEMENTATION_STATUS.md).
 
-Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Après Continuation, le principal compte **906 Défini, 349 Prototype, zéro Intégré et 130 Validé** ; le registre complet compte **5 941 Défini, 640 Prototype, zéro Intégré et 130 Validé**. Le lot met à jour 40 fiches, dont 38 critères fonctionnels fermés ; les 92 fiches Validé antérieures sont conservées. Les [63 panneaux Excel relus](docs/qa/continuation-tracking-workbook-visual-final-01-review.json) et l’[audit courant](docs/qa/continuation-tracking-current-final-01-audit.json) suivent **6 581 critères ouverts : 675 P0, 5 792 P1 et 114 P2**. Les 27 catalogues supplémentaires, les 31 autres classeurs, les 46 PNG et les métadonnées publiques sont préservés. Les preuves des lots précédents gardent leur portée historique.
+Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Après Advance, le principal compte **882 Défini, 352 Prototype, zéro Intégré et 151 Validé** ; le registre complet compte **5 917 Défini  643 Prototype  zéro Intégré et 151 Validé**. Le lot met à jour 36 fiches, dont 21 critères fonctionnels fermés ; les 130 fiches Validé antérieures sont conservées. Les [68 panneaux Excel relus](docs/qa/advance-tracking-workbook-visual-final-01-review.json) et l’[audit courant](docs/qa/advance-tracking-current-final-01-audit.json) suivent **6 560 critères ouverts : 664 P0  5 782 P1 et 114 P2**. Les 27 catalogues supplémentaires, les 31 autres classeurs et les 79 fichiers publics, dont les 46 PNG, sont préservés. Les preuves des lots précédents gardent leur portée historique.
 
 **Une fiche de production ne signifie pas un élément terminé.** Le classeur sépare le statut du contenu, le statut de l’asset et le niveau de vérification canonique. Les liens vers des fichiers constituent des preuves localisables ; les noms d’assets futurs restent dans une colonne distincte. Une modification directe dans Excel n’est pas automatiquement réimportée dans le JSON.
 

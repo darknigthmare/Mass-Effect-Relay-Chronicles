@@ -7,6 +7,8 @@ import { UNIVERSE_AMMO_PROFILES, validateAmmoMode } from './universe-ammo.js';
 import { isVictoryParticipant, SUMMON_LIMITS } from './combat-summons.js';
 import { createBattle } from './combat.js';
 import { initializeChroniclePositions } from './continuation-chronicles-positions.js';
+import { canImportChronicleContinuity, splitChronicleContinuity, getChronicleContinuity } from './advance-continuity.js';
+import { decodeCampaignExport } from './completion-persistence-campaign.js';
 
 export const CHRONICLE_FORMAT = 'relay-chronicles.chronicle';
 const MAX_FILE_BYTES = 2_000_000;
@@ -46,8 +48,11 @@ export function listChronicleScenarios(rawContext) {
 /** Composite validation: a valid base envelope cannot invent actors or gear. */
 export function normalizeChronicle(raw) {
   try {
-    const session = normalizeChronicleSession(raw);
+    const split = splitChronicleContinuity(raw);
+    if (!split) return null;
+    const session = normalizeChronicleSession(split.base);
     if (!session) return null;
+    if (split.importedCampaign !== undefined) session.importedCampaign = split.importedCampaign;
     for (const [storyId, index] of Object.entries(session.readingProgress)) {
       const story = getChronicleStory(storyId, session.context), page = story?.steps[index];
       if (!page || ![story.progressRecordId, ...page.recordIds].every(id => session.discovered.includes(id))) return null;
@@ -92,14 +97,15 @@ export function selectChronicleScenario(raw, scenarioId) {
   if (!replacement) return fail('Cet essai n’appartient pas à cette période.');
   replacement.ammoModes = reconcileAmmoModes({ ...replacement, ammoModes: session.ammoModes });
   return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes,
-    readingProgress: session.readingProgress, cleared: session.cleared } };
+    readingProgress: session.readingProgress, cleared: session.cleared,
+    ...(session.importedCampaign ? { importedCampaign: session.importedCampaign } : {}) } };
 }
 
 export function setChronicleParty(raw, actorIds) {
   const session = normalizeChronicle(raw);
   const selectionInput = session && { ...session, party: actorIds, loadouts: {}, builds: {} };
   // Let the base validator inspect hostile arrays before enumerating any IDs.
-  if (selectionInput) delete selectionInput.ammoModes;
+  if (selectionInput) { delete selectionInput.ammoModes; delete selectionInput.importedCampaign; }
   const selection = selectionInput && normalizeChronicleSession(selectionInput);
   if (!selection || selection.party.length < 1) return fail('Choisissez de un à trois combattants disponibles.');
   const loadouts = Object.fromEntries(selection.party.filter(id => own(session.loadouts, id)).map(id => [id, session.loadouts[id]]));
@@ -195,6 +201,28 @@ export function setChronicleBuild(raw, actorId, buildId) {
 }
 
 export const listChronicleReadings = rawContext => listChronicleStories(rawContext);
+
+/** Explicit, atomic documentary import. Never reads or writes campaign storage. */
+export function importChronicleContinuity(raw, value) {
+  const session = normalizeChronicle(raw);
+  if (!session || !canImportChronicleContinuity(session.context)) return fail('Le bilan ME1 se consulte uniquement dans les périodes solo ME2 et ME3.');
+  const record = decodeCampaignExport(value);
+  if (!record) return fail('Bilan de fin ME1 invalide ; chronique et campagne conservées. Importez le bilan de fin, distinct de la sauvegarde de reprise.');
+  const updated = normalizeChronicle({ ...session, importedCampaign: record });
+  return updated ? { ok: true, session: updated } : fail('Ce bilan est incompatible avec la chronique.');
+}
+
+export function clearChronicleContinuity(raw) {
+  const session = normalizeChronicle(raw);
+  if (!session) return fail('Chronique invalide.');
+  delete session.importedCampaign;
+  return { ok: true, session };
+}
+
+export function getImportedChronicleContinuity(raw) {
+  const session = normalizeChronicle(raw);
+  return session ? getChronicleContinuity(session.context, session.importedCampaign) : null;
+}
 
 export function getChronicleReading(raw, storyId) {
   const session = normalizeChronicle(raw);

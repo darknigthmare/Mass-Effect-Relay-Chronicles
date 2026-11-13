@@ -2,7 +2,9 @@ import { getTacticalPosition } from './tactical-positions.js';
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { WORLD_ZONES } from './world-data.js';
+import { WORLD_ZONES, getWorldArrival } from './world-data.js';
+import { mapCollisionFootprints } from './advance-travel.js';
+import { FEROS_COLONIST_TARGETS, normalizeAdvanceFerosState, advanceFerosCivilianAlive } from './advance-feros.js';
 import { ENCOUNTERS, ENEMIES } from './game-data.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
 import { hasVisualCustomization, renderCustomizationSprite } from './customization-render.js';
@@ -386,8 +388,11 @@ export class WorldView {
   }
 
   _applyHorizonNPCBody(actor) {
-    const npc=getHorizonNPC(actor.key),permitted=npc&&!actor.enemy&&actor.id===`npc:${npc.id}`&&actor.conversationId===npc.conversationId
-      &&this.zoneId===npc.zone&&horizonNPCVisible(this._horizonPresenceContext(),npc);
+    const npc=getHorizonNPC(actor.key),civilian=actor.advanceFerosCivilian&&actor.id===`civilian:feros:${actor.advanceFerosCivilian}`
+      &&FEROS_COLONIST_TARGETS.some(target=>target.id===actor.advanceFerosCivilian&&target.characterKey===actor.key)
+      &&this._hasAdvanceFerosCivilians()&&this._advanceFerosCivilianAlive(actor.advanceFerosCivilian),
+      permitted=npc&&!actor.enemy&&actor.conversationId===npc.conversationId&&this.zoneId===npc.zone
+      &&(civilian||actor.id===`npc:${npc.id}`&&horizonNPCVisible(this._horizonPresenceContext(),npc));
     const frame=permitted&&getHorizonNPCFrame(actor.key,this.horizonNPCConfig);
     if(frame){actor.height=frame.height;if(this._applyAnimationFrame(actor,'horizon-npcs',frame))return true;}
     if(npc&&actor.animationFrame===npc.id)this._fallbackCombatFrame(actor);return false;
@@ -1157,13 +1162,14 @@ export class WorldView {
     for (const object of old) { object.parent?.remove(object); object.geometry.dispose(); }
   }
 
-  setZone(zoneId, { party, cleared, stage } = {}) {
+  setZone(zoneId, { party, cleared, stage, fromZone = null } = {}) {
     const zone = WORLD_ZONES[zoneId] || WORLD_ZONES.normandy;
     this.operationPois = [];
     this.zone = zone; this.zoneId = zone.id; this.levelLayout = getLevelLayout(zone.id); this.battleArena = null;
     this.stageState = stage; this.rand = randomGenerator(hash(zone.id));
     this.cleared = new Set(cleared instanceof Set ? cleared : Array.isArray(cleared) ? cleared : []);
     this._clearEffects(); this.animations = []; this.colliders = []; this.combatOccluders = []; this.walkableSurfaces = []; this.targetPath = null; this.pendingPOI = null; this._pendingProps = []; this._pendingVehicles = [];
+    this.keys?.clear(); this.gamepadInput = { right: 0, forward: 0, sprint: false };
     this.setBattle(null);
     disposeObject(this.stage, true); this.stage.clear(); this.materialCache.clear();
     this.horizonFleetViews = new Map();
@@ -1175,7 +1181,7 @@ export class WorldView {
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
     this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
     this._installTacticalCover();
-    this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
+    this._mergeStatic(); this.player = getWorldArrival(zone.id, fromZone); this._resetTrail();
     this._syncHorizonFleet();
     this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
     this.makoState = zone.id === 'therum' ? createMakoState(this.levelLayout?.vehicleSpawn || { x: -7.2, z: 16 }) : null;
@@ -1278,11 +1284,14 @@ export class WorldView {
       visitedZones: strings(context.visitedZones ?? context.story?.visitedZones), cleared: strings(context.cleared),
       flags: { jenkinsLost: context.flags?.jenkinsLost === true, briefed:context.flags?.briefed===true, spectre:context.flags?.spectre===true },
       operations:{records:{'feros-varrens':{stage:Number.isInteger(context.operations?.records?.['feros-varrens']?.stage)?context.operations.records['feros-varrens'].stage:0}}},
+      advanceFeros: normalizeAdvanceFerosState(context.advanceFeros,context),
       assignmentContacts,
       ...(context.mediaId !== undefined ? {mediaId:context.mediaId} : {}),
       ...(context.periodId !== undefined ? {periodId:context.periodId} : {}),
       ...(context.context !== undefined ? {context:{mediaId:context.context?.mediaId,periodId:context.context?.periodId}} : {}),
     } : null;
+    if(next) next.advanceFerosPresence=Object.fromEntries([...FEROS_COLONIST_TARGETS.map(target=>target.id),'fai-dan','shiala']
+      .map(id=>[id,advanceFerosCivilianAlive(context,id)]));
     if (next?.flags.jenkinsLost && !next.lost.includes('jenkins')) next.lost.push('jenkins');
     if (JSON.stringify(next) === JSON.stringify(this.storyContext)) return;
     this.storyContext = next;
@@ -1364,6 +1373,7 @@ export class WorldView {
     const active = new Set(this.actors.map(actor => actor.id));
     for (const poi of this.getConversationPOIs()) {
       if (active.has(poi.characterId)) continue;
+      if (this._hasAdvanceFerosCivilians() && FEROS_COLONIST_TARGETS.some(target=>target.characterKey===poi.characterId)) continue;
       const actor = this._makeActor(poi.characterId, `npc:${poi.characterId}`);
       if (poi.characterId === 'joker' && this.zoneId === 'normandy') actor.stationRole = 'normandy-pilot';
       actor.conversationId = poi.conversationId; actor.poiId = poi.id;
@@ -1374,6 +1384,38 @@ export class WorldView {
     const placements=this.zoneId==='eden-prime'?[['gasbag-me1','gasbag-me1',-34,39],['gasbag-me1','gasbag-me1',-28,31]]
       :this.zoneId==='feros'?[['varren-me1','varren',9,26],['varren-me1','varren',15,27],['alpha-varren-me1','alpha-varren',12,23]]:[];
     placements.forEach(([id,key,x,z],index)=>{if(!fauna||!horizonFaunaVisible(id,fauna))return;const actor=this._makeActor(key,`fauna:${id}:${index}`,false);actor.faunaId=id;actor.faunaIndex=index;actor.group.position.set(x,0,z);actor.group.visible=this.mode!=='combat';this.ambientActors.push(actor);this._applyHorizonFaunaBody(actor);});
+    this._syncAdvanceFerosCivilianBodies();
+  }
+
+  _hasAdvanceFerosCivilians() {
+    const p=this.storyContext?.advanceFeros;
+    return this.zoneId==='feros'&&!!this._horizonCampaignContext()&&p&&!p.legacy&&p.gasIssued;
+  }
+
+  _advanceFerosCivilianAlive(id) {
+    return this.storyContext?.advanceFerosPresence?.[id]??null;
+  }
+
+  _syncAdvanceFerosCivilianBodies() {
+    const retained=[];
+    for(const actor of this.ambientActors||[]) {
+      if(!actor.advanceFerosCivilian){retained.push(actor);continue;}
+      this.characters.remove(actor.group);disposeObject(actor.group);this._releaseAmbientActorTextures(actor);
+    }
+    this.ambientActors=retained;
+    if(!this._hasAdvanceFerosCivilians())return;
+    for(const target of FEROS_COLONIST_TARGETS) {
+      if(!this._advanceFerosCivilianAlive(target.id))continue;
+      const poi=this.operationPois?.find(point=>point.advanceFeros&&point.targetId===target.id);
+      const position=poi||target,key=target.characterKey||'emily';
+      const actor=this._makeActor(key,`civilian:feros:${target.id}`);
+      actor.advanceFerosCivilian=target.id;actor.conversationId=target.characterKey||null;
+      actor.group.userData.presentation=target.characterKey?'retained-horizon-civilian':'generic-civilian-prototype';
+      actor.group.userData.civilianLabel=target.name;
+      const offset={x:position.x+.6,z:position.z+.6},resolved=this._walkable(offset.x,offset.z)?offset:position;
+      actor.group.position.set(resolved.x,0,resolved.z);this._groundActor(actor);
+      actor.group.visible=this.mode!=='combat';this.ambientActors.push(actor);this._applyHorizonNPCBody(actor);
+    }
   }
 
   _makeMarkers() {
@@ -1404,6 +1446,8 @@ export class WorldView {
 
   _ambientActorVisible(actor) {
     if(this.mode==='combat'||actor.poiId&&this.cleared.has(actor.poiId))return false;
+    if(actor.advanceFerosCivilian)return !!this._hasAdvanceFerosCivilians()&&this._advanceFerosCivilianAlive(actor.advanceFerosCivilian)===true;
+    if(this.zoneId==='feros'&&this._advanceFerosCivilianAlive(actor.key)===false)return false;
     if(getHorizonNPC(actor.key))return horizonNPCVisible(this._horizonPresenceContext(),actor.key);
     if(actor.faunaId){const scope=this._horizonCampaignContext();return !!scope&&horizonFaunaVisible(actor.faunaId,{...scope,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()});}
     return true;
@@ -1616,6 +1660,7 @@ export class WorldView {
     if (this.levelLayout) return true;
   }
   getBounds() { return { ...this.zone.bounds }; }
+  getMapCollisions() { return mapCollisionFootprints(this.colliders); }
   getPOIs() { return this.zone.pois.map(poi => ({ ...poi, cleared: this.cleared.has(poi.id) })); }
   getConversationPOIs() {
     const context = this.storyContext;
@@ -1629,7 +1674,13 @@ export class WorldView {
       if (id === 'joker' || id === 'chakwas') return true;
       if (id === 'nihlus') return !context.visitedZones.includes('eden-prime') && !context.completed.includes('eden-prime') && !context.flags.jenkinsLost;
       return context.recruited.includes(id);
-    }).map(poi => ({ ...poi, cleared: false }));
+    }).filter(poi => this.zoneId!=='feros'||this._advanceFerosCivilianAlive(poi.characterId)!==false)
+      .filter(poi=>!this._hasAdvanceFerosCivilians()||!FEROS_COLONIST_TARGETS.some(target=>target.characterKey===poi.characterId)
+        ||this.storyContext.advanceFeros.colonists[poi.characterId]!==null)
+      .map(poi => {
+        const target=this._hasAdvanceFerosCivilians()&&FEROS_COLONIST_TARGETS.find(item=>item.characterKey===poi.characterId);
+        return {...poi,...(target?{x:target.x,z:target.z,actorPosition:{x:target.x+.6,z:target.z+.6}}:{}),cleared:false};
+      });
   }
   getInteractivePOIs() {
     const pois = this.getPOIs().filter(poi => {
@@ -1673,6 +1724,7 @@ export class WorldView {
       this.pendingPOI = null; this.targetPath = null;
     }
     this._makeMarkers();
+    this._syncAdvanceFerosCivilianBodies();
   }
 
   getNearby() {

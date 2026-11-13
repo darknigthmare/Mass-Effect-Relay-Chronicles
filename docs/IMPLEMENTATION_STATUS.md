@@ -1,4 +1,14 @@
-# État de livraison — Continuation
+# État de livraison — Advance
+
+Le journal suit les jalons et le premier départ choisi, les recrutements de Garrus et Wrex ont des branches de refus/report, et les sujets de Tali et Kaidan ouvrent leurs dossiers dédiés. Les cartes expliquent les prérequis et représentent les obstacles ; le repli affiche son délai de terrain. Féros conserve les seize interventions, le Cipher et le sort de Shiala, puis le bilan de fin peut être consulté dans les Chroniques ME2/ME3 autorisées.
+
+Le [suivi local vérifié](qa/advance-tracking-publication-final-01-report.json) modifie **36 fiches et 69 cellules** : **21 critères fermés (11 P0 et dix P1)**, douze autres promotions Prototype et trois notes partielles. Le principal compte **882 Défini, 352 Prototype, zéro Intégré et 151 Validé** ; le registre complet **5 917 Défini  643 Prototype  zéro Intégré et 151 Validé**. L’[audit courant](qa/advance-tracking-current-final-01-audit.json) conserve **6 560 critères ouverts : 664 P0  5 782 P1 et 114 P2**.
+
+Les **1 177 tests natifs**, **29 captures DEV réellement relues** et **68 panneaux Excel ouverts** sont contrôlés. Les 38 contrôles du registre et la compilation de **137 modules** passent. Les [cinq parcours de production](qa/advance-tracking-production-final-02-report.json) passent **23 groupes**, avec [29 captures fraîches réellement ouvertes](qa/advance-tracking-production-final-02-visual-review.json) et 93 fichiers HTTP conformes au build. Le [rapport final](qa/advance-report.json) compose ces contrôles ; les builds Windows et le déploiement externe gardent leurs résultats distincts. Les 79 fichiers publics, les 31 autres classeurs, les 27 catalogues supplémentaires et les 130 Validé antérieurs sont préservés.
+
+---
+
+# État de livraison — Continuation (historique)
 
 Le [lot Continuation](CONTINUATION.md) part de `5d933068`. Il apporte les dialogues à embranchements du briefing/audiences/preuve de Tali, les échanges contextuels entre équipiers, le catalogue accessible avec sources, l’alignement caméra et les pieds/ombres sur les surfaces praticables. Les Chroniques ME2/ME3 éligibles disposent de déplacements et de Charge dans leur arène ATB isolée.
 

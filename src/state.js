@@ -4,9 +4,12 @@ import { initialInventory, normalizeInventory } from './loadout.js';
 import { normalizeOperations, operationEffects, listOperations } from './operations.js';
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
-import { createStoryState, migrateStoryState } from './story.js';
+import { createStoryState, migrateStoryState, recordVisit } from './story.js';
 import { createAssignmentState, migrateAssignmentState } from './assignments.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
+import { createCampaignProgress, normalizeCampaignProgress, getCampaignMilestones } from './advance-progression.js';
+import { getDestinationAccess } from './advance-travel-access.js';
+import { createAdvanceFerosState, normalizeAdvanceFerosState, isAdvanceFerosUntouched, advanceFerosCompletionGate, ferosColonyReport } from './advance-feros.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -40,7 +43,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
     story: createStoryState(), missionProgress: createMissionProgress(), talents: createTalentState(),
-    assignments: createAssignmentState(),
+    assignments: createAssignmentState(), campaignProgress: createCampaignProgress(), advanceFeros: createAdvanceFerosState(),
     inventory: initialInventory(), operations: normalizeOperations(undefined), trackedOperation: null,
     logs: [{ title: 'Départ', text: 'Le Normandy fait route vers Eden Prime.' }],
     xp: 0, credits: 250, medigel: 4, upgrades: {}, paragon: 0, renegade: 0,
@@ -98,6 +101,72 @@ export function canStartEncounter(state, id) {
 export function addLog(state, title, text) {
   state.logs.unshift({ title: String(title).slice(0, 200), text: String(text).slice(0, 4000) });
   state.logs = state.logs.slice(0, 100);
+}
+
+/** A final dialogue confirmation authorizes departure once, with no reward. */
+export function confirmCampaignBriefing(state) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  if (current.zone !== 'normandy') return { ok: false, reason: 'Rejoignez le Normandy pour le briefing.' };
+  if (current.flags.briefed === true) return { ok: true, changed: false };
+  if (current.completed.length || current.cleared.length || current.story.visitedZones.includes('eden-prime'))
+    return { ok: false, reason: 'Le premier briefing n’est plus disponible.' };
+  state.flags = { ...current.flags, briefed: true };
+  addLog(state, 'Briefing du Normandy', 'Anderson confirme la récupération de la balise. Kaidan et Jenkins accompagneront Shepard sur Eden Prime.');
+  return { ok: true, changed: true };
+}
+
+/** Travel and the map share the same access explanation. No mutation happens
+ * before the full save and the current timed-mission boundary are validated. */
+export function canTravelCampaign(state, targetZone) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  return getDestinationAccess(current, targetZone, { unlocked: unlockedZones(current) });
+}
+
+/** Commit only after the visual transition is ready. Repeating the arrival
+ * cannot reset position, replay a receipt, or add a second journal entry. */
+export function travelCampaign(state, targetZone) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const access = getDestinationAccess(current, targetZone, { unlocked: unlockedZones(current) });
+  if (!access.ok) return access;
+  if (current.zone === targetZone) return { ok: true, changed: false, firstVisit: false };
+  const previousZone = current.zone;
+  const firstVisit = !current.story.visitedZones.includes(targetZone);
+  current.zone = targetZone;
+  current.position = null;
+  if (!recordVisit(current, targetZone)) return { ok: false, reason: 'Cette arrivée ne peut pas être enregistrée.' };
+  if (previousZone === 'eden-prime' && targetZone === 'normandy'
+    && current.completed.includes('eden-prime') && !current.campaignProgress.beaconReturned) {
+    current.campaignProgress.beaconReturned = true;
+    addLog(current, 'Vision de la balise', 'Après le contact avec la balise d’Eden Prime, Shepard et le commando ont rejoint le Normandy.');
+  }
+  if (previousZone === 'normandy' && ['therum', 'feros', 'noveria'].includes(targetZone)
+    && current.flags.spectre === true && current.campaignProgress.commandDestination === null) {
+    current.campaignProgress.commandDestination = targetZone;
+    addLog(current, 'Commandement du Normandy', `Première piste choisie : ${CHAPTERS[targetZone].name}. Les enquêtes de Thérum, Féros et Novéria restent accessibles sans ordre imposé.`);
+  }
+  if (targetZone === 'eden-prime' && firstVisit) addLog(current, 'Déploiement Eden Prime', 'Shepard, Kaidan et Jenkins ont débarqué sur Eden Prime. Le commando découvre les conséquences de l’attaque.');
+  if (!decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state: current }))
+    return { ok: false, reason: 'L’arrivée produirait une progression invalide.' };
+  state.zone = current.zone;
+  state.position = null;
+  state.story = current.story;
+  state.campaignProgress = current.campaignProgress;
+  state.logs = current.logs;
+  return { ok: true, changed: true, firstVisit };
+}
+
+export function trackCampaignMilestone(state, id = null) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  if (id !== null && !getCampaignMilestones(current).some(entry => entry.id === id && entry.status === 'active'))
+    return { ok: false, reason: 'Cette étape ne peut pas être suivie maintenant.' };
+  if (current.campaignProgress.trackedMilestone === id) return { ok: true, changed: false };
+  state.campaignProgress = { ...current.campaignProgress, trackedMilestone: id };
+  if (id !== null) state.trackedOperation = null;
+  return { ok: true, changed: true };
 }
 
 /** One authoritative transaction for the campaign's fixed supply containers. */
@@ -161,7 +230,16 @@ export function winEncounter(state, id) {
 export function completeZone(state, zone, choice = null) {
   if (state.zone !== zone || !objectiveReady(state, zone) || !canCompleteMission(state, zone)) return false;
   if (OWN(CHOICES, zone) ? !CHOICES[zone].includes(choice) : choice !== null && choice !== undefined) return false;
+  const legacyFeros = zone === 'feros' && isAdvanceFerosUntouched(state);
+  if (zone === 'feros' && !legacyFeros && !advanceFerosCompletionGate(state).ok) return false;
+  if (zone === 'feros' && !legacyFeros) {
+    const colony = ferosColonyReport(state);
+    if (colony.known && choice !== colony.completionChoice) return false;
+  }
   state.completed.push(zone);
+  // Preserve the historical native chapter boundary when none of the new
+  // Feros interactions has been started. Do not invent colonist outcomes.
+  if (legacyFeros) state.advanceFeros = { ...createAdvanceFerosState(), legacy: true };
   state.xp += CHAPTERS[zone].reward;
   state.credits += 180;
   state.medigel = Math.min(9, state.medigel + 2);
@@ -379,8 +457,16 @@ export function decodeSave(raw) {
       position, ending: input.ending, settings,
     };
     if (!validateProgression(state)) return null;
+    // Feros outcomes can make the Cipher discoverable before the chapter is
+    // turned in; story migration must validate that codex against those facts.
+    if (OWN(input, 'advanceFeros') && input.advanceFeros === undefined) return null;
+    state.advanceFeros = normalizeAdvanceFerosState(OWN(input, 'advanceFeros') ? input.advanceFeros : undefined, state);
+    if (!state.advanceFeros) return null;
     state.story = migrateStoryState(OWN(input, 'story') ? input.story : undefined, state);
     if (!state.story) return null;
+    if (OWN(input, 'campaignProgress') && input.campaignProgress === undefined) return null;
+    state.campaignProgress = normalizeCampaignProgress(OWN(input, 'campaignProgress') ? input.campaignProgress : undefined, state);
+    if (!state.campaignProgress) return null;
     state.assignments = migrateAssignmentState(OWN(input, 'assignments') ? input.assignments : undefined, state);
     if (!state.assignments) return null;
     state.inventory = normalizeInventory(OWN(input, 'inventory') ? input.inventory : undefined, state);

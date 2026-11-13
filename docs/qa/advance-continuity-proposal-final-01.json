@@ -1,0 +1,179 @@
+{
+  "baseCommit": "d2e8432ec4057890b6f86e42ce596f1ab5810148",
+  "generatedAt": "2026-11-13T15:07:29.872Z",
+  "scope": "Two complete ME1 regression QA criteria and two explicitly partial documentary continuities; no asset-status change.",
+  "records": [
+    {
+      "id": "QA-pouvoirs-par-episode",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : inspection native de tous les arbres et de chaque rang trainable pour les six classes et tous les équipiers ME1, puis comparaison des acteurs et commandes avant/après import et lancement d’un essai futur. Charge, Nova, camouflage tactique et omni-lame restent absents des commandes ME1 ; les ordres interdits sont refusés sans mutation. Cette QA porte sur les arbres actuellement implémentés dans l’adaptation, sans certifier les arbres originaux complets."
+      },
+      "implementationPaths": [
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js",
+        "src/chronicles.js",
+        "src/completion-persistence-campaign.js",
+        "tests/advance-continuity.test.js",
+        "scripts/advance-continuity-public-02.mjs"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-continuity-dev-02-report.json",
+        "docs/qa/advance-continuity-dev-02-visual-review.json",
+        "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Charge, Nova, camouflage et omni-lame hors ME1 par défaut.",
+        "exactDescription": "Inspecter tous les arbres de talents.",
+        "complete": true,
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Tous les arbres disponibles et chaque rang trainable des six classes et équipiers ME1 sont parcourus dans les tests natifs."
+        ],
+        "coveredClauses": [
+          "Charge, Nova, camouflage et omni-lame restent hors des acteurs, talents et commandes ME1 par défaut et après activation du contenu futur."
+        ],
+        "limitations": [
+          "Cette QA vérifie les règles de l’adaptation présente, pas la reproduction complète des arbres originaux."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-continuity-dev-02-report.json",
+          "docs/qa/advance-continuity-dev-02-visual-review.json",
+          "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+        ]
+      }
+    },
+    {
+      "id": "QA-regression-extension",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : un vrai bilan de fin ME1 est exporté dans l’interface à partir d’un pont natif conservant les seize décisions du parcours Féros public, puis importé dans la chronique ME2 et un véritable essai ATB ME2 est lancé. Les règles et commandes de toutes les classes/équipiers ME1 restent identiques dans les natifs ; le stockage ME1 témoin reste inchangé octet pour octet dans le parcours public. Aucun choix de modification des règles ME1 n’est introduit."
+      },
+      "implementationPaths": [
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js",
+        "src/chronicles.js",
+        "src/completion-persistence-campaign.js",
+        "tests/advance-continuity.test.js",
+        "scripts/advance-continuity-public-02.mjs"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-continuity-dev-02-report.json",
+        "docs/qa/advance-continuity-dev-02-visual-review.json",
+        "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Aucune modification des règles ME1 sans choix explicite.",
+        "exactDescription": "Activer un contenu futur ME2 expérimental.",
+        "complete": true,
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Import d’un bilan ME1 puis activation effective d’un essai tactique expérimental ME2 par les commandes publiques."
+        ],
+        "coveredClauses": [
+          "Les acteurs, statistiques, talents et commandes ME1 restent identiques avant/après le contenu futur ; les sauvegardes ME1 restent isolées."
+        ],
+        "limitations": [
+          "Le bilan est consultable et les essais sont indépendants ; aucune campagne ME2/ME3 jouable n’est annoncée."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-continuity-dev-02-report.json",
+          "docs/qa/advance-continuity-dev-02-visual-review.json",
+          "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+        ]
+      }
+    },
+    {
+      "id": "ME2-projet-lazare",
+      "proposedFields": {
+        "status": "Prototype",
+        "notesAppend": "Lot Advance : onglet Continuité consultable dans les périodes solo ME2 : identité, décisions et échanges provenant d’un vrai bilan exporté dans l’interface, avec conservation par période et distinction SR-1/SR-2. La continuité personnelle est explicitée. Le prologue et la reprise jouable de Shepard ne sont pas implémentés : fiche complète toujours ouverte."
+      },
+      "implementationPaths": [
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js",
+        "src/chronicles.js",
+        "src/completion-persistence-campaign.js",
+        "tests/advance-continuity.test.js",
+        "scripts/advance-continuity-public-02.mjs"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-continuity-dev-02-report.json",
+        "docs/qa/advance-continuity-dev-02-visual-review.json",
+        "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Continuité des choix importés explicitée.",
+        "exactDescription": "Prologue et reprise de Shepard.",
+        "complete": false,
+        "descriptionComplete": false,
+        "coveredDescriptionClauses": [
+          "Raccord documentaire des choix ME1 au contexte du retour de Shepard."
+        ],
+        "coveredClauses": [
+          "Les choix importés, leur origine et les données non fournies sont explicitement consultables."
+        ],
+        "limitations": [
+          "Le prologue et la reprise jouable de Shepard restent absents ; la description complète n’est pas satisfaite."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-continuity-dev-02-report.json",
+          "docs/qa/advance-continuity-dev-02-visual-review.json",
+          "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+        ]
+      }
+    },
+    {
+      "id": "ME3-survivant-de-virmire",
+      "proposedFields": {
+        "status": "Prototype",
+        "notesAppend": "Lot Advance : le dossier importé identifie le survivant de Virmire et conserve ses échanges ME1, sans inventer de romance ou de score de confiance. L’interface précise que la confiance et la présence ME3 restent indéterminées. Aucun retour de campagne jouable ni présence pilotée par relation ME3 n’est implémenté : fiche et critère complets toujours ouverts."
+      },
+      "implementationPaths": [
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js",
+        "src/chronicles.js",
+        "src/completion-persistence-campaign.js",
+        "tests/advance-continuity.test.js",
+        "scripts/advance-continuity-public-02.mjs"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-continuity-dev-02-report.json",
+        "docs/qa/advance-continuity-dev-02-visual-review.json",
+        "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Import et relation déterminent la présence.",
+        "exactDescription": "Retour d’Ashley ou Kaidan.",
+        "complete": false,
+        "descriptionComplete": false,
+        "coveredDescriptionClauses": [
+          "Survivant et échanges ME1 consultables avec alternatives Ashley/Kaidan."
+        ],
+        "coveredClauses": [
+          "Le choix de Virmire et les échanges réellement enregistrés sont conservés à l’import."
+        ],
+        "limitations": [
+          "La relation ME3 et la présence dans sa campagne ne sont pas simulées ; le critère et la description complets restent ouverts."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-continuity-dev-02-report.json",
+          "docs/qa/advance-continuity-dev-02-visual-review.json",
+          "docs/qa/advance-continuity-dev-02-actual-ui-me1-report-export.json"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "baseCommit": "d2e8432ec4057890b6f86e42ce596f1ab5810148",
+  "productionPending": true,
+  "scope": "Six critères fonctionnels P1 de dialogues ME1 adaptés ; descriptions, critères, sources, dépendances et statuts d’assets inchangés. Proposition gelée après DEV02 et revue réelle des six PNG ; production reste une phase ultérieure.",
+  "records": [
+    {
+      "id": "DIA-garrus-clinique",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : Graphe Garrus ME1 dédié : deux questions sur l’enquête et ses compétences, acceptation, refus et report explicites, reconsidération et sortie. Toutes les branches gardent une issue valide ; seule l’acceptation appelle le recrutement existant une fois, sans XP, crédit, moralité ou remplacement du groupe. Le gate natif commun gelé passe 1 177 tests ; DEV02 passe six groupes avec quatre exports et six captures réellement ouvertes et relues. Validation fonctionnelle du critère et de la description proposés ; productionPending:true. Textes français adaptés, sans certification artistique ni transcription 1:1."
+      },
+      "implementationPaths": [
+        "src/advance-dialogues.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+        "tests/advance-dialogues.test.js",
+        "docs/research/advance-dialogues.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Présentation de l’enquête et possibilité de recrutement.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Présentation de l’enquête sur Saren et des limites du SSC.",
+          "Possibilité effective d’accepter le recrutement existant, sans changer la composition ni les ressources."
+        ],
+        "exactCriterion": "Les embranchements gardent une issue valide.",
+        "complete": true,
+        "coveredClauses": [
+          "Toutes les branches de questions, refus, report, reconsidération, acceptation et sortie rejoignent un nœud valide ou le terrain.",
+          "Callbacks périmés et doubles acceptations refusés ; recrutement possible après l’audience."
+        ],
+        "limitations": [
+          "La clinique, son assaut, le parcours original complet et la transcription intégrale ne sont pas reconstruits.",
+          "Aucun statut d’asset n’est promu ; Fist reste ouvert."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+          "tests/advance-dialogues.test.js",
+          "docs/research/advance-dialogues.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-wrex-contrat",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : Graphe Wrex ME1 dédié : présentation du mercenaire, question sur son intérêt commun, refus et report distincts puis retour ou reconsidération. Le recrutement reste facultatif, unique et possible après l’audience ; aucune prime ou décision permanente de refus n’est inventée. Le gate natif commun gelé passe 1 177 tests ; DEV02 passe six groupes avec quatre exports et six captures réellement ouvertes et relues. Validation fonctionnelle du critère et de la description proposés ; productionPending:true. Textes français adaptés, sans certification artistique ni transcription 1:1."
+      },
+      "implementationPaths": [
+        "src/advance-dialogues.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+        "tests/advance-dialogues.test.js",
+        "docs/research/advance-dialogues.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Présentation du mercenaire et de son intérêt.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Wrex se présente comme mercenaire.",
+          "Ses intérêts communs avec l’enquête sont explicités et son recrutement est possible."
+        ],
+        "exactCriterion": "Respecter les options de refus ou report.",
+        "complete": true,
+        "coveredClauses": [
+          "Refus et report sont deux options distinctes avec leurs propres réponses.",
+          "Les deux branches permettent de quitter et de revenir accepter ultérieurement, y compris après l’audience, sans refus permanent inventé."
+        ],
+        "limitations": [
+          "Les scènes et lieux originaux du contrat ne sont pas reconstruits ; aucune scène ni issue de Fist n’est ajoutée.",
+          "Aucun statut d’asset n’est promu ; Fist reste ouvert."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+          "tests/advance-dialogues.test.js",
+          "docs/research/advance-dialogues.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-tali-vie-de-la-flotte",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : Les trois sujets Quariens/geth découvrent maintenant trois dossiers spécifiques, chacun seulement après sa lecture : pèlerinage, vie dans la Flotte et révolte geth. Le dossier général d’espèce quarian déjà acquis au recrutement est conservé pour préserver les anciennes validations. Aucun gain de combat ou de ressources. Le gate natif commun gelé passe 1 177 tests ; DEV02 passe six groupes avec quatre exports et six captures réellement ouvertes et relues. Validation fonctionnelle du critère et de la description proposés ; productionPending:true. Textes français adaptés, sans certification artistique ni transcription 1:1."
+      },
+      "implementationPaths": [
+        "src/story-data.js",
+        "src/story.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+        "tests/advance-dialogues.test.js",
+        "docs/research/advance-dialogues.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Conversation sur les Quariens et les geth.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Conversation sur les Quariens, leur pèlerinage et leur vie dans la Flotte.",
+          "Conversation sur la création et la révolte des geth."
+        ],
+        "exactCriterion": "Codex débloqué après le sujet abordé.",
+        "complete": true,
+        "coveredClauses": [
+          "Chaque sujet apprend seulement son dossier culturel ou historique correspondant : pèlerinage, vie dans la Flotte, Quariens/geth.",
+          "Les nouveaux dossiers sont absents avant lecture, uniques après lecture et persistants en export/import ; les dossiers forgés sans sujet sont refusés."
+        ],
+        "limitations": [
+          "L’entrée générale Quariens reste découverte au recrutement ; ce sont les trois nouveaux dossiers de sujet qui sont déverrouillés par les conversations.",
+          "Le texte complet et toutes les nuances de la scène originale restent à comparer.",
+          "Aucun statut d’asset n’est promu ; Fist reste ouvert."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+          "tests/advance-dialogues.test.js",
+          "docs/research/advance-dialogues.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-garrus-procedures",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : Les deux conseils procédure/résultats sont vérifiés après emplacement manuel ; le parcours public reprend réellement la partie et relit le bon conseil. Le choix est conservé et sa réécriture opposée refusée, sans score relationnel ni récompense supplémentaire. Le gate natif commun gelé passe 1 177 tests ; DEV02 passe six groupes avec quatre exports et six captures réellement ouvertes et relues. Validation fonctionnelle du critère et de la description proposés ; productionPending:true. Textes français adaptés, sans certification artistique ni transcription 1:1."
+      },
+      "implementationPaths": [
+        "src/story-data.js",
+        "src/story.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+        "tests/advance-dialogues.test.js",
+        "docs/research/advance-dialogues.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Discussion sur les limites du SSC.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Discussion sur les limites du SSC.",
+          "Shepard peut conseiller le respect des procédures ou la priorité aux résultats."
+        ],
+        "exactCriterion": "Mémoriser le conseil donné par Shepard.",
+        "complete": true,
+        "coveredClauses": [
+          "Les deux conseils sont stockés dans story.choices et survivent à une sauvegarde manuelle et à la reprise.",
+          "La conversation suivante reprend le conseil exact, refuse son remplacement par le conseil opposé et n’accorde aucune récompense."
+        ],
+        "limitations": [
+          "Les missions personnelles et toutes les conséquences des dialogues originaux ne sont pas reconstruites.",
+          "Aucun statut d’asset n’est promu ; Fist reste ouvert."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+          "tests/advance-dialogues.test.js",
+          "docs/research/advance-dialogues.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-kaidan-implants",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : Le dialogue ME1 L2/migraines conserve son contexte et apprend désormais le dossier L2 seulement après lecture. Tests et écran public vérifient l’absence de mélange avec les implants ME2 ; aucune pièce, aptitude ou ressource n’est attribuée. Le gate natif commun gelé passe 1 177 tests ; DEV02 passe six groupes avec quatre exports et six captures réellement ouvertes et relues. Validation fonctionnelle du critère et de la description proposés ; productionPending:true. Textes français adaptés, sans certification artistique ni transcription 1:1."
+      },
+      "implementationPaths": [
+        "src/story-data.js",
+        "src/story.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+        "tests/advance-dialogues.test.js",
+        "docs/research/advance-dialogues.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Dialogue autour de son passé biotique.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Kaidan parle de sa génération d’implants biotiques L2.",
+          "Les effets secondaires, notamment les migraines, rappellent son expérience de cette ancienne génération."
+        ],
+        "exactCriterion": "Pas de mélange avec les implants de ME2.",
+        "complete": true,
+        "coveredClauses": [
+          "Le sujet et le nouveau dossier ne lui attribuent que les implants L2.",
+          "Aucun implant ME2, génération ultérieure, nouvel équipement ou pouvoir n’est ajouté ; dossier appris après lecture seulement."
+        ],
+        "limitations": [
+          "Le passé biotique n’est pas doublé ou mis en scène intégralement ; les répliques restent concises.",
+          "Aucun statut d’asset n’est promu ; Fist reste ouvert."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+          "tests/advance-dialogues.test.js",
+          "docs/research/advance-dialogues.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-liara-archeologie",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : Les connaissances archéologiques restent limitées au stade joué : Liara après Thérum, Cipher après Féros, Vigil après Ilos. Les deux ordres de recrutement sont testés ; les écrans publics constatent les sujets absents avant leurs événements puis la révélation autorisée. Le gate natif commun gelé passe 1 177 tests ; DEV02 passe six groupes avec quatre exports et six captures réellement ouvertes et relues. Validation fonctionnelle du critère et de la description proposés ; productionPending:true. Textes français adaptés, sans certification artistique ni transcription 1:1."
+      },
+      "implementationPaths": [
+        "src/story-data.js",
+        "src/story.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-report.json",
+        "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+        "tests/advance-dialogues.test.js",
+        "docs/research/advance-dialogues.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Échange sur ses recherches prothéennes.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Liara expose ses recherches sur les vestiges prothéens après son sauvetage.",
+          "Les sujets Cipher et Vigil prolongent ses recherches seulement après les événements concernés."
+        ],
+        "exactCriterion": "Savoir limité au stade du récit.",
+        "complete": true,
+        "coveredClauses": [
+          "Aucune conversation Liara avant Thérum ; archéologie après Thérum.",
+          "Cipher après Féros et Vigil après Ilos, testés dans des ordres de recrutement précoce et tardif ; le public vérifie les sujets verrouillés puis déverrouillés."
+        ],
+        "limitations": [
+          "Les scènes, recherches et transcriptions complètes ne sont pas reconstruites ; les jalons de campagne du navigateur sont des fixtures déclarées.",
+          "Aucun statut d’asset n’est promu ; Fist reste ouvert."
+        ],
+        "evidence": [
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-report.json",
+          "docs/qa/advance-dialogues-public-dev-02-visual-review.json",
+          "tests/advance-dialogues.test.js",
+          "docs/research/advance-dialogues.md"
+        ]
+      }
+    }
+  ]
+}

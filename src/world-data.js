@@ -109,3 +109,13 @@ for (const suffix of ['encounter-1', 'encounter-2', 'boss']) {
 }
 
 export const WORLD_ZONE_IDS = Object.keys(WORLD_ZONES);
+
+// Arrivals describe this adaptation's existing deployment/extraction links.
+// A return places the squad inside the SR-1 hangar approach, clear of the exit.
+export function getWorldArrival(zoneId, fromZone = null) {
+  const zone = WORLD_ZONES[zoneId];
+  if (!zone) return null;
+  if (zoneId === 'normandy' && fromZone && fromZone !== 'normandy' && WORLD_ZONES[fromZone])
+    return { x: 0, z: 12 };
+  return { ...zone.spawn };
+}

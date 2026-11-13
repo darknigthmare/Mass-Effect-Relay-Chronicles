@@ -1,0 +1,195 @@
+{
+  "baseCommit": "d2e8432ec4057890b6f86e42ce596f1ab5810148",
+  "records": [
+    {
+      "id": "SYS-carte-galactique",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : annuaire amas → système → planète consultable depuis le Normandy. Les destinations verrouillées restent inspectables et exposent les étapes manquantes précises ; seul le déploiement est désactivé. Les 1 024 combinaisons de progression/drapeaux et neuf destinations concordent avec unlockedZones sans mutation. DEV03 et revue de six captures réussis sur les sources gelées ; aucune promotion d’asset ni carte galactique originale exhaustive revendiquée."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/state.js",
+        "src/advance-travel-access.js",
+        "src/advance-travel-ui.js",
+        "src/local-map.css"
+      ],
+      "evidence": [
+        "tests/advance-world.test.js",
+        "docs/research/advance-world.md",
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-world-dev-03-report.json",
+        "docs/qa/advance-world-dev-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Destinations verrouillées expliquées.",
+        "exactDescription": "Navigation hiérarchique depuis le Normandy.",
+        "complete": true,
+        "descriptionComplete": true,
+        "coveredClauses": [
+          "Destinations verrouillées consultables avec toutes leurs étapes manquantes expliquées, sans accorder l’accès au voyage."
+        ],
+        "coveredDescriptionClauses": [
+          "Navigation hiérarchique depuis le Normandy, par amas puis système puis destination."
+        ],
+        "limitations": [
+          "Les lieux, distances et relations spatiales restent ceux de l’adaptation ME1 en sprites 2D et décors 3D ; aucune carte originale ni fidélité artistique intégrale n’est certifiée.",
+          "Les étapes antérieures et positions initiales sont des fixtures natives déclarées, importées par les commandes publiques ; elles ne sont pas présentées comme parcourues dans le navigateur."
+        ],
+        "evidence": [
+          "tests/advance-world.test.js",
+          "docs/research/advance-world.md",
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-world-dev-03-report.json",
+          "docs/qa/advance-world-dev-03-visual-review.json"
+        ]
+      }
+    },
+    {
+      "id": "SYS-carte-locale",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : carte et radar partagent le sol d’Eden et les empreintes réelles des collisions, avec le dégagement des pieds. Les numéros restent stables entre filtres ; un repère masqué garde une explication de son suivi. Le vrai désamorçage de la première charge fait suivre la seconde étape. Les cadrages historiques des cartes sans plan détaillé et les autres interactions sont conservés ; contrôles natifs et DEV03 réussis. Les contours restent une adaptation, sans géométrie canonique nouvelle."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/world.js",
+        "src/local-map.js",
+        "src/local-map.css",
+        "src/advance-travel.js",
+        "src/advance-travel-ui.js",
+        "src/level-map-render.js"
+      ],
+      "evidence": [
+        "tests/advance-world.test.js",
+        "docs/research/advance-world.md",
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-world-dev-03-report.json",
+        "docs/qa/advance-world-dev-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Contours et position concordent avec le sol praticable ; filtres et suivi fonctionnent après une étape. Les autres cartes et opérations conservent leurs interactions.",
+        "exactDescription": "Carte et radar représentent les clairières, couloirs et repères d’Eden Prime, avec objectifs numérotés, filtres et suivi.",
+        "complete": true,
+        "descriptionComplete": true,
+        "coveredClauses": [
+          "Contours, position du joueur et empreintes d’obstacles utilisent la même projection que le sol praticable de l’adaptation.",
+          "Filtres et suivi conservent leurs effets après le désamorçage réel d’une charge et avancent vers l’étape suivante.",
+          "Les cartes des huit destinations et du Normandy gardent leurs interactions ; les régressions des opérations et contacts sont couvertes par le contrôle natif global 03."
+        ],
+        "coveredDescriptionClauses": [
+          "Carte et radar représentent les clairières, couloirs et repères d’Eden Prime à partir du même plan de sol.",
+          "Objectifs numérotés, filtres et suivi sont présents, lisibles et utilisables après une étape."
+        ],
+        "limitations": [
+          "Les lieux, distances et relations spatiales restent ceux de l’adaptation ME1 en sprites 2D et décors 3D ; aucune carte originale ni fidélité artistique intégrale n’est certifiée.",
+          "Les étapes antérieures et positions initiales sont des fixtures natives déclarées, importées par les commandes publiques ; elles ne sont pas présentées comme parcourues dans le navigateur."
+        ],
+        "evidence": [
+          "tests/advance-world.test.js",
+          "docs/research/advance-world.md",
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-world-dev-03-report.json",
+          "docs/qa/advance-world-dev-03-visual-review.json"
+        ]
+      }
+    },
+    {
+      "id": "QA-sortie-bidirectionnelle",
+      "proposedFields": {
+        "status": "Prototype",
+        "notesAppend": "Lot Advance : huit paires réelles Normandy ↔ destination sont parcourues dans les deux sens via les contrôles publics en DEV03 ; chaque arrivée concorde avec son repère de carte et aucune boucle immédiate ne se produit. Le test natif vérifie un chemin sur le sol dressé de chaque arrivée à son extraction, ainsi que l’effacement des entrées et interactions en attente. La description globale chaque liaison reste non couverte : Conduit scénaristique à sens unique et liaisons futures non vérifiés. Critère partiel, sans retour contraire au récit ni validation générale."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/state.js",
+        "src/world.js",
+        "src/world-data.js"
+      ],
+      "evidence": [
+        "tests/advance-world.test.js",
+        "docs/research/advance-world.md",
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-world-dev-03-report.json",
+        "docs/qa/advance-world-dev-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Entrée correcte, aucune boucle instantanée.",
+        "exactDescription": "Traverser chaque liaison dans les deux sens.",
+        "complete": false,
+        "descriptionComplete": false,
+        "coveredClauses": [
+          "Huit paires existantes de déploiement et extraction : entrée attendue et absence de boucle instantanée."
+        ],
+        "coveredDescriptionClauses": [
+          "Traversée des huit liaisons réversibles actuelles entre le Normandy et les destinations, dans les deux sens."
+        ],
+        "limitations": [
+          "Les lieux, distances et relations spatiales restent ceux de l’adaptation ME1 en sprites 2D et décors 3D ; aucune carte originale ni fidélité artistique intégrale n’est certifiée.",
+          "Les étapes antérieures et positions initiales sont des fixtures natives déclarées, importées par les commandes publiques ; elles ne sont pas présentées comme parcourues dans le navigateur.",
+          "La description globale chaque liaison n’est pas entièrement prouvée : le Conduit narratif est à sens unique et les liaisons futures sont hors parcours."
+        ],
+        "evidence": [
+          "tests/advance-world.test.js",
+          "docs/research/advance-world.md",
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-world-dev-03-report.json",
+          "docs/qa/advance-world-dev-03-visual-review.json"
+        ]
+      }
+    },
+    {
+      "id": "QA-fuite-et-reentree",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Advance : compteur public de huit secondes de terrain, position de repli sûre hors de tous les contacts et refus explicite d’une réentrée prématurée. En DEV03, le contact est refusé après 4,867 secondes de terrain avec 3,133 secondes restantes ; deux exports restent identiques durant une attente explicite de 8 500 ms en pause, puis le combat reprend naturellement. La frontière native 7,999/8 s et 479/480 pas de 1/60 s est testée. Règle de session adaptée à l’ATB ; persistance du délai après quitter/recharger et lisibilité sous spam de notifications non certifiées."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/world.js",
+        "src/completion-world.js",
+        "src/advance-travel.js",
+        "src/advance-travel-ui.js"
+      ],
+      "evidence": [
+        "tests/advance-world.test.js",
+        "docs/research/advance-world.md",
+        "docs/qa/advance-integration-final-03-report.json",
+        "docs/qa/advance-world-dev-03-report.json",
+        "docs/qa/advance-world-dev-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Délai et position évitent une boucle de combat.",
+        "exactDescription": "Fuir puis revenir près de l’ennemi.",
+        "complete": true,
+        "descriptionComplete": true,
+        "coveredClauses": [
+          "La position de repli est praticable et située à au moins cinq unités de tous les contacts.",
+          "Le contact concerné refuse la réentrée avant les huit secondes de terrain et les menus suspendent ce délai.",
+          "Une vraie réentrée se produit après expiration naturelle, sans boucle immédiate ni injection d’horloge, de cadence ou d’état privé."
+        ],
+        "coveredDescriptionClauses": [
+          "Fuite réelle après préparation naturelle des jauges, puis retour près du même ennemi par de vraies commandes clavier adaptatives et réentrée naturelle."
+        ],
+        "limitations": [
+          "Les lieux, distances et relations spatiales restent ceux de l’adaptation ME1 en sprites 2D et décors 3D ; aucune carte originale ni fidélité artistique intégrale n’est certifiée.",
+          "Les étapes antérieures et positions initiales sont des fixtures natives déclarées, importées par les commandes publiques ; elles ne sont pas présentées comme parcourues dans le navigateur.",
+          "Le délai est limité à la session ; sa persistance après quitter/recharger n’est pas revendiquée.",
+          "Les appuis E volontairement répétés empilent des notifications dans la capture finale ; cette lisibilité sous spam est exclue."
+        ],
+        "evidence": [
+          "tests/advance-world.test.js",
+          "docs/research/advance-world.md",
+          "docs/qa/advance-integration-final-03-report.json",
+          "docs/qa/advance-world-dev-03-report.json",
+          "docs/qa/advance-world-dev-03-visual-review.json"
+        ]
+      }
+    }
+  ],
+  "scope": "Trois fermetures fonctionnelles de l’adaptation ME1 ; une QA de liaisons avancée mais partielle. Aucun assetStatus, critère, dépendance, priorité, source ou période n’est modifié."
+}

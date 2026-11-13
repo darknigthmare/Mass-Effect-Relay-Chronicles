@@ -1,3 +1,11 @@
+# Progression et conséquences — Advance
+
+Le journal suit les jalons et le premier départ choisi, les recrutements de Garrus et Wrex ont des branches de refus/report, et les sujets de Tali et Kaidan ouvrent leurs dossiers dédiés. Les cartes expliquent les prérequis et représentent les obstacles ; le repli affiche son délai de terrain. Féros conserve les seize interventions, le Cipher et le sort de Shiala, puis le bilan de fin peut être consulté dans les Chroniques ME2/ME3 autorisées.
+
+Le suivi de campagne reste distinct des assignations. Les décisions civiles portent sur une cible présente et leurs compteurs sont dérivés des actes enregistrés ; un interlocuteur tué ou encore sous influence ne propose pas sa remise de quête. Les vieux bilans sans détail restent explicitement inconnus. Les dossiers des Chroniques ne donnent aucun équipement, pouvoir ou présence future à ME1. Voir [périmètre et preuves](ADVANCE.md).
+
+---
+
 # Suite jouable — Continuation
 
 Le [lot Continuation](CONTINUATION.md) ajoute au socle des graphes de dialogue à questions/tons, des échanges de terrain entre équipiers actifs, le catalogue documentaire des œuvres et les crédits sourcés. Les marqueurs d’échanges entendus utilisent le budget de sauvegarde existant ; aucun personnage absent ou mort ne reste affiché après un changement de groupe.
