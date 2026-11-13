@@ -1,20 +1,20 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-11-09** · Version 0.3.0
+Mise à jour : **2026-11-13** · Version 0.3.0
 
 Ce catalogue contient **1 385 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
-- [Générateur initial](../scripts/build-workbook.mjs) ; Horizon utilise une [mise à jour OpenXML ciblée](../scripts/horizon-update-workbook.mjs), suivie d’une vérification indépendante et d’un rendu, pour préserver les anciennes cellules et les styles.
-- [Revue actuelle des 52 panneaux ciblés](qa/horizon-workbook-visual-report.json) · [Preuves de livraison](qa/horizon-report.json). Les aperçus et rapports des lots précédents restent historiques.
+- [Générateur initial](../scripts/build-workbook.mjs) ; le lot P0/P1 utilise une [mise à jour OpenXML ciblée](../scripts/priority-update-workbook.mjs), suivie d’une vérification indépendante et d’un rendu, pour préserver les anciennes cellules et les styles.
+- [Revue actuelle des 73 panneaux ciblés](qa/priority-workbook-visual-report.json) · [Preuves de livraison](qa/priority-report.json). Les aperçus et rapports des lots précédents restent historiques.
 
 ## État réel
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 980 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 399 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 962 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 417 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 3 | Présent dans le jeu avec chemin et dépendances vérifiés. |
 | Validé | 3 | Intégré et contrôlé avec preuve de test. |
 
@@ -37,9 +37,9 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Exploration | 9 zones jouables : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée ; six disposent d’un parcours étendu à cinq secteurs | 8 destinations distinctes ; la Citadelle revient sous deux états. Les 100 sous-zones et 91 liaisons du catalogue restent un plan à produire. |
 | Personnages | 8 identités dans les données : Shepard, Ashley, Kaidan, Jenkins, Garrus, Tali, Wrex et Liara | Ce nombre inclut Shepard et Jenkins ; il ne désigne pas huit compagnons permanents. Poses et costumes définitifs non validés. |
 | Dossier Shepard | Deux apparences, trois origines, trois profils psychologiques et atelier avec préréglages de visage, couleurs et équipement sauvegardés | Portrait de conception et cosmétiques partagés avec les sprites ; morphing facial 3D, réactions narratives complètes et costumes exacts restent à produire. |
-| Combat | 21 rencontres de campagne et 5 rencontres annexes possibles, commandes ATB | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
+| Combat | 21 rencontres de campagne et 5 rencontres annexes possibles, commandes ATB, distances et déplacements tactiques, réservations et ordres coordonnés ME1 | Adaptation de conception ; elle ne reproduit pas les combats originaux à l’identique. Les étapes narratives du catalogue sont distinctes de ces rencontres. |
 | Codex | 16 entrées à découverte progressive avec recherche et 8 dossiers de reconnaissance ME1 (quatre coques, quatre faunes) | Les entrées dépendant de Liara, Féros, Virmire et Ilos sont conditionnées aux événements connus. Ne représente pas le codex complet de Mass Effect. |
-| Boss | Saren, Bénézia, Thorien et Saren final : quatre familles de quatre poses fixes | Seize dessins de prototype ; phases, mise en scène originale, directions et cycles complets restent à produire. |
+| Boss | Saren, Bénézia, Thorien et Saren final : quatre familles de quatre poses fixes ; Bénézia reçoit trois vagues protectrices et le Thorien six nœuds avec renforts | Phases ATB partielles avec budget partagé et une victoire unique ; séquences originales, anatomie, directions et cycles complets restent à vérifier ou produire. |
 | PNJ | PNJ historiques et Frontier conservés ; Fai Dan, Arcelia, Macha et Davin à Féros ; Pallin, Harkin, Barla Von et Chloé Michel à la Citadelle | Huit nouveaux corps fixes Horizon ; Jenkins et Joker conservent leurs usages antérieurs. Présence conditionnée à ME1 et aux événements. Quêtes et dialogues complets restent à réaliser. |
 | Conversations | Vingt-cinq interlocuteurs et cinquante sujets : treize au Normandy, quatre à Novéria, quatre à Féros et quatre à la Citadelle | Textes français réécrits, sans doublage. Jenkins avant Eden Prime ; Novéria après la Citadelle. Dialogues complets et conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | 15 quêtes annexes : trois historiques et 12 opérations à la Citadelle et Féros, avec 46 étapes | Trois assignations historiques et douze opérations supplémentaires, dont les varrens de Davin. Quatre scans de veilleurs, dialogues réécrits, cartes adaptées, cinq combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire. Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
@@ -83,24 +83,25 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Décors | 35 | 31 | 4 | 0 | 0 | Architecture, matières et cadrages |
 | Props | 54 | 52 | 2 | 0 | 0 | Objets de décor et interactions |
 | Ennemis et boss | 39 | 17 | 22 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
-| Missions | 63 | 42 | 21 | 0 | 0 | Étapes de l’intrigue principale |
+| Missions | 63 | 37 | 26 | 0 | 0 | Étapes de l’intrigue principale |
 | Secondaires et DLC | 108 | 50 | 58 | 0 | 0 | Missions annexes et extensions de ME1 |
 | Choix et relations | 34 | 31 | 0 | 3 | 0 | Conséquences persistantes et relations |
 | Dialogues | 36 | 24 | 12 | 0 | 0 | Situations de dialogue et conditions |
 | Cinématiques | 26 | 26 | 0 | 0 | 0 | Séquences et mise en scène |
 | Armes | 48 | 24 | 24 | 0 | 0 | Familles, modèles et comportements |
 | Armures et équipement | 64 | 24 | 40 | 0 | 0 | Protections, modules et consommables |
-| Pouvoirs | 30 | 17 | 13 | 0 | 0 | Capacités canoniques et traduction ATB |
+| Pouvoirs | 30 | 13 | 17 | 0 | 0 | Capacités canoniques et traduction ATB |
 | Movesets alliés | 50 | 50 | 0 | 0 | 0 | Actions et contraintes par équipier |
-| Movesets ennemis | 75 | 75 | 0 | 0 | 0 | Télégraphes, actions et réponses tactiques |
+| Movesets ennemis | 75 | 72 | 3 | 0 | 0 | Télégraphes, actions et réponses tactiques |
 | Animations | 63 | 40 | 23 | 0 | 0 | Bibliothèque d’animation pour sprites |
 | Sprites | 85 | 21 | 64 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 65 | 7 | 55 | 0 | 3 | Interface et règles de jeu |
-| QA | 64 | 53 | 11 | 0 | 0 | Critères de test et contrôles de fidélité |
+| Systèmes et UI | 65 | 4 | 58 | 0 | 3 | Interface et règles de jeu |
+| QA | 64 | 50 | 14 | 0 | 0 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 57 | 0 | 0 | 0 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 385** | **980** | **399** | **3** | **3** | |
+| **Total** | **1 385** | **962** | **417** | **3** | **3** | |
+
 
 ## Lire une fiche
 
@@ -177,9 +178,9 @@ Les dialogues, la topologie complète, les missions secondaires, les DLC, les ch
 
 ## Mettre à jour le suivi
 
-Le générateur initial reconstruit le classeur complet ; il ne doit pas écraser des décisions prises dans Excel. Le pipeline Horizon utilise un plan de champs et d’identifiants explicite, puis modifie seulement les cellules autorisées et ajoute trois lignes Sprites. La vérification native compare les valeurs, formules, styles, tableaux, validations et identités avant et après.
+Le générateur initial reconstruit le classeur complet ; il ne doit pas écraser des décisions prises dans Excel. Le pipeline P0/P1 applique un plan explicite à 51 fiches et 124 cellules existantes. Aucun identifiant, critère d’acceptation, priorité, statut d’asset ou source n’est modifié ; 18 statuts passent de Défini à Prototype. Les styles restent identiques, avec 274 formules, 26 tableaux et 130 règles de validation ou de mise en forme conditionnelle conservés.
 
-Les [sources du pipeline](../scripts/horizon-update-workbook.mjs), la [vérification indépendante](../scripts/horizon-verify-workbook.py) et la [publication conditionnée aux preuves](../scripts/horizon-finalize-tracking.mjs) décrivent ce lot précis. Leurs hypothèses et leurs preuves ne doivent pas être réutilisées comme générateur générique pour un futur lot.
+Les [sources du pipeline](../scripts/priority-update-workbook.mjs), la [vérification indépendante](../scripts/priority-verify-workbook.py) et la [publication conditionnée aux preuves](../scripts/priority-finalize-tracking.mjs) décrivent ce lot précis. Les 73 panneaux ont été réellement ouverts et revus par six agents. Le pipeline Horizon reste historique ; ces plans ciblés ne sont pas des générateurs génériques pour les prochains lots.
 
 Le runtime `@oai/artifact-tool`, indiqué par `CODEX_PRIMARY_RUNTIME_NODE_MODULES`, sert à importer, calculer et rendre les panneaux de revue. La sonde de changement de statut est restaurée en mémoire et n’est jamais exportée. Microsoft Excel n’a pas été lancé.
 

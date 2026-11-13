@@ -1,0 +1,146 @@
+{
+  "scope": "Propositions de suivi racine : horloge, focus, sauvegardes, journal et comparatifs. Publication conditionnée aux preuves natives et publiques courantes ; aucun statut avancé proposé.",
+  "records": [
+    {
+      "id": "SYS-atb-actif",
+      "proposedFields": {
+        "description": "Simulation à sous-pas fixes de 1/60 s, indépendante du nombre d’images de rendu pendant le temps de premier plan.",
+        "notes": "La cadence de simulation conserve le temps ATB, le refroidissement et les déplacements aux cadences d’appel contrôlées 10/20/60/144 Hz dans les bancs natifs. Une seule soumission de rendu par image ; cela ne mesure pas les FPS matériels. Les menus, le chargement et la perte du focus arrêtent le temps de jeu. Une interruption supérieure à deux secondes est abandonnée sans rattrapage ; aucune performance GPU générale n’est certifiée."
+      },
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs"
+      ]
+    },
+    {
+      "id": "SYS-atb-attente",
+      "proposedFields": {
+        "notes": "Les acteurs, ennemis, refroidissements et effets utilisent les mêmes sous-pas de simulation. Une jauge prête suspend le combat. La réservation volontaire d’une jauge (sans dépense) permet aux autres de se charger, en laissant le temps et les ennemis avancer ; libérer les réservations ou annuler le brouillon rend la décision. Portée et coordination restent des mécanismes ATB adaptés."
+      },
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js",
+        "src/combat.js",
+        "src/tactical-positions.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs",
+        "tests/tactical-combat.test.js"
+      ]
+    },
+    {
+      "id": "QA-cadence-variable",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/simulation-clock.js",
+        "gameKey": "createSimulationClock",
+        "notes": "Bancs natifs exécutés : mêmes résultats ATB/refroidissement à 10/20/60/144 appels/s ; déplacement WorldView identique sur trois secondes et une soumission de rendu par image. Les interruptions longues sont abandonnées et le focus est traité séparément. Les cadences d’appel contrôlées ne sont pas une mesure matérielle ni une validation des cadences historiques exactes 30/60/120 FPS."
+      },
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs"
+      ]
+    },
+    {
+      "id": "QA-perte-du-focus",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/main.js",
+        "gameKey": "pauseForInterruption",
+        "notes": "Le changement réel d’onglet et la perte du focus mettent la campagne en pause, libèrent touches physiques/tactiles/analogiques et réinitialisent l’horloge. Les menus et chargements réinitialisent la reprise ; aucun rattrapage des jauges ou du déplacement n’est prévu. Les parcours publics vérifient exploration puis combat actif ; le comportement de chaque plateforme physique reste à contrôler."
+      },
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs"
+      ]
+    },
+    {
+      "id": "SYS-sauvegarde-automatique",
+      "proposedFields": {
+        "notes": "Les sous-états missionProgress et talents sont reconstruits et contrôlés à l’import. Seule l’absence du champ migre ; un champ présent invalide est refusé. Les détails de missions déjà terminées restent explicitement inconnus (legacy-complete), sans désamorçages ou réparations inventés. Les rangs des talents et les formations d’armure utilisent le même budget ; les sauvegardes de combat restent interdites."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/main.js",
+        "src/mission-progress.js",
+        "src/campaign-talents.js"
+      ],
+      "evidence": [
+        "tests/state.test.js",
+        "tests/mission-progress.test.js",
+        "tests/campaign-talents.test.js"
+      ]
+    },
+    {
+      "id": "SYS-journal-de-mission",
+      "proposedFields": {
+        "notesAppend": "Le journal affiche maintenant aussi l’état réel des objectifs chronométrés d’Eden Prime et d’Ilos, les réparations de MIRA, les étapes traitées, le délai restant et la reprise après échec. Les chapitres, les douze opérations annexes et ces sous-objectifs restent des niveaux de suivi distincts ; aucune quête supplémentaire n’est déduite du nombre de dispositifs."
+      },
+      "implementationPaths": [
+        "src/mission-progress-ui.js",
+        "src/mission-progress.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/mission-progress.test.js",
+        "scripts/priority-objectives-public.mjs"
+      ]
+    },
+    {
+      "id": "CUST-UI-comparison",
+      "proposedFields": {
+        "notesAppend": "Les maîtrises de talents modifient désormais aussi le multiplicateur réel des tirs. Les comparatifs de dotation et d’atelier affichent ×avant → ×après, y compris quand un changement de famille d’arme retire une maîtrise ; la consultation reste sans mutation ni réservation."
+      },
+      "implementationPaths": [
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/customization-ui.js",
+        "src/campaign-talents.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "tests/customization-comparison.test.js",
+        "scripts/priority-talents-public.mjs"
+      ]
+    },
+    {
+      "id": "CUST-QA-stats",
+      "proposedFields": {
+        "notesAppend": "Les maîtrises de talents modifient désormais aussi le multiplicateur réel des tirs. Les comparatifs de dotation et d’atelier affichent ×avant → ×après, y compris quand un changement de famille d’arme retire une maîtrise ; la consultation reste sans mutation ni réservation."
+      },
+      "implementationPaths": [
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/customization-ui.js",
+        "src/campaign-talents.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "tests/customization-comparison.test.js",
+        "scripts/priority-talents-public.mjs"
+      ]
+    }
+  ],
+  "assetStatusesPreserved": true
+}

@@ -2,7 +2,15 @@
 
 Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de trois et commandes ATB**, dans une mise en scène inspirée des JRPG sur PlayStation.
 
-**Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 14 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
+**Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 15 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
+
+## Priorités de gameplay P0/P1
+
+Le [lot de priorités](docs/PRIORITY_GAMEPLAY.md) ajoute des objectifs persistants : quatre charges à désamorcer à Eden Prime, trois stations de MIRA et l’activation puis la fenêtre du Conduit. La campagne ME1 utilise aussi des distances tactiques, le déplacement des combattants et des ordres coordonnés. En mode Attente, **Réserver la jauge** laisse agir les ennemis pendant que les autres équipiers se préparent ; le brouillon peut être annulé sans dépense.
+
+**Pause → Talents** donne accès à neuf définitions adaptées à la classe et à l’équipier. Le budget est partagé avec les formations d’armure ; Immunité, Atténuation et Montée d’adrénaline ME1 se débloquent selon leurs prérequis. Bénézia et le Thorien disposent de séquences par vagues ou nœuds, avec budget réparti et victoire finale unique. Les Chroniques conservent leurs règles propres.
+
+La navigation accepte une manette standard, un clavier à l’écran et des indications liées à la commande utilisée. L’horloge conserve le temps de premier plan à basse cadence et suspend la simulation à la perte du focus. Les nouvelles mécaniques restent des prototypes ATB : les arbres, phases, durées et parcours originaux complets ne sont pas certifiés 1:1. Le [registre des P0/P1](docs/PRIORITIES.md) conserve les critères encore ouverts.
 
 ## Horizon : faune, flotte et grands parcours
 
@@ -75,11 +83,12 @@ Le [rapport initial de livraison 0.3.0](docs/qa/v0.3.0-report.json) conserve les
 | Carte locale | M |
 | Carte galactique | G au Normandy après le briefing |
 | Pause / fermer un menu | Échap |
+| Manette standard | Stick : déplacement ; A/Croix : valider ; B/Rond : retour ; Start : pause ; LB/RB : équipier ; RT : courir |
 | Sélectionner un équipier en combat | 1 / 2 / 3 |
 | Tir rapide d’un équipier prêt | Espace |
 | Pouvoir ou action ciblée | Choisir une commande, puis une cible |
 
-En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. En mode **Actif**, les jauges continuent. La pause arrête aussi les recharges et la chaleur. Les options proposent trois difficultés, le volume, des transitions réduites et du texte agrandi.
+En mode **Attente**, le temps se suspend lorsqu’un allié peut agir. Réserver volontairement une jauge relance la simulation pour attendre les autres ; les ennemis peuvent agir pendant cette attente. En mode **Actif**, les jauges continuent. La pause arrête aussi les recharges et la chaleur. Les options proposent trois difficultés, le volume, des transitions réduites et du texte agrandi.
 
 ## Personnaliser Shepard
 
@@ -146,14 +155,14 @@ Le cumul atteint **498 références et 280 exercices partiels**. Les restriction
 ## Contenu effectivement présent
 
 - **9 zones 3D**, dont deux états de la Citadelle : Normandy, Eden Prime, Citadelle, Thérum, Féros, Novéria, Virmire, Ilos et Citadelle assiégée.
-- **8 étapes de campagne**, **21 rencontres de campagne**, **63 points de mission**, **9 emplacements de conversation conditionnels** au Normandy et **4 contacts des assignations historiques** à la Citadelle, complétés par les marqueurs des nouvelles opérations.
+- **8 étapes de campagne**, **21 rencontres de campagne**, **63 points de mission**, **25 emplacements de conversation conditionnels** au Normandy, à Novéria, Féros et à la Citadelle et **4 contacts des assignations historiques** à la Citadelle, complétés par les marqueurs des nouvelles opérations.
 - Shepard et six compagnons permanents possibles, avec Jenkins au départ ; **6 classes** pour Shepard.
 - Recrutement, choix de deux compagnons, expérience, niveaux, crédits et calibrations. Inventaire partagé de 150 objets, 52 références achetables, neuf emplacements par personnage, formations d’armure explicites et effets d’équipement en combat.
 - Tirs à chauffe, couverture, pouvoirs biotiques, technologie, attaques organiques, états temporaires et soin.
 - Décisions enregistrées pour Féros, la reine rachni, Virmire et le Conseil.
 - Journal, 16 entrées de codex à découverte progressive avec recherche, carte galactique, radar, carte locale et sauvegarde avec import/export.
 - Conversations avec Nihlus, Joker, Chakwas et les six compagnons, selon leur recrutement, leur survie et les événements connus. Le conseil donné à Garrus est mémorisé et repris dans un échange ultérieur.
-- Quatorze assignations : Retour à la maison, Affaire familiale et Le Fan sont conservées ; onze opérations supplémentaires ajoutent 43 étapes à la Citadelle et sur Féros, avec quatre combats annexes. Le journal conserve étapes, choix, conditions et récompenses uniques.
+- Quinze assignations : Retour à la maison, Affaire familiale et Le Fan sont conservées ; douze opérations supplémentaires ajoutent 46 étapes à la Citadelle et sur Féros, avec cinq combats annexes. Le journal conserve étapes, choix, conditions et récompenses uniques.
 - Atlas HD du commando, d’ennemis, de boss, de PNJ, d’objets et de véhicules ; 16 images de marche pour chaque apparence de Shepard et quatre poses de combat pour chacune des deux apparences.
 - Ambiances et effets générés localement par Web Audio.
 
@@ -163,7 +172,7 @@ Six emplacements de sauvegarde manuelle sont accessibles depuis le titre et la p
 
 À la Citadelle, Garrus et Wrex peuvent être recrutés immédiatement ou lors d’un retour après le Conseil. Les preuves de Tali suffisent à obtenir l’audience. Le recrutement ne remplace pas automatiquement le commando sélectionné. Au Normandy, les compagnons disponibles sont stationnés à leur emplacement de conversation ; les mêmes échanges sont accessibles depuis le menu Commando.
 
-Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des opérations et des équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille cette livraison ; le [complément équipement](docs/research/loadout-extension-sources.md) conserve ses 48 objets et ajoute quatre outils, les seconds ports de mods et la migration des anciennes parties. Les véhicules servent actuellement de décor. Les autres missions annexes, DLC, romances, dialogues complets et campagnes intégrales ME2/ME3/Andromeda restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
+Les assignations utilisent des dialogues concis et des cartes condensées ; les variantes et contrôles de persuasion complets restent à reconstituer. Les trois premières conservent leur récompense de 50 XP. Les valeurs des opérations et des équipements sont des réglages de l’adaptation ATB. La [note de version 0.2.0](docs/RELEASE_0.2.0.md) détaille cette livraison ; le [complément équipement](docs/research/loadout-extension-sources.md) conserve ses 48 objets et ajoute quatre outils, les seconds ports de mods et la migration des anciennes parties. Le Mako est pilotable à Thérum ; les autres véhicules et projections de vaisseaux restent décoratifs ou documentaires. Les autres missions annexes, DLC, romances, dialogues complets et campagnes intégrales ME2/ME3/Andromeda restent à réaliser. Le [suivi de fidélité](docs/FIDELITY.md) distingue les fonctions livrées des références et contenus encore nécessaires.
 
 ## Chroniques indépendantes
 
@@ -197,7 +206,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 - [Registre des assets et limites artistiques](docs/ASSETS.md).
 - [État de livraison et vérifications](docs/IMPLEMENTATION_STATUS.md).
 
-Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Les statuts courants sont **690 Prototype, 6 015 Défini, trois Intégré et trois Validé**, dont 399 Prototype et 980 Défini dans le principal. Horizon met à jour 28 fiches existantes et ajoute trois fiches de sprites, sans promotion vers Intégré ou Validé. Les 27 catalogues supplémentaires et les 31 autres classeurs restent inchangés. La [revue ciblée du classeur](docs/qa/horizon-workbook-visual-report.json) et le [rapport du lot](docs/qa/horizon-report.json) distinguent les vérifications natives, les panneaux réellement ouverts et les limites ; les revues précédentes restent historiques.
+Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Les statuts courants sont **708 Prototype, 5 997 Défini, trois Intégré et trois Validé**, dont 417 Prototype et 962 Défini dans le principal. Le lot P0/P1 met à jour 51 fiches existantes, avec 18 passages de Défini à Prototype et aucune promotion vers Intégré ou Validé. Les 27 catalogues supplémentaires, les 31 autres classeurs et les 46 PNG restent inchangés. La [revue des 73 panneaux du classeur](docs/qa/priority-workbook-visual-report.json) et le [rapport du lot](docs/qa/priority-report.json) relient les vérifications natives, les parcours publics et leurs limites. Le [registre des priorités](docs/PRIORITIES.md) conserve les 6 588 critères P0/P1 encore ouverts ; les revues précédentes restent historiques.
 
 **Une fiche de production ne signifie pas un élément terminé.** Le classeur sépare le statut du contenu, le statut de l’asset et le niveau de vérification canonique. Les liens vers des fichiers constituent des preuves localisables ; les noms d’assets futurs restent dans une colonne distincte. Une modification directe dans Excel n’est pas automatiquement réimportée dans le JSON.
 

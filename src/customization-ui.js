@@ -19,6 +19,7 @@ const COMPARISON_STATS = [
   ['weaponCoolingBonus', 'Refroidissement / s', 10],
   ['techMultiplier', 'Puissance technologique', 2, false, 'multiplier'],
   ['bioticMultiplier', 'Puissance biotique', 2, false, 'multiplier'],
+  ['weaponDamageMultiplier', 'Multiplicateur des tirs', 2, false, 'multiplier'],
   ['syntheticDamageBonus', 'Dégâts synthétiques', 1, false, 'percent'],
   ['organicDamageBonus', 'Dégâts organiques', 1, false, 'percent'],
   ['shieldBypass', 'Traversée bouclier', 1, false, 'percent'],

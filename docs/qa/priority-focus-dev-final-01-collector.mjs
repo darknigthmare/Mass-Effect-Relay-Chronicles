@@ -1,0 +1,52 @@
+// Public focus/suspension checks use real tab changes, native imports/exports and
+// visible HUD values. No private application state or timer/HP/ATB injection.
+import assert from 'node:assert/strict';
+import {access,readFile,readdir,writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {chromium} from 'playwright';
+import {newGame,encodeSave,decodeSave} from '../src/state.js';
+import {recordVisit} from '../src/story.js';
+import {WORLD_ZONES} from '../src/world-data.js';
+import {PRIORITY_FEATURE_SOURCES,readFeatureSources,sha} from './priority-workbook-data.mjs';
+const root=new URL('../',import.meta.url),url=new URL(process.env.GAME_URL||'http://127.0.0.1:4191/');
+const mode=process.env.PRIORITY_FOCUS_MODE||'development',prefix=process.env.PRIORITY_FOCUS_PREFIX;
+assert.ok(['development','production'].includes(mode));assert.match(prefix||'',/^priority-focus-[a-z0-9-]+$/);assert.equal(url.search,'');
+const output=new URL(`docs/qa/${prefix}-report.json`,root);
+try{await access(output);throw Error('Choose a fresh prefix; preserve previous attempts.');}catch(e){if(e.code!=='ENOENT')throw e;}
+const report={passed:false,at:new Date().toISOString(),mode,url:url.href,sourceHashes:{},distFiles:{},fixtures:[],exports:[],captures:[],checks:[],observations:[],errors:[],failedRequests:[],consoleErrors:[],resourceWarnings:[],sourceRequests:[],
+ scope:'Real public tab focus/visibility suspension while walking and during an active ATB battle; native save downloads verify unchanged position/resources. No forced frame rate or physical hardware performance claim.',
+ limitations:['Earlier briefing and initial positions are native prepared fixtures; the preceding traversal is not claimed played.','The early story-difficulty battle is paused and resumed, not claimed won.','Four frame-rate equivalence cases belong to the separate real native clock/world tests.']};
+let browser,page,other;
+const button=action=>page.locator(`[data-do="${action}"]`).first();
+async function tree(dir,prefix=''){const out={};for(const item of await readdir(dir,{withFileTypes:true})){const path=prefix+item.name,target=new URL(item.name+(item.isDirectory()?'/':''),dir);if(item.isDirectory())Object.assign(out,await tree(target,path+'/'));else{const bytes=await readFile(target);out[path]={bytes:bytes.length,sha256:sha(bytes)};}}return out;}
+async function ready(){await page.locator('#hud:not(.hidden) .location h2').waitFor();await page.locator('#transition.active').waitFor({state:'hidden'});await page.locator('#overlay .screen,#overlay .dialogue').waitFor({state:'hidden'});assert.equal(await page.evaluate(()=>Object.hasOwn(window,'__RELAY_TEST__')),false);}
+async function capture(label){const path=`docs/screenshots/${prefix}-${label}.png`,bytes=await page.screenshot({path:fileURLToPath(new URL(path,root)),animations:'disabled'});report.captures.push({label,path,sha256:sha(bytes),bytes:bytes.length});}
+async function fixture(label,point){const state=newGame({name:'QA Focus',difficulty:'story',mode:'active'});state.flags.briefed=true;state.zone='eden-prime';recordVisit(state,state.zone);state.position={x:point.x,z:point.z};const bytes=encodeSave(state);assert.ok(decodeSave(bytes));const path=`docs/qa/${prefix}-${label}-fixture.json`;await writeFile(new URL(path,root),bytes);const record={path,sha256:sha(bytes),importedViaPublicChooser:false,origin:'Native preparation of briefing/visit/position only; no health, clock or ATB edits.'};report.fixtures.push(record);return{record,bytes:Buffer.from(bytes)};}
+async function imported(value){if(!await button('import').isVisible()){await button('quit').click();}const[chooser]=await Promise.all([page.waitForEvent('filechooser'),button('import').click()]);await chooser.setFiles({name:value.record.path.split('/').at(-1),mimeType:'application/json',buffer:value.bytes});await ready();value.record.importedViaPublicChooser=true;}
+async function exported(label){await page.locator('.pause-screen').waitFor();await button('save').click();const[download]=await Promise.all([page.waitForEvent('download'),button('export').click()]);const path=`docs/qa/${prefix}-${label}-export.json`;await download.saveAs(fileURLToPath(new URL(path,root)));assert.equal(await download.failure(),null);const bytes=await readFile(new URL(path,root)),state=decodeSave(bytes.toString());assert.ok(state);report.exports.push({path,sha256:sha(bytes)});return state;}
+async function hud(){return page.locator('.battle-member').evaluateAll(nodes=>nodes.map(node=>({id:node.dataset.id,hp:node.querySelector('[data-stat="hp-label"]').textContent,atb:node.querySelector('[data-stat="atb"]').style.width,heat:node.querySelector('[data-stat="heat-summary"]').textContent})));}
+function check(name){report.checks.push({name,passed:true});console.log(JSON.stringify({check:name}));}
+try{
+ report.sourceHashes=await readFeatureSources(fileURLToPath(root),[...PRIORITY_FEATURE_SOURCES,'scripts/priority-focus-public.mjs']);
+ if(mode==='production')report.distFiles=await tree(new URL('dist/',root));
+ browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH||'/usr/bin/chromium',args:['--no-sandbox','--no-zygote','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+ const context=await browser.newContext({viewport:{width:1280,height:800},acceptDownloads:true});page=await context.newPage();page.setDefaultTimeout(60000);
+ page.on('pageerror',e=>report.errors.push(e.message));page.on('requestfailed',r=>report.failedRequests.push(`${r.url()}: ${r.failure()?.errorText}`));
+ page.on('response',r=>{const u=new URL(r.url());if(u.pathname.startsWith('/src/')||u.pathname.includes('/@vite/'))report.sourceRequests.push(r.url());if(r.status()>=400){if(r.status()===404&&u.href===new URL('favicon.ico',url).href)report.resourceWarnings.push({url:u.href,status:404});else report.failedRequests.push(`${r.status()} ${u.href}`);}});
+ page.on('console',m=>{if(m.type()!=='error')return;const e={text:m.text(),location:m.location()};if(e.location.url===new URL('favicon.ico',url).href&&e.text==='Failed to load resource: the server responded with a status of 404 (Not Found)')report.resourceWarnings.push(e);else report.consoleErrors.push(e);});
+ await page.goto(url.href,{waitUntil:'networkidle'});await imported(await fixture('walking',WORLD_ZONES['eden-prime'].spawn));
+ await page.keyboard.down('KeyW');await page.waitForTimeout(180);
+ other=await context.newPage();await other.goto('about:blank');await other.bringToFront();await page.locator('.pause-screen').waitFor();await page.keyboard.up('KeyW');
+ await page.bringToFront();const before=await exported('walking-paused');await capture('walking-paused');
+ await other.bringToFront();await other.waitForTimeout(1100);await page.bringToFront();const after=await exported('walking-returned');
+ assert.deepEqual(after,before);check('Real tab loss pauses walking, clears held movement and preserves the actual exported state');
+ await imported(await fixture('active-battle',WORLD_ZONES['eden-prime'].pois.find(p=>p.id==='eden-prime:encounter-1')));
+ await page.keyboard.press('KeyE');await page.locator('.battle-member').first().waitFor();await page.waitForFunction(()=>[...document.querySelectorAll('.battle-member [data-stat="atb"]')].some(e=>parseFloat(e.style.width)>5));await capture('active-before-blur');
+ await other.bringToFront();await page.locator('.pause-screen').waitFor();await page.bringToFront();await page.waitForTimeout(250);const frozen=await hud();await capture('combat-paused');
+ await other.bringToFront();await other.waitForTimeout(1100);await page.bringToFront();await page.waitForTimeout(250);const returned=await hud();assert.deepEqual(returned,frozen);report.observations.push({frozen,returned});
+ assert.equal(await page.locator('.pause-screen').isVisible(),true);await button('close').click();await page.locator('.pause-screen').waitFor({state:'hidden'});await page.waitForFunction(old=>JSON.stringify([...document.querySelectorAll('.battle-member')].map(node=>({id:node.dataset.id,hp:node.querySelector('[data-stat="hp-label"]').textContent,atb:node.querySelector('[data-stat="atb"]').style.width,heat:node.querySelector('[data-stat="heat-summary"]').textContent})))!==JSON.stringify(old),frozen);await capture('combat-explicit-resume');
+ check('Real tab loss freezes active ATB, heat and health, and only an explicit public resume restarts the battle');
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.failedRequests,[]);assert.deepEqual(report.consoleErrors,[]);if(mode==='production'){assert.deepEqual(report.sourceRequests,[]);assert.deepEqual(await tree(new URL('dist/',root)),report.distFiles);}
+ for(const[path,digest]of Object.entries(report.sourceHashes))assert.equal(sha(await readFile(new URL(path,root))),digest,path);
+ report.sourceFrozen=true;report.distFrozen=mode==='production';report.passed=true;
+}catch(e){report.failure=e.stack||String(e);process.exitCode=1;if(page)try{await capture('failure');}catch{}}finally{await browser?.close();await writeFile(output,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,checks:report.checks.length,captures:report.captures.length,failure:report.failure}));}

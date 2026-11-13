@@ -1,3 +1,5 @@
+import { createMissionProgress, normalizeMissionProgress, canCompleteMission } from './mission-progress.js';
+import { createTalentState, normalizeTalents } from './campaign-talents.js';
 import { initialInventory, normalizeInventory } from './loadout.js';
 import { normalizeOperations, operationEffects, listOperations } from './operations.js';
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
@@ -37,7 +39,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     mode: MODES.has(mode) ? mode : 'wait',
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
-    story: createStoryState(),
+    story: createStoryState(), missionProgress: createMissionProgress(), talents: createTalentState(),
     assignments: createAssignmentState(),
     inventory: initialInventory(), operations: normalizeOperations(undefined), trackedOperation: null,
     logs: [{ title: 'Départ', text: 'Le Normandy fait route vers Eden Prime.' }],
@@ -139,7 +141,7 @@ export function winEncounter(state, id) {
 }
 
 export function completeZone(state, zone, choice = null) {
-  if (state.zone !== zone || !objectiveReady(state, zone)) return false;
+  if (state.zone !== zone || !objectiveReady(state, zone) || !canCompleteMission(state, zone)) return false;
   if (OWN(CHOICES, zone) ? !CHOICES[zone].includes(choice) : choice !== null && choice !== undefined) return false;
   state.completed.push(zone);
   state.xp += CHAPTERS[zone].reward;
@@ -355,6 +357,9 @@ export function decodeSave(raw) {
     state.customization = normalizeCustomization(OWN(input, 'customization') ? input.customization : undefined, appearance);
     state.operations = normalizeOperations(OWN(input, 'operations') ? input.operations : undefined, state);
     if (!state.inventory || !state.operations || !state.customization) return null;
+    state.missionProgress = normalizeMissionProgress(OWN(input, 'missionProgress') ? input.missionProgress : undefined, state);
+    state.talents = normalizeTalents(OWN(input, 'talents') ? input.talents : undefined, state);
+    if (!state.missionProgress || !state.talents) return null;
     const trackedOperation = OWN(input, 'trackedOperation') ? input.trackedOperation : null;
     if (trackedOperation !== null && (typeof trackedOperation !== 'string'
       || !listOperations(state).some(operation => operation.id === trackedOperation))) return null;

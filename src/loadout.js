@@ -2,6 +2,7 @@
 // below are explicit ATB adaptations. No copied weapon damage tables are used.
 import { TOOL_CATALOG } from './tool-data.js';
 import { getEquipmentProfile } from './character-data.js';
+import { campaignTalentPointsSpent, applyCampaignTalents } from './campaign-talents.js';
 
 const LEGACY_SLOTS = Object.freeze(['weapon', 'armor', 'weaponMod', 'ammoMod', 'armorMod']);
 export const SLOTS = Object.freeze([...LEGACY_SLOTS, 'weaponMod2', 'armorMod2', 'omniTool', 'bioticAmp']);
@@ -201,7 +202,7 @@ export function normalizeInventory(raw, state) {
         const profile = profileFor(state, actorId);
         if (!knownActor(state, actorId) || !exact(training, ['weights', 'legacyArmor']) || !plain(training.weights)) return null;
         const weights = Object.keys(training.weights);
-        if (weights.length > trainingBudget(state) || weights.some(weight => !profile.trainableArmorWeights.includes(weight) || training.weights[weight] !== true)) return null;
+        if (weights.length + campaignTalentPointsSpent(state, actorId) > trainingBudget(state) || weights.some(weight => !profile.trainableArmorWeights.includes(weight) || training.weights[weight] !== true)) return null;
         if (training.legacyArmor !== null) {
           const armor = typeof training.legacyArmor === 'string' && own(ITEMS, training.legacyArmor) ? ITEMS[training.legacyArmor] : null;
           if (!armor || armor.slot !== 'armor' || !legacyIds.has(armor.id) || inventory.equipped[actorId]?.armor !== armor.id
@@ -336,7 +337,7 @@ export function getTrainingOptions(state, actorId) {
   const profile = profileFor(state, actorId), inventory = normalizeInventory(state?.inventory, state);
   if (!inventory) return [];
   const training = inventory.training[actorId] || emptyTraining();
-  const availablePoints = trainingBudget(state) - Object.keys(training.weights).length;
+  const availablePoints = trainingBudget(state) - Object.keys(training.weights).length - campaignTalentPointsSpent(state, actorId);
   return profile.trainableArmorWeights.map(weight => {
     const trained = training.weights[weight] === true;
     const reason = !liveActor(state, actorId) ? 'Cet équipier ne peut plus recevoir de formation.'
@@ -400,7 +401,7 @@ export function previewLoadout(baseActor, state, itemId, slot) {
   const check = checkCompatibility(state, baseActor.id, itemId, slot, inventory);
   if (!check.ok) return check;
   const returnedMods = replaceSlot(inventory, baseActor.id, check.slot, itemId), slots = inventory.equipped[baseActor.id];
-  const current = applyLoadout(baseActor, state), preview = applyBonuses(baseActor, loadoutBonuses(state, baseActor.id, slots), slots, state);
-  const deltas = Object.fromEntries(['maxHp', 'maxShield', 'attack', 'defense', 'weaponHeatMultiplier', 'weaponCoolingBonus', 'syntheticDamageBonus', 'organicDamageBonus', 'shieldBypass', 'controlResistance', 'bioticMultiplier', 'techMultiplier'].map(key => [key, Math.round((preview[key] - current[key]) * 1000) / 1000]));
+  const current = applyCampaignTalents(applyLoadout(baseActor, state), state), preview = applyCampaignTalents(applyBonuses(baseActor, loadoutBonuses(state, baseActor.id, slots), slots, state), state);
+  const deltas = Object.fromEntries(['maxHp', 'maxShield', 'attack', 'defense', 'weaponHeatMultiplier', 'weaponCoolingBonus', 'syntheticDamageBonus', 'organicDamageBonus', 'shieldBypass', 'controlResistance', 'bioticMultiplier', 'techMultiplier', 'weaponDamageMultiplier'].map(key => [key, Math.round(((preview[key] ?? 1) - (current[key] ?? 1)) * 1000) / 1000]));
   return { ok: true, current, preview, deltas, warning: check.warning, item: check.item, slot: check.slot, returnedMods };
 }

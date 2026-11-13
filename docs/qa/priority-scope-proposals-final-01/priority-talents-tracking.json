@@ -1,0 +1,94 @@
+{
+  "scope": "Propositions de métadonnées uniquement ; aucun catalogue ou statut public modifié. Promotions Prototype éventuelles uniquement après gates du parent.",
+  "baselineCommit": "259d51267a64404048c1e18a1e549f5a356b63c6",
+  "records": [
+    {
+      "id": "SYS-talents",
+      "assetPath": "src/campaign-talents.js",
+      "gameKey": "trainTalent",
+      "description": "Talents ME1 persistants par classe et équipier, rangs et prérequis contrôlés ; budget partagé avec les formations d’armure.",
+      "notes": "Neuf définitions de talents : quatre maîtrises d’armes, Aptitude physique, Formation d’assaut, Électronique, Atténuation et une discipline biotique adaptée. Un point par niveau ATB gagné, coût d’un point par rang et par formation d’armure ; dépendances, classes, mort narrative et budget commun validés. Achats définitifs au Normandy, consultation ailleurs ; anciennes sauvegardes sans talents migrées vers zéro rang. Bonus reconstruits dans les acteurs et les aperçus sans cumul. Les arbres complets, douze rangs, seuils, précision et effets originaux ne sont pas certifiés 1:1.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json"
+      ]
+    },
+    {
+      "id": "PWR-amortissement",
+      "assetPath": "src/combat.js",
+      "gameKey": "ACTIONS.me1Damping",
+      "description": "Atténuation ME1 : empêcher les nouvelles capacités technologiques et biotiques d’une cible, sans révoquer les actions déjà résolues.",
+      "notes": "Libellé Atténuation du manuel PC français, pages imprimées 30–31 ; identifiant historique Amortissement conservé. Prototype déverrouillé au deuxième rang pour Shepard ingénieur, après Électronique rang 1. Cible unique, base de 8 s, recharge de 18 s, outil et résistance adaptés à l’ATB. Les tirs et aptitudes militaires restent possibles ; effets déjà résolus et canaux préexistants ne sont pas annulés. Mine de zone, arbre complet et valeurs originales/Legendary restent ouverts.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json"
+      ]
+    },
+    {
+      "id": "PWR-immunite",
+      "assetPath": "src/combat.js",
+      "gameKey": "ACTIONS.me1Immunity",
+      "description": "Protection militaire temporaire ME1, déverrouillée par Aptitude physique dans l’arbre partiel du soldat.",
+      "notes": "Fonction générale confirmée par manuel PC français, pages imprimées 30–31. Prototype Shepard soldat au rang 2 : réduction de 35 % pendant 8 s, recharge de 24 s, avant calcul d’armure. Ces paramètres et leur interaction avec les boucliers sont des réglages ATB ; le critère de durée originale ou Legendary Edition exacte reste non rempli. Aucun nouvel asset ou cycle spécifique.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json"
+      ]
+    },
+    {
+      "id": "PWR-montee-d-adrenaline-me1",
+      "assetPath": "src/combat.js",
+      "gameKey": "ACTIONS.me1Adrenaline",
+      "description": "Montée d’adrénaline ME1 : rendre les autres capacités immédiatement disponibles en conservant sa propre recharge.",
+      "notes": "Fonction décrite dans le manuel PC français, pages imprimées 30–31. Prototype déverrouillé par Formation d’assaut rang 2 pour Shepard soldat ; les autres recharges passent à zéro après paiement natif de l’ordre, la sienne reste de 45 s ATB. Aucun ralenti ME2, soin, médi-gel, point ATB ou refroidissement d’arme supplémentaire. Seuils, rangs, recharge et arbre complet originaux/Legendary restent à vérifier.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json"
+      ]
+    }
+  ]
+}

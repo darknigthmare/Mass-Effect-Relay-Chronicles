@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "at": "2026-11-13T07:02:05.573015+00:00",
+  "scope": "Nine current native phase/engine regression tests, then108paired phase-only battles under the parent-announced product freeze. The native unit cases with explicit high-health/high-damage entries are distinct from the normal-stat deterministic comparison. No browser execution or public campaign claimed.",
+  "sourceHashes": {
+    "src/combat.js": "734cdd85d455295b8921fc420cc80f06ca9d433f6b775a1353f63fd9e1c4d2bb",
+    "src/boss-phases.js": "dab61d936e2de431e460841a9886f93d9e0f234b1d0fa3d485fb3a676d1b7fdf",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/state.js": "b021203bdf5530b3e09efb41c9d6d263fdc59cba3c56e7dca18560c7a4e1acec",
+    "src/loadout.js": "0a7f94143ec5cbf26e5347d65a24d345888de2902edef8fa8b1dc9c4674a64f1",
+    "src/character-data.js": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+    "src/tactical-positions.js": "fc3b1f6bfacd320d79a0e63c7cd73056f958c395fab5880de8222892f77be184",
+    "src/campaign-talents.js": "b7f7266b61e3684fa031ce78916d0b10151c398aaa1ba23c79bc1a6329b463c7",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/combat-summons.js": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b",
+    "src/combat-medical.js": "0a376ec845b04b8c21a014076048fcb3672b1a5c95b7ee3d7a6721a0f676d806",
+    "src/universe-ammo.js": "76580f7e77eb21f1bfd42438ee10c2e1f6088c214e2db4eac31a9a1033e6fdd6",
+    "src/universe-weapon-profiles.js": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d",
+    "scripts/simulate-campaign.mjs": "8fc582ce222de904959a98bdc054496d6687e6a61af2ede5efc010e73b51dd36",
+    "scripts/boss-phases-comparison.mjs": "261b36be0cea5f3299fd1237ab5454b7892b328ecc080b1c4789a57781c2c752",
+    "tests/boss-phases.test.js": "16d26476f97357fe3c10c1722f7e2c5c49b826867d9822bbf92d3b6aa17c0f53"
+  },
+  "unit": {
+    "command": [
+      "node",
+      "--test",
+      "tests/boss-phases.test.js"
+    ],
+    "passed": 9,
+    "failed": 0,
+    "output": "docs/qa/priority-bosses-native-final-01-output.txt",
+    "sha256": "c6bb3dfc83fba382eee33aa5e1668c18ebe990dc1e31f35f0ce479aad5034b4e"
+  },
+  "comparison": {
+    "path": "docs/qa/priority-bosses-comparison-final-01.json",
+    "sha256": "1357d6d4504d93664eaaff5e41648c04336a9643311b5a12ebf9cdb2865c203e",
+    "summary": {
+      "pairs": 108,
+      "detachedBattles": 216,
+      "baselineWins": 108,
+      "currentWins": 108,
+      "baselineKO": 0,
+      "currentKO": 0,
+      "alerts": 0
+    }
+  },
+  "limitations": [
+    "The control is the current native engine with phases disabled, not an old source-code checkout.",
+    "No character statistics, ATB gauges, victory callbacks or resources are overwritten inside the detached battles.",
+    "The policy omits protected Benezia from hostile targets using the new public targeting guard; all other decisions use the existing campaign QA policy.",
+    "Nominal health/shield budgets are preserved, but overkill, regeneration, target count, passive objectives and timing change practical difficulty.",
+    "This does not certify original encounter composition, original mechanics, visual fidelity or physical-device performance."
+  ]
+}

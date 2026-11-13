@@ -10,6 +10,14 @@ import { getUniverseWeaponProfile } from './universe-weapon-profiles.js';
 import { SUMMON_PROFILES, getSummonProfile, isSummon, isVictoryParticipant, planSummon, planSummonTick } from './combat-summons.js';
 import { UNIVERSE_AMMO_PROFILES, getAmmoActionProfile, validateAmmoMode, canActivateAmmoProfile, activateAmmoProfile, getAmmoHitModifiers, getAmmoPostHit } from './universe-ammo.js';
 import { MEDICAL_ACTION_IDS, getMedicalBenchProfile, medicalActionIds, planMedicalBenchAction } from './combat-medical.js';
+import { tacticalEnabled, initializeTacticalBattle, getTacticalState, getTacticalPosition, getTacticalRange,
+  tacticalTargetCheck, planTacticalMove, commitTacticalMove, registerTacticalActors } from './tactical-positions.js';
+import { createBossPhasePlan, advanceBossPhases, bossDamageBlocked, getBossTargetReason, bossActorCanAct } from './boss-phases.js';
+import { CAMPAIGN_TALENT_ACTIONS, campaignTalentActionAllowed, campaignTalentActionDescription,
+  campaignTalentDamageMultiplier, applyCampaignTalentAction } from './campaign-talents.js';
+
+export { getTacticalState, getTacticalPosition } from './tactical-positions.js';
+export { getBossPhaseView } from './boss-phases.js';
 
 const SUMMON_ACTIONS = new Set(SUMMON_PROFILES.map(profile => profile.actionId));
 const AMMO_ACTIONS = new Set(UNIVERSE_AMMO_PROFILES.map(profile => profile.actionId));
@@ -17,6 +25,7 @@ const ammoActionDefinitions = Object.fromEntries(UNIVERSE_AMMO_PROFILES.map(prof
   { label: profile.name, description: 'Active ce seul mode appris sur l’arme conventionnelle à clips. Consomme un ordre ATB, sans recharger ni ajouter de munition.', target: 'self' }]));
 
 export const ACTIONS = Object.freeze({
+  ...CAMPAIGN_TALENT_ACTIONS,
   shoot: { label: 'Tir contrôlé', description: 'Un tir précis. Génère 24 points de chaleur.', target: 'enemy', heatCost: 24 },
   burst: { label: 'Rafale', description: 'Plus de dégâts, mais 48 points de chaleur.', target: 'enemy', heatCost: 48 },
   reload: { label: 'Recharger', description: 'Remplit le chargeur depuis la réserve. Consomme une action ATB.', target: 'self' },
@@ -25,6 +34,8 @@ export const ACTIONS = Object.freeze({
   acid: { label: 'Projection acide', description: 'Une attaque organique suivie de corrosion. Ne mobilise aucun pouvoir biotique.', target: 'enemy' },
   cover: { label: 'Couverture', description: 'Réduit les tirs jusqu’à la prochaine action, accélère la recharge des boucliers et laisse refroidir l’arme.', target: 'self' },
   reposition: { label: 'Contournement', description: 'Le prochain tir ignore la couverture adverse pendant huit secondes.', target: 'self' },
+  advance: { label: 'Avancer', description: 'Rapproche la position tactique de l’adversaire le plus proche. Consomme 100 ATB.', target: 'self' },
+  withdraw: { label: 'Reculer', description: 'Éloigne la position tactique de l’adversaire le plus proche, dans les limites de l’arène. Consomme 100 ATB.', target: 'self' },
   medigel: { label: 'Médi-gel', description: 'Soigne un allié conscient. Consomme une dose partagée.', target: 'ally' },
   unityMedigel: { label: 'Unité · médi-gel ME2', description: 'Banc ME2 : relève les équipiers KO avec une dose partagée. Valeurs et cible de groupe adaptées à l’ATB.', target: 'allies' },
   firstAid: { label: 'Premiers secours · médi-gel ME3', description: 'Banc ME3 : secours à distance des équipiers KO avec une dose partagée. Valeurs et cible de groupe adaptées à l’ATB.', target: 'allies' },
@@ -60,7 +71,7 @@ export const ACTIONS = Object.freeze({
 });
 
 const BASE_ACTIONS = ['shoot', 'burst', 'cover', 'reposition'];
-const PRIMARY_ACTIONS = new Set(['shoot', 'burst', 'reload', 'strike', 'acid', 'cover', 'reposition']);
+const PRIMARY_ACTIONS = new Set(['shoot', 'burst', 'reload', 'strike', 'acid', 'cover', 'reposition', 'advance', 'withdraw']);
 const WEAPON_ACTIONS = new Set(['shoot', 'burst', 'signature']);
 const BIOTIC_ACTIONS = new Set(['throw', 'lift', 'warp', 'singularity', 'barrier', 'stasis', 'pull', 'reave', 'shockwave', 'slam', 'dominate']);
 const TECH_ACTIONS = new Set(['overload', 'sabotage', 'hack', 'incinerate', 'cryoBlast', 'energyDrain']);
@@ -275,17 +286,19 @@ function normalizeActor(input, team, index) {
 }
 
 /** Creates a fresh battle without changing the supplied actor definitions. */
-export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench } = {}) {
+export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench, tactical = false, tacticalPositionAllowed, bossPhases = false } = {}) {
   if (!Array.isArray(party) || !party.length || !Array.isArray(enemies) || !enemies.length) {
     throw new TypeError('Un combat nécessite au moins un allié et un adversaire.');
   }
-  const actors = [
+  let actors = [
     ...party.map((actor, index) => normalizeActor(actor, 'party', index)),
     ...enemies.map((actor, index) => normalizeActor(actor, 'enemy', index)),
   ];
   if (new Set(actors.map(actor => actor.id)).size !== actors.length) {
     throw new TypeError('Chaque combattant doit avoir un identifiant unique.');
   }
+  const phases = createBossPhasePlan(actors, { enabled: bossPhases === true });
+  if (phases) actors = phases.actors.map((actor, index) => normalizeActor(actor, actor.team, index));
   const battle = {
     actors,
     difficulty: DIFFICULTY[difficulty] ? difficulty : 'normal',
@@ -300,8 +313,11 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
     waiting: false,
     actionCount: 0,
     _rng: typeof rng === 'function' ? rng : makeRandom(seed),
+    ...(phases ? { bossPhases: phases.state } : {}),
   };
+  initializeTacticalBattle(battle, tactical, tacticalPositionAllowed);
   emit(battle, { type: 'start', message: 'Contact hostile. Le commando attend vos ordres.' });
+  for (const event of phases?.events || []) emit(battle, event);
   updateWinner(battle);
   battle.waiting = waitingForDecision(battle);
   return battle;
@@ -310,6 +326,17 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
 function updateWinner(battle) {
   if (battle.winner) return battle.winner;
   cleanupSummons(battle);
+  const transition = advanceBossPhases(battle);
+  if (transition) {
+    battle.bossPhases = transition.state;
+    for (const id of transition.retireIds) {
+      const retired = battle.actors.find(actor => actor.id === id);
+      if (retired) retired.bossPhaseRetired = true;
+    }
+    for (const raw of transition.spawns) battle.actors.push(normalizeActor(raw, raw.team, battle.actors.length));
+    registerTacticalActors(battle);
+    for (const event of transition.events) emit(battle, event);
+  }
   const partyAlive = battle.actors.some(actor => actor.team === 'party' && isVictoryParticipant(actor) && living(actor));
   const enemyAlive = battle.actors.some(actor => actor.team === 'enemy' && isVictoryParticipant(actor) && living(actor));
   if (!partyAlive || !enemyAlive) {
@@ -333,7 +360,8 @@ function dangerousProjectiles(battle) {
 
 function waitingForDecision(battle) {
   const settling = dangerousProjectiles(battle) && ['party', 'enemy'].some(team => !battle.actors.some(actor => actor.team === team && isVictoryParticipant(actor) && living(actor)));
-  return battle.mode === 'wait' && !settling && battle.actors.some(actor => actor.team === 'party' && ready(actor));
+  return battle.mode === 'wait' && !settling && battle.actors.some(actor => actor.team === 'party' && ready(actor)
+    && (!tacticalEnabled(battle) || actor.tacticalHeld !== true));
 }
 
 function opponents(battle, actor) {
@@ -347,14 +375,16 @@ function friends(battle, actor) {
 }
 
 function actionIds(actor, battle) {
-  if (isSummon(actor)) return [];
+  if (isSummon(actor) || !bossActorCanAct(battle, actor)) return [];
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
+  if (tacticalEnabled(battle)) ids.push('advance', 'withdraw');
   if (!organic && usesClips(actor)) ids.push('reload');
   if (actor.channel) ids.push('cancelChannel');
   if (actor.team === 'party') ids.push('medigel');
-  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel', 'ammoOff'].includes(id)
-    && !MEDICAL_ACTION_IDS.includes(id) && (!AMMO_ACTIONS.has(id) || getAmmoActionProfile(actor.mediaId, id))));
+  ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel', 'ammoOff', 'advance', 'withdraw'].includes(id)
+    && !MEDICAL_ACTION_IDS.includes(id) && (!AMMO_ACTIONS.has(id) || getAmmoActionProfile(actor.mediaId, id))
+    && (!Object.hasOwn(CAMPAIGN_TALENT_ACTIONS, id) || campaignTalentActionAllowed(actor, id))));
   ids.push(...medicalActionIds(battle, actor));
   if (actor.ammoModeId) ids.push('ammoOff');
   if (actor.team === 'party' && !organic) ids.push('signature');
@@ -383,6 +413,11 @@ function unavailableReason(battle, actor, actionId) {
   if (actionId === 'cancelChannel') return actor.channel ? null : 'Aucune canalisation en cours.';
   if (actor.channel) return 'Canalisation en cours.';
   if (actor.atb < 100 - EPSILON) return 'La jauge ATB doit être pleine.';
+  if (actor.statuses.damped > EPSILON && (BIOTIC_ACTIONS.has(actionId) || TECH_ACTIONS.has(actionId) || actionId === 'me1Damping')) return 'Les capacités biotiques et technologiques sont neutralisées par Atténuation.';
+  if (tacticalEnabled(battle) && ['advance', 'withdraw', 'reposition'].includes(actionId)) {
+    const move = planTacticalMove(battle, actor, actionId);
+    if (!move.ok) return move.reason;
+  }
   if (actor.cooldowns[actionId] > EPSILON) return `Recharge : ${Math.ceil(actor.cooldowns[actionId])} s.`;
   if (AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff') {
     const profile = getAmmoActionProfile(actor.mediaId, actionId);
@@ -430,19 +465,25 @@ export function getActions(battle, actorId) {
     const profile = WEAPON_ACTIONS.has(id) ? weaponProfile(actor) : null;
     const clipShot = WEAPON_ACTIONS.has(id) && usesClips(actor);
     const heatCost = WEAPON_ACTIONS.has(id) && !clipShot ? ACTIONS[id].heatCost * actor.weaponHeatMultiplier : undefined;
-    let description = clipShot ? `${ACTIONS[id].label} : consomme ${weaponAmmoCost(actor, id)} munition(s) du chargeur. Rechargement par remplacement du clip thermique.` : heatCost === undefined ? powerDescription(actor, id)
+    let description = clipShot ? `${ACTIONS[id].label} : consomme ${weaponAmmoCost(actor, id)} munition(s) du chargeur. Rechargement par remplacement du clip thermique.` : heatCost === undefined ? campaignTalentActionDescription(actor, id) || powerDescription(actor, id)
       : ACTIONS[id].description.replace(/(?:24|48|42) points de chaleur/, `${Math.round(heatCost * 10) / 10} points de chaleur`);
     if (profile) description = `${profile.mechanicNote} ${profile.mode === 'clip-channel' ? `${profile.ammoPerTick} munition par impulsion, au maximum ${Math.ceil(profile.duration / profile.tickInterval)} impulsions.` : ''}`;
     return { id, ...ACTIONS[id], ...(clipShot ? { heatCost: 0, ammoCost: weaponAmmoCost(actor, id) } : heatCost === undefined ? {} : { heatCost }),
       ...(profile?.mode === 'heat-beam' ? { heatCost: profile.heatPerSecond * profile.duration * actor.weaponHeatMultiplier, channelDuration: profile.duration } : {}),
       ...(profile?.mode === 'clip-channel' ? { channelDuration: profile.duration } : {}),
       ...(chargeProfile(profile) ? { channelDuration: profile.chargeDuration, chargeDuration: profile.chargeDuration } : {}),
+      ...(tacticalEnabled(battle) ? { range: getTacticalRange(actor, id, ACTIONS[id]), atbCost: id === 'cancelChannel' ? 0 : 100,
+        ...(getTacticalRange(actor, id, ACTIONS[id]) !== null ? { rangeUnits: 'unités de scène ATB' } : {}) } : {}),
       description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
 }
 
 function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, ignoreArmor = false, shieldOnly = false, silent = false, actionId = null } = {}) {
   if (!living(target) || rawAmount <= 0) return 0;
+  if (bossDamageBlocked(battle, target)) {
+    if (!silent) emit(battle, { type: 'blocked', actorId: source?.id, targetId: target.id, actionId, amount: 0, message: getBossTargetReason(battle, target) });
+    return 0;
+  }
   if (target.statuses.stasis > EPSILON) {
     if (!silent) emit(battle, { type: 'blocked', actorId: source?.id, targetId: target.id, actionId, amount: 0, message: `${target.name} est protégé par la stase.` });
     return 0;
@@ -450,6 +491,7 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
   const ammoModifiers = getAmmoHitModifiers(source, target, actionId);
   const activeAmmo = ammoModifiers.profileId !== null;
   let amount = rawAmount * (source?.team === 'enemy' ? DIFFICULTY[battle.difficulty].enemyDamage : 1);
+  amount *= campaignTalentDamageMultiplier(target);
   if (target.cover && !ignoreCover) amount *= activeAmmo ? 1 - .5 * ammoModifiers.coverMultiplier : .5;
   if (target.statuses.barrier > EPSILON) amount *= 0.7;
   if (target.statuses.fortification > EPSILON && target.mediaId !== 'ME2') amount *= .75;
@@ -491,6 +533,7 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
     stopChannel(battle, target, 'hors combat');
     target.hp = 0;
     target.atb = 0;
+    if (target.tacticalHeld === true) delete target.tacticalHeld;
     target.cover = false;
     target.statuses = {};
     target.cryoStacks = 0;
@@ -700,23 +743,135 @@ function resolveTargets(battle, actor, actionId, targetId) {
   return { targets: [target] };
 }
 
-/** Validates first; a rejected order never spends ATB, inventory, heat or randomness. */
-export function performAction(battle, { actorId, actionId, targetId } = {}) {
+function prepareAction(battle, args) {
+  if (!battle || !Array.isArray(battle.actors) || !args || typeof args !== 'object' || Array.isArray(args)) return { ok: false, reason: 'Ordre invalide.' };
+  const { actorId, actionId, targetId } = args;
   const actor = battle.actors.find(candidate => candidate.id === actorId);
-  if (!actor || !ACTIONS[actionId] || !actionIds(actor, battle).includes(actionId)) return { ok: false, reason: 'Action inconnue ou non maîtrisée.', events: [] };
+  if (!actor || !Object.hasOwn(ACTIONS, actionId) || !actionIds(actor, battle).includes(actionId)) return { ok: false, reason: 'Action inconnue ou non maîtrisée.' };
   const reason = unavailableReason(battle, actor, actionId);
-  if (reason) return { ok: false, reason, events: [] };
+  if (reason) return { ok: false, reason };
   const resolution = resolveTargets(battle, actor, actionId, targetId);
-  if (resolution.error) return { ok: false, reason: resolution.error, events: [] };
-  const targets = resolution.targets;
-  const target = targets[0];
-  const deployment = SUMMON_ACTIONS.has(actionId) ? summonPlan(battle, actor, actionId, target?.id) : null;
-  if (deployment && !deployment.ok) return { ok: false, reason: deployment.reason, events: [] };
+  if (resolution.error) return { ok: false, reason: resolution.error };
+  let targets = resolution.targets;
+  const definition = ACTIONS[actionId];
+  const hostile = ['enemy', 'enemies'].includes(definition.target);
+  const checks = targets.map(target => {
+    const bossReason = hostile && getBossTargetReason(battle, target);
+    return { target, ...(bossReason ? { ok: false, reason: bossReason } : tacticalTargetCheck(battle, actor, target, actionId, definition)) };
+  });
+  if (definition.target === 'enemies') {
+    const selected = targetId == null ? null : checks.find(check => check.target.id === targetId);
+    if (selected && !selected.ok) return { ...selected, target: undefined, ok: false };
+    targets = checks.filter(check => check.ok).map(check => check.target);
+    if (!targets.length) return { ok: false, reason: checks[0]?.reason || 'Aucune cible à portée.' };
+  } else {
+    const invalid = checks.find(check => !check.ok);
+    if (invalid) return { ok: false, reason: invalid.reason, range: invalid.range, distance: invalid.distance };
+  }
+  const deployment = SUMMON_ACTIONS.has(actionId) ? summonPlan(battle, actor, actionId, targets[0]?.id) : null;
+  if (deployment && !deployment.ok) return { ok: false, reason: deployment.reason };
   const ammoSelection = AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff'
     ? activateAmmoProfile(actor, actionId === 'ammoOff' ? null : getAmmoActionProfile(actor.mediaId, actionId)?.id) : null;
-  if (ammoSelection && !ammoSelection.ok) return { ok: false, reason: ammoSelection.reason, events: [] };
+  if (ammoSelection && !ammoSelection.ok) return { ok: false, reason: ammoSelection.reason };
+  const movement = tacticalEnabled(battle) && ['advance', 'withdraw', 'reposition'].includes(actionId) ? planTacticalMove(battle, actor, actionId) : null;
+  if (movement && !movement.ok) return movement;
+  return { ok: true, actor, targets, deployment, ammoSelection, movement,
+    ...(tacticalEnabled(battle) ? { range: getTacticalRange(actor, actionId, definition),
+      distance: checks.find(check => check.target.id === targetId)?.distance ?? null } : {}) };
+}
+
+/** Exact target feedback without spending ATB, inventory or RNG. */
+export function getTargetAvailability(battle, order) {
+  const prepared = prepareAction(battle, order);
+  const actor = battle?.actors?.find(candidate => candidate.id === order?.actorId);
+  const target = battle?.actors?.find(candidate => candidate.id === order?.targetId);
+  const geometry = tacticalEnabled(battle) && actor && target && Object.hasOwn(ACTIONS, order?.actionId)
+    ? tacticalTargetCheck(battle, actor, target, order.actionId, ACTIONS[order.actionId]) : null;
+  return { ok: prepared.ok, reason: prepared.ok ? null : prepared.reason,
+    ...(geometry ? { range: geometry.range, distance: geometry.distance, rangeUnits: 'unités de scène ATB' } : {}),
+    ...(Object.hasOwn(prepared, 'range') ? { range: prepared.range, distance: prepared.distance, rangeUnits: 'unités de scène ATB' } : {}),
+    ...(prepared.ok ? { targetIds: prepared.targets.map(target => target.id), atbCost: order.actionId === 'cancelChannel' ? 0 : 100,
+      ...(prepared.movement ? { movement: { from: prepared.movement.from, to: prepared.movement.to } } : {}) } : {}) };
+}
+
+/** An explicit zero-resource decision lets other gauges charge in Wait mode.
+ * Enemies/time continue; this is separate from the pure coordinated draft. */
+export function reserveTacticalOrder(battle, actorId) {
+  if (!tacticalEnabled(battle)) return { ok: false, reason: 'La réserve d’ordre exige le plan tactique ME1.', events: [] };
+  const actor = battle.actors.find(candidate => candidate.id === actorId);
+  if (battle.winner || !actor || actor.team !== 'party' || !ready(actor)) return { ok: false, reason: 'Choisissez un équipier prêt et conscient.', events: [] };
+  if (actor.tacticalHeld === true) return { ok: false, reason: 'Cet ordre est déjà réservé.', events: [] };
+  actor.tacticalHeld = true;
+  const event = emit(battle, { type: 'orderReserved', actorId, message: `${actor.name} réserve sa jauge. Le temps et les adversaires reprennent leur progression.` });
+  battle.waiting = waitingForDecision(battle);
+  return { ok: true, reason: null, atbCost: 0, events: [event] };
+}
+
+export function releaseTacticalReservations(battle) {
+  if (!tacticalEnabled(battle)) return { ok: false, reason: 'Aucune réserve tactique active.', events: [] };
+  const actors = battle.actors.filter(actor => actor.tacticalHeld === true);
+  if (!actors.length) return { ok: true, reason: null, events: [] };
+  for (const actor of actors) delete actor.tacticalHeld;
+  const event = emit(battle, { type: 'orderReservationReleased', actorIds: actors.map(actor => actor.id), message: 'Les jauges réservées sont libérées.' });
+  battle.waiting = !battle.winner && waitingForDecision(battle);
+  return { ok: true, reason: null, events: [event] };
+}
+
+/** A draft is pure and must be revalidated when the player confirms it. */
+export function planCoordinatedOrder(battle, draft = {}) {
+  const orders = draft && typeof draft === 'object' && !Array.isArray(draft) ? draft.orders : null;
+  if (!tacticalEnabled(battle)) return { ok: false, reason: 'Les ordres coordonnés sont réservés au plan tactique ME1.' };
+  if (!Array.isArray(orders) || orders.length < 2 || orders.length > 3) return { ok: false, reason: 'Choisissez deux ou trois participants distincts.' };
+  for (let index = 0; index < orders.length; index++) {
+    const order = Object.hasOwn(orders, index) ? orders[index] : null;
+    if (!order || typeof order !== 'object' || Array.isArray(order)) return { ok: false, reason: 'Un ordre du brouillon est invalide.' };
+  }
+  const ids = orders.map(order => order.actorId);
+  if (new Set(ids).size !== ids.length) return { ok: false, reason: 'Chaque participant ne peut recevoir qu’un ordre.' };
+  const prepared = [];
+  for (const order of orders) {
+    const entry = prepareAction(battle, order);
+    if (!entry.ok) return { ok: false, reason: entry.reason, actorId: order.actorId };
+    if (entry.actor.team !== 'party' || !ready(entry.actor) || order.actionId === 'cancelChannel') return { ok: false, reason: 'Chaque participant doit être un équipier prêt, avec un ordre ATB complet.' };
+    prepared.push(entry);
+  }
+  const medigelCost = orders.reduce((sum, order) => sum + (order.actionId === 'medigel' ? 1 : MEDICAL_ACTION_IDS.includes(order.actionId) ? getMedicalBenchProfile(battle.medicalBench)?.cost || 0 : 0), 0);
+  if (medigelCost > battle.medigel) return { ok: false, reason: 'La réserve partagée de médi-gel ne couvre pas tous les ordres.' };
+  return { ok: true, reason: null, orders: orders.map(({ actorId, actionId, targetId }) => ({ actorId, actionId, ...(targetId == null ? {} : { targetId }) })),
+    participants: prepared.map((entry, index) => ({ actorId: entry.actor.id, actionId: orders[index].actionId, atbCost: 100,
+      heatCost: getActions(battle, entry.actor.id).find(action => action.id === orders[index].actionId)?.heatCost || 0,
+      cooldown: ACTIONS[orders[index].actionId].cooldown ? ACTIONS[orders[index].actionId].cooldown * entry.actor.powerCooldownMultiplier : 0 })),
+    medigelCost, resolution: 'Ordres natifs successifs ; une cible ou un participant devenu indisponible annule explicitement son ordre sans coût.' };
+}
+
+/** Initial refusal is atomic. Later invalidations are explicit cost-free cancellations. */
+export function performCoordinatedOrder(battle, draft) {
+  const plan = planCoordinatedOrder(battle, draft);
+  if (!plan.ok) return { ...plan, events: [] };
+  const startIndex = battle.events.length, applied = [], cancelled = [];
+  emit(battle, { type: 'coordinatedStart', actorIds: plan.orders.map(order => order.actorId), message: 'Ordres coordonnés confirmés.' });
+  for (const order of plan.orders) {
+    const result = performAction(battle, order);
+    if (result.ok) applied.push({ ...order });
+    else {
+      const entry = { ...order, reason: result.reason }; cancelled.push(entry);
+      emit(battle, { type: 'coordinatedCancel', actorId: order.actorId, actionId: order.actionId, targetId: order.targetId,
+        reason: result.reason, message: `Ordre annulé sans dépense : ${result.reason}` });
+    }
+  }
+  emit(battle, { type: 'coordinatedEnd', applied: applied.length, cancelled: cancelled.length });
+  return { ok: true, reason: null, applied, cancelled, events: battle.events.slice(startIndex) };
+}
+
+/** Validates first; a rejected order never spends ATB, inventory, heat or randomness. */
+export function performAction(battle, { actorId, actionId, targetId } = {}) {
+  const prepared = prepareAction(battle, { actorId, actionId, targetId });
+  if (!prepared.ok) return { ok: false, reason: prepared.reason, events: [] };
+  const { actor, targets, deployment, ammoSelection, movement } = prepared;
+  const target = targets[0];
   const startIndex = battle.events.length;
   const definition = ACTIONS[actionId];
+  if (actor.tacticalHeld === true) delete actor.tacticalHeld;
   if (actionId !== 'cancelChannel') actor.atb = 0;
   if (actionId !== 'cover') actor.cover = false;
   if (definition.cooldown) actor.cooldowns[actionId] = definition.cooldown * actor.powerCooldownMultiplier;
@@ -791,12 +946,17 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       target._acidSource = actor.id;
       emit(battle, { type: 'status', actorId, targetId: target.id, status: 'corrosion', duration: 5 });
     }
+  } else if (Object.hasOwn(CAMPAIGN_TALENT_ACTIONS, actionId)) {
+    const effect = applyCampaignTalentAction({ actor, actionId, targets, elapsed: battle.elapsed });
+    for (const event of effect.events) emit(battle, event);
   } else if (actionId === 'cover') {
     actor.cover = true;
     actor.focus = clamp(actor.focus + 6, 0, 100);
   } else if (actionId === 'reposition') {
     actor.statuses.flanking = 8;
     actor.focus = clamp(actor.focus + 5, 0, 100);
+  } else if (actionId === 'advance' || actionId === 'withdraw') {
+    // Position changes only; no new damage, power, resource or focus bonus.
   } else if (actionId === 'medigel') {
     const amount = Math.min(target.maxHp - target.hp, 38 + target.maxHp * 0.22);
     target.hp += amount;
@@ -812,6 +972,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       ally.hp = ally.maxHp * profile.healthRatio;
       ally.shield = 0;
       ally.atb = 0;
+      if (ally.tacticalHeld === true) delete ally.tacticalHeld;
       ally.focus = 0;
       ally.cover = false;
       ally.statuses = {};
@@ -827,6 +988,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       ally.hp = ally.maxHp * 0.3;
       ally.shield = ally.maxShield * 0.25;
       ally.atb = 0;
+      if (ally.tacticalHeld === true) delete ally.tacticalHeld;
       ally.statuses = {};
       ally.lastDamagedAt = battle.elapsed;
       emit(battle, { type: 'revive', actorId, targetId: ally.id, amount: ally.hp, message: `${ally.name} reprend le combat.` });
@@ -926,6 +1088,11 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       emit(battle, { type: 'status', actorId, targetId: ally.id, status: 'shieldBoost', duration: 5 });
     }
   }
+  if (movement) {
+    commitTacticalMove(battle, movement);
+    emit(battle, { type: 'tacticalMove', actorId, actionId, from: movement.from, to: movement.to,
+      message: `${actor.name} change de position tactique.` });
+  }
   updateWinner(battle);
   battle.waiting = !battle.winner && waitingForDecision(battle);
   return { ok: true, reason: null, events: battle.events.slice(startIndex) };
@@ -993,7 +1160,7 @@ export function autoEnemyActions(battle) {
   if (battle.winner) return battle;
   if (waitingForDecision(battle)) return battle;
   for (const actor of battle.actors.filter(candidate => candidate.team === 'enemy' && !isSummon(candidate))) {
-    if (!ready(actor) || battle.winner) continue;
+    if (!ready(actor) || !bossActorCanAct(battle, actor) || battle.winner) continue;
     const targets = opponents(battle, actor).filter(target => !(target.statuses.stasis > EPSILON));
     const actions = getActions(battle, actor.id).filter(action => action.available);
     const can = id => actions.some(action => action.id === id);
@@ -1038,6 +1205,10 @@ export function autoEnemyActions(battle) {
         actionId = 'cover';
         targetId = actor.id;
       }
+    }
+    if (tacticalEnabled(battle) && !prepareAction(battle, { actorId: actor.id, actionId, targetId }).ok) {
+      actionId = can('advance') ? 'advance' : 'cover';
+      targetId = actor.id;
     }
     performAction(battle, { actorId: actor.id, actionId, targetId });
   }

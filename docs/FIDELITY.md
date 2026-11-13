@@ -2,7 +2,9 @@
 
 Le périmètre retenu conserve les sprites et les combats ATB de Relay Chronicles. La fidélité du contenu demande des références distinctes pour les lieux, les personnages, les missions et les conséquences. Les statistiques et le rythme ATB restent des choix d’adaptation.
 
-Le suivi courant après Horizon compte **1 385 fiches principales et 6 711 références**, avec **454 sources**. Le principal comporte **399 Prototype, 980 Défini, trois Intégré et trois Validé** ; le registre complet, **690 Prototype, 6 015 Défini et les six statuts avancés inchangés**. Les 29 nouveaux dessins restent des prototypes fixes. Les [preuves Horizon](qa/horizon-report.json) séparent jeu, documentation, génération et vérification du classeur.
+Le suivi courant après le [lot P0/P1](PRIORITY_GAMEPLAY.md) compte **1 385 fiches principales et 6 711 références**, avec **454 sources**. Le principal comporte **417 Prototype, 962 Défini, trois Intégré et trois Validé** ; le registre complet, **708 Prototype, 5 997 Défini et les six statuts avancés inchangés**. Les objectifs, talents, distances tactiques, commandes de manette et phases partielles enrichissent le prototype ATB ; ils ne certifient pas les règles et séquences originales complètes. Aucun PNG d’asset du jeu supplémentaire n’est produit. Les [preuves du lot](qa/priority-report.json) et le [suivi des critères ouverts](PRIORITIES.md) distinguent la réalisation partielle de la fidélité finale.
+
+Le bilan historique Horizon était de 399 Prototype et 980 Défini dans le principal, 690 Prototype et 6 015 Défini dans le registre. Ses 29 dessins restent des prototypes fixes ; ses [preuves](qa/horizon-report.json) conservent leur portée d’origine.
 
 ## Historique des livraisons
 
@@ -170,7 +172,7 @@ Varren et alpha apparaissent dans leur opération à Féros ; la faune docile d�
 
 ## État du contenu restant
 
-Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 14 ont un prototype jouable et 51 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le combat et la physique complète du Mako, les variantes visuelles d’équipement, les animations et les campagnes ultérieures intégrales restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
+Les 100 sous-zones et 91 liaisons du catalogue ne constituent pas encore des parcours complets. Parmi les 65 fiches de quêtes secondaires/DLC, 15 ont un prototype jouable et 50 restent Définies. Les 43 nouvelles fiches d’étapes complètent ces quêtes sans être comptées comme des missions supplémentaires. Les dialogues complets, les cinématiques, les romances, le combat et la physique complète du Mako, les variantes visuelles d’équipement, les animations et les campagnes ultérieures intégrales restent à réaliser. La présence d’un nom, d’un atlas ou d’un chemin prévu ne suffit pas à terminer une fiche.
 
 Pour reproduire une scène précisément, il faut identifier l’édition, les étapes et conditions, les références de carte ou de costume et les embranchements attendus. Le dépôt conserve des liens de manuels et de guides, mais pas un relevé primaire complet de ces éléments. Les captures de `docs/screenshots/` représentent le prototype.
 

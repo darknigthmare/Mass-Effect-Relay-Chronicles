@@ -10,6 +10,18 @@ Le projet vise à terme une adaptation de ME1 complète et cohérente avec ses p
 
 La version 0.3.0 comprend aussi l’atelier de personnalisation avec brouillon atomique et neuf emplacements. Les compléments de novembre étendent le parcours d’Eden Prime et les familles de poses des acteurs ME1 ; leurs portées sont décrites ci-dessous. Le [classeur principal](Mass_Effect_Relay_Chronicles_Production.xlsx), les [Chroniques](CHRONICLES.md) et les [preuves de chaque lot](IMPLEMENTATION_STATUS.md) restent distincts : une fiche de production ou une pose dessinée n’équivaut pas à une campagne ou une animation complète.
 
+## Priorités P0/P1 : règles et objectifs persistants
+
+Le [lot de priorités](PRIORITY_GAMEPLAY.md) conserve les vingt-et-un identifiants de combat et les récompenses uniques. Le désamorçage d’Eden précède le dernier combat ; la remise en marche condensée de MIRA précède les laboratoires ; Vigil active la fenêtre du Conduit après les combats d’Ilos. Ces sous-objectifs ont un état distinct, un journal, des interactions réelles, un échec et une reprise explicites pour les étapes chronométrées. Ils ne sont pas comptés comme de nouvelles quêtes annexes.
+
+Les positions tactiques sont des coordonnées locales des arènes ATB. Les points d’arrivée et les segments de déplacement doivent traverser le sol réel du décor ; les sprites suivent exactement les positions validées. La portée est affichée avant la dépense. Un ordre coordonné prévalide deux ou trois participants, leurs capacités et les ressources communes. Une condition initiale manquante refuse l’ensemble ; une cible invalidée pendant la résolution annule gratuitement les ordres restants avec un événement explicite. Aucun bonus de dégâts n’est accordé par le simple regroupement.
+
+La réservation d’une jauge est volontaire et ne coûte aucun ATB : elle permet aux autres acteurs de se charger en mode Attente, en laissant les ennemis agir. Libérer les réservations ou annuler le brouillon rend les décisions. Bénézia est protégée pendant trois vagues ; le Thorien utilise six nœuds passifs et trois renforts. Les budgets totaux sont répartis entre les étapes et une seule victoire termine la rencontre. Ces découpages, effectifs et chiffres sont des adaptations, avec sources complètes et mise en scène originales encore ouvertes.
+
+Les talents partagent le budget des formations d’armure : un point par niveau ATB gagné, par personnage. Les achats se font au Normandy et sont définitifs dans cette version. Les effets sont reconstruits depuis les bases, le matériel et les rangs. Le comparatif affiche aussi le multiplicateur réel des tirs ; une maîtrise perdue en changeant de famille d’arme ne reste pas appliquée. Les trois nouvelles capacités sont limitées à leurs classes ME1 prises en charge ; Adrénaline réinitialise les autres recharges sans ralenti ME2, soin ou munition créé.
+
+La boucle conserve le temps avec des sous-pas fixes, un rendu par image et une interruption des commandes au changement de focus. Les menus et chargements réinitialisent la reprise, et les longues interruptions ne sont pas rejouées. Une manette standard navigue dans les vrais contrôles DOM ; les champs de texte ont un clavier à l’écran. Les tests de périphérique simulé ne remplacent pas une validation matérielle.
+
 ## Boucle jouable
 
 1. Rejoindre le Normandy, consulter le briefing et préparer les deux compagnons.
@@ -27,13 +39,13 @@ Les combats remportés restent sécurisés : le joueur ne peut pas récolter ind
 | Étape | Contenu condensé | Condition de fin / effet |
 |---|---|---|
 | Normandy | Briefing, navigation, équipement, commando, infirmerie, archives | Débloque Eden Prime |
-| Eden Prime | Patrouille, quais, défense de la balise | Perte de Jenkins, recrutement d’Ashley, activation de la balise |
+| Eden Prime | Patrouille, quais, quatre charges, défense de la balise | Perte de Jenkins, recrutement d’Ashley, activation de la balise |
 | Citadelle | Rencontres de Garrus, Tali et Wrex ; audience | Statut Spectre, trois pistes d’enquête |
 | Thérum | Avant-poste, ruines, protection du site | Libération et recrutement de Liara |
 | Féros | Route d’ExoGeni, profondeurs, Thorien | Choix concernant la colonie |
-| Novéria | Sécurité, laboratoires rachni, Bénézia | Choix concernant la reine rachni |
+| Novéria | Sécurité, trois stations MIRA, laboratoires rachni, Bénézia par vagues | Choix concernant la reine rachni |
 | Virmire | Plage, installation, Saren | Extraction de Kaidan ou d’Ashley |
-| Ilos | Jardins, galeries, défense du Conduit | Archives de Vigil et passage vers la Citadelle |
+| Ilos | Jardins, galeries, défense, activation de Vigil et fenêtre du Conduit | Archives de Vigil et passage vers la Citadelle |
 | Citadelle finale | Quais, tour, Saren synthétique | Choix de flotte et bilan final |
 
 Après la Citadelle, Thérum, Féros et Novéria peuvent être visitées dans l’ordre choisi. Virmire s’ouvre après deux de ces enquêtes. Ilos exige les trois enquêtes et Virmire. Le final s’ouvre après Ilos. Ces conditions sont celles du prototype et sont testées comme telles ; elles ne constituent pas une transcription exhaustive de tous les embranchements de ME1.
@@ -98,9 +110,9 @@ Santé et boucliers sont restaurés au début d’une rencontre : c’est une si
 
 ### Opérations annexes
 
-Les trois assignations déjà publiées — Retour à la maison, Affaire familiale et Le Fan — gardent leur progression. Onze opérations supplémentaires ajoutent 43 étapes à la Citadelle et à Féros. Le journal affiche leur objectif courant, les conditions de déblocage, les réponses mémorisées, les récompenses et les issues. Un seul objectif annexe peut être suivi ; il apparaît sur la carte et dans l’interface d’exploration.
+Les trois assignations déjà publiées — Retour à la maison, Affaire familiale et Le Fan — gardent leur progression. Douze opérations supplémentaires ajoutent 46 étapes à la Citadelle et à Féros. Le journal affiche leur objectif courant, les conditions de déblocage, les réponses mémorisées, les récompenses et les issues. Un seul objectif annexe peut être suivi ; il apparaît sur la carte et dans l’interface d’exploration.
 
-Les quatre rencontres annexes utilisent les vraies règles ATB. Choisir de combattre arme une rencontre persistante ; seule une victoire validée peut compléter cette étape. Un rechargement reprend depuis l’avant-combat, sans attribuer les récompenses. La conclusion de chaque opération paie une seule fois. Le docteur Michel peut être aidé par persuasion ou par combat et donne ensuite une remise de 20 % sur le médi-gel. Les services rendus à la colonie de Féros et les données de Gavin sont enregistrés dans le rapport de mission.
+Les cinq rencontres annexes utilisent les vraies règles ATB. Choisir de combattre arme une rencontre persistante ; seule une victoire validée peut compléter cette étape. Un rechargement reprend depuis l’avant-combat, sans attribuer les récompenses. La conclusion de chaque opération paie une seule fois. Le docteur Michel peut être aidé par persuasion ou par combat et donne ensuite une remise de 20 % sur le médi-gel. Les services rendus à la colonie de Féros et les données de Gavin sont enregistrés dans le rapport de mission.
 
 Les opérations des tunnels et la récupération des données possèdent des échéances liées au Thorien. Le retour à Gavin reste possible si les données ont déjà été copiées. Un avertissement précède les échéances du Thorien et du Conduit. Ces conditions sont celles des cartes condensées ; les dialogues complets, tous les veilleurs et les autres variantes du jeu original restent à produire.
 
@@ -130,7 +142,7 @@ Pour une production finale, chaque personnage devra avoir une référence d’é
 
 Les neuf zones sont construites avec des volumes, matériaux, éclairages et éléments spécifiques. Les géométries statiques partageant un matériau sont regroupées pour réduire les appels de rendu. La végétation répétée est instanciée. Les façades côté caméra sont réduites en coupe pour éviter d’occulter le commando.
 
-Eden Prime possède un plan propre à cinq secteurs, un chemin principal, une boucle de ravitaillement et une piste de retour. Ses sept points de progression conservent leurs identifiants ; trois arènes locales évitent de ramener tous les combats au même endroit. Le masque de sol, les obstacles, les déplacements au clic, la caméra de suivi, la carte locale et le radar utilisent ce même plan. L’enveloppe de 110 × 150 unités comprend aussi du décor non praticable ; elle n’est ni une surface entièrement accessible, ni un relevé des dimensions originales. Les huit autres zones gardent leur découpage condensé. Les [références du parcours](research/eden-level-layout.md) précisent les neuf repères de production, qui ne constituent pas neuf sous-niveaux originaux complets.
+Eden Prime possède un plan propre à cinq secteurs, un chemin principal, une boucle de ravitaillement et une piste de retour. Ses sept points de progression conservent leurs identifiants ; trois arènes locales évitent de ramener tous les combats au même endroit. Le masque de sol, les obstacles, les déplacements au clic, la caméra de suivi, la carte locale et le radar utilisent ce même plan. L’enveloppe de 110 × 150 unités comprend aussi du décor non praticable ; elle n’est ni une surface entièrement accessible, ni un relevé des dimensions originales. Thérum, Novéria, Virmire, Féros et Ilos disposent aussi de cinq secteurs ; Normandy et les deux états de la Citadelle conservent leurs plans plus condensés. Les [références du parcours](research/eden-level-layout.md) précisent les neuf repères de production, qui ne constituent pas neuf sous-niveaux originaux complets.
 
 Les éléments de structure qui masquent les combattants à Novéria et les poteaux de premier plan à Féros sont gérés séparément de la fusion statique et peuvent s’effacer pendant le combat. Leur présence en exploration et leurs collisions sont conservées. Cette coupe de présentation ne change ni les accès ni la progression de la mission ; sa portée visuelle est contrôlée sur les captures réellement produites.
 
@@ -150,7 +162,7 @@ La séparation permet de remplacer une carte condensée, un atlas ou un écran s
 
 ## Sauvegarde et reprise
 
-La sauvegarde automatique se produit hors combat. En combat, la reprise part du point précédent la rencontre. Six emplacements manuels complètent l’autosauvegarde. Le fichier exporté porte un identifiant de format et une version. Les données importées sont contrôlées avant d’être appliquées ; une importation invalide ne remplace pas la progression valide. Les niveaux, calibrations, équipements, stocks, opérations, choix, morts, recrues, conversations, dossier et paramètres de jeu sont persistés.
+La sauvegarde automatique se produit hors combat. En combat, la reprise part du point précédent la rencontre. Six emplacements manuels complètent l’autosauvegarde. Le fichier exporté porte un identifiant de format et une version. Les nouveaux sous-états `talents` et `missionProgress` ont leur propre version, avec migration des champs absents et refus des champs présents invalides ; les détails historiques inconnus ne sont pas inventés. Les données importées sont contrôlées avant d’être appliquées ; une importation invalide ne remplace pas la progression valide. Les niveaux, calibrations, équipements, stocks, opérations, choix, morts, recrues, conversations, dossier et paramètres de jeu sont persistés.
 
 Le format reste en version 1. Les sauvegardes antérieures sans inventaire ou opérations reçoivent les valeurs initiales de ces champs, tout en conservant le dossier et la progression déjà publiés. Les champs présents mais invalides sont refusés. Une étape ou un combat annexe incomplet n’est pas converti en victoire pendant la migration.
 

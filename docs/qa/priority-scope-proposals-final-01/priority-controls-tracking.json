@@ -1,0 +1,107 @@
+{
+  "scope": "Proposition de champs pour le propriétaire du suivi ; aucune mutation du catalogue ou du classeur.",
+  "baselineCommit": "259d51267a64404048c1e18a1e549f5a356b63c6",
+  "readyForPublication": false,
+  "gatesRequired": [
+    "Actual current public development report passed",
+    "Every captured image actually opened and SHA reviewed",
+    "Parent final native integration gate"
+  ],
+  "acceptanceCriteriaPreserved": true,
+  "records": [
+    {
+      "id": "SYS-manette",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/gamepad-controls.js",
+        "gameKey": "system:manette",
+        "description": "Navigation DOM, actions de campagne et saisie de texte accessibles à une manette standard ; indicateurs adaptés à la méthode d’entrée active.",
+        "notes": "Correspondance standard de l’API Gamepad, mouvement analogique indépendant des touches physiques, navigation des contrôles actifs, listes/curseurs et clavier à l’écran. Neutralité obligatoire après connexion, reprise et changement de mode. Raccords au HUD, aux menus et au combat dans main/world. Les essais utilisent un périphérique simulé explicitement déclaré ; matériel physique, remappage, rumble et sélecteurs système d’import/export restent hors de la validation de ce lot."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/gamepad-controls.test.js",
+        "docs/qa/priority-controls-unit-final-04-report.json",
+        "docs/research/gamepad-controls.md",
+        "scripts/priority-controls-browser.mjs",
+        "docs/qa/priority-controls-dev-final-03-report.json",
+        "docs/qa/priority-controls-dev-final-03-visual-review.json"
+      ]
+    },
+    {
+      "id": "SYS-clavier",
+      "proposedFields": {
+        "notes": "Déplacements et raccourcis physiques conservés ; navigation des menus et dialogues avec flèches, Tab/Maj+Tab, Entrée et retour explicite. Restauration du focus après reconstruction du DOM même sans manette ; champs de saisie natifs préservés. Le tir rapide physique avec Espace en combat reste distinct. La couverture de tous les écrans et le remappage complet restent à vérifier."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/gamepad-controls.test.js",
+        "docs/qa/priority-controls-unit-final-04-report.json",
+        "docs/research/gamepad-controls.md",
+        "scripts/priority-controls-browser.mjs",
+        "docs/qa/priority-controls-dev-final-03-report.json",
+        "docs/qa/priority-controls-dev-final-03-visual-review.json"
+      ]
+    },
+    {
+      "id": "QA-dialogue-sans-souris",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "tests/gamepad-controls.test.js",
+        "gameKey": "qa:dialogue-input",
+        "notes": "Contrôles natifs de navigation/focus et parcours public ciblé d’un dialogue d’ouverture avec vraies entrées clavier et API Gamepad simulée. Activation des contrôles DOM réels, aucun appel direct au moteur de campagne. Le critère de tous les choix de dialogue et la correspondance matérielle réelle restent ouverts ; aucune certification globale de toutes les conversations."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/gamepad-controls.test.js",
+        "docs/qa/priority-controls-unit-final-04-report.json",
+        "docs/research/gamepad-controls.md",
+        "scripts/priority-controls-browser.mjs",
+        "docs/qa/priority-controls-dev-final-03-report.json",
+        "docs/qa/priority-controls-dev-final-03-visual-review.json"
+      ]
+    }
+  ],
+  "assetStatusesPreserved": true,
+  "ownerEvidenceReady": true,
+  "remainingGate": "Parent final native integration gate and composed family evidence",
+  "currentOwnerProofs": [
+    {
+      "path": "docs/qa/priority-controls-dev-final-03-report.json",
+      "sha256": "63da2973c9eb71f330c6ac14d2dab58a2ab07327c9b0717ad17ea414e3b65503"
+    },
+    {
+      "path": "docs/qa/priority-controls-dev-final-03-visual-review.json",
+      "sha256": "f7c15ca71431b53b29f55e5d512ae498d4bb3e1fd5651c0a86bc186ea95be464"
+    },
+    {
+      "path": "docs/qa/priority-controls-unit-final-04-report.json",
+      "sha256": "3740fc48b3bf25aada1281e0254a8250134c092e5d6d1f862b1016e4781ad787"
+    }
+  ],
+  "retainedOwnerEvidence": [
+    {
+      "path": "docs/qa/priority-controls-dev-final-02-report.json",
+      "sha256": "1e711f5a74be499da305736b3705677b8581409ea4f9c8610ff5dfeee5dbe255"
+    },
+    {
+      "path": "docs/qa/priority-controls-dev-final-02-visual-review.json",
+      "sha256": "e9861359b3ce958d569b173c870d7211952be3308e70b6448473c6355d8de0b3"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { getTacticalPosition } from './tactical-positions.js';
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -1389,7 +1390,7 @@ export class WorldView {
   }
 
   setMode(mode) {
-    this.mode = mode; if (mode !== 'explore') { this.keys.clear(); this.targetPath = null; this.pendingPOI = null; }
+    this.mode = mode; if (mode !== 'explore') { this.gamepadInput = {right:0,forward:0,sprint:false}; this.keys.clear(); this.targetPath = null; this.pendingPOI = null; }
     if (this.makoSprite) this.makoSprite.group.visible = mode !== 'combat' && this._vehicleInPeriod();
     for (const object of this.combatOccluders) {
       const scenery = object.userData.levelScenery, arena = this.battleArena || this.zone.arena;
@@ -1398,19 +1399,21 @@ export class WorldView {
     for (const actor of this.actors) actor.group.visible = mode !== 'combat' && !this.isVehicleMounted();
     for (const actor of this.ambientActors || []) actor.group.visible = this._ambientActorVisible(actor);
     this._syncHorizonFleet();
-    for (const actor of this.battleActors.values()) actor.group.visible = mode === 'combat';
+    for (const actor of this.battleActors.values()) actor.group.visible = mode === 'combat' && actor.state?.bossPhaseRetired !== true;
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     const activePOIIds=new Set(this.poiViews?.length?this.getInteractivePOIs().map(poi=>poi.id):[]);
     for (const view of this.poiViews || []) { view.group.visible = mode !== 'combat' && activePOIIds.has(view.poi.id) && !(view.poi.type === 'encounter' && this.cleared.has(view.poi.id)); if (mode !== 'explore') view.label.style.opacity = '0'; }
   }
 
+  getCombatArena() {
+    return this.levelLayout ? Object.values({...this.levelLayout.arenas,...this.levelLayout.sideArenas}).reduce((best, arena) =>
+      Math.hypot(arena.x - this.player.x, arena.z - this.player.z) < Math.hypot(best.x - this.player.x, best.z - this.player.z) ? arena : best,
+    this.zone.arena) : this.zone.arena;
+  }
+
   setBattle(battle) {
     if (battle && this.isVehicleMounted()) this._dismountVehicle();
-    if (battle && battle !== this.battle && this.levelLayout) {
-      this.battleArena = Object.values({...this.levelLayout.arenas,...this.levelLayout.sideArenas}).reduce((best, arena) =>
-        Math.hypot(arena.x - this.player.x, arena.z - this.player.z) < Math.hypot(best.x - this.player.x, best.z - this.player.z) ? arena : best,
-      this.zone.arena);
-    }
+    if (battle && battle !== this.battle) this.battleArena = this.getCombatArena();
     this.battle = battle;
     if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); } this.battleActors.clear(); this.battleArena = null; return; }
     const entries = battle.actors || [...(battle.party || []).map(a => ({ ...a, team: 'party' })), ...(battle.enemies || []).map(a => ({ ...a, team: 'enemy' }))];
@@ -1424,7 +1427,10 @@ export class WorldView {
       let actor = this.battleActors.get(state.id);
       if (!actor) { actor = this._makeActor(key, state.id, enemy); this.battleActors.set(state.id, actor); }
       const arena = this.battleArena || this.zone.arena;
-      actor.basePosition = new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * (enemy?enemySpacing:2.9));
+      const tactical = getTacticalPosition(battle, state.id);
+      actor.basePosition = tactical
+        ? new THREE.Vector3(arena.x + tactical.x, 0, arena.z + tactical.z)
+        : new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * (enemy?enemySpacing:2.9));
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
       if (actor.lastHp !== null && state.hp < actor.lastHp) { actor.poseTime = .35; this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.3, 0)), enemy ? 0xffae79 : 0xf0c7a7); }
       if (actor.lastShield !== null && state.shield < actor.lastShield) actor.shieldFlash = .35;
@@ -1435,7 +1441,7 @@ export class WorldView {
       }
       actor.animationAllowed = animationAllowed;
       actor.alive = state.hp > 0; actor.state = state; actor.lastHp = state.hp; actor.lastShield = state.shield;
-      actor.body.material.opacity = actor.alive ? 1 : .32; actor.group.visible = this.mode === 'combat';
+      actor.body.material.opacity = actor.alive ? 1 : .32; actor.group.visible = this.mode === 'combat' && state.bossPhaseRetired !== true;
       actor.body.rotation.z = actor.alive ? 0 : -.9;
     }
   }
@@ -1608,7 +1614,7 @@ export class WorldView {
         && occupied.every(other => Math.hypot(other.x - point.x, other.z - point.z) >= 1.8)
         && this._pathTo(point)?.length);
       if (!spot) { this.assetErrors?.push(`Point inaccessible : ${source.id}`); continue; }
-      const poi = { ...source, ...spot, type: 'operation', cleared: false };
+      const poi = { ...source, ...spot, type: source.missionId ? 'objective' : 'operation', cleared: false };
       this.operationPois.push(poi); occupied.push(poi);
     }
     if (this.pendingPOI && !this.getInteractivePOIs().some(poi => poi.id === this.pendingPOI.id)) {
@@ -1691,26 +1697,32 @@ export class WorldView {
     return new THREE.Vector3(clamp(point.x * .48, -9, 9), mode === 'combat' ? .3 : 0, clamp(point.z * .48, -10, 10));
   }
 
-  update(dt = 1 / 60) {
+  update(dt = 1 / 60, { render = true } = {}) {
     if (this._disposed) return;
     dt = clamp(Number.isFinite(dt) ? dt : 1 / 60, 0, .05); this.time += dt;
     let moving = false, movementX = 0, movementZ = 0;
     if (this.mode === 'explore') {
-      const right = Number(this.keys.has('KeyD') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('KeyQ') || this.keys.has('ArrowLeft'));
-      const forward = Number(this.keys.has('KeyW') || this.keys.has('KeyZ') || this.keys.has('ArrowUp')) - Number(this.keys.has('KeyS') || this.keys.has('ArrowDown'));
+      const keyRight = Number(this.keys.has('KeyD') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('KeyQ') || this.keys.has('ArrowLeft'));
+      const keyForward = Number(this.keys.has('KeyW') || this.keys.has('KeyZ') || this.keys.has('ArrowUp')) - Number(this.keys.has('KeyS') || this.keys.has('ArrowDown'));
+      // Physical keyboard and analogue pad are separate sources; a keyboard
+      // direction takes priority instead of doubling speed when both are held.
+      const keyboard = keyRight !== 0 || keyForward !== 0;
+      const right = keyboard ? keyRight : clamp(Number.isFinite(this.gamepadInput?.right) ? this.gamepadInput.right : 0, -1, 1);
+      const forward = keyboard ? keyForward : clamp(Number.isFinite(this.gamepadInput?.forward) ? this.gamepadInput.forward : 0, -1, 1);
+      const sprint = this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') || this.gamepadInput?.sprint === true;
       let dx = 0, dz = 0;
       if (right || forward) {
         this.targetPath = null; this.pendingPOI = null;
         const side = new THREE.Vector2(this.cameraOffset.z, -this.cameraOffset.x).normalize(), up = new THREE.Vector2(-this.cameraOffset.x, -this.cameraOffset.z).normalize();
-        const direction = side.multiplyScalar(right).add(up.multiplyScalar(forward)).normalize(); dx = direction.x; dz = direction.y;
+        const direction = side.multiplyScalar(right).add(up.multiplyScalar(forward)).normalize().multiplyScalar(Math.min(1,Math.hypot(right,forward))); dx = direction.x; dz = direction.y;
       } else if (this.targetPath?.length) {
         const target = this.targetPath[0], x = target.x - this.player.x, z = target.z - this.player.z, d = Math.hypot(x, z);
         if (d < (this.isVehicleMounted() ? .7 : .16)) this.targetPath.shift(); else { dx = x / d; dz = z / d; }
       }
-      const speed = (this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') ? 6.6 : 4.35) * dt;
+      const speed = (sprint ? 6.6 : 4.35) * dt;
       if (this.isVehicleMounted()) {
         const previous = { ...this.player };
-        this.makoState = stepMako(this.makoState, { x: dx, z: dz, boost: this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') }, dt, (x,z,radius) => this._vehicleGround(x,z,radius));
+        this.makoState = stepMako(this.makoState, { x: dx, z: dz, boost: sprint }, dt, (x,z,radius) => this._vehicleGround(x,z,radius));
         this.player = { ...this.makoState.position };
         moving = Math.hypot(this.player.x-previous.x,this.player.z-previous.z)>.001;
         this._syncMakoSprite();
@@ -1806,7 +1818,7 @@ export class WorldView {
       view.label.style.left = `${(p.x * .5 + .5) * w}px`; view.label.style.top = `${(-p.y * .5 + .5) * h}px`;
       view.label.style.opacity = active && p.z > -1 && p.z < 1 ? '1' : '0';
     }
-    this.renderer.render(this.scene, this.camera);
+    if (render) this.renderer.render(this.scene, this.camera);
   }
 
   resize() {

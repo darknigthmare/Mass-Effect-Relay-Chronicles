@@ -1,0 +1,2039 @@
+{
+  "passed": true,
+  "at": "2026-11-13T07:52:20.596Z",
+  "mode": "production",
+  "url": "http://127.0.0.1:4192/",
+  "command": {
+    "script": "node scripts/priority-objectives-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4192/",
+      "PRIORITY_OBJECTIVES_MODE": "production",
+      "PRIORITY_OBJECTIVES_PREFIX": "priority-objectives-production-final-01"
+    }
+  },
+  "scope": "Public mission gates, naturally timed six-second disarming, pause, four charges, three MIRA stations, Vigil window, actual timeout/retry, chapter transition and save/reload. Earlier chapter progress and position-only transfers are declared fixtures.",
+  "sourceHashes": {
+    "src/main.js": "66e8cb199ad7f66e2d31ef0d6baf43cb81a11316dee3d9b6e68c17b205d8df8f",
+    "src/state.js": "b021203bdf5530b3e09efb41c9d6d263fdc59cba3c56e7dca18560c7a4e1acec",
+    "src/world.js": "034f465f27d6ad1e3d120fb80bf37b19ab9c5b49037635af1a3c05b372876349",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/combat.js": "734cdd85d455295b8921fc420cc80f06ca9d433f6b775a1353f63fd9e1c4d2bb",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/mission-progress-ui.js": "2d9ef5e4af27e2c20e3c4aa388f370d504ba5346a94f213b637ba5ab803e57aa",
+    "src/simulation-clock.js": "4393b7afd2963cb737953708372bd1612de594de836173d41766ae2bcb34baa1",
+    "src/gamepad-controls.js": "32a5b8a8b90b2187588484e4414db34c58ec3667d8d6780d113f84efa11ed6c6",
+    "src/campaign-talents.js": "b7f7266b61e3684fa031ce78916d0b10151c398aaa1ba23c79bc1a6329b463c7",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/horizon-layout-data.js": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/story.js": "53b23f4819273eb24dd1e058e5e17d34ef27581df437a32aad7b193e6dbe75b0",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "scripts/priority-objectives-public.mjs": "5aa40c379cbb3b4b7a31ac58169e412481148429b6d847beaa8c92e9aa586ef2"
+  },
+  "distFiles": {
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/boss-benezia-animation.json": {
+      "bytes": 1580,
+      "sha256": "afb12aa6053c332af0c6caba4a1eee15e9ad3b8761f8ef23f95cd619568ee2c8"
+    },
+    "assets/boss-benezia-combat.png": {
+      "bytes": 1463718,
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    "assets/boss-saren-animation.json": {
+      "bytes": 1566,
+      "sha256": "69ab0fe2e2eda2be4e235bec600ff0d9ea82a4cbcf69d2553a9ecddc46cc1ffa"
+    },
+    "assets/boss-saren-combat.png": {
+      "bytes": 1918110,
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    "assets/boss-saren-final-animation.json": {
+      "bytes": 1604,
+      "sha256": "76405c9cd6bf75e48bf22ffc6c635ac19483f4f32a96827328f52b6145060b9f"
+    },
+    "assets/boss-saren-final-combat.png": {
+      "bytes": 1974389,
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    },
+    "assets/boss-thorian-animation.json": {
+      "bytes": 1556,
+      "sha256": "8eae1a27117ed815adeffe6fa4e10680bdf3030b513584c8d071cbbc5f6dfd3b"
+    },
+    "assets/boss-thorian-combat.png": {
+      "bytes": 2100344,
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-Db8_yIvO.js": {
+      "bytes": 26620,
+      "sha256": "a0753556f178f21d019989c7ddee0d0f6bd51acb719819aaea1c314dae012b80"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-jenkins-animation.json": {
+      "bytes": 3126,
+      "sha256": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359"
+    },
+    "assets/companion-jenkins-combat.png": {
+      "bytes": 1634485,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuity-ONRhp--5.js": {
+      "bytes": 5889,
+      "sha256": "a6d1e0ef7b7d32dd4fb6ddbf0896dcc527ba83e09c2a01ccefa813061151b80b"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/eden-ground-dirt.png": {
+      "bytes": 4408187,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d"
+    },
+    "assets/eden-ground-grass.png": {
+      "bytes": 4741123,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce"
+    },
+    "assets/enemy-asari-animation.json": {
+      "bytes": 2265,
+      "sha256": "4b299f599418299c62d230ebf682ad0e82175e056f638b7425b255ef2f6ee902"
+    },
+    "assets/enemy-asari-combat.png": {
+      "bytes": 1606367,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/enemy-creeper-animation.json": {
+      "bytes": 2275,
+      "sha256": "4d0c9b23b7f36f546fa479fe10317df51e068779abb1ac1f675bdad40ddc9132"
+    },
+    "assets/enemy-creeper-combat.png": {
+      "bytes": 1903380,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300"
+    },
+    "assets/enemy-geth-animation.json": {
+      "bytes": 2239,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363"
+    },
+    "assets/enemy-geth-combat.png": {
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    "assets/enemy-geth-destroyer-animation.json": {
+      "bytes": 2431,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04"
+    },
+    "assets/enemy-geth-destroyer-combat.png": {
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    "assets/enemy-geth-sniper-animation.json": {
+      "bytes": 2412,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092"
+    },
+    "assets/enemy-geth-sniper-combat.png": {
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    "assets/enemy-husk-animation.json": {
+      "bytes": 2233,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754"
+    },
+    "assets/enemy-husk-combat.png": {
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    "assets/enemy-krogan-animation.json": {
+      "bytes": 2247,
+      "sha256": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f"
+    },
+    "assets/enemy-krogan-combat.png": {
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    "assets/enemy-rachni-animation.json": {
+      "bytes": 2255,
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+    },
+    "assets/enemy-rachni-combat.png": {
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    "assets/expansion-DwzKczsL.js": {
+      "bytes": 162086,
+      "sha256": "876cc5eda748ad1e3a68b8fccfbc343f0904a58fbd65cf7b10fb28233bda6fcc"
+    },
+    "assets/frontier-enemies.json": {
+      "bytes": 3607,
+      "sha256": "328e9a2c6b24a526acabcc17b08bf4617ba3f3b16f9ab73221bc4eaf442be78b"
+    },
+    "assets/frontier-enemies.png": {
+      "bytes": 2181259,
+      "sha256": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9"
+    },
+    "assets/frontier-npcs.json": {
+      "bytes": 2111,
+      "sha256": "4b4037bc3a7c29a6f3bab6fd3b92f8b952077f5b93715cb9ec61e9c58b93780d"
+    },
+    "assets/frontier-npcs.png": {
+      "bytes": 1578744,
+      "sha256": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc"
+    },
+    "assets/horizon-enemies.json": {
+      "bytes": 2467,
+      "sha256": "47de288b397e0759c46a846f44ec1e8b508ebbdedf132583e8890fd414d365c0"
+    },
+    "assets/horizon-enemies.png": {
+      "bytes": 1885448,
+      "sha256": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0"
+    },
+    "assets/horizon-fauna.json": {
+      "bytes": 2202,
+      "sha256": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10"
+    },
+    "assets/horizon-fauna.png": {
+      "bytes": 1855369,
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964"
+    },
+    "assets/horizon-fleet-later.json": {
+      "bytes": 1513,
+      "sha256": "f1dbc796cbc59723f07d0e09cb7ba643ae684110d7204f4bbf78f98ee3bbf4f0"
+    },
+    "assets/horizon-fleet-later.png": {
+      "bytes": 2040877,
+      "sha256": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a"
+    },
+    "assets/horizon-fleet-me1.json": {
+      "bytes": 1496,
+      "sha256": "57c94b9b27b852c7817beb5728689d78f5ceb8e3bc6e5ed388aa86a5ccd03462"
+    },
+    "assets/horizon-fleet-me1.png": {
+      "bytes": 1954276,
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb"
+    },
+    "assets/horizon-npcs.json": {
+      "bytes": 2213,
+      "sha256": "06096a1b71c8043a8490793d00581b060473100aa608a0ed5f9b409fc4d6b36d"
+    },
+    "assets/horizon-npcs.png": {
+      "bytes": 1876944,
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601"
+    },
+    "assets/index-BEBBVm37.css": {
+      "bytes": 68841,
+      "sha256": "ddc609d47fd49d007b674b4eda61c6f248b25c96724a1dc919967ca93e329759"
+    },
+    "assets/index-DjEl5kxP.js": {
+      "bytes": 633475,
+      "sha256": "dc0ecd77541a4e80c8f1c0eca86ccbe17bb1cce54da8a4480e448b552fd10db5"
+    },
+    "assets/joker-seated.json": {
+      "bytes": 2106,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+    },
+    "assets/joker-seated.png": {
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    "assets/manifest.json": {
+      "bytes": 84355,
+      "sha256": "e1d397231df00479c2b3c7f489f1619881d1853a5469b9949870f1edf8d7eae2"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-C7EMHRvg.js": {
+      "bytes": 525544,
+      "sha256": "2a79736531ab3eb9552c3c46c82f854cb2fd8f8324f05c21be8423ccbb8ae453"
+    },
+    "assets/universe-actors-D9n7P2FS.js": {
+      "bytes": 44001,
+      "sha256": "84def7988f3c898498c805a747918583d6b998f8539c6028e901321fe25b5251"
+    },
+    "assets/universe-data-ESc4n22i.js": {
+      "bytes": 3332475,
+      "sha256": "626537a19c657110c4189ee430adec5b228595c4f4434a7608872b93a78bda99"
+    },
+    "assets/universe-equipment-Cje1O9cj.js": {
+      "bytes": 15986,
+      "sha256": "d50f49ea8316b4d9abea803cc322bc8b398dfa61af7a8e6c716704eda112aa43"
+    },
+    "assets/universe-ui-CcnUo4Uq.css": {
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    "assets/universe-ui-tYRpdmTV.js": {
+      "bytes": 56025,
+      "sha256": "4caa40e2265fc49553273146b64cac0d6aa47d6de07ea2f9064c830b41e29d31"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "assets/vehicle-mako-directions.json": {
+      "bytes": 1539,
+      "sha256": "4e09bf1a8729e9a4301b198d780c1f55e72dbcf3c25fd7071be7a3c6e6e1e3d9"
+    },
+    "assets/vehicle-mako-directions.png": {
+      "bytes": 2280065,
+      "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "a8622c9e6b05101c553a68f70a7675cec4e19b0ce06c075b415c3e11e36a481a"
+    }
+  },
+  "fixtures": [
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-eden-before-gate-fixture.json",
+      "sha256": "30c90725b4b9f9dd09dc914bfea133500c133f29d3da38b92e1aea52ad48db6f",
+      "origin": {
+        "kind": "Earlier progression and two encounters prepared through native callbacks",
+        "playedInBrowser": false
+      },
+      "position": {
+        "x": 22,
+        "z": -52.7
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-eden-at-charge-1-fixture.json",
+      "sha256": "6aea57262fe44dedcd27b7cd87d6486242b9e55c72e4f09a2afb414b3d3851a6",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-eden-before-charge-1-export.json",
+        "parentSHA256": "c74974045c729b584a14cf18fa1dbcc80920b05e1b4e1c9fb48308b9a370a5e3",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 22,
+              "z": -52.7
+            },
+            "after": {
+              "x": 18,
+              "z": -39.99999999999999
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-eden-at-charge-2-fixture.json",
+      "sha256": "620276200a78c90ac8c4c41eacf87f57b1a197f675d97f7e79d3784562626858",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-eden-before-charge-2-export.json",
+        "parentSHA256": "8fd7e7051bf8530e0d6f3c8d4e70a8dd287d023ba191bbc6ed8823187ab10744",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 18,
+              "z": -39.99999999999999
+            },
+            "after": {
+              "x": 29,
+              "z": -49
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 29,
+        "z": -49
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-eden-at-charge-3-fixture.json",
+      "sha256": "fa2f74b497bae10e6643c219be468cf230a1dfb6d0f4853089ce90c01b7e97a1",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-eden-before-charge-3-export.json",
+        "parentSHA256": "2f12c597ede57785151ac534e5cfb8da9d540a2c2285fcb40dcbcbd409cd6a0f",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 29,
+              "z": -49
+            },
+            "after": {
+              "x": 10,
+              "z": -59
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 10,
+        "z": -59
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-eden-at-charge-4-fixture.json",
+      "sha256": "d275054b53e89826340038cf91fe210412e780acf00ae790e540da8288533b8e",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-eden-before-charge-4-export.json",
+        "parentSHA256": "e4be985d2de4c3895be1ef05a4330ef9a77bc708f17129556239a8957d9f4ff8",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 10,
+              "z": -59
+            },
+            "after": {
+              "x": 15,
+              "z": -69
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 15,
+        "z": -69
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-eden-five-seconds-fixture.json",
+      "sha256": "4104ceb074730aae477bad6ea13b320b12a9b0237fc1169aefa60ee5a91804a9",
+      "origin": {
+        "kind": "Isolated native start/tick failure-boundary fixture",
+        "timerPreparedSeconds": 295,
+        "elapsedTimeClaimedPlayed": false
+      },
+      "position": {
+        "x": 18,
+        "z": -40
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-mira-before-gate-fixture.json",
+      "sha256": "0c0d6d4309b9b1c2c60230f1203cb060adc9e37dcf478c2a2725ab95a7f96562",
+      "origin": {
+        "kind": "Earlier progression and first Noveria encounter prepared through native callbacks",
+        "playedInBrowser": false
+      },
+      "position": {
+        "x": 23,
+        "z": -40.7
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-mira-at-uplink-fixture.json",
+      "sha256": "87d9e13172b13adc3b593975b6018f3e2f6c31e2c71f7fecb73d885477cbf0f0",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-mira-before-uplink-export.json",
+        "parentSHA256": "7f00d5b86178863d6730a1506432758736ebfc7cbdc7c566ad474b698169a3bf",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 23,
+              "z": -40.7
+            },
+            "after": {
+              "x": 17.999999999999986,
+              "z": -21
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-mira-at-memory-fixture.json",
+      "sha256": "e96c5d2de820b16ca17ec77539cc41e3f03d41ef298b986b8bef00d4556996f5",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-mira-before-memory-export.json",
+        "parentSHA256": "bcb1e1366e4a8095bc477b45e3970062ec42077402ce0fcca7b0cbecae1d3378",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 17.999999999999986,
+              "z": -21
+            },
+            "after": {
+              "x": 6,
+              "z": -8
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-mira-at-power-fixture.json",
+      "sha256": "e8d93a370852234a8d00fba9497617ffe5d82ce77d3da7015007de6b56dd6257",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-mira-before-power-export.json",
+        "parentSHA256": "4024a19d38b81dc8335b156047653a754792cd31f5894ea78860f37f08f8bc56",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 6,
+              "z": -8
+            },
+            "after": {
+              "x": -3.000000000000007,
+              "z": -18
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -3.000000000000007,
+        "z": -18
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-at-objective-fixture.json",
+      "sha256": "e84f78c6a00793118ec70c1045bd60b170cf79e4d2c2b1915dcbac367e3bcae0",
+      "origin": {
+        "kind": "Earlier progression and Ilos encounters prepared through native callbacks",
+        "playedInBrowser": false
+      },
+      "position": {
+        "x": -4,
+        "z": -80
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-at-vigil-fixture.json",
+      "sha256": "8bce96caf5d0c1fc9187243c4bb3b4a418e4cf6047aaa94a0e8cfbc3e360b93c",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-ilos-to-vigil-export.json",
+        "parentSHA256": "2da1f2076e04f7472c921feb070ed02820b2c8999534c178652be44fc374d01a",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -4,
+              "z": -80
+            },
+            "after": {
+              "x": -4.999999999999993,
+              "z": -84
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-at-conduit-fixture.json",
+      "sha256": "68fad617bcbd5c407f97e77aa2215ef5e139544b771c8418bc2ab5ca3a8870ed",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-ilos-to-conduit-export.json",
+        "parentSHA256": "2f53714a1570944c155975b5f85237192c02c54451bc14887246281eb41ae9eb",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -4.999999999999993,
+              "z": -84
+            },
+            "after": {
+              "x": -4.450000000000003,
+              "z": -97.779422863406
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-transition-point-fixture.json",
+      "sha256": "868117c32b2c3089c2f17abfd15cde6b43f690f2090ef19357537b9df7806519",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-production-final-01-ilos-before-transition-export.json",
+        "parentSHA256": "7cdd950cc622b7ef305372654ce0d500be5ed5f768ed4b8e95274393fbd9f20f",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -4.450000000000003,
+              "z": -97.779422863406
+            },
+            "after": {
+              "x": -4,
+              "z": -82
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4,
+        "z": -82
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "eden-started",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-started-export.json",
+      "sha256": "35f62d714d69d506b0149d54d21d1b67feab66efa3c4d198a8012194c114bb12",
+      "bytes": 3145,
+      "position": {
+        "x": 22,
+        "z": -52.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 300,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-1",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-before-charge-1-export.json",
+      "sha256": "c74974045c729b584a14cf18fa1dbcc80920b05e1b4e1c9fb48308b9a370a5e3",
+      "bytes": 3145,
+      "position": {
+        "x": 22,
+        "z": -52.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 300,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-channel-paused",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-channel-paused-export.json",
+      "sha256": "51389ff00bd8f062f7694436068ee65e972284587d7299c41a4a4f0a40eb2b39",
+      "bytes": 3280,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 297.33333333333576,
+            "attempts": 1,
+            "channel": {
+              "stepId": "charge-1",
+              "remaining": 3.3500000000000094,
+              "position": {
+                "x": 18,
+                "z": -39.99999999999999
+              }
+            }
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-channel-still-paused",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-channel-still-paused-export.json",
+      "sha256": "fe395ed9209c99e774f35007ffe1840711303eabfb351a264319c65d88b9d4a3",
+      "bytes": 3280,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 297.33333333333576,
+            "attempts": 1,
+            "channel": {
+              "stepId": "charge-1",
+              "remaining": 3.3500000000000094,
+              "position": {
+                "x": 18,
+                "z": -39.99999999999999
+              }
+            }
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-1-complete",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-charge-1-complete-export.json",
+      "sha256": "e3930a4c76759abe0b6f029943ea54a28f3e763b62e77caec321000449c64ba8",
+      "bytes": 3199,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1"
+            ],
+            "remaining": 292.21666666667375,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-2",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-before-charge-2-export.json",
+      "sha256": "8fd7e7051bf8530e0d6f3c8d4e70a8dd287d023ba191bbc6ed8823187ab10744",
+      "bytes": 3199,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1"
+            ],
+            "remaining": 292.21666666667375,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-2-complete",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-charge-2-complete-export.json",
+      "sha256": "a8a1845ec21904b97df6f3b8a692304622ebe94597b10d2190d32b1fdd299fd7",
+      "bytes": 3194,
+      "position": {
+        "x": 29,
+        "z": -49
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2"
+            ],
+            "remaining": 286.16666666667925,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-3",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-before-charge-3-export.json",
+      "sha256": "2f12c597ede57785151ac534e5cfb8da9d540a2c2285fcb40dcbcbd409cd6a0f",
+      "bytes": 3194,
+      "position": {
+        "x": 29,
+        "z": -49
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2"
+            ],
+            "remaining": 286.16666666667925,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-3-complete",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-charge-3-complete-export.json",
+      "sha256": "cced029b894ad0060d4f3b53f55dcf7c87dee7ffc4adb781368f14943791bb31",
+      "bytes": 3207,
+      "position": {
+        "x": 10,
+        "z": -59
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2",
+              "charge-3"
+            ],
+            "remaining": 276.88333333335436,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-4",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-before-charge-4-export.json",
+      "sha256": "e4be985d2de4c3895be1ef05a4330ef9a77bc708f17129556239a8957d9f4ff8",
+      "bytes": 3207,
+      "position": {
+        "x": 10,
+        "z": -59
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2",
+              "charge-3"
+            ],
+            "remaining": 276.88333333335436,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-4-complete",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-charge-4-complete-export.json",
+      "sha256": "5bc2a20ce77e1dd172784f4e9d63ebb6f9c812b619b7ff02ebc8e36f8d8caf12",
+      "bytes": 3219,
+      "position": {
+        "x": 15,
+        "z": -69
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "complete",
+            "steps": [
+              "charge-1",
+              "charge-2",
+              "charge-3",
+              "charge-4"
+            ],
+            "remaining": 270.8833333333598,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-restarted",
+      "path": "docs/qa/priority-objectives-production-final-01-eden-restarted-export.json",
+      "sha256": "ed42349f2f99235e0c6fc3d6cebab8b8bce5f4d8bdb6e77c9e7562a023359490",
+      "bytes": 3159,
+      "position": {
+        "x": 18,
+        "z": -40
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 300,
+            "attempts": 2,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-started",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-started-export.json",
+      "sha256": "199c1e29e804388a7187df10c2036852ef48295973fc7db99950818d7877f073",
+      "bytes": 3819,
+      "position": {
+        "x": 23,
+        "z": -40.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-before-uplink",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-before-uplink-export.json",
+      "sha256": "7f00d5b86178863d6730a1506432758736ebfc7cbdc7c566ad474b698169a3bf",
+      "bytes": 3819,
+      "position": {
+        "x": 23,
+        "z": -40.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-uplink-repaired",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-uplink-repaired-export.json",
+      "sha256": "241f8a68726db7612243d6d00a9c38d900f64085cdab44ab9733be96e05c2daf",
+      "bytes": 3841,
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-before-memory",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-before-memory-export.json",
+      "sha256": "bcb1e1366e4a8095bc477b45e3970062ec42077402ce0fcca7b0cbecae1d3378",
+      "bytes": 3841,
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-memory-repaired",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-memory-repaired-export.json",
+      "sha256": "cec154c3d589f41990b290fbb64c27e36e1142ea239ee1e58cb442cc9de8c342",
+      "bytes": 3831,
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink",
+              "memory"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-before-power",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-before-power-export.json",
+      "sha256": "4024a19d38b81dc8335b156047653a754792cd31f5894ea78860f37f08f8bc56",
+      "bytes": 3831,
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink",
+              "memory"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-power-repaired",
+      "path": "docs/qa/priority-objectives-production-final-01-mira-power-repaired-export.json",
+      "sha256": "dfd0952cee59774b127c26fe1553b666317de9d5c746d207e3c6ce0dc803a73a",
+      "bytes": 3860,
+      "position": {
+        "x": -3.000000000000007,
+        "z": -18
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "complete",
+            "steps": [
+              "uplink",
+              "memory",
+              "power"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-before-vigil",
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-before-vigil-export.json",
+      "sha256": "0f110bef3480d26a004ca34a9296cf870b8ec966f29f9c93ae39a26ec862b079",
+      "bytes": 4188,
+      "position": {
+        "x": -4,
+        "z": -80
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-to-vigil",
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-to-vigil-export.json",
+      "sha256": "2da1f2076e04f7472c921feb070ed02820b2c8999534c178652be44fc374d01a",
+      "bytes": 4188,
+      "position": {
+        "x": -4,
+        "z": -80
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-window-active",
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-window-active-export.json",
+      "sha256": "926e3014a0b3e37876b554eb8f47df72a6185cbeda5410229bf6c72d66a107f3",
+      "bytes": 4228,
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [
+              "vigil"
+            ],
+            "remaining": 60,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-to-conduit",
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-to-conduit-export.json",
+      "sha256": "2f53714a1570944c155975b5f85237192c02c54451bc14887246281eb41ae9eb",
+      "bytes": 4228,
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [
+              "vigil"
+            ],
+            "remaining": 60,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-window-complete",
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-window-complete-export.json",
+      "sha256": "c0724a3acafc391c44e388076ffb2535653b071661d87fc449a6816864708d60",
+      "bytes": 4266,
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.16666666666677,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-before-transition",
+      "path": "docs/qa/priority-objectives-production-final-01-ilos-before-transition-export.json",
+      "sha256": "7cdd950cc622b7ef305372654ce0d500be5ed5f768ed4b8e95274393fbd9f20f",
+      "bytes": 4266,
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.16666666666677,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "citadel-arrival",
+      "path": "docs/qa/priority-objectives-production-final-01-citadel-arrival-export.json",
+      "sha256": "ba8f306dd69a0a2917a53e9fcd20132353fb91840cc83504ba79ee99d9113e97",
+      "bytes": 4314,
+      "position": {
+        "x": 0,
+        "z": 17
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.16666666666677,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "reloaded-citadel",
+      "path": "docs/qa/priority-objectives-production-final-01-reloaded-citadel-export.json",
+      "sha256": "23e556a6fc098da7d52a8bd65db7fbe9bf1a51196a0265d05b31daa16297aca5",
+      "bytes": 4313,
+      "position": {
+        "x": 0,
+        "z": 17
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.16666666666677,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-eden-gate.png",
+      "label": "eden-gate",
+      "sha256": "02bed1057773b0db8c93f54258ad8357134fdb8d3e0cfffef46807eb5afd03c8",
+      "bytes": 1180270,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-eden-charge-dialogue.png",
+      "label": "eden-charge-dialogue",
+      "sha256": "07db1bb7f2c862c6b9f66ba1c9149eac46712c2eb35f6f7d2d6b34431210e293",
+      "bytes": 1184641,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-eden-save-pauses-channel.png",
+      "label": "eden-save-pauses-channel",
+      "sha256": "e0636d85e28d3d415b54306692c8a8639dfe5f1953bc930d8a6868ac609367a5",
+      "bytes": 250724,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-eden-four-charges-complete.png",
+      "label": "eden-four-charges-complete",
+      "sha256": "35fabd7473dd3a8834ceb1e01729608f9f59941f2c9099883a1ce9746b8d0ab5",
+      "bytes": 323443,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-eden-timeout.png",
+      "label": "eden-timeout",
+      "sha256": "a1f6ff7b75c663598c112f01bb691effe0384b27fe3ba58a42acff0ac61d6e9b",
+      "bytes": 1190785,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-mira-gate.png",
+      "label": "mira-gate",
+      "sha256": "436fbec3af11d4438150b1a7882b0307bf5b7ab07be84258dd8fe7396213cc19",
+      "bytes": 899595,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-mira-repair-dialogue.png",
+      "label": "mira-repair-dialogue",
+      "sha256": "94ae71b9abc2062613349d70175f16155862032225074d5120bf8165dcaf59dd",
+      "bytes": 935803,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-mira-three-stations.png",
+      "label": "mira-three-stations",
+      "sha256": "8d07d9b3771d6d865a3cfa7962f7560c7342c4fcf4527a8e6039fb1ed7c764df",
+      "bytes": 316402,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-ilos-objective.png",
+      "label": "ilos-objective",
+      "sha256": "936124347e3ee6f73baac6c74693dfc6ca0129fd9c139160b9cf6a100fe58d1f",
+      "bytes": 714883,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-vigil-window-dialogue.png",
+      "label": "vigil-window-dialogue",
+      "sha256": "2c377e5f2ec1d41d067d45cf24cc9ade96ac42bccef13af15bb27b759e4e8193",
+      "bytes": 694561,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-conduit-arrival.png",
+      "label": "conduit-arrival",
+      "sha256": "b75c4d32781ab96bffd11354dc49f7c5fd1aa570d47622f181a1bd2720040e59",
+      "bytes": 501400,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-ilos-passage-reached.png",
+      "label": "ilos-passage-reached",
+      "sha256": "9ed74861f962efc86d20151207eb6ebee1f64c161a114c16badfea802034f865",
+      "bytes": 329575,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-ilos-transition-confirmation.png",
+      "label": "ilos-transition-confirmation",
+      "sha256": "0acedfcb2f1636e8901e3e58dec4b9d9ea6f9976feaec24f7e91c7fec0eea9f3",
+      "bytes": 713887,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-production-final-01-resumed-at-citadel.png",
+      "label": "resumed-at-citadel",
+      "sha256": "1db785fbcf2024c37593163195849fb752e2d6fe91af77d77ce4e07bc5373a94",
+      "bytes": 845599,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Four public six-second disarmings, save-menu pause and no reward for mission-only completion",
+      "passed": true
+    },
+    {
+      "name": "Public real expiry and explicit checkpoint reset without resource changes",
+      "passed": true
+    },
+    {
+      "name": "Three different public MIRA stations persist in the selected order without rewards",
+      "passed": true
+    },
+    {
+      "name": "Vigil activation, actual public Conduit arrival and one native chapter transition/reward",
+      "passed": true
+    },
+    {
+      "name": "Actual automatic-save reload preserves the completed mission and chapter transition",
+      "passed": true
+    }
+  ],
+  "mapCoordinates": [
+    {
+      "id": "mission:eden-prime:charge-1",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 60.199999999999996,
+      "sourceY": 36.2,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      }
+    },
+    {
+      "id": "mission:eden-prime:charge-2",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 66.8,
+      "sourceY": 30.8,
+      "position": {
+        "x": 29,
+        "z": -49
+      }
+    },
+    {
+      "id": "mission:eden-prime:charge-3",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 55.4,
+      "sourceY": 24.8,
+      "position": {
+        "x": 10,
+        "z": -59
+      }
+    },
+    {
+      "id": "mission:eden-prime:charge-4",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 58.4,
+      "sourceY": 18.799999999999997,
+      "position": {
+        "x": 15,
+        "z": -69
+      }
+    },
+    {
+      "id": "mission:noveria:uplink",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 58.69318181818181,
+      "sourceY": 44.375,
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      }
+    },
+    {
+      "id": "mission:noveria:memory",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 52.55681818181819,
+      "sourceY": 51.02272727272727,
+      "position": {
+        "x": 6,
+        "z": -8
+      }
+    },
+    {
+      "id": "mission:noveria:power",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 47.95454545454545,
+      "sourceY": 45.90909090909091,
+      "position": {
+        "x": -3.000000000000007,
+        "z": -18
+      }
+    },
+    {
+      "id": "mission:ilos:vigil",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 47.631578947368425,
+      "sourceY": 14.947368421052632,
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 47.892105263157895,
+      "sourceY": 8.420273380491896,
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      }
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4192/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4192/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4192/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [],
+  "limits": [
+    "Earlier chapters and prerequisite encounters are prepared with native Node callbacks, not won in this browser.",
+    "Transfers change only position in the immediately preceding actual public export. No travel path is claimed played.",
+    "The failure fixture is separately prepared through native start/tick callbacks with five seconds left; its earlier elapsed time is not claimed played.",
+    "MIRA repairs, the 300/60-second windows, foot travel and geometry remain partial ATB adaptations. No original complete mission fidelity or physical-device performance is certified."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/priority-objectives-production-final-01-collector.mjs",
+    "sha256": "5aa40c379cbb3b4b7a31ac58169e412481148429b6d847beaa8c92e9aa586ef2"
+  },
+  "sourceFrozen": true,
+  "distFrozen": true
+}

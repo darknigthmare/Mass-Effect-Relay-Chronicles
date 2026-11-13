@@ -1,0 +1,1817 @@
+{
+  "passed": true,
+  "at": "2026-11-13T07:11:04.595Z",
+  "mode": "development",
+  "url": "http://127.0.0.1:4191/",
+  "command": {
+    "script": "node scripts/priority-objectives-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4191/",
+      "PRIORITY_OBJECTIVES_MODE": "development",
+      "PRIORITY_OBJECTIVES_PREFIX": "priority-objectives-dev-final-03"
+    }
+  },
+  "scope": "Public mission gates, naturally timed six-second disarming, pause, four charges, three MIRA stations, Vigil window, actual timeout/retry, chapter transition and save/reload. Earlier chapter progress and position-only transfers are declared fixtures.",
+  "sourceHashes": {
+    "src/main.js": "21ac55ade909f409e28d5f9ec1f1461b0734d87eb5807efc097a72878a4adfc3",
+    "src/state.js": "b021203bdf5530b3e09efb41c9d6d263fdc59cba3c56e7dca18560c7a4e1acec",
+    "src/world.js": "034f465f27d6ad1e3d120fb80bf37b19ab9c5b49037635af1a3c05b372876349",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/combat.js": "734cdd85d455295b8921fc420cc80f06ca9d433f6b775a1353f63fd9e1c4d2bb",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/mission-progress-ui.js": "2d9ef5e4af27e2c20e3c4aa388f370d504ba5346a94f213b637ba5ab803e57aa",
+    "src/simulation-clock.js": "4393b7afd2963cb737953708372bd1612de594de836173d41766ae2bcb34baa1",
+    "src/gamepad-controls.js": "32a5b8a8b90b2187588484e4414db34c58ec3667d8d6780d113f84efa11ed6c6",
+    "src/campaign-talents.js": "b7f7266b61e3684fa031ce78916d0b10151c398aaa1ba23c79bc1a6329b463c7",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/horizon-layout-data.js": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/story.js": "53b23f4819273eb24dd1e058e5e17d34ef27581df437a32aad7b193e6dbe75b0",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "scripts/priority-objectives-public.mjs": "5aa40c379cbb3b4b7a31ac58169e412481148429b6d847beaa8c92e9aa586ef2"
+  },
+  "distFiles": {},
+  "fixtures": [
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-before-gate-fixture.json",
+      "sha256": "9e4166c14efd28a7b5de491024a578a1187a8de8a4a4b66715f657da72f812a7",
+      "origin": {
+        "kind": "Earlier progression and two encounters prepared through native callbacks",
+        "playedInBrowser": false
+      },
+      "position": {
+        "x": 22,
+        "z": -52.7
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-at-charge-1-fixture.json",
+      "sha256": "57a0b833842a8dea3c7396a8160118f1b99faa6960691a9326dd768b01197912",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-1-export.json",
+        "parentSHA256": "ce9869a2d250f5a55805e41d4ed72596645a1570190919f598b19213fb6e5c99",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 22,
+              "z": -52.7
+            },
+            "after": {
+              "x": 18,
+              "z": -39.99999999999999
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-at-charge-2-fixture.json",
+      "sha256": "960ceb946e767f911be99cf99475533bc06c93871f4857f32794b43b5ee23884",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-2-export.json",
+        "parentSHA256": "c324563c95d560a5ef7248542d4ce2c5b068c5466cea4e12a7ac207cf7d1aa88",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 18,
+              "z": -39.99999999999999
+            },
+            "after": {
+              "x": 29,
+              "z": -49
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 29,
+        "z": -49
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-at-charge-3-fixture.json",
+      "sha256": "581ab9203133764054600fb3220947ef35c414521b67d248c49d006ef40ca93a",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-3-export.json",
+        "parentSHA256": "d5c82089e2fe756810c67110afe4fad87294b87d66fcf28c62be2a6060373890",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 29,
+              "z": -49
+            },
+            "after": {
+              "x": 10,
+              "z": -59
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 10,
+        "z": -59
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-at-charge-4-fixture.json",
+      "sha256": "265b02886940f74bb21ea126366682987ac84344d3f9e27a99e788b2e69a5e32",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-4-export.json",
+        "parentSHA256": "4aa27872f3a5cd8c89cf7224777e0951adbcc2a506a59b7f66dd1423dd68fb89",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 10,
+              "z": -59
+            },
+            "after": {
+              "x": 15,
+              "z": -69
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 15,
+        "z": -69
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-five-seconds-fixture.json",
+      "sha256": "0411d34ae79cb9f6b8bc3fbc1b1aa1e0378c9bef351f710154846b667269ccaf",
+      "origin": {
+        "kind": "Isolated native start/tick failure-boundary fixture",
+        "timerPreparedSeconds": 295,
+        "elapsedTimeClaimedPlayed": false
+      },
+      "position": {
+        "x": 18,
+        "z": -40
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-before-gate-fixture.json",
+      "sha256": "62e11b60b08fb3e51ba01b8a3853f7fa7483e5e1ba5e9d5786823286ccb27dad",
+      "origin": {
+        "kind": "Earlier progression and first Noveria encounter prepared through native callbacks",
+        "playedInBrowser": false
+      },
+      "position": {
+        "x": 23,
+        "z": -40.7
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-at-uplink-fixture.json",
+      "sha256": "5b2f98d6b0dc4731b72270312d3ee4d6a27989db803d991a3728731ef3f11cf0",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-mira-before-uplink-export.json",
+        "parentSHA256": "9f05b9343093a2280222d173f824e97a082d9134d8502e60f3738c6bcef44835",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 23,
+              "z": -40.7
+            },
+            "after": {
+              "x": 17.999999999999986,
+              "z": -21
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-at-memory-fixture.json",
+      "sha256": "275acac4e96bd8c588f4b14bc131f97eecda07cfb6cd38adeb60e97559d40083",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-mira-before-memory-export.json",
+        "parentSHA256": "5cb8af5fc7ee74c00d75bd5f7c593030f62ef2c4d461566a8f75f452b6a5da67",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 17.999999999999986,
+              "z": -21
+            },
+            "after": {
+              "x": 6,
+              "z": -8
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-at-power-fixture.json",
+      "sha256": "ac1b7fa5e4d9848c50721a51ca0502759d4106472d1b41d84930fff0f5ac5aad",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-mira-before-power-export.json",
+        "parentSHA256": "cea91b9e9514905edd667b397c630647dc363acad359d3c653183e29ab5675b6",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 6,
+              "z": -8
+            },
+            "after": {
+              "x": -3.000000000000007,
+              "z": -18
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -3.000000000000007,
+        "z": -18
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-at-objective-fixture.json",
+      "sha256": "74185707ca61e69909f238de4278676c7aeb9929b928201395a329bd0e25b23a",
+      "origin": {
+        "kind": "Earlier progression and Ilos encounters prepared through native callbacks",
+        "playedInBrowser": false
+      },
+      "position": {
+        "x": -4,
+        "z": -80
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-at-vigil-fixture.json",
+      "sha256": "3caae8683a91f416d29a7ae399655342e5de2ac348faf1b469602106c6b29b27",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-ilos-to-vigil-export.json",
+        "parentSHA256": "2e549a2c1ddf2aabf1086655d504990fa6a7cfa4c43a46ae7abaf7a4d776bc25",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -4,
+              "z": -80
+            },
+            "after": {
+              "x": -4.999999999999993,
+              "z": -84
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-at-conduit-fixture.json",
+      "sha256": "909366db0fbb633474481d1d90fe9377e534aad22be295604bb0c6a886a240c6",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-ilos-to-conduit-export.json",
+        "parentSHA256": "c4d9c3b56467cf2a09f1ec3dfd3a47e075956bb06aee714727fe5c00e9afb18a",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -4.999999999999993,
+              "z": -84
+            },
+            "after": {
+              "x": -4.450000000000003,
+              "z": -97.779422863406
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-transition-point-fixture.json",
+      "sha256": "038cd4a856d1a2f655f7fdd3bc371ae85acceffaf1b653242131b3598b7f6e2f",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/priority-objectives-dev-final-03-ilos-before-transition-export.json",
+        "parentSHA256": "02bcc8fbcaa6dc9c215ae1d5b02afa2212186f3320dafece64541446964e663b",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -4.450000000000003,
+              "z": -97.779422863406
+            },
+            "after": {
+              "x": -4,
+              "z": -82
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4,
+        "z": -82
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "eden-started",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-started-export.json",
+      "sha256": "9a468308a9e66c0064b584856fab6f89e6cca13dd0b4dfdf0b33c60fa0f2a127",
+      "bytes": 3177,
+      "position": {
+        "x": 22,
+        "z": -52.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 299.9666666666667,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-1",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-1-export.json",
+      "sha256": "ce9869a2d250f5a55805e41d4ed72596645a1570190919f598b19213fb6e5c99",
+      "bytes": 3177,
+      "position": {
+        "x": 22,
+        "z": -52.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 299.9666666666667,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-channel-paused",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-channel-paused-export.json",
+      "sha256": "9ad09bdc89420e97c4898d772c76a2ad04f2f0afe3f90a061968ef3a10a16efe",
+      "bytes": 3280,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 297.85000000000196,
+            "attempts": 1,
+            "channel": {
+              "stepId": "charge-1",
+              "remaining": 3.883333333333341,
+              "position": {
+                "x": 18,
+                "z": -39.99999999999999
+              }
+            }
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-channel-still-paused",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-channel-still-paused-export.json",
+      "sha256": "63e0e71d4034b47f0a771cb14278147a9b758baaf3f921b62bdc65e8312c3846",
+      "bytes": 3280,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 297.85000000000196,
+            "attempts": 1,
+            "channel": {
+              "stepId": "charge-1",
+              "remaining": 3.883333333333341,
+              "position": {
+                "x": 18,
+                "z": -39.99999999999999
+              }
+            }
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-1-complete",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-charge-1-complete-export.json",
+      "sha256": "004cbc44ef82acdb1607cd10f7bc62695045c091a4f8503d5d379a597ef56d19",
+      "bytes": 3198,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1"
+            ],
+            "remaining": 292.1333333333405,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-2",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-2-export.json",
+      "sha256": "c324563c95d560a5ef7248542d4ce2c5b068c5466cea4e12a7ac207cf7d1aa88",
+      "bytes": 3198,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1"
+            ],
+            "remaining": 292.1333333333405,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-2-complete",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-charge-2-complete-export.json",
+      "sha256": "5570f66456513c673c772f3a378725022b9d74004f098584f61900d690378801",
+      "bytes": 3195,
+      "position": {
+        "x": 29,
+        "z": -49
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2"
+            ],
+            "remaining": 284.2833333333476,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-3",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-3-export.json",
+      "sha256": "d5c82089e2fe756810c67110afe4fad87294b87d66fcf28c62be2a6060373890",
+      "bytes": 3195,
+      "position": {
+        "x": 29,
+        "z": -49
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2"
+            ],
+            "remaining": 284.2833333333476,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-3-complete",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-charge-3-complete-export.json",
+      "sha256": "0f56bd001d52693f6918818a505125f549c0a5779cd1ea63ae753392c1b2d9c0",
+      "bytes": 3205,
+      "position": {
+        "x": 10,
+        "z": -59
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2",
+              "charge-3"
+            ],
+            "remaining": 277.2166666666874,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-before-charge-4",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-before-charge-4-export.json",
+      "sha256": "4aa27872f3a5cd8c89cf7224777e0951adbcc2a506a59b7f66dd1423dd68fb89",
+      "bytes": 3205,
+      "position": {
+        "x": 10,
+        "z": -59
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [
+              "charge-1",
+              "charge-2",
+              "charge-3"
+            ],
+            "remaining": 277.2166666666874,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-charge-4-complete",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-charge-4-complete-export.json",
+      "sha256": "1d8c1ea191774f70e5f6704e6d8c2ba9f5fc78c10124a6aecb4d11cb13937567",
+      "bytes": 3219,
+      "position": {
+        "x": 15,
+        "z": -69
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "complete",
+            "steps": [
+              "charge-1",
+              "charge-2",
+              "charge-3",
+              "charge-4"
+            ],
+            "remaining": 271.21666666669284,
+            "attempts": 1,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "eden-restarted",
+      "path": "docs/qa/priority-objectives-dev-final-03-eden-restarted-export.json",
+      "sha256": "417ad4d39e6cb9891ab287510d83dd01f6703e9d6df8969308c5c2b35dc7fa9e",
+      "bytes": 3159,
+      "position": {
+        "x": 18,
+        "z": -40
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "active",
+            "steps": [],
+            "remaining": 300,
+            "attempts": 2,
+            "channel": null
+          },
+          "noveria": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-started",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-started-export.json",
+      "sha256": "5914168749b5d10654434fd250a68b03e60887f86a831023b451845f56d79589",
+      "bytes": 3819,
+      "position": {
+        "x": 23,
+        "z": -40.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-before-uplink",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-before-uplink-export.json",
+      "sha256": "9f05b9343093a2280222d173f824e97a082d9134d8502e60f3738c6bcef44835",
+      "bytes": 3819,
+      "position": {
+        "x": 23,
+        "z": -40.7
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-uplink-repaired",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-uplink-repaired-export.json",
+      "sha256": "76023863f5ec5d5b4f2fbaae29cbf805685f86e346b42a67515750082953fdd0",
+      "bytes": 3841,
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-before-memory",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-before-memory-export.json",
+      "sha256": "5cb8af5fc7ee74c00d75bd5f7c593030f62ef2c4d461566a8f75f452b6a5da67",
+      "bytes": 3841,
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-memory-repaired",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-memory-repaired-export.json",
+      "sha256": "c249414c5956cf33978f8bdc3e89cb969032d665d245a46d15bdaba922b29978",
+      "bytes": 3831,
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink",
+              "memory"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-before-power",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-before-power-export.json",
+      "sha256": "cea91b9e9514905edd667b397c630647dc363acad359d3c653183e29ab5675b6",
+      "bytes": 3831,
+      "position": {
+        "x": 6,
+        "z": -8
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "active",
+            "steps": [
+              "uplink",
+              "memory"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "mira-power-repaired",
+      "path": "docs/qa/priority-objectives-dev-final-03-mira-power-repaired-export.json",
+      "sha256": "a38d5b4b3adf2238fcd911698f5c75fe2395c87169a142accdd462ff1953f2af",
+      "bytes": 3859,
+      "position": {
+        "x": -3.000000000000007,
+        "z": -18
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "complete",
+            "steps": [
+              "uplink",
+              "memory",
+              "power"
+            ],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          },
+          "ilos": {
+            "status": "idle",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-before-vigil",
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-before-vigil-export.json",
+      "sha256": "2825f1901ae63623b0988bfad51e6b82f13a43c7c69120404a8eb9677d276610",
+      "bytes": 4204,
+      "position": {
+        "x": -4,
+        "z": -80
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-to-vigil",
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-to-vigil-export.json",
+      "sha256": "2e549a2c1ddf2aabf1086655d504990fa6a7cfa4c43a46ae7abaf7a4d776bc25",
+      "bytes": 4204,
+      "position": {
+        "x": -4,
+        "z": -80
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [],
+            "remaining": null,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-window-active",
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-window-active-export.json",
+      "sha256": "6863d0a689a95add41f1b68b9615b6217a8f4f6380b9b1c9f8dd91dcb823e096",
+      "bytes": 4226,
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [
+              "vigil"
+            ],
+            "remaining": 60,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-to-conduit",
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-to-conduit-export.json",
+      "sha256": "c4d9c3b56467cf2a09f1ec3dfd3a47e075956bb06aee714727fe5c00e9afb18a",
+      "bytes": 4226,
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "active",
+            "steps": [
+              "vigil"
+            ],
+            "remaining": 60,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-window-complete",
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-window-complete-export.json",
+      "sha256": "f7005542695d9684bbf6e91ed5f8b6c102b13c5b429e2df324a42f08bb7ed417",
+      "bytes": 4266,
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.466666666666754,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "ilos-before-transition",
+      "path": "docs/qa/priority-objectives-dev-final-03-ilos-before-transition-export.json",
+      "sha256": "02bcc8fbcaa6dc9c215ae1d5b02afa2212186f3320dafece64541446964e663b",
+      "bytes": 4266,
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.466666666666754,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "citadel-arrival",
+      "path": "docs/qa/priority-objectives-dev-final-03-citadel-arrival-export.json",
+      "sha256": "88cbf509004621249a9729e68bb48923022cea67a6f31b3bfd1a3d32307fda3c",
+      "bytes": 4314,
+      "position": {
+        "x": 0,
+        "z": 17
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.466666666666754,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    },
+    {
+      "label": "reloaded-citadel",
+      "path": "docs/qa/priority-objectives-dev-final-03-reloaded-citadel-export.json",
+      "sha256": "b819f23647e3b10d2deb8a570fc0684a0a1f5ca4d312cd4a1861cb4c3b3deb62",
+      "bytes": 4314,
+      "position": {
+        "x": 0,
+        "z": 17
+      },
+      "progress": {
+        "version": 1,
+        "records": {
+          "eden-prime": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "noveria": {
+            "status": "legacy-complete",
+            "steps": [],
+            "remaining": null,
+            "attempts": 0,
+            "channel": null
+          },
+          "ilos": {
+            "status": "complete",
+            "steps": [
+              "vigil",
+              "conduit"
+            ],
+            "remaining": 58.466666666666754,
+            "attempts": 1,
+            "channel": null
+          }
+        }
+      }
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-eden-gate.png",
+      "label": "eden-gate",
+      "sha256": "02bed1057773b0db8c93f54258ad8357134fdb8d3e0cfffef46807eb5afd03c8",
+      "bytes": 1180270,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-eden-charge-dialogue.png",
+      "label": "eden-charge-dialogue",
+      "sha256": "604d2d8919e9b20e2d9494d31ddddcdd0494de72b1549fd447c77018080ed8fc",
+      "bytes": 1185509,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-eden-save-pauses-channel.png",
+      "label": "eden-save-pauses-channel",
+      "sha256": "a96ffa705fd4bda78778ce6c92606a12d6b7f4980bb5db2513da56ae5516beaf",
+      "bytes": 250775,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-eden-four-charges-complete.png",
+      "label": "eden-four-charges-complete",
+      "sha256": "82bd422c61bedeb8a75ddbb9f1946ba73a7f822b7c8e20acff413c421bf10b7d",
+      "bytes": 323483,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-eden-timeout.png",
+      "label": "eden-timeout",
+      "sha256": "645c6618c83fd4e76a1b948f39c076aa088bbbce9ead67bf2002e4ccafbbc635",
+      "bytes": 1190795,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-mira-gate.png",
+      "label": "mira-gate",
+      "sha256": "bbe1c72934841340d023ca5b864fe0480b114117a54a20ca76109912c09105f1",
+      "bytes": 899743,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-mira-repair-dialogue.png",
+      "label": "mira-repair-dialogue",
+      "sha256": "24b076792f7b117422001ebb920cd49d6585bb5a50331a96376723ebda89edf8",
+      "bytes": 935828,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-mira-three-stations.png",
+      "label": "mira-three-stations",
+      "sha256": "a1ec481e4547ecf37b52aeb41399aec40dcc0cbfe14cee8e426b4d17272d024e",
+      "bytes": 316419,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-ilos-objective.png",
+      "label": "ilos-objective",
+      "sha256": "5b0b039b3b1b0b2f2510e0ed23c3b9a281643586ef217ff9a2ef134b3402bb19",
+      "bytes": 715081,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-vigil-window-dialogue.png",
+      "label": "vigil-window-dialogue",
+      "sha256": "9e90c0c16bd50fb00f6d3ebe3087420ae4ba576aeeef5c96f5efebd0591c9e77",
+      "bytes": 694120,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-conduit-arrival.png",
+      "label": "conduit-arrival",
+      "sha256": "1456d3d8f71998014c4f9beb63846ef7e51323a3fde34ad5db9236fea3291751",
+      "bytes": 493314,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-ilos-passage-reached.png",
+      "label": "ilos-passage-reached",
+      "sha256": "67c7ffc664298eac5e1d1b2557ed1d23883d30d2075568c9e2686c25614a21b1",
+      "bytes": 333937,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-ilos-transition-confirmation.png",
+      "label": "ilos-transition-confirmation",
+      "sha256": "1a68cc1e1a09bd436f76290448ce320b28074e8de40c146ed655761d00652895",
+      "bytes": 711121,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    },
+    {
+      "path": "docs/screenshots/priority-objectives-dev-final-03-resumed-at-citadel.png",
+      "label": "resumed-at-citadel",
+      "sha256": "47b607c84a644d55ffe1144dffc538831153881bd0092e72da393a1ca80e64e4",
+      "bytes": 850800,
+      "source": "Actual public viewport; no DOM, pose, CSS or private-state injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Four public six-second disarmings, save-menu pause and no reward for mission-only completion",
+      "passed": true
+    },
+    {
+      "name": "Public real expiry and explicit checkpoint reset without resource changes",
+      "passed": true
+    },
+    {
+      "name": "Three different public MIRA stations persist in the selected order without rewards",
+      "passed": true
+    },
+    {
+      "name": "Vigil activation, actual public Conduit arrival and one native chapter transition/reward",
+      "passed": true
+    },
+    {
+      "name": "Actual automatic-save reload preserves the completed mission and chapter transition",
+      "passed": true
+    }
+  ],
+  "mapCoordinates": [
+    {
+      "id": "mission:eden-prime:charge-1",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 60.199999999999996,
+      "sourceY": 36.2,
+      "position": {
+        "x": 18,
+        "z": -39.99999999999999
+      }
+    },
+    {
+      "id": "mission:eden-prime:charge-2",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 66.8,
+      "sourceY": 30.8,
+      "position": {
+        "x": 29,
+        "z": -49
+      }
+    },
+    {
+      "id": "mission:eden-prime:charge-3",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 55.4,
+      "sourceY": 24.8,
+      "position": {
+        "x": 10,
+        "z": -59
+      }
+    },
+    {
+      "id": "mission:eden-prime:charge-4",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 58.4,
+      "sourceY": 18.799999999999997,
+      "position": {
+        "x": 15,
+        "z": -69
+      }
+    },
+    {
+      "id": "mission:noveria:uplink",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 58.69318181818181,
+      "sourceY": 44.375,
+      "position": {
+        "x": 17.999999999999986,
+        "z": -21
+      }
+    },
+    {
+      "id": "mission:noveria:memory",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 52.55681818181819,
+      "sourceY": 51.02272727272727,
+      "position": {
+        "x": 6,
+        "z": -8
+      }
+    },
+    {
+      "id": "mission:noveria:power",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 47.95454545454545,
+      "sourceY": 45.90909090909091,
+      "position": {
+        "x": -3.000000000000007,
+        "z": -18
+      }
+    },
+    {
+      "id": "mission:ilos:vigil",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 47.631578947368425,
+      "sourceY": 14.947368421052632,
+      "position": {
+        "x": -4.999999999999993,
+        "z": -84
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": "Visible public map source circle, inverted with the native map projection",
+      "sourceX": 47.892105263157895,
+      "sourceY": 8.420273380491896,
+      "position": {
+        "x": -4.450000000000003,
+        "z": -97.779422863406
+      }
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4191/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4191/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4191/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4191/@vite/client",
+    "http://127.0.0.1:4191/src/main.js",
+    "http://127.0.0.1:4191/src/campaign-talents.css",
+    "http://127.0.0.1:4191/src/tactical-ui.js",
+    "http://127.0.0.1:4191/src/gamepad-controls.js",
+    "http://127.0.0.1:4191/src/gamepad-controls.css",
+    "http://127.0.0.1:4191/src/priority-ui.css",
+    "http://127.0.0.1:4191/src/mission-progress.js",
+    "http://127.0.0.1:4191/src/mission-progress-ui.js",
+    "http://127.0.0.1:4191/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4191/src/campaign-talents.js",
+    "http://127.0.0.1:4191/src/simulation-clock.js",
+    "http://127.0.0.1:4191/src/combat-summons.js",
+    "http://127.0.0.1:4191/src/style.css",
+    "http://127.0.0.1:4191/src/frontier-ui.css",
+    "http://127.0.0.1:4191/src/horizon-ui.css",
+    "http://127.0.0.1:4191/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4191/src/frontier-ui.js",
+    "http://127.0.0.1:4191/src/frontier-characters.js",
+    "http://127.0.0.1:4191/src/horizon-characters.js",
+    "http://127.0.0.1:4191/src/horizon-ui.js",
+    "http://127.0.0.1:4191/src/loadout-ui.css",
+    "http://127.0.0.1:4191/src/customization-ui.css",
+    "http://127.0.0.1:4191/src/operations-ui.css",
+    "http://127.0.0.1:4191/src/local-map.css",
+    "http://127.0.0.1:4191/src/loadout-ui.js",
+    "http://127.0.0.1:4191/src/customization.js",
+    "http://127.0.0.1:4191/src/customization-ui.js",
+    "http://127.0.0.1:4191/src/loadout.js",
+    "http://127.0.0.1:4191/src/operations.js",
+    "http://127.0.0.1:4191/src/operations-ui.js",
+    "http://127.0.0.1:4191/src/local-map.js",
+    "http://127.0.0.1:4191/src/level-layout-data.js",
+    "http://127.0.0.1:4191/src/level-map-render.js",
+    "http://127.0.0.1:4191/src/world.js",
+    "http://127.0.0.1:4191/src/world-data.js",
+    "http://127.0.0.1:4191/src/audio.js",
+    "http://127.0.0.1:4191/src/commander.js",
+    "http://127.0.0.1:4191/src/story.js",
+    "http://127.0.0.1:4191/src/assignments.js",
+    "http://127.0.0.1:4191/src/save-slots.js",
+    "http://127.0.0.1:4191/src/combat.js",
+    "http://127.0.0.1:4191/src/game-data.js",
+    "http://127.0.0.1:4191/src/state.js",
+    "http://127.0.0.1:4191/src/character-data.js",
+    "http://127.0.0.1:4191/src/horizon-fleet.js",
+    "http://127.0.0.1:4191/src/horizon-fauna.js",
+    "http://127.0.0.1:4191/src/customization-render.js",
+    "http://127.0.0.1:4191/src/tool-data.js",
+    "http://127.0.0.1:4191/src/frontier-layout-data.js",
+    "http://127.0.0.1:4191/src/horizon-layout-data.js",
+    "http://127.0.0.1:4191/src/operation-data.js",
+    "http://127.0.0.1:4191/src/tactical-positions.js",
+    "http://127.0.0.1:4191/src/companion-animation-data.js",
+    "http://127.0.0.1:4191/src/enemy-animation-data.js",
+    "http://127.0.0.1:4191/src/joker-seated-data.js",
+    "http://127.0.0.1:4191/src/world-navigation.js",
+    "http://127.0.0.1:4191/src/eden-scene.js",
+    "http://127.0.0.1:4191/src/frontier-scene.js",
+    "http://127.0.0.1:4191/src/horizon-scene.js",
+    "http://127.0.0.1:4191/src/frontier-enemies.js",
+    "http://127.0.0.1:4191/src/horizon-enemies.js",
+    "http://127.0.0.1:4191/src/boss-animation-data.js",
+    "http://127.0.0.1:4191/src/frontier-vehicles.js",
+    "http://127.0.0.1:4191/src/story-data.js",
+    "http://127.0.0.1:4191/src/assignment-data.js",
+    "http://127.0.0.1:4191/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4191/src/universe-ammo.js",
+    "http://127.0.0.1:4191/src/combat-medical.js",
+    "http://127.0.0.1:4191/src/boss-phases.js",
+    "http://127.0.0.1:4191/src/continuity-data.js",
+    "http://127.0.0.1:4191/@vite/client",
+    "http://127.0.0.1:4191/src/main.js",
+    "http://127.0.0.1:4191/src/campaign-talents.css",
+    "http://127.0.0.1:4191/src/tactical-ui.js",
+    "http://127.0.0.1:4191/src/gamepad-controls.js",
+    "http://127.0.0.1:4191/src/gamepad-controls.css",
+    "http://127.0.0.1:4191/src/priority-ui.css",
+    "http://127.0.0.1:4191/src/mission-progress.js",
+    "http://127.0.0.1:4191/src/mission-progress-ui.js",
+    "http://127.0.0.1:4191/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4191/src/campaign-talents.js",
+    "http://127.0.0.1:4191/src/simulation-clock.js",
+    "http://127.0.0.1:4191/src/combat-summons.js",
+    "http://127.0.0.1:4191/src/style.css",
+    "http://127.0.0.1:4191/src/frontier-ui.css",
+    "http://127.0.0.1:4191/src/horizon-ui.css",
+    "http://127.0.0.1:4191/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4191/src/frontier-ui.js",
+    "http://127.0.0.1:4191/src/frontier-characters.js",
+    "http://127.0.0.1:4191/src/horizon-characters.js",
+    "http://127.0.0.1:4191/src/horizon-ui.js",
+    "http://127.0.0.1:4191/src/loadout-ui.css",
+    "http://127.0.0.1:4191/src/customization-ui.css",
+    "http://127.0.0.1:4191/src/operations-ui.css",
+    "http://127.0.0.1:4191/src/local-map.css",
+    "http://127.0.0.1:4191/src/loadout-ui.js",
+    "http://127.0.0.1:4191/src/customization.js",
+    "http://127.0.0.1:4191/src/customization-ui.js",
+    "http://127.0.0.1:4191/src/loadout.js",
+    "http://127.0.0.1:4191/src/operations.js",
+    "http://127.0.0.1:4191/src/operations-ui.js",
+    "http://127.0.0.1:4191/src/local-map.js",
+    "http://127.0.0.1:4191/src/level-layout-data.js",
+    "http://127.0.0.1:4191/src/level-map-render.js",
+    "http://127.0.0.1:4191/src/world.js",
+    "http://127.0.0.1:4191/src/world-data.js",
+    "http://127.0.0.1:4191/src/audio.js",
+    "http://127.0.0.1:4191/src/commander.js",
+    "http://127.0.0.1:4191/src/story.js",
+    "http://127.0.0.1:4191/src/assignments.js",
+    "http://127.0.0.1:4191/src/save-slots.js",
+    "http://127.0.0.1:4191/src/combat.js",
+    "http://127.0.0.1:4191/src/game-data.js",
+    "http://127.0.0.1:4191/src/state.js",
+    "http://127.0.0.1:4191/src/character-data.js",
+    "http://127.0.0.1:4191/src/horizon-fleet.js",
+    "http://127.0.0.1:4191/src/horizon-fauna.js",
+    "http://127.0.0.1:4191/src/customization-render.js",
+    "http://127.0.0.1:4191/src/tool-data.js",
+    "http://127.0.0.1:4191/src/operation-data.js",
+    "http://127.0.0.1:4191/src/frontier-layout-data.js",
+    "http://127.0.0.1:4191/src/horizon-layout-data.js",
+    "http://127.0.0.1:4191/src/story-data.js",
+    "http://127.0.0.1:4191/src/tactical-positions.js",
+    "http://127.0.0.1:4191/src/companion-animation-data.js",
+    "http://127.0.0.1:4191/src/enemy-animation-data.js",
+    "http://127.0.0.1:4191/src/joker-seated-data.js",
+    "http://127.0.0.1:4191/src/world-navigation.js",
+    "http://127.0.0.1:4191/src/eden-scene.js",
+    "http://127.0.0.1:4191/src/frontier-scene.js",
+    "http://127.0.0.1:4191/src/horizon-scene.js",
+    "http://127.0.0.1:4191/src/frontier-enemies.js",
+    "http://127.0.0.1:4191/src/horizon-enemies.js",
+    "http://127.0.0.1:4191/src/boss-animation-data.js",
+    "http://127.0.0.1:4191/src/frontier-vehicles.js",
+    "http://127.0.0.1:4191/src/assignment-data.js",
+    "http://127.0.0.1:4191/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4191/src/universe-ammo.js",
+    "http://127.0.0.1:4191/src/combat-medical.js",
+    "http://127.0.0.1:4191/src/boss-phases.js",
+    "http://127.0.0.1:4191/src/continuity-data.js"
+  ],
+  "limits": [
+    "Earlier chapters and prerequisite encounters are prepared with native Node callbacks, not won in this browser.",
+    "Transfers change only position in the immediately preceding actual public export. No travel path is claimed played.",
+    "The failure fixture is separately prepared through native start/tick callbacks with five seconds left; its earlier elapsed time is not claimed played.",
+    "MIRA repairs, the 300/60-second windows, foot travel and geometry remain partial ATB adaptations. No original complete mission fidelity or physical-device performance is certified."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/priority-objectives-dev-final-03-collector.mjs",
+    "sha256": "5aa40c379cbb3b4b7a31ac58169e412481148429b6d847beaa8c92e9aa586ef2"
+  },
+  "sourceFrozen": true,
+  "distFrozen": false
+}

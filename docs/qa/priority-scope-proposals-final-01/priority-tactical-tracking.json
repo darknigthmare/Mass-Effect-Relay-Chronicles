@@ -1,0 +1,85 @@
+{
+  "scope": "Proposed existing catalogue records only. Eleven native tactical tests, paired balance and public DEV journey/review passed on frozen sources. Publication still belongs to the parent tracking gates; no new visual family or asset status is claimed.",
+  "records": [
+    {
+      "id": "SYS-portee",
+      "status": "Prototype",
+      "assetPath": "src/tactical-positions.js",
+      "gameKey": "combat.getTargetAvailability",
+      "description": "Portées de campagne ATB et positions locales partagées par le modèle et le renderer, avec refus d’une cible trop éloignée avant toute dépense.",
+      "notes": "Prototype ME1 opt-in : pistolet11,5/assaut14/pompe8,5/précision22 unités de scène adaptées, capacités12,5/contact3,2. getActions expose la portée, la cible expose distance/refus. Aucun tirage RNG ni coût sur refus. Lignes de tir balistiques et distances originales non reproduites.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/tactical-positions.js",
+        "src/tactical-ui.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "SYS-ordres-coordonnes",
+      "status": "Prototype",
+      "assetPath": "src/combat.js",
+      "gameKey": "combat.performCoordinatedOrder",
+      "description": "Brouillon d’ordres de deux ou trois équipiers prêts, prévalidé atomiquement puis résolu par les commandes natives et leurs coûts réels.",
+      "notes": "Le brouillon et son annulation ne changent ni combat ni RNG. La confirmation revérifie toutes les maîtrises/cibles/portées et le stock commun avant le premier ordre. Une cible devenue indisponible pendant la résolution annule explicitement le seul ordre suivant sans coût. Aucune nouvelle aptitude ni bonus de coordination inventé ; résolution successive adaptée, pas simultanée. En mode Attente, réserver explicitement une jauge prête permet aux autres de charger, avec le risque normal de progression ennemie ; libérer les réservations rétablit les décisions en attente.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/tactical-ui.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "PWR-ordre-coordonne",
+      "status": "Prototype",
+      "assetPath": "src/combat.js",
+      "gameKey": "combat.planCoordinatedOrder",
+      "notes": "Commande propre au fan game, sans pouvoir supplémentaire attribué. Les participants distincts exécutent seulement leurs actions maîtrisées, à100ATB chacun. Lévitation/Projection égale strictement les deux ordres natifs séparés ; les coûts, les délais et le RNG restent natifs. Le brouillon est abandonnable gratuitement.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/tactical-ui.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "PWR-repositionnement-atb",
+      "status": "Prototype",
+      "assetPath": "src/tactical-positions.js",
+      "gameKey": "ACTIONS.reposition",
+      "notes": "Action ATB adaptée : Contournement conserve son statut natif et déplace réellement le participant latéralement de2,4unités au maximum dans le plan ME1. Avancer/Reculer déplacent jusqu’à3,6unités pour100ATB, sans bonus supplémentaire ; le sol réel et le segment sont contrôlés par callback. Positions du combat éphémères, aucune physique originale certifiée.",
+      "implementationPaths": [
+        "src/tactical-positions.js",
+        "src/combat.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "passed": true,
+  "at": "2026-11-13T07:23:11.072Z",
+  "mode": "dev",
+  "url": "http://127.0.0.1:4191/",
+  "command": {
+    "script": "node scripts/priority-talents-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4191/",
+      "PRIORITY_TALENTS_MODE": "dev",
+      "PRIORITY_TALENTS_PREFIX": "priority-talents-dev-final-01"
+    }
+  },
+  "scope": "Public talent purchases, armour shared budget, class prerequisite, actual exports, manual save/load, automatic reload and rejection of a malformed talent import; desktop and mobile. No campaign victory or talent combat action is claimed played by this collector.",
+  "sourceHashes": {
+    "src/main.js": "66e8cb199ad7f66e2d31ef0d6baf43cb81a11316dee3d9b6e68c17b205d8df8f",
+    "src/state.js": "b021203bdf5530b3e09efb41c9d6d263fdc59cba3c56e7dca18560c7a4e1acec",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/loadout.js": "0a7f94143ec5cbf26e5347d65a24d345888de2902edef8fa8b1dc9c4674a64f1",
+    "src/combat.js": "734cdd85d455295b8921fc420cc80f06ca9d433f6b775a1353f63fd9e1c4d2bb",
+    "src/campaign-talents.js": "b7f7266b61e3684fa031ce78916d0b10151c398aaa1ba23c79bc1a6329b463c7",
+    "src/campaign-talents-ui.js": "da297911d184522d87e03b5963b94c4354faa78f268afd7ece7efafc6a927a91",
+    "src/campaign-talents.css": "671df4feeb62104a50e33176b8bc842072a59e43148a2c51e48a38f2995fb9d2",
+    "src/save-slots.js": "01497a48324a647a7e79031656fba4160853126efb29cc7a2b2bad7bbf9adff4",
+    "src/customization.js": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568",
+    "scripts/priority-talents-public.mjs": "d9af94a5f263ad278af652396333cf2f9a2345b45489c87cc0764e4db2fb91ff"
+  },
+  "fixtures": [
+    {
+      "label": "soldier",
+      "path": "docs/qa/priority-talents-dev-final-01-soldier-fixture.json",
+      "sha256": "5acd0e6b9f5cdf557e3769cac6dd5935d3783c7847226641dd9ad70a30846af7",
+      "importedViaPublicChooser": true,
+      "xp": 1800,
+      "classId": "soldier",
+      "origin": "Native newGame with explicitly prepared XP; no claim to preceding played progression."
+    },
+    {
+      "label": "engineer",
+      "path": "docs/qa/priority-talents-dev-final-01-engineer-fixture.json",
+      "sha256": "b56ddbdb36e18ec682c4a9056c7e8e773277cca9662920779ae905ce2a7729ff",
+      "importedViaPublicChooser": true,
+      "xp": 900,
+      "classId": "engineer",
+      "origin": "Native newGame with explicitly prepared XP; no claim to preceding played progression."
+    },
+    {
+      "label": "early-eden",
+      "path": "docs/qa/priority-talents-dev-final-01-early-eden-fixture.json",
+      "sha256": "c3f1e4daeb36641396538cbb7537252333512bb1c2ddfce781df8ccfba1bfa71",
+      "importedViaPublicChooser": true,
+      "xp": 900,
+      "classId": "engineer",
+      "origin": "Native newGame with explicitly prepared XP; no claim to preceding played progression."
+    }
+  ],
+  "exports": [
+    {
+      "label": "soldier-before",
+      "path": "docs/qa/priority-talents-dev-final-01-soldier-before-export.json",
+      "sha256": "b641d4f6eb7d8eb1633ce7f205bc3a9fac781a0dd21369e94ffe93532bbc4432",
+      "bytes": 2827
+    },
+    {
+      "label": "soldier-after",
+      "path": "docs/qa/priority-talents-dev-final-01-soldier-after-export.json",
+      "sha256": "442c26f28ab5f44ca093e367639150d1589825cf1502c6b4222b38938a8be4b3",
+      "bytes": 2937
+    },
+    {
+      "label": "soldier-manual-reload",
+      "path": "docs/qa/priority-talents-dev-final-01-soldier-manual-reload-export.json",
+      "sha256": "f0b5b672f468ee8a25049eba1d9d00cb45d13efce0f5be2fba584267e94e5330",
+      "bytes": 2937
+    },
+    {
+      "label": "engineer-before",
+      "path": "docs/qa/priority-talents-dev-final-01-engineer-before-export.json",
+      "sha256": "c61c2e2832e4f143e1c2ff472468af14e1c0db4ddc50dd17fe8cd60e0b8a3acf",
+      "bytes": 2831
+    },
+    {
+      "label": "engineer-after",
+      "path": "docs/qa/priority-talents-dev-final-01-engineer-after-export.json",
+      "sha256": "8ee9aa5db087991229a51540dee552fa1e259fb0ca6e90e3770b7b1f245f0106",
+      "bytes": 2870
+    },
+    {
+      "label": "engineer-automatic-reload",
+      "path": "docs/qa/priority-talents-dev-final-01-engineer-automatic-reload-export.json",
+      "sha256": "1acb7edbeace7030bdeb2d3debcecdf7fbd8e6271c593e70a899caf890c012b6",
+      "bytes": 2870
+    },
+    {
+      "label": "after-rejected-import",
+      "path": "docs/qa/priority-talents-dev-final-01-after-rejected-import-export.json",
+      "sha256": "4e866c884f6c547588f08c8858d0f21ca687ca05f38cb8b2e9318b8b04927834",
+      "bytes": 2869
+    },
+    {
+      "label": "away-unchanged",
+      "path": "docs/qa/priority-talents-dev-final-01-away-unchanged-export.json",
+      "sha256": "43c972527487a775b04560d9508f3e0e5471634c1f23d88855d0de3940eb0a3d",
+      "bytes": 2859
+    }
+  ],
+  "captures": [
+    {
+      "label": "soldier-before",
+      "path": "docs/screenshots/priority-talents-dev-final-01-soldier-before.png",
+      "sha256": "588a0b0f1b73ec0a1cf70ee332e2e9467dc94e2a6697fff2296589400ae87ebe",
+      "bytes": 218179,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "soldier-purchased",
+      "path": "docs/screenshots/priority-talents-dev-final-01-soldier-purchased.png",
+      "sha256": "d1aa7ad78157aa9a62a5fd315aaaf7436e2e010f9d11a19557b8abcc20b28c64",
+      "bytes": 228632,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "shared-armour-training",
+      "path": "docs/screenshots/priority-talents-dev-final-01-shared-armour-training.png",
+      "sha256": "726cc2d29762084b2e18de570a829b6902d3139998879a130461e1bd37fd5ca1",
+      "bytes": 294303,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "shared-budget-empty",
+      "path": "docs/screenshots/priority-talents-dev-final-01-shared-budget-empty.png",
+      "sha256": "05239e11f21262b9e66cb490e2a8a026b59b3b48082c8365975e20cd6af71e1b",
+      "bytes": 196900,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "manual-save",
+      "path": "docs/screenshots/priority-talents-dev-final-01-manual-save.png",
+      "sha256": "65b25861aa5894d91b348abbec53e222ee3acf4a3582bec82559239155690765",
+      "bytes": 192432,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "engineer-prerequisite",
+      "path": "docs/screenshots/priority-talents-dev-final-01-engineer-prerequisite.png",
+      "sha256": "0ad567d8a637b9de9c29f4c68b37c3e4c51e971c7aad9e37324c2ee425b3e65d",
+      "bytes": 227679,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "engineer-unlocked",
+      "path": "docs/screenshots/priority-talents-dev-final-01-engineer-unlocked.png",
+      "sha256": "bebfaccc7d82d1739ab22a2a1b9e0b1756d13b730f5169cb96c4bc5a1a7cb610",
+      "bytes": 230287,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "away-mobile",
+      "path": "docs/screenshots/priority-talents-dev-final-01-away-mobile.png",
+      "sha256": "93f5079602c5799c56acb502d45f2c4c83af5d2fcd6e4332c4040f29f5829f21",
+      "bytes": 116464,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    },
+    {
+      "label": "away-mobile-last-card",
+      "path": "docs/screenshots/priority-talents-dev-final-01-away-mobile-last-card.png",
+      "sha256": "42ce44e20cbcfb85a8ae25054abfecf6008901ee42d81859167647015091391e",
+      "bytes": 93929,
+      "source": "Actual public viewport, without state/DOM/style/pose injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Actual soldier talent purchases and armour training exhaust the same six-point budget without granting currency or items",
+      "passed": true
+    },
+    {
+      "name": "Public manual save and load preserve talent ranks, armour training, inventory and progression exactly except played time",
+      "passed": true
+    },
+    {
+      "name": "Engineer prerequisite/class restrictions and actual automatic reload retain three purchased ranks without granting Soldier abilities",
+      "passed": true
+    },
+    {
+      "name": "Malformed talent import is visibly rejected and the previous campaign remains loadable without partial changes",
+      "passed": true
+    },
+    {
+      "name": "Mobile cards remain scrollable without horizontal overflow and field training is disabled without changing talents",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4191/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "qualification": "Exact absent-favicon request; separate from game resources."
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4191/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "qualification": "Exact absent-favicon request; separate from game resources."
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4191/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "qualification": "Exact absent-favicon request; separate from game resources."
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4191/src/main.js",
+    "http://127.0.0.1:4191/src/campaign-talents.css",
+    "http://127.0.0.1:4191/@vite/client",
+    "http://127.0.0.1:4191/src/tactical-ui.js",
+    "http://127.0.0.1:4191/src/mission-progress.js",
+    "http://127.0.0.1:4191/src/mission-progress-ui.js",
+    "http://127.0.0.1:4191/src/gamepad-controls.js",
+    "http://127.0.0.1:4191/src/simulation-clock.js",
+    "http://127.0.0.1:4191/src/campaign-talents.js",
+    "http://127.0.0.1:4191/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4191/src/gamepad-controls.css",
+    "http://127.0.0.1:4191/src/style.css",
+    "http://127.0.0.1:4191/src/combat-summons.js",
+    "http://127.0.0.1:4191/src/priority-ui.css",
+    "http://127.0.0.1:4191/src/frontier-ui.js",
+    "http://127.0.0.1:4191/src/frontier-ui.css",
+    "http://127.0.0.1:4191/src/horizon-ui.css",
+    "http://127.0.0.1:4191/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4191/src/loadout-ui.css",
+    "http://127.0.0.1:4191/src/horizon-ui.js",
+    "http://127.0.0.1:4191/src/customization-ui.css",
+    "http://127.0.0.1:4191/src/frontier-characters.js",
+    "http://127.0.0.1:4191/src/horizon-characters.js",
+    "http://127.0.0.1:4191/src/local-map.css",
+    "http://127.0.0.1:4191/src/loadout-ui.js",
+    "http://127.0.0.1:4191/src/customization.js",
+    "http://127.0.0.1:4191/src/customization-ui.js",
+    "http://127.0.0.1:4191/src/operations-ui.css",
+    "http://127.0.0.1:4191/src/operations.js",
+    "http://127.0.0.1:4191/src/local-map.js",
+    "http://127.0.0.1:4191/src/operations-ui.js",
+    "http://127.0.0.1:4191/src/level-layout-data.js",
+    "http://127.0.0.1:4191/src/loadout.js",
+    "http://127.0.0.1:4191/src/world-data.js",
+    "http://127.0.0.1:4191/src/commander.js",
+    "http://127.0.0.1:4191/src/level-map-render.js",
+    "http://127.0.0.1:4191/src/world.js",
+    "http://127.0.0.1:4191/src/audio.js",
+    "http://127.0.0.1:4191/src/assignments.js",
+    "http://127.0.0.1:4191/src/story.js",
+    "http://127.0.0.1:4191/src/save-slots.js",
+    "http://127.0.0.1:4191/src/state.js",
+    "http://127.0.0.1:4191/src/game-data.js",
+    "http://127.0.0.1:4191/src/horizon-fauna.js",
+    "http://127.0.0.1:4191/src/customization-render.js",
+    "http://127.0.0.1:4191/src/horizon-fleet.js",
+    "http://127.0.0.1:4191/src/operation-data.js",
+    "http://127.0.0.1:4191/src/character-data.js",
+    "http://127.0.0.1:4191/src/horizon-layout-data.js",
+    "http://127.0.0.1:4191/src/combat.js",
+    "http://127.0.0.1:4191/src/tactical-positions.js",
+    "http://127.0.0.1:4191/src/tool-data.js",
+    "http://127.0.0.1:4191/src/frontier-layout-data.js",
+    "http://127.0.0.1:4191/src/companion-animation-data.js",
+    "http://127.0.0.1:4191/src/enemy-animation-data.js",
+    "http://127.0.0.1:4191/src/world-navigation.js",
+    "http://127.0.0.1:4191/src/eden-scene.js",
+    "http://127.0.0.1:4191/src/joker-seated-data.js",
+    "http://127.0.0.1:4191/src/frontier-scene.js",
+    "http://127.0.0.1:4191/src/horizon-scene.js",
+    "http://127.0.0.1:4191/src/frontier-enemies.js",
+    "http://127.0.0.1:4191/src/horizon-enemies.js",
+    "http://127.0.0.1:4191/src/frontier-vehicles.js",
+    "http://127.0.0.1:4191/src/assignment-data.js",
+    "http://127.0.0.1:4191/src/story-data.js",
+    "http://127.0.0.1:4191/src/universe-ammo.js",
+    "http://127.0.0.1:4191/src/combat-medical.js",
+    "http://127.0.0.1:4191/src/boss-animation-data.js",
+    "http://127.0.0.1:4191/src/boss-phases.js",
+    "http://127.0.0.1:4191/src/continuity-data.js",
+    "http://127.0.0.1:4191/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4191/@vite/client",
+    "http://127.0.0.1:4191/src/main.js",
+    "http://127.0.0.1:4191/src/campaign-talents.css",
+    "http://127.0.0.1:4191/src/tactical-ui.js",
+    "http://127.0.0.1:4191/src/priority-ui.css",
+    "http://127.0.0.1:4191/src/gamepad-controls.css",
+    "http://127.0.0.1:4191/src/gamepad-controls.js",
+    "http://127.0.0.1:4191/src/mission-progress.js",
+    "http://127.0.0.1:4191/src/mission-progress-ui.js",
+    "http://127.0.0.1:4191/src/combat-summons.js",
+    "http://127.0.0.1:4191/src/style.css",
+    "http://127.0.0.1:4191/src/frontier-ui.css",
+    "http://127.0.0.1:4191/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4191/src/campaign-talents.js",
+    "http://127.0.0.1:4191/src/simulation-clock.js",
+    "http://127.0.0.1:4191/src/horizon-ui.css",
+    "http://127.0.0.1:4191/src/frontier-characters.js",
+    "http://127.0.0.1:4191/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4191/src/frontier-ui.js",
+    "http://127.0.0.1:4191/src/horizon-characters.js",
+    "http://127.0.0.1:4191/src/horizon-ui.js",
+    "http://127.0.0.1:4191/src/loadout-ui.css",
+    "http://127.0.0.1:4191/src/customization-ui.css",
+    "http://127.0.0.1:4191/src/operations-ui.css",
+    "http://127.0.0.1:4191/src/local-map.css",
+    "http://127.0.0.1:4191/src/customization-ui.js",
+    "http://127.0.0.1:4191/src/loadout.js",
+    "http://127.0.0.1:4191/src/loadout-ui.js",
+    "http://127.0.0.1:4191/src/local-map.js",
+    "http://127.0.0.1:4191/src/customization.js",
+    "http://127.0.0.1:4191/src/level-map-render.js",
+    "http://127.0.0.1:4191/src/level-layout-data.js",
+    "http://127.0.0.1:4191/src/operations-ui.js",
+    "http://127.0.0.1:4191/src/world-data.js",
+    "http://127.0.0.1:4191/src/audio.js",
+    "http://127.0.0.1:4191/src/commander.js",
+    "http://127.0.0.1:4191/src/operations.js",
+    "http://127.0.0.1:4191/src/world.js",
+    "http://127.0.0.1:4191/src/assignments.js",
+    "http://127.0.0.1:4191/src/game-data.js",
+    "http://127.0.0.1:4191/src/save-slots.js",
+    "http://127.0.0.1:4191/src/story.js",
+    "http://127.0.0.1:4191/src/combat.js",
+    "http://127.0.0.1:4191/src/character-data.js",
+    "http://127.0.0.1:4191/src/horizon-fauna.js",
+    "http://127.0.0.1:4191/src/horizon-fleet.js",
+    "http://127.0.0.1:4191/src/customization-render.js",
+    "http://127.0.0.1:4191/src/state.js",
+    "http://127.0.0.1:4191/src/frontier-layout-data.js",
+    "http://127.0.0.1:4191/src/horizon-layout-data.js",
+    "http://127.0.0.1:4191/src/joker-seated-data.js",
+    "http://127.0.0.1:4191/src/enemy-animation-data.js",
+    "http://127.0.0.1:4191/src/tactical-positions.js",
+    "http://127.0.0.1:4191/src/companion-animation-data.js",
+    "http://127.0.0.1:4191/src/world-navigation.js",
+    "http://127.0.0.1:4191/src/operation-data.js",
+    "http://127.0.0.1:4191/src/tool-data.js",
+    "http://127.0.0.1:4191/src/eden-scene.js",
+    "http://127.0.0.1:4191/src/frontier-scene.js",
+    "http://127.0.0.1:4191/src/frontier-enemies.js",
+    "http://127.0.0.1:4191/src/horizon-scene.js",
+    "http://127.0.0.1:4191/src/horizon-enemies.js",
+    "http://127.0.0.1:4191/src/boss-animation-data.js",
+    "http://127.0.0.1:4191/src/frontier-vehicles.js",
+    "http://127.0.0.1:4191/src/assignment-data.js",
+    "http://127.0.0.1:4191/src/combat-medical.js",
+    "http://127.0.0.1:4191/src/boss-phases.js",
+    "http://127.0.0.1:4191/src/story-data.js",
+    "http://127.0.0.1:4191/src/universe-ammo.js",
+    "http://127.0.0.1:4191/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4191/src/continuity-data.js"
+  ],
+  "distFiles": {},
+  "servedFiles": [],
+  "limitations": [
+    "Prepared native fixtures give XP directly for a bounded menu/save inspection; that XP is not claimed earned in this browser.",
+    "One Normandy soldier, one Normandy engineer and one early Eden engineer context are inspected. Complete original talent trees and physical controller/hardware performance are not certified.",
+    "All talent ranks, durations and multipliers remain ATB adaptations. Native combat effects have separate integration tests."
+  ],
+  "chromium": "154.0.8037.57",
+  "sourceFrozen": true,
+  "distFrozen": false
+}

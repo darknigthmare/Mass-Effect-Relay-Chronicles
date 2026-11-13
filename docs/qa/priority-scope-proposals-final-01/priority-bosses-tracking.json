@@ -1,0 +1,148 @@
+{
+  "scope": "Propositions uniquement, applicables après les gates natifs/DEV/visuels du parent. Pas de mutation du catalogue ou du classeur par cet agent.",
+  "records": [
+    {
+      "id": "ENM-matriarche-benezia",
+      "status": "Prototype",
+      "assetPath": "public/assets/boss-benezia-combat.png",
+      "gameKey": "ENEMIES.benezia",
+      "notes": "Campagne ME1 : trois vagues asari adaptées protègent Bénézia, puis protection levée sans soin ni récompense intermédiaire. Budget nominal de l’escorte partagé entre les vagues. Quatre poses fixes existantes réutilisées ; effectifs, dialogue intermédiaire, barre de puissance, déplacements et phases originaux restent à recouper. Aucune fidélité 1:1 certifiée.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "ENM-thorian",
+      "status": "Prototype",
+      "assetPath": "public/assets/boss-thorian-combat.png",
+      "gameKey": "ENEMIES.thorian",
+      "notes": "Campagne ME1 : six objectifs neuraux passifs successifs et trois renforts rampants adaptés ; budget nominal 420 PV de nœuds et 125 PV de rampants avant amplification. Victoire après destruction réelle de tous les objectifs et adversaires. Même corps du Thorien réutilisé ; repaire vertical, modèles de nœuds, clones asari, Shiala et Cypher restent ouverts. Aucune fidélité 1:1 certifiée.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "QST-confrontation-benezia",
+      "status": "Prototype",
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:benezia",
+      "notes": "La confrontation comporte désormais des renforts successifs, une protection de ciblage/dégâts et une phase directe dans le combat natif. La décision rachni existante demeure distincte. Le dialogue intermédiaire avec Bénézia et les informations intégrales de la scène originale ne sont pas livrés ; seuils/effectifs/rythme sont adaptés.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "QST-affrontement-du-thorian",
+      "status": "Prototype",
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:thorian",
+      "notes": "Six objectifs neuraux passifs sont détruits par de vrais ordres, avec apparition de trois renforts et victoire unique après nettoyage. Prototype dans l’arène adaptée : ni verticalité complète, ni clones asari, ni rencontre de Shiala, ni variable de Cypher supplémentaire. Le choix global de colonie historique ne prouve pas la survie individuelle des colons.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "EMV-matriarche-benezia-vague-de-soutien",
+      "status": "Prototype",
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:benezia:reinforcements",
+      "notes": "Trois commandos asari successifs dans cette adaptation ATB. Le HUD annonce chaque vague ; la précédente doit être neutralisée avant la suivante, puis Bénézia devient vulnérable. Répartition nominale de l’escorte conservée. Script exécutable ; animation et composition originales restent à produire/recouper.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "EMV-thorian-n-ud-expose",
+      "status": "Prototype",
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:thorian:neural-nodes",
+      "notes": "Six cibles neurales passives, une à la fois : identification au HUD, cible destructible, transition après KO réel et absence de victoire anticipée. Elles utilisent le corps existant du Thorien à une ancre fixe. Aucun modèle spécifique de nœud, parcours vertical ou animation originale supplémentaire.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    },
+    {
+      "id": "EMV-thorian-appel-de-creatures",
+      "status": "Prototype",
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:thorian:reinforcements",
+      "notes": "Trois renforts rampants aux nœuds 1, 3 et 5 dans cette adaptation ; budget nominal 125 PV partagé, sans élimination automatique des survivants lors d’un changement de nœud. Identités natives distinctes et poses existantes réutilisées. Le répertoire des créatures et les apparitions originales restent incomplets.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json"
+      ]
+    }
+  ],
+  "encounterNotes": {
+    "ENC-noveria-3": "Profils de départ : Bénézia et commando asari. En campagne avec phases activées, le budget de l’escorte est réparti en trois vagues successives, puis Bénézia devient vulnérable. Pas de soin ni récompense intermédiaire ; dialogue et composition originaux complets restent ouverts.",
+    "ENC-feros-3": "Profils de départ : Thorien et rampant. En campagne avec phases activées, le budget du Thorien devient six objectifs neuraux successifs et celui du rampant trois renforts. Victoire seulement après tous les nœuds et adversaires ; arène verticale, clones asari et scène de Shiala restent ouverts."
+  },
+  "preservation": [
+    "Critères, dépendances, priorités et sources historiques inchangés.",
+    "AssetStatus des trois EMV à conserver À produire si cette colonne désigne leur animation attendue.",
+    "ENM existants restent Prototype ; aucun statut Intégré/Validé demandé.",
+    "Les propositions ne terminent ni Saren ni les clones asari du Thorien."
+  ]
+}

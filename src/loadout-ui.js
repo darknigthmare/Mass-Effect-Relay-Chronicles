@@ -41,6 +41,7 @@ function preview(item, state, actor, helpers, slot) {
   if (!comparison.ok) return `<p class="eq-blocked">${helpers.esc(comparison.reason)}</p>`;
   const labels = { maxHp: 'santé', maxShield: 'bouclier', attack: 'puissance', defense: 'défense', weaponCoolingBonus: 'refroid./s' };
   const differences = Object.entries(labels).filter(([key]) => comparison.deltas[key]).map(([key, label]) => `<span class="${comparison.deltas[key] > 0 ? 'positive' : 'negative'}">${signed(comparison.deltas[key])} ${label}</span>`);
+  if (comparison.deltas.weaponDamageMultiplier) differences.push(`<span class="${comparison.deltas.weaponDamageMultiplier > 0 ? 'positive' : 'negative'}">Tirs ×${(comparison.current.weaponDamageMultiplier ?? 1).toFixed(2).replace('.', ',')} → ×${(comparison.preview.weaponDamageMultiplier ?? 1).toFixed(2).replace('.', ',')}</span>`);
   const heat = comparison.deltas.weaponHeatMultiplier;
   if (heat) differences.push(`<span class="${heat < 0 ? 'positive' : 'negative'}">${pct(heat)} chaleur</span>`);
   for (const [key, label] of [['syntheticDamageBonus', 'synthétiques'], ['organicDamageBonus', 'organiques'], ['shieldBypass', 'traversée'], ['controlResistance', 'résistance'], ['bioticMultiplier', 'biotique'], ['techMultiplier', 'technologie']]) {

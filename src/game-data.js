@@ -1,3 +1,4 @@
+import { applyCampaignTalents } from './campaign-talents.js';
 import { applyLoadout } from './loadout.js';
 // Canonical names and settings; dialogue, encounter tuning and condensed layouts are adaptations.
 import { COMMANDER_APPEARANCES } from './commander.js';
@@ -89,7 +90,7 @@ export function baseActorFor(id, state) {
   const shield = (cls.shield || 120) + (level - 1) * 8 + (upgrades.shield || 0);
   return { ...c, name: id === 'shepard' ? state.name : c.name, sprite: id === 'shepard' ? COMMANDER_APPEARANCES[state.appearance === 'female' ? 'female' : 'male'].sprite : c.sprite, hp, maxHp: hp, shield, maxShield: shield, attack: (cls.attack || 24) + level - 1 + (upgrades.attack || 0), defense: (cls.defense || 6) + (upgrades.defense || 0), speed: cls.speed || 1, powers: [...(cls.powers || []), ...(id === 'shepard' && state.flags.spectre ? ['unity'] : [])], level };
 }
-export function actorFor(id, state) { return applyLoadout(baseActorFor(id, state), state); }
+export function actorFor(id, state) { return applyCampaignTalents(applyLoadout(baseActorFor(id, state), state), state); }
 
 export function enemiesFor(zone, index, state) {
   const ids = ENCOUNTERS[zone]?.[index] || ['geth'];

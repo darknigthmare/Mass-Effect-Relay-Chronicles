@@ -9094,9 +9094,23 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/enemies/ENM-matriarche-benezia.json",
-      "assetPath": "public/assets/boss-atlas.png",
+      "assetPath": "public/assets/boss-benezia-combat.png",
       "gameKey": "ENEMIES.benezia",
-      "notes": "Atlas 2 × 2, case haut droite. Pose statique employée par src/world.js et rencontre condensée dans src/game-data.js. Apparence et actions à recouper avec ME1 ; aucune animation complète ni fidélité 1:1 validée."
+      "notes": "Campagne ME1 : trois vagues asari adaptées protègent Bénézia, puis protection levée sans soin ni récompense intermédiaire. Budget nominal de l’escorte partagé entre les vagues. Quatre poses fixes existantes réutilisées ; effectifs, dialogue intermédiaire, barre de puissance, déplacements et phases originaux restent à recouper. Aucune fidélité 1:1 certifiée.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "ENM-thorian",
@@ -9115,9 +9129,23 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/enemies/ENM-thorian.json",
-      "assetPath": "public/assets/boss-atlas.png",
+      "assetPath": "public/assets/boss-thorian-combat.png",
       "gameKey": "ENEMIES.thorian",
-      "notes": "Atlas 2 × 2, case bas gauche. Pose statique employée par src/world.js et rencontre condensée dans src/game-data.js. Apparence et actions à recouper avec ME1 ; aucune animation complète ni fidélité 1:1 validée."
+      "notes": "Campagne ME1 : six objectifs neuraux passifs successifs et trois renforts rampants adaptés ; budget nominal 420 PV de nœuds et 125 PV de rampants avant amplification. Victoire après destruction réelle de tous les objectifs et adversaires. Même corps du Thorien réutilisé ; repaire vertical, modèles de nœuds, clones asari, Shiala et Cypher restent ouverts. Aucune fidélité 1:1 certifiée.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "ENM-saren-sur-virmire",
@@ -11800,19 +11828,36 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Confirmé",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Talent de ME1 ou règle explicitement adaptée ; traduction et paramètres à relever.",
       "sourceId": "ME1-MANUAL",
       "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
-      "description": "Perturber l’usage des pouvoirs.",
+      "description": "Atténuation ME1 : empêcher les nouvelles capacités technologiques et biotiques d’une cible, sans révoquer les actions déjà résolues.",
       "acceptance": "Actions déjà résolues non annulées rétroactivement.",
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/powers/PWR-amortissement.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/combat.js",
+      "gameKey": "ACTIONS.me1Damping",
+      "notes": "Libellé Atténuation du manuel PC français, pages imprimées 30–31 ; identifiant historique Amortissement conservé. Prototype déverrouillé au deuxième rang pour Shepard ingénieur, après Électronique rang 1. Cible unique, base de 8 s, recharge de 18 s, outil et résistance adaptés à l’ATB. Les tirs et aptitudes militaires restent possibles ; effets déjà résolus et canaux préexistants ne sont pas annulés. Mine de zone, arbre complet et valeurs originales/Legendary restent ouverts.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "PWR-piratage-d-ia",
@@ -11989,19 +12034,36 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Talent de ME1 ou règle explicitement adaptée ; traduction et paramètres à relever.",
       "sourceId": "ME1-MANUAL",
       "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
-      "description": "Pouvoir de résistance militaire.",
+      "description": "Protection militaire temporaire ME1, déverrouillée par Aptitude physique dans l’arbre partiel du soldat.",
       "acceptance": "Durée de la version originale ou LE explicitement choisie.",
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/powers/PWR-immunite.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/combat.js",
+      "gameKey": "ACTIONS.me1Immunity",
+      "notes": "Fonction générale confirmée par manuel PC français, pages imprimées 30–31. Prototype Shepard soldat au rang 2 : réduction de 35 % pendant 8 s, recharge de 24 s, avant calcul d’armure. Ces paramètres et leur interaction avec les boucliers sont des réglages ATB ; le critère de durée originale ou Legendary Edition exacte reste non rempli. Aucun nouvel asset ou cycle spécifique.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "PWR-montee-d-adrenaline-me1",
@@ -12010,19 +12072,36 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Talent de ME1 ou règle explicitement adaptée ; traduction et paramètres à relever.",
       "sourceId": "ME1-MANUAL",
       "sourceUrl": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_PC_fr.pdf",
-      "description": "Talent militaire dont la fonction diffère des suites.",
+      "description": "Montée d’adrénaline ME1 : rendre les autres capacités immédiatement disponibles en conservant sa propre recharge.",
       "acceptance": "Ne pas importer automatiquement le ralenti de ME2.",
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/powers/PWR-montee-d-adrenaline-me1.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/combat.js",
+      "gameKey": "ACTIONS.me1Adrenaline",
+      "notes": "Fonction décrite dans le manuel PC français, pages imprimées 30–31. Prototype déverrouillé par Formation d’assaut rang 2 pour Shepard soldat ; les autres recharges passent à zéro après paiement natif de l’ordre, la sienne reste de 45 s ATB. Aucun ralenti ME2, soin, médi-gel, point ATB ou refroidissement d’arme supplémentaire. Seuils, rangs, recharge et arbre complet originaux/Legendary restent à vérifier.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "PWR-decryptage",
@@ -12188,9 +12267,23 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/powers/PWR-repositionnement-atb.json",
-      "assetPath": "src/combat.js",
+      "assetPath": "src/tactical-positions.js",
       "gameKey": "ACTIONS.reposition",
-      "notes": "Règle ATB fonctionnelle dans le prototype ; chiffres, animation et correspondance à ME1 restent à calibrer."
+      "notes": "Action ATB adaptée : Contournement conserve son statut natif et déplace réellement le participant latéralement de2,4unités au maximum dans le plan ME1. Avancer/Reculer déplacent jusqu’à3,6unités pour100ATB, sans bonus supplémentaire ; le sol réel et le segment sont contrôlés par callback. Positions du combat éphémères, aucune physique originale certifiée.",
+      "implementationPaths": [
+        "src/tactical-positions.js",
+        "src/combat.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "PWR-ordre-coordonne",
@@ -12199,7 +12292,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Règle de combat conçue pour le fan game.",
       "sourceId": "PROJECT",
@@ -12209,9 +12302,23 @@
       "dependencies": [],
       "priority": "P1",
       "plannedPath": "content/powers/PWR-ordre-coordonne.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/combat.js",
+      "gameKey": "combat.planCoordinatedOrder",
+      "notes": "Commande propre au fan game, sans pouvoir supplémentaire attribué. Les participants distincts exécutent seulement leurs actions maîtrisées, à100ATB chacun. Lévitation/Projection égale strictement les deux ordres natifs séparés ; les coûts, les délais et le RNG restent natifs. Le brouillon est abandonnable gratuitement.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/tactical-ui.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "PWR-analyse-tactique",
@@ -14815,7 +14922,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -14827,9 +14934,23 @@
       ],
       "priority": "P1",
       "plannedPath": "content/enemy_moves/EMV-matriarche-benezia-vague-de-soutien.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": "Interprétation ATB à confronter aux animations et comportements de ME1."
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:benezia:reinforcements",
+      "notes": "Trois commandos asari successifs dans cette adaptation ATB. Le HUD annonce chaque vague ; la précédente doit être neutralisée avant la suivante, puis Bénézia devient vulnérable. Répartition nominale de l’escorte conservée. Script exécutable ; animation et composition originales restent à produire/recouper.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "EMV-matriarche-benezia-pouvoir-biotique",
@@ -14884,7 +15005,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -14896,9 +15017,23 @@
       ],
       "priority": "P1",
       "plannedPath": "content/enemy_moves/EMV-thorian-n-ud-expose.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": "Interprétation ATB à confronter aux animations et comportements de ME1."
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:thorian:neural-nodes",
+      "notes": "Six cibles neurales passives, une à la fois : identification au HUD, cible destructible, transition après KO réel et absence de victoire anticipée. Elles utilisent le corps existant du Thorien à une ancre fixe. Aucun modèle spécifique de nœud, parcours vertical ou animation originale supplémentaire.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "EMV-thorian-appel-de-creatures",
@@ -14907,7 +15042,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -14919,9 +15054,23 @@
       ],
       "priority": "P1",
       "plannedPath": "content/enemy_moves/EMV-thorian-appel-de-creatures.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": "Interprétation ATB à confronter aux animations et comportements de ME1."
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:thorian:reinforcements",
+      "notes": "Trois renforts rampants aux nœuds 1, 3 et 5 dans cette adaptation ; budget nominal 125 PV partagé, sans élimination automatique des survivants lors d’un changement de nœud. Identités natives distinctes et poses existantes réutilisées. Le répertoire des créatures et les apparitions originales restent incomplets.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "EMV-thorian-clone-asari",
@@ -19374,7 +19523,20 @@
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:sauvegarde-automatique",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Les sous-états missionProgress et talents sont reconstruits et contrôlés à l’import. Seule l’absence du champ migre ; un champ présent invalide est refusé. Les détails de missions déjà terminées restent explicitement inconnus (legacy-complete), sans désamorçages ou réparations inventés. Les rangs des talents et les formations d’armure utilisent le même budget ; les sauvegardes de combat restent interdites.",
+      "implementationPaths": [
+        "src/state.js",
+        "src/main.js",
+        "src/mission-progress.js",
+        "src/campaign-talents.js"
+      ],
+      "evidence": [
+        "tests/state.test.js",
+        "tests/mission-progress.test.js",
+        "tests/campaign-talents.test.js",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-carte-galactique",
@@ -19447,23 +19609,29 @@
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Missions, Assignations et Rapports. Trois assignations historiques et onze opérations supplémentaires, avec progression, blocages, choix, récompenses et suivi.",
+      "description": "Missions, Assignations et Rapports. Trois assignations historiques et 12 opérations supplémentaires, avec progression, blocages, choix, récompenses et suivi.",
       "acceptance": "Aucune mission terminée restant affichée active.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:journal-de-mission",
-      "notes": "Les systèmes assignments et operations restent distincts dans la sauvegarde. Les quêtes terminées quittent les objectifs actifs. Les embranchements complets de ME1 restent à produire.",
+      "notes": "Les systèmes assignments et operations restent distincts dans la sauvegarde. Les quêtes terminées quittent les objectifs actifs. Les embranchements complets de ME1 restent à produire. Le journal affiche maintenant aussi l’état réel des objectifs chronométrés d’Eden Prime et d’Ilos, les réparations de MIRA, les étapes traitées, le délai restant et la reprise après échec. Les chapitres, les douze opérations annexes et ces sous-objectifs restent des niveaux de suivi distincts ; aucune quête supplémentaire n’est déduite du nombre de dispositifs.",
       "deliveryVersion": "0.2.0",
       "implementationPaths": [
         "src/main.js",
         "src/operations-ui.js",
-        "src/operations.js"
+        "src/operations.js",
+        "src/mission-progress-ui.js",
+        "src/mission-progress.js"
       ],
       "evidence": [
         "tests/assignments.test.js",
-        "tests/operations.test.js"
+        "tests/operations.test.js",
+        "tests/mission-progress.test.js",
+        "scripts/priority-objectives-public.mjs",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
       ]
     },
     {
@@ -19599,14 +19767,31 @@
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Progression propre à chaque classe et équipier.",
+      "description": "Talents ME1 persistants par classe et équipier, rangs et prérequis contrôlés ; budget partagé avec les formations d’armure.",
       "acceptance": "Dépendances et points disponibles contrôlés.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": "src/loadout.js",
-      "gameKey": "trainArmor",
-      "notes": "Formations d’armure explicites seulement, classe/personnage éligible et budget contrôlé. Un point par niveau ATB gagné, coût un point. Ancienne armure portée conservée par exception limitée à cette pièce ; changer de pièce exige une formation. Arbres complets, rangs originaux, Electronics et bonus de maîtrise restent à reproduire. Voir docs/research/loadout-extension-sources.md."
+      "assetPath": "src/campaign-talents.js",
+      "gameKey": "trainTalent",
+      "notes": "Neuf définitions de talents : quatre maîtrises d’armes, Aptitude physique, Formation d’assaut, Électronique, Atténuation et une discipline biotique adaptée. Un point par niveau ATB gagné, coût d’un point par rang et par formation d’armure ; dépendances, classes, mort narrative et budget commun validés. Achats définitifs au Normandy, consultation ailleurs ; anciennes sauvegardes sans talents migrées vers zéro rang. Bonus reconstruits dans les acteurs et les aperçus sans cumul. Les arbres complets, douze rangs, seuils, précision et effets originaux ne sont pas certifiés 1:1.",
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/campaign-talents.test.js",
+        "docs/research/campaign-talents.md",
+        "docs/qa/priority-talents-source-access.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-atb-actif",
@@ -19620,14 +19805,26 @@
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Jauges progressant pendant les choix.",
+      "description": "Simulation à sous-pas fixes de 1/60 s, indépendante du nombre d’images de rendu pendant le temps de premier plan.",
       "acceptance": "Vitesse indépendante du nombre d’images par seconde.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:atb-actif",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "La cadence de simulation conserve le temps ATB, le refroidissement et les déplacements aux cadences d’appel contrôlées 10/20/60/144 Hz dans les bancs natifs. Une seule soumission de rendu par image ; cela ne mesure pas les FPS matériels. Les menus, le chargement et la perte du focus arrêtent le temps de jeu. Une interruption supérieure à deux secondes est abandonnée sans rattrapage ; aucune performance GPU générale n’est certifiée.",
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-atb-attente",
@@ -19648,7 +19845,22 @@
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:atb-attente",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Les acteurs, ennemis, refroidissements et effets utilisent les mêmes sous-pas de simulation. Une jauge prête suspend le combat. La réservation volontaire d’une jauge (sans dépense) permet aux autres de se charger, en laissant le temps et les ennemis avancer ; libérer les réservations ou annuler le brouillon rend la décision. Portée et coordination restent des mécanismes ATB adaptés.",
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js",
+        "src/combat.js",
+        "src/tactical-positions.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs",
+        "tests/tactical-combat.test.js",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-file-d-actions",
@@ -19678,19 +19890,35 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Bandes et lignes de tir pour les armes.",
+      "description": "Portées de campagne ATB et positions locales partagées par le modèle et le renderer, avec refus d’une cible trop éloignée avant toute dépense.",
       "acceptance": "Cible hors portée signalée avant validation.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/tactical-positions.js",
+      "gameKey": "combat.getTargetAvailability",
+      "notes": "Prototype ME1 opt-in : pistolet11,5/assaut14/pompe8,5/précision22 unités de scène adaptées, capacités12,5/contact3,2. getActions expose la portée, la cible expose distance/refus. Aucun tirage RNG ni coût sur refus. Lignes de tir balistiques et distances originales non reproduites.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/tactical-positions.js",
+        "src/tactical-ui.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-couverture",
@@ -19811,19 +20039,33 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Séquences réunissant plusieurs membres.",
+      "description": "Brouillon d’ordres de deux ou trois équipiers prêts, prévalidé atomiquement puis résolu par les commandes natives et leurs coûts réels.",
       "acceptance": "Participants disponibles et actions consommées.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/combat.js",
+      "gameKey": "combat.performCoordinatedOrder",
+      "notes": "Le brouillon et son annulation ne changent ni combat ni RNG. La confirmation revérifie toutes les maîtrises/cibles/portées et le stock commun avant le premier ordre. Une cible devenue indisponible pendant la résolution annule explicitement le seul ordre suivant sans coût. Aucune nouvelle aptitude ni bonus de coordination inventé ; résolution successive adaptée, pas simultanée. En mode Attente, réserver explicitement une jauge prête permet aux autres de charger, avec le risque normal de progression ennemie ; libérer les réservations rétablit les décisions en attente.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/tactical-ui.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "tests/tactical-combat.test.js",
+        "docs/research/tactical-systems.md",
+        "docs/qa/priority-tactical-balance-02.json",
+        "docs/qa/priority-tactical-public-dev-final-02-report.json",
+        "docs/qa/priority-tactical-public-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-victoire",
@@ -20083,19 +20325,35 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Navigation et actions entièrement accessibles.",
+      "description": "Navigation DOM, actions de campagne et saisie de texte accessibles à une manette standard ; indicateurs adaptés à la méthode d’entrée active.",
       "acceptance": "Indicateurs de touches reflètent la commande active.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "src/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/gamepad-controls.js",
+      "gameKey": "system:manette",
+      "notes": "Correspondance standard de l’API Gamepad, mouvement analogique indépendant des touches physiques, navigation des contrôles actifs, listes/curseurs et clavier à l’écran. Neutralité obligatoire après connexion, reprise et changement de mode. Raccords au HUD, aux menus et au combat dans main/world. Les essais utilisent un périphérique simulé explicitement déclaré ; matériel physique, remappage, rumble et sélecteurs système d’import/export restent hors de la validation de ce lot.",
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/gamepad-controls.test.js",
+        "docs/qa/priority-controls-unit-final-04-report.json",
+        "docs/research/gamepad-controls.md",
+        "scripts/priority-controls-browser.mjs",
+        "docs/qa/priority-controls-dev-final-03-report.json",
+        "docs/qa/priority-controls-dev-final-03-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-clavier",
@@ -20116,7 +20374,23 @@
       "plannedPath": "src/",
       "assetPath": "src/main.js",
       "gameKey": "system:clavier",
-      "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée."
+      "notes": "Déplacements et raccourcis physiques conservés ; navigation des menus et dialogues avec flèches, Tab/Maj+Tab, Entrée et retour explicite. Restauration du focus après reconstruction du DOM même sans manette ; champs de saisie natifs préservés. Le tir rapide physique avec Espace en combat reste distinct. La couverture de tous les écrans et le remappage complet restent à vérifier.",
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/gamepad-controls.test.js",
+        "docs/qa/priority-controls-unit-final-04-report.json",
+        "docs/research/gamepad-controls.md",
+        "scripts/priority-controls-browser.mjs",
+        "docs/qa/priority-controls-dev-final-03-report.json",
+        "docs/qa/priority-controls-dev-final-03-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "SYS-accessibilite",
@@ -20713,7 +20987,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -20723,9 +20997,25 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "tests/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée."
+      "assetPath": "tests/gamepad-controls.test.js",
+      "gameKey": "qa:dialogue-input",
+      "notes": "Contrôles natifs de navigation/focus et parcours public ciblé d’un dialogue d’ouverture avec vraies entrées clavier et API Gamepad simulée. Activation des contrôles DOM réels, aucun appel direct au moteur de campagne. Le critère de tous les choix de dialogue et la correspondance matérielle réelle restent ouverts ; aucune certification globale de toutes les conversations.",
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/gamepad-controls.test.js",
+        "docs/qa/priority-controls-unit-final-04-report.json",
+        "docs/research/gamepad-controls.md",
+        "scripts/priority-controls-browser.mjs",
+        "docs/qa/priority-controls-dev-final-03-report.json",
+        "docs/qa/priority-controls-dev-final-03-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QA-dialogue-conditionnel",
@@ -21112,7 +21402,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -21122,9 +21412,21 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "tests/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée."
+      "assetPath": "src/simulation-clock.js",
+      "gameKey": "createSimulationClock",
+      "notes": "Bancs natifs exécutés : mêmes résultats ATB/refroidissement à 10/20/60/144 appels/s ; déplacement WorldView identique sur trois secondes et une soumission de rendu par image. Les interruptions longues sont abandonnées et le focus est traité séparément. Les cadences d’appel contrôlées ne sont pas une mesure matérielle ni une validation des cadences historiques exactes 30/60/120 FPS.",
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QA-perte-du-focus",
@@ -21133,7 +21435,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -21143,9 +21445,21 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "tests/",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée."
+      "assetPath": "src/main.js",
+      "gameKey": "pauseForInterruption",
+      "notes": "Le changement réel d’onglet et la perte du focus mettent la campagne en pause, libèrent touches physiques/tactiles/analogiques et réinitialisent l’horloge. Les menus et chargements réinitialisent la reprise ; aucun rattrapage des jauges ou du déplacement n’est prévu. Les parcours publics vérifient exploration puis combat actif ; le comportement de chaque plateforme physique reste à contrôler.",
+      "implementationPaths": [
+        "src/simulation-clock.js",
+        "src/main.js",
+        "src/world.js"
+      ],
+      "evidence": [
+        "tests/simulation-clock.test.js",
+        "tests/priority-world.test.js",
+        "scripts/priority-focus-public.mjs",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QA-audio-muet",
@@ -22645,19 +22959,31 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
       "sourceUrl": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
-      "description": "Neutraliser les charges dans le temps imparti.",
+      "description": "Neutraliser quatre charges du spatioport sur le terrain, avec désamorçage de six secondes, délai, annulation et reprise.",
       "acceptance": "Temps, pause et échec clairement définis.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/main_quests/QST-desamorcage-du-spatioport.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/mission-progress.js",
+      "gameKey": "missionProgress:eden-prime",
+      "notes": "Prototype partiel : quatre charges et six secondes attestées par Prima PDF 15 / guide 71. Le délai total de 300 s, les placements et la suspension en combat sont adaptés. Train, hauteurs, topologie et séquence intégrale d’origine restent ouverts.",
+      "implementationPaths": [
+        "src/mission-progress.js",
+        "src/mission-progress-ui.js",
+        "src/main.js",
+        "src/state.js"
+      ],
+      "evidence": [
+        "tests/mission-progress.test.js",
+        "docs/research/mission-progress.md",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QST-vision-de-la-balise",
@@ -22939,7 +23265,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -22949,9 +23275,23 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/main_quests/QST-affrontement-du-thorian.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:thorian",
+      "notes": "Six objectifs neuraux passifs sont détruits par de vrais ordres, avec apparition de trois renforts et victoire unique après nettoyage. Prototype dans l’arène adaptée : ni verticalité complète, ni clones asari, ni rencontre de Shiala, ni variable de Cypher supplémentaire. Le choix global de colonie historique ne prouve pas la survie individuelle des colons.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QST-acces-a-peak-15",
@@ -23002,19 +23342,31 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
       "sourceUrl": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
-      "description": "Restaurer les systèmes de Peak 15.",
+      "description": "Restaurer trois stations techniques persistantes de MIRA avant la suite des laboratoires du Pic 15.",
       "acceptance": "Objectifs techniques reflétés dans le décor.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/main_quests/QST-remise-en-marche-mira.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/mission-progress.js",
+      "gameKey": "missionProgress:noveria",
+      "notes": "Prototype partiel : trois stations d’initialisation, alimentation et liaison dans la carte condensée. Puzzle du noyau, réacteur/carburant, intérieurs et séquence originale complète restent à recouper/reproduire. Les pages communautaires tentées ont répondu 402 ; aucune lecture de leur contenu n’est revendiquée.",
+      "implementationPaths": [
+        "src/mission-progress.js",
+        "src/mission-progress-ui.js",
+        "src/main.js",
+        "src/state.js"
+      ],
+      "evidence": [
+        "tests/mission-progress.test.js",
+        "docs/research/mission-progress.md",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QST-investigation-des-laboratoires",
@@ -23044,7 +23396,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -23054,9 +23406,23 @@
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/main_quests/QST-confrontation-benezia.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/boss-phases.js",
+      "gameKey": "bossPhases:benezia",
+      "notes": "La confrontation comporte désormais des renforts successifs, une protection de ciblage/dégâts et une phase directe dans le combat natif. La décision rachni existante demeure distincte. Le dialogue intermédiaire avec Bénézia et les informations intégrales de la scène originale ne sont pas livrés ; seuils/effectifs/rythme sont adaptés.",
+      "implementationPaths": [
+        "src/boss-phases.js",
+        "src/combat.js"
+      ],
+      "evidence": [
+        "tests/boss-phases.test.js",
+        "docs/research/boss-phases.md",
+        "docs/qa/priority-bosses-native-final-01-report.json",
+        "docs/qa/priority-bosses-comparison-final-01.json",
+        "docs/qa/priority-bosses-dev-final-02-report.json",
+        "docs/qa/priority-bosses-dev-final-02-visual-review.json",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QST-decision-rachni",
@@ -23275,19 +23641,31 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
       "sourceUrl": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
-      "description": "Atteindre le passage dans la fenêtre prévue.",
+      "description": "Activer la fenêtre de Vigil, atteindre le Conduit à temps, ou reprendre explicitement le point de contrôle.",
       "acceptance": "Échec, reprise et transition testés.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/main_quests/QST-course-au-conduit.json",
-      "assetPath": null,
-      "gameKey": null,
-      "notes": ""
+      "assetPath": "src/mission-progress.js",
+      "gameKey": "missionProgress:ilos",
+      "notes": "Prototype partiel : fenêtre de 60 s et course à pied adaptées à la carte actuelle. Durée exacte et course originale au Mako restent à recouper et réaliser. Échec/reprise persistants ; passage final et récompense restent distincts.",
+      "implementationPaths": [
+        "src/mission-progress.js",
+        "src/mission-progress-ui.js",
+        "src/main.js",
+        "src/state.js"
+      ],
+      "evidence": [
+        "tests/mission-progress.test.js",
+        "docs/research/mission-progress.md",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
+      ]
     },
     {
       "id": "QST-assaut-final-citadelle",
@@ -27698,7 +28076,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Eden Prime. Adversaires : geth, geth.",
+      "description": "Rencontre ATB 1 du chapitre Eden Prime. Composition courante des profils : geth, geth.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27719,7 +28097,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Eden Prime. Adversaires : husk, husk, geth.",
+      "description": "Rencontre ATB 2 du chapitre Eden Prime. Composition courante des profils : husk, husk, geth.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27740,7 +28118,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Eden Prime. Adversaires : destroyer, sniper.",
+      "description": "Rencontre ATB 3 du chapitre Eden Prime. Composition courante des profils : destroyer, sniper.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27761,7 +28139,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Therum. Adversaires : geth, sniper.",
+      "description": "Rencontre ATB 1 du chapitre Therum. Composition courante des profils : recon-drone, rocket-geth.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27782,7 +28160,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Therum. Adversaires : geth, destroyer.",
+      "description": "Rencontre ATB 2 du chapitre Therum. Composition courante des profils : shock-geth, turret.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27803,7 +28181,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Therum. Adversaires : krogan, geth, sniper.",
+      "description": "Rencontre ATB 3 du chapitre Therum. Composition courante des profils : battlemaster, geth, sniper.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27824,7 +28202,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Feros. Adversaires : geth, geth, sniper.",
+      "description": "Rencontre ATB 1 du chapitre Feros. Composition courante des profils : armature, geth, sniper.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27845,7 +28223,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Feros. Adversaires : creeper, creeper, asari.",
+      "description": "Rencontre ATB 2 du chapitre Feros. Composition courante des profils : creeper, creeper, asari.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27866,14 +28244,14 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Feros. Adversaires : thorian, creeper.",
+      "description": "Rencontre ATB 3 du chapitre Feros. Profils de base : thorian, creeper. En campagne, budgets répartis en 6 objectifs neuraux et 3 renforts successifs, selon un séquençage ATB adapté.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/encounters/feros-3.json",
       "assetPath": "src/game-data.js",
       "gameKey": "ENCOUNTERS.feros[2]",
-      "notes": "Rencontre condensée du fan game. Ne représente pas toutes les rencontres ou tous les scripts du lieu original."
+      "notes": "Profils de départ : Thorien et rampant. En campagne avec phases activées, le budget du Thorien devient six objectifs neuraux successifs et celui du rampant trois renforts. Victoire seulement après tous les nœuds et adversaires ; arène verticale, clones asari et scène de Shiala restent ouverts."
     },
     {
       "id": "ENC-noveria-1",
@@ -27887,7 +28265,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Noveria. Adversaires : geth, destroyer.",
+      "description": "Rencontre ATB 1 du chapitre Noveria. Composition courante des profils : rocket-drone, destroyer.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27908,7 +28286,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Noveria. Adversaires : rachni, rachni, rachni.",
+      "description": "Rencontre ATB 2 du chapitre Noveria. Composition courante des profils : rachni-worker, rachni, rachni.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27929,14 +28307,14 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Noveria. Adversaires : benezia, asari.",
+      "description": "Rencontre ATB 3 du chapitre Noveria. Profils de base : benezia, asari. En campagne, séquençage adapté : 3 vagues asari, puis Bénézia vulnérable.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
       "plannedPath": "content/encounters/noveria-3.json",
       "assetPath": "src/game-data.js",
       "gameKey": "ENCOUNTERS.noveria[2]",
-      "notes": "Rencontre condensée du fan game. Ne représente pas toutes les rencontres ou tous les scripts du lieu original."
+      "notes": "Profils de départ : Bénézia et commando asari. En campagne avec phases activées, le budget de l’escorte est réparti en trois vagues successives, puis Bénézia devient vulnérable. Pas de soin ni récompense intermédiaire ; dialogue et composition originaux complets restent ouverts."
     },
     {
       "id": "ENC-virmire-1",
@@ -27950,7 +28328,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Virmire. Adversaires : geth, sniper, krogan.",
+      "description": "Rencontre ATB 1 du chapitre Virmire. Composition courante des profils : assault-drone, sniper, krogan.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27971,7 +28349,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Virmire. Adversaires : destroyer, krogan.",
+      "description": "Rencontre ATB 2 du chapitre Virmire. Composition courante des profils : colossus, krogan.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -27992,7 +28370,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Virmire. Adversaires : saren, geth.",
+      "description": "Rencontre ATB 3 du chapitre Virmire. Composition courante des profils : saren, geth.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -28013,7 +28391,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Ilos. Adversaires : geth, destroyer.",
+      "description": "Rencontre ATB 1 du chapitre Ilos. Composition courante des profils : stalker, destroyer.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -28034,7 +28412,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Ilos. Adversaires : destroyer, sniper.",
+      "description": "Rencontre ATB 2 du chapitre Ilos. Composition courante des profils : sapper, sniper.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -28055,7 +28433,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Ilos. Adversaires : destroyer, destroyer, sniper.",
+      "description": "Rencontre ATB 3 du chapitre Ilos. Composition courante des profils : destroyer, destroyer, sniper.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -28076,7 +28454,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 1 du chapitre Citadelle assiégée. Adversaires : geth, sniper, destroyer.",
+      "description": "Rencontre ATB 1 du chapitre Citadelle assiégée. Composition courante des profils : geth, sniper, juggernaut.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -28097,7 +28475,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 2 du chapitre Citadelle assiégée. Adversaires : destroyer, asari.",
+      "description": "Rencontre ATB 2 du chapitre Citadelle assiégée. Composition courante des profils : destroyer, asari.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -28118,7 +28496,7 @@
       "reference": "Composition et équilibrage du prototype ; à comparer aux rencontres de ME1.",
       "sourceId": "PROJECT",
       "sourceUrl": null,
-      "description": "Rencontre ATB 3 du chapitre Citadelle assiégée. Adversaires : saren-final.",
+      "description": "Rencontre ATB 3 du chapitre Citadelle assiégée. Composition courante des profils : saren-final.",
       "acceptance": "Contrôler composition, actions ennemies, victoire, défaite et retour à l’exploration. Produire les animations et la mise en scène complètes.",
       "dependencies": [],
       "priority": "P0",
@@ -32644,7 +33022,7 @@
       "plannedPath": "src/chronicles.js",
       "assetPath": "src/chronicles.js",
       "gameKey": "SYS-preparations-chroniques",
-      "notes": "Prototype partiel : 100 équipements selon la scène, le porteur et l’édition ; quatre ports conservés. Le module ultraléger est limité aux SMG conventionnelles ME3 et à un coefficient de recharge ATB de 0,9. Les modes de munitions exclusifs et préférences sauvegardées restent distincts du combat. Voir tests/universe-armor-editions.test.js et tests/chronicle-ammo-sessions.test.js ; acquisition, rangs et fidélité globale 1:1 non certifiés."
+      "notes": "Prototype partiel : 107 équipements selon la scène, le porteur et l’édition ; quatre ports conservés. Le module ultraléger est limité aux SMG conventionnelles ME3 et à un coefficient de recharge ATB de 0,9. Les modes de munitions exclusifs et préférences sauvegardées restent distincts du combat. Voir tests/universe-armor-editions.test.js et tests/chronicle-ammo-sessions.test.js ; acquisition, rangs et fidélité globale 1:1 non certifiés."
     },
     {
       "id": "SYS-modules-chroniques",
@@ -33217,13 +33595,21 @@
       "plannedPath": "src/customization-ui.js",
       "assetPath": "src/customization-ui.js",
       "gameKey": "customization:UI-comparison",
-      "notes": "La fiche ne projette aucun gain pour une sélection refusée. État, brouillon et stock restent inchangés avant préparation. Suivi : docs/qa/customization-comparison-report.json.",
+      "notes": "La fiche ne projette aucun gain pour une sélection refusée. État, brouillon et stock restent inchangés avant préparation. Suivi : docs/qa/customization-comparison-report.json. Les maîtrises de talents modifient désormais aussi le multiplicateur réel des tirs. Les comparatifs de dotation et d’atelier affichent ×avant → ×après, y compris quand un changement de famille d’arme retire une maîtrise ; la consultation reste sans mutation ni réservation.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "src/customization-ui.js"
+        "src/customization-ui.js",
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/campaign-talents.js"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "tests/campaign-talents.test.js",
+        "tests/customization-comparison.test.js",
+        "scripts/priority-talents-public.mjs",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
       ],
       "recordType": "customization-feature"
     },
@@ -34232,13 +34618,22 @@
       "plannedPath": "tests/customization.test.js",
       "assetPath": "tests/customization.test.js",
       "gameKey": "customization:QA-stats",
-      "notes": "Scénarios de comparaison et de projection : docs/qa/customization-comparison-report.json. Lire les résultats d’exécution dans ce rapport. Statut de prototype conservé.",
+      "notes": "Scénarios de comparaison et de projection : docs/qa/customization-comparison-report.json. Lire les résultats d’exécution dans ce rapport. Statut de prototype conservé. Les maîtrises de talents modifient désormais aussi le multiplicateur réel des tirs. Les comparatifs de dotation et d’atelier affichent ×avant → ×après, y compris quand un changement de famille d’arme retire une maîtrise ; la consultation reste sans mutation ni réservation.",
       "deliveryVersion": "0.3.0",
       "implementationPaths": [
-        "tests/customization.test.js"
+        "tests/customization.test.js",
+        "src/loadout.js",
+        "src/loadout-ui.js",
+        "src/customization-ui.js",
+        "src/campaign-talents.js"
       ],
       "evidence": [
-        "docs/CUSTOMIZATION.md"
+        "docs/CUSTOMIZATION.md",
+        "tests/campaign-talents.test.js",
+        "tests/customization-comparison.test.js",
+        "scripts/priority-talents-public.mjs",
+        "docs/qa/priority-report.json",
+        "docs/qa/priority-workbook-visual-report.json"
       ],
       "recordType": "acceptance-scenario"
     },
