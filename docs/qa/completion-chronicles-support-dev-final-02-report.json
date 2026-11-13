@@ -1,0 +1,1197 @@
+{
+  "passed": true,
+  "at": "2026-11-13T10:23:36.980Z",
+  "family": "chronicles-support",
+  "mode": "development",
+  "url": "http://127.0.0.1:4193/",
+  "command": {
+    "script": "node scripts/completion-chronicles-support-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4193/",
+      "COMPLETION_CHRONICLES_SUPPORT_MODE": "development",
+      "COMPLETION_CHRONICLES_SUPPORT_PREFIX": "completion-chronicles-support-dev-final-02"
+    }
+  },
+  "scope": "Bounded public legacy migration, two compatible module families, reserve conservation, invalid-parent rejection and documentary reading/navigation/save/isolation. Existing functionality only; no original scene, model, campaign victory or artistic fidelity is certified.",
+  "inputMethod": "Actual public selectors, pointer clicks, uploads/downloads, ordinary scrolling and browser reload. Page evaluation reads DOM or storage only. No QA/source import in the page, DOM/style/state manipulation, game-clock step or event-handler invocation.",
+  "fixtures": [
+    {
+      "label": "campaign-witness",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-campaign-witness-fixture.json",
+      "bytes": 2805,
+      "sha256": "34eed972d5e99bb8345428ef0bf15d551f5e34517f067a406ff289d550ae7bcf",
+      "origin": {
+        "kind": "native-newGame",
+        "APIs": [
+          "newGame",
+          "encodeSave"
+        ],
+        "played": false,
+        "xp": 0
+      }
+    },
+    {
+      "label": "historical-two-slot",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-historical-two-slot-fixture.json",
+      "bytes": 450,
+      "sha256": "aa8e0e6d116a8d63ee6f98f3292de1ae884681056aee935b88a8e28ce3b14aea",
+      "origin": {
+        "kind": "unchanged-historical-native-fixture",
+        "played": false,
+        "commit": "994a963",
+        "method": "createChronicle + equipChronicle + encodeChronicle from the unchanged historical modules; no progression, statistics or rewards edited",
+        "sources": {
+          "src/chronicles.js": "808fbc4aea428315ce0e4319f489b320ffbd88ccf721c1f4e67439017efc4c04",
+          "src/continuity.js": "5aa0e4702ef5c8fab03f3bc601b4cb2ed31aa93dd1f428693d4706217602a107",
+          "src/universe-equipment.js": "35469d6b72caf95184f46ac97e983f439727058b89e0efbe5ac604e02ecebc1b"
+        }
+      }
+    },
+    {
+      "label": "invalid-module-parent",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-invalid-module-parent-fixture.json",
+      "bytes": 757,
+      "sha256": "77a6db88b20652418bb50deeedd6900c294a3d540bdfd2b3aafa13afa7804bbd",
+      "origin": {
+        "kind": "declared-invalid-import-probe",
+        "played": false,
+        "basis": "Actual public export with exactly one invalid retained assault-rifle barrel on the Mantis sniper parent; intended rejection, never a played preparation."
+      }
+    },
+    {
+      "label": "readings-rev-native-fixture",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-rev-native-fixture-fixture.json",
+      "bytes": 374,
+      "sha256": "fa71be0461f70aba4c6efdf8de5eefa9402e7269c32689ff86ef8fb58fc83abf",
+      "origin": {
+        "kind": "native-node-fixture",
+        "played": false,
+        "APIs": [
+          "createChronicle",
+          "setChronicleNote",
+          "encodeChronicle",
+          "decodeChronicle"
+        ],
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "initialReadingProgress": {},
+        "initialCleared": [],
+        "initialParty": [],
+        "initialDiscoveries": [
+          "REV-REF-SIDON"
+        ],
+        "note": "Explicit note witness on one native documentary record; no read page, reward or recruitment is fabricated."
+      }
+    },
+    {
+      "label": "readings-asc-native-fixture",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-asc-native-fixture-fixture.json",
+      "bytes": 378,
+      "sha256": "7342627bc40094a7235262d90fb0b23aa973858d74e9e3c97d31cee359adbc63",
+      "origin": {
+        "kind": "native-node-fixture",
+        "played": false,
+        "APIs": [
+          "createChronicle",
+          "setChronicleNote",
+          "encodeChronicle",
+          "decodeChronicle"
+        ],
+        "context": {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        },
+        "storyId": "asc-projet",
+        "initialReadingProgress": {},
+        "initialCleared": [],
+        "initialParty": [],
+        "initialDiscoveries": [
+          "ASC-REF-ACADEMY"
+        ],
+        "note": "Explicit note witness on one native documentary record; no read page, reward or recruitment is fabricated."
+      }
+    }
+  ],
+  "imports": [
+    {
+      "label": "historical-two-slot",
+      "valid": true,
+      "bytes": 450,
+      "sha256": "aa8e0e6d116a8d63ee6f98f3292de1ae884681056aee935b88a8e28ce3b14aea",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "feedback": "Chronique importée."
+    },
+    {
+      "label": "invalid-module-parent",
+      "valid": false,
+      "bytes": 757,
+      "sha256": "77a6db88b20652418bb50deeedd6900c294a3d540bdfd2b3aafa13afa7804bbd",
+      "context": null,
+      "feedback": "Ce fichier n’est pas une chronique valide."
+    },
+    {
+      "label": "readings-rev-native-fixture",
+      "valid": true,
+      "bytes": 374,
+      "sha256": "fa71be0461f70aba4c6efdf8de5eefa9402e7269c32689ff86ef8fb58fc83abf",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "feedback": "Chronique importée."
+    },
+    {
+      "label": "readings-rev-reset-before-import",
+      "valid": true,
+      "bytes": 374,
+      "sha256": "fa71be0461f70aba4c6efdf8de5eefa9402e7269c32689ff86ef8fb58fc83abf",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "feedback": "Chronique importée."
+    },
+    {
+      "label": "readings-rev-restore-public-export",
+      "valid": true,
+      "bytes": 455,
+      "sha256": "f5eeb43d9b08a3c49e90b2ef66e5203862de401fd4d7e04d6c8347c7c7fe7258",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "feedback": "Chronique importée."
+    },
+    {
+      "label": "readings-asc-native-fixture",
+      "valid": true,
+      "bytes": 378,
+      "sha256": "7342627bc40094a7235262d90fb0b23aa973858d74e9e3c97d31cee359adbc63",
+      "context": {
+        "mediaId": "ASC",
+        "periodId": "asc",
+        "galaxy": "milky-way"
+      },
+      "feedback": "Chronique importée."
+    }
+  ],
+  "exports": [
+    {
+      "label": "modules-migrated",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-modules-migrated-export.json",
+      "bytes": 746,
+      "sha256": "cc329e019fd17070d425a8c99889141506353364caa8daca25a0ddc6ac4ec642",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-equipment-workshop"
+    },
+    {
+      "label": "modules-single-family",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-modules-single-family-export.json",
+      "bytes": 758,
+      "sha256": "1b4d2642d37a75d11bbd34d137eb861926e99cb0485071d05aa0e8c6191a0de6",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-equipment-workshop"
+    },
+    {
+      "label": "modules-equipped",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-modules-equipped-export.json",
+      "bytes": 772,
+      "sha256": "837b8be36e33f00fe69c707d2df89b5c41819c0c287b6de8b48cade77987a37a",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-equipment-workshop"
+    },
+    {
+      "label": "modules-parent-changed",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-modules-parent-changed-export.json",
+      "bytes": 745,
+      "sha256": "08efec598a013bdd7f15be4f22145ecc63f4f40951e7869af92d412677bfe779",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-equipment-workshop"
+    },
+    {
+      "label": "modules-rejected-parent",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-modules-rejected-parent-export.json",
+      "bytes": 745,
+      "sha256": "08efec598a013bdd7f15be4f22145ecc63f4f40951e7869af92d412677bfe779",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-equipment-workshop"
+    },
+    {
+      "label": "readings-rev-before",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-rev-before-export.json",
+      "bytes": 374,
+      "sha256": "fa71be0461f70aba4c6efdf8de5eefa9402e7269c32689ff86ef8fb58fc83abf",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": null
+    },
+    {
+      "label": "readings-rev-visited",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-rev-visited-export.json",
+      "bytes": 455,
+      "sha256": "f5eeb43d9b08a3c49e90b2ef66e5203862de401fd4d7e04d6c8347c7c7fe7258",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": null
+    },
+    {
+      "label": "readings-rev-imported",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-rev-imported-export.json",
+      "bytes": 455,
+      "sha256": "f5eeb43d9b08a3c49e90b2ef66e5203862de401fd4d7e04d6c8347c7c7fe7258",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": null
+    },
+    {
+      "label": "readings-rev-reloaded",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-rev-reloaded-export.json",
+      "bytes": 455,
+      "sha256": "f5eeb43d9b08a3c49e90b2ef66e5203862de401fd4d7e04d6c8347c7c7fe7258",
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": null
+    },
+    {
+      "label": "readings-asc-isolated",
+      "path": "docs/qa/completion-chronicles-support-dev-final-02-readings-asc-isolated-export.json",
+      "bytes": 444,
+      "sha256": "64e738aaf5996bd731f76dbcc26cc9a7ed5fa66edef6c6b65f98e17aba2cc09d",
+      "context": {
+        "mediaId": "ASC",
+        "periodId": "asc",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": null
+    }
+  ],
+  "captures": [
+    {
+      "label": "modules-two-families",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-02-modules-two-families.png",
+      "bytes": 261932,
+      "sha256": "384f7ad097867a31f54b2a6bdd6858ae2b868e860032591242e20efa3bac8494",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    },
+    {
+      "label": "modules-native-ammunition",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-02-modules-native-ammunition.png",
+      "bytes": 219861,
+      "sha256": "22034220f897255fdd606aeccaf07cd92c05b605de818b8c19eb8cb44074d179",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    },
+    {
+      "label": "modules-parent-rejected",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-02-modules-parent-rejected.png",
+      "bytes": 396087,
+      "sha256": "c7a22add0cd048420f5ccfd088408e5cef5ff9c7b6c9a4c27110828d33c2e925",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    },
+    {
+      "label": "readings-rev-sourced-page",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-02-readings-rev-sourced-page.png",
+      "bytes": 268798,
+      "sha256": "9b337e473e99bc5906375897f6c014ad0ec2f35280efce62be92899e0bf29ba1",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    },
+    {
+      "label": "readings-rev-reloaded-position",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-02-readings-rev-reloaded-position.png",
+      "bytes": 264774,
+      "sha256": "f3e3432f117076ffd14b5c3bf413246f93a5fa7663a8cbbbcbc1763e037c52a6",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    },
+    {
+      "label": "readings-asc-isolated-sources",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-02-readings-asc-isolated-sources.png",
+      "bytes": 264706,
+      "sha256": "75bde6ef96dfcad773e9c9391b3b3667b36d52232bb0b91b62cafb2e647630f7",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Unchanged native two-slot import migrates to default/four ports; actual two-family preparation preserves the ninety-shot pool and the native battle displays23/23 with reserve67",
+      "passed": true
+    },
+    {
+      "name": "Real weapon change removes both modules, incompatible parents stay disabled, and invalid-parent public import is rejected atomically without changing the Chronicle or ME1",
+      "passed": true
+    },
+    {
+      "name": "readings-native-fixture-import-keeps-notes-separate-from-unvisited-progress",
+      "passed": true
+    },
+    {
+      "name": "readings-public-next-previous-unique-discoveries-safe-sources-and-no-gain",
+      "passed": true
+    },
+    {
+      "name": "readings-public-export-import-restores-exact-page-notes-discoveries-and-session",
+      "passed": true
+    },
+    {
+      "name": "readings-public-save-real-browser-reload-native-load-preserves-exact-session",
+      "passed": true
+    },
+    {
+      "name": "readings-second-work-keeps-reading-progress-notes-and-discoveries-isolated-from-REV-and-ME1",
+      "passed": true
+    }
+  ],
+  "observations": [
+    {
+      "label": "duplicate-module-family",
+      "option": {
+        "disabled": true,
+        "attribute": true,
+        "text": "Canon et dégâts — mod — Deux modules de la même famille ne peuvent pas occuper les deux ports de cette arme."
+      },
+      "optionDisabled": true,
+      "result": "Disabled native control prevents duplicate family selection."
+    },
+    {
+      "label": "module-export-native-reconstruction",
+      "origin": "Native buildChronicleActor from real public downloads; no live state injected",
+      "before": {
+        "ammo": 18,
+        "reserveAmmo": 72,
+        "attack": 30,
+        "weaponDamageMultiplier": 1
+      },
+      "after": {
+        "ammo": 23,
+        "reserveAmmo": 67,
+        "attack": 30,
+        "weaponDamageMultiplier": 1.12
+      }
+    }
+  ],
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/chronicles.js": "c4e1c4d597062d0ca0947589a24d00743214df52e84231bb4ba13073b38e3859",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/continuity-data.js": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03",
+    "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+    "src/universe-actors.js": "0d24051f3aa95f48905338da364d9928fed03a5f1fa5b952187fb283b94e9ac1",
+    "src/universe-equipment.js": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+    "src/universe-ui.js": "8d019008d42a77782f5ac4f99d40dd68f2293ef42a3b678543736c3963ab5862",
+    "src/universe-ui.css": "6068614cf13f7ed0d79c19364bc284277b1921d1ea6e073fd49ecb23c2752566",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "scripts/completion-chronicles-support-public.mjs": "2f5224f794df2b5aab9fe26675d72eacfd06736e854c2f0bc5264655dc270440",
+    "scripts/completion-chronicles-support-readings.mjs": "e7e04e74fd6510450021323ea50d219794ad03a45aa3c681015eb2409d7a0c4c",
+    "tests/fixtures/chronicle-v1-before-expansion.json": "9cadce28bb86cd847a81c3742f2356454bf386ebbbeb52952886d824b777880f"
+  },
+  "registrySourceHashes": {
+    "src/universe-data.js": "b3ea4b1ea885a5b54493b3c7c965cd019ca5a236c3dcc1da977230579c886e4a"
+  },
+  "registrySnapshot": {
+    "sourcePath": "src/universe-data.js",
+    "path": "docs/qa/completion-chronicles-support-dev-final-02-registry-source.js",
+    "bytes": 3340216,
+    "sha256": "b3ea4b1ea885a5b54493b3c7c965cd019ca5a236c3dcc1da977230579c886e4a",
+    "scope": "Exact generated-registry context bytes at DEV start; separate from product logic. Current bytes and snapshot are checked again at end. Production keeps this source in strict sourceHashes."
+  },
+  "errors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/chronicles.js",
+    "http://127.0.0.1:4193/src/universe-ui.js",
+    "http://127.0.0.1:4193/src/continuity.js",
+    "http://127.0.0.1:4193/src/universe-ui.css",
+    "http://127.0.0.1:4193/src/expansion.js",
+    "http://127.0.0.1:4193/src/expansion-ui.js",
+    "http://127.0.0.1:4193/src/universe-actors.js",
+    "http://127.0.0.1:4193/src/universe-equipment.js",
+    "http://127.0.0.1:4193/src/universe-portraits.js",
+    "http://127.0.0.1:4193/src/universe-visuals.js",
+    "http://127.0.0.1:4193/src/chronicle-story.js",
+    "http://127.0.0.1:4193/src/horizon-reference-visuals.js",
+    "http://127.0.0.1:4193/src/expansion-characters.js",
+    "http://127.0.0.1:4193/src/expansion-armor.js",
+    "http://127.0.0.1:4193/src/expansion-weapons.js",
+    "http://127.0.0.1:4193/src/expansion-fleet.js",
+    "http://127.0.0.1:4193/src/expansion2-weapons.js",
+    "http://127.0.0.1:4193/src/expansion2-fleet.js",
+    "http://127.0.0.1:4193/src/expansion-enemies.js",
+    "http://127.0.0.1:4193/src/expansion2-characters.js",
+    "http://127.0.0.1:4193/src/expansion2-armor.js",
+    "http://127.0.0.1:4193/src/expansion3-characters.js",
+    "http://127.0.0.1:4193/src/expansion3-weapons.js",
+    "http://127.0.0.1:4193/src/expansion3-armor.js",
+    "http://127.0.0.1:4193/src/expansion2-enemies.js",
+    "http://127.0.0.1:4193/src/expansion-bench.js",
+    "http://127.0.0.1:4193/src/expansion3-enemies.js",
+    "http://127.0.0.1:4193/src/expansion3-fleet.js",
+    "http://127.0.0.1:4193/src/universe-opposition-scenarios.js",
+    "http://127.0.0.1:4193/src/expansion-medical-bench.js",
+    "http://127.0.0.1:4193/src/universe-specialist-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-equipment-scenarios.js",
+    "http://127.0.0.1:4193/src/horizon-fleet-reference.js",
+    "http://127.0.0.1:4193/src/universe-powers.js",
+    "http://127.0.0.1:4193/src/arsenal-visual-data.js",
+    "http://127.0.0.1:4193/src/universe-opponents.js",
+    "http://127.0.0.1:4193/src/universe-data.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-ui.js",
+    "http://127.0.0.1:4193/src/continuity.js",
+    "http://127.0.0.1:4193/src/expansion.js",
+    "http://127.0.0.1:4193/src/horizon-reference-visuals.js",
+    "http://127.0.0.1:4193/src/expansion-ui.js",
+    "http://127.0.0.1:4193/src/universe-portraits.js",
+    "http://127.0.0.1:4193/src/universe-visuals.js",
+    "http://127.0.0.1:4193/src/universe-ui.css",
+    "http://127.0.0.1:4193/src/chronicles.js",
+    "http://127.0.0.1:4193/src/expansion-characters.js",
+    "http://127.0.0.1:4193/src/expansion-fleet.js",
+    "http://127.0.0.1:4193/src/expansion-armor.js",
+    "http://127.0.0.1:4193/src/expansion-enemies.js",
+    "http://127.0.0.1:4193/src/expansion2-armor.js",
+    "http://127.0.0.1:4193/src/expansion2-weapons.js",
+    "http://127.0.0.1:4193/src/expansion2-fleet.js",
+    "http://127.0.0.1:4193/src/expansion-weapons.js",
+    "http://127.0.0.1:4193/src/expansion3-armor.js",
+    "http://127.0.0.1:4193/src/expansion3-weapons.js",
+    "http://127.0.0.1:4193/src/expansion3-fleet.js",
+    "http://127.0.0.1:4193/src/expansion3-characters.js",
+    "http://127.0.0.1:4193/src/expansion2-enemies.js",
+    "http://127.0.0.1:4193/src/expansion-bench.js",
+    "http://127.0.0.1:4193/src/universe-equipment.js",
+    "http://127.0.0.1:4193/src/horizon-fleet-reference.js",
+    "http://127.0.0.1:4193/src/expansion-medical-bench.js",
+    "http://127.0.0.1:4193/src/universe-actors.js",
+    "http://127.0.0.1:4193/src/expansion2-characters.js",
+    "http://127.0.0.1:4193/src/arsenal-visual-data.js",
+    "http://127.0.0.1:4193/src/chronicle-story.js",
+    "http://127.0.0.1:4193/src/expansion3-enemies.js",
+    "http://127.0.0.1:4193/src/universe-specialist-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-opposition-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-equipment-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-powers.js",
+    "http://127.0.0.1:4193/src/universe-opponents.js",
+    "http://127.0.0.1:4193/src/universe-data.js"
+  ],
+  "servedFiles": [],
+  "distFiles": {},
+  "limitations": [
+    "The ME1 witness is a neutral native newGame imported through the public chooser, with no preceding progression claimed.",
+    "The historical pre-expansion Chronicle is an unchanged native fixture from commit994a963, declared with its provenance. An invalid-parent payload is an explicitly declared rejection probe.",
+    "Module statistics are read from actual public exports through the native actor builder and checked against the displayed native battle ammunition. No battle damage or victory is manufactured.",
+    "Damage-only weapon multiplier behavior and all sixteen readings remain additionally covered by fresh native integration tests. This public sample inspects one reading path and its foreign-context boundary.",
+    "Values and visual cards remain ATB/prototype adaptations; no original weapon model, animation or complete original campaign is certified."
+  ],
+  "chromium": "154.0.8037.57",
+  "readings": {
+    "method": "Public controls and native JSON imports; Node-only fixture/oracle APIs.",
+    "fixtures": [
+      {
+        "label": "readings-rev-native-fixture",
+        "kind": "native-node-fixture",
+        "played": false,
+        "APIs": [
+          "createChronicle",
+          "setChronicleNote",
+          "encodeChronicle",
+          "decodeChronicle"
+        ],
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "initialReadingProgress": {},
+        "initialCleared": [],
+        "initialParty": [],
+        "initialDiscoveries": [
+          "REV-REF-SIDON"
+        ],
+        "note": "Explicit note witness on one native documentary record; no read page, reward or recruitment is fabricated."
+      },
+      {
+        "label": "readings-asc-native-fixture",
+        "kind": "native-node-fixture",
+        "played": false,
+        "APIs": [
+          "createChronicle",
+          "setChronicleNote",
+          "encodeChronicle",
+          "decodeChronicle"
+        ],
+        "context": {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        },
+        "storyId": "asc-projet",
+        "initialReadingProgress": {},
+        "initialCleared": [],
+        "initialParty": [],
+        "initialDiscoveries": [
+          "ASC-REF-ACADEMY"
+        ],
+        "note": "Explicit note witness on one native documentary record; no read page, reward or recruitment is fabricated."
+      }
+    ],
+    "visits": [
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 0,
+        "reason": "public Lecture opening",
+        "title": "Le poste détruit",
+        "recordIds": [
+          "REV-REF-SIDON",
+          "REV-CHR-ANDERSON"
+        ],
+        "sourceIds": [
+          "REV-SRC-WIKI",
+          "REV-SRC-PUB"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 1,
+        "reason": "public next-page button",
+        "title": "Une scientifique recherchée",
+        "recordIds": [
+          "REV-CHR-KAHLEE"
+        ],
+        "sourceIds": [
+          "REV-SRC-PUB"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 0,
+        "reason": "public previous-page button",
+        "title": "Le poste détruit",
+        "recordIds": [
+          "REV-REF-SIDON",
+          "REV-CHR-ANDERSON"
+        ],
+        "sourceIds": [
+          "REV-SRC-WIKI",
+          "REV-SRC-PUB"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 1,
+        "reason": "public next-page button",
+        "title": "Une scientifique recherchée",
+        "recordIds": [
+          "REV-CHR-KAHLEE"
+        ],
+        "sourceIds": [
+          "REV-SRC-PUB"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 2,
+        "reason": "public next-page button",
+        "title": "Camala et les mercenaires",
+        "recordIds": [
+          "REV-REF-CAMALA",
+          "REV-REF-SUNS"
+        ],
+        "sourceIds": [
+          "REV-SRC-SKARR",
+          "REV-SRC-BLUE"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 0,
+        "reason": "declared reset fixture before restore",
+        "title": "Le poste détruit",
+        "recordIds": [
+          "REV-REF-SIDON",
+          "REV-CHR-ANDERSON"
+        ],
+        "sourceIds": [
+          "REV-SRC-WIKI",
+          "REV-SRC-PUB"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 2,
+        "reason": "native public import restores exact page",
+        "title": "Camala et les mercenaires",
+        "recordIds": [
+          "REV-REF-CAMALA",
+          "REV-REF-SUNS"
+        ],
+        "sourceIds": [
+          "REV-SRC-SKARR",
+          "REV-SRC-BLUE"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "storyId": "rev-sidon",
+        "index": 2,
+        "reason": "saved position after real browser reload and native load",
+        "title": "Camala et les mercenaires",
+        "recordIds": [
+          "REV-REF-CAMALA",
+          "REV-REF-SUNS"
+        ],
+        "sourceIds": [
+          "REV-SRC-SKARR",
+          "REV-SRC-BLUE"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        },
+        "storyId": "asc-projet",
+        "index": 0,
+        "reason": "second exact documentary context",
+        "title": "Le projet Ascension",
+        "recordIds": [
+          "ASC-REF-ACADEMY",
+          "ASC-CHR-GILLIAN"
+        ],
+        "sourceIds": [
+          "ASC-SRC-GIL",
+          "ASC-SRC-PUB"
+        ]
+      },
+      {
+        "context": {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        },
+        "storyId": "asc-projet",
+        "index": 1,
+        "reason": "second context next-page button",
+        "title": "Kahlee et Hendel",
+        "recordIds": [
+          "ASC-CHR-KAHLEE",
+          "ASC-CHR-HENDEL"
+        ],
+        "sourceIds": [
+          "ASC-SRC-PUB",
+          "ASC-SRC-HEN"
+        ]
+      }
+    ],
+    "sourceLinks": [
+      {
+        "storyId": "rev-sidon",
+        "id": "REV-SRC-WIKI",
+        "title": "Mass Effect Wiki — Revelation",
+        "href": "https://masseffect.fandom.com/wiki/Mass_Effect:_Revelation",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      },
+      {
+        "storyId": "rev-sidon",
+        "id": "REV-SRC-PUB",
+        "title": "Penguin Random House — Revelation",
+        "href": "https://www.penguinrandomhouse.com/books/89889/mass-effect-revelation-by-drew-karpyshyn/",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      },
+      {
+        "storyId": "rev-sidon",
+        "id": "REV-SRC-SKARR",
+        "title": "Mass Effect Wiki — Skarr",
+        "href": "https://masseffect.fandom.com/wiki/Skarr",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      },
+      {
+        "storyId": "rev-sidon",
+        "id": "REV-SRC-BLUE",
+        "title": "Mass Effect Wiki — Blue Suns",
+        "href": "https://masseffect.fandom.com/wiki/Blue_Suns",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      },
+      {
+        "storyId": "asc-projet",
+        "id": "ASC-SRC-GIL",
+        "title": "Mass Effect Wiki — Gillian Grayson",
+        "href": "https://masseffect.fandom.com/wiki/Gillian_Grayson",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      },
+      {
+        "storyId": "asc-projet",
+        "id": "ASC-SRC-PUB",
+        "title": "Penguin Random House — Ascension",
+        "href": "https://www.penguinrandomhouse.com/books/89888/mass-effect-ascension-by-drew-karpyshyn/paperback/",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      },
+      {
+        "storyId": "asc-projet",
+        "id": "ASC-SRC-HEN",
+        "title": "Mass Effect Wiki — Hendel Mitra",
+        "href": "https://masseffect.fandom.com/wiki/Hendel_Mitra",
+        "target": "_blank",
+        "rel": [
+          "noopener",
+          "noreferrer"
+        ],
+        "visible": true
+      }
+    ],
+    "exports": [
+      {
+        "label": "readings-rev-before",
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "readingProgress": {},
+        "notes": {
+          "REV-REF-SIDON": "Note témoin de fixture native ; aucune progression de récit jouée."
+        },
+        "discoveries": [
+          "REV-REF-SIDON"
+        ]
+      },
+      {
+        "label": "readings-rev-visited",
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "readingProgress": {
+          "rev-sidon": 2
+        },
+        "notes": {
+          "REV-REF-SIDON": "Note témoin de fixture native ; aucune progression de récit jouée."
+        },
+        "discoveries": [
+          "REV-REF-SIDON",
+          "REV-CHR-ANDERSON",
+          "REV-CHR-KAHLEE",
+          "REV-REF-CAMALA",
+          "REV-REF-SUNS"
+        ]
+      },
+      {
+        "label": "readings-rev-imported",
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "readingProgress": {
+          "rev-sidon": 2
+        },
+        "notes": {
+          "REV-REF-SIDON": "Note témoin de fixture native ; aucune progression de récit jouée."
+        },
+        "discoveries": [
+          "REV-REF-SIDON",
+          "REV-CHR-ANDERSON",
+          "REV-CHR-KAHLEE",
+          "REV-REF-CAMALA",
+          "REV-REF-SUNS"
+        ]
+      },
+      {
+        "label": "readings-rev-reloaded",
+        "context": {
+          "mediaId": "REV",
+          "periodId": "rev",
+          "galaxy": "milky-way"
+        },
+        "readingProgress": {
+          "rev-sidon": 2
+        },
+        "notes": {
+          "REV-REF-SIDON": "Note témoin de fixture native ; aucune progression de récit jouée."
+        },
+        "discoveries": [
+          "REV-REF-SIDON",
+          "REV-CHR-ANDERSON",
+          "REV-CHR-KAHLEE",
+          "REV-REF-CAMALA",
+          "REV-REF-SUNS"
+        ]
+      },
+      {
+        "label": "readings-asc-isolated",
+        "context": {
+          "mediaId": "ASC",
+          "periodId": "asc",
+          "galaxy": "milky-way"
+        },
+        "readingProgress": {
+          "asc-projet": 1
+        },
+        "notes": {
+          "ASC-REF-ACADEMY": "Note témoin de fixture native ; aucune progression de récit jouée."
+        },
+        "discoveries": [
+          "ASC-REF-ACADEMY",
+          "ASC-CHR-GILLIAN",
+          "ASC-CHR-KAHLEE",
+          "ASC-CHR-HENDEL"
+        ]
+      }
+    ],
+    "boundaries": [
+      "Documentary facts and page position only; no complete novel or original chapter is reconstructed.",
+      "The native note witness is fixture data, not progress earned by playing.",
+      "Source links are inspected as visible links; external source pages are not opened or certified."
+    ],
+    "opening": [
+      {
+        "storyId": "rev-sidon",
+        "method": "Public Lecture tab opens the native article directly; no Commencer la lecture button is rendered"
+      },
+      {
+        "storyId": "rev-sidon",
+        "method": "Public Lecture tab opens the native article directly; no Commencer la lecture button is rendered"
+      },
+      {
+        "storyId": "asc-projet",
+        "method": "Public Lecture tab opens the native article directly; no Commencer la lecture button is rendered"
+      }
+    ],
+    "reloadLoadMethod": "Public REV/rev work/period selection invokes the native automatic load; no tactical Reprendre button is rendered",
+    "result": {
+      "context": {
+        "mediaId": "REV",
+        "periodId": "rev",
+        "galaxy": "milky-way"
+      },
+      "storyId": "rev-sidon",
+      "restoredIndex": 2,
+      "repeatedVisitIndexes": [
+        0,
+        1,
+        0,
+        1,
+        2
+      ],
+      "uniqueDiscoveries": 5,
+      "otherContext": {
+        "mediaId": "ASC",
+        "periodId": "asc",
+        "galaxy": "milky-way"
+      },
+      "otherStoryId": "asc-projet",
+      "otherIndex": 1,
+      "exports": 5,
+      "captures": 3,
+      "notesPreserved": true,
+      "clearedUnchanged": true,
+      "noRecruitmentOrGain": true,
+      "campaignStorageByteIdentical": true
+    }
+  },
+  "registrySourceFrozen": true,
+  "sourceFrozen": true,
+  "distFrozen": false
+}

@@ -81,6 +81,30 @@ export function getTacticalPosition(battle, actorId) {
   return finitePoint(point) ? { x: point.x, z: point.z } : null;
 }
 
+/** A scene may bind cover to its actual obstacles. The callback receives only
+ * detached geometry, never the mutable simulation or its random generator. */
+export function getTacticalCoverState(battle, actorId, attackerId) {
+  const actor = battle?.actors?.find(candidate => candidate.id === actorId);
+  const enforced = tacticalEnabled(battle) && typeof battle._tacticalCoverAvailable === 'function';
+  if (!actor) return { enforced, available: false, active: false, reason: 'Combattant inconnu.' };
+  if (!enforced) return { enforced: false, available: true, active: actor.cover === true && actor.hp > EPSILON, reason: null };
+  const position = getTacticalPosition(battle, actorId);
+  const opponents = battle.actors.filter(other => other.id !== actorId && other.hp > EPSILON && !other.bossPhaseRetired
+    && (attackerId == null ? (other.statuses?.hacked > EPSILON || other.statuses?.dominated > EPSILON
+      ? other.team === actor.team : other.team !== actor.team) : other.id === attackerId));
+  let check;
+  try {
+    check = battle._tacticalCoverAvailable({ actorId, team: actor.team, position,
+      opponentPositions: opponents.map(other => ({ id: other.id, ...getTacticalPosition(battle, other.id) })) });
+  } catch { check = false; }
+  const available = check === true || check?.available === true;
+  const protectedFrom = Array.isArray(check?.protectedFrom) ? check.protectedFrom.filter(id => typeof id === 'string' && opponents.some(other => other.id === id)) : [];
+  return { enforced: true, available, active: available && actor.cover === true && actor.hp > EPSILON,
+    reason: available ? null : typeof check?.reason === 'string' && check.reason.trim() ? check.reason : 'Aucun obstacle ne protège cette position. Déplacez-vous vers une couverture.',
+    protectedFrom: [...new Set(protectedFrom)], opponentCount: opponents.length,
+    ...(available && typeof check?.coverId === 'string' ? { coverId: check.coverId } : {}) };
+}
+
 export function getTacticalState(battle) {
   if (!tacticalEnabled(battle)) return null;
   return { version: 1, enabled: true, units: 'unités de scène ATB', revision: battle.tactical.revision,

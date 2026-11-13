@@ -1,0 +1,51 @@
+{
+  "passed": false,
+  "reviewComplete": true,
+  "rawReport": {
+    "path": "docs/qa/completion-controls-dev-final-03-report.json",
+    "sha256": "1980d72ae53f8162403a0fcf46009a0f8abefb6ce8190bbe029f6b164de4523f"
+  },
+  "sourceHashes": {
+    "src/completion-accessibility.js": "66c595e0666c46fca08b0e6809c05b0cc710851703c4060408c59207c51826b6",
+    "src/completion-accessibility.css": "08830146e86d660044a8eae296bb343763cf0c493083496d6d281da412dc4ce0",
+    "src/gamepad-controls.js": "baaffc8382dd24d35d56a81930f477793b93cebf49b063473ad6b7d01c31e005",
+    "src/gamepad-controls.css": "77e1c42d65deb5baaabddc3ffa65609218c2d0e5bf19b6019a711b86991950d0",
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/world.js": "6f3fd809c6bdd8ae4264185407b318008893eab030a8e69369cd66c27d4f36d6",
+    "src/state.js": "e47ac3ad463c1b249043d3401e2fd2841e9f975007006289e81438aa2e045e86",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "src/audio.js": "63a64cb845090c7242afb09a5ec9d39f8f698c50a8f916ab953631e8a7355510",
+    "src/customization.js": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932",
+    "src/customization-ui.js": "37992c92d3517653a042781c27d15f2f156155b11c1f880aa3a777ef36982c21",
+    "src/customization-ui.css": "e3f3a73309cdecf8720a662b6fb2c08cde1698ff60e57adb36267b35b619059e",
+    "scripts/completion-controls-browser.mjs": "a091755e0380bb6b2b90db43c08998e7ffab5f62d44bb6acc799bacaa55b6476",
+    "tests/completion-controls.test.js": "11775d05a13c7cfe84f2c5d0ce0f5a6e2522b5c271da55daae0246de1607b19a"
+  },
+  "method": "Toutes les images ouvertes individuellement à taille originale via view_image ; SHA contrôlé. Résultat fonctionnel brut conservé.",
+  "blockingFindings": [
+    {
+      "kind": "collector",
+      "finding": "Le test lit scrollTop de .dialogue-body alors que le conteneur réellement défilant est .dialogue. La capture prouve le défilement effectif vers le paragraphe 4. Le collecteur doit mesurer le panneau effectivement défilant."
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/screenshots/completion-controls-dev-final-03-options-1080.png",
+      "sha256": "3a7c4b4448c4c100483fb11a724b9b956f1544082bfb110b45356e3c76a5ae69",
+      "actuallyOpened": true,
+      "observation": "Options agrandies, contrastes renforcés, réglages actuels et focus visible ; bouton de test et fermeture accessibles."
+    },
+    {
+      "path": "docs/screenshots/completion-controls-dev-final-03-subtitle-1080-5-top.png",
+      "sha256": "0c5f11214c1eb0972c0aeba781ea1fe453491bd4b7173b381cb0c331d688012c",
+      "actuallyOpened": true,
+      "observation": "Texte long visible depuis le paragraphe 1 ; noms longs et accents lisibles, découpe de fin de panneau correspondant au contenu défilant."
+    },
+    {
+      "path": "docs/screenshots/completion-controls-dev-final-03-failure.png",
+      "sha256": "7d1a4a1567c3a8357c45610b07c56522e8f6be7f57ad424f001fe2cff8d1b780",
+      "actuallyOpened": true,
+      "observation": "Après PageDown le paragraphe 4 est en haut. Le panneau extérieur .dialogue a réellement défilé ; ce résultat invalide l’hypothèse du collecteur, pas la commande de lecture."
+    }
+  ]
+}

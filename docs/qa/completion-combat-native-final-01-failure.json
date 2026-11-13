@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "stage": "runner preflight before launching tests",
+  "command": "COMPLETION_COMBAT_PREFIX=completion-combat-native-final-01 node scripts/completion-combat-native.mjs",
+  "observedError": "Error: spawnSync git ENOBUFS",
+  "errorDetails": {
+    "errno": -105,
+    "code": "ENOBUFS",
+    "syscall": "spawnSync git",
+    "args": ["show", "0d76912:docs/qa/expansion-native-report.json"],
+    "signal": "SIGTERM",
+    "capturedStdoutBytes": 1064960
+  },
+  "testsExecuted": false,
+  "executedCollectorSnapshot": "docs/qa/completion-combat-native-final-01-sources/scripts/completion-combat-native.mjs",
+  "executedCollectorSha256": "73a7ab168552ac44767d0b01cdb61672fa274c33fd91d479e236962c28a6dd2b",
+  "preservation": "The failed invocation and tool error remain in the session. This file records the observed runner failure, not a successful test report. Its source snapshots remain unchanged.",
+  "correction": "Increase execFileSync maxBuffer for the two existing historical JSON inputs (1756814 and 1106291 bytes); rerun under a new prefix. No game source or historical expected result changed."
+}

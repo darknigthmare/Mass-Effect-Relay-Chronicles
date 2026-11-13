@@ -1,0 +1,74 @@
+{
+  "proposalOnly": true,
+  "baseCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "generatedAt": "2026-11-13T08:53:34.805447+00:00",
+  "ownerEvidenceReady": true,
+  "readyForPublication": false,
+  "publicationPrerequisites": [
+    "Current global native/development/opened-image gates",
+    "Independent native verification and actual opening of all scoped final workbook panels"
+  ],
+  "records": [
+    {
+      "id": "QA-import-du-catalogue",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "scripts/completion-tracking-catalogue-qa.mjs",
+        "notesAppend": "Contrôle fonctionnel exhaustif du lot completion : identifiants, catégories et compteurs concordants entre les 28 JSON et le registre partagé. Les compteurs mesurent le suivi ; aucune mission ou fidélité artistique n’en est déduite."
+      },
+      "implementationPaths": [
+        "scripts/completion-tracking-catalogue-qa.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Catégories et compteurs exacts, aucun ID dupliqué.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les 6 711 identifiants des 28 catalogues sont chargés sans doublon, avec sources et dépendances résolues.",
+          "Les 26 catégories du principal et tous les compteurs par catalogue/statut sont recalculés exactement.",
+          "Le registre partagé concorde pour chaque ID, œuvre, nom, catégorie, statut et empreinte de catalogue."
+        ],
+        "limitations": [
+          "Contrôle de métadonnées et formules ; parcours de gameplay et fidélité artistique séparés.",
+          "La publication reste conditionnée aux gates globaux et à la vérification indépendante de tous les champs du candidat final."
+        ],
+        "evidence": [
+          "docs/qa/completion-tracking-catalogue-native-01.json"
+        ]
+      }
+    },
+    {
+      "id": "QA-classeur-edite",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "scripts/completion-tracking-workbook-qa.mjs",
+        "notesAppend": "Contrôle fonctionnel du lot completion : changement de statut et recalcul des formules dans SpreadsheetFile après import du véritable XLSX, puis restauration sans export. Microsoft Excel n’a pas été lancé ; aucune compatibilité matérielle ou fidélité artistique n’est certifiée."
+      },
+      "implementationPaths": [
+        "scripts/completion-tracking-workbook-qa.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Dashboard se recalcule avec le nouveau compte.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le véritable XLSX de production est importé ; C56 passe temporairement de Défini à Validé.",
+          "Les compteurs de la catégorie QA et les compteurs globaux changent exactement de -1 Défini/+1 Validé, sans changer le total.",
+          "La valeur et les compteurs sont restaurés en mémoire, les deux rendus sont réellement ouverts et les octets du fichier public restent identiques."
+        ],
+        "limitations": [
+          "Contrôle de métadonnées et formules ; parcours de gameplay et fidélité artistique séparés.",
+          "La publication reste conditionnée aux gates globaux et à la vérification indépendante de tous les champs du candidat final."
+        ],
+        "evidence": [
+          "docs/qa/completion-tracking-workbook-native-01.json",
+          "docs/qa/completion-tracking-workbook-counter-01.json",
+          "docs/qa/completion-tracking-workbook-native-01-visual-review.json"
+        ]
+      }
+    }
+  ],
+  "productionPending": true,
+  "localCandidateEligible": true,
+  "commitPushAllowed": false
+}

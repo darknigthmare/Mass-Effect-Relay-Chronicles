@@ -1,0 +1,531 @@
+{
+  "passed": false,
+  "at": "2026-11-13T09:55:19.477Z",
+  "mode": "dev",
+  "url": "http://127.0.0.1:4193/",
+  "command": {
+    "script": "node scripts/completion-chronicles-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4193/",
+      "COMPLETION_CHRONICLES_MODE": "dev",
+      "COMPLETION_CHRONICLES_PREFIX": "completion-chronicles-dev-final-04"
+    }
+  },
+  "scope": "Public class preparation, native Charge/Nova, finite Cloak, Tech Armor, Drone, clip/reload, save/export/import and context isolation. No completed campaign, original movement, original model, original ranks or original timing is certified.",
+  "talentScope": "Separate bounded SYS-talents journey: native Normandy Engineer fixture with 900 explicitly prepared XP, rejected prerequisite, three actual point purchases, exhausted shared budget and exported/reloaded ranks. No XP or power injection during play; Damping unlocks only through the purchased ranks. Original 12-rank trees and artistic equivalence remain outside this check.",
+  "talentChecks": [
+    {
+      "name": "Public prerequisite refusal, Electronics 1 and Damping 2 purchases exhaust the same three-point talent/armor budget; disabled extra purchase creates no rank or resource",
+      "passed": true
+    },
+    {
+      "name": "Actual campaign export and browser reload preserve purchased ranks, the exhausted budget, inventory and XP",
+      "passed": true
+    }
+  ],
+  "inputMethod": "Commands finish with real pointer clicks on the action/target and then Pause. The command box is read before execution; Pause is read again afterwards and checked with a read-only elementFromPoint hit-test because the live layout can shift under a fixed header. Ordinary scrollIntoView is used if needed. No duration, state, DOM, clock or event handler is forced.",
+  "fixtures": [
+    {
+      "path": "docs/qa/completion-chronicles-dev-final-04-campaign-witness-fixture.json",
+      "sha256": "d41dad295fd7dfb35c64ed19b0337ff41e5e514cc43ee3681f7a7e82b6b6c754",
+      "xp": 900,
+      "origin": "Native Normandy Engineer newGame with 900 explicitly prepared XP, public import; no earned or completed progression claimed."
+    }
+  ],
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/chronicles.js": "c4e1c4d597062d0ca0947589a24d00743214df52e84231bb4ba13073b38e3859",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+    "src/universe-actors.js": "0d24051f3aa95f48905338da364d9928fed03a5f1fa5b952187fb283b94e9ac1",
+    "src/universe-powers.js": "71f0287ced8dced901933f1bc650b8d7c4af8e40a3b6cfb7b11e9aa179821f20",
+    "src/universe-equipment.js": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+    "src/universe-ui.js": "8d019008d42a77782f5ac4f99d40dd68f2293ef42a3b678543736c3963ab5862",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "src/combat-summons.js": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b",
+    "src/completion-chronicles-powers.js": "3c519301bc8b9a2c52bc1aba20856ab26813fa9771b9ef6312e9b1f23214cf4c",
+    "src/campaign-talents.js": "79ec5dd98092e7e293f503f44d397c83cba09d8655b74214b1c94a86dc8e0719",
+    "src/campaign-talents-ui.js": "da297911d184522d87e03b5963b94c4354faa78f268afd7ece7efafc6a927a91",
+    "src/campaign-talents.css": "671df4feeb62104a50e33176b8bc842072a59e43148a2c51e48a38f2995fb9d2",
+    "src/loadout.js": "f08ee72077d03fb86da1b64eb52d7e48f1c04a848bc9055faeab273d5ea4ff39",
+    "scripts/completion-chronicles-public.mjs": "027d663a2514a566a7b78649721ceb551a794f7a47356a4c7dc4ea8fa7818a3c"
+  },
+  "captures": [
+    {
+      "label": "talents-prerequisite",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-talents-prerequisite.png",
+      "bytes": 290670,
+      "sha256": "abe55442ab7d1f886264cd5e7ef5c20e2e496527e89452b579baa8a95f67f7e6",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "talents-reloaded-budget",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-talents-reloaded-budget.png",
+      "bytes": 279773,
+      "sha256": "f61aed0e7d3b1a87637bbff27687b78f80464bc71003475acb0df2690e0db52a",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me2-cloak",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me2-cloak.png",
+      "bytes": 269266,
+      "sha256": "24546095bf861f9e7278d2e691fbb81e62788ab3b8b2e344bdc825f4383492e7",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me2-clips-reload",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me2-clips-reload.png",
+      "bytes": 240042,
+      "sha256": "0c9b31d8518752e21114bb0f32b837fa28014f2b8bc10578cd90cc6f509d52f2",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me2-tech-armor",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me2-tech-armor.png",
+      "bytes": 274115,
+      "sha256": "bfeab3f521e3124c09cad9ec8ec88fadb897b64feedfe5b1066270f7d5653676",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me2-drone",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me2-drone.png",
+      "bytes": 230198,
+      "sha256": "f9f9924ef4a894b5e38f812cda67ef2317699a2da8f25d6aa215462aa8768c02",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me3-charge",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me3-charge.png",
+      "bytes": 245727,
+      "sha256": "7a88c179872ae6b98db1dee33b129612664e1bc519214a3abf41c3c6ee2d1e51",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me3-nova",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me3-nova.png",
+      "bytes": 239534,
+      "sha256": "116e99e853237af461fd8c110089940c642d9794344a03c0d70060ba8259364d",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "me3-tech-armor",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-me3-tech-armor.png",
+      "bytes": 274346,
+      "sha256": "865d008c882d192b8f93bbed06bce6e8e31c2431268c0615630e5d688312be88",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/completion-chronicles-dev-final-04-failure.png",
+      "bytes": 241981,
+      "sha256": "2f21546c06f33e8f8304cb3a1352610071638a753fdc44164e3a94713ad08d53",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection."
+    }
+  ],
+  "exports": [
+    {
+      "label": "talents-purchased",
+      "kind": "campaign-talents",
+      "path": "docs/qa/completion-chronicles-dev-final-04-talents-purchased-campaign-export.json",
+      "bytes": 2866,
+      "sha256": "2a26c7f9a8319951fb60c2388928afa3fb900d5f33878d823a9d04ad9689f977",
+      "xp": 900,
+      "ranks": {
+        "electronics": 1,
+        "damping": 2
+      },
+      "budget": {
+        "total": 3,
+        "talentPoints": 3,
+        "armorPoints": 0,
+        "available": 0
+      }
+    },
+    {
+      "label": "talents-reloaded",
+      "kind": "campaign-talents",
+      "path": "docs/qa/completion-chronicles-dev-final-04-talents-reloaded-campaign-export.json",
+      "bytes": 2867,
+      "sha256": "71d36acf2c225ce0420e7fabad43eca618986a20995ffc6c97d694e25379f2de",
+      "xp": 900,
+      "ranks": {
+        "electronics": 1,
+        "damping": 2
+      },
+      "budget": {
+        "total": 3,
+        "talentPoints": 3,
+        "armorPoints": 0,
+        "available": 0
+      }
+    },
+    {
+      "label": "me2-preparation",
+      "path": "docs/qa/completion-chronicles-dev-final-04-me2-preparation-export.json",
+      "bytes": 455,
+      "sha256": "6f9bca801d6d6cf229962c88a17a8716e8d2beab2ca9adaae350b5b189a42c58",
+      "context": {
+        "mediaId": "ME2",
+        "periodId": "me2",
+        "galaxy": "milky-way"
+      },
+      "builds": {
+        "ME2-CHR-SHEPARD": "infiltrator"
+      }
+    },
+    {
+      "label": "me3-vanguard",
+      "path": "docs/qa/completion-chronicles-dev-final-04-me3-vanguard-export.json",
+      "bytes": 440,
+      "sha256": "71d6d42181c2f79654cc9fdeb2b463c13ecc4b399d1289f5c7e645eb28077729",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "builds": {
+        "ME3-CHR-SHEPARD": "vanguard"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "label": "me2-cloak",
+      "status": "Escarmouche en pause",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Camouflage tactique.\n\nCommandant Shepard se dissimule pendant cinq secondes ATB.",
+      "ammo": [
+        "2/2 au chargeur · réserve 8"
+      ],
+      "signatures": [
+        "Camouflage : 5 s"
+      ]
+    },
+    {
+      "label": "me2-shot",
+      "status": "Escarmouche en pause",
+      "log": "Cible organique — banc ATB : Couverture.\n\nCommandant Shepard : Tir contrôlé.\n\nCible mécanique — banc ATB subit 15 dégâts (15 sur les boucliers).",
+      "ammo": [
+        "1/2 au chargeur · réserve 8"
+      ],
+      "signatures": []
+    },
+    {
+      "label": "me2-reload",
+      "status": "Escarmouche en pause",
+      "log": "Commandant Shepard subit 9 dégâts (9 sur les boucliers).\n\nCommandant Shepard : Recharger.\n\nCommandant Shepard recharge son arme.",
+      "ammo": [
+        "2/2 au chargeur · réserve 7"
+      ],
+      "signatures": []
+    },
+    {
+      "label": "me2-armor",
+      "status": "Escarmouche en pause",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Technoblindage.\n\nCommandant Shepard prépare une protection détonante ME2.",
+      "ammo": [
+        "8/8 au chargeur · réserve 32"
+      ],
+      "signatures": [
+        "Technoblindage ME2 : 12 s"
+      ]
+    },
+    {
+      "label": "me2-drone",
+      "status": "Escarmouche en pause",
+      "log": "Contact hostile. Le commando attend vos ordres.\n\nCommandant Shepard : Drone de combat.\n\nCommandant Shepard déploie Drone de combat — prototype.",
+      "ammo": [
+        "8/8 au chargeur · réserve 32"
+      ],
+      "signatures": []
+    },
+    {
+      "label": "me3-charge-exposure-read",
+      "text": "Contact rapproché abstrait · exposition +15 % : 3 s",
+      "capturedWhileActive": true,
+      "limitation": null
+    },
+    {
+      "label": "me3-charge",
+      "status": "Escarmouche en pause",
+      "log": "Commandant Shepard : Charge biotique.\n\nCommandant Shepard se projette au contact de Cible mécanique — banc ATB ; exposition accrue pendant trois secondes ATB.\n\nCible mécanique — banc ATB subit 35 dégâts (25 sur les boucliers).",
+      "ammo": [
+        "8/8 au chargeur · réserve 32"
+      ],
+      "signatures": [
+        "Contact rapproché abstrait · exposition +15 % : 3 s"
+      ]
+    },
+    {
+      "label": "me3-nova",
+      "status": "Escarmouche en pause",
+      "log": "Commandant Shepard consomme 112 points de bouclier pour Nova.\n\nCible mécanique — banc ATB subit 40 dégâts.\n\nCible organique — banc ATB subit 40 dégâts (25 sur les boucliers).",
+      "ammo": [
+        "8/8 au chargeur · réserve 32"
+      ],
+      "signatures": []
+    },
+    {
+      "label": "me3-nova-next-native-turn",
+      "shieldWidth": "0%",
+      "actionLabel": "Nova\nNova exige des boucliers à convertir.",
+      "zeroShieldRefusalCoveredBy": "tests/completion-chronicles-powers.test.js"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Public ME2 Infiltrator Cloak is finite and no longer active after the next native shot; the Mantis consumes and reloads a clip through ATB",
+      "passed": true
+    },
+    {
+      "name": "Public ME2 Sentinel armor activates and Engineer Drone creates a bounded support with visible owner and duration",
+      "passed": true
+    },
+    {
+      "name": "Public ME3 Vanguard executes Charge and Nova through native commands; Nova converts the actual shield without altering ordinary regeneration, and any expired short exposure is declared separately",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/continuity.js",
+    "http://127.0.0.1:4193/src/chronicles.js",
+    "http://127.0.0.1:4193/src/universe-ui.js",
+    "http://127.0.0.1:4193/src/universe-equipment.js",
+    "http://127.0.0.1:4193/src/universe-ui.css",
+    "http://127.0.0.1:4193/src/universe-actors.js",
+    "http://127.0.0.1:4193/src/chronicle-story.js",
+    "http://127.0.0.1:4193/src/expansion.js",
+    "http://127.0.0.1:4193/src/horizon-reference-visuals.js",
+    "http://127.0.0.1:4193/src/expansion-ui.js",
+    "http://127.0.0.1:4193/src/universe-portraits.js",
+    "http://127.0.0.1:4193/src/universe-visuals.js",
+    "http://127.0.0.1:4193/src/universe-specialist-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-equipment-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-opposition-scenarios.js",
+    "http://127.0.0.1:4193/src/expansion-characters.js",
+    "http://127.0.0.1:4193/src/universe-powers.js",
+    "http://127.0.0.1:4193/src/expansion-armor.js",
+    "http://127.0.0.1:4193/src/expansion-weapons.js",
+    "http://127.0.0.1:4193/src/expansion-fleet.js",
+    "http://127.0.0.1:4193/src/expansion-enemies.js",
+    "http://127.0.0.1:4193/src/expansion2-characters.js",
+    "http://127.0.0.1:4193/src/expansion2-weapons.js",
+    "http://127.0.0.1:4193/src/expansion2-fleet.js",
+    "http://127.0.0.1:4193/src/expansion2-enemies.js",
+    "http://127.0.0.1:4193/src/expansion3-characters.js",
+    "http://127.0.0.1:4193/src/expansion3-armor.js",
+    "http://127.0.0.1:4193/src/expansion3-weapons.js",
+    "http://127.0.0.1:4193/src/expansion2-armor.js",
+    "http://127.0.0.1:4193/src/expansion3-fleet.js",
+    "http://127.0.0.1:4193/src/expansion3-enemies.js",
+    "http://127.0.0.1:4193/src/expansion-bench.js",
+    "http://127.0.0.1:4193/src/horizon-fleet-reference.js",
+    "http://127.0.0.1:4193/src/universe-opponents.js",
+    "http://127.0.0.1:4193/src/expansion-medical-bench.js",
+    "http://127.0.0.1:4193/src/arsenal-visual-data.js",
+    "http://127.0.0.1:4193/src/universe-data.js"
+  ],
+  "servedFiles": [],
+  "distFiles": {},
+  "limitations": [
+    "The ME1 Engineer witness is prepared with native newGame plus 900 explicit XP and imported through the public file chooser; no preceding campaign progression is claimed. Three ranks are purchased by the public menu and then serve as the unchanged ME1 witness.",
+    "Signature powers run in independent workshop preparations using the public class selector and natural ATB time.",
+    "Charge records abstract engagement and exposure; the workshop has no ME1 tactical geometry or original movement animation.",
+    "Cloak conservatively prevents all newly commanded targeting, including abstract area orders. Existing projectiles remain dangerous; numerical bonus and durations are ATB choices.",
+    "ME2 automatic armor explosion and exact multipliers are covered by fresh native integration tests; this public journey observes activation, not a forced shield break.",
+    "Omni-blade is not enabled without an eligible sourced POW record. No original full campaign or artistic 1:1 certification follows from these checks."
+  ],
+  "chromium": "154.0.8037.57",
+  "failure": "locator.scrollIntoViewIfNeeded: Element is not attached to the DOM\nCall log:\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m    - waiting for element to be stable\u001b[22m\n\n    at order (/workspace/Mass-Effect-Relay-Chronicles/scripts/completion-chronicles-public.mjs:100:50)\n    at async file:///workspace/Mass-Effect-Relay-Chronicles/scripts/completion-chronicles-public.mjs:241:19"
+}

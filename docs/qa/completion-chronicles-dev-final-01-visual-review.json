@@ -1,0 +1,36 @@
+{
+  "passed": false,
+  "reviewComplete": true,
+  "sourceReport": "docs/qa/completion-chronicles-dev-final-01-report.json",
+  "sourceReportSha256": "4cbdedd3681df7d0ce9521da0e21496a1d137468bda43fd86e86264fbbccaf5d",
+  "collectorFailureOnly": true,
+  "blockingFindings": [
+    "Collector rank assertion was case-sensitive to CSS uppercase; no product defect observed. Journey stopped before purchases."
+  ],
+  "images": [
+    {
+      "label": "talents-prerequisite",
+      "path": "docs/screenshots/completion-chronicles-dev-final-01-talents-prerequisite.png",
+      "bytes": 290426,
+      "sha256": "12b944d21accf766da255696babc45c1abf1717ebe027fa99376710ce3b31678",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection.",
+      "actuallyOpened": true,
+      "observation": "Original1280×1000 opened individually: Engineer3/3points visible, threecards legible, Damping rank0/2 and Electronics rank1 prerequisite visible; Damping purchase disabled. No source/image/DOM edits. Failure comes from uppercase rendered RANG."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/completion-chronicles-dev-final-01-failure.png",
+      "bytes": 282908,
+      "sha256": "e52eaa4ca78535187cde5701b32bbb68a3cdabd12f94e147ffa8b1cdf9a4754b",
+      "source": "Actual public viewport; no DOM, style, game state or pose injection.",
+      "actuallyOpened": true,
+      "observation": "Original1280×1000 opened individually: Engineer3/3points visible, threecards legible, Damping rank0/2 and Electronics rank1 prerequisite visible; Damping purchase disabled. No source/image/DOM edits. Failure comes from uppercase rendered RANG."
+    }
+  ],
+  "method": "Each originalPNG opened via view_image(detail:original) and reviewed after Chromium closed; SHA taken from raw report, not re-rendered output.",
+  "collectorSnapshot": {
+    "path": "docs/qa/completion-chronicles-dev-final-01-collector.mjs",
+    "sha256": "b1989dc72ede72c98015f6570e538d7de37c90d17c74968ae903a033eab371d7",
+    "equalsRawSourceHash": true
+  }
+}

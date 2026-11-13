@@ -1,0 +1,63 @@
+{
+  "diagnosisComplete": true,
+  "at": "2026-11-13T09:41:00.157486+00:00",
+  "currentProductGate": false,
+  "historicalExecution": false,
+  "report": {
+    "path": "docs/qa/completion-narrative-dev-final-01-report.json",
+    "sha256": "f2c5e8c86a3331d1e4dff3f3441975edfe494c8fe1a7bebedd4c3348b0437c17"
+  },
+  "collectorSnapshot": {
+    "path": "docs/qa/completion-narrative-dev-final-01-collector.mjs",
+    "sha256": "3b110a6539ceeea0f5ed32cb415fbd44ae0e801e97c7be66a8e1e0aa2bfaee79"
+  },
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/world.js": "6f3fd809c6bdd8ae4264185407b318008893eab030a8e69369cd66c27d4f36d6",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "src/story.js": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/completion-narrative.js": "90a5f2ff4b33703edbd2fa471fa606a88ffd2dda2d0b4bf4b09b21d3f686b786",
+    "src/completion-narrative-ui.js": "727fba32a41904cb2cb320547659d587fd125fc74d3e690da9d721fc2bce8ccc",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/simulation-clock.js": "4393b7afd2963cb737953708372bd1612de594de836173d41766ae2bcb34baa1",
+    "src/gamepad-controls.js": "95ffa8c270cb00ddf09ddcee0ec7a4cde7de03bb6e7675686a2e78af7d13553a",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "src/priority-ui.css": "4ccfed12020f894792c84700bd5d80b7e51308362bdcc0c84d8c80bc5a633acc",
+    "src/gamepad-controls.css": "77e1c42d65deb5baaabddc3ffa65609218c2d0e5bf19b6019a711b86991950d0",
+    "src/completion-accessibility.css": "052b6f09d299b2b0178b7cf43e43a894981f543bca31db1930a41064bd2b8925",
+    "scripts/completion-narrative-public.mjs": "3b110a6539ceeea0f5ed32cb415fbd44ae0e801e97c7be66a8e1e0aa2bfaee79"
+  },
+  "failureKind": "collector-assertion",
+  "cause": "The rendered speaker is uppercased by CSS; the original case-sensitive /Garrus/ assertion rejected the correct GARRUS VAKARIAN dialogue.",
+  "productIssueFound": false,
+  "correctiveChange": "Only the collector speaker identity regexes for Garrus/Wrex and queen now ignore letter case. No product, screenshot or original report changed.",
+  "images": [
+    {
+      "label": "failure",
+      "path": "docs/screenshots/completion-narrative-dev-final-01-failure.png",
+      "sha256": "f74aa9fdfd4443dd3cb63e8d55be262c44d99711e94e42b84344bc0ad6657e84",
+      "bytes": 896822,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection.",
+      "actuallyOpened": true,
+      "method": "tools.view_image(detail original) puis image(image_url, original)",
+      "observations": [
+        "L’identité GARRUS VAKARIAN est correcte. La scène et les deux choix sont visibles et lisibles ; la capture montre le dialogue effectivement ouvert, avant tout choix de recrutement."
+      ]
+    }
+  ],
+  "browserClosed": true,
+  "limits": [
+    "No functional group completed in this attempt; one export and two imports remain attributed to this failed execution.",
+    "The later attempt must use a new prefix and its own screenshots/review."
+  ]
+}

@@ -82,11 +82,11 @@ export function writeManualSave(storage, id, state, options = {}) {
   try {
     if (!options || typeof options !== 'object' || Array.isArray(options)
       || ![Object.prototype, null].includes(Object.getPrototypeOf(options))
-      || Object.keys(options).some(key => !['name', 'overwrite'].includes(key))) {
+      || Reflect.ownKeys(options).some(key => typeof key !== 'string' || !['name', 'overwrite'].includes(key))) {
       return failure('invalid-options', 'Options de sauvegarde invalides.');
     }
     const descriptors = Object.getOwnPropertyDescriptors(options);
-    if (Object.values(descriptors).some(descriptor => !OWN(descriptor, 'value'))) {
+    if (Object.values(descriptors).some(descriptor => !descriptor.enumerable || !OWN(descriptor, 'value'))) {
       return failure('invalid-options', 'Options de sauvegarde invalides.');
     }
     const overwrite = OWN(descriptors, 'overwrite') ? descriptors.overwrite.value : false;

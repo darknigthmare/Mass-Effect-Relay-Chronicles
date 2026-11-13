@@ -68,7 +68,7 @@ function safeObject(value, depth = 0, seen = new WeakSet()) {
   for (const key of keys) {
     if (typeof key !== 'string' || ['__proto__', 'prototype', 'constructor'].includes(key)) return false;
     const descriptor = Object.getOwnPropertyDescriptor(value, key);
-    if (!owns(descriptor, 'value') || !safeObject(descriptor.value, depth + 1, seen)) return false;
+    if (!descriptor.enumerable || !owns(descriptor, 'value') || !safeObject(descriptor.value, depth + 1, seen)) return false;
   }
   seen.delete(value);
   return true;
@@ -119,8 +119,11 @@ export function createCustomizationDraft(state) {
 }
 
 /** Validate against CURRENT inventory, including equipment already held by allies. */
-export function validateCustomizationDraft(state, draft, { inCombat = false } = {}) {
+export function validateCustomizationDraft(state, draft, options = {}) {
   try {
+    if (!safeObject(options) || Reflect.ownKeys(options).some(key => key !== 'inCombat')
+      || owns(options, 'inCombat') && typeof options.inCombat !== 'boolean') return fail('Options de personnalisation invalides.');
+    const inCombat = options.inCombat === true;
     if (inCombat || state?.inCombat === true || state?.battle) return fail('La personnalisation est indisponible pendant un combat.');
     if (!safeObject(draft) || !(exact(draft, ['appearance', 'customization', 'equipment']) || exact(draft, ['appearance', 'customization', 'equipment', 'equipmentChanges'])) || !isAppearance(draft.appearance)
       || !exact(draft.equipment, SLOTS)) return fail('Personnalisation invalide.');

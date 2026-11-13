@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "reviewComplete": true,
+  "scope": "Revue source et contrôles natifs de la frontière des sauvegardes/imports/options, sans garantie artistique ni validation navigateur actuelle.",
+  "at": "2026-11-13T09:37:56.171668+00:00",
+  "sourceHashes": {
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/save-slots.js": "d074c09308b6883195a8db263d9644e556cddba3344066d0d75b39f216716748",
+    "src/customization.js": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932",
+    "src/loadout.js": "f08ee72077d03fb86da1b64eb52d7e48f1c04a848bc9055faeab273d5ea4ff39",
+    "src/completion-persistence-campaign.js": "7a76fb0d23ff70e583dbdb01af55d11328c26b39a6db19eac708ca7bf4c5ff30"
+  },
+  "nativeReport": {
+    "path": "docs/qa/completion-persistence-native-final-03-report.json",
+    "sha256": "5693bd86e74ceb7e11cda5ba0f4aa1b7b1b3263fe3e8397dfbb3cbdeeb9cf47b",
+    "tests": 110
+  },
+  "independentReviewer": "/root/priority_bosses/persistence_boundary_audit",
+  "method": "Inspection indépendante read-only, sondes Node minimales, lecture des gardes et tests du lot ; aucune édition par le relecteur et aucun Chrome/build/suite lourde. Relecture finale des gardes classId/zone, Array et options après correction.",
+  "cases": [
+    "Objets ordinaires et maps à prototype nul",
+    "Array ordinaires, gelés, sous-classes et prototypes injectés",
+    "Getters propres et toJSON/Symbol.iterator hérités",
+    "Clés cachées, Symbol et champs inconnus des options",
+    "Cycles, tableaux troués et valeurs undefined explicites",
+    "Versions inconnues et typage classe/zone/contexte/IDs",
+    "Préservation des octets auto/manuels à chaque refus",
+    "Migration des champs historiques absents"
+  ],
+  "fixedFindings": [
+    {
+      "id": "inherited-array-getter",
+      "resolution": "Array.prototype exact exigé avant toute itération ou sérialisation."
+    },
+    {
+      "id": "manual-options-whitelist",
+      "resolution": "Reflect.ownKeys et seuls descripteurs énumérables de données name/overwrite acceptés."
+    },
+    {
+      "id": "coercive-class-id",
+      "resolution": "validOption exige string pour classId ; zone typée explicitement avant lookup."
+    }
+  ],
+  "blockingFindings": [],
+  "limitations": [
+    "Le JSON et les objets de données ordinaires sont contrôlés. Un Proxy JavaScript hostile peut exécuter ses traps lors de l’introspection ; aucune sandbox de code arbitraire n’est promise.",
+    "Les parcours publics doivent être exécutés à nouveau après le gel05 ; ce rapport source/natif ne remplace pas leur preuve."
+  ]
+}

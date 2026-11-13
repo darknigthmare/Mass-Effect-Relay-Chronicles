@@ -1,0 +1,503 @@
+{
+  "passed": true,
+  "at": "2026-11-13T08:45:14.226Z",
+  "baselineCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "command": "node scripts/completion-combat-native.mjs",
+  "environment": {
+    "COMPLETION_COMBAT_PREFIX": "completion-combat-native-final-02"
+  },
+  "scope": "Native functional combat assertions. Geometry callback, directional cover, Stasis, immunity feedback, lost-target/KO cancellation, heat bounds, common Wait/Active freeze and unique final outcome.",
+  "sourceHashes": {
+    "tests/completion-combat.test.js": "9e5a9b31761c5e674d7e388423a5a389016bac21f983544663eff5b82960b073",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "src/universe-weapon-profiles.js": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d",
+    "src/combat-summons.js": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b",
+    "src/universe-ammo.js": "76580f7e77eb21f1bfd42438ee10c2e1f6088c214e2db4eac31a9a1033e6fdd6",
+    "src/combat-medical.js": "0a376ec845b04b8c21a014076048fcb3672b1a5c95b7ee3d7a6721a0f676d806",
+    "src/tactical-positions.js": "762b9e41ff242f5be0661243c9cfcac52749f37790139595b5ba788e29755e2e",
+    "src/boss-phases.js": "dab61d936e2de431e460841a9886f93d9e0f234b1d0fa3d485fb3a676d1b7fdf",
+    "src/campaign-talents.js": "79ec5dd98092e7e293f503f44d397c83cba09d8655b74214b1c94a86dc8e0719",
+    "src/character-data.js": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+    "src/completion-chronicles-powers.js": "3c519301bc8b9a2c52bc1aba20856ab26813fa9771b9ef6312e9b1f23214cf4c",
+    "src/state.js": "e47ac3ad463c1b249043d3401e2fd2841e9f975007006289e81438aa2e045e86",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/loadout.js": "0a7f94143ec5cbf26e5347d65a24d345888de2902edef8fa8b1dc9c4674a64f1",
+    "src/tool-data.js": "a74626318635e44b4d9d074b95fdf7ce40c9c88bf2758ece6e260db433ea1a3a",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/frontier-enemies.js": "9fdadd59657942fb122a63091ce8948ec0d059cbf7359f24aef906d116b09499",
+    "src/horizon-enemies.js": "351f414fb5f2b26fccceab3978d4eb41bc7be16836ae485ca97591f3ade491f0",
+    "src/horizon-fauna.js": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+    "src/story.js": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/frontier-characters.js": "20b858785f29b8ac9f53cac53cba7c46acb13eb9fd243cba4d968bf3d802cd12",
+    "src/horizon-characters.js": "eaff1d446004fab87bf88ca2b773a31be0723ef18db53033f1add46797384e33",
+    "src/completion-narrative.js": "90a5f2ff4b33703edbd2fa471fa606a88ffd2dda2d0b4bf4b09b21d3f686b786",
+    "src/assignments.js": "19e43646c1be0156914954e62f8a3c8cdc86b3dd8b48672305fc228c43d1c770",
+    "src/assignment-data.js": "3bb7aa18b0f17646a76b17d999a074aa64d304ae3c5393b049a6216b46b34c6b",
+    "src/customization.js": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932",
+    "tests/combat.test.js": "9f5445cf566cc99b2f0e45c453c631f0ddd4016ff9967eb7f82f7f3008e874c9",
+    "tests/tactical-combat.test.js": "835bef88f205854aa657ada54086ddc4d533d3ab8791547fccb548cf3a218b87",
+    "tests/equipment-combat.test.js": "5b5fb8d17abc680226920872e5b57ca39ae1bb6c959857814457aa3f481aefb9",
+    "tests/combat-specialists.test.js": "d22df515641742c159888ccb6dd807a0fdf263e62981b7b3c5f76c5d0d6ebc81",
+    "tests/combat-arsenal-weapons.test.js": "0980af0de6f5bfe2d1f24398a85c77f3e44c04fcec74738f627131c97ca32c3c",
+    "tests/combat-summons.test.js": "ebda0f69b00c1f7912110a3adcf0fbdb977d57a0811dabf8c1422de938036444",
+    "tests/combat-support.test.js": "f5ab8024480a40cd2c1de5a9633b7e9f6ce027d9fce9d929e95d37c5e725777e",
+    "tests/universe-ammo.test.js": "a3d3e76b99d6088e70905bda4db1a57085a0d85f85467a6db36f2645499eb7e6",
+    "tests/campaign-talents.test.js": "f99a3ea78940573239eb102107d232ca3faf1a22be4c1ca29270c55235538a57",
+    "tests/completion-chronicles-powers.test.js": "32bbba93d168fe7be1adabb3e3cc7903fc911c0f7bbda516ee200298d634d485",
+    "src/universe-actors.js": "0d24051f3aa95f48905338da364d9928fed03a5f1fa5b952187fb283b94e9ac1",
+    "src/universe-data.js": "b3ea4b1ea885a5b54493b3c7c965cd019ca5a236c3dcc1da977230579c886e4a",
+    "src/continuity-data.js": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/universe-specialist-scenarios.js": "3be9693c263ae8803527d5defdd1b0783a068a3c6b2d2b9845c4ef0badbb7759",
+    "src/universe-opposition-scenarios.js": "518291edd40af1afac80c2db4ba70c9611c7476b38ad1ee0208a2a4d853d13f3",
+    "src/universe-opponents.js": "1ac2f66218ae205bfe89e4db3e907ab48c94b1adbc88d469108ff70336f2d0e7",
+    "src/universe-equipment-scenarios.js": "a7c596b35a96ff608e8cbe431b5896997fc8cbf70ff69df8e516b4fbfac2561a",
+    "src/universe-powers.js": "71f0287ced8dced901933f1bc650b8d7c4af8e40a3b6cfb7b11e9aa179821f20",
+    "src/chronicles.js": "c4e1c4d597062d0ca0947589a24d00743214df52e84231bb4ba13073b38e3859",
+    "src/universe-equipment.js": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+    "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+    "tests/expansion2.test.js": "a905cb141f36b31f8bfd14b9cb6000048e7ea43e7fd9918a0d761e356122b60c",
+    "src/expansion-bench.js": "c67b3f0bbd4bb065e8acd7c081bb46c4d33e2aab8c41c0c760331402c4b1fc98",
+    "src/expansion.js": "f1b7f206028c93c44734b503ecbfe9523923fa0cc8e968b59d572aec182cd022",
+    "src/expansion-characters.js": "6f80bf7d53b3c4d8e35a2ebe2b75d4b696afb4c2dfa4a68042153511c60991c0",
+    "src/expansion-armor.js": "a2db8546c188ddf1fc4916f08ea29342b76385a80de154c920cbf1cd6783b7a2",
+    "src/expansion-weapons.js": "bffaa316a6aca541ddcac9f6fab75380ed96b3f9b8d79cef9742801c718f8a15",
+    "src/expansion-fleet.js": "3a16f9c725135861a0a75631dad9ccde1ceb4c06807e4caf70d0f95bca1717c0",
+    "src/expansion-enemies.js": "e24f81d54aeda3c178f9d4f91f95ce2ef957ff5ce1031a8b9bfff4f5de90b8c3",
+    "src/expansion2-characters.js": "1684f22aae4063981821ab7556fbe21191e54170ce085646e668501e33c412ed",
+    "src/expansion2-armor.js": "b470732bef5b085196d73302e376850588624d2752b3b64fbcd8a61278a5968f",
+    "src/expansion2-weapons.js": "533e2da01e7a2804aa8c51c678214aae2e59269da018aee755626c5c500651d7",
+    "src/expansion2-fleet.js": "309ca5cfa614eab577ed4b64a8b44286362062ea5da17414a17130cdbe20a307",
+    "src/expansion2-enemies.js": "6ca45119a90e1bcd2a2cb67f83aec948871ca548efc1b343b372cfd6a57c4e5f",
+    "src/expansion3-characters.js": "a7441b34dab20a3667b682fc5a598f30a639d4119152a3ddea7d523f49a9ccda",
+    "src/expansion3-armor.js": "d183556a83d09ed0954c4fd85fac8338e0a31203ad697b7902330047e200b964",
+    "src/expansion3-weapons.js": "36a4316b8f135849f053b3fe0d2f7d24c96db4cc47b0c3dfb6ca24d812537241",
+    "src/expansion3-fleet.js": "c9fe1eb06b910c4693ff11f93c985de5decf92ed647b67348763003b5ccc2f16",
+    "src/expansion3-enemies.js": "b107a293a757713016a42b0be5c5b5758ccbe76d5fa87a757278091b14a56ac3",
+    "src/expansion-medical-bench.js": "6e087b29f39c066ce70c2d1b928ac1aaf12a7564d580b8e2a7fc3add9345ba90",
+    "tests/expansion3.test.js": "ac64c2b780d50195749fd71afb1a3f3e6dae7a189d8923855d618407090b6d0a",
+    "src/expansion-ui.js": "2675dc629bda7c0ff29bbe9bd66ed480f58d95616e168fc52e35825d52752705",
+    "scripts/completion-combat-native.mjs": "59f4c844055864f0c6cc42a23c61f6cb39da6b8693c49bd56d8b68a32630db9e"
+  },
+  "snapshots": [
+    {
+      "path": "tests/completion-combat.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/completion-combat.test.js",
+      "sha256": "9e5a9b31761c5e674d7e388423a5a389016bac21f983544663eff5b82960b073"
+    },
+    {
+      "path": "src/combat.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/combat.js",
+      "sha256": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9"
+    },
+    {
+      "path": "src/universe-weapon-profiles.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-weapon-profiles.js",
+      "sha256": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d"
+    },
+    {
+      "path": "src/combat-summons.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/combat-summons.js",
+      "sha256": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b"
+    },
+    {
+      "path": "src/universe-ammo.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-ammo.js",
+      "sha256": "76580f7e77eb21f1bfd42438ee10c2e1f6088c214e2db4eac31a9a1033e6fdd6"
+    },
+    {
+      "path": "src/combat-medical.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/combat-medical.js",
+      "sha256": "0a376ec845b04b8c21a014076048fcb3672b1a5c95b7ee3d7a6721a0f676d806"
+    },
+    {
+      "path": "src/tactical-positions.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/tactical-positions.js",
+      "sha256": "762b9e41ff242f5be0661243c9cfcac52749f37790139595b5ba788e29755e2e"
+    },
+    {
+      "path": "src/boss-phases.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/boss-phases.js",
+      "sha256": "dab61d936e2de431e460841a9886f93d9e0f234b1d0fa3d485fb3a676d1b7fdf"
+    },
+    {
+      "path": "src/campaign-talents.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/campaign-talents.js",
+      "sha256": "79ec5dd98092e7e293f503f44d397c83cba09d8655b74214b1c94a86dc8e0719"
+    },
+    {
+      "path": "src/character-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/character-data.js",
+      "sha256": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e"
+    },
+    {
+      "path": "src/completion-chronicles-powers.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/completion-chronicles-powers.js",
+      "sha256": "3c519301bc8b9a2c52bc1aba20856ab26813fa9771b9ef6312e9b1f23214cf4c"
+    },
+    {
+      "path": "src/state.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/state.js",
+      "sha256": "e47ac3ad463c1b249043d3401e2fd2841e9f975007006289e81438aa2e045e86"
+    },
+    {
+      "path": "src/mission-progress.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/mission-progress.js",
+      "sha256": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add"
+    },
+    {
+      "path": "src/loadout.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/loadout.js",
+      "sha256": "0a7f94143ec5cbf26e5347d65a24d345888de2902edef8fa8b1dc9c4674a64f1"
+    },
+    {
+      "path": "src/tool-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/tool-data.js",
+      "sha256": "a74626318635e44b4d9d074b95fdf7ce40c9c88bf2758ece6e260db433ea1a3a"
+    },
+    {
+      "path": "src/operations.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/operations.js",
+      "sha256": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64"
+    },
+    {
+      "path": "src/operation-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/operation-data.js",
+      "sha256": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26"
+    },
+    {
+      "path": "src/game-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/game-data.js",
+      "sha256": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015"
+    },
+    {
+      "path": "src/commander.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/commander.js",
+      "sha256": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3"
+    },
+    {
+      "path": "src/frontier-enemies.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/frontier-enemies.js",
+      "sha256": "9fdadd59657942fb122a63091ce8948ec0d059cbf7359f24aef906d116b09499"
+    },
+    {
+      "path": "src/horizon-enemies.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/horizon-enemies.js",
+      "sha256": "351f414fb5f2b26fccceab3978d4eb41bc7be16836ae485ca97591f3ade491f0"
+    },
+    {
+      "path": "src/horizon-fauna.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/horizon-fauna.js",
+      "sha256": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659"
+    },
+    {
+      "path": "src/story.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/story.js",
+      "sha256": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc"
+    },
+    {
+      "path": "src/story-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/story-data.js",
+      "sha256": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4"
+    },
+    {
+      "path": "src/frontier-characters.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/frontier-characters.js",
+      "sha256": "20b858785f29b8ac9f53cac53cba7c46acb13eb9fd243cba4d968bf3d802cd12"
+    },
+    {
+      "path": "src/horizon-characters.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/horizon-characters.js",
+      "sha256": "eaff1d446004fab87bf88ca2b773a31be0723ef18db53033f1add46797384e33"
+    },
+    {
+      "path": "src/completion-narrative.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/completion-narrative.js",
+      "sha256": "90a5f2ff4b33703edbd2fa471fa606a88ffd2dda2d0b4bf4b09b21d3f686b786"
+    },
+    {
+      "path": "src/assignments.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/assignments.js",
+      "sha256": "19e43646c1be0156914954e62f8a3c8cdc86b3dd8b48672305fc228c43d1c770"
+    },
+    {
+      "path": "src/assignment-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/assignment-data.js",
+      "sha256": "3bb7aa18b0f17646a76b17d999a074aa64d304ae3c5393b049a6216b46b34c6b"
+    },
+    {
+      "path": "src/customization.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/customization.js",
+      "sha256": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932"
+    },
+    {
+      "path": "tests/combat.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/combat.test.js",
+      "sha256": "9f5445cf566cc99b2f0e45c453c631f0ddd4016ff9967eb7f82f7f3008e874c9"
+    },
+    {
+      "path": "tests/tactical-combat.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/tactical-combat.test.js",
+      "sha256": "835bef88f205854aa657ada54086ddc4d533d3ab8791547fccb548cf3a218b87"
+    },
+    {
+      "path": "tests/equipment-combat.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/equipment-combat.test.js",
+      "sha256": "5b5fb8d17abc680226920872e5b57ca39ae1bb6c959857814457aa3f481aefb9"
+    },
+    {
+      "path": "tests/combat-specialists.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/combat-specialists.test.js",
+      "sha256": "d22df515641742c159888ccb6dd807a0fdf263e62981b7b3c5f76c5d0d6ebc81"
+    },
+    {
+      "path": "tests/combat-arsenal-weapons.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/combat-arsenal-weapons.test.js",
+      "sha256": "0980af0de6f5bfe2d1f24398a85c77f3e44c04fcec74738f627131c97ca32c3c"
+    },
+    {
+      "path": "tests/combat-summons.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/combat-summons.test.js",
+      "sha256": "ebda0f69b00c1f7912110a3adcf0fbdb977d57a0811dabf8c1422de938036444"
+    },
+    {
+      "path": "tests/combat-support.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/combat-support.test.js",
+      "sha256": "f5ab8024480a40cd2c1de5a9633b7e9f6ce027d9fce9d929e95d37c5e725777e"
+    },
+    {
+      "path": "tests/universe-ammo.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/universe-ammo.test.js",
+      "sha256": "a3d3e76b99d6088e70905bda4db1a57085a0d85f85467a6db36f2645499eb7e6"
+    },
+    {
+      "path": "tests/campaign-talents.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/campaign-talents.test.js",
+      "sha256": "f99a3ea78940573239eb102107d232ca3faf1a22be4c1ca29270c55235538a57"
+    },
+    {
+      "path": "tests/completion-chronicles-powers.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/completion-chronicles-powers.test.js",
+      "sha256": "32bbba93d168fe7be1adabb3e3cc7903fc911c0f7bbda516ee200298d634d485"
+    },
+    {
+      "path": "src/universe-actors.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-actors.js",
+      "sha256": "0d24051f3aa95f48905338da364d9928fed03a5f1fa5b952187fb283b94e9ac1"
+    },
+    {
+      "path": "src/universe-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-data.js",
+      "sha256": "b3ea4b1ea885a5b54493b3c7c965cd019ca5a236c3dcc1da977230579c886e4a"
+    },
+    {
+      "path": "src/continuity-data.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/continuity-data.js",
+      "sha256": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03"
+    },
+    {
+      "path": "src/continuity.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/continuity.js",
+      "sha256": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9"
+    },
+    {
+      "path": "src/universe-specialist-scenarios.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-specialist-scenarios.js",
+      "sha256": "3be9693c263ae8803527d5defdd1b0783a068a3c6b2d2b9845c4ef0badbb7759"
+    },
+    {
+      "path": "src/universe-opposition-scenarios.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-opposition-scenarios.js",
+      "sha256": "518291edd40af1afac80c2db4ba70c9611c7476b38ad1ee0208a2a4d853d13f3"
+    },
+    {
+      "path": "src/universe-opponents.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-opponents.js",
+      "sha256": "1ac2f66218ae205bfe89e4db3e907ab48c94b1adbc88d469108ff70336f2d0e7"
+    },
+    {
+      "path": "src/universe-equipment-scenarios.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-equipment-scenarios.js",
+      "sha256": "a7c596b35a96ff608e8cbe431b5896997fc8cbf70ff69df8e516b4fbfac2561a"
+    },
+    {
+      "path": "src/universe-powers.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-powers.js",
+      "sha256": "71f0287ced8dced901933f1bc650b8d7c4af8e40a3b6cfb7b11e9aa179821f20"
+    },
+    {
+      "path": "src/chronicles.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/chronicles.js",
+      "sha256": "c4e1c4d597062d0ca0947589a24d00743214df52e84231bb4ba13073b38e3859"
+    },
+    {
+      "path": "src/universe-equipment.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/universe-equipment.js",
+      "sha256": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce"
+    },
+    {
+      "path": "src/chronicle-story.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/chronicle-story.js",
+      "sha256": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3"
+    },
+    {
+      "path": "tests/expansion2.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/expansion2.test.js",
+      "sha256": "a905cb141f36b31f8bfd14b9cb6000048e7ea43e7fd9918a0d761e356122b60c"
+    },
+    {
+      "path": "src/expansion-bench.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-bench.js",
+      "sha256": "c67b3f0bbd4bb065e8acd7c081bb46c4d33e2aab8c41c0c760331402c4b1fc98"
+    },
+    {
+      "path": "src/expansion.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion.js",
+      "sha256": "f1b7f206028c93c44734b503ecbfe9523923fa0cc8e968b59d572aec182cd022"
+    },
+    {
+      "path": "src/expansion-characters.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-characters.js",
+      "sha256": "6f80bf7d53b3c4d8e35a2ebe2b75d4b696afb4c2dfa4a68042153511c60991c0"
+    },
+    {
+      "path": "src/expansion-armor.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-armor.js",
+      "sha256": "a2db8546c188ddf1fc4916f08ea29342b76385a80de154c920cbf1cd6783b7a2"
+    },
+    {
+      "path": "src/expansion-weapons.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-weapons.js",
+      "sha256": "bffaa316a6aca541ddcac9f6fab75380ed96b3f9b8d79cef9742801c718f8a15"
+    },
+    {
+      "path": "src/expansion-fleet.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-fleet.js",
+      "sha256": "3a16f9c725135861a0a75631dad9ccde1ceb4c06807e4caf70d0f95bca1717c0"
+    },
+    {
+      "path": "src/expansion-enemies.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-enemies.js",
+      "sha256": "e24f81d54aeda3c178f9d4f91f95ce2ef957ff5ce1031a8b9bfff4f5de90b8c3"
+    },
+    {
+      "path": "src/expansion2-characters.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion2-characters.js",
+      "sha256": "1684f22aae4063981821ab7556fbe21191e54170ce085646e668501e33c412ed"
+    },
+    {
+      "path": "src/expansion2-armor.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion2-armor.js",
+      "sha256": "b470732bef5b085196d73302e376850588624d2752b3b64fbcd8a61278a5968f"
+    },
+    {
+      "path": "src/expansion2-weapons.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion2-weapons.js",
+      "sha256": "533e2da01e7a2804aa8c51c678214aae2e59269da018aee755626c5c500651d7"
+    },
+    {
+      "path": "src/expansion2-fleet.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion2-fleet.js",
+      "sha256": "309ca5cfa614eab577ed4b64a8b44286362062ea5da17414a17130cdbe20a307"
+    },
+    {
+      "path": "src/expansion2-enemies.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion2-enemies.js",
+      "sha256": "6ca45119a90e1bcd2a2cb67f83aec948871ca548efc1b343b372cfd6a57c4e5f"
+    },
+    {
+      "path": "src/expansion3-characters.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion3-characters.js",
+      "sha256": "a7441b34dab20a3667b682fc5a598f30a639d4119152a3ddea7d523f49a9ccda"
+    },
+    {
+      "path": "src/expansion3-armor.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion3-armor.js",
+      "sha256": "d183556a83d09ed0954c4fd85fac8338e0a31203ad697b7902330047e200b964"
+    },
+    {
+      "path": "src/expansion3-weapons.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion3-weapons.js",
+      "sha256": "36a4316b8f135849f053b3fe0d2f7d24c96db4cc47b0c3dfb6ca24d812537241"
+    },
+    {
+      "path": "src/expansion3-fleet.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion3-fleet.js",
+      "sha256": "c9fe1eb06b910c4693ff11f93c985de5decf92ed647b67348763003b5ccc2f16"
+    },
+    {
+      "path": "src/expansion3-enemies.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion3-enemies.js",
+      "sha256": "b107a293a757713016a42b0be5c5b5758ccbe76d5fa87a757278091b14a56ac3"
+    },
+    {
+      "path": "src/expansion-medical-bench.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-medical-bench.js",
+      "sha256": "6e087b29f39c066ce70c2d1b928ac1aaf12a7564d580b8e2a7fc3add9345ba90"
+    },
+    {
+      "path": "tests/expansion3.test.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/tests/expansion3.test.js",
+      "sha256": "ac64c2b780d50195749fd71afb1a3f3e6dae7a189d8923855d618407090b6d0a"
+    },
+    {
+      "path": "src/expansion-ui.js",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/src/expansion-ui.js",
+      "sha256": "2675dc629bda7c0ff29bbe9bd66ed480f58d95616e168fc52e35825d52752705"
+    },
+    {
+      "path": "scripts/completion-combat-native.mjs",
+      "storedPath": "docs/qa/completion-combat-native-final-02-sources/scripts/completion-combat-native.mjs",
+      "sha256": "59f4c844055864f0c6cc42a23c61f6cb39da6b8693c49bd56d8b68a32630db9e"
+    }
+  ],
+  "historicalInputs": [
+    {
+      "path": "docs/qa/expansion-native-report.json",
+      "sha256": "635612c0072abff27f4c7aadc17eb84a2685958cccfba3200323f0259942f7e4",
+      "unchangedSinceBaseline": "0d76912"
+    },
+    {
+      "path": "docs/qa/expansion2-native-report.json",
+      "sha256": "76833ad58cc9202d8229d7f2fcc5d7989d0f0dcdf49bf0976a31bdb3a55600a0",
+      "unchangedSinceBaseline": "0d76912"
+    }
+  ],
+  "tests": [
+    "tests/completion-combat.test.js",
+    "tests/combat.test.js",
+    "tests/tactical-combat.test.js",
+    "tests/equipment-combat.test.js",
+    "tests/combat-specialists.test.js",
+    "tests/combat-arsenal-weapons.test.js",
+    "tests/combat-summons.test.js",
+    "tests/combat-support.test.js",
+    "tests/universe-ammo.test.js",
+    "tests/campaign-talents.test.js",
+    "tests/completion-chronicles-powers.test.js",
+    "tests/expansion2.test.js",
+    "tests/expansion3.test.js"
+  ],
+  "exitCode": 0,
+  "transcript": {
+    "path": "docs/qa/completion-combat-native-final-02.tap",
+    "sha256": "06ff96ba10c382b1e8dc3bb9aad77653200ca5ef11b9f76aad05382bd97e7b0f"
+  },
+  "counts": {
+    "tests": 176,
+    "pass": 176,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "limitations": [
+    "Engine fixtures are explicit input definitions; this is not a public browser traversal or original-game balance/art validation.",
+    "Reward distribution and safe exploration after defeat/flee are owned by the campaign/UI and have separate checks.",
+    "Cover collision geometry and renderer agreement are checked separately on real zone builders; these focused tests isolate the engine callback contract."
+  ]
+}

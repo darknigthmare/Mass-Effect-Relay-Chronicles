@@ -1,0 +1,2080 @@
+{
+  "passed": false,
+  "at": "2026-11-13T08:46:31.332Z",
+  "mode": "development",
+  "url": "http://127.0.0.1:4193/",
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "e47ac3ad463c1b249043d3401e2fd2841e9f975007006289e81438aa2e045e86",
+    "src/save-slots.js": "01497a48324a647a7e79031656fba4160853126efb29cc7a2b2bad7bbf9adff4",
+    "src/loadout.js": "0a7f94143ec5cbf26e5347d65a24d345888de2902edef8fa8b1dc9c4674a64f1",
+    "src/customization.js": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932",
+    "src/customization-ui.js": "37992c92d3517653a042781c27d15f2f156155b11c1f880aa3a777ef36982c21",
+    "src/customization-ui.css": "e3f3a73309cdecf8720a662b6fb2c08cde1698ff60e57adb36267b35b619059e",
+    "src/customization-render.js": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+    "src/completion-persistence-campaign.js": "7a76fb0d23ff70e583dbdb01af55d11328c26b39a6db19eac708ca7bf4c5ff30",
+    "src/campaign-talents.js": "79ec5dd98092e7e293f503f44d397c83cba09d8655b74214b1c94a86dc8e0719",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/story.js": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/character-data.js": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/assignments.js": "19e43646c1be0156914954e62f8a3c8cdc86b3dd8b48672305fc228c43d1c770",
+    "src/world.js": "6f3fd809c6bdd8ae4264185407b318008893eab030a8e69369cd66c27d4f36d6",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "vite.config.js": "bf2f5aa80d6e09c77b5b8eed4148d92163e5b45751e67e579bcb6bcbb184f3df",
+    "scripts/completion-persistence-browser.mjs": "aac748d1bf04ffa5a41e5c3e1f86b5efcb22852961e0d08cd31224523ce32d8a"
+  },
+  "command": {
+    "script": "node scripts/completion-persistence-browser.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4193/",
+      "COMPLETION_PERSISTENCE_PREFIX": "completion-persistence-dev-final-02",
+      "COMPLETION_PERSISTENCE_MODE": "development"
+    }
+  },
+  "scope": "Public corrupted-save warning/new campaign, workshop cancel/reset/apply, six named manual slots and overwrite cancellation, invalid import preserving saved progress, legacy customization migration, one actual supply claim/reload/repeat, and completed ME1 campaign export. Desktop and mobile viewport evidence.",
+  "limitations": [
+    "Initial corruption bytes are a declared storage fixture. Native prepared campaign saves and supply coordinates are imported through the public file chooser; previous fights and travel are not played.",
+    "The final campaign is prepared using native progression callbacks, not a public campaign victory. No ME2 continuation or artistic 1:1 certification is claimed.",
+    "Browser screenshots use software rendering. No Windows executable, hardware controller or device performance is certified."
+  ],
+  "fixtures": [
+    {
+      "label": "corrupt-automatic-save",
+      "storageKey": "relay-chronicles.save.v1",
+      "bytes": "{broken checkpoint",
+      "origin": "Declared initial storage fixture, applied once before navigation; no live campaign is edited."
+    },
+    {
+      "label": "future-version",
+      "path": "docs/qa/completion-persistence-dev-final-02-fixture-future-version.json",
+      "sha256": "c6757412def1d0730190760940cb5bd7890d57da405801421ca6bb6426ff078b",
+      "origin": "Native Node fixture or explicitly malformed JSON, submitted through the public save file input."
+    },
+    {
+      "label": "legacy-customization-absent",
+      "path": "docs/qa/completion-persistence-dev-final-02-fixture-legacy-customization-absent.json",
+      "sha256": "54bc1ad90f7c8d5da802d4793590611a01e0e63d2c37b01b154d8974b38801ce",
+      "origin": "Native Node fixture or explicitly malformed JSON, submitted through the public save file input."
+    },
+    {
+      "label": "workshop-owned-gear",
+      "path": "docs/qa/completion-persistence-dev-final-02-fixture-workshop-owned-gear.json",
+      "sha256": "54490d57b6571a1ca81b1e7e39e65dd4c4489fb9a599e47c18c0bb84eabad4e9",
+      "origin": "Native Node fixture or explicitly malformed JSON, submitted through the public save file input."
+    },
+    {
+      "label": "supply-position",
+      "path": "docs/qa/completion-persistence-dev-final-02-fixture-supply-position.json",
+      "sha256": "61abe60554125b1fcaa8b5c1ad3742d02f8b08b25fc1820354a7833b2d1c7ac5",
+      "origin": "Native Node fixture or explicitly malformed JSON, submitted through the public save file input."
+    },
+    {
+      "label": "completed-campaign",
+      "path": "docs/qa/completion-persistence-dev-final-02-fixture-completed-campaign.json",
+      "sha256": "ceef84179774d5101230789318f6420996b229fa88e8c8983193cdf67d24d14d",
+      "origin": "Native Node fixture or explicitly malformed JSON, submitted through the public save file input."
+    }
+  ],
+  "exports": [
+    {
+      "label": "fresh",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-fresh.json",
+      "sha256": "d4d86d702098000e5713b2602bafdccb318f1ff0aadc1d5fd67963cf9edd1bec",
+      "bytes": 2799,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "after-cancel",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-after-cancel.json",
+      "sha256": "7e310d4c6b00610fc909df0e8c178b3d60ec75d03ca6047ff0658b3d95f6a7eb",
+      "bytes": 2799,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "after-reset",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-after-reset.json",
+      "sha256": "7d514eae43e174f113a7ffdbd3c9ca610c2d9b5c958d4e7ae0cf48ea3ad05f91",
+      "bytes": 2799,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "applied",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-applied.json",
+      "sha256": "5d41f9f9c0c3ba0e3b64d24612a026779170b4378a9e96fba6db431fdf635234",
+      "bytes": 2796,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "after-invalid-import",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-after-invalid-import.json",
+      "sha256": "329f09d24ea557e80658d699c21e75442699fdfc231f992c7bbcaaa9cad6c2c7",
+      "bytes": 2796,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "manual-reloaded",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-manual-reloaded.json",
+      "sha256": "14780dc2575fe856e2c05a1054aaf50d24a715f0292fc8cb26d9e265e5e93217",
+      "bytes": 2809,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "automatic-reloaded",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-automatic-reloaded.json",
+      "sha256": "fb0adedf3d7681f4c64decb39b5097f7543b9ca201353491b13743d1fe6b31b0",
+      "bytes": 2809,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "legacy-migrated",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-legacy-migrated.json",
+      "sha256": "9e24b5268856efdc47527bb69239446c06cbbe720311354a72b08f9e08373f4e",
+      "bytes": 2813,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "character-options-cancelled",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-character-options-cancelled.json",
+      "sha256": "dcd147b06dced27a20c5998acd5b95e08892b9b050acd7e548c902b0a3effc23",
+      "bytes": 3030,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "workshop-entries",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-workshop-entries.json",
+      "sha256": "78b46ab4d191fd0919622c9864388325cabb9a5d32efd725a8ff7fd1a974642f",
+      "bytes": 3030,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "comparison-cancelled",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-comparison-cancelled.json",
+      "sha256": "436492c40aca5fb3e643d2b631837f35403a66915ac2bfdd8e3bd4ab0c10f8fd",
+      "bytes": 3030,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "supply-claimed",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-supply-claimed.json",
+      "sha256": "c80fee84b4f3fdcbdcd4d06079012c74a2b7dc985f1d2f6361e45139f80b0029",
+      "bytes": 2999,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "supply-repeated",
+      "kind": "save",
+      "path": "docs/qa/completion-persistence-dev-final-02-supply-repeated.json",
+      "sha256": "f9643f1de2056f8ed8c95552039d4bbe43e3644e0dcc4e3a428f05f066f92de1",
+      "bytes": 2999,
+      "suggestedFilename": "Relay_Chronicles_Sauvegarde.json"
+    },
+    {
+      "label": "final-bilan",
+      "kind": "campaign",
+      "path": "docs/qa/completion-persistence-dev-final-02-final-bilan.json",
+      "sha256": "f628d58431caa7bf61954959e307787f42066e0b72971988a97ae79bc3de452a",
+      "bytes": 7978,
+      "suggestedFilename": "Relay_Chronicles_Bilan_ME1.json"
+    }
+  ],
+  "captures": [
+    {
+      "label": "corrupt-title",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-corrupt-title.png",
+      "sha256": "e13e054a32e59b6c959823e0ec5fe9b12bfb18252741fe18f7f1a3a0b590142f",
+      "bytes": 1562003,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "fresh-campaign",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-fresh-campaign.png",
+      "sha256": "2f30b3116536f6e380b8681a25728737b7d36e3379c08b7d08143c6670d2993b",
+      "bytes": 320178,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "workshop-draft",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-workshop-draft.png",
+      "sha256": "d2d9e51626c4b0d42100436b7263ad5c93e82d0df81952282ea00058c8cb5e95",
+      "bytes": 401742,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "six-manual-slots",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-six-manual-slots.png",
+      "sha256": "15fc6f2972fc6089ac45bb7c99cf24bdcad940b608dbee735f97cd9070923392",
+      "bytes": 310174,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "invalid-import",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-invalid-import.png",
+      "sha256": "1ef2ded8a3362000ddabe48752f59a031148d34ba5bf386ec84a2f161f74609c",
+      "bytes": 1520723,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "legacy-migrated",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-legacy-migrated.png",
+      "sha256": "ed555482c2b56c17c438bf1dc8deddc59ffb09ed890bf84ae3403adf0723e319",
+      "bytes": 396760,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "character-options",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-character-options.png",
+      "sha256": "e1d444dc437113a9d915f22998e04b4acb2188a0d91eb52de4ce19d90087b3d4",
+      "bytes": 416983,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "tool-comparison",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-tool-comparison.png",
+      "sha256": "a4f5623fc05066f8a831d5b19b61ae0d34214670de6316f029073785fc819aa0",
+      "bytes": 451501,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "weapon-returns",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-weapon-returns.png",
+      "sha256": "7da89420a7839e2bb7974af6bbd0832c05c8f6a2acac76cb5cec6cadc03235fa",
+      "bytes": 445948,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "armor-comparison",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-armor-comparison.png",
+      "sha256": "f9502332b9e3876c4ca06ff6a650f1c868b0c3772494cd2d3c8b2f5fdf25633d",
+      "bytes": 458206,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "supply-claimed",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-supply-claimed.png",
+      "sha256": "d358b8664276194ae2ab3ae1bc7f4961dc7da0838570f1f59aaf604dea32c827",
+      "bytes": 1814487,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "final-export",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-final-export.png",
+      "sha256": "95200a6f95a9586bddf5c841c22e267884869c8ad6f4958c823586aa085e9fdb",
+      "bytes": 365000,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "mobile-slots",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-mobile-slots.png",
+      "sha256": "97e5825a27c1d5add8fbfab0a0c636bcddd82095d31782e92cf2d4bbe76defbd",
+      "bytes": 129041,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/completion-persistence-dev-final-02-failure.png",
+      "sha256": "97e5825a27c1d5add8fbfab0a0c636bcddd82095d31782e92cf2d4bbe76defbd",
+      "bytes": 129041,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "source": "Actual public viewport; no injected scene, CSS or image."
+    }
+  ],
+  "checks": [
+    {
+      "name": "corrupted automatic save gives clear recovery choices without deleting bytes",
+      "passed": true
+    },
+    {
+      "name": "public new campaign starts with clean profile, choices and inventory",
+      "passed": true
+    },
+    {
+      "name": "public draft, cancel and reset preserve the complete campaign",
+      "passed": true
+    },
+    {
+      "name": "public apply changes configuration together and preserves dossier, progression and quantities",
+      "passed": true
+    },
+    {
+      "name": "six named manual saves preserve configuration and automatic bytes; overwrite cancellation preserves slot",
+      "passed": true
+    },
+    {
+      "name": "future import is explained and preserves the existing saved campaign",
+      "passed": true
+    },
+    {
+      "name": "manual and automatic reload restore exactly the selected configuration",
+      "passed": true
+    },
+    {
+      "name": "historic absent customization migrates while identity, inventory and progress survive",
+      "passed": true
+    },
+    {
+      "name": "every character option changes its real preview while the active campaign stays untouched",
+      "passed": true,
+      "options": 27
+    },
+    {
+      "name": "public Pause, Shepard dossier, squad dossier and equipment entries return to the expected menu",
+      "passed": true
+    },
+    {
+      "name": "nine ports, empty and unavailable selections, species restrictions, exact tool multipliers and parent-module returns use actual current inventory",
+      "passed": true,
+      "visitedSlots": [
+        "weapon",
+        "weaponMod",
+        "weaponMod2",
+        "ammoMod",
+        "omniTool",
+        "bioticAmp",
+        "armor",
+        "armorMod",
+        "armorMod2"
+      ],
+      "techBefore": 1,
+      "techAfter": 1.15,
+      "bioticBefore": 1,
+      "bioticAfter": 1.15
+    },
+    {
+      "name": "actual cache claim grants once, persists and cannot duplicate resources after reload",
+      "passed": true
+    },
+    {
+      "name": "public final export contains the versioned complete ME1 choices and an explicitly unimplemented continuation",
+      "passed": true
+    },
+    {
+      "name": "manual-slot controls remain available in the mobile viewport",
+      "passed": true
+    }
+  ],
+  "optionChecks": [
+    {
+      "field": "appearance",
+      "id": "male",
+      "beforePreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "afterPreviewSha256": "d07d94f6c7f1af93b65867e4951f4696593755c761966b0fd1ed03a4d5b4a16c",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "appearance",
+      "id": "female",
+      "beforePreviewSha256": "d07d94f6c7f1af93b65867e4951f4696593755c761966b0fd1ed03a4d5b4a16c",
+      "afterPreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.preset",
+      "id": "veteran",
+      "beforePreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "afterPreviewSha256": "d7006233538844174d5c7af0299b884970c5a95c04ac60197fd1e312d547dbfc",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.preset",
+      "id": "colonist",
+      "beforePreviewSha256": "d7006233538844174d5c7af0299b884970c5a95c04ac60197fd1e312d547dbfc",
+      "afterPreviewSha256": "7852e515c57ae347538ffb78fa8bc30eac306df9f2fa07d6121f7437d7d503df",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.preset",
+      "id": "spacer",
+      "beforePreviewSha256": "7852e515c57ae347538ffb78fa8bc30eac306df9f2fa07d6121f7437d7d503df",
+      "afterPreviewSha256": "c89dba10b85a148334c2d9764c9af22eb354fc1d3aa23680f72c400fa7d6ab3c",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.preset",
+      "id": "standard",
+      "beforePreviewSha256": "c89dba10b85a148334c2d9764c9af22eb354fc1d3aa23680f72c400fa7d6ab3c",
+      "afterPreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.skinTone",
+      "id": "warm",
+      "beforePreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "afterPreviewSha256": "b913c5823edd7bef871c4f59a408368d9aa54a5d47ad5cf5f59aeba1b744741b",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.skinTone",
+      "id": "tan",
+      "beforePreviewSha256": "b913c5823edd7bef871c4f59a408368d9aa54a5d47ad5cf5f59aeba1b744741b",
+      "afterPreviewSha256": "052382e787ff0b56a5f4d24fed61b5ca6d7387092b7e5adb227961aab1de4b3b",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.skinTone",
+      "id": "brown",
+      "beforePreviewSha256": "052382e787ff0b56a5f4d24fed61b5ca6d7387092b7e5adb227961aab1de4b3b",
+      "afterPreviewSha256": "2257157fda02e21d28242c34e8b28d88a4ca76107a01264beb11cef464e9143e",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.skinTone",
+      "id": "deep",
+      "beforePreviewSha256": "2257157fda02e21d28242c34e8b28d88a4ca76107a01264beb11cef464e9143e",
+      "afterPreviewSha256": "6a46571d1e97dca44a1087b690fec934fd8c7fbc10258d4840ac18bcc1c40a01",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.skinTone",
+      "id": "ebony",
+      "beforePreviewSha256": "6a46571d1e97dca44a1087b690fec934fd8c7fbc10258d4840ac18bcc1c40a01",
+      "afterPreviewSha256": "28f908eb32399f5b9e5c7dbb0e0731da27f4c1b41794e7ac74b9ed95aa422c25",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.skinTone",
+      "id": "fair",
+      "beforePreviewSha256": "28f908eb32399f5b9e5c7dbb0e0731da27f4c1b41794e7ac74b9ed95aa422c25",
+      "afterPreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.eyeColor",
+      "id": "green",
+      "beforePreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "afterPreviewSha256": "c0c6bc6f654db4a6ccb1036b0797923705e10ecf4c0e41a3642f9d2aa74b3263",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.eyeColor",
+      "id": "hazel",
+      "beforePreviewSha256": "c0c6bc6f654db4a6ccb1036b0797923705e10ecf4c0e41a3642f9d2aa74b3263",
+      "afterPreviewSha256": "3d7f9d1762c36d0a0a5b7d09c12c05b714c3a8304a737ae084576703fcf09e8a",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.eyeColor",
+      "id": "brown",
+      "beforePreviewSha256": "3d7f9d1762c36d0a0a5b7d09c12c05b714c3a8304a737ae084576703fcf09e8a",
+      "afterPreviewSha256": "b86902d12b1423cb688b6a1e7963381c9890e2fc6635dcea1210f8a4370c0b90",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.eyeColor",
+      "id": "grey",
+      "beforePreviewSha256": "b86902d12b1423cb688b6a1e7963381c9890e2fc6635dcea1210f8a4370c0b90",
+      "afterPreviewSha256": "6add79085ca19551f8031ff81bcc49a26be1673fffef5a7066cdd7a2a1aeafbc",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.eyeColor",
+      "id": "blue",
+      "beforePreviewSha256": "6add79085ca19551f8031ff81bcc49a26be1673fffef5a7066cdd7a2a1aeafbc",
+      "afterPreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairStyle",
+      "id": "cropped",
+      "beforePreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "afterPreviewSha256": "f24546275e564af7429c2ed85c22f8154a64771a2b07150096a1e0ad874ee09c",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairStyle",
+      "id": "swept",
+      "beforePreviewSha256": "f24546275e564af7429c2ed85c22f8154a64771a2b07150096a1e0ad874ee09c",
+      "afterPreviewSha256": "036279ebc0853f16c91a695e9bd8258a52d011e54efc584a1f014786a35e1aba",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairStyle",
+      "id": "tied",
+      "beforePreviewSha256": "036279ebc0853f16c91a695e9bd8258a52d011e54efc584a1f014786a35e1aba",
+      "afterPreviewSha256": "dcb6086e775b6347266cacf5608175abddf68bbd87336f1f82b83cbce808b94d",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairStyle",
+      "id": "short",
+      "beforePreviewSha256": "dcb6086e775b6347266cacf5608175abddf68bbd87336f1f82b83cbce808b94d",
+      "afterPreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairColor",
+      "id": "black",
+      "beforePreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "afterPreviewSha256": "4b35d80e2de9acfcc2965b8ceeb12461d1d67d51853b95b9e3d22f5bddbaeb2c",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairColor",
+      "id": "brown",
+      "beforePreviewSha256": "4b35d80e2de9acfcc2965b8ceeb12461d1d67d51853b95b9e3d22f5bddbaeb2c",
+      "afterPreviewSha256": "9c073dc5aaaf7a279974831703dfbe0807f76127fe0b9585ae9f56eb18f00739",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairColor",
+      "id": "blond",
+      "beforePreviewSha256": "9c073dc5aaaf7a279974831703dfbe0807f76127fe0b9585ae9f56eb18f00739",
+      "afterPreviewSha256": "20103d101cc1812a868fd8642c66dd13050936e9d60ea780e9e91b3b8ce9208e",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairColor",
+      "id": "grey",
+      "beforePreviewSha256": "20103d101cc1812a868fd8642c66dd13050936e9d60ea780e9e91b3b8ce9208e",
+      "afterPreviewSha256": "6e4e0add08ed51f7fba68506bd91612ba1086198f410c3498afdfbce23c414e1",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairColor",
+      "id": "white",
+      "beforePreviewSha256": "6e4e0add08ed51f7fba68506bd91612ba1086198f410c3498afdfbce23c414e1",
+      "afterPreviewSha256": "59f2e622c8ac0c288b99532ee6fd21e3abbec6ef224dc4f1302012330011d6aa",
+      "activeSaveUnchanged": true
+    },
+    {
+      "field": "face.hairColor",
+      "id": "auburn",
+      "beforePreviewSha256": "59f2e622c8ac0c288b99532ee6fd21e3abbec6ef224dc4f1302012330011d6aa",
+      "afterPreviewSha256": "5b07b2e3e28918b0250113f777a946c617e6d23cd15ef16546585a6143e4d148",
+      "activeSaveUnchanged": true
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)',\n+   'Failed to load resource: the server responded with a status of 404 (Not Found)'\n+ ]\n- []\n\n    at file:///workspace/Mass-Effect-Relay-Chronicles/scripts/completion-persistence-browser.mjs:208:45"
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "failedRequests": [],
+  "sourceRequests": [
+    "/src/main.js",
+    "/src/campaign-talents.css",
+    "/src/priority-ui.css",
+    "/src/gamepad-controls.css",
+    "/src/tactical-ui.js",
+    "/src/gamepad-controls.js",
+    "/src/mission-progress.js",
+    "/src/campaign-talents-ui.js",
+    "/src/simulation-clock.js",
+    "/src/completion-world.js",
+    "/src/completion-accessibility.js",
+    "/src/campaign-talents.js",
+    "/src/mission-progress-ui.js",
+    "/src/frontier-ui.css",
+    "/src/style.css",
+    "/src/completion-persistence-campaign.js",
+    "/src/horizon-ui.css",
+    "/src/combat-summons.js",
+    "/src/frontier-ui.js",
+    "/src/completion-narrative-ui.js",
+    "/src/horizon-archive-ui.js",
+    "/src/frontier-characters.js",
+    "/src/horizon-ui.js",
+    "/src/horizon-characters.js",
+    "/src/loadout-ui.css",
+    "/src/local-map.css",
+    "/src/loadout-ui.js",
+    "/src/customization.js",
+    "/src/customization-ui.css",
+    "/src/customization-ui.js",
+    "/src/operations-ui.css",
+    "/src/operations.js",
+    "/src/operations-ui.js",
+    "/src/loadout.js",
+    "/src/local-map.js",
+    "/src/level-layout-data.js",
+    "/src/world.js",
+    "/src/world-data.js",
+    "/src/story.js",
+    "/src/assignments.js",
+    "/src/save-slots.js",
+    "/src/level-map-render.js",
+    "/src/commander.js",
+    "/src/audio.js",
+    "/src/game-data.js",
+    "/src/combat.js",
+    "/src/completion-accessibility.css",
+    "/src/character-data.js",
+    "/src/state.js",
+    "/src/horizon-fleet.js",
+    "/src/horizon-fauna.js",
+    "/src/completion-narrative.js",
+    "/src/tool-data.js",
+    "/src/customization-render.js",
+    "/src/operation-data.js",
+    "/src/frontier-layout-data.js",
+    "/src/horizon-layout-data.js",
+    "/src/tactical-positions.js",
+    "/src/companion-animation-data.js",
+    "/src/joker-seated-data.js",
+    "/src/enemy-animation-data.js",
+    "/src/world-navigation.js",
+    "/src/eden-scene.js",
+    "/src/frontier-scene.js",
+    "/src/frontier-enemies.js",
+    "/src/horizon-scene.js",
+    "/src/boss-animation-data.js",
+    "/src/horizon-enemies.js",
+    "/src/frontier-vehicles.js",
+    "/src/story-data.js",
+    "/src/assignment-data.js",
+    "/src/combat-medical.js",
+    "/src/universe-ammo.js",
+    "/src/universe-weapon-profiles.js",
+    "/src/boss-phases.js",
+    "/src/completion-chronicles-powers.js",
+    "/src/continuity-data.js",
+    "/src/main.js",
+    "/src/campaign-talents.css",
+    "/src/gamepad-controls.css",
+    "/src/priority-ui.css",
+    "/src/tactical-ui.js",
+    "/src/mission-progress-ui.js",
+    "/src/campaign-talents-ui.js",
+    "/src/simulation-clock.js",
+    "/src/campaign-talents.js",
+    "/src/mission-progress.js",
+    "/src/gamepad-controls.js",
+    "/src/completion-world.js",
+    "/src/completion-accessibility.js",
+    "/src/completion-narrative-ui.js",
+    "/src/style.css",
+    "/src/completion-persistence-campaign.js",
+    "/src/combat-summons.js",
+    "/src/frontier-ui.css",
+    "/src/horizon-ui.css",
+    "/src/horizon-archive-ui.js",
+    "/src/frontier-ui.js",
+    "/src/frontier-characters.js",
+    "/src/horizon-characters.js",
+    "/src/local-map.css",
+    "/src/horizon-ui.js",
+    "/src/loadout-ui.css",
+    "/src/customization-ui.css",
+    "/src/operations-ui.css",
+    "/src/loadout-ui.js",
+    "/src/customization.js",
+    "/src/customization-ui.js",
+    "/src/loadout.js",
+    "/src/operations.js",
+    "/src/operations-ui.js",
+    "/src/level-map-render.js",
+    "/src/level-layout-data.js",
+    "/src/commander.js",
+    "/src/local-map.js",
+    "/src/world-data.js",
+    "/src/story.js",
+    "/src/audio.js",
+    "/src/world.js",
+    "/src/assignments.js",
+    "/src/save-slots.js",
+    "/src/combat.js",
+    "/src/game-data.js",
+    "/src/completion-accessibility.css",
+    "/src/state.js",
+    "/src/horizon-fleet.js",
+    "/src/completion-narrative.js",
+    "/src/horizon-fauna.js",
+    "/src/character-data.js",
+    "/src/horizon-layout-data.js",
+    "/src/story-data.js",
+    "/src/customization-render.js",
+    "/src/tactical-positions.js",
+    "/src/tool-data.js",
+    "/src/operation-data.js",
+    "/src/enemy-animation-data.js",
+    "/src/companion-animation-data.js",
+    "/src/world-navigation.js",
+    "/src/frontier-layout-data.js",
+    "/src/joker-seated-data.js",
+    "/src/eden-scene.js",
+    "/src/boss-animation-data.js",
+    "/src/horizon-scene.js",
+    "/src/frontier-scene.js",
+    "/src/horizon-enemies.js",
+    "/src/frontier-enemies.js",
+    "/src/frontier-vehicles.js",
+    "/src/assignment-data.js",
+    "/src/universe-weapon-profiles.js",
+    "/src/combat-medical.js",
+    "/src/boss-phases.js",
+    "/src/completion-chronicles-powers.js",
+    "/src/continuity-data.js",
+    "/src/universe-ammo.js",
+    "/src/main.js",
+    "/src/campaign-talents.css",
+    "/src/gamepad-controls.css",
+    "/src/tactical-ui.js",
+    "/src/priority-ui.css",
+    "/src/gamepad-controls.js",
+    "/src/mission-progress.js",
+    "/src/mission-progress-ui.js",
+    "/src/campaign-talents-ui.js",
+    "/src/simulation-clock.js",
+    "/src/campaign-talents.js",
+    "/src/completion-persistence-campaign.js",
+    "/src/completion-accessibility.js",
+    "/src/completion-world.js",
+    "/src/completion-narrative-ui.js",
+    "/src/style.css",
+    "/src/combat-summons.js",
+    "/src/frontier-ui.css",
+    "/src/horizon-ui.css",
+    "/src/horizon-archive-ui.js",
+    "/src/frontier-ui.js",
+    "/src/horizon-ui.js",
+    "/src/loadout-ui.css",
+    "/src/horizon-characters.js",
+    "/src/customization-ui.css",
+    "/src/frontier-characters.js",
+    "/src/operations-ui.css",
+    "/src/local-map.css",
+    "/src/customization.js",
+    "/src/loadout-ui.js",
+    "/src/customization-ui.js",
+    "/src/local-map.js",
+    "/src/loadout.js",
+    "/src/operations-ui.js",
+    "/src/level-layout-data.js",
+    "/src/operations.js",
+    "/src/level-map-render.js",
+    "/src/commander.js",
+    "/src/audio.js",
+    "/src/story.js",
+    "/src/save-slots.js",
+    "/src/assignments.js",
+    "/src/world-data.js",
+    "/src/world.js",
+    "/src/combat.js",
+    "/src/game-data.js",
+    "/src/horizon-fleet.js",
+    "/src/horizon-fauna.js",
+    "/src/completion-narrative.js",
+    "/src/completion-accessibility.css",
+    "/src/state.js",
+    "/src/character-data.js",
+    "/src/tool-data.js",
+    "/src/frontier-layout-data.js",
+    "/src/horizon-layout-data.js",
+    "/src/story-data.js",
+    "/src/operation-data.js",
+    "/src/customization-render.js",
+    "/src/assignment-data.js",
+    "/src/companion-animation-data.js",
+    "/src/enemy-animation-data.js",
+    "/src/tactical-positions.js",
+    "/src/joker-seated-data.js",
+    "/src/world-navigation.js",
+    "/src/frontier-scene.js",
+    "/src/boss-animation-data.js",
+    "/src/horizon-scene.js",
+    "/src/frontier-enemies.js",
+    "/src/horizon-enemies.js",
+    "/src/eden-scene.js",
+    "/src/universe-weapon-profiles.js",
+    "/src/frontier-vehicles.js",
+    "/src/universe-ammo.js",
+    "/src/combat-medical.js",
+    "/src/boss-phases.js",
+    "/src/completion-chronicles-powers.js",
+    "/src/continuity-data.js"
+  ],
+  "servedFiles": [
+    {
+      "path": "/src/main.js",
+      "sha256": "0cb855d7d7e77ff5657fdc5f6d42533b252184b33b25c34a3047d93529801d39",
+      "bytes": 606828
+    },
+    {
+      "path": "/src/campaign-talents.css",
+      "sha256": "1b8a37e6cd4be9635aae5646c4097fa46f4b4f213b6a6dad55ad03d8c6ec2696",
+      "bytes": 1121
+    },
+    {
+      "path": "/src/priority-ui.css",
+      "sha256": "966cc8efee90ac4f5c9cc126b3741c179ef0e64df87966645aabd80b8146c853",
+      "bytes": 1964
+    },
+    {
+      "path": "/src/gamepad-controls.css",
+      "sha256": "e5fbaa0e22fd72c085b0aca82aa87ea5e5635c003a58b72d0136ef0feacfbfdb",
+      "bytes": 2576
+    },
+    {
+      "path": "/src/tactical-ui.js",
+      "sha256": "13543dc9278379de18a28c00be8331356a2527f5b930249ccc7cdb15878a640a",
+      "bytes": 12549
+    },
+    {
+      "path": "/src/gamepad-controls.js",
+      "sha256": "f28da891b6f5487e2ac59f7635664349e367043b3774f0736bbca03132888014",
+      "bytes": 139865
+    },
+    {
+      "path": "/src/mission-progress.js",
+      "sha256": "5b909dbe564c363b2f77567f5f54a300240f8a6bcea95c101f548f7c92dc10f8",
+      "bytes": 119441
+    },
+    {
+      "path": "/src/campaign-talents-ui.js",
+      "sha256": "86852b0bffa3b929d02658ed3e270c42e3a79addbfea28f5bff6ad26edb0ac5c",
+      "bytes": 15541
+    },
+    {
+      "path": "/src/simulation-clock.js",
+      "sha256": "97cd52a53060fdc90c7c6f387a6ea14e1e2e9bcfc42e1118d9bd61503fffacbc",
+      "bytes": 7763
+    },
+    {
+      "path": "/src/completion-world.js",
+      "sha256": "4ba29f0536f4b1b6e9997153b2076d13af6b3f3662cd1b537c564c8c3d0e5f20",
+      "bytes": 30950
+    },
+    {
+      "path": "/src/completion-accessibility.js",
+      "sha256": "0404b2466077f1fb19b679c354439479bf2ca05b121c5cb21c4ad79a68aa6cdc",
+      "bytes": 61924
+    },
+    {
+      "path": "/src/campaign-talents.js",
+      "sha256": "b538297e8713b4f8b0900cf47a4f8cdbdef263f47f17e2efd9aa32bc8f99e2d9",
+      "bytes": 74033
+    },
+    {
+      "path": "/src/mission-progress-ui.js",
+      "sha256": "45b6f6cc8a7e4a980d3d12fd816297e3dfa3778689e9b92ce3cbf9b436568455",
+      "bytes": 9633
+    },
+    {
+      "path": "/src/frontier-ui.css",
+      "sha256": "db769477fc2bdda4104c53c20d0ec2842e9ae3b196260366cdc7d186775d2733",
+      "bytes": 852
+    },
+    {
+      "path": "/src/style.css",
+      "sha256": "8aa1a6a107d711f0b5ae389ffed5b72b867d64aaeee6c515596e43a20a66d0dc",
+      "bytes": 28622
+    },
+    {
+      "path": "/src/completion-persistence-campaign.js",
+      "sha256": "71d54a104730704974a9cd9bc293d6de7fe4412f659ca66b5ca0377e8c344152",
+      "bytes": 14006
+    },
+    {
+      "path": "/src/horizon-ui.css",
+      "sha256": "1d28196905bf50047fe6b91657a139120dbfd3e415e897b9b7012d2319a957cc",
+      "bytes": 2105
+    },
+    {
+      "path": "/src/combat-summons.js",
+      "sha256": "0231623c86c291779e0c13736a7aee368af52b68a1cfb1bf76a68aa6915eeca3",
+      "bytes": 86256
+    },
+    {
+      "path": "/src/frontier-ui.js",
+      "sha256": "f4132aedc281f207afbe80ab3c34f966f861ed18b3bff481da45db3f2840d6f7",
+      "bytes": 4912
+    },
+    {
+      "path": "/src/completion-narrative-ui.js",
+      "sha256": "947c4ce3438c7dcbc2474b3d281c136382d5a6d9db2d7dbb048cf7d8cbe36630",
+      "bytes": 11566
+    },
+    {
+      "path": "/src/horizon-archive-ui.js",
+      "sha256": "b62fbc25e860823aa5318718efd99c5a52332753b882674bafab6be6e28284db",
+      "bytes": 13311
+    },
+    {
+      "path": "/src/frontier-characters.js",
+      "sha256": "4eafd4e6f7c239db4e5008a14cf45499c565069078524a41ee7c869ac446d34d",
+      "bytes": 65152
+    },
+    {
+      "path": "/src/horizon-ui.js",
+      "sha256": "0c4bb1fa99d7d4b5fa87b637a4ea8dc23382d489d97dc90670ebe78ffe550610",
+      "bytes": 9460
+    },
+    {
+      "path": "/src/horizon-characters.js",
+      "sha256": "1564992e3931f59c94f344da482ce82010e762188dec7b119ff9b1802a15cb30",
+      "bytes": 55783
+    },
+    {
+      "path": "/src/loadout-ui.css",
+      "sha256": "9029a3ebfce62f90222478a40a437903c087216854dc85c1de8f86a0c8748dc6",
+      "bytes": 8627
+    },
+    {
+      "path": "/src/local-map.css",
+      "sha256": "3e03742616f06bb87a941700966abe23d4227373f9153e6cf612f19772cc3f93",
+      "bytes": 3262
+    },
+    {
+      "path": "/src/loadout-ui.js",
+      "sha256": "f78ce82399d971db206e71123f1cef070fc4b6884e143a77c431ce99e2085d20",
+      "bytes": 95385
+    },
+    {
+      "path": "/src/customization.js",
+      "sha256": "7f130920a49f574eee20575f1ee21cfce5df8e14376454280a711c35a9be0bf1",
+      "bytes": 62409
+    },
+    {
+      "path": "/src/customization-ui.css",
+      "sha256": "0eb6448e9fa69a92a6a9e0024b1ccae7b2c9ed3b55af70a0b9d1f7acbba03207",
+      "bytes": 20966
+    },
+    {
+      "path": "/src/customization-ui.js",
+      "sha256": "1bd385b05f0970ba01ad40900c040c636789eafbea2a7be0b918279ed3c81d29",
+      "bytes": 185046
+    },
+    {
+      "path": "/src/operations-ui.css",
+      "sha256": "0b7e51f63bd9dc4fbf476ee006d8d222aebf528993537e33aee58b9f41cf3465",
+      "bytes": 4424
+    },
+    {
+      "path": "/src/operations.js",
+      "sha256": "8371c9025024b21516f7da4888375e0ef4dddf53380411bbf708d06b608210bd",
+      "bytes": 82987
+    },
+    {
+      "path": "/src/operations-ui.js",
+      "sha256": "ab7947218d187f40f4b5467bd852f794389b88216eda54d2a9ff92899a5ec9e9",
+      "bytes": 23947
+    },
+    {
+      "path": "/src/loadout.js",
+      "sha256": "e5f90edc23b7f446ac74efcb0c65cd427efdc86387228aa79051e7b865ce048f",
+      "bytes": 152093
+    },
+    {
+      "path": "/src/local-map.js",
+      "sha256": "be2e6b4ddcbbd9db1e104f4d6576bbbb5050c8093dea4a31407e989dc136ac54",
+      "bytes": 23048
+    },
+    {
+      "path": "/src/level-layout-data.js",
+      "sha256": "34e2cb3cbaff0583859b74d40ada9ba80317a1dfd7598252f531c12df8d15805",
+      "bytes": 54158
+    },
+    {
+      "path": "/src/world.js",
+      "sha256": "0a87bde26327c6ea5c86791c78a2b58e5d8531eed111091526cd289c6cd1b2b8",
+      "bytes": 763583
+    },
+    {
+      "path": "/src/world-data.js",
+      "sha256": "bded51109941823265c0c5cf561a8f504b9185a08198b8647c0adf2f78f39cfc",
+      "bytes": 44196
+    },
+    {
+      "path": "/src/story.js",
+      "sha256": "a7f5f4da0efbf1e28680f6238ec1509e51bd7ae6fca24db80d9365b9886702cb",
+      "bytes": 59595
+    },
+    {
+      "path": "/src/assignments.js",
+      "sha256": "24a01aa9ecf8a8c12e1a6b7c297ef44426bb07b8ac39b3f71350f734dc6dfe0c",
+      "bytes": 48175
+    },
+    {
+      "path": "/src/save-slots.js",
+      "sha256": "6537c387766a61e968aa8aa0e73ccc7bb1dabc1c6f35870480b7efee99a46b00",
+      "bytes": 32433
+    },
+    {
+      "path": "/src/level-map-render.js",
+      "sha256": "d4ce6d8b1567e9b0ac4da4f8522695a70eda3d4656b28a3e2de195438eb4f211",
+      "bytes": 18994
+    },
+    {
+      "path": "/src/commander.js",
+      "sha256": "86994091b9cb5c5fa6ceda7a1978ddd62d5ba943f1751257c310992933bf3b4e",
+      "bytes": 6254
+    },
+    {
+      "path": "/src/audio.js",
+      "sha256": "c6fadd3bbd833321d0b6b00661900bb8ea0a985acc4033ded5453f308710666b",
+      "bytes": 77478
+    },
+    {
+      "path": "/src/game-data.js",
+      "sha256": "e046e9197ee900de70a413deb2610b1bff164253be4b5fcd0571a8c96f63ff58",
+      "bytes": 86122
+    },
+    {
+      "path": "/src/combat.js",
+      "sha256": "a4d7fc93751a2b7265745832d985c7ca5cc0087288e51fc00bede2b56ce57440",
+      "bytes": 455121
+    },
+    {
+      "path": "/src/completion-accessibility.css",
+      "sha256": "1d9a829bbcd9cbfbd945683b5605d5657cf57873913fe98134eb7878abc8fd6b",
+      "bytes": 13022
+    },
+    {
+      "path": "/src/character-data.js",
+      "sha256": "2292fe967fab2f4c37839ba6b15be69c765c2d80e521863f1303ceeecf752db0",
+      "bytes": 34929
+    },
+    {
+      "path": "/src/state.js",
+      "sha256": "2aa34457a57063c5468818e0b1c531864a91cc23f94adc5bc147d5a66627a0a6",
+      "bytes": 134057
+    },
+    {
+      "path": "/src/horizon-fleet.js",
+      "sha256": "81982e9bbf4abd50682d9060c12bcaefeedac07550873fcc736035084ed8e4a0",
+      "bytes": 57778
+    },
+    {
+      "path": "/src/horizon-fauna.js",
+      "sha256": "35b09c4d5a676242380d6b0948efec028b2620644e7e0d87400b50bdc1abf7c8",
+      "bytes": 53483
+    },
+    {
+      "path": "/src/completion-narrative.js",
+      "sha256": "ac7e6ca9f1f339c069f36fb4c22657a398bf28527ccf9e47fe556a5f860539c2",
+      "bytes": 40979
+    },
+    {
+      "path": "/src/tool-data.js",
+      "sha256": "83e58afc89f3f5c3dca25fcb9306e26c8fd2b74bbbf2c7e7266f748109f7b944",
+      "bytes": 9871
+    },
+    {
+      "path": "/src/customization-render.js",
+      "sha256": "d4c0334050688383bbf4b845d1e6210b37cd47ca2b89186d7e5fb71e64d7bc98",
+      "bytes": 35251
+    },
+    {
+      "path": "/src/operation-data.js",
+      "sha256": "80d869d47d54a132eec72a0416473e90b4dcf013196a38ec2cc178fb7c599dd0",
+      "bytes": 113436
+    },
+    {
+      "path": "/src/frontier-layout-data.js",
+      "sha256": "799b378342f85a03f78acc911558f4da6a91f39af776a5c1897c40bb4b2b46eb",
+      "bytes": 37766
+    },
+    {
+      "path": "/src/horizon-layout-data.js",
+      "sha256": "eb0e3fd5b1f387fd7bd2ad2623b838bdb6de3509ad5be1322ebe20bf28550267",
+      "bytes": 32903
+    },
+    {
+      "path": "/src/tactical-positions.js",
+      "sha256": "e7df6e4ce7e3155e63d996f89ab9df031ea58410c22b59fd00830504905ed720",
+      "bytes": 57221
+    },
+    {
+      "path": "/node_modules/.vite/deps/three_examples_jsm_geometries_RoundedBoxGeometry__js.js",
+      "sha256": "b08c491bdfafb73e6aef5bfd91cb061b6a4cb067fe91fc5e4d16d15ed9e5934e",
+      "bytes": 5261
+    },
+    {
+      "path": "/node_modules/.vite/deps/three.js",
+      "sha256": "1590fefd9c5cd92fe0b405b2e0b6d3eab9cc9693b9ae416497e3cc680b88dabd",
+      "bytes": 63254
+    },
+    {
+      "path": "/src/companion-animation-data.js",
+      "sha256": "a6ff532d51ac2badaf43588dd3320c1587e4b91f446541d3c2b4ad32f38a0a7b",
+      "bytes": 23435
+    },
+    {
+      "path": "/src/joker-seated-data.js",
+      "sha256": "820956f6852f08d98ea7991269b120cf236025d4e65f494f361776163ce9a29a",
+      "bytes": 12137
+    },
+    {
+      "path": "/src/enemy-animation-data.js",
+      "sha256": "50ecd4579bb027afef8483782411f0bda2f814ff8834c7afb2b548c78869c664",
+      "bytes": 20767
+    },
+    {
+      "path": "/node_modules/.vite/deps/three_examples_jsm_utils_BufferGeometryUtils__js.js",
+      "sha256": "137f0de6c50d331f9afe7eca1bc2ba7f022162e44efbfa20dac2ef7b8da02c1c",
+      "bytes": 28500
+    },
+    {
+      "path": "/src/world-navigation.js",
+      "sha256": "92671b8c6a8adf6171f42ad26f378b011694d3d5130cbdceea80da59dcb0ff1e",
+      "bytes": 27361
+    },
+    {
+      "path": "/src/eden-scene.js",
+      "sha256": "7df4588279d119575dfd699a087ea27ed4e9b69ad55cb7467e0fbd413d31f2ec",
+      "bytes": 66884
+    },
+    {
+      "path": "/src/frontier-scene.js",
+      "sha256": "4e4dc505441eff96697400b93937f337e461adeb85d25a28bb30c8fbc4cf46ff",
+      "bytes": 66572
+    },
+    {
+      "path": "/src/frontier-enemies.js",
+      "sha256": "1130b03ca7eb4dec608ba17bd903649f2b98387bc563c459c960b0028f535cbf",
+      "bytes": 71117
+    },
+    {
+      "path": "/src/horizon-scene.js",
+      "sha256": "06cf09c9ddfb064184dbd135847951ce63797616ad532e37f640208ea736a6fb",
+      "bytes": 76662
+    },
+    {
+      "path": "/src/boss-animation-data.js",
+      "sha256": "275e5ab7f25192a72bd0e272f60a80f45ea9057cadf8ec18363e211148d42188",
+      "bytes": 19717
+    },
+    {
+      "path": "/src/horizon-enemies.js",
+      "sha256": "487d661d93b4f2ae974a966a0c7b15108da578f66da5354bdfa4158b143bb539",
+      "bytes": 44710
+    },
+    {
+      "path": "/src/frontier-vehicles.js",
+      "sha256": "1241ab87b6c37e306b9adb6320a4dca132b892f5790be1460d18907180f028a4",
+      "bytes": 50605
+    },
+    {
+      "path": "/src/story-data.js",
+      "sha256": "0fc19a87862970a89a95eccd610a131ed78df1be4543155338165d79ab104dc1",
+      "bytes": 49907
+    },
+    {
+      "path": "/src/assignment-data.js",
+      "sha256": "9239be7e44326d5222bedf853b1c68c5873baf5c77b8e27f60962b3ca1adf69d",
+      "bytes": 53195
+    },
+    {
+      "path": "/src/combat-medical.js",
+      "sha256": "28af9eb3eef6733d27f9f5f28cb04a4f3aa022dcb2b3ec1dff6b538b031b186c",
+      "bytes": 9821
+    },
+    {
+      "path": "/src/universe-ammo.js",
+      "sha256": "94214beeb75f5b889d04c8c372ed80f8ccb74c00167b7d5bf2d3d570041adcc6",
+      "bytes": 46637
+    },
+    {
+      "path": "/src/universe-weapon-profiles.js",
+      "sha256": "583e3da47406915a5417cd923a8126e74e7a9d76de23b001c89afd355c646559",
+      "bytes": 43901
+    },
+    {
+      "path": "/src/boss-phases.js",
+      "sha256": "c910c625b2bd05fb500d0f2c999636d275660847308fef88655c9d62f96fa8ac",
+      "bytes": 48058
+    },
+    {
+      "path": "/src/completion-chronicles-powers.js",
+      "sha256": "a0825accc7a54bce553ed68899af43761178488e347a140e936691b85eed7aef",
+      "bytes": 53007
+    },
+    {
+      "path": "/src/continuity-data.js",
+      "sha256": "f82d5d8adc516d988cc5cf56bedda740fac4ac00e3231ddb4aeca9410eb7e161",
+      "bytes": 90633
+    },
+    {
+      "path": "/node_modules/.vite/deps/chunk-IT3TP6RZ.js",
+      "sha256": "10be7c5bae47e8ad88458c884bc6607484fabee72c2b3e7dd47a4f67c674ec8a",
+      "bytes": 1618711
+    },
+    {
+      "path": "/src/main.js",
+      "sha256": "0cb855d7d7e77ff5657fdc5f6d42533b252184b33b25c34a3047d93529801d39",
+      "bytes": 606828
+    },
+    {
+      "path": "/src/campaign-talents.css",
+      "sha256": "1b8a37e6cd4be9635aae5646c4097fa46f4b4f213b6a6dad55ad03d8c6ec2696",
+      "bytes": 1121
+    },
+    {
+      "path": "/src/gamepad-controls.css",
+      "sha256": "e5fbaa0e22fd72c085b0aca82aa87ea5e5635c003a58b72d0136ef0feacfbfdb",
+      "bytes": 2576
+    },
+    {
+      "path": "/src/priority-ui.css",
+      "sha256": "966cc8efee90ac4f5c9cc126b3741c179ef0e64df87966645aabd80b8146c853",
+      "bytes": 1964
+    },
+    {
+      "path": "/src/tactical-ui.js",
+      "sha256": "13543dc9278379de18a28c00be8331356a2527f5b930249ccc7cdb15878a640a",
+      "bytes": 12549
+    },
+    {
+      "path": "/src/mission-progress-ui.js",
+      "sha256": "45b6f6cc8a7e4a980d3d12fd816297e3dfa3778689e9b92ce3cbf9b436568455",
+      "bytes": 9633
+    },
+    {
+      "path": "/src/campaign-talents-ui.js",
+      "sha256": "86852b0bffa3b929d02658ed3e270c42e3a79addbfea28f5bff6ad26edb0ac5c",
+      "bytes": 15541
+    },
+    {
+      "path": "/src/simulation-clock.js",
+      "sha256": "97cd52a53060fdc90c7c6f387a6ea14e1e2e9bcfc42e1118d9bd61503fffacbc",
+      "bytes": 7763
+    },
+    {
+      "path": "/src/campaign-talents.js",
+      "sha256": "b538297e8713b4f8b0900cf47a4f8cdbdef263f47f17e2efd9aa32bc8f99e2d9",
+      "bytes": 74033
+    },
+    {
+      "path": "/src/mission-progress.js",
+      "sha256": "5b909dbe564c363b2f77567f5f54a300240f8a6bcea95c101f548f7c92dc10f8",
+      "bytes": 119441
+    },
+    {
+      "path": "/src/gamepad-controls.js",
+      "sha256": "f28da891b6f5487e2ac59f7635664349e367043b3774f0736bbca03132888014",
+      "bytes": 139865
+    },
+    {
+      "path": "/src/completion-world.js",
+      "sha256": "4ba29f0536f4b1b6e9997153b2076d13af6b3f3662cd1b537c564c8c3d0e5f20",
+      "bytes": 30950
+    },
+    {
+      "path": "/src/completion-accessibility.js",
+      "sha256": "0404b2466077f1fb19b679c354439479bf2ca05b121c5cb21c4ad79a68aa6cdc",
+      "bytes": 61924
+    },
+    {
+      "path": "/src/completion-narrative-ui.js",
+      "sha256": "947c4ce3438c7dcbc2474b3d281c136382d5a6d9db2d7dbb048cf7d8cbe36630",
+      "bytes": 11566
+    },
+    {
+      "path": "/src/style.css",
+      "sha256": "8aa1a6a107d711f0b5ae389ffed5b72b867d64aaeee6c515596e43a20a66d0dc",
+      "bytes": 28622
+    },
+    {
+      "path": "/src/completion-persistence-campaign.js",
+      "sha256": "71d54a104730704974a9cd9bc293d6de7fe4412f659ca66b5ca0377e8c344152",
+      "bytes": 14006
+    },
+    {
+      "path": "/src/combat-summons.js",
+      "sha256": "0231623c86c291779e0c13736a7aee368af52b68a1cfb1bf76a68aa6915eeca3",
+      "bytes": 86256
+    },
+    {
+      "path": "/src/frontier-ui.css",
+      "sha256": "db769477fc2bdda4104c53c20d0ec2842e9ae3b196260366cdc7d186775d2733",
+      "bytes": 852
+    },
+    {
+      "path": "/src/horizon-ui.css",
+      "sha256": "1d28196905bf50047fe6b91657a139120dbfd3e415e897b9b7012d2319a957cc",
+      "bytes": 2105
+    },
+    {
+      "path": "/src/horizon-archive-ui.js",
+      "sha256": "b62fbc25e860823aa5318718efd99c5a52332753b882674bafab6be6e28284db",
+      "bytes": 13311
+    },
+    {
+      "path": "/src/frontier-ui.js",
+      "sha256": "f4132aedc281f207afbe80ab3c34f966f861ed18b3bff481da45db3f2840d6f7",
+      "bytes": 4912
+    },
+    {
+      "path": "/src/frontier-characters.js",
+      "sha256": "4eafd4e6f7c239db4e5008a14cf45499c565069078524a41ee7c869ac446d34d",
+      "bytes": 65152
+    },
+    {
+      "path": "/src/horizon-characters.js",
+      "sha256": "1564992e3931f59c94f344da482ce82010e762188dec7b119ff9b1802a15cb30",
+      "bytes": 55783
+    },
+    {
+      "path": "/src/local-map.css",
+      "sha256": "3e03742616f06bb87a941700966abe23d4227373f9153e6cf612f19772cc3f93",
+      "bytes": 3262
+    },
+    {
+      "path": "/src/horizon-ui.js",
+      "sha256": "0c4bb1fa99d7d4b5fa87b637a4ea8dc23382d489d97dc90670ebe78ffe550610",
+      "bytes": 9460
+    },
+    {
+      "path": "/src/loadout-ui.css",
+      "sha256": "9029a3ebfce62f90222478a40a437903c087216854dc85c1de8f86a0c8748dc6",
+      "bytes": 8627
+    },
+    {
+      "path": "/src/customization-ui.css",
+      "sha256": "0eb6448e9fa69a92a6a9e0024b1ccae7b2c9ed3b55af70a0b9d1f7acbba03207",
+      "bytes": 20966
+    },
+    {
+      "path": "/src/operations-ui.css",
+      "sha256": "0b7e51f63bd9dc4fbf476ee006d8d222aebf528993537e33aee58b9f41cf3465",
+      "bytes": 4424
+    },
+    {
+      "path": "/src/loadout-ui.js",
+      "sha256": "f78ce82399d971db206e71123f1cef070fc4b6884e143a77c431ce99e2085d20",
+      "bytes": 95385
+    },
+    {
+      "path": "/src/customization.js",
+      "sha256": "7f130920a49f574eee20575f1ee21cfce5df8e14376454280a711c35a9be0bf1",
+      "bytes": 62409
+    },
+    {
+      "path": "/src/customization-ui.js",
+      "sha256": "1bd385b05f0970ba01ad40900c040c636789eafbea2a7be0b918279ed3c81d29",
+      "bytes": 185046
+    },
+    {
+      "path": "/src/loadout.js",
+      "sha256": "e5f90edc23b7f446ac74efcb0c65cd427efdc86387228aa79051e7b865ce048f",
+      "bytes": 152093
+    },
+    {
+      "path": "/src/operations.js",
+      "sha256": "8371c9025024b21516f7da4888375e0ef4dddf53380411bbf708d06b608210bd",
+      "bytes": 82987
+    },
+    {
+      "path": "/src/operations-ui.js",
+      "sha256": "ab7947218d187f40f4b5467bd852f794389b88216eda54d2a9ff92899a5ec9e9",
+      "bytes": 23947
+    },
+    {
+      "path": "/src/level-map-render.js",
+      "sha256": "d4ce6d8b1567e9b0ac4da4f8522695a70eda3d4656b28a3e2de195438eb4f211",
+      "bytes": 18994
+    },
+    {
+      "path": "/src/level-layout-data.js",
+      "sha256": "34e2cb3cbaff0583859b74d40ada9ba80317a1dfd7598252f531c12df8d15805",
+      "bytes": 54158
+    },
+    {
+      "path": "/src/commander.js",
+      "sha256": "86994091b9cb5c5fa6ceda7a1978ddd62d5ba943f1751257c310992933bf3b4e",
+      "bytes": 6254
+    },
+    {
+      "path": "/src/local-map.js",
+      "sha256": "be2e6b4ddcbbd9db1e104f4d6576bbbb5050c8093dea4a31407e989dc136ac54",
+      "bytes": 23048
+    },
+    {
+      "path": "/src/world-data.js",
+      "sha256": "bded51109941823265c0c5cf561a8f504b9185a08198b8647c0adf2f78f39cfc",
+      "bytes": 44196
+    },
+    {
+      "path": "/src/story.js",
+      "sha256": "a7f5f4da0efbf1e28680f6238ec1509e51bd7ae6fca24db80d9365b9886702cb",
+      "bytes": 59595
+    },
+    {
+      "path": "/src/audio.js",
+      "sha256": "c6fadd3bbd833321d0b6b00661900bb8ea0a985acc4033ded5453f308710666b",
+      "bytes": 77478
+    },
+    {
+      "path": "/src/world.js",
+      "sha256": "0a87bde26327c6ea5c86791c78a2b58e5d8531eed111091526cd289c6cd1b2b8",
+      "bytes": 763583
+    },
+    {
+      "path": "/node_modules/.vite/deps/three.js",
+      "sha256": "1590fefd9c5cd92fe0b405b2e0b6d3eab9cc9693b9ae416497e3cc680b88dabd",
+      "bytes": 63254
+    },
+    {
+      "path": "/node_modules/.vite/deps/three_examples_jsm_geometries_RoundedBoxGeometry__js.js",
+      "sha256": "b08c491bdfafb73e6aef5bfd91cb061b6a4cb067fe91fc5e4d16d15ed9e5934e",
+      "bytes": 5261
+    },
+    {
+      "path": "/node_modules/.vite/deps/three_examples_jsm_utils_BufferGeometryUtils__js.js",
+      "sha256": "137f0de6c50d331f9afe7eca1bc2ba7f022162e44efbfa20dac2ef7b8da02c1c",
+      "bytes": 28500
+    },
+    {
+      "path": "/src/assignments.js",
+      "sha256": "24a01aa9ecf8a8c12e1a6b7c297ef44426bb07b8ac39b3f71350f734dc6dfe0c",
+      "bytes": 48175
+    },
+    {
+      "path": "/node_modules/.vite/deps/chunk-IT3TP6RZ.js",
+      "sha256": "10be7c5bae47e8ad88458c884bc6607484fabee72c2b3e7dd47a4f67c674ec8a",
+      "bytes": 1618711
+    },
+    {
+      "path": "/src/save-slots.js",
+      "sha256": "6537c387766a61e968aa8aa0e73ccc7bb1dabc1c6f35870480b7efee99a46b00",
+      "bytes": 32433
+    },
+    {
+      "path": "/src/combat.js",
+      "sha256": "a4d7fc93751a2b7265745832d985c7ca5cc0087288e51fc00bede2b56ce57440",
+      "bytes": 455121
+    },
+    {
+      "path": "/src/game-data.js",
+      "sha256": "e046e9197ee900de70a413deb2610b1bff164253be4b5fcd0571a8c96f63ff58",
+      "bytes": 86122
+    },
+    {
+      "path": "/src/completion-accessibility.css",
+      "sha256": "1d9a829bbcd9cbfbd945683b5605d5657cf57873913fe98134eb7878abc8fd6b",
+      "bytes": 13022
+    },
+    {
+      "path": "/src/state.js",
+      "sha256": "2aa34457a57063c5468818e0b1c531864a91cc23f94adc5bc147d5a66627a0a6",
+      "bytes": 134057
+    },
+    {
+      "path": "/src/horizon-fleet.js",
+      "sha256": "81982e9bbf4abd50682d9060c12bcaefeedac07550873fcc736035084ed8e4a0",
+      "bytes": 57778
+    },
+    {
+      "path": "/src/completion-narrative.js",
+      "sha256": "ac7e6ca9f1f339c069f36fb4c22657a398bf28527ccf9e47fe556a5f860539c2",
+      "bytes": 40979
+    },
+    {
+      "path": "/src/horizon-fauna.js",
+      "sha256": "35b09c4d5a676242380d6b0948efec028b2620644e7e0d87400b50bdc1abf7c8",
+      "bytes": 53483
+    },
+    {
+      "path": "/src/character-data.js",
+      "sha256": "2292fe967fab2f4c37839ba6b15be69c765c2d80e521863f1303ceeecf752db0",
+      "bytes": 34929
+    },
+    {
+      "path": "/src/horizon-layout-data.js",
+      "sha256": "eb0e3fd5b1f387fd7bd2ad2623b838bdb6de3509ad5be1322ebe20bf28550267",
+      "bytes": 32903
+    },
+    {
+      "path": "/src/story-data.js",
+      "sha256": "0fc19a87862970a89a95eccd610a131ed78df1be4543155338165d79ab104dc1",
+      "bytes": 49907
+    },
+    {
+      "path": "/src/customization-render.js",
+      "sha256": "d4c0334050688383bbf4b845d1e6210b37cd47ca2b89186d7e5fb71e64d7bc98",
+      "bytes": 35251
+    },
+    {
+      "path": "/src/tactical-positions.js",
+      "sha256": "e7df6e4ce7e3155e63d996f89ab9df031ea58410c22b59fd00830504905ed720",
+      "bytes": 57221
+    },
+    {
+      "path": "/src/tool-data.js",
+      "sha256": "83e58afc89f3f5c3dca25fcb9306e26c8fd2b74bbbf2c7e7266f748109f7b944",
+      "bytes": 9871
+    },
+    {
+      "path": "/src/operation-data.js",
+      "sha256": "80d869d47d54a132eec72a0416473e90b4dcf013196a38ec2cc178fb7c599dd0",
+      "bytes": 113436
+    },
+    {
+      "path": "/src/enemy-animation-data.js",
+      "sha256": "50ecd4579bb027afef8483782411f0bda2f814ff8834c7afb2b548c78869c664",
+      "bytes": 20767
+    },
+    {
+      "path": "/src/companion-animation-data.js",
+      "sha256": "a6ff532d51ac2badaf43588dd3320c1587e4b91f446541d3c2b4ad32f38a0a7b",
+      "bytes": 23435
+    },
+    {
+      "path": "/src/world-navigation.js",
+      "sha256": "92671b8c6a8adf6171f42ad26f378b011694d3d5130cbdceea80da59dcb0ff1e",
+      "bytes": 27361
+    },
+    {
+      "path": "/src/frontier-layout-data.js",
+      "sha256": "799b378342f85a03f78acc911558f4da6a91f39af776a5c1897c40bb4b2b46eb",
+      "bytes": 37766
+    },
+    {
+      "path": "/src/joker-seated-data.js",
+      "sha256": "820956f6852f08d98ea7991269b120cf236025d4e65f494f361776163ce9a29a",
+      "bytes": 12137
+    },
+    {
+      "path": "/src/eden-scene.js",
+      "sha256": "7df4588279d119575dfd699a087ea27ed4e9b69ad55cb7467e0fbd413d31f2ec",
+      "bytes": 66884
+    },
+    {
+      "path": "/src/boss-animation-data.js",
+      "sha256": "275e5ab7f25192a72bd0e272f60a80f45ea9057cadf8ec18363e211148d42188",
+      "bytes": 19717
+    },
+    {
+      "path": "/src/horizon-scene.js",
+      "sha256": "06cf09c9ddfb064184dbd135847951ce63797616ad532e37f640208ea736a6fb",
+      "bytes": 76662
+    },
+    {
+      "path": "/src/frontier-scene.js",
+      "sha256": "4e4dc505441eff96697400b93937f337e461adeb85d25a28bb30c8fbc4cf46ff",
+      "bytes": 66572
+    },
+    {
+      "path": "/src/horizon-enemies.js",
+      "sha256": "487d661d93b4f2ae974a966a0c7b15108da578f66da5354bdfa4158b143bb539",
+      "bytes": 44710
+    },
+    {
+      "path": "/src/frontier-enemies.js",
+      "sha256": "1130b03ca7eb4dec608ba17bd903649f2b98387bc563c459c960b0028f535cbf",
+      "bytes": 71117
+    },
+    {
+      "path": "/src/frontier-vehicles.js",
+      "sha256": "1241ab87b6c37e306b9adb6320a4dca132b892f5790be1460d18907180f028a4",
+      "bytes": 50605
+    },
+    {
+      "path": "/src/assignment-data.js",
+      "sha256": "9239be7e44326d5222bedf853b1c68c5873baf5c77b8e27f60962b3ca1adf69d",
+      "bytes": 53195
+    },
+    {
+      "path": "/src/universe-weapon-profiles.js",
+      "sha256": "583e3da47406915a5417cd923a8126e74e7a9d76de23b001c89afd355c646559",
+      "bytes": 43901
+    },
+    {
+      "path": "/src/combat-medical.js",
+      "sha256": "28af9eb3eef6733d27f9f5f28cb04a4f3aa022dcb2b3ec1dff6b538b031b186c",
+      "bytes": 9821
+    },
+    {
+      "path": "/src/boss-phases.js",
+      "sha256": "c910c625b2bd05fb500d0f2c999636d275660847308fef88655c9d62f96fa8ac",
+      "bytes": 48058
+    },
+    {
+      "path": "/src/completion-chronicles-powers.js",
+      "sha256": "a0825accc7a54bce553ed68899af43761178488e347a140e936691b85eed7aef",
+      "bytes": 53007
+    },
+    {
+      "path": "/src/continuity-data.js",
+      "sha256": "f82d5d8adc516d988cc5cf56bedda740fac4ac00e3231ddb4aeca9410eb7e161",
+      "bytes": 90633
+    },
+    {
+      "path": "/src/universe-ammo.js",
+      "sha256": "94214beeb75f5b889d04c8c372ed80f8ccb74c00167b7d5bf2d3d570041adcc6",
+      "bytes": 46637
+    },
+    {
+      "path": "/src/main.js",
+      "sha256": "0cb855d7d7e77ff5657fdc5f6d42533b252184b33b25c34a3047d93529801d39",
+      "bytes": 606828
+    },
+    {
+      "path": "/src/campaign-talents.css",
+      "sha256": "1b8a37e6cd4be9635aae5646c4097fa46f4b4f213b6a6dad55ad03d8c6ec2696",
+      "bytes": 1121
+    },
+    {
+      "path": "/src/gamepad-controls.css",
+      "sha256": "e5fbaa0e22fd72c085b0aca82aa87ea5e5635c003a58b72d0136ef0feacfbfdb",
+      "bytes": 2576
+    },
+    {
+      "path": "/src/tactical-ui.js",
+      "sha256": "13543dc9278379de18a28c00be8331356a2527f5b930249ccc7cdb15878a640a",
+      "bytes": 12549
+    },
+    {
+      "path": "/src/priority-ui.css",
+      "sha256": "966cc8efee90ac4f5c9cc126b3741c179ef0e64df87966645aabd80b8146c853",
+      "bytes": 1964
+    },
+    {
+      "path": "/src/gamepad-controls.js",
+      "sha256": "f28da891b6f5487e2ac59f7635664349e367043b3774f0736bbca03132888014",
+      "bytes": 139865
+    },
+    {
+      "path": "/src/mission-progress.js",
+      "sha256": "5b909dbe564c363b2f77567f5f54a300240f8a6bcea95c101f548f7c92dc10f8",
+      "bytes": 119441
+    },
+    {
+      "path": "/src/mission-progress-ui.js",
+      "sha256": "45b6f6cc8a7e4a980d3d12fd816297e3dfa3778689e9b92ce3cbf9b436568455",
+      "bytes": 9633
+    },
+    {
+      "path": "/src/campaign-talents-ui.js",
+      "sha256": "86852b0bffa3b929d02658ed3e270c42e3a79addbfea28f5bff6ad26edb0ac5c",
+      "bytes": 15541
+    },
+    {
+      "path": "/src/simulation-clock.js",
+      "sha256": "97cd52a53060fdc90c7c6f387a6ea14e1e2e9bcfc42e1118d9bd61503fffacbc",
+      "bytes": 7763
+    },
+    {
+      "path": "/src/campaign-talents.js",
+      "sha256": "b538297e8713b4f8b0900cf47a4f8cdbdef263f47f17e2efd9aa32bc8f99e2d9",
+      "bytes": 74033
+    },
+    {
+      "path": "/src/completion-persistence-campaign.js",
+      "sha256": "71d54a104730704974a9cd9bc293d6de7fe4412f659ca66b5ca0377e8c344152",
+      "bytes": 14006
+    },
+    {
+      "path": "/src/completion-accessibility.js",
+      "sha256": "0404b2466077f1fb19b679c354439479bf2ca05b121c5cb21c4ad79a68aa6cdc",
+      "bytes": 61924
+    },
+    {
+      "path": "/src/completion-world.js",
+      "sha256": "4ba29f0536f4b1b6e9997153b2076d13af6b3f3662cd1b537c564c8c3d0e5f20",
+      "bytes": 30950
+    },
+    {
+      "path": "/src/completion-narrative-ui.js",
+      "sha256": "947c4ce3438c7dcbc2474b3d281c136382d5a6d9db2d7dbb048cf7d8cbe36630",
+      "bytes": 11566
+    },
+    {
+      "path": "/src/style.css",
+      "sha256": "8aa1a6a107d711f0b5ae389ffed5b72b867d64aaeee6c515596e43a20a66d0dc",
+      "bytes": 28622
+    },
+    {
+      "path": "/src/combat-summons.js",
+      "sha256": "0231623c86c291779e0c13736a7aee368af52b68a1cfb1bf76a68aa6915eeca3",
+      "bytes": 86256
+    },
+    {
+      "path": "/src/frontier-ui.css",
+      "sha256": "db769477fc2bdda4104c53c20d0ec2842e9ae3b196260366cdc7d186775d2733",
+      "bytes": 852
+    },
+    {
+      "path": "/src/horizon-ui.css",
+      "sha256": "1d28196905bf50047fe6b91657a139120dbfd3e415e897b9b7012d2319a957cc",
+      "bytes": 2105
+    },
+    {
+      "path": "/src/horizon-archive-ui.js",
+      "sha256": "b62fbc25e860823aa5318718efd99c5a52332753b882674bafab6be6e28284db",
+      "bytes": 13311
+    },
+    {
+      "path": "/src/frontier-ui.js",
+      "sha256": "f4132aedc281f207afbe80ab3c34f966f861ed18b3bff481da45db3f2840d6f7",
+      "bytes": 4912
+    },
+    {
+      "path": "/src/horizon-ui.js",
+      "sha256": "0c4bb1fa99d7d4b5fa87b637a4ea8dc23382d489d97dc90670ebe78ffe550610",
+      "bytes": 9460
+    },
+    {
+      "path": "/src/loadout-ui.css",
+      "sha256": "9029a3ebfce62f90222478a40a437903c087216854dc85c1de8f86a0c8748dc6",
+      "bytes": 8627
+    },
+    {
+      "path": "/src/horizon-characters.js",
+      "sha256": "1564992e3931f59c94f344da482ce82010e762188dec7b119ff9b1802a15cb30",
+      "bytes": 55783
+    },
+    {
+      "path": "/src/customization-ui.css",
+      "sha256": "0eb6448e9fa69a92a6a9e0024b1ccae7b2c9ed3b55af70a0b9d1f7acbba03207",
+      "bytes": 20966
+    },
+    {
+      "path": "/src/frontier-characters.js",
+      "sha256": "4eafd4e6f7c239db4e5008a14cf45499c565069078524a41ee7c869ac446d34d",
+      "bytes": 65152
+    },
+    {
+      "path": "/src/operations-ui.css",
+      "sha256": "0b7e51f63bd9dc4fbf476ee006d8d222aebf528993537e33aee58b9f41cf3465",
+      "bytes": 4424
+    },
+    {
+      "path": "/src/local-map.css",
+      "sha256": "3e03742616f06bb87a941700966abe23d4227373f9153e6cf612f19772cc3f93",
+      "bytes": 3262
+    },
+    {
+      "path": "/src/customization.js",
+      "sha256": "7f130920a49f574eee20575f1ee21cfce5df8e14376454280a711c35a9be0bf1",
+      "bytes": 62409
+    },
+    {
+      "path": "/src/loadout-ui.js",
+      "sha256": "f78ce82399d971db206e71123f1cef070fc4b6884e143a77c431ce99e2085d20",
+      "bytes": 95385
+    },
+    {
+      "path": "/src/customization-ui.js",
+      "sha256": "1bd385b05f0970ba01ad40900c040c636789eafbea2a7be0b918279ed3c81d29",
+      "bytes": 185046
+    },
+    {
+      "path": "/src/local-map.js",
+      "sha256": "be2e6b4ddcbbd9db1e104f4d6576bbbb5050c8093dea4a31407e989dc136ac54",
+      "bytes": 23048
+    },
+    {
+      "path": "/src/loadout.js",
+      "sha256": "e5f90edc23b7f446ac74efcb0c65cd427efdc86387228aa79051e7b865ce048f",
+      "bytes": 152093
+    },
+    {
+      "path": "/src/operations-ui.js",
+      "sha256": "ab7947218d187f40f4b5467bd852f794389b88216eda54d2a9ff92899a5ec9e9",
+      "bytes": 23947
+    },
+    {
+      "path": "/src/level-layout-data.js",
+      "sha256": "34e2cb3cbaff0583859b74d40ada9ba80317a1dfd7598252f531c12df8d15805",
+      "bytes": 54158
+    },
+    {
+      "path": "/src/operations.js",
+      "sha256": "8371c9025024b21516f7da4888375e0ef4dddf53380411bbf708d06b608210bd",
+      "bytes": 82987
+    },
+    {
+      "path": "/src/level-map-render.js",
+      "sha256": "d4ce6d8b1567e9b0ac4da4f8522695a70eda3d4656b28a3e2de195438eb4f211",
+      "bytes": 18994
+    },
+    {
+      "path": "/src/commander.js",
+      "sha256": "86994091b9cb5c5fa6ceda7a1978ddd62d5ba943f1751257c310992933bf3b4e",
+      "bytes": 6254
+    },
+    {
+      "path": "/src/audio.js",
+      "sha256": "c6fadd3bbd833321d0b6b00661900bb8ea0a985acc4033ded5453f308710666b",
+      "bytes": 77478
+    },
+    {
+      "path": "/src/story.js",
+      "sha256": "a7f5f4da0efbf1e28680f6238ec1509e51bd7ae6fca24db80d9365b9886702cb",
+      "bytes": 59595
+    },
+    {
+      "path": "/src/save-slots.js",
+      "sha256": "6537c387766a61e968aa8aa0e73ccc7bb1dabc1c6f35870480b7efee99a46b00",
+      "bytes": 32433
+    },
+    {
+      "path": "/src/assignments.js",
+      "sha256": "24a01aa9ecf8a8c12e1a6b7c297ef44426bb07b8ac39b3f71350f734dc6dfe0c",
+      "bytes": 48175
+    },
+    {
+      "path": "/src/world-data.js",
+      "sha256": "bded51109941823265c0c5cf561a8f504b9185a08198b8647c0adf2f78f39cfc",
+      "bytes": 44196
+    },
+    {
+      "path": "/src/world.js",
+      "sha256": "0a87bde26327c6ea5c86791c78a2b58e5d8531eed111091526cd289c6cd1b2b8",
+      "bytes": 763583
+    },
+    {
+      "path": "/node_modules/.vite/deps/three.js",
+      "sha256": "1590fefd9c5cd92fe0b405b2e0b6d3eab9cc9693b9ae416497e3cc680b88dabd",
+      "bytes": 63254
+    },
+    {
+      "path": "/node_modules/.vite/deps/three_examples_jsm_geometries_RoundedBoxGeometry__js.js",
+      "sha256": "b08c491bdfafb73e6aef5bfd91cb061b6a4cb067fe91fc5e4d16d15ed9e5934e",
+      "bytes": 5261
+    },
+    {
+      "path": "/node_modules/.vite/deps/three_examples_jsm_utils_BufferGeometryUtils__js.js",
+      "sha256": "137f0de6c50d331f9afe7eca1bc2ba7f022162e44efbfa20dac2ef7b8da02c1c",
+      "bytes": 28500
+    },
+    {
+      "path": "/node_modules/.vite/deps/chunk-IT3TP6RZ.js",
+      "sha256": "10be7c5bae47e8ad88458c884bc6607484fabee72c2b3e7dd47a4f67c674ec8a",
+      "bytes": 1618711
+    },
+    {
+      "path": "/src/combat.js",
+      "sha256": "a4d7fc93751a2b7265745832d985c7ca5cc0087288e51fc00bede2b56ce57440",
+      "bytes": 455121
+    },
+    {
+      "path": "/src/game-data.js",
+      "sha256": "e046e9197ee900de70a413deb2610b1bff164253be4b5fcd0571a8c96f63ff58",
+      "bytes": 86122
+    },
+    {
+      "path": "/src/horizon-fleet.js",
+      "sha256": "81982e9bbf4abd50682d9060c12bcaefeedac07550873fcc736035084ed8e4a0",
+      "bytes": 57778
+    },
+    {
+      "path": "/src/horizon-fauna.js",
+      "sha256": "35b09c4d5a676242380d6b0948efec028b2620644e7e0d87400b50bdc1abf7c8",
+      "bytes": 53483
+    },
+    {
+      "path": "/src/completion-narrative.js",
+      "sha256": "ac7e6ca9f1f339c069f36fb4c22657a398bf28527ccf9e47fe556a5f860539c2",
+      "bytes": 40979
+    },
+    {
+      "path": "/src/completion-accessibility.css",
+      "sha256": "1d9a829bbcd9cbfbd945683b5605d5657cf57873913fe98134eb7878abc8fd6b",
+      "bytes": 13022
+    },
+    {
+      "path": "/src/state.js",
+      "sha256": "2aa34457a57063c5468818e0b1c531864a91cc23f94adc5bc147d5a66627a0a6",
+      "bytes": 134057
+    },
+    {
+      "path": "/src/character-data.js",
+      "sha256": "2292fe967fab2f4c37839ba6b15be69c765c2d80e521863f1303ceeecf752db0",
+      "bytes": 34929
+    },
+    {
+      "path": "/src/tool-data.js",
+      "sha256": "83e58afc89f3f5c3dca25fcb9306e26c8fd2b74bbbf2c7e7266f748109f7b944",
+      "bytes": 9871
+    },
+    {
+      "path": "/src/frontier-layout-data.js",
+      "sha256": "799b378342f85a03f78acc911558f4da6a91f39af776a5c1897c40bb4b2b46eb",
+      "bytes": 37766
+    },
+    {
+      "path": "/src/horizon-layout-data.js",
+      "sha256": "eb0e3fd5b1f387fd7bd2ad2623b838bdb6de3509ad5be1322ebe20bf28550267",
+      "bytes": 32903
+    },
+    {
+      "path": "/src/story-data.js",
+      "sha256": "0fc19a87862970a89a95eccd610a131ed78df1be4543155338165d79ab104dc1",
+      "bytes": 49907
+    },
+    {
+      "path": "/src/operation-data.js",
+      "sha256": "80d869d47d54a132eec72a0416473e90b4dcf013196a38ec2cc178fb7c599dd0",
+      "bytes": 113436
+    },
+    {
+      "path": "/src/customization-render.js",
+      "sha256": "d4c0334050688383bbf4b845d1e6210b37cd47ca2b89186d7e5fb71e64d7bc98",
+      "bytes": 35251
+    },
+    {
+      "path": "/src/assignment-data.js",
+      "sha256": "9239be7e44326d5222bedf853b1c68c5873baf5c77b8e27f60962b3ca1adf69d",
+      "bytes": 53195
+    },
+    {
+      "path": "/src/companion-animation-data.js",
+      "sha256": "a6ff532d51ac2badaf43588dd3320c1587e4b91f446541d3c2b4ad32f38a0a7b",
+      "bytes": 23435
+    },
+    {
+      "path": "/src/enemy-animation-data.js",
+      "sha256": "50ecd4579bb027afef8483782411f0bda2f814ff8834c7afb2b548c78869c664",
+      "bytes": 20767
+    },
+    {
+      "path": "/src/tactical-positions.js",
+      "sha256": "e7df6e4ce7e3155e63d996f89ab9df031ea58410c22b59fd00830504905ed720",
+      "bytes": 57221
+    },
+    {
+      "path": "/src/joker-seated-data.js",
+      "sha256": "820956f6852f08d98ea7991269b120cf236025d4e65f494f361776163ce9a29a",
+      "bytes": 12137
+    },
+    {
+      "path": "/src/world-navigation.js",
+      "sha256": "92671b8c6a8adf6171f42ad26f378b011694d3d5130cbdceea80da59dcb0ff1e",
+      "bytes": 27361
+    },
+    {
+      "path": "/src/frontier-scene.js",
+      "sha256": "4e4dc505441eff96697400b93937f337e461adeb85d25a28bb30c8fbc4cf46ff",
+      "bytes": 66572
+    },
+    {
+      "path": "/src/boss-animation-data.js",
+      "sha256": "275e5ab7f25192a72bd0e272f60a80f45ea9057cadf8ec18363e211148d42188",
+      "bytes": 19717
+    },
+    {
+      "path": "/src/horizon-scene.js",
+      "sha256": "06cf09c9ddfb064184dbd135847951ce63797616ad532e37f640208ea736a6fb",
+      "bytes": 76662
+    },
+    {
+      "path": "/src/frontier-enemies.js",
+      "sha256": "1130b03ca7eb4dec608ba17bd903649f2b98387bc563c459c960b0028f535cbf",
+      "bytes": 71117
+    },
+    {
+      "path": "/src/horizon-enemies.js",
+      "sha256": "487d661d93b4f2ae974a966a0c7b15108da578f66da5354bdfa4158b143bb539",
+      "bytes": 44710
+    },
+    {
+      "path": "/src/eden-scene.js",
+      "sha256": "7df4588279d119575dfd699a087ea27ed4e9b69ad55cb7467e0fbd413d31f2ec",
+      "bytes": 66884
+    },
+    {
+      "path": "/src/universe-weapon-profiles.js",
+      "sha256": "583e3da47406915a5417cd923a8126e74e7a9d76de23b001c89afd355c646559",
+      "bytes": 43901
+    },
+    {
+      "path": "/src/frontier-vehicles.js",
+      "sha256": "1241ab87b6c37e306b9adb6320a4dca132b892f5790be1460d18907180f028a4",
+      "bytes": 50605
+    },
+    {
+      "path": "/src/universe-ammo.js",
+      "sha256": "94214beeb75f5b889d04c8c372ed80f8ccb74c00167b7d5bf2d3d570041adcc6",
+      "bytes": 46637
+    },
+    {
+      "path": "/src/combat-medical.js",
+      "sha256": "28af9eb3eef6733d27f9f5f28cb04a4f3aa022dcb2b3ec1dff6b538b031b186c",
+      "bytes": 9821
+    },
+    {
+      "path": "/src/boss-phases.js",
+      "sha256": "c910c625b2bd05fb500d0f2c999636d275660847308fef88655c9d62f96fa8ac",
+      "bytes": 48058
+    },
+    {
+      "path": "/src/completion-chronicles-powers.js",
+      "sha256": "a0825accc7a54bce553ed68899af43761178488e347a140e936691b85eed7aef",
+      "bytes": 53007
+    },
+    {
+      "path": "/src/continuity-data.js",
+      "sha256": "f82d5d8adc516d988cc5cf56bedda740fac4ac00e3231ddb4aeca9410eb7e161",
+      "bytes": 90633
+    }
+  ],
+  "distFiles": {},
+  "qaHarnessAvailable": false
+}

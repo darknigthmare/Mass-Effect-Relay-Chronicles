@@ -168,3 +168,17 @@ test('Citadel squad changes and Normandy revisits never duplicate already recrui
   assert.equal(count('tali'), 0);
   assert.equal(world.getPOIs().length, 7);
 });
+
+for (const [survivor, lost] of [['kaidan', 'ashley'], ['ashley', 'kaidan']]) {
+  test(`the recorded Virmire loss never creates a body or conversation across later scenes: ${lost}`, () => {
+    const context = { recruited: [...companions, 'jenkins'], lost: ['jenkins', lost], completed: ['eden-prime', 'citadel', 'therum', 'feros', 'virmire'], flags: { jenkinsLost: true }, visitedZones: ['normandy', 'eden-prime', 'citadel', 'therum', 'feros', 'virmire'] };
+    const world = makeWorld(context);
+    for (const zone of ['normandy', 'citadel', 'noveria', 'ilos', 'normandy']) {
+      world.zone = WORLD_ZONES[zone]; world.zoneId = zone;
+      world.setParty(['shepard', survivor, 'tali']);
+      assert.ok(![...world.actors, ...world.ambientActors].some(actor => [lost, 'jenkins'].includes(actor.key)), `${zone}: no narrative resurrection`);
+      assert.ok(!world.getConversationPOIs().some(poi => [lost, 'jenkins'].includes(poi.conversationId)), `${zone}: no conversation for a lost person`);
+      assert.equal(world.actors.filter(actor => actor.key === survivor).length, 1);
+    }
+  });
+}

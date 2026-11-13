@@ -15,12 +15,13 @@ const ACTION_SUFFIXES = {
   ME2: { PULL: 'pull', THROW: 'throw', WARP: 'warp', SINGULARITY: 'singularity', SHOCKWAVE: 'shockwave', SLAM: 'slam',
     REAVE: 'reave', DOMINATE: 'dominate', BARRIER: 'barrier', OVERLOAD: 'overload', INCINERATE: 'incinerate',
     CRYO: 'cryoBlast', HACK: 'hack', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis',
-    DRONE: 'combatDrone', 'AMMO-INCENDIARY': 'ammoIncendiary', 'AMMO-CRYO': 'ammoCryo', 'AMMO-DISRUPTOR': 'ammoDisruptor',
+    DRONE: 'combatDrone', CHARGE: 'bioticCharge', TACTICAL: 'tacticalCloak', 'TECH-ARMOR': 'techArmor', 'AMMO-INCENDIARY': 'ammoIncendiary', 'AMMO-CRYO': 'ammoCryo', 'AMMO-DISRUPTOR': 'ammoDisruptor',
     'AMMO-AP': 'ammoArmorPiercing', 'AMMO-WARP': 'ammoWarp', 'AMMO-SHREDDER': 'ammoShredder' },
   ME3: { PULL: 'pull', THROW: 'throw', WARP: 'warp', SINGULARITY: 'singularity', SHOCKWAVE: 'shockwave', SLAM: 'slam',
     REAVE: 'reave', DOMINATE: 'dominate', BARRIER: 'barrier', OVERLOAD: 'overload', INCINERATE: 'incinerate',
     CRYO: 'cryoBlast', 'ENERGY-DRAIN': 'energyDrain', FORTIFICATION: 'fortification', CONCUSSIVE: 'concussiveShot', STASIS: 'stasis', SABOTAGE: 'sabotage',
     FRAG: 'fragGrenade', STICKY: 'stickyGrenade', DRONE: 'combatDrone', SENTRY: 'sentryTurret', 'DEFENSE-DRONE': 'defenseDrone',
+    CHARGE: 'bioticCharge', TACTICAL: 'tacticalCloak', 'TECH-ARMOR': 'techArmor', NOVA: 'nova',
     'AMMO-INCENDIARY': 'ammoIncendiary', 'AMMO-CRYO': 'ammoCryo', 'AMMO-DISRUPTOR': 'ammoDisruptor',
     'AMMO-AP': 'ammoArmorPiercing', 'AMMO-WARP': 'ammoWarp' },
   MEA: { CONCUSSIVE: 'concussiveShot', THROW: 'throw', PULL: 'pull', SHOCKWAVE: 'shockwave', SINGULARITY: 'singularity',
@@ -167,7 +168,9 @@ export function getPreparationPowers(mediaId, suffixes, actorId) {
         attributionSourceIds: [...mapping.sourceIds], attributionReference: mediaId === 'ME2' ? ME2_CLASS_PRIMARY_REFERENCE : null });
     } else missingPowers.push(record?.name || suffix);
   }
-  return { powers: powerProvenance.map(power => power.actionId), powerCatalogIds, powerProvenance, missingPowers };
+  const powers = powerProvenance.map(power => power.actionId);
+  if (mediaId === 'ME3' && powers.includes('techArmor')) powers.push('techArmorDetonate');
+  return { powers, powerCatalogIds, powerProvenance, missingPowers };
 }
 
 // Consumers may compare all documentary power cards with the smaller binding

@@ -1,4 +1,6 @@
-# Priorités P0/P1 — livraison du 13 novembre 2026
+# Priorités P0/P1 — bilan historique du lot précédent
+
+Ce document conserve les résultats du lot P0/P1 basé sur `259d512`. Le [lot Completion](COMPLETION.md) poursuit les P0/P1/P2 depuis `0d769125` ; ses preuves et son audit courant sont distincts des compteurs historiques ci-dessous.
 
 Le lot met en jeu les objectifs d’Eden Prime, de Mira et d’Ilos, les positions et ordres tactiques, les talents ME1, la navigation manette et les phases de Bénézia et du Thorien. Il renforce aussi l’horloge ATB, la pause au changement de focus, les sauvegardes et les comparatifs d’équipement. **51 fiches existantes** sont mises à jour ; **18 passent de Défini à Prototype** (11 P0 et sept P1). Les critères originaux restent ouverts lorsque l’adaptation ne les satisfait pas entièrement. Aucune fiche ne devient Intégré ou Validé et aucun asset n’est déclaré produit dans ce lot.
 

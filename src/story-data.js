@@ -25,12 +25,15 @@ export const STORY_CONVERSATIONS = {
     topics: [
       { id: 'vision', label: 'La vision de la balise', text: 'Vous avez perdu connaissance après le contact avec la balise. Les examens médicaux ne suffisent pas à expliquer les images que vous décrivez. Nous devons distinguer votre état physique du sens de cette expérience.', gate: 'after-eden', codex: ['protheans'], catalogId: 'DIA-chakwas-etat-de-shepard' },
       { id: 'medigel', label: 'Les soins du commando', text: 'Le médi-gel permet de stabiliser et de soigner rapidement les blessures sur le terrain. Gardez une réserve pour les urgences et préparez votre équipement avant le déploiement.' },
+      { id: 'commander-history', label: 'Mon dossier de service', text: 'Votre dossier de service accompagne le suivi médical de cette mission.', catalogId: 'CHC-origine-de-shepard' },
+      { id: 'virmire-loss', label: 'Les absents après Virmire', text: 'Nous devons prendre soin du commando après cette perte.', gate: 'after-virmire', catalogId: 'CHC-mort-narrative' },
     ],
   },
   kaidan: {
     speaker: 'Kaidan Alenko', portrait: 'kaidan', companion: 'kaidan',
     topics: [
       { id: 'implants', label: 'Vos implants biotiques L2', text: 'Mes implants sont des L2, une ancienne génération d’implants biotiques humains. Ils m’aident à contrôler mes capacités, mais ils ont des effets secondaires, dont des migraines. Ce n’est pas un équipement interchangeable avec n’importe quelle génération plus récente.', codex: ['biotic'], catalogId: 'DIA-kaidan-implants' },
+      { id: 'virmire-return', label: 'Le retour de Virmire', text: 'Nous devons continuer sans oublier ceux que nous avons perdus.', gate: 'after-virmire', catalogId: 'CHC-survivant-de-virmire' },
     ],
   },
   ashley: {
@@ -38,6 +41,7 @@ export const STORY_CONVERSATIONS = {
     topics: [
       { id: 'service', label: 'Votre unité sur Eden Prime', text: 'Mon unité a été frappée pendant l’attaque de la colonie. J’ai survécu, et je dois continuer à servir malgré la perte de mes camarades. Rejoindre votre commando ne les remplace pas.', catalogId: 'DIA-ashley-apres-recrutement' },
       { id: 'famille', label: 'Votre famille et l’Alliance', text: 'Le service dans l’Alliance tient une grande place dans ma famille. Mes sœurs comptent beaucoup pour moi. Derrière l’uniforme, il y a aussi les proches que nous voulons retrouver et protéger.', catalogId: 'DIA-ashley-famille' },
+      { id: 'virmire-return', label: 'Le retour de Virmire', text: 'Nous devons continuer sans oublier ceux que nous avons perdus.', gate: 'after-virmire', catalogId: 'CHC-survivant-de-virmire' },
     ],
   },
   garrus: {

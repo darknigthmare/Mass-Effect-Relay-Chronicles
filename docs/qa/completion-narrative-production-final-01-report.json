@@ -1,0 +1,2950 @@
+{
+  "passed": true,
+  "at": "2026-11-13T11:08:39.716Z",
+  "mode": "production",
+  "url": "http://127.0.0.1:4194/",
+  "command": {
+    "script": "node scripts/completion-narrative-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4194/",
+      "COMPLETION_NARRATIVE_MODE": "production",
+      "COMPLETION_NARRATIVE_PREFIX": "completion-narrative-production-final-01"
+    }
+  },
+  "scope": "Public recruitment acceptance/defer, disappearance of recruitment markers, actual squad selection and revisits, both remembered Garrus replies, early/late Liara, both Virmire survivors, permanent-unavailable crew, visible consequence/reputation summaries, real persuasion thresholds and actual save/reload.",
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/world.js": "6f3fd809c6bdd8ae4264185407b318008893eab030a8e69369cd66c27d4f36d6",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "src/story.js": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/completion-narrative.js": "90a5f2ff4b33703edbd2fa471fa606a88ffd2dda2d0b4bf4b09b21d3f686b786",
+    "src/completion-narrative-ui.js": "727fba32a41904cb2cb320547659d587fd125fc74d3e690da9d721fc2bce8ccc",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/simulation-clock.js": "4393b7afd2963cb737953708372bd1612de594de836173d41766ae2bcb34baa1",
+    "src/gamepad-controls.js": "95ffa8c270cb00ddf09ddcee0ec7a4cde7de03bb6e7675686a2e78af7d13553a",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "src/priority-ui.css": "4ccfed12020f894792c84700bd5d80b7e51308362bdcc0c84d8c80bc5a633acc",
+    "src/gamepad-controls.css": "77e1c42d65deb5baaabddc3ffa65609218c2d0e5bf19b6019a711b86991950d0",
+    "src/completion-accessibility.css": "052b6f09d299b2b0178b7cf43e43a894981f543bca31db1930a41064bd2b8925",
+    "scripts/completion-narrative-public.mjs": "68c4135a31b815a1885aa7c507219c91461b70c678fe90b220d3f83dfc0d4200"
+  },
+  "distFiles": {
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/boss-benezia-animation.json": {
+      "bytes": 1580,
+      "sha256": "afb12aa6053c332af0c6caba4a1eee15e9ad3b8761f8ef23f95cd619568ee2c8"
+    },
+    "assets/boss-benezia-combat.png": {
+      "bytes": 1463718,
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    "assets/boss-saren-animation.json": {
+      "bytes": 1566,
+      "sha256": "69ab0fe2e2eda2be4e235bec600ff0d9ea82a4cbcf69d2553a9ecddc46cc1ffa"
+    },
+    "assets/boss-saren-combat.png": {
+      "bytes": 1918110,
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    "assets/boss-saren-final-animation.json": {
+      "bytes": 1604,
+      "sha256": "76405c9cd6bf75e48bf22ffc6c635ac19483f4f32a96827328f52b6145060b9f"
+    },
+    "assets/boss-saren-final-combat.png": {
+      "bytes": 1974389,
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    },
+    "assets/boss-thorian-animation.json": {
+      "bytes": 1556,
+      "sha256": "8eae1a27117ed815adeffe6fa4e10680bdf3030b513584c8d071cbbc5f6dfd3b"
+    },
+    "assets/boss-thorian-combat.png": {
+      "bytes": 2100344,
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-DLzdzo-D.js": {
+      "bytes": 26638,
+      "sha256": "ece6a9f1826ba20a039648379b10acc3b3bfd97f36ef8e9acaa8cc6e4baf698d"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-jenkins-animation.json": {
+      "bytes": 3126,
+      "sha256": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359"
+    },
+    "assets/companion-jenkins-combat.png": {
+      "bytes": 1634485,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuity-LOxop3ok.js": {
+      "bytes": 5889,
+      "sha256": "f288281412f91020dc1a54a95b471753f8fc3ce15275ded1e2708caeb08b5025"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/eden-ground-dirt.png": {
+      "bytes": 4408187,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d"
+    },
+    "assets/eden-ground-grass.png": {
+      "bytes": 4741123,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce"
+    },
+    "assets/enemy-asari-animation.json": {
+      "bytes": 2265,
+      "sha256": "4b299f599418299c62d230ebf682ad0e82175e056f638b7425b255ef2f6ee902"
+    },
+    "assets/enemy-asari-combat.png": {
+      "bytes": 1606367,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/enemy-creeper-animation.json": {
+      "bytes": 2275,
+      "sha256": "4d0c9b23b7f36f546fa479fe10317df51e068779abb1ac1f675bdad40ddc9132"
+    },
+    "assets/enemy-creeper-combat.png": {
+      "bytes": 1903380,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300"
+    },
+    "assets/enemy-geth-animation.json": {
+      "bytes": 2239,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363"
+    },
+    "assets/enemy-geth-combat.png": {
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    "assets/enemy-geth-destroyer-animation.json": {
+      "bytes": 2431,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04"
+    },
+    "assets/enemy-geth-destroyer-combat.png": {
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    "assets/enemy-geth-sniper-animation.json": {
+      "bytes": 2412,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092"
+    },
+    "assets/enemy-geth-sniper-combat.png": {
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    "assets/enemy-husk-animation.json": {
+      "bytes": 2233,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754"
+    },
+    "assets/enemy-husk-combat.png": {
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    "assets/enemy-krogan-animation.json": {
+      "bytes": 2247,
+      "sha256": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f"
+    },
+    "assets/enemy-krogan-combat.png": {
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    "assets/enemy-rachni-animation.json": {
+      "bytes": 2255,
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+    },
+    "assets/enemy-rachni-combat.png": {
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    "assets/expansion-wFebYwnf.js": {
+      "bytes": 162086,
+      "sha256": "fd51c50d4b826c0b580443cbd558f86ad666ca190ff5fdbc70157245bceaea2a"
+    },
+    "assets/frontier-enemies.json": {
+      "bytes": 3607,
+      "sha256": "328e9a2c6b24a526acabcc17b08bf4617ba3f3b16f9ab73221bc4eaf442be78b"
+    },
+    "assets/frontier-enemies.png": {
+      "bytes": 2181259,
+      "sha256": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9"
+    },
+    "assets/frontier-npcs.json": {
+      "bytes": 2111,
+      "sha256": "4b4037bc3a7c29a6f3bab6fd3b92f8b952077f5b93715cb9ec61e9c58b93780d"
+    },
+    "assets/frontier-npcs.png": {
+      "bytes": 1578744,
+      "sha256": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc"
+    },
+    "assets/horizon-enemies.json": {
+      "bytes": 2467,
+      "sha256": "47de288b397e0759c46a846f44ec1e8b508ebbdedf132583e8890fd414d365c0"
+    },
+    "assets/horizon-enemies.png": {
+      "bytes": 1885448,
+      "sha256": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0"
+    },
+    "assets/horizon-fauna.json": {
+      "bytes": 2202,
+      "sha256": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10"
+    },
+    "assets/horizon-fauna.png": {
+      "bytes": 1855369,
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964"
+    },
+    "assets/horizon-fleet-later.json": {
+      "bytes": 1513,
+      "sha256": "f1dbc796cbc59723f07d0e09cb7ba643ae684110d7204f4bbf78f98ee3bbf4f0"
+    },
+    "assets/horizon-fleet-later.png": {
+      "bytes": 2040877,
+      "sha256": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a"
+    },
+    "assets/horizon-fleet-me1.json": {
+      "bytes": 1496,
+      "sha256": "57c94b9b27b852c7817beb5728689d78f5ceb8e3bc6e5ed388aa86a5ccd03462"
+    },
+    "assets/horizon-fleet-me1.png": {
+      "bytes": 1954276,
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb"
+    },
+    "assets/horizon-npcs.json": {
+      "bytes": 2213,
+      "sha256": "06096a1b71c8043a8490793d00581b060473100aa608a0ed5f9b409fc4d6b36d"
+    },
+    "assets/horizon-npcs.png": {
+      "bytes": 1876944,
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601"
+    },
+    "assets/index-DGO91H7M.css": {
+      "bytes": 80194,
+      "sha256": "440aff3d42c5be922a28850ddcc2853a67f61bf03c4cef1cf46f23842313950a"
+    },
+    "assets/index-D_W5IvIa.js": {
+      "bytes": 675668,
+      "sha256": "f8c554f6dc3934936594e3c4fbbbda2444a0611a8479edb875c729ed92d86b21"
+    },
+    "assets/joker-seated.json": {
+      "bytes": 2106,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+    },
+    "assets/joker-seated.png": {
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    "assets/manifest.json": {
+      "bytes": 84355,
+      "sha256": "e1d397231df00479c2b3c7f489f1619881d1853a5469b9949870f1edf8d7eae2"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-C7EMHRvg.js": {
+      "bytes": 525544,
+      "sha256": "2a79736531ab3eb9552c3c46c82f854cb2fd8f8324f05c21be8423ccbb8ae453"
+    },
+    "assets/universe-actors-C607Dp1x.js": {
+      "bytes": 44362,
+      "sha256": "8e532e82c08a472b78bcdace3c26bf882dc600e6c68bec234f146b4688c2d158"
+    },
+    "assets/universe-data-DJfXs7F1.js": {
+      "bytes": 3377580,
+      "sha256": "59cdfa159672d8bfda4aaa816780081e791f6259595d373977ae93884f15fe54"
+    },
+    "assets/universe-equipment-CnVjv4Kn.js": {
+      "bytes": 15986,
+      "sha256": "5fec24b5d7bdb3d52a66aab838d60e432367469b7ec28584fee52ecc13411d27"
+    },
+    "assets/universe-ui-CcnUo4Uq.css": {
+      "bytes": 15611,
+      "sha256": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e"
+    },
+    "assets/universe-ui-OQxk5AbC.js": {
+      "bytes": 56179,
+      "sha256": "05effeb70058a115cd93366cc82c687df6b366200c5f87c0644bf5df87ad2c77"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "assets/vehicle-mako-directions.json": {
+      "bytes": 1539,
+      "sha256": "4e09bf1a8729e9a4301b198d780c1f55e72dbcf3c25fd7071be7a3c6e6e1e3d9"
+    },
+    "assets/vehicle-mako-directions.png": {
+      "bytes": 2280065,
+      "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "df5b8c298bef8a9793a68ecce803cd6af2b0a44fb93b2c026a141bbe07234b50"
+    }
+  },
+  "fixtures": [
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-citadel-optional-recruits-fixture.json",
+      "sha256": "0db611f9752b437da198981bb640d2e7f3515f90117170fb178f6b68717c6764",
+      "origin": {
+        "kind": "Native prerequisite chapters; optional Garrus and Wrex are not recruited",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruit-garrus-position-fixture.json",
+      "sha256": "d88df92a201c660b011c2f346283ff8cd54447e7c2f3c3e5bc6c3954c8205772",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-recruit-garrus-before-transfer-export.json",
+        "parentSHA256": "3ab48bf149eee0fb11f0b8d6f7363242088b84bee0dc31c7441f128ef87257aa",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": 5,
+              "z": 6
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 5,
+        "z": 6
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruit-wrex-position-fixture.json",
+      "sha256": "dfbed3211b78494510082a06317c62671cfb2eced1db8d1c32e206e75639a15c",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-recruit-wrex-before-transfer-export.json",
+        "parentSHA256": "6daa5b7c4522eaab221cb7251d4a47860dd72341ab5b4203d7968bd5f139a038",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 5,
+              "z": 6
+            },
+            "after": {
+              "x": 5,
+              "z": -9.999999999999998
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 5,
+        "z": -9.999999999999998
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruits-extraction-position-fixture.json",
+      "sha256": "d10f91d09fd6f0b7e169f11db015fc0d9ecf43e9c93e22e43734707d7e0f61ea",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-recruits-extraction-before-transfer-export.json",
+        "parentSHA256": "ceb24299b98761f22e7246b1f8facad80a4a1564ed5dcecb0f328e62cd822ffe",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 5,
+              "z": -9.999999999999998
+            },
+            "after": {
+              "x": -4,
+              "z": 18
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-revisit-extraction-position-fixture.json",
+      "sha256": "0cd916016270a45fa329f43611f6f3c464531765a1f0b162d30562922d57b854",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-revisit-extraction-before-transfer-export.json",
+        "parentSHA256": "d9f6d6e1a115c948080542a6c6eb0bcc60a8bb5ddbceb16c507398dfa0e9afe0",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": -4,
+              "z": 18
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-early-fixture.json",
+      "sha256": "b1a5b8a458a64c5386b685a3f8aee2b4b17f8c37b6d258c2265ed65bcdd894bd",
+      "origin": {
+        "kind": "Native campaign completion in the declared order",
+        "order": [
+          "therum"
+        ],
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-late-fixture.json",
+      "sha256": "d5b3a65adb8888cb24d3b3887e3cdfeb372ac1210ec4426a1f5f3f07d7fcdcab",
+      "origin": {
+        "kind": "Native campaign completion in the declared order",
+        "order": [
+          "feros",
+          "noveria",
+          "virmire",
+          "therum"
+        ],
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-save-kaidan-fixture.json",
+      "sha256": "084fce89625d1fd408d40ab1649cd6dbda964982adfad48da2bd28647b5ecfe7",
+      "origin": {
+        "kind": "Native Virmire choice and earlier read exchanges for both squadmates",
+        "choice": "save-kaidan",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-save-ashley-fixture.json",
+      "sha256": "72636faddea28f7aa5cc58a08c38d6a5ee776106cc0d969a00819d0bcf00ad23",
+      "origin": {
+        "kind": "Native Virmire choice and earlier read exchanges for both squadmates",
+        "choice": "save-ashley",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-before-release-fixture.json",
+      "sha256": "63bf1f1bf8bc65aa312e90bbd6e30c27ec5edf5aa24f172a91a88b7b7e4e6138",
+      "origin": {
+        "kind": "Native Noveria encounters and MIRA repair callbacks prepared; queen choice undecided",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-release-position-fixture.json",
+      "sha256": "aa2d31db22ade507cb9adb5720d4ede67994eba996a3c1516866b5e0cf7ede16",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-queen-release-before-transfer-export.json",
+        "parentSHA256": "51e3cf12107f23a454c675281333aff4827b36d04ac127c73548cf67ba1e7eb3",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 62
+            },
+            "after": {
+              "x": -2,
+              "z": -85
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-before-destroy-fixture.json",
+      "sha256": "7ea2a177fdb070411807ac06677c0ff2c8c95dd56b59764e1f4fa976ba2136b2",
+      "origin": {
+        "kind": "Native Noveria encounters and MIRA repair callbacks prepared; queen choice undecided",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-destroy-position-fixture.json",
+      "sha256": "8a5521b2323288a490a3cf7035f7d031b1d654201ed324cfedeebd3296a77002",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-queen-destroy-before-transfer-export.json",
+        "parentSHA256": "ec53ae8b3c9f7147531c3c1059e1eeca8ae71370e5075ac8f4a484b9d54b9699",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 62
+            },
+            "after": {
+              "x": -2,
+              "z": -85
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-persuasion-5-fixture.json",
+      "sha256": "533463b1b22f0a9b3922d8e02d9ee3a1afe31e1d0f931c8dea855e917fe63143",
+      "origin": {
+        "kind": "Native officer step with explicit threshold points fixture",
+        "changedFields": [
+          "paragon",
+          "renegade"
+        ],
+        "points": {
+          "paragon": 5,
+          "renegade": 5
+        },
+        "pointsEarnedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-hanar-5-position-fixture.json",
+      "sha256": "8b0f9cb0e5d542820200ad1ef055462cd404bc02081dc3e52484b230250f87e2",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-hanar-5-before-transfer-export.json",
+        "parentSHA256": "15ded9bde3443be482ff28c8f1c1e5833d07d58d7adf707ca01f0c3ac061626a",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": 9.100000000000005,
+              "z": -7
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-persuasion-6-fixture.json",
+      "sha256": "7f18cf7eb30cec20af17db8523f32e90ae45faaa74ddbea322c965362c06f328",
+      "origin": {
+        "kind": "Native officer step with explicit threshold points fixture",
+        "changedFields": [
+          "paragon",
+          "renegade"
+        ],
+        "points": {
+          "paragon": 6,
+          "renegade": 6
+        },
+        "pointsEarnedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-hanar-6-position-fixture.json",
+      "sha256": "1428bcd320da70297b1991ca646df904cc0cad756f67b4c8fdf1f4d7d967f228",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-production-final-01-hanar-6-before-transfer-export.json",
+        "parentSHA256": "69466d1f4628bc0778587e67c01aa9bb541b7e7bce3ac92af045bc55e9cb641d",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": 9.100000000000005,
+              "z": -7
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    }
+  ],
+  "imports": [
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-citadel-optional-recruits-fixture.json",
+      "sha256": "0db611f9752b437da198981bb640d2e7f3515f90117170fb178f6b68717c6764",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruit-garrus-position-fixture.json",
+      "sha256": "d88df92a201c660b011c2f346283ff8cd54447e7c2f3c3e5bc6c3954c8205772",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruit-wrex-position-fixture.json",
+      "sha256": "dfbed3211b78494510082a06317c62671cfb2eced1db8d1c32e206e75639a15c",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruits-extraction-position-fixture.json",
+      "sha256": "d10f91d09fd6f0b7e169f11db015fc0d9ecf43e9c93e22e43734707d7e0f61ea",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-revisit-extraction-position-fixture.json",
+      "sha256": "0cd916016270a45fa329f43611f6f3c464531765a1f0b162d30562922d57b854",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-wrex-conversation-after-recruitment-export.json",
+      "sha256": "27e35277f375fc30b7f8478dc3f8ca0c75ed9f19577920f5b81a884a1a6b1077",
+      "via": "Actual public file chooser",
+      "source": "unaltered-public-export"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-wrex-conversation-after-recruitment-export.json",
+      "sha256": "27e35277f375fc30b7f8478dc3f8ca0c75ed9f19577920f5b81a884a1a6b1077",
+      "via": "Actual public file chooser",
+      "source": "unaltered-public-export"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-early-fixture.json",
+      "sha256": "b1a5b8a458a64c5386b685a3f8aee2b4b17f8c37b6d258c2265ed65bcdd894bd",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-late-fixture.json",
+      "sha256": "d5b3a65adb8888cb24d3b3887e3cdfeb372ac1210ec4426a1f5f3f07d7fcdcab",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-save-kaidan-fixture.json",
+      "sha256": "084fce89625d1fd408d40ab1649cd6dbda964982adfad48da2bd28647b5ecfe7",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-save-ashley-fixture.json",
+      "sha256": "72636faddea28f7aa5cc58a08c38d6a5ee776106cc0d969a00819d0bcf00ad23",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-before-release-fixture.json",
+      "sha256": "63bf1f1bf8bc65aa312e90bbd6e30c27ec5edf5aa24f172a91a88b7b7e4e6138",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-release-position-fixture.json",
+      "sha256": "aa2d31db22ade507cb9adb5720d4ede67994eba996a3c1516866b5e0cf7ede16",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-before-destroy-fixture.json",
+      "sha256": "7ea2a177fdb070411807ac06677c0ff2c8c95dd56b59764e1f4fa976ba2136b2",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-destroy-position-fixture.json",
+      "sha256": "8a5521b2323288a490a3cf7035f7d031b1d654201ed324cfedeebd3296a77002",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-persuasion-5-fixture.json",
+      "sha256": "533463b1b22f0a9b3922d8e02d9ee3a1afe31e1d0f931c8dea855e917fe63143",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-hanar-5-position-fixture.json",
+      "sha256": "8b0f9cb0e5d542820200ad1ef055462cd404bc02081dc3e52484b230250f87e2",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-persuasion-6-fixture.json",
+      "sha256": "7f18cf7eb30cec20af17db8523f32e90ae45faaa74ddbea322c965362c06f328",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-hanar-6-position-fixture.json",
+      "sha256": "1428bcd320da70297b1991ca646df904cc0cad756f67b4c8fdf1f4d7d967f228",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    }
+  ],
+  "exports": [
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruit-garrus-before-transfer-export.json",
+      "label": "recruit-garrus-before-transfer",
+      "sha256": "3ab48bf149eee0fb11f0b8d6f7363242088b84bee0dc31c7441f128ef87257aa",
+      "bytes": 3465,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-garrus-deferred-export.json",
+      "label": "garrus-deferred",
+      "sha256": "e85a2357aed064a81ad187645df19e7654b06fab0f701f2cdc7214cba8781638",
+      "bytes": 3464,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-garrus-joined-export.json",
+      "label": "garrus-joined",
+      "sha256": "45012331a8a37ad96fc7d7cac8527d8df4fefe2686b87d1fa59e421eefa8c0de",
+      "bytes": 3551,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruit-wrex-before-transfer-export.json",
+      "label": "recruit-wrex-before-transfer",
+      "sha256": "6daa5b7c4522eaab221cb7251d4a47860dd72341ab5b4203d7968bd5f139a038",
+      "bytes": 3551,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-wrex-deferred-export.json",
+      "label": "wrex-deferred",
+      "sha256": "7ef78660fccc11943b14ede01d22bea324f343e879843ac7a6a8d52e3db0e08b",
+      "bytes": 3568,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-wrex-joined-export.json",
+      "label": "wrex-joined",
+      "sha256": "6628f5384c7f9aaaa0554f8d1e8226f6ae8a40cc06cc127174f4e7c80f243f24",
+      "bytes": 3649,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruits-extraction-before-transfer-export.json",
+      "label": "recruits-extraction-before-transfer",
+      "sha256": "ceb24299b98761f22e7246b1f8facad80a4a1564ed5dcecb0f328e62cd822ffe",
+      "bytes": 3649,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-both-recruits-squad-export.json",
+      "label": "both-recruits-squad",
+      "sha256": "3ceb4ee99b452518d6f3d916b9b6e0efe6cbc31eada870402fb344c7359c5bbc",
+      "bytes": 3631,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-revisit-extraction-before-transfer-export.json",
+      "label": "revisit-extraction-before-transfer",
+      "sha256": "d9f6d6e1a115c948080542a6c6eb0bcc60a8bb5ddbceb16c507398dfa0e9afe0",
+      "bytes": 3630,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-recruits-after-revisit-export.json",
+      "label": "recruits-after-revisit",
+      "sha256": "cca90f99e40759275abafb12e6377ccfc516bddbee3efa0b52cbc432ec1726d6",
+      "bytes": 3630,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-wrex-conversation-after-recruitment-export.json",
+      "label": "wrex-conversation-after-recruitment",
+      "sha256": "27e35277f375fc30b7f8478dc3f8ca0c75ed9f19577920f5b81a884a1a6b1077",
+      "bytes": 3656,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "krogan"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-garrus-procedure-export.json",
+      "label": "garrus-procedure",
+      "sha256": "3563c4d951214f173ca6e5d7157f2941bc448090fa585f9cd98249a0a5e47918",
+      "bytes": 3732,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "procedure"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-garrus-procedure-resumed-export.json",
+      "label": "garrus-procedure-resumed",
+      "sha256": "5a29acd0f61ee055759a8a366094a261734bcedffca67f5fa56db6c909baaad8",
+      "bytes": 3732,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "procedure"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-garrus-results-export.json",
+      "label": "garrus-results",
+      "sha256": "ce890cd6c225624f8a873c70df377afd00913ad526c2f132006c13c2922058b2",
+      "bytes": 3730,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "results"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-garrus-results-resumed-export.json",
+      "label": "garrus-results-resumed",
+      "sha256": "972c7c249654ec56c0ad9af50887106423224578752bc62e405fe07a24aaead3",
+      "bytes": 3730,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "results"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-early-heard-export.json",
+      "label": "liara-early-heard",
+      "sha256": "7e45db284bb89855c6be52c374bff3963ee0056c5f9130c1ee3eb4e955548057",
+      "bytes": 3714,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-early-resumed-export.json",
+      "label": "liara-early-resumed",
+      "sha256": "6bcf8912b8117306e76799b5d58d7e320c04998d4e2fd47b81f5f938829228d4",
+      "bytes": 3714,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-late-heard-export.json",
+      "label": "liara-late-heard",
+      "sha256": "75eecf2e5f649104a62ac2d95dd4a502a0cb416a649a8a2c5e79bc63c06af3ff",
+      "bytes": 4213,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "feros",
+            "noveria",
+            "virmire",
+            "therum"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-liara-late-resumed-export.json",
+      "label": "liara-late-resumed",
+      "sha256": "037cba5a3fdcbdcb7c48c017795889b481dd53a3f78540e6152ab9ba161f358c",
+      "bytes": 4231,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "feros",
+            "noveria",
+            "virmire",
+            "therum"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-kaidan-aftermath-export.json",
+      "label": "kaidan-aftermath",
+      "sha256": "3694db221427b3e867692ed6af149299f8624ffd253ddf973f090cdf53501747",
+      "bytes": 4207,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "kaidan:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-kaidan-aftermath-resumed-export.json",
+      "label": "kaidan-aftermath-resumed",
+      "sha256": "e43b32b1a5cd2978085ee4e33c85a866558ce1a6aebe77cc4bcb747de902f94b",
+      "bytes": 4207,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "kaidan:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-ashley-aftermath-export.json",
+      "label": "ashley-aftermath",
+      "sha256": "baf351dc7e3597b519886e03f55e9f8299701e0c685a0542278023f317c5b077",
+      "bytes": 4224,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "kaidan"
+        ],
+        "party": [
+          "shepard",
+          "ashley",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-ashley"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "ashley:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-ashley-aftermath-resumed-export.json",
+      "label": "ashley-aftermath-resumed",
+      "sha256": "f58f59cdafe5a2eb8096df13864392fbe3112cf82dadebe8026be1242c3e0796",
+      "bytes": 4224,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "kaidan"
+        ],
+        "party": [
+          "shepard",
+          "ashley",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-ashley"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "ashley:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-release-before-transfer-export.json",
+      "label": "queen-release-before-transfer",
+      "sha256": "51e3cf12107f23a454c675281333aff4827b36d04ac127c73548cf67ba1e7eb3",
+      "bytes": 3923,
+      "observed": {
+        "zone": "noveria",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-release-selected-export.json",
+      "label": "queen-release-selected",
+      "sha256": "930286856a3875520bc2e2cb19e5b9e647d26ea82874849edb9c0d501464ff36",
+      "bytes": 4022,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-release-resumed-export.json",
+      "label": "queen-release-resumed",
+      "sha256": "eb56b52a30bc23bd5ed5481af104239f0cc3c1d3fe8c9a908e69a89bb1703511",
+      "bytes": 4022,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-destroy-before-transfer-export.json",
+      "label": "queen-destroy-before-transfer",
+      "sha256": "ec53ae8b3c9f7147531c3c1059e1eeca8ae71370e5075ac8f4a484b9d54b9699",
+      "bytes": 3904,
+      "observed": {
+        "zone": "noveria",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-destroy-selected-export.json",
+      "label": "queen-destroy-selected",
+      "sha256": "d70a362634377600a0e6e706f79060d24bf12cb594487196861596ae8a558270",
+      "bytes": 4024,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "destroy"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 20,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-queen-destroy-resumed-export.json",
+      "label": "queen-destroy-resumed",
+      "sha256": "5baf8d0b51ec512ef37b1445170724fda11fd051ed8ee58907a9446f15f66b1f",
+      "bytes": 4024,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "destroy"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 20,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-hanar-5-before-transfer-export.json",
+      "label": "hanar-5-before-transfer",
+      "sha256": "15ded9bde3443be482ff28c8f1c1e5833d07d58d7adf707ca01f0c3ac061626a",
+      "bytes": 3554,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 5,
+        "renegade": 5,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 1,
+              "choices": {
+                "officer": "listen"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-persuasion-5-outcome-export.json",
+      "label": "persuasion-5-outcome",
+      "sha256": "4671111709341a0cbf09de80d10f695ccc7d9fc1eda10529140ae9baf2dc828f",
+      "bytes": 3587,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 5,
+        "renegade": 5,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 1,
+              "choices": {
+                "officer": "listen"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-hanar-6-before-transfer-export.json",
+      "label": "hanar-6-before-transfer",
+      "sha256": "69466d1f4628bc0778587e67c01aa9bb541b7e7bce3ac92af045bc55e9cb641d",
+      "bytes": 3554,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 6,
+        "renegade": 6,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 1,
+              "choices": {
+                "officer": "listen"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-production-final-01-persuasion-6-outcome-export.json",
+      "label": "persuasion-6-outcome",
+      "sha256": "b0272deca1c17053982d05e31a8a80e478ebdbee7f096fd3c4cc3cf02f161f30",
+      "bytes": 3632,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 6,
+        "renegade": 6,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 2,
+              "choices": {
+                "officer": "listen",
+                "hanar": "diplomacy"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    }
+  ],
+  "captures": [
+    {
+      "label": "garrus-recruitment-offer",
+      "path": "docs/screenshots/completion-narrative-production-final-01-garrus-recruitment-offer.png",
+      "sha256": "97126698a36d4bc02985c51ba6fe2fa8f29588b059605357fb52c5a717e4456f",
+      "bytes": 933279,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "wrex-recruitment-offer",
+      "path": "docs/screenshots/completion-narrative-production-final-01-wrex-recruitment-offer.png",
+      "sha256": "46749d4eaaaf5043b823f882ba993cfad2248c6734b4faee26f3893a7a1e0968",
+      "bytes": 918292,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "normandy-garrus-wrex",
+      "path": "docs/screenshots/completion-narrative-production-final-01-normandy-garrus-wrex.png",
+      "sha256": "e4e80bd4e0e5862ff8d65229ff896f1e927390cd98d0d3b8abadce744ba10f43",
+      "bytes": 639173,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "citadel-selected-recruits-once",
+      "path": "docs/screenshots/completion-narrative-production-final-01-citadel-selected-recruits-once.png",
+      "sha256": "90b88226b0db0a4f6a63c2d92074ea7c82a15eb1962972b0d0df65402255cca9",
+      "bytes": 994801,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "wrex-conversation-after-recruitment",
+      "path": "docs/screenshots/completion-narrative-production-final-01-wrex-conversation-after-recruitment.png",
+      "sha256": "d5aef2da0d22f58c7002272bc4e2103a9721e45fe0bc943c9e6344cd08a3c27f",
+      "bytes": 726526,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "garrus-remembers-procedure",
+      "path": "docs/screenshots/completion-narrative-production-final-01-garrus-remembers-procedure.png",
+      "sha256": "ec3eb89699fb01e8b338c367e032b18cdd9ae8c9b43197ad032594647415aa3f",
+      "bytes": 691824,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "garrus-remembers-results",
+      "path": "docs/screenshots/completion-narrative-production-final-01-garrus-remembers-results.png",
+      "sha256": "71641ef826b5b8f122c2bfd0b7e990acad10d34ffc44826407d749c1ce8c3376",
+      "bytes": 696151,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "liara-early-reaction",
+      "path": "docs/screenshots/completion-narrative-production-final-01-liara-early-reaction.png",
+      "sha256": "cd4582e97ce9f7514f92897680ef3d750a591764ff4bd2b1595fe60bf64b8902",
+      "bytes": 701810,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "liara-late-reaction",
+      "path": "docs/screenshots/completion-narrative-production-final-01-liara-late-reaction.png",
+      "sha256": "6d6a3a661dc2338117e4bad7d1fc51b9d207cfbd3f14328e54050b6921126ab1",
+      "bytes": 712607,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "ashley-permanently-unavailable",
+      "path": "docs/screenshots/completion-narrative-production-final-01-ashley-permanently-unavailable.png",
+      "sha256": "364be0fb781263a6fdd63b34a561503e9160f03d50ff3bd82dd76363324ebb4b",
+      "bytes": 286768,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "kaidan-virmire-return",
+      "path": "docs/screenshots/completion-narrative-production-final-01-kaidan-virmire-return.png",
+      "sha256": "8dbccd08e9d5f7e10bedab6d74b9895b5785263207f61d1e92dc62a2f4b68b60",
+      "bytes": 697462,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "chakwas-permanent-loss",
+      "path": "docs/screenshots/completion-narrative-production-final-01-chakwas-permanent-loss.png",
+      "sha256": "16e2789bdcd90d81915ac71489bf3d7742b6dc02997f54f15ad6f4c42c18bbc8",
+      "bytes": 696135,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "kaidan-journal-consequence",
+      "path": "docs/screenshots/completion-narrative-production-final-01-kaidan-journal-consequence.png",
+      "sha256": "5ec4b31b16c067c8530c1675bf5228a5ee25c78aab7da397f22aac2f6d4e5482",
+      "bytes": 334477,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "kaidan-permanently-unavailable",
+      "path": "docs/screenshots/completion-narrative-production-final-01-kaidan-permanently-unavailable.png",
+      "sha256": "60cff66742575bdc6c7c331ed9de30732b00d4a53b9d79fc4231918e69c5a1ac",
+      "bytes": 297867,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "ashley-virmire-return",
+      "path": "docs/screenshots/completion-narrative-production-final-01-ashley-virmire-return.png",
+      "sha256": "f254928359a56e3afe9ba3f0c88d4273426a098e5fb1e689f23b38ea72fdf0f0",
+      "bytes": 692078,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "ashley-journal-consequence",
+      "path": "docs/screenshots/completion-narrative-production-final-01-ashley-journal-consequence.png",
+      "sha256": "b6eb4327846ff086e26d694f5a1938e13635194d4aa3d522383935f184b66832",
+      "bytes": 334334,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "queen-two-explicit-choices",
+      "path": "docs/screenshots/completion-narrative-production-final-01-queen-two-explicit-choices.png",
+      "sha256": "1e9af91a7213bb71636311fb309e8f60e969fbd54476c8a93377dc9ba107c011",
+      "bytes": 883914,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "queen-release-consequence",
+      "path": "docs/screenshots/completion-narrative-production-final-01-queen-release-consequence.png",
+      "sha256": "4e388f92d6ec8f07ff1911aa1267d4b976c7f52d4f074a7f3660107efaafa8e9",
+      "bytes": 320463,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "queen-destroy-consequence",
+      "path": "docs/screenshots/completion-narrative-production-final-01-queen-destroy-consequence.png",
+      "sha256": "f379b642148f2f9c2564eb3c270456f3b29b384bd874e133b9644d34865e70eb",
+      "bytes": 323330,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "persuasion-5-points",
+      "path": "docs/screenshots/completion-narrative-production-final-01-persuasion-5-points.png",
+      "sha256": "4bb7bad7dbbf175fe2642f520eb6ad501c3d457f82dc34cce398329b616fba9a",
+      "bytes": 812274,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "visible-reputation",
+      "path": "docs/screenshots/completion-narrative-production-final-01-visible-reputation.png",
+      "sha256": "9589293571e2c6088959407e4015e73a83397f65f159f6d41c1d685d2bbc8f58",
+      "bytes": 341027,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "persuasion-6-points",
+      "path": "docs/screenshots/completion-narrative-production-final-01-persuasion-6-points.png",
+      "sha256": "78c0ac1155a3e1efb61a39fa174d229a425dba9829a8c8aa63eb4b8e4fa405a2",
+      "bytes": 798348,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Public defer/accept of both optional recruits, no reward or duplicate recruitment marker, actual Garrus/Wrex squad and Citadel/Normandy revisits",
+      "passed": true
+    },
+    {
+      "name": "Both public Garrus advice branches persist, follow-up reflects the exact selected choice and repeat conversation offers no conflicting reply or reward",
+      "passed": true
+    },
+    {
+      "name": "Public early/late Liara dialogue follows actual completed-order fixtures, has no premature Vigil/Cipher topic, and survives actual automatic-save reload",
+      "passed": true
+    },
+    {
+      "name": "Both public Virmire survivors react to the correct loss; dead crew stay unselectable and absent from conversations while prior exchanges and journal consequences persist through real reload",
+      "passed": true
+    },
+    {
+      "name": "Both public queen decisions produce their own persistent/exported consequence, one native chapter reward and an unchanged actual reload without inventing later-media outcomes",
+      "passed": true
+    },
+    {
+      "name": "Public 5/6-point persuasion boundaries display both prerequisites, disable only locked options, execute an eligible choice and show the same reputation values in the journal",
+      "passed": true
+    }
+  ],
+  "mapCoordinates": [
+    {
+      "id": "citadel:encounter-1",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 61.25,
+        "z": 62.85714285714286
+      },
+      "worldPosition": {
+        "x": 5,
+        "z": 6
+      }
+    },
+    {
+      "id": "citadel:boss",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 61.25,
+        "z": 28.571428571428573
+      },
+      "worldPosition": {
+        "x": 5,
+        "z": -9.999999999999998
+      }
+    },
+    {
+      "id": "citadel:exit",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 41,
+        "z": 88.57142857142857
+      },
+      "worldPosition": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "id": "citadel:exit",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 41,
+        "z": 88.57142857142857
+      },
+      "worldPosition": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "id": "noveria:objective",
+      "zone": "noveria",
+      "publicMapSource": {
+        "x": 48.46590909090909,
+        "z": 11.647727272727273
+      },
+      "worldPosition": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "id": "noveria:objective",
+      "zone": "noveria",
+      "publicMapSource": {
+        "x": 48.46590909090909,
+        "z": 11.647727272727273
+      },
+      "worldPosition": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "id": "operation:citadel-presidium-prophet:hanar",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 70.47500000000001,
+        "z": 35
+      },
+      "worldPosition": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    },
+    {
+      "id": "operation:citadel-presidium-prophet:hanar",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 70.47500000000001,
+        "z": 35
+      },
+      "worldPosition": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4194/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [],
+  "limits": [
+    "Earlier chapters, encounters and dialogue history in fixtures are prepared through the native Node callbacks; they are not claimed played in this browser.",
+    "Position-only transfers derive from the immediately preceding actual public export; no walking path is claimed played.",
+    "The two persuasion fixtures explicitly prepare 5/5 or 6/6 morality points; these points are not claimed earned in the browser. Thresholds are the existing ATB adaptation, not original Charme/Intimidation talents.",
+    "All six planet orders, all nine dossier combinations, healing/Unity and exact body counts are native checks; the browser samples the public flows described in its checks.",
+    "Relations describe actual exchanges only. Full romances, exact original dialogue, uncounted individual colonist outcomes and postwar political composition are not certified."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/completion-narrative-production-final-01-collector.mjs",
+    "sha256": "68c4135a31b815a1885aa7c507219c91461b70c678fe90b220d3f83dfc0d4200"
+  },
+  "sourceFrozen": true,
+  "distFrozen": true,
+  "browserClosed": true
+}

@@ -259,7 +259,7 @@ export function startChronicleBattle(raw) {
     const party = session.party.map(id => buildChronicleActor(session, id));
     if (party.some(actor => !actor)) return fail('Commando incompatible avec cette période.');
     const enemies = scenario.enemies.map((enemy, index) => ({ ...copy(enemy), id: `chronicle-enemy-${index}` }));
-    const battle = createBattle({ party, enemies, mode: 'wait', difficulty: 'normal', seed: 2183 + session.cleared.length, medigel: 3 });
+    const battle = createBattle({ party, enemies, mode: 'wait', difficulty: 'normal', seed: 2183 + session.cleared.length, medigel: 3, combatFeedback: true });
     battleSnapshots.set(battle, fingerprint(session));
     return { ok: true, battle };
   } catch { return fail('Impossible de démarrer cet essai tactique.'); }

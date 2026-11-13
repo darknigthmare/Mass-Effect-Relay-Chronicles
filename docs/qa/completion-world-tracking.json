@@ -1,0 +1,228 @@
+{
+  "baseCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "planningOnly": false,
+  "readyForPublication": true,
+  "records": [
+    {
+      "id": "SYS-couverture",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée.\nLot Completion : critère fonctionnel examiné avec géométrie native et commandes publiques ; les coordonnées, coûts, délais et couverture restent adaptés à l’ATB. Aucun relevé de performances matérielles ou fidélité artistique intégrale.\nParcours public DEV02 et revue des dix captures exécutés sur les sources gelées ; 1 060 tests natifs réussis. Critère fonctionnel exact couvert dans ce périmètre."
+      },
+      "implementationPaths": [
+        "src/completion-world.js",
+        "src/world.js",
+        "src/main.js",
+        "src/tactical-ui.js",
+        "src/combat.js",
+        "tests/completion-world.test.js",
+        "scripts/completion-world-public.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Géométrie et bonus tactique concordants.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Même empreinte solide pour collision et trace directionnelle ; réduction des tirs appliquée seulement depuis un côté protégé.",
+          "Refus sans coût en l’absence d’obstacle proche ; caisses basses réellement rendues dans les arènes."
+        ],
+        "limitations": [
+          "Les scènes et traces sont des adaptations ATB en unités de scène, sans balistique originale ni FPS matériels certifiés.",
+          "Reprise avant combat : aucune sauvegarde de positions, jauges ou phases d’un combat en cours.",
+          "Production finale après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-world-public-dev-final-02-report.json",
+          "docs/qa/completion-world-public-dev-final-02-visual-review.json",
+          "tests/completion-world.test.js",
+          "tests/completion-combat.test.js"
+        ]
+      }
+    },
+    {
+      "id": "SYS-fuite",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée.\nLot Completion : critère fonctionnel examiné avec géométrie native et commandes publiques ; les coordonnées, coûts, délais et couverture restent adaptés à l’ATB. Aucun relevé de performances matérielles ou fidélité artistique intégrale.\nParcours public DEV02 et revue des dix captures exécutés sur les sources gelées ; 1 060 tests natifs réussis. Critère fonctionnel exact couvert dans ce périmètre."
+      },
+      "implementationPaths": [
+        "src/completion-world.js",
+        "src/world.js",
+        "src/main.js",
+        "src/tactical-ui.js",
+        "src/combat.js",
+        "tests/completion-world.test.js",
+        "scripts/completion-world-public.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Position de reprise hors de la zone de déclenchement.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Repli public confirmé sans gain, après préparation des équipiers vivants.",
+          "Destination praticable reliée par un chemin continu et hors de tous les contacts ; sauvegarde/reprise conserve le point."
+        ],
+        "limitations": [
+          "Les scènes et traces sont des adaptations ATB en unités de scène, sans balistique originale ni FPS matériels certifiés.",
+          "Reprise avant combat : aucune sauvegarde de positions, jauges ou phases d’un combat en cours.",
+          "Production finale après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-world-public-dev-final-02-report.json",
+          "docs/qa/completion-world-public-dev-final-02-visual-review.json",
+          "tests/completion-world.test.js",
+          "tests/completion-combat.test.js"
+        ]
+      }
+    },
+    {
+      "id": "QA-fuite-et-reentree",
+      "proposedFields": {
+        "status": "Prototype",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot Completion : critère fonctionnel examiné avec géométrie native et commandes publiques ; les coordonnées, coûts, délais et couverture restent adaptés à l’ATB. Aucun relevé de performances matérielles ou fidélité artistique intégrale.\nParcours public DEV02 et revue des dix captures exécutés sur les sources gelées ; 1 060 tests natifs réussis. La frontière des huit secondes reste non jouée et le critère reste partiel."
+      },
+      "implementationPaths": [
+        "src/completion-world.js",
+        "src/world.js",
+        "src/main.js",
+        "src/tactical-ui.js",
+        "src/combat.js",
+        "tests/completion-world.test.js",
+        "scripts/completion-world-public.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Délai et position évitent une boucle de combat.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Chemins et distances sûres des 14 contacts ordinaires ; bosses refusés.",
+          "Le délai de huit secondes de terrain reste à exercer à sa frontière dans l’interface."
+        ],
+        "limitations": [
+          "Les scènes et traces sont des adaptations ATB en unités de scène, sans balistique originale ni FPS matériels certifiés.",
+          "Reprise avant combat : aucune sauvegarde de positions, jauges ou phases d’un combat en cours.",
+          "Production finale après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-world-public-dev-final-02-report.json",
+          "docs/qa/completion-world-public-dev-final-02-visual-review.json",
+          "tests/completion-world.test.js",
+          "tests/completion-combat.test.js"
+        ]
+      }
+    },
+    {
+      "id": "QA-cadence-variable",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Bancs natifs exécutés : mêmes résultats ATB/refroidissement à 10/20/60/144 appels/s ; déplacement WorldView identique sur trois secondes et une soumission de rendu par image. Les interruptions longues sont abandonnées et le focus est traité séparément. Les cadences d’appel contrôlées ne sont pas une mesure matérielle ni une validation des cadences historiques exactes 30/60/120 FPS.\nLot Completion : critère fonctionnel examiné avec géométrie native et commandes publiques ; les coordonnées, coûts, délais et couverture restent adaptés à l’ATB. Aucun relevé de performances matérielles ou fidélité artistique intégrale.\nParcours public DEV02 et revue des dix captures exécutés sur les sources gelées ; 1 060 tests natifs réussis. Critère fonctionnel exact couvert dans ce périmètre."
+      },
+      "implementationPaths": [
+        "src/completion-world.js",
+        "src/world.js",
+        "src/main.js",
+        "src/tactical-ui.js",
+        "src/combat.js",
+        "tests/completion-world.test.js",
+        "scripts/completion-world-public.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "ATB et déplacements conservent leur vitesse.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Moteur ATB, refroidissement et déplacement natifs identiques à 30/60/120 appels de premier plan par seconde, avec un rendu par frame."
+        ],
+        "limitations": [
+          "Les scènes et traces sont des adaptations ATB en unités de scène, sans balistique originale ni FPS matériels certifiés.",
+          "Reprise avant combat : aucune sauvegarde de positions, jauges ou phases d’un combat en cours.",
+          "Production finale après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-world-public-dev-final-02-report.json",
+          "docs/qa/completion-world-public-dev-final-02-visual-review.json",
+          "tests/completion-world.test.js",
+          "tests/completion-combat.test.js"
+        ]
+      }
+    },
+    {
+      "id": "SYS-atb-actif",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "La cadence de simulation conserve le temps ATB, le refroidissement et les déplacements aux cadences d’appel contrôlées 10/20/60/144 Hz dans les bancs natifs. Une seule soumission de rendu par image ; cela ne mesure pas les FPS matériels. Les menus, le chargement et la perte du focus arrêtent le temps de jeu. Une interruption supérieure à deux secondes est abandonnée sans rattrapage ; aucune performance GPU générale n’est certifiée.\nLot Completion : critère fonctionnel examiné avec géométrie native et commandes publiques ; les coordonnées, coûts, délais et couverture restent adaptés à l’ATB. Aucun relevé de performances matérielles ou fidélité artistique intégrale.\nParcours public DEV02 et revue des dix captures exécutés sur les sources gelées ; 1 060 tests natifs réussis. Critère fonctionnel exact couvert dans ce périmètre."
+      },
+      "implementationPaths": [
+        "src/completion-world.js",
+        "src/world.js",
+        "src/main.js",
+        "src/tactical-ui.js",
+        "src/combat.js",
+        "tests/completion-world.test.js",
+        "scripts/completion-world-public.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Vitesse indépendante du nombre d’images par seconde.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Temps actif simulé et jauges identiques à 30/60/120 appels de premier plan par seconde ; interruptions longues abandonnées sans rattrapage."
+        ],
+        "limitations": [
+          "Les scènes et traces sont des adaptations ATB en unités de scène, sans balistique originale ni FPS matériels certifiés.",
+          "Reprise avant combat : aucune sauvegarde de positions, jauges ou phases d’un combat en cours.",
+          "Production finale après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-world-public-dev-final-02-report.json",
+          "docs/qa/completion-world-public-dev-final-02-visual-review.json",
+          "tests/completion-world.test.js",
+          "tests/completion-combat.test.js"
+        ]
+      }
+    },
+    {
+      "id": "QA-perte-du-focus",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Le changement réel d’onglet et la perte du focus mettent la campagne en pause, libèrent touches physiques/tactiles/analogiques et réinitialisent l’horloge. Les menus et chargements réinitialisent la reprise ; aucun rattrapage des jauges ou du déplacement n’est prévu. Les parcours publics vérifient exploration puis combat actif ; le comportement de chaque plateforme physique reste à contrôler.\nLot Completion : critère fonctionnel examiné avec géométrie native et commandes publiques ; les coordonnées, coûts, délais et couverture restent adaptés à l’ATB. Aucun relevé de performances matérielles ou fidélité artistique intégrale.\nParcours public DEV02 et revue des dix captures exécutés sur les sources gelées ; 1 060 tests natifs réussis. Critère fonctionnel exact couvert dans ce périmètre."
+      },
+      "implementationPaths": [
+        "src/completion-world.js",
+        "src/world.js",
+        "src/main.js",
+        "src/tactical-ui.js",
+        "src/combat.js",
+        "tests/completion-world.test.js",
+        "scripts/completion-world-public.mjs"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Pas de jauge ou mouvement accumulé inattendu.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Vrais événements navigateur blur/focus fiables, entrées maintenues libérées, exports de déplacement identiques.",
+          "Combat Actif suspendu, aucune variation de jauge/santé/bouclier/chaleur jusqu’à reprise publique explicite."
+        ],
+        "limitations": [
+          "Les scènes et traces sont des adaptations ATB en unités de scène, sans balistique originale ni FPS matériels certifiés.",
+          "Reprise avant combat : aucune sauvegarde de positions, jauges ou phases d’un combat en cours.",
+          "Production finale après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-world-public-dev-final-02-report.json",
+          "docs/qa/completion-world-public-dev-final-02-visual-review.json",
+          "tests/completion-world.test.js",
+          "tests/completion-combat.test.js"
+        ]
+      }
+    }
+  ],
+  "productionPending": true
+}

@@ -1,0 +1,799 @@
+{
+  "baselineCommit": "0d76912",
+  "provisional": true,
+  "scope": "Existing combat/QA records only; no asset status, criterion, priority, source or dependency edited.",
+  "records": [
+    {
+      "id": "SYS-file-d-actions",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:file-d-actions",
+        "notes": "Une cible éliminée interrompt immédiatement le canal qui la visait, avec motif structuré et explication interactive. Un ordre coordonné devenu invalide est annulé explicitement sans consommer son participant. Les ordres sont résolus successivement dans l’adaptation ATB ; une munition déjà émise survit selon la règle annoncée. Les études historiques gardent leur journal initial."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Une cible disparue produit une annulation explicite.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Une cible éliminée interrompt immédiatement le canal qui la visait, avec motif structuré et explication interactive.",
+          "Un ordre coordonné devenu invalide est annulé explicitement sans consommer son participant."
+        ],
+        "limitations": [
+          "Les ordres sont résolus successivement dans l’adaptation ATB ; une munition déjà émise survit selon la règle annoncée. Les études historiques gardent leur journal initial.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-portee",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/tactical-positions.js",
+        "gameKey": "combat.getTargetAvailability",
+        "notes": "Après un vrai recul, les cibles affichent 11,2 / 8,5 et 11,6 / 8,5 avec Hors de portée et sont désactivées avant confirmation. Les refus natifs de portée ne dépensent ni jauge, ni ressource, ni RNG. Portées en unités de scène adaptées ; aucune trajectoire balistique ou distance originale certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Cible hors portée signalée avant validation.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Après un vrai recul, les cibles affichent 11,2 / 8,5 et 11,6 / 8,5 avec Hors de portée et sont désactivées avant confirmation.",
+          "Les refus natifs de portée ne dépensent ni jauge, ni ressource, ni RNG."
+        ],
+        "limitations": [
+          "Portées en unités de scène adaptées ; aucune trajectoire balistique ou distance originale certifiée.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js",
+        "src/tactical-positions.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-ordres-coordonnes",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/combat.js",
+        "gameKey": "combat.performCoordinatedOrder",
+        "notes": "Deux ou trois participants distincts doivent être vivants, prêts et maîtres de leur action ; toutes les cibles et le stock commun sont prévalidés. Deux tirs publics naturels consomment les deux jauges et produisent chacun la chaleur réelle ; annuler le brouillon ne coûte rien. Résolution successive adaptée, sans aptitude ou bonus de coordination original ajouté."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Participants disponibles et actions consommées.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Deux ou trois participants distincts doivent être vivants, prêts et maîtres de leur action ; toutes les cibles et le stock commun sont prévalidés.",
+          "Deux tirs publics naturels consomment les deux jauges et produisent chacun la chaleur réelle ; annuler le brouillon ne coûte rien."
+        ],
+        "limitations": [
+          "Résolution successive adaptée, sans aptitude ou bonus de coordination original ajouté.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js",
+        "src/tactical-positions.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-chaleur-des-armes",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/combat.js",
+        "gameKey": "weaponHeatMultiplier/weaponCoolingBonus",
+        "notes": "La chaleur reste entre zéro et cent ; le seuil bloque les tirs puis le refroidissement autorise leur reprise. Les coûts affichés et appliqués utilisent les multiplicateurs d’arme sans les appliquer aux pouvoirs ou au sabotage. Valeurs, multiplicateurs et seuils sont des réglages ATB."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Bornes et surchauffe respectées. Les coûts affichés correspondent aux tirs réellement exécutés ; les pouvoirs et les effets de sabotage ne doivent pas recevoir le multiplicateur de chaleur de l’arme.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "La chaleur reste entre zéro et cent ; le seuil bloque les tirs puis le refroidissement autorise leur reprise.",
+          "Les coûts affichés et appliqués utilisent les multiplicateurs d’arme sans les appliquer aux pouvoirs ou au sabotage."
+        ],
+        "limitations": [
+          "Valeurs, multiplicateurs et seuils sont des réglages ATB.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-boucliers-et-sante",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:boucliers-et-sante",
+        "notes": "Les tirs consomment les boucliers avant la santé ; le journal détaille la part absorbée et les barres restent séparées. Les dégâts de santé appliquent l’armure ; la régénération des boucliers respecte délai, taux et couverture réellement disponible. Délais, taux de récupération et valeur d’armure sont adaptés à l’ATB."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Ordre des dégâts et régénération lisibles.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les tirs consomment les boucliers avant la santé ; le journal détaille la part absorbée et les barres restent séparées.",
+          "Les dégâts de santé appliquent l’armure ; la régénération des boucliers respecte délai, taux et couverture réellement disponible."
+        ],
+        "limitations": [
+          "Délais, taux de récupération et valeur d’armure sont adaptés à l’ATB.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-resistances",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:resistances",
+        "notes": "Stase affiche une coque, un statut protégé et le message explicite lorsque le vrai tir allié ne cause aucun dégât. Les contrôles immunisés, le piratage non admissible et Surcharge sur organique sans bouclier fournissent un motif visible. Périmètre ME1 et effets présents ; les résistances de toutes les autres œuvres ne sont pas certifiées."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Aucune immunité secrète sans retour visuel.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Stase affiche une coque, un statut protégé et le message explicite lorsque le vrai tir allié ne cause aucun dégât.",
+          "Les contrôles immunisés, le piratage non admissible et Surcharge sur organique sans bouclier fournissent un motif visible."
+        ],
+        "limitations": [
+          "Périmètre ME1 et effets présents ; les résistances de toutes les autres œuvres ne sont pas certifiées.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-pouvoirs",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:pouvoirs",
+        "notes": "Les présélections de classe déterminent les pouvoirs maîtrisés ; les trois nouveaux talents actifs ME1 exigent classe, rang, prérequis et pouvoir appris. Un amplificateur acheté par un soldat est refusé et ne crée aucun pouvoir, y compris après sauvegarde/reprise. Les arbres originaux complets et leurs rangs ne sont pas reproduits ; seul le contrat fonctionnel des pouvoirs réellement présents est évalué."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Éligibilité dépend de la classe et du talent.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les présélections de classe déterminent les pouvoirs maîtrisés ; les trois nouveaux talents actifs ME1 exigent classe, rang, prérequis et pouvoir appris.",
+          "Un amplificateur acheté par un soldat est refusé et ne crée aucun pouvoir, y compris après sauvegarde/reprise."
+        ],
+        "limitations": [
+          "Les arbres originaux complets et leurs rangs ne sont pas reproduits ; seul le contrat fonctionnel des pouvoirs réellement présents est évalué.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-atb-attente",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:atb-attente",
+        "notes": "Les jauges, ennemis, refroidissements, états et recharges utilisent le même temps simulé et la même suspension. Réserver explicitement une jauge laisse progresser les autres acteurs ; le risque ennemi est annoncé dans le parcours public. Règle ATB adaptée, sans simulation de la visée ou de la pause du jeu original."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Ennemis et refroidissements suivent la même règle.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les jauges, ennemis, refroidissements, états et recharges utilisent le même temps simulé et la même suspension.",
+          "Réserver explicitement une jauge laisse progresser les autres acteurs ; le risque ennemi est annoncé dans le parcours public."
+        ],
+        "limitations": [
+          "Règle ATB adaptée, sans simulation de la visée ou de la pause du jeu original.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-stase-et-degats",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Un Adepte naturellement prêt lance Stase, puis Kaidan tire réellement : chaleur/jauge dépensées, boucliers et santé de la cible inchangés. Le journal et le statut expliquent la protection. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Protection prévue appliquée et expliquée.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Un Adepte naturellement prêt lance Stase, puis Kaidan tire réellement : chaleur/jauge dépensées, boucliers et santé de la cible inchangés.",
+          "Le journal et le statut expliquent la protection."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-piratage-organique",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Dans une formation mixte où Piratage est disponible, sélectionner un organique est refusé avec motif synthétique. L’état complet et le compteur RNG restent inchangés. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Action impossible sans dépense.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Dans une formation mixte où Piratage est disponible, sélectionner un organique est refusé avec motif synthétique.",
+          "L’état complet et le compteur RNG restent inchangés."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-biotique-non-eligible",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Achat réel d’un amplificateur amélioré depuis le budget initial, puis équipement refusé au soldat sans mutation. Après un vrai encodage/décodage, actorFor et le combat n’accordent aucun pouvoir biotique. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Aucun pouvoir biotique ajouté.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Achat réel d’un amplificateur amélioré depuis le budget initial, puis équipement refusé au soldat sans mutation.",
+          "Après un vrai encodage/décodage, actorFor et le combat n’accordent aucun pouvoir biotique."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-surchauffe-maximum",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Des cycles ATB naturels et des tirs à coût thermique déclaré atteignent cent sans dépasser la borne. Le tir suivant est refusé gratuitement ; le refroidissement simulé lève le blocage et émet le retour opérationnel. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Blocage temporaire puis refroidissement correct.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Des cycles ATB naturels et des tirs à coût thermique déclaré atteignent cent sans dépasser la borne.",
+          "Le tir suivant est refusé gratuitement ; le refroidissement simulé lève le blocage et émet le retour opérationnel."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-cible-ko-avant-resolution",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "La première action élimine la cible commune ; le second ordre coordonné est explicitement annulé sans ATB/chaleur. Les tirs préparés vers une cible éliminée s’arrêtent avec le motif cible hors combat et ne consomment aucun clip non émis. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Seconde action annulée ou reciblée selon règle annoncée.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "La première action élimine la cible commune ; le second ordre coordonné est explicitement annulé sans ATB/chaleur.",
+          "Les tirs préparés vers une cible éliminée s’arrêtent avec le motif cible hors combat et ne consomment aucun clip non émis."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-equipier-ko-en-file",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Un tireur en préparation éliminé avant émission n’inflige aucune attaque ultérieure et conserve les clips non tirés. Les nouveaux ordres d’un acteur KO sont refusés. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Aucune attaque exécutée par un personnage KO.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Un tireur en préparation éliminé avant émission n’inflige aucune attaque ultérieure et conserve les clips non tirés.",
+          "Les nouveaux ordres d’un acteur KO sont refusés."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-refroidissement-attente",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Attente prête et pause explicite Actif conservent exactement chaleur, recharges, états et jauges ennemies. Après un même ordre et une même seconde simulée, les acteurs des deux modes sont identiques ; les getters ne font pas avancer le temps. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Pas d’avantage caché par menus non prévus.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Attente prête et pause explicite Actif conservent exactement chaleur, recharges, états et jauges ennemies.",
+          "Après un même ordre et une même seconde simulée, les acteurs des deux modes sont identiques ; les getters ne font pas avancer le temps."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-victoire",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:victoire",
+        "notes": "Le parcours public verse exactement 65 XP et 85 crédits, sécurise une seule rencontre et conserve ces valeurs après reprise. Les primitives de campagne refusent de récompenser une rencontre déjà sécurisée ; le moteur émet une issue unique. Récompenses de la campagne condensée ; tables de butin originales non reproduites."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Butin et XP attribués une seule fois.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le parcours public verse exactement 65 XP et 85 crédits, sécurise une seule rencontre et conserve ces valeurs après reprise.",
+          "Les primitives de campagne refusent de récompenser une rencontre déjà sécurisée ; le moteur émet une issue unique."
+        ],
+        "limitations": [
+          "Récompenses de la campagne condensée ; tables de butin originales non reproduites.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-defaite",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:defaite",
+        "notes": "Les ennemis éliminent naturellement les trois alliés en Difficile/Actif et l’écran de reprise est atteint. Retry reconstruit trois acteurs vivants ; le checkpoint réel reprend en exploration avec ressources/progression intactes et sans redémarrage automatique. Reprise explicite depuis la tentative ou le checkpoint précombat, sans persistance de blessures de combat."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Aucune progression corrompue ni boucle de mort.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les ennemis éliminent naturellement les trois alliés en Difficile/Actif et l’écran de reprise est atteint.",
+          "Retry reconstruit trois acteurs vivants ; le checkpoint réel reprend en exploration avec ressources/progression intactes et sans redémarrage automatique."
+        ],
+        "limitations": [
+          "Reprise explicite depuis la tentative ou le checkpoint précombat, sans persistance de blessures de combat.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js",
+        "src/main.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-victoire-unique",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Deux effets périodiques dus dans la même tranche ne produisent qu’une seule victoire. Le refus natif d’un second gain et les exports du parcours public conservent une seule récompense. Les effets simultanés sont résolus dans un sous-pas déterministe ; la preuve moteur est complétée par les transactions natives et le parcours public."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "XP et butin distribués une seule fois.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Deux effets périodiques dus dans la même tranche ne produisent qu’une seule victoire.",
+          "Le refus natif d’un second gain et les exports du parcours public conservent une seule récompense."
+        ],
+        "limitations": [
+          "Les effets simultanés sont résolus dans un sous-pas déterministe ; la preuve moteur est complétée par les transactions natives et le parcours public.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "QA-defaite-complete",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-combat.test.js",
+        "gameKey": null,
+        "notes": "Trois KO réellement joués atteignent la fenêtre hors combat et ses deux commandes lisibles. Reprendre le combat reconstruit les trois alliés ; aucun blocage de l’interface n’est observé. Vérification fonctionnelle de l’adaptation ATB ; aucune fidélité artistique ou numérique 1:1 certifiée."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Écran de reprise atteint sans blocage.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Trois KO réellement joués atteignent la fenêtre hors combat et ses deux commandes lisibles.",
+          "Reprendre le combat reconstruit les trois alliés ; aucun blocage de l’interface n’est observé."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de l’adaptation ATB, sans certification artistique 1:1.",
+          "Preuves fonctionnelles natives/DEV exécutées uniquement. Production non exécutée : gate séparé obligatoire avant commit/push."
+        ],
+        "evidence": [
+          "tests/completion-combat.test.js",
+          "scripts/completion-combat-native.mjs",
+          "scripts/completion-combat-public.mjs",
+          "docs/research/completion-combat.md",
+          "docs/qa/completion-combat-native-final-03.json",
+          "docs/qa/completion-combat-balance-final-02.json",
+          "docs/qa/completion-combat-geometry-native-final-01-report.json",
+          "docs/qa/completion-integration-final-05-report.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-report.json",
+          "docs/qa/completion-combat-public-dev-final-02-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "tests/completion-combat.test.js",
+        "src/combat.js"
+      ],
+      "productionPending": true
+    }
+  ],
+  "nativeGates": {
+    "passed": true,
+    "tests": 176,
+    "pairs": 468,
+    "nativeBattles": 1872,
+    "defaultExact": 468,
+    "allyKO": 0,
+    "timeouts": 0,
+    "productGel": "04",
+    "reports": [
+      "docs/qa/completion-combat-native-final-03.json",
+      "docs/qa/completion-combat-balance-final-02.json"
+    ],
+    "scope": "Comparatif et natif détaillé gel04 avant durcissement des entrées ; gate complet courant gel05 :1060/1060, qui rejoue les tests de fonctionnalités.",
+    "currentGlobalReport": "docs/qa/completion-integration-final-06-report.json"
+  },
+  "gatesPending": [
+    "Parcours public production sur registre définitif et revue de toutes les captures avant livraison"
+  ],
+  "devGate": {
+    "passed": true,
+    "report": "docs/qa/completion-combat-public-dev-final-02-report.json",
+    "review": "docs/qa/completion-combat-public-dev-final-02-visual-review.json",
+    "checks": 7,
+    "imagesActuallyOpened": 13,
+    "componentSha256": "45385da462f1cf8ee00fb2bdcd72646e98a9353c6ea9e0b36c5515837641547a",
+    "collectorIdenticalToDev01": true
+  },
+  "productionPending": true,
+  "devRefreshPending": false
+}

@@ -105,7 +105,8 @@ test('Shepard’s six ME2 classes enforce primary-manual weapon families without
   assert.ok(native(actorId, 'engineer').powers.includes('cryoBlast'));
   assert.ok(native(actorId, 'adept').powers.includes('singularity'));
   assert.equal(native(actorId, 'infiltrator').powers.includes('overload'), false);
-  assert.ok(native(actorId, 'sentinel').missingPowers.includes('Tech Armor'));
+  assert.ok(native(actorId, 'sentinel').powers.includes('techArmor'));
+  assert.equal(native(actorId, 'sentinel').missingPowers.includes('Tech Armor'), false);
 });
 
 test('ME3 class preparations retain free weapon carrying and keep unsupported class skills explicit', () => {
@@ -114,7 +115,8 @@ test('ME3 class preparations retain free weapon carrying and keep unsupported cl
     assert.deepEqual(build.allowedWeapons, ['pistol', 'smg', 'assault', 'shotgun', 'sniper']);
     assert.deepEqual(combatStats(native(actorId, build.id)), combatStats(native(actorId)));
   }
-  assert.ok(native(actorId, 'vanguard').missingPowers.includes('Nova'));
+  assert.ok(native(actorId, 'vanguard').powers.includes('nova'));
+  assert.equal(native(actorId, 'vanguard').missingPowers.includes('Nova'), false);
   assert.ok(native(actorId, 'adept').missingPowers.includes('Cluster Grenade'));
   assert.equal(getUniverseBuild(actorId, ctx, 'combat'), null);
 });
@@ -156,7 +158,13 @@ test('used catalogue power reports contain only bindings reachable through actua
   assert.deepEqual(usage.map(row => row.catalogId), ids); assert.equal(new Set(ids).size, ids.length);
   assert.ok(ids.includes('ME2-POW-SLAM')); assert.ok(ids.includes('ME3-POW-FORTIFICATION'));
   assert.deepEqual(usage.find(row => row.catalogId === 'ME3-POW-SLAM').scenarioIds, ['me3-from-ashes'], 'Javik is confined to his explicitly prepared extension bench');
-  assert.equal(ids.includes('ME2-POW-CHARGE'), false); assert.equal(ids.includes('MEA-POW-REMNANT-VI'), false);
+  assert.ok(ids.includes('ME2-POW-CHARGE'));
+  assert.deepEqual(usage.find(row => row.catalogId === 'ME2-POW-CHARGE').actorIds, ['ME2-CHR-SHEPARD']);
+  assert.deepEqual(usage.find(row => row.catalogId === 'ME2-POW-CHARGE').scenarioIds, [
+    'me2-freedoms-progress', 'me2-equipment-workshop', 'me2-dlc-specialists', 'me2-shadow-broker',
+    'me2-security-opposition', 'me2-collector-opposition', 'me2-legendary-equipment-workshop',
+  ]);
+  assert.equal(ids.includes('MEA-POW-REMNANT-VI'), false);
   for (const row of usage) {
     assert.equal(getUniversePowerMapping(row.catalogId).actionId, row.actionId);
     assert.ok(row.scenarioIds.every(id => CHRONICLE_SCENARIOS.some(scene => scene.id === id)));

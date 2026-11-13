@@ -1,0 +1,70 @@
+{
+  "name": "mass-effect-relay-chronicles",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Mass Effect Relay Chronicles — RPG 2D/3D à commandes ATB",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/*.test.js",
+    "desktop": "npm run build && electron .",
+    "package:desktop": "npm run build && electron-builder --dir",
+    "workbook": "node scripts/build-workbook.mjs",
+    "test:browser": "node scripts/smoke-browser.mjs",
+    "test:commander": "node scripts/commander-browser.mjs",
+    "test:saves": "node scripts/save-slots-browser.mjs",
+    "test:story": "node scripts/story-browser.mjs",
+    "audit:fidelity": "node scripts/audit-fidelity.mjs",
+    "test:campaign": "node scripts/campaign-browser.mjs",
+    "test:world": "node scripts/world-qa.mjs",
+    "test:balance": "node scripts/simulate-campaign.mjs",
+    "package:windows": "npm run build && electron-builder --win portable --publish never",
+    "test:assignments": "node scripts/assignments-browser.mjs",
+    "test:operations": "node scripts/operations-browser.mjs",
+    "test:loadout": "node scripts/loadout-browser.mjs",
+    "test:customization": "node scripts/customization-browser.mjs",
+    "test:customization:comparison": "node scripts/customization-comparison-browser.mjs",
+    "test:loadout:extensions": "node scripts/loadout-extensions-browser.mjs",
+    "build:universe": "node scripts/build-universe-runtime.mjs",
+    "test:universe": "node scripts/universe-browser.mjs",
+    "test:chronicle:expansion": "node scripts/chronicle-expansion-browser.mjs",
+    "test:chronicle:specialists": "node scripts/chronicle-specialists-browser.mjs",
+    "test:chronicle:support": "node scripts/chronicle-support-browser.mjs",
+    "test:arsenal": "node scripts/arsenal-browser.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "electron": "45.0.0",
+    "electron-builder": "26.15.3",
+    "playwright": "1.64.1",
+    "vite": "7.3.7"
+  },
+  "build": {
+    "appId": "fr.relaychronicles.game",
+    "productName": "Mass Effect Relay Chronicles",
+    "files": [
+      "dist/**/*",
+      "desktop/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "author": "Darknigthmare"
+}

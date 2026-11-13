@@ -1,5 +1,7 @@
 # Assets visuels — registre de livraison
 
+Le [lot Completion](COMPLETION.md) réutilise ces images et ajoute des caisses basses par la géométrie existante du décor, sans nouveau PNG. Les effets réglables, poses de couverture et signatures des Chroniques ne produisent ni nouveau costume, ni cycle d’animation original. Les fermetures fonctionnelles de son catalogue ne changent aucun statut d’asset.
+
 Le [lot P0/P1 de gameplay](PRIORITY_GAMEPLAY.md) conserve les **46 PNG et les 84 poses fixes de combat**. Les nouvelles phases réutilisent les corps et poses existants ; elles n’ajoutent ni découpe anatomique des nœuds du Thorien, ni nouvelle tenue, direction ou animation originale. Les fonctions, interfaces et règles sont suivies comme logiciel dans le catalogue ; aucun nouveau dessin n’est déclaré produit.
 
 Les images de `public/assets/` sont incluses dans la compilation. Le jeu ne dépend d’aucun CDN pour afficher ses sprites. Les atlas ont été générés pour ce projet, puis inspectés et reliés aux régions utilisées par le renderer. **Ils restent des assets de prototype : la fidélité 1:1 aux épisodes concernés n’est pas certifiée.**

@@ -1,4 +1,22 @@
-# État de livraison — priorités P0/P1
+# État de livraison — Completion P0/P1/P2
+
+Le [lot Completion](COMPLETION.md) part de `main` à `0d769125`. La campagne ME1 gagne une couverture directionnelle liée aux obstacles, un repli confirmé vers un point praticable hors des contacts, des conséquences narratives contextuelles et un résumé des relations. Les commandes tactiques compactes conservent le terrain visible sur ordinateur et téléphone ; le brouillon des ordres reste consultable pendant le choix des cibles.
+
+Les sauvegardes refusent les versions, structures et identités invalides avant modification. Inventaire, boutique et atelier conservent leurs transactions atomiques ; un export final ME1 versionné reste distinct de la reprise et ne suppose aucune campagne ME2 disponible. Les options visuelles s’appliquent immédiatement et la navigation au clavier ou à la manette virtuelle conserve un focus visible.
+
+Les Chroniques préparées ME2/ME3 ajoutent Charge, Camouflage tactique, Technoblindage et Nova selon la classe, le média et la période autorisés. Les modules, munitions et lectures documentaires restent séparés de ME1. La Charge utilise un contact abstrait ; statistiques, durées, géométrie et scènes restent des adaptations ATB.
+
+Le [suivi publié localement](qa/completion-tracking-workbook-report.json) met à jour **99 fiches et 251 cellules**, dont **89 critères fermés : 78 P0, six P1 et cinq P2**. Les dix autres fiches restent partielles. Le principal compte **918 Défini, 375 Prototype, zéro Intégré et 92 Validé** ; l’univers compte **5 953 Défini, 666 Prototype, zéro Intégré et 92 Validé** sur 6 711 références et 454 sources. Les **120 panneaux Excel** et les **95 captures de développement** ont été réellement ouverts et revus. L’[audit courant](qa/completion-tracking-current-audit.json) conserve **6 619 critères ouverts : 706 P0, 5 798 P1 et 115 P2**.
+
+Le [contrôle natif final](qa/completion-integration-final-06-report.json) passe **1 060 tests** sans échec ni test ignoré. Le [bilan détaillé](COMPLETION.md) rattache les parcours publics, exports réellement téléchargés et captures réellement ouvertes à leurs sources exactes. La synchronisation de l’Excel, le build et les parcours de production constituent des étapes distinctes avant livraison.
+
+Après la copie du catalogue et de l’Excel, les **38 contrôles du registre reconstruit**, la compilation de **121 modules** et l’audit passent. Les **91 fichiers servis en HTTP** correspondent aux octets compilés. Les [sept familles de production](qa/completion-tracking-production-report.json) passent **52 groupes de contrôles** et leurs [95 captures fraîches sont réellement revues](qa/completion-tracking-production-visual-review.json). Aucun code source de développement ni interface QA n’est chargé. Le [rapport final](qa/completion-report.json) compose ces preuves avec le contrôle des cellules et la conservation des fichiers historiques. Ces vérifications locales restent distinctes des builds Windows et du déploiement Vercel.
+
+Les cycles, costumes, modèles et campagnes originaux complets restent à produire ou vérifier. Aucun PNG de jeu supplémentaire ni statut d’asset n’est promu ; les 46 PNG et 84 poses fixes existants restent conservés. Le délai de réengagement de huit secondes garde une réserve de parcours public, et les vérifications locales ne certifient ni une manette physique, ni les FPS matériels, ni le lancement du jeu sur Windows.
+
+---
+
+# État de livraison — priorités P0/P1 (historique)
 
 Mise à jour : **13 novembre 2026**. Le [lot P0/P1](PRIORITY_GAMEPLAY.md) reprend `main` à `259d512` et ajoute six familles de fonctionnement : objectifs de campagne persistants, positions et ordres tactiques, talents ME1, navigation manette, phases partielles de deux boss et horloge avec pause au changement de focus. Les Chroniques restent séparées et les sprites HD, décors 3D et commandes ATB sont conservés.
 

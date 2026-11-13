@@ -1,0 +1,269 @@
+{
+  "passed": false,
+  "at": "2026-11-13T10:17:48.267Z",
+  "family": "chronicles-support",
+  "mode": "development",
+  "url": "http://127.0.0.1:4193/",
+  "command": {
+    "script": "node scripts/completion-chronicles-support-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4193/",
+      "COMPLETION_CHRONICLES_SUPPORT_MODE": "development",
+      "COMPLETION_CHRONICLES_SUPPORT_PREFIX": "completion-chronicles-support-dev-final-01"
+    }
+  },
+  "scope": "Bounded public legacy migration, two compatible module families, reserve conservation, invalid-parent rejection and documentary reading/navigation/save/isolation. Existing functionality only; no original scene, model, campaign victory or artistic fidelity is certified.",
+  "inputMethod": "Actual public selectors, pointer clicks, uploads/downloads, ordinary scrolling and browser reload. Page evaluation reads DOM or storage only. No QA/source import in the page, DOM/style/state manipulation, game-clock step or event-handler invocation.",
+  "fixtures": [
+    {
+      "label": "campaign-witness",
+      "path": "docs/qa/completion-chronicles-support-dev-final-01-campaign-witness-fixture.json",
+      "bytes": 2805,
+      "sha256": "71ab994870a73f11ba114ada4c1c93f0e6e7676a514f04f5b7082b75f33da6d7",
+      "origin": {
+        "kind": "native-newGame",
+        "APIs": [
+          "newGame",
+          "encodeSave"
+        ],
+        "played": false,
+        "xp": 0
+      }
+    },
+    {
+      "label": "historical-two-slot",
+      "path": "docs/qa/completion-chronicles-support-dev-final-01-historical-two-slot-fixture.json",
+      "bytes": 450,
+      "sha256": "aa8e0e6d116a8d63ee6f98f3292de1ae884681056aee935b88a8e28ce3b14aea",
+      "origin": {
+        "kind": "unchanged-historical-native-fixture",
+        "played": false,
+        "commit": "994a963",
+        "method": "createChronicle + equipChronicle + encodeChronicle from the unchanged historical modules; no progression, statistics or rewards edited",
+        "sources": {
+          "src/chronicles.js": "808fbc4aea428315ce0e4319f489b320ffbd88ccf721c1f4e67439017efc4c04",
+          "src/continuity.js": "5aa0e4702ef5c8fab03f3bc601b4cb2ed31aa93dd1f428693d4706217602a107",
+          "src/universe-equipment.js": "35469d6b72caf95184f46ac97e983f439727058b89e0efbe5ac604e02ecebc1b"
+        }
+      }
+    }
+  ],
+  "imports": [
+    {
+      "label": "historical-two-slot",
+      "valid": true,
+      "bytes": 450,
+      "sha256": "aa8e0e6d116a8d63ee6f98f3292de1ae884681056aee935b88a8e28ce3b14aea",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "feedback": "Chronique importée."
+    }
+  ],
+  "exports": [
+    {
+      "label": "modules-migrated",
+      "path": "docs/qa/completion-chronicles-support-dev-final-01-modules-migrated-export.json",
+      "bytes": 746,
+      "sha256": "cc329e019fd17070d425a8c99889141506353364caa8daca25a0ddc6ac4ec642",
+      "context": {
+        "mediaId": "ME3",
+        "periodId": "me3",
+        "galaxy": "milky-way"
+      },
+      "scenarioId": "me3-equipment-workshop"
+    }
+  ],
+  "captures": [
+    {
+      "label": "failure",
+      "path": "docs/screenshots/completion-chronicles-support-dev-final-01-failure.png",
+      "bytes": 387340,
+      "sha256": "b09a6fe30bb7b16eb167a65b4304ca319fd2410ea3fa1a4969affa275553810b",
+      "source": "Actual public viewport without DOM, style, state or pose injection."
+    }
+  ],
+  "checks": [],
+  "observations": [],
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/chronicles.js": "c4e1c4d597062d0ca0947589a24d00743214df52e84231bb4ba13073b38e3859",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/continuity-data.js": "2b9885cb959d69707c9993ebc32160f342c2bb7efab6dc54cfe8ade153645e03",
+    "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+    "src/universe-actors.js": "0d24051f3aa95f48905338da364d9928fed03a5f1fa5b952187fb283b94e9ac1",
+    "src/universe-equipment.js": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+    "src/universe-ui.js": "8d019008d42a77782f5ac4f99d40dd68f2293ef42a3b678543736c3963ab5862",
+    "src/universe-ui.css": "6068614cf13f7ed0d79c19364bc284277b1921d1ea6e073fd49ecb23c2752566",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "scripts/completion-chronicles-support-public.mjs": "b6b37c17e694d37e2adfabd9b019e24adbcf4a81ec2e8f540bdefebc4ee66fcc",
+    "scripts/completion-chronicles-support-readings.mjs": "e7e04e74fd6510450021323ea50d219794ad03a45aa3c681015eb2409d7a0c4c",
+    "tests/fixtures/chronicle-v1-before-expansion.json": "9cadce28bb86cd847a81c3742f2356454bf386ebbbeb52952886d824b777880f"
+  },
+  "registrySourceHashes": {
+    "src/universe-data.js": "b3ea4b1ea885a5b54493b3c7c965cd019ca5a236c3dcc1da977230579c886e4a"
+  },
+  "registrySnapshot": {
+    "sourcePath": "src/universe-data.js",
+    "path": "docs/qa/completion-chronicles-support-dev-final-01-registry-source.js",
+    "bytes": 3340216,
+    "sha256": "b3ea4b1ea885a5b54493b3c7c965cd019ca5a236c3dcc1da977230579c886e4a",
+    "scope": "Exact generated-registry context bytes at DEV start; separate from product logic. Current bytes and snapshot are checked again at end. Production keeps this source in strict sourceHashes."
+  },
+  "errors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/universe-ui.js",
+    "http://127.0.0.1:4193/src/chronicles.js",
+    "http://127.0.0.1:4193/src/continuity.js",
+    "http://127.0.0.1:4193/src/universe-ui.css",
+    "http://127.0.0.1:4193/src/universe-portraits.js",
+    "http://127.0.0.1:4193/src/expansion-ui.js",
+    "http://127.0.0.1:4193/src/horizon-reference-visuals.js",
+    "http://127.0.0.1:4193/src/expansion.js",
+    "http://127.0.0.1:4193/src/universe-visuals.js",
+    "http://127.0.0.1:4193/src/chronicle-story.js",
+    "http://127.0.0.1:4193/src/universe-equipment.js",
+    "http://127.0.0.1:4193/src/universe-actors.js",
+    "http://127.0.0.1:4193/src/horizon-fleet-reference.js",
+    "http://127.0.0.1:4193/src/expansion-characters.js",
+    "http://127.0.0.1:4193/src/expansion-armor.js",
+    "http://127.0.0.1:4193/src/expansion-weapons.js",
+    "http://127.0.0.1:4193/src/expansion-fleet.js",
+    "http://127.0.0.1:4193/src/expansion2-characters.js",
+    "http://127.0.0.1:4193/src/expansion2-fleet.js",
+    "http://127.0.0.1:4193/src/expansion2-weapons.js",
+    "http://127.0.0.1:4193/src/expansion-enemies.js",
+    "http://127.0.0.1:4193/src/expansion2-enemies.js",
+    "http://127.0.0.1:4193/src/expansion2-armor.js",
+    "http://127.0.0.1:4193/src/expansion3-characters.js",
+    "http://127.0.0.1:4193/src/expansion3-armor.js",
+    "http://127.0.0.1:4193/src/expansion3-weapons.js",
+    "http://127.0.0.1:4193/src/expansion3-fleet.js",
+    "http://127.0.0.1:4193/src/expansion-bench.js",
+    "http://127.0.0.1:4193/src/expansion3-enemies.js",
+    "http://127.0.0.1:4193/src/expansion-medical-bench.js",
+    "http://127.0.0.1:4193/src/universe-specialist-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-powers.js",
+    "http://127.0.0.1:4193/src/universe-opposition-scenarios.js",
+    "http://127.0.0.1:4193/src/arsenal-visual-data.js",
+    "http://127.0.0.1:4193/src/universe-equipment-scenarios.js",
+    "http://127.0.0.1:4193/src/universe-opponents.js",
+    "http://127.0.0.1:4193/src/universe-data.js"
+  ],
+  "servedFiles": [],
+  "distFiles": {},
+  "limitations": [
+    "The ME1 witness is a neutral native newGame imported through the public chooser, with no preceding progression claimed.",
+    "The historical pre-expansion Chronicle is an unchanged native fixture from commit994a963, declared with its provenance. An invalid-parent payload is an explicitly declared rejection probe.",
+    "Module statistics are read from actual public exports through the native actor builder and checked against the displayed native battle ammunition. No battle damage or victory is manufactured.",
+    "Damage-only weapon multiplier behavior and all sixteen readings remain additionally covered by fresh native integration tests. This public sample inspects one reading path and its foreign-context boundary.",
+    "Values and visual cards remain ATB/prototype adaptations; no original weapon model, animation or complete original campaign is certified."
+  ],
+  "chromium": "154.0.8037.57",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at exerciseModules (file:///workspace/Mass-Effect-Relay-Chronicles/scripts/completion-chronicles-support-public.mjs:97:10)\n    at async file:///workspace/Mass-Effect-Relay-Chronicles/scripts/completion-chronicles-support-public.mjs:155:3"
+}

@@ -1,0 +1,3287 @@
+{
+  "passed": true,
+  "at": "2026-11-13T09:46:52.044Z",
+  "mode": "development",
+  "url": "http://127.0.0.1:4193/",
+  "command": {
+    "script": "node scripts/completion-narrative-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4193/",
+      "COMPLETION_NARRATIVE_MODE": "development",
+      "COMPLETION_NARRATIVE_PREFIX": "completion-narrative-dev-final-02"
+    }
+  },
+  "scope": "Public recruitment acceptance/defer, disappearance of recruitment markers, actual squad selection and revisits, both remembered Garrus replies, early/late Liara, both Virmire survivors, permanent-unavailable crew, visible consequence/reputation summaries, real persuasion thresholds and actual save/reload.",
+  "sourceHashes": {
+    "src/main.js": "feb77da051333ccbb40ddcf54079bc944d2dbae354a528f57e625cbe93bfdb9c",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/world.js": "6f3fd809c6bdd8ae4264185407b318008893eab030a8e69369cd66c27d4f36d6",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/combat.js": "9b06a2657fbc3b680860058cc6ab01fb409c46b5aa6ec231fc886c0a1a0f4df9",
+    "src/story.js": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/completion-narrative.js": "90a5f2ff4b33703edbd2fa471fa606a88ffd2dda2d0b4bf4b09b21d3f686b786",
+    "src/completion-narrative-ui.js": "727fba32a41904cb2cb320547659d587fd125fc74d3e690da9d721fc2bce8ccc",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/simulation-clock.js": "4393b7afd2963cb737953708372bd1612de594de836173d41766ae2bcb34baa1",
+    "src/gamepad-controls.js": "95ffa8c270cb00ddf09ddcee0ec7a4cde7de03bb6e7675686a2e78af7d13553a",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/local-map.js": "4cd6e4b2bfe7281949d1a33c73569196d5de6c1e0c962f34440ef034a36f7f7f",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/style.css": "39585297d4e807112ea8d7f5e8ef18ee1459fd57372caff1bcf94d902ac20612",
+    "src/priority-ui.css": "4ccfed12020f894792c84700bd5d80b7e51308362bdcc0c84d8c80bc5a633acc",
+    "src/gamepad-controls.css": "77e1c42d65deb5baaabddc3ffa65609218c2d0e5bf19b6019a711b86991950d0",
+    "src/completion-accessibility.css": "052b6f09d299b2b0178b7cf43e43a894981f543bca31db1930a41064bd2b8925",
+    "scripts/completion-narrative-public.mjs": "68c4135a31b815a1885aa7c507219c91461b70c678fe90b220d3f83dfc0d4200"
+  },
+  "distFiles": {},
+  "fixtures": [
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-citadel-optional-recruits-fixture.json",
+      "sha256": "d34e4f9156fc94fd930eb864303f6083ce039eb4a2db08c1bae0d5572de2bc05",
+      "origin": {
+        "kind": "Native prerequisite chapters; optional Garrus and Wrex are not recruited",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruit-garrus-position-fixture.json",
+      "sha256": "628f654fb67e73e120f172da801fe9030908fd34920130e4c1300de387e66ce3",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-recruit-garrus-before-transfer-export.json",
+        "parentSHA256": "0c3327b20ae66ca55168bc378ae471a29cbeb4145194cd9566e1d26ab7342b19",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": 5,
+              "z": 6
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 5,
+        "z": 6
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruit-wrex-position-fixture.json",
+      "sha256": "280228a0de12bbe514c03f419b60fee170767d62738576a461456f0781c4d1b1",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-recruit-wrex-before-transfer-export.json",
+        "parentSHA256": "73792d7dea4977cf9351c081f41674e354245a101356b127edff815f61a04ac6",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 5,
+              "z": 6
+            },
+            "after": {
+              "x": 5,
+              "z": -9.999999999999998
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 5,
+        "z": -9.999999999999998
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruits-extraction-position-fixture.json",
+      "sha256": "cd12ac904a405a0687820ad2d82f2d5396a88fb779317acfeb69f42228320bf3",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-recruits-extraction-before-transfer-export.json",
+        "parentSHA256": "f4674bede82975679ec13f9513995b291a73c8080be012fbed7755d077e88040",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 5,
+              "z": -9.999999999999998
+            },
+            "after": {
+              "x": -4,
+              "z": 18
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-revisit-extraction-position-fixture.json",
+      "sha256": "7f35669f6c15e63291f5cc85e7f6a0e4bda870f504619cd6a0c96f12d6c2fd26",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-revisit-extraction-before-transfer-export.json",
+        "parentSHA256": "b7ec693be42e7d685bc03462881bb86b9eea8e0f21f9833fcccf3fe10182a8aa",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": -4,
+              "z": 18
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-early-fixture.json",
+      "sha256": "89a7108acf5f074a95c6fa0e70e20b8925be3b6512aa3ba28a0d852c434a62ed",
+      "origin": {
+        "kind": "Native campaign completion in the declared order",
+        "order": [
+          "therum"
+        ],
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-late-fixture.json",
+      "sha256": "44bee0707ef32d8e01325743fe19de84eeb3866ce33900a56b6d886e2fdf6e07",
+      "origin": {
+        "kind": "Native campaign completion in the declared order",
+        "order": [
+          "feros",
+          "noveria",
+          "virmire",
+          "therum"
+        ],
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-save-kaidan-fixture.json",
+      "sha256": "1ab725ff035a5d589843341ae56bef4de28d4827e0e23549ed1931e844c25bb3",
+      "origin": {
+        "kind": "Native Virmire choice and earlier read exchanges for both squadmates",
+        "choice": "save-kaidan",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-save-ashley-fixture.json",
+      "sha256": "5702a4399d2712211a09c9dd049436f00f3672151cce7ea9924cb94a248c9bed",
+      "origin": {
+        "kind": "Native Virmire choice and earlier read exchanges for both squadmates",
+        "choice": "save-ashley",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-before-release-fixture.json",
+      "sha256": "f25c88c51b77c815ae4e0fc58a78ddcf5e2411e2cb5c84127e29423a356051aa",
+      "origin": {
+        "kind": "Native Noveria encounters and MIRA repair callbacks prepared; queen choice undecided",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-release-position-fixture.json",
+      "sha256": "62edccf8fc97ef2bc7d7570188ec6b8ebef3eba929a9603f392dad0443c3ff89",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-queen-release-before-transfer-export.json",
+        "parentSHA256": "39adc7f44ebc933d4ef09fa4bf650d2a14b8d8826c040d2b707e6f91c0c84ddf",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 62
+            },
+            "after": {
+              "x": -2,
+              "z": -85
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-before-destroy-fixture.json",
+      "sha256": "b09521dd13dde0a229a8eb66498f1f62efd638b5259be9a99efa53e9ad21c6f4",
+      "origin": {
+        "kind": "Native Noveria encounters and MIRA repair callbacks prepared; queen choice undecided",
+        "playedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-destroy-position-fixture.json",
+      "sha256": "80b709164597301853e711977018fd8928bb1bcc6218f0e1f469f9bf9d96d211",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-queen-destroy-before-transfer-export.json",
+        "parentSHA256": "e72f817abe8534368dfe9c25a2ce6dce3c5bfbca4723a0295f4d245aeac81067",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 62
+            },
+            "after": {
+              "x": -2,
+              "z": -85
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-persuasion-5-fixture.json",
+      "sha256": "2f2e1d0c5d4b4e79918c14aea6cd27471dac24a0a07b98d054e565e9174b52fd",
+      "origin": {
+        "kind": "Native officer step with explicit threshold points fixture",
+        "changedFields": [
+          "paragon",
+          "renegade"
+        ],
+        "points": {
+          "paragon": 5,
+          "renegade": 5
+        },
+        "pointsEarnedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-hanar-5-position-fixture.json",
+      "sha256": "5187f8c338d8343ec45fa9b4aaf79058e847240a6afa6bc5ad17212dc16de001",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-hanar-5-before-transfer-export.json",
+        "parentSHA256": "4bb1419797b64610c8bdebb6d943f3f9dbebbff41de91d9ff89c2b6037651913",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": 9.100000000000005,
+              "z": -7
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-persuasion-6-fixture.json",
+      "sha256": "7efc08424d9c40254085658ffc7933a07f2ff22f34396b5c2558975885243121",
+      "origin": {
+        "kind": "Native officer step with explicit threshold points fixture",
+        "changedFields": [
+          "paragon",
+          "renegade"
+        ],
+        "points": {
+          "paragon": 6,
+          "renegade": 6
+        },
+        "pointsEarnedInBrowser": false
+      },
+      "position": null
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-hanar-6-position-fixture.json",
+      "sha256": "9caa67bfe734a6b840a29fa134548776fbbe240a3b4d25f938b420d45269a598",
+      "origin": {
+        "kind": "Position-only transfer from actual public export",
+        "parentExport": "docs/qa/completion-narrative-dev-final-02-hanar-6-before-transfer-export.json",
+        "parentSHA256": "a483750f7a879b963b6acdab58f44fa99f48899eeef903c0bd470b4404231fa2",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 17
+            },
+            "after": {
+              "x": 9.100000000000005,
+              "z": -7
+            }
+          }
+        ],
+        "navigationClaimed": false
+      },
+      "position": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    }
+  ],
+  "imports": [
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-citadel-optional-recruits-fixture.json",
+      "sha256": "d34e4f9156fc94fd930eb864303f6083ce039eb4a2db08c1bae0d5572de2bc05",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruit-garrus-position-fixture.json",
+      "sha256": "628f654fb67e73e120f172da801fe9030908fd34920130e4c1300de387e66ce3",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruit-wrex-position-fixture.json",
+      "sha256": "280228a0de12bbe514c03f419b60fee170767d62738576a461456f0781c4d1b1",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruits-extraction-position-fixture.json",
+      "sha256": "cd12ac904a405a0687820ad2d82f2d5396a88fb779317acfeb69f42228320bf3",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-revisit-extraction-position-fixture.json",
+      "sha256": "7f35669f6c15e63291f5cc85e7f6a0e4bda870f504619cd6a0c96f12d6c2fd26",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-wrex-conversation-after-recruitment-export.json",
+      "sha256": "07a8ae3d51272a83db195ace7392559db309e9564cfdb185b3261f41cee8bc6f",
+      "via": "Actual public file chooser",
+      "source": "unaltered-public-export"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-wrex-conversation-after-recruitment-export.json",
+      "sha256": "07a8ae3d51272a83db195ace7392559db309e9564cfdb185b3261f41cee8bc6f",
+      "via": "Actual public file chooser",
+      "source": "unaltered-public-export"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-early-fixture.json",
+      "sha256": "89a7108acf5f074a95c6fa0e70e20b8925be3b6512aa3ba28a0d852c434a62ed",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-late-fixture.json",
+      "sha256": "44bee0707ef32d8e01325743fe19de84eeb3866ce33900a56b6d886e2fdf6e07",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-save-kaidan-fixture.json",
+      "sha256": "1ab725ff035a5d589843341ae56bef4de28d4827e0e23549ed1931e844c25bb3",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-save-ashley-fixture.json",
+      "sha256": "5702a4399d2712211a09c9dd049436f00f3672151cce7ea9924cb94a248c9bed",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-before-release-fixture.json",
+      "sha256": "f25c88c51b77c815ae4e0fc58a78ddcf5e2411e2cb5c84127e29423a356051aa",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-release-position-fixture.json",
+      "sha256": "62edccf8fc97ef2bc7d7570188ec6b8ebef3eba929a9603f392dad0443c3ff89",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-before-destroy-fixture.json",
+      "sha256": "b09521dd13dde0a229a8eb66498f1f62efd638b5259be9a99efa53e9ad21c6f4",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-destroy-position-fixture.json",
+      "sha256": "80b709164597301853e711977018fd8928bb1bcc6218f0e1f469f9bf9d96d211",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-persuasion-5-fixture.json",
+      "sha256": "2f2e1d0c5d4b4e79918c14aea6cd27471dac24a0a07b98d054e565e9174b52fd",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-hanar-5-position-fixture.json",
+      "sha256": "5187f8c338d8343ec45fa9b4aaf79058e847240a6afa6bc5ad17212dc16de001",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-persuasion-6-fixture.json",
+      "sha256": "7efc08424d9c40254085658ffc7933a07f2ff22f34396b5c2558975885243121",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-hanar-6-position-fixture.json",
+      "sha256": "9caa67bfe734a6b840a29fa134548776fbbe240a3b4d25f938b420d45269a598",
+      "via": "Actual public file chooser",
+      "source": "declared-fixture"
+    }
+  ],
+  "exports": [
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruit-garrus-before-transfer-export.json",
+      "label": "recruit-garrus-before-transfer",
+      "sha256": "0c3327b20ae66ca55168bc378ae471a29cbeb4145194cd9566e1d26ab7342b19",
+      "bytes": 3467,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-garrus-deferred-export.json",
+      "label": "garrus-deferred",
+      "sha256": "642af7c349d2a718b599addc50dc9b4c071e83047317be9147e239b441927b6b",
+      "bytes": 3466,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-garrus-joined-export.json",
+      "label": "garrus-joined",
+      "sha256": "dbaf48864f85eb531e44d03a2b4209c2799234f82ccd9a14f2ffdea49a545711",
+      "bytes": 3553,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruit-wrex-before-transfer-export.json",
+      "label": "recruit-wrex-before-transfer",
+      "sha256": "73792d7dea4977cf9351c081f41674e354245a101356b127edff815f61a04ac6",
+      "bytes": 3553,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-wrex-deferred-export.json",
+      "label": "wrex-deferred",
+      "sha256": "70518214ad698171fe4723fdadff9561832874edf262cdac9c0d09a71aa37cbd",
+      "bytes": 3568,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-wrex-joined-export.json",
+      "label": "wrex-joined",
+      "sha256": "4ef323fa5d076186cae687bcfdecdbf9864535a538dce7768195bc02db6ac33f",
+      "bytes": 3649,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruits-extraction-before-transfer-export.json",
+      "label": "recruits-extraction-before-transfer",
+      "sha256": "f4674bede82975679ec13f9513995b291a73c8080be012fbed7755d077e88040",
+      "bytes": 3649,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-both-recruits-squad-export.json",
+      "label": "both-recruits-squad",
+      "sha256": "7f4f806dfe9c1d4b9b97230810dc0865612c3f441a75e01cc81bbc12c6af7f99",
+      "bytes": 3631,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-revisit-extraction-before-transfer-export.json",
+      "label": "revisit-extraction-before-transfer",
+      "sha256": "b7ec693be42e7d685bc03462881bb86b9eea8e0f21f9833fcccf3fe10182a8aa",
+      "bytes": 3630,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-recruits-after-revisit-export.json",
+      "label": "recruits-after-revisit",
+      "sha256": "40865cee0c6c6e3c07e0ecca7fec2fec9e153d2743fc6921e18471968f6cfe7b",
+      "bytes": 3631,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-wrex-conversation-after-recruitment-export.json",
+      "label": "wrex-conversation-after-recruitment",
+      "sha256": "07a8ae3d51272a83db195ace7392559db309e9564cfdb185b3261f41cee8bc6f",
+      "bytes": 3657,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "krogan"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-garrus-procedure-export.json",
+      "label": "garrus-procedure",
+      "sha256": "91c712432a66c0b5797650e5615707e62ff0dfadcd8992dfc80b7ee9b7e0e493",
+      "bytes": 3733,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "procedure"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-garrus-procedure-resumed-export.json",
+      "label": "garrus-procedure-resumed",
+      "sha256": "a8ccc223f05e43a39b2bc283256d2e61fd83ce0670142ff33abe40ee95c53f52",
+      "bytes": 3733,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "procedure"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-garrus-results-export.json",
+      "label": "garrus-results",
+      "sha256": "4b3caeb782574a39a58c1fcac1a1d39fc5f9cdaa2d3a343ff5906249fe0454ee",
+      "bytes": 3731,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "results"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-garrus-results-resumed-export.json",
+      "label": "garrus-results-resumed",
+      "sha256": "f1624c4f68faaf974a2e76530d2f0cec317571aa576f981941913aa975e71f61",
+      "bytes": 3731,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "garrus",
+          "wrex"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "wrex:genophage",
+            "garrus:procedure",
+            "garrus:followup"
+          ],
+          "choices": {
+            "garrus:procedure": "results"
+          },
+          "codex": [
+            "biotic",
+            "krogan",
+            "turian"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-early-heard-export.json",
+      "label": "liara-early-heard",
+      "sha256": "e05781bb12133d6b0a1c42baf29280aa6fa120346f31898254853366144dd6e2",
+      "bytes": 3699,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-early-resumed-export.json",
+      "label": "liara-early-resumed",
+      "sha256": "4b3444ccc0b650f53682a712431297b1f25783a4bc0e9b26580c0192fcae49a0",
+      "bytes": 3713,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum"
+          ]
+        },
+        "paragon": 0,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-late-heard-export.json",
+      "label": "liara-late-heard",
+      "sha256": "e752e525db22a4d2367d7a42f38eb96fc44f9ab11c1e31012516592ba66d1f5e",
+      "bytes": 4230,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "feros",
+            "noveria",
+            "virmire",
+            "therum"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-liara-late-resumed-export.json",
+      "label": "liara-late-resumed",
+      "sha256": "1a227ddc780b34329dc8215b2895fde7ef08178519c222f5df8558762158396f",
+      "bytes": 4230,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "liara:archaeology"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic",
+            "asari",
+            "protheans"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "feros",
+            "noveria",
+            "virmire",
+            "therum"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-kaidan-aftermath-export.json",
+      "label": "kaidan-aftermath",
+      "sha256": "f44b4f58f7a2146346a8513704b93b3c48e8a76ad4cc600a4c7009ae5cfacdff",
+      "bytes": 4223,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "kaidan:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-kaidan-aftermath-resumed-export.json",
+      "label": "kaidan-aftermath-resumed",
+      "sha256": "6ab3e5c94ce7a88e007f80edf8264fce93370ead82c839afc314ad1446377982",
+      "bytes": 4223,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "ashley"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-kaidan"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "kaidan:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-ashley-aftermath-export.json",
+      "label": "ashley-aftermath",
+      "sha256": "6c3531112d42d36e09c165fe9e0c90ec7dda79ddd780ed43f4ee9eadac9dc6cf",
+      "bytes": 4225,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "kaidan"
+        ],
+        "party": [
+          "shepard",
+          "ashley",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-ashley"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "ashley:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-ashley-aftermath-resumed-export.json",
+      "label": "ashley-aftermath-resumed",
+      "sha256": "7c371a7877a0d955e1a0882d6f5e07a6ef9cafcb54cc06c5051a79fb8cc98550",
+      "bytes": 4225,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "garrus",
+          "wrex",
+          "liara"
+        ],
+        "lost": [
+          "jenkins",
+          "kaidan"
+        ],
+        "party": [
+          "shepard",
+          "ashley",
+          "tali"
+        ],
+        "choices": {
+          "feros": "save",
+          "virmire": "save-ashley"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille",
+            "ashley:virmire-return",
+            "chakwas:virmire-loss"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "virmire"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-release-before-transfer-export.json",
+      "label": "queen-release-before-transfer",
+      "sha256": "39adc7f44ebc933d4ef09fa4bf650d2a14b8d8826c040d2b707e6f91c0c84ddf",
+      "bytes": 3921,
+      "observed": {
+        "zone": "noveria",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-release-selected-export.json",
+      "label": "queen-release-selected",
+      "sha256": "399dd344f31cca2b432baa5dc0eddb9d0fb2e50e9d45c63124d863128be14059",
+      "bytes": 4022,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-release-resumed-export.json",
+      "label": "queen-release-resumed",
+      "sha256": "a27736d40f8dba3ec3b185103d2c26f3cce3b56658b4613132a34cb3d776f3bf",
+      "bytes": 4022,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "release"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 40,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-destroy-before-transfer-export.json",
+      "label": "queen-destroy-before-transfer",
+      "sha256": "e72f817abe8534368dfe9c25a2ce6dce3c5bfbca4723a0295f4d245aeac81067",
+      "bytes": 3904,
+      "observed": {
+        "zone": "noveria",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 0,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-destroy-selected-export.json",
+      "label": "queen-destroy-selected",
+      "sha256": "dcd19c93448cd18fdf9509a32a28bc09057b1962270f0e488a47acbad21f9022",
+      "bytes": 4023,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "destroy"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 20,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-queen-destroy-resumed-export.json",
+      "label": "queen-destroy-resumed",
+      "sha256": "6b6348b26ec5f1f4399aaba734c87eb25e22e3bd134ff39e14c5f320cf614d06",
+      "bytes": 4023,
+      "observed": {
+        "zone": "normandy",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali",
+          "liara"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {
+          "feros": "save",
+          "noveria": "destroy"
+        },
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel",
+            "therum",
+            "feros",
+            "noveria"
+          ]
+        },
+        "paragon": 20,
+        "renegade": 20,
+        "operations": {
+          "version": 1,
+          "records": {}
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-hanar-5-before-transfer-export.json",
+      "label": "hanar-5-before-transfer",
+      "sha256": "4bb1419797b64610c8bdebb6d943f3f9dbebbff41de91d9ff89c2b6037651913",
+      "bytes": 3554,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 5,
+        "renegade": 5,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 1,
+              "choices": {
+                "officer": "listen"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-persuasion-5-outcome-export.json",
+      "label": "persuasion-5-outcome",
+      "sha256": "dc1276dcf226da9bd6e07435b0becb763642af8ef2c71d4a9b51834a86967193",
+      "bytes": 3570,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 5,
+        "renegade": 5,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 1,
+              "choices": {
+                "officer": "listen"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-hanar-6-before-transfer-export.json",
+      "label": "hanar-6-before-transfer",
+      "sha256": "a483750f7a879b963b6acdab58f44fa99f48899eeef903c0bd470b4404231fa2",
+      "bytes": 3571,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 6,
+        "renegade": 6,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 1,
+              "choices": {
+                "officer": "listen"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/qa/completion-narrative-dev-final-02-persuasion-6-outcome-export.json",
+      "label": "persuasion-6-outcome",
+      "sha256": "8b21e1f2efd9076ae8b8e923f7b4817d5457404199784e02aaf5067324e477a1",
+      "bytes": 3629,
+      "observed": {
+        "zone": "citadel",
+        "recruited": [
+          "kaidan",
+          "jenkins",
+          "ashley",
+          "tali"
+        ],
+        "lost": [
+          "jenkins"
+        ],
+        "party": [
+          "shepard",
+          "kaidan",
+          "ashley"
+        ],
+        "choices": {},
+        "story": {
+          "heard": [
+            "kaidan:implants",
+            "ashley:famille"
+          ],
+          "choices": {},
+          "codex": [
+            "biotic"
+          ],
+          "visitedZones": [
+            "normandy",
+            "eden-prime",
+            "citadel"
+          ]
+        },
+        "paragon": 6,
+        "renegade": 6,
+        "operations": {
+          "version": 1,
+          "records": {
+            "citadel-presidium-prophet": {
+              "stage": 2,
+              "choices": {
+                "officer": "listen",
+                "hanar": "diplomacy"
+              },
+              "victories": [],
+              "pendingBattle": null
+            }
+          }
+        }
+      }
+    }
+  ],
+  "captures": [
+    {
+      "label": "garrus-recruitment-offer",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-garrus-recruitment-offer.png",
+      "sha256": "83d774a306bf0ef355deeb5898ba36323a3c3e18f0093abffe09a4c1dc137ede",
+      "bytes": 928541,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "wrex-recruitment-offer",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-wrex-recruitment-offer.png",
+      "sha256": "7b5cfd9f26182b4329244051cadce37a86e0dcb8f621a7aa838ba0dc54fa8f6d",
+      "bytes": 919833,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "normandy-garrus-wrex",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-normandy-garrus-wrex.png",
+      "sha256": "182f67f78677b919ea8ee7031a8593b59f344aa50120c1ea45ce918a4cbe4561",
+      "bytes": 634624,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "citadel-selected-recruits-once",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-citadel-selected-recruits-once.png",
+      "sha256": "3d4ab585bb67d9d84b7635c35695259d72b9debf16c71cbc69c2241cffbd54c8",
+      "bytes": 995370,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "wrex-conversation-after-recruitment",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-wrex-conversation-after-recruitment.png",
+      "sha256": "0058238daaa5608173f5d176e32565279349099fbe2466bd0e570f16ec8b9c5b",
+      "bytes": 726329,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "garrus-remembers-procedure",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-garrus-remembers-procedure.png",
+      "sha256": "59acddae4490f895307c82013b316173e01d1cfa6abb6b28c7bf4be8cdfd4529",
+      "bytes": 691960,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "garrus-remembers-results",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-garrus-remembers-results.png",
+      "sha256": "17d688ec9111a2ec5a1bed33f188642ab0eb70b30cdca1fdf41ce754b4b062a0",
+      "bytes": 697799,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "liara-early-reaction",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-liara-early-reaction.png",
+      "sha256": "534a714d2d7c5b8b8d5e6f44bff18e4744e9042e71d817df6cb15b79fa6d5153",
+      "bytes": 706940,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "liara-late-reaction",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-liara-late-reaction.png",
+      "sha256": "1a59cd138f04d8b3a789bf2a3062f2ade82c2f5a679a347168015116d2c6b82c",
+      "bytes": 711131,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "ashley-permanently-unavailable",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-ashley-permanently-unavailable.png",
+      "sha256": "5ea0f6842e3e339297d8cd1221b2448947f139c1056c559c21bdd95b097ff937",
+      "bytes": 292260,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "kaidan-virmire-return",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-kaidan-virmire-return.png",
+      "sha256": "757894413928cafffb879af80ab8617170e14253bfe792b7cc0e57a1d89cc4a3",
+      "bytes": 698697,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "chakwas-permanent-loss",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-chakwas-permanent-loss.png",
+      "sha256": "1f73d44bd2decbe87725b80663e062d47ef34b1d4176909bac17e0b7bc1a180c",
+      "bytes": 691345,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "kaidan-journal-consequence",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-kaidan-journal-consequence.png",
+      "sha256": "bec18f423230898b42ea9482f80e820174e6620447dd314113a015fec51cb661",
+      "bytes": 334376,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "kaidan-permanently-unavailable",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-kaidan-permanently-unavailable.png",
+      "sha256": "f70004360d6df92c2c7ffa10b765aa9b1455336219f2bc6ff8b61a2e1249eb03",
+      "bytes": 303158,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "ashley-virmire-return",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-ashley-virmire-return.png",
+      "sha256": "39254d4c1a7067ed05ff9ca20d3ad3e274bae79ac7a67e6590eadef3f46e0f3f",
+      "bytes": 703997,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "ashley-journal-consequence",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-ashley-journal-consequence.png",
+      "sha256": "167dd0c5a29be9a32e9b825950df41d39c9823c06e797aeff94d7759ed18e703",
+      "bytes": 334059,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "queen-two-explicit-choices",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-queen-two-explicit-choices.png",
+      "sha256": "f69d306746db2c8458da1366115bea57a115ff6e758d2c0bf8c93e4927fb14c8",
+      "bytes": 892286,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "queen-release-consequence",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-queen-release-consequence.png",
+      "sha256": "7f21e37d53eaf5dc8db38ab9befd13dbdb6d22751ffc688a89a310845c68f681",
+      "bytes": 321051,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "queen-destroy-consequence",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-queen-destroy-consequence.png",
+      "sha256": "186dcd6cc012ea828de2060a0ee76c504c727fcd95244a0920469b3d03f2cba0",
+      "bytes": 323309,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "persuasion-5-points",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-persuasion-5-points.png",
+      "sha256": "0eaf1a1d148e838b03b4a68eb82a7ed416fea932ff6f251c20d93d170b1329dc",
+      "bytes": 816866,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "visible-reputation",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-visible-reputation.png",
+      "sha256": "72280a2b1fd1576b79c92e0c3c0e0d6663ba5c590bf7a1fd372f58899b6fc6b4",
+      "bytes": 342357,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    },
+    {
+      "label": "persuasion-6-points",
+      "path": "docs/screenshots/completion-narrative-dev-final-02-persuasion-6-points.png",
+      "sha256": "b3031530fa2c9ec5e1994cc0c3e49a9e989118bba8804dc5f2c40c868b1d80d8",
+      "bytes": 796537,
+      "source": "Actual public viewport after ordinary user scrolling; no DOM, CSS, pose or private-state injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Public defer/accept of both optional recruits, no reward or duplicate recruitment marker, actual Garrus/Wrex squad and Citadel/Normandy revisits",
+      "passed": true
+    },
+    {
+      "name": "Both public Garrus advice branches persist, follow-up reflects the exact selected choice and repeat conversation offers no conflicting reply or reward",
+      "passed": true
+    },
+    {
+      "name": "Public early/late Liara dialogue follows actual completed-order fixtures, has no premature Vigil/Cipher topic, and survives actual automatic-save reload",
+      "passed": true
+    },
+    {
+      "name": "Both public Virmire survivors react to the correct loss; dead crew stay unselectable and absent from conversations while prior exchanges and journal consequences persist through real reload",
+      "passed": true
+    },
+    {
+      "name": "Both public queen decisions produce their own persistent/exported consequence, one native chapter reward and an unchanged actual reload without inventing later-media outcomes",
+      "passed": true
+    },
+    {
+      "name": "Public 5/6-point persuasion boundaries display both prerequisites, disable only locked options, execute an eligible choice and show the same reputation values in the journal",
+      "passed": true
+    }
+  ],
+  "mapCoordinates": [
+    {
+      "id": "citadel:encounter-1",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 61.25,
+        "z": 62.85714285714286
+      },
+      "worldPosition": {
+        "x": 5,
+        "z": 6
+      }
+    },
+    {
+      "id": "citadel:boss",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 61.25,
+        "z": 28.571428571428573
+      },
+      "worldPosition": {
+        "x": 5,
+        "z": -9.999999999999998
+      }
+    },
+    {
+      "id": "citadel:exit",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 41,
+        "z": 88.57142857142857
+      },
+      "worldPosition": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "id": "citadel:exit",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 41,
+        "z": 88.57142857142857
+      },
+      "worldPosition": {
+        "x": -4,
+        "z": 18
+      }
+    },
+    {
+      "id": "noveria:objective",
+      "zone": "noveria",
+      "publicMapSource": {
+        "x": 48.46590909090909,
+        "z": 11.647727272727273
+      },
+      "worldPosition": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "id": "noveria:objective",
+      "zone": "noveria",
+      "publicMapSource": {
+        "x": 48.46590909090909,
+        "z": 11.647727272727273
+      },
+      "worldPosition": {
+        "x": -2,
+        "z": -85
+      }
+    },
+    {
+      "id": "operation:citadel-presidium-prophet:hanar",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 70.47500000000001,
+        "z": 35
+      },
+      "worldPosition": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    },
+    {
+      "id": "operation:citadel-presidium-prophet:hanar",
+      "zone": "citadel",
+      "publicMapSource": {
+        "x": 70.47500000000001,
+        "z": 35
+      },
+      "worldPosition": {
+        "x": 9.100000000000005,
+        "z": -7
+      }
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4193/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "sourceRequests": [
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/@vite/client",
+    "http://127.0.0.1:4193/src/main.js",
+    "http://127.0.0.1:4193/src/campaign-talents.css",
+    "http://127.0.0.1:4193/src/tactical-ui.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.js",
+    "http://127.0.0.1:4193/src/gamepad-controls.css",
+    "http://127.0.0.1:4193/src/priority-ui.css",
+    "http://127.0.0.1:4193/src/mission-progress.js",
+    "http://127.0.0.1:4193/src/mission-progress-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents-ui.js",
+    "http://127.0.0.1:4193/src/campaign-talents.js",
+    "http://127.0.0.1:4193/src/simulation-clock.js",
+    "http://127.0.0.1:4193/src/completion-world.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.js",
+    "http://127.0.0.1:4193/src/completion-narrative-ui.js",
+    "http://127.0.0.1:4193/src/completion-persistence-campaign.js",
+    "http://127.0.0.1:4193/src/combat-summons.js",
+    "http://127.0.0.1:4193/src/style.css",
+    "http://127.0.0.1:4193/src/frontier-ui.css",
+    "http://127.0.0.1:4193/src/horizon-ui.css",
+    "http://127.0.0.1:4193/src/horizon-archive-ui.js",
+    "http://127.0.0.1:4193/src/frontier-ui.js",
+    "http://127.0.0.1:4193/src/frontier-characters.js",
+    "http://127.0.0.1:4193/src/horizon-characters.js",
+    "http://127.0.0.1:4193/src/horizon-ui.js",
+    "http://127.0.0.1:4193/src/loadout-ui.css",
+    "http://127.0.0.1:4193/src/customization-ui.css",
+    "http://127.0.0.1:4193/src/operations-ui.css",
+    "http://127.0.0.1:4193/src/local-map.css",
+    "http://127.0.0.1:4193/src/loadout-ui.js",
+    "http://127.0.0.1:4193/src/customization.js",
+    "http://127.0.0.1:4193/src/customization-ui.js",
+    "http://127.0.0.1:4193/src/loadout.js",
+    "http://127.0.0.1:4193/src/operations.js",
+    "http://127.0.0.1:4193/src/operations-ui.js",
+    "http://127.0.0.1:4193/src/local-map.js",
+    "http://127.0.0.1:4193/src/level-layout-data.js",
+    "http://127.0.0.1:4193/src/level-map-render.js",
+    "http://127.0.0.1:4193/src/world.js",
+    "http://127.0.0.1:4193/src/world-data.js",
+    "http://127.0.0.1:4193/src/audio.js",
+    "http://127.0.0.1:4193/src/commander.js",
+    "http://127.0.0.1:4193/src/story.js",
+    "http://127.0.0.1:4193/src/assignments.js",
+    "http://127.0.0.1:4193/src/save-slots.js",
+    "http://127.0.0.1:4193/src/combat.js",
+    "http://127.0.0.1:4193/src/game-data.js",
+    "http://127.0.0.1:4193/src/state.js",
+    "http://127.0.0.1:4193/src/completion-accessibility.css",
+    "http://127.0.0.1:4193/src/character-data.js",
+    "http://127.0.0.1:4193/src/completion-narrative.js",
+    "http://127.0.0.1:4193/src/horizon-fleet.js",
+    "http://127.0.0.1:4193/src/horizon-fauna.js",
+    "http://127.0.0.1:4193/src/operation-data.js",
+    "http://127.0.0.1:4193/src/customization-render.js",
+    "http://127.0.0.1:4193/src/tool-data.js",
+    "http://127.0.0.1:4193/src/frontier-layout-data.js",
+    "http://127.0.0.1:4193/src/horizon-layout-data.js",
+    "http://127.0.0.1:4193/src/assignment-data.js",
+    "http://127.0.0.1:4193/src/frontier-enemies.js",
+    "http://127.0.0.1:4193/src/horizon-enemies.js",
+    "http://127.0.0.1:4193/src/story-data.js",
+    "http://127.0.0.1:4193/src/tactical-positions.js",
+    "http://127.0.0.1:4193/src/companion-animation-data.js",
+    "http://127.0.0.1:4193/src/enemy-animation-data.js",
+    "http://127.0.0.1:4193/src/joker-seated-data.js",
+    "http://127.0.0.1:4193/src/world-navigation.js",
+    "http://127.0.0.1:4193/src/eden-scene.js",
+    "http://127.0.0.1:4193/src/frontier-scene.js",
+    "http://127.0.0.1:4193/src/horizon-scene.js",
+    "http://127.0.0.1:4193/src/boss-animation-data.js",
+    "http://127.0.0.1:4193/src/frontier-vehicles.js",
+    "http://127.0.0.1:4193/src/continuity-data.js",
+    "http://127.0.0.1:4193/src/universe-weapon-profiles.js",
+    "http://127.0.0.1:4193/src/universe-ammo.js",
+    "http://127.0.0.1:4193/src/combat-medical.js",
+    "http://127.0.0.1:4193/src/boss-phases.js",
+    "http://127.0.0.1:4193/src/completion-chronicles-powers.js"
+  ],
+  "limits": [
+    "Earlier chapters, encounters and dialogue history in fixtures are prepared through the native Node callbacks; they are not claimed played in this browser.",
+    "Position-only transfers derive from the immediately preceding actual public export; no walking path is claimed played.",
+    "The two persuasion fixtures explicitly prepare 5/5 or 6/6 morality points; these points are not claimed earned in the browser. Thresholds are the existing ATB adaptation, not original Charme/Intimidation talents.",
+    "All six planet orders, all nine dossier combinations, healing/Unity and exact body counts are native checks; the browser samples the public flows described in its checks.",
+    "Relations describe actual exchanges only. Full romances, exact original dialogue, uncounted individual colonist outcomes and postwar political composition are not certified."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/completion-narrative-dev-final-02-collector.mjs",
+    "sha256": "68c4135a31b815a1885aa7c507219c91461b70c678fe90b220d3f83dfc0d4200"
+  },
+  "sourceFrozen": true,
+  "browserClosed": true
+}

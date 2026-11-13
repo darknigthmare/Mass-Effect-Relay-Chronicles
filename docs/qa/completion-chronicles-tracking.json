@@ -1,0 +1,834 @@
+{
+  "proposalOnly": true,
+  "baseCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "generatedAt": "2026-11-13T10:37:41.157Z",
+  "productFrozen": true,
+  "scope": "Functional Chronicle workshop rules only; catalogue, source, priority, acceptance, scope and assetStatus are not modified here.",
+  "records": [
+    {
+      "id": "ME2-cartouches-thermiques",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/combat.js",
+        "gameKey": "reload",
+        "notes": "Chargeur et réserve réellement consommés, recharge ATB depuis la réserve ; le chemin chaleur ME1 demeure indépendant. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel. La référence inchangée « Extension future ; rien de cette liste n’est déclaré jouable » décrit le plan initial ; seule la règle fonctionnelle est maintenant exécutée dans les essais Chroniques isolés. Aucune campagne complète de cet opus n’est déclarée jouable."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Règle séparée de la chaleur de ME1.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "tirs à clips distincts de la chaleur de ME1"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-charge-biotique",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/completion-chronicles-powers.js",
+        "gameKey": "bioticCharge",
+        "notes": "Charge réservée à la classe et à la période exactes : impact, récupération de bouclier plafonnée et exposition finie. Le contact est abstrait ; aucun déplacement géométrique original n’est produit. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète."
+      },
+      "statusCandidateAfterFreshPublicGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Déplacement et risque adaptés à l’ATB.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "risque ATB +15 % sur trois secondes",
+          "contact abstrait enregistré, sortie du couvert"
+        ],
+        "limitations": [
+          "Déplacement seulement abstrait : clause géométrique non terminée.",
+          "No complete original campaign, original model, original ranks or artistic fidelity certified."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-camouflage-tactique",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/completion-chronicles-powers.js",
+        "gameKey": "tacticalCloak",
+        "notes": "Cinq secondes ATB de masquage des nouvelles cibles commandées ; tirs ×1,5 au lancement une seule fois, révélation sur ordre offensif et expiration. Carte du joueur toujours visible avec libellé temporel ; aucun modèle ou shader de camouflage original. Les zones abstraites sont aussi exclues, limite conservative documentée. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel. La référence inchangée « Extension future ; rien de cette liste n’est déclaré jouable » décrit le plan initial ; seule la règle fonctionnelle est maintenant exécutée dans les essais Chroniques isolés. Aucune campagne complète de cet opus n’est déclarée jouable."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Visibilité et bonus limités dans le temps.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "masquage logique fini",
+          "bonus de tir temporaire et limité à un lancement",
+          "projectiles antérieurs conservés"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-technoblindage",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/completion-chronicles-powers.js",
+        "gameKey": "techArmor",
+        "notes": "Protection ME2 finie avec recharge de bouclier plafonnée, puis détonation automatique unique lors de sa rupture. Les paramètres et le déclencheur retenus sont documentés comme adaptation ATB. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel. La référence inchangée « Extension future ; rien de cette liste n’est déclaré jouable » décrit le plan initial ; seule la règle fonctionnelle est maintenant exécutée dans les essais Chroniques isolés. Aucune campagne complète de cet opus n’est déclarée jouable."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Défense et détonation documentées.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "défense effective",
+          "détonation unique documentée"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-drone-de-combat",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/combat-summons.js",
+        "gameKey": "combatDrone",
+        "notes": "Invocation technologique existante requalifiée : entité ciblable, propriétaire, cible désignée et durée finie ; aucun recrutement ou objet de campagne. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel. La référence inchangée « Extension future ; rien de cette liste n’est déclaré jouable » décrit le plan initial ; seule la règle fonctionnelle est maintenant exécutée dans les essais Chroniques isolés. Aucune campagne complète de cet opus n’est déclarée jouable."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Invocation technologique avec durée et cible.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "invocation réelle",
+          "durée bornée",
+          "cible désignée"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat-summons.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-nova",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/completion-chronicles-powers.js",
+        "gameKey": "nova",
+        "notes": "Nova ME3 de Porte-étendard consomme le bouclier courant une seule fois et module l’onde selon sa fraction. Refus sans bouclier, sans dépense ; Charge fournit une synergie réelle de recharge. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel. La référence inchangée « Extension future ; rien de cette liste n’est déclaré jouable » décrit le plan initial ; seule la règle fonctionnelle est maintenant exécutée dans les essais Chroniques isolés. Aucune campagne complète de cet opus n’est déclarée jouable."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Coût et synergies documentés.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "coût réel de bouclier documenté",
+          "synergie Charge documentée"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/combat.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-omni-lame",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Défini",
+        "notes": "Ouvert : aucune fiche POW factuelle éligible pour cet ajout. La mêlée lourde du manuel ME3 ne justifie pas une omni-lame universelle et aucun équipement canonique ME1 n’est ajouté. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète."
+      },
+      "statusCandidateAfterFreshPublicGates": "Défini",
+      "acceptanceReview": {
+        "exactCriterion": "Ne pas rétroporter comme équipement canonique ME1.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [],
+        "limitations": [
+          "Fiche POW éligible absente ; travail ouvert.",
+          "No complete original campaign, original model, original ranks or artistic fidelity certified."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-chroniques-contextuelles",
+      "baselineStatus": "Prototype",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/chronicles.js",
+        "gameKey": "createChronicle",
+        "notes": "Prototype partiel : 25 essais dont six bancs d’opposition et trois ateliers d’édition explicites. Les 16 profils ennemis ont leurs limites affichées ; les 42 profils joueurs historiques sont conservés. Les 24 illustrations fixes contextualisées ne donnent ni statistiques aux PNJ, ni pilotage ou géométrie. Voir src/universe-visuals.js, tests/universe-visuals.test.js et docs/CHRONICLES.md. Aucun transfert vers ME1. 28 œuvres et 48 segments contrôlés par contexte, refus étrangers et sessions isolées, sans transfert ME1. Exercices et illustrations restent explicitement partiels. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Les 28 œuvres et 48 segments sont identifiés ; les essais refusent personnages, objets et sauvegardes étrangers à leur contexte. La campagne ME1 conserve inventaire, décisions et sauvegardes. Les scènes abstraites sont indiquées comme simulations.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "28 œuvres et 48 segments",
+          "refus des contenus et enveloppes étrangers",
+          "isolation ME1",
+          "simulations annoncées"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-clips-thermiques",
+      "baselineStatus": "Prototype",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/combat.js",
+        "gameKey": "reload",
+        "notes": "Prototype partiel. Voir docs/CHRONICLES.md et tests/chronicles.test.js, tests/universe-combat.test.js, scripts/universe-browser.mjs. Aucun nouveau personnage ou équipement futur dans la campagne ME1. Règles de chargeur, réserve, recharge ATB, refus à vide et absence de nombres négatifs requalifiées par les tests natifs frais. Valeurs ATB adaptées. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Les tirs consomment le chargeur, la recharge utilise une action ATB et la réserve ; tir impossible à vide, pas de munitions négatives. Les capacités et le temps ATB restent adaptés, sans certification numérique 1:1.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "consommation de chargeur",
+          "coût ATB et transfert de réserve",
+          "refus à vide atomique",
+          "pas de munitions négatives"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/combat.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-preparations-chroniques",
+      "baselineStatus": "Prototype",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/chronicles.js",
+        "gameKey": "setChronicleBuild",
+        "notes": "Prototype partiel : 107 équipements selon la scène, le porteur et l’édition ; quatre ports conservés. Le module ultraléger est limité aux SMG conventionnelles ME3 et à un coefficient de recharge ATB de 0,9. Les modes de munitions exclusifs et préférences sauvegardées restent distincts du combat. Voir tests/universe-armor-editions.test.js et tests/chronicle-ammo-sessions.test.js ; acquisition, rangs et fidélité globale 1:1 non certifiés. Migrations default, modes appris exclusifs, retrait sur arme/classe incompatible et quatre ports contrôlés ; classe sauvegardée distincte des notes et de ME1. Les signatures ajoutées respectent les mêmes gardes. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Critère fonctionnel exact couvert par la suite native fraîche gel05 et le parcours public DEV05 avec11captures effectivement revues,7exports et sauvegarde ME1 byte-identique. Gate de livraison production encore en attente, distinct de ce constat fonctionnel."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Le profil default des anciennes préparations migre sans classe imposée. Modes de munitions appris exclusifs, quatre ports conservés ; classe ou arme incompatible retire le mode. ammoModes reste distinct des notes et sauvegardes ME1. Les valeurs demeurent des adaptations ATB.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "migration ancienne default",
+          "modes appris exclusifs",
+          "quatre ports",
+          "retrait de mode incompatible",
+          "séparation ammoModes/notes/ME1"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Validation fonctionnelle de la règle de l’essai uniquement ; livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-modules-chroniques",
+      "baselineStatus": "Prototype",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/universe-equipment.js",
+        "gameKey": "equipChronicleItem",
+        "notes": "Prototype partiel vérifié : tests/chronicle-expansion.test.js et scripts/chronicle-expansion-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1. Familles et porteurs exacts, retrait au changement d’arme, bonus du canon limité aux tirs, réserve conservée et migration deux vers quatre ports requalifiés. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Nouveau parcours public support DEV02 : véritable import natif historique à deux ports migré vers quatre/default, familles distinctes contrôlées par option.disabled et attribut DOM,18+72→23+67 sans création, affichage natif en bataille, changement de parent retirant les deux modules et import incompatible refusé atomiquement. Six captures du parcours sont effectivement revues ; seules ces règles fonctionnelles sont validées, sans modèle/rang original certifié. Production encore en attente."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Deux familles distinctes, arme parent valide, retrait des modules lors d’un changement d’arme. Le canon renforce uniquement les tirs ; le chargeur réaffecte des munitions de réserve sans en créer. Anciennes préparations à deux slots migrées vers quatre.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "familles distinctes et arme valide",
+          "retrait au changement d’arme",
+          "canon sur tirs uniquement",
+          "réaffectation sans création de réserve",
+          "migration deux vers quatre ports"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Critère fonctionnel complet couvert par les natifs frais et support DEV02/revue des6originaux ; productionPending:true reste un gate de livraison distinct."
+        ],
+        "evidence": [
+          "docs/qa/completion-chronicles-support-dev-final-02-report.json",
+          "docs/qa/completion-chronicles-support-dev-final-02-visual-review.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/universe-equipment.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-lectures-chroniques",
+      "baselineStatus": "Prototype",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/chronicle-story.js",
+        "gameKey": "readChronicleStoryStep",
+        "notes": "Prototype partiel : tests/chronicle-story.test.js et tests/chronicle-specialists.test.js ; compléments des parcours couverts par scripts/chronicle-specialists-browser.mjs. Voir docs/CHRONICLES.md ; aucune validation globale 1:1. Seize parcours et 52 pages existants requalifiés : sources, contexte, découvertes uniques, import/reprise et position. Aucun crédit, recrutement, résultat de combat ou choix canonique octroyé. Preuves fraîches et limites : docs/research/completion-chronicles.md. Aucune validation artistique, numérique originale ou de campagne complète. Nouveau parcours public support DEV02 : Revelation et Ascension, navigation précédente/suivante et relecture, sources visibles, cinq découvertes uniques, notes non vides distinctes de readingProgress, vraie restauration après export/import puis recharge navigateur. Aucune récompense, recrutement, victoire ou choix canonique, stockage ME1 byte-identique. Six captures du parcours sont effectivement revues ; réserves documentaires conservées et production encore en attente."
+      },
+      "statusCandidateAfterFreshPublicGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Navigation et sources visibles ; contexte exact ; découvertes uniques et position conservées à l’import/reprise. readingProgress reste séparé des notes personnelles. Aucun crédit, recrutement, combat gagné ou choix canonique n’est accordé par une lecture.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "navigation et sources",
+          "contexte exact",
+          "découvertes uniques",
+          "position et reprise",
+          "readingProgress distinct des notes",
+          "aucune récompense ou décision canonique"
+        ],
+        "limitations": [
+          "No complete original campaign, original model, original ranks or artistic fidelity certified.",
+          "Critère fonctionnel complet couvert par les natifs frais et support DEV02/revue des6originaux ; productionPending:true reste un gate de livraison distinct."
+        ],
+        "evidence": [
+          "docs/qa/completion-chronicles-support-dev-final-02-report.json",
+          "docs/qa/completion-chronicles-support-dev-final-02-visual-review.json",
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-initial-01-report.json",
+          "docs/qa/completion-chronicles-native-initial-01-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/chronicle-story.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-POW-CHARGE",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : bioticCharge dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe vanguard vérifiées pour Shepard ME2 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Contact seulement abstrait ; chemin et espace d’atterrissage non simulés.",
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-POW-TACTICAL",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : tacticalCloak dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe infiltrator vérifiées pour Shepard ME2 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME2-POW-TECH-ARMOR",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : techArmor dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe sentinel vérifiées pour Shepard ME2 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "La cible, la protection pertinente, le coût proposé, l’état appliqué et sa fin sont visibles ; une cible non admissible ne consomme pas la commande.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-POW-CHARGE",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : bioticCharge dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe vanguard vérifiées pour Shepard ME3 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Contact seulement abstrait ; chemin et espace d’atterrissage non simulés.",
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-POW-TACTICAL",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : tacticalCloak dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe infiltrator vérifiées pour Shepard ME3 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-POW-TECH-ARMOR",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : techArmor dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe sentinel vérifiées pour Shepard ME3 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Vérifier cible organique/synthétique, chaque protection, durée et fin d’état ; une cible non admissible garde ressources et action disponibles.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-POW-NOVA",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Prototype",
+        "implementation": "Prototype partiel : nova dans src/completion-chronicles-powers.js ; plans purs intégrés au moteur ATB, source POW et classe vanguard vérifiées pour Shepard ME3 en période principale. Préparation, commandes, coûts, états finis et refus atomiques testés. Acquisition, rangs, modèles, animations et audio originaux absents ; aucune campagne complète.",
+        "notes": "Spécification à réaliser. Les champs adaptation, gameplay, visual, animation, audio et implementation décrivent le fan game ; ils ne donnent pas des caractéristiques officielles de l’œuvre. Sous-ensemble de règle jouable dans les Chroniques indépendantes, sans modifier adaptation, gameplay ou critères. Voir docs/research/completion-chronicles.md et les preuves fraîches du lot completion."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Le livrable « Nova » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "classe, œuvre, période et source exactes",
+          "états ou coûts réellement appliqués et finis",
+          "refus atomique sans ressource ni tirage aléatoire",
+          "scénario de contrôle natif et préparation existants"
+        ],
+        "limitations": [
+          "Visuels et animations spécifiques, audio et paramètres des rangs originaux non produits.",
+          "Progrès de code documenté hors promotion publique de ce lot ; schéma de catalogue d’œuvre et assets inchangés."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md",
+          "docs/qa/completion-chronicles-native-feedback-02-tests.tap",
+          "docs/qa/completion-chronicles-source-access.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/completion-chronicles-powers.js",
+        "src/universe-powers.js",
+        "src/universe-actors.js",
+        "src/combat.js",
+        "src/chronicles.js"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "SYS-talents",
+      "baselineStatus": "Prototype",
+      "productionPending": true,
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/campaign-talents.js",
+        "gameKey": "trainTalent",
+        "notes": "Neuf définitions de talents : quatre maîtrises d’armes, Aptitude physique, Formation d’assaut, Électronique, Atténuation et une discipline biotique adaptée. Un point par niveau ATB gagné, coût d’un point par rang et par formation d’armure ; dépendances, classes, mort narrative et budget commun validés. Achats définitifs au Normandy, consultation ailleurs ; anciennes sauvegardes sans talents migrées vers zéro rang. Bonus reconstruits dans les acteurs et les aperçus sans cumul. Les arbres complets, douze rangs, seuils, précision et effets originaux ne sont pas certifiés 1:1. Le critère fonctionnel « Dépendances et points disponibles contrôlés. » est couvert par les natifs frais et un nouveau sous-parcours public DEV05 : Ingénieur au Normandy,900XP explicitement préparés avant import, prérequis Atténuation refusé, achats réels Électronique1+Atténuation2, budget partagé épuisé et achat supplémentaire sans effet, exports et recharge des rangs. Les deux captures originales de ce sous-parcours sont réellement revues. Aucune injection de pouvoir/XP pendant le jeu, aucun XP prétendu gagné. Les arbres complets,douze rangs,seuils et fidélité artistique restent hors de cette validation. Gate production encore en attente."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Dépendances et points disponibles contrôlés.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Dépendance Atténuation→Électronique contrôlée avant achat, refus effectif du contrôle désactivé",
+          "Points disponibles3 puis0 réellement affichés et budget partagé armures/talents contrôlé",
+          "Achats natifs atomiques Électronique1+Atténuation2 ; aucun quatrième rang ou ressource ajouté",
+          "Rangs,budget et inventaire conservés par export puis véritable recharge navigateur"
+        ],
+        "limitations": [
+          "Sous-ensemble de talents adapté : arbres originaux complets et douze rangs non certifiés, visuels originaux non produits.",
+          "La fixture possède900XP préparés explicitement avant import ; aucune progression précédente prétendue jouée.",
+          "Livraison production encore à vérifier, productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-report.json",
+          "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+          "docs/qa/completion-chronicles-native-feedback-02-report.json",
+          "docs/research/completion-chronicles.md"
+        ]
+      },
+      "implementationPaths": [
+        "src/campaign-talents.js",
+        "src/campaign-talents-ui.js",
+        "src/campaign-talents.css",
+        "src/combat.js",
+        "src/game-data.js",
+        "src/state.js",
+        "src/loadout.js",
+        "src/main.js"
+      ]
+    }
+  ],
+  "developmentPublicGatesPending": false,
+  "productionPending": true,
+  "developmentReview": "docs/qa/completion-chronicles-dev-final-05-visual-review.json",
+  "supportDevelopmentReview": "docs/qa/completion-chronicles-support-dev-final-02-visual-review.json",
+  "currentNativeIntegration": "docs/qa/completion-integration-final-06-report.json"
+}

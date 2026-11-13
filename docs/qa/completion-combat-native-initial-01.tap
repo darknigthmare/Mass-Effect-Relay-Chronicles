@@ -1,0 +1,964 @@
+TAP version 13
+# Subtest: absent legacy talents migrate neutrally and validated ranks are detached
+ok 1 - absent legacy talents migrate neutrally and validated ranks are detached
+  ---
+  duration_ms: 3.710608
+  type: 'test'
+  ...
+# Subtest: explicit malformed talents, class forgeries and getter payloads are refused
+ok 2 - explicit malformed talents, class forgeries and getter payloads are refused
+  ---
+  duration_ms: 0.456888
+  type: 'test'
+  ...
+# Subtest: talents and armour reserve the same per-actor point regardless of purchase order
+ok 3 - talents and armour reserve the same per-actor point regardless of purchase order
+  ---
+  duration_ms: 2.554307
+  type: 'test'
+  ...
+# Subtest: actual campaign save reconstruction preserves both budgets and rejects an overspent import
+ok 4 - actual campaign save reconstruction preserves both budgets and rejects an overspent import
+  ---
+  duration_ms: 5.873796
+  type: 'test'
+  ...
+# Subtest: class capabilities and permanent loss constrain options without creating a power
+ok 5 - class capabilities and permanent loss constrain options without creating a power
+  ---
+  duration_ms: 1.126046
+  type: 'test'
+  ...
+# Subtest: prerequisite, rank cap and Normandy restriction are atomic and spend no currency
+ok 6 - prerequisite, rank cap and Normandy restriction are atomic and spend no currency
+  ---
+  duration_ms: 0.800416
+  type: 'test'
+  ...
+# Subtest: derived bonuses recompute from gear and rank without stacking or wrong-family effects
+ok 7 - derived bonuses recompute from gear and rank without stacking or wrong-family effects
+  ---
+  duration_ms: 2.493561
+  type: 'test'
+  ...
+# Subtest: new combat powers require the purchased ME1 class and never leak to later contexts
+ok 8 - new combat powers require the purchased ME1 class and never leak to later contexts
+  ---
+  duration_ms: 1.107858
+  type: 'test'
+  ...
+# Subtest: ME1 adrenaline resets other cooldowns while preserving its cost and every other resource
+ok 9 - ME1 adrenaline resets other cooldowns while preserving its cost and every other resource
+  ---
+  duration_ms: 1.012645
+  type: 'test'
+  ...
+# Subtest: damping affects future powers only; immunity reduction is finite and ME1-scoped
+ok 10 - damping affects future powers only; immunity reduction is finite and ME1-scoped
+  ---
+  duration_ms: 16.253659
+  type: 'test'
+  ...
+# Subtest: native damping blocks new bio/tech orders while shooting and resolved effects remain valid
+ok 11 - native damping blocks new bio/tech orders while shooting and resolved effects remain valid
+  ---
+  duration_ms: 6.90505
+  type: 'test'
+  ...
+# Subtest: damping respects immunity and complete resistance without creating a zero-duration status
+ok 12 - damping respects immunity and complete resistance without creating a zero-duration status
+  ---
+  duration_ms: 0.529608
+  type: 'test'
+  ...
+# Subtest: native immunity reduces actual incoming damage and native adrenaline keeps its own recharge
+ok 13 - native immunity reduces actual incoming damage and native adrenaline keeps its own recharge
+  ---
+  duration_ms: 1.742665
+  type: 'test'
+  ...
+# Subtest: four charge profiles really prepare first and spend clips once at emission, with no phantom early damage
+ok 14 - four charge profiles really prepare first and spend clips once at emission, with no phantom early damage
+  ---
+  duration_ms: 11.000978
+  type: 'test'
+  ...
+# Subtest: Graal produces actual distinct spike hits and Javelin abstracts only light cover, without removing armor
+ok 15 - Graal produces actual distinct spike hits and Javelin abstracts only light cover, without removing armor
+  ---
+  duration_ms: 2.31767
+  type: 'test'
+  ...
+# Subtest: canceling before release keeps clips but never refunds the spent turn or signature concentration
+ok 16 - canceling before release keeps clips but never refunds the spent turn or signature concentration
+  ---
+  duration_ms: 3.009924
+  type: 'test'
+  ...
+# Subtest: burst and signature charges spend their own finite budgets once, and an underfilled charge cannot start
+ok 17 - burst and signature charges spend their own finite budgets once, and an underfilled charge cannot start
+  ---
+  duration_ms: 1.002049
+  type: 'test'
+  ...
+# Subtest: KO, Stasis, Sabotage and a target lost during preparation cancel the charge without a later release
+ok 18 - KO, Stasis, Sabotage and a target lost during preparation cancel the charge without a later release
+  ---
+  duration_ms: 4.663063
+  type: 'test'
+  ...
+# Subtest: Venom charges, launches, then resolves delayed area damage without aging its flight twice
+ok 19 - Venom charges, launches, then resolves delayed area damage without aging its flight twice
+  ---
+  duration_ms: 2.126773
+  type: 'test'
+  ...
+# Subtest: a launched Venom projectile survives the shooter; a canceled preparation never creates one
+ok 20 - a launched Venom projectile survives the shooter; a canceled preparation never creates one
+  ---
+  duration_ms: 2.093913
+  type: 'test'
+  ...
+# Subtest: new heat weapons have real pulses/impacts and no inherited ammo fields or reload action
+ok 21 - new heat weapons have real pulses/impacts and no inherited ammo fields or reload action
+  ---
+  duration_ms: 3.12112
+  type: 'test'
+  ...
+# Subtest: new special models reject conventional ammo modes, and charge admission rejects missing clips atomically
+ok 22 - new special models reject conventional ammo modes, and charge admission rejects missing clips atomically
+  ---
+  duration_ms: 1.991078
+  type: 'test'
+  ...
+# Subtest: Wait and explicit pause freeze new charge, remaining clips and pending charged-projectile flight
+ok 23 - Wait and explicit pause freeze new charge, remaining clips and pending charged-projectile flight
+  ---
+  duration_ms: 1.073627
+  type: 'test'
+  ...
+# Subtest: the ultralight modifier scales each cooldown once and never changes weapon, ammo-mode or grenade resources
+ok 24 - the ultralight modifier scales each cooldown once and never changes weapon, ammo-mode or grenade resources
+  ---
+  duration_ms: 0.978644
+  type: 'test'
+  ...
+# Subtest: all three explosive weapon profiles consume clips immediately and explode later on the target group
+ok 25 - all three explosive weapon profiles consume clips immediately and explode later on the target group
+  ---
+  duration_ms: 7.705194
+  type: 'test'
+  ...
+# Subtest: delayed heavy orders preserve their ammunition costs, damage modifiers and focus expenditure
+ok 26 - delayed heavy orders preserve their ammunition costs, damage modifiers and focus expenditure
+  ---
+  duration_ms: 1.478096
+  type: 'test'
+  ...
+# Subtest: grenade samples are per actor, finite, and use no cooldown or gun ammunition
+ok 27 - grenade samples are per actor, finite, and use no cooldown or gun ammunition
+  ---
+  duration_ms: 1.177093
+  type: 'test'
+  ...
+# Subtest: a sticky charge survives both its shooter and its initial target while the battle continues
+ok 28 - a sticky charge survives both its shooter and its initial target while the battle continues
+  ---
+  duration_ms: 1.879501
+  type: 'test'
+  ...
+# Subtest: pending autonomous explosives settle before an outcome and never revive an eliminated party
+ok 29 - pending autonomous explosives settle before an outcome and never revive an eliminated party
+  ---
+  duration_ms: 1.79907
+  type: 'test'
+  ...
+# Subtest: a hostile projectile can land after its shooter falls, without a pointless final Wait decision
+ok 30 - a hostile projectile can land after its shooter falls, without a pointless final Wait decision
+  ---
+  duration_ms: 0.966706
+  type: 'test'
+  ...
+# Subtest: explosions respect Stasis independently for every target without refunding their resources
+ok 31 - explosions respect Stasis independently for every target without refunding their resources
+  ---
+  duration_ms: 1.625327
+  type: 'test'
+  ...
+# Subtest: PAW is a real timed heat channel with four impulses, no inherited clips, and ordinary cooling afterward
+ok 32 - PAW is a real timed heat channel with four impulses, no inherited clips, and ordinary cooling afterward
+  ---
+  duration_ms: 1.474661
+  type: 'test'
+  ...
+# Subtest: Reegar spends clips per pulse and stops at an empty magazine before the nominal channel ends
+ok 33 - Reegar spends clips per pulse and stops at an empty magazine before the nominal channel ends
+  ---
+  duration_ms: 2.121215
+  type: 'test'
+  ...
+# Subtest: an explicit channel cancellation is free in ATB and never refunds already emitted pulses
+ok 34 - an explicit channel cancellation is free in ATB and never refunds already emitted pulses
+  ---
+  duration_ms: 1.973612
+  type: 'test'
+  ...
+# Subtest: KO, Stasis and Sabotage interrupt a channel before any later pulse can occur
+ok 35 - KO, Stasis and Sabotage interrupt a channel before any later pulse can occur
+  ---
+  duration_ms: 2.954299
+  type: 'test'
+  ...
+# Subtest: overheating ends the heat channel and respects equipped thermal recovery afterward
+ok 36 - overheating ends the heat channel and respects equipped thermal recovery afterward
+  ---
+  duration_ms: 0.716399
+  type: 'test'
+  ...
+# Subtest: Sweeper produces three real heat impacts and never silently spends clips
+ok 37 - Sweeper produces three real heat impacts and never silently spends clips
+  ---
+  duration_ms: 0.383417
+  type: 'test'
+  ...
+# Subtest: Shield Boost restores living allies, changes their real recovery, and never heals HP or revives
+ok 38 - Shield Boost restores living allies, changes their real recovery, and never heals HP or revives
+  ---
+  duration_ms: 2.87508
+  type: 'test'
+  ...
+# Subtest: Wait and explicit pause freeze active flights and channels; Active timing is frame independent
+ok 39 - Wait and explicit pause freeze active flights and channels; Active timing is frame independent
+  ---
+  duration_ms: 4.996786
+  type: 'test'
+  ...
+# Subtest: unknown profile objects cannot create special weapons, and invalid targets spend no special resources
+ok 40 - unknown profile objects cannot create special weapons, and invalid targets spend no special resources
+  ---
+  duration_ms: 0.481105
+  type: 'test'
+  ...
+# Subtest: four frozen profiles retain exact work/action identity and disclose prototype rules
+ok 41 - four frozen profiles retain exact work/action identity and disclose prototype rules
+  ---
+  duration_ms: 1.830356
+  type: 'test'
+  ...
+# Subtest: deployment produces a fresh targetable synthetic entity without copying owner equipment or HP
+ok 42 - deployment produces a fresh targetable synthetic entity without copying owner equipment or HP
+  ---
+  duration_ms: 1.504575
+  type: 'test'
+  ...
+# Subtest: invalid owners, training, identities and focus targets fail atomically
+ok 43 - invalid owners, training, identities and focus targets fail atomically
+  ---
+  duration_ms: 1.053937
+  type: 'test'
+  ...
+# Subtest: replacement, two types per owner and six active entities per team enforce the announced ATB budget
+ok 44 - replacement, two types per owner and six active entities per team enforce the announced ATB budget
+  ---
+  duration_ms: 1.813922
+  type: 'test'
+  ...
+# Subtest: dead, orphaned and expired summons retire without keeping a side alive or attacking after KO
+ok 45 - dead, orphaned and expired summons retire without keeping a side alive or attacking after KO
+  ---
+  duration_ms: 0.993276
+  type: 'test'
+  ...
+# Subtest: attack schedules and expiry remain identical across different tick granularities
+ok 46 - attack schedules and expiry remain identical across different tick granularities
+  ---
+  duration_ms: 4.795002
+  type: 'test'
+  ...
+# Subtest: harassment retargets a lost focus and never schedules a hit against dead or Stasis targets
+ok 47 - harassment retargets a lost focus and never schedules a hit against dead or Stasis targets
+  ---
+  duration_ms: 0.343307
+  type: 'test'
+  ...
+# Subtest: the native hacked status changes a device target camp without duplicating its owner or team HP
+ok 48 - the native hacked status changes a device target camp without duplicating its owner or team HP
+  ---
+  duration_ms: 0.235705
+  type: 'test'
+  ...
+# Subtest: Defense Drone reacts to actual owner damage, consumes the event cursor, and never acts as Barrier
+ok 49 - Defense Drone reacts to actual owner damage, consumes the event cursor, and never acts as Barrier
+  ---
+  duration_ms: 0.503038
+  type: 'test'
+  ...
+# Subtest: guard reactions have the same ordering for a coarse event batch and fine repeated plans
+ok 50 - guard reactions have the same ordering for a coarse event batch and fine repeated plans
+  ---
+  duration_ms: 1.221279
+  type: 'test'
+  ...
+# Subtest: a guard never retaliates against a dead, invulnerable or unrelated attacker
+ok 51 - a guard never retaliates against a dead, invulnerable or unrelated attacker
+  ---
+  duration_ms: 0.261213
+  type: 'test'
+  ...
+# Subtest: disabled devices discard blocked opportunities instead of catching up with a phantom volley
+ok 52 - disabled devices discard blocked opportunities instead of catching up with a phantom volley
+  ---
+  duration_ms: 0.376296
+  type: 'test'
+  ...
+# Subtest: HP remains solely in the actual battle entity and plans never clone a second mutable health store
+ok 53 - HP remains solely in the actual battle entity and plans never clone a second mutable health store
+  ---
+  duration_ms: 0.300433
+  type: 'test'
+  ...
+# Subtest: malformed requests and accessor-bearing input fail without reading getters or partially allocating
+ok 54 - malformed requests and accessor-bearing input fail without reading getters or partially allocating
+  ---
+  duration_ms: 0.386712
+  type: 'test'
+  ...
+# Subtest: real deployment adds a targetable autonomous entity and its scheduled pulse uses actual HP
+ok 55 - real deployment adds a targetable autonomous entity and its scheduled pulse uses actual HP
+  ---
+  duration_ms: 14.991668
+  type: 'test'
+  ...
+# Subtest: Defense Drone reacts once to real owner damage, with its own entity and native event cursor
+ok 56 - Defense Drone reacts once to real owner damage, with its own entity and native event cursor
+  ---
+  duration_ms: 8.686472
+  type: 'test'
+  ...
+# Subtest: supports are enemy targets but cannot consume Medi-gel, Unity or Shield Boost
+ok 57 - supports are enemy targets but cannot consume Medi-gel, Unity or Shield Boost
+  ---
+  duration_ms: 2.223079
+  type: 'test'
+  ...
+# Subtest: owner KO removes the entity immediately and supports never postpone a native defeat or victory
+ok 58 - owner KO removes the entity immediately and supports never postpone a native defeat or victory
+  ---
+  duration_ms: 1.820282
+  type: 'test'
+  ...
+# Subtest: a support can win through a real pulse without becoming an extra squad member in the summary
+ok 59 - a support can win through a real pulse without becoming an extra squad member in the summary
+  ---
+  duration_ms: 3.426961
+  type: 'test'
+  ...
+# Subtest: Wait never pauses for an autonomous ATB gauge, and control prevents phantom pulses
+ok 60 - Wait never pauses for an autonomous ATB gauge, and control prevents phantom pulses
+  ---
+  duration_ms: 7.798665
+  type: 'test'
+  ...
+# Subtest: native support scheduling is frame independent and freezes with a real player decision or explicit pause
+ok 61 - native support scheduling is frame independent and freezes with a real player decision or explicit pause
+  ---
+  duration_ms: 20.515353
+  type: 'test'
+  ...
+# Subtest: replacement, expiry and the native per-owner cap spend no resources on a refused deployment
+ok 62 - replacement, expiry and the native per-owner cap spend no resources on a refused deployment
+  ---
+  duration_ms: 77.412517
+  type: 'test'
+  ...
+# Subtest: repeated real replacements retain bounded support history and no growing actor list
+ok 63 - repeated real replacements retain bounded support history and no growing actor list
+  ---
+  duration_ms: 1216.948086
+  type: 'test'
+  ...
+# Subtest: native mode permissions are rebuilt from kit and work instead of caller permissions
+ok 64 - native mode permissions are rebuilt from kit and work instead of caller permissions
+  ---
+  duration_ms: 1.340399
+  type: 'test'
+  ...
+# Subtest: activation, replacement and off consume an ATB order without refilling, heating or adding cooldown
+ok 65 - activation, replacement and off consume an ATB order without refilling, heating or adding cooldown
+  ---
+  duration_ms: 0.593594
+  type: 'test'
+  ...
+# Subtest: Disruptor consumes the original shield budget before applying a health bonus after armor
+ok 66 - Disruptor consumes the original shield budget before applying a health bonus after armor
+  ---
+  duration_ms: 0.616919
+  type: 'test'
+  ...
+# Subtest: temporary and normal shields share the same correctly converted base budget
+ok 67 - temporary and normal shields share the same correctly converted base budget
+  ---
+  duration_ms: 0.446762
+  type: 'test'
+  ...
+# Subtest: AP reduces flat armor and the cover penalty without inventing geometry penetration
+ok 68 - AP reduces flat armor and the cover penalty without inventing geometry penetration
+  ---
+  duration_ms: 0.41193
+  type: 'test'
+  ...
+# Subtest: Shredder is ME2-only, exposed-organic-only, and boosts health after defense
+ok 69 - Shredder is ME2-only, exposed-organic-only, and boosts health after defense
+  ---
+  duration_ms: 0.609648
+  type: 'test'
+  ...
+# Subtest: Warp ammunition uses existing suspension and barrier states without a new fake barrier health bar
+ok 70 - Warp ammunition uses existing suspension and barrier states without a new fake barrier health bar
+  ---
+  duration_ms: 0.523869
+  type: 'test'
+  ...
+# Subtest: incendiary post-hit burning needs real organic health damage and remains independent of technology boosts
+ok 71 - incendiary post-hit burning needs real organic health damage and remains independent of technology boosts
+  ---
+  duration_ms: 2.453385
+  type: 'test'
+  ...
+# Subtest: Cryo accumulates real hit counts, freezes through the native control rules, and respects immunities
+ok 72 - Cryo accumulates real hit counts, freezes through the native control rules, and respects immunities
+  ---
+  duration_ms: 1.007427
+  type: 'test'
+  ...
+# Subtest: ammo modes never amplify powers, summon pulses, specialist weapons or heat guns
+ok 73 - ammo modes never amplify powers, summon pulses, specialist weapons or heat guns
+  ---
+  duration_ms: 3.402845
+  type: 'test'
+  ...
+# Subtest: creation copies definitions, preserves explicit zero shields, and rejects duplicate ids
+ok 74 - creation copies definitions, preserves explicit zero shields, and rejects duplicate ids
+  ---
+  duration_ms: 3.238708
+  type: 'test'
+  ...
+# Subtest: a locked, untrained, or invalid-target action cannot spend resources
+ok 75 - a locked, untrained, or invalid-target action cannot spend resources
+  ---
+  duration_ms: 2.591814
+  type: 'test'
+  ...
+# Subtest: shots consume ATB, hit shields before health and respect armor on health damage
+ok 76 - shots consume ATB, hit shields before health and respect armor on health damage
+  ---
+  duration_ms: 1.675784
+  type: 'test'
+  ...
+# Subtest: cover reduces weapon damage and reposition allows the next shot to bypass it
+ok 77 - cover reduces weapon damage and reposition allows the next shot to bypass it
+  ---
+  duration_ms: 0.691792
+  type: 'test'
+  ...
+# Subtest: wait mode pauses at a ready ally and freezes time, heat, status and cooldowns
+ok 78 - wait mode pauses at a ready ally and freezes time, heat, status and cooldowns
+  ---
+  duration_ms: 3.817219
+  type: 'test'
+  ...
+# Subtest: explicit pause freezes active mode and invalid dt has no effect
+ok 79 - explicit pause freezes active mode and invalid dt has no effect
+  ---
+  duration_ms: 0.393072
+  type: 'test'
+  ...
+# Subtest: overheat prevents weapon attacks until cooled but permits tactical actions
+ok 80 - overheat prevents weapon attacks until cooled but permits tactical actions
+  ---
+  duration_ms: 3.706893
+  type: 'test'
+  ...
+# Subtest: powers cannot be reused during their recharge and cooldown expires in simulated time
+ok 81 - powers cannot be reused during their recharge and cooldown expires in simulated time
+  ---
+  duration_ms: 3.244186
+  type: 'test'
+  ...
+# Subtest: stasis immobilizes and protects from weapon, power, and periodic damage
+ok 82 - stasis immobilizes and protects from weapon, power, and periodic damage
+  ---
+  duration_ms: 2.872156
+  type: 'test'
+  ...
+# Subtest: lift prevents actions and an immune boss resists displacement
+ok 83 - lift prevents actions and an immune boss resists displacement
+  ---
+  duration_ms: 0.471309
+  type: 'test'
+  ...
+# Subtest: sabotage blocks gunfire but leaves trained powers usable
+ok 84 - sabotage blocks gunfire but leaves trained powers usable
+  ---
+  duration_ms: 0.327002
+  type: 'test'
+  ...
+# Subtest: hacking rejects organics and makes a synthetic attack its own camp
+ok 85 - hacking rejects organics and makes a synthetic attack its own camp
+  ---
+  duration_ms: 0.552072
+  type: 'test'
+  ...
+# Subtest: medi-gel is shared, cannot target enemies or KO allies, and Unity revives KO allies
+ok 86 - medi-gel is shared, cannot target enemies or KO allies, and Unity revives KO allies
+  ---
+  duration_ms: 0.409196
+  type: 'test'
+  ...
+# Subtest: an organic without shields takes no health damage from Overload
+ok 87 - an organic without shields takes no health damage from Overload
+  ---
+  duration_ms: 0.548055
+  type: 'test'
+  ...
+# Subtest: signature needs full concentration, uses the weapon, and consumes its charge
+ok 88 - signature needs full concentration, uses the weapon, and consumes its charge
+  ---
+  duration_ms: 0.863951
+  type: 'test'
+  ...
+# Subtest: victory is emitted once, defeated units cannot act, and completed battles are immutable to orders/ticks
+ok 89 - victory is emitted once, defeated units cannot act, and completed battles are immutable to orders/ticks
+  ---
+  duration_ms: 0.462867
+  type: 'test'
+  ...
+# Subtest: enemy actions can defeat the commando and cannot execute twice without another ATB cycle
+ok 90 - enemy actions can defeat the commando and cannot execute twice without another ATB cycle
+  ---
+  duration_ms: 0.274984
+  type: 'test'
+  ...
+# Subtest: seeded active simulations reproduce enemy decisions and damage exactly
+ok 91 - seeded active simulations reproduce enemy decisions and damage exactly
+  ---
+  duration_ms: 13.438995
+  type: 'test'
+  ...
+# Subtest: periodic Warp damage remains four per second, independent of fractional frame duration
+ok 92 - periodic Warp damage remains four per second, independent of fractional frame duration
+  ---
+  duration_ms: 1.624727
+  type: 'test'
+  ...
+# Subtest: direct enemy AI calls respect the player decision pause and all ready allies must issue orders
+ok 93 - direct enemy AI calls respect the player decision pause and all ready allies must issue orders
+  ---
+  duration_ms: 0.462025
+  type: 'test'
+  ...
+# Subtest: periodic damage can end a battle and is not applied again to a defeated target
+ok 94 - periodic damage can end a battle and is not applied again to a defeated target
+  ---
+  duration_ms: 0.407764
+  type: 'test'
+  ...
+# Subtest: organic attackers strike without guns, weapon heat, or cover protection
+ok 95 - organic attackers strike without guns, weapon heat, or cover protection
+  ---
+  duration_ms: 0.375365
+  type: 'test'
+  ...
+# Subtest: acid is an organic attack with its own corrosion, not biotic Warp
+ok 96 - acid is an organic attack with its own corrosion, not biotic Warp
+  ---
+  duration_ms: 0.499683
+  type: 'test'
+  ...
+# Subtest: protected synthetic bosses cannot be hacked and rejected orders are free
+ok 97 - protected synthetic bosses cannot be hacked and rejected orders are free
+  ---
+  duration_ms: 0.391419
+  type: 'test'
+  ...
+# Subtest: Sabotage never assigns weapon heat to an organic attacker
+ok 98 - Sabotage never assigns weapon heat to an organic attacker
+  ---
+  duration_ms: 0.677781
+  type: 'test'
+  ...
+# Subtest: enemy targeting avoids invulnerable stasis when another target is available
+ok 99 - enemy targeting avoids invulnerable stasis when another target is available
+  ---
+  duration_ms: 0.400783
+  type: 'test'
+  ...
+# Subtest: exposed shields recover slowly after a long delay while cover restores them sooner
+ok 100 - exposed shields recover slowly after a long delay while cover restores them sooner
+  ---
+  duration_ms: 2.481417
+  type: 'test'
+  ...
+# Subtest: focused targeting pressures exposed wounds and covering changes enemy priority
+ok 101 - focused targeting pressures exposed wounds and covering changes enemy priority
+  ---
+  duration_ms: 1.255491
+  type: 'test'
+  ...
+# Subtest: story difficulty retains slower, gentler enemies than normal without changing party speed
+ok 102 - story difficulty retains slower, gentler enemies than normal without changing party speed
+  ---
+  duration_ms: 0.999455
+  type: 'test'
+  ...
+# Subtest: seven sourced bindings are exposed only by their exact class, work and main period
+ok 103 - seven sourced bindings are exposed only by their exact class, work and main period
+  ---
+  duration_ms: 3.837229
+  type: 'test'
+  ...
+# Subtest: pure plans and rejected native commands do not spend resources or draw randomness
+ok 104 - pure plans and rejected native commands do not spend resources or draw randomness
+  ---
+  duration_ms: 3.143554
+  type: 'test'
+  ...
+# Subtest: Charge records an abstract contact, restores bounded shields and introduces finite exposure
+ok 105 - Charge records an abstract contact, restores bounded shields and introduces finite exposure
+  ---
+  duration_ms: 4.664665
+  type: 'test'
+  ...
+# Subtest: Cloak masks newly commanded targets, expires and is broken by an offensive order
+ok 106 - Cloak masks newly commanded targets, expires and is broken by an offensive order
+  ---
+  duration_ms: 4.186425
+  type: 'test'
+  ...
+# Subtest: Cloak weapon launch bonus survives a charged shot exactly once
+ok 107 - Cloak weapon launch bonus survives a charged shot exactly once
+  ---
+  duration_ms: 3.204757
+  type: 'test'
+  ...
+# Subtest: a launched projectile remains dangerous after its target cloaks
+ok 108 - a launched projectile remains dangerous after its target cloaks
+  ---
+  duration_ms: 1.825028
+  type: 'test'
+  ...
+# Subtest: ME2 armour auto-detonates once when its live shield is broken
+ok 109 - ME2 armour auto-detonates once when its live shield is broken
+  ---
+  duration_ms: 1.087267
+  type: 'test'
+  ...
+# Subtest: ME3 armour reduces incoming damage and manual detonation sacrifices it without resources
+ok 110 - ME3 armour reduces incoming damage and manual detonation sacrifices it without resources
+  ---
+  duration_ms: 0.853605
+  type: 'test'
+  ...
+# Subtest: Nova converts the actual shield once and Charge can supply its next cost
+ok 111 - Nova converts the actual shield once and Charge can supply its next cost
+  ---
+  duration_ms: 0.969821
+  type: 'test'
+  ...
+# Subtest: signature preparation/export/reload preserves only its own session and no live effects
+ok 112 - signature preparation/export/reload preserves only its own session and no live effects
+  ---
+  duration_ms: 105.44159
+  type: 'test'
+  ...
+# Subtest: geometric cover refuses empty ground atomically and exposes a detached reason
+ok 113 - geometric cover refuses empty ground atomically and exposes a detached reason
+  ---
+  duration_ms: 5.967608
+  type: 'test'
+  ...
+# Subtest: one obstacle protects from its facing attacker, while an exposed flank receives full damage
+ok 114 - one obstacle protects from its facing attacker, while an exposed flank receives full damage
+  ---
+  duration_ms: 2.033402
+  type: 'test'
+  ...
+# Subtest: losing real cover removes both damage protection and accelerated shield recovery
+ok 115 - losing real cover removes both damage protection and accelerated shield recovery
+  ---
+  duration_ms: 1.669134
+  type: 'test'
+  ...
+# Subtest: Stasis explains blocked control and prevents weapon, ability and timed damage
+ok 116 - Stasis explains blocked control and prevents weapon, ability and timed damage
+  ---
+  duration_ms: 1.832179
+  type: 'test'
+  ...
+# Subtest: resistance gives explicit feedback for immune control and shieldless organics
+ok 117 - resistance gives explicit feedback for immune control and shieldless organics
+  ---
+  duration_ms: 0.987898
+  type: 'test'
+  ...
+# Subtest: AI hacking an organic in a mixed formation is refused before ATB, cooldown or RNG is spent
+ok 118 - AI hacking an organic in a mixed formation is refused before ATB, cooldown or RNG is spent
+  ---
+  duration_ms: 0.665332
+  type: 'test'
+  ...
+# Subtest: buying an amplifier cannot grant biotics to a Soldier through equipment, a save or combat
+ok 119 - buying an amplifier cannot grant biotics to a Soldier through equipment, a save or combat
+  ---
+  duration_ms: 6.388031
+  type: 'test'
+  ...
+# Subtest: a lost target cancels a prepared shot immediately with an announced reason and no clip expenditure
+ok 120 - a lost target cancels a prepared shot immediately with an announced reason and no clip expenditure
+  ---
+  duration_ms: 2.09871
+  type: 'test'
+  ...
+# Subtest: a hacked shooter cancels its old friendly target before the next charged emission
+ok 121 - a hacked shooter cancels its old friendly target before the next charged emission
+  ---
+  duration_ms: 0.678642
+  type: 'test'
+  ...
+# Subtest: a queued actor KO cannot fire, and a coordinated target KO cancels only the remaining free order
+ok 122 - a queued actor KO cannot fire, and a coordinated target KO cancels only the remaining free order
+  ---
+  duration_ms: 3.493151
+  type: 'test'
+  ...
+# Subtest: natural ATB firing reaches bounded overheat, rejects a shot for free, then resumes after cooling
+ok 123 - natural ATB firing reaches bounded overheat, rejects a shot for free, then resumes after cooling
+  ---
+  duration_ms: 3.590117
+  type: 'test'
+  ...
+# Subtest: active and Wait pause heat, enemies and all recovery by the same explicit decision rule
+ok 124 - active and Wait pause heat, enemies and all recovery by the same explicit decision rule
+  ---
+  duration_ms: 1.91823
+  type: 'test'
+  ...
+# Subtest: simultaneous periodic kills emit one outcome and a three-person defeat freezes the completed simulation
+ok 125 - simultaneous periodic kills emit one outcome and a three-person defeat freezes the completed simulation
+  ---
+  duration_ms: 0.920337
+  type: 'test'
+  ...
+# Subtest: weapon cooling and heat cost agree with displayed actions and preserve wait-mode pause
+ok 126 - weapon cooling and heat cost agree with displayed actions and preserve wait-mode pause
+  ---
+  duration_ms: 9.861832
+  type: 'test'
+  ...
+# Subtest: organic and synthetic ammunition apply only to their target type
+ok 127 - organic and synthetic ammunition apply only to their target type
+  ---
+  duration_ms: 1.240538
+  type: 'test'
+  ...
+# Subtest: ammunition bypass divides one hit without duplicating shield or health damage
+ok 128 - ammunition bypass divides one hit without duplicating shield or health damage
+  ---
+  duration_ms: 0.719825
+  type: 'test'
+  ...
+# Subtest: ammunition modifiers do not affect powers and stasis still blocks every component
+ok 129 - ammunition modifiers do not affect powers and stasis still blocks every component
+  ---
+  duration_ms: 1.871899
+  type: 'test'
+  ...
+# Subtest: control resistance scales disabling duration without suppressing the attack
+ok 130 - control resistance scales disabling duration without suppressing the attack
+  ---
+  duration_ms: 3.135932
+  type: 'test'
+  ...
+# Subtest: neutral starting loadouts preserve every class and companion base statistics and powers
+ok 131 - neutral starting loadouts preserve every class and companion base statistics and powers
+  ---
+  duration_ms: 13.453011
+  type: 'test'
+  ...
+# Subtest: biotic and technological amplification never strengthen the other power family or gunfire
+ok 132 - biotic and technological amplification never strengthen the other power family or gunfire
+  ---
+  duration_ms: 1.575523
+  type: 'test'
+  ...
+# Subtest: amplified control descriptions, resistance, shields and technology use their real duration and magnitude
+ok 133 - amplified control descriptions, resistance, shields and technology use their real duration and magnitude
+  ---
+  duration_ms: 18.433171
+  type: 'test'
+  ...
+# Subtest: amplified Warp damage remains stable across fractional simulation slices
+ok 134 - amplified Warp damage remains stable across fractional simulation slices
+  ---
+  duration_ms: 2.328828
+  type: 'test'
+  ...
+# Subtest: purchased tools affect actual equipped companion powers once, survive a save, and grant no abilities
+ok 135 - purchased tools affect actual equipped companion powers once, survive a save, and grant no abilities
+  ---
+  duration_ms: 9.728872
+  type: 'test'
+  ...
+# Subtest: the tactical mode is explicit, ME1-only, and default/future sessions retain their old action and simulation path
+ok 136 - the tactical mode is explicit, ME1-only, and default/future sessions retain their old action and simulation path
+  ---
+  duration_ms: 19.156051
+  type: 'test'
+  ...
+# Subtest: range is shown before an order, a distant target cannot spend resources or RNG, and action selection stays available
+ok 137 - range is shown before an order, a distant target cannot spend resources or RNG, and action selection stays available
+  ---
+  duration_ms: 1.787092
+  type: 'test'
+  ...
+# Subtest: advancing/repositioning consumes real ATB, changes the exact renderer position and makes a close attack possible
+ok 138 - advancing/repositioning consumes real ATB, changes the exact renderer position and makes a close attack possible
+  ---
+  duration_ms: 1.715103
+  type: 'test'
+  ...
+# Subtest: tactical getters are detached and the real-ground callback rejects thin blocking segments, without RNG or costs
+ok 139 - tactical getters are detached and the real-ground callback rejects thin blocking segments, without RNG or costs
+  ---
+  duration_ms: 1.456313
+  type: 'test'
+  ...
+# Subtest: a coordinated draft can be inspected or discarded with no state/randomness change and shared healing is reserved atomically
+ok 140 - a coordinated draft can be inspected or discarded with no state/randomness change and shared healing is reserved atomically
+  ---
+  duration_ms: 1.3408
+  type: 'test'
+  ...
+# Subtest: coordinated orders prevalidate all participants, powers, targets, range and readiness before any partial commitment
+ok 141 - coordinated orders prevalidate all participants, powers, targets, range and readiness before any partial commitment
+  ---
+  duration_ms: 0.651571
+  type: 'test'
+  ...
+# Subtest: a genuine lift/throw sequence consumes each participant and its native cooldown without granting a power or damage bonus
+ok 142 - a genuine lift/throw sequence consumes each participant and its native cooldown without granting a power or damage bonus
+  ---
+  duration_ms: 1.324274
+  type: 'test'
+  ...
+# Subtest: a later invalidated participant/target is explicitly cancelled for free; the initial accepted order stays resolved
+ok 143 - a later invalidated participant/target is explicitly cancelled for free; the initial accepted order stays resolved
+  ---
+  duration_ms: 0.592222
+  type: 'test'
+  ...
+# Subtest: a single-target range gate is also respected by enemy AI, which closes distance before organic contact
+ok 144 - a single-target range gate is also respected by enemy AI, which closes distance before organic contact
+  ---
+  duration_ms: 0.567465
+  type: 'test'
+  ...
+# Subtest: Wait coordination becomes possible through explicitly reserving a naturally ready gauge, without forcing ATB or freezing enemies
+ok 145 - Wait coordination becomes possible through explicitly reserving a naturally ready gauge, without forcing ATB or freezing enemies
+  ---
+  duration_ms: 3.323586
+  type: 'test'
+  ...
+# Subtest: invalid reservations are pure, release restores Wait decisions, and cancelling an empty draft has no side effect
+ok 146 - invalid reservations are pure, release restores Wait decisions, and cancelling an empty draft has no side effect
+  ---
+  duration_ms: 0.462166
+  type: 'test'
+  ...
+# Subtest: eleven immutable native profiles resolve exact sourced IDs, without ME3 Shredder or any MEA consumable
+ok 147 - eleven immutable native profiles resolve exact sourced IDs, without ME3 Shredder or any MEA consumable
+  ---
+  duration_ms: 28.060791
+  type: 'test'
+  ...
+# Subtest: activation requires both the actual power and a same-media explicit kit permission
+ok 148 - activation requires both the actual power and a same-media explicit kit permission
+  ---
+  duration_ms: 0.765253
+  type: 'test'
+  ...
+# Subtest: mode replacement and removal are pure, exclusive and idempotent validation never consumes a resource
+ok 149 - mode replacement and removal are pure, exclusive and idempotent validation never consumes a resource
+  ---
+  duration_ms: 0.597459
+  type: 'test'
+  ...
+# Subtest: specialist, heat, organic and autonomous weapons cannot inherit learned ammunition modes
+ok 150 - specialist, heat, organic and autonomous weapons cannot inherit learned ammunition modes
+  ---
+  duration_ms: 0.395616
+  type: 'test'
+  ...
+# Subtest: only the three weapon commands use modes and support attacks or powers remain exactly neutral
+ok 151 - only the three weapon commands use modes and support attacks or powers remain exactly neutral
+  ---
+  duration_ms: 0.347233
+  type: 'test'
+  ...
+# Subtest: Disruptor bonuses apply to distinct shield and synthetic-health layers, without organic-health overflow
+ok 152 - Disruptor bonuses apply to distinct shield and synthetic-health layers, without organic-health overflow
+  ---
+  duration_ms: 0.264419
+  type: 'test'
+  ...
+# Subtest: AP reduces only the defense budget and ME3 alone reduces the cover penalty
+ok 153 - AP reduces only the defense budget and ME3 alone reduces the cover penalty
+  ---
+  duration_ms: 0.23892
+  type: 'test'
+  ...
+# Subtest: Warp distinguishes actual biotic control and Barrier from an ordinary shield or nonbiotic control
+ok 154 - Warp distinguishes actual biotic control and Barrier from an ordinary shield or nonbiotic control
+  ---
+  duration_ms: 0.426412
+  type: 'test'
+  ...
+# Subtest: Shredder strengthens only an exposed organic health layer and never synthesizes a ME3 permission
+ok 155 - Shredder strengthens only an exposed organic health layer and never synthesizes a ME3 permission
+  ---
+  duration_ms: 0.261293
+  type: 'test'
+  ...
+# Subtest: incendiary statuses require actual organic health damage after protections break and never scale with tools
+ok 156 - incendiary statuses require actual organic health damage after protections break and never scale with tools
+  ---
+  duration_ms: 0.400002
+  type: 'test'
+  ...
+# Subtest: cryo buildup counts real shots once, respects immunities and activates only on a living exposed target
+ok 157 - cryo buildup counts real shots once, respects immunities and activates only on a living exposed target
+  ---
+  duration_ms: 0.337148
+  type: 'test'
+  ...
+# Subtest: forged modes, mechanical objects and getters are never trusted or coerced
+ok 158 - forged modes, mechanical objects and getters are never trusted or coerced
+  ---
+  duration_ms: 0.458351
+  type: 'test'
+  ...
+# Subtest: hit evaluation never changes actors and the module imports no registry, actors or combat
+ok 159 - hit evaluation never changes actors and the module imports no registry, actors or combat
+  ---
+  duration_ms: 2.879196
+  type: 'test'
+  ...
+1..159
+# tests 159
+# suites 0
+# pass 159
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1568.913209

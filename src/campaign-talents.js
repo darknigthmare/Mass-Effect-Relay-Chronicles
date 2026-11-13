@@ -190,6 +190,7 @@ export function applyCampaignTalentAction({ actor, actionId, targets = [], elaps
   if (!target || target.hp <= 0) return { ok: false, events: [] };
   if (target.statuses?.stasis > 0) return { ok: true, events: [event({ targetId: target.id, blocked: true, message: 'La stase protège la cible contre Atténuation.' })] };
   const duration = Math.max(0, Math.min(20, 8 * (actor.techMultiplier ?? 1) * (1 - Math.max(0, Math.min(1, target.controlResistance || 0)))));
+  if (target.controlImmune === true || duration < .1) return { ok: true, events: [event({ targetId: target.id, resisted: true, message: `${target.name} résiste à Atténuation ; aucune nouvelle neutralisation n’est appliquée.` })] };
   target.statuses ||= {}; target.statuses.damped = Math.max(target.statuses.damped || 0, duration);
   return { ok: true, events: [event({ targetId: target.id, duration, message: `${target.name} ne peut plus activer de nouvelle capacité pendant ${Number(duration.toFixed(2)).toLocaleString('fr-FR')} secondes ATB.` })] };
 }

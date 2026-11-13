@@ -1,0 +1,39 @@
+{
+  "scope": "Historical native fixture limitation; prior reports preserved byte-for-byte.",
+  "supersededComparisons": [
+    "docs/qa/completion-combat-balance-initial-01.json",
+    "docs/qa/completion-combat-balance-final-01.json"
+  ],
+  "limitation": "The old fixtures execute real builders and cover installation, using fixed seed2183 without the complete native setZone sequence or loaded vehicle sprite colliders. Their outcomes remain exact for those declared fixtures, not the exact map collision masks actually loaded by the game.",
+  "archivedSources": [
+    {
+      "path": "scripts/completion-combat-geometry.mjs",
+      "archivedPath": "docs/qa/completion-combat-geometry-before-native-zone.mjs",
+      "sha256": "e62c91c5a5dad5d42d8ecff5c3ddfe38cd5f2dbaa7893dbdc30f2e9a664173de"
+    },
+    {
+      "path": "tests/helpers/completion-world-fixture.js",
+      "archivedPath": "docs/qa/completion-world-fixture-before-native-zone.js",
+      "sha256": "2482922252bcca1d605bb235aefe38cb32eb033021c04ca75f4a8cc2a72ead74"
+    }
+  ],
+  "plannedCorrection": "Call WorldView.setZone itself, keeping native seed/dressing/POI collision filtering/cover/vehicle collisions and simulating only image data, DOM labels and WebGL submission.",
+  "correctedSources": [
+    {
+      "path": "scripts/completion-combat-geometry.mjs",
+      "sha256": "7ecfd646ca63b13bdb21c4ac18d3500c0c2e64edfad8d7d0296e3cb4d4aeed28"
+    },
+    {
+      "path": "tests/helpers/completion-world-fixture.js",
+      "sha256": "deb73e8f84253ca2253106b76fdc3bcc5b96dc7794eecddf72c7d0c83e300df1"
+    },
+    {
+      "path": "scripts/completion-combat-balance.mjs",
+      "sha256": "08737b016a75d788c48fcd934a47170f71645e23d8ff61c23848c3dbbf666c19"
+    }
+  ],
+  "replacementProofs": [
+    "docs/qa/completion-combat-geometry-native-final-01-report.json",
+    "docs/qa/completion-combat-balance-final-02.json"
+  ]
+}

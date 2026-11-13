@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "reviewComplete": true,
+  "rawReport": {
+    "path": "docs/qa/completion-controls-focus-03-report.json",
+    "sha256": "831080a6a9b6bd5fae8ab65739aad0acb28d5c5912a4e5d5744789f5ae38dd3b"
+  },
+  "sourceSnapshot": {
+    "path": "docs/qa/completion-controls-focus-bug-01-gamepad-controls.js",
+    "sha256": "baaffc8382dd24d35d56a81930f477793b93cebf49b063473ad6b7d01c31e005"
+  },
+  "method": "Observation focusin et focus après chaque Tab puis une frame, sans mutation des handlers. Trois captures diagnostiques réellement ouvertes via view_image detail original ; SHA des octets contrôlé.",
+  "blockingFindings": [
+    {
+      "kind": "product-keyboard",
+      "finding": "Chromium focalise ASIDE.custom-inspector scrollable sans tabindex explicite. La réparation de focus rétablit Profil gauche à la frame suivante ; Tab ne peut jamais rejoindre le footer Annuler/Appliquer."
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/screenshots/completion-controls-focus-01.png",
+      "sha256": "8cdb1417972cdff31dcb5606a70be52e560707ba2a587af00aaa26779a4fda45",
+      "actuallyOpened": true,
+      "observation": "Monde Normandy visible après import ; diagnostic arrêté avant l’atelier à cause d’une attente de chargement insuffisante."
+    },
+    {
+      "path": "docs/screenshots/completion-controls-focus-02.png",
+      "sha256": "2ed4c70beba916d096afd13ca4ed3a7d6f9a8fe062e0d0052f5bfa40c2ab143f",
+      "actuallyOpened": true,
+      "observation": "Titre lisible, focus sur Importer ; sélecteur natif non ouvert, aucun diagnostic atelier produit."
+    },
+    {
+      "path": "docs/screenshots/completion-controls-focus-03.png",
+      "sha256": "e7034c49cd6dc53e190e3277ce91c6523d73b20842b5bc83b8263f994b868cd1",
+      "actuallyOpened": true,
+      "observation": "Atelier Personnage lisible ; commande Profil gauche focalisée et Annuler visible. La trace prouve le passage natif sur ASIDE.custom-inspector puis la restauration du bouton après une frame."
+    }
+  ]
+}

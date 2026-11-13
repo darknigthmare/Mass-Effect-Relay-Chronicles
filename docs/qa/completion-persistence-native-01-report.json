@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "at": "2026-11-13T08:24:46.741Z",
+  "baseCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "sourceHashes": {
+    "src/state.js": "e47ac3ad463c1b249043d3401e2fd2841e9f975007006289e81438aa2e045e86",
+    "src/save-slots.js": "01497a48324a647a7e79031656fba4160853126efb29cc7a2b2bad7bbf9adff4",
+    "src/loadout.js": "0a7f94143ec5cbf26e5347d65a24d345888de2902edef8fa8b1dc9c4674a64f1",
+    "src/customization.js": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932",
+    "src/completion-persistence-campaign.js": "7a76fb0d23ff70e583dbdb01af55d11328c26b39a6db19eac708ca7bf4c5ff30",
+    "src/story.js": "9a6676d343eb5c4c80fb503458a366e8f3f832df6f213a694e5e8b64a4ac17bc",
+    "src/assignments.js": "19e43646c1be0156914954e62f8a3c8cdc86b3dd8b48672305fc228c43d1c770",
+    "src/operations.js": "91cc816966402e819537c3728beeb33dc30dad5c1528641e6410c3d792e16e64",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "src/campaign-talents.js": "79ec5dd98092e7e293f503f44d397c83cba09d8655b74214b1c94a86dc8e0719",
+    "src/character-data.js": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "tests/completion-persistence.test.js": "ce9411004bf170d9c76079ddf3775effb3be830a116461e4af69a20b6102674b",
+    "scripts/completion-persistence-proof.mjs": "63374cd5364306631f3f68582b755e42be1d8ce7877a31d1effb73440f696aa9"
+  },
+  "command": {
+    "script": "node scripts/completion-persistence-proof.mjs",
+    "environment": {
+      "COMPLETION_PERSISTENCE_PREFIX": "completion-persistence-native-01",
+      "COMPLETION_BASE_MAIN": "0d76912517a91c5d2ad00f1ef5718188b40abd8e"
+    }
+  },
+  "scope": "Native persistence/inventory/workshop checks and direct baseline reproduction of four demonstrated defects. Campaign endings are prepared by native progression callbacks; no public combat or visual fidelity certification.",
+  "limitations": [
+    "Browser UX and production distribution need separate current-source checks.",
+    "Export describes the existing condensed ME1 campaign; an ME2 continuation is not implemented."
+  ],
+  "errors": [],
+  "baselineProbe": {
+    "getterCalls": 1,
+    "getterBlocked": false,
+    "balanceBlocked": false,
+    "optionsCalls": 1,
+    "optionsBlocked": false,
+    "hiddenBlocked": false
+  },
+  "currentProbe": {
+    "getterCalls": 0,
+    "getterBlocked": true,
+    "balanceBlocked": true,
+    "optionsCalls": 0,
+    "optionsBlocked": true,
+    "hiddenBlocked": true
+  },
+  "baselineProbeSource": {
+    "commit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+    "state": "b021203bdf5530b3e09efb41c9d6d263fdc59cba3c56e7dca18560c7a4e1acec",
+    "customization": "627641df7b152963cf88793af829247edb8fa40e23464c805e11aa8193a65568"
+  },
+  "tests": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--test",
+      "--test-reporter=tap",
+      "tests/completion-persistence.test.js",
+      "tests/state.test.js",
+      "tests/save-v02.test.js",
+      "tests/save-slots.test.js",
+      "tests/save-continuity.test.js",
+      "tests/loadout.test.js",
+      "tests/loadout-migration.test.js",
+      "tests/customization.test.js",
+      "tests/customization-comparison.test.js"
+    ],
+    "exitCode": 0,
+    "path": "docs/qa/completion-persistence-native-01-tests.tap",
+    "sha256": "56b605c12fbee7f04624a26a5bc89df1607e019e10bda407c72097f60185c965",
+    "counts": {
+      "tests": 105,
+      "pass": 105,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  },
+  "sourcesUnchanged": true
+}

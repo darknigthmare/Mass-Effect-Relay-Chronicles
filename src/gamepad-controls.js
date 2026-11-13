@@ -4,6 +4,10 @@ const DIRECTIONS = ['up', 'down', 'left', 'right'];
 const MODES = new Set(['menu', 'combat', 'explore', 'blocked']);
 const FOCUSABLE = 'button,a[href],input:not([type="hidden"]),select,textarea,summary,[tabindex]';
 const BUTTONS = { confirm: 0, back: 1, quick: 2, journal: 3, previous: 4, next: 5, map: 8, pause: 9 };
+const BACK_SELECTORS = ['[data-conversation-back]', '[data-conversation-end]', '[data-assignment-back]', '[data-assignment-end]',
+  '[data-operation-choice="cancel"]', '[data-mission-choice="leave"]', '[data-mission-choice="cancel"]',
+  '[data-do="manual-cancel"]', '[data-do="custom-cancel"]', '[data-do="coord-cancel"]',
+  '[data-do="manual-back"]', '[data-do="dossier-back"]', '[data-do="chronicle-back"]', '[data-do="resume"]', '[data-do="close"]'];
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const number = value => typeof value === 'number' && Number.isFinite(value) ? value : 0;
 const down = button => button === true || typeof button === 'number' && button > .5 || button?.pressed === true || number(button?.value) > .5;
@@ -98,6 +102,24 @@ export function isGamepadFocusable(element) {
 export function gamepadFocusables(root) {
   if (!root?.querySelectorAll) return [];
   return [...root.querySelectorAll(FOCUSABLE)].filter(isGamepadFocusable);
+}
+
+export function getGamepadBackControl(root) {
+  return BACK_SELECTORS.map(selector => root?.querySelector?.(selector)).find(isGamepadFocusable) || null;
+}
+
+/** Reading belongs to the top dialog/scrolling pane, never the page behind it. */
+export function getGamepadScrollTarget(root, active) {
+  if (!root) return null;
+  const scrollable = element => element && Number.isFinite(element.scrollHeight) && Number.isFinite(element.clientHeight)
+    && element.clientHeight > 0 && element.scrollHeight > element.clientHeight + 1;
+  const selectors = '.dialogue-body,.custom-controls,.custom-inspector,.target-list,.action-grid,.screen-body,.gamepad-keyboard-card,.title-screen';
+  let current = active;
+  while (current && (current === root || root.contains?.(current))) {
+    if (scrollable(current)) return current;
+    if (current === root) break; current = current.parentElement;
+  }
+  return [...(root.querySelectorAll?.(selectors) || [])].find(scrollable) || (scrollable(root) ? root : null);
 }
 
 /** Geometric neighbors suit grids; a deterministic document-order wrap suits lists. */
@@ -241,13 +263,9 @@ export function createGamepadControls({ getMode = () => 'menu', getFocusRoot = (
   function back() {
     if (keyboard) { closeKeyboard(false); return; }
     const owner = root();
-    const selectors = ['[data-conversation-back]', '[data-conversation-end]', '[data-assignment-back]', '[data-assignment-end]',
-      '[data-operation-choice="cancel"]', '[data-mission-choice="leave"]', '[data-mission-choice="cancel"]',
-      '[data-do="manual-cancel"]', '[data-do="custom-cancel"]', '[data-do="coord-cancel"]',
-      '[data-do="manual-back"]', '[data-do="dossier-back"]', '[data-do="chronicle-back"]', '[data-do="resume"]', '[data-do="close"]'];
     // Cancel the top transaction/step before a generic header close. Document
     // order would otherwise hide the explicit cancellation behind that header.
-    const button = selectors.map(selector => owner?.querySelector?.(selector)).find(isGamepadFocusable);
+    const button = getGamepadBackControl(owner);
     if (isGamepadFocusable(button)) button.click(); else onBack?.();
   }
   let hintNode = null;
@@ -257,21 +275,22 @@ export function createGamepadControls({ getMode = () => 'menu', getFocusRoot = (
       hintNode?.remove(); hintNode = null; return;
     }
     if (!doc?.createElement) return;
-    const active = doc.activeElement, input = ['INPUT', 'TEXTAREA', 'SELECT'].includes(active?.tagName);
+    const active = doc.activeElement, input = ['INPUT', 'TEXTAREA', 'SELECT'].includes(active?.tagName), hasBack = !!getGamepadBackControl(owner);
+    const padBack = hasBack ? ' · B / Rond : retour' : '', keyBack = hasBack ? ' · Échap : retour' : '';
     let message;
     if (method === 'gamepad') {
-      message = active?.tagName === 'SELECT' ? 'Manette · Gauche / droite : changer le choix · A / Croix : suivant · B / Rond : retour'
-        : input && ['range', 'number'].includes(active.type) ? 'Manette · Gauche / droite : régler · B / Rond : retour'
-          : input && !['checkbox', 'radio'].includes(active.type) ? 'Manette · A / Croix : clavier à l’écran · B / Rond : retour'
+      message = active?.tagName === 'SELECT' ? `Manette · Gauche / droite : changer le choix · A / Croix : suivant${padBack}`
+        : input && ['range', 'number'].includes(active.type) ? `Manette · Gauche / droite : régler${padBack}`
+          : input && !['checkbox', 'radio'].includes(active.type) ? `Manette · A / Croix : clavier à l’écran${padBack}`
             : currentMode === 'combat' ? 'Manette · A / Croix : choisir · LB / RB : équipier · Start : pause'
-              : 'Manette · A / Croix : confirmer · B / Rond : retour · Croix directionnelle : choisir';
+              : `Manette · A / Croix : confirmer${padBack} · Croix directionnelle : choisir · Stick droit : lire`;
     } else {
       message = input ? active.tagName === 'SELECT' || ['range', 'number'].includes(active.type)
         ? 'Clavier · Flèches : régler · Tab : champ suivant'
         : ['checkbox', 'radio'].includes(active.type) ? 'Clavier · Espace : cocher · Tab : champ suivant'
           : 'Clavier · Saisir le texte · Tab : champ suivant'
         : currentMode === 'combat' ? 'Clavier · Entrée : choisir · Flèches / Tab : naviguer · Espace : tir rapide'
-          : 'Clavier · Entrée : confirmer · Flèches / Tab : choisir · Échap : retour';
+          : `Clavier · Entrée : confirmer · Flèches / Tab : choisir${keyBack} · Page haut / bas : lire`;
     }
     if (!hintNode || !owner.contains?.(hintNode)) {
       hintNode?.remove(); hintNode = doc.createElement('p'); hintNode.className = 'gamepad-command-hint';
@@ -299,10 +318,25 @@ export function createGamepadControls({ getMode = () => 'menu', getFocusRoot = (
     if (DIRECTIONS.includes(event.key?.toLowerCase().replace('arrow', ''))) { setMethod('keyboard'); navigate(event.key.toLowerCase().replace('arrow', '')); handled = true; }
     else if (['Enter', 'Space', 'NumpadEnter'].includes(event.code)) { if (event.repeat) handled = true; else { setMethod('keyboard'); confirm(); handled = true; } }
     else if (event.code === 'Escape') { setMethod('keyboard'); if (!event.repeat) back(); handled = true; }
+    else if (['PageUp', 'PageDown', 'Home', 'End'].includes(event.code)) {
+      const scrolling = getGamepadScrollTarget(root(), doc?.activeElement);
+      if (scrolling) {
+        const amount = Math.max(30, scrolling.clientHeight * .85), current = Number(scrolling.scrollTop) || 0;
+        const next = event.code === 'Home' ? 0 : event.code === 'End' ? scrolling.scrollHeight
+          : current + (event.code === 'PageUp' ? -amount : amount);
+        scrolling.scrollTo?.({ top: Math.max(0, next), behavior: 'instant' }); handled = true;
+      }
+    }
     else if (event.code === 'Tab') {
       const elements = gamepadFocusables(root()), index = elements.indexOf(doc?.activeElement);
-      if (elements.length && (index < 0 || event.shiftKey && index === 0 || !event.shiftKey && index === elements.length - 1)) {
-        setMethod('keyboard'); focus(event.shiftKey ? elements.at(-1) : elements[0]); handled = true;
+      if (elements.length) {
+        // Chromium may add scrollable containers to the native Tab sequence even
+        // without tabindex. Frame-based focus repair would restore the previous
+        // button and trap Tab before the footer. Follow the same actionable list
+        // for every Tab, including inputs, without replacing their editing keys.
+        const next = index < 0 ? event.shiftKey ? elements.length - 1 : 0
+          : (index + (event.shiftKey ? -1 : 1) + elements.length) % elements.length;
+        setMethod('keyboard'); focus(elements[next]); handled = true;
       }
     }
     if (handled) { event.preventDefault(); event.stopImmediatePropagation?.(); }
@@ -328,7 +362,7 @@ export function createGamepadControls({ getMode = () => 'menu', getFocusRoot = (
     if (!input.connected) return;
     for (const action of input.actions) dispatch(action);
     if (input.scroll && elapsed) {
-      const owner = root(), scrolling = owner?.querySelector?.('.screen-body,.dialogue-body,.gamepad-keyboard-card') || owner;
+      const owner = root(), scrolling = getGamepadScrollTarget(owner, doc?.activeElement);
       scrolling?.scrollBy?.({ top: input.scroll * elapsed * 520, behavior: 'instant' });
     }
   }

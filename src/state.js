@@ -34,7 +34,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
       || initialCustomization(validOption(COMMANDER_APPEARANCES, appearance) ? appearance : 'male'),
     origin: validOption(ORIGINS, origin) ? origin : 'spacer',
     psychologicalProfile: validOption(PSYCHOLOGICAL_PROFILES, psychologicalProfile) ? psychologicalProfile : 'sole-survivor',
-    classId: OWN(CLASSES, classId) ? classId : 'soldier',
+    classId: validOption(CLASSES, classId) ? classId : 'soldier',
     difficulty: DIFFICULTIES.has(difficulty) ? difficulty : 'normal',
     mode: MODES.has(mode) ? mode : 'wait',
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
@@ -98,6 +98,24 @@ export function canStartEncounter(state, id) {
 export function addLog(state, title, text) {
   state.logs.unshift({ title: String(title).slice(0, 200), text: String(text).slice(0, 4000) });
   state.logs = state.logs.slice(0, 100);
+}
+
+/** One authoritative transaction for the campaign's fixed supply containers. */
+export function collectSupply(state, id) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const medical = id === 'normandy:medbay-restock';
+  const validCache = typeof id === 'string' && OWN(ENCOUNTERS, current.zone) && id === `${current.zone}:cache`;
+  if (medical ? current.zone !== 'normandy' : !validCache) return { ok: false, reason: 'Conteneur indisponible.' };
+  if (current.collected.includes(id)) return { ok: false, reason: 'Ce conteneur est déjà vide.' };
+  const credits = medical ? 0 : 100;
+  if (current.credits + credits > 1_000_000_000) return { ok: false, reason: 'La limite de crédits est atteinte.' };
+  const medigel = Math.min(9, current.medigel + (medical ? 2 : 1));
+  state.collected = [...current.collected, id];
+  state.credits = current.credits + credits;
+  state.medigel = medigel;
+  if (!medical) addLog(state, 'Ravitaillement', `${CHAPTERS[current.zone].name} : +100 crédits, une dose de médi-gel et des données récupérées.`);
+  return { ok: true, credits, medigel: medigel - current.medigel };
 }
 
 export function recruit(state, id) {
@@ -177,6 +195,8 @@ export function buyUpgrade(state, actorId, itemId) {
   if (!OWN(CREW, actorId) || state.lost.includes(actorId) || (actorId !== 'shepard' && !state.recruited.includes(actorId))) return { ok: false, reason: 'Équipier indisponible.' };
   const item = EQUIPMENT.find(candidate => candidate.id === itemId);
   if (!item) return { ok: false, reason: 'Équipement inconnu.' };
+  if (!Number.isSafeInteger(state.credits) || state.credits < 0 || state.credits > 1_000_000_000
+    || !Number.isInteger(state.medigel) || state.medigel < 0 || state.medigel > 9) return { ok: false, reason: 'Réserves invalides.' };
   const price = upgradePrice(state, itemId);
   if (state.credits < price) return { ok: false, reason: 'Crédits insuffisants.' };
   if (item.stat === 'medigel') {
@@ -197,6 +217,10 @@ export function buyUpgrade(state, actorId, itemId) {
 }
 
 export function encodeSave(state) {
+  // Check the actual object before JSON can call toJSON/getters or erase an
+  // explicitly invalid undefined field. Invalid snapshots must not replace a
+  // good checkpoint through either the automatic or manual save path.
+  if (!safeTree(state)) throw new TypeError('État de sauvegarde invalide.');
   return JSON.stringify({ format: 'relay-chronicles', version: SAVE_VERSION, savedAt: new Date().toISOString(), state: clone(state) });
 }
 
@@ -211,14 +235,20 @@ function safeTree(value, seen = new WeakSet(), depth = 0) {
   if (typeof value === 'string') return value.length <= 50000;
   if (typeof value === 'number') return Number.isFinite(value);
   if (typeof value !== 'object' || (!Array.isArray(value) && !plain(value)) || seen.has(value)) return false;
+  // Array.isArray also accepts subclasses and arrays with an injected
+  // prototype. Reject those before iteration or JSON can read an inherited
+  // Symbol.iterator/toJSON getter. Parsed JSON uses this realm's Array.prototype.
+  if (Array.isArray(value) && Object.getPrototypeOf(value) !== Array.prototype) return false;
   seen.add(value);
   if (Array.isArray(value) && (value.length > 500 || Object.keys(value).length !== value.length
     || !Object.keys(value).every((key, index) => key === String(index)))) return false;
   const descriptors = Object.getOwnPropertyDescriptors(value);
-  if (Object.keys(descriptors).length > 600) return false;
-  for (const [key, descriptor] of Object.entries(descriptors)) {
-    if (FORBIDDEN_KEYS.has(key) || !OWN(descriptor, 'value')) return false;
+  if (Reflect.ownKeys(descriptors).length > 600) return false;
+  for (const key of Reflect.ownKeys(descriptors)) {
+    const descriptor = descriptors[key];
+    if (typeof key !== 'string' || FORBIDDEN_KEYS.has(key) || !OWN(descriptor, 'value')) return false;
     if (Array.isArray(value) && key === 'length') continue;
+    if (!descriptor.enumerable) return false;
     if (!safeTree(descriptor.value, seen, depth + 1)) return false;
   }
   seen.delete(value);
@@ -292,8 +322,8 @@ export function decodeSave(raw) {
     const psychologicalProfile = OWN(input, 'psychologicalProfile') ? input.psychologicalProfile : 'sole-survivor';
     if (!validOption(COMMANDER_APPEARANCES, appearance) || !validOption(ORIGINS, origin)
       || !validOption(PSYCHOLOGICAL_PROFILES, psychologicalProfile)) return null;
-    if (!OWN(CLASSES, input.classId) || !DIFFICULTIES.has(input.difficulty) || !MODES.has(input.mode)) return null;
-    if (input.zone !== 'normandy' && !OWN(CHAPTERS, input.zone)) return null;
+    if (!validOption(CLASSES, input.classId) || !DIFFICULTIES.has(input.difficulty) || !MODES.has(input.mode)) return null;
+    if (typeof input.zone !== 'string' || input.zone !== 'normandy' && !OWN(CHAPTERS, input.zone)) return null;
     if (!uniqueStrings(input.party, id => OWN(CREW, id), 3) || input.party.length === 0 || input.party[0] !== 'shepard') return null;
     if (!uniqueStrings(input.recruited, id => OWN(CREW, id) && id !== 'shepard', 7)) return null;
     if (!uniqueStrings(input.lost, id => input.recruited.includes(id), 7)) return null;
@@ -379,7 +409,27 @@ export function saveTo(storage, state) {
   } catch { return false; }
 }
 
+/** Explain a rejected import without changing the current campaign or bytes. */
+export function inspectSave(raw) {
+  if (raw === null) return { ok: false, code: 'empty', reason: 'Aucune sauvegarde locale.' };
+  const state = decodeSave(raw);
+  if (state) return { ok: true, state };
+  try {
+    const packet = typeof raw === 'string' && raw.length <= 2_000_000 ? JSON.parse(raw) : raw;
+    if (safeTree(packet) && plain(packet) && packet.format === 'relay-chronicles'
+      && (packet.version !== SAVE_VERSION || plain(packet.state) && packet.state.version !== SAVE_VERSION)) {
+      return { ok: false, code: 'unsupported-version', reason: 'Version de sauvegarde non prise en charge. Le fichier original est conservé.' };
+    }
+  } catch { /* Parsing failures are reported as corruption below. */ }
+  return { ok: false, code: 'corrupt', reason: 'Sauvegarde illisible ou invalide. Vous pouvez importer un autre fichier ou commencer une nouvelle campagne.' };
+}
+
+export function readAutomaticSave(storage) {
+  try { return inspectSave(storage.getItem(SAVE_KEY)); }
+  catch { return { ok: false, code: 'storage-unavailable', reason: 'Le stockage local est indisponible. Vous pouvez commencer une nouvelle campagne et exporter votre progression.' }; }
+}
+
 export function loadFrom(storage) {
-  try { return decodeSave(storage.getItem(SAVE_KEY)); }
-  catch { return null; }
+  const result = readAutomaticSave(storage);
+  return result.ok ? result.state : null;
 }

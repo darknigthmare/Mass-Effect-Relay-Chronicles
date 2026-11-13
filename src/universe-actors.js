@@ -254,6 +254,8 @@ export function universeActorFor(actorId, context, buildId = 'default', scenario
     ammoModeId: null,
     allowedWeapons: [...build.allowedWeapons], biotic: build.biotic, tech: build.tech,
     powerCatalogIds: [...build.powerCatalogIds], powerProvenance: copy(build.powerProvenance), lockedPowers: copy(build.lockedPowers),
+    ...(build.powers.some(id => ['bioticCharge', 'tacticalCloak', 'techArmor', 'nova'].includes(id))
+      ? { chronicleSignaturePeriod: normalizeContext(context)?.periodId } : {}),
     ...(build.powers.some(id => ['fragGrenade', 'stickyGrenade'].includes(id))
       ? { grenadeCapacity: 3, grenadeCharges: 3, grenadeResourceBasis: 'Échantillon ATB de trois charges pour cet essai ; acquisition et réapprovisionnement non simulés.' } : {}),
     weaponType, weaponName: 'Dotation abstraite — prototype ATB', weaponSystem: clips ? 'thermal-clip' : 'heat',

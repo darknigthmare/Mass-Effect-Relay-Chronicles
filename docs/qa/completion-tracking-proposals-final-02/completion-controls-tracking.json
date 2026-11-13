@@ -1,0 +1,523 @@
+{
+  "baseCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "planningOnly": false,
+  "readyForPublication": true,
+  "source": "docs/content-catalog.json",
+  "records": [
+    {
+      "id": "SYS-manette",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Indicateurs de touches reflètent la commande active.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Après une commande standard Gamepad API virtuelle, l’indicateur affiche Manette et ses actions.",
+          "Après une commande clavier réelle, l’indicateur revient à Clavier et affiche les actions du champ actif."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-clavier",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Aucun blocage dans les dialogues.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les six réponses du passage long sont atteintes avec Tab puis confirmées avec Entrée ; chacune revient aux options.",
+          "Début, Page bas et Fin parcourent le panneau de lecture réel sans bloquer les réponses ; les touches de saisie restent natives."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-accessibilite",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Menus et combat restent lisibles à 1080p.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les options et les trois onglets d’atelier sont lisibles à 1920×1080 avec texte agrandi et focus contrasté.",
+          "Le combat1080p conserve les cinq sprites visibles, les jauges, les commandes, les cibles et le journal textuel ; le panneau compact ne les recouvre plus."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md",
+          "docs/qa/completion-controls-tactical-dev-04-report.json",
+          "docs/qa/completion-controls-tactical-dev-04-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-parametres-visuels",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Réglages appliqués sans recharger une sauvegarde.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Qualité Économie puis Élevée appliquées à la campagne courante : le buffer du canvas change de 1440 à 2400 pour 1920 pixels CSS, sans charger de sauvegarde.",
+          "Luminosité 1,05, intensité 0 et contraste élevé sont appliqués immédiatement ; la préférence appareil est conservée après rechargement, indépendamment de la campagne."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-dialogue-sans-souris",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Focus visible et sortie possible.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les six réponses disposent d’un focus réel, visible et non recouvert.",
+          "Une réponse confirme la sortie vers Options au clavier et avec A virtuel ; aucun bouton de retour fictif n’est exigé."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-sous-titres-longs",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Aucun texte coupé ni bouton inaccessible.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le passage de 5281 caractères à 12 paragraphes, accents et noms longs reste dans la largeur à1080p et 390×844.",
+          "Le texte est parcouru du début à la fin et les six réponses sont atteintes ; la dernière réponse est entièrement visible et activable après défilement."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-fenetre-reduite",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "HUD, menus et cible restent accessibles.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "À 1280×720, le HUD et les commandes de menus restent dans la fenêtre et le canvas garde son ratio.",
+          "La cible réelle et Pause/Reprendre sont atteints en combat, avec focus visible ; le contenu long du panneau peut défiler."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md",
+          "docs/qa/completion-controls-tactical-dev-04-report.json",
+          "docs/qa/completion-controls-tactical-dev-04-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-grand-ecran",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Décors remplissent la fenêtre sans sprites étirés.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le canvas remplit les fenêtres 1920×1080 et 2560×1440 avec le même ratio rendu/CSS.",
+          "Les captures revues montrent un décor continu et des sprites proportionnés, sans bande de canvas vide ni étirement visible."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-audio-muet",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Alertes et dialogues restent compréhensibles.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le dialogue long reste entièrement textuel et navigable lorsque le son est coupé.",
+          "Un ordre public naturellement prêt produit les textes Tir contrôlé et 22 dégâts sur les boucliers ; les jauges et le focus de cible restent lisibles sans son."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md",
+          "docs/qa/completion-controls-tactical-dev-04-report.json",
+          "docs/qa/completion-controls-tactical-dev-04-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-reduction-des-flashs",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Événements restent identifiables.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Réduction des animations/flashs et intensité 0 suppriment les effets concernés sans supprimer poses, états et signaux textuels dans les natifs.",
+          "Le combat public conserve l’identité de l’acteur, l’ordre, les dégâts, les jauges et les cibles dans le journal et les commandes avec ces réglages."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md",
+          "docs/qa/completion-controls-tactical-dev-04-report.json",
+          "docs/qa/completion-controls-tactical-dev-04-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-keyboard",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Sélectionner, appliquer ou annuler au clavier. Après Préparer, le focus rejoint une commande active. Échap ne valide pas le brouillon.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Tab/Entrée sélectionnent un objet et Préparer rejoint un contrôle actif avec contour visible.",
+          "Échap annule le brouillon sans changer équipement ni inventaire, comparés via des exports natifs réellement téléchargés.",
+          "Appliquer confirme le choix réel, également retrouvé dans l’export natif ; Annuler reste atteignable après toutes les commandes."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-responsive",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère logiciel exact couvert par les natifs gelés 1060/1060 et le parcours public DEV08 avec 18captures réellement revues. Commandes clavier réelles et manette standard virtuelle déclarée ; matériel physique, vibration, pilote, FPS et fidélité artistique 1:1 non certifiés. Production de livraison encore en attente."
+      },
+      "implementationPaths": [
+        "src/gamepad-controls.js",
+        "src/gamepad-controls.css",
+        "src/completion-accessibility.js",
+        "src/completion-accessibility.css",
+        "src/main.js",
+        "src/world.js",
+        "tests/completion-controls.test.js",
+        "tests/gamepad-controls.test.js",
+        "scripts/completion-controls-browser.mjs",
+        "src/tactical-ui.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Parcourir les trois onglets à largeur de bureau et de téléphone sans débordement horizontal ni bouton masqué.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les onglets Personnage, Armure et Armes sont tous parcourus à 1920×1080 et 390×844 avec texte agrandi.",
+          "Les géométries ne débordent pas horizontalement ; les contenus longs défilent et les boutons Annuler/Appliquer du pied restent visibles et atteints au clavier."
+        ],
+        "limitations": [
+          "Manette standard virtuelle et fenêtres logicielles ; aucun essai de matériel physique ni certification de pilote, vibration, appareil mobile, FPS ou fidélité artistique 1:1.",
+          "Le passage long est un exemple d’affichage déclaré ; les imports natifs et Pause/Reprendre servent à préparer le parcours public, sans prétendre jouer toute la campagne.",
+          "Production de livraison non exécutée pour ce lot à cette étape ; productionPending:true reste une porte séparée avant commit/push."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-controls-tactical-native-04.json",
+          "docs/qa/completion-controls-dev-final-08-report.json",
+          "docs/qa/completion-controls-dev-final-08-review.json",
+          "docs/research/completion-controls.md"
+        ]
+      },
+      "productionPending": true
+    }
+  ],
+  "productionPending": true,
+  "localCandidateOnly": true,
+  "productionExecuted": false,
+  "commitPushAllowed": false,
+  "reviewedAt": "2026-11-13T10:43:32.210Z",
+  "deliveryGate": "Propositions pour candidat et copies locales uniquement ; commit/push bloqués avant les gates production post-synchronisation du parent.",
+  "currentEvidence": {
+    "native": "docs/qa/completion-integration-final-06-report.json",
+    "development": "docs/qa/completion-controls-dev-final-08-report.json",
+    "review": "docs/qa/completion-controls-dev-final-08-review.json",
+    "nativeTests": 1060,
+    "developmentChecks": 4,
+    "actuallyOpenedImages": 18
+  }
+}

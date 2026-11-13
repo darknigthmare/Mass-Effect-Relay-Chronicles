@@ -1,0 +1,1011 @@
+{
+  "scope": "Propositions uniquement : aucune mutation du catalogue/XLSX. Ne pas appliquer tant que acceptanceReview.complete est false. AssetStatus historiques inchangés.",
+  "baseCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "generatedAt": "2026-11-13T08:32:58.848975+00:00",
+  "gatesPending": [
+    "Publication finale conditionnée aux six gates production du parent après synchronisation des données/Excel"
+  ],
+  "records": [
+    {
+      "id": "SYS-sauvegarde-locale",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Format publié v1 préservé. Prévalidation avant sérialisation ; migrations des champs absents conservées et données présentes invalides refusées sans exécuter d’accesseur."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Version du format et migration explicites.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Format v1 conservé ; migrations pures des champs anciens absents, donnée présente invalide refusée."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent.",
+          "La garantie de non-exécution vise JSON et objets de données ordinaires ; un Proxy JavaScript hostile peut exécuter ses traps d’introspection et n’est pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-sauvegarde-automatique",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Écritures aux points sûrs, stockage séparé des six manuels et validation avant remplacement. Un état invalide ou un échec stockage préserve l’enregistrement précédent."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Aucune sauvegarde dans un état impossible.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les écritures prévalident la structure et la progression avant setItem ; les contrôles publics conservent les points sûrs."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-inventaire",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Les objets équipés restent dans le total. Comparaison avant achat. Icônes et modèles propres à chaque objet restent à produire. Complément : inventaire interne v2, migration stricte des stocks et ports v1, restitution des modules au retrait/remplacement de leur pièce, quatre outils et comparaison des effets bio/tech. Preuve docs/qa/equipment-extension-report.json. Lot Completion : refus atomiques et récupération après décès narratif vérifiés, sans certification des modèles ou icônes."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Refuser surallocation, achat impossible et équipement incompatible avant toute mutation. Retrait, vente et import doivent préserver les quantités ; récupérer le matériel d’un allié disparu.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Surallocation, achat impossible et incompatibilité refusés avant mutation.",
+          "Quantités conservées au retrait, vente, import ; équipement des équipiers perdus récupérable."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-commerce",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Transactions partagées achat/vente conservées, plafonds/quantités et pièces équipées contrôlés avant mutation. Calibrations refusent aussi les soldes non finis/non entiers. Michel réduit uniquement les recharges de médi-gel. Vente refusée lorsque le stock marchand atteint40 ; aucun objet retiré ni crédit accordé. La dernière place39→40 met à jour les trois quantités une fois."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Crédits, inventaire et stock changent ensemble, une fois. Refuser toute vente d’un exemplaire équipé et tout achat sans crédits ou capacité. Appliquer la remise Michel uniquement aux recharges de médi-gel.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Crédits, inventaire et stock changent une fois dans la transaction.",
+          "Refus des exemplaires équipés, crédits insuffisants et inventaire plein.",
+          "Remise Michel limitée aux recharges de médi-gel, prix objets et calibrations inchangés.",
+          "Stock40 plein : vente refusée, état complet et actorFor inchangés ; dernière place39→40 acceptée une seule fois."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-export-de-campagne",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Bilan de fin ME1 versionné distinct de la reprise, disponible à la fin et depuis la pause après rechargement. Snapshot complet des décisions et du dossier ; continuationImplemented:false. Aucune continuation ME2 ni fidélité artistique 1:1 déclarée."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Schéma versionné, contenu ME2 non supposé existant.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Bilan final ME1 distinct, format et version explicites.",
+          "continuationImplemented:false ; aucun contenu ME2 supposé."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-nouvelle-partie-propre",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Nouvelle campagne remet profil, zone, inventaire et décisions à leur état initial après un état terminé. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Profil, zone, inventaire et choix repartent de leur état initial.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Nouvelle campagne remet profil, zone, inventaire et décisions à leur état initial après un état terminé."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-sauvegarde-corrompue",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Titre explique corruption et conserve Nouvelle campagne. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Message clair et possibilité de nouvelle partie.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Titre explique corruption et conserve Nouvelle campagne."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-migration-de-version",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Ancienne donnée absente migrée ; version future refusée sans écraser les octets existants. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Conversion explicite ou refus sans écraser l’original.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Ancienne donnée absente migrée ; version future refusée sans écraser les octets existants."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-economie-negative",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Achat sans crédits refusé sans transaction ni quantité négative ; soldes NaN/non entiers aussi refusés. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Aucune transaction, aucune quantité négative.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Achat sans crédits refusé sans transaction ni quantité négative ; soldes NaN/non entiers aussi refusés."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-equipement-incompatible",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Armure d’autre morphologie refusée avant toute mutation du matériel ou des statistiques. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Refus avant modification de statistiques.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Armure d’autre morphologie refusée avant toute mutation du matériel ou des statistiques."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-butin-persistant",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Cache réclamé puis sauvegardé/rechargé reste utilisé ; seconde demande ne change aucune ressource. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Conteneur toujours vide.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Cache réclamé puis sauvegardé/rechargé reste utilisé ; seconde demande ne change aucune ressource."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-export-final",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Les seize combinaisons des quatre choix finaux et tous les champs narratifs du snapshot sont présents dans le bilan versionné. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Tous les choix requis sont présents et versionnés.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les seize combinaisons des quatre choix finaux et tous les champs narratifs du snapshot sont présents dans le bilan versionné."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-identity",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Comparaison intégrale du dossier, quêtes, crédits, XP, drapeaux et décisions hors seuls champs appliqués. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Comparer le dossier, les quêtes, les crédits, l’XP et les drapeaux narratifs avant et après application d’une retouche.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Comparaison intégrale du dossier, quêtes, crédits, XP, drapeaux et décisions hors seuls champs appliqués."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-draft",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Changements personnage, armure et arme restent dans le brouillon ; état et inventaire inchangés. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Modifier chaque catégorie puis vérifier que l’état de campagne et son inventaire restent identiques à leur état initial.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Changements personnage, armure et arme restent dans le brouillon ; état et inventaire inchangés."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-atomic",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Réservation concurrente d’un objet refuse le brouillon entier ; les neuf ports valides s’appliquent sans duplicata. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Si une seule sélection échoue, aucune apparence ni pièce d’équipement n’est modifiée. Une application valide ne duplique aucun objet.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Réservation concurrente d’un objet refuse le brouillon entier ; les neuf ports valides s’appliquent sans duplicata."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-cancel",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Visage, armure, arme changés puis Annuler ; campagne entière identique. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Modifier visage, armure et arme puis annuler. Comparer l’état complet à l’état précédant l’ouverture de l’atelier.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Visage, armure, arme changés puis Annuler ; campagne entière identique."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-reset",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Brouillon réinitialisé correspond à la configuration active ; état entier et inventaire inchangés. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Après plusieurs changements, le brouillon réinitialisé correspond au personnage actif et n’affecte ni quête ni inventaire.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Brouillon réinitialisé correspond à la configuration active ; état entier et inventaire inchangés."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-persistence",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Configuration appliquée identique après automatique, six manuels et export/import JSON. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Après validation, recharger chaque type de sauvegarde et retrouver exactement la configuration sélectionnée.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Configuration appliquée identique après automatique, six manuels et export/import JSON."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-migration",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Sauvegarde ancienne sans personnalisation migre puis se sauvegarde sans perdre identité, progression ni inventaire. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Importer une sauvegarde 0.2.0 sans le champ puis sauvegarder à nouveau, en conservant progression, inventaire et identité.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Sauvegarde ancienne sans personnalisation migre puis se sauvegarde sans perdre identité, progression ni inventaire."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-SYS-validation",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel contrôlé sur le lot Completion : Version, ID, structure malformée, propriétés cachées et prototypes refusés. Accesseurs dans données et options externes jamais exécutés. Preuves natives et parcours publics identifiés dans docs/qa/completion-persistence-tracking.json. Aucun asset artistique certifié."
+      },
+      "implementationPaths": [
+        "src/state.js",
+        "src/save-slots.js",
+        "src/loadout.js",
+        "src/customization.js",
+        "src/completion-persistence-campaign.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Refuser une version inconnue, un identifiant interdit ou une structure malformée. Ne pas exécuter de getter fourni par une entrée externe.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Version, ID, structure malformée, propriétés cachées et prototypes refusés.",
+          "Accesseurs dans données et options externes jamais exécutés.",
+          "Prototypes Array hérités, toJSON/Symbol.iterator, options cachées/Symbol et identifiant classe non string refusés avant exécution ou écriture."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent.",
+          "La garantie de non-exécution vise JSON et objets de données ordinaires ; un Proxy JavaScript hostile peut exécuter ses traps d’introspection et n’est pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/completion-persistence.test.js",
+          "scripts/completion-persistence-proof.mjs",
+          "scripts/completion-persistence-browser.mjs",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-workshop",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Atelier en campagne : onglets Personnage, Armure et Armes parcourus, apparence/visage/couleur/arme modifiés dans le brouillon ; annulation/réinitialisation et application vérifiées par comparaison de la progression complète exportée. Les silhouettes exactes des pièces et la fidélité artistique ne sont pas certifiées."
+      },
+      "implementationPaths": [
+        "src/customization-ui.js",
+        "src/customization.js",
+        "src/main.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Ouvrir les trois onglets, modifier des options, puis appliquer ou annuler sans quitter la campagne ni perdre la progression.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les trois onglets sont ouverts et leurs options changées sans quitter la campagne.",
+          "Annuler puis Appliquer vérifiés avec conservation du dossier et de toute la progression."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "scripts/completion-persistence-browser.mjs",
+          "tests/completion-persistence.test.js",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-entry",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel de l’atelier couvert par les vrais contrôles et aperçus du lot Completion : Entrées publiques Pause, Dossier Shepard et Équipement utilisées sans console. Annuler rétablit Pause, Dossier ou Équipement ; le retour du Dossier du commando rétablit le commando. Ressources de la fixture explicites ; les silhouettes et variantes artistiques originales restent hors certification."
+      },
+      "implementationPaths": [
+        "src/customization-ui.js",
+        "src/customization.js",
+        "src/main.js",
+        "src/loadout.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Atteindre l’atelier sans console ni commande de développement. Le bouton Retour rétablit le menu attendu.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Entrées publiques Pause, Dossier Shepard et Équipement utilisées sans console.",
+          "Annuler rétablit Pause, Dossier ou Équipement ; le retour du Dossier du commando rétablit le commando."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "scripts/completion-persistence-browser.mjs",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-character",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel de l’atelier couvert par les vrais contrôles et aperçus du lot Completion : Chaque valeur d’apparence, visage, teint, iris, coiffure et cheveux est activée par un bouton réel ; son SVG d’aperçu doit changer. Octets de sauvegarde inchangés pendant les choix et état complet identique après Annuler. Ressources de la fixture explicites ; les silhouettes et variantes artistiques originales restent hors certification."
+      },
+      "implementationPaths": [
+        "src/customization-ui.js",
+        "src/customization.js",
+        "src/main.js",
+        "src/loadout.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Chaque option modifie le brouillon et son aperçu. Le personnage actif reste inchangé avant validation.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Chaque valeur d’apparence, visage, teint, iris, coiffure et cheveux est activée par un bouton réel ; son SVG d’aperçu doit changer.",
+          "Octets de sauvegarde inchangés pendant les choix et état complet identique après Annuler."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "scripts/completion-persistence-browser.mjs",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-armor",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel de l’atelier couvert par les vrais contrôles et aperçus du lot Completion : Pièce portée et autres armures affichées ; exemple humain possédé et armure turienne refusée avec morphologie expliquée. Comparaison des statistiques et restitution des deux modules de l’armure incluses dans la fiche. Ressources de la fixture explicites ; les silhouettes et variantes artistiques originales restent hors certification."
+      },
+      "implementationPaths": [
+        "src/customization-ui.js",
+        "src/customization.js",
+        "src/main.js",
+        "src/loadout.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Afficher la pièce équipée, les autres armures disponibles, leurs restrictions et les différences de statistiques.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Pièce portée et autres armures affichées ; exemple humain possédé et armure turienne refusée avec morphologie expliquée.",
+          "Comparaison des statistiques et restitution des deux modules de l’armure incluses dans la fiche."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "scripts/completion-persistence-browser.mjs",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-weapons",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel de l’atelier couvert par les vrais contrôles et aperçus du lot Completion : Neuf ports visités ; la fiche suit un port vide puis une pièce consultée. Pièce absente ou incompatible expliquée ; boutons refusés. Remplacement d’arme indique ses trois modules restitués ; consultation sans application ni acquisition. Ressources de la fixture explicites ; les silhouettes et variantes artistiques originales restent hors certification."
+      },
+      "implementationPaths": [
+        "src/customization-ui.js",
+        "src/customization.js",
+        "src/main.js",
+        "src/loadout.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "La fiche suit l’emplacement actif, y compris vide. Une pièce absente ou incompatible affiche son refus. Remplacer une arme indique les modules restitués.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Neuf ports visités ; la fiche suit un port vide puis une pièce consultée.",
+          "Pièce absente ou incompatible expliquée ; boutons refusés.",
+          "Remplacement d’arme indique ses trois modules restitués ; consultation sans application ni acquisition."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "scripts/completion-persistence-browser.mjs",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-UI-comparison",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel de l’atelier couvert par les vrais contrôles et aperçus du lot Completion : Valeurs courantes, préparées et consultées contrôlées contre actorFor natif. Comparaisons tech et biot ×1,00 → ×1,15 affichées avec deux décimales. Brouillon candidat revalidé et restitutions trois modules d’arme/deux d’armure incluses. Ressources de la fixture explicites ; les silhouettes et variantes artistiques originales restent hors certification."
+      },
+      "implementationPaths": [
+        "src/customization-ui.js",
+        "src/customization.js",
+        "src/main.js",
+        "src/loadout.js"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Les valeurs suivent actorFor. Afficher les multiplicateurs au format ×1,00 → ×1,15, sans arrondir à 1. La consultation valide le brouillon candidat et indique les modules restitués.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Valeurs courantes, préparées et consultées contrôlées contre actorFor natif.",
+          "Comparaisons tech et biot ×1,00 → ×1,15 affichées avec deux décimales.",
+          "Brouillon candidat revalidé et restitutions trois modules d’arme/deux d’armure incluses."
+        ],
+        "limitations": [
+          "Périmètre fonctionnel de la campagne condensée ; aucun assetStatus artistique avancé, aucune fidélité de silhouette originale1:1 certifiée.",
+          "Production non encore exécutée ; commit/push bloqués jusqu’aux gates production du parent."
+        ],
+        "evidence": [
+          "scripts/completion-persistence-browser.mjs",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "docs/COMPLETION_PERSISTENCE.md",
+          "docs/qa/completion-persistence-native-final-03-report.json",
+          "docs/qa/completion-persistence-boundary-review.json",
+          "docs/qa/completion-persistence-dev-final-06-report.json",
+          "docs/qa/completion-persistence-dev-final-06-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    }
+  ],
+  "productionPending": true,
+  "devEvidence": {
+    "report": "docs/qa/completion-persistence-dev-final-06-report.json",
+    "sha256": "8064f6a949245afd9d9351e155136c2a9653a245efc27f47f039c417b61355f7",
+    "review": "docs/qa/completion-persistence-dev-final-06-visual-review.json",
+    "reviewSha256": "1c908b277e0c74d03c8e8e0d242e29fa78cccbf9de96812ccad70f7f668789f9",
+    "checks": 16,
+    "optionChecks": 27,
+    "capturesActuallyOpened": 15
+  }
+}

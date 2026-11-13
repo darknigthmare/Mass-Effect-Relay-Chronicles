@@ -1,0 +1,743 @@
+{
+  "proposalOnly": true,
+  "baselineCommit": "0d76912517a91c5d2ad00f1ef5718188b40abd8e",
+  "scope": "ME1 narration/relations/choices; no catalogue, workbook or criteria mutation by this owner",
+  "records": [
+    {
+      "id": "CHC-recrutement-de-garrus",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/state.js",
+        "gameKey": "recruit:garrus",
+        "notes": "Acceptation et report fonctionnels avant/après l’audience. Le PNJ et son marqueur disparaissent dès le recrutement ; un seul acteur quand Garrus est sélectionné. Aucun changement automatique de l’équipe active. Vérification canonique complète encore à mener. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json.\n\nLot narration depuis 0d76912 : Report puis acceptation publics préparés ; tests frais du renderer vérifient qu’un seul corps recruté existe et que le marqueur de recrutement disparaît. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "PNJ et équipier ne coexistent pas en double.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Report puis acceptation publics préparés ; tests frais du renderer vérifient qu’un seul corps recruté existe et que le marqueur de recrutement disparaît."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-recrutement-de-wrex",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/state.js",
+        "gameKey": "recruit:wrex",
+        "notes": "Acceptation et report fonctionnels avant/après l’audience. Présence et conversation à bord selon le recrutement ; absence du PNJ de recrutement à la Citadelle. Position à bord dans le décor condensé, sans reconstitution exacte des ponts. Vérification canonique complète encore à mener. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json.\n\nLot narration depuis 0d76912 : Recrutement, présence unique à bord et revisites vérifiés nativement ; conversation du génophage et présence à bord prévues dans le parcours public frais. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Conversations et présence en soute adaptées.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Recrutement, présence unique à bord et revisites vérifiés nativement ; conversation du génophage et présence à bord prévues dans le parcours public frais."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-attitude-de-garrus",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/story.js",
+        "gameKey": "story.choices[garrus:procedure]",
+        "notes": "Conseil procédure/résultats mémorisé, suivi adapté, persistance après autosauvegarde et reprise. Ne couvre pas toutes les conséquences ou missions personnelles du jeu original. Vérification canonique complète encore à mener. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json.\n\nLot narration depuis 0d76912 : Les deux conseils sont mémorisés ; le suivi reprend le bon conseil, refuse sa réécriture et ne donne aucune récompense. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Conversation suivante se réfère au bon choix.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les deux conseils sont mémorisés ; le suivi reprend le bon conseil, refuse sa réécriture et ne donne aucune récompense."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-ordre-des-destinations",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:CHC-ordre-des-destinations",
+        "notes": "Lot narration depuis 0d76912 : Les six ordres des trois planètes et un sauvetage après Virmire font varier le texte de Liara selon completed ordonné, sans assimiler visite ou déverrouillage à une mission terminée. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Candidat à la validation fonctionnelle du critère exact après les gates frais, sans certification artistique ou dialogue original 1:1.\n\nLot narration depuis 0d76912 : Les six ordres des trois planètes et un sauvetage après Virmire font varier le texte de Liara selon completed ordonné, sans assimiler visite ou déverrouillage à une mission terminée. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Dialogues de Liara réactifs à un recrutement tardif.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les six ordres des trois planètes et un sauvetage après Virmire font varier le texte de Liara selon completed ordonné, sans assimiler visite ou déverrouillage à une mission terminée."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-sort-de-la-reine-rachni",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:CHC-sort-de-la-reine-rachni",
+        "notes": "Lot narration depuis 0d76912 : Les deux décisions sont conservées dans choices.noveria, exportées/rechargées et résumées séparément ; toute seconde validation est refusée. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Candidat à la validation fonctionnelle du critère exact après les gates frais, sans certification artistique ou dialogue original 1:1.\n\nLot narration depuis 0d76912 : Les deux décisions sont conservées dans choices.noveria, exportées/rechargées et résumées séparément ; toute seconde validation est refusée. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Conséquence persistante et exportable.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les deux décisions sont conservées dans choices.noveria, exportées/rechargées et résumées séparément ; toute seconde validation est refusée."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-mort-narrative",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:CHC-mort-narrative",
+        "notes": "Lot narration depuis 0d76912 : Médi-gel soigne effectivement un membre vivant et Unité relève effectivement un KO du groupe survivant ; aucun ne recrée Jenkins ou le membre perdu sur Virmire. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Candidat à la validation fonctionnelle du critère exact après les gates frais, sans certification artistique ou dialogue original 1:1.\n\nLot narration depuis 0d76912 : Médi-gel soigne effectivement un membre vivant et Unité relève effectivement un KO du groupe survivant ; aucun ne recrée Jenkins ou le membre perdu sur Virmire. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Médi-gel et Unité ne restaurent pas une perte narrative.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Médi-gel soigne effectivement un membre vivant et Unité relève effectivement un KO du groupe survivant ; aucun ne recrée Jenkins ou le membre perdu sur Virmire."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-choix-du-commando",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:choix-du-commando",
+        "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée.\n\nLot narration depuis 0d76912 : setSquad refuse les membres morts ou non recrutés ; le renderer ne crée pas leur corps, et les choix publics concernés sont désactivés. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Pas de sélection de personnage mort ou non recruté.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "setSquad refuse les membres morts ou non recrutés ; le renderer ne crée pas leur corps, et les choix publics concernés sont désactivés."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-reputation",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/main.js",
+        "gameKey": "system:reputation",
+        "notes": "Fonction présente en version prototype. Les critères complets de cette ligne restent à vérifier ; aucune validation finale déclarée.\n\nLot narration depuis 0d76912 : Les valeurs utilisées pour le hanari sont affichées dans le journal ; les choix exposent le seuil de 6 points et les limites 5/6 sont contrôlées sans dépense en cas de refus. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Pas de verrouillage par valeur non affichée.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les valeurs utilisées pour le hanari sont affichées dans le journal ; les choix exposent le seuil de 6 points et les limites 5/6 sont contrôlées sans dépense en cas de refus."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-recrutement-double",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:recrutement-double",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Les méthodes réelles du renderer et les rappels natifs de recrutement interdisent doublons de corps, log ou récompense ; revisites publiques prévues. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Pas de deuxième instance ni de récompense répétée.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les méthodes réelles du renderer et les rappels natifs de recrutement interdisent doublons de corps, log ou récompense ; revisites publiques prévues."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-perte-virmire",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:perte-virmire",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Les deux pertes retirent corps et conversation des scènes Normandy/Citadelle/Novéria/Ilos, y compris après reprise et choix de groupe. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Le personnage perdu n’apparaît plus dans les scènes.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les deux pertes retirent corps et conversation des scènes Normandy/Citadelle/Novéria/Ilos, y compris après reprise et choix de groupe."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-mort-narrative-et-soins",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:mort-narrative-et-soins",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Le cas utilise réellement Médi-gel puis Unité sur le groupe survivant et conserve la perte du récit dans état et sauvegarde. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "La perte reste définitive.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le cas utilise réellement Médi-gel puis Unité sur le groupe survivant et conserve la perte du récit dans état et sauvegarde."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-dialogue-conditionnel",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:dialogue-conditionnel",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Aux valeurs 5/6, les deux tons du hanari sont refusés/acceptés selon leur prérequis affiché ; un appel refusé ne modifie rien. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Options actives uniquement quand prérequis remplis.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Aux valeurs 5/6, les deux tons du hanari sont refusés/acceptés selon leur prérequis affiché ; un appel refusé ne modifie rien."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-ordre-planetes",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:ordre-planetes",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Les six ordres Thérum/Féros/Novéria maintiennent les portes Cipher/Vigil et le bilan de recrutement sans anticiper une destination non terminée. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Pas de dialogue supposant une mission non faite.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les six ordres Thérum/Féros/Novéria maintiennent les portes Cipher/Vigil et le bilan de recrutement sans anticiper une destination non terminée."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-liara-tardive",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:liara-tardive",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Le sauvetage après Féros, Novéria et Virmire produit une réaction spécifique ; aucun sujet ni texte Vigil n’apparaît avant Ilos. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Validation fonctionnelle du critère exact proposée pour la copie locale ; productionPending:true et aucune certification artistique/canonique 1:1."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Réactions adaptées et aucune référence prématurée.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Le sauvetage après Féros, Novéria et Virmire produit une réaction spécifique ; aucun sujet ni texte Vigil n’apparaît avant Ilos."
+        ],
+        "limitations": [
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-relations",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:SYS-relations",
+        "notes": "Lot narration depuis 0d76912 : Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés.\n\nLot narration depuis 0d76912 : Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Concordance avec la disponibilité et la survie.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés."
+        ],
+        "limitations": [
+          "Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-dialogue-a-choix",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/main.js",
+        "gameKey": "system:dialogue-a-choix",
+        "notes": "Branches de recrutement acceptation/report et conseil à Garrus avec réponse persistée, sous forme de réécritures concises. Les dialogues intégraux, la roue de conversation complète et l’ensemble des branches du catalogue restent à produire. Contrôles : tests/story.test.js, tests/recruitment.test.js, tests/story-world.test.js et scripts/story-browser.mjs ; preuve conservée dans docs/qa/story-and-recruitment-report.json.\n\nLot narration depuis 0d76912 : Les nouveaux sujets et les deux conseils de Garrus utilisent les sorties Retour aux sujets/Reprendre la mission du runner existant. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : La vérification ciblée ne couvre pas chaque branche de toutes les opérations et scènes du catalogue. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Chaque branche atteint une sortie valide.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Les nouveaux sujets et les deux conseils de Garrus utilisent les sorties Retour aux sujets/Reprendre la mission du runner existant."
+        ],
+        "limitations": [
+          "La vérification ciblée ne couvre pas chaque branche de toutes les opérations et scènes du catalogue.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "SYS-journal-de-mission",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/main.js",
+        "gameKey": "system:journal-de-mission",
+        "notes": "Les systèmes assignments et operations restent distincts dans la sauvegarde. Les quêtes terminées quittent les objectifs actifs. Les embranchements complets de ME1 restent à produire. Le journal affiche maintenant aussi l’état réel des objectifs chronométrés d’Eden Prime et d’Ilos, les réparations de MIRA, les étapes traitées, le délai restant et la reprise après échec. Les chapitres, les douze opérations annexes et ces sous-objectifs restent des niveaux de suivi distincts ; aucune quête supplémentaire n’est déduite du nombre de dispositifs.\n\nLot narration depuis 0d76912 : Les conséquences des chapitres déjà terminés apparaissent comme bilans décidés ; aucune étape nouvelle n’est inventée par la lecture. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : Le critère global de toutes les missions dépasse les seuls parcours narratifs de ce lot. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Aucune mission terminée restant affichée active.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Les conséquences des chapitres déjà terminés apparaissent comme bilans décidés ; aucune étape nouvelle n’est inventée par la lecture."
+        ],
+        "limitations": [
+          "Le critère global de toutes les missions dépasse les seuls parcours narratifs de ce lot.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-quete-et-journal",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "tests/completion-narrative.test.js",
+        "gameKey": "qa:narrative:quete-et-journal",
+        "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\n\nLot narration depuis 0d76912 : Les résumés narratifs, les interlocuteurs survivants et les marqueurs de recrutement sont cohérents pour les parcours ciblés. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : La cohérence de chaque quête du catalogue avec tout PNJ et toute carte n’est pas attestée par cette suite ciblée. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "État cohérent dans journal, PNJ et carte.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Les résumés narratifs, les interlocuteurs survivants et les marqueurs de recrutement sont cohérents pour les parcours ciblés."
+        ],
+        "limitations": [
+          "La cohérence de chaque quête du catalogue avec tout PNJ et toute carte n’est pas attestée par cette suite ciblée.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-survivant-de-virmire",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:CHC-survivant-de-virmire",
+        "notes": "Lot narration depuis 0d76912 : Le groupe, les dialogues du survivant, la disparition du défunt et le bilan visible sont mis à jour pour les deux choix. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. La clause romance n’est pas implémentée. Le bilan des décès est explicite, sans scène romantique fictive.\n\nLot narration depuis 0d76912 : Le groupe, les dialogues du survivant, la disparition du défunt et le bilan visible sont mis à jour pour les deux choix. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : La clause romance n’est pas implémentée. Le bilan des décès est explicite, sans scène romantique fictive. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Équipe, dialogues, romance et épilogue mis à jour.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Le groupe, les dialogues du survivant, la disparition du défunt et le bilan visible sont mis à jour pour les deux choix."
+        ],
+        "limitations": [
+          "La clause romance n’est pas implémentée. Le bilan des décès est explicite, sans scène romantique fictive.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-origine-de-shepard",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:CHC-origine-de-shepard",
+        "notes": "Lot narration depuis 0d76912 : Les neuf combinaisons origine/profil traversent le vrai décodeur et Chakwas reprend l’origine enregistrée sans bonus de réputation. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. La mission propre à chaque origine reste à produire ; cette réactivité de dossier et la stabilité ne certifient pas son contenu intégral.\n\nLot narration depuis 0d76912 : Les neuf combinaisons origine/profil traversent le vrai décodeur et Chakwas reprend l’origine enregistrée sans bonus de réputation. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : La mission propre à chaque origine reste à produire ; cette réactivité de dossier et la stabilité ne certifient pas son contenu intégral. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Origine stable dans toute sauvegarde.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Les neuf combinaisons origine/profil traversent le vrai décodeur et Chakwas reprend l’origine enregistrée sans bonus de réputation."
+        ],
+        "limitations": [
+          "La mission propre à chaque origine reste à produire ; cette réactivité de dossier et la stabilité ne certifient pas son contenu intégral.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-profil-psychologique",
+      "proposedFields": {
+        "status": "Prototype",
+        "assetPath": "src/completion-narrative.js",
+        "gameKey": "narrative:CHC-profil-psychologique",
+        "notes": "Lot narration depuis 0d76912 : Le dossier de Chakwas reprend le profil conservé et les neuf combinaisons sont vérifiées après sauvegarde. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Les libellés français exacts officiels restent à recouper ; la logique réutilise les noms déjà présents dans commander.js.\n\nLot narration depuis 0d76912 : Le dossier de Chakwas reprend le profil conservé et les neuf combinaisons sont vérifiées après sauvegarde. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : Les libellés français exacts officiels restent à recouper ; la logique réutilise les noms déjà présents dans commander.js. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+      },
+      "targetStatusAfterGates": "Prototype",
+      "acceptanceReview": {
+        "exactCriterion": "Libellés exacts et réactions contrôlés.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Le dossier de Chakwas reprend le profil conservé et les neuf combinaisons sont vérifiées après sauvegarde."
+        ],
+        "limitations": [
+          "Les libellés français exacts officiels restent à recouper ; la logique réutilise les noms déjà présents dans commander.js.",
+          "La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels.",
+          "Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD."
+        ],
+        "evidence": [
+          "docs/qa/completion-integration-final-06-report.json",
+          "docs/qa/completion-narrative-dev-final-02-report.json",
+          "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+          "tests/completion-narrative.test.js",
+          "tests/story-world.test.js",
+          "tests/story.test.js",
+          "tests/recruitment.test.js",
+          "tests/operations.test.js",
+          "docs/research/completion-narrative.md"
+        ]
+      },
+      "productionPending": true
+    }
+  ],
+  "developmentGatesPassed": true,
+  "productionPending": true,
+  "developmentProof": {
+    "path": "docs/qa/completion-narrative-dev-final-02-report.json",
+    "sha256": "36f2eda49fc8db7c3081e132c03111f9266eb46170c0d8ba9ff2a8a952cfcf2f",
+    "review": {
+      "path": "docs/qa/completion-narrative-dev-final-02-visual-review.json",
+      "sha256": "f16b79a9b22f4abaebd31e46487ee6b0c37e77add978831cd6fcf90a2c2a0605"
+    }
+  },
+  "nativeProof": {
+    "path": "docs/qa/completion-integration-final-06-report.json",
+    "sha256": "0f01b021c6b9017dbeeb267f14c3a2382c777ca79f1f446e015cccd7def23895",
+    "pass": 1060
+  }
+}

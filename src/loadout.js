@@ -323,10 +323,11 @@ export function sellItem(state, itemId) {
   const item = typeof itemId === 'string' && own(ITEMS, itemId) ? ITEMS[itemId] : null;
   if (!inventory || !item) return fail('Objet inconnu ou inventaire invalide.');
   if ((inventory.items[itemId] || 0) <= allocated(inventory, itemId)) return fail('Déséquipez d’abord un exemplaire de cet objet.');
+  if (inventory.stock[itemId] >= MAX_STOCK) return fail('Le stock de l’armurerie est plein pour cet objet.');
   if (!Number.isSafeInteger(state.credits) || state.credits < 0 || state.credits + item.sell > 1_000_000_000) return fail('Le solde ne peut pas être mis à jour.');
   inventory.items[itemId] -= 1;
   if (!inventory.items[itemId]) delete inventory.items[itemId];
-  inventory.stock[itemId] = Math.min(MAX_STOCK, inventory.stock[itemId] + 1);
+  inventory.stock[itemId] += 1;
   state.inventory = inventory;
   state.credits += item.sell;
   return { ok: true, item };

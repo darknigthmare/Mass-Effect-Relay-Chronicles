@@ -2,7 +2,9 @@
 
 Le périmètre retenu conserve les sprites et les combats ATB de Relay Chronicles. La fidélité du contenu demande des références distinctes pour les lieux, les personnages, les missions et les conséquences. Les statistiques et le rythme ATB restent des choix d’adaptation.
 
-Le suivi courant après le [lot P0/P1](PRIORITY_GAMEPLAY.md) compte **1 385 fiches principales et 6 711 références**, avec **454 sources**. Le principal comporte **417 Prototype, 962 Défini, trois Intégré et trois Validé** ; le registre complet, **708 Prototype, 5 997 Défini et les six statuts avancés inchangés**. Les objectifs, talents, distances tactiques, commandes de manette et phases partielles enrichissent le prototype ATB ; ils ne certifient pas les règles et séquences originales complètes. Aucun PNG d’asset du jeu supplémentaire n’est produit. Les [preuves du lot](qa/priority-report.json) et le [suivi des critères ouverts](PRIORITIES.md) distinguent la réalisation partielle de la fidélité finale.
+Le suivi courant après [Completion](COMPLETION.md) compte **1 385 fiches principales et 6 711 références**, avec **454 sources**. Le principal comporte **918 Défini, 375 Prototype, zéro Intégré et 92 Validé** ; le registre complet, **5 953 Défini, 666 Prototype, zéro Intégré et 92 Validé**. Le lot ferme **89 critères fonctionnels** (78 P0, six P1, cinq P2), dont trois précédemment Intégré, et conserve les trois Validé antérieurs. Les dix autres fiches mises à jour restent partielles. L’[audit courant](qa/completion-tracking-current-audit.json) suit **6 619 critères encore ouverts : 706 P0, 5 798 P1 et 115 P2**.
+
+La couverture, le repli, les réactions narratives, les refus atomiques et les quatre pouvoirs des Chroniques restent des adaptations ATB. Les validations portent sur le critère exact documenté, avec tests et parcours déclarés ; elles ne certifient pas les campagnes, cartes, modèles, valeurs ou séquences originales complètes. Aucun statut d’asset ni PNG de jeu supplémentaire n’est produit. Les [preuves du lot](qa/completion-report.json) distinguent réalisation fonctionnelle, fidélité artistique et contrôle de livraison.
 
 Le bilan historique Horizon était de 399 Prototype et 980 Défini dans le principal, 690 Prototype et 6 015 Défini dans le registre. Ses 29 dessins restent des prototypes fixes ; ses [preuves](qa/horizon-report.json) conservent leur portée d’origine.
 
@@ -48,7 +50,7 @@ Les erreurs de capacité et d’accès au stockage sont présentées sans annonc
 
 ## Conversations et progression
 
-Le Normandy propose neuf interlocuteurs et dix-huit sujets conditionnels : Nihlus avant le départ sur Eden Prime, Joker et Chakwas, puis les six compagnons selon leur recrutement et leur survie. Le premier rapport de Joker est prioritaire après le prologue. Le conseil donné à Garrus est mémorisé et repris ensuite. Ces textes sont des réécritures françaises concises ; ils ne constituent pas une transcription certifiée du jeu original.
+Le Normandy comporte treize interlocuteurs et trente sujets définis, dont l’affichage dépend du recrutement, de la survie et des événements. Nihlus et Jenkins disparaissent après le prologue ; les six compagnons suivent leur recrutement et leur survie. Le premier rapport de Joker est prioritaire après le prologue. Le conseil donné à Garrus est mémorisé et repris ensuite. Chakwas réagit aux antécédents de Shepard et à la perte de Virmire ; le survivant dispose d’un retour conditionnel. Ces textes sont des réécritures françaises concises ; ils ne constituent pas une transcription certifiée du jeu original.
 
 Le codex comprend seize entrées conditionnelles et une recherche insensible aux accents. Les informations sur Liara, le Cipher, Sovereign et Vigil sont limitées aux étapes appropriées. Les sujets lus, les réponses, les découvertes et les visites sont sauvegardés. Le format v1 conserve les anciennes parties en initialisant uniquement les champs narratifs absents.
 

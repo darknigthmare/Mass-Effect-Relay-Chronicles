@@ -2,6 +2,7 @@ import { CODEX, CHAPTERS, CLASSES } from './game-data.js';
 import { STORY_CONVERSATIONS, STORY_CODEX } from './story-data.js';
 import { getFrontierNPC, frontierNPCVisible } from './frontier-characters.js';
 import { getHorizonNPC, horizonNPCVisible } from './horizon-characters.js';
+import { narrativeTopicText } from './completion-narrative.js';
 
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const ZONES = new Set(['normandy', ...Object.keys(CHAPTERS)]);
@@ -43,7 +44,7 @@ function gatePossible(state, story, gate, historical = false) {
   if (gate === 'before-eden') return historical || (!story.visitedZones.includes('eden-prime')
     && !legacyVisits(state).includes('eden-prime') && state?.flags?.jenkinsLost !== true);
   if (gate === 'garrus-advice') return OWN(story.choices, 'garrus:procedure');
-  const stages = { 'after-eden': 'eden-prime', 'after-citadel': 'citadel', 'after-therum': 'therum', 'after-feros': 'feros', 'after-ilos': 'ilos' };
+  const stages = { 'after-eden': 'eden-prime', 'after-citadel': 'citadel', 'after-therum': 'therum', 'after-feros': 'feros', 'after-virmire': 'virmire', 'after-ilos': 'ilos' };
   return OWN(stages, gate) && completed(state, stages[gate]);
 }
 
@@ -157,6 +158,7 @@ export function getConversation(state, id) {
     if (id === 'garrus' && topic.id === 'followup') result.text = story.choices['garrus:procedure'] === 'procedure'
       ? 'Vous m’avez conseillé de respecter les procédures pour protéger les innocents. C’est le conseil que je garde en tête.'
       : 'Vous m’avez conseillé de privilégier les résultats lorsque les procédures bloquent une enquête. C’est la position que vous m’avez donnée.';
+    result.text = narrativeTopicText(state, id, topic.id, result.text);
     return result;
   }) };
 }

@@ -172,6 +172,17 @@ test('native damping blocks new bio/tech orders while shooting and resolved effe
   tickBattle(battle, 2); assert.ok(enemy.statuses.damped < 8 && enemy.statuses.damped > 0);
 });
 
+test('damping respects immunity and complete resistance without creating a zero-duration status', () => {
+  const state = stateFor('engineer', 3); buy(state, 'electronics'); buy(state, 'damping', 2);
+  const actor = actorFor(state);
+  for (const resistance of [{ controlImmune: true }, { controlResistance: 1 }, { controlResistance: .999 }]) {
+    const target = { id: 'immune', name: 'Cible protégée', hp: 100, statuses: { barrier: 3 }, ...resistance };
+    const before = structuredClone(target), result = applyCampaignTalentAction({ actor, actionId: 'me1Damping', targets: [target] });
+    assert.equal(result.ok, true); assert.equal(result.events[0].resisted, true); assert.deepEqual(target, before);
+    assert.equal(Object.hasOwn(target.statuses, 'damped'), false);
+  }
+});
+
 test('native immunity reduces actual incoming damage and native adrenaline keeps its own recharge', () => {
   const state = stateFor('soldier', 4); buy(state, 'fitness', 2); buy(state, 'assault-training', 2);
   const make = () => createBattle({ party: [{ ...actorFor(state), shield: 0, maxShield: 0, defense: 0, heat: 43,

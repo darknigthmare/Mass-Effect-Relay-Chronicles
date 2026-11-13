@@ -10,13 +10,15 @@ import { getUniverseWeaponProfile } from './universe-weapon-profiles.js';
 import { SUMMON_PROFILES, getSummonProfile, isSummon, isVictoryParticipant, planSummon, planSummonTick } from './combat-summons.js';
 import { UNIVERSE_AMMO_PROFILES, getAmmoActionProfile, validateAmmoMode, canActivateAmmoProfile, activateAmmoProfile, getAmmoHitModifiers, getAmmoPostHit } from './universe-ammo.js';
 import { MEDICAL_ACTION_IDS, getMedicalBenchProfile, medicalActionIds, planMedicalBenchAction } from './combat-medical.js';
-import { tacticalEnabled, initializeTacticalBattle, getTacticalState, getTacticalPosition, getTacticalRange,
+import { tacticalEnabled, initializeTacticalBattle, getTacticalState, getTacticalPosition, getTacticalCoverState, getTacticalRange,
   tacticalTargetCheck, planTacticalMove, commitTacticalMove, registerTacticalActors } from './tactical-positions.js';
 import { createBossPhasePlan, advanceBossPhases, bossDamageBlocked, getBossTargetReason, bossActorCanAct } from './boss-phases.js';
 import { CAMPAIGN_TALENT_ACTIONS, campaignTalentActionAllowed, campaignTalentActionDescription,
   campaignTalentDamageMultiplier, applyCampaignTalentAction } from './campaign-talents.js';
+import { SIGNATURE_ACTIONS, signatureActionAllowed, planSignatureAction, planSignatureArmorBreak,
+  signatureTargetable, signatureDamageMultiplier, signatureIncomingDamageMultiplier, signatureOffensiveAction } from './completion-chronicles-powers.js';
 
-export { getTacticalState, getTacticalPosition } from './tactical-positions.js';
+export { getTacticalState, getTacticalPosition, getTacticalCoverState } from './tactical-positions.js';
 export { getBossPhaseView } from './boss-phases.js';
 
 const SUMMON_ACTIONS = new Set(SUMMON_PROFILES.map(profile => profile.actionId));
@@ -26,6 +28,7 @@ const ammoActionDefinitions = Object.fromEntries(UNIVERSE_AMMO_PROFILES.map(prof
 
 export const ACTIONS = Object.freeze({
   ...CAMPAIGN_TALENT_ACTIONS,
+  ...SIGNATURE_ACTIONS,
   shoot: { label: 'Tir contrôlé', description: 'Un tir précis. Génère 24 points de chaleur.', target: 'enemy', heatCost: 24 },
   burst: { label: 'Rafale', description: 'Plus de dégâts, mais 48 points de chaleur.', target: 'enemy', heatCost: 48 },
   reload: { label: 'Recharger', description: 'Remplit le chargeur depuis la réserve. Consomme une action ATB.', target: 'self' },
@@ -73,8 +76,8 @@ export const ACTIONS = Object.freeze({
 const BASE_ACTIONS = ['shoot', 'burst', 'cover', 'reposition'];
 const PRIMARY_ACTIONS = new Set(['shoot', 'burst', 'reload', 'strike', 'acid', 'cover', 'reposition', 'advance', 'withdraw']);
 const WEAPON_ACTIONS = new Set(['shoot', 'burst', 'signature']);
-const BIOTIC_ACTIONS = new Set(['throw', 'lift', 'warp', 'singularity', 'barrier', 'stasis', 'pull', 'reave', 'shockwave', 'slam', 'dominate']);
-const TECH_ACTIONS = new Set(['overload', 'sabotage', 'hack', 'incinerate', 'cryoBlast', 'energyDrain']);
+const BIOTIC_ACTIONS = new Set(['throw', 'lift', 'warp', 'singularity', 'barrier', 'stasis', 'pull', 'reave', 'shockwave', 'slam', 'dominate', 'bioticCharge', 'nova']);
+const TECH_ACTIONS = new Set(['overload', 'sabotage', 'hack', 'incinerate', 'cryoBlast', 'energyDrain', 'tacticalCloak', 'techArmor', 'techArmorDetonate']);
 const DISABLING_STATUSES = ['stasis', 'lift', 'singularity', 'stagger', 'pull', 'frozen', 'slam'];
 const DIFFICULTY = {
   story: { enemyDamage: 0.65, enemySpeed: 0.8, focusChance: 0.2 },
@@ -286,7 +289,7 @@ function normalizeActor(input, team, index) {
 }
 
 /** Creates a fresh battle without changing the supplied actor definitions. */
-export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench, tactical = false, tacticalPositionAllowed, bossPhases = false } = {}) {
+export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench, tactical = false, tacticalPositionAllowed, tacticalCoverAvailable, bossPhases = false, combatFeedback = false } = {}) {
   if (!Array.isArray(party) || !party.length || !Array.isArray(enemies) || !enemies.length) {
     throw new TypeError('Un combat nécessite au moins un allié et un adversaire.');
   }
@@ -313,14 +316,28 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
     waiting: false,
     actionCount: 0,
     _rng: typeof rng === 'function' ? rng : makeRandom(seed),
+    ...(combatFeedback === true || tactical === true ? { _combatFeedback: true } : {}),
     ...(phases ? { bossPhases: phases.state } : {}),
   };
   initializeTacticalBattle(battle, tactical, tacticalPositionAllowed);
+  if (tacticalEnabled(battle) && typeof tacticalCoverAvailable === 'function') battle._tacticalCoverAvailable = tacticalCoverAvailable;
   emit(battle, { type: 'start', message: 'Contact hostile. Le commando attend vos ordres.' });
+  refreshTacticalCover(battle);
   for (const event of phases?.events || []) emit(battle, event);
   updateWinner(battle);
   battle.waiting = waitingForDecision(battle);
   return battle;
+}
+
+function refreshTacticalCover(battle) {
+  if (!tacticalEnabled(battle) || typeof battle._tacticalCoverAvailable !== 'function') return;
+  for (const actor of battle.actors.filter(candidate => candidate.cover)) {
+    const cover = getTacticalCoverState(battle, actor.id);
+    if (cover.active) continue;
+    actor.cover = false;
+    emit(battle, { type: 'coverLost', actorId: actor.id, targetId: actor.id, reason: cover.reason,
+      message: `${actor.name} n’est plus protégé par le décor.` });
+  }
 }
 
 function updateWinner(battle) {
@@ -367,7 +384,7 @@ function waitingForDecision(battle) {
 function opponents(battle, actor) {
   const hacked = actor.statuses.hacked > EPSILON || actor.statuses.dominated > EPSILON;
   return battle.actors.filter(target => target.id !== actor.id && living(target)
-    && (hacked ? target.team === actor.team : target.team !== actor.team));
+    && signatureTargetable(target) && (hacked ? target.team === actor.team : target.team !== actor.team));
 }
 
 function friends(battle, actor) {
@@ -384,7 +401,8 @@ function actionIds(actor, battle) {
   if (actor.team === 'party') ids.push('medigel');
   ids.push(...actor.powers.filter(id => !BASE_ACTIONS.includes(id) && !['medigel', 'signature', 'reload', 'cancelChannel', 'ammoOff', 'advance', 'withdraw'].includes(id)
     && !MEDICAL_ACTION_IDS.includes(id) && (!AMMO_ACTIONS.has(id) || getAmmoActionProfile(actor.mediaId, id))
-    && (!Object.hasOwn(CAMPAIGN_TALENT_ACTIONS, id) || campaignTalentActionAllowed(actor, id))));
+    && (!Object.hasOwn(CAMPAIGN_TALENT_ACTIONS, id) || campaignTalentActionAllowed(actor, id))
+    && (!Object.hasOwn(SIGNATURE_ACTIONS, id) || signatureActionAllowed(actor, id))));
   ids.push(...medicalActionIds(battle, actor));
   if (actor.ammoModeId) ids.push('ammoOff');
   if (actor.team === 'party' && !organic) ids.push('signature');
@@ -413,12 +431,21 @@ function unavailableReason(battle, actor, actionId) {
   if (actionId === 'cancelChannel') return actor.channel ? null : 'Aucune canalisation en cours.';
   if (actor.channel) return 'Canalisation en cours.';
   if (actor.atb < 100 - EPSILON) return 'La jauge ATB doit être pleine.';
+  if (actionId === 'cover') {
+    const cover = getTacticalCoverState(battle, actor.id);
+    if (!cover.available) return cover.reason;
+  }
   if (actor.statuses.damped > EPSILON && (BIOTIC_ACTIONS.has(actionId) || TECH_ACTIONS.has(actionId) || actionId === 'me1Damping')) return 'Les capacités biotiques et technologiques sont neutralisées par Atténuation.';
   if (tacticalEnabled(battle) && ['advance', 'withdraw', 'reposition'].includes(actionId)) {
     const move = planTacticalMove(battle, actor, actionId);
     if (!move.ok) return move.reason;
   }
   if (actor.cooldowns[actionId] > EPSILON) return `Recharge : ${Math.ceil(actor.cooldowns[actionId])} s.`;
+  if (Object.hasOwn(SIGNATURE_ACTIONS, actionId)) {
+    const plan = planSignatureAction({ battle, actor, actionId,
+      targets: ACTIONS[actionId].target === 'self' ? [actor] : opponents(battle, actor) });
+    if (!plan.ok) return plan.reason;
+  }
   if (AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff') {
     const profile = getAmmoActionProfile(actor.mediaId, actionId);
     const check = canActivateAmmoProfile(actor, actionId === 'ammoOff' ? null : profile?.id);
@@ -480,6 +507,7 @@ export function getActions(battle, actorId) {
 
 function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, ignoreArmor = false, shieldOnly = false, silent = false, actionId = null } = {}) {
   if (!living(target) || rawAmount <= 0) return 0;
+  refreshTacticalCover(battle);
   if (bossDamageBlocked(battle, target)) {
     if (!silent) emit(battle, { type: 'blocked', actorId: source?.id, targetId: target.id, actionId, amount: 0, message: getBossTargetReason(battle, target) });
     return 0;
@@ -492,7 +520,8 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
   const activeAmmo = ammoModifiers.profileId !== null;
   let amount = rawAmount * (source?.team === 'enemy' ? DIFFICULTY[battle.difficulty].enemyDamage : 1);
   amount *= campaignTalentDamageMultiplier(target);
-  if (target.cover && !ignoreCover) amount *= activeAmmo ? 1 - .5 * ammoModifiers.coverMultiplier : .5;
+  amount *= signatureIncomingDamageMultiplier(target);
+  if (target.cover && !ignoreCover && getTacticalCoverState(battle, target.id, source?.id).active) amount *= activeAmmo ? 1 - .5 * ammoModifiers.coverMultiplier : .5;
   if (target.statuses.barrier > EPSILON) amount *= 0.7;
   if (target.statuses.fortification > EPSILON && target.mediaId !== 'ME2') amount *= .75;
   if (target.statuses.reaveGuard > EPSILON) amount *= .85;
@@ -507,6 +536,7 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
   const shieldDamage = activeAmmo
     ? Math.min(target.shield, Math.max(0, amount * (1 - bypass) - temporaryShieldDamage / shieldMultiplier) * shieldMultiplier)
     : Math.min(target.shield, Math.max(0, amount * (1 - bypass) - temporaryShieldDamage));
+  const beforeShield = target.shield;
   target.shield = Math.max(0, target.shield - shieldDamage);
   const armor = ignoreArmor ? 0 : target.defense * (target.statuses.warp > EPSILON ? 0.5 : 1) * (activeAmmo ? ammoModifiers.defenseMultiplier : 1);
   const remaining = activeAmmo ? Math.max(0, amount - shieldDamage / shieldMultiplier - temporaryShieldDamage / shieldMultiplier)
@@ -529,6 +559,8 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
       message: `${target.name} subit ${Math.round(total)} dégâts${shieldDamage + temporaryShieldDamage > 0 ? ` (${Math.round(shieldDamage + temporaryShieldDamage)} sur les boucliers)` : ''}.`,
     });
   }
+  const armorBreak = planSignatureArmorBreak({ battle, actor: target, beforeShield });
+  if (armorBreak) commitSignaturePlan(battle, target, 'techArmor', armorBreak);
   if (!living(target)) {
     stopChannel(battle, target, 'hors combat');
     target.hp = 0;
@@ -538,6 +570,7 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
     target.statuses = {};
     target.cryoStacks = 0;
     emit(battle, { type: 'defeat', actorId: source?.id, targetId: target.id, message: `${target.name} est hors combat.` });
+    for (const waitingActor of battle.actors.filter(candidate => candidate.channel?.targetId === target.id)) stopChannel(battle, waitingActor, 'cible hors combat');
   }
   if (source && healthDamage > EPSILON && living(target)) {
     const effect = getAmmoPostHit(source, target, actionId, { healthDamage, shieldDamage: shieldDamage + temporaryShieldDamage });
@@ -548,7 +581,11 @@ function applyDamage(battle, source, target, rawAmount, { ignoreCover = false, i
 
 function applyAmmoPostHit(battle, source, target, effect) {
   if (effect.kind === 'burn') {
-    if (target.burnImmune) return;
+    if (target.burnImmune) {
+      emit(battle, { type: 'resist', actorId: source.id, targetId: target.id, status: 'burning',
+        message: `${target.name} résiste à la brûlure des munitions.` });
+      return;
+    }
     const previousSource = battle.actors.find(actor => actor.id === target._burnSource);
     const previousRate = target._burnDamagePerSecond * (target._burnTechAmplified ? powerMultiplier(previousSource, 'incinerate') : 1);
     if (target.statuses.burning > EPSILON && previousRate > effect.damagePerSecond) return;
@@ -568,7 +605,12 @@ function applyAmmoPostHit(battle, source, target, effect) {
 }
 
 function applyControl(battle, source, target, status, duration) {
-  if (!living(target) || target.statuses.stasis > EPSILON) return false;
+  if (!living(target)) return false;
+  if (target.statuses.stasis > EPSILON) {
+    emit(battle, { type: 'blocked', actorId: source.id, targetId: target.id, status, amount: 0,
+      message: `${target.name} est protégé par la stase contre ce contrôle.` });
+    return false;
+  }
   const actual = target.controlImmune ? 0 : duration * (1 - target.controlResistance);
   if (actual < 0.1) {
     emit(battle, { type: 'resist', actorId: source.id, targetId: target.id, status, message: `${target.name} résiste au contrôle.` });
@@ -582,10 +624,38 @@ function applyControl(battle, source, target, status, duration) {
 }
 
 function timedEffect(battle, source, target, status, duration) {
-  if (!living(target) || target.statuses.stasis > EPSILON) return false;
+  if (!living(target)) return false;
+  if (target.statuses.stasis > EPSILON) {
+    emit(battle, { type: 'blocked', actorId: source.id, targetId: target.id, status, amount: 0,
+      message: `${target.name} est protégé par la stase contre cet effet.` });
+    return false;
+  }
   target.statuses[status] = Math.max(target.statuses[status] || 0, duration);
   emit(battle, { type: 'status', actorId: source.id, targetId: target.id, status, duration });
   return true;
+}
+
+function commitSignaturePlan(battle, actor, actionId, plan) {
+  // Clear a detonating protection before recursive damage can break it again.
+  for (const status of plan.clearStatuses || []) delete actor.statuses[status];
+  Object.assign(actor.statuses, plan.selfStatus || {});
+  if (plan.selfShieldCost > 0) {
+    actor.shield = Math.max(0, actor.shield - plan.selfShieldCost);
+    emit(battle, { type: 'shieldSpent', actorId: actor.id, targetId: actor.id, actionId, amount: plan.selfShieldCost });
+  }
+  if (plan.selfShieldDelta > 0) restoreShield(battle, actor, plan.selfShieldDelta, actionId);
+  if (plan.breakCover) actor.cover = false;
+  if (typeof plan.selfEngagedTargetId === 'string') actor.engagedTargetId = plan.selfEngagedTargetId;
+  for (const event of plan.events || []) emit(battle, event);
+  for (const instruction of plan.damage || []) {
+    const target = battle.actors.find(candidate => candidate.id === instruction.targetId);
+    if (target) applyDamage(battle, actor, target, instruction.amount, { actionId,
+      ignoreCover: instruction.ignoreCover === true, ignoreArmor: instruction.ignoreArmor === true });
+  }
+  for (const instruction of plan.controls || []) {
+    const target = battle.actors.find(candidate => candidate.id === instruction.targetId);
+    if (target) applyControl(battle, actor, target, instruction.status, instruction.duration);
+  }
 }
 
 function restoreShield(battle, source, amount, actionId, actorId = source.id) {
@@ -609,7 +679,9 @@ function stopChannel(battle, actor, reason) {
   const channel = actor.channel;
   actor.channel = null;
   emit(battle, { type: 'channelEnd', actorId: actor.id, targetId: channel.targetId, actionId: channel.actionId,
-    weaponProfileId: channel.weaponProfileId, reason });
+    weaponProfileId: channel.weaponProfileId, reason,
+    ...(battle._combatFeedback === true ? { message: ['terminé', 'charge terminée'].includes(reason) ? `${actor.name} termine son tir.`
+      : `${actor.name} : tir interrompu (${reason}). Les coûts déjà exécutés restent dépensés.` } : {}) });
 }
 
 function queueProjectile(battle, actor, target, actionId, baseDamage, delay, splashRatio, profileId = null, weaponAttack = false, launchedAt) {
@@ -653,8 +725,11 @@ function tickChannel(battle, actor, dt) {
   if (!channel) return 0;
   const target = battle.actors.find(candidate => candidate.id === channel.targetId);
   const profile = getUniverseWeaponProfile(channel.weaponProfileId);
-  if (!living(actor) || disabled(actor) || actor.statuses.sabotage > EPSILON || !target || !living(target) || !profile) {
-    stopChannel(battle, actor, 'interruption'); return 0;
+  const interruption = !living(actor) ? 'hors combat' : !target || !living(target) ? 'cible hors combat'
+    : disabled(actor) || actor.statuses.sabotage > EPSILON ? 'contrôle' : !profile ? 'arme indisponible'
+      : !opponents(battle, actor).some(candidate => candidate.id === target.id) ? 'cible devenue alliée' : null;
+  if (interruption) {
+    stopChannel(battle, actor, interruption); return 0;
   }
   const activeTime = Math.min(dt, channel.remaining);
   channel.remaining = Math.max(0, channel.remaining - activeTime);
@@ -730,6 +805,7 @@ function resolveTargets(battle, actor, actionId, targetId) {
     return { targets: [ally] };
   }
   const candidates = opponents(battle, actor);
+  if (target && living(target) && target.team !== actor.team && !signatureTargetable(target)) return { error: 'Le camouflage tactique empêche de commander une nouvelle action sur cette cible.' };
   if (definition.target === 'enemies') {
     if (targetId != null && !candidates.some(candidate => candidate.id === targetId)) return { error: 'Cible adverse invalide.' };
     return { targets: candidates };
@@ -775,7 +851,9 @@ function prepareAction(battle, args) {
   if (ammoSelection && !ammoSelection.ok) return { ok: false, reason: ammoSelection.reason };
   const movement = tacticalEnabled(battle) && ['advance', 'withdraw', 'reposition'].includes(actionId) ? planTacticalMove(battle, actor, actionId) : null;
   if (movement && !movement.ok) return movement;
-  return { ok: true, actor, targets, deployment, ammoSelection, movement,
+  const signaturePlan = Object.hasOwn(SIGNATURE_ACTIONS, actionId) ? planSignatureAction({ battle, actor, actionId, targets }) : null;
+  if (signaturePlan && !signaturePlan.ok) return { ok: false, reason: signaturePlan.reason };
+  return { ok: true, actor, targets, deployment, ammoSelection, movement, signaturePlan,
     ...(tacticalEnabled(battle) ? { range: getTacticalRange(actor, actionId, definition),
       distance: checks.find(check => check.target.id === targetId)?.distance ?? null } : {}) };
 }
@@ -867,7 +945,7 @@ export function performCoordinatedOrder(battle, draft) {
 export function performAction(battle, { actorId, actionId, targetId } = {}) {
   const prepared = prepareAction(battle, { actorId, actionId, targetId });
   if (!prepared.ok) return { ok: false, reason: prepared.reason, events: [] };
-  const { actor, targets, deployment, ammoSelection, movement } = prepared;
+  const { actor, targets, deployment, ammoSelection, movement, signaturePlan } = prepared;
   const target = targets[0];
   const startIndex = battle.events.length;
   const definition = ACTIONS[actionId];
@@ -882,7 +960,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     const multiplier = actionId === 'burst' ? 1.65 : actionId === 'signature' ? 2.4 : 1;
     const profile = weaponProfile(actor);
     if (profile) {
-      const baseDamage = actor.attack * actor.weaponDamageMultiplier * multiplier * (0.94 + random(battle) * .12);
+      const baseDamage = actor.attack * actor.weaponDamageMultiplier * multiplier * signatureDamageMultiplier(actor, target, actionId) * (0.94 + random(battle) * .12);
       if (chargeProfile(profile)) {
         actor.channel = { actorId, targetId: target.id, actionId, weaponProfileId: profile.id, phase: 'charging',
           remaining: profile.chargeDuration, remainingTicks: 1, totalTicks: 1, untilNextPulse: profile.chargeDuration,
@@ -910,7 +988,7 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       }
     } else {
       const speciesBonus = synthetic(target) ? actor.syntheticDamageBonus : actor.organicDamageBonus;
-      const damage = actor.attack * actor.weaponDamageMultiplier * multiplier * (1 + speciesBonus) * (0.94 + random(battle) * 0.12);
+      const damage = actor.attack * actor.weaponDamageMultiplier * multiplier * (1 + speciesBonus) * signatureDamageMultiplier(actor, target, actionId) * (0.94 + random(battle) * 0.12);
       applyDamage(battle, actor, target, damage, { actionId, ignoreCover: actor.statuses.flanking > EPSILON || actionId === 'signature' });
       if (usesClips(actor)) {
         actor.ammo -= ammoCost(actionId);
@@ -919,6 +997,8 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     }
     delete actor.statuses.flanking;
     if (actionId === 'signature') actor.focus = 0;
+  } else if (signaturePlan) {
+    commitSignaturePlan(battle, actor, actionId, signaturePlan);
   } else if (deployment) {
     retireSummons(battle, deployment.retireIds.map(actorId => ({ actorId, reason: 'replaced' })));
     const summoned = normalizeActor(deployment.actor, actor.team, battle.actors.length);
@@ -994,7 +1074,11 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
       emit(battle, { type: 'revive', actorId, targetId: ally.id, amount: ally.hp, message: `${ally.name} reprend le combat.` });
     }
   } else if (actionId === 'overload') {
-    applyDamage(battle, actor, target, (34 + actor.attack * 0.8) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true, ignoreArmor: true, shieldOnly: !synthetic(target) });
+    const hit = applyDamage(battle, actor, target, (34 + actor.attack * 0.8) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true, ignoreArmor: true, shieldOnly: !synthetic(target) });
+    if (hit <= EPSILON && !synthetic(target) && !(target.statuses.stasis > EPSILON) && !bossDamageBlocked(battle, target)) {
+      emit(battle, { type: 'resist', actorId, targetId: target.id, actionId, amount: 0,
+        message: `${target.name} n’a plus de bouclier : Surcharge n’inflige pas de dégâts à sa santé organique.` });
+    }
   } else if (actionId === 'sabotage') {
     if (applyControl(battle, actor, target, 'sabotage', 6 * powerMultiplier(actor, actionId)) && !usesClips(target)) addHeat(battle, target, 35 * powerMultiplier(actor, actionId));
   } else if (actionId === 'lift') {
@@ -1031,6 +1115,8 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     applyControl(battle, actor, target, 'pull', effectDuration(actor, actionId, 3));
   } else if (actionId === 'incinerate') {
     const hit = applyDamage(battle, actor, target, (18 + actor.attack * .6) * powerMultiplier(actor, actionId), { actionId, ignoreCover: true, ignoreArmor: true });
+    if (hit > EPSILON && living(target) && target.burnImmune) emit(battle, { type: 'resist', actorId, targetId: target.id, actionId, status: 'burning',
+      message: `${target.name} résiste à la brûlure ; l’impact initial reste appliqué.` });
     if (hit > EPSILON && !target.burnImmune && timedEffect(battle, actor, target, 'burning', effectDuration(actor, actionId, 5))) {
       target._burnSource = actor.id;
       target._burnActionId = actionId; target._burnDamagePerSecond = 5; target._burnTechAmplified = true;
@@ -1090,8 +1176,13 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
   }
   if (movement) {
     commitTacticalMove(battle, movement);
+    refreshTacticalCover(battle);
     emit(battle, { type: 'tacticalMove', actorId, actionId, from: movement.from, to: movement.to,
       message: `${actor.name} change de position tactique.` });
+  }
+  if (actor.statuses.tacticalCloak > EPSILON && signatureOffensiveAction(actionId, definition)) {
+    delete actor.statuses.tacticalCloak;
+    emit(battle, { type: 'cloakEnd', actorId, actionId, message: `${actor.name} se révèle en lançant son ordre offensif.` });
   }
   updateWinner(battle);
   battle.waiting = !battle.winner && waitingForDecision(battle);
@@ -1164,6 +1255,7 @@ export function autoEnemyActions(battle) {
     const targets = opponents(battle, actor).filter(target => !(target.statuses.stasis > EPSILON));
     const actions = getActions(battle, actor.id).filter(action => action.available);
     const can = id => actions.some(action => action.id === id);
+    const defensiveOrder = () => ['cover', 'reposition', 'withdraw', 'advance'].find(can);
     // Sustained fire can breach one shield instead of distributing harmless
     // chip damage across the squad. Taking cover makes an actor less attractive.
     const roll = random(battle);
@@ -1174,7 +1266,8 @@ export function autoEnemyActions(battle) {
       ? [...targets].sort((left, right) => exposure(left) - exposure(right))[0]
       : targets[Math.floor((roll - focusChance) / (1 - focusChance) * targets.length)];
     if (!target) {
-      if (can('cover')) performAction(battle, { actorId: actor.id, actionId: 'cover' });
+      const defensive = defensiveOrder();
+      if (defensive) performAction(battle, { actorId: actor.id, actionId: defensive });
       continue;
     }
     let actionId = null;
@@ -1202,15 +1295,15 @@ export function autoEnemyActions(battle) {
       else if (can('burst') && actor.heat < 35 && random(battle) < 0.22) actionId = 'burst';
       else if (can('shoot')) actionId = 'shoot';
       else {
-        actionId = 'cover';
+        actionId = defensiveOrder();
         targetId = actor.id;
       }
     }
     if (tacticalEnabled(battle) && !prepareAction(battle, { actorId: actor.id, actionId, targetId }).ok) {
-      actionId = can('advance') ? 'advance' : 'cover';
+      actionId = can('advance') ? 'advance' : defensiveOrder();
       targetId = actor.id;
     }
-    performAction(battle, { actorId: actor.id, actionId, targetId });
+    if (actionId) performAction(battle, { actorId: actor.id, actionId, targetId });
   }
   return battle;
 }
@@ -1224,6 +1317,7 @@ export function tickBattle(battle, dt, { paused = false } = {}) {
     if (battle.waiting) break;
     const step = Math.min(0.05, remaining);
     battle.elapsed += step;
+    refreshTacticalCover(battle);
     for (const actor of battle.actors) tickActor(battle, actor, step);
     tickProjectiles(battle, step);
     advanceSummons(battle);

@@ -1,0 +1,157 @@
+/* Last stylesheet in the application. Layout changes concern accessibility;
+   they do not resize a source atlas or alter a campaign rule. */
+body.completion-accessibility { --completion-text-scale: 1; }
+body.completion-accessibility.large-text { --completion-text-scale: 1.5; }
+body.completion-high-contrast { --muted: #d0e2eb; --line: #7ca3b4; --teal: #a0eee5; --gold: #f8dca2; }
+body.completion-accessibility #overlay { min-width: 0; }
+body.completion-accessibility .screen {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 32px);
+}
+body.completion-accessibility .screen-head,
+body.completion-accessibility .screen-foot { flex: none; min-width: 0; }
+body.completion-accessibility .screen-head > div { min-width: 0; }
+body.completion-accessibility .screen-body { flex: 1 1 auto; min-height: 0; min-width: 0; overflow-y: auto; overscroll-behavior: contain; scroll-padding: 14px; }
+body.completion-accessibility .screen-foot { flex-wrap: wrap; gap: 12px; }
+body.completion-accessibility .screen-head h2 { overflow-wrap: anywhere; }
+body.completion-accessibility .close { flex: none; width: 40px; height: 40px; }
+body.completion-accessibility .primary,
+body.completion-accessibility .secondary,
+body.completion-accessibility .danger,
+body.completion-accessibility .tab { font-size: calc(14px * var(--completion-text-scale)); line-height: 1.4; white-space: normal; overflow-wrap: anywhere; min-width: 0; }
+body.completion-accessibility .brief-copy { font-size: calc(16px * var(--completion-text-scale)); }
+body.completion-accessibility .small,
+body.completion-accessibility .journal-entry p,
+body.completion-accessibility .codex-item { font-size: calc(14px * var(--completion-text-scale)); line-height: 1.6; }
+body.completion-accessibility .section-label,
+body.completion-accessibility .eyebrow { font-size: calc(11px * var(--completion-text-scale)); overflow-wrap: anywhere; }
+body.completion-accessibility button:focus-visible,
+body.completion-accessibility input:focus-visible,
+body.completion-accessibility select:focus-visible,
+body.completion-accessibility summary:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+body.completion-high-contrast button:disabled { opacity: .65; }
+body.completion-high-contrast .screen,
+body.completion-high-contrast .dialogue,
+body.completion-high-contrast .actions-panel,
+body.completion-high-contrast .target,
+body.completion-high-contrast .battle-member { background: #06131f; }
+body.completion-high-contrast .screen-body,
+body.completion-high-contrast .screen-foot { color: #f1fbff; }
+body.completion-accessibility .dialogue {
+  min-width: 0;
+  min-height: 0;
+  width: min(1120px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin-bottom: 16px;
+  grid-template-columns: clamp(70px, 12vw, 160px) minmax(0, 1fr);
+  overflow: hidden;
+}
+body.completion-accessibility .dialogue-portrait { min-height: 0; min-width: 0; overflow: hidden; }
+body.completion-accessibility .dialogue-body { min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scroll-padding: 14px; }
+body.completion-accessibility .dialogue-text { font-size: calc(16px * var(--completion-text-scale)); line-height: 1.65; overflow-wrap: anywhere; }
+body.completion-accessibility .speaker { overflow-wrap: anywhere; font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .dialogue .dialogue-choices { min-width: 0; max-height: none; overflow: visible; }
+body.completion-accessibility .choice { min-width: 0; font-size: calc(14px * var(--completion-text-scale)); line-height: 1.5; white-space: normal; overflow-wrap: anywhere; }
+body.completion-accessibility .choice small { display: block; margin: 4px 0 0; font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .gamepad-command-hint { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .completion-display-settings { min-width: 0; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+body.completion-accessibility .completion-display-settings h3 { margin-bottom: 10px; font-size: calc(18px * var(--completion-text-scale)); }
+body.completion-accessibility .completion-display-status { min-height: 1.5em; margin: 8px 0; font-size: calc(13px * var(--completion-text-scale)); }
+body.completion-accessibility .setting-row { min-width: 0; }
+body.completion-accessibility .setting-row label { min-width: 0; font-size: calc(14px * var(--completion-text-scale)); overflow-wrap: anywhere; }
+body.completion-accessibility .setting-row small { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .setting-row select { font-size: calc(14px * var(--completion-text-scale)); max-width: 50%; }
+body.completion-accessibility .hud-nav { max-width: min(640px, 56vw); flex-wrap: wrap; justify-content: flex-end; }
+body.completion-accessibility .location { max-width: 44vw; min-width: 0; }
+body.completion-accessibility .location h2 { overflow-wrap: anywhere; }
+body.completion-accessibility .interaction { min-width: 0; max-width: min(620px, 60vw); white-space: normal; }
+body.completion-accessibility .interaction span { font-size: calc(14px * var(--completion-text-scale)); overflow-wrap: anywhere; }
+body.completion-accessibility #battle-ui { max-height: 60dvh; overflow-y: auto; overscroll-behavior: contain; }
+body.completion-accessibility .battle-shell { min-width: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr); align-items: start; }
+body.completion-accessibility .party-list,
+body.completion-accessibility .actions-panel,
+body.completion-accessibility .target-list,
+body.completion-accessibility .battle-status { min-width: 0; }
+body.completion-accessibility .battle-member { min-width: 0; grid-template-columns: 24px minmax(0, 1fr); }
+body.completion-accessibility .member-title { min-width: 0; flex-wrap: wrap; font-size: calc(13px * var(--completion-text-scale)); overflow-wrap: anywhere; }
+body.completion-accessibility .member-title small { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-height: min(28dvh, 270px); }
+body.completion-accessibility .action-button,
+body.completion-accessibility .target { font-size: calc(14px * var(--completion-text-scale)); min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+body.completion-accessibility .action-button small { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .action-help { font-size: calc(13px * var(--completion-text-scale)); line-height: 1.5; }
+body.completion-accessibility .target-list { max-height: 42dvh; overflow-y: auto; }
+body.completion-accessibility .target small { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .battle-status h3 { font-size: calc(14px * var(--completion-text-scale)); }
+body.completion-accessibility .battle-status span { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .tactical-toolbar { min-width: 0; }
+body.completion-accessibility .tactical-toolbar p,
+body.completion-accessibility .tactical-toolbar button,
+body.completion-accessibility .boss-phase { font-size: calc(13px * var(--completion-text-scale)); overflow-wrap: anywhere; }
+body.completion-accessibility .combat-log { max-width: min(620px, 80vw); }
+body.completion-accessibility .combat-log p,
+body.completion-accessibility .toast { font-size: calc(14px * var(--completion-text-scale)); line-height: 1.5; overflow-wrap: anywhere; }
+body.completion-accessibility .toast { max-width: min(440px, calc(100vw - 30px)); }
+body.completion-accessibility .customization-screen { width: min(1380px, calc(100vw - 32px)); }
+body.completion-accessibility .custom-toolbar { flex-wrap: wrap; min-width: 0; padding-block: 8px; }
+body.completion-accessibility .custom-tabs { flex-wrap: wrap; min-width: 0; }
+body.completion-accessibility .custom-tabs > button { font-size: calc(13px * var(--completion-text-scale)); white-space: normal; padding: 12px; }
+body.completion-accessibility .custom-draft-status { white-space: normal; font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .custom-workspace { min-width: 0; min-height: 0; }
+body.completion-accessibility .custom-controls,
+body.completion-accessibility .custom-inspector { min-width: 0; }
+body.completion-accessibility .custom-option,
+body.completion-accessibility .custom-equip,
+body.completion-accessibility .custom-reset,
+body.completion-accessibility .custom-remove,
+body.completion-accessibility .custom-view-controls button,
+body.completion-accessibility .custom-pose-controls button { font-size: calc(13px * var(--completion-text-scale)); overflow-wrap: anywhere; }
+body.completion-accessibility .custom-field legend,
+body.completion-accessibility .custom-field legend > span,
+body.completion-accessibility .custom-item-reason,
+body.completion-accessibility .custom-pose-note { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .custom-preview-identity > p,
+body.completion-accessibility .custom-item-detail p,
+body.completion-accessibility .custom-stat span { font-size: calc(12px * var(--completion-text-scale)); }
+body.completion-accessibility .custom-slot-tabs { flex-wrap: wrap; }
+body.completion-accessibility .custom-footer-tools,
+body.completion-accessibility .custom-footer-confirm { flex-wrap: wrap; min-width: 0; }
+body.completion-accessibility .scanlines { opacity: calc(.025 * var(--completion-effect-intensity, 1)); }
+body.completion-accessibility.completion-reduced-effects .scanlines,
+body.completion-accessibility.completion-high-contrast .scanlines { display: none; }
+body.completion-accessibility.completion-reduced-effects *,
+body.completion-accessibility.completion-reduced-effects *::before,
+body.completion-accessibility.completion-reduced-effects *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+@media (max-width: 1050px) {
+  body.completion-accessibility .action-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px), (max-height: 600px) {
+  body.completion-accessibility .screen { max-width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
+  body.completion-accessibility .screen-head,
+  body.completion-accessibility .screen-foot { padding: 12px 16px; }
+  body.completion-accessibility .screen-head h2 { font-size: calc(20px * var(--completion-text-scale)); }
+  body.completion-accessibility .screen-body { padding: 16px; }
+  body.completion-accessibility .dialogue { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); margin-bottom: 8px; grid-template-columns: 64px minmax(0, 1fr); }
+  body.completion-accessibility .dialogue-body { padding: 14px; }
+  body.completion-accessibility .setting-row { flex-wrap: wrap; gap: 12px; }
+  body.completion-accessibility .setting-row:has(input[type="checkbox"]) { flex-wrap: nowrap; }
+  body.completion-accessibility .setting-row select,
+  body.completion-accessibility .setting-row input[type="range"] { width: 100%; max-width: none; }
+  body.completion-accessibility .battle-shell { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); padding: 8px; gap: 7px; }
+  body.completion-accessibility .battle-member { grid-template-columns: minmax(0, 1fr); padding: 8px; }
+  body.completion-accessibility .member-key { display: none; }
+  body.completion-accessibility .target-list { grid-column: 1 / -1; flex-direction: column; max-height: 22dvh; }
+  body.completion-accessibility .action-grid { max-height: 23dvh; }
+  body.completion-accessibility #battle-ui { max-height: 64dvh; }
+  body.completion-accessibility .tactical-toolbar { margin: 0 8px; }
+  body.completion-accessibility .custom-workspace { grid-template-columns: minmax(0, 1fr); }
+  body.completion-accessibility .custom-controls { max-height: none; overflow: visible; }
+  body.completion-accessibility .custom-tabs > button { flex: 1 1 auto; }
+}
+@media (max-width: 700px) {
+  body.completion-accessibility .mission-chip { top: 110px; }
+  body.completion-accessibility .interaction { left: auto; right: 14px; bottom: 20px; transform: none; max-width: calc(100vw - 150px); }
+}

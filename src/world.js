@@ -11,6 +11,7 @@ import { ENEMY_ANIMATION_IDS, normalizeEnemyAnimation, canShowEnemyAnimation } f
 import { normalizeJokerSeated, canShowJokerSeated } from './joker-seated-data.js';
 import { getLevelLayout, isLevelGround, nearestLevelGround } from './level-layout-data.js';
 import { findLevelPath } from './world-navigation.js';
+import { geometricCover, findRetreatPoint } from './completion-world.js';
 import { buildEdenScene } from './eden-scene.js';
 import { buildFrontierScene } from './frontier-scene.js';
 import { buildHorizonScene } from './horizon-scene.js';
@@ -1155,6 +1156,7 @@ export class WorldView {
     this._dressScene();
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
     this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
+    this._installTacticalCover();
     this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
     this._syncHorizonFleet();
     if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
@@ -1411,6 +1413,34 @@ export class WorldView {
     this.zone.arena) : this.zone.arena;
   }
 
+  _installTacticalCover() {
+    this.tacticalCoverPlacements = [];
+    if (!ENCOUNTERS[this.zoneId]) return;
+    const arenas = this.levelLayout ? Object.values({ ...this.levelLayout.arenas, ...this.levelLayout.sideArenas }) : [this.zone.arena];
+    const placed = new Set(), points = this.getInteractivePOIs();
+    for (const arena of arenas) for (const x of [-1.7, 1.7]) for (const z of [-2.9, 2.9]) {
+      const point = { x: arena.x + x, z: arena.z + z }, key = `${point.x}:${point.z}`;
+      if (placed.has(key) || points.some(poi => Math.hypot(poi.x - point.x, poi.z - point.z) < 1.7)) continue;
+      if (![[0,0],[-.7,-.6],[-.7,.6],[.7,-.6],[.7,.6]].every(([dx,dz]) => this._walkable(point.x + dx, point.z + dz))) continue;
+      this._crate(point.x, point.z, .8, this.zone.theme === 'noveria' ? 0x62788b : this.zone.theme === 'ilos' ? 0x526b5c : 0x64716c);
+      placed.add(key);this.tacticalCoverPlacements.push({ ...point, width: 1.2, depth: .92, height: .96 });
+    }
+  }
+
+  getTacticalCoverState({ position, opponentPositions = [] } = {}, arena = this.battleArena || this.getCombatArena()) {
+    if (!position || !arena) return { available: false, protectedFrom: [], reason: 'Position de couverture indisponible.' };
+    return geometricCover({ position: { x: arena.x + position.x, z: arena.z + position.z },
+      opponentPositions: opponentPositions.map(point => ({ id: point.id, x: arena.x + point.x, z: arena.z + point.z })), solids: this.colliders });
+  }
+
+  getRetreatPoint(encounter) {
+    const position = getTacticalPosition(this.battle, 'shepard'), arena = this.battleArena || this.getCombatArena();
+    const start = position ? { x: arena.x + position.x, z: arena.z + position.z } : this.getPosition();
+    return findRetreatPoint({ start, encounter, spawn: this.zone.spawn,
+      encounters: this.getInteractivePOIs().filter(poi => poi.type === 'encounter' && !this.cleared.has(poi.id)),
+      isWalkable: (x, z) => this._walkable(x, z), findPath: destination => findLevelPath({ bounds: this.zone.bounds, start, destination, isWalkable: (x, z) => this._walkable(x, z) }) });
+  }
+
   setBattle(battle) {
     if (battle && this.isVehicleMounted()) this._dismountVehicle();
     if (battle && battle !== this.battle) this.battleArena = this.getCombatArena();
@@ -1461,6 +1491,7 @@ export class WorldView {
       target.poseTime = .24;
       if (type === 'damage' && (!this._combatAnimationConfig(target) || target.alive)) { target.combatPose = 'hit'; target.combatPoseTime = .4; }
     }
+    if (this.visualAccessibility?.particles === false) return;
     if (type === 'heal' || type === 'revive' || ['medigel', 'unity', 'barrier', 'cover', 'reposition'].includes(action)) {
       const actor = target || source; if (actor) this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.1, 0)), ['medigel', 'unity'].includes(action) || type === 'heal' ? 0x84e3bb : 0x80bddd, 1.5);
       return;
@@ -1475,7 +1506,7 @@ export class WorldView {
       const line = new THREE.Mesh(new THREE.CylinderGeometry(biotic ? .13 : .045, biotic ? .13 : .045, from.distanceTo(to), 8), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .9, depthWrite: false }));
       line.position.copy(from).add(to).multiplyScalar(.5); line.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), to.clone().sub(from).normalize());
       this.particles.add(line); this.effects.push({ object: line, time: .18, max: .18, kind: 'beam' }); this._impact(to, color, biotic ? 1.8 : 1);
-    } else if (target && ['damage', 'blocked', 'status'].includes(type)) this._impact(target.group.position.clone().add(new THREE.Vector3(0, 1.2, 0)), type === 'blocked' ? 0xb0a2e4 : 0xf5b282);
+    } else if (target && ['damage', 'blocked', 'resist', 'status'].includes(type)) this._impact(target.group.position.clone().add(new THREE.Vector3(0, 1.2, 0)), ['blocked','resist'].includes(type) ? 0xb0a2e4 : 0xf5b282);
   }
 
   _weaponTraces(state, from, to, action) {
@@ -1509,6 +1540,7 @@ export class WorldView {
   }
 
   _impact(position, color, size = 1) {
+    if (this.visualAccessibility?.particles === false) return;
     const ring = new THREE.Mesh(new THREE.SphereGeometry(.3 * size, 12, 8), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .7, wireframe: true, depthWrite: false })); ring.position.copy(position); this.particles.add(ring);
     this.effects.push({ object: ring, time: .42, max: .42, kind: 'impact' });
   }
@@ -1700,6 +1732,8 @@ export class WorldView {
   update(dt = 1 / 60, { render = true } = {}) {
     if (this._disposed) return;
     dt = clamp(Number.isFinite(dt) ? dt : 1 / 60, 0, .05); this.time += dt;
+    const policy=this.visualAccessibility, visualTime=policy?.ambientPulse===false?0:this.time;
+    if(policy?.particles===false&&this.effects.length)this._clearEffects();
     let moving = false, movementX = 0, movementZ = 0;
     if (this.mode === 'explore') {
       const keyRight = Number(this.keys.has('KeyD') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('KeyQ') || this.keys.has('ArrowLeft'));
@@ -1753,7 +1787,7 @@ export class WorldView {
         const safe = this._resolveLevelPosition({ x: actor.group.position.x, z: actor.group.position.z }) || this.player;
         actor.group.position.x = safe.x; actor.group.position.z = safe.z;
       }
-      actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : Math.sin(this.time * 1.8 + index) * .016);
+      actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : (policy?.ambientPulse===false?0:Math.sin(this.time * 1.8 + index) * .016));
       actor.body.rotation.z = actorMoving ? Math.sin(this.time * 10 - index) * .018 : 0;
       if (this._animateCharacter(actor, actorMoving, movementX, movementZ)) return;
       if (actor.key === 'shepard' && this.atlases.walk && this.walkConfig) {
@@ -1763,7 +1797,7 @@ export class WorldView {
     });
     for (const actor of this.ambientActors || []) {
       actor.body.rotation.y = facing;
-      actor.body.position.y = actor.height / 2 + .05 + Math.sin(this.time * 1.5 + actor.group.position.x) * .02;
+      actor.body.position.y = actor.height / 2 + .05 + (policy?.ambientPulse===false?0:Math.sin(this.time * 1.5 + actor.group.position.x) * .02);
       actor.group.visible=this._ambientActorVisible(actor);
       this._applySeatedJoker(actor); this._applyFrontierNPCBody(actor); this._applyHorizonNPCBody(actor);
       if (FRONTIER_ENEMY_IDS.includes(actor.key)) this._applyFrontierEnemyBody(actor);
@@ -1773,15 +1807,15 @@ export class WorldView {
     for (const actor of this.battleActors.values()) {
       actor.body.rotation.y = facing; actor.poseTime = Math.max(0, actor.poseTime - dt);
       actor.shieldFlash = Math.max(0, (actor.shieldFlash || 0) - dt);
-      if (actor.basePosition) { actor.group.position.lerp(actor.basePosition, 1 - Math.exp(-dt * 8)); if (actor.poseTime > 0) actor.group.position.x += Math.sin(actor.poseTime * 45) * .035; }
+      if (actor.basePosition) { actor.group.position.lerp(actor.basePosition, 1 - Math.exp(-dt * 8)); if (actor.poseTime > 0 && policy?.spriteShake !== false) actor.group.position.x += Math.sin(actor.poseTime * 45) * .035; }
       const statuses = actor.state?.statuses || {}, lifted = statuses.lift > 0 || statuses.singularity > 0, stasis = statuses.stasis > 0;
-      actor.group.position.y = actor.alive && lifted ? .8 + Math.sin(this.time * 2) * .15 : 0;
-      actor.statusShell.visible = actor.alive && (stasis || lifted || actor.shieldFlash > 0 || statuses.barrier > 0);
+      actor.group.position.y = actor.alive && lifted ? .8 + (policy?.ambientPulse===false?0:Math.sin(this.time * 2) * .15) : 0;
+      actor.statusShell.visible = actor.alive && (stasis || lifted || actor.shieldFlash > 0 && policy?.hitTint !== false || statuses.barrier > 0);
       actor.statusShell.material.color.set(stasis || lifted ? 0xa99ef0 : 0x83d0ed);
-      actor.statusShell.rotation.y += dt * .4;
+      actor.statusShell.rotation.y += policy?.ambientPulse===false?0:dt * .4;
       actor.body.scale.y = actor.alive && actor.state?.cover ? .88 : 1;
-      actor.body.position.y = actor.height / 2 * actor.body.scale.y + .05 + (actor.alive ? Math.sin(this.time * 2 + actor.group.position.z) * .025 : -.5);
-      actor.body.material.color.set(actor.poseTime > .15 ? 0xffd6b2 : 0xffffff);
+      actor.body.position.y = actor.height / 2 * actor.body.scale.y + .05 + (actor.alive ? policy?.ambientPulse===false?0:Math.sin(this.time * 2 + actor.group.position.z) * .025 : -.5);
+      actor.body.material.color.set(actor.poseTime > .15 && policy?.hitTint !== false ? 0xffd6b2 : 0xffffff);
       const combatConfig = this._combatAnimationConfig(actor);
       if (combatConfig) {
         if (!actor.alive) { actor.combatPose = null; actor.combatPoseTime = 0; }
@@ -1799,21 +1833,21 @@ export class WorldView {
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     for (const item of this.animations) {
-      if (item.kind === 'globe') item.object.rotation.y += dt * .12;
-      if (item.kind === 'orbit') item.object.rotation.z += dt * item.speed;
-      if (item.kind === 'smoke') item.object.children.forEach((puff, i) => { puff.position.x = Math.sin(this.time * .35 + i) * .3 * item.scale; puff.scale.setScalar(1 + Math.sin(this.time + i) * .09); });
-      if (item.kind === 'fire') item.object.intensity = 5.5 + Math.sin(this.time * 9) * .7;
-      if (item.kind === 'water') item.object.material.roughness = .16 + Math.sin(this.time * .5) * .04;
-      if (item.kind === 'barrier') item.object.material.opacity = .15 + Math.sin(this.time * 2) * .04;
-      if (item.kind === 'snow') { const attr = item.object.geometry.attributes.position; for (let i = 0; i < attr.count; i++) { attr.array[i * 3] += dt * 1.1; attr.array[i * 3 + 1] -= dt * 1.3; if (attr.array[i * 3 + 1] < 0) attr.array[i * 3 + 1] = 18; if (attr.array[i * 3] > 28) attr.array[i * 3] = -28; } attr.needsUpdate = true; }
+      if (item.kind === 'globe') item.object.rotation.y += policy?.ambientPulse===false?0:dt * .12;
+      if (item.kind === 'orbit') item.object.rotation.z += policy?.ambientPulse===false?0:dt * item.speed;
+      if (item.kind === 'smoke') item.object.children.forEach((puff, i) => { puff.position.x = Math.sin(visualTime * .35 + i) * .3 * item.scale; puff.scale.setScalar(1 + Math.sin(visualTime + i) * .09); });
+      if (item.kind === 'fire') item.object.intensity = 5.5 + (policy?.ambientPulse===false?0:Math.sin(this.time * 9) * .7);
+      if (item.kind === 'water') item.object.material.roughness = .16 + Math.sin(visualTime * .5) * .04;
+      if (item.kind === 'barrier') item.object.material.opacity = .15 + Math.sin(visualTime * 2) * .04;
+      if (item.kind === 'snow') { item.object.visible=policy?.ambientPulse!==false;if(policy?.ambientPulse===false)continue;const attr = item.object.geometry.attributes.position; for (let i = 0; i < attr.count; i++) { attr.array[i * 3] += dt * 1.1; attr.array[i * 3 + 1] -= dt * 1.3; if (attr.array[i * 3 + 1] < 0) attr.array[i * 3 + 1] = 18; if (attr.array[i * 3] > 28) attr.array[i * 3] = -28; } attr.needsUpdate = true; }
     }
-    for (let i = this.effects.length - 1; i >= 0; i--) { const fx = this.effects[i]; fx.time -= dt; if (fx.time <= 0) { this.particles.remove(fx.object); disposeObject(fx.object); this.effects.splice(i, 1); } else { fx.object.material.opacity = fx.time / fx.max * .8; if (fx.kind === 'impact') fx.object.scale.setScalar(1 + (1 - fx.time / fx.max) * 3); } }
+    for (let i = this.effects.length - 1; i >= 0; i--) { const fx = this.effects[i]; fx.time -= dt; if (fx.time <= 0) { this.particles.remove(fx.object); disposeObject(fx.object); this.effects.splice(i, 1); } else { fx.object.material.opacity = fx.time / fx.max * .8 * (policy?.effectIntensity ?? 1); if (fx.kind === 'impact') fx.object.scale.setScalar(1 + (1 - fx.time / fx.max) * 3); } }
     const nearby = this.mode === 'explore' ? this.getNearby() : null;
     const w = this.width || 1, h = this.height || 1;
     for (const view of this.poiViews || []) {
       if (!view.group.visible || this.mode !== 'explore') { view.label.style.opacity = '0'; continue; }
       const active = nearby?.id === view.poi.id; view.ring.material.opacity = active ? .95 : .34;
-      view.icon.position.y = 3.9 + Math.sin(this.time * 2 + view.poi.x) * .1; view.icon.material.opacity = active ? 1 : .7;
+      view.icon.position.y = 3.9 + (policy?.ambientPulse===false?0:Math.sin(this.time * 2 + view.poi.x) * .1); view.icon.material.opacity = active ? 1 : .7;
       const p = new THREE.Vector3(view.poi.x, 4.6, view.poi.z).project(this.camera);
       view.label.style.left = `${(p.x * .5 + .5) * w}px`; view.label.style.top = `${(-p.y * .5 + .5) * h}px`;
       view.label.style.opacity = active && p.z > -1 && p.z < 1 ? '1' : '0';
