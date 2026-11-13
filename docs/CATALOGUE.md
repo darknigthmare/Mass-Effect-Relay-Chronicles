@@ -7,22 +7,22 @@ Ce catalogue contient **1 385 fiches**, organisées en **26 catégories** et *
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
 - [Générateur initial historique](../scripts/build-workbook.mjs) ; Completion utilise une [mise à jour OpenXML ciblée](../scripts/completion-tracking-patch-workbook.py), suivie d’une vérification indépendante et d’un rendu, pour conserver les cellules, critères, formules et styles. Ne pas reconstruire les statuts courants avec le générateur initial.
-- [Revue actuelle des 68 panneaux ciblés](qa/advance-tracking-workbook-visual-final-01-review.json) · [Publication du suivi](qa/advance-tracking-publication-final-01-report.json) · [Bilan Advance](ADVANCE.md). Les aperçus et rapports des lots précédents restent historiques.
+- [Revue actuelle des 70 panneaux ciblés](qa/resolve-tracking-workbook-visual-final-01-review.json) · [Publication du suivi](qa/resolve-tracking-publication-final-01-report.json) · [Bilan Resolve](RESOLVE.md). Les aperçus et rapports des lots précédents restent historiques.
 
 ## État réel
 
-Advance ferme **21 critères fonctionnels** dans 36 fiches mises à jour, sans promotion d’asset ni validation intégrale 1:1. Les 130 Validé précédents restent intacts ; le registre complet conserve 6 560 critères ouverts.
+Le [lot Resolve](RESOLVE.md) met à jour **36 fiches et 118 cellules**, dont **32 critères fonctionnels fermés : 11 P0, 21 P1 et 0 P2**. Les descriptions et critères restent inchangés, les 151 Validé antérieurs sont préservés et aucun statut d’asset n’est promu. Le principal compte **852 Défini, 350 Prototype, 0 Intégré, 183 Validé** ; le registre complet, **5 887 Défini, 641 Prototype, 0 Intégré, 183 Validé**. L’[audit courant](qa/resolve-tracking-current-final-01-audit.json) conserve **6 528 critères ouverts : 653 P0, 5 761 P1 et 114 P2**.
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 882 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 352 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 852 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 350 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 0 | Présent dans le jeu avec chemin et dépendances vérifiés. |
-| Validé | 151 | Intégré et contrôlé avec preuve de test. |
+| Validé | 183 | Intégré et contrôlé avec preuve de test. |
 
 Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Les éventuelles fiches **Validé** attestent leurs critères fonctionnels documentés ; elles ne certifient pas la fidélité 1:1 de l’ensemble du jeu.
 
-Les notes sont conservées dans leur ordre historique. Une ancienne phrase « critères restent à vérifier » peut donc précéder l’ajout « Lot Advance », « Lot Continuation » ou « Lot Completion » : le statut courant et cette nouvelle évaluation se lisent ensemble. Les mentions de production en attente situent la copie locale avant compilation ; le [rapport final de livraison](qa/advance-report.json) constitue la preuve distincte des parcours compilés. Aucun préfixe historique ni réserve de fidélité n’est effacé pour faciliter une validation.
+Les notes sont conservées dans leur ordre historique. Une ancienne phrase « critères restent à vérifier » peut donc précéder l’ajout « Lot Resolve », « Lot Advance », « Lot Continuation » ou « Lot Completion » : le statut courant et cette nouvelle évaluation se lisent ensemble. Les mentions de production en attente situent la copie locale avant compilation ; le [rapport final de livraison](qa/resolve-report.json) constitue la preuve distincte des parcours compilés. Aucun préfixe historique ni réserve de fidélité n’est effacé pour faciliter une validation.
 
 | Niveau de canon | Fiches | Signification |
 | --- | ---: | --- |
@@ -79,7 +79,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Catégorie | Total | Défini | Prototype | Intégré | Validé | Périmètre |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | Personnages | 8 | 0 | 8 | 0 | 0 | Shepard, équipiers et identités jouables |
-| PNJ | 66 | 40 | 26 | 0 | 0 | Personnages de rencontre et services |
+| PNJ | 66 | 38 | 25 | 0 | 3 | Personnages de rencontre et services |
 | Espèces et factions | 36 | 28 | 8 | 0 | 0 | Espèces, organisations et règles culturelles |
 | Mondes | 32 | 24 | 8 | 0 | 0 | Destinations et identité environnementale |
 | Zones | 100 | 100 | 0 | 0 | 0 | Pièces, espaces extérieurs et points de passage |
@@ -87,10 +87,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Décors | 35 | 31 | 4 | 0 | 0 | Architecture, matières et cadrages |
 | Props | 54 | 52 | 2 | 0 | 0 | Objets de décor et interactions |
 | Ennemis et boss | 39 | 17 | 22 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
-| Missions | 63 | 25 | 33 | 0 | 5 | Étapes de l’intrigue principale |
-| Secondaires et DLC | 108 | 50 | 58 | 0 | 0 | Missions annexes et extensions de ME1 |
-| Choix et relations | 34 | 21 | 4 | 0 | 9 | Conséquences persistantes et relations |
-| Dialogues | 36 | 16 | 7 | 0 | 13 | Situations de dialogue et conditions |
+| Missions | 63 | 14 | 33 | 0 | 16 | Étapes de l’intrigue principale |
+| Secondaires et DLC | 108 | 47 | 58 | 0 | 3 | Missions annexes et extensions de ME1 |
+| Choix et relations | 34 | 15 | 5 | 0 | 14 | Conséquences persistantes et relations |
+| Dialogues | 36 | 8 | 5 | 0 | 23 | Situations de dialogue et conditions |
 | Cinématiques | 26 | 26 | 0 | 0 | 0 | Séquences et mise en scène |
 | Armes | 48 | 24 | 20 | 0 | 4 | Familles, modèles et comportements |
 | Armures et équipement | 64 | 24 | 34 | 0 | 6 | Protections, modules et consommables |
@@ -104,7 +104,7 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Systèmes et UI | 65 | 1 | 6 | 0 | 58 | Interface et règles de jeu |
 | QA | 64 | 11 | 3 | 0 | 50 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 49 | 2 | 0 | 6 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 385** | **882** | **352** | **0** | **151** | |
+| **Total** | **1 385** | **852** | **350** | **0** | **183** | |
 
 
 ## Lire une fiche

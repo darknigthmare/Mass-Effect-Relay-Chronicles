@@ -26,6 +26,7 @@ import { HORIZON_FAUNA, normalizeHorizonFaunaAtlas, getHorizonFaunaFrame, getHor
 import { HORIZON_FLEET, normalizeHorizonFleetAtlas, getHorizonFleetFrame, canShowHorizonFleet } from './horizon-fleet.js';
 import { BOSS_ANIMATION_IDS, normalizeBossAnimation, canShowBossAnimation } from './boss-animation-data.js';
 import { createMakoState, boardMako, stepMako, dismountMako, makoDirectionFrame, normalizeMakoDirections } from './frontier-vehicles.js';
+import { resolveNoveriaContactAvailable } from './resolve-noveria.js';
 
 const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS, ...BOSS_ANIMATION_IDS];
 
@@ -34,6 +35,9 @@ const ENEMY_KEYS = ['geth', 'husk', 'geth-sniper', 'geth-destroyer', 'krogan', '
 const BOSS_KEYS = ['saren', 'benezia', 'thorian', 'saren-final'];
 const NPC_KEYS = ['femshep', 'anderson', 'joker', 'chakwas', 'nihlus', 'udina', 'kirrahe', 'emily'];
 const CITADEL_RECRUITS = { 'citadel:encounter-1': 'garrus', 'citadel:encounter-2': 'tali', 'citadel:boss': 'wrex' };
+// Procedural stand-ins deliberately bypass the enemy atlas's index-zero geth.
+// These silhouettes establish species only; no final character art is claimed.
+const RESOLVE_PROTOTYPE_KEYS = ['resolve-thug', 'resolve-fist', 'resolve-assassin', 'resolve-turian-assassin', 'resolve-salarian-assassin'];
 // Abstract ATB readability cues; these do not replace the weapons drawn in the
 // character atlases or reproduce original firing animations, spread or range.
 const WEAPON_TRACE_STYLES = {
@@ -66,16 +70,19 @@ function canvasTexture(width, height, draw) {
 
 function fallbackCharacter(key, enemy = false) {
   return canvasTexture(160, 256, (c, w, h) => {
-    const alien = ['garrus', 'wrex', 'krogan', 'geth', 'geth-sniper', 'geth-destroyer'].includes(key);
+    const salarian = key === 'resolve-salarian-assassin', turian = key === 'resolve-turian-assassin';
+    const alien = salarian || turian || ['garrus', 'wrex', 'krogan', 'geth', 'geth-sniper', 'geth-destroyer'].includes(key);
     const krogan = ['wrex', 'krogan'].includes(key);
     const tone = enemy ? '#524f4c' : key === 'tali' ? '#6d5885' : key === 'liara' ? '#a7b4bc' : key === 'garrus' ? '#426475' : '#3e505c';
-    const headColor = key === 'liara' ? '#70acbd' : key === 'garrus' ? '#8696a0' : krogan ? '#afa68b' : key === 'tali' || key.includes('geth') ? '#202c37' : '#c8a596';
+    const headColor = salarian ? '#889c78' : key === 'liara' ? '#70acbd' : key === 'garrus' || turian ? '#8696a0' : krogan ? '#afa68b' : key === 'tali' || key.includes('geth') ? '#202c37' : '#c8a596';
     c.shadowColor = '#070c12'; c.shadowBlur = 5;
     c.fillStyle = '#14202a'; c.beginPath(); c.roundRect(47, 142, 28, 98, 10); c.fill(); c.beginPath(); c.roundRect(85, 142, 28, 98, 10); c.fill();
     c.fillStyle = tone; c.beginPath(); c.moveTo(krogan ? 30 : 45, 72); c.lineTo(krogan ? 130 : 115, 72); c.lineTo(119, 154); c.lineTo(41, 154); c.closePath(); c.fill();
     c.fillStyle = '#9aa8ad'; c.fillRect(52, 94, 23, 5); c.fillRect(86, 94, 23, 5);
     c.fillStyle = tone; c.beginPath(); c.roundRect(26, 78, 24, 80, 12); c.fill(); c.beginPath(); c.roundRect(109, 78, 24, 80, 12); c.fill();
-    c.fillStyle = headColor; c.beginPath(); c.ellipse(80, 48, alien ? 25 : 19, alien ? 27 : 24, 0, 0, TAU); c.fill();
+    c.fillStyle = headColor; c.beginPath(); c.ellipse(80, 48, salarian ? 15 : alien ? 25 : 19, salarian ? 34 : alien ? 27 : 24, 0, 0, TAU); c.fill();
+    if (salarian) { c.fillStyle = '#18251b'; for (const x of [73, 87]) { c.beginPath(); c.ellipse(x, 44, 5, 8, 0, 0, TAU); c.fill(); } }
+    if (turian) { c.fillStyle = '#657b85'; c.beginPath(); c.moveTo(53, 37); c.lineTo(79, 9); c.lineTo(107, 37); c.lineTo(92, 30); c.lineTo(80, 18); c.lineTo(68, 32); c.closePath(); c.fill(); }
     if (key.includes('geth')) { c.fillStyle = '#f5b07d'; c.fillRect(75, 41, 11, 5); }
     if (key === 'tali') { c.fillStyle = '#b8b9e0'; c.fillRect(66, 43, 28, 5); }
     c.fillStyle = '#b7dce5'; c.fillRect(57, 122, 46, 3);
@@ -189,6 +196,11 @@ export class WorldView {
   }
 
   _spriteTexture(key = 'shepard', enemy = false) {
+    if (RESOLVE_PROTOTYPE_KEYS.includes(key)) {
+      const prototypeKey = `resolve-prototype:${key}:${enemy ? 'enemy' : 'npc'}`;
+      if (!this.spriteCache.has(prototypeKey)) this.spriteCache.set(prototypeKey, fallbackCharacter(key, enemy));
+      return this.spriteCache.get(prototypeKey);
+    }
     const name = this._spriteAtlasName(key, enemy), cacheKey = `${name}:${key}`;
     if (FRONTIER_ENEMY_IDS.includes(key) || getFrontierNPC(key)?.visual.atlas || HORIZON_ENEMY_IDS.includes(key) || getHorizonNPC(key)
       || ['varren','alpha-varren','gasbag-me1'].includes(key)) return this._neutralSpriteTexture();
@@ -1279,13 +1291,32 @@ export class WorldView {
         x: contact.x, z: contact.z, ...(typeof contact.portrait === 'string' ? { portrait: contact.portrait } : {}),
       });
     }
+    const resolveContacts = [], resolveIds = new Set();
+    for (const contact of Array.isArray(context?.resolveContacts) ? context.resolveContacts : []) {
+      const zone = contact && typeof contact.zone === 'string' && Object.prototype.hasOwnProperty.call(WORLD_ZONES, contact.zone) && WORLD_ZONES[contact.zone], point = contact?.actorPosition;
+      if (!zone || typeof contact.id !== 'string' || !/^[a-z0-9]+(?:[-:][a-z0-9]+)*$/.test(contact.id) || resolveIds.has(contact.id)
+        || typeof contact.label !== 'string' || !contact.label.trim() || !Number.isFinite(contact.x) || !Number.isFinite(contact.z)
+        || contact.x < zone.bounds.minX + .4 || contact.x > zone.bounds.maxX - .4
+        || contact.z < zone.bounds.minZ + .4 || contact.z > zone.bounds.maxZ - .4) continue;
+      const nextContact = { id: contact.id, label: contact.label, zone: contact.zone, x: contact.x, z: contact.z,
+        type: ['terminal', 'objective', 'encounter'].includes(contact.type) ? contact.type : contact.terminal ? 'terminal' : 'dialogue' };
+      for (const key of ['resolveCitadel', 'resolveOriginContactId', 'speaker', 'assignmentId', 'portrait'])
+        if (typeof contact[key] === 'string') nextContact[key] = contact[key];
+      for (const key of ['resolveNoveria', 'resolveVirmire']) if (contact[key] === true) nextContact[key] = true;
+      if (typeof contact.bodyKey === 'string' && [...NPC_KEYS, ...CREW_KEYS, ...RESOLVE_PROTOTYPE_KEYS].includes(contact.bodyKey)
+        && point && Number.isFinite(point.x) && Number.isFinite(point.z)
+        && point.x > zone.bounds.minX && point.x < zone.bounds.maxX && point.z > zone.bounds.minZ && point.z < zone.bounds.maxZ)
+        Object.assign(nextContact, { bodyKey: contact.bodyKey, actorPosition: { x: point.x, z: point.z } });
+      resolveIds.add(contact.id); resolveContacts.push(nextContact);
+    }
     const next = context && typeof context === 'object' ? {
       recruited: strings(context.recruited), lost: strings(context.lost), completed: strings(context.completed),
       visitedZones: strings(context.visitedZones ?? context.story?.visitedZones), cleared: strings(context.cleared),
       flags: { jenkinsLost: context.flags?.jenkinsLost === true, briefed:context.flags?.briefed===true, spectre:context.flags?.spectre===true },
       operations:{records:{'feros-varrens':{stage:Number.isInteger(context.operations?.records?.['feros-varrens']?.stage)?context.operations.records['feros-varrens'].stage:0}}},
       advanceFeros: normalizeAdvanceFerosState(context.advanceFeros,context),
-      assignmentContacts,
+      assignmentContacts, resolveContacts,
+      resolveNoveriaPresence: Object.fromEntries(['anoleis', 'parasini', 'gianna', 'lorik'].map(id => [id, resolveNoveriaContactAvailable(context, id)])),
       ...(context.mediaId !== undefined ? {mediaId:context.mediaId} : {}),
       ...(context.periodId !== undefined ? {periodId:context.periodId} : {}),
       ...(context.context !== undefined ? {context:{mediaId:context.context?.mediaId,periodId:context.context?.periodId}} : {}),
@@ -1371,13 +1402,21 @@ export class WorldView {
       actor.group.position.set(x, 0, z); actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
     }
     const active = new Set(this.actors.map(actor => actor.id));
-    for (const poi of this.getConversationPOIs()) {
+    for (const poi of this.getConversationPOIs({ includeResolveReplaced: true })) {
       if (active.has(poi.characterId)) continue;
       if (this._hasAdvanceFerosCivilians() && FEROS_COLONIST_TARGETS.some(target=>target.characterKey===poi.characterId)) continue;
       const actor = this._makeActor(poi.characterId, `npc:${poi.characterId}`);
       if (poi.characterId === 'joker' && this.zoneId === 'normandy') actor.stationRole = 'normandy-pilot';
       actor.conversationId = poi.conversationId; actor.poiId = poi.id;
       actor.group.position.set(poi.actorPosition.x, 0, poi.actorPosition.z);
+      actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
+    }
+    for (const poi of this.getResolvePOIs()) {
+      if (!poi.bodyKey || !poi.actorPosition || !this._walkable(poi.actorPosition.x, poi.actorPosition.z)) continue;
+      const actor = this._makeActor(poi.bodyKey, `resolve-contact:${poi.id}`);
+      actor.resolveContactId = poi.id; actor.poiId = poi.id;
+      actor.group.userData.presentation = 'reused-body-prototype'; actor.group.userData.contactLabel = poi.label;
+      actor.group.position.set(poi.actorPosition.x, 0, poi.actorPosition.z); this._groundActor(actor);
       actor.group.visible = this.mode !== 'combat'; this.ambientActors.push(actor);
     }
     const scope=this._horizonCampaignContext(),fauna=scope&&{...scope,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()};
@@ -1448,6 +1487,7 @@ export class WorldView {
     if(this.mode==='combat'||actor.poiId&&this.cleared.has(actor.poiId))return false;
     if(actor.advanceFerosCivilian)return !!this._hasAdvanceFerosCivilians()&&this._advanceFerosCivilianAlive(actor.advanceFerosCivilian)===true;
     if(this.zoneId==='feros'&&this._advanceFerosCivilianAlive(actor.key)===false)return false;
+    if(this.zoneId==='noveria'&&this.storyContext?.resolveNoveriaPresence?.[actor.conversationId||actor.key]===false)return false;
     if(getHorizonNPC(actor.key))return horizonNPCVisible(this._horizonPresenceContext(),actor.key);
     if(actor.faunaId){const scope=this._horizonCampaignContext();return !!scope&&horizonFaunaVisible(actor.faunaId,{...scope,zoneId:this.zoneId,campaignState:this._horizonPresenceContext()});}
     return true;
@@ -1662,7 +1702,7 @@ export class WorldView {
   getBounds() { return { ...this.zone.bounds }; }
   getMapCollisions() { return mapCollisionFootprints(this.colliders); }
   getPOIs() { return this.zone.pois.map(poi => ({ ...poi, cleared: this.cleared.has(poi.id) })); }
-  getConversationPOIs() {
+  getConversationPOIs({ includeResolveReplaced = false } = {}) {
     const context = this.storyContext;
     if (!context) return [];
     return (this.zone.conversationPois || []).filter(poi => {
@@ -1675,6 +1715,9 @@ export class WorldView {
       if (id === 'nihlus') return !context.visitedZones.includes('eden-prime') && !context.completed.includes('eden-prime') && !context.flags.jenkinsLost;
       return context.recruited.includes(id);
     }).filter(poi => this.zoneId!=='feros'||this._advanceFerosCivilianAlive(poi.characterId)!==false)
+      .filter(poi => this.zoneId !== 'noveria' || context.resolveNoveriaPresence?.[poi.conversationId] !== false)
+      .filter(poi => includeResolveReplaced || this.zoneId !== 'noveria'
+        || !this.getResolvePOIs().some(point => point.resolveNoveria && point.id === `resolve:noveria:${poi.conversationId}`))
       .filter(poi=>!this._hasAdvanceFerosCivilians()||!FEROS_COLONIST_TARGETS.some(target=>target.characterKey===poi.characterId)
         ||this.storyContext.advanceFeros.colonists[poi.characterId]!==null)
       .map(poi => {
@@ -1683,11 +1726,20 @@ export class WorldView {
       });
   }
   getInteractivePOIs() {
+    const resolve = this.getResolvePOIs();
     const pois = this.getPOIs().filter(poi => {
+      if (poi.id === 'noveria:objective' && resolve.some(point => point.id === 'resolve:noveria:queen')) return false;
       const recruit = this.zoneId === 'citadel' && CITADEL_RECRUITS[poi.id];
       return !recruit || !this.storyContext || !this.storyContext.recruited.includes(recruit) && !this.storyContext.lost.includes(recruit);
     });
-    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs(), ...this.getFaunaPOIs(), ...(this.operationPois || [])];
+    return [...pois, ...this.getConversationPOIs(), ...this.getAssignmentPOIs(), ...resolve, ...this.getFaunaPOIs(), ...(this.operationPois || [])];
+  }
+  getResolvePOIs() {
+    const context = this.storyContext;
+    if (!context || context.context && (context.context.mediaId !== 'ME1' || context.context.periodId !== 'me1')
+      || context.mediaId !== undefined && context.mediaId !== 'ME1' || context.periodId !== undefined && context.periodId !== 'me1') return [];
+    return (this.storyContext?.resolveContacts || []).filter(contact => contact.zone === this.zoneId)
+      .map(contact => ({ ...contact, ...(contact.actorPosition ? { actorPosition: { ...contact.actorPosition } } : {}), cleared: false }));
   }
   getFaunaPOIs() {
     const scope=this._horizonCampaignContext();if(!scope)return [];

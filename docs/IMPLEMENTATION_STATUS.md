@@ -1,4 +1,12 @@
-# État de livraison — Advance
+# État de livraison — Resolve
+
+Le [lot Resolve](RESOLVE.md) met à jour **36 fiches et 118 cellules**, dont **32 critères fonctionnels fermés : 11 P0, 21 P1 et 0 P2**. Les descriptions et critères restent inchangés, les 151 Validé antérieurs sont préservés et aucun statut d’asset n’est promu. Le principal compte **852 Défini, 350 Prototype, 0 Intégré, 183 Validé** ; le registre complet, **5 887 Défini, 641 Prototype, 0 Intégré, 183 Validé**. L’[audit courant](qa/resolve-tracking-current-final-01-audit.json) conserve **6 528 critères ouverts : 653 P0, 5 761 P1 et 114 P2**.
+
+Le gel principal est vérifié par **1 246 tests natifs**, **27 captures DEV relues**, **70 panneaux Excel ouverts par sept agents** et **27 captures de production relues**. Le correctif distinct de recrutement tardif de Garrus passe ensuite la suite complète courante de **1 248 tests**, un parcours ciblé en développement et en production (4 et 4 captures), et une nouvelle compilation avec contrôle HTTP des **93 fichiers**. Les cinq familles principales restent attribuées au gel précédent et n’ont pas été rejouées intégralement sur ce dernier bundle. Le [rapport final](qa/resolve-report.json) distingue les deux phases, leurs sources et leurs limites. Les **32 autres classeurs** protégés restent inchangés ; aucune fidélité intégrale 1:1 ni partie Windows jouée n’est certifiée.
+
+---
+
+# État de livraison — Advance (historique)
 
 Le journal suit les jalons et le premier départ choisi, les recrutements de Garrus et Wrex ont des branches de refus/report, et les sujets de Tali et Kaidan ouvrent leurs dossiers dédiés. Les cartes expliquent les prérequis et représentent les obstacles ; le repli affiche son délai de terrain. Féros conserve les seize interventions, le Cipher et le sort de Shiala, puis le bilan de fin peut être consulté dans les Chroniques ME2/ME3 autorisées.
 

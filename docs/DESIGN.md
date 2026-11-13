@@ -1,3 +1,11 @@
+# Enquête, rôles du commando et décisions — Resolve
+
+Le [lot Resolve](RESOLVE.md) fait dépendre les accès et les dialogues des faits réellement acquis. Les indices de la Citadelle restent indépendants des recrutements facultatifs ; la preuve de Tali suit son sauvetage. Novéria conserve séparément preuves, passe, arrestation et morts. Virmire retire les équipiers affectés ailleurs du groupe actif et fixe le choix d’extraction avant Saren. L’épilogue distingue l’ordre à la flotte de la recommandation humaine. Les missions d’origine demandent un premier monde achevé et le parcours propre à ce Shepard.
+
+Les anciens sujets, dossiers et sauvegardes restent compatibles. Les données inconnues restent inconnues dans les bilans transmis aux Chroniques ; aucune présence dans une œuvre future n’est créée. Les coûts de Finch et Zabaleta sont consignés sans récompense supplémentaire inventée.
+
+---
+
 # Progression et conséquences — Advance
 
 Le journal suit les jalons et le premier départ choisi, les recrutements de Garrus et Wrex ont des branches de refus/report, et les sujets de Tali et Kaidan ouvrent leurs dossiers dédiés. Les cartes expliquent les prérequis et représentent les obstacles ; le repli affiche son délai de terrain. Féros conserve les seize interventions, le Cipher et le sort de Shiala, puis le bilan de fin peut être consulté dans les Chroniques ME2/ME3 autorisées.

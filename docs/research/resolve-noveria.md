@@ -1,0 +1,77 @@
+# Resolve · Novéria
+
+Sources du lot : base `f94bd6b7fbb36a4cd83b7672e7eb294b4830735f`. Le jeu conserve sa campagne française condensée, ses sprites HD dans des décors 3D et ses combats ATB. Aucun catalogue, classeur, asset public ou rapport historique n’est modifié par ce module.
+
+## Sources effectivement relues
+
+Les six pages Prima suivantes ont répondu HTTP 200 le 13 novembre 2026 et leur corps de guide a été lu. La première requête Python sans User-Agent, vers la page des assignations avec `www`, avait répondu 403 ; les lectures réussies utilisent `www.primagames.com` et un User-Agent de navigateur, puis sont redirigées vers `primagames.com`. Le texte du guide est effectivement présent avant l’invitation à créer un compte ; aucun compte n’a été créé et aucun contenu absent n’est revendiqué.
+
+| Page Prima | Corps HTML reçu | SHA-256 |
+|---|---:|---|
+| [Objective 1: Visit Noveria; Speak to Anoleis](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-3-noveria/objective-1-visit-noveria-speak-to-anoleis) | 60 725 octets | `c212f00700c6300875d67aff2f9a7e9f80c85df71985b3951981732c15bb499d` |
+| [Objective 2: Access Port Hanshan’s Garage](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-3-noveria/objective-2-access-port-hanshans-garage) | 78 067 octets | `06204bd0950a8a6bd93dba3c8a4cba74b331b880f2a5cd38b35adba8f68ba695` |
+| [Objective 3: Investigate Peak 15](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-3-noveria/objective-3-investigate-peak-15) | 72 955 octets | `36b3a30599be26ef2e75bde93afc3702c3b6fd849c8016fb030bf5156c4d6136` |
+| [Objective 4: Confront Benezia; Escape Noveria](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-3-noveria/objective-4-confront-benezia-escape-noveria) | 65 273 octets | `53d7249b975dbefbbdeda2c2fd9848a71817523386f9a4093fb76e8cd64c3602` |
+| [Noveria Assignments](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-noveria-and-feros/noveria-assignments) | 76 728 octets | `00f4e34db6d9c250732ffc2d3c0029729ea490f3d3781fc6c91ef73e042fd8b3` |
+| [Showdown: Matriarch Benezia](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-3-noveria/showdown-matriarch-benezia) | 66 726 octets | `bf6b19136e2f9554fde074bc1e7df03c2d02a156e5e1ce609af07a5c2ebd1c1f` |
+
+Les caches de lecture sont `/tmp/resolve-objective-*.html/.txt`, `/tmp/resolve-noveria-3.html/.txt` et `/tmp/resolve-noveria-queen.html/.txt`. Ils constituent les lectures de cette session ; les documents du dépôt conservent les URL et empreintes pour la revue ultérieure.
+
+Prima décrit le marché de Lorik : accès à Synthetic Insights, récupération des preuves de détournement des loyers, puis laissez-passer en échange de ces preuves. Après récupération, Gianna propose de la rejoindre avant de parler à Lorik et révèle son appartenance aux Affaires internes. Son arrestation demande d’obtenir le témoignage de Lorik puis de lui en faire rapport. Une remise directe à Lorik ou à Anoleis reste possible. Dénoncer Gianna sans livrer les preuves provoque un affrontement mortel entre Gianna et Anoleis ; le laissez-passer peut ensuite être pris sur le corps d’Anoleis.
+
+La voie rapide demande d’accepter le transport d’Opold, de récupérer réellement son paquet au quai puis de le dénoncer à Anoleis. Un refus initial d’Opold peut être réexaminé. Les autres destinataires, le module conservé, les combats avec Inamorda et les gains variables sont décrits par Prima mais ne sont pas implémentés ici. Le module ne prétend donc pas terminer `SIDE-noveria-contrebande`.
+
+Après réactivation du noyau, MIRA accorde au Spectre l’accès technique tout en refusant les secrets de recherche de Binary Helix. Elle indique les conduites du réacteur et la liaison du toit comme réparations nécessaires au tramway. Le dialogue du lot lit les trois réparations déjà persistantes de `missionProgress.records.noveria` ; il n’effectue aucune réparation par lecture et ne change pas le puzzle existant.
+
+Après Bénézia, la reine communique par une commando asari mourante. Elle explique que ses enfants ont été élevés loin de son chant et demande d’abréger leurs souffrances. Elle souhaite vivre en paix ailleurs et affirme n’avoir pas participé aux anciennes guerres. Ses questions précèdent un choix explicite libérer/détruire. Ce choix reste confié à la transaction de fin de chapitre existante et n’ajoute aucune récompense de dialogue.
+
+## Contrat et intégration
+
+`src/resolve-noveria.js` expose un état `resolveNoveria` de version 1. Le normaliseur exige exactement les dix champs documentés dans `createResolveNoveriaState`. Il rejette les clés étrangères, accesseurs, valeurs hors des enums, témoignages sans enquête, preuves sans contrat et morts/arrestations incompatibles. Les seuils de persuasion adaptés sont aussi contrôlés à l’import.
+
+Seule l’absence de l’ancien champ migre. Une ancienne progression arrivée après le premier combat, ou terminée, reçoit `legacy:true` et aucun détail inventé. Le bilan expose alors `known:false`, avec seulement le choix historique de la reine s’il existe. Un champ explicitement nul ou mal formé est refusé. L’adaptateur de sauvegarde distingue aussi une propriété absente d’une propriété présente avec `undefined`.
+
+`getResolveNoveriaInteraction` fournit le même modèle détaché aux marqueurs et au contrôleur. `transitionResolveNoveria` revalide le choix contre l’état présent et une distance de sept unités à son ancre, puis retourne un candidat ; aucune mutation du commando, de l’économie ou des récompenses n’est faite. `changed:false` accompagne les lectures (`nextStep`) et les fermetures/complétions (`effect`). Les seules mutations concernent les preuves, le témoignage, la route de passe et les sorts des deux agents du port. `pass` garde l’origine du premier laissez-passer effectivement obtenu ; dénoncer Opold n’empêche pas de poursuivre ensuite la véritable enquête de Gianna.
+
+L’accès au premier combat du garage utilise `resolveNoveriaEncounterGate`. L’API native historique peut conserver une progression entièrement intacte comme `legacy` au premier succès de combat, via `isResolveNoveriaUntouched` ; ce mécanisme de compatibilité n’invente pas une voie de passe et ne remplace pas le verrou du parcours joueur.
+
+Les vieux dialogues et corps d’Anoleis/Gianna doivent employer `resolveNoveriaContactAvailable`, car un contact arrêté ou mort ne doit plus proposer son entretien d’accueil. Les marqueurs de l’affaire remplacent les anciens sujets d’accueil de ces interlocuteurs pendant la mission. `resolve-noveria-ui.js` fournit l’objectif courant et un rapport de journal. `noveriaResolutionReport` fournit les mêmes valeurs au bilan portable, séparément du choix historique de reine.
+
+Les neuf ancres ont été contrôlées par `createCombatGeometry('noveria')._walkable(x,z)` : toutes sont praticables. Cela contrôle leur surface dans la carte actuelle ; aucun parcours navigateur n’est déduit de ce contrôle.
+
+## Critères exacts et réserves
+
+| ID existant | Critère d’origine conservé | Couverture et réserve |
+|---|---|---|
+| `QST-acces-a-peak-15` | Plusieurs voies de résolution conservées. | Cinq origines de passe : Lorik, preuves à Anoleis, arrestation Gianna, paquet d’Opold, corps d’Anoleis. Terminal et géographie condensés ; combats ERCS/Kaira, hôtel et ascenseurs originaux absents. |
+| `DIA-anoleis-laissez-passer` | Conditions alternatives lisibles. | Conditions de preuves, paquet et identité de Gianna visibles et revalidées ; accès au garage fermé sans passe. Texte français adapté. |
+| `DIA-gianna-enquete` | Conditions de Lorik et des preuves synchronisées. | Révélation seulement après récupération des preuves, demande de témoin, rapport impossible sans témoignage, arrestation cohérente avec remise effective du dossier. |
+| `CHC-corruption-noveria` | Une voie ne bloque pas involontairement les autres. | Report/refus réversibles ; passe d’Opold conserve l’affaire Lorik/Gianna ; la remise définitive d’une preuve ou la mort d’un agent ferme ses options avec une conséquence explicite. |
+| `CHC-temoignage-de-lorik` | Issue Gianna et Anoleis cohérente. | Témoignage accepté par persuasion/intimidation, déclin, rapport/arrestation et trahison persistants. **Partiel :** Charme/Intimidation originaux absents, remplacés ouvertement par 20 points conciliants/pragmatiques. Cette adaptation ne certifie pas les conditions originales 1:1. |
+| `DIA-mira-assistance` | Options disponibles selon les réparations. | Assistance indisponible sans noyau, diagnostics selon chaque réparation, confirmation du tram seulement après réacteur+liaison, accès recherche refusé distinctement. Aucun puzzle/secret fabriqué. |
+| `DIA-reine-rachni` | Choix présenté avec son enjeu sans résultat caché arbitraire. | Communication par l’asari, questions enfants/avenir et choix explicites. Texte condensé et représentation de scène adaptés. |
+| `QST-decision-rachni` | Décision exportable à la suite sans récompense qui la contredit. | Effets finaux dirigés vers le propriétaire existant de `choices.noveria`, sans récompense de dialogue ajoutée ; bilan/export à contrôler dans le parcours intégré. |
+
+`CHC-sort-de-la-reine-rachni`, déjà Validé avant le lot, reste inchangé. Les gardes et les deux branches ajoutées doivent préserver ses tests et son export. `QST-investigation-des-laboratoires` reste ouvert : pass de Ventralis, Cohen, antidote, Alestia, maintenance et labos chauds ne sont pas représentés intégralement. `QST-route-de-noveria` et `QST-remise-en-marche-mira` gardent également leurs réserves de Mako, blizzard, puzzle et carte originale.
+
+## Vérification de ce module
+
+`node --test tests/resolve-noveria.test.js tests/state.test.js` : 27 contrôles réussis, dont onze Novéria, avant le dernier ajout des gardes de contacts dans `story.js`. Le contrôle suivant `node --test tests/resolve-noveria.test.js tests/frontier-characters.test.js tests/story.test.js` passe **36/36**, dont **douze** Novéria. Ces contrôles couvrent absence/invalidité/legacy, schéma strict sans lecture d’accesseur, isolation de campagne, proximité, cinq routes de passe, absence de récompense répétée, preuves et témoignages synchronisés, seuils adaptés visibles/revalidés, contacts morts/arrêtés dans le module et dans les anciens sujets, refus réversible d’Opold, continuation après son passe, MIRA par réparation, les deux effets de reine et leurs vrais cycles `encodeSave`/`decodeSave` avec les choix finaux.
+
+Le scénario `scripts/resolve-noveria-public.mjs` utilise uniquement le lanceur commun `runPublicProof`. Il prévoit six captures, quatre exports réels, les cinq voies de passe, les contacts retirés de la carte après arrestation/mort, deux réparations MIRA jouées publiquement et les deux sorts de reine. Ses préparations natives, leurs parents exportés et les combats non joués sont explicitement déclarés. Le script a passé `node --check` ; aucun navigateur n’a encore été lancé pour ce scénario à cette étape documentaire. Les preuves intégrées et la validation du build restent des étapes distinctes conduites par le propriétaire du lot.
+
+## Preuve de développement finale
+
+La première exécution [DEV01](../qa/resolve-noveria-dev-01-report.json), sa [revue visuelle](../qa/resolve-noveria-dev-01-visual-review.json) et sa [continuation native](../qa/resolve-noveria-portability-native-dev-01-report.json) restent historiques. Après les corrections communes de validation de zone et de formulation de la Citadelle/Virmire, le contrôle natif global final est [Resolve integration 03](../qa/resolve-integration-final-03-report.json), **1 246/1 246**. Les preuves actuelles suivantes ne réemploient aucune ouverture d’image ou sauvegarde DEV01.
+
+Le même collecteur immuable a exécuté [DEV02](../qa/resolve-noveria-dev-02-report.json) sur `http://127.0.0.1:4201/`, avec `RESOLVE_MODE=development` et `RESOLVE_PREFIX=resolve-noveria-dev-02`. Il passe **six groupes**, produit **six nouveaux PNG**, **quatre téléchargements JSON réels** et conserve **74 gestes de marche** lus depuis la carte et le radar publics. Le navigateur a été fermé avant la revue. Les sources et le contexte du registre sont restés identiques pendant cette exécution ; `sourceSHA` vaut `58cf753322c7c2d78529ba520950e24eba7f24cdc12275d3683f7fcffe941455`. Les erreurs de page, console classées, requêtes échouées et livraison sont vides. Six avertissements exacts de favicon absent sont conservés séparément.
+
+Le parcours joue le refus d’Anoleis, le contrat de Lorik, la récupération du dossier, la révélation de Gianna, le rapport encore désactivé sans témoin, la persuasion puis l’arrestation. Il exerce aussi les deux remises directes de preuves et la proposition d’Opold, avec refus réversible, récupération réelle du paquet et dénonciation. Une branche indépendante explicitement préparée dénonce Gianna et récupère le passe sur Anoleis ; les deux contacts ne figurent plus sur la carte après arrestation ou mort. Les deux issues sauvegardées passent une vraie reprise, sans gain de dialogue supplémentaire.
+
+MIRA est ensuite consultée avec le seul noyau réactivé : la confirmation du tramway est indisponible. Le réacteur et la liaison sont réparés par les commandes publiques, puis cette confirmation devient disponible. Une autre préparation native déclarée, issue de l’export réel d’arrestation, fournit les trois victoires et réparations pour les branches de reine. Les questions enfants/avenir, la libération et la destruction sont jouées et conservées dans deux vrais exports/reprises ; les actes de Port Hanshan restent identiques.
+
+Les **six images DEV02 ont toutes été réellement ouvertes en détail original** après fermeture de Chrome. La [revue visuelle](../qa/resolve-noveria-dev-02-visual-review.json), SHA-256 `4ba66cb1521cffcdab461d35913d2f73fe98cdf8cb8eae65968371127c01e958`, relie les empreintes des PNG à leurs observations. Les textes de conditions, reçu d’arrestation, deux morts, assistance MIRA et avenir rachni sont lisibles ; le journal cadré montre ensemble le passe de Gianna, Lorik témoin, Anoleis arrêté et la reine libérée. Aucun blocage visuel fonctionnel n’est relevé. Les portraits génériques et reçus narratifs ne certifient aucune cinématique, corps mort ou identité artistique originale.
+
+La [portabilité native fraîche DEV02](../qa/resolve-noveria-portability-native-dev-02-report.json) consomme les **deux vrais fichiers de reine DEV02**, puis termine explicitement les chapitres restants par les API natives. Dans chaque bilan portable produit par `encodeCampaignExport` et relu par `decodeCampaignExport`, `resolveNoveria`, `choices.noveria` et `noveriaReport` restent identiques aux actes joués. Les dossiers documentaires ME2 et ME3 renvoient le même rapport ; un rapport falsifié qui inverse le sort de la reine est refusé. Ces deux bilans sont **générés nativement**, sans revendication de téléchargement UI, de combats de continuation joués ou de campagne ME2/ME3 implémentée.
+
+La [proposition immuable finale 02](../../scripts/resolve-noveria-proposal-final-02.json) distingue **sept critères fonctionnels complets** du témoignage de Lorik restant Prototype en raison des talents originaux absents. Elle conserve les descriptions, critères, dépendances et statuts d’assets. Les contrôles de distribution restent une étape séparée avant publication du suivi.

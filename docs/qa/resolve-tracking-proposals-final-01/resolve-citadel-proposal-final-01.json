@@ -1,0 +1,478 @@
+{
+  "baseCommit": "f94bd6b7fbb36a4cd83b7672e7eb294b4830735f",
+  "productionPending": true,
+  "scope": "Neuf critères fonctionnels ME1 de la Citadelle et du retour de prologue proposés fermés ; NPC-fist reste partiel pour son corps et ses animations. Descriptions, critères, dépendances, sources historiques et statuts d’assets inchangés. Proposition gelée après DEV02 et revue réelle des six captures ; production ultérieure distincte.",
+  "records": [
+    {
+      "id": "QST-rapport-a-la-citadelle",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Audience initiale persistante et sans promotion. DEV02 joue le rapport public puis trois combats et la preuve de Tali ; le statut Spectre reste absent avant la seconde audience. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Audience politique sur l’attaque.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Rapport politique sur l’attaque d’Eden Prime présenté au Conseil ; la demande de preuves est consignée."
+        ],
+        "exactCriterion": "Aucune promotion anticipée.",
+        "complete": true,
+        "coveredClauses": [
+          "Le premier rapport ne donne ni statut Spectre, ni récompense, ni destination supplémentaire.",
+          "La nomination et la passation historiques restent après la remise de la preuve de Tali."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "QST-piste-garrus",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Pistes flexibles Harkin/Barla/clinique, vraie bataille ATB de la clinique et témoignage de Michel. Les deux ordres et la visite directe sont testés nativement ; le chemin Harkin et la clinique sont joués publiquement en DEV02. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Enquêter auprès du SSC et de la clinique.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Harkin renseigne sur l’enquête de Garrus et sa destination à la clinique.",
+          "Le commando sécurise réellement la clinique en ATB et obtient le témoignage de Michel ; le recrutement de Garrus demeure facultatif."
+        ],
+        "exactCriterion": "Ordre des indices flexible où le jeu l’autorise.",
+        "complete": true,
+        "coveredClauses": [
+          "Harkin et Barla peuvent être consultés dans les deux ordres, ou la clinique visitée directement.",
+          "Le témoignage, le combat de clinique et la disponibilité de Garrus sont distincts ; aucune obligation de recruter Wrex."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "QST-piste-du-courtier",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Barla, Wrex et Fist ont des reçus distincts. Deux vraies victoires publiques contre Fist couvrent l’épargne sans Wrex et l’exécution par Wrex déployé, puis une vraie reprise conserve le sort. La troisième issue, par Shepard, et Wrex recruté mais absent sont couvertes nativement. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Consulter les contacts de la Citadelle.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Barla décrit le contrat de Wrex et la trahison de Fist ; Harkin et Michel apportent leurs indices distincts.",
+          "Le bureau de Fist dispose d’une bataille ATB et de son aveu avant le sort final."
+        ],
+        "exactCriterion": "État de Fist et recrutement de Wrex cohérents.",
+        "complete": true,
+        "coveredClauses": [
+          "Wrex reste un recrutement facultatif ; sa simple présence dans le roster ne suffit pas à exécuter le contrat.",
+          "Le groupe présent à la victoire contre Fist est conservé ; Wrex présent tue Fist, sinon Shepard choisit de l’épargner ou de le tuer.",
+          "L’aveu sur la ruelle reste disponible dans chaque issue et après reprise."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "QST-sauvetage-de-tali",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Vrai secours ATB dans la ruelle, puis remise atomique de la preuve et recrutement. DEV02 joue les trois batailles, lit le journal réellement défilé et exporte Tali avec proof:true. Le trajet chronométré original reste ouvert. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Interrompre l’embuscade et obtenir la preuve.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Le commando interrompt l’embuscade par une vraie rencontre ATB après l’aveu de Fist.",
+          "La réception de l’enregistrement du noyau geth suit la victoire et met Tali à disposition."
+        ],
+        "exactCriterion": "Tali disponible après la scène et preuve dans le journal.",
+        "complete": true,
+        "coveredClauses": [
+          "Avant la victoire de la ruelle, Tali et ses données ne sont pas reçues.",
+          "Après la scène, la transaction ajoute Tali, la preuve et le journal ensemble ; le journal public affiche l’enregistrement et l’export garde les trois victoires.",
+          "La réception ne donne aucune récompense de lecture et ne peut pas être répétée."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "CHC-sort-de-fist",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Trois issues persistantes de Fist ; la présence réelle de Wrex au combat est figée avant une extraction ou un changement de groupe. Deux issues sont jouées publiquement, dont la reprise Wrex ; tous les cas sont couverts nativement. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Issue de la confrontation à Chora’s Den.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Confrontation de Fist après une vraie victoire contre lui et ses deux tourelles à Chora’s Den dans la carte condensée."
+        ],
+        "exactCriterion": "Influence de la présence de Wrex respectée.",
+        "complete": true,
+        "coveredClauses": [
+          "Présence de Wrex vérifiée depuis le groupe de terrain à la victoire, et non depuis le seul roster.",
+          "Wrex présent impose son contrat après l’aveu ; sans Wrex, Shepard peut épargner ou abattre Fist.",
+          "Le choix final, l’indice et les récompenses uniques survivent à la reprise ; les callbacks périmés ne changent pas l’issue."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "NPC-fist",
+      "proposedFields": {
+        "status": "Prototype",
+        "notesAppend": "Lot Resolve : Le comportement et les trois sorts persistants sont intégrés et testés ; les scènes publiques couvrent deux issues. La silhouette procédurale ne constitue pas le corps référencé, le costume ou les animations définitifs de Fist : fiche NPC complète ouverte. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Fiche complète non fermée. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Propriétaire de Chora’s Den lié à l’enquête.",
+        "descriptionComplete": false,
+        "coveredDescriptionClauses": [
+          "Fist est nommé au bureau et relié au contrat de Wrex, au Courtier, à Chora’s Den et au piège tendu à Tali."
+        ],
+        "exactCriterion": "État vivant ou mort persistant selon l’équipe et les choix.",
+        "complete": true,
+        "coveredClauses": [
+          "Son état épargné, abattu par Shepard ou abattu par Wrex est stocké séparément du KO de combat.",
+          "L’équipe réellement déployée et le choix du joueur produisent l’issue persistante exacte."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true.",
+          "Corps, costume, identité visuelle et animations définitifs de Fist absents ; le rendu procédural reste un prototype."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "NPC-harkin",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Harkin, au contact du bar existant, fournit et conserve la piste de la clinique. Le sujet ordinaire et l’ancienne information sur le SSC restent accessibles ; aucun art nouveau n’est promu. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Ancien agent du SSC rencontré au bar.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Le contact existant d’Harkin se trouve au bar et conserve son sujet sur son ancien poste au SSC."
+        ],
+        "exactCriterion": "Informations nécessaires à la piste Garrus.",
+        "complete": true,
+        "coveredClauses": [
+          "Le nouveau rapport d’enquête situe Garrus à la clinique et enregistre cet indice sans imposer un recrutement.",
+          "Le contact public, son rapport et la suite à la clinique sont effectivement joués en DEV02."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "NPC-dr-chloe-michel",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Michel témoigne après la bataille de la clinique. Le témoignage et l’enquête restent séparés de son service et de l’opération de chantage ; l’absence de mutation de cette opération est vérifiée nativement. Art existant de prototype conservé. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Médecin de la clinique des Secteurs.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Le médecin de la clinique témoigne après la sécurisation réelle des lieux et décrit les soins apportés à la Quarienne."
+        ],
+        "exactCriterion": "Service et quête de chantage séparés.",
+        "complete": true,
+        "coveredClauses": [
+          "L’interrogation sur Fist ne modifie, ne complète et ne récompense pas l’opération de chantage.",
+          "Le service médical, ses sujets ordinaires et le rapport d’enquête conservent leurs entrées distinctes."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-nihlus-observation",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Ordre Eden Prime → briefing → évaluation/candidature respecté, sans nomination. DEV02 joue le nouveau rapport, l’export persiste nihlus:2 sans statut Spectre ; tests des gardes et du premier débarquement. Voix et cinématique originales restent ouvertes. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js",
+        "src/story.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Expliquer sa présence auprès de Shepard.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Nihlus explique d’abord Eden Prime puis, après le briefing, son rôle d’observation et la candidature humaine envisagée aux Spectres."
+        ],
+        "exactCriterion": "Informations de Spectre révélées dans l’ordre prévu.",
+        "complete": true,
+        "coveredClauses": [
+          "La candidature et l’évaluation ne sont accessibles qu’après le briefing et une première prise de contact.",
+          "Le sujet historique révélant l’observation reste fermé avant briefing ; Nihlus disparaît après le premier débarquement.",
+          "Le reçu nihlus:2 ne peut pas être importé sans le briefing et ne donne aucun statut Spectre."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    },
+    {
+      "id": "DIA-joker-retour-du-prologue",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot Resolve : Le rapport de retour de Joker précède les sujets ordinaires et marque l’historique existant sans doublon. DEV02 utilise Eden Prime → Normandy direct, exporte le reçu puis recharge réellement pour constater le retour du pilotage. Pose originale, voix et dialogue intégral restent ouverts. Natif commun final03 : 1 246 tests réussis. DEV02 : quatre groupes, quatre exports, six PNG réellement ouverts à leur résolution originale. Description et critère fonctionnels exacts proposés couverts. Production à vérifier séparément ; aucun asset promu."
+      },
+      "implementationPaths": [
+        "src/resolve-citadel.js",
+        "src/state.js",
+        "src/main.js",
+        "src/story.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "docs/qa/resolve-citadel-dev-02-report.json",
+        "docs/qa/resolve-citadel-dev-02-visual-review.json",
+        "tests/resolve-citadel.test.js",
+        "docs/research/resolve-citadel.md"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactDescription": "Conversation au cockpit après la balise.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Conversation de retour au cockpit après la balise, avant toute visite de la Citadelle dans la fixture déclarée."
+        ],
+        "exactCriterion": "Condition de chapitre avant les dialogues ordinaires.",
+        "complete": true,
+        "coveredClauses": [
+          "Le rapport de retour n’est pas disponible avant Eden Prime.",
+          "La confirmation du nouveau rapport marque aussi le sujet historique entendu ; le rapport ancien et le nouveau ne se dupliquent pas.",
+          "Après un vrai rechargement, le sujet ordinaire de pilotage revient et le rapport n’est plus présenté."
+        ],
+        "limitations": [
+          "Textes français adaptés et lieux condensés ; aucune certification du dialogue ou de la scène originale intégrale.",
+          "Statistiques et effectifs ATB adaptés. Aucun statut d’asset n’est promu.",
+          "Course chronométrée originale et résolution de Fist par les seules tourelles restent à produire.",
+          "Contrôle de distribution encore séparé : productionPending:true."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "docs/qa/resolve-citadel-dev-02-report.json",
+          "docs/qa/resolve-citadel-dev-02-visual-review.json",
+          "tests/resolve-citadel.test.js",
+          "docs/research/resolve-citadel.md"
+        ]
+      }
+    }
+  ]
+}

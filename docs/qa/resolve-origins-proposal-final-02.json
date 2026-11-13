@@ -1,0 +1,243 @@
+{
+  "baseCommit": "f94bd6b7fbb36a4cd83b7672e7eb294b4830735f",
+  "generatedAt": "2026-11-13T17:05:41.027312+00:00",
+  "owner": "resolve_origins",
+  "scope": "Quatre descriptions et critères fonctionnels exacts des assignations d’origine ME1 et du choix d’origine ; dépendances vides vérifiées. Trois missions dédiées jouées publiquement, vrais exports et chargement manuel ; aucun statut d’asset ni texte de description/critère modifié.",
+  "records": [
+    {
+      "id": "SIDE-citadelle-vieille-connaissance",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/resolve-origins.js",
+        "gameKey": "resolveOrigins:old-friends"
+      },
+      "notesAppend": "Lot Resolve — 13 novembre 2026 : Le parcours public Terrien vérifie l’exclusion des contacts d’autres origines, interroge le garde, retrouve Finch déplacé et paie exactement 500 crédits. L’export réel enregistre completed/paid, 0 crédit, sans modifier les ressources annexes. Les tests natifs couvrent aussi le tir, l’insuffisance de fonds, les étapes périmées et l’unicité de la transaction. Référence réellement consultée : Prima Mass Effect (PC), Background Assignments, https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-miscellaneous-assignments/background-assignments (HTTP 200). Natif global 03 gelé : 1 246/1 246 ; DEV Origines 02 : quatre contrôles, quatre captures réellement ouvertes en original, quatre téléchargements publics dont une reprise manuelle, trois fixtures attribuées et 34 échantillons de déplacement public. Validation fonctionnelle des seuls textes exacts ci-dessous ; intégralité des variantes, art et calendrier originaux restent réservés. Production compilée encore attendue ; productionPending:true. Aucun statut d’asset modifié.",
+      "implementationPaths": [
+        "src/resolve-origins-data.js",
+        "src/resolve-origins.js",
+        "src/state.js",
+        "src/main.js",
+        "src/world.js",
+        "src/completion-persistence-campaign.js",
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "tests/resolve-origins.test.js",
+        "tests/resolve-origins-world.test.js",
+        "tests/commander.test.js",
+        "docs/research/resolve-origins.md",
+        "scripts/resolve-origins-public-final.mjs",
+        "docs/qa/resolve-origins-dev-02-report.json",
+        "docs/qa/resolve-origins-dev-02-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Disponible uniquement au profil concerné.",
+        "complete": true,
+        "coveredClauses": [
+          "Le contact Finch et cette assignation ne sont proposés qu’à Shepard Terrien après une première mission post-Citadelle. Les autres origines ne voient pas le contact ; un dossier d’une autre origine est refusé par le décodeur."
+        ],
+        "exactDescription": "Quête liée à l’origine terrienne de Shepard.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Une assignation propre à l’origine terrienne relie Finch, le garde turien et Curt Weisman : révélation de la tentative d’empoisonnement, arrivée physique de Finch, chantage puis paiement de 500 crédits ou tir."
+        ],
+        "limitations": [
+          "Validation fonctionnelle des textes exacts de description et d’acceptation uniquement ; les dialogues sont réécrits en français et les cartes restent condensées. Aucun asset n’est promu et aucune ressemblance, voix, cinématique ou géographie originale intégrale n’est certifiée.",
+          "Les arbres de Charme/Intimidation originaux et toutes les variantes canoniques ne sont pas reconstruits. Les branches jouables retenues et les montants 500/20 crédits viennent du guide Prima consulté ; aucun montant de réputation ou d’XP non sourcé n’est inventé.",
+          "Les trois chapitres antérieurs, ressources et positions d’arrivée sont des fixtures natives explicitement attribuées. Les nouvelles missions, les trajets, l’appel, les exports et le chargement manuel sont réellement joués par les commandes publiques.",
+          "Le blocus original n’étant pas représenté, le seuil de fermeture actuel est le passage vers Ilos ou la fin de campagne. Cela ne certifie pas une reproduction 1:1 du calendrier original.",
+          "La production compilée reste une étape distincte : productionPending:true. Le rapport DEV01 et son échec de sélecteur caché sont conservés ; la variante finale cible le bouton de planète visible sans modifier le produit."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "tests/resolve-origins.test.js",
+          "tests/resolve-origins-world.test.js",
+          "tests/commander.test.js",
+          "docs/research/resolve-origins.md",
+          "scripts/resolve-origins-public-final.mjs",
+          "docs/qa/resolve-origins-dev-02-report.json",
+          "docs/qa/resolve-origins-dev-02-visual-review.json"
+        ]
+      }
+    },
+    {
+      "id": "SIDE-citadelle-ancien-du-service",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/resolve-origins.js",
+        "gameKey": "resolveOrigins:old-unhappy-far-off-things"
+      },
+      "notesAppend": "Lot Resolve — 13 novembre 2026 : Le parcours public Stellaire extrait le commando au Normandy, appelle réellement Hannah au terminal, revient par la carte galactique et ouvre un crédit de nourriture de 20 crédits. L’export conserve l’origine, initialAid/refused et completed/food avec 20 crédits restants sur les 40 préparés. Les tests couvrent aussi le don initial, les espèces, le refus et les coûts uniques ; aucun traitement accepté n’est inventé pour les branches sans persuasion. Référence réellement consultée : Prima Mass Effect (PC), Background Assignments, https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-miscellaneous-assignments/background-assignments (HTTP 200). Natif global 03 gelé : 1 246/1 246 ; DEV Origines 02 : quatre contrôles, quatre captures réellement ouvertes en original, quatre téléchargements publics dont une reprise manuelle, trois fixtures attribuées et 34 échantillons de déplacement public. Validation fonctionnelle des seuls textes exacts ci-dessous ; intégralité des variantes, art et calendrier originaux restent réservés. Production compilée encore attendue ; productionPending:true. Aucun statut d’asset modifié.",
+      "implementationPaths": [
+        "src/resolve-origins-data.js",
+        "src/resolve-origins.js",
+        "src/state.js",
+        "src/main.js",
+        "src/world.js",
+        "src/completion-persistence-campaign.js",
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "tests/resolve-origins.test.js",
+        "tests/resolve-origins-world.test.js",
+        "tests/commander.test.js",
+        "docs/research/resolve-origins.md",
+        "scripts/resolve-origins-public-final.mjs",
+        "docs/qa/resolve-origins-dev-02-report.json",
+        "docs/qa/resolve-origins-dev-02-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Contact familial et condition d’origine.",
+        "complete": true,
+        "coveredClauses": [
+          "Le contact Zabaleta est réservé à Shepard Stellaire. Le déplacement public au Normandy ouvre une liaison nommée Hannah Shepard sur le Kilimanjaro ; sa réponse confirme son lien avec Zabaleta et le retour auprès du vétéran."
+        ],
+        "exactDescription": "Quête liée à l’origine spatiale de Shepard.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Une assignation propre à l’origine stellaire relie Zabaleta, le terminal de communication du Normandy et Hannah, puis le retour à la Citadelle pour une décision d’aide."
+        ],
+        "limitations": [
+          "Validation fonctionnelle des textes exacts de description et d’acceptation uniquement ; les dialogues sont réécrits en français et les cartes restent condensées. Aucun asset n’est promu et aucune ressemblance, voix, cinématique ou géographie originale intégrale n’est certifiée.",
+          "Les arbres de Charme/Intimidation originaux et toutes les variantes canoniques ne sont pas reconstruits. Les branches jouables retenues et les montants 500/20 crédits viennent du guide Prima consulté ; aucun montant de réputation ou d’XP non sourcé n’est inventé.",
+          "Les trois chapitres antérieurs, ressources et positions d’arrivée sont des fixtures natives explicitement attribuées. Les nouvelles missions, les trajets, l’appel, les exports et le chargement manuel sont réellement joués par les commandes publiques.",
+          "Le blocus original n’étant pas représenté, le seuil de fermeture actuel est le passage vers Ilos ou la fin de campagne. Cela ne certifie pas une reproduction 1:1 du calendrier original.",
+          "La production compilée reste une étape distincte : productionPending:true. Le rapport DEV01 et son échec de sélecteur caché sont conservés ; la variante finale cible le bouton de planète visible sans modifier le produit."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "tests/resolve-origins.test.js",
+          "tests/resolve-origins-world.test.js",
+          "tests/commander.test.js",
+          "docs/research/resolve-origins.md",
+          "scripts/resolve-origins-public-final.mjs",
+          "docs/qa/resolve-origins-dev-02-report.json",
+          "docs/qa/resolve-origins-dev-02-visual-review.json"
+        ]
+      }
+    },
+    {
+      "id": "SIDE-citadelle-souvenirs-de-mindoir",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/resolve-origins.js",
+        "gameKey": "resolveOrigins:i-remember-me"
+      },
+      "notesAppend": "Lot Resolve — 13 novembre 2026 : Le parcours public Colon prend la seringue chez Girard, écoute Talitha, avance trop vite, recule puis revient à une approche prudente. Talitha accepte elle-même le sédatif et Girard reçoit le compte rendu. L’export indique completed/self-sedated, sans dépense de médi-gel ni gain inventé. La reprise depuis le vrai emplacement manuel conserve cette issue et retire le contact de Talitha. Le second mode de sédation et les refus hors étape sont couverts nativement. Référence réellement consultée : Prima Mass Effect (PC), Background Assignments, https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectre-assignments-miscellaneous-assignments/background-assignments (HTTP 200). Natif global 03 gelé : 1 246/1 246 ; DEV Origines 02 : quatre contrôles, quatre captures réellement ouvertes en original, quatre téléchargements publics dont une reprise manuelle, trois fixtures attribuées et 34 échantillons de déplacement public. Validation fonctionnelle des seuls textes exacts ci-dessous ; intégralité des variantes, art et calendrier originaux restent réservés. Production compilée encore attendue ; productionPending:true. Aucun statut d’asset modifié.",
+      "implementationPaths": [
+        "src/resolve-origins-data.js",
+        "src/resolve-origins.js",
+        "src/state.js",
+        "src/main.js",
+        "src/world.js",
+        "src/completion-persistence-campaign.js",
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "tests/resolve-origins.test.js",
+        "tests/resolve-origins-world.test.js",
+        "tests/commander.test.js",
+        "docs/research/resolve-origins.md",
+        "scripts/resolve-origins-public-final.mjs",
+        "docs/qa/resolve-origins-dev-02-report.json",
+        "docs/qa/resolve-origins-dev-02-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Dialogue sensible et condition d’origine.",
+        "complete": true,
+        "coveredClauses": [
+          "Seul Shepard Colon accède à Girard et Talitha. Le dialogue écoute Talitha, distingue la peur provoquée par une approche précipitée, offre un recul explicite puis la remise ou l’administration du sédatif ; le compte rendu à Girard est requis avant achèvement."
+        ],
+        "exactDescription": "Quête liée à l’origine coloniale de Shepard.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Une assignation propre à l’origine coloniale reprend le souvenir de Mindoir avec Talitha, la seringue confiée par Girard et le relais médical après sédation."
+        ],
+        "limitations": [
+          "Validation fonctionnelle des textes exacts de description et d’acceptation uniquement ; les dialogues sont réécrits en français et les cartes restent condensées. Aucun asset n’est promu et aucune ressemblance, voix, cinématique ou géographie originale intégrale n’est certifiée.",
+          "Les arbres de Charme/Intimidation originaux et toutes les variantes canoniques ne sont pas reconstruits. Les branches jouables retenues et les montants 500/20 crédits viennent du guide Prima consulté ; aucun montant de réputation ou d’XP non sourcé n’est inventé.",
+          "Les trois chapitres antérieurs, ressources et positions d’arrivée sont des fixtures natives explicitement attribuées. Les nouvelles missions, les trajets, l’appel, les exports et le chargement manuel sont réellement joués par les commandes publiques.",
+          "Le blocus original n’étant pas représenté, le seuil de fermeture actuel est le passage vers Ilos ou la fin de campagne. Cela ne certifie pas une reproduction 1:1 du calendrier original.",
+          "La production compilée reste une étape distincte : productionPending:true. Le rapport DEV01 et son échec de sélecteur caché sont conservés ; la variante finale cible le bouton de planète visible sans modifier le produit."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "tests/resolve-origins.test.js",
+          "tests/resolve-origins-world.test.js",
+          "tests/commander.test.js",
+          "docs/research/resolve-origins.md",
+          "scripts/resolve-origins-public-final.mjs",
+          "docs/qa/resolve-origins-dev-02-report.json",
+          "docs/qa/resolve-origins-dev-02-visual-review.json"
+        ]
+      }
+    },
+    {
+      "id": "CHC-origine-de-shepard",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/resolve-origins.js"
+      },
+      "notesAppend": "Lot Resolve — 13/11/2026 : missions propres Terrien (Finch), Colon (Talitha/Girard) et Stellaire (Zabaleta/appel Hannah). Origines et étapes persistantes ; DEV02 : 4 contrôles, 4 exports dont reprise manuelle, 4 PNG relus ; natif03 : 1 246/1 246. Sources et preuves : docs/research/resolve-origins.md ; docs/qa/resolve-origins-dev-02-report.json. Variantes intégrales, art et blocus originaux réservés ; aucun asset promu. productionPending:true.",
+      "implementationPaths": [
+        "src/resolve-origins-data.js",
+        "src/resolve-origins.js",
+        "src/state.js",
+        "src/main.js",
+        "src/world.js",
+        "src/completion-persistence-campaign.js",
+        "src/advance-continuity.js",
+        "src/advance-continuity-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/resolve-integration-final-03-report.json",
+        "tests/resolve-origins.test.js",
+        "tests/resolve-origins-world.test.js",
+        "tests/commander.test.js",
+        "docs/research/resolve-origins.md",
+        "scripts/resolve-origins-public-final.mjs",
+        "docs/qa/resolve-origins-dev-02-report.json",
+        "docs/qa/resolve-origins-dev-02-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Origine stable dans toute sauvegarde.",
+        "complete": true,
+        "coveredClauses": [
+          "Les trois origines demeurent inchangées dans les vrais exports de leurs missions. La reprise depuis un emplacement manuel conserve le Colon, son profil et sa progression ; chaque transition native traverse le vrai décodeur. Les dix-huit combinaisons apparence/origine/profil de tests/commander.test.js passent dans le gate natif 03."
+        ],
+        "exactDescription": "Terrien, colon ou spatial ; dialogues et mission propre.",
+        "descriptionComplete": true,
+        "coveredDescriptionClauses": [
+          "Terrien dispose des échanges et de la mission Finch/Weisman ; Colon dispose de Girard/Talitha/Mindoir ; Stellaire dispose de Zabaleta et de l’appel à Hannah au Normandy. Les missions sont mutuellement exclusives selon le dossier enregistré."
+        ],
+        "limitations": [
+          "Validation fonctionnelle des textes exacts de description et d’acceptation uniquement ; les dialogues sont réécrits en français et les cartes restent condensées. Aucun asset n’est promu et aucune ressemblance, voix, cinématique ou géographie originale intégrale n’est certifiée.",
+          "Les arbres de Charme/Intimidation originaux et toutes les variantes canoniques ne sont pas reconstruits. Les branches jouables retenues et les montants 500/20 crédits viennent du guide Prima consulté ; aucun montant de réputation ou d’XP non sourcé n’est inventé.",
+          "Les trois chapitres antérieurs, ressources et positions d’arrivée sont des fixtures natives explicitement attribuées. Les nouvelles missions, les trajets, l’appel, les exports et le chargement manuel sont réellement joués par les commandes publiques.",
+          "Le blocus original n’étant pas représenté, le seuil de fermeture actuel est le passage vers Ilos ou la fin de campagne. Cela ne certifie pas une reproduction 1:1 du calendrier original.",
+          "La production compilée reste une étape distincte : productionPending:true. Le rapport DEV01 et son échec de sélecteur caché sont conservés ; la variante finale cible le bouton de planète visible sans modifier le produit."
+        ],
+        "evidence": [
+          "docs/qa/resolve-integration-final-03-report.json",
+          "tests/resolve-origins.test.js",
+          "tests/resolve-origins-world.test.js",
+          "tests/commander.test.js",
+          "docs/research/resolve-origins.md",
+          "scripts/resolve-origins-public-final.mjs",
+          "docs/qa/resolve-origins-dev-02-report.json",
+          "docs/qa/resolve-origins-dev-02-visual-review.json"
+        ]
+      }
+    }
+  ]
+}

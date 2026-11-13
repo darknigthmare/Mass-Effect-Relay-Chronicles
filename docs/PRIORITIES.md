@@ -1,6 +1,10 @@
 # Priorités P0/P1 — bilan historique du lot précédent
 
-Ce document conserve les résultats du lot P0/P1 basé sur `259d512`. Le [lot Advance](ADVANCE.md), depuis `d2e8432`, poursuit Continuation et Completion. Son [audit courant](qa/advance-tracking-current-final-01-audit.json) suit 6 560 critères ouverts : 664 P0  5 782 P1 et 114 P2 ; les compteurs ci-dessous restent ceux du lot historique.
+Le [lot Resolve](RESOLVE.md) met à jour **36 fiches et 118 cellules**, dont **32 critères fonctionnels fermés : 11 P0, 21 P1 et 0 P2**. Les descriptions et critères restent inchangés, les 151 Validé antérieurs sont préservés et aucun statut d’asset n’est promu. Le principal compte **852 Défini, 350 Prototype, 0 Intégré, 183 Validé** ; le registre complet, **5 887 Défini, 641 Prototype, 0 Intégré, 183 Validé**. L’[audit courant](qa/resolve-tracking-current-final-01-audit.json) conserve **6 528 critères ouverts : 653 P0, 5 761 P1 et 114 P2**.
+
+Les autres tableaux ci-dessous restent historiques.
+
+Ce document conserve les résultats du lot P0/P1 basé sur `259d512`. Le [lot Advance](ADVANCE.md), depuis `d2e8432`, poursuit Continuation et Completion. Son [audit historique](qa/advance-tracking-current-final-01-audit.json) suit 6 560 critères ouverts : 664 P0  5 782 P1 et 114 P2 ; les compteurs ci-dessous restent ceux du lot historique.
 
 Le lot met en jeu les objectifs d’Eden Prime, de Mira et d’Ilos, les positions et ordres tactiques, les talents ME1, la navigation manette et les phases de Bénézia et du Thorien. Il renforce aussi l’horloge ATB, la pause au changement de focus, les sauvegardes et les comparatifs d’équipement. **51 fiches existantes** sont mises à jour ; **18 passent de Défini à Prototype** (11 P0 et sept P1). Les critères originaux restent ouverts lorsque l’adaptation ne les satisfait pas entièrement. Aucune fiche ne devient Intégré ou Validé et aucun asset n’est déclaré produit dans ce lot.
 

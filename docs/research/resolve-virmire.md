@@ -1,0 +1,56 @@
+# Resolve — Virmire, faits enregistrés et ordre des scènes
+
+Périmètre : campagne **ME1**, sprites 2D HD, décors Three.js et rencontres ATB conservés. `src/resolve-virmire.js` fournit un modèle de dialogue et des transitions pures ; les textes sont des réécritures françaises condensées de cette adaptation. Aucun dialogue original intégral, doublage, raccord de caméra canonique ou nouvel asset n’est revendiqué. Aucun statut d’asset n’est modifié.
+
+## Sources réellement consultées
+
+Les cinq pages du guide original Prima PC ont été récupérées le 13 novembre 2026 avec **HTTP 200**, puis lues sous forme de texte. La première requête directe de la page des assignations avait répondu 403 ; sa variante `www` avec `?x=1` a répondu 200 et redirigé vers le domaine sans `www`. Le [cache de faits, URLs, tailles et SHA-256](resolve-virmire-sources.json) identifie chaque document effectivement consulté ; il contient des paraphrases, pas une transcription des dialogues.
+
+- [Assignations Virmire](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/spectra-assignments-virmire-and-citadel-lockdown/virmire-assignments?x=1) : trois soutiens distincts, console d’alarmes indépendante, conflit Wrex et armure.
+- [Atteindre le camp](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-5-virmire/objective-1-visit-virmire-reach-the-camp?x=1) : noyau transformé en bombe, diversion, défense antiaérienne et affectation Ashley/Kaidan.
+- [Infiltrer la base](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-5-virmire/objective-2-infiltrate-sarens-base?x=1) : communications, satellite et plateforme de ravitaillement.
+- [Neutraliser la tour antiaérienne](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-5-virmire/objective-3-disable-the-aa-tower?x=1) : Rana, endoctrinement, balise, puis révélation de Sovereign.
+- [Bombe et extraction](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-5-virmire/objective-4-set-the-nuke-flee-virmire?x=1) : volontaire à la tour, défenseur à la bombe, bombe armée, choix définitif, confrontation Saren, départ.
+
+La page Prima des assignations attribue la mort de Kirrahe au choix d’alarme, ce qui diverge de la règle couramment attribuée aux drones de ravitaillement. Les sources de comparaison tentées ont répondu 402 ou 403 et n’ont pas été consultées. Le modèle conserve donc les trois sabotages et l’alarme séparément, mais exporte **`kirraheSurvived: null`**. Il ne certifie pas une survie à partir d’une règle contradictoire. `NPC-kirrahe` reste partiel sur cette clause.
+
+Le guide source les huit rangs de Charme/Intimidation et le retour de l’armure de Wrex. Ces talents originaux et cette mission ne sont pas livrés par ce module : **`DIA-wrex-virmire` et `QST-briefing-de-virmire` restent ouverts**, sans substitution par un seuil de moralité de 20 points ni mort de Wrex inventée.
+
+## Sous-ensemble et clauses exactes
+
+Les clauses ci-dessous définissent les critères fonctionnels visés. Leur clôture de production dépend des hooks exécutables, de la sauvegarde et des preuves publiques du lot ; ce document ne transforme pas à lui seul une fiche en Validé.
+
+| ID | DESCRIPTION exacte | Critère exact | Traitement et limites |
+|---|---|---|---|
+| `DIA-kirrahe-briefing` | Préparation de l’opération. | Rôles attribués et objectifs optionnels enregistrés. | Plan du noyau, diversion et défense antiaérienne ; Ashley ou Kaidan au STG, trois soutiens indépendants. Affectation de terrain condensée ; conflit complet Wrex réservé. |
+| `CHC-affectation-virmire` | Choisir le rôle d’Ashley et de Kaidan. | Positions de sauvetage reflètent l’affectation. | **Partiel** : rôles, absences du groupe, libellés tour/bombe et rapport suivent l’affectation. Les deux sites physiques distincts ne sont pas réalisés ; l’arène Saren reste commune. Les libellés seuls ne ferment ni la description ni le critère. |
+| `CHC-soutien-a-kirrahe` | Sabotages utiles à l’équipe galarienne. | Chaque objectif est enregistré séparément. | `support.communications`, `support.satellite`, `support.flyers` distincts, optionnels et sans récompense répétée. `alarms` indépendant. Les drones sont neutralisés par une action de terrain déclarée condensée, pas par cinq nouveaux ennemis ATB. |
+| `NPC-rana-thanoptis` | Scientifique asari au laboratoire de Virmire. | Choix de la laisser partir conservé pour export futur. | Rencontre après la défense de l’installation ; `rana: released/killed` persiste, sans événement d’un épisode ultérieur déduit. |
+| `CHC-sort-de-rana` | La laisser partir ou la tuer. | État exportable sans conséquence inventée dans ME1. | Deux issues définitives, laboratoire accessible dans les deux cas, rapport explicite. |
+| `DIA-sovereign-transmission` | Révélation de la nature de l’ennemi. | Cadre et progression de l’information respectés. | Rana évoque l’influence du vaisseau ; seconde balise puis projection de Sovereign ; identité de Moissonneur révélée dans cette scène. Vigil et le mécanisme du Conduit restent inconnus. |
+| `QST-revelation-de-sovereign` | Communiquer avec le Moissonneur. | Pas de codex dévoilant cette vérité avant la scène. | Drapeau `sovereign` après confirmation de la transmission ; Codex conditionné à ce fait ou à une ancienne mission terminée. Le marqueur ne révèle pas l’identité avant activation. |
+| `QST-choix-de-virmire` | Choisir qui sauver entre Ashley et Kaidan. | Perte irréversible et équipe mise à jour. | Ordre fixé avant Saren, refus d’une autre extraction au départ ; transaction de fin native applique le décès et réorganise l’équipe. Le module seul prépare l’ordre, il ne simule pas un décès de combat. |
+| `NPC-kirrahe` | Capitaine galarien sur Virmire. | Soutien reçu et survie suivis par des drapeaux précis. | **Partiel** : soutiens et alarme précis, survie inconnue en raison du conflit de source expliqué ci-dessus. |
+
+`CHC-survivant-de-virmire` reste partiel : l’absence, l’équipe et les réactions natives sont conservées, mais les romances complètes et leur épilogue ne sont pas implémentés. `QST-extraction-de-virmire` conserve sa réserve de cinématique originale. Aucun de ces critères plus larges n’est fermé par une seule ligne de dialogue.
+
+## Hooks et persistance
+
+- État `resolveVirmire`, schéma strict version 1 ; clés exactes, données propres, booléens et issues autorisées, ordre des scènes vérifié. Un champ ancien absent est migré ; un champ présent invalide doit être refusé par `decodeSave`, jamais remis à zéro.
+- `createResolveVirmireState`, `normalizeResolveVirmireState`, `isResolveVirmireUntouched` : initialisation, import et frontière historique des anciens tests/parties. Une ancienne rencontre Virmire ou mission terminée migre en `legacy`, sans fabriquer de soutien, rôle ou sort de Rana.
+- `listResolveVirmirePOIs`, `getResolveVirmireInteraction`, `transitionResolveVirmire` : mêmes portes pour les marqueurs publics et les choix. Chaque confirmation exige la proximité du point sur le terrain. La transition renvoie un candidat détaché, sans modifier les ressources ou la partie d’entrée.
+- `resolveVirmireEncounterGate` : briefing avant la première défense ; soutiens facultatifs jusqu’à l’entrée de l’installation ; Rana, balise, Sovereign, bombe et choix avant le boss Saren.
+- `resolveVirmireCompletionGate(state, choice)` : le départ conserve le choix confirmé. La perte et l’absence du défunt utilisent `completeZone`, `lost` et les contrôles natifs existants.
+- `virmireReport` : seulement les faits réellement enregistrés ; rapport détaillé inconnu en `legacy`. Le choix historique de survivant reste disponible, sans position d’extraction inventée.
+- `getResolveVirmireAwayCrew`, `reconcileResolveVirmireParty` et la transaction native `applyResolveVirmireInteraction` : le volontaire quitte le groupe actif dès le briefing, puis le défenseur dès l’armement de la bombe. Les équipiers présents sont conservés et le groupe est complété seulement avec les recrutés vivants disponibles ; un groupe réduit est permis. Le roster et les décès ne changent pas avant la fin. Un import qui remet un équipier affecté dans le groupe actif est refusé.
+- `resolveVirmireTravelGate`, raccordé à `canTravelCampaign` et `travelCampaign` : l’affectation interdit de quitter Virmire tant que l’opération n’est pas terminée. Après extraction, les rôles temporaires cessent et seul le survivant revient parmi les disponibles.
+- `main.js` affiche les modèles, applique la transaction native, synchronise le Codex et les marqueurs, puis sauvegarde après chaque confirmation. Le départ final réutilise `report.rescue` au lieu de rouvrir l’ordre.
+- `state.js` normalise `resolveVirmire` avant l’histoire afin de valider le dossier Sovereign et conserve les transactions atomiques d’import. Un import ne peut pas déplacer une opération engagée vers le Normandy ou une autre planète.
+
+## Vérification ciblée effectuée
+
+Les **22 tests du module Virmire** passent dans les **1 246 tests natifs globaux gelés** du [rapport FINAL03](../qa/resolve-integration-final-03-report.json), le 13 novembre 2026. Ils couvrent les huit combinaisons des trois soutiens, les quatre couples affectation/extraction, les deux sorts de Rana, l’ordre des révélations, l’irréversibilité de l’ordre, les données strictes et getters refusés sans lecture, l’absence de récompense et la migration honnête. Les transactions natives sont réellement passées par `encodeSave`/`decodeSave`, le Codex, les quatre fins possibles, l’export de campagne et son refus d’altération. Les affectations excluent les équipiers du groupe, les imports de combattants absents ou d’opération déplacée sont refusés, le départ est bloqué sans mutation et tous les points appartiennent au terrain connecté de Virmire.
+
+Le scénario public final `scripts/resolve-virmire-public-02.mjs` utilise exclusivement le lanceur commun `scripts/resolve-browser-proof.mjs`. Le [DEV02](../qa/resolve-virmire-dev-02-report.json) passe **six groupes**, **quatre vrais téléchargements** et **six captures réellement ouvertes** avec leur SHA dans la [revue originale](../qa/resolve-virmire-dev-02-visual-review.json). Le navigateur est fermé et les sources sont restées identiques. Les images montrent le briefing, le journal des trois soutiens, Rana, le Codex après Sovereign et les deux rapports de perte. Les chapitres et deux premières rencontres de Virmire sont préparés par les fonctions natives et explicitement attribués ; les deux combats Saren sont joués via les commandes ATB publiques et du temps réel. Chaque victoire utilise six Surcharges, quatre Déchirures et vingt-et-une Rafales disponibles dans l’interface ; aucun budget, cooldown ou PV n’est modifié.
+
+Le [DEV01 négatif](../qa/resolve-virmire-dev-01-report.json) et sa [revue](../qa/resolve-virmire-dev-01-visual-review.json) sont préservés : la boucle de tirs seuls avait atteint le délai du premier Saren après deux groupes et deux exports. Le nouveau collector est un fichier distinct. La [proposition finale](../qa/resolve-virmire-proposal-final-01.json) présente **sept critères fonctionnels complets et deux Prototype partiels**, sans nouvelle validation d’asset. La production compilée reste une étape distincte à exécuter par le parent.

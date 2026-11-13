@@ -4,12 +4,15 @@ import { getFrontierNPC, frontierNPCVisible } from './frontier-characters.js';
 import { getHorizonNPC, horizonNPCVisible } from './horizon-characters.js';
 import { narrativeTopicText } from './completion-narrative.js';
 import { normalizeAdvanceFerosState, advanceFerosCivilianAlive } from './advance-feros.js';
+import { resolveNoveriaContactAvailable } from './resolve-noveria.js';
 import { isExplorationBanterKey, explorationBanterHistoryPossible } from './continuation-banter-data.js';
+import { RESOLVE_VIGIL_CODEX, normalizeResolveEndgame } from './resolve-endgame.js';
+import { normalizeResolveVirmireState } from './resolve-virmire.js';
 
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const ZONES = new Set(['normandy', ...Object.keys(CHAPTERS)]);
 const BASE_CODEX = new Set(['relay', 'heat', 'normandy', 'atb']);
-const ALL_CODEX = [...CODEX, ...STORY_CODEX];
+const ALL_CODEX = [...CODEX, ...STORY_CODEX, ...RESOLVE_VIGIL_CODEX];
 const CODEX_IDS = new Set(ALL_CODEX.map(entry => entry.id));
 const TOPICS = new Map(Object.entries(STORY_CONVERSATIONS).flatMap(([conversationId, conversation]) => conversation.topics.map(topic => [`${conversationId}:${topic.id}`, { conversationId, conversation, topic }])));
 const BIOTIC_POWERS = new Set(['throw', 'lift', 'warp', 'singularity', 'barrier', 'stasis']);
@@ -72,8 +75,12 @@ function automaticCodex(state) {
   }
   if (completed(state, 'eden-prime')) ids.add('protheans');
   if (completed(state, 'feros') || normalizeAdvanceFerosState(state?.advanceFeros, state)?.cipher === true) ids.add('cipher');
-  if (completed(state, 'virmire')) ids.add('sovereign');
+  if (completed(state, 'virmire') || normalizeResolveVirmireState(state?.resolveVirmire, state)?.sovereign === true) ids.add('sovereign');
   if (completed(state, 'ilos')) ids.add('vigil');
+  if (normalizeResolveEndgame(state?.resolveEndgame, state)?.vigilExchange) {
+    ids.add('vigil');
+    for (const entry of RESOLVE_VIGIL_CODEX) ids.add(entry.id);
+  }
   return ids;
 }
 
@@ -147,6 +154,7 @@ export function recordVisit(state, zone) {
 }
 
 export function getConversation(state, id) {
+  if (['anoleis', 'parasini'].includes(id) && !resolveNoveriaContactAvailable(state, id)) return null;
   if (!state || typeof id !== 'string' || !OWN(STORY_CONVERSATIONS, id)
     || (state.context && (state.context.mediaId !== 'ME1' || state.context.periodId !== 'me1'))) return null;
   const conversation = STORY_CONVERSATIONS[id];
@@ -158,7 +166,8 @@ export function getConversation(state, id) {
   if (!story) return null;
   if (conversation.companion && (state.lost || []).includes(conversation.companion)) return null;
   let topics = conversation.topics.filter(topic => topicPossible(state, story, conversation, topic)
-    && !(topic.once && hasHeard(story, `${id}:${topic.id}`)));
+    && !(topic.once && hasHeard(story, `${id}:${topic.id}`))
+    && !(id === 'nihlus' && topic.id === 'mission' && state.flags?.briefed !== true));
   if (id === 'joker' && topics.some(topic => topic.id === 'eden-prime-report')) topics = topics.filter(topic => topic.id === 'eden-prime-report');
   if (!topics.length) return null;
   return { id, speaker: conversation.speaker, portrait: conversation.portrait, topics: topics.map(topic => {

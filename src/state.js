@@ -4,12 +4,18 @@ import { initialInventory, normalizeInventory } from './loadout.js';
 import { normalizeOperations, operationEffects, listOperations } from './operations.js';
 import { CREW, CHAPTERS, CLASSES, ENCOUNTERS, EQUIPMENT } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
-import { createStoryState, migrateStoryState, recordVisit } from './story.js';
+import { createStoryState, migrateStoryState, recordVisit, readTopic } from './story.js';
 import { createAssignmentState, migrateAssignmentState } from './assignments.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
 import { createCampaignProgress, normalizeCampaignProgress, getCampaignMilestones } from './advance-progression.js';
 import { getDestinationAccess } from './advance-travel-access.js';
 import { createAdvanceFerosState, normalizeAdvanceFerosState, isAdvanceFerosUntouched, advanceFerosCompletionGate, ferosColonyReport } from './advance-feros.js';
+import { createResolveCitadelState, normalizeResolveCitadelState, isResolveCitadelUntouched, transitionResolveCitadel, resolveCitadelEncounterVictory } from './resolve-citadel.js';
+import { createResolveNoveriaState, normalizeResolveNoveriaState, isResolveNoveriaUntouched, resolveNoveriaCompletionGate } from './resolve-noveria.js';
+import { createResolveVirmireState, normalizeResolveVirmireState, isResolveVirmireUntouched, resolveVirmireCompletionGate,
+  getResolveVirmireAwayCrew, reconcileResolveVirmireParty, transitionResolveVirmire, resolveVirmireTravelGate } from './resolve-virmire.js';
+import { createResolveOrigins, normalizeResolveOrigins } from './resolve-origins.js';
+import { createResolveEndgameState, normalizeResolveEndgame } from './resolve-endgame.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -44,6 +50,8 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
     story: createStoryState(), missionProgress: createMissionProgress(), talents: createTalentState(),
     assignments: createAssignmentState(), campaignProgress: createCampaignProgress(), advanceFeros: createAdvanceFerosState(),
+    resolveCitadel: createResolveCitadelState(), resolveNoveria: createResolveNoveriaState(),
+    resolveVirmire: createResolveVirmireState(), resolveOrigins: createResolveOrigins(), resolveEndgame: createResolveEndgameState(),
     inventory: initialInventory(), operations: normalizeOperations(undefined), trackedOperation: null,
     logs: [{ title: 'Départ', text: 'Le Normandy fait route vers Eden Prime.' }],
     xp: 0, credits: 250, medigel: 4, upgrades: {}, paragon: 0, renegade: 0,
@@ -79,7 +87,8 @@ export function objectiveReady(state, zone = state.zone) {
   if (!OWN(CHAPTERS, zone) || !unlockedZones(state).includes(zone) || state.completed.includes(zone)) return false;
   // Tali supplies the evidence against Saren. Garrus and Wrex can be recruited
   // independently; accepting their help is not a condition for the audience.
-  if (zone === 'citadel') return state.recruited.includes('tali') && !state.lost.includes('tali');
+  if (zone === 'citadel') return state.recruited.includes('tali') && !state.lost.includes('tali')
+    && (isResolveCitadelUntouched(state) || state.resolveCitadel?.legacy === true || state.resolveCitadel?.proof === true);
   const encounters = zoneEncounters(zone);
   return encounters.length > 0 && encounters.every(id => state.cleared.includes(id));
 }
@@ -121,6 +130,8 @@ export function confirmCampaignBriefing(state) {
 export function canTravelCampaign(state, targetZone) {
   const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
   if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const deployment = resolveVirmireTravelGate(current, targetZone);
+  if (!deployment.ok) return deployment;
   return getDestinationAccess(current, targetZone, { unlocked: unlockedZones(current) });
 }
 
@@ -129,6 +140,8 @@ export function canTravelCampaign(state, targetZone) {
 export function travelCampaign(state, targetZone) {
   const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
   if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const deployment = resolveVirmireTravelGate(current, targetZone);
+  if (!deployment.ok) return deployment;
   const access = getDestinationAccess(current, targetZone, { unlocked: unlockedZones(current) });
   if (!access.ok) return access;
   if (current.zone === targetZone) return { ok: true, changed: false, firstVisit: false };
@@ -169,6 +182,72 @@ export function trackCampaignMilestone(state, id = null) {
   return { ok: true, changed: true };
 }
 
+/** Resolve all Citadel effects against a validated detached snapshot. A stale
+ * callback, invalid receipt or reward overflow leaves the campaign untouched. */
+export function applyResolveCitadel(state, interactionId, choiceId) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const result = transitionResolveCitadel(current, interactionId, choiceId);
+  if (!result.ok || !result.changed) return result;
+  current.resolveCitadel = result.progress;
+  if (interactionId === 'joker' && choiceId === 'report') {
+    const read = readTopic(current, 'joker', 'eden-prime-report');
+    if (!read.ok && !current.story.heard.includes('joker:eden-prime-report')) return read;
+  }
+  if (result.effect === 'recruit-tali' && !current.recruited.includes('tali')) {
+    current.recruited.push('tali');
+    addLog(current, 'Nouvel équipier', 'Tali rejoint votre commando après son sauvetage et la remise de la preuve.');
+  }
+  if (result.log) addLog(current, result.log.title, result.log.text);
+  if (interactionId === 'fist') addLog(current, 'Sort de Fist', result.progress.fist === 'spared'
+    ? 'Shepard a épargné Fist. L’aveu sur la ruelle a été conservé.'
+    : `Fist a été abattu par ${result.progress.fist === 'wrex' ? 'Wrex, présent dans le groupe au combat' : 'Shepard, sans Wrex dans le groupe au combat'}. L’aveu sur la ruelle a été conservé.`);
+  if (!decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state: current }))
+    return { ok: false, reason: 'Cette réponse produirait une progression invalide.' };
+  state.resolveCitadel = current.resolveCitadel;
+  state.recruited = current.recruited;
+  state.logs = current.logs;
+  state.story = current.story;
+  return result;
+}
+
+/** Called only by the real battle victory controller; pure model callers can
+ * inspect the encounter without awarding its adapted campaign rewards. */
+export function winResolveCitadelEncounter(state, id) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const result = resolveCitadelEncounterVictory(current, id);
+  if (!result.ok) return result;
+  if (current.xp + result.xp > 1_000_000_000 || current.credits + result.credits > 1_000_000_000)
+    return { ok: false, reason: 'La limite de récompense est atteinte.' };
+  current.resolveCitadel = result.progress;
+  current.xp += result.xp; current.credits += result.credits;
+  addLog(current, result.log.title, result.log.text);
+  if (!decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state: current }))
+    return { ok: false, reason: 'Cette victoire produirait une progression invalide.' };
+  state.resolveCitadel = current.resolveCitadel;
+  state.xp = current.xp; state.credits = current.credits; state.logs = current.logs;
+  return result;
+}
+
+/** Assigning an STG volunteer or arming Virmire's bomb updates the field team
+ * in the same validated transaction as its narrative receipt. */
+export function applyResolveVirmireInteraction(state, id, choiceId) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!current) return { ok: false, reason: 'Progression invalide.' };
+  const result = transitionResolveVirmire(current, id, choiceId);
+  if (!result.ok) return result;
+  if (result.progress) current.resolveVirmire = result.progress;
+  const party = reconcileResolveVirmireParty(current);
+  if (!party) return { ok: false, reason: 'Le groupe de terrain ne peut pas être réconcilié.' };
+  current.party = party;
+  if (result.log) addLog(current, result.log.title, result.log.text);
+  if (!decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state: current }))
+    return { ok: false, reason: 'Cette affectation produirait une progression invalide.' };
+  state.resolveVirmire = current.resolveVirmire; state.party = current.party; state.logs = current.logs;
+  return result;
+}
+
 /** One authoritative transaction for the campaign's fixed supply containers. */
 export function collectSupply(state, id) {
   const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
@@ -196,25 +275,36 @@ export function recruit(state, id) {
       // Completing the audience does not prevent a later recruitment visit.
       : ['garrus', 'tali', 'wrex'].includes(id) && state.zone === 'citadel' && unlockedZones(state).includes('citadel');
   if (!allowed) return false;
+  if (!isResolveCitadelUntouched(state) && state.resolveCitadel?.legacy !== true) {
+    // Modern Tali recruitment is inseparable from the evidence receipt and is
+    // committed by applyResolveCitadel; retain the untouched historical API.
+    if (id === 'tali' || id === 'garrus' && !state.completed.includes('citadel') && state.resolveCitadel?.clinic !== true) return false;
+  }
   state.recruited.push(id);
   addLog(state, 'Nouvel équipier', `${CREW[id].name} rejoint votre commando.`);
   return true;
 }
 
 export function availableCrew(state) {
-  return state.recruited.filter(id => OWN(CREW, id) && !state.lost.includes(id) && !['shepard', 'jenkins'].includes(id));
+  const away = getResolveVirmireAwayCrew(state);
+  return state.recruited.filter(id => OWN(CREW, id) && !state.lost.includes(id) && !['shepard', 'jenkins'].includes(id) && !away.includes(id));
 }
 
 export function setSquad(state, ids) {
   if (state.zone !== 'normandy' || !Array.isArray(ids) || ids.length !== 2 || new Set(ids).size !== 2) return false;
-  if (!ids.every(id => id !== 'shepard' && OWN(CREW, id) && state.recruited.includes(id) && !state.lost.includes(id))) return false;
+  const away = getResolveVirmireAwayCrew(state);
+  if (!ids.every(id => id !== 'shepard' && OWN(CREW, id) && state.recruited.includes(id) && !state.lost.includes(id) && !away.includes(id))) return false;
   state.party = ['shepard', ...ids];
   return true;
 }
 
 export function winEncounter(state, id) {
   if (!canStartEncounter(state, id).ok) return false;
+  const legacyNoveria = id.startsWith('noveria:') && isResolveNoveriaUntouched(state);
   state.cleared.push(id);
+  // Native historical callers can still cross the retained chapter boundary;
+  // player-facing controllers enforce the new Port Hanshan pass beforehand.
+  if (legacyNoveria) state.resolveNoveria = { ...createResolveNoveriaState(), legacy: true };
   state.xp += 65;
   state.credits += 85;
   if (id === 'eden-prime:encounter-1') {
@@ -231,6 +321,10 @@ export function completeZone(state, zone, choice = null) {
   if (state.zone !== zone || !objectiveReady(state, zone) || !canCompleteMission(state, zone)) return false;
   if (OWN(CHOICES, zone) ? !CHOICES[zone].includes(choice) : choice !== null && choice !== undefined) return false;
   const legacyFeros = zone === 'feros' && isAdvanceFerosUntouched(state);
+  const legacyVirmire = zone === 'virmire' && isResolveVirmireUntouched(state);
+  const legacyNoveria = zone === 'noveria' && isResolveNoveriaUntouched(state);
+  if (zone === 'noveria' && !legacyNoveria && !resolveNoveriaCompletionGate(state).ok) return false;
+  if (zone === 'virmire' && !legacyVirmire && !resolveVirmireCompletionGate(state, choice).ok) return false;
   if (zone === 'feros' && !legacyFeros && !advanceFerosCompletionGate(state).ok) return false;
   if (zone === 'feros' && !legacyFeros) {
     const colony = ferosColonyReport(state);
@@ -240,6 +334,8 @@ export function completeZone(state, zone, choice = null) {
   // Preserve the historical native chapter boundary when none of the new
   // Feros interactions has been started. Do not invent colonist outcomes.
   if (legacyFeros) state.advanceFeros = { ...createAdvanceFerosState(), legacy: true };
+  if (legacyVirmire) state.resolveVirmire = { ...createResolveVirmireState(), legacy: true };
+  if (legacyNoveria) state.resolveNoveria = { ...createResolveNoveriaState(), legacy: true };
   state.xp += CHAPTERS[zone].reward;
   state.credits += 180;
   state.medigel = Math.min(9, state.medigel + 2);
@@ -462,6 +558,18 @@ export function decodeSave(raw) {
     if (OWN(input, 'advanceFeros') && input.advanceFeros === undefined) return null;
     state.advanceFeros = normalizeAdvanceFerosState(OWN(input, 'advanceFeros') ? input.advanceFeros : undefined, state);
     if (!state.advanceFeros) return null;
+    // Resolve receipts are independent authoritative facts. Validate all of
+    // them before story knowledge, without reconstructing unrecorded outcomes.
+    for (const [key, normalize] of [
+      ['resolveCitadel', normalizeResolveCitadelState], ['resolveNoveria', normalizeResolveNoveriaState],
+      ['resolveVirmire', normalizeResolveVirmireState], ['resolveOrigins', normalizeResolveOrigins],
+      ['resolveEndgame', normalizeResolveEndgame],
+    ]) {
+      if (OWN(input, key) && input[key] === undefined) return null;
+      state[key] = normalize(OWN(input, key) ? input[key] : undefined, state);
+      if (!state[key]) return null;
+    }
+    if (state.party.some(id => getResolveVirmireAwayCrew(state).includes(id))) return null;
     state.story = migrateStoryState(OWN(input, 'story') ? input.story : undefined, state);
     if (!state.story) return null;
     if (OWN(input, 'campaignProgress') && input.campaignProgress === undefined) return null;

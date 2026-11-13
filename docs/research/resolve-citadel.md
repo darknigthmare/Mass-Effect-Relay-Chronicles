@@ -1,0 +1,60 @@
+# Enquête de la Citadelle et retour du prologue — Resolve
+
+Socle : `f94bd6b7fbb36a4cd83b7672e7eb294b4830735f`, ME1 exclusivement. Les textes sont des paraphrases françaises originales, pas une transcription des dialogues du jeu. Le groupe de trois, le renderer de sprites 2D dans les décors 3D et le moteur ATB existants sont conservés.
+
+## Sources réellement consultées
+
+Le 13 novembre 2026, `curl -L` avec le domaine `www.primagames.com` a renvoyé HTTP 200 pour les cinq sections du guide Prima PC ci-dessous. Les mêmes accès avec `urllib.request` ont renvoyé 403 ; aucun contenu de ces refus n’est présenté comme une lecture. Les pages reçues contiennent le texte de la section avant le formulaire d’inscription. Le PDF officiel du prologue est la référence historique du catalogue ; il n’a pas servi à inventer une scène de Fist absente de cet extrait.
+
+| Section consultée | Faits retenus | SHA-256 du HTML reçu |
+| --- | --- | --- |
+| [Citadelle, objectif 1](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-1-the-citadel/objective-1-attend-the-council-hearing) | Le SSC n’a pas obtenu de preuve ; l’audience initiale ne destitue pas Saren et ne promeut pas Shepard. Harkin et Barla constituent deux pistes. | `987d41caf89a88920d280a1bd2d3d180c26dfbf8a9dcef3d49492e0ad93a85a6` |
+| [Citadelle, objectif 2](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-1-the-citadel/objective-2-speak-with-harkin-or-barla-von) | Harkin situe Garrus à la clinique ; Barla situe Wrex au SSC. Wrex poursuit Fist pour le Courtier. Garrus libère Michel ; ses agresseurs travaillent pour Fist. Michel a soigné la Quarienne et l’a dirigée vers Fist. Garrus et Wrex ne sont pas deux recrutements obligatoires pour obtenir la preuve. | `a37dde7e5874b1902e5c7775c60e85e2ed8f82d4b07cff4cb7d139ad72807d56` |
+| [Citadelle, objectif 3](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-1-the-citadel/objective-3-take-down-fist-save-the-quarian) | Fist dispose de deux tourelles. Il révèle le piège avant son sort final. Wrex le tue s’il est dans le groupe ; sinon Shepard peut le laisser vivre ou le tuer. La ruelle contient un assassin turien et des assassins galariens technologiques. Le noyau geth fournit un enregistrement impliquant Saren et évoquant le Conduit et les Moissonneurs ; Tali rejoint ensuite le groupe. | `c8dedcccbb9c6625188dfcfca6d96b17cc2d31ce11df188f7a87719887ad8a99` |
+| [Prologue, objectif 1](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/prologue-normandy-and-eden-prime/objective-1-speak-with-captain-anderson) | Nihlus parle d’Eden Prime avant le briefing. Anderson révèle la récupération de la balise, puis le rôle d’évaluation de Nihlus et la candidature envisagée aux Spectres. Ce briefing ne nomme pas Shepard Spectre. | `d1b5e4ba2051f8341f969d4f8da147eb570a227883ec6c7069638e362d0611f1` |
+| [Prologue, objectif 4](https://www.primagames.com/eguides/mass-effect-pc-eguide/walkthrough/prologue-normandy-and-eden-prime/objective-4-speak-with-joker) | Après la balise, Anderson contacte l’ambassadeur et demande à Shepard de faire préparer l’accostage par Joker. Les échanges facultatifs restent disponibles avant le départ. | `216a4a3b4540d718626b054bc6bc977d45f05f13116eda91992009c3461729c9` |
+
+## Modèle et limites
+
+[`resolve-citadel.js`](../../src/resolve-citadel.js) distingue l’audience, les deux contacts, la clinique, le témoignage de Michel, trois victoires, le sort de Fist, le sauvetage et la réception de la preuve. L’ordre Harkin/Barla est libre ; la clinique est accessible directement dans la carte condensée, sans imposer un recrutement. Le service et la quête de chantage de Michel restent dans leurs systèmes existants ; lui demander son témoignage ne les récompense et ne les résout pas.
+
+Les trois combats sont exécutables dans le moteur ATB : deux hommes à la clinique ; Fist et deux tourelles ; deux assassins dans la ruelle. Leurs statistiques et leurs effectifs sont adaptés. Les corps humains, turien et galarien sont des silhouettes provisoires distinctes d’une certification d’art ; aucun nouvel atlas n’est livré. Les tourelles réutilisent le corps existant. La résolution originale par destruction des seules tourelles, l’assaut complet du bar, la course chronométrée, les arènes originales et les animations originales restent à produire.
+
+La présence de Wrex est enregistrée depuis le groupe réellement déployé à la victoire contre Fist, avant toute extraction ou changement de groupe ultérieur. Être simplement recruté ne suffit pas. L’aveu est toujours conservé avant son exécution éventuelle. L’état vaincu du combattant ATB n’est pas assimilé à sa mort narrative. La preuve n’est reçue qu’après la victoire de la ruelle ; la transaction ajoute Tali, le reçu et le journal ensemble, sans récompense de lecture. Les trois victoires donnent chacune le budget adapté existant de 65 XP et 85 crédits, une seule fois. Aucun ID de ces rencontres n’est injecté dans l’ancien tableau `cleared`.
+
+Nihlus révèle sa candidature seulement après le briefing, et disparaît du dialogue après le premier débarquement. Le rapport de Joker reste avant les sujets ordinaires ; sa confirmation marque également le sujet historique `joker:eden-prime-report` comme entendu, sans donner deux rapports au retour. La pose assise, les voix et les dialogues intégraux restent hors de cette livraison.
+
+[`state.js`](../../src/state.js) normalise les cinq reçus Resolve avant l’historique du récit. Un champ ancien absent migre ; un champ présent invalide ou explicitement `undefined` est refusé. Une ancienne enquête ne reçoit aucun sort de Fist, contact ou secours inventé. Les transactions détaillées de la Citadelle et de Virmire travaillent sur un candidat entièrement validé avant toute mutation. L’API native historique conserve sa frontière de chapitre pour les états non commencés ; les contrôleurs publics utilisent les gardes détaillées. Les personnages détachés au STG ou à la bombe de Virmire ne peuvent rester dans le groupe actif ni être rééquipés par une sélection d’équipe à bord.
+
+## Critères exacts visés et portée
+
+| ID existant | Description conservée | Critère conservé | Portée et réserve |
+| --- | --- | --- | --- |
+| `QST-rapport-a-la-citadelle` | Audience politique sur l’attaque. | Aucune promotion anticipée. | Reçu du rapport indépendant ; pas de Spectre, de destination ni de récompense à cette audience. |
+| `QST-piste-garrus` | Enquêter auprès du SSC et de la clinique. | Ordre des indices flexible où le jeu l’autorise. | Deux contacts facultatifs, vraie rencontre de clinique et témoignage ; les lieux sont condensés. |
+| `QST-piste-du-courtier` | Consulter les contacts de la Citadelle. | État de Fist et recrutement de Wrex cohérents. | Barla puis Wrex facultatif, combat et aveu de Fist, sort dérivé du groupe présent. |
+| `QST-sauvetage-de-tali` | Interrompre l’embuscade et obtenir la preuve. | Tali disponible après la scène et preuve dans le journal. | Vraie rencontre ATB suivie d’une réception atomique de l’enregistrement ; chronomètre et route originale ouverts. |
+| `CHC-sort-de-fist` | Issue de la confrontation à Chora’s Den. | Influence de la présence de Wrex respectée. | Trois issues persistantes : épargné, abattu par Shepard, abattu par Wrex présent au combat. |
+| `NPC-fist` | Propriétaire de Chora’s Den lié à l’enquête. | État vivant ou mort persistant selon l’équipe et les choix. | Comportement présent ; corps et animation définitifs absents, fiche complète artistique ouverte. |
+| `NPC-harkin` | Ancien agent du SSC rencontré au bar. | Informations nécessaires à la piste Garrus. | Sujet d’enquête situé au contact existant ; art de prototype conservé. |
+| `NPC-dr-chloe-michel` | Médecin de la clinique des Secteurs. | Service et quête de chantage séparés. | Témoignage indépendant de l’opération et du service ; art de prototype conservé. |
+| `DIA-nihlus-observation` | Expliquer sa présence auprès de Shepard. | Informations de Spectre révélées dans l’ordre prévu. | Ordre avant/après briefing enregistré, avant le premier débarquement seulement ; transcription et cinématique originales ouvertes. |
+| `DIA-joker-retour-du-prologue` | Conversation au cockpit après la balise. | Condition de chapitre avant les dialogues ordinaires. | Priorité de retour persistante puis restitution des sujets ; pose, voix et scène intégrales ouvertes. |
+
+Les statuts du catalogue et du classeur ne découlent pas de ce document de conception. Ils nécessitent le parcours public, la revue visuelle et la vérification de distribution du lot. Les 151 anciennes fiches Validé et les assets existants ne sont pas promus ou réécrits par ce module.
+
+## Vérification native exécutée
+
+`node --test tests/resolve-citadel.test.js` : 14 tests réussis. Ils jouent réellement les trois définitions de bataille avec `createBattle`, `tickBattle` et `performAction` jusqu’à la victoire. Les autres cas couvrent les trois issues de Fist, le groupe présent, les récompenses uniques, la preuve et le recrutement atomiques, la souplesse des contacts, la séparation du chantage, le prologue, les sauvegardes anciennes et invalides, les callbacks périmés et le plafond des récompenses.
+
+`node --test tests/resolve-citadel.test.js tests/continuation-dialogues.test.js tests/advance-dialogues.test.js tests/story.test.js` : 61 tests réussis. Ce contrôle natif n’est pas une preuve de revue navigateur ou de distribution ; ces preuves seront liées séparément après exécution et relecture.
+
+## Parcours public de développement
+
+La [tentative DEV01](../qa/resolve-citadel-dev-01-report.json) et sa [revue négative](../qa/resolve-citadel-dev-01-visual-review.json) sont conservées. Ses trois premières batailles ont terminé et l’export de Tali contient la preuve. La boucle de tirs par Espace pouvait ensuite confirmer un menu de victoire entre deux lectures de visibilité, puis les dialogues suivants : la capture finale montre le jeu revenu en exploration alors que le collecteur attendait encore la victoire de Fist. La capture du journal était aussi cadrée au-dessus de son bloc de preuve. Ces deux défauts du scénario ne sont pas présentés comme une validation complète ni corrigés dans les fichiers historiques.
+
+La [variante 02 du scénario](../../scripts/resolve-citadel-public-02.mjs) utilise uniquement les boutons publics d’équipier, d’action et de cible pour les combats, avec avance si nécessaire et couverture si le tir est indisponible. Elle ne simule aucun temps ni aucune santé et ne confirme aucun menu par Espace. Le bloc de journal est défilé réellement avant la capture. Le helper commun demeure inchangé.
+
+Le [parcours DEV02](../qa/resolve-citadel-dev-02-report.json) passe quatre groupes avec quatre exports et six captures, [réellement ouvertes en résolution originale](../qa/resolve-citadel-dev-02-visual-review.json). Il joue la clinique, le bureau de Fist, l’embuscade de Tali et une seconde confrontation de Fist avec Wrex déployé. Les commandes publiques enregistrées comptent respectivement 10, 23, 14 et 22 tirs ; les deux combats du bureau utilisent aussi deux puis trois avances. Les vrais rechargements conservent le sort imposé par Wrex et le rapport de Joker, puis rendent son sujet ordinaire de pilotage disponible. Le reçu de Nihlus persiste sans nomination anticipée. Les sources et le contexte du registre sont identiques au début et à la fin ; aucune erreur JavaScript, console bloquante, transport ou livraison n’est relevée. Le navigateur est fermé.
+
+Le [gate natif commun final03](../qa/resolve-integration-final-03-report.json) passe 1 246 tests. La [proposition des dix fiches](../../scripts/resolve-citadel-proposal-final-01.json), gelée après cette revue DEV02, propose neuf critères fonctionnels exacts fermés et conserve `NPC-fist` partiel pour son corps, son costume et ses animations définitifs. Aucun asset n’est promu. Cette proposition porte `productionPending:true` ; elle ne préjuge pas d’un futur parcours compilé.

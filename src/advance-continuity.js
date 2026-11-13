@@ -5,6 +5,8 @@ import { getNarrativeSummary, getVirmireConsequence } from './completion-narrati
 import { UNIVERSE_WORKS } from './universe-data.js';
 import { CLASSES } from './game-data.js';
 import { COMMANDER_APPEARANCES } from './commander.js';
+import { getPoliticalEpilogue } from './resolve-endgame.js';
+import { listResolveOrigins } from './resolve-origins.js';
 
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const PERIODS = { ME2: ['me2-opening', 'me2'], ME3: ['me3-prologue', 'me3'] };
@@ -55,6 +57,12 @@ export function getChronicleContinuity(rawContext, rawRecord) {
   return { context, imported: !!record, sourceSavedAt: record?.save.savedAt ?? null, ship,
     sources,
     ferosReport: record?.ferosReport ?? null,
+    endgameReport: record?.endgameReport ? getPoliticalEpilogue(record.save.state) : null,
+    virmireReport: record?.virmireReport ?? null,
+    noveriaReport: record?.noveriaReport ?? null,
+    originsReport: record?.originsReport ?? null,
+    origins: record?.originsReport ? listResolveOrigins(record.save.state) : [],
+    citadelReport: record?.citadelReport ?? null,
     identity: record ? { name: record.save.state.name, appearance: record.save.state.appearance,
       appearanceName: COMMANDER_APPEARANCES[record.save.state.appearance]?.name,
       classId: record.save.state.classId, className: CLASSES[record.save.state.classId]?.name, origin: record.save.state.origin,

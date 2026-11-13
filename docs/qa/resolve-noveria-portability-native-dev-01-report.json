@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-13T16:44:56.670Z",
+  "baseCommit": "f94bd6b7fbb36a4cd83b7672e7eb294b4830735f",
+  "sourceSHA": "54709f301b955bb632f7cde9b13efaff31c8e751ba5963fdbc886fa9bd4d8109",
+  "execution": {
+    "path": "docs/qa/resolve-noveria-dev-01-report.json",
+    "sha256": "d61d31d649d103c76abd33d693647d05191d9dda545aa5ed75a2b5fad6448f95"
+  },
+  "method": "Native continuation from each actual publicly played queen save through remaining campaign chapters, then current encodeCampaignExport/decodeCampaignExport; no browser or source mutation.",
+  "APIs": [
+    "decodeSave",
+    "recordVisit",
+    "zoneEncounters",
+    "winEncounter",
+    "completeZone",
+    "noveriaResolutionReport",
+    "encodeCampaignExport",
+    "decodeCampaignExport"
+  ],
+  "records": [
+    {
+      "choice": "release",
+      "source": {
+        "path": "docs/qa/resolve-noveria-dev-01-queen-released-export.json",
+        "sha256": "c4bdd9d478e9365e5a9abc527cf76b45123918c610d8db8e3b6fcbdd4b04ecd8",
+        "actualPublicDownload": true
+      },
+      "nativeCampaignExport": {
+        "path": "docs/qa/resolve-noveria-portability-native-dev-01-queen-released-campaign-export.json",
+        "sha256": "68c4b0291d9847518bbc2d5771af2f81d1bfd7febca538a364b016ee85b25c7f",
+        "bytes": 11621,
+        "actualPublicDownload": false
+      },
+      "noveriaReport": {
+        "known": true,
+        "pass": "gianna",
+        "evidence": "gianna",
+        "lorikTestimony": "charmed",
+        "gianna": "arrested-anoleis",
+        "anoleis": "arrested",
+        "opold": "none",
+        "queen": "release"
+      },
+      "budgetAtNoveria": {
+        "xp": 1000,
+        "credits": 1300,
+        "paragon": 40,
+        "renegade": 20
+      },
+      "checks": {
+        "samePortState": true,
+        "sameQueenChoice": true,
+        "sameDetailedReport": true,
+        "contradictoryQueenReportRejected": true
+      }
+    },
+    {
+      "choice": "destroy",
+      "source": {
+        "path": "docs/qa/resolve-noveria-dev-01-queen-destroyed-export.json",
+        "sha256": "f35d28f052c9e0d9f49b247ef2d46235d0b82a3036709cdf53630a6cb138cade",
+        "actualPublicDownload": true
+      },
+      "nativeCampaignExport": {
+        "path": "docs/qa/resolve-noveria-portability-native-dev-01-queen-destroyed-campaign-export.json",
+        "sha256": "2b782294ebd7084ab84412c5b58e37beb9cbb7994d1c5b0817a45a9312690604",
+        "bytes": 11621,
+        "actualPublicDownload": false
+      },
+      "noveriaReport": {
+        "known": true,
+        "pass": "gianna",
+        "evidence": "gianna",
+        "lorikTestimony": "charmed",
+        "gianna": "arrested-anoleis",
+        "anoleis": "arrested",
+        "opold": "none",
+        "queen": "destroy"
+      },
+      "budgetAtNoveria": {
+        "xp": 1000,
+        "credits": 1300,
+        "paragon": 20,
+        "renegade": 40
+      },
+      "checks": {
+        "samePortState": true,
+        "sameQueenChoice": true,
+        "sameDetailedReport": true,
+        "contradictoryQueenReportRejected": true
+      }
+    }
+  ],
+  "limitations": [
+    "Only Port Hanshan and the queen decisions in the source exports were played publicly in the Noveria collector. Remaining chapters and their combat outcomes are native preparation, not claimed browser gameplay.",
+    "These two portable campaign records were generated natively; they are not public UI downloads and do not claim a later Mass Effect campaign was played.",
+    "Native remaining chapter rewards are the existing campaign budget; this check does not claim those adapted rewards match original Mass Effect amounts."
+  ]
+}

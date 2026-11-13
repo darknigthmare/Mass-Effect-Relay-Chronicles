@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-11-13T16:48:12.584Z",
+  "passed": false,
+  "scope": "Revue réelle des quatre PNG de la tentative DEV01 interrompue. Ni scénario complet, ni validation de distribution.",
+  "report": {
+    "path": "docs/qa/resolve-citadel-dev-01-report.json",
+    "sha256": "d65fddabec4e7dce81e6c647130482663acb59f404f8c1a476dfb5a31369de78",
+    "passed": false,
+    "browserClosed": true
+  },
+  "collector": {
+    "path": "docs/qa/resolve-citadel-dev-01-collector.mjs",
+    "sha256": "8cb55aeed10aae1e8622c541ae202d6f6b7958d076e327ef6e46ffdda5314076",
+    "bytes": 8912
+  },
+  "helper": {
+    "path": "docs/qa/resolve-citadel-dev-01-helper.mjs",
+    "sha256": "1aebd384722d9b9826d2e223561ea10a716df44cad08be92e566b6754b1af581",
+    "bytes": 24465
+  },
+  "viewedImageCount": 4,
+  "captures": [
+    {
+      "label": "first-report-no-promotion",
+      "path": "docs/screenshots/resolve-citadel-dev-01-first-report-no-promotion.png",
+      "sha256": "0a41f25a12778e194d19ea18a60327291488a7ba37a24fdd1357e5cc89524002",
+      "bytes": 1115054,
+      "source": "Actual public rendered pixels; no DOM/style/state injection.",
+      "reviewedAtOriginalResolution": true,
+      "reviewTool": "view_image detail=original",
+      "passed": true,
+      "observation": "Dialogue lisible : le Conseil exige une preuve, aucun statut Spectre accordé. Portrait Anderson et sprites du commando visibles dans le décor 3D."
+    },
+    {
+      "label": "clinic-real-atb",
+      "path": "docs/screenshots/resolve-citadel-dev-01-clinic-real-atb.png",
+      "sha256": "7cc8b2afd159553bd0b5b20778a857d582b13c6f49bd33241fff3fab0a65f0ff",
+      "bytes": 935299,
+      "source": "Actual public rendered pixels; no DOM/style/state injection.",
+      "reviewedAtOriginalResolution": true,
+      "reviewTool": "view_image detail=original",
+      "passed": true,
+      "observation": "Trois alliés et deux silhouettes humaines provisoires sont visibles ; jauges ATB, commandes, PV et chaleur sont dans le viewport. Les silhouettes ne certifient aucun art final."
+    },
+    {
+      "label": "tali-evidence-journal",
+      "path": "docs/screenshots/resolve-citadel-dev-01-tali-evidence-journal.png",
+      "sha256": "36a6f7b34b94ee55a1cf8d754c78fc6647e200194102d95823cdbb48e90b147e",
+      "bytes": 496735,
+      "source": "Actual public rendered pixels; no DOM/style/state injection.",
+      "reviewedAtOriginalResolution": true,
+      "reviewTool": "view_image detail=original",
+      "passed": false,
+      "observation": "Le journal est ouvert en haut de ses jalons. Le bloc preuve de Tali contrôlé dans le DOM est sous le repli et absent des pixels capturés ; cette capture ne prouve pas la lisibilité du reçu."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/resolve-citadel-dev-01-failure.png",
+      "sha256": "c16ef64c5c030e084c4f9778f99995a4433e422069c772f92e9c773ccfd40c65",
+      "bytes": 1217197,
+      "source": "Actual public rendered pixels; no DOM/style/state injection.",
+      "reviewedAtOriginalResolution": true,
+      "reviewTool": "view_image detail=original",
+      "passed": false,
+      "observation": "Le jeu est revenu en exploration près du repère Fist, sans combat ni boîte de dialogue. Cela contredit un combat encore bloqué : la boucle Space a pu confirmer les menus après la victoire avant son échantillon suivant."
+    }
+  ],
+  "findings": [
+    "Deux captures utiles et lisibles.",
+    "Capture du journal insuffisante : bloc de preuve hors viewport.",
+    "Échec automatisé conservé : timeout fist-wrex-real-atb, retour exploration observé sur la capture de panne.",
+    "La boucle Space doit être remplacée par des clics strictement limités aux commandes de combat dans une variante conservant cette tentative."
+  ],
+  "limitations": [
+    "Un seul des quatre groupes et un seul des quatre exports prévus ont terminé.",
+    "Les scènes Nihlus/Joker et le sort final de Wrex dans cette tentative ne sont pas validés.",
+    "Aucun asset ni critère de catalogue n’est promu depuis cette tentative."
+  ]
+}

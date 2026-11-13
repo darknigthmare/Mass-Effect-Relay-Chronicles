@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-13T16:57:55.111Z",
+  "baseCommit": "f94bd6b7fbb36a4cd83b7672e7eb294b4830735f",
+  "sourceSHA": "58cf753322c7c2d78529ba520950e24eba7f24cdc12275d3683f7fcffe941455",
+  "execution": {
+    "path": "docs/qa/resolve-noveria-dev-02-report.json",
+    "sha256": "1219b710255a230bc8aa7a8a4fbe0de11c66145a1571c088a5213576b3516c26"
+  },
+  "nativeIntegration": {
+    "path": "docs/qa/resolve-integration-final-03-report.json",
+    "sha256": "cd1f7b9ef851c8d7ebb654ae37a905cf1b36fe56416506163e83090d1b2eb6dd"
+  },
+  "method": "Fresh native continuation after the final product freeze from each actual publicly played queen save through the remaining ME1 chapters, then encodeCampaignExport/decodeCampaignExport and read-only ME2/ME3 documentary dossiers; no browser or source mutation.",
+  "APIs": [
+    "decodeSave",
+    "recordVisit",
+    "zoneEncounters",
+    "winEncounter",
+    "completeZone",
+    "noveriaResolutionReport",
+    "encodeCampaignExport",
+    "decodeCampaignExport",
+    "getChronicleContinuity"
+  ],
+  "records": [
+    {
+      "choice": "release",
+      "source": {
+        "path": "docs/qa/resolve-noveria-dev-02-queen-released-export.json",
+        "sha256": "0fe14bffcb53b383d6264a49957f37bf008693b7d6e14b602debf2fab684cb6f",
+        "actualPublicDownload": true
+      },
+      "nativeCampaignExport": {
+        "path": "docs/qa/resolve-noveria-portability-native-dev-02-queen-released-campaign-export.json",
+        "sha256": "f68533b4489ed1a4df3d9e5f93e8d26c9894784b97b8c1206de5bd0978ab8503",
+        "bytes": 11620,
+        "actualPublicDownload": false
+      },
+      "noveriaReport": {
+        "known": true,
+        "pass": "gianna",
+        "evidence": "gianna",
+        "lorikTestimony": "charmed",
+        "gianna": "arrested-anoleis",
+        "anoleis": "arrested",
+        "opold": "none",
+        "queen": "release"
+      },
+      "budgetAtNoveria": {
+        "xp": 1000,
+        "credits": 1300,
+        "paragon": 40,
+        "renegade": 20
+      },
+      "checks": {
+        "samePortState": true,
+        "sameQueenChoice": true,
+        "sameDetailedReport": true,
+        "contradictoryQueenReportRejected": true
+      },
+      "downstreamDocumentaryDossiers": [
+        {
+          "context": {
+            "mediaId": "ME2",
+            "periodId": "me2"
+          },
+          "sameNoveriaReport": true,
+          "scope": "Projet Lazare · choix ME1 consultables après le retour de Shepard ; prologue et campagne ME2 non implémentés."
+        },
+        {
+          "context": {
+            "mediaId": "ME3",
+            "periodId": "me3"
+          },
+          "sameNoveriaReport": true,
+          "scope": "Héritage ME1 consultable · événements et relations ME2/ME3 non importés."
+        }
+      ]
+    },
+    {
+      "choice": "destroy",
+      "source": {
+        "path": "docs/qa/resolve-noveria-dev-02-queen-destroyed-export.json",
+        "sha256": "024b203afb78cb2e6222b821b510c9225a3c39164f91a7401af6313b3a97fef0",
+        "actualPublicDownload": true
+      },
+      "nativeCampaignExport": {
+        "path": "docs/qa/resolve-noveria-portability-native-dev-02-queen-destroyed-campaign-export.json",
+        "sha256": "bae8cbe482392011d592216272bc029683297e1a9f43d368a357b676df3a207f",
+        "bytes": 11622,
+        "actualPublicDownload": false
+      },
+      "noveriaReport": {
+        "known": true,
+        "pass": "gianna",
+        "evidence": "gianna",
+        "lorikTestimony": "charmed",
+        "gianna": "arrested-anoleis",
+        "anoleis": "arrested",
+        "opold": "none",
+        "queen": "destroy"
+      },
+      "budgetAtNoveria": {
+        "xp": 1000,
+        "credits": 1300,
+        "paragon": 20,
+        "renegade": 40
+      },
+      "checks": {
+        "samePortState": true,
+        "sameQueenChoice": true,
+        "sameDetailedReport": true,
+        "contradictoryQueenReportRejected": true
+      },
+      "downstreamDocumentaryDossiers": [
+        {
+          "context": {
+            "mediaId": "ME2",
+            "periodId": "me2"
+          },
+          "sameNoveriaReport": true,
+          "scope": "Projet Lazare · choix ME1 consultables après le retour de Shepard ; prologue et campagne ME2 non implémentés."
+        },
+        {
+          "context": {
+            "mediaId": "ME3",
+            "periodId": "me3"
+          },
+          "sameNoveriaReport": true,
+          "scope": "Héritage ME1 consultable · événements et relations ME2/ME3 non importés."
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Only Port Hanshan and the queen decisions in the source exports were played publicly in the Noveria collector. Remaining chapter victories and outcomes are native preparation, not browser gameplay.",
+    "These two portable campaign records were generated natively; they are not UI downloads. The ME2/ME3 read-only dossiers do not create or claim a later playable campaign.",
+    "Native remaining chapter rewards are the existing adapted campaign budget; original Mass Effect reward amounts are not certified."
+  ]
+}

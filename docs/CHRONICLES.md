@@ -1,5 +1,9 @@
 # Chroniques — œuvres, segments et essais tactiques
 
+## Rapports de campagne Resolve
+
+Les bilans ME1 peuvent désormais conserver séparément les faits de l’enquête, du port de Novéria, de Virmire, des missions d’origine et de l’épilogue. Les champs sont facultatifs pour les anciens exports : leur absence ne fabrique ni nomination, ni survivant, ni détail d’une scène antérieure. Les Chroniques autorisées les présentent comme des archives de la campagne importée ; cela ne crée aucun personnage, équipement ou événement dans leur propre période. Voir le [périmètre Resolve](RESOLVE.md).
+
 Les **Chroniques** ouvrent un registre de 28 œuvres et 48 segments explicites, puis vingt-cinq essais ATB indépendants dans sept œuvres : Mass Effect 2, Mass Effect 3, Andromeda, Infiltrator, Galaxy, Redemption et Paragon Lost. Seize parcours documentaires proposent 52 pages de lecture dans des contextes de romans et comics. La campagne ME1 conserve ses cartes, son commando, son inventaire et ses sauvegardes.
 
 La synchronisation historique de la branche 0.3.0 conservait les **1 332 fiches de main `7ef342a` et les 50 fiches de personnalisation**, soit **1 382 fiches principales et 6 708 références** avec les 5 326 supplémentaires. Elle réunit **454 sources : 44 principales et 410 supplémentaires**, avec **629 Prototype, 6 073 Défini, trois Intégré et trois Validé**. Les 27 exports univers et leur ZIP restent identiques au main publié. Les [preuves de synchronisation](qa/customization-arsenal-sync-report.json) restent distinctes des rapports historiques de main.

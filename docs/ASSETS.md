@@ -1,3 +1,5 @@
+Le [lot Resolve](RESOLVE.md) conserve les 79 fichiers publics et les 46 PNG. Les contacts d’origine réemploient des corps de prototype. Les hommes de Fist et les assassins ont des silhouettes procédurales humaines, turiennes ou galariennes distinctes du geth de repli ; elles ne certifient aucun costume, portrait ou cycle original. Aucun statut d’asset n’est promu.
+
 Le [lot Advance](ADVANCE.md) conserve exactement les **79 fichiers publics**, dont **46 PNG et 33 métadonnées**. Les seize corps civils de Féros réemploient trois silhouettes Horizon nommées et treize corps civils génériques ; ils restent Prototype. Aucun nouveau portrait, costume, cycle, atlas ni statut d’asset n’est déclaré produit.
 
 Le [lot Continuation](CONTINUATION.md) conserve les 46 PNG et les 33 métadonnées publiques. Marches, hauteurs de sol et marqueurs de positions ATB utilisent la géométrie et l’interface ; aucun nouvel atlas, cycle ou statut d’asset n’est revendiqué.

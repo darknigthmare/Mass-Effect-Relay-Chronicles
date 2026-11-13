@@ -4,7 +4,15 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 15 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
-## Progression, Féros et continuité
+## Enquête, affectations et épilogue
+
+Le [lot Resolve](docs/RESOLVE.md) raccorde les pistes de la Citadelle et trois combats ATB, les alternatives du port de Novéria et les questions à MIRA et à la reine, les affectations et choix de Virmire, les données de Vigil et la recommandation du représentant humain. Finch, Zabaleta/Hannah et Talitha/Girard disposent de parcours conditionnés à l’origine de Shepard. Les récits restent des adaptations françaises condensées, avec des réserves explicites sur les arbres, les talents originaux et les visuels encore provisoires.
+
+Le [lot Resolve](docs/RESOLVE.md) met à jour **36 fiches et 118 cellules**, dont **32 critères fonctionnels fermés : 11 P0, 21 P1 et 0 P2**. Les descriptions et critères restent inchangés, les 151 Validé antérieurs sont préservés et aucun statut d’asset n’est promu. Le principal compte **852 Défini, 350 Prototype, 0 Intégré, 183 Validé** ; le registre complet, **5 887 Défini, 641 Prototype, 0 Intégré, 183 Validé**. L’[audit courant](docs/qa/resolve-tracking-current-final-01-audit.json) conserve **6 528 critères ouverts : 653 P0, 5 761 P1 et 114 P2**.
+
+Le gel principal est vérifié par **1 246 tests natifs**, **27 captures DEV relues**, **70 panneaux Excel ouverts par sept agents** et **27 captures de production relues**. Le correctif distinct de recrutement tardif de Garrus passe ensuite la suite complète courante de **1 248 tests**, un parcours ciblé en développement et en production (4 et 4 captures), et une nouvelle compilation avec contrôle HTTP des **93 fichiers**. Les cinq familles principales restent attribuées au gel précédent et n’ont pas été rejouées intégralement sur ce dernier bundle. Le [rapport final](docs/qa/resolve-report.json) distingue les deux phases, leurs sources et leurs limites. Les **32 autres classeurs** protégés restent inchangés ; aucune fidélité intégrale 1:1 ni partie Windows jouée n’est certifiée.
+
+## Progression, Féros et continuité — lot précédent
 
 Le [lot Advance](docs/ADVANCE.md) poursuit le travail sur les critères exacts du classeur. Le journal suit les jalons et le premier départ choisi, les recrutements de Garrus et Wrex ont des branches de refus/report, et les sujets de Tali et Kaidan ouvrent leurs dossiers dédiés. Les cartes expliquent les prérequis et représentent les obstacles ; le repli affiche son délai de terrain. Féros conserve les seize interventions, le Cipher et le sort de Shiala, puis le bilan de fin peut être consulté dans les Chroniques ME2/ME3 autorisées.
 
