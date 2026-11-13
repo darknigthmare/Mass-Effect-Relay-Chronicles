@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-13T12:15:05.260Z",
+  "passed": false,
+  "report": "docs/qa/continuation-world-dev-03-report.json",
+  "reviewMethod": "Every actual screenshot opened with view_image; hashes rechecked.",
+  "reviewed": [
+    {
+      "label": "options-economy",
+      "path": "docs/screenshots/continuation-world-dev-03-options-economy.png",
+      "sha256": "d47c8194e5a92d996c61c3370ca5d01bbe573164fece11e24b1b6a5b47dbd318",
+      "opened": true,
+      "observation": "Actual public Options menu displays Économie; the viewport resolution and architecture shadows change through this user setting, with contact-shadow meshes retained."
+    },
+    {
+      "label": "stairs-lower",
+      "path": "docs/screenshots/continuation-world-dev-03-stairs-lower.png",
+      "sha256": "502d6393d26c25828a2a697440bc6cbbb4b27f1c27836bd3ed6b8dce9c83f33f",
+      "opened": true,
+      "observation": "Three squad members at the lower approach; steps and contact shadows remain visible in Economy quality."
+    },
+    {
+      "label": "stairs-middle",
+      "path": "docs/screenshots/continuation-world-dev-03-stairs-middle.png",
+      "sha256": "407dc23a524fd99226c1d950d33d8168e0382b775c538d044e504e448f9fa7de",
+      "opened": true,
+      "observation": "Leader and followers occupy different steps; the source exports separately record actual progression."
+    },
+    {
+      "label": "stairs-upper",
+      "path": "docs/screenshots/continuation-world-dev-03-stairs-upper.png",
+      "sha256": "0ec089c6d4f8e4e60ba2947e119137572ced29a891a0f1dd3c077cfe5706a5dd",
+      "opened": true,
+      "observation": "The leader reaches the raised landing, with followers on the approach and shadows remaining attached to their supporting surfaces."
+    },
+    {
+      "label": "stairs-returned",
+      "path": "docs/screenshots/continuation-world-dev-03-stairs-returned.png",
+      "sha256": "1429fbb0262ed3076e1eeeeea77be4de4cf1c2c178a42476ef2350d01dd014ea",
+      "opened": true,
+      "observation": "The leader has descended to the lower approach. Followers remain staggered on the steps; the banter panel does not hide the route."
+    },
+    {
+      "label": "pillar-before",
+      "path": "docs/screenshots/continuation-world-dev-03-pillar-before.png",
+      "sha256": "d2afbbe64c61a9cf5ee8f35c08512111fe3f808c7838a60d2d5498cf94a5a9be",
+      "opened": true,
+      "observation": "The leader is hidden by the nearest opaque column while two followers stand to its left. Capture-order naming does not imply a visible initial leader."
+    },
+    {
+      "label": "pillar-behind",
+      "path": "docs/screenshots/continuation-world-dev-03-pillar-behind.png",
+      "sha256": "e99ba9c51e4c9c7566c53b11747853ef465d5b5b45a67ac6c2056415db741340",
+      "opened": true,
+      "observation": "The leader is visible to the right of the column; a follower remains hidden or partially clipped by its solid face."
+    },
+    {
+      "label": "pillar-emerged",
+      "path": "docs/screenshots/continuation-world-dev-03-pillar-emerged.png",
+      "sha256": "1d0e298f0dc500ae2e56aae230d98ef1532e3a6be597a2ce0341b470ed1fc2f0",
+      "opened": true,
+      "observation": "The column still masks the squad members behind it while a member remains visible at its right edge; no sprite shows through the opaque face."
+    },
+    {
+      "label": "camera-threshold-stop",
+      "path": "docs/screenshots/continuation-world-dev-03-camera-threshold-stop.png",
+      "sha256": "8451135938194efe5c4238a3c5022d978dd8c19c82ce1ccd9ccda0234764c7c0",
+      "opened": true,
+      "observation": "The positive x clamp has been crossed according to actual export x19.588. Architecture framing is settled; a foreground column masks part of the squad."
+    },
+    {
+      "label": "camera-threshold-stationary",
+      "path": "docs/screenshots/continuation-world-dev-03-camera-threshold-stationary.png",
+      "sha256": "236b4ffc9a47e0b5e36efd6438bf02d91311fb3b9014db7c8ddfddeb229f2c1c",
+      "opened": true,
+      "observation": "Architecture framing matches the stopped capture with the same actual player position. No oscillation is visible in this pair; native tests separately verify monotonic convergence."
+    },
+    {
+      "label": "retreat-confirmation",
+      "path": "docs/screenshots/continuation-world-dev-03-retreat-confirmation.png",
+      "sha256": "dacf598fe0f82f0e2d08be2fa4e164f61362c04ba37a414da00894b15bd5033e",
+      "opened": true,
+      "observation": "Actual public retreat confirmation, with naturally charged/reserved party gauges and zero reward wording. This is not evidence of the later recovery boundary."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/continuation-world-dev-03-failure.png",
+      "sha256": "b255f63b4ba2d88515bc0467c008f0643452aa4fb98c40d64f3309cf34577e44",
+      "opened": true,
+      "observation": "The field has returned after retreat. The screenshot does not display the required re-entry denial toast; the marker-click assumption and 45-second toast wait failed, so no boundary claim is made."
+    }
+  ],
+  "completedGroups": [
+    "stairs",
+    "opaque-pillar",
+    "camera-threshold"
+  ],
+  "failure": "The marker click did not produce the required recovery-denial toast. The 45-second wait timed out; no immediate denial, paused timer or natural recovery boundary is certified.",
+  "scope": "Three public core groups pass, but this full attempt failed and does not promote QA-fuite-et-reentree. A new provenance-linked core collector excludes retreat/re-engagement claims.",
+  "limitations": [
+    "Economy quality selected through public Options; no hardware cadence/FPS claim.",
+    "The failed boundary attempt is retained unchanged. No product defect or successful recovery boundary is inferred."
+  ]
+}

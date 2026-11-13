@@ -6,6 +6,7 @@ import { listChronicleStories, getChronicleStory, readChronicleStoryStep } from 
 import { UNIVERSE_AMMO_PROFILES, validateAmmoMode } from './universe-ammo.js';
 import { isVictoryParticipant, SUMMON_LIMITS } from './combat-summons.js';
 import { createBattle } from './combat.js';
+import { initializeChroniclePositions } from './continuation-chronicles-positions.js';
 
 export const CHRONICLE_FORMAT = 'relay-chronicles.chronicle';
 const MAX_FILE_BYTES = 2_000_000;
@@ -260,6 +261,7 @@ export function startChronicleBattle(raw) {
     if (party.some(actor => !actor)) return fail('Commando incompatible avec cette période.');
     const enemies = scenario.enemies.map((enemy, index) => ({ ...copy(enemy), id: `chronicle-enemy-${index}` }));
     const battle = createBattle({ party, enemies, mode: 'wait', difficulty: 'normal', seed: 2183 + session.cleared.length, medigel: 3, combatFeedback: true });
+    initializeChroniclePositions(battle, session.context);
     battleSnapshots.set(battle, fingerprint(session));
     return { ok: true, battle };
   } catch { return fail('Impossible de démarrer cet essai tactique.'); }

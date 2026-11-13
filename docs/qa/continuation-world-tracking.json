@@ -1,0 +1,229 @@
+{
+  "at": "2026-11-13T12:16:49.928Z",
+  "baselineCommit": "5d933068cacd1b595d584b7cedfffd35b1db362d",
+  "scope": "Four exact functional P0 criteria. Parent owns catalogue/workbook; criteria, dependencies and artistic asset statuses unchanged.",
+  "records": [
+    {
+      "id": "SYS-occlusion-sprites",
+      "priority": "P0",
+      "dependencies": [],
+      "statusBefore": "Prototype",
+      "criterion": "Pas de personnage visible à travers un mur opaque.",
+      "targetStatusAfterGates": "Validé",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/world.js",
+        "notesAppend": "Lot continuation : Les corps réels conservent depthTest/depthWrite et alphaTest ; un mur opaque indépendant présente la bonne profondeur devant et derrière le même corps. Dans les captures publiques du pilier, les sprites placés derrière sa face opaque sont masqués ; leurs parties hors de sa silhouette restent visibles. Contrôles natifs monde81/81, global1106/1106 et parcours public DEV core01 (trois groupes, dix captures réellement relues). Critère fonctionnel de cette fiche couvert ; géométrie et scènes adaptées, aucune fidélité artistique intégrale ni FPS matériel certifié. La production finale reste un contrôle distinct après reconstruction du registre."
+      },
+      "implementationPaths": [
+        "src/world.js",
+        "src/continuation-world-ground.js",
+        "tests/continuation-world.test.js",
+        "scripts/continuation-world-core-public.mjs"
+      ],
+      "evidence": [
+        "docs/qa/continuation-world-native-01-report.json",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-visual-review.json",
+        "tests/continuation-world.test.js",
+        "docs/research/continuation-world.md"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Pas de personnage visible à travers un mur opaque.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les corps réels conservent depthTest/depthWrite et alphaTest ; un mur opaque indépendant présente la bonne profondeur devant et derrière le même corps.",
+          "Dans les captures publiques du pilier, les sprites placés derrière sa face opaque sont masqués ; leurs parties hors de sa silhouette restent visibles."
+        ],
+        "limitations": [
+          "Décors, dimensions et escaliers adaptés en unités de scène ; fidélité artistique et plans originaux non certifiés.",
+          "Qualité Économie choisie dans les vraies Options ; aucune mesure matérielle de FPS ou certification Windows.",
+          "Recette de production après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/continuation-world-native-01-report.json",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-visual-review.json",
+          "tests/continuation-world.test.js",
+          "docs/research/continuation-world.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-mur-opaque",
+      "priority": "P0",
+      "dependencies": [],
+      "statusBefore": "Défini",
+      "criterion": "Sprite correctement masqué.",
+      "targetStatusAfterGates": "Validé",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot continuation : Passage public du groupe de trois derrière le vrai pilier de la Citadelle, avec masquage complet ou partiel selon la position de chaque sprite. Les dix captures sont effectivement ouvertes ; les observations décrivent les positions visibles plutôt que de déduire un état des noms de fichiers. Contrôles natifs monde81/81, global1106/1106 et parcours public DEV core01 (trois groupes, dix captures réellement relues). Critère fonctionnel de cette fiche couvert ; géométrie et scènes adaptées, aucune fidélité artistique intégrale ni FPS matériel certifié. La production finale reste un contrôle distinct après reconstruction du registre."
+      },
+      "implementationPaths": [
+        "src/world.js",
+        "src/continuation-world-ground.js",
+        "tests/continuation-world.test.js",
+        "scripts/continuation-world-core-public.mjs"
+      ],
+      "evidence": [
+        "docs/qa/continuation-world-native-01-report.json",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-visual-review.json",
+        "tests/continuation-world.test.js",
+        "docs/research/continuation-world.md"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Sprite correctement masqué.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Passage public du groupe de trois derrière le vrai pilier de la Citadelle, avec masquage complet ou partiel selon la position de chaque sprite.",
+          "Les dix captures sont effectivement ouvertes ; les observations décrivent les positions visibles plutôt que de déduire un état des noms de fichiers."
+        ],
+        "limitations": [
+          "Décors, dimensions et escaliers adaptés en unités de scène ; fidélité artistique et plans originaux non certifiés.",
+          "Qualité Économie choisie dans les vraies Options ; aucune mesure matérielle de FPS ou certification Windows.",
+          "Recette de production après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/continuation-world-native-01-report.json",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-visual-review.json",
+          "tests/continuation-world.test.js",
+          "docs/research/continuation-world.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-escalier",
+      "priority": "P0",
+      "dependencies": [],
+      "statusBefore": "Défini",
+      "criterion": "Pieds et ombre suivent le sol.",
+      "targetStatusAfterGates": "Validé",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot continuation : Les vrais triangles de supports conservent leur identité après fusion ; montée/descente natives sur les quatre marches et le palier dans les deux variantes de la Citadelle. Chaque membre, PNJ et combattant suit son propre support ; les pivots des pieds et les ombres de contact sont mesurés. Une élévation biotique laisse son ombre au sol. Montée et descente au clavier sur le terrain réel, avec exports publics confirmant les paliers franchis et captures de contact relues. Contrôles natifs monde81/81, global1106/1106 et parcours public DEV core01 (trois groupes, dix captures réellement relues). Critère fonctionnel de cette fiche couvert ; géométrie et scènes adaptées, aucune fidélité artistique intégrale ni FPS matériel certifié. La production finale reste un contrôle distinct après reconstruction du registre."
+      },
+      "implementationPaths": [
+        "src/world.js",
+        "src/continuation-world-ground.js",
+        "tests/continuation-world.test.js",
+        "scripts/continuation-world-core-public.mjs"
+      ],
+      "evidence": [
+        "docs/qa/continuation-world-native-01-report.json",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-visual-review.json",
+        "tests/continuation-world.test.js",
+        "docs/research/continuation-world.md"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Pieds et ombre suivent le sol.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Les vrais triangles de supports conservent leur identité après fusion ; montée/descente natives sur les quatre marches et le palier dans les deux variantes de la Citadelle.",
+          "Chaque membre, PNJ et combattant suit son propre support ; les pivots des pieds et les ombres de contact sont mesurés. Une élévation biotique laisse son ombre au sol.",
+          "Montée et descente au clavier sur le terrain réel, avec exports publics confirmant les paliers franchis et captures de contact relues."
+        ],
+        "limitations": [
+          "Décors, dimensions et escaliers adaptés en unités de scène ; fidélité artistique et plans originaux non certifiés.",
+          "Qualité Économie choisie dans les vraies Options ; aucune mesure matérielle de FPS ou certification Windows.",
+          "Recette de production après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/continuation-world-native-01-report.json",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-visual-review.json",
+          "tests/continuation-world.test.js",
+          "docs/research/continuation-world.md"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "QA-camera-au-seuil",
+      "priority": "P0",
+      "dependencies": [],
+      "statusBefore": "Défini",
+      "criterion": "Pas d’oscillation de cadrage.",
+      "targetStatusAfterGates": "Validé",
+      "proposedFields": {
+        "status": "Validé",
+        "notesAppend": "Lot continuation : Initialisation et suivi réutilisent la même fonction de cadrage ; absence de dérive initiale et convergence monotone sans dépassement aux deux seuils ±18,75, pour trois dt. Franchissement public du seuil positif puis arrêt : deux exports de position identiques et captures d’architecture sans oscillation visible. Contrôles natifs monde81/81, global1106/1106 et parcours public DEV core01 (trois groupes, dix captures réellement relues). Critère fonctionnel de cette fiche couvert ; géométrie et scènes adaptées, aucune fidélité artistique intégrale ni FPS matériel certifié. La production finale reste un contrôle distinct après reconstruction du registre."
+      },
+      "implementationPaths": [
+        "src/world.js",
+        "src/continuation-world-ground.js",
+        "tests/continuation-world.test.js",
+        "scripts/continuation-world-core-public.mjs"
+      ],
+      "evidence": [
+        "docs/qa/continuation-world-native-01-report.json",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-report.json",
+        "docs/qa/continuation-world-core-dev-01-visual-review.json",
+        "tests/continuation-world.test.js",
+        "docs/research/continuation-world.md"
+      ],
+      "acceptanceReview": {
+        "exactCriterion": "Pas d’oscillation de cadrage.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Initialisation et suivi réutilisent la même fonction de cadrage ; absence de dérive initiale et convergence monotone sans dépassement aux deux seuils ±18,75, pour trois dt.",
+          "Franchissement public du seuil positif puis arrêt : deux exports de position identiques et captures d’architecture sans oscillation visible."
+        ],
+        "limitations": [
+          "Décors, dimensions et escaliers adaptés en unités de scène ; fidélité artistique et plans originaux non certifiés.",
+          "Qualité Économie choisie dans les vraies Options ; aucune mesure matérielle de FPS ou certification Windows.",
+          "Recette de production après reconstruction du registre encore attendue."
+        ],
+        "evidence": [
+          "docs/qa/continuation-world-native-01-report.json",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-report.json",
+          "docs/qa/continuation-world-core-dev-01-visual-review.json",
+          "tests/continuation-world.test.js",
+          "docs/research/continuation-world.md"
+        ]
+      },
+      "productionPending": true
+    }
+  ],
+  "failedAttempts": [
+    "docs/qa/continuation-world-dev-01-report.json",
+    "docs/qa/continuation-world-dev-01-visual-review.json",
+    "docs/qa/continuation-world-dev-02-report.json",
+    "docs/qa/continuation-world-dev-02-visual-review.json",
+    "docs/qa/continuation-world-dev-03-report.json",
+    "docs/qa/continuation-world-dev-03-visual-review.json"
+  ],
+  "stillOpen": [
+    {
+      "id": "QA-fuite-et-reentree",
+      "priority": "P0",
+      "dependencies": [],
+      "status": "Prototype",
+      "exactCriterion": "Délai et position évitent une boucle de combat.",
+      "complete": false,
+      "reason": "DEV03 effectue le repli mais ne produit pas le refus immédiat de réentrée attendu. Aucun délai suspendu ou franchissement naturel de la frontière huit secondes n’est certifié. Le core retire ce scénario de son périmètre, avec provenance explicite ; conserver Prototype.",
+      "evidence": [
+        "docs/qa/continuation-world-dev-03-report.json",
+        "docs/qa/continuation-world-dev-03-visual-review.json"
+      ]
+    }
+  ],
+  "productionPending": true
+}

@@ -7,22 +7,22 @@ Ce catalogue contient **1 385 fiches**, organisées en **26 catégories** et *
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
 - [Générateur initial historique](../scripts/build-workbook.mjs) ; Completion utilise une [mise à jour OpenXML ciblée](../scripts/completion-tracking-patch-workbook.py), suivie d’une vérification indépendante et d’un rendu, pour conserver les cellules, critères, formules et styles. Ne pas reconstruire les statuts courants avec le générateur initial.
-- [Revue actuelle des 120 panneaux ciblés](qa/completion-tracking-workbook-visual-review.json) · [Publication du suivi](qa/completion-tracking-workbook-report.json) · [Bilan Completion](COMPLETION.md). Les aperçus et rapports des lots précédents restent historiques.
+- [Revue actuelle des 63 panneaux ciblés](qa/continuation-tracking-workbook-visual-final-01-review.json) · [Publication du suivi](qa/continuation-tracking-publication-final-01-report.json) · [Bilan Continuation](CONTINUATION.md). Les aperçus et rapports des lots précédents restent historiques.
 
 ## État réel
 
-Completion ferme **89 critères fonctionnels** dans 99 fiches mises à jour, sans promotion d’asset ni validation intégrale 1:1. Dix fiches restent partielles ; le registre complet conserve 6 619 critères ouverts.
+Continuation ferme **38 critères fonctionnels** dans 40 fiches mises à jour, sans promotion d’asset ni validation intégrale 1:1. Les 92 Validé précédents restent intacts ; le registre complet conserve 6 581 critères ouverts.
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 918 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 375 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 906 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 349 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 0 | Présent dans le jeu avec chemin et dépendances vérifiés. |
-| Validé | 92 | Intégré et contrôlé avec preuve de test. |
+| Validé | 130 | Intégré et contrôlé avec preuve de test. |
 
 Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Les éventuelles fiches **Validé** attestent leurs critères fonctionnels documentés ; elles ne certifient pas la fidélité 1:1 de l’ensemble du jeu.
 
-Les notes sont conservées dans leur ordre historique. Une ancienne phrase « critères restent à vérifier » peut donc précéder l’ajout « Lot Completion » : le statut courant et cette nouvelle évaluation se lisent ensemble. Les mentions de production en attente situent la copie locale avant compilation ; le [rapport final de livraison](qa/completion-report.json) constitue la preuve distincte des parcours compilés. Aucun préfixe historique ni réserve de fidélité n’est effacé pour faciliter une validation.
+Les notes sont conservées dans leur ordre historique. Une ancienne phrase « critères restent à vérifier » peut donc précéder l’ajout « Lot Continuation » ou « Lot Completion » : le statut courant et cette nouvelle évaluation se lisent ensemble. Les mentions de production en attente situent la copie locale avant compilation ; le [rapport final de livraison](qa/continuation-report.json) constitue la preuve distincte des parcours compilés. Aucun préfixe historique ni réserve de fidélité n’est effacé pour faciliter une validation.
 
 | Niveau de canon | Fiches | Signification |
 | --- | ---: | --- |
@@ -45,7 +45,7 @@ Les preuves locales se trouvent dans [world-data.js](../src/world-data.js), [wor
 | Codex | 16 entrées à découverte progressive avec recherche et 8 dossiers de reconnaissance ME1 (quatre coques, quatre faunes) | Les entrées dépendant de Liara, Féros, Virmire et Ilos sont conditionnées aux événements connus. Ne représente pas le codex complet de Mass Effect. |
 | Boss | Saren, Bénézia, Thorien et Saren final : quatre familles de quatre poses fixes ; Bénézia reçoit trois vagues protectrices et le Thorien six nœuds avec renforts | Phases ATB partielles avec budget partagé et une victoire unique ; séquences originales, anatomie, directions et cycles complets restent à vérifier ou produire. |
 | PNJ | PNJ historiques et Frontier conservés ; Fai Dan, Arcelia, Macha et Davin à Féros ; Pallin, Harkin, Barla Von et Chloé Michel à la Citadelle | Huit nouveaux corps fixes Horizon ; Jenkins et Joker conservent leurs usages antérieurs. Présence conditionnée à ME1 et aux événements. Quêtes et dialogues complets restent à réaliser. |
-| Conversations | Vingt-cinq interlocuteurs et cinquante-quatre sujets définis : treize interlocuteurs au Normandy, quatre à Novéria, quatre à Féros et quatre à la Citadelle | Affichage conditionnel selon le recrutement, la survie et les événements. Textes français réécrits, sans doublage. Jenkins avant Eden Prime ; Novéria après la Citadelle. Dialogues complets et conformité mot à mot restent à produire ou à vérifier. |
+| Conversations | Vingt-cinq interlocuteurs et cinquante-quatre sujets définis, plus quatre graphes de campagne et des échanges contextuels : treize interlocuteurs au Normandy, quatre à Novéria, quatre à Féros et quatre à la Citadelle | Affichage conditionnel selon le recrutement, la survie et les événements. Textes français réécrits, sans doublage. Jenkins avant Eden Prime ; Novéria après la Citadelle. Dialogues complets et conformité mot à mot restent à produire ou à vérifier. |
 | Assignations | 15 quêtes annexes : trois historiques et 12 opérations à la Citadelle et Féros, avec 46 étapes | Trois assignations historiques et douze opérations supplémentaires, dont les varrens de Davin. Quatre scans de veilleurs, dialogues réécrits, cartes adaptées, cinq combats possibles. Les variantes complètes, les intérieurs et les autres missions secondaires/DLC restent à produire. Les récompenses sont des réglages de l’adaptation. Les lignes d’étapes complètent les fiches de quêtes sans représenter des quêtes supplémentaires. |
 | Équipement | 52 articles jouables : 20 armes, 16 armures, 12 modules et 4 outils, achat/vente, comparaison et neuf emplacements par personnage | Inventaire de 150 objets et 20 exemplaires par référence. Formations explicites, restrictions de morphologie, poids, niveau et bio/tech. Modules restitués au retrait de leur pièce. Prix, points et ports fixes adaptés ; l’arme et la tenue dessinées ne changent pas. Voir [complément et sources](research/loadout-extension-sources.md). |
 | Chroniques | 28 œuvres, 48 segments documentés, 25 essais tactiques, 42 personnages sélectionnables et 107 équipements (79 armes, 25 armures, trois modules) | Sessions et sauvegardes séparées de ME1 ; essais, lectures et préparations limités à leur contexte. Statistiques ATB adaptées ; acquisitions, modèles, phases et campagnes complètes restent à produire. Voir [périmètre et utilisation](CHRONICLES.md). |
@@ -89,11 +89,11 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Ennemis et boss | 39 | 17 | 22 | 0 | 0 | Bestiaire de ME1 et rencontres nommées |
 | Missions | 63 | 37 | 26 | 0 | 0 | Étapes de l’intrigue principale |
 | Secondaires et DLC | 108 | 50 | 58 | 0 | 0 | Missions annexes et extensions de ME1 |
-| Choix et relations | 34 | 25 | 3 | 0 | 6 | Conséquences persistantes et relations |
-| Dialogues | 36 | 24 | 12 | 0 | 0 | Situations de dialogue et conditions |
+| Choix et relations | 34 | 24 | 3 | 0 | 7 | Conséquences persistantes et relations |
+| Dialogues | 36 | 18 | 13 | 0 | 5 | Situations de dialogue et conditions |
 | Cinématiques | 26 | 26 | 0 | 0 | 0 | Séquences et mise en scène |
-| Armes | 48 | 24 | 24 | 0 | 0 | Familles, modèles et comportements |
-| Armures et équipement | 64 | 24 | 40 | 0 | 0 | Protections, modules et consommables |
+| Armes | 48 | 24 | 20 | 0 | 4 | Familles, modèles et comportements |
+| Armures et équipement | 64 | 24 | 34 | 0 | 6 | Protections, modules et consommables |
 | Pouvoirs | 30 | 13 | 17 | 0 | 0 | Capacités canoniques et traduction ATB |
 | Movesets alliés | 50 | 50 | 0 | 0 | 0 | Actions et contraintes par équipier |
 | Movesets ennemis | 75 | 72 | 3 | 0 | 0 | Télégraphes, actions et réponses tactiques |
@@ -101,10 +101,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Sprites | 85 | 21 | 64 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 65 | 3 | 13 | 0 | 49 | Interface et règles de jeu |
-| QA | 64 | 19 | 13 | 0 | 32 | Critères de test et contrôles de fidélité |
-| Trilogie | 57 | 51 | 1 | 0 | 5 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 385** | **918** | **375** | **0** | **92** | |
+| Systèmes et UI | 65 | 1 | 8 | 0 | 56 | Interface et règles de jeu |
+| QA | 64 | 16 | 2 | 0 | 46 | Critères de test et contrôles de fidélité |
+| Trilogie | 57 | 51 | 0 | 0 | 6 | Extensions ME2 et ME3 séparées de ME1 |
+| **Total** | **1 385** | **906** | **349** | **0** | **130** | |
 
 
 ## Lire une fiche

@@ -1,6 +1,7 @@
 // Prepared ME2/ME3 signature powers. All distances, damage, durations and costs
 // are explicit ATB choices. No campaign, acquisition or original animation is
 // produced by enabling a sourced power in an independent chronicle workshop.
+import { planChronicleCharge } from './continuation-chronicles-positions.js';
 const freeze = value => { if (value && typeof value === 'object') { Object.values(value).forEach(freeze); Object.freeze(value); } return value; };
 const EPSILON = 1e-8;
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
@@ -19,7 +20,7 @@ export const CHRONICLE_SIGNATURE_BINDINGS = freeze([
 ]);
 export const SIGNATURE_ACTIONS = freeze({
   bioticCharge: { label: 'Charge biotique', target: 'enemy', cooldown: 12,
-    description: 'Approche abstraite au contact : impact biotique et récupération de la moitié des boucliers maximum. Exposition aux dégâts accrue de 15 % pendant trois secondes ATB.' },
+    description: 'Arène Chroniques : déplacement vers un contact libre avec la cible, à 12,5 unités ATB maximum. Impact biotique et récupération de la moitié des boucliers maximum. Exposition aux dégâts accrue de 15 % pendant trois secondes ATB. Aucun trajet physique 3D original simulé.' },
   tacticalCloak: { label: 'Camouflage tactique', target: 'self', cooldown: 18,
     description: 'Empêche les nouveaux ordres adverses de cibler le personnage pendant cinq secondes ATB, y compris les zones abstraites de cet essai. Le prochain ordre offensif révèle le personnage ; les tirs bénéficient d’un multiplicateur de 1,5. Les projectiles déjà lancés ne sont pas effacés.' },
   techArmor: { label: 'Technoblindage', target: 'self', cooldown: 20,
@@ -80,12 +81,15 @@ export function planSignatureAction({ battle, actor, actionId, targets = [] } = 
   if (!enemies.length) return fail('Sélectionnez un adversaire vivant.');
   if (actionId === 'bioticCharge') {
     const target = enemies[0];
+    const displacement = planChronicleCharge(battle, actor, target);
+    if (displacement && !displacement.ok) return displacement;
+    if (displacement) plan.displacement = displacement;
     plan.selfEngagedTargetId = target.id;
     plan.selfStatus.chargeExposure = 3; plan.selfShieldDelta = positive(actor.maxShield, 0) * .5;
     plan.breakCover = true;
     plan.damage.push({ targetId: target.id, amount: attack * 1.25 * power(actor, 'bioticMultiplier'), ignoreCover: true });
     if (!(target.shield > EPSILON)) plan.controls.push({ targetId: target.id, status: 'stagger', duration: 1 });
-    plan.events.push(event(actor, actionId, { targetId: target.id, approach: 'abstract-contact', duration: 3,
+    plan.events.push(event(actor, actionId, { targetId: target.id, approach: displacement ? 'atb-position-contact' : 'abstract-contact', duration: 3,
       message: `${actor.name} se projette au contact de ${target.name} ; exposition accrue pendant trois secondes ATB.` }));
     return plan;
   }
@@ -139,6 +143,6 @@ export function chronicleSignatureStatus(actor) {
   const facts = [];
   if (signatureActionAllowed(actor, 'tacticalCloak') && actor.statuses?.tacticalCloak > EPSILON) facts.push(`Camouflage : ${Math.ceil(actor.statuses.tacticalCloak)} s`);
   if (signatureActionAllowed(actor, 'techArmor') && actor.statuses?.techArmor > EPSILON) facts.push(`Technoblindage ${actor.mediaId} : ${Math.ceil(actor.statuses.techArmor)} s`);
-  if (signatureActionAllowed(actor, 'bioticCharge') && actor.statuses?.chargeExposure > EPSILON) facts.push(`Contact rapproché abstrait · exposition +15 % : ${Math.ceil(actor.statuses.chargeExposure)} s`);
+  if (signatureActionAllowed(actor, 'bioticCharge') && actor.statuses?.chargeExposure > EPSILON) facts.push(`${actor.chargePositionContact === true ? 'Contact de position ATB' : 'Contact rapproché abstrait'} · exposition +15 % : ${Math.ceil(actor.statuses.chargeExposure)} s`);
   return facts;
 }

@@ -1,0 +1,50 @@
+{
+  "scope": "Proposal only; parent owns catalogue/workbook and gates.",
+  "baselineCommit": "5d933068cacd1b595d584b7cedfffd35b1db362d",
+  "records": [
+    {
+      "id": "DIA-banter-en-exploration",
+      "proposedFields": {
+        "status": "Validé",
+        "assetPath": "src/continuation-banter.js",
+        "gameKey": "exploration-banter",
+        "notes": "Lot continuation : 24 échanges français originaux conditionnels ; seules les deux recrues actives vivantes parlent. Délais de premier plan 8/24 s, aucun gain, persistance story.heard sans répétition ni effacement des sujets existants. Budget maximal dix échanges par campagne pour réserver les 54 sujets individuels dans la limite 64. Natif global gelé 1106/1106 ; DEV01 public PASS 6 groupes, 7 captures réellement ouvertes, 4 fixtures préparées déclarées, 5 imports et 6 exports réels. Pause, reprise, rechargement, changement de paire par import et deux pertes de Virmire contrôlés. Production compilée attendue ; aucune transcription officielle, romance ou voix originale revendiquée."
+      },
+      "targetStatusAfterGates": "Validé",
+      "acceptanceReview": {
+        "exactCriterion": "Pas de phrase d’un équipier absent.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Tests natifs des quinze paires, dans les deux ordres, avec refus des absents, non-recrutés et morts ; Jenkins et deux pertes de Virmire.",
+          "Historique sauvegardé/repris, contexte ME1 isolé, silence du Normandy et des autres œuvres.",
+          "DEV01 : deux intervenants actifs visibles dans chaque échange, recrues inactives silencieuses, aucun ancien locuteur après import du groupe différent et fermeture de Commando.",
+          "DEV01 : survivants distincts après chaque choix de Virmire, six exports réels sans récompense, reprise et rechargement sans répétition."
+        ],
+        "limitations": [
+          "Production compilée encore attendue ; la proposition est conditionnelle au gate global PROD du parent.",
+          "Parcours visuel desktop 1440×1000 uniquement ; pas de certification mobile/texte agrandi.",
+          "Adaptations françaises originales, sans transcriptions officielles, audio ou romance.",
+          "Dix échanges maximum par campagne ; 24 variantes conditionnelles."
+        ],
+        "evidence": [
+          "docs/qa/continuation-banter-native-initial-01-report.json",
+          "tests/continuation-banter.test.js",
+          "docs/research/continuation-banter.md",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-banter-dev-01-report.json",
+          "docs/qa/continuation-banter-dev-01-visual-review.json",
+          "scripts/continuation-banter-public.mjs"
+        ]
+      },
+      "productionPending": true
+    }
+  ],
+  "stillOpen": [
+    {
+      "id": "DIA-annonce-d-ascenseur",
+      "exactCriterion": "Éviter répétition et audio superposé.",
+      "reason": "Aucune transition d’ascenseur jouable appropriée dans la scène actuelle ; aucune fermeture revendiquée."
+    }
+  ]
+}

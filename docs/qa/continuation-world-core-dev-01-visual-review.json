@@ -1,0 +1,91 @@
+{
+  "at": "2026-11-13T12:16:49.917Z",
+  "passed": true,
+  "report": "docs/qa/continuation-world-core-dev-01-report.json",
+  "reviewMethod": "All ten actual screenshots opened with view_image; every stored image hash rechecked. No composite or edited images used.",
+  "reviewed": [
+    {
+      "label": "options-economy",
+      "path": "docs/screenshots/continuation-world-core-dev-01-options-economy.png",
+      "sha256": "d47c8194e5a92d996c61c3370ca5d01bbe573164fece11e24b1b6a5b47dbd318",
+      "opened": true,
+      "observation": "The real Options menu displays Économie; this public quality setting is declared in the report. No cadence or clock is forced."
+    },
+    {
+      "label": "stairs-lower",
+      "path": "docs/screenshots/continuation-world-core-dev-01-stairs-lower.png",
+      "sha256": "23ae06a1a06582d6ae7b0cecf8a824d13d0e366d1175482d3b02394340c9c846",
+      "opened": true,
+      "observation": "The three sprites stand at the lower approach; four shallow steps and contact-shadow meshes are clear."
+    },
+    {
+      "label": "stairs-middle",
+      "path": "docs/screenshots/continuation-world-core-dev-01-stairs-middle.png",
+      "sha256": "c6c1c44dbd8f30acda283569e72883b8646e6baec32f133f56542e72449ce2af",
+      "opened": true,
+      "observation": "The squad has advanced onto different steps. Feet and shadows remain attached to their own supports."
+    },
+    {
+      "label": "stairs-upper",
+      "path": "docs/screenshots/continuation-world-core-dev-01-stairs-upper.png",
+      "sha256": "03f079b15e14c588114402800b6431f004d344aa3e19728586549510b36df58e",
+      "opened": true,
+      "observation": "The N7 leader stands on the raised landing; followers occupy the upper stairs. Actual upper export z=-18.8857 confirms the route."
+    },
+    {
+      "label": "stairs-returned",
+      "path": "docs/screenshots/continuation-world-core-dev-01-stairs-returned.png",
+      "sha256": "58f161c9a7bb22bf9f9054d6242f8f70d4382dc73186fc8137b8bb5dbe4bd7e6",
+      "opened": true,
+      "observation": "The leader has descended beyond the lower approach; the followers remain at separate lower/stair positions. Actual returned export z=-13.1765 confirms descent."
+    },
+    {
+      "label": "pillar-before",
+      "path": "docs/screenshots/continuation-world-core-dev-01-pillar-before.png",
+      "sha256": "054de867d75ff504745dae9a191a7dbdcb62eab2460df94a8c75823147ae43ca",
+      "opened": true,
+      "observation": "The N7 leader is completely hidden by the nearest opaque column, while Kaidan and Ashley remain visible on its left. This label records capture order."
+    },
+    {
+      "label": "pillar-behind",
+      "path": "docs/screenshots/continuation-world-core-dev-01-pillar-behind.png",
+      "sha256": "9170c17352218a42d70d1794eb66ea2876e05b1c5caa60bc385aaba1dfab8419",
+      "opened": true,
+      "observation": "The N7 leader is visible to the right of the column; Kaidan is occluded and Ashley remains to its left. No body fragments show through the solid column face."
+    },
+    {
+      "label": "pillar-emerged",
+      "path": "docs/screenshots/continuation-world-core-dev-01-pillar-emerged.png",
+      "sha256": "048c66c2b59c092a0b13846be9b1d7ea286a41bbc57921ffe492ce7089c3ee21",
+      "opened": true,
+      "observation": "A squad sprite is masked by the column while partial bodies remain at its left/right edges, demonstrating local geometry depth rather than a blanket character visibility toggle."
+    },
+    {
+      "label": "camera-threshold-stop",
+      "path": "docs/screenshots/continuation-world-core-dev-01-camera-threshold-stop.png",
+      "sha256": "a263915f0676d8f3253fe3ef7b8d6f34e9713d6c8ced8d4c78246446622005e9",
+      "opened": true,
+      "observation": "The actual x19.5882 export crosses the x18.75 camera clamp. Architecture framing is settled after stopping; a column correctly masks part of the squad."
+    },
+    {
+      "label": "camera-threshold-stationary",
+      "path": "docs/screenshots/continuation-world-core-dev-01-camera-threshold-stationary.png",
+      "sha256": "65438b6c7be1231ab871a9cee9e5bbeaa9840e639f01266864e3374f06397e71",
+      "opened": true,
+      "observation": "Architecture framing matches the stopped view and the actual player position is identical. No oscillation is visible; native threshold tests separately measure convergence at both signs and several dt values."
+    }
+  ],
+  "scope": "Public Citadel stair ascent/descent, opaque-column sprite occlusion and stationary positive camera clamp. Native tests separately verify actual support coordinates, contact shadows under biotic lift and both camera thresholds.",
+  "coveredIds": [
+    "SYS-occlusion-sprites",
+    "QA-mur-opaque",
+    "QA-escalier",
+    "QA-camera-au-seuil"
+  ],
+  "limitations": [
+    "Representative functional scene and Economy quality; no full artistic or original floor-plan fidelity certificate.",
+    "No hardware FPS, Electron or Windows verification.",
+    "No retreat/re-engagement boundary claim; QA-fuite-et-reentree remains partial.",
+    "Production verification follows registry/workbook generation and is still pending."
+  ]
+}

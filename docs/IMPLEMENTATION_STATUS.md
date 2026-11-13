@@ -1,4 +1,14 @@
-# État de livraison — Completion P0/P1/P2
+# État de livraison — Continuation
+
+Le [lot Continuation](CONTINUATION.md) part de `5d933068`. Il apporte les dialogues à embranchements du briefing/audiences/preuve de Tali, les échanges contextuels entre équipiers, le catalogue accessible avec sources, l’alignement caméra et les pieds/ombres sur les surfaces praticables. Les Chroniques ME2/ME3 éligibles disposent de déplacements et de Charge dans leur arène ATB isolée.
+
+Le [suivi local vérifié](qa/continuation-tracking-publication-final-01-report.json) met à jour **40 fiches et 97 cellules** : **38 critères fermés (31 P0, six P1, un P2)**, une transmission encore Prototype et l’omni-lame encore Défini. Le principal compte **906 Défini, 349 Prototype, zéro Intégré et 130 Validé** ; le registre complet compte **5 941 Défini, 640 Prototype, zéro Intégré et 130 Validé** sur 6 711 fiches/454 sources. L’[audit courant](qa/continuation-tracking-current-final-01-audit.json) conserve **6 581 critères ouverts : 675 P0, 5 792 P1 et 114 P2**.
+
+Les **1 106 tests natifs**, les **60 captures DEV réellement relues** et les **63 panneaux du classeur** sont contrôlés. Après synchronisation, les 38 tests du registre, le build de 128 modules et l’audit passent. Les [six familles de production](qa/continuation-tracking-production-final-01-report.json) passent 31 groupes, avec [58 captures fraîches réellement ouvertes](qa/continuation-tracking-production-final-01-visual-review.json) et 92 fichiers HTTP conformes au build. Le [rapport final](qa/continuation-report.json) compose ces contrôles ; les builds Windows et le déploiement externe gardent leurs résultats distincts. Les 79 fichiers publics (46 PNG et 33 métadonnées), les 31 autres classeurs, les 27 catalogues supplémentaires et les anciennes preuves restent conservés. Les modèles, textes, campagnes, physiques et animations originales complets ne sont pas certifiés.
+
+---
+
+# État de livraison — Completion P0/P1/P2 (historique)
 
 Le [lot Completion](COMPLETION.md) part de `main` à `0d769125`. La campagne ME1 gagne une couverture directionnelle liée aux obstacles, un repli confirmé vers un point praticable hors des contacts, des conséquences narratives contextuelles et un résumé des relations. Les commandes tactiques compactes conservent le terrain visible sur ordinateur et téléphone ; le brouillon des ordres reste consultable pendant le choix des cibles.
 

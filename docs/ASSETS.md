@@ -1,3 +1,5 @@
+Le [lot Continuation](CONTINUATION.md) conserve les 46 PNG et les 33 métadonnées publiques. Marches, hauteurs de sol et marqueurs de positions ATB utilisent la géométrie et l’interface ; aucun nouvel atlas, cycle ou statut d’asset n’est revendiqué.
+
 # Assets visuels — registre de livraison
 
 Le [lot Completion](COMPLETION.md) réutilise ces images et ajoute des caisses basses par la géométrie existante du décor, sans nouveau PNG. Les effets réglables, poses de couverture et signatures des Chroniques ne produisent ni nouveau costume, ni cycle d’animation original. Les fermetures fonctionnelles de son catalogue ne changent aucun statut d’asset.

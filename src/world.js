@@ -12,6 +12,7 @@ import { normalizeJokerSeated, canShowJokerSeated } from './joker-seated-data.js
 import { getLevelLayout, isLevelGround, nearestLevelGround } from './level-layout-data.js';
 import { findLevelPath } from './world-navigation.js';
 import { geometricCover, findRetreatPoint } from './completion-world.js';
+import { sampleWalkableHeight } from './continuation-world-ground.js';
 import { buildEdenScene } from './eden-scene.js';
 import { buildFrontierScene } from './frontier-scene.js';
 import { buildHorizonScene } from './horizon-scene.js';
@@ -707,6 +708,17 @@ export class WorldView {
   _box(w, h, d, material, x = 0, y = 0, z = 0, rounded = false, parent = this.stage) {
     return this._mesh(rounded ? new RoundedBoxGeometry(w, h, d, 1, Math.min(.1, h / 5, w / 5, d / 5)) : new THREE.BoxGeometry(w, h, d), material, x, y, z, parent);
   }
+  _walkableSurface(mesh) {
+    mesh.userData.keep = true; mesh.userData.walkableSurface = true;
+    (this.walkableSurfaces ||= []).push(mesh); return mesh;
+  }
+  _groundHeightAt(x, z) { return sampleWalkableHeight(this.walkableSurfaces, x, z); }
+  _groundActor(actor, lift = 0) {
+    actor.group.position.y = this._groundHeightAt(actor.group.position.x, actor.group.position.z) + lift;
+    // A biotic lift moves the body and status shell; its contact shadow stays
+    // on the supporting floor instead of hovering with the actor group.
+    actor.shadow.position.y = .035 - lift;
+  }
   _cylinder(radius, height, material, x, y, z, radiusTop = radius, sides = 24, parent = this.stage) {
     return this._mesh(new THREE.CylinderGeometry(radiusTop, radius, height, sides), material, x, y, z, parent);
   }
@@ -882,7 +894,7 @@ export class WorldView {
   _normandy() {
     const steel = this._material(0x3a4a59, .6, .72), dark = this._material(0x12222f, .6, .6), white = this._material(0x9ca9b0, .67, .45);
     this._floor(18, 37, 0x4f6370);
-    this._box(4.4, .08, 33, this._texturedMaterial(0x677a86), 0, .02, 0);
+    this._walkableSurface(this._box(4.4, .08, 33, this._texturedMaterial(0x677a86), 0, .02, 0));
     for (let z = -16; z <= 16; z += 2) {
       this._box(4.35, .04, .06, dark, 0, .07, z);
       for (const x of [-2.35, 2.35]) this._box(.055, .035, 1.5, this._material(0x85c8e2, .5, .2, 0x365f81), x, .08, z);
@@ -950,7 +962,7 @@ export class WorldView {
   _citadel(finale = false) {
     const white = this._material(finale ? 0x737f86 : 0xc4c9c6, .65, .28), trim = this._material(0x445e6c, .45, .7);
     this._floor(47, 49, finale ? 0x6c7982 : 0xa6b6b8);
-    this._box(10, .06, 44, this._texturedMaterial(finale ? 0x465562 : 0xaec2c5, 'metal', 12), 0, .03, 0);
+    this._walkableSurface(this._box(10, .06, 44, this._texturedMaterial(finale ? 0x465562 : 0xaec2c5, 'metal', 12), 0, .03, 0));
     for (const x of [-5.2, 5.2]) this._box(.08, .035, 46, this._material(0x8bd4df, .2, .4, 0x537e8e), x, .08, 0);
     for (const x of [-15, 15]) {
       this._box(10, .35, 22, trim, x, .1, -3, true);
@@ -967,7 +979,13 @@ export class WorldView {
       const arm = this._box(8, .5, 1.4, white, x - Math.sign(x) * 2.9, 12.8, z, true); arm.rotation.z = Math.sign(x) * .28;
       this._circleCollider(x, z, 1.05);
     }
-    this._box(14, .5, 4.2, white, 0, .24, -20, true);
+    this._walkableSurface(this._box(14, .5, 4.2, white, 0, .24, -20));
+    // Shallow approach stairs join the retained council platform. These are
+    // scene-unit adaptation geometry, not an original Citadel floor survey.
+    for (let step = 0; step < 4; step++) {
+      const top = .06 + (.49 - .06) * (step + 1) / 5;
+      this._walkableSurface(this._box(14, top, .5, white, 0, top / 2, -16.15 - step * .5));
+    }
     for (const x of [-5.4, 0, 5.4]) this._cylinder(.65, 5.4, trim, x, 2.9, -22, .35, 10);
     this._sign(finale ? 'TOUR DU CONSEIL · ALERTE' : 'PRÉSIDIUM · TOUR DU CONSEIL', 0, 5.3, -21.7, 9, finale ? '#e99c8b' : '#d4f1f2');
     for (const x of [-9, 9]) for (const z of [-6, 7, 17]) {
@@ -1145,7 +1163,7 @@ export class WorldView {
     this.zone = zone; this.zoneId = zone.id; this.levelLayout = getLevelLayout(zone.id); this.battleArena = null;
     this.stageState = stage; this.rand = randomGenerator(hash(zone.id));
     this.cleared = new Set(cleared instanceof Set ? cleared : Array.isArray(cleared) ? cleared : []);
-    this._clearEffects(); this.animations = []; this.colliders = []; this.combatOccluders = []; this.targetPath = null; this.pendingPOI = null; this._pendingProps = []; this._pendingVehicles = [];
+    this._clearEffects(); this.animations = []; this.colliders = []; this.combatOccluders = []; this.walkableSurfaces = []; this.targetPath = null; this.pendingPOI = null; this._pendingProps = []; this._pendingVehicles = [];
     this.setBattle(null);
     disposeObject(this.stage, true); this.stage.clear(); this.materialCache.clear();
     this.horizonFleetViews = new Map();
@@ -1159,8 +1177,7 @@ export class WorldView {
     this._installTacticalCover();
     this._mergeStatic(); this.player = { ...zone.spawn }; this._resetTrail();
     this._syncHorizonFleet();
-    if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
-    else this.cameraTarget.set(this.player.x * .42, 0, this.player.z * .42);
+    this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
     this.makoState = zone.id === 'therum' ? createMakoState(this.levelLayout?.vehicleSpawn || { x: -7.2, z: 16 }) : null;
     this.makoSprite = null; this._syncMakoSprite();
     this._makeMarkers(); this.setParty(party || this.party);
@@ -1314,6 +1331,7 @@ export class WorldView {
       const levelPoint = this.levelLayout ? this.trail[Math.min(this.trail.length - 1, i * 11)] || this.player : null;
       actor.group.position.set(actor.stationPosition?.x ?? levelPoint?.x ?? this.player.x + (i === 1 ? -1.2 : i === 2 ? 1.2 : 0), 0,
         actor.stationPosition?.z ?? levelPoint?.z ?? this.player.z + i * .8);
+      this._groundActor(actor);
       actor.group.visible = this.mode !== 'combat' && !this.isVehicleMounted(); return actor;
     });
     if (this.zoneId === 'normandy' && this.storyContext) this._makeAmbientCharacters();
@@ -1462,6 +1480,7 @@ export class WorldView {
         ? new THREE.Vector3(arena.x + tactical.x, 0, arena.z + tactical.z)
         : new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * (enemy?enemySpacing:2.9));
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
+      this._groundActor(actor);
       if (actor.lastHp !== null && state.hp < actor.lastHp) { actor.poseTime = .35; this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.3, 0)), enemy ? 0xffae79 : 0xf0c7a7); }
       if (actor.lastShield !== null && state.shield < actor.lastShield) actor.shieldFlash = .35;
       const animationAllowed = !!this._combatAnimationConfig(actor, state);
@@ -1591,8 +1610,9 @@ export class WorldView {
     this.actors.forEach((actor, i) => {
       const point = this.levelLayout ? this.trail[Math.min(this.trail.length - 1, i * 11)] : null;
       actor.group.position.set(actor.stationPosition?.x ?? point?.x ?? x, 0, actor.stationPosition?.z ?? point?.z ?? z + i * .8);
+      this._groundActor(actor);
     });
-    if (this.levelLayout) this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
+    this.cameraTarget?.copy(this._cameraFocus(this.player, 'explore'));
     if (this.levelLayout) return true;
   }
   getBounds() { return { ...this.zone.bounds }; }
@@ -1787,6 +1807,7 @@ export class WorldView {
         const safe = this._resolveLevelPosition({ x: actor.group.position.x, z: actor.group.position.z }) || this.player;
         actor.group.position.x = safe.x; actor.group.position.z = safe.z;
       }
+      this._groundActor(actor);
       actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : (policy?.ambientPulse===false?0:Math.sin(this.time * 1.8 + index) * .016));
       actor.body.rotation.z = actorMoving ? Math.sin(this.time * 10 - index) * .018 : 0;
       if (this._animateCharacter(actor, actorMoving, movementX, movementZ)) return;
@@ -1796,6 +1817,7 @@ export class WorldView {
       }
     });
     for (const actor of this.ambientActors || []) {
+      this._groundActor(actor);
       actor.body.rotation.y = facing;
       actor.body.position.y = actor.height / 2 + .05 + (policy?.ambientPulse===false?0:Math.sin(this.time * 1.5 + actor.group.position.x) * .02);
       actor.group.visible=this._ambientActorVisible(actor);
@@ -1809,7 +1831,7 @@ export class WorldView {
       actor.shieldFlash = Math.max(0, (actor.shieldFlash || 0) - dt);
       if (actor.basePosition) { actor.group.position.lerp(actor.basePosition, 1 - Math.exp(-dt * 8)); if (actor.poseTime > 0 && policy?.spriteShake !== false) actor.group.position.x += Math.sin(actor.poseTime * 45) * .035; }
       const statuses = actor.state?.statuses || {}, lifted = statuses.lift > 0 || statuses.singularity > 0, stasis = statuses.stasis > 0;
-      actor.group.position.y = actor.alive && lifted ? .8 + (policy?.ambientPulse===false?0:Math.sin(this.time * 2) * .15) : 0;
+      this._groundActor(actor, actor.alive && lifted ? .8 + (policy?.ambientPulse===false?0:Math.sin(this.time * 2) * .15) : 0);
       actor.statusShell.visible = actor.alive && (stasis || lifted || actor.shieldFlash > 0 && policy?.hitTint !== false || statuses.barrier > 0);
       actor.statusShell.material.color.set(stasis || lifted ? 0xa99ef0 : 0x83d0ed);
       actor.statusShell.rotation.y += policy?.ambientPulse===false?0:dt * .4;

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "batch": "continuation-chronicles",
+  "baseCommit": "5d933068cacd1b595d584b7cedfffd35b1db362d",
+  "at": "2026-11-13T11:53:14.344335+00:00",
+  "proposalOnly": true,
+  "catalogueMutated": false,
+  "workbookMutated": false,
+  "exactCriteriaPreserved": true,
+  "proposals": [
+    {
+      "id": "ME2-charge-biotique",
+      "baselineStatus": "Prototype",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Critère fonctionnel exact couvert : déplacement de coordonnées dans une arène locale 2D ATB ME2/ME3, Reculer/Avancer puis Charge vers un contact libre à 1,6 unité, portée 12,5 ; risque réel de dégâts reçus +15 % pendant trois secondes ATB, coûts natifs et refus avant dépense. Réservé à Shepard Porte-étendard et aux périodes principales des œuvres correspondantes. 91 tests natifs frais repris dans les 1 106 globaux ; nouveau parcours public DEV03, quatre contrôles, onze PNG ouverts individuellement, cinq exports et témoin ME1 byte-identique. Les deux états actifs ME2/ME3 sont réellement capturés, puis leur fin naturelle observée. Sauvegarde de préparation sans coordonnées/effets vivants. Aucun déplacement physique 3D original, obstacle, animation spécifique, rang ou fidélité artistique certifié ; autres pouvoirs de portée abstraite conservés. Essais indépendants, aucune campagne ME2/ME3 complète. DEV01/02 conservés comme lectures tardives de l’état de trois secondes. Gate distinct de livraison production encore en attente. Voir docs/research/continuation-chronicles.md.",
+        "assetPath": "src/continuation-chronicles-positions.js",
+        "gameKey": "bioticCharge"
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Déplacement et risque adaptés à l’ATB.",
+        "kind": "functional",
+        "complete": true,
+        "coveredClauses": [
+          "Déplacement de coordonnées ATB observable : retrait natif puis Charge jusqu’à un contact libre à 1,6 unité, portée contrôlée et prévisualisation réévaluée avant résolution.",
+          "Risque ATB réel : dégâts reçus multipliés par 1,15 pendant trois secondes simulées ; pause et fin native contrôlées, statuts actifs ME2/ME3 réellement capturés puis disparus après reprise.",
+          "Œuvre, période principale, identité Shepard, préparation Porte-étendard et fiche POW exactes ; soldat et prologue refusés, campagne ME1 conservée."
+        ],
+        "limitations": [
+          "Arène locale 2D ATB sans obstacles, trajet physique, animation 3D originale ou déplacement d’un sprite dans un décor original ; les autres attaques conservent leurs règles abstraites.",
+          "Fidélité artistique, nombres/rangs/acquisitions originaux et campagnes complètes non certifiés.",
+          "Parcours DEV sur viewport natif 1280 × 1900 ; mobile 390 × 844 limité à la disposition de la carte. Gate distinct de production encore en attente."
+        ],
+        "evidence": [
+          "docs/qa/continuation-chronicles-native-02-report.json",
+          "docs/qa/continuation-chronicles-native-02-tests.tap",
+          "tests/continuation-chronicles.test.js",
+          "docs/research/continuation-chronicles.md",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-chronicles-dev-03-report.json",
+          "docs/qa/continuation-chronicles-dev-03-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/continuation-chronicles-positions.js",
+        "src/completion-chronicles-powers.js",
+        "src/combat.js",
+        "src/chronicles.js",
+        "src/universe-ui.js",
+        "src/main.js",
+        "src/continuation-catalogue.css"
+      ],
+      "productionPending": true
+    },
+    {
+      "id": "ME3-omni-lame",
+      "baselineStatus": "Défini",
+      "proposedFields": {
+        "status": "Défini",
+        "notes": "Ouvert : aucune fiche POW factuelle et sourcée éligible dans le catalogue ME3 courant. ME3-ANI-OMNIBLADE est une extrapolation sans source, pas une attribution de classe/acteur. Aucun identifiant de source, pouvoir ou équipement artificiel créé ; aucun rétroportage ME1. Voir docs/research/continuation-chronicles.md."
+      },
+      "acceptanceReview": {
+        "exactCriterion": "Ne pas rétroporter comme équipement canonique ME1.",
+        "kind": "functional",
+        "complete": false,
+        "coveredClauses": [
+          "Absence de rétroportage ME1 conservée."
+        ],
+        "limitations": [
+          "Source factuelle existante éligible absente : action lourde de classe/acteur non implémentée.",
+          "Aucune source artificielle ou restriction canonique universelle inventée."
+        ],
+        "evidence": [
+          "docs/qa/continuation-chronicles-native-02-report.json",
+          "docs/qa/continuation-chronicles-native-02-tests.tap",
+          "tests/continuation-chronicles.test.js",
+          "docs/research/continuation-chronicles.md",
+          "docs/qa/continuation-chronicles-source-eligibility.json",
+          "docs/qa/continuation-chronicles-dev-03-report.json",
+          "docs/qa/continuation-chronicles-dev-03-visual-review.json"
+        ]
+      },
+      "implementationPaths": [
+        "src/universe-powers.js",
+        "src/completion-chronicles-powers.js"
+      ],
+      "productionPending": true
+    }
+  ],
+  "functionalGateComplete": true,
+  "developmentGateComplete": true,
+  "productionGatePending": true
+}

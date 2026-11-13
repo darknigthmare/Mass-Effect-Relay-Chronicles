@@ -1,0 +1,145 @@
+{
+  "reviewedAt": "2026-11-13T12:04:48.035049+00:00",
+  "report": "docs/qa/continuation-dialogues-public-dev-01-report.json",
+  "kind": "Actual opening of each of the eleven PNG screenshots with view_image, at the captured 1280 × 900 viewport.",
+  "capturesReviewed": [
+    {
+      "label": "briefing-tone",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-briefing-tone.png",
+      "sha256": "0a0b141b7fd8171dd9db4ccb3c5706bf3250b6dd6966cac55ea31544274317e6",
+      "bytes": 785507,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "briefing-deploy-galaxy",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-briefing-deploy-galaxy.png",
+      "sha256": "0bb0eb31fbd14e849ddf9cf5468e64d01633c56e9b7c3bb07a99636ad72d1531",
+      "bytes": 389573,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "first-audience-cooperate",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-first-audience-cooperate.png",
+      "sha256": "62c5bf173ea99953b5c313ce850f3add9ef198dab4e36b1fe96fe600da212b23",
+      "bytes": 1093356,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "first-audience-challenge",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-first-audience-challenge.png",
+      "sha256": "4efa3e570585cb016d5df3c9f01cf0e92411791e3fa3a5bb8dd6498fddd86de6",
+      "bytes": 1079653,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "first-audience-questions",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-first-audience-questions.png",
+      "sha256": "8df73493f9960bff7a8fbf713a96e26bc04bf472a80df4ca09fd37625bb46bab",
+      "bytes": 1095490,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "tali-before-proof",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-tali-before-proof.png",
+      "sha256": "fc75637d919933576d6d51cb349179355feddfae499db8b3dc845ff28472b6b6",
+      "bytes": 942689,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "tali-received-proof",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-tali-received-proof.png",
+      "sha256": "8e2d0f91eb869a52acd6439e23d6ea21a9b0f66f0b85013a10df3c6bbb0b46f3",
+      "bytes": 1012997,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "anderson-handoff-pending",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-anderson-handoff-pending.png",
+      "sha256": "ba7f9eb31a28faecba623c312e2d8589a50a319feb45b90f33699d6701c9c8e9",
+      "bytes": 939501,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "anderson-investigation-leads",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-anderson-investigation-leads.png",
+      "sha256": "a3039a4bf8c11cd367f32f5f56f2b5d2c5e39738f91118c2b0ec86d45f804944",
+      "bytes": 1008930,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "anderson-command-confirmation",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-anderson-command-confirmation.png",
+      "sha256": "8bdd6154a9816d1ab5d187bcc04a1ade06efc1c15cfc16d00a781d985d316724",
+      "bytes": 1009379,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    },
+    {
+      "label": "handoff-reloaded-destinations",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-handoff-reloaded-destinations.png",
+      "sha256": "f00e43ff703e008fff9fb281d30bea928af4f4c725da86c897703e8a395d3521",
+      "bytes": 396335,
+      "source": "Actual public viewport; no DOM/style/pose injection.",
+      "reviewed": true
+    }
+  ],
+  "findings": [
+    {
+      "scope": "Dialogue identity/readability",
+      "result": "pass",
+      "observation": "Anderson and Tali portraits, active speaker names, wrapped text and dialogue choices are readable. The councillor portraits remain generic diamonds, explicitly labelled Conseiller turien / Conseillère asari."
+    },
+    {
+      "scope": "First audience variants",
+      "result": "pass",
+      "observation": "The three captured responses retain the demand for evidence; Udina, Anderson and both councillors are also recorded from real visible speaker controls in the run report."
+    },
+    {
+      "scope": "Tali event and source limit",
+      "result": "pass-with-capture-limit",
+      "observation": "The pre-event intro has no recording detail. The received-proof capture shows the recording details after public acceptance; the actual export records her recruitment. An import toast temporarily overlaps the end of the intro sentence in the before-proof capture. The later evidence capture is unobscured."
+    },
+    {
+      "scope": "Handoff and destinations",
+      "result": "pass-with-functional-limit",
+      "observation": "Anderson command text, investigation leads, final confirmation and the reloaded three enabled destinations are visible. Existing earlier physical Normandy access remains, so DIA-anderson-transmission is still partial."
+    }
+  ],
+  "limitations": [
+    "Visual reading at one desktop viewport only; no mobile, physical controller, target FPS or original scene fidelity certification.",
+    "No original ME1 transcript or full scene capture comparison was performed.",
+    "The native prologue and position transfers are declared fixtures, not traversals played by this collector.",
+    "Existing transient save/import toasts overlap portions of some screenshots; no CSS or DOM was changed for capture."
+  ],
+  "functionalCriteria": {
+    "DIA-anderson-avant-eden-prime": {
+      "complete": true,
+      "basis": "Public three tones, all questions, exit, no mutation and final map confirmation; native graph closure."
+    },
+    "DIA-premiere-audience": {
+      "complete": true,
+      "basis": "All active speaker labels recorded from public controls and three response captures reviewed."
+    },
+    "DIA-tali-preuve": {
+      "complete": true,
+      "basis": "Native pre-event gate, public explicit acceptance and unchanged-reward export, visual received-proof line."
+    },
+    "DIA-intronisation": {
+      "complete": true,
+      "basis": "Native three response branches retain the same verdict; public honor and resolve paths plus question path reach the same handoff without new morality/reward until final confirmation."
+    },
+    "DIA-anderson-transmission": {
+      "complete": false,
+      "basis": "Command handoff and existing unique reward verified; first physical unlock of Normandy is not implemented because the ship remains accessible earlier."
+    }
+  }
+}

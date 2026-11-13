@@ -17,6 +17,8 @@ import { CAMPAIGN_TALENT_ACTIONS, campaignTalentActionAllowed, campaignTalentAct
   campaignTalentDamageMultiplier, applyCampaignTalentAction } from './campaign-talents.js';
 import { SIGNATURE_ACTIONS, signatureActionAllowed, planSignatureAction, planSignatureArmorBreak,
   signatureTargetable, signatureDamageMultiplier, signatureIncomingDamageMultiplier, signatureOffensiveAction } from './completion-chronicles-powers.js';
+import { chroniclePositionsEnabled, planChronicleMove, chronicleChargeTargetCheck, commitChronicleDisplacement,
+  CHRONICLE_CHARGE_RANGE } from './continuation-chronicles-positions.js';
 
 export { getTacticalState, getTacticalPosition, getTacticalCoverState } from './tactical-positions.js';
 export { getBossPhaseView } from './boss-phases.js';
@@ -395,7 +397,7 @@ function actionIds(actor, battle) {
   if (isSummon(actor) || !bossActorCanAct(battle, actor)) return [];
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
-  if (tacticalEnabled(battle)) ids.push('advance', 'withdraw');
+  if (tacticalEnabled(battle) || chroniclePositionsEnabled(battle)) ids.push('advance', 'withdraw');
   if (!organic && usesClips(actor)) ids.push('reload');
   if (actor.channel) ids.push('cancelChannel');
   if (actor.team === 'party') ids.push('medigel');
@@ -440,11 +442,20 @@ function unavailableReason(battle, actor, actionId) {
     const move = planTacticalMove(battle, actor, actionId);
     if (!move.ok) return move.reason;
   }
+  if (chroniclePositionsEnabled(battle) && ['advance', 'withdraw'].includes(actionId)) {
+    const move = planChronicleMove(battle, actor, actionId);
+    if (!move.ok) return move.reason;
+  }
   if (actor.cooldowns[actionId] > EPSILON) return `Recharge : ${Math.ceil(actor.cooldowns[actionId])} s.`;
   if (Object.hasOwn(SIGNATURE_ACTIONS, actionId)) {
-    const plan = planSignatureAction({ battle, actor, actionId,
-      targets: ACTIONS[actionId].target === 'self' ? [actor] : opponents(battle, actor) });
-    if (!plan.ok) return plan.reason;
+    if (actionId === 'bioticCharge' && chroniclePositionsEnabled(battle)) {
+      const plans = opponents(battle, actor).map(target => planSignatureAction({ battle, actor, actionId, targets: [target] }));
+      if (!plans.some(plan => plan.ok)) return plans[0]?.reason || 'Aucun adversaire vivant pour Charge.';
+    } else {
+      const plan = planSignatureAction({ battle, actor, actionId,
+        targets: ACTIONS[actionId].target === 'self' ? [actor] : opponents(battle, actor) });
+      if (!plan.ok) return plan.reason;
+    }
   }
   if (AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff') {
     const profile = getAmmoActionProfile(actor.mediaId, actionId);
@@ -495,12 +506,15 @@ export function getActions(battle, actorId) {
     let description = clipShot ? `${ACTIONS[id].label} : consomme ${weaponAmmoCost(actor, id)} munition(s) du chargeur. Rechargement par remplacement du clip thermique.` : heatCost === undefined ? campaignTalentActionDescription(actor, id) || powerDescription(actor, id)
       : ACTIONS[id].description.replace(/(?:24|48|42) points de chaleur/, `${Math.round(heatCost * 10) / 10} points de chaleur`);
     if (profile) description = `${profile.mechanicNote} ${profile.mode === 'clip-channel' ? `${profile.ammoPerTick} munition par impulsion, au maximum ${Math.ceil(profile.duration / profile.tickInterval)} impulsions.` : ''}`;
+    if (id === 'bioticCharge' && !chroniclePositionsEnabled(battle)) description = 'Approche abstraite au contact : impact biotique, récupération de la moitié des boucliers maximum et exposition aux dégâts +15 % pendant trois secondes ATB.';
     return { id, ...ACTIONS[id], ...(clipShot ? { heatCost: 0, ammoCost: weaponAmmoCost(actor, id) } : heatCost === undefined ? {} : { heatCost }),
       ...(profile?.mode === 'heat-beam' ? { heatCost: profile.heatPerSecond * profile.duration * actor.weaponHeatMultiplier, channelDuration: profile.duration } : {}),
       ...(profile?.mode === 'clip-channel' ? { channelDuration: profile.duration } : {}),
       ...(chargeProfile(profile) ? { channelDuration: profile.chargeDuration, chargeDuration: profile.chargeDuration } : {}),
       ...(tacticalEnabled(battle) ? { range: getTacticalRange(actor, id, ACTIONS[id]), atbCost: id === 'cancelChannel' ? 0 : 100,
         ...(getTacticalRange(actor, id, ACTIONS[id]) !== null ? { rangeUnits: 'unités de scène ATB' } : {}) } : {}),
+      ...(chroniclePositionsEnabled(battle) && id === 'bioticCharge'
+        ? { range: CHRONICLE_CHARGE_RANGE, rangeUnits: 'unités de scène ATB', atbCost: 100 } : {}),
       description, available: !reason, reason, cooldownRemaining: actor.cooldowns[id] || 0 };
   });
 }
@@ -636,6 +650,14 @@ function timedEffect(battle, source, target, status, duration) {
 }
 
 function commitSignaturePlan(battle, actor, actionId, plan) {
+  if (plan.displacement) {
+    commitChronicleDisplacement(battle, plan.displacement);
+    actor.chargePositionContact = true;
+    emit(battle, { type: 'chronicleDisplacement', actorId: actor.id, actionId, targetId: plan.displacement.targetId,
+      from: plan.displacement.from, to: plan.displacement.to, distance: plan.displacement.distance,
+      contactDistance: plan.displacement.contactDistance,
+      message: `${actor.name} se déplace de ${plan.displacement.distance.toFixed(1)} unités ATB jusqu’au contact.` });
+  }
   // Clear a detonating protection before recursive damage can break it again.
   for (const status of plan.clearStatuses || []) delete actor.statuses[status];
   Object.assign(actor.statuses, plan.selfStatus || {});
@@ -833,7 +855,9 @@ function prepareAction(battle, args) {
   const hostile = ['enemy', 'enemies'].includes(definition.target);
   const checks = targets.map(target => {
     const bossReason = hostile && getBossTargetReason(battle, target);
-    return { target, ...(bossReason ? { ok: false, reason: bossReason } : tacticalTargetCheck(battle, actor, target, actionId, definition)) };
+    return { target, ...(bossReason ? { ok: false, reason: bossReason }
+      : actionId === 'bioticCharge' && chroniclePositionsEnabled(battle) ? chronicleChargeTargetCheck(battle, actor, target)
+        : tacticalTargetCheck(battle, actor, target, actionId, definition)) };
   });
   if (definition.target === 'enemies') {
     const selected = targetId == null ? null : checks.find(check => check.target.id === targetId);
@@ -849,7 +873,8 @@ function prepareAction(battle, args) {
   const ammoSelection = AMMO_ACTIONS.has(actionId) || actionId === 'ammoOff'
     ? activateAmmoProfile(actor, actionId === 'ammoOff' ? null : getAmmoActionProfile(actor.mediaId, actionId)?.id) : null;
   if (ammoSelection && !ammoSelection.ok) return { ok: false, reason: ammoSelection.reason };
-  const movement = tacticalEnabled(battle) && ['advance', 'withdraw', 'reposition'].includes(actionId) ? planTacticalMove(battle, actor, actionId) : null;
+  const movement = tacticalEnabled(battle) && ['advance', 'withdraw', 'reposition'].includes(actionId) ? planTacticalMove(battle, actor, actionId)
+    : chroniclePositionsEnabled(battle) && ['advance', 'withdraw'].includes(actionId) ? planChronicleMove(battle, actor, actionId) : null;
   if (movement && !movement.ok) return movement;
   const signaturePlan = Object.hasOwn(SIGNATURE_ACTIONS, actionId) ? planSignatureAction({ battle, actor, actionId, targets }) : null;
   if (signaturePlan && !signaturePlan.ok) return { ok: false, reason: signaturePlan.reason };
@@ -863,13 +888,15 @@ export function getTargetAvailability(battle, order) {
   const prepared = prepareAction(battle, order);
   const actor = battle?.actors?.find(candidate => candidate.id === order?.actorId);
   const target = battle?.actors?.find(candidate => candidate.id === order?.targetId);
-  const geometry = tacticalEnabled(battle) && actor && target && Object.hasOwn(ACTIONS, order?.actionId)
-    ? tacticalTargetCheck(battle, actor, target, order.actionId, ACTIONS[order.actionId]) : null;
+  const geometry = actor && target && Object.hasOwn(ACTIONS, order?.actionId)
+    ? order.actionId === 'bioticCharge' && chroniclePositionsEnabled(battle) ? chronicleChargeTargetCheck(battle, actor, target)
+      : tacticalEnabled(battle) ? tacticalTargetCheck(battle, actor, target, order.actionId, ACTIONS[order.actionId]) : null : null;
   return { ok: prepared.ok, reason: prepared.ok ? null : prepared.reason,
     ...(geometry ? { range: geometry.range, distance: geometry.distance, rangeUnits: 'unités de scène ATB' } : {}),
     ...(Object.hasOwn(prepared, 'range') ? { range: prepared.range, distance: prepared.distance, rangeUnits: 'unités de scène ATB' } : {}),
     ...(prepared.ok ? { targetIds: prepared.targets.map(target => target.id), atbCost: order.actionId === 'cancelChannel' ? 0 : 100,
-      ...(prepared.movement ? { movement: { from: prepared.movement.from, to: prepared.movement.to } } : {}) } : {}) };
+      ...(prepared.movement ? { movement: { from: prepared.movement.from, to: prepared.movement.to } }
+        : prepared.signaturePlan?.displacement ? { movement: { from: prepared.signaturePlan.displacement.from, to: prepared.signaturePlan.displacement.to } } : {}) } : {}) };
 }
 
 /** An explicit zero-resource decision lets other gauges charge in Wait mode.
@@ -1175,10 +1202,16 @@ export function performAction(battle, { actorId, actionId, targetId } = {}) {
     }
   }
   if (movement) {
-    commitTacticalMove(battle, movement);
-    refreshTacticalCover(battle);
-    emit(battle, { type: 'tacticalMove', actorId, actionId, from: movement.from, to: movement.to,
-      message: `${actor.name} change de position tactique.` });
+    if (chroniclePositionsEnabled(battle)) {
+      commitChronicleDisplacement(battle, movement);
+      emit(battle, { type: 'chronicleDisplacement', actorId, actionId, from: movement.from, to: movement.to, distance: movement.distance,
+        message: `${actor.name} se déplace de ${movement.distance.toFixed(1)} unités ATB dans l’arène Chroniques.` });
+    } else {
+      commitTacticalMove(battle, movement);
+      refreshTacticalCover(battle);
+      emit(battle, { type: 'tacticalMove', actorId, actionId, from: movement.from, to: movement.to,
+        message: `${actor.name} change de position tactique.` });
+    }
   }
   if (actor.statuses.tacticalCloak > EPSILON && signatureOffensiveAction(actionId, definition)) {
     delete actor.statuses.tacticalCloak;

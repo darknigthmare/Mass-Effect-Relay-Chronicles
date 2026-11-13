@@ -1,0 +1,1662 @@
+{
+  "baseCommit": "5d933068cacd1b595d584b7cedfffd35b1db362d",
+  "generatedAt": "2026-11-13T12:13:18.506Z",
+  "scope": "Propositions ciblées uniquement ; aucune mutation catalogue/XLSX ni assetStatus. 26 critères fonctionnels candidats. CHC-origine-de-shepard reste partiel : missions propres aux origines absentes.",
+  "gatesPending": [
+    "Build et parcours production frais du parent après synchronisation du registre"
+  ],
+  "records": [
+    {
+      "id": "CUST-FACE-preset",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Chaque préréglage du SVG est distinct ; retour au préréglage initial identique ; identifiant inconnu refusé au décodage et import public refusé. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Changer le préréglage puis revenir au précédent restitue le même aperçu. Une valeur inconnue est rejetée au chargement.",
+        "complete": true,
+        "coveredClauses": [
+          "Chaque préréglage du SVG est distinct ; retour au préréglage initial identique ; identifiant inconnu refusé au décodage et import public refusé."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-FACE-skin",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Six teints distincts dans le vrai portrait de l’atelier, capturés séparément ; teint sélectionné présent dans les exports et retrouvé aux trois reprises. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Les teintes restent distinctes et lisibles sous l’éclairage de l’atelier. La valeur choisie survit à un chargement.",
+        "complete": true,
+        "coveredClauses": [
+          "Six teints distincts dans le vrai portrait de l’atelier, capturés séparément ; teint sélectionné présent dans les exports et retrouvé aux trois reprises."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-FACE-hair",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Les 24 combinaisons coiffure/couleur du portrait restent indépendantes ; choix publics dans les deux sens ; identifiants inconnus refusés sans remplacer la partie. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Changer la couleur conserve la coiffure et inversement. Les valeurs invalides ne sont pas importées dans la partie.",
+        "complete": true,
+        "coveredClauses": [
+          "Les 24 combinaisons coiffure/couleur du portrait restent indépendantes ; choix publics dans les deux sens ; identifiants inconnus refusés sans remplacer la partie."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-FACE-eyes",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Couleur effective des deux iris du SVG lue après sélection ; valeur enregistrée dans l’export ; statistiques inchangées par le choix cosmétique. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "La sélection reste vérifiable dans le portrait et dans la sauvegarde exportée sans modifier les statistiques de combat.",
+        "complete": true,
+        "coveredClauses": [
+          "Couleur effective des deux iris du SVG lue après sélection ; valeur enregistrée dans l’export ; statistiques inchangées par le choix cosmétique."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-ARMOR-full-suit",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : L’atelier conserve un objet d’armure complet issu des identifiants existants ; neuf ports ME1, aucun assemblage torse/bras/jambes ME2. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Ne pas fabriquer de combinaison torse/bras/jambes ME2 dans la dotation ME1. L’objet sélectionné est un identifiant existant de l’inventaire.",
+        "complete": true,
+        "coveredClauses": [
+          "L’atelier conserve un objet d’armure complet issu des identifiants existants ; neuf ports ME1, aucun assemblage torse/bras/jambes ME2."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-ARMOR-compatibility",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Armure turienne incompatible et exemplaire réservé à Kaidan refusés avec raison visible et bouton désactivé ; transaction invalide refusée atomiquement au natif. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Une armure incompatible ou réservée par un autre équipier ne peut pas être validée. La raison est compréhensible dans l’écran.",
+        "complete": true,
+        "coveredClauses": [
+          "Armure turienne incompatible et exemplaire réservé à Kaidan refusés avec raison visible et bouton désactivé ; transaction invalide refusée atomiquement au natif."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-ARMOR-module",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Bouclier et résistance suivent les modules préparés ; défense suit les plaques ; retrait du module et des deux ports préserve les objets possédés. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "La comparaison du bouclier, de la défense ou des résistances suit le module choisi. Retirer le module ne détruit pas l’objet.",
+        "complete": true,
+        "coveredClauses": [
+          "Bouclier et résistance suivent les modules préparés ; défense suit les plaques ; retrait du module et des deux ports préserve les objets possédés."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-ARMOR-colors",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Changement de couleur comparé aux statistiques inchangées et aux quantités inchangées ; mention explicite de l’extension cosmétique de l’adaptation. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Changer une couleur conserve les statistiques et les objets. Afficher qu’il s’agit d’une option de l’adaptation.",
+        "complete": true,
+        "coveredClauses": [
+          "Changement de couleur comparé aux statistiques inchangées et aux quantités inchangées ; mention explicite de l’extension cosmétique de l’adaptation."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-ARMOR-pattern-finish",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Motif et finition modifient les pixels du vrai canvas ; choix appliqués retrouvés dans les exports/reprises ; aucun changement de bonus cosmétique. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Le motif et la finition sont visibles dans l’aperçu, persistent après validation et ne modifient pas les bonus.",
+        "complete": true,
+        "coveredClauses": [
+          "Motif et finition modifient les pixels du vrai canvas ; choix appliqués retrouvés dans les exports/reprises ; aucun changement de bonus cosmétique."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-ARMOR-helmet",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Masquage/affichage change l’aperçu sans modifier la défense ni la pièce ; notes publiques précisent la tenue N7 générique et le casque réservé aux poses de combat. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Activer et masquer le casque laisse l’armure et sa défense inchangées. Décrire la portée réelle de la représentation en jeu.",
+        "complete": true,
+        "coveredClauses": [
+          "Masquage/affichage change l’aperçu sans modifier la défense ni la pièce ; notes publiques précisent la tenue N7 générique et le casque réservé aux poses de combat."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-WEAPON-owned",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Arme existante possédée préparée sans acquisition ; arme équipée affichée ; quantités, crédits et attribution de Kaidan inchangés. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Choisir parmi les armes disponibles sans en créer ni en acheter implicitement. Le modèle équipé reste affiché.",
+        "complete": true,
+        "coveredClauses": [
+          "Arme existante possédée préparée sans acquisition ; arme équipée affichée ; quantités, crédits et attribution de Kaidan inchangés."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-WEAPON-upgrade",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Les deux ports de modules d’arme refusent explicitement des modules d’armure et de munitions pourtant possédés ; comparaison de chaleur/refroidissement avec le module valide. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Un module d’armure ou de munitions ne peut pas entrer dans ce champ. La comparaison reflète l’effet du module.",
+        "complete": true,
+        "coveredClauses": [
+          "Les deux ports de modules d’arme refusent explicitement des modules d’armure et de munitions pourtant possédés ; comparaison de chaleur/refroidissement avec le module valide."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-WEAPON-ammo",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Munitions équipées, retirées puis rééquipées dans le brouillon sans remplacer les deux modules d’arme ; quantité possédée identique après application et reprise. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Équiper puis retirer des munitions spéciales ne remplace pas le module d’arme et conserve la quantité possédée.",
+        "complete": true,
+        "coveredClauses": [
+          "Munitions équipées, retirées puis rééquipées dans le brouillon sans remplacer les deux modules d’arme ; quantité possédée identique après application et reprise."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-WEAPON-effects",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Toutes les valeurs projetées sont comparées à actorFor, calcul utilisé par Équipement : puissance, chaleur, refroidissement, dégâts synthétiques et résistance ; outils technologique/biotique à ×1,15. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Vérifier puissance, chaleur, refroidissement, dégâts spécialisés et résistance avec les mêmes calculs que l’écran Équipement.",
+        "complete": true,
+        "coveredClauses": [
+          "Toutes les valeurs projetées sont comparées à actorFor, calcul utilisé par Équipement : puissance, chaleur, refroidissement, dégâts synthétiques et résistance ; outils technologique/biotique à ×1,15."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-draft-pure",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Inspection conserve le résumé du brouillon ; tests natifs comparent état et brouillon complets avant/après consultation ; préparation seule change le brouillon ; annulation conserve tout l’export. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "La consultation ne modifie ni la partie, ni le brouillon, ni les quantités. Pour une pièce, seule la préparation modifie la dotation du brouillon. La partie reste intacte jusqu’à Appliquer.",
+        "complete": true,
+        "coveredClauses": [
+          "Inspection conserve le résumé du brouillon ; tests natifs comparent état et brouillon complets avant/après consultation ; préparation seule change le brouillon ; annulation conserve tout l’export."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-cancel",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Réouverture après annulation restitue le même dessin initial et la configuration complète ; export inchangé hors temps écoulé et position reconstruite. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "La configuration antérieure reste affichée après fermeture et réouverture.",
+        "complete": true,
+        "coveredClauses": [
+          "Réouverture après annulation restitue le même dessin initial et la configuration complète ; export inchangé hors temps écoulé et position reconstruite."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-apply",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Toutes les catégories et les neuf ports préparés sont appliqués ensemble ; comparaison intégrale de l’export contre la configuration valide, crédits, XP, quêtes et drapeaux inclus. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Toutes les modifications sont appliquées ensemble sans altérer crédits, quêtes ni XP.",
+        "complete": true,
+        "coveredClauses": [
+          "Toutes les catégories et les neuf ports préparés sont appliqués ensemble ; comparaison intégrale de l’export contre la configuration valide, crédits, XP, quêtes et drapeaux inclus."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-failure",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Course de stock entre préparation et application refusée au natif sans aucune mutation ; incompatibilités et réservations expliquées publiquement avec absence de projection. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "L’opération échoue sans modifier apparence, dotation ou inventaire.",
+        "complete": true,
+        "coveredClauses": [
+          "Course de stock entre préparation et application refusée au natif sans aucune mutation ; incompatibilités et réservations expliquées publiquement avec absence de projection."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-legacy",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Suppression déclarée du seul champ historique de personnalisation ; import public ajoute les valeurs par défaut et conserve tous les autres champs de la partie. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Les valeurs par défaut sont ajoutées et les données historiques restent intactes.",
+        "complete": true,
+        "coveredClauses": [
+          "Suppression déclarée du seul champ historique de personnalisation ; import public ajoute les valeurs par défaut et conserve tous les autres champs de la partie."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-malformed",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Valeurs inconnues de chaque champ facial refusées ; marqueurs d’équipement invalides et getters imbriqués refusés sans lecture ; suite existante couvre symboles, prototypes, cycles et sérialisation sans mutation. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Chaque entrée non valide est refusée sans exécution de getter ni mutation partielle.",
+        "complete": true,
+        "coveredClauses": [
+          "Valeurs inconnues de chaque champ facial refusées ; marqueurs d’équipement invalides et getters imbriqués refusés sans lecture ; suite existante couvre symboles, prototypes, cycles et sérialisation sans mutation."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-roundtrip",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Apparence, options et neuf ports identiques après application, emplacement manuel, reprise automatique après rechargement et réimport JSON exporté. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "L’apparence et les neuf emplacements de dotation retrouvés sont identiques aux choix validés.",
+        "complete": true,
+        "coveredClauses": [
+          "Apparence, options et neuf ports identiques après application, emplacement manuel, reprise automatique après rechargement et réimport JSON exporté."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-ownership",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Deux réservations de Kaidan restent identiques ; refus de double allocation et seconde copie de module contrôlés au natif ; objets, stock marchand et crédits comparés après chaque transaction publique. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Aucun objet ne se duplique et aucune attribution de l’autre équipier ne disparaît.",
+        "complete": true,
+        "coveredClauses": [
+          "Deux réservations de Kaidan restent identiques ; refus de double allocation et seconde copie de module contrôlés au natif ; objets, stock marchand et crédits comparés après chaque transaction publique."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-stats",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Multiplicateurs ×1,15 conservés sans arrondi des données ; projections comparées à une dotation valide ; trois modules d’arme et deux d’armure restitués ; aucun gain pour un refus. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Les multiplicateurs technologiques/biotiques gardent leur précision. Les chiffres projetés et modules restitués concordent avec une dotation valide ; aucun gain n’est projeté pour un refus.",
+        "complete": true,
+        "coveredClauses": [
+          "Multiplicateurs ×1,15 conservés sans arrondi des données ; projections comparées à une dotation valide ; trois modules d’arme et deux d’armure restitués ; aucun gain pour un refus."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-layouts",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Contrôles des trois onglets accessibles dans les viewports 1440×1000 et 390×844 ; absence de débordement horizontal involontaire ; actions parcourues et captures de contrôle. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Aucun défilement horizontal involontaire, contrôle tronqué ou action inaccessible.",
+        "complete": true,
+        "coveredClauses": [
+          "Contrôles des trois onglets accessibles dans les viewports 1440×1000 et 390×844 ; absence de débordement horizontal involontaire ; actions parcourues et captures de contrôle."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CUST-QA-keyboard",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Tab/Entrée/Espace parcourent Personnage, Armure et Armes ; focus visible après Préparer et cinq changements de pose ; Échap annule sans modifier l’export. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Le focus reste visible après Préparer et les changements de pose. Échap ferme sans appliquer le brouillon. Le parcours reste possible sans souris.",
+        "complete": true,
+        "coveredClauses": [
+          "Tab/Entrée/Espace parcourent Personnage, Armure et Armes ; focus visible après Préparer et cinq changements de pose ; Échap annule sans modifier l’export."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    },
+    {
+      "id": "CHC-classe-de-shepard",
+      "proposedFields": {
+        "status": "Validé",
+        "notes": "Lot Continuation depuis 5d933068 : Les six classes initiales conservent leurs pouvoirs natifs ; amplificateur possédé refusé au soldat dans l’atelier public ; export et liste de pouvoirs inchangés. Vérifications fonctionnelles de l’adaptation ; aucun assetStatus ou fidélité artistique/canonique 1:1 avancé. Natif global frais1106/1106 ; DEV03 sept groupes fonctionnels,13captures réellement ouvertes,14exports et fixtures déclarées. Production compilée encore attendue."
+      },
+      "implementationPaths": [
+        "src/main.js",
+        "src/customization.js",
+        "src/customization-ui.js",
+        "src/customization-ui.css",
+        "src/customization-render.js",
+        "src/loadout.js",
+        "src/state.js",
+        "src/save-slots.js",
+        "src/game-data.js"
+      ],
+      "evidence": [
+        "tests/continuation-customization.test.js",
+        "tests/customization.test.js",
+        "tests/customization-comparison.test.js",
+        "tests/completion-persistence.test.js",
+        "tests/loadout.test.js",
+        "tests/loadout-migration.test.js",
+        "tests/commander.test.js",
+        "scripts/continuation-customization-public.mjs",
+        "docs/research/continuation-customization.md",
+        "tests/equipment-combat.test.js",
+        "docs/qa/continuation-integration-final-01-report.json",
+        "docs/qa/continuation-customization-dev-final-03-report.json",
+        "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+      ],
+      "acceptanceReview": {
+        "kind": "functional",
+        "exactCriterion": "Pas de biotique acquise par un simple module de soldat.",
+        "complete": true,
+        "coveredClauses": [
+          "Les six classes initiales conservent leurs pouvoirs natifs ; amplificateur possédé refusé au soldat dans l’atelier public ; export et liste de pouvoirs inchangés."
+        ],
+        "limitations": [
+          "Les fixtures déclarées apportent XP, crédits et équipement ; leur acquisition en campagne n’est pas jouée.",
+          "Les silhouettes exactes des armes/armures et les modèles faciaux officiels restent hors certification ; statuts d’assets inchangés.",
+          "Chromium logiciel et dimensions émulées ; pas de test matériel téléphone/manette ou Electron/Windows.",
+          "Getters d’objets ordinaires refusés ; les traps d’un Proxy JavaScript hostile ne constituent pas une sandbox de code."
+        ],
+        "evidence": [
+          "tests/continuation-customization.test.js",
+          "tests/customization.test.js",
+          "tests/customization-comparison.test.js",
+          "tests/completion-persistence.test.js",
+          "tests/loadout.test.js",
+          "tests/loadout-migration.test.js",
+          "tests/commander.test.js",
+          "scripts/continuation-customization-public.mjs",
+          "docs/research/continuation-customization.md",
+          "tests/equipment-combat.test.js",
+          "docs/qa/continuation-integration-final-01-report.json",
+          "docs/qa/continuation-customization-dev-final-03-report.json",
+          "docs/qa/continuation-customization-dev-final-03-visual-review.json"
+        ]
+      },
+      "productionPending": true
+    }
+  ],
+  "nativeEvidence": "docs/qa/continuation-integration-final-01-report.json",
+  "developmentEvidence": "docs/qa/continuation-customization-dev-final-03-report.json",
+  "visualReview": "docs/qa/continuation-customization-dev-final-03-visual-review.json",
+  "failedAttempts": [
+    {
+      "report": "docs/qa/continuation-customization-dev-final-01-report.json",
+      "reason": "Ancien oracle du collecteur ne traitait pas la valeur neutre d’un multiplicateur absent ; échec du collecteur sans défaut produit ni promotion.",
+      "archivedCollector": "docs/qa/continuation-customization-dev-final-01-collector.mjs"
+    },
+    {
+      "prefix": "continuation-customization-dev-final-02",
+      "reason": "Préflight fs échoué avant Chromium : import.meta.url passé comme chaîne ; aucun rapport/capture créé, correction vers URL objet avant DEV03."
+    }
+  ]
+}

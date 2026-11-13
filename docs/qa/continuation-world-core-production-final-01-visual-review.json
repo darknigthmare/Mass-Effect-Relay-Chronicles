@@ -1,0 +1,98 @@
+{
+  "at": "2026-11-13T12:43:41.407Z",
+  "passed": true,
+  "report": "docs/qa/continuation-world-core-production-final-01-report.json",
+  "reviewMethod": "All ten actual production viewport screenshots opened individually with view_image; every stored image hash rechecked. No edited or composite images used.",
+  "reviewed": [
+    {
+      "label": "options-economy",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-options-economy.png",
+      "sha256": "d47c8194e5a92d996c61c3370ca5d01bbe573164fece11e24b1b6a5b47dbd318",
+      "opened": true,
+      "observation": "The actual compiled app Options menu displays Économie, selected publicly. No clock or frame-cadence injection is involved."
+    },
+    {
+      "label": "stairs-lower",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-stairs-lower.png",
+      "sha256": "ed869682abf7377fe3318dae8ef18032f2fbbfc21bd2ff6a033ba240fac9c101",
+      "opened": true,
+      "observation": "The three members stand below the four shallow steps, with visible contact-shadow meshes and feet near their supporting surface."
+    },
+    {
+      "label": "stairs-middle",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-stairs-middle.png",
+      "sha256": "16a3cf0145aca094216d60307cda8da3d125b5d346d845bdfe2cd8d48568e5c9",
+      "opened": true,
+      "observation": "The leader is on the approach steps while the two followers occupy lower positions; feet and shadows move with each member’s support."
+    },
+    {
+      "label": "stairs-upper",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-stairs-upper.png",
+      "sha256": "12689db215ec1b99a9afbbb5fe661c6fd3a8e278d19c4e467a927c7dee7fb95e",
+      "opened": true,
+      "observation": "The N7 leader stands on the raised council landing; the actual upper export z=-19.4639 confirms the climb. The followers remain staggered on the approach."
+    },
+    {
+      "label": "stairs-returned",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-stairs-returned.png",
+      "sha256": "d980778e639bedf4b04e486e774d8da1014596deed9c0639ff25c34009721639",
+      "opened": true,
+      "observation": "The leader has descended to the lower approach, actual export z=-15.1277. Followers occupy higher steps; their contact shadows remain at their own ground."
+    },
+    {
+      "label": "pillar-before",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-pillar-before.png",
+      "sha256": "80d131750dd5b379325fa427b189efc28e0d10a543d61f2f48d922a0efa88aa2",
+      "opened": true,
+      "observation": "The leader is completely hidden behind the nearest opaque column, with the two followers exposed on its left. The capture label refers to sequence order."
+    },
+    {
+      "label": "pillar-behind",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-pillar-behind.png",
+      "sha256": "2d3ea0b1146442447ead94335fb2d9d37f283258fc493eb328e43e2d61d40ded",
+      "opened": true,
+      "observation": "The leader is visible to the right of that column, while another member remains masked. No sprite fragments show through its solid face."
+    },
+    {
+      "label": "pillar-emerged",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-pillar-emerged.png",
+      "sha256": "a32c76a14eeb959e2603a1dca657ae0c8e7a241d7560f77091a68014269e8cf8",
+      "opened": true,
+      "observation": "The column hides most of the group while thin visible body portions appear at its edges. This is ordinary local depth occlusion, not a whole-character visibility toggle."
+    },
+    {
+      "label": "camera-threshold-stop",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-camera-threshold-stop.png",
+      "sha256": "df0b41bbe95e605632642a54dea906f5abd8831b2c0be302bcec2a1fd45b7b87",
+      "opened": true,
+      "observation": "The actual exported x19.5882 crosses the x18.75 clamp. The architecture and party are settled after the public key release."
+    },
+    {
+      "label": "camera-threshold-stationary",
+      "path": "docs/screenshots/continuation-world-core-production-final-01-camera-threshold-stationary.png",
+      "sha256": "91e0ac27029bb389df59051ffdb250321ccd93017b288c749f2dda274ed6b753",
+      "opened": true,
+      "observation": "The architecture framing matches the stopped view; the public export position is identical. Ordinary actor motion/ambient changes do not indicate camera oscillation."
+    }
+  ],
+  "scope": "Compiled HTTP app: public Citadel stair ascent/descent, opaque-column sprite occlusion and positive camera clamp. Native tests independently cover support/feet/shadow coordinates and both threshold signs.",
+  "compiledEvidence": {
+    "distFrozen": true,
+    "distFiles": 92,
+    "sourceFrozen": true,
+    "registryContextFrozenDuringRun": true,
+    "sourceRequests": [],
+    "browserClosed": true
+  },
+  "coveredIds": [
+    "SYS-occlusion-sprites",
+    "QA-mur-opaque",
+    "QA-escalier",
+    "QA-camera-au-seuil"
+  ],
+  "limitations": [
+    "Economy quality chosen via public Options; no hardware FPS, original floor-plan fidelity, Electron or Windows claim.",
+    "Prepared Citadel chapter save is declared; preceding victories and traversal are not browser-earned.",
+    "No retreat/re-engagement boundary claim. QA-fuite-et-reentree remains Prototype and partial."
+  ]
+}

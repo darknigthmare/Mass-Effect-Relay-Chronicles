@@ -1,0 +1,790 @@
+{
+  "passed": true,
+  "at": "2026-11-13T12:01:48.263Z",
+  "mode": "development",
+  "url": "http://127.0.0.1:4195/",
+  "commit": "5d933068cacd1b595d584b7cedfffd35b1db362d",
+  "gitBase": "5d933068cacd1b595d584b7cedfffd35b1db362d",
+  "command": {
+    "script": "node scripts/continuation-dialogues-public.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4195/",
+      "CONTINUATION_DIALOGUES_PREFIX": "continuation-dialogues-public-dev-01",
+      "CONTINUATION_DIALOGUES_MODE": "development"
+    }
+  },
+  "scope": "Public briefing, first audience, Tali evidence, investiture and Anderson handoff; declared native prologue and position-only imports. No QA harness or private app state access.",
+  "sourceHashes": {
+    "src/main.js": "67119b341cc837542a4a8a530f195a9c5a2fc1cd8a9ec9e67a2c5a78cdc85256",
+    "src/continuation-dialogues.js": "889b111512de6405b35950f72ffce3fd1eadaafc292af4098615eb4686d0d5fb",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/story.js": "0599080bdd2336cae74bae266a758268287a0295340213e9a5acbf177a97abb9",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "tests/continuation-dialogues.test.js": "368b2cfba8d3212668319b386ddfd8cbbf14481031ee92bbeaea0701cbe91449",
+    "scripts/continuation-dialogues-public.mjs": "2e53abe50246447f72ab88656cbc8a79c7a12de62df09af981ab7d8050efe035"
+  },
+  "finalSourceHashes": {
+    "src/main.js": "67119b341cc837542a4a8a530f195a9c5a2fc1cd8a9ec9e67a2c5a78cdc85256",
+    "src/continuation-dialogues.js": "889b111512de6405b35950f72ffce3fd1eadaafc292af4098615eb4686d0d5fb",
+    "src/state.js": "1b0045f23a401e266288ef4498b9c6eb95df13f2ab53bbe7a43062f579eafa46",
+    "src/story.js": "0599080bdd2336cae74bae266a758268287a0295340213e9a5acbf177a97abb9",
+    "src/story-data.js": "f0eef833e8f44638a3e76537fe23c339d954d1aa32989469b4d15e8b9c2414f4",
+    "src/world-data.js": "d45142c8a136194e028f529dcf1f63c8b6838e337a54417b31654bf54c804359",
+    "src/game-data.js": "c525a91155834f9ffb45e7760d6f8abdf0ec2e4549514899fc0cd019f20e1015",
+    "src/mission-progress.js": "a454edf521fe37063719d5091eab8f0dfbf545372ea9bcbd1f80b9cbfa4d6add",
+    "tests/continuation-dialogues.test.js": "368b2cfba8d3212668319b386ddfd8cbbf14481031ee92bbeaea0701cbe91449",
+    "scripts/continuation-dialogues-public.mjs": "2e53abe50246447f72ab88656cbc8a79c7a12de62df09af981ab7d8050efe035"
+  },
+  "registryContextHashes": {
+    "before": {
+      "src/universe-data.js": "ceb6ca3970a5098d66ae7f06f20f596fa6e483cbac19ead0d004ba237aa1c124"
+    },
+    "after": {
+      "src/universe-data.js": "ceb6ca3970a5098d66ae7f06f20f596fa6e483cbac19ead0d004ba237aa1c124"
+    }
+  },
+  "fixtures": [
+    {
+      "path": "docs/qa/continuation-dialogues-public-dev-01-briefing-fixture.json",
+      "sha256": "2d81d15f8d9603acc51fdd06718c7570e650fb5b336125ee386ef258ba0c6200",
+      "origin": {
+        "kind": "Native newGame, starting position only",
+        "preparedRewards": false
+      },
+      "position": {
+        "x": -4.5,
+        "z": -2.6
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/continuation-dialogues-public-dev-01-citadel-fixture.json",
+      "sha256": "deafe1767df5f9683ae3f84517ce65717c5b23fd7daf867f2da36f2f7f2b8eb2",
+      "origin": {
+        "kind": "Declared native completed Eden prologue",
+        "APIs": [
+          "newGame",
+          "recordVisit",
+          "winEncounter × 3",
+          "completeZone(eden-prime)"
+        ],
+        "prepared": [
+          "briefed",
+          "three Eden wins and rewards",
+          "Jenkins loss",
+          "Ashley recruitment",
+          "Eden completion and rewards",
+          "Citadel visit",
+          "arrival position"
+        ],
+        "precedingCampaignPlayed": false,
+        "optionalCrewPrepared": []
+      },
+      "position": {
+        "x": 0,
+        "z": 12.4
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/continuation-dialogues-public-dev-01-tali-position-fixture.json",
+      "sha256": "572f852c2b7bd8533e6df66e1df4500a1e99e2a1a16928dcc921ee3a6c1e7f57",
+      "origin": {
+        "kind": "Position-only transfer from an actual public export",
+        "parentExport": "docs/qa/continuation-dialogues-public-dev-01-first-audience-complete-export.json",
+        "parentSHA256": "e9e99f0595f24b1777e10f22ba0bfad1374ba117bd0f88a91b971bcea0f4f486",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": 0,
+              "z": 12.4
+            },
+            "after": {
+              "x": -7,
+              "z": -4.6
+            }
+          }
+        ],
+        "traversalClaimed": false
+      },
+      "position": {
+        "x": -7,
+        "z": -4.6
+      },
+      "importedViaPublicChooser": true
+    },
+    {
+      "path": "docs/qa/continuation-dialogues-public-dev-01-council-position-fixture.json",
+      "sha256": "e2947794fa8381fcc030b06bab2791ba8dc6fe699a60f9bece0137d50fc75829",
+      "origin": {
+        "kind": "Position-only transfer from an actual public export",
+        "parentExport": "docs/qa/continuation-dialogues-public-dev-01-tali-recruited-export.json",
+        "parentSHA256": "9f8fe7e2ba08344f023fc1e4c4dd0cc26beef0fb8e0ea19a4783db4123de51c1",
+        "changedFields": [
+          {
+            "path": "position",
+            "before": {
+              "x": -7,
+              "z": -4.6
+            },
+            "after": {
+              "x": 0,
+              "z": -16.6
+            }
+          }
+        ],
+        "traversalClaimed": false
+      },
+      "position": {
+        "x": 0,
+        "z": -16.6
+      },
+      "importedViaPublicChooser": true
+    }
+  ],
+  "exports": [
+    {
+      "label": "briefing-questions-only",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-briefing-questions-only-export.json",
+      "sha256": "636efad4a0c79ef7ce338ec1e5f8ac8e3e6ddf063ff23b9d30d44796a5e8dd3b",
+      "bytes": 2823,
+      "zone": "normandy",
+      "xp": 0,
+      "credits": 250,
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "completed": [],
+      "flags": {}
+    },
+    {
+      "label": "briefing-confirmed",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-briefing-confirmed-export.json",
+      "sha256": "f591245ebf842cbb1f305f534a1f56e460e7e61f5e509e910115b565ba1b6467",
+      "bytes": 2837,
+      "zone": "normandy",
+      "xp": 0,
+      "credits": 250,
+      "recruited": [
+        "kaidan",
+        "jenkins"
+      ],
+      "completed": [],
+      "flags": {
+        "briefed": true
+      }
+    },
+    {
+      "label": "first-audience-complete",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-first-audience-complete-export.json",
+      "sha256": "e9e99f0595f24b1777e10f22ba0bfad1374ba117bd0f88a91b971bcea0f4f486",
+      "bytes": 3247,
+      "zone": "citadel",
+      "xp": 395,
+      "credits": 685,
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley"
+      ],
+      "completed": [
+        "eden-prime"
+      ],
+      "flags": {
+        "briefed": true,
+        "jenkinsLost": true
+      }
+    },
+    {
+      "label": "tali-recruited",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-tali-recruited-export.json",
+      "sha256": "9f8fe7e2ba08344f023fc1e4c4dd0cc26beef0fb8e0ea19a4783db4123de51c1",
+      "bytes": 3340,
+      "zone": "citadel",
+      "xp": 395,
+      "credits": 685,
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "tali"
+      ],
+      "completed": [
+        "eden-prime"
+      ],
+      "flags": {
+        "briefed": true,
+        "jenkinsLost": true
+      }
+    },
+    {
+      "label": "handoff-interrupted",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-handoff-interrupted-export.json",
+      "sha256": "b084f31d12aebc2783b4eebc4a096398e848f7faf0020a5e4ecc16bef6215d53",
+      "bytes": 3340,
+      "zone": "citadel",
+      "xp": 395,
+      "credits": 685,
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "tali"
+      ],
+      "completed": [
+        "eden-prime"
+      ],
+      "flags": {
+        "briefed": true,
+        "jenkinsLost": true
+      }
+    },
+    {
+      "label": "handoff-completed",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-handoff-completed-export.json",
+      "sha256": "70290735fad4a271753c66a3055b88f57836e1e4a5608fb802de69793f726001",
+      "bytes": 3413,
+      "zone": "normandy",
+      "xp": 545,
+      "credits": 865,
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "tali"
+      ],
+      "completed": [
+        "eden-prime",
+        "citadel"
+      ],
+      "flags": {
+        "briefed": true,
+        "jenkinsLost": true,
+        "spectre": true
+      }
+    },
+    {
+      "label": "handoff-reloaded",
+      "path": "docs/qa/continuation-dialogues-public-dev-01-handoff-reloaded-export.json",
+      "sha256": "3c2a0ccae83a867b0c87c673457b947ec260a49f6da320a918a235fb79fdd277",
+      "bytes": 3413,
+      "zone": "normandy",
+      "xp": 545,
+      "credits": 865,
+      "recruited": [
+        "kaidan",
+        "jenkins",
+        "ashley",
+        "tali"
+      ],
+      "completed": [
+        "eden-prime",
+        "citadel"
+      ],
+      "flags": {
+        "briefed": true,
+        "jenkinsLost": true,
+        "spectre": true
+      }
+    }
+  ],
+  "captures": [
+    {
+      "label": "briefing-tone",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-briefing-tone.png",
+      "sha256": "0a0b141b7fd8171dd9db4ccb3c5706bf3250b6dd6966cac55ea31544274317e6",
+      "bytes": 785507,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "briefing-deploy-galaxy",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-briefing-deploy-galaxy.png",
+      "sha256": "0bb0eb31fbd14e849ddf9cf5468e64d01633c56e9b7c3bb07a99636ad72d1531",
+      "bytes": 389573,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "first-audience-cooperate",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-first-audience-cooperate.png",
+      "sha256": "62c5bf173ea99953b5c313ce850f3add9ef198dab4e36b1fe96fe600da212b23",
+      "bytes": 1093356,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "first-audience-challenge",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-first-audience-challenge.png",
+      "sha256": "4efa3e570585cb016d5df3c9f01cf0e92411791e3fa3a5bb8dd6498fddd86de6",
+      "bytes": 1079653,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "first-audience-questions",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-first-audience-questions.png",
+      "sha256": "8df73493f9960bff7a8fbf713a96e26bc04bf472a80df4ca09fd37625bb46bab",
+      "bytes": 1095490,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "tali-before-proof",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-tali-before-proof.png",
+      "sha256": "fc75637d919933576d6d51cb349179355feddfae499db8b3dc845ff28472b6b6",
+      "bytes": 942689,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "tali-received-proof",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-tali-received-proof.png",
+      "sha256": "8e2d0f91eb869a52acd6439e23d6ea21a9b0f66f0b85013a10df3c6bbb0b46f3",
+      "bytes": 1012997,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "anderson-handoff-pending",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-anderson-handoff-pending.png",
+      "sha256": "ba7f9eb31a28faecba623c312e2d8589a50a319feb45b90f33699d6701c9c8e9",
+      "bytes": 939501,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "anderson-investigation-leads",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-anderson-investigation-leads.png",
+      "sha256": "a3039a4bf8c11cd367f32f5f56f2b5d2c5e39738f91118c2b0ec86d45f804944",
+      "bytes": 1008930,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "anderson-command-confirmation",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-anderson-command-confirmation.png",
+      "sha256": "8bdd6154a9816d1ab5d187bcc04a1ade06efc1c15cfc16d00a781d985d316724",
+      "bytes": 1009379,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    },
+    {
+      "label": "handoff-reloaded-destinations",
+      "path": "docs/screenshots/continuation-dialogues-public-dev-01-handoff-reloaded-destinations.png",
+      "sha256": "f00e43ff703e008fff9fb281d30bea928af4f4c725da86c897703e8a395d3521",
+      "bytes": 396335,
+      "source": "Actual public viewport; no DOM/style/pose injection."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Three public briefing tones, three question topics and exit leave rewards, morality and progression unchanged",
+      "passed": true
+    },
+    {
+      "name": "Only the final briefing confirmation unlocks the existing galactic map",
+      "passed": true
+    },
+    {
+      "name": "Udina, Anderson and both councillors remain identified through all three first-audience responses; no Spectre verdict or reward is granted",
+      "passed": true
+    },
+    {
+      "name": "Tali reveals the recording detail after explicit acceptance; public export contains exactly her recruitment without new resources or changed party",
+      "passed": true
+    },
+    {
+      "name": "Reloading before the final handoff preserves the prior accepted Tali event and grants neither Spectre progression nor chapter rewards",
+      "passed": true
+    },
+    {
+      "name": "Final Anderson confirmation grants only the existing Citadel reward once and returns the unchanged chosen squad to the Normandy",
+      "passed": true
+    },
+    {
+      "name": "Actual save/reload preserves the single reward and unlocks the three investigation destinations after the handoff",
+      "passed": true
+    }
+  ],
+  "speakers": [
+    {
+      "id": "briefing",
+      "step": "intro",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "steady",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "normandy",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "beacon",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "nihlus",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "intro",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "practical",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "normandy",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "beacon",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "nihlus",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "intro",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "direct",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "normandy",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "beacon",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "nihlus",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "intro",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "questions",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "briefing",
+      "step": "ready",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "first-audience",
+      "step": "intro",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "first-audience",
+      "step": "anderson",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "first-audience",
+      "step": "council",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "first-audience",
+      "step": "cooperate",
+      "speaker": "CONSEILLER TURIEN"
+    },
+    {
+      "id": "first-audience",
+      "step": "udina",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "first-audience",
+      "step": "intro",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "first-audience",
+      "step": "anderson",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "first-audience",
+      "step": "council",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "first-audience",
+      "step": "challenge",
+      "speaker": "CONSEILLER TURIEN"
+    },
+    {
+      "id": "first-audience",
+      "step": "udina",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "first-audience",
+      "step": "intro",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "first-audience",
+      "step": "anderson",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "first-audience",
+      "step": "council",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "first-audience",
+      "step": "questions",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "first-audience",
+      "step": "udina",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "intro",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "origin",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "intro",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "pilgrimage",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "intro",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "proof",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "geth",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "tali-proof",
+      "step": "proof",
+      "speaker": "TALI’ZORAH NAR RAYYA"
+    },
+    {
+      "id": "investiture",
+      "step": "intro",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "investiture",
+      "step": "verdict",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "investiture",
+      "step": "questions",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "investiture",
+      "step": "honor",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "investiture",
+      "step": "intro",
+      "speaker": "AMBASSADEUR UDINA"
+    },
+    {
+      "id": "investiture",
+      "step": "verdict",
+      "speaker": "CONSEILLÈRE ASARI"
+    },
+    {
+      "id": "investiture",
+      "step": "resolve",
+      "speaker": "CONSEILLER TURIEN"
+    },
+    {
+      "id": "investiture",
+      "step": "handoff",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "investiture",
+      "step": "orders",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "investiture",
+      "step": "handoff",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "investiture",
+      "step": "thanks",
+      "speaker": "CAPITAINE ANDERSON"
+    },
+    {
+      "id": "investiture",
+      "step": "ready",
+      "speaker": "CAPITAINE ANDERSON"
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4195/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4195/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4195/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:4195/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "limitations": [
+    "The preceding Eden campaign and initial positions are explicit native fixtures, not played encounters or walked routes.",
+    "Position-only transfers derive from actual public exports and are imported through the public chooser. No DOM, style, clock, ATB, HP or application-state injection is used.",
+    "Tone replies are conversational variations only; no morality, relationship or new saved decision is invented.",
+    "Native tests separately cover all graph branches, optional Garrus/Wrex combinations, stale callbacks, foreign contexts and existing reward idempotence.",
+    "Dialogue text and staging are concise French adaptations. Full ME1 dialogue, voices, council portraits, original cinematics and fidelity 1:1 remain unverified.",
+    "This collector does not certify Electron, Windows, mobile, physical controllers or original ballistics."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/continuation-dialogues-public-dev-01-collector.mjs",
+    "sha256": "2e53abe50246447f72ab88656cbc8a79c7a12de62df09af981ab7d8050efe035"
+  },
+  "browserClosed": true
+}

@@ -1,0 +1,84 @@
+{
+  "at": "2026-11-13T12:02:51.004Z",
+  "passed": false,
+  "report": "docs/qa/continuation-world-dev-01-report.json",
+  "reviewMethod": "Every actual screenshot opened with view_image at full viewport; hashes rechecked.",
+  "reviewed": [
+    {
+      "label": "stairs-lower",
+      "path": "docs/screenshots/continuation-world-dev-01-stairs-lower.png",
+      "sha256": "636792ff901410f5f3c76f44fa1f47d5d783af319adddaa4933db326fd6f0f2f",
+      "opened": true,
+      "observation": "Three squad sprites stand at the lower council approach, feet and contact shadows visible; four physical steps are clear."
+    },
+    {
+      "label": "stairs-middle",
+      "path": "docs/screenshots/continuation-world-dev-01-stairs-middle.png",
+      "sha256": "941575c097dc21b2e071f3f3228c10ef360c05a34bd20c5654722d248ba9e3a8",
+      "opened": true,
+      "observation": "This capture still shows the lower placement; the label does not itself establish a middle-step position. The later upper export establishes actual traversal."
+    },
+    {
+      "label": "stairs-upper",
+      "path": "docs/screenshots/continuation-world-dev-01-stairs-upper.png",
+      "sha256": "af93179b0f0b86daf7a5aad09b9a6e682b09c68690fe02322d32f586aa4b0df3",
+      "opened": true,
+      "observation": "The N7 leader is on the raised landing; followers occupy the stair approach, with floor-relative feet and shadows."
+    },
+    {
+      "label": "stairs-returned",
+      "path": "docs/screenshots/continuation-world-dev-01-stairs-returned.png",
+      "sha256": "ea97568d3eec24a7d93dcd1c9295e44700b3d153981cbea3cf91dd0b2662b005",
+      "opened": true,
+      "observation": "The leader has descended to the lower approach; followers are staggered on the stairs. A public banter panel appears below the scene without hiding the steps."
+    },
+    {
+      "label": "pillar-before",
+      "path": "docs/screenshots/continuation-world-dev-01-pillar-before.png",
+      "sha256": "6a5da911f872fe1e0839ddf182043f42ce9e8a569fc70e5fd750719d56281e50",
+      "opened": true,
+      "observation": "The leader is hidden behind the nearest opaque Citadel column, while the two followers remain visible to its left. The label before refers to capture order."
+    },
+    {
+      "label": "pillar-behind",
+      "path": "docs/screenshots/continuation-world-dev-01-pillar-behind.png",
+      "sha256": "71ec865f333521868a0bf647661a00dc90371d9249dfbcfc354e5f2f0c6bc89d",
+      "opened": true,
+      "observation": "The leader has emerged to the right of that column, and another squad member remains concealed. The label behind is not a claim that this frame has the most hidden leader."
+    },
+    {
+      "label": "pillar-emerged",
+      "path": "docs/screenshots/continuation-world-dev-01-pillar-emerged.png",
+      "sha256": "a90425b0a3278a0462a952689e3be366f9e99fe0d55adfa144f4d50828e00e9d",
+      "opened": true,
+      "observation": "All three squad sprites are visible on the right of the column; the opaque column has no character fragments showing through its solid face."
+    },
+    {
+      "label": "camera-threshold-stop",
+      "path": "docs/screenshots/continuation-world-dev-01-camera-threshold-stop.png",
+      "sha256": "6d70c934bf27c423c771fee2341961b60a385ce0dc9b2b23a18c6de798ecef14",
+      "opened": true,
+      "observation": "The camera shows a stable right-side Citadel view, but the actual export is x18.65; the intended threshold was not crossed."
+    },
+    {
+      "label": "camera-threshold-stationary",
+      "path": "docs/screenshots/continuation-world-dev-01-camera-threshold-stationary.png",
+      "sha256": "598f707d0a7d5e98a6538a1c9041fcbefc49eb04497a1af1a4c841b4e44cbebd",
+      "opened": true,
+      "observation": "Architecture framing matches the stopped view, with ordinary ambient changes. This cannot validate a threshold crossing that did not occur."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/continuation-world-dev-01-failure.png",
+      "sha256": "a9518e6d11ba5863553e59c7630a589a9fbe0cdd6871fd22aa3d9a62228629ae",
+      "opened": true,
+      "observation": "The same stationary view includes a real banter panel. The collector failed its x>=18.75 assertion; no runtime error or gameplay defect is shown."
+    }
+  ],
+  "scope": "The two completed public stair/pillar groups were visually inspected. This failed attempt does not close camera threshold or retreat boundary criteria.",
+  "failure": "65ms keyboard hold produced no sampled movement; real export x18.65 failed x>=18.75. Only collector hold duration is adjusted for next attempt.",
+  "limitations": [
+    "Images remain unedited and preserve ordinary public HUD, toast and banter overlays.",
+    "No original-level fidelity, hardware FPS or complete camera criterion is claimed."
+  ]
+}

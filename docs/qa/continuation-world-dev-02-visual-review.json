@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-13T12:05:19.386Z",
+  "passed": false,
+  "report": "docs/qa/continuation-world-dev-02-report.json",
+  "reviewMethod": "Every actual screenshot opened with view_image; all hashes rechecked.",
+  "reviewed": [
+    {
+      "label": "stairs-lower",
+      "path": "docs/screenshots/continuation-world-dev-02-stairs-lower.png",
+      "sha256": "94aff84768c044e0d84baefe61bf1e447ca0d68a492ecb47a94555e8f1847a85",
+      "opened": true,
+      "observation": "The squad begins at the lower approach; four shallow stairs and floor contact shadows are visible."
+    },
+    {
+      "label": "stairs-middle",
+      "path": "docs/screenshots/continuation-world-dev-02-stairs-middle.png",
+      "sha256": "e382aba0bfd19334a787d7467d270d5daf7f5869ffc1f347fdb618b8e517eb82",
+      "opened": true,
+      "observation": "The leader has climbed partway, with followers on lower steps. Feet and shadows remain at their local supports."
+    },
+    {
+      "label": "stairs-upper",
+      "path": "docs/screenshots/continuation-world-dev-02-stairs-upper.png",
+      "sha256": "86cfa5e058d2dca97c34a445650d96efa687eaaed781a962b2f7f5e10e128afb",
+      "opened": true,
+      "observation": "The leader reaches the raised council landing; followers occupy the upper approach."
+    },
+    {
+      "label": "stairs-returned",
+      "path": "docs/screenshots/continuation-world-dev-02-stairs-returned.png",
+      "sha256": "5b88240fcf07f98281a169f2d7aa7e92e5624a764566e58d7f09f54e9bc70ce4",
+      "opened": true,
+      "observation": "The leader has descended to an intermediate step, rather than reaching the lower approach. Actual export z=-17.368 confirms incomplete travel."
+    },
+    {
+      "label": "failure",
+      "path": "docs/screenshots/continuation-world-dev-02-failure.png",
+      "sha256": "88b07c1b53bfc657ed596330ad57436842eb82647875ebe4f13f4eb8b25fbbc7",
+      "opened": true,
+      "observation": "The same intermediate descending position remains visible behind the public banter overlay. No runtime error or geometry defect is evident."
+    }
+  ],
+  "failure": "A fixed 900ms key hold returned only to z=-17.368, so the collector correctly rejected a lower-approach claim. The next collector uses additional actual keyboard holds only when real exports show incomplete traversal.",
+  "scope": "Actual ascent is visible. Descent to the lower approach and later criteria were not completed in this attempt.",
+  "limitations": [
+    "Native coordinate tests remain separate from viewport review.",
+    "No clock/cadence adjustment or product change is warranted by this collector failure."
+  ]
+}

@@ -1,3 +1,11 @@
+# Suite jouable — Continuation
+
+Le [lot Continuation](CONTINUATION.md) ajoute au socle des graphes de dialogue à questions/tons, des échanges de terrain entre équipiers actifs, le catalogue documentaire des œuvres et les crédits sourcés. Les marqueurs d’échanges entendus utilisent le budget de sauvegarde existant ; aucun personnage absent ou mort ne reste affiché après un changement de groupe.
+
+Les surfaces praticables déterminent la hauteur des pieds et de l’ombre. Les marches physiques de l’approche du Conseil restent une géométrie adaptée. L’arène ME2/ME3 est un modèle ATB bidimensionnel distinct : Avancer/Reculer et Charge modifient des positions bornées, sans prétendre reproduire une carte ou une animation originales.
+
+---
+
 # Conception — Relay Chronicles
 
 ## Complétion fonctionnelle P0/P1/P2

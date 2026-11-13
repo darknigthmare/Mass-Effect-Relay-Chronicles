@@ -4,13 +4,21 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 15 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
-## Complétion P0/P1/P2
+## Suite P0/P1/P2
+
+Le [lot Continuation](docs/CONTINUATION.md) ajoute des échanges contextuels du commando, quatre graphes de dialogue de campagne et le catalogue des 28 œuvres accessible depuis le titre et la pause. Les crédits donnent accès aux sources en distinguant campagne, Chroniques et Simulation. Le terrain suit les surfaces et marches praticables ; l’entrée de caméra est alignée sur son suivi.
+
+La Charge des seuls essais ME2/ME3 éligibles rejoint maintenant un contact dans une arène de positions ATB. Portée, destination, coûts et exposition temporaire sont vérifiés ; ce modèle bidimensionnel ne représente pas une trajectoire 3D originale. L’omni-lame, le délai de réentrée et la transmission complète du Normandy restent ouverts.
+
+Le suivi met à jour **40 fiches** et ferme **38 critères fonctionnels : 31 P0, six P1 et un P2**. Les **1 106 tests natifs**, les **60 captures de développement réellement relues** et les **63 panneaux Excel vérifiés** sont liés dans le [bilan](docs/CONTINUATION.md). Les six parcours de production passent 31 groupes, avec 58 captures fraîches réellement relues et 92 fichiers servis vérifiés. Aucun statut d’asset n’est promu. Le [rapport final](docs/qa/continuation-report.json) relie les étapes distinctes de livraison.
+
+## Completion P0/P1/P2 — lot précédent
 
 Le [lot Completion](docs/COMPLETION.md) ajoute la couverture directionnelle liée aux obstacles, un repli confirmé hors des contacts, des réactions au recrutement tardif de Liara et aux pertes de Virmire, et un résumé des relations et décisions. Les sauvegardes et transactions refusent leurs entrées invalides avant mutation ; la fin ME1 dispose d’un bilan portable distinct de la sauvegarde de reprise.
 
 Les options proposent qualité, luminosité, intensité des effets et contraste, avec application immédiate. Les dialogues longs et l’atelier se parcourent au clavier. Les Chroniques préparées ME2/ME3 disposent de Charge, Camouflage, Technoblindage et Nova dans leurs seuls contextes autorisés. Leurs valeurs et scènes restent adaptées à l’ATB ; le [suivi](docs/COMPLETION.md) distingue les critères fonctionnels fermés des campagnes, arbres et représentations originales restant à produire.
 
-Dans l’Excel, les notes antérieures sont conservées comme historique. Le statut courant et l’ajout « Lot Completion » portent la nouvelle évaluation du critère exact. Les mentions de production en attente décrivent l’étape de copie locale ; le [rapport final](docs/qa/completion-report.json) suit séparément les vérifications de livraison.
+Dans l’Excel, les notes antérieures sont conservées comme historique. Le statut courant et le dernier ajout « Lot Continuation » ou « Lot Completion » portent l’évaluation du critère exact. Les mentions de production en attente décrivent l’étape de copie locale ; les rapports [Continuation](docs/qa/continuation-report.json) et [Completion](docs/qa/completion-report.json) suivent séparément les vérifications de chaque livraison.
 
 Les vérifications du lot comprennent **1 060 tests natifs**, les contrôles du registre reconstruit, **sept parcours de production et 95 captures relues**, puis le contrôle des 91 fichiers compilés servis en HTTP. Le [bilan final](docs/qa/completion-report.json) conserve leurs sources et limites.
 
@@ -216,7 +224,7 @@ Quatre nouveaux atlas fournissent **24 illustrations fixes et partielles** : qua
 - [Registre des assets et limites artistiques](docs/ASSETS.md).
 - [État de livraison et vérifications](docs/IMPLEMENTATION_STATUS.md).
 
-Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Après Completion, le principal compte **918 Défini, 375 Prototype, zéro Intégré et 92 Validé** ; le registre complet compte **5 953 Défini, 666 Prototype, zéro Intégré et 92 Validé**. Les **99 fiches mises à jour** comprennent **89 critères fonctionnels nouvellement fermés : 78 P0, six P1 et cinq P2**. Les dix autres fiches restent partielles. Aucun statut d’asset n’est promu. Les 27 catalogues supplémentaires, les 31 autres classeurs et les 46 PNG restent inchangés. Les [120 panneaux Excel revus](docs/qa/completion-tracking-workbook-visual-review.json), les [95 captures de développement revues](docs/qa/completion-tracking-development-visual-review.json) et le [bilan du lot](docs/COMPLETION.md) relient les preuves à leur périmètre. L’[audit courant](docs/qa/completion-tracking-current-audit.json) conserve **6 619 critères ouverts : 706 P0, 5 798 P1 et 115 P2**.
+Le registre courant compte **6 711 fiches et 454 sources** : **1 385 fiches et 44 sources dans le principal**, puis 5 326 fiches et 410 sources dans les catalogues supplémentaires. Après Continuation, le principal compte **906 Défini, 349 Prototype, zéro Intégré et 130 Validé** ; le registre complet compte **5 941 Défini, 640 Prototype, zéro Intégré et 130 Validé**. Le lot met à jour 40 fiches, dont 38 critères fonctionnels fermés ; les 92 fiches Validé antérieures sont conservées. Les [63 panneaux Excel relus](docs/qa/continuation-tracking-workbook-visual-final-01-review.json) et l’[audit courant](docs/qa/continuation-tracking-current-final-01-audit.json) suivent **6 581 critères ouverts : 675 P0, 5 792 P1 et 114 P2**. Les 27 catalogues supplémentaires, les 31 autres classeurs, les 46 PNG et les métadonnées publiques sont préservés. Les preuves des lots précédents gardent leur portée historique.
 
 **Une fiche de production ne signifie pas un élément terminé.** Le classeur sépare le statut du contenu, le statut de l’asset et le niveau de vérification canonique. Les liens vers des fichiers constituent des preuves localisables ; les noms d’assets futurs restent dans une colonne distincte. Une modification directe dans Excel n’est pas automatiquement réimportée dans le JSON.
 

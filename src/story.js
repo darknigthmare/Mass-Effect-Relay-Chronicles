@@ -3,6 +3,7 @@ import { STORY_CONVERSATIONS, STORY_CODEX } from './story-data.js';
 import { getFrontierNPC, frontierNPCVisible } from './frontier-characters.js';
 import { getHorizonNPC, horizonNPCVisible } from './horizon-characters.js';
 import { narrativeTopicText } from './completion-narrative.js';
+import { isExplorationBanterKey, explorationBanterHistoryPossible } from './continuation-banter-data.js';
 
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const ZONES = new Set(['normandy', ...Object.keys(CHAPTERS)]);
@@ -112,7 +113,7 @@ export function migrateStoryState(raw, state) {
     if (raw === undefined) return { ...createStoryState(), visitedZones: legacyVisits(state) };
     if (!safeTree(raw) || Array.isArray(raw) || Object.keys(raw).length !== 4
       || !['heard', 'choices', 'codex', 'visitedZones'].every(key => OWN(raw, key))) return null;
-    if (!uniqueStrings(raw.heard, key => TOPICS.has(key))
+    if (!uniqueStrings(raw.heard, key => TOPICS.has(key) || isExplorationBanterKey(key))
       || !uniqueStrings(raw.codex, id => CODEX_IDS.has(id))
       || !uniqueStrings(raw.visitedZones, zone => ZONES.has(zone) && zoneAvailable(state, zone))
       || !raw.visitedZones.includes('normandy') || !raw.choices || Array.isArray(raw.choices)) return null;
@@ -122,6 +123,10 @@ export function migrateStoryState(raw, state) {
       if (!entry || !story.heard.includes(key) || !entry.topic.choices?.some(choice => choice.id === replyId)) return null;
     }
     for (const key of story.heard) {
+      if (isExplorationBanterKey(key)) {
+        if (!explorationBanterHistoryPossible(state, story, key)) return null;
+        continue;
+      }
       const { conversation, topic } = TOPICS.get(key);
       if (!topicPossible(state, story, conversation, topic, true)) return null;
     }
