@@ -386,6 +386,7 @@ function applyBonuses(base, bonus, slots, state) {
     syntheticDamageBonus: bonus.syntheticDamageBonus, organicDamageBonus: bonus.organicDamageBonus, shieldBypass: bonus.shieldBypass,
     controlResistance: Math.min(.6, (base.controlResistance || 0) + bonus.controlResistance),
     bioticMultiplier: bonus.bioticMultiplier, techMultiplier: bonus.techMultiplier,
+    weaponItemId: weapon?.id ?? null,
     weaponType: weapon?.weaponType || profile?.defaultWeaponType || base.weaponType,
     weaponName: weapon?.name || base.weaponName || 'Dotation de base',
   };

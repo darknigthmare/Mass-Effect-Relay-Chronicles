@@ -1,24 +1,25 @@
 # Catalogue de production — Mass Effect Relay Chronicles
 
-Mise à jour : **2026-11-13** · Version 0.3.0
+Mise à jour : **2026-11-20** · Version 0.3.0
 
 Ce catalogue contient **1 385 fiches**, organisées en **26 catégories** et **28 onglets Excel**. Il décrit un plan de couverture du premier Mass Effect, puis une extension séparée vers ME2 et ME3. Le nombre de fiches mesure le travail suivi ; il ne mesure pas le nombre de fonctionnalités terminées.
 
 - [Classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) : filtres, statuts modifiables, validations de saisie, volets figés et tableaux de comptage recalculés.
 - [Données de référence du catalogue](content-catalog.json) : identifiants stables, dépendances, références, chemins et critères d’acceptation.
 - [Générateur initial historique](../scripts/build-workbook.mjs) ; Completion utilise une [mise à jour OpenXML ciblée](../scripts/completion-tracking-patch-workbook.py), suivie d’une vérification indépendante et d’un rendu, pour conserver les cellules, critères, formules et styles. Ne pas reconstruire les statuts courants avec le générateur initial.
-- [Revue actuelle des 70 panneaux ciblés](qa/resolve-tracking-workbook-visual-final-01-review.json) · [Publication du suivi](qa/resolve-tracking-publication-final-01-report.json) · [Bilan Resolve](RESOLVE.md). Les aperçus et rapports des lots précédents restent historiques.
+- [Vérification des 34 panneaux ciblés du lot P0](qa/p0-workbook-verification.json).
+- [Revue des 70 panneaux du lot Resolve](qa/resolve-tracking-workbook-visual-final-01-review.json) · [Publication du suivi](qa/resolve-tracking-publication-final-01-report.json) · [Bilan Resolve](RESOLVE.md). Les aperçus et rapports des lots précédents restent historiques.
 
 ## État réel
 
-Le [lot Resolve](RESOLVE.md) met à jour **36 fiches et 118 cellules**, dont **32 critères fonctionnels fermés : 11 P0, 21 P1 et 0 P2**. Les descriptions et critères restent inchangés, les 151 Validé antérieurs sont préservés et aucun statut d’asset n’est promu. Le principal compte **852 Défini, 350 Prototype, 0 Intégré, 183 Validé** ; le registre complet, **5 887 Défini, 641 Prototype, 0 Intégré, 183 Validé**. L’[audit courant](qa/resolve-tracking-current-final-01-audit.json) conserve **6 528 critères ouverts : 653 P0, 5 761 P1 et 114 P2**.
+La vérification du lot P0 met à jour 10 fiches et 19 cellules, avec 8 critères fonctionnels fermés. Le registre complet conserve 6 520 critères ouverts, dont 645 P0, 5 761 P1 et 114 P2. [Suivi et preuves du lot](P0.md)
 
 | Statut du contenu | Fiches | Signification |
 | --- | ---: | --- |
-| Défini | 852 | Élément décrit, non vérifié dans le jeu. |
-| Prototype | 350 | Présent sous une forme simplifiée à reprendre. |
+| Défini | 848 | Élément décrit, non vérifié dans le jeu. |
+| Prototype | 346 | Présent sous une forme simplifiée à reprendre. |
 | Intégré | 0 | Présent dans le jeu avec chemin et dépendances vérifiés. |
-| Validé | 183 | Intégré et contrôlé avec preuve de test. |
+| Validé | 191 | Intégré et contrôlé avec preuve de test. |
 
 Un statut de contenu et un statut d’asset décrivent deux choses distinctes. Une image peut être au stade **Prototype** alors que le dialogue, la mission ou la conduite correspondante reste **Défini**. Les éventuelles fiches **Validé** attestent leurs critères fonctionnels documentés ; elles ne certifient pas la fidélité 1:1 de l’ensemble du jeu.
 
@@ -101,10 +102,10 @@ Les compteurs du classeur utilisent les statuts des lignes. Les onglets Dashboar
 | Sprites | 85 | 21 | 64 | 0 | 0 | Livrables 2D, portraits et variantes |
 | VFX | 26 | 26 | 0 | 0 | 0 | Effets visuels et lisibilité |
 | Audio | 30 | 30 | 0 | 0 | 0 | Ambiances, effets et musique originale |
-| Systèmes et UI | 65 | 1 | 6 | 0 | 58 | Interface et règles de jeu |
-| QA | 64 | 11 | 3 | 0 | 50 | Critères de test et contrôles de fidélité |
+| Systèmes et UI | 65 | 0 | 3 | 0 | 62 | Interface et règles de jeu |
+| QA | 64 | 8 | 2 | 0 | 54 | Critères de test et contrôles de fidélité |
 | Trilogie | 57 | 49 | 2 | 0 | 6 | Extensions ME2 et ME3 séparées de ME1 |
-| **Total** | **1 385** | **852** | **350** | **0** | **183** | |
+| **Total** | **1 385** | **848** | **346** | **0** | **191** | |
 
 
 ## Lire une fiche

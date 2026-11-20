@@ -14,5 +14,13 @@ export function missionHUDText(state) {
 export function renderMissionProgress(state, id = state?.zone) {
   const view = getMissionProgress(state, id);
   if (!view || view.status === 'idle') return '';
-  return `<article class="journal-entry mission-progress" data-mission-progress="${esc(id)}" data-mission-progress-status="${esc(view.status)}"><h3>${esc(view.title)}</h3><p>${esc(view.summary)}</p>${view.remaining === null ? '' : `<p role="timer" aria-label="Temps de mission restant">Temps restant : <strong>${esc(missionTimeLabel(view.remaining))}</strong></p>`}<ol>${view.steps.map(step => `<li>${step.done ? '✓ ' : ''}${esc(step.label)}</li>`).join('')}</ol><p class="small">${esc(view.rules)}</p>${view.status === 'failed' ? `<p>${esc(view.checkpointNote)}</p>` : ''}</article>`;
+  const steps = view.status === 'legacy-complete' ? '' : `<ol>${view.steps.map(step =>
+    `<li>${step.done ? '✓ ' : ''}${esc(step.label)}</li>`).join('')}</ol>`;
+  const timer = view.remaining === null || view.complete ? '' :
+    `<p role="timer" aria-label="Temps de mission restant">Temps restant : <strong>${esc(missionTimeLabel(view.remaining))}</strong></p>`;
+  return `<article class="journal-entry mission-progress" data-mission-progress="${esc(id)}" data-mission-progress-status="${esc(view.status)}">
+    <h3>${esc(view.title)}</h3><p>${esc(view.summary)}</p>
+    ${timer}${steps}${view.complete ? '' : `<p class="small">${esc(view.rules)}</p>`}
+    ${view.status === 'failed' ? `<p>${esc(view.checkpointNote)}</p>` : ''}
+  </article>`;
 }

@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { newGame, winEncounter, completeZone, recruit, zoneEncounters, encodeSave, decodeSave } from '../src/state.js';
+import { newGame, winEncounter, completeZone, recruit, zoneEncounters, encodeSave, decodeSave, travelCampaign } from '../src/state.js';
 import { CHAPTERS } from '../src/game-data.js';
 import { getLevelLayout, isLevelGround } from '../src/level-layout-data.js';
 import { createMissionProgress, normalizeMissionProgress, MISSION_DEFINITIONS, getMissionProgress,
-  getMissionPOIs, getMissionInteraction, advanceMission, tickMission, canCompleteMission,
+  getMissionPOIs, getMissionExit, getMissionInteraction, advanceMission, tickMission, canCompleteMission,
   getMissionEncounterGate, getMissionTravelGate } from '../src/mission-progress.js';
 import { missionHUDText, missionTimeLabel, renderMissionProgress } from '../src/mission-progress-ui.js';
 
@@ -159,6 +159,33 @@ test('Vigil starts the Ilos window only on activation, expiry/retry cannot skip 
   assert.equal(advanceMission(state, missionPOI('ilos', 'conduit'), 'enter').kind, 'complete');
   assert.equal(canCompleteMission(state), true); assert.equal(getMissionProgress(state).remaining, .5);
   assert.deepEqual(economy(state), resources); assert.equal(state.completed.includes('ilos'), false, 'Mission progress never claims the native chapter reward itself');
+});
+
+test('the completed passage remains at the same endpoint after loading until the destination is reached', () => {
+  const state = prepared('ilos');
+  assert.equal(getMissionExit(state), null);
+  advanceMission(state, 'ilos', 'start');
+  advanceMission(state, 'mission:ilos:vigil', 'activate');
+  const endpoint = getMissionPOIs(state)[0];
+  assert.equal(endpoint.id, 'mission:ilos:conduit');
+  assert.equal(getMissionExit(state), null);
+  state.position = { x: endpoint.x, z: endpoint.z };
+  assert.equal(advanceMission(state, endpoint.id, 'enter').kind, 'complete');
+  assert.equal(getMissionPOIs(state)[0].id, 'mission:ilos:exit');
+  const exit = getMissionExit(state);
+  assert.deepEqual({ x: exit.x, z: exit.z }, state.position);
+
+  assert.equal(completeZone(state, 'ilos'), true);
+  const paid = economy(state);
+  const resumed = decodeSave(encodeSave(state));
+  assert.deepEqual(getMissionPOIs(resumed), [exit]);
+  assert.equal(completeZone(resumed, 'ilos'), false, 'The resumed link cannot pay chapter rewards again');
+  assert.equal(travelCampaign(resumed, exit.target).ok, true);
+  assert.equal(getMissionExit(resumed), null);
+  assert.equal(travelCampaign(resumed, 'normandy').ok, true);
+  assert.equal(travelCampaign(resumed, 'ilos').ok, true);
+  assert.equal(getMissionExit(resumed), null, 'A visit after reaching the destination cannot restart the transition');
+  assert.deepEqual(economy(resumed), paid);
 });
 
 test('in-progress channel and repaired stations round-trip without sharing copies or inventing legacy details', () => {

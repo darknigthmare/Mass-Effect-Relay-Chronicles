@@ -29,7 +29,7 @@ const CHOICES = {
   virmire: ['save-kaidan', 'save-ashley'],
   'citadel-finale': ['save-council', 'focus-sovereign'],
 };
-const DEFAULT_SETTINGS = { sound: true, volume: 0.35, reducedMotion: false, largeText: false };
+export const DEFAULT_SETTINGS = Object.freeze({ sound: true, volume: 0.35, reducedMotion: false, largeText: false });
 const UPGRADE_STATS = { attack: 3, defense: 2, shield: 15 };
 const FORBIDDEN_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 const clone = value => JSON.parse(JSON.stringify(value));

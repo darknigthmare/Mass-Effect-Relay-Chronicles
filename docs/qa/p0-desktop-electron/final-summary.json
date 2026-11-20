@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "at": "2026-11-20T13:23:09.454Z",
+  "baseCommit": "deb5c9382a697acd0cf72b182bc646337cdcfb25",
+  "criterion": {
+    "id": "SYS-mode-bureau",
+    "description": "Lancement local dans une fenêtre dédiée.",
+    "acceptance": "Chemins de fichiers, sauvegarde et fermeture contrôlés."
+  },
+  "platform": "linux",
+  "electron": "45.0.0",
+  "run": "Electron headless avec rendu logiciel et profil temporaire",
+  "checks": [
+    "Une fenêtre Electron charge le jeu et ses ressources locales depuis un chemin avec espace et caractères Unicode, lancé depuis un autre dossier. Les crédits chargent leur module compilé.",
+    "Un deuxième lancement avec le même profil laisse une seule fenêtre et se termine normalement.",
+    "Deux fermetures natives aboutissent à un arrêt normal. Au démarrage suivant, la reprise automatique et l’emplacement manuel restaurent chacun le commandant choisi."
+  ],
+  "sourceHashes": {
+    "desktop/main.cjs": "c273d6b2ace8fec2342c277c6577c86b7ab8d8c35e44d13992957cb046618c94",
+    "package.json": "dea840c142cc75ac85799e75b837eb4aa975c854323013473daee3e498474a1d",
+    "package-lock.json": "4c59f9c380cc361c0feac5ce669db68b7469f1c0361cdb7eac65256a88e22937"
+  },
+  "distribution": {
+    "indexSHA256": "d7eee10206c86a931773707ea9ced3a2ca39a2f742662e4039b25daf3ec1bfdd",
+    "observedFileCount": 44,
+    "observedJavaScript": [
+      {
+        "path": "assets/continuation-catalogue-BP0en_x8.js",
+        "bytes": 6546,
+        "sha256": "a080422cba76dd9d202e325535096248b7a5fd281ab0a833c6af1b8fc26bff93"
+      },
+      {
+        "path": "assets/index-Dpi-xkNa.js",
+        "bytes": 838907,
+        "sha256": "79813aebf37856569763b2308fa0ac1a64c9e3ab24264737011bfc565894d422"
+      },
+      {
+        "path": "assets/three-NJCfIWEg.js",
+        "bytes": 525571,
+        "sha256": "8b1e25a75d4d575dde4f76ff2422e787db9055528c4dc56e1308b799a7cedcad"
+      },
+      {
+        "path": "assets/universe-data-uU1_arOX.js",
+        "bytes": 3440903,
+        "sha256": "86b4b8f94ca2197e54b45f5c0b557d97b80d5d25f35f204a5fd1b61c2da067e6"
+      }
+    ],
+    "allObservedFilesMatchedCurrentDist": true
+  },
+  "registryContext": {
+    "docs/content-catalog.json": "54567b359e87ffe9ccd20adc010ceaed44e76e2c025d6a227cb4173db406896f",
+    "docs/Mass_Effect_Relay_Chronicles_Production.xlsx": "34d728b2996c187e3a5dc2bb2a6dc71b94f807d4f5d52d389e354a5c243d1aa4",
+    "src/universe-data.js": "8e23542681100e9ca2b3eff084d6e7f53957fea3dcdfacaf063555739dc7ba3f"
+  },
+  "collector": {
+    "basePath": "scripts/p0-desktop-electron.mjs",
+    "baseSHA256": "685d074977991d655d2159f1c23c15fc8355d2c7784950b853a26aa073b176d8",
+    "executedVariantSHA256": "45291fb0b72f1230bd21b5f42a342dae990815f37333cee9fa4f6c96c84b3d97",
+    "change": "Le collecteur temporaire attend la disparition de #transition.active après chaque reprise, avant Escape ou la fermeture. Seuls l'intitulé de commande et le chemin d'empreinte du collecteur changent en plus de ces deux attentes."
+  },
+  "publicScreenshotsOpened": 2,
+  "historicalFullEvidence": "docs/qa/p0-desktop-electron/report.json",
+  "actualFinalExecutionReportSHA256": "5bcfc07ebdf498da6c14474bf11afb4c11005ee71c84a48cdf5284cc28c40f11",
+  "scope": "Nouveau contrôle du build après synchronisation Excel et registre. Les deux nouvelles captures ont été réellement ouvertes et examinées. Le jeu reprend les deux parties de test distinctes après la fermeture du processus."
+}

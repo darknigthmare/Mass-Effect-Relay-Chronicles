@@ -4,7 +4,11 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 **Version 0.3.0 : atelier de personnalisation du personnage, de l’armure et des armes.** La campagne ME1 condensée, ses 15 assignations, l’inventaire à neuf emplacements, les animations de Shepard et les Chroniques indépendantes restent présents. Ce dépôt contient le jeu, ses assets, son catalogue de production et son classeur Excel. La reconstitution intégrale de Mass Effect avec fidélité 1:1 reste un objectif de production ; les cartes, dialogues et rencontres actuels sont des adaptations explicitement suivies dans le catalogue.
 
-## Enquête, affectations et épilogue
+## Vérification des P0
+
+Huit critères P0 sont fermés sur le menu, le journal, la sélection du commando, la caméra, le mode bureau, les doubles validations et le contrôle des preuves. Le changement d’arme visible en exploration et la reprise d’un passage après rechargement avancent au stade Prototype. [Détail du lot et vérifications](docs/P0.md)
+
+## Enquête, affectations et épilogue — lot précédent
 
 Le [lot Resolve](docs/RESOLVE.md) raccorde les pistes de la Citadelle et trois combats ATB, les alternatives du port de Novéria et les questions à MIRA et à la reine, les affectations et choix de Virmire, les données de Vigil et la recommandation du représentant humain. Finch, Zabaleta/Hannah et Talitha/Girard disposent de parcours conditionnés à l’origine de Shepard. Les récits restent des adaptations françaises condensées, avec des réserves explicites sur les arbres, les talents originaux et les visuels encore provisoires.
 

@@ -1,0 +1,259 @@
+{
+  "passed": true,
+  "criterion": {
+    "id": "SYS-mode-bureau",
+    "description": "Lancement local dans une fenêtre dédiée.",
+    "acceptance": "Chemins de fichiers, sauvegarde et fermeture contrôlés."
+  },
+  "at": "2026-11-20T13:07:59.590Z",
+  "baseCommit": "deb5c9382a697acd0cf72b182bc646337cdcfb25",
+  "platform": "linux",
+  "run": "Electron headless avec rendu logiciel et profil temporaire",
+  "command": "node scripts/p0-desktop-electron.mjs",
+  "scope": "Application Electron avec les fichiers compilés copiés dans un dossier isolé. Sauvegardes exercées via les commandes publiques.",
+  "checks": [
+    "Une fenêtre Electron charge le jeu et ses ressources locales depuis un chemin avec espace et caractères Unicode, lancé depuis un autre dossier. Les crédits chargent leur module compilé.",
+    "Un deuxième lancement avec le même profil laisse une seule fenêtre et se termine normalement.",
+    "Deux fermetures natives aboutissent à un arrêt normal. Au démarrage suivant, la reprise automatique et l’emplacement manuel restaurent chacun le commandant choisi."
+  ],
+  "sourceHashes": {
+    "desktop/main.cjs": "c273d6b2ace8fec2342c277c6577c86b7ab8d8c35e44d13992957cb046618c94",
+    "package.json": "dea840c142cc75ac85799e75b837eb4aa975c854323013473daee3e498474a1d",
+    "package-lock.json": "4c59f9c380cc361c0feac5ce669db68b7469f1c0361cdb7eac65256a88e22937",
+    "scripts/p0-desktop-electron.mjs": "685d074977991d655d2159f1c23c15fc8355d2c7784950b853a26aa073b176d8"
+  },
+  "rendererErrors": [],
+  "screenshots": [
+    {
+      "path": "docs/qa/p0-desktop-electron/automatic-after-restart.png",
+      "sha256": "7037b4be07bfba8f1369abb25b3232278a1ce78f88047e36670e76e5b85781b3"
+    },
+    {
+      "path": "docs/qa/p0-desktop-electron/manual-after-restart.png",
+      "sha256": "d476ee8fdaed0757344db39f52c35125357bb4eb750039f08d80d2ace4ac0580"
+    }
+  ],
+  "electron": "45.0.0",
+  "localFiles": [
+    {
+      "path": "assets/boss-atlas.png",
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    {
+      "path": "assets/boss-benezia-combat.png",
+      "bytes": 1463718,
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    {
+      "path": "assets/boss-saren-combat.png",
+      "bytes": 1918110,
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    {
+      "path": "assets/boss-saren-final-combat.png",
+      "bytes": 1974389,
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    },
+    {
+      "path": "assets/boss-thorian-combat.png",
+      "bytes": 2100344,
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    {
+      "path": "assets/citadel-keyart.png",
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    {
+      "path": "assets/companion-ashley-combat.png",
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    {
+      "path": "assets/companion-garrus-combat.png",
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    {
+      "path": "assets/companion-jenkins-combat.png",
+      "bytes": 1634485,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+    },
+    {
+      "path": "assets/companion-kaidan-combat.png",
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    {
+      "path": "assets/companion-liara-combat.png",
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    {
+      "path": "assets/companion-tali-combat.png",
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    {
+      "path": "assets/companion-wrex-combat.png",
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    {
+      "path": "assets/continuation-catalogue-CoBCVtYN.js",
+      "bytes": 6546,
+      "sha256": "7593ac65fdced14faad245f45cf67774f2870f3b3c333047acc0399e4c525aa2"
+    },
+    {
+      "path": "assets/crew-atlas.png",
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    {
+      "path": "assets/enemy-asari-combat.png",
+      "bytes": 1606367,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a"
+    },
+    {
+      "path": "assets/enemy-atlas.png",
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    {
+      "path": "assets/enemy-creeper-combat.png",
+      "bytes": 1903380,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300"
+    },
+    {
+      "path": "assets/enemy-geth-combat.png",
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    {
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    {
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    {
+      "path": "assets/enemy-husk-combat.png",
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    {
+      "path": "assets/enemy-krogan-combat.png",
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    {
+      "path": "assets/enemy-rachni-combat.png",
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    {
+      "path": "assets/frontier-enemies.png",
+      "bytes": 2181259,
+      "sha256": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9"
+    },
+    {
+      "path": "assets/frontier-npcs.png",
+      "bytes": 1578744,
+      "sha256": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc"
+    },
+    {
+      "path": "assets/horizon-enemies.png",
+      "bytes": 1885448,
+      "sha256": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0"
+    },
+    {
+      "path": "assets/horizon-fauna.png",
+      "bytes": 1855369,
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964"
+    },
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "bytes": 1954276,
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb"
+    },
+    {
+      "path": "assets/horizon-npcs.png",
+      "bytes": 1876944,
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601"
+    },
+    {
+      "path": "assets/index-DGBzoLw7.js",
+      "bytes": 838296,
+      "sha256": "a8be3dfce60c2ef25f92fccdef1814c031ee090a0213da61973b23e7df26c9f6"
+    },
+    {
+      "path": "assets/index-I0BUIH4Z.css",
+      "bytes": 85025,
+      "sha256": "96e20a1469cbe158ea551a9ad600138b18499d81245f684fb538414cb5c99d49"
+    },
+    {
+      "path": "assets/joker-seated.png",
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    {
+      "path": "assets/npc-atlas.png",
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    {
+      "path": "assets/props-atlas.png",
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    {
+      "path": "assets/shepard-female-combat-atlas.png",
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    {
+      "path": "assets/shepard-female-walk-atlas.png",
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    {
+      "path": "assets/shepard-male-combat-atlas.png",
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    {
+      "path": "assets/shepard-walk-atlas.png",
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    {
+      "path": "assets/three-NJCfIWEg.js",
+      "bytes": 525571,
+      "sha256": "8b1e25a75d4d575dde4f76ff2422e787db9055528c4dc56e1308b799a7cedcad"
+    },
+    {
+      "path": "assets/universe-data-Dj1W1PF6.js",
+      "bytes": 3439138,
+      "sha256": "55ad886462f518f04034eca5b3b41ea591e20c70fcf7c5ca7f5d463ff5cefbf3"
+    },
+    {
+      "path": "assets/vehicle-atlas.png",
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    {
+      "path": "assets/vehicle-mako-directions.png",
+      "bytes": 2280065,
+      "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74"
+    },
+    {
+      "path": "index.html",
+      "bytes": 660,
+      "sha256": "d079eba57f56fe2b2d3b24824e88b10f617e355e2916448dd0b8385a921aa9a5"
+    }
+  ]
+}

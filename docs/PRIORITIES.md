@@ -1,4 +1,6 @@
-# Priorités P0/P1 — bilan historique du lot précédent
+# Priorités P0/P1
+
+Le suivi courant compte 645 P0 ouverts. Parmi les 97 fiches P0 précédemment ouvertes dans le classeur principal, huit sont validées et 89 restent à traiter. Les 27 catalogues supplémentaires contiennent 556 P0 ouverts. [Bilan du lot P0](P0.md)
 
 Le [lot Resolve](RESOLVE.md) met à jour **36 fiches et 118 cellules**, dont **32 critères fonctionnels fermés : 11 P0, 21 P1 et 0 P2**. Les descriptions et critères restent inchangés, les 151 Validé antérieurs sont préservés et aucun statut d’asset n’est promu. Le principal compte **852 Défini, 350 Prototype, 0 Intégré, 183 Validé** ; le registre complet, **5 887 Défini, 641 Prototype, 0 Intégré, 183 Validé**. L’[audit courant](qa/resolve-tracking-current-final-01-audit.json) conserve **6 528 critères ouverts : 653 P0, 5 761 P1 et 114 P2**.
 

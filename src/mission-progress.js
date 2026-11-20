@@ -164,6 +164,9 @@ export function getMissionProgress(state, id = state?.zone) {
 }
 
 export function getMissionPOIs(state) {
+  const exit = getMissionExit(state);
+  if (exit) return [exit];
+
   const id = state?.zone, view = getMissionProgress(state, id);
   if (!view || !available(state, id) || state.completed.includes(id) || !['active', 'failed'].includes(view.status)) return [];
   const definition = MISSION_DEFINITIONS[id];
@@ -172,6 +175,27 @@ export function getMissionPOIs(state) {
       && (id !== 'ilos' || step.id === (view.steps[0].done ? 'conduit' : 'vigil')));
   return steps.map(step => ({ id: poiId(id, step.id), zone: id, label: step.label, type: 'mission', missionId: id, stepId: step.id,
     x: step.x, z: step.z, cleared: false }));
+}
+
+/** Keep the existing one-way link available until its destination is reached. */
+export function getMissionExit(state) {
+  if (state?.zone !== 'ilos' || !available(state, 'ilos')
+      || state.story?.visitedZones?.includes('citadel-finale')) return null;
+  const view = getMissionProgress(state, 'ilos');
+  if (!view?.complete) return null;
+
+  const { x, z } = MISSION_DEFINITIONS.ilos.steps.find(step => step.id === 'conduit');
+  return {
+    id: 'mission:ilos:exit',
+    zone: 'ilos',
+    label: 'Emprunter le Conduit',
+    type: 'mission',
+    missionId: 'ilos',
+    target: 'citadel-finale',
+    x,
+    z,
+    cleared: false,
+  };
 }
 
 export function getMissionInteraction(state, interactionId) {

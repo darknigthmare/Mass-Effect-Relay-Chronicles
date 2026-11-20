@@ -27,6 +27,8 @@ import { HORIZON_FLEET, normalizeHorizonFleetAtlas, getHorizonFleetFrame, canSho
 import { BOSS_ANIMATION_IDS, normalizeBossAnimation, canShowBossAnimation } from './boss-animation-data.js';
 import { createMakoState, boardMako, stepMako, dismountMako, makoDirectionFrame, normalizeMakoDirections } from './frontier-vehicles.js';
 import { resolveNoveriaContactAvailable } from './resolve-noveria.js';
+import { getCarriedWeapon, updateCarriedWeapon } from './weapon-presentation.js';
+import { fitWorldCamera, showCoveredActor } from './world-camera.js';
 
 const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS, ...BOSS_ANIMATION_IDS];
 
@@ -297,16 +299,18 @@ export class WorldView {
     this.walkConfig = { directions, fps, columns, rowBounds, cellWidth }; this._loadAtlas('walk', url);
   }
 
-  _walkingTexture(actor, dx, dz) {
+  _walkingTexture(actor, dx, dz, moving = true) {
     const key = `walk:${actor.id}`;
     if (!this.spriteCache.has(key)) { const texture = this.atlases.walk.clone(); texture.needsUpdate = true; this.spriteCache.set(key, texture); }
     const texture = this.spriteCache.get(key), side = new THREE.Vector2(this.cameraOffset.z, -this.cameraOffset.x).normalize(), forward = new THREE.Vector2(-this.cameraOffset.x, -this.cameraOffset.z).normalize();
     const horizontal = dx * side.x + dz * side.y, vertical = dx * forward.x + dz * forward.y;
-    const direction = Math.abs(horizontal) > Math.abs(vertical) ? horizontal > 0 ? 'right' : 'left' : vertical > 0 ? 'back' : 'front';
+    const direction = moving
+      ? Math.abs(horizontal) > Math.abs(vertical) ? horizontal > 0 ? 'right' : 'left' : vertical > 0 ? 'back' : 'front'
+      : actor.walkDirection || 'front';
     actor.walkDirection = direction;
     const row = Math.max(0, this.walkConfig.directions.indexOf(direction));
     const rate = this.walkConfig.fps * (this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') ? 1.4 : 1);
-    const frame = Math.floor(this.time * rate) % this.walkConfig.columns.length;
+    const frame = moving ? Math.floor(this.time * rate) % this.walkConfig.columns.length : 0;
     const [top, bottom] = this.walkConfig.rowBounds[row], width = this.walkConfig.cellWidth - 2, height = bottom - top - 2;
     const image = this.atlases.walk.image;
     texture.repeat.set(width / image.width, height / image.height);
@@ -1196,11 +1200,12 @@ export class WorldView {
     this._mergeStatic(); this.player = getWorldArrival(zone.id, fromZone); this._resetTrail();
     this._syncHorizonFleet();
     this.cameraTarget.copy(this._cameraFocus(this.player, 'explore'));
+    this.cameraSpan = undefined;
     this.makoState = zone.id === 'therum' ? createMakoState(this.levelLayout?.vehicleSpawn || { x: -7.2, z: 16 }) : null;
     this.makoSprite = null; this._syncMakoSprite();
     this._makeMarkers(); this.setParty(party || this.party);
     if (this.zoneId !== 'normandy' || !this.storyContext) this._makeAmbientCharacters();
-    this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget); this.resize();
+    this._positionCamera(); this.resize();
   }
 
   setCommanderAppearance(appearance = 'male') {
@@ -1227,6 +1232,11 @@ export class WorldView {
     this._clearCommanderTextures(); this.commanderCustomization = next;
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     return true;
+  }
+
+  setCommanderWeapon(weaponItemId) {
+    if (this.commanderWeapon !== undefined && (this.commanderWeapon?.id ?? null) === weaponItemId) return;
+    this.commanderWeapon = getCarriedWeapon(weaponItemId);
   }
 
   _clearCommanderTextures() {
@@ -1728,6 +1738,7 @@ export class WorldView {
   getInteractivePOIs() {
     const resolve = this.getResolvePOIs();
     const pois = this.getPOIs().filter(poi => {
+      if (poi.type === 'objective' && this.storyContext?.completed.includes(this.zoneId)) return false;
       if (poi.id === 'noveria:objective' && resolve.some(point => point.id === 'resolve:noveria:queen')) return false;
       const recruit = this.zoneId === 'citadel' && CITADEL_RECRUITS[poi.id];
       return !recruit || !this.storyContext || !this.storyContext.recruited.includes(recruit) && !this.storyContext.lost.includes(recruit);
@@ -1853,6 +1864,21 @@ export class WorldView {
     return new THREE.Vector3(clamp(point.x * .48, -9, 9), mode === 'combat' ? .3 : 0, clamp(point.z * .48, -10, 10));
   }
 
+  _positionCamera() {
+    this.camera.position.copy(this.cameraTarget).add(this.cameraOffset);
+    this.camera.lookAt(this.cameraTarget);
+    this.camera.updateMatrixWorld();
+  }
+
+  _fitCamera(dt, combat) {
+    const span = this.levelLayout?.camera.span || (this.zoneId === 'normandy' ? 24 : 29);
+    const actors = combat ? this.battleActors.values() : this.actors;
+    const aspect = this.width && this.height ? this.width / this.height : 16 / 9;
+    this.cameraSpan = fitWorldCamera(this.camera, actors, {
+      aspect, baseSpan: span, previousSpan: this.cameraSpan, dt, combat,
+    });
+  }
+
   update(dt = 1 / 60, { render = true } = {}) {
     if (this._disposed) return;
     dt = clamp(Number.isFinite(dt) ? dt : 1 / 60, 0, .05); this.time += dt;
@@ -1899,7 +1925,7 @@ export class WorldView {
     }
     const cameraPoint = this.mode === 'combat' ? this.battleArena || this.zone.arena : this.player;
     const desired = this._cameraFocus(cameraPoint, this.mode);
-    this.cameraTarget.lerp(desired, 1 - Math.exp(-dt * 3)); this.camera.position.copy(this.cameraTarget).add(this.cameraOffset); this.camera.lookAt(this.cameraTarget);
+    this.cameraTarget.lerp(desired, 1 - Math.exp(-dt * 3));
     const facing = Math.atan2(this.cameraOffset.x, this.cameraOffset.z);
     this.actors.forEach((actor, index) => {
       actor.group.visible = this.mode !== 'combat' && !this.isVehicleMounted();
@@ -1914,11 +1940,15 @@ export class WorldView {
       this._groundActor(actor);
       actor.body.rotation.y = facing; actor.body.position.y = actor.height / 2 + .05 + (actorMoving ? Math.abs(Math.sin(this.time * 10 - index)) * .065 : (policy?.ambientPulse===false?0:Math.sin(this.time * 1.8 + index) * .016));
       actor.body.rotation.z = actorMoving ? Math.sin(this.time * 10 - index) * .018 : 0;
-      if (this._animateCharacter(actor, actorMoving, movementX, movementZ)) return;
-      if (actor.key === 'shepard' && this.atlases.walk && this.walkConfig) {
-        actor.body.material.map = moving ? this._walkingTexture(actor, movementX, movementZ) : this._spriteTexture(actor.key, false);
-        actor.body.scale.x = moving ? actor.walkAspect / (2.1 / actor.height) : 1;
+      let walkingFrame = this._animateCharacter(actor, actorMoving, movementX, movementZ);
+      if (!walkingFrame && actor.key === 'shepard' && this.atlases.walk && this.walkConfig) {
+        walkingFrame = actorMoving || this.commanderWeapon !== undefined;
+        actor.body.material.map = walkingFrame
+          ? this._walkingTexture(actor, movementX, movementZ, actorMoving)
+          : this._spriteTexture(actor.key, false);
+        actor.body.scale.x = walkingFrame ? actor.walkAspect / (2.1 / actor.height) : 1;
       }
+      if (actor.id === 'shepard' && !actor.enemy) updateCarriedWeapon(actor, this.commanderWeapon, actor.walkDirection, walkingFrame);
     });
     for (const actor of this.ambientActors || []) {
       this._groundActor(actor);
@@ -1958,6 +1988,14 @@ export class WorldView {
       else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
+    // Sample the body geometry after positioning and applying this frame's pose.
+    const combat = this.mode === 'combat';
+    this._positionCamera();
+    this._fitCamera(dt, combat);
+    if (render) {
+      for (const actor of this.actors) showCoveredActor(actor, !combat && !actor.stationPosition);
+      for (const actor of this.battleActors.values()) showCoveredActor(actor, combat && actor.alive);
+    }
     for (const item of this.animations) {
       if (item.kind === 'globe') item.object.rotation.y += policy?.ambientPulse===false?0:dt * .12;
       if (item.kind === 'orbit') item.object.rotation.z += policy?.ambientPulse===false?0:dt * item.speed;
@@ -1985,8 +2023,8 @@ export class WorldView {
     if (this._disposed) return;
     const rect = this.container.getBoundingClientRect(); const width = Math.max(1, rect.width), height = Math.max(1, rect.height);
     this.width = width; this.height = height; this.renderer.setSize(width, height, false);
-    const aspect = width / height, span = this.levelLayout?.camera.span || (this.zoneId === 'normandy' ? 24 : 29);
-    this.camera.left = -span * aspect / 2; this.camera.right = span * aspect / 2; this.camera.top = span / 2; this.camera.bottom = -span / 2; this.camera.updateProjectionMatrix();
+    this.cameraSpan = undefined;
+    this._fitCamera(0, this.mode === 'combat');
   }
 
   dispose() {

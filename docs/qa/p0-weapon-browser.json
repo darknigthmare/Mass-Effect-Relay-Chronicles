@@ -1,0 +1,72 @@
+{
+  "baseCommit": "deb5c9382a697acd0cf72b182bc646337cdcfb25",
+  "at": "2026-11-20T13:13:10.761Z",
+  "passed": true,
+  "scope": "Public import, shop, equipment, reload and travel, with read-only renderer and battle observations. The existing DEV QA adapter starts the selected encounter after deployment.",
+  "checks": [
+    {
+      "name": "The public equipment change replaces the carried sprite attached to the player",
+      "details": {
+        "before": "lancer-i",
+        "after": "hurricane-iii"
+      }
+    },
+    {
+      "name": "The saved weapon rebuilds the same carried sprite after reload",
+      "details": {
+        "itemId": "hurricane-iii"
+      }
+    },
+    {
+      "name": "A public pointer click selects each marker inside the decorative galaxy orbit",
+      "details": {
+        "selected": [
+          "citadel",
+          "eden-prime"
+        ]
+      }
+    },
+    {
+      "name": "The same item drives the next ATB battle, and equipment stays inaccessible in combat",
+      "details": {
+        "weaponItemId": "hurricane-iii",
+        "weaponType": "shotgun",
+        "attack": 36,
+        "weaponHeatMultiplier": 1.12
+      }
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/p0-01-carried-rifle.png",
+      "sha256": "5508f43c82149714fd8771b6442b0f7b5b65db0942f0bdebc3793e0732c1d481",
+      "actuallyOpened": true,
+      "observation": "Silhouette du fusil rangé contre la cuisse. Son contour est visible sur le sol clair."
+    },
+    {
+      "path": "docs/screenshots/p0-02-carried-shotgun.png",
+      "sha256": "42b77cc644e69548c4bdee99c141a2605405af86dc84aaa6f13b5c0df0fb676f",
+      "actuallyOpened": true,
+      "observation": "La silhouette plus épaisse et le trait ambre apparaissent au même point de fixation après le changement. À cette échelle la différence reste discrète."
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/main.js": "9e11b335e142e22ab3f7aa168551102930c46902b9dd3c2a97044ac2687f583d",
+    "src/world.js": "b7a3033131537c7fa9fc45df6f2152f516455ce81503ab9e60211f77addcb9a1",
+    "src/loadout.js": "2b28edeaa1d7555e180de56c683ad1726e982d43bba572e30b2316b115b35207",
+    "src/weapon-presentation.js": "fbf2dab04a3fa3c80e53459694751dab9cc673abe3da545e87caf64054794d24",
+    "src/local-map.css": "54effa7184fa79372e0127918199497c0af6b735bec30baef37ea1e0af957b6f"
+  },
+  "criterion": {
+    "id": "QA-changement-d-arme",
+    "description": "Remplacer une arme pendant les états autorisés.",
+    "acceptance": "Sprite et statistiques changent ensemble.",
+    "complete": false
+  },
+  "limitations": [
+    "La couche est montée sur les poses de terrain du personnage jouable. Les poses de visée et les armes dessinées sur les équipiers restent génériques.",
+    "Le combat a été démarré après un vrai trajet par le point d’entrée de test prévu en développement. Le test natif compare dégâts et chaleur pour les deux armes.",
+    "Les captures sont des recadrages du rendu Chromium. Elles n’ont pas été agrandies ni retouchées."
+  ]
+}

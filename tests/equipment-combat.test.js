@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { createBattle, performAction, getActions, tickBattle } from '../src/combat.js';
 import { newGame, encodeSave, decodeSave } from '../src/state.js';
 import { CLASSES, CREW, actorFor, baseActorFor } from '../src/game-data.js';
-import { buyItem, equipItem } from '../src/loadout.js';
+import { buyItem, equipItem, unequipItem } from '../src/loadout.js';
+import { getCarriedWeapon } from '../src/weapon-presentation.js';
 
 function scenario(bonuses = {}, target = {}) {
   return createBattle({
@@ -14,6 +15,47 @@ function scenario(bonuses = {}, target = {}) {
 }
 const shoot = battle => performAction(battle, { actorId: 'shepard', actionId: 'shoot', targetId: 'target' });
 const damage = result => result.events.find(event => event.type === 'damage');
+
+test('replacing a carried weapon keeps visual identity, damage and heat in sync through save and unequip', () => {
+  const state = newGame({ classId: 'soldier' });
+  state.xp = 300;
+  const observe = source => {
+    const actor = actorFor('shepard', source);
+    const battle = scenario({ ...actor, atb: 100 });
+    return {
+      ...getCarriedWeapon(actor.weaponItemId),
+      battleItemId: battle.actors[0].weaponItemId,
+      damage: damage(shoot(battle)).amount,
+      heat: battle.actors[0].heat,
+    };
+  };
+  const rifle = observe(state);
+  assert.equal(rifle.id, 'lancer-i');
+  assert.equal(rifle.family, 'assault');
+  assert.equal(rifle.id, rifle.battleItemId);
+
+  assert.ok(buyItem(state, 'hurricane-iii').ok);
+  assert.ok(equipItem(state, 'shepard', 'hurricane-iii', 'weapon').ok);
+  const shotgun = observe(state);
+  assert.equal(shotgun.id, 'hurricane-iii');
+  assert.equal(shotgun.family, 'shotgun');
+  assert.equal(shotgun.id, shotgun.battleItemId);
+  assert.notEqual(shotgun.outline, rifle.outline);
+  assert.ok(shotgun.damage > rifle.damage);
+  assert.ok(shotgun.heat > rifle.heat);
+
+  const backup = encodeSave(state);
+  assert.equal(equipItem(state, 'shepard', 'hammer-iii', 'weapon').ok, false);
+  assert.deepEqual(observe(state), shotgun);
+  const resumed = decodeSave(backup);
+  assert.deepEqual(observe(resumed), shotgun);
+  assert.ok(unequipItem(resumed, 'shepard', 'weapon').ok);
+  const unarmedSlot = observe(resumed);
+  assert.equal(unarmedSlot.id, undefined);
+  assert.equal(unarmedSlot.battleItemId, null);
+  assert.equal(unarmedSlot.damage, rifle.damage);
+  assert.equal(unarmedSlot.heat, rifle.heat);
+});
 
 test('weapon cooling and heat cost agree with displayed actions and preserve wait-mode pause', () => {
   const battle = scenario({ weaponHeatMultiplier: .75, weaponCoolingBonus: 3 });

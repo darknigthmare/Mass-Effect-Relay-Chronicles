@@ -1,3 +1,4 @@
+import { isRepeatedConfirmation } from './activation-guard.js';
 import { getResolveCitadelInteraction, listResolveCitadelPOIs, getResolveCitadelEncounter, resolveCitadelReport } from './resolve-citadel.js';
 import { getResolveNoveriaInteraction, transitionResolveNoveria, listResolveNoveriaPOIs, resolveNoveriaEncounterGate, noveriaResolutionReport } from './resolve-noveria.js';
 import { resolveNoveriaObjective, renderResolveNoveriaJournal } from './resolve-noveria-ui.js';
@@ -18,7 +19,7 @@ import { renderTacticalToolbar } from './tactical-ui.js';
 import { createGamepadControls, GAMEPAD_HELP } from './gamepad-controls.js';
 import './gamepad-controls.css';
 import './priority-ui.css';
-import { getMissionProgress, getMissionPOIs, getMissionInteraction, advanceMission, tickMission, canCompleteMission, getMissionEncounterGate, getMissionTravelGate } from './mission-progress.js';
+import { getMissionProgress, getMissionPOIs, getMissionExit, getMissionInteraction, advanceMission, tickMission, canCompleteMission, getMissionEncounterGate, getMissionTravelGate } from './mission-progress.js';
 import { missionHUDText, renderMissionProgress } from './mission-progress-ui.js';
 import { renderCampaignTalents } from './campaign-talents-ui.js';
 import { trainTalent } from './campaign-talents.js';
@@ -58,7 +59,7 @@ import { getAssignmentConversation, chooseAssignmentReply, getAssignmentContacts
 import { listManualSaves, readManualSave, writeManualSave, deleteManualSave } from './save-slots.js';
 import { createBattle, tickBattle, getActions, performAction, summarizeBattle, ACTIONS, getTargetAvailability, getTacticalState, planCoordinatedOrder, performCoordinatedOrder, reserveTacticalOrder, releaseTacticalReservations, getBossPhaseView, getTacticalCoverState as getCombatCoverState } from './combat.js';
 import { VERSION, CLASSES, CREW, CHAPTERS, EQUIPMENT, baseActorFor, actorFor, enemiesFor } from './game-data.js';
-import { newGame, unlockedZones, objectiveReady, canStartEncounter, encounterIndex, zoneEncounters, winEncounter, completeZone, recruit, availableCrew, setSquad, buyUpgrade, upgradePrice, addLog, encodeSave, decodeSave, saveTo, loadFrom, readAutomaticSave, inspectSave, collectSupply, confirmCampaignBriefing, canTravelCampaign, travelCampaign, trackCampaignMilestone, applyResolveCitadel, winResolveCitadelEncounter, applyResolveVirmireInteraction } from './state.js';
+import { newGame, unlockedZones, objectiveReady, canStartEncounter, encounterIndex, zoneEncounters, winEncounter, completeZone, recruit, availableCrew, setSquad, buyUpgrade, upgradePrice, addLog, encodeSave, decodeSave, saveTo, loadFrom, readAutomaticSave, inspectSave, collectSupply, confirmCampaignBriefing, canTravelCampaign, travelCampaign, trackCampaignMilestone, DEFAULT_SETTINGS, applyResolveCitadel, winResolveCitadelEncounter, applyResolveVirmireInteraction } from './state.js';
 import './completion-accessibility.css';
 
 const $ = selector => document.querySelector(selector);
@@ -90,6 +91,8 @@ const banterController=createExplorationBanterController();
 let activeBanter=null,banterRemaining=0,archiveModule=null,archivePromise=null,archiveReturn='title';
 const productionUI={workId:'all',status:'',query:'',page:0,recordId:null};
 let hudStamp = '';
+let launchSettings = { ...DEFAULT_SETTINGS };
+let titleReturnAction = null;
 const touchKeys = new Map();
 let retreatCandidate = null, encounterRecovery = null;
 let state = null, battle = null, running = false, battlePOI = null, lastBattleEvent = 0, combatStamp = '', lastFrame = performance.now(), uiAccumulator = 0, saveAccumulator = 0;
@@ -137,7 +140,7 @@ async function openProductionArchive(destination){
   try{archivePromise ||= import('./continuation-catalogue.js');archiveModule=await archivePromise;if(ui.screen!=='archive-loading')return;openScreen(destination);}
   catch{archivePromise=null;if(ui.screen==='archive-loading'){ui.screen=archiveReturn;renderScreen();toast('Les archives ne peuvent pas être chargées. Réessayez.',true);}}
 }
-function closeProductionArchive(){ui.screen=archiveReturn;ui.dialogue=null;simulationClock.reset(performance.now());renderScreen();}
+function closeProductionArchive(){simulationClock.reset(performance.now());if(archiveReturn==='title')return returnToTitle();ui.screen=archiveReturn;ui.dialogue=null;renderScreen();}
 function showCampaignDialogue(id,step='intro',finish=null){
   const model=getCampaignDialogue(state,id,step);if(!model.ok)return false;
   speak(model.speaker,model.text,model.choices.map(choice=>({label:choice.label,tone:choice.tone,replyId:choice.id,run:()=>{
@@ -218,11 +221,25 @@ function showHumanNomination(){
 function renderResolveJournal(){
   const rows=[];const c=resolveCitadelReport(state);if(c?.known&&(c.hearing||c.nihlus||c.jokerReported))rows.push({id:'citadel',title:'Enquête sur Saren',text:`${c.evidence} ${c.fistStatus}`});
   const v=virmireReport(state);if(v?.known&&v.briefed)rows.push({id:'virmire',title:'Virmire · diversion et extraction',text:`Volontaire STG : ${CREW[v.stgVolunteer]?.name||'Non affecté'}. Rana : ${({released:'Épargnée',killed:'Exécutée'})[v.rana]||'Non rencontrée'}. Soutiens : ${Object.entries(v.support||{}).filter(([,done])=>done).map(([key])=>({communications:'communications brouillées',satellite:'liaison détruite',flyers:'ravitaillement neutralisé'})[key]).join(', ')||'Aucun consigné'}. Extraction : ${CREW[v.survivor]?.name||'Non décidée'}.`});
-  for(const origin of listResolveOrigins(state))rows.push({id:origin.id,title:origin.title,text:origin.objective+(origin.outcome?' '+origin.outcome:'')});
   return renderResolveNoveriaJournal(state,{esc})+rows.map(row=>`<article class="journal-entry" data-resolve-id="${esc(row.id)}"><h3>${esc(row.title)}</h3><p>${esc(row.text)}</p></article>`).join('');
 }
 
-function applySettings(){const s=state?.settings||{sound:true,volume:.35};audio.setEnabled(s.sound);audio.setVolume(s.volume);document.body.classList.toggle('reduced-motion',!!s.reducedMotion);document.body.classList.toggle('large-text',!!s.largeText);displayAccessibility?.applyCampaignSettings(s);}
+function activeSettings(){return running ? state.settings : launchSettings;}
+function returnToTitle(){
+  ui.screen='title';
+  ui.dialogue=null;
+  renderScreen();
+  if(titleReturnAction) $('#overlay [data-do="'+titleReturnAction+'"]')?.focus();
+  titleReturnAction=null;
+}
+function dismissScreen(){
+  if(['production-catalogue','credits','archive-loading'].includes(ui.screen))return closeProductionArchive();
+  if(ui.screen==='customization')return closeCustomization();
+  if(inChronicles())return closeChronicles();
+  if(!running){if(ui.screen!=='title')returnToTitle();return;}
+  if(!['dialogue','victory','defeat','ending'].includes(ui.screen))closeScreen();
+}
+function applySettings(){const s=activeSettings();audio.setEnabled(s.sound);audio.setVolume(s.volume);document.body.classList.toggle('reduced-motion',!!s.reducedMotion);document.body.classList.toggle('large-text',!!s.largeText);displayAccessibility?.applyCampaignSettings(s);}
 function autosave(notify=false){if(!state||battle||inChronicles())return false;state.position=world.getPosition();const ok=saveTo(localStorage,state);if(notify)toast(ok?'Progression sauvegardée.':'La sauvegarde locale a échoué. Exportez votre progression.',!ok);return ok;}
 function openScreen(name){simulationClock.reset(performance.now());ui.previous=ui.screen;ui.screen=name;audio.play('ui');syncMode();renderScreen();}
 function closeScreen(){simulationClock.reset(performance.now());if(ui.screen==='customization'){closeCustomization();return;}ui.screen=null;ui.dialogue=null;$('#overlay').innerHTML='';syncMode();renderHUD();}
@@ -266,7 +283,7 @@ function applyCustomization(){
   const base=customizationBase(),result=commitCustomization(base,ui.customizationDraft,{inCombat:!!battle});
   if(!result.ok){toast(result.reason,true);return;}
   if(ui.customCreation){ui.form.appearance=base.appearance;ui.form.customization=structuredClone(base.customization);ui.form.initialEquipment={...base.inventory.equipped.shepard};}
-  else{world.setCommanderAppearance(state.appearance);world.setCommanderCustomization(state.customization);hudStamp='';autosave();}
+  else{world.setCommanderAppearance(state.appearance);world.setCommanderCustomization(state.customization);world.setCommanderWeapon(actorFor('shepard',state).weaponItemId);hudStamp='';autosave();}
   closeCustomization();toast('Personnalisation appliquée.');
 }
 function customizationScreen(){
@@ -286,7 +303,7 @@ async function openChronicles(){
     ui.screen='chronicles';renderScreen();
   }catch{if(ui.screen==='chronicles-loading'){ui.screen=universeUI.returnScreen;renderScreen();toast('Les chroniques n’ont pas pu être chargées. Réessayez.',true);}}
 }
-function closeChronicles(){chroniclePaused=true;ui.screen=universeUI.returnScreen;renderScreen();}
+function closeChronicles(){chroniclePaused=true;if(universeUI.returnScreen==='title')return returnToTitle();ui.screen=universeUI.returnScreen;renderScreen();}
 function universeContext(){return universeModules?.continuity.normalizeContext({mediaId:universeUI.mediaId,periodId:universeUI.periodId})||null;}
 function universeView(){
   const context=universeContext(),engine=universeModules.engine;
@@ -549,9 +566,27 @@ function galaxyScreen(){
   return screen('Carte de la galaxie','Normandy SR-1 · navigation',renderGalaxyMap(state,ui.planet,esc),`<span class="small">${state.completed.length} étapes accomplies · ${state.credits} crédits</span><span class="small">Consultez une destination pour lire ses prérequis.</span>`);
 }
 
+function crewUnavailableReason(id){
+  if(state.lost.includes(id))return 'Décédé au cours de la campagne.';
+  if(!state.recruited.includes(id))return 'Pas encore recruté.';
+  if(id==='jenkins'||id==='shepard')return 'Hors sélection.';
+  if(!availableCrew(state).includes(id))return 'Affecté ailleurs.';
+  return '';
+}
 function squadScreen(){
-  const available=availableCrew(state);const editable=state.zone==='normandy';
-  return screen('Votre commando','Deux équipiers · une mission',`<p class="brief-copy" style="margin-bottom:22px">${editable?'Choisissez deux compagnons pour votre prochaine sortie.':'Votre groupe est engagé sur le terrain. La composition se prépare au Normandy.'}</p><div class="crew-grid">${Object.values(CREW).filter(c=>!['shepard','jenkins'].includes(c.id)).map(c=>{const locked=!available.includes(c.id);return `<button class="crew-card ${ui.selectedCrew.includes(c.id)?'selected':''} ${locked?'unavailable':''}" data-do="crew-select" data-id="${c.id}" ${locked||!editable?'disabled':''}>${ui.selectedCrew.includes(c.id)?'<span class="check">SÉLECTIONNÉ</span>':''}<div class="crew-art" style="${portraitStyle(c.id)}"></div><div class="card-info"><strong>${c.name}</strong><small>${state.lost.includes(c.id)?'Décès dans le récit':locked?'Pas encore recruté':c.role}</small><small>${c.description}</small></div></button>`;}).join('')}</div>${editable?conversationDirectory():''}${renderCompanionRelations(state)}`,`<div class="squad-footer"><span class="small">${ui.selectedCrew.length}/2 équipiers sélectionnés</span><button class="secondary" data-do="dossier">Dossier Shepard</button><button class="secondary" data-do="talents" ${battle?'disabled':''}>Talents</button></div><button class="primary" data-do="crew-confirm" ${!editable||ui.selectedCrew.length!==2?'disabled':''}>Confirmer le commando</button>`);
+  const editable=state.zone==='normandy'&&!battle;
+  const cards=Object.values(CREW).filter(c=>!['shepard','jenkins'].includes(c.id)).map(c=>{
+    const reason=crewUnavailableReason(c.id),selected=ui.selectedCrew.includes(c.id)&&!reason;
+    return `<button class="crew-card${selected?' selected':''}${reason?' unavailable':''}" data-do="crew-select" data-id="${c.id}" aria-pressed="${selected}" ${editable?'':'disabled'}>
+      ${selected?'<span class="check">SÉLECTIONNÉ</span>':''}
+      <div class="crew-art" style="${portraitStyle(c.id)}"></div>
+      <div class="card-info"><strong>${esc(c.name)}</strong><small>${esc(reason||c.role)}</small><small>${esc(c.description)}</small></div>
+    </button>`;
+  }).join('');
+  const canConfirm=editable&&ui.selectedCrew.length===2&&ui.selectedCrew.every(id=>!crewUnavailableReason(id));
+  return screen('Votre commando','Deux équipiers · une mission',
+    `<p class="brief-copy">${editable?'Choisissez deux compagnons pour votre prochaine sortie.':'Votre groupe est engagé sur le terrain. La composition se prépare au Normandy.'}</p><div class="crew-grid">${cards}</div>${editable?conversationDirectory():''}${renderCompanionRelations(state)}`,
+    `<div class="squad-footer"><span class="small">${ui.selectedCrew.filter(id=>!crewUnavailableReason(id)).length}/2 équipiers sélectionnés</span><button class="secondary" data-do="dossier">Dossier Shepard</button><button class="secondary" data-do="talents" ${battle?'disabled':''}>Talents</button></div><button class="primary" data-do="crew-confirm" ${canConfirm?'':'disabled'}>Confirmer le commando</button>`);
 }
 function conversationDirectory(){
   const conversations=['nihlus','joker','chakwas','kaidan','ashley','garrus','tali','wrex','liara',...FRONTIER_NPCS.filter(npc=>npc.zone==='normandy').map(npc=>npc.id)].map(id=>getConversation(state,id)).filter(Boolean);
@@ -563,21 +598,35 @@ function equipmentScreen(){
   if(id!=='shepard'&&(!state.recruited.includes(id)||state.lost.includes(id)&&!Object.values(equipmentFor(state,id)||{}).some(Boolean)))ui.equipmentActor='shepard';
   return screen('Équipement du commando',`${state.credits} crédits · ${state.medigel} médi-gels`,renderLoadoutScreen(state,ui,{esc,portraitStyle,baseActorFor,actorFor,upgradePrice}),`<div class="custom-entry"><div><strong>Atelier de Shepard</strong><p>Personnage, revêtement d’armure et configuration des armes.</p></div><button class="secondary" data-do="customization">Personnaliser Shepard</button></div>`);
 }
+function campaignJournal(){
+  return unlockedZones(state).filter(id=>CHAPTERS[id]).map(id=>{
+    const chapter=CHAPTERS[id],completed=state.completed.includes(id);
+    const visited=state.zone===id||state.story.visitedZones.includes(id);
+    const status=completed?'completed':visited?'active':'available';
+    const label=completed?'Terminée':visited?'En cours':'Disponible';
+    return `<section class="journal-entry" data-mission-id="${id}" data-campaign-status="${status}">
+      <div class="assignment-heading"><h3>${esc(chapter.name)}</h3><span class="pill${completed?' teal':''}">${label}</span></div>
+      ${completed?'':`<p>${esc(chapter.objective)}</p>`}
+      ${renderMissionProgress(state,id)}
+      ${state.choices[id]?`<span class="pill">${esc(choiceLabel(id,state.choices[id]))}</span>`:''}
+    </section>`;
+  }).join('');
+}
 function journalScreen(){
   const tabs=[['missions','Missions'],['assignments','Assignations'],['reports','Rapports']];
   let body='';
   if(ui.journalTab==='assignments')body=assignmentJournal()+renderOperationsJournal(state,ui,{esc});
   else if(ui.journalTab==='reports')body=`<div class="journal-reports">${state.logs.slice(0,12).map(log=>`<article class="journal-entry"><h3>${esc(log.title)}</h3><p>${esc(log.text)}</p></article>`).join('')}${renderNarrativeSummary(state)}</div>`;
-  else body=`${renderCampaignMilestones(state,{esc})}${renderResolveJournal()}${renderAdvanceFerosJournal(state,{esc})}<div class="journal-missions"><div class="section-label">Campagne</div>${Object.entries(CHAPTERS).filter(([id])=>unlockedZones(state).includes(id)).map(([id,chapter])=>`<article class="journal-entry" data-mission-id="${id}"><h3>${state.completed.includes(id)?'✓ ':''}${esc(chapter.name)}</h3><p>${state.completed.includes(id)?'Mission accomplie.':esc(chapter.objective)}</p>${renderMissionProgress(state,id)}${state.choices[id]?`<span class="pill">${esc(choiceLabel(id,state.choices[id]))}</span>`:''}</article>`).join('')}</div>`;
+  else body=`${renderCampaignMilestones(state,{esc})}${renderResolveJournal()}${renderAdvanceFerosJournal(state,{esc})}<div class="journal-missions"><div class="section-label">Campagne</div>${campaignJournal()}</div>`;
   return screen('Journal de mission','Missions · assignations · rapports',`<nav class="tabs" aria-label="Sections du journal">${tabs.map(([id,label])=>`<button class="tab ${ui.journalTab===id?'active':''}" data-do="journal-tab" data-id="${id}" aria-pressed="${ui.journalTab===id}">${label}</button>`).join('')}</nav><div class="journal-section" data-journal-section="${ui.journalTab}">${body}</div>`,`<span class="small">Conciliation ${state.paragon} · Pragmatisme ${state.renegade}</span><span class="small">Niveau ${Math.floor(state.xp/300)+1} · ${state.xp} EXP</span>`);
 }
 function assignmentJournal(){
-  const assignments=getAssignments(state);
+  const assignments=[...getAssignments(state),...listResolveOrigins(state)];
   if(!assignments.length)return '<p class="brief-copy">Aucune assignation de contact enregistrée. Vos rencontres peuvent ouvrir de nouvelles pistes.</p>';
-  return [['active','En cours'],['completed','Terminées']].map(([status,label])=>{
+  return [['active','En cours'],['completed','Terminées'],['unavailable','Indisponibles']].map(([status,label])=>{
     const entries=assignments.filter(assignment=>assignment.status===status);
     if(!entries.length)return '';
-    return `<section class="assignment-group"><h3 class="section-label">${label}</h3>${entries.map(assignment=>`<article class="journal-entry assignment-entry" data-assignment-id="${esc(assignment.id)}" data-assignment-status="${assignment.status}"><div class="assignment-heading"><h3>${esc(assignment.title)}</h3><span class="pill ${status==='completed'?'teal':''}">${status==='completed'?'Terminée':'En cours'}</span></div><p class="assignment-objective">${esc(assignment.objective)}</p>${assignment.summary&&assignment.summary!==assignment.outcome?`<p class="assignment-summary">${esc(assignment.summary)}</p>`:''}${assignment.outcome?`<p class="assignment-outcome">${esc(assignment.outcome)}</p>`:''}</article>`).join('')}</section>`;
+    return `<section class="assignment-group"><h3 class="section-label">${label}</h3>${entries.map(assignment=>`<article class="journal-entry assignment-entry" data-assignment-id="${esc(assignment.id)}" data-assignment-status="${assignment.status}"><div class="assignment-heading"><h3>${esc(assignment.title)}</h3><span class="pill ${status==='completed'?'teal':''}">${status==='completed'?'Terminée':status==='unavailable'?'Indisponible':'En cours'}</span></div><p class="assignment-objective">${esc(assignment.objective)}</p>${assignment.summary&&assignment.summary!==assignment.outcome?`<p class="assignment-summary">${esc(assignment.summary)}</p>`:''}${assignment.outcome?`<p class="assignment-outcome">${esc(assignment.outcome)}</p>`:''}</article>`).join('')}</section>`;
   }).join('');
 }
 function codexContents(){
@@ -590,7 +639,7 @@ function codexContents(){
 function codexScreen(){
   return screen('Codex','Archives de l’Alliance',`<label class="field codex-search" for="codex-search"><span>Rechercher dans le codex</span><input type="search" id="codex-search" value="${esc(ui.codexQuery)}" placeholder="Nom, catégorie ou sujet" autocomplete="off"></label><div id="codex-results">${codexContents()}</div>`,`<button class="secondary" data-do="horizon-archive">Faune et vaisseaux</button>`);
 }
-function settingsScreen(){const s=state?.settings||{sound:true,volume:.35,reducedMotion:false,largeText:false};return screen('Options','Affichage · audio · rythme',`<div class="setting-row"><label for="sound-setting">Ambiances et effets<small>Synthèse sonore originale</small></label><input id="sound-setting" type="checkbox" ${s.sound?'checked':''}></div><div class="setting-row"><label for="volume-setting">Volume général</label><input id="volume-setting" type="range" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting-row"><label for="motion-setting">Réduire animations et flashs</label><input id="motion-setting" type="checkbox" ${s.reducedMotion?'checked':''}></div><div class="setting-row"><label for="text-setting">Texte agrandi</label><input id="text-setting" type="checkbox" ${s.largeText?'checked':''}></div>${state?`<div class="setting-row"><label for="mode-setting">Jauges ATB<small>Le mode Attente suspend le temps lorsqu’un allié est prêt.</small></label><select id="mode-setting"><option value="wait" ${state.mode==='wait'?'selected':''}>Attente</option><option value="active" ${state.mode==='active'?'selected':''}>Actif</option></select></div><div class="setting-row"><label for="difficulty-setting">Difficulté<small>Appliquée aux prochains combats.</small></label><select id="difficulty-setting"><option value="story" ${state.difficulty==='story'?'selected':''}>Histoire</option><option value="normal" ${state.difficulty==='normal'?'selected':''}>Vétéran</option><option value="hard" ${state.difficulty==='hard'?'selected':''}>Difficile</option></select></div>`:''}${displayAccessibility.renderSettings()}<div class="setting-row"><label>Plein écran<small>F11 dans l’application PC</small></label><button class="secondary" data-do="fullscreen">Basculer</button></div>`);}
+function settingsScreen(){const s=activeSettings();return screen('Options','Affichage · audio · rythme',`<div class="setting-row"><label for="sound-setting">Ambiances et effets<small>Synthèse sonore originale</small></label><input id="sound-setting" type="checkbox" ${s.sound?'checked':''}></div><div class="setting-row"><label for="volume-setting">Volume général</label><input id="volume-setting" type="range" min="0" max="1" step=".05" value="${s.volume}"></div><div class="setting-row"><label for="motion-setting">Réduire animations et flashs</label><input id="motion-setting" type="checkbox" ${s.reducedMotion?'checked':''}></div><div class="setting-row"><label for="text-setting">Texte agrandi</label><input id="text-setting" type="checkbox" ${s.largeText?'checked':''}></div>${running?`<div class="setting-row"><label for="mode-setting">Jauges ATB<small>Le mode Attente suspend le temps lorsqu’un allié est prêt.</small></label><select id="mode-setting"><option value="wait" ${state.mode==='wait'?'selected':''}>Attente</option><option value="active" ${state.mode==='active'?'selected':''}>Actif</option></select></div><div class="setting-row"><label for="difficulty-setting">Difficulté<small>Appliquée aux prochains combats.</small></label><select id="difficulty-setting"><option value="story" ${state.difficulty==='story'?'selected':''}>Histoire</option><option value="normal" ${state.difficulty==='normal'?'selected':''}>Vétéran</option><option value="hard" ${state.difficulty==='hard'?'selected':''}>Difficile</option></select></div>`:''}${displayAccessibility.renderSettings()}<div class="setting-row"><label>Plein écran<small>F11 dans l’application PC</small></label><button class="secondary" data-do="fullscreen">Basculer</button></div>`);}
 function dialogueScreen(){
   const d=ui.dialogue;if(!d)return '';const frontierArt=frontierPortrait(d.portrait);
   return `<div class="dialogue" role="dialog" aria-label="Dialogue" ${d.accessibilityPreview?'data-readability-preview="true"':''} ${d.missionId?`data-mission-id="${esc(d.missionId)}"`: ''} ${d.operationId?`data-operation-id="${esc(d.operationId)}" data-step-id="${esc(d.stepId)}"`: ''} ${d.assignmentContact?`data-assignment-contact="${esc(d.assignmentContact)}"`:''} ${d.assignmentId?`data-assignment-id="${esc(d.assignmentId)}"`:''} ${d.conversationId?`data-conversation-id="${esc(d.conversationId)}"`:''} ${d.topicId?`data-current-topic="${esc(d.topicId)}"`:''} ${d.replyId?`data-selected-reply="${esc(d.replyId)}"`:''}><div class="dialogue-portrait ${frontierArt?'frontier-portrait':d.portrait?'':'generic'}" style="${d.portrait&&!frontierArt?portraitStyle(d.portrait):''}">${frontierArt||(d.portrait?'':'◇')}</div><div class="dialogue-body"><div class="speaker">${esc(d.speaker)}</div><p class="dialogue-text">${esc(d.text)}</p>${d.rememberedReply?`<p class="dialogue-note">Votre réponse : ${esc(d.rememberedReply)}</p>`:''}<div class="dialogue-choices">${d.choices.map((choice,index)=>`<button class="choice ${choice.tone||''}" data-do="dialogue-choice" data-index="${index}" ${choice.disabled?'disabled':''} ${choice.missionChoice?`data-mission-choice="${esc(choice.missionChoice)}"`:''} ${choice.operationChoice?`data-operation-choice="${esc(choice.operationChoice)}"`:''} ${choice.operationContact?`data-horizon-operation="${esc(choice.operationContact)}"`:''} ${choice.topicId?`data-topic-id="${esc(choice.topicId)}"`:''} ${choice.replyId?`data-reply-id="${esc(choice.replyId)}"`:''} ${choice.conversationBack?'data-conversation-back':''} ${choice.conversationEnd?'data-conversation-end':''} ${choice.assignmentChoice?`data-assignment-choice="${esc(choice.assignmentChoice)}"`:''} ${choice.assignmentEnd?'data-assignment-end':''} ${choice.assignmentBack?'data-assignment-back':''}>${esc(choice.label)}${choice.hint||choice.reason||choice.consequence?`<small>${esc(choice.reason||choice.hint||choice.consequence)}</small>`:''}</button>`).join('')}</div></div></div>`;
@@ -674,7 +723,7 @@ function showConversationReply(id,topicId,replyId){
   const selected=conversation.topics.find(topic=>topic.id===topicId)?.choices?.find(reply=>reply.id===replyId);
   speak(conversation.speaker,result.response,[{label:'Retour aux sujets.',conversationBack:true,run:()=>showConversation(id)}],conversation.portrait,{conversationId:id,topicId,replyId,rememberedReply:selected?.label});
 }
-function currentObjective(){if(!state)return '';const mission=missionHUDText(state);if(mission)return mission;const followed=listOperations(state).find(item=>item.id===state.trackedOperation);if(followed&&!['completed','unavailable'].includes(followed.status))return `${followed.name} · ${followed.blockedReason||followed.currentStep?.label||followed.description}`;const campaignObjective=getTrackedCampaignObjective(state);if(campaignObjective)return campaignObjective.text;const noveriaObjective=resolveNoveriaObjective(state);if(noveriaObjective)return noveriaObjective;const ferosObjective=advanceFerosObjective(state);if(ferosObjective)return ferosObjective;if(state.zone==='normandy')return !state.flags.briefed?'Rejoindre le briefing de mission.':'Préparer le commando, puis choisir une destination sur la carte galactique.';if(state.completed.includes(state.zone))return 'Mission accomplie. Rejoignez le point d’extraction.';return CHAPTERS[state.zone]?.objective||'';}
+function currentObjective(){if(!state)return '';const mission=missionHUDText(state);if(mission)return mission;if(getMissionExit(state))return 'Rejoindre le passage pour poursuivre.';const followed=listOperations(state).find(item=>item.id===state.trackedOperation);if(followed&&!['completed','unavailable'].includes(followed.status))return `${followed.name} · ${followed.blockedReason||followed.currentStep?.label||followed.description}`;const campaignObjective=getTrackedCampaignObjective(state);if(campaignObjective)return campaignObjective.text;const noveriaObjective=resolveNoveriaObjective(state);if(noveriaObjective)return noveriaObjective;const ferosObjective=advanceFerosObjective(state);if(ferosObjective)return ferosObjective;if(state.zone==='normandy')return !state.flags.briefed?'Rejoindre le briefing de mission.':'Préparer le commando, puis choisir une destination sur la carte galactique.';if(state.completed.includes(state.zone))return 'Mission accomplie. Rejoignez le point d’extraction.';return CHAPTERS[state.zone]?.objective||'';}
 function exploreInteraction(){
   return getExploreInteraction({vehicle:world.getNearbyVehicle(),poi:world.getNearby(),position:world.getPosition()});
 }
@@ -704,7 +753,7 @@ async function loadZone(zone,{resume=false}={}){
     if(!resume){const moved=travelCampaign(state,zone);if(!moved.ok){toast(moved.reason,true);return false;}}
     else recordVisit(state,zone);
     if(fromZone!==zone)ui.tracked=null;
-    world.setCommanderAppearance(state.appearance);world.setCommanderCustomization(state.customization);syncStoryContext();
+    world.setCommanderAppearance(state.appearance);world.setCommanderCustomization(state.customization);world.setCommanderWeapon(actorFor('shepard',state).weaponItemId);syncStoryContext();
     world.setZone(zone,{party:state.party,cleared:state.cleared,fromZone:resume?null:fromZone});
     if(position)world.setPosition(position);
     refreshOperations();state.position=world.getPosition();audio.setZone(zone);simulationClock.reset(performance.now());autosave();
@@ -712,8 +761,8 @@ async function loadZone(zone,{resume=false}={}){
   }finally{ui.busy=false;$('#transition').classList.remove('active');syncMode();renderHUD();}
 }
 
-function beginGame(){if(ui.busy)return;encounterRecovery=null;retreatCandidate=null;const preferences=state?.settings;state=newGame(ui.form);if(ui.form.initialEquipment){const draft=createCustomizationDraft(state);draft.equipment={...ui.form.initialEquipment};commitCustomization(state,draft);}ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;if(preferences)state.settings={...preferences};running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;audio.unlock();applySettings();loadZone('normandy').then(()=>speak('Capitaine Anderson','Nous approchons d’Eden Prime. Rejoignez le briefing avant la descente. Préparez votre équipe, puis consultez la carte galactique.',[{label:'Je rejoins le briefing.',run:()=>closeScreen()}]));}
-function continueGame(s=loadFrom(localStorage)){if(ui.busy)return;if(!s){toast('Aucune sauvegarde valide.',true);return;}state=s;encounterRecovery=null;retreatCandidate=null;ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;world.setBattle(null);audio.unlock();applySettings();loadZone(state.zone,{resume:true});}
+function beginGame(){if(ui.busy)return;titleReturnAction=null;encounterRecovery=null;retreatCandidate=null;state=newGame(ui.form);if(ui.form.initialEquipment){const draft=createCustomizationDraft(state);draft.equipment={...ui.form.initialEquipment};commitCustomization(state,draft);}ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;state.settings={...launchSettings};running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;audio.unlock();applySettings();loadZone('normandy').then(()=>speak('Capitaine Anderson','Nous approchons d’Eden Prime. Rejoignez le briefing avant la descente. Préparez votre équipe, puis consultez la carte galactique.',[{label:'Je rejoins le briefing.',run:()=>closeScreen()}]));}
+function continueGame(s=loadFrom(localStorage)){if(ui.busy)return;if(!s){toast('Aucune sauvegarde valide.',true);return;}titleReturnAction=null;state=s;encounterRecovery=null;retreatCandidate=null;ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;world.setBattle(null);audio.unlock();applySettings();loadZone(state.zone,{resume:true});}
 
 function interactPOI(poi){if(!poi||!running||battle||ui.screen||ui.busy)return;audio.play('ui');const zone=state.zone;
   if(poi.resolveCitadel)return showResolveCitadel(poi.resolveCitadel);
@@ -721,7 +770,11 @@ function interactPOI(poi){if(!poi||!running||battle||ui.screen||ui.busy)return;a
   if(poi.resolveVirmire)return showResolveVirmire(poi.id);
   if(poi.resolveOriginContactId)return showResolveOrigin(poi.resolveOriginContactId);
   if(poi.advanceFeros)return showAdvanceFerosInteraction(poi.id);
-  if(poi?.missionId)return showMissionInteraction(poi.id);
+  const missionExit=getMissionExit(state);
+  if(poi.id===missionExit?.id){
+    return state.completed.includes(zone) ? loadZone(missionExit.target) : finishObjective();
+  }
+  if(poi.missionId)return showMissionInteraction(poi.id);
   if(poi.faunaId){ui.horizonKind='fauna';ui.horizonRecord=poi.faunaId;return openScreen('horizon-archive');}
   if(poi.operationId)return interactOperation(poi);
   if(poi.assignmentContactId)return showAssignmentConversation(poi.assignmentContactId);
@@ -731,7 +784,7 @@ function interactPOI(poi){if(!poi||!running||battle||ui.screen||ui.busy)return;a
     if(key==='briefing'&&showCampaignDialogue('briefing'))return;
     if(key==='briefing')return speak('Capitaine Anderson',state.flags.briefed?'Votre dossier est prêt. Les destinations accessibles sont répertoriées sur la carte galactique.':'Une balise prothéenne a été découverte sur Eden Prime. Kaidan et Jenkins vous accompagneront au sol. La priorité est de sécuriser la récupération.',[{label:state.flags.briefed?'Ouvrir la carte galactique.':'Mission comprise. Préparons la descente.',run:()=>{const confirmed=confirmCampaignBriefing(state);if(!confirmed.ok)return toast(confirmed.reason,true);refreshOperations();autosave();ui.planet=unlockedZones(state).find(z=>z!=='normandy'&&!state.completed.includes(z))||'citadel';openScreen('galaxy');}}]);
     if(key==='galaxy'||key==='exit'){if(!state.flags.briefed)return toast('Le capitaine vous attend au briefing.');ui.planet=unlockedZones(state).find(z=>z!=='normandy'&&!state.completed.includes(z))||'citadel';return openScreen('galaxy');}
-    if(key==='crew'){ui.selectedCrew=state.party.slice(1);return openScreen('squad');}
+    if(key==='crew'){ui.selectedCrew=state.party.slice(1).filter(id=>availableCrew(state).includes(id));return openScreen('squad');}
     if(key==='equipment'){ui.equipmentActor='shepard';return openScreen('equipment');}
     if(key==='archive')return openScreen('codex');
     if(key==='medbay'){const result=collectSupply(state,'normandy:medbay-restock');if(result.ok)autosave();else if(!state.collected.includes('normandy:medbay-restock'))return toast(result.reason,true);return speak('Dr Chakwas','Votre réserve de médi-gel est prête. Prenez le temps d’examiner votre équipement avant de repartir.',[{label:'Merci, docteur.',run:()=>closeScreen()}]);}
@@ -878,7 +931,8 @@ function claimVictory(){
   return true;
 }
 
-document.addEventListener('click',event=>{const button=event.target.closest('[data-do]');if(!button||button.disabled)return;const action=button.dataset.do,id=button.dataset.id;audio.unlock();
+document.addEventListener('click',event=>{const button=event.target.closest('[data-do]');if(!button||button.disabled)return;const action=button.dataset.do,id=button.dataset.id;if(isRepeatedConfirmation(event,action))return;audio.unlock();
+  if(ui.screen==='title'&&['new','title-settings','manual-saves','credits','production-catalogue','chronicles'].includes(action))titleReturnAction=action;
   switch(action){
     case 'human-nomination':showHumanNomination();break;
     case 'production-catalogue':openProductionArchive('production-catalogue');break;
@@ -912,7 +966,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'class':ui.form.classId=id;renderScreen();break;
     case 'begin':beginGame();break;
     case 'continue':case 'load':continueGame();break;
-    case 'close':if(['production-catalogue','credits','archive-loading'].includes(ui.screen)){closeProductionArchive();break;}if(ui.screen==='customization'){closeCustomization();break;}if(inChronicles()){closeChronicles();break;}if(!running){ui.screen='title';renderScreen();}else if(['dialogue','victory','defeat','ending'].includes(ui.screen)){}else closeScreen();break;
+    case 'close':dismissScreen();break;
     case 'pause':openScreen('pause');break;
     case 'manual-saves':if(!battle&&!ui.busy){ui.manualReturn=running?'pause':'title';ui.manualNames={};ui.manualFeedback=null;ui.manualConfirmation=null;openScreen('saves');}break;
     case 'manual-save':requestManualSave(id);break;
@@ -920,12 +974,12 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'manual-delete':requestManualDelete(id);break;
     case 'manual-confirm':confirmManualAction();break;
     case 'manual-cancel':ui.manualConfirmation=null;ui.manualFeedback=null;renderScreen();break;
-    case 'manual-back':ui.manualConfirmation=null;openScreen(ui.manualReturn);break;
+    case 'manual-back':ui.manualConfirmation=null;if(ui.manualReturn==='title')returnToTitle();else openScreen(ui.manualReturn);break;
     case 'dossier':if(running)openScreen('dossier');break;
     case 'dossier-back':openScreen(ui.previous==='squad'?'squad':'pause');break;
     case 'journal':if(!battle)openScreen('journal');break;
     case 'journal-tab':if(['missions','assignments','reports'].includes(id)){ui.journalTab=id;renderScreen();}break;
-    case 'squad':if(!battle){ui.selectedCrew=state.party.slice(1);openScreen('squad');}break;
+    case 'squad':if(!battle){ui.selectedCrew=state.party.slice(1).filter(id=>availableCrew(state).includes(id));openScreen('squad');}break;
     case 'equipment':if(!battle){ui.equipmentActor='shepard';openScreen('equipment');}break;
     case 'customization':openCustomization();break;
     case 'customization-create':if(ui.screen==='new')openCustomization(true);break;
@@ -957,7 +1011,12 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'eq-equip':case 'eq-unequip':case 'eq-buy':case 'eq-sell':{
       if(battle)break;
       const result=action==='eq-equip'?equipItem(state,ui.equipmentActor,id,button.dataset.slot||undefined):action==='eq-unequip'?unequipItem(state,ui.equipmentActor,id):action==='eq-buy'?buyItem(state,id):sellItem(state,id);
-      toast(result.ok?'Dotation mise à jour.':result.reason,!result.ok);if(result.ok)autosave();renderScreen();break;
+      toast(result.ok?'Dotation mise à jour.':result.reason,!result.ok);
+      if(result.ok){
+        if(ui.equipmentActor==='shepard'&&['eq-equip','eq-unequip'].includes(action))world.setCommanderWeapon(actorFor('shepard',state).weaponItemId);
+        autosave();
+      }
+      renderScreen();break;
     }
     case 'operation-filter':ui.operationFilter=id;renderScreen();break;
     case 'track-campaign':{if(!running||battle||ui.busy)break;const tracked=trackCampaignMilestone(state,id||null);if(!tracked.ok){toast(tracked.reason,true);break;}state.trackedOperation=null;ui.tracked=getTrackedCampaignObjective(state)?.targetPoiId||null;refreshOperations();autosave();renderScreen();renderHUD();break;}
@@ -965,8 +1024,16 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'map-filter':ui.mapFilter=id;renderScreen();break;
     case 'equipment-actor':ui.equipmentActor=id;renderScreen();break;
     case 'buy':{const result=buyUpgrade(state,ui.equipmentActor,id);toast(result.ok?'Équipement mis à jour.':result.reason,!result.ok);autosave();renderScreen();break;}
-    case 'crew-select':if(ui.selectedCrew.includes(id))ui.selectedCrew=ui.selectedCrew.filter(x=>x!==id);else if(ui.selectedCrew.length<2)ui.selectedCrew.push(id);else toast('Retirez un équipier avant d’en choisir un autre.');renderScreen();break;
-    case 'crew-confirm':if(setSquad(state,ui.selectedCrew)){world.setCommanderAppearance(state.appearance);syncStoryContext();world.setParty(state.party);autosave();closeScreen();toast('Commando prêt.');}break;
+    case 'crew-select':{
+      if(ui.screen!=='squad'||battle||ui.busy||state?.zone!=='normandy'||!Object.hasOwn(CREW,id))break;
+      const reason=crewUnavailableReason(id);
+      if(reason){toast(reason,true);break;}
+      if(ui.selectedCrew.includes(id))ui.selectedCrew=ui.selectedCrew.filter(selected=>selected!==id);
+      else if(ui.selectedCrew.length<2)ui.selectedCrew.push(id);
+      else {toast('Retirez un équipier avant d’en choisir un autre.');break;}
+      renderScreen();break;
+    }
+    case 'crew-confirm':if(ui.screen==='squad'&&!battle&&!ui.busy&&setSquad(state,ui.selectedCrew)){world.setCommanderAppearance(state.appearance);syncStoryContext();world.setParty(state.party);autosave();closeScreen();toast('Commando prêt.');}break;
     case 'map':if(!battle)openScreen(state.zone==='normandy'&&state.flags.briefed?'galaxy':'map');break;
     case 'track':trackCampaignMilestone(state,null);ui.tracked=id;state.trackedOperation=world.getInteractivePOIs().find(p=>p.id===id)?.operationId||null;autosave();closeScreen();toast(`Objectif suivi : ${world.getInteractivePOIs().find(p=>p.id===id)?.label||id}`);break;
     case 'planet':ui.planet=id;renderScreen();break;
@@ -986,7 +1053,13 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'credits':openProductionArchive('credits');break;
     case 'help':openScreen('help');break;
     case 'fullscreen':if(document.fullscreenElement)document.exitFullscreen?.();else document.documentElement.requestFullscreen?.().catch(()=>toast('Le plein écran est indisponible.'));break;
-    case 'quit':if(!battle)autosave();battle=null;world.setBattle(null);$('#battle-ui').innerHTML='';running=false;ui.screen='title';renderScreen();break;
+    case 'quit':
+      if(!battle)autosave();
+      battle=null;world.setBattle(null);$('#battle-ui').innerHTML='';running=false;
+      launchSettings={...state.settings};
+      state=null;
+      returnToTitle();
+      break;
     case 'dialogue-choice':{const choice=ui.dialogue?.choices[Number(button.dataset.index)];if(!choice?.disabled)choice?.run();break;}
     case 'talents':if(running&&!battle){ui.talentActor='shepard';openScreen('talents');}break;
     case 'talent-actor':if(running&&!battle){ui.talentActor=id;renderScreen();}break;
@@ -1006,7 +1079,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'return-normandy':loadZone('normandy');break;
   }
 });
-document.addEventListener('input',e=>{if(e.target.id==='production-search'&&ui.screen==='production-catalogue'){productionUI.query=e.target.value;productionUI.page=0;productionUI.recordId=null;$('#production-results').innerHTML=archiveModule.renderProductionResults(productionUI);}if(e.target.id==='universe-search'&&ui.screen==='chronicles'){universeUI.query=e.target.value;universeUI.visibleCount=30;chronicleView=universeView();$('#universe-results').innerHTML=universeModules.renderer.renderUniverseReferenceResults(chronicleView,universeUI,{esc});}if(e.target.id==='codex-search'){ui.codexQuery=e.target.value;$('#codex-results').innerHTML=codexContents();}if(e.target.dataset.manualName)ui.manualNames[e.target.dataset.manualName]=e.target.value;if(e.target.id==='commander-name')ui.form.name=e.target.value;if(e.target.id==='volume-setting'){if(!state)state=newGame();state.settings.volume=Number(e.target.value);applySettings();}});
+document.addEventListener('input',e=>{if(e.target.id==='production-search'&&ui.screen==='production-catalogue'){productionUI.query=e.target.value;productionUI.page=0;productionUI.recordId=null;$('#production-results').innerHTML=archiveModule.renderProductionResults(productionUI);}if(e.target.id==='universe-search'&&ui.screen==='chronicles'){universeUI.query=e.target.value;universeUI.visibleCount=30;chronicleView=universeView();$('#universe-results').innerHTML=universeModules.renderer.renderUniverseReferenceResults(chronicleView,universeUI,{esc});}if(e.target.id==='codex-search'){ui.codexQuery=e.target.value;$('#codex-results').innerHTML=codexContents();}if(e.target.dataset.manualName)ui.manualNames[e.target.dataset.manualName]=e.target.value;if(e.target.id==='commander-name')ui.form.name=e.target.value;if(e.target.id==='volume-setting'){activeSettings().volume=Number(e.target.value);applySettings();}});
 document.addEventListener('change',e=>{
   const {id,value,checked}=e.target;
   if(e.target.dataset.productionFilter&&['production-catalogue','credits'].includes(ui.screen)){productionUI[e.target.dataset.productionFilter]=value;productionUI.page=0;productionUI.recordId=null;renderScreen();document.getElementById(id)?.focus({preventScroll:true});return;}
@@ -1029,7 +1102,13 @@ document.addEventListener('change',e=>{
   if(commanderFields[id]){const [field,choices]=commanderFields[id];if(Object.hasOwn(choices,value)){ui.form[field]=value;const description=document.getElementById(`${id}-description`);if(description)description.textContent=choices[value].description;if(id==='new-appearance'){const portrait=$('#commander-preview');portrait.style.cssText=ui.form.customization||value==='female'?'background-image:none':portraitStyle('shepard',value);portrait.innerHTML=ui.form.customization?customizationFaceSVG({appearance:value,customization:ui.form.customization},'creation-face'):commanderArt(value);portrait.setAttribute('aria-label',choices[value].name);}}}
   if(id==='custom-weapon-filter'&&ui.screen==='customization'){ui.customWeaponFilter=value;refreshCustomization();$('#custom-weapon-filter')?.focus({preventScroll:true});}
 
-  if(['sound-setting','motion-setting','text-setting','mode-setting','difficulty-setting'].includes(id)){if(!state)state=newGame();if(id==='sound-setting')state.settings.sound=checked;if(id==='motion-setting')state.settings.reducedMotion=checked;if(id==='text-setting')state.settings.largeText=checked;if(id==='mode-setting'){state.mode=value;if(battle)battle.mode=value;}if(id==='difficulty-setting')state.difficulty=value;applySettings();if(running)autosave();}
+  const booleanSettings={'sound-setting':'sound','motion-setting':'reducedMotion','text-setting':'largeText'};
+  if(Object.hasOwn(booleanSettings,id))activeSettings()[booleanSettings[id]]=checked;
+  else if(running&&id==='mode-setting'){state.mode=value;if(battle)battle.mode=value;}
+  else if(running&&id==='difficulty-setting')state.difficulty=value;
+  else if(id!=='volume-setting')return;
+  applySettings();
+  if(running)autosave();
 });
 $('#save-import').addEventListener('change',async e=>{const file=e.target.files?.[0];e.target.value='';if(!file)return;if(file.size>2000000)return toast('Fichier de sauvegarde trop volumineux.',true);try{const result=inspectSave(await file.text());if(!result.ok)return toast(result.reason,true);const saved=saveTo(localStorage,result.state);continueGame(result.state);toast(saved?'Sauvegarde importée.':'Partie chargée, mais le stockage local est indisponible.',!saved);}catch{toast('Le fichier de sauvegarde ne peut pas être lu.',true);}});
 $('#chronicle-import').addEventListener('change',async event=>{
@@ -1065,10 +1144,18 @@ document.addEventListener('keydown',e=>{if(ui.screen==='customization'){
   if(e.code==='Escape'){e.preventDefault();closeCustomization();return;}
   if(e.code==='Tab'){const focusable=[...document.querySelectorAll('.customization-screen button:not(:disabled),.customization-screen select,.customization-screen input,.customization-screen summary')].filter(element=>element.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}
   return;
-}if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.code==='Escape'){e.preventDefault();if(['production-catalogue','credits','archive-loading'].includes(ui.screen)){closeProductionArchive();return;}if(inChronicles()){closeChronicles();return;}if(!running)return;if(['dialogue','victory','defeat','ending'].includes(ui.screen))return;if(ui.screen)closeScreen();else openScreen('pause');return;}if(!running||ui.screen||ui.busy)return;
+}
+  if(e.code==='Escape'){
+    // Let native select and input editing keep their own Escape behavior in-game.
+    if(running&&/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+    e.preventDefault();
+    if(ui.screen)dismissScreen();else if(running&&!ui.busy)openScreen('pause');
+    return;
+  }
+  if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)||!running||ui.screen||ui.busy)return;
   if(battle){if(['Digit1','Digit2','Digit3'].includes(e.code)){ui.actor=battle.actors.filter(a=>a.team==='party')[Number(e.code.slice(-1))-1]?.id||ui.actor;renderCombat(true);}if(e.code==='Space'){e.preventDefault();const ready=battle.actors.find(a=>a.team==='party'&&getActions(battle,a.id).some(x=>x.id==='shoot'&&x.available));if(ready){ui.actor=ready.id;ui.action='shoot';const target=battle.actors.find(a=>a.team==='enemy'&&a.hp>0&&!a.statuses.stasis);if(target)issueAction(target.id);}}return;}
   const shortcuts={KeyJ:'journal',KeyC:'squad',KeyI:'equipment',KeyM:'map',KeyG:'galaxy'};
-  if(e.code==='KeyE'){e.preventDefault();if(!e.repeat)interactWithWorld();}else if(shortcuts[e.code]){e.preventDefault();const next=shortcuts[e.code];if(next==='galaxy'&&(state.zone!=='normandy'||!state.flags.briefed))return toast('La carte galactique se consulte au Normandy après le briefing.');if(next==='squad')ui.selectedCrew=state.party.slice(1);if(next==='equipment')ui.equipmentActor='shepard';openScreen(next);}
+  if(e.code==='KeyE'){e.preventDefault();if(!e.repeat)interactWithWorld();}else if(shortcuts[e.code]){e.preventDefault();const next=shortcuts[e.code];if(next==='galaxy'&&(state.zone!=='normandy'||!state.flags.briefed))return toast('La carte galactique se consulte au Normandy après le briefing.');if(next==='squad')ui.selectedCrew=state.party.slice(1).filter(id=>availableCrew(state).includes(id));if(next==='equipment')ui.equipmentActor='shepard';openScreen(next);}
 });
 document.addEventListener('pointerdown',e=>{const button=e.target.closest('[data-key]'),key=button?.dataset.key;if(key&&running&&!battle&&!ui.screen&&!ui.busy){e.preventDefault();touchKeys.set(e.pointerId,key);world.keys.add(key);button.setPointerCapture?.(e.pointerId);}});
 function releaseTouch(event){
@@ -1112,7 +1199,7 @@ controls=createGamepadControls({
   getFocusRoot:()=>ui.screen?$('#overlay'):battle?$('#battle-ui'):$('#hud'),
   onMove:input=>{world.gamepadInput=input;},onInteract:()=>interactWithWorld(),
   onPause:()=>{if(inChronicles()&&chronicleBattle){chroniclePaused=!chroniclePaused;renderChronicleCombat(true);return;}if(!running)return;if(ui.screen==='pause')closeScreen();else if(!ui.screen)openScreen('pause');},
-  onBack:()=>{if(['production-catalogue','credits','archive-loading'].includes(ui.screen))return closeProductionArchive();if(inChronicles())return closeChronicles();if(!running)return;if(ui.screen==='customization')return closeCustomization();if(['dialogue','victory','defeat','ending'].includes(ui.screen))return;if(ui.screen)closeScreen();else openScreen('pause');},
+  onBack:()=>{if(ui.screen)dismissScreen();else if(running&&!ui.busy)openScreen('pause');},
   onSquad:delta=>{if(!battle||ui.screen)return;const party=battle.actors.filter(a=>a.team==='party'&&a.hp>0),index=party.findIndex(a=>a.id===ui.actor);ui.actor=party[(index+delta+party.length)%party.length]?.id||ui.actor;renderCombat(true);},
   onQuickAction:()=>{if(!battle||ui.screen)return;const actor=battle.actors.find(a=>a.team==='party'&&getActions(battle,a.id).some(action=>action.id==='shoot'&&action.available));const target=battle.actors.find(a=>a.team==='enemy'&&a.hp>0&&!a.bossPhaseRetired&&!a.statuses.stasis);if(actor&&target){ui.actor=actor.id;ui.action='shoot';issueAction(target.id);}},
   onShortcut:name=>{if(running&&!battle&&!ui.screen&&['journal','map'].includes(name))openScreen(name);},
