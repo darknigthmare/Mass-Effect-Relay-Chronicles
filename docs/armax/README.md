@@ -2,11 +2,17 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 07 — continuation courante
+## Lot 08 — continuation courante
+
+Le [lot 08](lot08/README.md) ajoute **dix sujets et dix PNG** : Guardian et Atlas ME3, LOKI et FENRIS ME2, les tenues de loyauté ME2 de Kasumi et Mordin, ainsi que les stages Mars, Kadara, Eos et Pragia. Les six silhouettes sont individuelles et les quatre décors sont des masters aplatis.
+
+Le [catalogue courant](lot08/MANQUANTS_2026-11-20.md) et le [classeur lot 08](lot08/Mass_Effect_Armax_Suivi_Lot08_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **23 fiches disposent d'images candidates et 141 restent sans image**, soit dix manquants illustrés dans cette passe. Le corpus atteint **112 PNG originaux**, hors trois aperçus historiques. Nemesis et Assault Trooper restent sans sortie après refus ; les poses réellement obtenues et les réserves de fidélité sont explicites.
+
+## Lot 07 — livraison précédente
 
 Le [lot 07](lot07/README.md) ajoute **sept sujets illustrés** : Thane ME2 AAP1, Grunt ME2 AAP2, Maraudeur et Brute armurée ME3, Afterlife ME2, Grissom ME3 et la coque du Courtier sur Hagalaz ME2. Les **dix PNG** comprennent sept versions sélectionnées et trois premières versions conservées après correction.
 
-Le [catalogue courant](lot07/MANQUANTS_2026-11-20.md) et le [classeur lot 07](lot07/Mass_Effect_Armax_Suivi_Lot07_2026-11-20.xlsx) contiennent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. Treize fiches disposent d’images candidates, en incluant le lot 06 ; 151 restent sans image. Le corpus publié atteint **102 PNG originaux**, hors aperçus de contrôle. Les réserves artistiques et le refus de génération du Fantôme ME3 sont consignés.
+Le [catalogue historique](lot07/MANQUANTS_2026-11-20.md) et le [classeur lot 07](lot07/Mass_Effect_Armax_Suivi_Lot07_2026-11-20.xlsx) conservent l'état de cette passe : **164 fiches**, dont treize illustrées et 151 sans image. Le corpus de cette livraison atteignait **102 PNG originaux**, hors aperçus de contrôle. Les réserves artistiques et le refus de génération du Fantôme ME3 restent consignés.
 
 ## Lot 06 — livraison précédente
 
