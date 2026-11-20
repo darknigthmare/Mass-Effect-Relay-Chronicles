@@ -2,11 +2,39 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 08 — continuation courante
+## Lot 12 — continuation courante
+
+Le [lot 12](lot12/README.md) illustre **34 anciennes fiches avec 36 PNG originaux** : neuf personnages ou ennemis — Rachni Worker, Brood Warrior, Geth Colossus, Stalker, Armature, Thorian Creeper, Praetorian, Rampart Mech et Adjutant —, l’armure Collector masculine ME2, Miranda en tenue de loyauté ME2 et 23 stages. **Aucune nouvelle identité n’est ajoutée.** Les 36 appels imagegen ont réussi sans refus ni erreur technique. Deux R0 de stages restent conservés après des corrections ciblées et ne comptent pas comme sujets supplémentaires.
+
+Le [catalogue courant et le listing](lot12/MANQUANTS_2026-11-20.md) et le [classeur lot 12](lot12/Mass_Effect_Armax_Suivi_Lot12_2026-11-20.xlsx) conservent **169 fiches : 84 personnages/ennemis, 38 costumes et 47 stages**. **95 ont une image candidate et 74 restent sans image** ; la couverture est de **35/84 personnages, 14/38 costumes et 46/47 stages**. Les champs d’identité et d’usage hérités restent inchangés. Le corpus atteint **190 PNG originaux**, dont les versions R0 conservées, hors trois aperçus historiques.
+
+Les [23 sous-zones de stages](lot12/STAGES.md) vont des postes précis de Féros et des stations Hermès/Atlas aux plateformes finales de Rho, au cœur partiel du cuirassé geth, au seuil intérieur de Voeld et au troisième relais de Méridiane. Thérum reste une entrée extérieure, le Voile un palier avec tour hors cadre et les Archives une salle sans numéro visible. **Aya seule reste sans master**, faute de référence suffisante de la zone du Tempest. X57 est explicitement référencé en Legendary Edition ; Virmire garde une incertitude d’édition avec recoupement IGN original ; Londres conserve l’état Before et sa limite de caméra/build non documentés.
+
+Les [manifestes et réserves du lot](lot12/README.md), la [bibliothèque de sources](lot12/reference-library.json), les [lacunes documentaires](lot12/REFERENCE_GAPS.md) et les [vérifications](lot12/verification.json) distinguent ces vues partielles des lieux complets. Poses fixes, marges serrées et surfaces cachées restent à traiter. Les rendus 3D du Collector et de Miranda servent uniquement à inspecter les références, hors corpus des masters. Tous les nouveaux fichiers restent **Prototype**, sans fidélité 1:1, animation complète, parallaxe ou moteur validés.
+
+## Lot 11 — livraison précédente
+
+Le [lot 11](lot11/README.md) ajoute **treize sujets et treize PNG** : cinq ennemis d’Andromeda — Wraith, Chosen, Behemoth, Breacher et Nullifier —, Jack en tenue de loyauté ME2, Liara AAP1 ME3 et six décors — Canal et archives d’Ilos, Hot Labs, Haestrom, CIC du Normandy SR-1 et Chora’s Den. **Huit fiches héritées sont nouvellement illustrées ; cinq fiches inédites sont ajoutées avec leurs sources.**
+
+Le [catalogue historique](lot11/MANQUANTS_2026-11-20.md) et le [classeur lot 11](lot11/Mass_Effect_Armax_Suivi_Lot11_2026-11-20.xlsx) conservent **169 fiches** : 84 personnages/ennemis, 38 costumes et 47 stages. **61 ont une image candidate et 108 restent sans image.** Les 164 identités et usages hérités sont préservés ; le corpus de cette livraison atteignait **154 PNG originaux**, hors trois aperçus historiques. Le YMIR demeure sans fichier après un refus. Les références partielles, cadrages et limites sont documentés ; tous les nouveaux fichiers restent Prototype, sans fidélité 1:1 ni intégration moteur certifiées.
+
+## Lot 10 — livraison précédente
+
+Le [lot 10](lot10/README.md) ajoute **treize sujets illustrés** : huit personnages ou ennemis d’Andromeda — Eiroch, Fiend, Destined, Moshae Sjefa, Ascendant, Observer, Architecte et Destroyer —, Tali en tenue de loyauté ME2, puis les stages Omega, terrasse de Hock, Eden Prime et Conseil. Les **quinze PNG** comprennent treize versions sélectionnées et deux R0 conservés après correction de sous-zone et de HUD.
+
+Le [catalogue historique](lot10/MANQUANTS_2026-11-20.md) et le [classeur lot 10](lot10/Mass_Effect_Armax_Suivi_Lot10_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **48 ont une image candidate et 116 restent sans image.** Le corpus de cette livraison atteignait **141 PNG originaux**, hors trois aperçus historiques. Les trois refus de costumes sont consignés sans relance ; les armures Cerberus Assault, Ajax et Blood Dragon disposent de notes de références partielles supplémentaires. Tous les nouveaux fichiers restent Prototype, avec leurs limites de fidélité et d’intégration.
+
+## Lot 09 — livraison précédente
+
+Le [lot 09](lot09/README.md) ajoute **douze sujets illustrés** : Scion ME2, Ravager, Cannibal, Banshee, Combat Engineer et Hackett ME3, les armures masculines Terminus et Inferno ME2, puis les stages Rannoch, Despoina, Havarl et Silversun. Les **quatorze PNG** comprennent douze versions sélectionnées et deux premières versions conservées après correction du lettrage de Terminus et Silversun.
+
+Le [catalogue historique](lot09/MANQUANTS_2026-11-20.md) et le [classeur lot 09](lot09/Mass_Effect_Armax_Suivi_Lot09_2026-11-20.xlsx) gardent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **35 ont une image candidate et 129 restent sans image.** Le corpus de cette livraison atteignait **126 PNG originaux**, hors trois aperçus historiques. Le refus du Centurion et l’erreur technique Havarl suivie d’une reprise réussie sont distingués. Les nouvelles images restent Prototype, avec leurs limites de comparaison et d’intégration.
+
+## Lot 08 — livraison précédente
 
 Le [lot 08](lot08/README.md) ajoute **dix sujets et dix PNG** : Guardian et Atlas ME3, LOKI et FENRIS ME2, les tenues de loyauté ME2 de Kasumi et Mordin, ainsi que les stages Mars, Kadara, Eos et Pragia. Les six silhouettes sont individuelles et les quatre décors sont des masters aplatis.
 
-Le [catalogue courant](lot08/MANQUANTS_2026-11-20.md) et le [classeur lot 08](lot08/Mass_Effect_Armax_Suivi_Lot08_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **23 fiches disposent d'images candidates et 141 restent sans image**, soit dix manquants illustrés dans cette passe. Le corpus atteint **112 PNG originaux**, hors trois aperçus historiques. Nemesis et Assault Trooper restent sans sortie après refus ; les poses réellement obtenues et les réserves de fidélité sont explicites.
+Le [catalogue historique](lot08/MANQUANTS_2026-11-20.md) et le [classeur lot 08](lot08/Mass_Effect_Armax_Suivi_Lot08_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **23 fiches disposent d'images candidates et 141 restent sans image**, soit dix manquants illustrés dans cette passe. Le corpus de cette livraison atteignait **112 PNG originaux**, hors trois aperçus historiques. Nemesis et Assault Trooper restent sans sortie après refus ; les poses réellement obtenues et les réserves de fidélité sont explicites.
 
 ## Lot 07 — livraison précédente
 

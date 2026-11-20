@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "lot": "lot09",
+  "date": "2026-11-20",
+  "baseCommit": "563aab682f7a695b20a774adfee48fe696471ce0",
+  "retryAfterRefusal": false,
+  "technicalRetryPolicy": "One identical-prompt retry for Havarl after reference-transport failure; JPEG decoded successfully before retry.",
+  "prompts": "docs/armax/lot09/stages-generation-prompts.json",
+  "results": [
+    {
+      "id": "stg_me3_rannoch_base",
+      "status": "generated",
+      "attempt": 1,
+      "tool": "built-in image_gen",
+      "source": "/workspace/scratch/133a501d40ef/generated_images/exec-29f91680-b2b5-4c5c-8511-c8aabbf4b8c7.png",
+      "path": "public/assets/armax/lot09/stages/rannoch-me3-geth-base-canyon-master.png"
+    },
+    {
+      "id": "stg_me3_despoina_wreck",
+      "status": "generated",
+      "attempt": 1,
+      "tool": "built-in image_gen",
+      "source": "/workspace/scratch/133a501d40ef/generated_images/exec-6f132031-2dbe-4826-809b-7f607c10d722.png",
+      "path": "public/assets/armax/lot09/stages/despoina-me3-leviathan-wreck-master.png"
+    },
+    {
+      "id": "stg_mea_havarl_ruins",
+      "status": "error",
+      "attempt": 1,
+      "tool": "built-in image_gen",
+      "errorType": "reference_transport_error",
+      "error": "unable to read referenced image at `/workspace/scratch/133a501d40ef/research/lot09/stages/havarl-02.jpg`: exec-server transport closed",
+      "contentRefusal": false,
+      "promptUnchangedForTechnicalRetry": true
+    },
+    {
+      "id": "stg_mea_havarl_ruins",
+      "status": "generated",
+      "attempt": 2,
+      "tool": "built-in image_gen",
+      "source": "/workspace/scratch/133a501d40ef/generated_images/exec-f500193a-f4f8-448c-b79e-44fb8f2ef500.png",
+      "path": "public/assets/armax/lot09/stages/havarl-mea-remnant-threshold-master.png"
+    },
+    {
+      "id": "stg_me3_silversun_strip",
+      "status": "generated",
+      "attempt": 1,
+      "tool": "built-in image_gen",
+      "source": "/workspace/scratch/133a501d40ef/generated_images/exec-631a2042-94fb-40d7-a42b-97a13b1db7e7.png",
+      "path": "public/assets/armax/lot09/stages/silversun-me3-promenade-master.png"
+    },
+    {
+      "id": "stg_me3_silversun_strip",
+      "status": "generated",
+      "attempt": 2,
+      "revision": "R1",
+      "intent": "targeted_text_edit",
+      "tool": "built-in image_gen",
+      "source": "/workspace/scratch/133a501d40ef/generated_images/exec-6e09baf9-9a39-4c06-97aa-d91ab0c16bde.png",
+      "path": "public/assets/armax/lot09/stages/silversun-me3-promenade-master-r1.png",
+      "promptId": "stg_me3_silversun_strip_r1",
+      "inputPath": "public/assets/armax/lot09/stages/silversun-me3-promenade-master.png",
+      "selected": true
+    }
+  ],
+  "counts": {
+    "subjects": 4,
+    "calls": 6,
+    "generated": 5,
+    "refused": 0,
+    "errors": 1,
+    "technicalRetries": 1,
+    "selectedSubjects": 4,
+    "targetedRevisions": 1
+  }
+}

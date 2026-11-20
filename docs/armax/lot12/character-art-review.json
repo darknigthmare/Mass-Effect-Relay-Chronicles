@@ -1,0 +1,931 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-20",
+  "baseCommit": "e225fb037ff7f7032102f8a854b13b1aaf5c72b0",
+  "reviewer": "publish_lot11 — revue indépendante de la génération des personnages et costumes du lot12",
+  "scope": "Comparaison des sorties aux images de référence exactes à leur taille native. Identité, silhouette, accessoires, asymétries et direction réellement obtenue ; contrôle ciblé de l’alpha et du cadrage. Aucun pixel modifié et aucune revue en moteur.",
+  "reviewComplete": true,
+  "fidelityValidated": false,
+  "fidelity1to1Validated": false,
+  "inGameReviewed": false,
+  "majorCorrectionRequiredInThisPass": false,
+  "summary": {
+    "assetsReviewed": 11,
+    "distinctSubjectsReviewed": 11,
+    "majorIdentityOrAnatomyErrorsConfirmed": 0,
+    "statusKept": "Prototype",
+    "charactersReviewed": 9,
+    "costumesReviewed": 2
+  },
+  "excludedAttempts": [],
+  "assets": [
+    {
+      "id": "chr_me1_rachni_worker",
+      "observedDirection": "Plongée trois-quarts ; petite tête vers le bas-gauche de l’image, abdomen vers le haut-droit, pose identique à la référence.",
+      "confirmedObservations": [
+        "Carapace verte marbrée de taches sombres, abdomen segmenté, tête effilée et deux petits appendices buccaux conservés.",
+        "Silhouette entière : pointes des pattes visibles et appendices buccaux dans le cadre ; occlusion de la patte éloignée cohérente avec la capture.",
+        "Aucun décor, socle ou ombre au sol opaque ajouté ; véritable canal alpha."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "Bord externe de la carapace et de certains appendices",
+          "observation": "Fin liseré vert saturé perceptible sur quelques segments ; à contrôler sur les fonds du jeu avant intégration. Aucun défaut majeur de silhouette confirmé."
+        }
+      ],
+      "specificLimits": [
+        "Source de jeu 668×553 : les petits raccords, la texture fine et les surfaces masquées ne peuvent pas être certifiés 1:1.",
+        "Une seule pose fixe ; aucun contrôle du dessous ni des mouvements.",
+        "La marge basse alpha128 mesure 99 pixels (8,7 %), légèrement inférieure aux 9 % demandés, sans couper aucune extrémité."
+      ],
+      "path": "public/assets/armax/lot12/fighters/rachni-worker-me1-three-quarter.png",
+      "sha256": "4220485e25ae5e6f2cbbe40edf50b33927552cb0e182347e1a60f406970e0fba",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "rachni-worker-wiki.png",
+          "sha256": "4873ecbf082a276bfe285bc2a3d9d4cb5bcad184c3b421435a5ce68097dc52bb",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Rachni_Worker",
+          "directImageUrl": "https://vignette.wikia.nocookie.net/masseffect/images/e/e0/Rachni_Worker.png/revision/latest?cb=20100824223955",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1379,
+          1141
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          167,
+          159,
+          1198,
+          1042
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          167,
+          159,
+          181,
+          99
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me1_rachni_brood_warrior",
+      "observedDirection": "Plongée trois-quarts avant ; tête au centre-gauche, deux longs appendices arqués déployés latéralement.",
+      "confirmedObservations": [
+        "Carapace violet sombre, dos segmenté marqué de cyan-blanc, abdomen ventral rosé et mandibules centrales conservés.",
+        "Deux grands appendices et leurs pointes, pattes frontales et petites pattes latérales restent entiers ; occlusions conformes à la capture.",
+        "Le large halo violet apparent en aperçu relève majoritairement de RGB non nuls sous alpha zéro : le fond est transparent aux points externes inspectés."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "Contour et halo de prévisualisation",
+          "observation": "Très faible frange alpha1–15 extérieure à la silhouette. Les couleurs RGB cachées peuvent être visibles dans une prévisualisation ignorant l’alpha ; comportement à contrôler à taille de jeu."
+        },
+        {
+          "severity": "minor",
+          "region": "Marge gauche",
+          "observation": "Marge alpha128 de78px (5,1 % de1536), inférieure à la marge demandée ; aucune extrémité coupée."
+        }
+      ],
+      "specificLimits": [
+        "La référence897×654 est sombre et partiellement occultée ; dessous, dos arrière et petits raccords non certifiés.",
+        "Aucune correction R1 réalisée : le contrôle numérique ne confirme pas de large fond semi-opaque.",
+        "Aucune certification à taille de jeu, du filtre alpha du moteur ou des animations."
+      ],
+      "alphaDiagnostic": {
+        "externalSamples": [
+          {
+            "xy": [
+              600,
+              100
+            ],
+            "rgba": [
+              38,
+              33,
+              40,
+              0
+            ]
+          },
+          {
+            "xy": [
+              440,
+              725
+            ],
+            "rgba": [
+              31,
+              24,
+              35,
+              0
+            ]
+          },
+          {
+            "xy": [
+              1000,
+              980
+            ],
+            "rgba": [
+              12,
+              9,
+              13,
+              0
+            ]
+          }
+        ],
+        "boundingBoxAlpha1": [
+          25,
+          39,
+          1504,
+          1000
+        ],
+        "boundingBoxAlpha16": [
+          78,
+          102,
+          1397,
+          936
+        ],
+        "interpretation": "Grand halo RGB essentiellement transparent ; résidus faibles de bord, pas de fond semi-opaque confirmé."
+      },
+      "path": "public/assets/armax/lot12/fighters/rachni-brood-warrior-me1-three-quarter.png",
+      "sha256": "86ad87203e3563386184fefb317b6313aa6f611aad0978d4968f3d98f86c14ce",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "rachni-brood-warrior-wiki.png",
+          "sha256": "f2395b6c0e5f320dd809409085ab95fc398ec34d4e2ee519772c087d2c7cc97d",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Rachni_Brood_Warrior",
+          "directImageUrl": "https://vignette.wikia.nocookie.net/masseffect/images/e/e5/Rachni_Brood_Warrior.PNG/revision/latest?cb=20100824160815",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          78,
+          103,
+          1396,
+          935
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          78,
+          103,
+          140,
+          89
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me1_geth_colossus",
+      "observedDirection": "Trois-quarts avant, grand cou dressé vers le haut-gauche, corps quadrupède tourné vers la gauche de l’image.",
+      "confirmedObservations": [
+        "Plaques argentées sous lumière bleue, longue tête/cou à optique cyan, quatre appuis avec câbles et articulations circulaires conservés.",
+        "Les quatre extrémités d’appui, les appendices de tête et le sommet restent dans le cadre.",
+        "Le modèle suit la capture ME1 ; aucun canon saillant du rendu Prima ancien ajouté."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "Cadrage haut et bas",
+          "observation": "Marges alpha128 haut43px et bas38px sur1228 (3,5 % et3,1 %) ; sujet entier, marge10 % demandée non atteinte."
+        },
+        {
+          "severity": "minor",
+          "region": "Optique et contour de tête",
+          "observation": "Bloom bleu local encore visible hors du volume, avec alpha6–9 dans deux échantillons ; cohérent avec la lumière de référence, à vérifier sur fonds du jeu."
+        }
+      ],
+      "specificLimits": [
+        "Capture694×723 avec lumière nocturne bleue et bloom : palette neutre, matériau exact et petits marquages non certifiés.",
+        "Un appui et certains câbles sont partiellement masqués ; raccords cachés et animation non vérifiés.",
+        "Les marges serrées limitent le recadrage ou l’animation sans étendre le canevas."
+      ],
+      "alphaDiagnostic": {
+        "externalSamples": [
+          {
+            "xy": [
+              200,
+              150
+            ],
+            "rgba": [
+              127,
+              127,
+              170,
+              6
+            ]
+          },
+          {
+            "xy": [
+              210,
+              210
+            ],
+            "rgba": [
+              113,
+              141,
+              198,
+              9
+            ]
+          }
+        ],
+        "interpretation": "Halo optique bleu local de très faible opacité ; reste du décor supprimé."
+      },
+      "path": "public/assets/armax/lot12/fighters/geth-colossus-me1-three-quarter.png",
+      "sha256": "78dda82619904ca6a680d1a7670d16331bcb32b12db43f79243cd484c27fcdfd",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "geth-colossus-wiki.jpg",
+          "sha256": "f3b672129bd1f48b2f9bee8fad67c54460e4f9a7bec696cb5ad6af10ae584b6d",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Geth_Colossus",
+          "directImageUrl": "https://vignette.wikia.nocookie.net/masseffect/images/6/64/Geth_Colossus_01.jpg/revision/latest?cb=20080922231050",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1281,
+          1228
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          121,
+          43,
+          1202,
+          1190
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          121,
+          43,
+          79,
+          38
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me1_geth_stalker",
+      "observedDirection": "Posture accrochée, deux bras ouverts vers le haut ; tête dirigée en diagonale vers le bas-droit, jambe gauche de l’image fléchie.",
+      "confirmedObservations": [
+        "Quatre membres très fins, doigts/orteils écartés, camouflage noir-blanc et fibres internes bleues conservés.",
+        "Rayon rouge de la source principale supprimé ; petite optique bleue présente, corroborée par la capture de Noveria.",
+        "Toutes les pointes visibles sont contenues dans le canevas ; aucun mur, sol ou arme ajoutés."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "Cadrage",
+          "observation": "Marges alpha12836/7/41/16px ; marge haute0,5 % et basse1,2 %. La réserve10 % demandée n’est pas obtenue, mais aucune extrémité n’est coupée."
+        }
+      ],
+      "specificLimits": [
+        "Le doigt supérieur de la source principale touche son cadre ; sa terminaison est corroborée par la seconde vue, sans certification micrométrique des articulations.",
+        "Le rayon masquait une partie de la tête et de la jambe dans la vue principale ; raccords sous cette occlusion non certifiés1:1.",
+        "Pose fixe accrochée ; aucun contrôle en animation ou à taille de jeu."
+      ],
+      "path": "public/assets/armax/lot12/fighters/geth-stalker-me1-cling.png",
+      "sha256": "86a50683e1e9f75feda4d7ce21be780607292aa5fd28941deb4130d44cffb85c",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "geth-stalker-wiki.png",
+          "sha256": "263f08f2011e41ed12ce20c3c1e916ca612ed121f5e98c5474dc864a93f97f45",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Geth_Stalker",
+          "directImageUrl": "https://vignette.wikia.nocookie.net/masseffect/images/e/ec/ME_geth_stalker.png/revision/latest?cb=20130517141111",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "wiki-native-Geth_Stalker_on_Noveria.png",
+          "sha256": "799a63834f5ea5538da0702084b95b1af97a6f0f2caed137a02813deb7a48842",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Geth_Hopper",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/2/2b/Geth_Stalker_on_Noveria.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1144,
+          1375
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          36,
+          7,
+          1103,
+          1359
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          36,
+          7,
+          41,
+          16
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me1_geth_armature",
+      "observedDirection": "Vue basse trois-quarts avant, cou dressé et tête vers la gauche, deux appuis centraux superposés.",
+      "confirmedObservations": [
+        "Quatre appuis articulés, ailettes claires et câbles suspendus conservés avec la superposition particulière de la référence.",
+        "Plaques gris argent à reflets rosés, tête étroite et optique blanche-bleue ; aucun marquage décoratif du Colossus ni canon de préproduction ajouté.",
+        "Sommet, pointes d’appui et ailettes entièrement dans le cadre ; décor de la Citadelle supprimé."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "Cadrage haut/bas",
+          "observation": "Marges alpha128haut45px et bas23px sur1086 (4,1 % et2,1 %), inférieures aux10 % demandés ; silhouette entière."
+        },
+        {
+          "severity": "minor",
+          "region": "Bloom de l’optique",
+          "observation": "Halo local effectivement semi-transparent : échantillon500,150 RGBA213/237/246/86. Le prompt autorise un petit bloom ; son intégration sur les fonds du jeu reste à contrôler."
+        }
+      ],
+      "specificLimits": [
+        "Source1360×768 avec lumière de scène ; palette et reflet neutres non certifiés.",
+        "Arrière et câbles partiellement superposés ; nombre et insertion exacts des boucles cachées non certifiés.",
+        "Échelle relative Armature/Colossus et animation non vérifiées."
+      ],
+      "alphaDiagnostic": {
+        "externalSamples": [
+          {
+            "xy": [
+              500,
+              150
+            ],
+            "rgba": [
+              213,
+              237,
+              246,
+              86
+            ]
+          }
+        ],
+        "interpretation": "Bloom autorisé localisé à l’optique, véritable alpha partiel ; aucun grand fond de scène conservé."
+      },
+      "path": "public/assets/armax/lot12/fighters/geth-armature-me1-three-quarter.png",
+      "sha256": "9bb7ac3bbba74bae7e3743e0c43664ec36e5b62595c87f02d1ed392313f653fe",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "wiki-native-GethArmature.png",
+          "sha256": "f4e3bf1bc30b692e2b5c57590357a6aefeff8cb5677eb6b33850ace1299378d9",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Geth_Armature",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/2/2f/GethArmature.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1448,
+          1086
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          243,
+          45,
+          1200,
+          1063
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          243,
+          45,
+          248,
+          23
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me1_thorian_creeper",
+      "observedDirection": "Pose de référence relâchée sous angle plongeant, tête inclinée à gauche de l’image, jambes inégales et bras baissés.",
+      "confirmedObservations": [
+        "Crâne chauve, visage sombre, peau gris-brun veinée et taches verdâtres suivent la capture principale.",
+        "Tête, deux pieds nus et bras présents ; main opposée partiellement masquée au bord de la hanche comme dans la source.",
+        "Sol, particules et interface de jeu supprimés ; aucune nouvelle blessure, arme ou tenue ajoutée."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "Cadrage haut/bas",
+          "observation": "Marges alpha128haut45px et bas29px sur1620 (2,8 % et1,8 %), inférieures aux10 % demandés ; tête et orteils non coupés."
+        }
+      ],
+      "specificLimits": [
+        "La pose de la source principale est conservée : elle ne constitue pas une garde de combat ou une animation validée.",
+        "Main partiellement occultée, dessous et dos non vérifiés ; détails de peau et de doigts non certifiés1:1.",
+        "La capture EA confirme l’identité en jeu, mais ne prouve pas les parties cachées de cette pose."
+      ],
+      "path": "public/assets/armax/lot12/fighters/thorian-creeper-me1-reference-pose.png",
+      "sha256": "9fa43582b05013edfc9ce7dc3efc3e5170bcab70b7c4beca34e216c1d1416774",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "wiki-native-Thorian_Creeper.png",
+          "sha256": "56a128427c60ac87b5085635403dac77db185c7acaea0dbf5a7614b79892692e",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Thorian_Creeper",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/e/e5/Thorian_Creeper.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "ea-thorian-creeper.jpg",
+          "sha256": "bf66ebf86d9aaabc4ee2bdbc1a7d95a2cc162e0becb6d0c0fcc5a4cd9f7dea76",
+          "sourcePage": "https://www.ea.com/pl/games/mass-effect/mass-effect",
+          "directImageUrl": "https://drop-assets.ea.com/images/4C55UVQFoYicR8OaH93CbB/2d151dba5f28e5157a98d198d98d9cfd/Mass_Effect-screenshot-4-16x9.jpg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          971,
+          1620
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          116,
+          45,
+          793,
+          1591
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          116,
+          45,
+          178,
+          29
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me2_praetorian",
+      "observedDirection": "Trois-quarts avant en lévitation, tête ouverte et bec vers le bas-gauche, quatre membres pendants terminés en pointes.",
+      "confirmedObservations": [
+        "Carapace haute ouverte, quatre optiques bleu-blanc, bec central et cluster organique central reconnaissables dans la capture Combat.",
+        "Quatre pointes inférieures, câbles en boucle et articulations mécaniques entièrement contenus dans le cadre ; l’état fermé du modèle complémentaire n’a pas remplacé la pose principale.",
+        "Large barrière bleue, scène et ombre au sol retirées ; les optiques et petits points lumineux internes restent présents."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "marges",
+          "observation": "Marges alpha128 gauche/haut/droite/bas de 91/34/100/58 px sur 1115×1410 ; haut 2,4 % et bas 4,1 %, sous les 10 % demandés, sans pointe coupée."
+        },
+        {
+          "severity": "minor",
+          "region": "centre organique",
+          "observation": "Les petits visages internes sont plus lisibles et détaillés que sur la capture Combat de 500×632 ; leur nombre exact et leurs traits ne sont pas certifiables à partir de cette source partiellement masquée."
+        }
+      ],
+      "specificLimits": [
+        "La vue modèle fermée sert uniquement aux connexions et extrémités ; elle ne démontre pas l’intérieur ouvert.",
+        "Surfaces sous barrière, détails organiques dans l’ombre et matériaux moteur non certifiés.",
+        "Intensité des optiques et découpe à taille de jeu non évaluées."
+      ],
+      "path": "public/assets/armax/lot12/fighters/praetorian-me2-open-head-three-quarter.png",
+      "sha256": "cb3ddc3eaf10a9e893b0b3119421d03284cee7aaa6cdef9ed6be8656b21c745d",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "wiki-native-Praetorian_Combat.png",
+          "sha256": "0602da03a9425ac1edf2386afc1624794a7e35c38c7a9bd6eb1aa069a51203e2",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Praetorian",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/a/ad/Praetorian_Combat.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "models-resource-praetorian.png",
+          "sha256": "6c0a66bc2f1d746985c886040afd8c4cd75e077369d9ac717cc7c405d1cfa878",
+          "sourcePage": "https://models.spriters-resource.com/pc_computer/masseffect2/asset/310092/",
+          "directImageUrl": "https://models.spriters-resource.com/media/preview_icons/307/310092.png?updated=1755502725",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1115,
+          1410
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          91,
+          34,
+          1015,
+          1352
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          91,
+          34,
+          100,
+          58
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me3_rampart_mech_omega",
+      "observedDirection": "Trois-quarts armé, tête et canon vers la gauche de l’image ; avant-bras croisés devant le torse, genoux fléchis et deux pieds rapprochés.",
+      "confirmedObservations": [
+        "Plaques noires et gris-bronze, marques rouges diagonales de la face, épaules rondes et larges cuisses correspondent au Rampart Omega de la capture.",
+        "Tête, antenne dorsale, canon, doigts visibles et deux pieds complets ; recouvrement des mains et du buste par l’arme conservé.",
+        "Barrière, pièce, ombre de sol et grand flare magenta absents de la silhouette détourée."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "marges",
+          "observation": "Marges alpha128 de 124/46/133/60 px sur 950×1656 ; haut 2,8 % et bas 3,6 %, sous les 10 % demandés, sans extrémité coupée."
+        }
+      ],
+      "specificLimits": [
+        "Source unique de 484×843 ; micro-usure, mécanique de l’arme et parties occultées des mains et du torse non certifiées.",
+        "Palette plus neutre que la lumière magenta de la capture ; matériau de référence hors éclairage environnemental non prouvé.",
+        "Aucune validation d’animation, de visée ou de lisibilité en jeu."
+      ],
+      "path": "public/assets/armax/lot12/fighters/rampart-mech-me3-omega-aim.png",
+      "sha256": "6d03bf19eb48a51102817a274d768935331c5eca576ab842ab0b3ba328ece9d8",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "wiki-native-ME3-Rampart-Mech.png",
+          "sha256": "14cf849e116c2ca839f66ae93fdfa78519fa653c98c924a19fa18c70db9db5ee",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Rampart_Mech",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/6/60/ME3-Rampart-Mech.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          950,
+          1656
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          124,
+          46,
+          817,
+          1596
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          124,
+          46,
+          133,
+          60
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me3_adjutant_omega",
+      "observedDirection": "Trois-quarts avant penché, bras-canon droit vers la gauche de l’image, longue main gauche à droite, jambes écartées et fléchies.",
+      "confirmedObservations": [
+        "Double crête, poches pâles, trois yeux bleus en triangle, tuyaux du visage et cage thoracique bleutée conservés.",
+        "Canon à centre bleu cerclé et quatre prongs corroboré par le gros plan sans effet ; griffes de l’autre main et deux pieds entiers.",
+        "Anatomie asymétrique et posture finale Omega conservées ; arcs d’attaque, scène, sol et taches retirés."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "marges",
+          "observation": "Marges alpha128 de 118/13/28/12 px sur 1176×1337 ; haut 1,0 %, droite 2,4 % et bas 0,9 %, très inférieures aux 10 % demandés, sans crête, griffe ou pied coupé."
+        },
+        {
+          "severity": "minor",
+          "region": "relief des surfaces",
+          "observation": "Muscles, plaques et peau sombre sont éclaircis par rapport à la capture entière ; les micro-reliefs dans les anciennes zones d’ombre ne peuvent être certifiés."
+        }
+      ],
+      "specificLimits": [
+        "La référence de détail est partielle ; elle corrobore seulement canon, tête et tubes, pas les jambes.",
+        "L’attaque masque la main-canon dans la vue principale ; articulation interne et fonctionnement de l’arme non certifiés.",
+        "Petites lumières et bordure bleue locale à évaluer à taille de jeu."
+      ],
+      "path": "public/assets/armax/lot12/fighters/adjutant-me3-omega-three-quarter.png",
+      "sha256": "05f0331e97a76828d76ea1f4f389337fb04372068bfb998a69768c8bbeb3a558",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "wiki-native-ME3_adjutant.png",
+          "sha256": "4577062ea316576a1829b3f7880d24ce720aa80ab0f07b9f622d48db4db56476",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Adjutant",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/9/98/ME3_adjutant.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "wiki-native-EPP_-_adjutant_1.png",
+          "sha256": "4f2824870b2225c4f603e90b2f523b7eb3face97434593754257d03dcebe9cfc",
+          "sourcePage": "https://masseffect.fandom.com/wiki/Adjutant",
+          "directImageUrl": "https://static.wikia.nocookie.net/masseffect/images/4/46/EPP_-_adjutant_1.png/revision/latest",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1176,
+          1337
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          118,
+          13,
+          1148,
+          1325
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          118,
+          13,
+          28,
+          12
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "cst_me2_shepard_male_collector",
+      "observedDirection": "Pose A masculine debout en trois-quarts avant, casque vers la gauche de l’image, bras légèrement écartés et deux bottes au sol.",
+      "confirmedObservations": [
+        "Casque de jeu masculin à yeux dorés, plaques chitineuses gris-mauve, sous-couches rouge sourd et tissage noir correspondent aux trois vues natives inspectées.",
+        "Attaches pâles du torse et des bras, doubles sangles intérieures des cuisses, pièces de genoux, jambières sombres et deux bottes segmentées présents.",
+        "Casque, deux mains avec doigts visibles et semelles complètes ; fond gris de l’inspection et ombre retirés sans nouvelle arme ou accessoire."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "marges",
+          "observation": "Marges alpha128 de 89/79/167/68 px sur 1060×1484 ; gauche 8,4 %, haut 5,3 % et bas 4,6 %, sous les 10 % demandés, sans doigt ou semelle coupé."
+        },
+        {
+          "severity": "minor",
+          "region": "mains",
+          "observation": "Les doigts apparaissent un peu moins écartés et plus recourbés que dans la pose native ; articulation fine et séparation exacte de chaque doigt non certifiées."
+        }
+      ],
+      "specificLimits": [
+        "Références entières produites uniquement pour inspection du modèle OBJ/MTL/diffuse original, sans modification de géométrie, UV ni texture ; extraction communautaire non certifiée par EA.",
+        "Normals et specular maps non appliquées dans les rendus Blender ; matériaux, brillance et réponse à la lumière du jeu non certifiés.",
+        "La capture EA2010 recoupe seulement le haut du corps ; elle ne valide pas les bottes ni l’ensemble des proportions.",
+        "Aucune couverture de la variante féminine ; son casque Promo et ses textures 128×128 restent insuffisamment verrouillés.",
+        "Pose statique A, aucun état de combat, animation ou contrôle à taille de jeu."
+      ],
+      "path": "public/assets/armax/lot12/costumes/shepard-male-me2-collector-three-quarter.png",
+      "sha256": "dbd064d92a6638ed15ae96fbde9a448025434b5a80b0f363bd4c1b805786e8d8",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "collector-male-native-three-quarter.png",
+          "sha256": "75c7e53ce3436ced8f835d6047f1ea4cb4745e0cec90dae050c53ef2c5ab27f7",
+          "sourcePage": "https://models.spriters-resource.com/pc_computer/masseffect2/asset/302366/",
+          "sourceArchiveUrl": "https://models.spriters-resource.com/media/assets/299/302366.zip?updated=1755500827",
+          "sourceArchiveSha256": "41ab1aecd5f61a3b5c91c552d9da05a40fbd12c6e876eeaf79cc2401bd04d00c",
+          "derivedLocally": true,
+          "derivedReferenceMetadata": "docs/armax/lot12/collector-reference-inspection.json",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "collector-male-native-front.png",
+          "sha256": "a05da72f41147ffd3e194accbfc7777d83cd3ac251031e6c83cc4c4782acf433",
+          "sourcePage": "https://models.spriters-resource.com/pc_computer/masseffect2/asset/302366/",
+          "sourceArchiveUrl": "https://models.spriters-resource.com/media/assets/299/302366.zip?updated=1755500827",
+          "sourceArchiveSha256": "41ab1aecd5f61a3b5c91c552d9da05a40fbd12c6e876eeaf79cc2401bd04d00c",
+          "derivedLocally": true,
+          "derivedReferenceMetadata": "docs/armax/lot12/collector-reference-inspection.json",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "collector-male-native-back.png",
+          "sha256": "9f065416bb599afbda79b6bdbeac5f2aec356e35cc0e3505a1087e9218df46e9",
+          "sourcePage": "https://models.spriters-resource.com/pc_computer/masseffect2/asset/302366/",
+          "sourceArchiveUrl": "https://models.spriters-resource.com/media/assets/299/302366.zip?updated=1755500827",
+          "sourceArchiveSha256": "41ab1aecd5f61a3b5c91c552d9da05a40fbd12c6e876eeaf79cc2401bd04d00c",
+          "derivedLocally": true,
+          "derivedReferenceMetadata": "docs/armax/lot12/collector-reference-inspection.json",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1060,
+          1484
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          89,
+          79,
+          893,
+          1416
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          89,
+          79,
+          167,
+          68
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "cst_me2_miranda_loyalty",
+      "observedDirection": "Pose T native en trois-quarts avant ; visage et corps légèrement tournés vers la gauche de l’image, bras horizontaux et deux bottes rapprochées.",
+      "confirmedObservations": [
+        "Tenue habillée noire et or, col montant à raccord rectangulaire, liserés asymétriques, logos blancs, emblème blanc/or et panneaux de hanches dorés cohérents avec les vues natives.",
+        "Ceinture noire inclinée à deux bandes, genouillères encadrées d’or, gants longs, cheveux et deux bottes intégralement contenus dans l’image.",
+        "Visage et yeux bleus corroborés par la capture de jeu partielle ; aucune variante blanche, romance ou armure AAP2 substituée.",
+        "Fond gris d’inspection, sol et ombre absents ; pose T et silhouette de la source entière conservées."
+      ],
+      "issues": [
+        {
+          "severity": "minor",
+          "region": "marges",
+          "observation": "Marges alpha128 gauche/haut/droite/bas de 49/39/51/47 px sur 1161×1355 : 4,2/2,9/4,4/3,5 %, inférieures aux 10 % demandés, sans doigt ni semelle coupés."
+        },
+        {
+          "severity": "minor",
+          "region": "détourage très faible alpha",
+          "observation": "Trois pixels verts sous le bras droit de l’image portent un alpha1/255 aux coordonnées (728–730,325) ; pas de fond vert opaque, mais comportement de filtrage à vérifier dans le moteur."
+        }
+      ],
+      "specificLimits": [
+        "Les références entières proviennent d’une extraction communautaire attribuée à sn00p et conversion o0Crofty0o ; aucune comparaison aux binaires originaux BioWare.",
+        "La lecture native conserve positions, UV, texture diffuse et pose ; specular/AO/lightmaps communautaires et normales n’ont pas été appliquées. Aspect matériel, brillance et micro-textures non certifiés 1:1.",
+        "La capture de jeu coupe au bassin et corrobore seulement le visage, les yeux et le haut de tenue ; elle ne documente pas les bottes.",
+        "Une seule pose T statique, sans animation, garde de combat ni contrôle à taille de jeu."
+      ],
+      "path": "public/assets/armax/lot12/costumes/miranda-me2-loyalty-three-quarter.png",
+      "sha256": "e662fefa830c806ab4c1e061081c8e71d26fc9df82b4896c0c32dfd2fe96e981",
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "references": [
+        {
+          "filename": "miranda-loyalty-diffuse-native-three-quarter.png",
+          "sha256": "b506171b27cdcc4270e70bae4c91208983396ff1d2af99e11e5d5e2e2569849c",
+          "sourcePage": "https://www.moddb.com/games/mass-effect-2/addons/mass-effect-2-miranda-pack",
+          "sourceArchiveUrl": "https://www.moddb.com/downloads/mirror/30542/122/0f25fb138847a0f3e741a7440c57f20d",
+          "sourceArchiveSha256": "667197d7eb821109608221073634a9bc57d12314e0f5b6c133f334ac8fd4f674",
+          "derivedLocally": true,
+          "derivedReferenceMetadata": "docs/armax/lot12/miranda-reference-inspection.json",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "miranda-loyalty-diffuse-native-front.png",
+          "sha256": "0f2a0aca4b4974550e9f6c53596fcf22b47819a645e766aa829a87841c0c9e09",
+          "sourcePage": "https://www.moddb.com/games/mass-effect-2/addons/mass-effect-2-miranda-pack",
+          "sourceArchiveUrl": "https://www.moddb.com/downloads/mirror/30542/122/0f25fb138847a0f3e741a7440c57f20d",
+          "sourceArchiveSha256": "667197d7eb821109608221073634a9bc57d12314e0f5b6c133f334ac8fd4f674",
+          "derivedLocally": true,
+          "derivedReferenceMetadata": "docs/armax/lot12/miranda-reference-inspection.json",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "miranda-loyalty-diffuse-native-back.png",
+          "sha256": "9589507cb82ea068927e542b5b6df5567f133108923e18491a76fb8ec7ec52d6",
+          "sourcePage": "https://www.moddb.com/games/mass-effect-2/addons/mass-effect-2-miranda-pack",
+          "sourceArchiveUrl": "https://www.moddb.com/downloads/mirror/30542/122/0f25fb138847a0f3e741a7440c57f20d",
+          "sourceArchiveSha256": "667197d7eb821109608221073634a9bc57d12314e0f5b6c133f334ac8fd4f674",
+          "derivedLocally": true,
+          "derivedReferenceMetadata": "docs/armax/lot12/miranda-reference-inspection.json",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "miranda-listal-4800742.jpg",
+          "sha256": "8fa2e44b8fc5b0225b61dc669226d4bb85835b1b89a209cfaeb8bf3c1ed3ae5e",
+          "sourcePage": "https://www.listal.com/viewimage/4800742",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1161,
+          1355
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          49,
+          39,
+          1110,
+          1308
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          49,
+          39,
+          51,
+          47
+        ],
+        "fileBytesUnchanged": true,
+        "spotAlphaSamples": [
+          {
+            "xy": [
+              728,
+              325
+            ],
+            "rgba": [
+              0,
+              255,
+              0,
+              1
+            ]
+          },
+          {
+            "xy": [
+              729,
+              325
+            ],
+            "rgba": [
+              0,
+              255,
+              0,
+              1
+            ]
+          },
+          {
+            "xy": [
+              730,
+              325
+            ],
+            "rgba": [
+              0,
+              255,
+              0,
+              1
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "originalOutputIntegrity": {
+    "compared": 11,
+    "identical": 11,
+    "method": "Comparaison des octets et SHA256 de chaque PNG livré avec sourceOutput du journal de génération, sans retouche externe."
+  }
+}

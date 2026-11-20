@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-20",
+  "baseCommit": "563aab682f7a695b20a774adfee48fe696471ce0",
+  "reviewer": "publish_pr — revue indépendante de la génération des personnages et costumes",
+  "scope": "Comparaison des sorties aux images de référence exactes, à leur taille native. Identité, silhouette complète, accessoires, asymétries et direction réellement obtenue ; contrôles ciblés de l’alpha et du cadrage. Aucun pixel modifié et aucune revue en moteur.",
+  "reviewComplete": true,
+  "fidelityValidated": false,
+  "fidelity1to1Validated": false,
+  "inGameReviewed": false,
+  "majorCorrectionRequiredInThisPass": false,
+  "summary": {
+    "assetsReviewed": 9,
+    "distinctSubjectsReviewed": 8,
+    "majorIdentityOrAnatomyErrorsConfirmed": 0,
+    "statusKept": "Prototype"
+  },
+  "assets": [
+    {
+      "id": "chr_me3_ravager",
+      "path": "public/assets/armax/lot09/fighters/ravager-me3-three-quarter-right.png",
+      "observedDirection": "Trois-quarts vers la droite de l’image.",
+      "confirmedObservations": [
+        "Paire de canons dorsaux, circuits bleus et grandes poches saumon intactes cohérents avec les vues du modèle intact.",
+        "Contour du dos, embouts de canons et pointes des pattes visibles en entier. Trois pattes sont directement lisibles dans cet angle, comme sur la vue trois-quarts correspondante ; le membre masqué par la masse du corps n’est pas vérifiable."
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "region": "marges de cadrage",
+          "observation": "Seulement 10 pixels de marge solide en haut et en bas (alpha >= 128). Aucune coupe constatée ; espace de travail à élargir avant animation ou normalisation des pivots."
+        }
+      ],
+      "sha256": "8723a1a12d77fa343d877f6ada61f7e591b4db337ae5dc55a8a045305de6914d",
+      "references": [
+        {
+          "filename": "ravager-zbrush.jpg",
+          "sha256": "cad4707a208795cd0ba6c16032cded79b2309b2f5b069ccd3284c5fd3c0525b0",
+          "sourcePage": "https://www.zbrushcentral.com/t/interview-mass-effect-3-bioware-new-images-added-may-3/309131?page=2",
+          "directImageUrl": "https://www.zbrushcentral.com/uploads/default/original/3X/3/e/3ec2f09bcaaced172474a376c6d7d436a6911c97.jpeg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1402,
+          1122
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          100,
+          10,
+          1246,
+          1112
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          100,
+          10,
+          156,
+          10
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me3_cannibal",
+      "path": "public/assets/armax/lot09/fighters/cannibal-me3-base-three-quarter-right.png",
+      "observedDirection": "Trois-quarts vers la droite de l’image.",
+      "confirmedObservations": [
+        "Silhouette bossue, poches dorsales, seconde tête fusionnée et ventre équipé d’un disque lumineux cohérents avec les vues du modèle de base.",
+        "Grand bras-canon du côté droit anatomique, petit bras avec main griffue du côté gauche anatomique ; asymétrie principale conservée.",
+        "Têtes, arme, main et deux pieds entièrement visibles ; aucun renfort de plaques propre à un autre état ajouté."
+      ],
+      "issues": [],
+      "sha256": "8e7a87dd3c1fb37c808e076feb9147e9969ff085a5901d6d2d82a1b623c42aa3",
+      "references": [
+        {
+          "filename": "cannibal-zbrush.jpg",
+          "sha256": "b0417ea333274d31749fb23ff19af31db6e4af6b8d9a64b10cf1d30c472bf9b9",
+          "sourcePage": "https://www.zbrushcentral.com/t/interview-mass-effect-3-bioware-new-images-added-may-3/309131?page=2",
+          "directImageUrl": "https://www.zbrushcentral.com/uploads/default/original/3X/3/6/36e54e63fe3e30fe53d27492d6ffc636aaaed4da.jpeg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          133,
+          41,
+          944,
+          1504
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          133,
+          41,
+          80,
+          32
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            102,
+            768
+          ],
+          "rgba": [
+            34,
+            33,
+            33,
+            0
+          ],
+          "interpretation": "Couleur RGB sous alpha 0, invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "chr_me2_scion",
+      "path": "public/assets/armax/lot09/fighters/scion-me2-three-quarter-right.png",
+      "observedDirection": "Trois-quarts vers la droite de l’image, proche de la vue gauche de la planche.",
+      "confirmedObservations": [
+        "Très grand volume dorsal bleu gris, petite tête décentrée, torse câblé et posture voûtée conservés.",
+        "Arme longue du côté gauche anatomique ; bras droit fin visible devant le torse, sans inversion majeure confirmée.",
+        "Volume dorsal, arme, main et deux pieds entièrement visibles."
+      ],
+      "issues": [
+        {
+          "severity": "low",
+          "region": "cadrage supérieur",
+          "observation": "Marge solide de 17 pixels au-dessus du dos pour 1163 pixels de hauteur. Silhouette entière, mais peu de réserve pour une variation de posture."
+        }
+      ],
+      "sha256": "8610c04f7a5fa70301d241c65f30f9bce13097ec17e700d73e24c6a2ca440862",
+      "references": [
+        {
+          "filename": "scion-me2-jaemus.jpg",
+          "sha256": "227a3c4ba3431c5cd39af1baa12c3178b95bff043e867ae415e1f247bf38f1f4",
+          "sourcePage": "https://jwurzbach.artstation.com/projects/4NPPW",
+          "directImageUrl": "https://cdna.artstation.com/p/assets/images/images/001/073/216/large/jaemus-wurzbach-jaemus-masseffect2-scion-game.jpg?1439449819",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1353,
+          1163
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          268,
+          17,
+          1259,
+          1133
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          268,
+          17,
+          94,
+          30
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me3_banshee",
+      "path": "public/assets/armax/lot09/fighters/banshee-me3-three-quarter-right.png",
+      "observedDirection": "Trois-quarts vers la droite de l’image.",
+      "confirmedObservations": [
+        "Silhouette très longiligne, dos incliné, crête étirée vers l’arrière, longues mains griffues et points lumineux bleus cohérents avec la planche ingame sélectionnée.",
+        "Deux bras, deux mains et deux pieds distincts ; pointes de crête, griffes et orteils visibles en entier.",
+        "Palette grise pâle et câbles sombres conservés ; pas de variante d’armure ajoutée."
+      ],
+      "issues": [
+        {
+          "severity": "low",
+          "region": "cadrage vertical",
+          "observation": "Marges solides serrées, de 24 pixels en haut et 21 en bas. La silhouette est entière ; normaliser l’espace de pose avant une animation."
+        }
+      ],
+      "sha256": "32ba09e98c42803f494f754ab7259e5cc25eea033256ec3bee3220b9116029f3",
+      "references": [
+        {
+          "filename": "banshee-ingame-509876.jpg",
+          "sha256": "dd10a0fb4d7f8fc2eeb029da07351822f4a94d1335bb069e10606a2daabd0908",
+          "sourcePage": "https://rodrigue_pralier.artstation.com/projects/4XaQl",
+          "directImageUrl": "https://cdna.artstation.com/p/assets/images/images/000/509/876/large/rodrigue-pralier-banshee-ingame.jpg?1425143647",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          192,
+          24,
+          831,
+          1515
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          192,
+          24,
+          193,
+          21
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            102,
+            768
+          ],
+          "rgba": [
+            3,
+            3,
+            3,
+            0
+          ],
+          "interpretation": "Couleur RGB sous alpha 0, invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "chr_me3_combat_engineer",
+      "path": "public/assets/armax/lot09/fighters/combat-engineer-me3-three-quarter-right.png",
+      "observedDirection": "Debout, léger trois-quarts vers la droite de l’image, arme tenue à deux mains devant le bassin.",
+      "confirmedObservations": [
+        "Combinaison majoritairement noire, petites plaques blanches/grises, large visière jaune, poches latérales et casque à oreillettes cohérents avec les quatre vues.",
+        "Voyant rouge sur l’épaule gauche anatomique ; dispositif circulaire sur l’avant-bras droit anatomique ; asymétrie principale conservée.",
+        "Casque, antenne, arme, mains et deux chaussures entièrement visibles."
+      ],
+      "issues": [
+        {
+          "severity": "info",
+          "region": "arme et fonctions de l’ingénieur",
+          "observation": "L’arme tenue est fusionnée dans le PNG et son modèle exact n’est pas certifié par cette revue. Le corps représenté ne fournit ni tourelle distincte ni animation de déploiement."
+        }
+      ],
+      "sha256": "53084cec9ad991cf582dbe602551bef6e84f1aa45d07342a0075fce0ea95cb65",
+      "references": [
+        {
+          "filename": "engineer-ingame.jpg",
+          "sha256": "296b6572e9f0358ac28408cb566f37099f05014cc8f7e8ef0eb6c3e01e74d563",
+          "sourcePage": "https://rodrigue_pralier.artstation.com/projects/xYO9m",
+          "directImageUrl": "https://cdna.artstation.com/p/assets/images/images/000/509/992/large/rodrigue-pralier-engineer-ingame.jpg?1425146634",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          211,
+          67,
+          816,
+          1460
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          211,
+          67,
+          208,
+          76
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            102,
+            768
+          ],
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "interpretation": "Couleur RGB sous alpha 0, invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "cst_me2_shepard_male_terminus",
+      "path": "public/assets/armax/lot09/costumes/shepard-male-me2-terminus-front.png",
+      "observedDirection": "Pose frontale, arme en travers du bassin et canon vers la gauche de l’image.",
+      "confirmedObservations": [
+        "Casque fermé angulaire, armure gris sombre à grandes plaques et fins accents rouges cohérents avec le visuel promotionnel.",
+        "Deux bras portant l’arme, deux jambes et chaussures entièrement visibles ; le fichier -front décrit correctement la pose obtenue."
+      ],
+      "result": "reviewed_with_reservations",
+      "issues": [
+        {
+          "severity": "medium",
+          "region": "marquage de l’arme",
+          "observation": "L’arme porte « M86 », alors que le marquage du visuel de référence se lit « M88 ». L’accessoire n’est donc pas reproduit 1:1 ; corriger ou isoler cette arme avant validation."
+        },
+        {
+          "severity": "medium",
+          "region": "limites de la référence",
+          "observation": "Le visuel promotionnel laisse le bas du corps très sombre et masque le bassin derrière l’arme. Les raccords masqués et la géométrie exacte des chaussures ne sont pas établis par cette seule vue."
+        }
+      ],
+      "sha256": "77362add631c5f28948c0aa9d291ed5d8cc2d17fc69e584d8974639bd5c5e9c1",
+      "references": [
+        {
+          "filename": "me2-terminus-male-promo.jpg",
+          "sha256": "02dd2eba5f0c83e3285c2e5941b9e54e420031b837dfc80ff21723f6ecbdbc1c",
+          "sourcePage": "https://www.gematsu.com/2009/10/mass-effect-2-dated-for-january-2010-pre-order-bonuses-announced",
+          "directImageUrl": "https://gematsu.com/wp-content/uploads/2009/10/ME2_Terminus-Armor.jpg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1023,
+          1537
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          187,
+          17,
+          855,
+          1525
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          187,
+          17,
+          168,
+          12
+        ],
+        "fileBytesUnchanged": true
+      },
+      "reviewedRevision": "R0",
+      "revisionRequestedFor": "marquage M86 à remplacer par M88"
+    },
+    {
+      "id": "cst_me2_shepard_male_inferno",
+      "path": "public/assets/armax/lot09/costumes/shepard-male-me2-inferno-three-quarter-right.png",
+      "observedDirection": "Debout sans arme, trois-quarts vers la droite de l’image ; pose distincte de la course promotionnelle.",
+      "confirmedObservations": [
+        "Armure rouge sombre, visière dorée, disques gris des épaules et coudes, abdomen segmenté et deux éclairages abdominaux cohérents avec la planche Rion.",
+        "Corps masculin casqué, mains abaissées, jambes et pieds visibles en entier ; aucun accessoire d’une autre tenue ajouté."
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "region": "jambes, pieds et surfaces masquées",
+          "observation": "La planche de Rion s’arrête au haut des cuisses ; la promotion montre une course avec une jambe partiellement masquée. Les deux jambes et leurs raccords ont été reconstitués dans une pose debout et ne sont pas certifiés par ces deux seules références."
+        }
+      ],
+      "sha256": "d76fd47c9b25b3b79ae52e4b0848302a38486145b947c00be7c0b6494fec7663",
+      "references": [
+        {
+          "filename": "me2-inferno-male-promo.jpg",
+          "sha256": "babe6994950090e2fa698df6adaa85d2134fd2fa46e4c1b1cf20eecb4753376e",
+          "sourcePage": "https://www.gematsu.com/2009/10/mass-effect-2-dated-for-january-2010-pre-order-bonuses-announced",
+          "directImageUrl": "https://gematsu.com/wp-content/uploads/2009/10/ME2_Inferno-Armor.jpg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        },
+        {
+          "filename": "me2-inferno-rion.jpg",
+          "sha256": "a11a860a6e2a947bcf7b5effc7190d19de264a20c62ec499e7070c8dc4d1bcb9",
+          "sourcePage": "https://www.rion-art.com/mass-effect-2",
+          "directImageUrl": "https://images.squarespace-cdn.com/content/v1/525ad426e4b0c103e97511d2/1695069774823-9N7U1A5F9VKRJ0XXKDR9/RAS_ME2_InfernoArmour_InGame_001.jpg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          250,
+          30,
+          754,
+          1464
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          250,
+          30,
+          270,
+          72
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            102,
+            768
+          ],
+          "rgba": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "interpretation": "Couleur RGB sous alpha 0, invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "chr_me3_steven_hackett",
+      "path": "public/assets/armax/lot09/fighters/hackett-me3-uniform-three-quarter-right.png",
+      "observedDirection": "Debout, trois-quarts vers la droite de l’image, arme tenue à deux mains.",
+      "confirmedObservations": [
+        "Uniforme bleu marine, casquette, barbe grise, épaulettes à galons dorés et bordures claires rapprochés des cinq vues de la planche.",
+        "Insignes placés à droite anatomique du torse, chaînette du côté gauche ; asymétrie vestimentaire principale conservée.",
+        "Casquette, arme, mains et chaussures entièrement visibles ; pose compatible avec une représentation de narration ou soutien."
+      ],
+      "issues": [
+        {
+          "severity": "low",
+          "region": "portrait, galons et rôle",
+          "observation": "Le portrait et chaque galon ne sont pas certifiés 1:1. La présence d’une arme dans l’illustration ne transforme pas cette fiche de narration/soutien en combattant jouable."
+        }
+      ],
+      "sha256": "d8e3cf0e1dd485c74ad07cfa3d47b2fbdff0c49e2a4ee74b3c7a429307afe972",
+      "references": [
+        {
+          "filename": "hackett-zbrush.jpg",
+          "sha256": "d46d86184ed722ed8a093501e49f383c85d10efeed9ba7beb183a057e06f9aca",
+          "sourcePage": "https://www.zbrushcentral.com/t/interview-mass-effect-3-bioware-new-images-added-may-3/309131?page=2",
+          "directImageUrl": "https://www.zbrushcentral.com/uploads/default/original/3X/0/f/0fbd09d2cd5e2bd9cf2b450d8bd8f54748aca885.jpeg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          270,
+          46,
+          830,
+          1512
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          270,
+          46,
+          194,
+          24
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            102,
+            768
+          ],
+          "rgba": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "interpretation": "Couleur RGB sous alpha 0, invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "cst_me2_shepard_male_terminus",
+      "reviewedRevision": "R1",
+      "path": "public/assets/armax/lot09/costumes/shepard-male-me2-terminus-front-r1.png",
+      "comparedPreviousPath": "public/assets/armax/lot09/costumes/shepard-male-me2-terminus-front.png",
+      "observedDirection": "Pose frontale, arme en travers du bassin et canon vers la gauche de l’image, comme R0.",
+      "result": "r1_targeted_correction_confirmed_with_reservations",
+      "targetedCorrectionConfirmed": true,
+      "confirmedObservations": [
+        "Le marquage de l’arme se lit maintenant « M88 », en accord avec la référence ; l’écart « M86 » de R0 est corrigé.",
+        "La pose frontale, l’implantation des grandes plaques de l’armure, le casque fermé, la disposition des mains et les deux chaussures restent cohérents avec R0. Aucun changement majeur d’identité ou de silhouette n’a été confirmé pendant cette comparaison.",
+        "Casque, arme et chaussures restent entiers ; la sélection de R1 pour remplacer R0 dans le suivi est cohérente avec la correction demandée."
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "region": "marges de cadrage",
+          "observation": "La boîte solide à alpha >= 128 conserve 16 pixels en haut et 13 en bas. Aucune coupe constatée ; le cadrage reste à normaliser avant animation."
+        },
+        {
+          "severity": "medium",
+          "region": "limites de validation",
+          "observation": "Cette inspection confirme le lettrage corrigé et l’absence d’altération majeure de silhouette ; elle ne certifie ni chaque détail de l’arme ou de l’armure, ni les surfaces masquées et chaussures sombres du visuel promotionnel."
+        }
+      ],
+      "sha256": "2418a9d2f5118faefa42ac2551a2763516ffe39e0daa3f5e7783882856a73e2c",
+      "references": [
+        {
+          "filename": "me2-terminus-male-promo.jpg",
+          "sha256": "02dd2eba5f0c83e3285c2e5941b9e54e420031b837dfc80ff21723f6ecbdbc1c",
+          "sourcePage": "https://www.gematsu.com/2009/10/mass-effect-2-dated-for-january-2010-pre-order-bonuses-announced",
+          "directImageUrl": "https://gematsu.com/wp-content/uploads/2009/10/ME2_Terminus-Armor.jpg",
+          "locallyInspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1023,
+          1538
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          184,
+          16,
+          857,
+          1525
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          184,
+          16,
+          166,
+          13
+        ],
+        "fileBytesUnchanged": true
+      }
+    }
+  ],
+  "limits": [
+    "Une absence de défaut majeur confirmé ne certifie pas la fidélité 1:1.",
+    "Les détails masqués, autres directions, animations, pivots et rendu à la taille de jeu ne sont pas validés.",
+    "Les références tierces restent hors du dépôt ; leurs noms, URL et empreintes assurent la traçabilité."
+  ]
+}
