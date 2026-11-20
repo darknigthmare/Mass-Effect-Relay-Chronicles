@@ -60,7 +60,9 @@ Les conversations sont des adaptations françaises condensées ; les profils et 
 
 Le [dossier Armax](docs/armax/README.md) rassemble les poses individuelles, costumes, arènes et compléments de bible du mode de combat 2D. La [récupération du 20 novembre](docs/armax/recovery-20261120/README.md) conserve **86 PNG originaux distincts** issus de cinq sessions, avec empreintes SHA-256 et réserves. Les concepts, les corps fixes et les calques restent des prototypes artistiques ; leur présence ne constitue pas une animation complète ou une intégration jouable.
 
-Le [lot 06](docs/armax/lot06/README.md) ajoute **six nouvelles images** : Balak ME1, Jack ME2 AAP1, Miranda et Tali ME2 AAP2, le hangar du Normandy SR-2 ME3 et Sur’Kesh. Le [catalogue et son suivi Excel](docs/armax/lot06/MANQUANTS_2026-11-20.md) couvrent 101 fiches de continuation, dont 95 restent sans image. Les 92 originaux de cette livraison restent accompagnés de leurs limites de fidélité.
+Le [lot 06](docs/armax/lot06/README.md) conserve ses six images : Balak ME1, Jack ME2 AAP1, Miranda et Tali ME2 AAP2, le hangar du Normandy SR-2 ME3 et Sur’Kesh. Son catalogue et son classeur restent historiques.
+
+Le [lot 07](docs/armax/lot07/README.md) poursuit **sept sujets** : Thane AAP1, Grunt AAP2, Maraudeur et Brute armurée ME3, Afterlife, Grissom et la coque du Courtier sur Hagalaz. Ses **dix PNG** incluent trois premières versions conservées après correction. Le [catalogue courant et son suivi Excel](docs/armax/lot07/MANQUANTS_2026-11-20.md) comptent **164 fiches**, dont **13 avec image candidate et 151 sans image**. La livraison Armax atteint **102 originaux distincts**, avec des réserves explicites de fidélité et d’intégration.
 
 ## Cadre de développement
 

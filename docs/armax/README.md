@@ -2,9 +2,15 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Nouveau lot 06
+## Lot 07 — continuation courante
 
-Le [lot 06](lot06/README.md) ajoute **six images** : Balak ME1, Jack AAP1, Miranda AAP2, Tali AAP2, le hangar du Normandy SR-2 ME3 et Sur’Kesh. Avec les 86 originaux récupérés ci-dessous, cette livraison contient **92 originaux distincts**. Le [catalogue de continuation](lot06/MANQUANTS_2026-11-20.md) et le [classeur courant](lot06/Mass_Effect_Armax_Suivi_Lot06_2026-11-20.xlsx) suivent 101 fiches, dont six avec image candidate et 95 encore sans image.
+Le [lot 07](lot07/README.md) ajoute **sept sujets illustrés** : Thane ME2 AAP1, Grunt ME2 AAP2, Maraudeur et Brute armurée ME3, Afterlife ME2, Grissom ME3 et la coque du Courtier sur Hagalaz ME2. Les **dix PNG** comprennent sept versions sélectionnées et trois premières versions conservées après correction.
+
+Le [catalogue courant](lot07/MANQUANTS_2026-11-20.md) et le [classeur lot 07](lot07/Mass_Effect_Armax_Suivi_Lot07_2026-11-20.xlsx) contiennent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. Treize fiches disposent d’images candidates, en incluant le lot 06 ; 151 restent sans image. Le corpus publié atteint **102 PNG originaux**, hors aperçus de contrôle. Les réserves artistiques et le refus de génération du Fantôme ME3 sont consignés.
+
+## Lot 06 — livraison précédente
+
+Le [lot 06](lot06/README.md) ajoute **six images** : Balak ME1, Jack AAP1, Miranda AAP2, Tali AAP2, le hangar du Normandy SR-2 ME3 et Sur’Kesh. Avec les 86 originaux récupérés ci-dessous, cette livraison contenait **92 originaux distincts**. Le [catalogue de continuation](lot06/MANQUANTS_2026-11-20.md) et le [classeur historique lot 06](lot06/Mass_Effect_Armax_Suivi_Lot06_2026-11-20.xlsx) conservent l’état de cette passe : 101 fiches, dont six avec image candidate et 95 sans image.
 
 ## Reprise du 20 novembre 2026
 
