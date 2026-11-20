@@ -1,0 +1,145 @@
+{
+  "reviewer": "stages_c",
+  "review_date": "2026-11-19",
+  "scope": "Complément indépendant portant exclusivement sur les corrections R1 de Drack et de la garde basse de Shepard.",
+  "status": "retain_both_r1_with_reservations",
+  "historical_review_preserved": "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/independent-review.json",
+  "measurements_file": "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/independent-revision-measurements.json",
+  "method": "Inspection directe des deux PNG R1 avec view_image, comparaison avec les R0 et les planches officielles déjà inspectées. Dimensions, SHA, alpha et points bas mesurés sans modifier les pixels. Repères calculés avec alpha >127.",
+  "certifications": {
+    "fidelity_1to1": false,
+    "animation_validated": false,
+    "sprite_sequence_ready": false,
+    "engine_ground_contact_validated": false
+  },
+  "image_modifications_performed": false,
+  "reviews": [
+    {
+      "id": "nakmor_drack_mea_r1",
+      "path": "/workspace/scratch/c3ca3f19d191/generated_images/exec-9a9170d3-7851-4c82-be8c-110b9acddc8e.png",
+      "verdict": "retain_r1_over_r0",
+      "corrected_points": [
+        {
+          "target": "Attaches abdominales",
+          "result": "Visuellement corrigé : les deux attaches circulaires claires sont maintenant disposées latéralement, une à chaque côté du panneau abdominal, à une hauteur comparable. La paire verticale de R0 a disparu."
+        },
+        {
+          "target": "Piston de tibia",
+          "result": "Visuellement corrigé : un piston extérieur long et articulé est maintenant visible sur la jambe proche, à gauche de l’image, entre le genou et la cheville."
+        }
+      ],
+      "preserved": [
+        "Silhouette générale, carapace dorsale, position des os, direction vers la droite et posture comparables au R0.",
+        "Asymétrie des bras et bottes à trois doigts conservées.",
+        "Aucun recadrage destructif ou membre coupé observé."
+      ],
+      "remaining_reservations": [
+        "Visage, textures et usure sont redessinés ; les matériaux paraissent plus brillants et les reflets plus marqués que dans R0.",
+        "La présence et le placement général du piston sont rétablis, mais son épaisseur et ses ancrages ne sont pas certifiés 1:1.",
+        "Les détails des os, griffes du menton et éléments de cuirasse restent à comparer finement au kit avant toute validation canonique."
+      ],
+      "measurements": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "main_alpha_bbox_r0": [
+          183,
+          16,
+          904,
+          1518
+        ],
+        "main_alpha_bbox_r1": [
+          176,
+          12,
+          909,
+          1520
+        ],
+        "main_height_r0_px": 1502,
+        "main_height_r1_px": 1508,
+        "screen_left_boot_bottom_y": 1519,
+        "screen_right_boot_bottom_y": 1499,
+        "boot_bottom_delta_r0_px": 20,
+        "boot_bottom_delta_r1_px": 20
+      },
+      "sha256": "fe9d84d2f796003571c760b47d1c3e24daf267572080651352bc817c9bd3276a"
+    },
+    {
+      "id": "shepard_female_low_guard_r1",
+      "path": "/workspace/scratch/c3ca3f19d191/generated_images/exec-1d113d08-1833-48b6-95da-f08678642dcb.png",
+      "verdict": "retain_r1_over_r0_as_study_key_pose",
+      "corrected_points": [
+        {
+          "target": "Abaissement de la pose",
+          "result": "Corrigé nettement : la silhouette commence à y=416, contre y=86 dans R0. Le vide au-dessus de l’accroupissement est désormais explicite, sans remplir le canvas avec un personnage debout de taille agrandie."
+        },
+        {
+          "target": "Alignement des semelles",
+          "result": "Corrigé nettement : les points les plus bas des deux bottes sont à y=1517 et y=1514, soit 3 px d’écart contre 99 px dans R0."
+        },
+        {
+          "target": "Hauteur de silhouette",
+          "result": "La silhouette principale mesure 1102 px, contre 1422 px dans R0 et 1504 px pour ready. La réduction correspond maintenant à un accroupissement beaucoup plus lisible."
+        }
+      ],
+      "preserved": [
+        "Pose défensive basse, regard et orientation à droite.",
+        "Marquages rouge-blanc sur le bras anatomique droit, emblème N7 et boucle circulaire.",
+        "Les deux bottes sont complètes ; pas de personnage supplémentaire ou d’effet d’impact."
+      ],
+      "remaining_reservations": [
+        "La tête paraît encore un peu grande par rapport à ready ; les proportions locales du visage, du torse et des bras restent reconstruites. L’échelle absolue de la tête n’est pas certifiée.",
+        "Les volumes et contours de plusieurs plaques, notamment épaules et cuissards, varient par rapport à ready ; R1 n’est pas une déformation mécanique garantie d’un même modèle.",
+        "L’alignement visuel des semelles ne valide pas à lui seul les collisions, le transfert de poids, le pivot ou la continuité avec les autres poses.",
+        "Un faible halo translucide subsiste malgré la consigne sans halo ; la boîte alpha >0 commence bien plus haut que la silhouette et ne doit pas servir d’ancrage.",
+        "La cible indicative du prompt était haut des cheveux vers y=350 et semelles vers y=1490 ; les valeurs observées sont y=416 et y=1514–1517. Cela améliore nettement R0 mais ne correspond pas exactement aux coordonnées demandées."
+      ],
+      "measurements": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "main_alpha_bbox_ready": [
+          270,
+          22,
+          770,
+          1526
+        ],
+        "main_alpha_bbox_r0": [
+          77,
+          86,
+          923,
+          1508
+        ],
+        "main_alpha_bbox_r1": [
+          112,
+          416,
+          911,
+          1518
+        ],
+        "main_height_ready_px": 1504,
+        "main_height_r0_px": 1422,
+        "main_height_r1_px": 1102,
+        "top_margin_r0_px": 86,
+        "top_margin_r1_px": 416,
+        "screen_left_boot_bottom_y": 1517,
+        "screen_right_boot_bottom_y": 1514,
+        "boot_bottom_delta_r0_px": 99,
+        "boot_bottom_delta_r1_px": 3,
+        "lowest_point_difference_from_ready_px": -8,
+        "alpha_gt0_bbox": [
+          0,
+          19,
+          1004,
+          1521
+        ],
+        "alpha_extrema": [
+          0,
+          254
+        ]
+      },
+      "sha256": "758f36605b2bacff0028dcbf182f871664a94678c4202a521c214111a2562e38"
+    }
+  ],
+  "conclusion": "Le choix provisoire de retenir les deux R1 est soutenu par les corrections observées. Drack R1 remplace utilement R0 pour les deux éléments de costume visés ; la garde basse R1 remplace utilement R0 comme pose d’étude grâce à son abaissement et à ses appuis beaucoup plus cohérents. Maintenir les réserves sur visage, matériaux, proportions locales et intégration. Aucune nouvelle génération nécessaire pour cette revue."
+}

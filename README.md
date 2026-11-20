@@ -60,6 +60,16 @@ Le lot Frontier ajoute huit conversations de PNJ, huit types d’ennemis dans le
 
 Les conversations sont des adaptations françaises condensées ; les profils et déplacements restent adaptés à l’ATB. Les nouvelles images restent Prototype. Le Mako permet d’embarquer, conduire, accélérer et débarquer ; son armement et la physique originale restent à réaliser. La sauvegarde reprend à pied. Voir la [conception](docs/DESIGN.md) et le [suivi de fidélité](docs/FIDELITY.md).
 
+## Armax Relay Clash — mode annexe de combat
+
+Le [dossier Armax](docs/armax/README.md) rassemble les poses individuelles, costumes, arènes et compléments de bible du mode de combat 2D. La [récupération du 20 novembre](docs/armax/recovery-20261120/README.md) conserve **86 PNG originaux distincts** issus de cinq sessions, avec empreintes SHA-256 et réserves. Les concepts, les corps fixes et les calques restent des prototypes artistiques ; leur présence ne constitue pas une animation complète ou une intégration jouable.
+
+Le [lot 06](docs/armax/lot06/README.md) conserve ses six images : Balak ME1, Jack ME2 AAP1, Miranda et Tali ME2 AAP2, le hangar du Normandy SR-2 ME3 et Sur’Kesh. Son catalogue et son classeur restent historiques.
+
+Le [lot 07](docs/armax/lot07/README.md) conserve **sept sujets** : Thane AAP1, Grunt AAP2, Maraudeur et Brute armurée ME3, Afterlife, Grissom et la coque du Courtier sur Hagalaz. Ses **dix PNG** incluent trois premières versions conservées après correction ; son catalogue et son suivi Excel restent historiques.
+
+Le [lot 08](docs/armax/lot08/README.md) ajoute **dix sujets et dix PNG** : Guardian, Atlas, LOKI, FENRIS, les tenues de loyauté de Kasumi et Mordin, puis les décors de Mars, Kadara, Eos et Pragia. Le [catalogue courant et son suivi Excel](docs/armax/lot08/MANQUANTS_2026-11-20.md) conservent **164 fiches**, dont **23 avec image candidate et 141 sans image**. Le corpus atteint **112 originaux distincts**. Les directions réellement obtenues, les deux nouveaux refus de génération et les réserves de fidélité sont consignés ; les nouveaux éléments restent des prototypes.
+
 ## Cadre de développement
 
 Le [guide gamedev du projet](docs/GAMEDEV_GUIDANCE.md) adapte une sélection de **12 guides** de [awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) aux chantiers du jeu : RPG/ATB, personnalisation, assets, narration, sauvegardes, cartes et rendu Three.js. Les [références sont épinglées](docs/gamedev-sources.json) et les [instructions aux agents](AGENTS.md) relient chaque changement aux contrôles et au suivi Excel existants.

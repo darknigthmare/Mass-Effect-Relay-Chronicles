@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-20",
+  "baseCommit": "c8bbc3321feb08c85d799211d27b217c94357bed",
+  "reviewer": "publish_pr — revue visuelle indépendante de la génération des six personnages et costumes",
+  "scope": "Inspection des six PNG à leur taille native et des cinq planches primaires exactes du registre. Contrôle ciblé de l’identité, de la silhouette entière, des accessoires, des asymétries et de la direction réellement visible. Lecture de l’alpha pour distinguer les halos de prévisualisation d’un fond opaque. Aucun pixel modifié, aucune génération, aucun test ni rendu en moteur.",
+  "fidelityValidated": false,
+  "fidelity1to1Validated": false,
+  "inGameReviewed": false,
+  "majorCorrectionRequiredInThisPass": false,
+  "summary": {
+    "assetsReviewed": 6,
+    "majorIdentityOrAnatomyErrorsConfirmed": 0,
+    "directionRenamesAlreadyApplied": [
+      "guardian-me3-shield-front.png",
+      "loki-me2-pistol-ready-left.png"
+    ],
+    "statusKept": "Prototype"
+  },
+  "assets": [
+    {
+      "id": "chr_me3_guardian",
+      "path": "public/assets/armax/lot08/fighters/guardian-me3-shield-front.png",
+      "sha256": "29d303ca7c4b8eb1dae92d819d5adad4b0c02a649a5f2d83eb4b8050b4185104",
+      "reference": {
+        "filename": "me3-guardian-jaemus.jpg",
+        "sha256": "29ce9cd7b5daff8e6d62c9c395788db833f792f0f6393487af5f80e9984bfb07",
+        "urls": [
+          "https://jwurzbach.artstation.com/projects/5WPZP",
+          "https://cdnb.artstation.com/p/assets/images/images/001/073/247/large/jaemus-wurzbach-jaemus-masseffect3-guardian-game.jpg?1439450625"
+        ],
+        "locallyInspected": true,
+        "includedInRepository": false
+      },
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "observedDirection": "Presque frontal, sans profil droit exploitable tel quel.",
+      "confirmedObservations": [
+        "Casque respiratoire sombre, arche au-dessus du casque, armure blanche et grise usée et marquages jaunes rapprochés des deux vues de la planche.",
+        "Bouclier tenu du côté gauche anatomique (à droite de l’image) ; pistolet dans la main droite anatomique (à gauche de l’image).",
+        "Pieds, casque et contour du bouclier visibles en entier."
+      ],
+      "issues": [
+        {
+          "severity": "info",
+          "region": "direction de pose",
+          "observation": "La pose est frontale ; le suffixe -front décrit correctement le fichier actuel. Une direction de combat vers la droite reste à produire si le renderer la demande."
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1142,
+          1377
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          186,
+          46,
+          1049,
+          1333
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          186,
+          46,
+          93,
+          44
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me3_atlas",
+      "path": "public/assets/armax/lot08/fighters/atlas-me3-closed-cockpit-right.png",
+      "sha256": "28940dfa69c0a5cc146a72df21dd5330c7a23dd0ba19681079099ce326e12ee4",
+      "reference": {
+        "filename": "me3-atlas-jaemus.jpg",
+        "sha256": "011da4caec4fd8a219524cc8bd6461ea9f2d350e100b5197888fef2c6663659a",
+        "urls": [
+          "https://jwurzbach.artstation.com/projects/OvgXe",
+          "https://cdnb.artstation.com/p/assets/images/images/001/073/291/large/jaemus-wurzbach-jaemus-masseffect3-atlas-game.jpg?1439451176"
+        ],
+        "locallyInspected": true,
+        "includedInRepository": false
+      },
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "observedDirection": "Léger trois-quarts vers la droite de l’image, avec façade encore très visible ; pas un profil latéral.",
+      "confirmedObservations": [
+        "Cockpit fermé ambré avec pilote à l’intérieur, volumes massifs et deux grandes jambes mécaniques présents.",
+        "Canon au bras droit anatomique (gauche de l’image), main articulée au bras gauche anatomique (droite de l’image), en accord avec la vue centrale de référence.",
+        "Sommet, deux pieds et extrémités des deux bras visibles en entier."
+      ],
+      "issues": [
+        {
+          "severity": "low",
+          "region": "cadrage et direction",
+          "observation": "La pose reste proche du frontal et le cadrage est serré autour de la main gauche et des pieds. Ce PNG ne constitue pas une direction de combat latérale ni un gabarit de boss validé en moteur."
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1199,
+          1312
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          44,
+          32,
+          1172,
+          1289
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          44,
+          32,
+          27,
+          23
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "chr_me2_loki_mech",
+      "path": "public/assets/armax/lot08/fighters/loki-me2-pistol-ready-left.png",
+      "sha256": "a72593b723df9f4bbcb603a51db3010527a0df4a985c15e0cdc04af5cb777240",
+      "reference": {
+        "filename": "me2-mechs-jaemus.jpg",
+        "sha256": "27f8cdbb89ff3fbccd06e0494f8043bfcbc6a90e53b523e1839af15cca6f7506",
+        "urls": [
+          "https://jwurzbach.artstation.com/projects/3EmmA",
+          "https://cdnb.artstation.com/p/assets/images/images/001/073/213/large/jaemus-wurzbach-jaemus-masseffect2-mechs-game.jpg?1439449627"
+        ],
+        "locallyInspected": true,
+        "includedInRepository": false
+      },
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "observedDirection": "Trois-quarts tourné vers la gauche de l’image.",
+      "confirmedObservations": [
+        "Bipède fin avec coques blanches, articulations sombres exposées, antenne entière et motif optique rouge en deux boucles.",
+        "Pistolet relevé dans la main droite anatomique ; seconde main et deux pieds distincts, sans confusion avec le quadrupède voisin sur la référence.",
+        "Silhouette entière ; le fichier actuel -left décrit la direction réellement obtenue."
+      ],
+      "issues": [
+        {
+          "severity": "info",
+          "region": "direction de pose",
+          "observation": "La sortie regarde à gauche. Elle n’a pas été retournée pour préserver les asymétries ; une pose droite distincte reste nécessaire si cet usage est retenu."
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          293,
+          37,
+          750,
+          1500
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          293,
+          37,
+          274,
+          36
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            204,
+            768
+          ],
+          "rgba": [
+            5,
+            5,
+            4,
+            0
+          ],
+          "interpretation": "Couleur RGB conservée sous alpha 0 ; invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "chr_me2_fenris_mech",
+      "path": "public/assets/armax/lot08/fighters/fenris-me2-ready-right.png",
+      "sha256": "fdae6eb8fa756ab3d46a58dfada8d6a4523c6e5c327952bfa97b0be6bc24dba1",
+      "reference": {
+        "filename": "me2-mechs-jaemus.jpg",
+        "sha256": "27f8cdbb89ff3fbccd06e0494f8043bfcbc6a90e53b523e1839af15cca6f7506",
+        "urls": [
+          "https://jwurzbach.artstation.com/projects/3EmmA",
+          "https://cdnb.artstation.com/p/assets/images/images/001/073/213/large/jaemus-wurzbach-jaemus-masseffect2-mechs-game.jpg?1439449627"
+        ],
+        "locallyInspected": true,
+        "includedInRepository": false
+      },
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "observedDirection": "Trois-quarts vers la droite de l’image.",
+      "confirmedObservations": [
+        "Quatre pieds et quatre chaînes de membres identifiables ; carapace basse grise et mécanismes sombres conservés.",
+        "Plaque frontale ovale avec deux anneaux rouges et petit capteur supérieur ; anneaux latéraux présents.",
+        "Silhouette quadrupède entière et distincte du LOKI ; aucun appendice coupé constaté."
+      ],
+      "issues": [],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          116,
+          59,
+          1452,
+          984
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          116,
+          59,
+          84,
+          40
+        ],
+        "fileBytesUnchanged": true
+      }
+    },
+    {
+      "id": "cst_me2_kasumi_loyalty",
+      "path": "public/assets/armax/lot08/costumes/kasumi-me2-loyalty-guard-right.png",
+      "sha256": "15b9ec55be4e2a232e879f7572462b114887e1cb1f3a2e7f9aade9eed06fab95",
+      "reference": {
+        "filename": "me2-kasumi-alt-rion.jpg",
+        "sha256": "24c040051b946bf6408a3bf46393024c2118247bf7858be660b824c395649970",
+        "urls": [
+          "https://www.rion-art.com/mass-effect-2",
+          "https://images.squarespace-cdn.com/content/v1/525ad426e4b0c103e97511d2/1393792284145-MHP9GVSL3AXWV9T9R0HE/KasumiAltCostume_Final001.jpg"
+        ],
+        "locallyInspected": true,
+        "includedInRepository": false
+      },
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "observedDirection": "Garde légère avec tête et torse en trois-quarts vers la droite ; aucune arme en main.",
+      "confirmedObservations": [
+        "Capuche rouge/bordeaux et capelet court, combinaison noire ajustée, panneaux rouges des avant-bras et des jambes rapprochés des six vues de la planche.",
+        "Visage en partie masqué par la capuche, garde à deux mains et deux pieds entièrement visibles.",
+        "La tenue est cohérente avec la variante illustrée du registre ; elle ne reprend pas une robe de soirée."
+      ],
+      "issues": [
+        {
+          "severity": "low",
+          "region": "portrait et détails de tenue",
+          "observation": "Le visage reste partiellement caché et les coutures ainsi que la texture textile sont réinterprétées ; cette passe ne permet pas de certifier le portrait ou chaque motif 1:1."
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          254
+        ],
+        "boundingBoxAlpha128": [
+          182,
+          23,
+          881,
+          1510
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          182,
+          23,
+          143,
+          26
+        ],
+        "fileBytesUnchanged": true,
+        "transparentHaloSample": {
+          "position": [
+            204,
+            768
+          ],
+          "rgba": [
+            14,
+            4,
+            4,
+            0
+          ],
+          "interpretation": "Couleur RGB conservée sous alpha 0 ; invisible après compositing normal."
+        }
+      }
+    },
+    {
+      "id": "cst_me2_mordin_loyalty",
+      "path": "public/assets/armax/lot08/costumes/mordin-me2-loyalty-neutral-right.png",
+      "sha256": "7723a1601f425ded75eee2edaba101b0fc16672f202bb3348b4abc8d4b078d23",
+      "reference": {
+        "filename": "me2-mordin-alt-rion.jpg",
+        "sha256": "f4d3042ff76f5fd358fbd69b5e2e2b788d1895b8d1896975675b884aec4bb847",
+        "urls": [
+          "https://www.rion-art.com/mass-effect-2",
+          "https://images.squarespace-cdn.com/content/v1/525ad426e4b0c103e97511d2/1419289125680-B4MX1BCVGSZ05F67RG1R/MordinBodyHead_Alt.jpg"
+        ],
+        "locallyInspected": true,
+        "includedInRepository": false
+      },
+      "result": "no_major_deviation_confirmed_in_this_pass",
+      "observedDirection": "Debout, trois-quarts vers la droite de l’image, mains abaissées.",
+      "confirmedObservations": [
+        "Grandes plaques blanches/argentées, bande centrale bordeaux, sous-combinaison sombre et deux disques latéraux du col correspondent aux principaux repères de la planche.",
+        "Crâne asymétrique avec une pointe longue et une pointe plus courte, sans inversion majeure confirmée face à la vue trois-quarts droite.",
+        "Deux mains et deux pieds distincts, silhouette entière avec vêtements jusqu’aux cuisses."
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "region": "marges de cadrage",
+          "observation": "La silhouette solide à alpha >= 128 laisse seulement 13 pixels en haut et 12 en bas pour une image de 1774 pixels de hauteur. Aucune coupe n’est constatée, mais une marge de travail plus large sera nécessaire pour les variations de pose et le réglage du pivot."
+        }
+      ],
+      "technicalSpotCheck": {
+        "dimensions": [
+          887,
+          1774
+        ],
+        "mode": "RGBA",
+        "alphaExtrema": [
+          0,
+          255
+        ],
+        "boundingBoxAlpha128": [
+          157,
+          13,
+          694,
+          1762
+        ],
+        "marginsAlpha128LeftTopRightBottom": [
+          157,
+          13,
+          193,
+          12
+        ],
+        "fileBytesUnchanged": true
+      }
+    }
+  ],
+  "limits": [
+    "Une absence de défaut majeur confirmé pendant cette revue n’établit pas une fidélité 1:1.",
+    "Les détails masqués, surfaces arrière, animations, pivots, échelles et apparence à la taille de jeu ne sont pas validés.",
+    "Les images de référence appartiennent à leurs auteurs et restent hors du dépôt ; leurs noms, URL et empreintes relient cette revue au registre.",
+    "Le halo gris ou rouge apparent dans certaines prévisualisations contient notamment des couleurs RGB sous alpha 0. L’existence de ces couleurs ne démontre pas un fond opaque ; le compositing, le filtrage et les franges doivent encore être vus dans le renderer."
+  ]
+}

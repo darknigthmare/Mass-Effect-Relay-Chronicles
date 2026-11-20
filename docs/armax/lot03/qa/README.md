@@ -1,0 +1,1 @@
+La QA individuelle pointée par le manifeste concerne chaque image sélectionnée. La revue indépendante initiale décrit notamment Drack R0 et la garde basse R0, désormais remplacés. Le complément independent-revision-review.json contrôle les deux R1 sélectionnés. Les mesures alpha sont des repères de silhouette, pas des points de collision.

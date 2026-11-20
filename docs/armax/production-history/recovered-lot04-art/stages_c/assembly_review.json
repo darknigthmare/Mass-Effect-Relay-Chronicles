@@ -1,0 +1,135 @@
+{
+  "project": "Mass Effect Armax Relay Clash",
+  "batch": "lot04",
+  "asset_family": "illium_nos_astra_me2",
+  "reviewed_at_utc": "2026-11-19T15:25:23.167104+00:00",
+  "decision": "retain_six_native_layers_as_working_study_not_complete_parallax",
+  "source_master": "/workspace/scratch/c3ca3f19d191/outputs/mass-effect/lot03/assets/stages/illium_nos_astra_me2/illium_nos_astra_me2_concept_R0.png",
+  "source_master_sha256": "e841f91b4fdfa9cc8d337085070e2b7f35d98b1ae6989374a251e7e0e277cfae",
+  "source_pngs_modified": false,
+  "generated_pngs_resized_or_cropped": false,
+  "manual_detourage": false,
+  "canvas": [
+    1774,
+    887
+  ],
+  "all_six_native_canvases_match": true,
+  "l0_opaque": true,
+  "l1_l5_have_real_alpha": true,
+  "source_copies_byte_identical": true,
+  "visible_character_ui_caption_check": "none observed",
+  "static_assembly_inspected": true,
+  "static_assembly_scope": "Native-size alpha-over QA at x=0,y=0, and two discrete horizontal offset tests. These three renders are review evidence only, not canonical assets.",
+  "static_native_assembly_findings": [
+    {
+      "severity": "pass",
+      "finding": "At pan 0, the rear curb meets the combat floor without a visible open horizontal seam. Numeric alpha >127 covers the full width of L3 at y=740 and L4 at y=741."
+    },
+    {
+      "severity": "pass",
+      "finding": "The foreground drainage grille is visible once. L4 has the corresponding band reconstructed as ordinary floor, so no second grille was observed in the native composite."
+    },
+    {
+      "severity": "pass_with_reserve",
+      "finding": "Main left/right towers, central magenta landmark and tall spire, elevated walkway, sun and five rear lamps remain near their master positions. This is visual correspondence, not pixel-accurate extraction."
+    },
+    {
+      "severity": "fidelity_issue",
+      "finding": "Secondary towers disappeared, especially the slender far-left tower around x=45 and towers around x=404 and x=460. Other medium skyline silhouettes were simplified or replaced. L1 reconstructs a new distant city rhythm instead of preserving every original silhouette."
+    },
+    {
+      "severity": "fidelity_issue",
+      "finding": "L0 redraws the clouds with a denser, brighter texture. L2 redraws facade divisions and some under-bridge surfaces; L4 redraws local floor seams/reflections. No 1:1 claim is warranted."
+    },
+    {
+      "severity": "alignment_reserve",
+      "finding": "The central tower bases have local horizontal cutoffs around the curb height. They are acceptably concealed in the fixed composite, but depth-specific motion still needs a proper engine review."
+    },
+    {
+      "severity": "alpha_reserve",
+      "finding": "Several layers contain faint nonzero-alpha fringe or residue well beyond their visually dominant bounding box. No manual cleanup was applied; dark/light background and premultiplied-alpha behavior remain untested."
+    }
+  ],
+  "overscan": {
+    "stored_pixels_outside_master_canvas": {
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "bottom": 0
+    },
+    "explanation": "Each file is exactly the master canvas. No off-canvas continuation exists in these PNGs. Reconstructed content behind foreground occluders does not supply edge overscan.",
+    "test_factors_by_layer": [
+      0,
+      0.15,
+      0.45,
+      0.8,
+      1,
+      1.12
+    ],
+    "factors_status": "QA demonstration values only, not approved engine settings",
+    "test_pans": [
+      -32,
+      0,
+      32
+    ],
+    "observed_failures": [
+      {
+        "pan": 32,
+        "exposed_side": "right",
+        "layer_horizontal_extent_lost_px": {
+          "L1": 5,
+          "L2": 14,
+          "L3": 26,
+          "L4": 32,
+          "L5": 36
+        },
+        "finding": "Sky or background becomes visible beyond the shifted right tower/curb/floor edges. The floor is absent from the final 32 pixels and the grille stops 36 pixels short."
+      },
+      {
+        "pan": -32,
+        "exposed_side": "left",
+        "layer_horizontal_extent_lost_px": {
+          "L1": 5,
+          "L2": 14,
+          "L3": 26,
+          "L4": 32,
+          "L5": 36
+        },
+        "finding": "Symmetric exposed strips appear on the left. The floor is absent from the first 32 pixels and the grille starts 36 pixels into the canvas."
+      }
+    ],
+    "floor_missing_area_per_test_px": 4704,
+    "floor_area_measurement_basis": "L4 occupies y=740..886 at the visible floor boundary; 32 px translation leaves a 32 x 147 canvas band without L4. Border antialiasing is not counted as an overscan reserve.",
+    "full_frame_no_gap_horizontal_pan_range_guaranteed_for_all_layers": [
+      0,
+      0
+    ],
+    "composite_alpha_warning": "The composite is still alpha 255 everywhere because L0 is opaque. This does not hide the semantic hole where sky replaces the floor."
+  },
+  "duplicates": {
+    "major_architecture_double_image_observed": false,
+    "grille_double_image_observed": false,
+    "exhaustive_pixel_level_duplicate_detection": false
+  },
+  "browser_preview": {
+    "html_path": "/workspace/scratch/c3ca3f19d191/work/generation_v4/stages_c/illium_parallax_review.html",
+    "opened_successfully": false,
+    "error": "Chromium aborted: process_singleton socket() failed: Operation not permitted. No retry after this block.",
+    "interactive_behavior_verified": false
+  },
+  "qa_render_paths": [
+    "/workspace/scratch/c3ca3f19d191/work/generation_v4/stages_c/assembly_native_0.png",
+    "/workspace/scratch/c3ca3f19d191/work/generation_v4/stages_c/assembly_native_minus32.png",
+    "/workspace/scratch/c3ca3f19d191/work/generation_v4/stages_c/assembly_native_plus32.png"
+  ],
+  "qa_renders_are_canonical": false,
+  "engine_scrolling_verified": false,
+  "seamless_loop_verified": false,
+  "parallax_set_complete": false,
+  "one_to_one_fidelity_certified": false,
+  "next_work_required": [
+    "Restore the missing secondary towers to their correct depth plane without changing their native placement.",
+    "Create explicit off-frame horizontal continuations or define a smaller validated viewport. Current files provide zero edge overscan; any changed canvas or viewport must be an explicit next production decision.",
+    "Test layer-relative motion, depth order, alpha fringes and floor/curb tracking in the target engine. The three static renders are not a scrolling validation."
+  ]
+}

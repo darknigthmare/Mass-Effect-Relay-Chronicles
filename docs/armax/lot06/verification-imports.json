@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-20",
+  "baseCommit": "deb5c9382a697acd0cf72b182bc646337cdcfb25",
+  "scope": "Current imported source files; no gameplay or native Excel application verification",
+  "checks": [
+    {
+      "command": "python scripts/verify-armax-recovery.py",
+      "exitCode": 0,
+      "success": true,
+      "summary": {
+        "status": "passed",
+        "originalPngs": 86,
+        "uniqueSha256": 86
+      }
+    },
+    {
+      "command": "python scripts/verify-armax-lot04.py",
+      "exitCode": 0,
+      "success": true,
+      "summary": {
+        "structuralChecksPassed": true,
+        "counts": {
+          "characters": 14,
+          "combatKitsSpecified": 13,
+          "supportCharacters": 1,
+          "normals": 78,
+          "specials": 39,
+          "proposedCombos": 26,
+          "bossPhases": 6,
+          "selectedImages": 6,
+          "archivedImages": 3,
+          "missingCharacterImages": 8,
+          "blockedCharacterImages": 6,
+          "generationAttempts": 14
+        },
+        "errors": [],
+        "artReservations": 18
+      }
+    },
+    {
+      "command": "python scripts/verify-combat-2d-assets.py",
+      "exitCode": 0,
+      "success": true,
+      "summary": {
+        "counts": {
+          "assets": 11,
+          "backlog": 36,
+          "pngChecked": 11,
+          "markdownFiles": 4,
+          "localMarkdownLinks": 42,
+          "assetStatuses": {
+            "Prototype": 11
+          },
+          "backlogStatuses": {
+            "Défini": 36
+          },
+          "assetKinds": {
+            "concept": 1,
+            "sprite": 5,
+            "stage-layer": 3,
+            "stage-reference": 1,
+            "vfx": 1
+          },
+          "warnings": 10,
+          "errors": 0
+        },
+        "passed": true,
+        "errors": []
+      }
+    }
+  ],
+  "allPassed": true,
+  "historicalReportsPreserved": true
+}

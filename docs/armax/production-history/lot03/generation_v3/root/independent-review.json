@@ -1,0 +1,241 @@
+{
+  "reviewer": "stages_c",
+  "review_date": "2026-11-19",
+  "scope": "Revue indépendante des PNG de Shepard féminine, Vetra, Drack et quatre poses d’étude de Shepard, comparés aux références officielles rendues localement.",
+  "status": "completed_with_reservations",
+  "certifications": {
+    "fidelity_1to1": false,
+    "animation_validated": false,
+    "sprite_sequence_ready": false,
+    "engine_ground_contact_validated": false
+  },
+  "unchanged_artifacts": true,
+  "method": {
+    "visual": "Inspection directe avec view_image de sept PNG de sortie et de sept planches de référence. Aucun montage ni modification d’image.",
+    "numeric": "Lecture des dimensions, SHA et canal alpha avec Pillow. Boîte principale calculée sur alpha >127 afin d’écarter une grande partie du halo. Mesures de pieds : dernier pixel alpha >127 dans chaque moitié de l’image, zone y >=1200. Ce sont des repères de silhouette, pas des points de collision certifiés.",
+    "measurement_file": "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/independent-review-measurements.json"
+  },
+  "global_findings": [
+    {
+      "severity": "high",
+      "topic": "Continuité de taille de Shepard",
+      "finding": "Les quatre actions sont reconnaissables et gardent la même direction générale, mais le personnage est remis à l’échelle et redessiné selon la pose. La tête et le torse de la garde basse sont visiblement plus grands que dans ready. La crouche conserve 1422 px de hauteur principale contre 1504 px en ready : la baisse des hanches est largement compensée par un agrandissement du personnage.",
+      "implication": "Poses d’étude seulement ; une simple suite de fichiers produirait des variations de taille et de volumes. Un recalage global ne suffirait pas à rétablir les proportions locales."
+    },
+    {
+      "severity": "high",
+      "topic": "Appuis et ancrage",
+      "finding": "La différence verticale entre les deux points les plus bas des bottes passe de 33 px en ready à 80 px en garde haute et 99 px en garde basse. Le pas avant a son point bas à y=1474, soit 51 px au-dessus du point bas de ready. Les pieds ne partagent pas une convention constante de profondeur/perspective.",
+      "implication": "Ne pas déduire automatiquement les collisions et l’ancrage au sol depuis le bas du PNG. Les points de contact par pied restent à définir et à vérifier sur une scène."
+    },
+    {
+      "severity": "medium",
+      "topic": "Détourage",
+      "finding": "Les sept PNG possèdent une transparence réelle. Leur alpha maximal est 254, et un faible halo translucide s’étend loin hors de la silhouette, jusqu’au bord gauche du canvas. Il ne s’agit pas d’un fond entièrement opaque.",
+      "implication": "Une boîte calculée avec alpha >0 inclurait le halo et donnerait un mauvais pivot/recadrage. Contrôle sur fond clair et sombre à prévoir avant intégration ; aucune correction effectuée ici."
+    },
+    {
+      "severity": "medium",
+      "topic": "Marges et échelle entre combattants",
+      "finding": "Tous les canvas font 1024 × 1536. Les silhouettes principales occupent presque toute la hauteur : Shepard ready 1504 px, Vetra 1442 px, Drack 1502 px. Les marges ne suivent donc pas la cible d’environ 80 % du canvas. Ces hauteurs de raster ne définissent pas les tailles relatives canoniques des personnages.",
+      "implication": "Ne pas utiliser une échelle moteur identique pour tous les PNG en supposant les proportions interpersonnages validées."
+    }
+  ],
+  "characters": [
+    {
+      "id": "shepard_female_n7",
+      "path": "/workspace/scratch/c3ca3f19d191/outputs/mass-effect/lot03/assets/fighters/shepard_female_n7/shepard_female_n7_ready_right_r0.png",
+      "references": [
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/shepard-guide-6.png"
+      ],
+      "verdict": "retain_as_concept_with_reservations",
+      "preserved": [
+        "Identité rousse, yeux verts et direction vers la droite lisibles.",
+        "Armure N7, boucle circulaire, panneaux de cuisses et bottes cohérents avec la planche.",
+        "Marquages rouge-blanc maintenus sur le bras anatomique droit."
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "finding": "Visage réinterprété et plus détaillé que le modèle de référence ; mèches, taches de rousseur, reliefs et usure ne peuvent pas être validés 1:1."
+        },
+        {
+          "severity": "medium",
+          "finding": "Le cadrage ne garde que 22 px au-dessus de la silhouette principale et 10 px sous son point le plus bas ; marge insuffisamment stable pour servir de gabarit commun."
+        }
+      ]
+    },
+    {
+      "id": "vetra_nyx_mea",
+      "path": "/workspace/scratch/c3ca3f19d191/outputs/mass-effect/lot03/assets/fighters/vetra_nyx_mea/vetra_nyx_mea_ready_right_r0.png",
+      "references": [
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/vetra-kit-2.png",
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/vetra-kit-3.png",
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/vetra-kit-4.png"
+      ],
+      "verdict": "retain_as_concept_with_reservations",
+      "preserved": [
+        "Silhouette turienne élancée, crâne clair, marquages violets, visière cyan à branches jaunes.",
+        "Écharpe noire, col clair, plastron bleu-gris, sangle diagonale, sangles latérales et bottes fendues identifiables.",
+        "Aucune inversion majeure de costume observée dans ces vues."
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "finding": "La posture des membres inférieurs est redressée par rapport à plusieurs vues du kit ; l’articulation digitigrade doit rester un point de contrôle lors des poses suivantes."
+        },
+        {
+          "severity": "medium",
+          "finding": "Les deux extrémités des bottes diffèrent de 63 px en hauteur d’image. C’est compatible avec une présentation en perspective, mais pas un appui moteur latéral déjà normalisé."
+        },
+        {
+          "severity": "low",
+          "finding": "Les tracés fins du visage, de la visière et de l’emblème de poitrine sont reconstruits ; pas de preuve d’équivalence pixel ou géométrique au kit."
+        }
+      ]
+    },
+    {
+      "id": "nakmor_drack_mea",
+      "path": "/workspace/scratch/c3ca3f19d191/outputs/mass-effect/lot03/assets/fighters/nakmor_drack_mea/nakmor_drack_mea_ready_right_r0.png",
+      "references": [
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/drack-kit-2.png",
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/drack-kit-3.png",
+        "/workspace/scratch/c3ca3f19d191/work/generation_v3/root/references/drack-kit-4.png"
+      ],
+      "verdict": "retain_as_concept_with_costume_corrections_pending",
+      "preserved": [
+        "Masse krogan, carapace dorsale bordeaux-ocre, ornements osseux et trois conduits pectoraux lisibles.",
+        "Asymétrie générale conservée : avant-bras droit cuirassé, bras gauche montrant sa surface organique.",
+        "Trois doigts de pied, genouillères et équipements de ceinture reconnaissables."
+      ],
+      "issues": [
+        {
+          "severity": "high",
+          "finding": "Les deux attaches circulaires claires de la plaque abdominale apparaissent superposées dans la génération. Le détail frontal du kit les place latéralement de part et d’autre du panneau ; leur disposition ne correspond pas."
+        },
+        {
+          "severity": "medium",
+          "finding": "Les pièces mécaniques des tibias sont simplifiées : le long piston extérieur visible dans la planche LEG DETAIL n’est pas clairement restitué sur la jambe proche."
+        },
+        {
+          "severity": "medium",
+          "finding": "Les formes et espacements des os, griffes du menton et bandes d’épaule sont reconstruits, et demandent une comparaison rapprochée avant toute affirmation 1:1."
+        }
+      ]
+    }
+  ],
+  "shepard_pose_measurements": [
+    {
+      "id": "ready",
+      "main_alpha_bbox": [
+        270,
+        22,
+        770,
+        1526
+      ],
+      "main_height_px": 1504,
+      "screen_left_boot_bottom_y": 1525,
+      "screen_right_boot_bottom_y": 1492,
+      "boot_bottom_delta_px": 33
+    },
+    {
+      "id": "high_guard",
+      "main_alpha_bbox": [
+        182,
+        26,
+        875,
+        1520
+      ],
+      "main_height_px": 1494,
+      "screen_left_boot_bottom_y": 1519,
+      "screen_right_boot_bottom_y": 1439,
+      "boot_bottom_delta_px": 80
+    },
+    {
+      "id": "low_guard",
+      "main_alpha_bbox": [
+        77,
+        86,
+        923,
+        1508
+      ],
+      "main_height_px": 1422,
+      "screen_left_boot_bottom_y": 1507,
+      "screen_right_boot_bottom_y": 1408,
+      "boot_bottom_delta_px": 99
+    },
+    {
+      "id": "light_punch_left_jab",
+      "main_alpha_bbox": [
+        44,
+        24,
+        986,
+        1524
+      ],
+      "main_height_px": 1500,
+      "screen_left_boot_bottom_y": 1523,
+      "screen_right_boot_bottom_y": 1494,
+      "boot_bottom_delta_px": 29
+    },
+    {
+      "id": "forward_step",
+      "main_alpha_bbox": [
+        87,
+        17,
+        978,
+        1475
+      ],
+      "main_height_px": 1458,
+      "screen_left_boot_bottom_y": 1430,
+      "screen_right_boot_bottom_y": 1474,
+      "boot_bottom_delta_px": 44
+    }
+  ],
+  "poses": [
+    {
+      "id": "shepard_female_high_guard",
+      "path": "/workspace/scratch/c3ca3f19d191/generated_images/exec-1412b3c1-87cb-4bf7-9434-02eb1baa11a7.png",
+      "verdict": "study_key_pose_only",
+      "observations": [
+        "Garde haute identifiable, visage dégagé, mains fermées et asymétrie du bras préservée.",
+        "Tête et plastron semblent légèrement agrandis comparés à ready ; panneaux et plis redessinés.",
+        "Écart de semelles de 80 px et stance beaucoup plus large : appui en profondeur plus prononcé que ready."
+      ]
+    },
+    {
+      "id": "shepard_female_low_guard",
+      "path": "/workspace/scratch/c3ca3f19d191/generated_images/exec-67d05935-fbc7-44d1-b1b5-4a9cd8b41a29.png",
+      "verdict": "study_key_pose_only_requires_scale_rework",
+      "observations": [
+        "Accroupissement et défense identifiables.",
+        "Dérive d’échelle la plus nette de la série : tête, épaules et torse plus grands que ready, malgré l’abaissement du corps.",
+        "Les cuissards et attaches sont déformés/redessinés autour des jambes écartées.",
+        "Écart vertical des semelles de 99 px ; aucun ancrage commun validé."
+      ]
+    },
+    {
+      "id": "shepard_female_light_punch",
+      "path": "/workspace/scratch/c3ca3f19d191/generated_images/exec-541b251d-3b6a-4495-b4e3-d98cf6ad1567.png",
+      "verdict": "retain_as_left_jab_study",
+      "observations": [
+        "Le bras tendu est le bras anatomique gauche, sans les grandes bandes rouges du bras droit. Le poing droit marqué de rouge reste replié.",
+        "L’intention demandait un coup droit ; retenir cette sortie comme jab gauche évite de mal étiqueter l’action.",
+        "Poing complet, espace libre à droite réduit à environ 38 px pour la silhouette principale.",
+        "Les pieds sont proches du décalage de ready, mais l’écartement, la rotation des hanches et la taille de la tête diffèrent ; aucune continuité temporelle certifiée."
+      ]
+    },
+    {
+      "id": "shepard_female_forward_step",
+      "path": "/workspace/scratch/c3ca3f19d191/generated_images/exec-1d1c2223-883d-4579-88d8-9ee195aede82.png",
+      "verdict": "study_key_pose_only_contact_phase_ambiguous",
+      "observations": [
+        "Le mouvement vers la droite est lisible.",
+        "Le pied visible à droite de l’image est en avant et paraît à plat ; le pied arrière est relevé/oblique. Ce n’est pas une phase de contact clairement normalisée.",
+        "La lecture de la hanche et du côté marqué suggère que la jambe anatomique gauche avance plutôt que la droite demandée ; à vérifier au rig avant nommage définitif.",
+        "Le point le plus bas est à y=1474, soit 51 px plus haut que ready. La tête demeure près du haut du canvas ; le cadrage n’est pas fixé sur le sol.",
+        "Le pied arrière reste 44 px au-dessus du point bas du pied avant : cela peut correspondre à une phase de balancement ou à de la profondeur, mais ne prouve pas le contact de la pointe avec un même sol."
+      ]
+    }
+  ],
+  "recommended_next_use": "Conserver les sept sorties comme références visuelles et les quatre actions comme poses clés d’étude. Définir échelle, vue de caméra, pivot et contacts par pied dans une future passe de production. Aucune nouvelle génération ou retouche réalisée par cette revue."
+}
