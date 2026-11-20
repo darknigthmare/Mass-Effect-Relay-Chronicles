@@ -2,11 +2,17 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 09 — continuation courante
+## Lot 10 — continuation courante
+
+Le [lot 10](lot10/README.md) ajoute **treize sujets illustrés** : huit personnages ou ennemis d’Andromeda — Eiroch, Fiend, Destined, Moshae Sjefa, Ascendant, Observer, Architecte et Destroyer —, Tali en tenue de loyauté ME2, puis les stages Omega, terrasse de Hock, Eden Prime et Conseil. Les **quinze PNG** comprennent treize versions sélectionnées et deux R0 conservés après correction de sous-zone et de HUD.
+
+Le [catalogue courant](lot10/MANQUANTS_2026-11-20.md) et le [classeur lot 10](lot10/Mass_Effect_Armax_Suivi_Lot10_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **48 ont une image candidate et 116 restent sans image.** Le corpus atteint **141 PNG originaux**, hors trois aperçus historiques. Les trois refus de costumes sont consignés sans relance ; les armures Cerberus Assault, Ajax et Blood Dragon disposent de notes de références partielles supplémentaires. Tous les nouveaux fichiers restent Prototype, avec leurs limites de fidélité et d’intégration.
+
+## Lot 09 — livraison précédente
 
 Le [lot 09](lot09/README.md) ajoute **douze sujets illustrés** : Scion ME2, Ravager, Cannibal, Banshee, Combat Engineer et Hackett ME3, les armures masculines Terminus et Inferno ME2, puis les stages Rannoch, Despoina, Havarl et Silversun. Les **quatorze PNG** comprennent douze versions sélectionnées et deux premières versions conservées après correction du lettrage de Terminus et Silversun.
 
-Le [catalogue courant](lot09/MANQUANTS_2026-11-20.md) et le [classeur lot 09](lot09/Mass_Effect_Armax_Suivi_Lot09_2026-11-20.xlsx) gardent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **35 ont une image candidate et 129 restent sans image.** Le corpus atteint **126 PNG originaux**, hors trois aperçus historiques. Le refus du Centurion et l’erreur technique Havarl suivie d’une reprise réussie sont distingués. Les nouvelles images restent Prototype, avec leurs limites de comparaison et d’intégration.
+Le [catalogue historique](lot09/MANQUANTS_2026-11-20.md) et le [classeur lot 09](lot09/Mass_Effect_Armax_Suivi_Lot09_2026-11-20.xlsx) gardent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **35 ont une image candidate et 129 restent sans image.** Le corpus de cette livraison atteignait **126 PNG originaux**, hors trois aperçus historiques. Le refus du Centurion et l’erreur technique Havarl suivie d’une reprise réussie sont distingués. Les nouvelles images restent Prototype, avec leurs limites de comparaison et d’intégration.
 
 ## Lot 08 — livraison précédente
 
