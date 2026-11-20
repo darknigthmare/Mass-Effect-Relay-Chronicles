@@ -21,6 +21,8 @@ Le [manifeste courant](asset-inventory.json) relie chaque original à son chemin
 
 Les lots01/02 et la bible originale de 99 pages ne sont pas retrouvés. Le classeur historique est conservé dans [history/](history/) pour sa provenance; son décompte de 72 images n’inclut pas les 14 dernières récupérations et ne constitue pas la synthèse actuelle. Aucun clip complet, aucun combattant Armax jouable et aucune fidélité 1:1 ne sont certifiés.
 
+Les trois chemins de preuves du complément lot04 ont été corrigés vers les rapports déjà importés dans `docs/armax/production-history/recovered-lot04-art/`. Trois autres rapports cités par le classeur historique — `consolidation/recovered-originals.json`, `lot05/provenance/team-a-report.json` et `lot05/provenance/team-b-qa.json` — n’ont pas été retrouvés dans les sessions sources. Pour les huit images concernées, `historicalProof` vaut donc `null`; `historicalProofRecovery` conserve le chemin cité, la source de cette mention et la réserve. Les PNG restent présents et vérifiés. Le vérificateur courant contrôle désormais l’existence de chaque chemin `historicalProof` non nul; ce contrôle n’atteste pas le contenu artistique des rapports.
+
 ## Archive ZIP historique
 
 Le ZIP redondant du lot03 (48273099 octets) reste dans la source locale mais n’est pas dupliqué dans cette PR. Son contenu déplié, ses 29 PNG originaux et ses données sont conservés. Les anciens documents qui mentionnent ce ZIP décrivent la livraison passée. L’[inventaire d’import](import-inventory.json) enregistre explicitement cette omission; ce n’est pas un asset manquant.
