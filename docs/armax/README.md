@@ -2,11 +2,17 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 10 — continuation courante
+## Lot 11 — continuation courante
+
+Le [lot 11](lot11/README.md) ajoute **treize sujets et treize PNG** : cinq ennemis d’Andromeda — Wraith, Chosen, Behemoth, Breacher et Nullifier —, Jack en tenue de loyauté ME2, Liara AAP1 ME3 et six décors — Canal et archives d’Ilos, Hot Labs, Haestrom, CIC du Normandy SR-1 et Chora’s Den. **Huit fiches héritées sont nouvellement illustrées ; cinq fiches inédites sont ajoutées avec leurs sources.**
+
+Le [catalogue courant](lot11/MANQUANTS_2026-11-20.md) et le [classeur lot 11](lot11/Mass_Effect_Armax_Suivi_Lot11_2026-11-20.xlsx) contiennent **169 fiches** : 84 personnages/ennemis, 38 costumes et 47 stages. **61 ont une image candidate et 108 restent sans image.** Les 164 identités et usages hérités sont préservés ; le corpus atteint **154 PNG originaux**, hors trois aperçus historiques. Le YMIR demeure sans fichier après un refus. Les références partielles, cadrages et limites sont documentés ; tous les nouveaux fichiers restent Prototype, sans fidélité 1:1 ni intégration moteur certifiées.
+
+## Lot 10 — livraison précédente
 
 Le [lot 10](lot10/README.md) ajoute **treize sujets illustrés** : huit personnages ou ennemis d’Andromeda — Eiroch, Fiend, Destined, Moshae Sjefa, Ascendant, Observer, Architecte et Destroyer —, Tali en tenue de loyauté ME2, puis les stages Omega, terrasse de Hock, Eden Prime et Conseil. Les **quinze PNG** comprennent treize versions sélectionnées et deux R0 conservés après correction de sous-zone et de HUD.
 
-Le [catalogue courant](lot10/MANQUANTS_2026-11-20.md) et le [classeur lot 10](lot10/Mass_Effect_Armax_Suivi_Lot10_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **48 ont une image candidate et 116 restent sans image.** Le corpus atteint **141 PNG originaux**, hors trois aperçus historiques. Les trois refus de costumes sont consignés sans relance ; les armures Cerberus Assault, Ajax et Blood Dragon disposent de notes de références partielles supplémentaires. Tous les nouveaux fichiers restent Prototype, avec leurs limites de fidélité et d’intégration.
+Le [catalogue historique](lot10/MANQUANTS_2026-11-20.md) et le [classeur lot 10](lot10/Mass_Effect_Armax_Suivi_Lot10_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **48 ont une image candidate et 116 restent sans image.** Le corpus de cette livraison atteignait **141 PNG originaux**, hors trois aperçus historiques. Les trois refus de costumes sont consignés sans relance ; les armures Cerberus Assault, Ajax et Blood Dragon disposent de notes de références partielles supplémentaires. Tous les nouveaux fichiers restent Prototype, avec leurs limites de fidélité et d’intégration.
 
 ## Lot 09 — livraison précédente
 
