@@ -1,0 +1,154 @@
+{
+  "passed": true,
+  "criterionId": "QA-noms-francais",
+  "generatedAt": "2026-11-20T13:50:33.676Z",
+  "scope": "Vite production, noms de lieux et talents implémentés, plan intérieur condensé et dossier de coque du Normandy SR-1.",
+  "checks": [
+    {
+      "id": "definitions",
+      "passed": true,
+      "details": "9 zones, 9 talents et 3 actions de talents comparés aux données du catalogue. La Citadelle assiégée est une phase de la même fiche de lieu."
+    },
+    {
+      "id": "catalogue",
+      "passed": true,
+      "details": "13 fiches ouvertes dans le catalogue public, avec liste des neuf talents."
+    },
+    {
+      "id": "galactic-map",
+      "passed": true,
+      "details": "Les huit phases sont consultées et le HUD confirme le libellé du Normandy."
+    },
+    {
+      "id": "QA-normandy-sr-1",
+      "passed": true,
+      "details": "Plan de la scène condensée avec ses sept services et coque SR-1 dans le dossier ME1. Aucun module ni visuel SR-2 dans ces vues."
+    },
+    {
+      "id": "talent-screen",
+      "passed": true,
+      "details": "Neuf talents et leurs trois capacités liées, consultés avec les classes Soldat, Ingénieur et Adepte."
+    }
+  ],
+  "errors": [],
+  "fixtures": [
+    {
+      "classId": "soldier",
+      "zone": "normandy",
+      "briefingPrepared": true,
+      "sha256": "603e877615fab74836c4baa5775128cc03f636a081fe4d38712583fc1f58b0e3"
+    },
+    {
+      "classId": "engineer",
+      "zone": "normandy",
+      "briefingPrepared": true,
+      "sha256": "fcf49899891c618af438701dddc784716f7bfa830ac2b42a81169b8fc37e27a5"
+    },
+    {
+      "classId": "adept",
+      "zone": "normandy",
+      "briefingPrepared": true,
+      "sha256": "f776a3d67e1ddf3966481f3860d14f210e48d82bd3a900d65e3be302d4bb32ef"
+    }
+  ],
+  "locations": {
+    "normandy": {
+      "name": "Normandy SR-1",
+      "recordId": "WRL-normandy-sr-1"
+    },
+    "eden-prime": {
+      "name": "Eden Prime",
+      "recordId": "WRL-eden-prime"
+    },
+    "citadel": {
+      "name": "Citadelle",
+      "recordId": "WRL-citadelle"
+    },
+    "citadel-finale": {
+      "name": "Citadelle assiégée",
+      "recordId": "WRL-citadelle"
+    },
+    "therum": {
+      "name": "Thérum",
+      "recordId": "WRL-therum"
+    },
+    "feros": {
+      "name": "Féros",
+      "recordId": "WRL-feros"
+    },
+    "noveria": {
+      "name": "Novéria",
+      "recordId": "WRL-noveria"
+    },
+    "virmire": {
+      "name": "Virmire",
+      "recordId": "WRL-virmire"
+    },
+    "ilos": {
+      "name": "Ilos",
+      "recordId": "WRL-ilos"
+    }
+  },
+  "talents": {
+    "soldier": [
+      "pistols",
+      "assault-rifles",
+      "shotguns",
+      "sniper-rifles",
+      "fitness",
+      "assault-training"
+    ],
+    "engineer": [
+      "pistols",
+      "electronics",
+      "damping"
+    ],
+    "adept": [
+      "pistols",
+      "biotic-discipline"
+    ]
+  },
+  "actions": {
+    "me1Damping": {
+      "name": "Atténuation",
+      "recordId": "PWR-amortissement"
+    },
+    "me1Immunity": {
+      "name": "Immunité",
+      "recordId": "PWR-immunite"
+    },
+    "me1Adrenaline": {
+      "name": "Montée d’adrénaline ME1",
+      "recordId": "PWR-montee-d-adrenaline-me1"
+    }
+  },
+  "captures": [
+    {
+      "path": "docs/qa/p0-campaign-names/p0-normandy-carte.png",
+      "sha256": "83c239e45119888f5e576de3df51d3a2727d0952d6fc41f07e991cf6433fe927"
+    },
+    {
+      "path": "docs/qa/p0-campaign-names/p0-normandy-coque.png",
+      "sha256": "a650561adf78eb0f2e7f25b0ef3e97c9439835c47e631679b2739e989f599504"
+    }
+  ],
+  "documentSha256": "3162f45fe20cb56897b410730b18537ef2a136d93bc6f6e996370ab7568021ac",
+  "baselineCommit": "2d0b871eeb02741db1dfab035dd3639fb7d8c7bd",
+  "command": "GAME_URL=http://127.0.0.1:4231 P0_BUILD_DIR=/tmp/relay-p0-next-preview P0_NAMES_REPORT=/tmp/relay-p0-names-attempt-04/report.json node scripts/p0-french-names-browser.mjs",
+  "collectorSha256": "9a8934af42a7c5b3488c35e621ec52a2a0ae7785db3edf49c30d88dd7f63ca96",
+  "visualReview": [
+    {
+      "capture": "p0-normandy-carte.png",
+      "opened": true,
+      "observation": "Titre SR-1 et mention intérieur condensé lisibles. Sept repères et sept services cohérents avec les obstacles."
+    },
+    {
+      "capture": "p0-normandy-coque.png",
+      "opened": true,
+      "observation": "Coque et légende du dessin fixe entièrement visibles. Le dossier porte le même identifiant SR-1 ; le SR-2 est absent du volet flotte de campagne."
+    }
+  ],
+  "limits": [
+    "Le pont et la coque utilisent des éléments existants du projet. Leur géométrie exacte dans le jeu d’origine est hors de ce contrôle."
+  ]
+}

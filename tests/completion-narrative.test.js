@@ -1,12 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { newGame, unlockedZones, recruit, completeZone, zoneEncounters, winEncounter, encodeSave, decodeSave, availableCrew, setSquad, buyUpgrade } from '../src/state.js';
+import { newGame, unlockedZones, recruit, completeZone, zoneEncounters, winEncounter, encodeSave, decodeSave, availableCrew, setSquad, buyUpgrade, applyResolveVirmireInteraction } from '../src/state.js';
 import { recordVisit, getConversation, readTopic, chooseReply, migrateStoryState } from '../src/story.js';
 import { getRecruitmentContext, getCompanionRelations, getNarrativeConsequences, getNarrativeSummary, getVirmireConsequence } from '../src/completion-narrative.js';
 import { renderNarrativeSummary, renderCompanionRelations } from '../src/completion-narrative-ui.js';
 import { createBattle, performAction } from '../src/combat.js';
 import { actorFor } from '../src/game-data.js';
 import { advanceOperation, getOperationInteraction } from '../src/operations.js';
+import { RESOLVE_VIRMIRE_POIS } from '../src/resolve-virmire.js';
 
 const snapshot = state => JSON.stringify(state);
 function travel(state, zone) {
@@ -62,7 +63,7 @@ test('Liara can join after both other investigations and Virmire with a specific
   const context = getRecruitmentContext(state);
   assert.deepEqual(context.earlierDestinations.map(item => item.id), ['feros', 'noveria', 'virmire']);
   const topic = readTopic(state, 'liara', 'archaeology'); assert.equal(topic.ok, true);
-  assert.match(topic.topic.text, /Feros, Noveria, Virmire/);
+  assert.match(topic.topic.text, /Féros, Novéria, Virmire/);
   assert.ok(!topic.topic.text.includes('Ilos'));
   assert.equal(readTopic(state, 'liara', 'vigil').ok, false);
   assert.deepEqual(decodeSave(encodeSave(state)), state);
@@ -110,6 +111,27 @@ for (const choice of ['save-kaidan', 'save-ashley']) {
     assert.deepEqual(decodeSave(encodeSave(state)), state);
   });
 }
+
+test('a temporary field assignment preserves the relation and history across reload', () => {
+  const state = council();
+  assert.equal(readTopic(state, 'kaidan', 'implants').ok, true);
+  finish(state, 'therum');
+  finish(state, 'feros', 'save');
+  travel(state, 'virmire');
+  const { x, z } = RESOLVE_VIRMIRE_POIS.briefing;
+  state.position = { x, z };
+  assert.equal(applyResolveVirmireInteraction(state, 'resolve:virmire:briefing', 'send-kaidan').ok, true);
+  const loaded = decodeSave(encodeSave(state));
+  assert.ok(loaded);
+  const relation = getCompanionRelations(loaded).find(item => item.id === 'kaidan');
+  assert.deepEqual(
+    [relation.available, relation.away, relation.selected, relation.status, relation.exchanges.map(topic => topic.id)],
+    [false, true, false, 'exchanged', ['implants']],
+  );
+  assert.equal(availableCrew(loaded).includes('kaidan'), false);
+  assert.equal(loaded.lost.includes('kaidan'), false);
+  assert.match(renderCompanionRelations(loaded), /Kaidan Alenko · Échanges établis<\/h3><p>Affecté temporairement/);
+});
 
 test('both Garrus replies produce their own stored relation and consequence, without repeat rewards or rewritten advice', () => {
   for (const reply of ['procedure', 'results']) {

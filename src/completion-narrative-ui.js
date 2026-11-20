@@ -10,5 +10,11 @@ export function renderNarrativeSummary(state) {
 export function renderCompanionRelations(state) {
   const companions = getCompanionRelations(state);
   if (!companions.length) return '';
-  return `<section data-companion-relations aria-label="Liens du commando"><div class="section-label">Liens du commando</div>${companions.map(companion => `<article class="journal-entry" data-companion-relation="${esc(companion.id)}" data-relation-status="${esc(companion.status)}"><h3>${esc(companion.name)} · ${esc(companion.label)}</h3><p>${companion.available ? companion.selected ? 'Dans le groupe sélectionné.' : 'Disponible pour le prochain déploiement.' : 'Indisponible définitivement. Les échanges déjà enregistrés restent dans le dossier.'}</p>${companion.exchanges.length ? `<p class="small">Sujets abordés : ${companion.exchanges.map(topic => esc(topic.label)).join(' · ')}</p>` : ''}</article>`).join('')}</section>`;
+  return `<section data-companion-relations aria-label="Liens du commando"><div class="section-label">Liens du commando</div>${companions.map(companion => {
+    const availability = companion.away ? 'Affecté temporairement à un autre objectif.'
+      : companion.selected ? 'Dans le groupe sélectionné.'
+        : companion.available ? 'Disponible pour le prochain déploiement.'
+          : 'Indisponible définitivement. Les échanges déjà enregistrés restent dans le dossier.';
+    return `<article class="journal-entry" data-companion-relation="${esc(companion.id)}" data-relation-status="${esc(companion.status)}"><h3>${esc(companion.name)} · ${esc(companion.label)}</h3><p>${availability}</p>${companion.exchanges.length ? `<p class="small">Sujets abordés : ${companion.exchanges.map(topic => esc(topic.label)).join(' · ')}</p>` : ''}</article>`;
+  }).join('')}</section>`;
 }

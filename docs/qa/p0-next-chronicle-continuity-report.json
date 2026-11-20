@@ -1,0 +1,287 @@
+{
+  "passed": true,
+  "at": "2026-11-20T13:54:44.249Z",
+  "baseline": "2d0b871eeb02741db1dfab035dd3639fb7d8c7bd",
+  "command": "node scripts/p0-chronicle-continuity-browser.mjs",
+  "mode": "production",
+  "url": "http://127.0.0.1:4227/",
+  "sources": {
+    "src/continuity-data.js": "ac9f14d5892bf9a8d88ade581b1b07e75d0fae9d8b8216f42ac226e111f63f09",
+    "src/continuation-catalogue.js": "a49a1cce63e138cbb3a04a9492a9e00cdec9982aeb9f4f72d94f02b8b0c408e2",
+    "src/continuity.js": "79e12f28a086d12d429c882f10abd0f7c96d6fb713f21f6c3c0df388f06175a9",
+    "src/chronicles.js": "bced50d3d0344c0e6c7c0707f7955efa09026b26eab1a8f1c7bb05767fdfddb0",
+    "src/universe-ui.js": "a4a6286b9400bbe3e6c48b256c0b418b79344c39f805fe0a1f4530c5cb164f75",
+    "src/universe-data.js": "56e124a92a8446d8e1b30dd8a08e6169e8d0a65ddd0924644498031a8fe155a1",
+    "src/main.js": "1b8c291a174522c323f430c4d949a53dc05f0f4525fb0bb88ff841f88f8f0fab",
+    "scripts/build-universe-runtime.mjs": "2ba529a2b90de5bfa0f25fcee46ef66045f23999ec40c8f7540bc60d57b63bb7",
+    "tests/universe-ui.test.js": "704fd6439c955950273deaf9dfd9d988f23ba125ef7c1b0cf99e0259494a98a2",
+    "tests/chronicles.test.js": "984a57a21ffe39047f627534364899c082d0c887f61982e71158924e94d6f585",
+    "scripts/p0-chronicle-continuity-browser.mjs": "b1be44fe4f82e227a80e541b701a6e313f6053a0bae7997a6ae0a9b89f23bf2a"
+  },
+  "checks": [
+    {
+      "id": "GAL-SYS-SOURCES",
+      "exactDescription": "Suivi de production.",
+      "exactCriterion": "Aucune fiche de conception n’est automatiquement marquée Intégré.",
+      "observations": {
+        "work": "GAL",
+        "recordsCompared": 103,
+        "operation": "Catalogue comparé au registre régénéré, statut et références identiques pour chaque fiche."
+      },
+      "passed": true
+    },
+    {
+      "id": "INF-SYS-SOURCES",
+      "exactDescription": "Suivi de production.",
+      "exactCriterion": "Aucune fiche de conception n’est automatiquement marquée Intégré.",
+      "observations": {
+        "work": "INF",
+        "recordsCompared": 109,
+        "operation": "Catalogue comparé au registre régénéré, statut et références identiques pour chaque fiche."
+      },
+      "passed": true
+    },
+    {
+      "id": "GAL-CNT-DATE",
+      "exactDescription": "L’annonce BioWare place Galaxy entre ME1 et ME2 ; les index de récit donnent des repères de 2183 difficiles à concilier.",
+      "exactCriterion": "La contradiction est visible et ne se transforme pas en correction silencieuse.",
+      "observations": "Les repères contradictoires restent visibles dans les onglets. Trois liens de provenance sont affichés. Le contexte enregistré et exporté conserve son identifiant de période sans année.",
+      "passed": true
+    },
+    {
+      "id": "GAL-QA-SCOPE",
+      "exactDescription": "Contrôle de publication.",
+      "exactCriterion": "Aucune scène créée ne devient un fait officiel dans le journal ou les crédits.",
+      "observations": {
+        "battles": [
+          {
+            "mediaId": "GAL",
+            "scenarioId": "gal-jacob",
+            "actorId": "GAL-CHR-JACOB",
+            "heading": "Journal de l’essai ATB · adaptation indépendante",
+            "log": "Journal de l’essai ATB · adaptation indépendante\n\nContact hostile. Le commando attend vos ordres.\n\nJacob Taylor : Tir contrôlé.\n\nRobot — prototype subit 24 dégâts (24 sur les boucliers)."
+          }
+        ],
+        "campaignSaveSha256": "675f41a4bf52a5db64a0d94ac9b6642df5f1a31ecb2c46983d28b608ace40fdd",
+        "exportPath": "Fichier de chronique v1 local. Aucun état de campagne modifié."
+      },
+      "passed": true
+    },
+    {
+      "id": "INF-QA-SCOPE",
+      "exactDescription": "Contrôle de publication.",
+      "exactCriterion": "Aucune scène créée ne devient un fait officiel dans le journal ou les crédits.",
+      "observations": {
+        "battles": [
+          {
+            "mediaId": "INF",
+            "scenarioId": "inf-security",
+            "actorId": "INF-CHR-RANDALL",
+            "heading": "Journal de l’essai ATB · adaptation indépendante",
+            "log": "Journal de l’essai ATB · adaptation indépendante\n\nContact hostile. Le commando attend vos ordres.\n\nRandall Ezno : Tir contrôlé.\n\nSoldat de Cerberus — prototype subit 27 dégâts (25 sur les boucliers)."
+          },
+          {
+            "mediaId": "INF",
+            "scenarioId": "inf-incarceration",
+            "actorId": "INF-CHR-TURIAN",
+            "heading": "Journal de l’essai ATB · adaptation indépendante",
+            "log": "Journal de l’essai ATB · adaptation indépendante\n\nContact hostile. Le commando attend vos ordres.\n\nPrisonnier turien : Tir contrôlé.\n\nMannequin mécanique — original subit 30 dégâts (30 sur les boucliers)."
+          }
+        ],
+        "campaignSaveSha256": "675f41a4bf52a5db64a0d94ac9b6642df5f1a31ecb2c46983d28b608ace40fdd",
+        "exportPath": "Fichier de chronique v1 local. Aucun état de campagne modifié."
+      },
+      "passed": true
+    },
+    {
+      "id": "CUT-CASE-CALESTON",
+      "exactDescription": "Hub abandonné répertorié.",
+      "exactCriterion": "La fiche cite une provenance et ne présente pas sa reconstruction comme un contenu final officiel.",
+      "observations": {
+        "sources": [
+          {
+            "id": "CUT-CALESTON",
+            "title": "Caleston (Cut)",
+            "kind": "Wiki indexé",
+            "url": "https://masseffect.fandom.com/wiki/Caleston_(Cut)"
+          }
+        ],
+        "archiveOnly": true,
+        "playable": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CUT-CASE-LEGION",
+      "exactDescription": "Ordre de recrutement antérieur signalé.",
+      "exactCriterion": "La fiche cite une provenance et ne présente pas sa reconstruction comme un contenu final officiel.",
+      "observations": {
+        "sources": [
+          {
+            "id": "CUT-LEGION",
+            "title": "Legion : Cut Content",
+            "kind": "Wiki indexé",
+            "url": "https://masseffect.fandom.com/wiki/Legion"
+          }
+        ],
+        "archiveOnly": true,
+        "playable": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CUT-CASE-DARK",
+      "exactDescription": "Idée décrite comme peu développée.",
+      "exactCriterion": "La fiche cite une provenance et ne présente pas sa reconstruction comme un contenu final officiel.",
+      "observations": {
+        "sources": [
+          {
+            "id": "CUT-DARK",
+            "title": "Entretien Karpyshyn rapporté par PC Gamer",
+            "kind": "Presse citant un auteur",
+            "url": "https://www.pcgamer.com/mass-effect-3-series-former-lead-writer-reveals-original-ending-ideas/"
+          }
+        ],
+        "archiveOnly": true,
+        "playable": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CUT-CASE-TIM",
+      "exactDescription": "Boss abandonné annoncé dans Final Hours.",
+      "exactCriterion": "La fiche cite une provenance et ne présente pas sa reconstruction comme un contenu final officiel.",
+      "observations": {
+        "sources": [
+          {
+            "id": "CUT-FINAL",
+            "title": "The Final Hours of Mass Effect 3",
+            "kind": "Publication originale",
+            "url": "https://www.me3finalhours.com/"
+          }
+        ],
+        "archiveOnly": true,
+        "playable": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CUT-CASE-ARK",
+      "exactDescription": "Fin de suivi solo annoncée en 2017.",
+      "exactCriterion": "La fiche cite une provenance et ne présente pas sa reconstruction comme un contenu final officiel.",
+      "observations": {
+        "sources": [
+          {
+            "id": "CUT-ARK",
+            "title": "BioWare : Andromeda update",
+            "kind": "Source officielle",
+            "url": "https://blog.bioware.com/2017/08/19/mass-effect-andromeda/"
+          }
+        ],
+        "archiveOnly": true,
+        "playable": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CUT-CASE-INDOC",
+      "exactDescription": "Intention non revendiquée par Chris Hepler.",
+      "exactCriterion": "La fiche cite une provenance et ne présente pas sa reconstruction comme un contenu final officiel.",
+      "observations": {
+        "sources": [
+          {
+            "id": "CUT-INDOC",
+            "title": "Témoignage Chris Hepler sur l’endoctrinement",
+            "kind": "Presse citant un auteur",
+            "url": "https://www.gamesradar.com/mass-effect-3s-indoctrination-fan-theory-is-incorrect-but-the-devs-love-it/"
+          }
+        ],
+        "archiveOnly": true,
+        "playable": false
+      },
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/screenshots/p0-next-galaxy-chronology.png",
+      "sha256": "b3d57d80d488c8f76630310087117d7298c23a97885001fff2acfb1a28c07849",
+      "visualReview": "Repères contradictoires lisibles dans l’en-tête avec le panneau des sources fermé."
+    },
+    {
+      "file": "docs/screenshots/p0-next-infiltrator-atb-log.png",
+      "sha256": "e9c9f5c787d5739ae63b20577515df83ed3bbb15f8a127b05872f34db6b74d5e",
+      "visualReview": "Le journal indique l’adaptation et montre l’ordre de tir exécuté. Les lignes suivantes sont accessibles par défilement."
+    },
+    {
+      "file": "docs/screenshots/p0-next-cut-archive.png",
+      "sha256": "7e165dbdb73ae0fe7cc0264d60ed08fbe1f7c2fd770321fcd214bab54c928195",
+      "visualReview": "La portée documentaire est lisible sous le titre. Les liens de provenance des six fiches ont été contrôlés dans le navigateur."
+    }
+  ],
+  "served": {
+    "index.html": "254b57317f3f9b094d2016c79f0ebfa9f1cac2d624b8b01e66bd865cb4b0ef6b",
+    "assets/index-BgjKG6LW.css": "e9d58ada668da4a50e63d7110545388b5781cb3dd55e551c08c85984fa90ba59",
+    "assets/three-DNPJBOhX.js": "719e128bcd642e730dbdf4c9e13d2e8dc305109315411fda11dc7c0b435c5a0b",
+    "assets/index-B3v58h65.js": "eacad2d6f89538564015df809ba6826f6086c19643e4aa95db14c1a06dfa01cf",
+    "assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+    "assets/boss-atlas.png": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4",
+    "assets/props-atlas.png": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875",
+    "assets/npc-atlas.png": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
+    "assets/vehicle-atlas.png": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b",
+    "assets/shepard-walk-atlas.png": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476",
+    "assets/shepard-female-walk-atlas.png": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc",
+    "assets/shepard-female-combat-atlas.png": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+    "assets/shepard-male-combat-atlas.png": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+    "assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+    "assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+    "assets/companion-jenkins-combat.png": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+    "assets/enemy-geth-combat.png": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+    "assets/enemy-geth-sniper-combat.png": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+    "assets/enemy-geth-destroyer-combat.png": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+    "assets/enemy-husk-combat.png": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+    "assets/enemy-krogan-combat.png": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+    "assets/enemy-rachni-combat.png": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+    "assets/enemy-creeper-combat.png": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+    "assets/enemy-asari-combat.png": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+    "assets/joker-seated.png": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+    "assets/boss-saren-combat.png": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318",
+    "assets/boss-benezia-combat.png": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788",
+    "assets/boss-thorian-combat.png": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37",
+    "assets/boss-saren-final-combat.png": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883",
+    "assets/frontier-enemies.png": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9",
+    "assets/citadel-keyart.png": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0",
+    "assets/frontier-npcs.png": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc",
+    "assets/vehicle-mako-directions.png": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74",
+    "assets/horizon-npcs.png": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601",
+    "assets/horizon-enemies.png": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0",
+    "assets/horizon-fauna.png": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+    "assets/horizon-fleet-me1.png": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+    "assets/universe-ui-CcnUo4Uq.css": "b81b293364b76af8258b70dffa35e4c472a079f7fa71fd76b8ade9ca5d4fb73e",
+    "assets/continuity-Dk2OKnrx.js": "e9681780bf7b4dc7f4e7b268619f397cbe3a21b4ebfd1d73905d2a7490bfd9ab",
+    "assets/universe-ui-BZsf7HSn.js": "1c30d004255dabbfdb54f2b317a2b7cafe0bc9555322ffded58adcba4c445402",
+    "assets/advance-continuity-D5yXsry3.js": "1e2b60f9d53a350544575b4a69850d40cdd1b6d48fbbc686f2a67db61ac76f36",
+    "assets/universe-equipment-Cv3WEVtO.js": "0ba896ce8ccda65ce2914db9455cf68a2fde018c731064f49b7646cc414a16ab",
+    "assets/chronicles-DoAtBx7p.js": "e4fa9e2c348abf3f8d82b08226159b2bcd84502645d220f2f6195efdb0de7e63",
+    "assets/universe-actors-BCpEkjQR.js": "f9933bfb9b5effd232211d77dffc05b5c70abda9849619913f007bf936ce8c36",
+    "assets/expansion-Bb9N48PO.js": "088be5dc841c9822eefc5d9719efb063ec9a33e2c27d17f1660688b54d40220b",
+    "assets/universe-data-D-GEkGq3.js": "a7f215338eb1110c6f904c12920efbc5023e0e62c989e382d761c35d4928d4b1",
+    "assets/continuation-catalogue-zY9-3QtT.js": "6ea0c33cb6df8613b43d9f967df5a6e01cede2de234aee30b6843fcedb2cf56b"
+  },
+  "limitations": [
+    "La sauvegarde témoin est produite par newGame et importée par le jeu sans progression.",
+    "Le test vérifie les liens et le périmètre affichés par le registre. Les pièces externes n’ont pas été consultées.",
+    "Les tirs sont des actions ATB dans les bancs existants. Les campagnes mobiles, les scènes d’origine et les propositions d’archives restent distinctes."
+  ],
+  "nativeVerification": {
+    "tests": 58,
+    "passed": 58,
+    "command": "node --test tests/continuity.test.js tests/continuity-data.test.js tests/universe-ui.test.js tests/chronicles.test.js tests/chronicle-story.test.js tests/continuation-catalogue.test.js"
+  },
+  "captureStage": "Vérification avant la promotion des statuts dans les catalogues et les classeurs."
+}

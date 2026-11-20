@@ -1,17 +1,18 @@
 /** Original fan-game staging; story milestones live in game-data.js and story-data.js. */
 import { getLevelLayout } from './level-layout-data.js';
+import { CHAPTERS } from './game-data.js';
 import { FRONTIER_NPCS } from './frontier-characters.js';
 import { HORIZON_NPCS } from './horizon-characters.js';
 const poi = (zone, suffix, label, type, x, z, extra = {}) => ({
   id: `${zone}:${suffix}`, label, type, x, z, ...extra,
 });
 
-function expedition(id, label, subtitle, theme, entries, overrides = {}) {
+function expedition(id, subtitle, theme, entries, overrides = {}) {
   const coordinates = [[0, 12], [-9, 5], [5, 6], [-7, -5], [5, -10], [0, -17], [-4, 18]];
   const suffixes = ['arrival', 'cache', 'encounter-1', 'encounter-2', 'boss', 'objective', 'exit'];
   const types = ['dialogue', 'terminal', 'encounter', 'encounter', 'encounter', 'objective', 'exit'];
   return {
-    id, label, subtitle, theme,
+    id, label: CHAPTERS[id].name, subtitle, theme,
     bounds: { minX: -20, maxX: 20, minZ: -21, maxZ: 21 },
     spawn: { x: 0, z: 17 }, arena: { x: 0, z: 0 },
     pois: entries.map((name, i) => poi(id, suffixes[i], name, types[i], ...coordinates[i], i === 6 ? { target: 'normandy' } : {})),
@@ -47,28 +48,28 @@ export const WORLD_ZONES = {
       poi('normandy', 'talk-liara', 'Liara T’Soni', 'dialogue', 3.7, -2, { conversationId: 'liara', characterId: 'liara', actorPosition: { x: 5.1, z: -2.4 } }),
     ],
   },
-  'eden-prime': expedition('eden-prime', 'Eden Prime', 'UTOPIA · FRONTIÈRE DE L’ALLIANCE', 'eden', [
+  'eden-prime': expedition('eden-prime', 'UTOPIA · FRONTIÈRE DE L’ALLIANCE', 'eden', [
     'Premier contact', 'Module de ravitaillement', 'Patrouille geth', 'Colons transformés', 'Défense de la balise', 'Balise prothéenne', 'Zone d’extraction',
   ]),
-  citadel: expedition('citadel', 'La Citadelle', 'PRÉSIDIUM · ESPACE CONCILIEN', 'citadel', [
+  citadel: expedition('citadel', 'PRÉSIDIUM · ESPACE CONCILIEN', 'citadel', [
     'Capitaine Anderson', 'Marchand du Présidium', 'Garrus Vakarian', 'Tali — preuves', 'Urdnot Wrex', 'Audience du Conseil', 'Baie d’amarrage',
   ]),
-  therum: expedition('therum', 'Thérum', 'KNOSSOS · EXPÉDITION ARCHÉOLOGIQUE', 'therum', [
+  therum: expedition('therum', 'KNOSSOS · EXPÉDITION ARCHÉOLOGIQUE', 'therum', [
     'Signal de détresse', 'Équipement de fouille', 'Avant-poste geth', 'Éclaireurs geths', 'Protection du site', 'Liara T’Soni', 'Navette d’extraction',
   ]),
-  feros: expedition('feros', 'Féros', 'ATTICAN BETA · ESPÉRANCE DE ZHU', 'feros', [
+  feros: expedition('feros', 'ATTICAN BETA · ESPÉRANCE DE ZHU', 'feros', [
     'La colonie', 'Archives ExoGeni', 'Barrage geth', 'Créatures du Thorien', 'Le Thorien', 'Le sort de la colonie', 'Retour au Normandy',
   ], { arena: { x: 0, z: -4 } }),
-  noveria: expedition('noveria', 'Novéria', 'NÉBULEUSE DU CHEVAL · PORT HANSHAN', 'noveria', [
+  noveria: expedition('noveria', 'NÉBULEUSE DU CHEVAL · PORT HANSHAN', 'noveria', [
     'Contrôle de sécurité', 'Terminal de recherche', 'Sécurité corrompue', 'Invasion rachni', 'Bénézia', 'La reine rachni', 'Navette de liaison',
   ]),
-  virmire: expedition('virmire', 'Virmire', 'HOC · SENTRY OMÉGA', 'virmire', [
+  virmire: expedition('virmire', 'HOC · SENTRY OMÉGA', 'virmire', [
     'Camp galarien', 'Rapport d’infiltration', 'Défense côtière', 'Installation geth', 'Confrontation avec Saren', 'L’assaut de Virmire', 'Point d’extraction',
   ]),
-  ilos: expedition('ilos', 'Ilos', 'REFUGE · PANGAEA', 'ilos', [
+  ilos: expedition('ilos', 'REFUGE · PANGAEA', 'ilos', [
     'Les ruines silencieuses', 'Archives anciennes', 'Gardiens geths', 'Passage verrouillé', 'Dernière défense geth', 'Vigil', 'Canal de transmission',
   ]),
-  'citadel-finale': expedition('citadel-finale', 'La Citadelle', 'TOUR DU CONSEIL · ASSAUT FINAL', 'finale', [
+  'citadel-finale': expedition('citadel-finale', 'TOUR DU CONSEIL · ASSAUT FINAL', 'finale', [
     'Retour à la Citadelle', 'Canal de l’Alliance', 'Tour envahie', 'Ascension de la tour', 'Saren', 'Le destin du Conseil', 'Fin de l’opération',
   ]),
 };

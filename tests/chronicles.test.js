@@ -127,6 +127,31 @@ test('real tactical outcomes are scoped, persisted once and award no campaign re
   assert.deepEqual(campaign, beforeCampaign); assert.equal(own(result.session, 'credits'), false);
 });
 
+test('Galaxy and Infiltrator persist only the outcome of their own tactical adaptation', () => {
+  const store = storage(), campaign = encodeSave(newGame());
+  store.setItem('relay-chronicles.save.v1', campaign);
+  const galaxy = createChronicle(context('GAL'), 'gal-jacob');
+  const infiltrator = createChronicle(context('INF'), 'inf-security');
+  assert.equal(saveChronicle(store, galaxy).ok, true);
+  assert.equal(saveChronicle(store, infiltrator).ok, true);
+
+  for (const session of [galaxy, infiltrator, createChronicle(context('INF'), 'inf-incarceration')]) {
+    const started = startChronicleBattle(session);
+    assert.equal(started.ok, true);
+    simulate(started.battle);
+    const other = session.context.mediaId === 'GAL' ? infiltrator : galaxy;
+    const otherKey = chronicleStorageKey(other.context), otherSave = store.getItem(otherKey);
+    assert.equal(finishChronicleBattle(other, started.battle).ok, false);
+    const result = finishChronicleBattle(session, started.battle);
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.session, { ...session, cleared: result.won ? [session.scenarioId] : [] });
+    assert.equal(saveChronicle(store, result.session).ok, true);
+    assert.deepEqual(loadChronicle(store, session.context).session, result.session);
+    assert.equal(store.getItem(otherKey), otherSave);
+    assert.equal(store.getItem('relay-chronicles.save.v1'), campaign);
+  }
+});
+
 test('alternative squad histories cannot coexist in one workshop party', () => {
   for (const scenario of CHRONICLE_SCENARIOS.filter(candidate => candidate.exclusiveActorGroups?.length)) {
     const session = createChronicle(scenario.context, scenario.id);

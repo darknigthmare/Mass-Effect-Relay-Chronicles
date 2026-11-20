@@ -49,7 +49,8 @@ export const MEDIA_PERIODS = freeze([
   ]),
   work('GAL', 'Mass Effect: Galaxy', 'mobile-game', 'milky-way', [
     period('gal', 'Enquête de Jacob — position chronologique contestée', ['GAL-BIO', 'GAL-STORY', 'GAL-JATH'], 'GAL-CNT-DATE', {
-      uncertainty: 'BioWare indique entre ME1 et ME2 ; les repères secondaires divergent. Aucune année précise n’est retenue.',
+      disputed: true,
+      uncertainty: 'BioWare situe Galaxy entre Mass Effect et Mass Effect 2. Des index secondaires donnent des repères de 2183 difficiles à concilier avec cette annonce. La date des événements reste indéterminée.',
     }),
   ]),
   work('REV', 'Mass Effect: Revelation', 'novel', 'milky-way', [
@@ -156,7 +157,8 @@ export const MEDIA_PERIODS = freeze([
     verificationNote: 'L’allégation d’annulation en octobre 2026 figurant dans le catalogue n’a pas été validée. Elle n’est pas retenue comme fait ; les données originales restent des documents à vérifier.',
   }),
   work('CUT', 'Mass Effect : contenus coupés et concepts abandonnés', 'cut-content', 'unknown', [], {
-    locked: true, timeline: 'unassigned', reason: 'Archives de contenus coupés, concepts et allégations : aucune insertion automatique dans la continuité publiée.',
+    locked: true, timeline: 'unassigned',
+    reason: 'Archive documentaire de contenus coupés et de concepts. Les reconstructions proposées relèvent du projet de fan et restent hors de la continuité publiée.',
   }),
 ]);
 

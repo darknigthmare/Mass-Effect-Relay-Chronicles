@@ -121,7 +121,7 @@ function armorControls(state, ui) {
 
 /** A vector portrait study; the game's existing sprite silhouette is shown separately. */
 export function customizationFaceSVG(draft, prefix = 'custom-face') {
-  const face = draft.customization.face, armor = draft.customization.armor, palette = getCustomizationPalette(draft.customization);
+  const face = draft.customization.face, palette = getCustomizationPalette(draft.customization);
   const female = draft.appearance === 'female', veteran = face.preset === 'veteran', angular = veteran || face.preset === 'colonist';
   const spacer = face.preset === 'spacer';
   const jaw = female ? (angular ? 50 : spacer ? 33 : 39) : (angular ? 65 : spacer ? 45 : 56), cheeks = female ? (spacer ? 60 : 66) : (spacer ? 69 : 76);
@@ -131,7 +131,15 @@ export function customizationFaceSVG(draft, prefix = 'custom-face') {
     swept: 'M103 183Q72 115 117 65Q162 18 226 44Q290 39 292 128L273 181L264 116Q221 139 170 93Q157 141 117 150L119 185Z',
     tied: 'M101 177Q86 125 105 88Q122 39 193 38Q259 38 282 82Q304 127 281 181L268 150L263 109Q226 121 184 87L119 126L118 177Z',
   }[face.hairStyle] || '';
-  return `<svg viewBox="0 0 390 440" class="custom-face-art" role="img" aria-label="Portrait de conception ${female ? 'féminin' : 'masculin'}, ${esc(optionLabel('facePresets', face.preset))}"><defs>
+  const portraitDescription = [
+    `Portrait de conception ${female ? 'féminin' : 'masculin'}`,
+    optionLabel('facePresets', face.preset),
+    `teint ${optionLabel('skinTones', face.skinTone).toLowerCase()}`,
+    `iris ${optionLabel('eyeColors', face.eyeColor).toLowerCase()}`,
+    `coiffure ${optionLabel('hairStyles', face.hairStyle).toLowerCase()}`,
+    `cheveux ${optionLabel('hairColors', face.hairColor).toLowerCase()}`,
+  ];
+  return `<svg viewBox="0 0 390 440" class="custom-face-art" role="img" aria-label="${esc(portraitDescription.join(', '))}"><defs>
     <linearGradient id="${prefix}-skin"><stop stop-color="${palette.skin}"/><stop offset=".56" stop-color="${palette.skin}"/><stop offset="1" stop-color="#241c22"/></linearGradient>
     <linearGradient id="${prefix}-armor" x2=".8" y2="1"><stop stop-color="${palette.secondary}"/><stop offset=".5" stop-color="${palette.primary}"/><stop offset="1" stop-color="#0b1520"/></linearGradient>
     <radialGradient id="${prefix}-light"><stop stop-color="#90d8e0" stop-opacity=".15"/><stop offset="1" stop-color="#90d8e0" stop-opacity="0"/></radialGradient>
@@ -155,12 +163,11 @@ export function customizationFaceSVG(draft, prefix = 'custom-face') {
     <path d="M67 345L81 339L110 403H96Z" fill="${palette.accent}"/><path d="M85 337L91 334L121 403H115Z" fill="#dfdfd4"/>
     <path d="M151 368H241L254 429H137Z" fill="${palette.secondary}" opacity=".8" stroke="#bed4e0" stroke-opacity=".25"/>
     <text x="166" y="399" fill="#e2edf1" font-size="22" font-family="Arial,sans-serif" font-weight="bold">N<tspan fill="${palette.accent}">7</tspan></text>
-    ${armor.helmet !== 'hidden' && armor.helmet !== 'off' ? `<path d="M117 167L127 118Q191 77 262 120L277 168L263 226L237 245H154L125 224Z" fill="${palette.primary}" fill-opacity=".93" stroke="#a5c3d1" stroke-opacity=".6"/><path d="M126 161Q193 144 269 161L259 190Q195 203 135 187Z" fill="#68b9d1" fill-opacity=".7"/><path d="M156 223H236" stroke="${palette.secondary}" stroke-width="8"/>` : ''}
     </svg>`;
 }
 
 function weaponDiagram(item) {
-  const type = item?.weaponType || 'assault', short = type === 'pistol', sniper = type === 'sniper', shotgun = type === 'shotgun';
+  const type = item.weaponType, short = type === 'pistol', sniper = type === 'sniper', shotgun = type === 'shotgun';
   return `<svg viewBox="0 0 400 150" class="custom-weapon-diagram" role="img" aria-label="Schéma de catégorie : ${esc(WEAPON_LABELS[type])}"><defs><linearGradient id="custom-weapon-metal" x2="0" y2="1"><stop stop-color="#8398a5"/><stop offset=".44" stop-color="#344959"/><stop offset="1" stop-color="#142430"/></linearGradient></defs><path d="M${short ? 114 : 48} 58L${short ? 155 : 88} 47H${short ? 236 : 290}L${short ? 259 : 308} 65V85H${short ? 192 : 243}L${short ? 170 : 222} 116H${short ? 146 : 196}L${short ? 153 : 207} 84H${short ? 114 : 100}L${short ? 105 : 70} 103H${short ? 92 : 37}Z" fill="url(#custom-weapon-metal)" stroke="#90b5c4" stroke-width="1.5"/><path d="M${short ? 235 : 283} 60H${sniper ? 379 : short ? 286 : 350}V76H${short ? 235 : 283}Z" fill="#324754" stroke="#9ebbc8"/><path d="M${short ? 129 : 117} 56H${short ? 206 : 248}V64H${short ? 129 : 117}Z" fill="#b0c3c8"/><path d="M${short ? 135 : 143} 69H${short ? 183 : 203}" stroke="#e16758" stroke-width="5"/>${sniper ? '<path d="M160 34H246V45H160Z" fill="#6d8999"/><rect x="171" y="28" width="61" height="15" rx="5" fill="#233b4b" stroke="#9bb8c5"/>' : ''}${shotgun ? '<path d="M248 87H344V96H248Z" fill="#3c5666" stroke="#86a1af"/>' : ''}<path d="M27 132H376" stroke="#7190a2" stroke-opacity=".25"/><text x="200" y="145" text-anchor="middle" fill="#90acbc" font-family="Arial,sans-serif" font-size="8" letter-spacing="3">${esc(WEAPON_LABELS[type].toUpperCase())}</text></svg>`;
 }
 
@@ -186,7 +193,6 @@ function previewMarkup(state, ui) {
     <div class="custom-pose-controls" role="group" aria-label="Pose de l’aperçu">${Object.entries(CUSTOMIZATION_POSES).map(([id, label]) => `<button data-do="custom-pose" data-id="${id}" aria-pressed="${pose === id}" class="${pose === id ? 'selected' : ''}" ${id !== 'field' && !combatFrames?.[id] ? 'disabled title="Pose indisponible pour cette apparence"' : ''}>${label}</button>`).join('')}</div>
     <div class="custom-view-controls" aria-label="Vue du sprite" ${combat ? 'aria-describedby="custom-pose-view-note"' : ''}>${VIEWS.map(([id, label]) => `<button data-do="custom-view" data-id="${id}" aria-pressed="${!combat && (ui.customView || 'front') === id}" aria-label="Vue ${label.toLowerCase()}" class="${!combat && (ui.customView || 'front') === id ? 'selected' : ''}" ${combat ? 'disabled' : ''}>${label}</button>`).join('')}</div>
     ${combat ? '<p class="custom-pose-note" id="custom-pose-view-note">Vue trois-quarts fixe. Retrouvez les quatre directions en mode Terrain.</p>' : ''}
-    ${tab === 'weapons' ? `<div class="custom-equipped-weapon">${weaponDiagram(weapon)}<span>Schéma de catégorie</span></div>` : ''}
     <p class="custom-render-note">${combat ? 'Pose N7. Arme illustrée générique ; consultez la fiche pour le matériel équipé.' : tab === 'character' ? 'Traits et coiffure sur le portrait. Teint et couleurs repris en jeu.' : 'Couleurs affichées sur la tenue N7. Les objets sélectionnés déterminent les bonus.'}${draft.customization.armor.helmet === 'combat' ? combat ? ' Casque de combat affiché.' : ' Casque réservé aux poses de combat.' : ''}</p>
     </section>`;
 }
@@ -209,7 +215,8 @@ function inspectedEquipmentMarkup(state, ui, proposed) {
   const rows = candidate ? comparisonRows(proposed, actorFor('shepard', candidate), true) : [];
   const warning = candidate ? itemCompatibility(candidate, 'shepard', detailed.id).warning : null;
   const returned = candidate ? trial.returnedMods : [];
-  return `<section class="custom-item-detail" data-custom-inspection="${esc(detailed.id)}" data-inspection-id="${esc(detailed.id)}" data-inspection-slot="${slot}" data-inspection-status="${status}"><span class="eyebrow">Objet consulté · ${esc(itemCategory(detailed))}</span><h4>${esc(detailed.name)}</h4><p class="custom-maker">${esc(detailed.manufacturer)}</p><p>${esc(detailed.detail || detailed.description)}</p><dl><div><dt>Niveau requis</dt><dd>${detailed.level}</dd></div><div><dt>Emplacement</dt><dd>${esc(SLOT_LABELS[slot])}</dd></div>${detailed.spectre ? '<div><dt>Accès</dt><dd>Spectre</dd></div>' : ''}</dl>
+  const diagram = slot === 'weapon' ? `<figure class="custom-inspected-weapon" data-weapon-family="${esc(detailed.weaponType)}">${weaponDiagram(detailed)}<figcaption>Schéma de famille · silhouette générique</figcaption></figure>` : '';
+  return `<section class="custom-item-detail" data-custom-inspection="${esc(detailed.id)}" data-inspection-id="${esc(detailed.id)}" data-inspection-slot="${slot}" data-inspection-status="${status}"><span class="eyebrow">Objet consulté · ${esc(itemCategory(detailed))}</span><h4>${esc(detailed.name)}</h4><p class="custom-maker">${esc(detailed.manufacturer)}</p>${diagram}<p>${esc(detailed.detail || detailed.description)}</p><dl><div><dt>Niveau requis</dt><dd>${detailed.level}</dd></div><div><dt>Emplacement</dt><dd>${esc(SLOT_LABELS[slot])}</dd></div>${detailed.spectre ? '<div><dt>Accès</dt><dd>Spectre</dd></div>' : ''}</dl>
     <div class="custom-item-effects"><h5>Effet sur la configuration préparée</h5>${status === 'unavailable' ? `<p class="custom-item-unavailable" role="status">${esc(trial.reason || 'Cette dotation ne peut pas être préparée.')}</p>` : status === 'prepared' ? '<p>Cet objet est déjà préparé.</p>' : `<p class="custom-item-comparison-caption">Brouillon actuel → Avec cet objet</p>${rows.length ? rows.map(row => statMarkup(row, true)).join('') : '<p>Aucune variation de ces statistiques.</p>'}<p>Utilisez le bouton + pour préparer cet objet.</p>`}
     ${returned.length ? `<div class="custom-returned-modules"><p>Modules remis dans le stock au remplacement :</p><ul>${returned.map(id => `<li>${esc(ITEMS[id]?.name || id)}</li>`).join('')}</ul></div>` : ''}
     ${warning ? `<p class="custom-training-warning">${esc(warning)}</p>` : ''}</div></section>`;

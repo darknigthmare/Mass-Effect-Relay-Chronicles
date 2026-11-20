@@ -48,6 +48,7 @@ const WEAPON_TRACE_STYLES = {
   shotgun: { count: 5, burstExtra: 2, radius: .024, duration: .12, spread: .7, color: 0xffb577 },
   sniper: { count: 1, burstExtra: 0, radius: .012, duration: .22, spread: 0, color: 0xe2f3ff },
 };
+const BALLISTIC_ORDERS = new Set(['shoot', 'burst', 'signature']);
 const ASSET_BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
 const COLORS = { operation: 0xc09be9, dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
 const TAU = Math.PI * 2;
@@ -1556,6 +1557,7 @@ export class WorldView {
   setBattle(battle) {
     if (battle && this.isVehicleMounted()) this._dismountVehicle();
     if (battle && battle !== this.battle) this.battleArena = this.getCombatArena();
+    if (!battle && this.battle && this.effects?.length) this._clearEffects();
     this.battle = battle;
     if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); } this.battleActors.clear(); this.battleArena = null; return; }
     const entries = battle.actors || [...(battle.party || []).map(a => ({ ...a, team: 'party' })), ...(battle.enemies || []).map(a => ({ ...a, team: 'enemy' }))];
@@ -1575,7 +1577,7 @@ export class WorldView {
         : new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * (enemy?enemySpacing:2.9));
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
       this._groundActor(actor);
-      if (actor.lastHp !== null && state.hp < actor.lastHp) { actor.poseTime = .35; this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.3, 0)), enemy ? 0xffae79 : 0xf0c7a7); }
+      if (actor.lastHp !== null && state.hp < actor.lastHp) actor.poseTime = .35;
       if (actor.lastShield !== null && state.shield < actor.lastShield) actor.shieldFlash = .35;
       const animationAllowed = !!this._combatAnimationConfig(actor, state);
       if (animationAllowed && actor.alive !== (state.hp > 0)
@@ -1594,32 +1596,79 @@ export class WorldView {
     const source = this.battleActors.get(event.actorId || event.sourceId || event.actor), target = this.battleActors.get(event.targetId || event.target);
     const type = String(event.type || event.kind || '').toLowerCase();
     const action = String(event.actionId || event.power || '').toLowerCase();
+    const shot = BALLISTIC_ORDERS.has(action);
     if (source) {
       source.poseTime = .3;
       const posed = this._combatAnimationConfig(source);
       const canShowAction = !posed || source.alive && !(source.combatPose === 'hit' && source.combatPoseTime > 0);
       if (type === 'action' && canShowAction) { source.combatPose = ['shoot', 'burst', 'signature'].includes(action) ? 'aim' : 'power'; source.combatPoseTime = .7; }
     }
-    if (target) {
+    if (target && (!shot || type === 'damage')) {
       target.poseTime = .24;
       if (type === 'damage' && (!this._combatAnimationConfig(target) || target.alive)) { target.combatPose = 'hit'; target.combatPoseTime = .4; }
     }
     if (this.visualAccessibility?.particles === false) return;
+    if (shot && target && ['damage', 'blocked', 'resist'].includes(type)) {
+      this._weaponImpact(target, event, type);
+      return;
+    }
     if (type === 'heal' || type === 'revive' || ['medigel', 'unity', 'barrier', 'cover', 'reposition'].includes(action)) {
       const actor = target || source; if (actor) this._impact(actor.group.position.clone().add(new THREE.Vector3(0, 1.1, 0)), ['medigel', 'unity'].includes(action) || type === 'heal' ? 0x84e3bb : 0x80bddd, 1.5);
       return;
     }
     if (source && target && type === 'action' && source !== target) {
       const fromHeight=['armature','colossus'].includes(source.key)?source.height*.62:1.4,toHeight=['armature','colossus'].includes(target.key)?target.height*.62:1.2;
-      const from = source.group.position.clone().add(new THREE.Vector3(0, fromHeight, 0)), to = target.group.position.clone().add(new THREE.Vector3(0, toHeight, 0));
+      const from = source.group.position.clone().add(new THREE.Vector3(0, fromHeight, 0));
+      const to = target.group.position.clone().add(new THREE.Vector3(0, toHeight, 0));
+      if (shot) {
+        this._weaponContact(target, to);
+        this._weaponContact(source, from, true);
+        const outward = to.clone().sub(from).setY(0).normalize();
+        from.addScaledVector(outward, Math.min(.9, source.height * .2));
+        this._muzzleFlash(from, source.state, event);
+        if (this._weaponTraces(source.state, from, to, action)) return;
+      }
       const biotic = /biotic|warp|lift|throw|singularity|stasis/.test(action), tech = /tech|overload|sabotage|hack/.test(action);
       const color = action === 'acid' ? 0xb6d16d : biotic ? 0xa9a2ff : tech ? 0x7ee5ed : 0xffcf96;
       if (action === 'strike') { source.group.position.add(to.clone().sub(from).normalize().multiplyScalar(.8)); this._impact(to, 0xf3b391, 1.3); return; }
-      if (['shoot', 'burst', 'signature'].includes(action) && this._weaponTraces(source.state, from, to, action)) return;
       const line = new THREE.Mesh(new THREE.CylinderGeometry(biotic ? .13 : .045, biotic ? .13 : .045, from.distanceTo(to), 8), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .9, depthWrite: false }));
       line.position.copy(from).add(to).multiplyScalar(.5); line.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), to.clone().sub(from).normalize());
-      this.particles.add(line); this.effects.push({ object: line, time: .18, max: .18, kind: 'beam' }); this._impact(to, color, biotic ? 1.8 : 1);
+      this.particles.add(line); this.effects.push({ object: line, time: .18, max: .18, kind: 'beam' });
+      if (!shot) this._impact(to, color, biotic ? 1.8 : 1);
     } else if (target && ['damage', 'blocked', 'resist', 'status'].includes(type)) this._impact(target.group.position.clone().add(new THREE.Vector3(0, 1.2, 0)), ['blocked','resist'].includes(type) ? 0xb0a2e4 : 0xf5b282);
+  }
+
+  _weaponContact(actor, position = actor.group.position.clone().add(new THREE.Vector3(0, actor.height * .5, 0)), muzzle = false) {
+    if (!actor.body) return position;
+    actor.body.getWorldPosition(position);
+    if (['armature', 'colossus'].includes(actor.key)) position.y += actor.height * .12;
+    else if (muzzle) position.y += actor.height * .15 * actor.body.scale.y;
+    return position;
+  }
+
+  _muzzleFlash(position, state, event) {
+    const weaponType = state?.weaponType;
+    const color = typeof weaponType === 'string' && Object.hasOwn(WEAPON_TRACE_STYLES, weaponType)
+      ? WEAPON_TRACE_STYLES[weaponType].color : 0xffcf96;
+    const flash = new THREE.Mesh(new THREE.OctahedronGeometry(.20),
+      new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .8, depthWrite: false }));
+    flash.position.copy(position);
+    flash.userData.shotSource = event.actorId;
+    flash.userData.shotAt = event.at;
+    this.particles.add(flash);
+    this.effects.push({ object: flash, time: .09, max: .09, kind: 'muzzle-flash' });
+  }
+
+  _weaponImpact(target, event, type) {
+    // A native burst can report several damage packets for the same target at
+    // one instant. Play one impact cue for them, preserving every result.
+    const key = Number.isFinite(event.at) ? JSON.stringify([event.at, event.actorId, event.actionId, target.id]) : null;
+    if (key && this.effects.some(effect => effect.object.userData.shotImpact === key)) return;
+    const color = type !== 'damage' ? 0xb0a2e4 : event.shieldDamage > 0 ? 0x83d0ed : 0xf5b282;
+    const impact = this._impact(this._weaponContact(target), color);
+    impact.userData.shotImpact = key;
+    impact.userData.shotTarget = target.id;
+    impact.userData.shotAt = event.at;
   }
 
   _weaponTraces(state, from, to, action) {
@@ -1648,7 +1697,6 @@ export class WorldView {
       if (typeof state.weaponName === 'string') line.userData.weaponName = state.weaponName;
       this.particles.add(line); this.effects.push({ object: line, time: duration, max: duration, kind: 'weapon-trace' });
     }
-    this._impact(to, style.color, signature ? 1.25 : 1);
     return true;
   }
 
@@ -1656,6 +1704,7 @@ export class WorldView {
     if (this.visualAccessibility?.particles === false) return;
     const ring = new THREE.Mesh(new THREE.SphereGeometry(.3 * size, 12, 8), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .7, wireframe: true, depthWrite: false })); ring.position.copy(position); this.particles.add(ring);
     this.effects.push({ object: ring, time: .42, max: .42, kind: 'impact' });
+    return ring;
   }
   _clearEffects() { for (const fx of this.effects) { this.particles.remove(fx.object); disposeObject(fx.object); } this.effects = []; }
 

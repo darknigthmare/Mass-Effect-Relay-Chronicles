@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-20T13:49:51.856Z",
+  "baseCommit": "2d0b871eeb02741db1dfab035dd3639fb7d8c7bd",
+  "url": "http://127.0.0.1:4231/",
+  "client": "Vite production build in Chromium, with normal title import, exploration, controls and save export.",
+  "fixtures": {
+    "cargo-pending": {
+      "sha256": "91a9749d206075856b4c98779b28f961e348f72e822d26d4a3efdbaed19871b2",
+      "resolved": 15
+    },
+    "cargo-eligible": {
+      "sha256": "c8d074738ee710af76fdd92d060fd80f8bd711e2f8d3325a4fa491a969d7553a",
+      "resolved": 16
+    }
+  },
+  "compiledResponses": [
+    {
+      "path": "index.html",
+      "sha256": "3162f45fe20cb56897b410730b18537ef2a136d93bc6f6e996370ab7568021ac"
+    },
+    {
+      "path": "assets/index-DPgaXrYC.js",
+      "sha256": "ffb88db604016ea6bb67b10c7567ec54008c5c66c63885f1d923fbe73c3382ea"
+    },
+    {
+      "path": "assets/three-DNPJBOhX.js",
+      "sha256": "719e128bcd642e730dbdf4c9e13d2e8dc305109315411fda11dc7c0b435c5a0b"
+    }
+  ],
+  "errors": [],
+  "criterion": {
+    "id": "SYS-dialogue-a-choix",
+    "description": "Nœuds, conditions et conséquences.",
+    "acceptance": "Chaque branche atteint une sortie valide."
+  },
+  "scope": "Dialogue de campagne ME1 dans l’adaptation ATB existante.",
+  "checks": [
+    {
+      "name": "An all-disabled choice set has a visible exit, and the unmet requirement remains readable.",
+      "passed": true
+    },
+    {
+      "name": "Escape and the visible exit leave progress, resources and the resumed eligibility unchanged.",
+      "passed": true
+    },
+    {
+      "name": "The enabled branch commits only the cargo action, reaches its field exit and resumes with this decision saved.",
+      "passed": true
+    }
+  ],
+  "verification": {
+    "nativeTests": 240,
+    "nativeCommand": "node --test tests/{advance-dialogues,advance-feros,advance-feros-operations,assignments,assignment-world,completion-narrative,continuation-dialogues,gamepad-controls,mission-progress,operations,recruitment,resolve-citadel,resolve-endgame,resolve-late-garrus,resolve-noveria,resolve-origins,resolve-origins-world,resolve-virmire,story,story-world}.test.js",
+    "nativeScope": "Graphes de campagne et de recrutement, dialogues embarqués, missions et assignations, opérations, transitions de Féros, Novéria, Virmire, Citadelle et Ilos, relation persistée et contrôles.",
+    "operations": {
+      "count": 12,
+      "steps": 46,
+      "authoredRepliesExercised": 53,
+      "saveCheckedAfterEachTransition": true
+    },
+    "temporaryAssignment": "Un équipier affecté à Virmire reste vivant et conserve les sujets abordés à la reprise. Le dossier et la sélection concordent sur son indisponibilité temporaire.",
+    "browserCommand": "P0_DIALOGUE_URL=http://127.0.0.1:4231/ P0_DIALOGUE_DIST=/tmp/relay-p0-next-preview P0_DIALOGUE_OUTPUT=test-results/p0-dialogue-exit-production node scripts/p0-dialogue-exit-public.mjs"
+  },
+  "captures": [
+    {
+      "path": "docs/screenshots/p0-dialogue-exit-cargo.png",
+      "sha256": "b075782780e17a5261faa59ff8bc9bed44bf15915290f97e199a524fd799ceb8",
+      "review": "Capture Chromium 1000×740 ouverte et relue. Les 15 interventions sur 16, la raison du blocage et le bouton de retour focalisé apparaissent dans la même vue."
+    }
+  ],
+  "limitations": [
+    "Les deux sauvegardes de préparation utilisent les API natives pour atteindre le cargo et sont chargées avec le sélecteur de fichiers du titre. Le parcours navigateur commence à ce point.",
+    "La vérification couvre le système et les dialogues intégrés à cette adaptation. Les branches du catalogue encore non intégrées et les romances restent ouvertes."
+  ],
+  "sourceHashes": {
+    "src/main.js": "1b8c291a174522c323f430c4d949a53dc05f0f4525fb0bb88ff841f88f8f0fab",
+    "src/completion-narrative.js": "2eaa95dd6bd3e8fe9ff2986d87bf299c92ca399c2e7addcfa6d3eb77f72cedab",
+    "src/completion-narrative-ui.js": "42af35206035f950573eb1af4fc53097e9c8456fccffdc3adbf1813a082f0f13",
+    "tests/operations.test.js": "f5d12212bef01f8f0db5c9dd365dd6a96b45fa166a2b5350b64dc9afd7377fb7",
+    "tests/completion-narrative.test.js": "f6f4ada2103582d8cb6dc3295cf48a7c6776a07d1791c495ac3cb5ffe008d835",
+    "scripts/p0-dialogue-exit-public.mjs": "9389ad292594a037a7906b2a9a0b1bd094843c74abdf7e1a6da05529c4cc6111"
+  }
+}

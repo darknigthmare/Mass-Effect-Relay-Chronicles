@@ -6,7 +6,7 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 ## Vérification des P0
 
-Huit critères P0 sont fermés sur le menu, le journal, la sélection du commando, la caméra, le mode bureau, les doubles validations et le contrôle des preuves. Le changement d’arme visible en exploration et la reprise d’un passage après rechargement avancent au stade Prototype. [Détail du lot et vérifications](docs/P0.md)
+Le dernier lot ferme 29 P0. Dix critères couvrent les dialogues, l’atelier, le rendu des tirs, la nomenclature et le Normandy dans la campagne. Dix-neuf vérifient les sources, le registre et le périmètre des Chroniques et des archives. Il reste 616 P0 ouverts dans les 28 catalogues. [Détail du lot et vérifications](docs/P0.md)
 
 ## Enquête, affectations et épilogue — lot précédent
 

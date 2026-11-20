@@ -223,6 +223,24 @@ test('inspecting a replacement weapon accounts for all returned attachments with
   assert.equal(snapshot({ state, draft }), before);
 });
 
+test('the four weapon families are drawn inside the inspected item rather than the prepared weapon preview', () => {
+  const state = fixture(), draft = createCustomizationDraft(state);
+  for (const [id, family, label] of [
+    ['lancer-i', 'assault', 'Fusil d’assaut'], ['kessler-i', 'pistol', 'Pistolet'],
+    ['storm-i', 'shotgun', 'Fusil à pompe'], ['avenger-i', 'sniper', 'Fusil de précision'],
+  ]) {
+    const html = renderCustomizationScreen(state, uiFor(state, draft, { customItem: id }));
+    const detail = expectInspection(html, id, 'weapon', id === 'lancer-i' ? 'prepared' : 'available');
+    assert.equal(tagged(html, 'data-weapon-family').length, 1);
+    assert.equal(tagged(detail.html, 'data-weapon-family', family).length, 1);
+    assert.ok(detail.html.includes(`Schéma de catégorie : ${label}`));
+    assert.match(detail.html, /silhouette générique/);
+    assert.equal(draft.equipment.weapon, 'lancer-i');
+  }
+  const empty = prepare(state, draft, 'weapon', null);
+  assert.equal(tagged(renderCustomizationScreen(state, uiFor(state, empty)), 'data-weapon-family').length, 0);
+});
+
 test('inspecting a replacement armor includes both released armor modules in the hypothetical values', () => {
   const state = fixture();
   state.xp = 300;

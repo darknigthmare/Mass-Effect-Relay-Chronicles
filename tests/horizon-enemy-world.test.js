@@ -93,14 +93,21 @@ test('heavy-machine traces originate and land near the tall body instead of huma
     // generic beam remains the actual playEvent fallback for these enemies.
     t.mock.method(world, '_weaponTraces', () => false);
     const snapshot = JSON.stringify(value, (key,value) => typeof value === 'function' ? undefined : value);
+    const endpoint = (beam, direction) => new THREE.Vector3(0, direction * beam.geometry.parameters.height / 2, 0)
+      .applyQuaternion(beam.quaternion).add(beam.position);
+    const withinTorso = point => {
+      const relativeHeight = point.y - actor.group.position.y;
+      assert.ok(relativeHeight > actor.height * .48 && relativeHeight < actor.height * .78);
+      assert.ok(relativeHeight > player.height * .75);
+    };
     world.playEvent({ type: 'action', actorId: native.id, actionId: 'shoot', targetId: 'shepard' });
     const beam = world.effects.find(effect => effect.kind === 'beam'); assert.ok(beam);
-    close(beam.object.position.y, (actor.height*.62+1.2)/2);
+    withinTorso(endpoint(beam.object, -1));
     assert.equal(JSON.stringify(value, (key,value) => typeof value === 'function' ? undefined : value), snapshot);
     world._clearEffects();
     world.playEvent({ type: 'action', actorId: 'shepard', actionId: 'shoot', targetId: native.id });
     const hit = world.effects.find(effect => effect.kind === 'beam'); assert.ok(hit);
-    close(hit.object.position.y, (1.4+actor.height*.62)/2);
+    withinTorso(endpoint(hit.object, 1));
     assert.ok(player.height < actor.height);
   }
 });

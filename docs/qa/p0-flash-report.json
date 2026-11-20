@@ -1,0 +1,264 @@
+{
+  "passed": true,
+  "tests": 48,
+  "criterionId": "QA-synchronisation-flash",
+  "baseline": "2d0b871eeb02741db1dfab035dd3639fb7d8c7bd",
+  "exactCriterion": "Origine et instant cohérents.",
+  "scope": "Tirs instantanés de la campagne ME1, dans le moteur de combat ATB et le rendu WorldView.",
+  "sourcePaths": [
+    "src/world.js",
+    "scripts/p0-flash-frames.mjs",
+    "scripts/p0-flash-browser.mjs",
+    "tests/weapon-world.test.js",
+    "tests/horizon-enemy-world.test.js"
+  ],
+  "sourceHashes": {
+    "scripts/p0-flash-frames.mjs": "7c718298aed853cdadc54144115d49d5b76138612f1fe026fa5e882fff1e10dc",
+    "scripts/p0-flash-browser.mjs": "043ffa9343ae9482ed7df9eb98de41d021a17235fa3f18dc13a68d584ca36b26",
+    "tests/weapon-world.test.js": "f4480c1ec37a3d13fb17bef6a6959296ea0e668432bb9292917ae549bc34e60b",
+    "tests/horizon-enemy-world.test.js": "45a6ee8ed09f53fb26f28c54abf4e1f940ab055579c5af859234854b2617b880"
+  },
+  "native": {
+    "node": "24.19.0",
+    "command": "node --test tests/weapon-world.test.js tests/completion-controls.test.js tests/companion-combat-world.test.js tests/horizon-enemy-world.test.js tests/me1-enemy-poses.test.js",
+    "passedTests": 48,
+    "failedTests": 0,
+    "scenarios": [
+      "Le flash part de l’origine de la trace. L’impact arrive au point de contact de la pose cible après le résultat natif.",
+      "Une rafale avec plusieurs résultats simultanés ne montre qu’un impact par cible. Un tir bloqué montre un contact sans poser la cible comme touchée.",
+      "La hauteur de la pose est prise en compte dans les deux sens de tir."
+    ]
+  },
+  "controlledWebGL": {
+    "at": "2026-11-20T13:51:55.318Z",
+    "browser": "Chromium 154.0.8037.57, SwiftShader",
+    "viewport": [
+      1160,
+      720
+    ],
+    "server": "RELAY_QA=1 npm run dev -- --port 4217 --strictPort",
+    "command": "GAME_URL=http://127.0.0.1:4217/ PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium P0_FLASH_OUTPUT=/tmp/p0-flash-frames-02 node scripts/p0-flash-frames.mjs",
+    "approach": "Un ordre de tir et son résultat natif partagent la même horloge ATB. Le script les présente dans leur ordre sur deux images distinctes, puis avance le rendu de 100 ms. Le mode effets réduits rejoue les événements.",
+    "checks": [
+      {
+        "action": {
+          "id": 1,
+          "at": 4.549999999999992,
+          "type": "action",
+          "actorId": "shepard",
+          "actionId": "shoot",
+          "targetId": "geth-1",
+          "targetIds": [
+            "geth-1"
+          ],
+          "message": "Commando : Tir contrôlé."
+        },
+        "damage": {
+          "id": 2,
+          "at": 4.549999999999992,
+          "type": "damage",
+          "actorId": "shepard",
+          "targetId": "geth-1",
+          "actionId": "shoot",
+          "amount": 26,
+          "shieldDamage": 25,
+          "healthDamage": 1,
+          "message": "Adversaire subit 26 dégâts (25 sur les boucliers)."
+        },
+        "tool": "Actual native WebGL, explicit action-only and outcome draw steps on the same native event timestamp."
+      }
+    ],
+    "captures": [
+      {
+        "label": "01-before",
+        "sha256": "274b07482867ad77a236ee26cb73ec16c3ff8946446de8a8e25005832a8f2f72",
+        "effects": []
+      },
+      {
+        "label": "02-flash-origin",
+        "sha256": "0ae801f8eb4c1223a89a2ba69a0923c96bee916859ec4dfc0e48493f18e29bd5",
+        "effects": [
+          {
+            "kind": "muzzle-flash",
+            "time": 0.09,
+            "center": [
+              -16.93,
+              1.9025,
+              9.1
+            ],
+            "pixel": [
+              571.313077250262,
+              221.43922786233398
+            ],
+            "color": 16768943,
+            "shotAt": 4.549999999999992
+          },
+          {
+            "kind": "weapon-trace",
+            "time": 0.13,
+            "center": [
+              -13.465,
+              1.6887500000000002,
+              9.1
+            ],
+            "pixel": [
+              636.8009948853739,
+              260.8592171520941
+            ],
+            "color": 16768943
+          }
+        ],
+        "path": "docs/screenshots/p0-flash-02-flash-origin.png",
+        "actuallyOpened": true,
+        "observation": "Le point lumineux apparaît à hauteur de l’épaule de l’attaquant, au départ du rayon. La cible ne porte encore aucun anneau."
+      },
+      {
+        "label": "03-impact-target",
+        "sha256": "44e8390a60b672fdb2ff154f85d926b794919973c2d91b636d0f4099d19ff79a",
+        "effects": [
+          {
+            "kind": "muzzle-flash",
+            "time": 0.09,
+            "center": [
+              -16.93,
+              1.9025,
+              9.1
+            ],
+            "pixel": [
+              571.313077250262,
+              221.43922786233398
+            ],
+            "color": 16768943,
+            "shotAt": 4.549999999999992
+          },
+          {
+            "kind": "weapon-trace",
+            "time": 0.13,
+            "center": [
+              -13.465,
+              1.6887500000000002,
+              9.1
+            ],
+            "pixel": [
+              636.8009948853739,
+              260.8592171520941
+            ],
+            "color": 16768943
+          },
+          {
+            "kind": "impact",
+            "time": 0.42,
+            "center": [
+              -10,
+              1.475,
+              9.1
+            ],
+            "pixel": [
+              702.288912520486,
+              300.2792064418543
+            ],
+            "color": 8638701,
+            "shotAt": 4.549999999999992
+          }
+        ],
+        "path": "docs/screenshots/p0-flash-03-impact-target.png",
+        "actuallyOpened": true,
+        "observation": "Un seul anneau bleu apparaît sur la cible lorsque le résultat confirme la perte du bouclier."
+      },
+      {
+        "label": "04-after-100ms",
+        "sha256": "94b95be6d7e09a02471c552e6bb2946763848de6b79dc6c54f5cbed4e93ba526",
+        "effects": [
+          {
+            "kind": "weapon-trace",
+            "time": 0.03,
+            "center": [
+              -13.465,
+              1.6887500000000002,
+              9.1
+            ],
+            "pixel": [
+              636.8009948853739,
+              260.8609670252493
+            ],
+            "color": 16768943
+          },
+          {
+            "kind": "impact",
+            "time": 0.32,
+            "center": [
+              -10,
+              1.475,
+              9.1
+            ],
+            "pixel": [
+              702.288912520486,
+              300.28095631500946
+            ],
+            "color": 8638701,
+            "shotAt": 4.549999999999992
+          }
+        ],
+        "path": "docs/screenshots/p0-flash-04-after-100ms.png",
+        "actuallyOpened": true,
+        "observation": "Après 100 ms simulées, le point lumineux a disparu et l’anneau persiste sur la cible."
+      },
+      {
+        "label": "05-reduced",
+        "sha256": "197b8036568a3cbb99a00e95fcebc481a3b0b9f75c1364f3be4da316bdfc1d72",
+        "effects": []
+      }
+    ],
+    "errors": []
+  },
+  "compiledPublicControls": {
+    "at": "2026-11-20T13:48:07.106Z",
+    "build": "npm run build -- --outDir /tmp/p0-flash-dist",
+    "server": "npm run preview -- --outDir /tmp/p0-flash-dist --port 4234 --strictPort",
+    "command": "GAME_URL=http://127.0.0.1:4234/ PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium P0_FLASH_OUTPUT=/tmp/p0-flash-browser-03 node scripts/p0-flash-browser.mjs",
+    "entry": {
+      "name": "index-9rjO9FHr.js",
+      "sha256": "ec8a6fa19ad2968e3d0ef788cf28c4d5e0b98f8165f1a9385b667386882febd4"
+    },
+    "variant": "Build préalable au dernier réglage de hauteur du flash. Les corrections de synchronisation et de dédoublonnage sont incluses.",
+    "checks": [
+      {
+        "name": "normal",
+        "actorId": "kaidan",
+        "targetId": "geth-0",
+        "before": [
+          "100%",
+          "100%"
+        ],
+        "after": [
+          "36.9066%",
+          "100%"
+        ],
+        "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat geth subit 22 dégâts (22 sur les boucliers).",
+        "frames": 2,
+        "fixtureSha256": "742ed691c2f4a0c9029a5f8d208baa4e969a74152dfb49574f0b4683f5611f6c"
+      },
+      {
+        "name": "reduced",
+        "actorId": "kaidan",
+        "targetId": "geth-0",
+        "before": [
+          "100%",
+          "100%"
+        ],
+        "after": [
+          "36.9066%",
+          "100%"
+        ],
+        "log": "Contact hostile. Le commando attend vos ordres.\n\nKaidan Alenko : Tir contrôlé.\n\nSoldat geth subit 22 dégâts (22 sur les boucliers).",
+        "frames": 5,
+        "fixtureSha256": "eda2341272d7e722e881f9ac46cd9666e0820eece02f322785978628628d2cd3"
+      }
+    ],
+    "errors": []
+  },
+  "limitations": [
+    "La capture CDP de l’interface publique confirme les dégâts et la baisse du bouclier dans les deux modes. Son échantillonnage ne permet pas de relire le flash de 90 ms. Les images du rendu contrôlé attestent sa position finale et sa durée.",
+    "La position du flash est calculée par gabarit et pose. Les armes et projectiles propres aux campagnes Chronicles utilisent un autre rendu."
+  ]
+}

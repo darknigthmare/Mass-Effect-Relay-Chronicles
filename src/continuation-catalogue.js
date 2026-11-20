@@ -24,15 +24,44 @@ export function getProductionCatalogueView(filters = {}) {
 const workOptions = (selected, all = true) => `${all ? '<option value="all">Toutes les œuvres</option>' : ''}${UNIVERSE_WORKS.map(work => `<option value="${esc(work.id)}" ${work.id === selected ? 'selected' : ''}>${esc(work.title)}</option>`).join('')}`;
 function sourceCards(work, ids) {
   const sources = ids ? work.sources.filter(source => ids.includes(source.id)) : work.sources;
+  if (!sources.length) return '<p class="small" data-production-missing-source>Aucune référence liée à cette fiche.</p>';
+
   return sources.map(source => {
     const url = productionSourceURL(source.url);
-    return `<article class="production-source"><h4>${esc(source.title || source.id)}</h4><p class="small">${esc(source.scope || 'Périmètre à vérifier dans la référence.')}</p>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Consulter la référence</a>` : '<span class="small">Lien de référence non disponible.</span>'}</article>`;
-  }).join('') || '<p class="small">Aucune référence liée à cette fiche.</p>';
+    return `<article class="production-source" data-production-source-id="${esc(source.id)}">
+      <h4>${esc(source.title || source.id)}</h4>
+      ${source.kind ? `<p class="small" data-production-source-kind>${esc(source.kind)}</p>` : ''}
+      <p class="small">${esc(source.scope || 'Périmètre à vérifier dans la référence.')}</p>
+      ${source.note ? `<p class="small" data-production-source-note>${esc(source.note)}</p>` : ''}
+      ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Consulter la référence</a>` : '<span class="small">Lien de référence non disponible.</span>'}
+    </article>`;
+  }).join('');
+}
+
+function recordSources(work, record) {
+  const cards = sourceCards(work, record.sourceIds);
+  if (record.sourceIds.length || !work.sources.length) return cards;
+  return `${cards}
+    <details data-production-work-sources>
+      <summary>Sources du catalogue</summary>
+      ${sourceCards(work)}
+    </details>`;
+}
+
+function documentationLimits(work) {
+  if (!work.canonNote || work.canonNote === work.scope) return '';
+  return `<details data-production-documentation-limits>
+    <summary>Limites de la documentation</summary>
+    <p>${esc(work.canonNote)}</p>
+  </details>`;
+}
+function archiveScope(work) {
+  return work.locked && work.reason ? `<p class="small" data-production-archive-scope>${esc(work.reason)}</p>` : '';
 }
 export function renderProductionResults(filters = {}) {
   const view = getProductionCatalogueView(filters), record = view.selected;
   const work = record && UNIVERSE_WORKS.find(work => work.id === record.catalogWorkId);
-  return `<p role="status" data-production-count>${view.records.length} fiche${view.records.length === 1 ? '' : 's'} · page ${view.page + 1} / ${view.pages}</p><div class="production-layout"><nav class="production-records" aria-label="Fiches de production">${view.visible.map(item => `<button class="secondary ${item.id === record?.id ? 'active' : ''}" data-do="production-record" data-id="${esc(item.id)}" aria-pressed="${item.id === record?.id}"><strong>${esc(item.name)}</strong><span>${esc(item.id)} · ${esc(item.status)}</span></button>`).join('') || '<p>Aucune fiche ne correspond aux filtres.</p>'}<div class="button-row"><button class="secondary" data-do="production-page" data-id="${view.page - 1}" ${!view.page ? 'disabled' : ''}>Précédent</button><button class="secondary" data-do="production-page" data-id="${view.page + 1}" ${view.page + 1 >= view.pages ? 'disabled' : ''}>Suivant</button></div></nav>${record ? `<article class="production-detail" data-production-record="${esc(record.id)}"><span class="pill">Fiche de production · ${esc(record.status)}</span><h3>${esc(record.name)}</h3><p>${esc(record.description)}</p><dl><dt>Catalogue</dt><dd>${esc(work.title)}</dd><dt>Œuvre de référence</dt><dd>${esc(record.mediaId)}</dd><dt>Périmètre</dt><dd>${esc(work.scope || work.canonNote || 'Référence documentaire')}</dd><dt>Repère</dt><dd>${esc(record.reference)}</dd></dl><p class="small">Ce statut décrit le livrable suivi. Il ne rend pas cette fiche jouable et ne débloque aucun contenu dans votre campagne.</p>${record.conditions ? `<p>${esc(record.conditions)}</p>` : ''}${record.notes ? `<details><summary>Historique et limites</summary><p>${esc(record.notes)}</p></details>` : ''}<h4>Références de la fiche</h4>${sourceCards(work, record.sourceIds)}</article>` : ''}</div>`;
+  return `<p role="status" data-production-count>${view.records.length} fiche${view.records.length === 1 ? '' : 's'} · page ${view.page + 1} / ${view.pages}</p><div class="production-layout"><nav class="production-records" aria-label="Fiches de production">${view.visible.map(item => `<button class="secondary ${item.id === record?.id ? 'active' : ''}" data-do="production-record" data-id="${esc(item.id)}" aria-pressed="${item.id === record?.id}"><strong>${esc(item.name)}</strong><span>${esc(item.id)} · ${esc(item.status)}</span></button>`).join('') || '<p>Aucune fiche ne correspond aux filtres.</p>'}<div class="button-row"><button class="secondary" data-do="production-page" data-id="${view.page - 1}" ${!view.page ? 'disabled' : ''}>Précédent</button><button class="secondary" data-do="production-page" data-id="${view.page + 1}" ${view.page + 1 >= view.pages ? 'disabled' : ''}>Suivant</button></div></nav>${record ? `<article class="production-detail" data-production-record="${esc(record.id)}"><span class="pill">Fiche de production · ${esc(record.status)}</span><h3>${esc(record.name)}</h3><p>${esc(record.description)}</p>${archiveScope(work)}<dl><dt>Catalogue</dt><dd>${esc(work.title)}</dd><dt>Œuvre de référence</dt><dd>${esc(record.mediaId)}</dd><dt>Nature</dt><dd data-production-record-nature>${esc(record.nature)}</dd><dt>Périmètre</dt><dd>${esc(work.scope || work.canonNote || 'Référence documentaire')}</dd><dt>Repère</dt><dd>${esc(record.reference)}</dd></dl><p class="small">Ce statut décrit le livrable suivi. Il ne rend pas cette fiche jouable et ne débloque aucun contenu dans votre campagne.</p>${record.conditions ? `<p>${esc(record.conditions)}</p>` : ''}${record.notes ? `<details><summary>Historique et limites</summary><p>${esc(record.notes)}</p></details>` : ''}${documentationLimits(work)}<h4>Références de la fiche</h4>${recordSources(work, record)}</article>` : ''}</div>`;
 }
 export function renderProductionCatalogue(filters = {}) {
   const view = getProductionCatalogueView(filters);
@@ -40,5 +69,5 @@ export function renderProductionCatalogue(filters = {}) {
 }
 export function renderProductionCredits(workId = 'ME1') {
   const work = UNIVERSE_WORKS.find(work => work.id === workId) || UNIVERSE_WORKS[0];
-  return `<section data-production-credits><p class="brief-copy">Conception et réalisation pour Darknigthmare. Univers, personnages et noms Mass Effect : Electronic Arts et BioWare. Adaptation de fan indépendante et non officielle.</p><div class="production-scope"><article><h3>Campagne ME1</h3><p>Cartes condensées, dialogues français réécrits et règles ATB adaptées. Le codex et les connaissances suivent les événements de cette campagne.</p></article><article><h3>Chroniques</h3><p>Lectures documentaires, préparations et exercices limités à leur œuvre et leur période. Les campagnes originales complètes ne sont pas reconstituées.</p></article><article><h3>Simulation</h3><p>Études et bancs indépendants. Leurs profils, règles et résultats expérimentaux ne sont pas des acquisitions ni des victoires de votre campagne.</p></article></div><p>Code : JavaScript, Three.js, Vite et Electron. Images et atlas : créations assistées par IA, validation artistique en cours. Son : synthèse originale Web Audio.</p><h3>Sources et périmètre des références</h3><p class="small">Une source indique ce qui a été documenté ; sa présence ne certifie ni la fidélité d’un modèle ni l’achèvement de sa mission.</p><label class="field" for="production-source-work">Œuvre<select id="production-source-work" data-production-filter="workId">${workOptions(work.id, false)}</select></label><p data-production-source-count>${work.sources.length} références · ${esc(work.title)}</p><div class="production-sources">${sourceCards(work)}</div></section>`;
+  return `<section data-production-credits><p class="brief-copy">Conception et réalisation pour Darknigthmare. Univers, personnages et noms Mass Effect : Electronic Arts et BioWare. Adaptation de fan indépendante et non officielle.</p><div class="production-scope"><article><h3>Campagne ME1</h3><p>Cartes condensées, dialogues français réécrits et règles ATB adaptées. Le codex et les connaissances suivent les événements de cette campagne.</p></article><article><h3>Chroniques</h3><p>Lectures documentaires, préparations et exercices limités à leur œuvre et leur période. Les campagnes originales complètes ne sont pas reconstituées.</p></article><article><h3>Simulation</h3><p>Études et bancs indépendants. Leurs profils, règles et résultats expérimentaux ne sont pas des acquisitions ni des victoires de votre campagne.</p></article></div><p>Code : JavaScript, Three.js, Vite et Electron. Images et atlas : créations assistées par IA, validation artistique en cours. Son : synthèse originale Web Audio.</p><h3>Sources et périmètre des références</h3><p class="small">Une source indique ce qui a été documenté ; sa présence ne certifie ni la fidélité d’un modèle ni l’achèvement de sa mission.</p><label class="field" for="production-source-work">Œuvre<select id="production-source-work" data-production-filter="workId">${workOptions(work.id, false)}</select></label><p data-production-source-count>${work.sources.length} références · ${esc(work.title)}</p>${archiveScope(work)}${documentationLimits(work)}<div class="production-sources">${sourceCards(work)}</div></section>`;
 }

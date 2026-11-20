@@ -29,7 +29,14 @@ function lines(value,width){
 }
 function validate(b){
  const ids=new Set();const cats=new Set(categories.map(c=>c.id));const sources=new Set(b.sources.map(s=>s.id));
- for(const e of b.entries){if(ids.has(e.id))throw new Error(`Duplicate ${e.id}`);ids.add(e.id);if(!cats.has(e.category)||!status.includes(e.status)||!nature.includes(e.nature))throw new Error(`Invalid classification ${e.id}`);if(!e.name||!e.description||!e.adaptation||!e.acceptance)throw new Error(`Incomplete ${e.id}`);if(['Intégré','Validé'].includes(e.status))throw new Error(`Unproven implementation ${e.id}`);for(const s of e.sourceIds||[])if(!sources.has(s))throw new Error(`Missing source ${s} in ${e.id}`);}
+ for (const e of b.entries) {
+  if (ids.has(e.id)) throw new Error(`Duplicate ${e.id}`);
+  ids.add(e.id);
+  if (!cats.has(e.category) || !status.includes(e.status) || !nature.includes(e.nature)) throw new Error(`Invalid classification ${e.id}`);
+  if (!e.name || !e.description || !e.adaptation || !e.acceptance) throw new Error(`Incomplete ${e.id}`);
+  if (e.status === 'Intégré') throw new Error(`Unproven implementation ${e.id}`);
+  for (const s of e.sourceIds || []) if (!sources.has(s)) throw new Error(`Missing source ${s} in ${e.id}`);
+ }
  for(const e of b.entries)for(const d of e.dependencies||[])if(!ids.has(d))throw new Error(`Missing dependency ${d} in ${e.id}`);
  if(!/^[\w.-]+_Production\.xlsx$/.test(b.filename))throw new Error(`Unsafe filename ${b.filename}`);
  if(new Set(b.sources.map(s=>s.id)).size!==b.sources.length)throw new Error(`Duplicate sources ${b.id}`);

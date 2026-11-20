@@ -34,6 +34,8 @@ Champs d’une fiche :
 | sourceIds | Tableau d’identifiants présents dans sources ; vide pour une création purement originale |
 | reference | Partie, mission, numéro de comic ou section réellement identifiée ; ne pas inventer de pages/chapitres |
 | notes | Incertitudes, limites, différences d’édition ou besoin de validation |
+| implementationPaths, evidence | Chemins locaux du code et des preuves pour les fiches dont le statut a avancé |
+| validation | Pour Validé, objet avec reportPath et sha256 du rapport local cité dans evidence. Le rapport porte passed: true et contient un contrôle réussi avec l’identifiant ainsi que la description et le critère exacts de la fiche. |
 
 Les champs non applicables peuvent rester vides avec une explication ciblée. Éviter les copies génériques destinées seulement à gonfler le nombre de lignes. Les noms/faits originaux restent distincts du design original. Aucun commentaire ou dialogue du jeu n’est reproduit longuement.
 

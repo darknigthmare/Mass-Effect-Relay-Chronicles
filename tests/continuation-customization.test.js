@@ -58,6 +58,18 @@ test('hair style and colour remain independent in every portrait combination and
   }
 });
 
+test('a visible helmet does not conceal the face settings in the portrait', () => {
+  const draft = createCustomizationDraft(newGame());
+  draft.customization.face.eyeColor = 'green';
+  draft.customization.face.hairStyle = 'tied';
+  const barePortrait = customizationFaceSVG(draft);
+  assert.match(barePortrait, /iris vert, coiffure attaché/);
+  for (const helmet of ['visible', 'combat']) {
+    draft.customization.armor.helmet = helmet;
+    assert.equal(customizationFaceSVG(draft), barePortrait);
+  }
+});
+
 test('equipmentChanges nested accessors and invalid markers are refused before code execution or transaction mutation', () => {
   const state = newGame(), before = structuredClone(state); let reads = 0;
   for (const key of ['weapon', 'armor', 'weaponMod2', 'armorMod2']) {

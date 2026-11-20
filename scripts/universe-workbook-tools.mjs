@@ -125,6 +125,20 @@ export async function checkDeclaredProofs(entry, root) {
   if (!implementations.some(item => typeof item === 'string' && item.startsWith('src/') && /\.(?:[cm]?js|tsx?|jsx)$/.test(item))) throw new Error(`Implementation source in src/ required: ${entry.id}.`);
   const paths = await Promise.all(implementations.map(item => checkedProjectFile(root, item)));
   const evidence = await Promise.all(entry.evidence.map(item => checkedProjectFile(root, item)));
+  if (entry.status === 'Validé') {
+    const { reportPath, sha256: expectedHash } = entry.validation ?? {};
+    const report = evidence.find(file => file.path === reportPath);
+    if (!report || !/^docs\/qa\/.+\.json$/.test(report.path) || report.sha256 !== expectedHash) {
+      throw new Error(`Current local validation report required: ${entry.id}.`);
+    }
+    const result = JSON.parse(report.bytes.toString('utf8'));
+    const exactCheck = Array.isArray(result?.checks) && result.checks.some(check =>
+      check?.id === entry.id && check.passed === true && check.exactDescription === entry.description
+      && check.exactCriterion === entry.acceptance);
+    if (result?.passed !== true || result.selfcheckOnly === true || !exactCheck) {
+      throw new Error(`Positive execution for the exact description and criterion required: ${entry.id}.`);
+    }
+  }
   const compact = file => ({ path: file.path, sha256: file.sha256 });
   return { id: entry.id, status: entry.status, implementationPaths: paths.map(compact), evidence: evidence.map(compact) };
 }

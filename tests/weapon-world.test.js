@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { WorldView } from '../src/world.js';
 import { WORLD_ZONES } from '../src/world-data.js';
+import { createBattle, performAction, tickBattle } from '../src/combat.js';
 
 function makeWorld(weaponType) {
   const world = Object.create(WorldView.prototype);
@@ -51,7 +52,8 @@ test('four weapon families have distinct actual tracer geometry without changing
       assert.equal(trace.object.material.depthWrite, false);
       assert.ok(trace.max > 0 && trace.max < .4, 'Weapon traces are brief visual cues');
     }
-    assert.equal(world.effects.filter(effect => effect.kind === 'impact').length, 1, 'Scatter is visual, with one target impact');
+    assert.equal(world.effects.filter(effect => effect.kind === 'muzzle-flash').length, 1, 'Scatter shares one flash');
+    assert.equal(world.effects.filter(effect => effect.kind === 'impact').length, 0, 'An order alone produces no impact');
   }
   assert.equal(traces.pistol.length, 1);
   assert.ok(traces['assault'].length > 1);
@@ -130,4 +132,52 @@ test('tracers expire through the existing update loop and dispose real Three.js 
   world._clearEffects();
   assert.equal(world.effects.length, 0);
   assert.equal(world.particles.children.length, 0);
+});
+
+test('campaign fire flashes at its ray origin, then a native damage event produces one impact at the posed target', () => {
+  const world = makeWorld('pistol');
+  const battle = createBattle({
+    party: [{ id: 'shepard', sprite: 'shepard', hp: 100, shield: 30, attack: 26, speed: 1.1, weaponType: 'pistol' }],
+    enemies: [{ id: 'geth-1', sprite: 'geth', hp: 200, shield: 4, defense: 6, speed: .3 }],
+    seed: 148, mode: 'wait',
+  });
+  for (let index = 0; index < 120 && battle.actors[0].atb < 100; index++) tickBattle(battle, .05);
+  world.setBattle(battle);
+  const target = world.battleActors.get('geth-1');
+  target.body.position.y += .5; // Rendering a lifted body does not alter combat rules.
+  const order = performAction(battle, { actorId: 'shepard', targetId: 'geth-1', actionId: 'shoot' });
+  assert.equal(order.ok, true);
+  const start = order.events.find(event => event.type === 'action');
+  const damage = order.events.find(event => event.type === 'damage');
+  assert.ok(damage.healthDamage > 0 && damage.shieldDamage > 0);
+  assert.equal(damage.at, start.at, 'Ordinary campaign weapons resolve on the same simulation tick.');
+  world.playEvent(start);
+  const flash = world.effects.find(effect => effect.kind === 'muzzle-flash');
+  const ray = world.effects.find(effect => effect.kind === 'weapon-trace');
+  assert.ok(ends(ray.object)[0].distanceTo(flash.object.position) < 1e-6);
+  assert.equal(flash.object.userData.shotAt, start.at);
+  assert.equal(world.effects.filter(effect => effect.kind === 'impact').length, 0);
+  assert.notEqual(target.combatPose, 'hit');
+  world.playEvent(damage);
+  world.playEvent({ ...damage, id: damage.id + 1 }); // Same-tick second packet of a burst.
+  world.setBattle(battle);
+  const impacts = world.effects.filter(effect => effect.kind === 'impact');
+  assert.equal(impacts.length, 1);
+  assert.equal(impacts[0].object.material.color.getHex(), 0x83d0ed);
+  assert.equal(impacts[0].object.userData.shotAt, damage.at);
+  assert.ok(ends(ray.object)[1].distanceTo(impacts[0].object.position) < 1e-6);
+  assert.equal(target.combatPose, 'hit');
+  world.update(.05);
+  assert.ok(world.effects.includes(flash));
+  world.update(.05);
+  assert.ok(!world.effects.includes(flash) && world.effects.includes(impacts[0]));
+});
+
+test('a blocked shot shows a contact cue without inventing a hit pose or repeated impact', () => {
+  const world = makeWorld('pistol');
+  const target = world.battleActors.get('geth-1');
+  world.playEvent({ type: 'blocked', actorId: 'shepard', targetId: target.id, actionId: 'shoot', at: 1 });
+  assert.equal(world.effects.length, 1);
+  assert.equal(world.effects[0].object.material.color.getHex(), 0xb0a2e4);
+  assert.notEqual(target.combatPose, 'hit');
 });

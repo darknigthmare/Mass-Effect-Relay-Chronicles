@@ -181,6 +181,47 @@ test('all twelve operations complete through ordered interactions with five corr
   assert.deepEqual(operationEffects(state), { medicalDiscount: .2, colonySupport: 4, researchRecovered: true });
 });
 
+test('every authored operation reply progresses, exits, or allows the armed fight to resume', () => {
+  for (const definition of OPERATIONS) {
+    const id = definition.id;
+    const start = definition.zone === 'citadel' ? citadel() : feros();
+    Object.assign(start, { credits: 5000, paragon: 100, renegade: 100 });
+    if (definition.prerequisite) complete(start, definition.prerequisite.operationId);
+
+    const observed = new Set();
+    function visit(state) {
+      const entry = current(state, id);
+      if (entry.status === 'completed') return;
+
+      const step = entry.currentStep.id;
+      const encounter = getOperationInteraction(state, id, step);
+      assert.equal(encounter.ok, true, encounter.reason);
+      const original = snapshot(state);
+      assert.deepEqual(advanceOperation(state, id, step, 'cancel'), { ok: true, cancelled: true });
+      assert.equal(snapshot(state), original);
+      for (const option of encounter.choices.filter(choice => choice.id !== 'cancel')) {
+        const path = `${id}/${step}/${option.id}`;
+        observed.add(path);
+        assert.equal(option.disabled, false, path);
+        const next = clone(state);
+        const transition = advanceOperation(next, id, step, option.id);
+        assert.equal(transition.ok, true, path);
+        if (transition.battle) {
+          const pending = roundtrip(next);
+          assert.deepEqual(getOperationInteraction(pending, id, step).choices.map(choice => choice.id), ['resume', 'cancel']);
+          assert.ok(advanceOperation(pending, id, step, 'resume').battle);
+          assert.equal(finishOperationBattle(next, id, step, true).ok, true);
+        }
+        assert.equal(current(next, id).stage, entry.stage + 1, path);
+        visit(roundtrip(next));
+      }
+    }
+    visit(start);
+    const authored = definition.steps.flatMap(step => step.choices.map(choice => `${id}/${step.id}/${choice.id}`));
+    assert.deepEqual([...observed].sort(), authored.sort());
+  }
+});
+
 test('the Thorian closes unfinished Fai Dan work but a previously copied Gavin archive remains deliverable', () => {
   const state = feros(); take(state, 'feros-geth-tunnels');
   take(state, 'feros-data-recovery'); take(state, 'feros-data-recovery', 'fight');

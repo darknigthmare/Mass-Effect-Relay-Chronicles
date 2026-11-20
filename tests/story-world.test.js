@@ -28,6 +28,25 @@ function makeWorld(context) {
 
 const conversationIds = world => world.getConversationPOIs().map(poi => poi.conversationId);
 
+test('the condensed Normandy deck exposes only its SR-1 services and connects each of them', () => {
+  const world = makeWorld();
+  const signs = [];
+  world._texturedMaterial = color => world._material(color);
+  world._sign = label => signs.push(label);
+  world._normandy();
+  assert.deepEqual(signs, ['SSV NORMANDY · SR-1', 'ARMURERIE', 'INFIRMERIE']);
+  const services = world.getPOIs();
+  assert.deepEqual(services.map(poi => poi.id), [
+    'normandy:briefing', 'normandy:galaxy', 'normandy:crew', 'normandy:equipment',
+    'normandy:medbay', 'normandy:archive', 'normandy:exit',
+  ]);
+  for (const poi of services) {
+    const path = world._pathTo(poi);
+    assert.ok(path?.length, poi.id);
+    assert.ok(path.every(point => world._walkable(point.x, point.z)), poi.id);
+  }
+});
+
 test('conversation points do not change the 63 authored mission and service routes', () => {
   const world = makeWorld();
   assert.equal(Object.values(WORLD_ZONES).reduce((sum, zone) => sum + zone.pois.length, 0), 63);

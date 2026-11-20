@@ -3,6 +3,7 @@
 import { CREW, CHAPTERS } from './game-data.js';
 import { ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
 import { STORY_CONVERSATIONS } from './story-data.js';
+import { getResolveVirmireAwayCrew } from './resolve-virmire.js';
 
 const has = (values, value) => Array.isArray(values) && values.includes(value);
 const done = (state, zone) => has(state?.completed, zone);
@@ -31,13 +32,16 @@ export function getVirmireConsequence(state) {
 /** Relations describe recorded exchanges, without manufacturing romantic stages. */
 export function getCompanionRelations(state) {
   if (!state) return [];
+  const assignedElsewhere = getResolveVirmireAwayCrew(state);
   return Object.values(CREW).filter(actor => actor.id !== 'shepard' && has(state.recruited, actor.id)).map(actor => {
     const topics = STORY_CONVERSATIONS[actor.id]?.topics || [];
     const exchanges = topics.filter(topic => has(state.story?.heard, `${actor.id}:${topic.id}`)).map(topic => ({ id: topic.id, label: topic.label }));
     const lost = has(state.lost, actor.id);
+    const away = !lost && assignedElsewhere.includes(actor.id);
+    const available = !lost && !away;
     const advice = actor.id === 'garrus' && ['procedure', 'results'].includes(state.story?.choices?.['garrus:procedure'])
       ? state.story.choices['garrus:procedure'] : null;
-    return { id: actor.id, name: actor.name, available: !lost, selected: !lost && has(state.party, actor.id),
+    return { id: actor.id, name: actor.name, available, away, selected: available && has(state.party, actor.id),
       status: lost ? 'lost' : advice ? 'advice-recorded' : exchanges.length ? 'exchanged' : 'recruited',
       label: lost ? 'Décès dans le récit' : advice ? 'Conseil mémorisé' : exchanges.length ? 'Échanges établis' : 'A rejoint le commando',
       exchanges, advice };

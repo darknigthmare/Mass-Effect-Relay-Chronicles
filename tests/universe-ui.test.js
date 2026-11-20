@@ -34,6 +34,13 @@ test('the registry offers all works and only their registered finite chapters, w
   assert.ok(!hom.includes('data-do="chronicle-battle"'));
 });
 
+test('Galaxy shows both chronology references outside the collapsed source panel', () => {
+  const ctx = context('GAL', 'gal');
+  const html = renderUniverseScreen(viewFor(ctx), uiFor(ctx));
+  assert.match(html, /<p>BioWare situe Galaxy.*Mass Effect 2.*2183.*indéterminée\.<\/p><details class="universe-period-notes">/);
+  assert.match(html, /Date non fixée.*GAL-CNT-DATE/);
+});
+
 test('stale future references never leak into an earlier work, galaxy, or anthology segment', () => {
   for (const [mediaId, periodId, forbiddenId] of [
     ['ME1', 'me1', 'ME2-CHR-JACK'], ['GAL', 'gal', 'ME3-WPN-GRAAL'], ['ME2', 'me2', 'MEA-EQP-HELEUS'],
@@ -115,6 +122,8 @@ test('the isolated battle renders real actions, data bars and only authorized pr
   for (const stat of ['hp', 'shield', 'atb']) assert.ok(html.includes(`data-chronicle-stat="${stat}"`));
   for (const action of view.actions) assert.ok(html.includes(`data-do="chronicle-action" data-id="${action.id}"`));
   assert.ok(html.includes('data-do="chronicle-pause"'));
+  assert.match(html, /Journal de l’essai ATB · adaptation indépendante/);
+  assert.match(html, /role="log"/);
   assert.ok(html.includes('data-do="chronicle-target"'));
   assert.ok(html.includes('data-chronicle-portrait="ME2-CHR-MIRANDA"'));
   assert.ok(!html.includes('data-chronicle-portrait="ME2-CHR-SHEPARD"'));

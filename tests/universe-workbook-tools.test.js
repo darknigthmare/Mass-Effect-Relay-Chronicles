@@ -133,6 +133,38 @@ test('proofs and reports cannot traverse outside the project or pass through sym
   await assert.rejects(prepareProgressPlan(linked, f.root), /Symlink/);
 });
 
+test('validated workbook rows require a current positive execution for their own exact criterion', async t => {
+  const { root } = await fixture(t);
+  await fs.mkdir(path.join(root, 'docs/qa'), { recursive: true });
+  const reportPath = 'docs/qa/validated-workbook-row.json';
+  const entry = {
+    id: 'ME2-POW-FIRST', status: 'Validé', description: 'Fixture description.', acceptance: 'Fixture exact criterion.',
+    implementationPaths: ['src/powers.js'], evidence: [reportPath],
+  };
+  const check = {
+    id: entry.id, exactDescription: entry.description, exactCriterion: entry.acceptance, passed: true,
+  };
+  async function writeReport(data) {
+    const bytes = JSON.stringify(data);
+    await fs.writeFile(path.join(root, reportPath), bytes);
+    entry.validation = { reportPath, sha256: sha256(bytes) };
+  }
+  await writeReport({ passed: true, checks: [check] });
+  assert.equal((await checkDeclaredProofs(entry, root)).status, 'Validé');
+  entry.validation.sha256 = '0'.repeat(64);
+  await assert.rejects(checkDeclaredProofs(entry, root), /Current local validation report/);
+  for (const bad of [
+    { passed: false, checks: [check] },
+    { passed: true, selfcheckOnly: true, checks: [check] },
+    { passed: true, checks: [{ ...check, id: 'ME2-POW-SECOND' }] },
+    { passed: true, checks: [{ ...check, exactCriterion: 'Unrelated criterion.' }] },
+    { passed: true, checks: [{ ...check, passed: 'true' }] },
+  ]) {
+    await writeReport(bad);
+    await assert.rejects(checkDeclaredProofs(entry, root), /Positive execution/);
+  }
+});
+
 test('stale catalogue, report or implementation snapshots prevent apply', async t => {
   for (const target of ['docs/universe/catalogs/ME2.json', 'test-results/powers.json', 'src/powers.js']) {
     const f = await fixture(t), prepared = await prepareProgressPlan(f.plan, f.root), before = await fs.readFile(f.catalogPath);

@@ -46,11 +46,16 @@ def builder_fields(root=ROOT):
 
 
 def path_proof(declared, root=ROOT):
-    require(isinstance(declared, str) and bool(declared.strip()), 'Proof paths must be nonempty strings')
-    relative = Path(declared)
-    require(not relative.is_absolute() and '..' not in relative.parts, f'Unsafe proof path: {declared}')
-    actual = (root / relative).resolve()
-    require(actual.is_relative_to(root.resolve()) and actual.is_file(), f'Missing/local proof file required: {declared}')
+    require(isinstance(declared, str) and bool(declared) and declared == declared.strip(), 'Proof paths must be nonempty strings')
+    parts = declared.split('/')
+    require(not re.match(r'^[A-Za-z]:', declared) and not any(char in declared for char in '\\\0\r\n')
+            and all(part and part not in ['.', '..'] for part in parts), f'Unsafe proof path: {declared}')
+    require(root.is_dir() and not root.is_symlink(), 'Project root must be a real directory')
+    actual = root
+    for part in parts:
+        actual = actual / part
+        require(not actual.is_symlink(), f'Symlink proof path rejected: {declared}')
+    require(actual.is_file(), f'Missing/local proof file required: {declared}')
     return {'path': declared, 'sha256': digest(actual)}
 
 
@@ -66,8 +71,24 @@ def implementation_proof(entry, root=ROOT):
     require(isinstance(evidence, list) and evidence, f'Explicit evidence required: {entry["id"]}')
     implementation = [path_proof(item, root) for item in paths]
     checked_evidence = [path_proof(item, root) for item in evidence]
+    require(len(set(paths)) == len(paths) and len(set(evidence)) == len(evidence), f'Duplicate proof path: {entry["id"]}')
     require(any(item['path'].startswith('src/') and Path(item['path']).suffix in ['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx'] for item in implementation),
             f'An implementation source file in src/ is required: {entry["id"]}')
+    if entry['status'] == 'Validé':
+        validation = entry.get('validation')
+        require(isinstance(validation, dict), f'Missing validation report: {entry["id"]}')
+        report_path = validation.get('reportPath')
+        report = next((file for file in checked_evidence if file['path'] == report_path), None)
+        require(report is not None and re.fullmatch(r'docs/qa/.+\.json', report_path) and report['sha256'] == validation.get('sha256'),
+                f'Current local validation report required: {entry["id"]}')
+        data = json.loads((root / report_path).read_text())
+        require(isinstance(data, dict) and data.get('passed') is True and data.get('selfcheckOnly') is not True,
+                f'Positive validation report required: {entry["id"]}')
+        checks = data.get('checks')
+        require(isinstance(checks, list) and any(isinstance(check, dict) and check.get('id') == entry['id']
+                and check.get('passed') is True and check.get('exactDescription') == entry['description']
+                and check.get('exactCriterion') == entry['acceptance'] for check in checks),
+                f'Positive execution for the exact description and criterion required: {entry["id"]}')
     return {'id': entry['id'], 'status': entry['status'], 'implementationPaths': implementation, 'evidence': checked_evidence}
 
 
