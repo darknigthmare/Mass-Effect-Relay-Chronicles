@@ -218,3 +218,11 @@ Chaque asset devra être confronté à des références approuvées de l’épis
 Pour les décors, la conformité implique également la géographie, les accès, proportions, silhouettes de bâtiments, objets fonctionnels et lignes de vue. Les neuf scènes présentes sont des compositions de prototype, sans validation topographique 1:1.
 
 Le [classeur de production](Mass_Effect_Relay_Chronicles_Production.xlsx) détaille les sprites, animations et vérifications attendus. Le [manifeste JSON](../public/assets/manifest.json) consigne dimensions, régions et empreintes des fichiers présents. Les briefs de génération sont conservés dans [ART_BRIEFS.md](ART_BRIEFS.md).
+
+## Production artistique Armax — 20 novembre 2026
+
+Le [dossier Armax](armax/README.md) conserve les assets locaux du mode annexe de combat. L’[inventaire de récupération](armax/recovery-20261120/asset-inventory.json) suit **86 PNG originaux distincts** : 65 déjà organisés et 21 sorties supplémentaires récupérées sans modification des pixels. Les images de campagne ATB restent hors de ce décompte. Les compléments de bible, références documentaires, essais et classeurs historiques sont conservés ; le ZIP redondant du lot03 est explicitement exclu de la publication, son contenu étant déplié. Voir le [rapport courant](armax/recovery-20261120/README.md).
+
+Les fichiers sont répartis sous `docs/armax/`, `docs/combat-2d/`, `public/assets/armax/` et `public/assets/combat-2d/`. Ces chemins n’impliquent aucun raccordement au renderer. Aucun clip complet ni fidélité 1:1 n’est certifié par ce recensement. Vérification des originaux : `python scripts/verify-armax-recovery.py`.
+
+Le [lot 06](armax/lot06/README.md) ajoute six PNG originaux : un corps de Balak ME1, trois costumes AAP1/AAP2 de ME2 et deux masters de décors ME3. Le total de cette livraison atteint 92 originaux, hors aperçus de contrôle. Le [catalogue de continuation](armax/lot06/production-catalog.json) sépare personnages, costumes et stages et relie les six fichiers présents à leurs fiches. Vérification ciblée : `python scripts/verify-armax-lot06.py`.
