@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { WorldView } from '../src/world.js';
 import { WORLD_ZONES } from '../src/world-data.js';
 import { EDEN_LAYOUT, getLevelLayout, isLevelGround } from '../src/level-layout-data.js';
-import { findLevelPath } from '../src/world-navigation.js';
+import { findLevelPath, followWalkableStep } from '../src/world-navigation.js';
 import { initialCustomization } from '../src/customization.js';
 import { newGame } from '../src/state.js';
 import { actorFor, enemiesFor } from '../src/game-data.js';
@@ -115,6 +115,15 @@ test('large-mask navigation rejects unreachable targets and cannot cut through a
     previous = point;
   }
   assert.equal(findLevelPath({ bounds, start: { x: 4, z: 4 }, destination: { x: 40, z: 4 }, isWalkable: walkable }), null);
+});
+
+test('a companion step sweeps its route and slides around a blocked corner', () => {
+  const start = { x: .1, z: .1 }, end = { x: .6, z: .6 };
+  const walkable = (x, z) => !(x > .25 && x < .4 && z > .25 && z < .4);
+  assert.ok(walkable(start.x, start.z) && walkable(end.x, end.z));
+  assert.deepEqual(followWalkableStep(start, end, walkable), { x: .6, z: .1 });
+  assert.equal(followWalkableStep(start, end, () => true), end);
+  assert.equal(followWalkableStep(start, end, (x, z) => x === start.x && z === start.z), start);
 });
 
 test('terrain image loads deduplicate, replace only matching active materials and keep the fallback safe after failure or disposal', t => {

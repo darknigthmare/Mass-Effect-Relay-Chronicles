@@ -9,11 +9,19 @@ import { levelMapProjection } from '../src/level-map-render.js';
 import { findLevelPath } from '../src/world-navigation.js';
 import { getWorldArrival, WORLD_ZONES } from '../src/world-data.js';
 import { completeZone, decodeSave, encodeSave, newGame, recruit, travelCampaign, winEncounter, zoneEncounters } from '../src/state.js';
+import { advanceMission, MISSION_DEFINITIONS, tickMission } from '../src/mission-progress.js';
+import { commitVigilExchange } from '../src/resolve-endgame.js';
 
 const url = new URL(process.env.GAME_URL || 'http://127.0.0.1:4220/');
 const output = process.env.P0_MISSION_EXIT_REPORT || 'test-results/p0-mission-exit-report.json';
+const verifyRetry = process.env.P0_CONDUIT_RETRY === '1';
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const report = { passed: false, generatedAt: new Date().toISOString(), url: url.href, checks: [], errors: [], captures: [], walking: [] };
+if (verifyRetry) report.criterion = {
+  id: 'QST-course-au-conduit',
+  exactDescription: 'Activer la fenêtre de Vigil, atteindre le Conduit à temps, ou reprendre explicitement le point de contrôle.',
+  exactCriterion: 'Échec, reprise et transition testés.',
+};
 report.collectorSha256 = sha256(await readFile(new URL(import.meta.url)));
 assert.equal(url.search, '');
 await mkdir(path.dirname(output), { recursive: true });
@@ -21,8 +29,8 @@ const browser = await chromium.launch({
   executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH || '/usr/bin/chromium',
   args: ['--no-sandbox', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
 });
-const page = await browser.newPage({ viewport: { width: 1280, height: 840 }, acceptDownloads: true });
-page.setDefaultTimeout(15_000);
+const page = await browser.newPage({ viewport: verifyRetry ? { width: 1000, height: 740 } : { width: 1280, height: 840 }, acceptDownloads: true });
+page.setDefaultTimeout(verifyRetry ? 35_000 : 15_000);
 page.on('pageerror', error => report.errors.push(String(error)));
 page.on('requestfailed', request => report.errors.push(request.url() + ' ' + request.failure()?.errorText));
 page.on('request', request => {
@@ -149,17 +157,44 @@ try {
   await page.locator('#completion-quality').selectOption('economy');
   await page.keyboard.press('Escape');
 
-  const state = prepareBeforeWindow(), bytes = Buffer.from(encodeSave(state));
+  const state = prepareBeforeWindow();
+  if (verifyRetry) {
+    assert.equal(commitVigilExchange(state).ok, true);
+    assert.equal(advanceMission(state, 'ilos', 'start').ok, true);
+    assert.equal(advanceMission(state, 'mission:ilos:vigil', 'activate').ok, true);
+    assert.deepEqual(tickMission(state, 59.5), []);
+    assert.equal(state.missionProgress.records.ilos.remaining, 0.5);
+  }
+  const bytes = Buffer.from(encodeSave(state));
   report.fixture = { position: state.position, sha256: sha256(bytes),
     prepared: 'Déploiements, chapitres antérieurs et combats achevés par les API natives. La fenêtre et le passage sont joués dans le navigateur.' };
+  if (verifyRetry) report.fixture.prepared = 'En plus des chapitres antérieurs, la fixture avance la première fenêtre à 0,5 s de son terme par les API natives. L’échec, la reprise, la seconde fenêtre et le passage sont joués dans le navigateur.';
   const [chooser] = await Promise.all([page.waitForEvent('filechooser'), action('import').click()]);
   await chooser.setFiles({ name: 'before-window.json', mimeType: 'application/json', buffer: bytes });
-  await ready();
-  await page.keyboard.press('KeyE');
-  await reply('questions').click();
-  await reply('data').click();
-  await reply('receive').click();
-  await missionChoice('start').click();
+  if (verifyRetry) {
+    await missionChoice('retry').waitFor();
+    assert.match(await page.locator('.dialogue-text').innerText(), /délai|fenêtre/i);
+    await capture('checkpoint-failed');
+    await missionChoice('retry').click();
+    await ready();
+    const retried = await exportState();
+    const progress = retried.missionProgress.records.ilos;
+    assert.equal(progress.status, 'active');
+    assert.equal(progress.attempts, 2);
+    assert.deepEqual(progress.steps, []);
+    assert.equal(progress.remaining, null);
+    assert.deepEqual(retried.position, MISSION_DEFINITIONS.ilos.start);
+    assert.deepEqual([retried.xp, retried.credits, retried.medigel], [state.xp, state.credits, state.medigel]);
+    report.retry = { attempts: progress.attempts, checkpoint: retried.position, expiredNaturally: true };
+    report.checks.push('La première fenêtre expire pendant le jeu. La reprise explicite replace le groupe au point de contrôle et ne verse aucune récompense.');
+  } else {
+    await ready();
+    await page.keyboard.press('KeyE');
+    await reply('questions').click();
+    await reply('data').click();
+    await reply('receive').click();
+    await missionChoice('start').click();
+  }
   await (await approach('mission:ilos:vigil', 'activer le passage')).click();
   await missionChoice('activate').click();
   await page.locator('.mission-chip').getByText(/Fenêtre du Conduit.*0\/2|Fenêtre du Conduit.*1\/2/).waitFor();
@@ -204,6 +239,7 @@ try {
   report.checks.push('Le passage reprend le trajet direct, arrive au point attendu et ne rejoue ni trajet ni récompense.');
   assert.deepEqual(report.errors, []);
   report.passed = true;
+  if (verifyRetry) report.criterion.passed = true;
 } catch (error) {
   report.failure = String(error.stack || error);
   process.exitCode = 1;

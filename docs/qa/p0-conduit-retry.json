@@ -1,0 +1,166 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-20T14:17:43.176Z",
+  "url": "http://127.0.0.1:4286/",
+  "checks": [
+    "La première fenêtre expire pendant le jeu. La reprise explicite replace le groupe au point de contrôle et ne verse aucune récompense.",
+    "La fenêtre a été activée puis franchie en temps réel par les contrôles publics.",
+    "Le rechargement entre validation et voyage retrouve le passage à son emplacement et le chapitre terminal reste terminé.",
+    "Le passage reprend le trajet direct, arrive au point attendu et ne rejoue ni trajet ni récompense."
+  ],
+  "errors": [],
+  "captures": [
+    {
+      "path": "docs/qa/p0-conduit-checkpoint-failed.png",
+      "sha256": "632755ff7a14a4d5579dfe57d082cd3213df9d5e0d3a2b0561b5373da6607a8d",
+      "review": "Le dialogue d’échec explique la nouvelle activation et expose la reprise explicite. Le HUD affiche le point de contrôle."
+    },
+    {
+      "path": "docs/qa/p0-conduit-active-window.png",
+      "sha256": "e3729db93d81049598c356674fea6422353ed4155cf0ad1f6dcceb3179eb0d51",
+      "review": "Le terrain affiche Vigil et la nouvelle fenêtre à 1:00 après reprise."
+    },
+    {
+      "path": "docs/qa/p0-conduit-resumed-exit.png",
+      "sha256": "9ce56e34ef88cb69ce7eb862d47b41b63476eb6cac29142c93508c94f40e74ab",
+      "review": "Le panneau cartographique indique le passage repris à l’extrémité nord de la zone."
+    },
+    {
+      "path": "docs/qa/p0-conduit-arrival.png",
+      "sha256": "a7c55e0762677a4e4edfd817b3a0d5d2625ed34796b4dd8807c87f9aac8a67df",
+      "review": "Le HUD et le décor identifient l’arrivée à la Citadelle assiégée."
+    }
+  ],
+  "walking": [
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -4.999999999999993,
+        "z": -84
+      },
+      "to": {
+        "x": -4.780700638722038,
+        "z": -86.74124201597417
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -4.780700638722038,
+        "z": -86.74124201597417
+      },
+      "to": {
+        "x": -4.350873890617244,
+        "z": -92.11407636728353
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -4.350873890617244,
+        "z": -92.11407636728353
+      },
+      "to": {
+        "x": -4.105258605985924,
+        "z": -95.1842674251746
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -4.105258605985924,
+        "z": -95.1842674251746
+      },
+      "to": {
+        "x": -3.9824509636702814,
+        "z": -96.71936295412013
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -3.9824509636702814,
+        "z": -96.71936295412013
+      },
+      "to": {
+        "x": -6.693040748077408,
+        "z": -99.9013596575547
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -6.693040748077408,
+        "z": -99.9013596575547
+      },
+      "to": {
+        "x": -3.1978065523945247,
+        "z": -95.79825864523117
+      }
+    },
+    {
+      "id": "mission:ilos:conduit",
+      "from": {
+        "x": -3.1978065523945247,
+        "z": -95.79825864523117
+      },
+      "to": {
+        "x": -4.481770134482112,
+        "z": -97.30552024159492
+      }
+    }
+  ],
+  "criterion": {
+    "id": "QST-course-au-conduit",
+    "exactDescription": "Activer la fenêtre de Vigil, atteindre le Conduit à temps, ou reprendre explicitement le point de contrôle.",
+    "exactCriterion": "Échec, reprise et transition testés.",
+    "passed": true
+  },
+  "collectorSha256": "6af7cd50b75062b3b2f51861f1c6e1d870ef5a57fd65001cfed03aaa43a2c2db",
+  "documentSha256": "084886b5c3662e9c47e699624cee2fcc94f83616765270f6021f428b1d2fe69a",
+  "fixture": {
+    "position": {
+      "x": -4,
+      "z": -81.5
+    },
+    "sha256": "9a7ce2008ada084435b0b6ea2abf6b3e2ffdf504780707f929f95aa1d103ba42",
+    "prepared": "En plus des chapitres antérieurs, la fixture avance la première fenêtre à 0,5 s de son terme par les API natives. L’échec, la reprise, la seconde fenêtre et le passage sont joués dans le navigateur."
+  },
+  "retry": {
+    "attempts": 2,
+    "checkpoint": {
+      "x": -5,
+      "z": -84
+    },
+    "expiredNaturally": true
+  },
+  "arrival": {
+    "zone": "citadel-finale",
+    "position": {
+      "x": 0,
+      "z": 17
+    },
+    "chapterXp": 2880,
+    "credits": 3040
+  },
+  "servedFiles": [
+    {
+      "path": "assets/index-Cwf2mv0p.js",
+      "sha256": "f3941e5f4beff68f00e2b2f9c94e826b3d16b9960e64cb4326ff5ce8cb789e4a"
+    },
+    {
+      "path": "assets/three-DBNoKq7p.js",
+      "sha256": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156"
+    },
+    {
+      "path": "assets/index-BgjKG6LW.css",
+      "sha256": "e9d58ada668da4a50e63d7110545388b5781cb3dd55e551c08c85984fa90ba59"
+    }
+  ],
+  "baseCommit": "a63f5d97109da37142dd756023eae0118476d367",
+  "command": "GAME_URL=http://127.0.0.1:4286/ P0_PRODUCTION=1 P0_CONDUIT_RETRY=1 P0_MISSION_EXIT_REPORT=test-results/p0-conduit-retry/report.json node scripts/p0-mission-exit-browser.mjs",
+  "limitations": [
+    "La preuve couvre le parcours à pied et la fenêtre de 60 secondes de l’adaptation ATB.",
+    "Les chapitres précédents et les 59,5 secondes initiales sont préparés par les API natives. La seconde activation, la course et le passage sont joués avec les contrôles habituels."
+  ]
+}

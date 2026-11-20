@@ -1,4 +1,5 @@
 import { GreaterDepth, MathUtils, Mesh, MeshBasicMaterial, Vector3 } from 'three';
+import { withSpriteAlpha } from './world-sprite-alpha.js';
 
 const cameraRight = new Vector3();
 const cameraUp = new Vector3();
@@ -58,10 +59,10 @@ export function showCoveredActor(actor, enabled) {
   const visible = enabled && actor.group.visible && body?.visible && !!body.material?.map;
   if (!visible && !actor.coveredBody) return;
   if (!actor.coveredBody) {
-    const material = new MeshBasicMaterial({
+    const material = withSpriteAlpha(new MeshBasicMaterial({
       color: actor.enemy ? 0xffb5a4 : 0xaef5f3,
       transparent: true, depthWrite: false, depthFunc: GreaterDepth, toneMapped: false,
-    });
+    }));
     actor.coveredBody = new Mesh(body.geometry, material);
     actor.coveredBody.renderOrder = 2;
     actor.coveredBody.name = 'covered-actor';

@@ -16,6 +16,7 @@ import { createResolveVirmireState, normalizeResolveVirmireState, isResolveVirmi
   getResolveVirmireAwayCrew, reconcileResolveVirmireParty, transitionResolveVirmire, resolveVirmireTravelGate } from './resolve-virmire.js';
 import { createResolveOrigins, normalizeResolveOrigins } from './resolve-origins.js';
 import { createResolveEndgameState, normalizeResolveEndgame } from './resolve-endgame.js';
+import { normalizeCompanionRelations } from './companion-relations.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -48,7 +49,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     mode: MODES.has(mode) ? mode : 'wait',
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
-    story: createStoryState(), missionProgress: createMissionProgress(), talents: createTalentState(),
+    story: createStoryState(), companionRelations: {}, missionProgress: createMissionProgress(), talents: createTalentState(),
     assignments: createAssignmentState(), campaignProgress: createCampaignProgress(), advanceFeros: createAdvanceFerosState(),
     resolveCitadel: createResolveCitadelState(), resolveNoveria: createResolveNoveriaState(),
     resolveVirmire: createResolveVirmireState(), resolveOrigins: createResolveOrigins(), resolveEndgame: createResolveEndgameState(),
@@ -572,6 +573,8 @@ export function decodeSave(raw) {
     if (state.party.some(id => getResolveVirmireAwayCrew(state).includes(id))) return null;
     state.story = migrateStoryState(OWN(input, 'story') ? input.story : undefined, state);
     if (!state.story) return null;
+    state.companionRelations = normalizeCompanionRelations(OWN(input, 'companionRelations') ? input.companionRelations : undefined, state);
+    if (!state.companionRelations) return null;
     if (OWN(input, 'campaignProgress') && input.campaignProgress === undefined) return null;
     state.campaignProgress = normalizeCampaignProgress(OWN(input, 'campaignProgress') ? input.campaignProgress : undefined, state);
     if (!state.campaignProgress) return null;

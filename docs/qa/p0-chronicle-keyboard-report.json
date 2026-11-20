@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "at": "2026-11-20T14:20:05.139Z",
+  "baseline": "a63f5d9",
+  "command": "node scripts/p0-chronicle-keyboard-browser.mjs",
+  "endpoint": "http://127.0.0.1:4276/",
+  "sources": {
+    "scripts/p0-chronicle-keyboard-browser.mjs": "10232e398c8d9049fd69e542d9ffe0495d313c6341f3ecbb78f54f921109f1cb",
+    "tests/chronicle-battle-mode.test.js": "417cfafa5513ae8dbf502fe399c81246ae924c1c93132527e6f59acea146c539",
+    "src/main.js": "e9937758ff374bce7ffe89fad1baed4ee200d713a554786518ca8d192ba46739",
+    "src/gamepad-controls.js": "b45a65dd7a07f6acc6c42fdf9a6452ec8e5e6bf18d487cc5f9c582edbf79504b",
+    "src/universe-ui.js": "43398e45cb78fcb3c3cadbe616d11a00349dd39eed55ebbd60e76f77e3fcf083",
+    "src/universe-ui.css": "2b949ef613234406efa74a78630e25e0c70bf84d69c809c874737e4b913fe5e4",
+    "src/combat.js": "294c7f487fdc1c9546932579dfff2aed79f7bfb834cb4f93920a7797833fe929",
+    "src/chronicles.js": "bced50d3d0344c0e6c7c0707f7955efa09026b26eab1a8f1c7bb05767fdfddb0"
+  },
+  "checks": [
+    {
+      "id": "GAL-SYS-ACCESS",
+      "passed": true,
+      "exactDescription": "Spécification d’accès au jeu.",
+      "exactCriterion": "Toutes les commandes et le journal restent utilisables sans souris."
+    },
+    {
+      "id": "GAL-SYS-ATB",
+      "passed": true,
+      "exactDescription": "Système original du fan game.",
+      "exactCriterion": "Changer de mode ne crée ni double tour ni perte de commande."
+    },
+    {
+      "id": "GAL-QA-BALANCE",
+      "passed": true,
+      "exactDescription": "Recette des règles proposées.",
+      "exactCriterion": "Aucun combat ne dépend d’une faiblesse non annoncée."
+    },
+    {
+      "id": "INF-SYS-ACCESS",
+      "passed": true,
+      "exactDescription": "Spécification d’accès au jeu.",
+      "exactCriterion": "Toutes les commandes et le journal restent utilisables sans souris."
+    },
+    {
+      "id": "INF-SYS-ATB",
+      "passed": true,
+      "exactDescription": "Système original du fan game.",
+      "exactCriterion": "Changer de mode ne crée ni double tour ni perte de commande."
+    },
+    {
+      "id": "INF-QA-BALANCE",
+      "passed": true,
+      "exactDescription": "Recette des règles proposées.",
+      "exactCriterion": "Aucun combat ne dépend d’une faiblesse non annoncée."
+    }
+  ],
+  "exercises": [
+    {
+      "mediaId": "GAL",
+      "scenario": "gal-jacob",
+      "scenarioAndExport": true,
+      "commandRetained": true,
+      "atbSpentOnce": true,
+      "pausedJournalFocused": true,
+      "resumedAtb": true,
+      "types": [
+        "Synthétique",
+        "Organique"
+      ],
+      "afterOrder": "Jacob Taylor subit 42 dégâts (42 sur les boucliers).\n\nJacob Taylor : Rafale.\n\nRobot — prototype subit 38 dégâts (25 sur les boucliers)."
+    },
+    {
+      "mediaId": "INF",
+      "scenario": "inf-security",
+      "scenarioAndExport": true,
+      "commandRetained": true,
+      "atbSpentOnce": true,
+      "pausedJournalFocused": true,
+      "resumedAtb": true,
+      "types": [
+        "Organique",
+        "Synthétique"
+      ],
+      "afterOrder": "Contact hostile. Le commando attend vos ordres.\n\nRandall Ezno : Rafale.\n\nSoldat de Cerberus — prototype subit 47 dégâts (25 sur les boucliers)."
+    },
+    {
+      "mediaId": "INF",
+      "scenario": "inf-incarceration",
+      "scenarioAndExport": true,
+      "commandRetained": true,
+      "atbSpentOnce": true,
+      "pausedJournalFocused": true,
+      "resumedAtb": true,
+      "types": [
+        "Synthétique",
+        "Organique"
+      ],
+      "afterOrder": "Contact hostile. Le commando attend vos ordres.\n\nPrisonnier turien : Rafale.\n\nMannequin mécanique — original subit 47 dégâts (35 sur les boucliers)."
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/p0-gal-jacob-mode-actif.png",
+      "sha256": "bc37aa3fc90b8297392874e5946499779dd93a0a773ee1de59d120931ef09ad6",
+      "actuallyOpened": true,
+      "visualReview": "Sélecteur Actif et focus visibles. La commande Rafale est toujours sélectionnée et la jauge est pleine. Les types des adversaires restent lisibles."
+    },
+    {
+      "path": "docs/screenshots/p0-gal-jacob-keyboard.png",
+      "sha256": "ea42c5476a019c3a5cd925d6e116ab544dbc4b43de0e97fc5c096d0f7c6b2a95",
+      "actuallyOpened": true,
+      "visualReview": "Le journal entier et la rafale exécutée sont visibles. Le contour matérialise le focus clavier."
+    },
+    {
+      "path": "docs/screenshots/p0-inf-security-keyboard.png",
+      "sha256": "af6eefb7eedbfece73486d90346f54aedac2f888e5d2dd7b35a612803fc7dccc",
+      "actuallyOpened": true,
+      "visualReview": "Le journal entier et la rafale exécutée sont visibles. Le contour matérialise le focus clavier."
+    },
+    {
+      "path": "docs/screenshots/p0-inf-incarceration-keyboard.png",
+      "sha256": "9c75258d9c3a393c5aa1e33bbf67225e0bfd0b9eb214a5bfb096358f98cf0621",
+      "actuallyOpened": true,
+      "visualReview": "Le journal entier et la rafale exécutée sont visibles. Le contour matérialise le focus clavier."
+    }
+  ],
+  "served": {
+    "index.html": "0efa98e3ceb054ecdab9eb944c9afa6ed489f3c65f7dda4cc4f37977e38d09ad",
+    "assets/index-BgjKG6LW.css": "e9d58ada668da4a50e63d7110545388b5781cb3dd55e551c08c85984fa90ba59",
+    "assets/three-DBNoKq7p.js": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156",
+    "assets/index-CIUuB95t.js": "5b35d256643092a9722ae0941d08dbec09d314819692fef1d02f2ae47a1adb16",
+    "assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+    "assets/boss-atlas.png": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4",
+    "assets/props-atlas.png": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875",
+    "assets/vehicle-atlas.png": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b",
+    "assets/npc-atlas.png": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
+    "assets/shepard-walk-atlas.png": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476",
+    "assets/shepard-female-walk-atlas.png": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc",
+    "assets/shepard-female-combat-atlas.png": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+    "assets/shepard-male-combat-atlas.png": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+    "assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+    "assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+    "assets/companion-jenkins-combat.png": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+    "assets/enemy-geth-combat.png": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+    "assets/enemy-geth-sniper-combat.png": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+    "assets/enemy-geth-destroyer-combat.png": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+    "assets/enemy-husk-combat.png": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+    "assets/enemy-krogan-combat.png": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+    "assets/enemy-rachni-combat.png": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+    "assets/enemy-creeper-combat.png": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+    "assets/enemy-asari-combat.png": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+    "assets/joker-seated.png": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+    "assets/boss-saren-combat.png": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318",
+    "assets/boss-benezia-combat.png": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788",
+    "assets/boss-thorian-combat.png": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37",
+    "assets/boss-saren-final-combat.png": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883",
+    "assets/frontier-enemies.png": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9",
+    "assets/citadel-keyart.png": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0",
+    "assets/frontier-npcs.png": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc",
+    "assets/vehicle-mako-directions.png": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74",
+    "assets/horizon-npcs.png": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601",
+    "assets/horizon-enemies.png": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0",
+    "assets/horizon-fauna.png": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+    "assets/horizon-fleet-me1.png": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+    "assets/universe-ui-6-5-flqS.css": "7cd420e771fa26828983b17951292905c48681b2ab6d7a4189cd0c17ed0cd53e",
+    "assets/continuity-BDmSDSTU.js": "6e992cd6b75694a169d3696f8bc09b4eb96a2e71c8b7c80dd8a4ad16cc583dcf",
+    "assets/universe-ui-CQn7xtMg.js": "2dd8e171d5fc71b46eecf9ed356ce7bbbda3427e08f84c06965fe3fd9801fb3c",
+    "assets/advance-continuity-k6eeic6i.js": "8b0cb24afa4d0eecf67c82267a42013c9a8c282d147f9986436670f2fc372079",
+    "assets/universe-actors-BOJEfA2J.js": "4f0b675fcfbe235cbb96b365c0cedf34639d9a26bb55711411dc71fdf9e0acf0",
+    "assets/chronicles-C821epRS.js": "a28c96bcd945ee133354a3c225a8a1a038621d7b343ffa18c5c5a6584c7f8c9c",
+    "assets/universe-equipment-CGyUVoUG.js": "35aebc42e2b8d6b204c8e43def35cfd7108ca9632dc1ffa2aec5f7dbfe4c9d5e",
+    "assets/expansion-DEjXJxe2.js": "571e3ddd24911f4370bb9c3521e228b21ce3f124a774d2066d8c787520625a27",
+    "assets/universe-data-so19u-Af.js": "3d28d6528d5d5d6ff02f551cedb6118a562ec1b56784071b3e77c68970ba11cf"
+  },
+  "native": {
+    "command": "node --test tests/gamepad-controls.test.js tests/chronicle-battle-mode.test.js tests/universe-ui.test.js tests/chronicles.test.js",
+    "tests": 43,
+    "balance": "Les trois combats existants sont gagnés avec rafale, tir et recharge seulement. Les scénarios sont testés par leur API ATB native, sans mettre en scène les campagnes absentes."
+  },
+  "limitations": [
+    "Les trois essais ATB disponibles sont testés. Les campagnes mobiles et leurs embranchements ne sont pas couverts.",
+    "Les entrées Chromium sont au clavier. Aucun matériel de manette ou écran tactile n’a été testé."
+  ]
+}

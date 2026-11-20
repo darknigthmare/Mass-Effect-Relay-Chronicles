@@ -1,0 +1,438 @@
+{
+  "passed": true,
+  "tests": 42,
+  "at": "2026-11-20T14:23:01.174Z",
+  "criterionId": "QA-grand-krogan",
+  "exactCriterion": "Aucune découpe de tête ou collision incohérente.",
+  "baseline": "a63f5d97109da37142dd756023eae0118476d367",
+  "scope": "Exploration de Wrex dans les neuf zones du renderer de campagne, avec les couloirs tracés et les points d’intérêt des zones sans tracé. Test des quatre poses de combat couvert par les tests natifs compagnons.",
+  "sourcePaths": [
+    "public/assets/crew-atlas.png",
+    "src/world.js",
+    "src/world-navigation.js",
+    "tests/level-renderer.test.js",
+    "scripts/p0-wrex-passages-browser.mjs"
+  ],
+  "sourceHashes": {
+    "public/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "src/world-navigation.js": "ff148b46cd5c974f845cf00e57ef8dc886bf9f17c3a58a460ec98696667c08cd",
+    "tests/level-renderer.test.js": "738ee0e861bdd82a4bde795c0e9a6ef04cc3850f1b656bd45c8565c20673e9b0",
+    "scripts/p0-wrex-passages-browser.mjs": "d9d4762f1e4888f53c31596a616ed8fbd449978316e2c6e997d1e4c87e11cd4c"
+  },
+  "native": {
+    "command": "node --test tests/level-renderer.test.js tests/world-sprite-alpha.test.js tests/world-camera.test.js tests/companion-combat-world.test.js tests/frontier-levels.test.js tests/continuation-world.test.js",
+    "passedTests": 42,
+    "failedTests": 0
+  },
+  "browser": "Chromium 154.0.8037.57, WebGL 2, SwiftShader.",
+  "server": "RELAY_QA=1 npm run dev -- --port 4219 --strictPort",
+  "command": "GAME_URL=http://127.0.0.1:4219/ PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium P0_WREX_OUTPUT=/tmp/p0-wrex-review-02 node scripts/p0-wrex-passages-browser.mjs",
+  "checks": [
+    "Le cadrage 384 × 512 garde 793 pixels d’origine supplémentaires au seuil alpha 0,2, avec deux pixels transparents au-dessus du sommet.",
+    "Le suivi interpole au sol. Aux angles, il longe un bord praticable ou attend que le groupe tourne.",
+    "Les 21 trajets et 136 segments présentent zéro traversée d’obstacle entre images, zéro centre invalide et zéro recadrage coupant la géométrie."
+  ],
+  "frame": {
+    "nominal": {
+      "first": 0,
+      "last": 491,
+      "count": 105030
+    },
+    "corrected": {
+      "first": 2,
+      "last": 509,
+      "count": 105823
+    }
+  },
+  "firstBrowserRun": {
+    "correctedFrameAlreadyActive": true,
+    "beforeSweptFollower": true,
+    "cornerCollisions": [
+      {
+        "zone": "therum",
+        "path": "basalt-return",
+        "sweptCollisions": 1
+      },
+      {
+        "zone": "feros",
+        "path": "ancient-return",
+        "sweptCollisions": 1
+      },
+      {
+        "zone": "noveria",
+        "path": "maintenance-return",
+        "sweptCollisions": 1
+      },
+      {
+        "zone": "virmire",
+        "path": "western-flank",
+        "sweptCollisions": 1
+      }
+    ]
+  },
+  "routeSummary": {
+    "paths": 21,
+    "segments": 136,
+    "frames": 15802,
+    "viewport": [
+      390,
+      844
+    ],
+    "simulationStep": 0.05,
+    "collisionProbeSpacingMaximum": 0.04,
+    "maxDistanceFromLeader": 5.205531031553478,
+    "maxNormalizedX": 0.8800000000000004,
+    "maxNormalizedY": 0.3866736658587108
+  },
+  "zones": [
+    {
+      "id": "normandy",
+      "checks": [
+        {
+          "id": "poi",
+          "segments": 7,
+          "checkedFrames": 438,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.8800000000000003,
+          "maxBodyY": 0.2894752491942732,
+          "minBodyY": -0.2701657976998761,
+          "maxStep": 0.3725383479797273,
+          "maxDistanceFromLeader": 5.190858289401052
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "eden-prime",
+      "checks": [
+        {
+          "id": "main",
+          "segments": 14,
+          "checkedFrames": 1003,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6668545958269904,
+          "maxBodyY": 0.21730907097491925,
+          "minBodyY": -0.14613973364185398,
+          "maxStep": 0.7371867878833115,
+          "maxDistanceFromLeader": 5.2054917618955505
+        },
+        {
+          "id": "supply-loop",
+          "segments": 5,
+          "checkedFrames": 328,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6224810175844216,
+          "maxBodyY": 0.2820693500667956,
+          "minBodyY": -0.1419620161809335,
+          "maxStep": 0.7371867878833127,
+          "maxDistanceFromLeader": 5.1863742449918755
+        },
+        {
+          "id": "western-return",
+          "segments": 5,
+          "checkedFrames": 760,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6684868837108234,
+          "maxBodyY": 0.2900049770422468,
+          "minBodyY": -0.09572978924592354,
+          "maxStep": 0.7371867878833109,
+          "maxDistanceFromLeader": 5.205531031552831
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "citadel",
+      "checks": [
+        {
+          "id": "poi",
+          "segments": 7,
+          "checkedFrames": 618,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.8800000000000004,
+          "maxBodyY": 0.38616146765546494,
+          "minBodyY": -0.2629758765406153,
+          "maxStep": 0.3725383479797273,
+          "maxDistanceFromLeader": 5.205531026000498
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "therum",
+      "checks": [
+        {
+          "id": "mining-road",
+          "segments": 10,
+          "checkedFrames": 1053,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.668488712400525,
+          "maxBodyY": 0.21166032317128186,
+          "minBodyY": -0.14612396305883538,
+          "maxStep": 0.7371867878833078,
+          "maxDistanceFromLeader": 5.205531020129424
+        },
+        {
+          "id": "survey-loop",
+          "segments": 5,
+          "checkedFrames": 465,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6477306581272267,
+          "maxBodyY": 0.29676625453761457,
+          "minBodyY": -0.13381073346673192,
+          "maxStep": 0.7371867878833162,
+          "maxDistanceFromLeader": 5.190858378333634
+        },
+        {
+          "id": "basalt-return",
+          "segments": 4,
+          "checkedFrames": 682,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6673130496902316,
+          "maxBodyY": 0.28178039329946375,
+          "minBodyY": -0.09486977363393406,
+          "maxStep": 0.37884115818341946,
+          "maxDistanceFromLeader": 5.205531004702492
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "feros",
+      "checks": [
+        {
+          "id": "colony-exogeni",
+          "segments": 9,
+          "checkedFrames": 1189,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6687208990359428,
+          "maxBodyY": 0.23876363703971126,
+          "minBodyY": -0.1459533260252752,
+          "maxStep": 0.7371867878833127,
+          "maxDistanceFromLeader": 5.205531031553456
+        },
+        {
+          "id": "maintenance-loop",
+          "segments": 4,
+          "checkedFrames": 587,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.667453356157295,
+          "maxBodyY": 0.19673172812333498,
+          "minBodyY": -0.1460027064517788,
+          "maxStep": 0.7371867878833127,
+          "maxDistanceFromLeader": 5.205531031553397
+        },
+        {
+          "id": "ancient-return",
+          "segments": 4,
+          "checkedFrames": 708,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6689317511865595,
+          "maxBodyY": 0.29057252201133194,
+          "minBodyY": -0.09559990181043336,
+          "maxStep": 0.37884115818341946,
+          "maxDistanceFromLeader": 5.205531031226519
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "noveria",
+      "checks": [
+        {
+          "id": "peak15-road",
+          "segments": 9,
+          "checkedFrames": 1058,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6710830090535206,
+          "maxBodyY": 0.19762598077706692,
+          "minBodyY": -0.14617143662904175,
+          "maxStep": 0.737186787883311,
+          "maxDistanceFromLeader": 5.205531031366067
+        },
+        {
+          "id": "freight-loop",
+          "segments": 5,
+          "checkedFrames": 575,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6671206693714288,
+          "maxBodyY": 0.24380499772780304,
+          "minBodyY": -0.14563979116265588,
+          "maxStep": 0.737186787883311,
+          "maxDistanceFromLeader": 5.20553100244996
+        },
+        {
+          "id": "maintenance-return",
+          "segments": 5,
+          "checkedFrames": 792,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6680806268696547,
+          "maxBodyY": 0.29930293165007554,
+          "minBodyY": -0.045362918619829704,
+          "maxStep": 0.37884115818341946,
+          "maxDistanceFromLeader": 5.205531031547317
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "virmire",
+      "checks": [
+        {
+          "id": "coastal-approach",
+          "segments": 10,
+          "checkedFrames": 1145,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6687771516124662,
+          "maxBodyY": 0.22914581408807183,
+          "minBodyY": -0.14578521234443037,
+          "maxStep": 0.7371867878833078,
+          "maxDistanceFromLeader": 5.2055310310547
+        },
+        {
+          "id": "beach-loop",
+          "segments": 5,
+          "checkedFrames": 543,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6686199213006631,
+          "maxBodyY": 0.19635882455238923,
+          "minBodyY": -0.14574473051247486,
+          "maxStep": 0.7371867878833078,
+          "maxDistanceFromLeader": 5.205531026144398
+        },
+        {
+          "id": "western-flank",
+          "segments": 4,
+          "checkedFrames": 752,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6689317499053927,
+          "maxBodyY": 0.29765726014223964,
+          "minBodyY": -0.044963226535215346,
+          "maxStep": 0.37884115818341935,
+          "maxDistanceFromLeader": 5.205531002963852
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "ilos",
+      "checks": [
+        {
+          "id": "vigil-route",
+          "segments": 9,
+          "checkedFrames": 1233,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6685363001120931,
+          "maxBodyY": 0.1967280257734469,
+          "minBodyY": -0.14614569617379533,
+          "maxStep": 0.7371867878833127,
+          "maxDistanceFromLeader": 5.205531031553478
+        },
+        {
+          "id": "western-gardens",
+          "segments": 4,
+          "checkedFrames": 568,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.6668262175450318,
+          "maxBodyY": 0.19077585501023014,
+          "minBodyY": -0.14682360149620638,
+          "maxStep": 0.7371867878833127,
+          "maxDistanceFromLeader": 5.205531031553386
+        },
+        {
+          "id": "archive-return",
+          "segments": 4,
+          "checkedFrames": 680,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.668307506123469,
+          "maxBodyY": 0.2979056925499146,
+          "minBodyY": -0.08408594726162145,
+          "maxStep": 0.7371867878833097,
+          "maxDistanceFromLeader": 5.205528067015407
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "citadel-finale",
+      "checks": [
+        {
+          "id": "poi",
+          "segments": 7,
+          "checkedFrames": 625,
+          "blockedSegments": [],
+          "invalidCenters": 0,
+          "sweptCollisions": 0,
+          "maxBodyX": 0.8800000000000003,
+          "maxBodyY": 0.3866736658587108,
+          "minBodyY": -0.2630241617170363,
+          "maxStep": 0.3725383479797273,
+          "maxDistanceFromLeader": 5.205494667444906
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "errors": [],
+  "captures": [
+    {
+      "label": "normandy",
+      "path": "docs/screenshots/p0-wrex-normandy.png",
+      "sha256": "f4d362eb441bf1cfd668f2016136b9567d6c43cb3dd54fe627e9ab9bfb1acfc9",
+      "actuallyOpened": true,
+      "observation": "Portrait 390 × 844. Wrex est à son poste au Normandy, tête entière à côté de Shepard et repère de dialogue lisible."
+    },
+    {
+      "label": "framing-detail",
+      "path": "docs/screenshots/p0-wrex-framing-detail.png",
+      "sha256": "3ee2b591d8316f555e360682810f62ad2d246ca7cac69126feca757ca2b0d795",
+      "actuallyOpened": true,
+      "observation": "Deux lectures WebGL de la même planche. L’ancien cadre à gauche a un sommet plat ; le cadre courant à droite affiche le sommet arrondi, sans pixel du personnage voisin. Les pieds sont plus proches du plancher."
+    }
+  ],
+  "limitations": [
+    "Le groupe de test est formé avant chaque trajet et sa position de départ est préparée. Les déplacements sur le trajet utilisent le pathfinder et la boucle d’actualisation. Ce groupe inclut Wrex sur Eden Prime pour contrôler aussi ce décor, avant son recrutement normal.",
+    "La collision porte sur le centre au sol et son déplacement dans le moteur existant. Les gabarits visuels des sprites demeurent des plans et les captures proviennent d’un WorldView isolé.",
+    "Le PNG source garde son empreinte. Le cadre et le masque du fragment voisin sont appliqués à une texture en mémoire."
+  ]
+}

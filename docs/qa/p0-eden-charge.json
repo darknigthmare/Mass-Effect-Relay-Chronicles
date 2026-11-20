@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-20T14:21:53.521Z",
+  "url": "http://127.0.0.1:4286/",
+  "criterion": {
+    "id": "QST-desamorcage-du-spatioport",
+    "exactDescription": "Neutraliser quatre charges du spatioport sur le terrain, avec désamorçage de six secondes, délai, annulation et reprise.",
+    "exactCriterion": "Temps, pause et échec clairement définis.",
+    "passed": true
+  },
+  "checks": [
+    {
+      "name": "Le dialogue précise les cinq minutes, les six secondes immobiles et les conditions qui suspendent le temps.",
+      "passed": true
+    },
+    {
+      "name": "En pause, le délai et le canal restent identiques entre deux exports. L’annulation n’enregistre aucune charge neutralisée.",
+      "passed": true
+    },
+    {
+      "name": "L’expiration réelle affiche l’échec, puis le point de contrôle réarme la mission sans changer les ressources.",
+      "passed": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "avant-le-delai",
+      "sha256": "01c070ec93dddc158704cb9f1568953cac510bf0f2396e66fcb0a5dd2e32c3da",
+      "precondition": "Briefing et deux contacts préparés par les API natives."
+    },
+    {
+      "name": "premiere-charge",
+      "sha256": "e194d81ec531cb5c5e0f96794ca7113082340070b8917ea3d3967a019076b275",
+      "precondition": "Mission activée par les API natives et départ à côté de la première charge."
+    },
+    {
+      "name": "avant-expiration",
+      "sha256": "8d09066b1c441ec392b6185b042c79d30605df67d1a29179a2ca1c93bf5807b3",
+      "precondition": "Les API natives préparent les 299 premières secondes, la dernière seconde se déroule dans le navigateur."
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/qa/p0-eden-charge-regles.png",
+      "sha256": "f208ea3f6a289efd45ced318dc3ca7f69328d745fe09482693eea27d563db71f",
+      "review": "Le dialogue et les commandes sont lisibles à taille réelle. Les quatre charges, les cinq minutes et les six secondes immobiles sont explicites."
+    },
+    {
+      "path": "docs/qa/p0-eden-charge-echec.png",
+      "sha256": "2786533b99371408b05fbeeae74e53d452f38f4128208ec971c6949d1c8ecbd3",
+      "review": "Le HUD et le dialogue signalent l’expiration. Le bouton de reprise est visible et le dialogue précise le réarmement des quatre charges."
+    }
+  ],
+  "servedFiles": [
+    {
+      "path": "index.html",
+      "sha256": "084886b5c3662e9c47e699624cee2fcc94f83616765270f6021f428b1d2fe69a"
+    },
+    {
+      "path": "assets/index-BgjKG6LW.css",
+      "sha256": "e9d58ada668da4a50e63d7110545388b5781cb3dd55e551c08c85984fa90ba59"
+    },
+    {
+      "path": "assets/three-DBNoKq7p.js",
+      "sha256": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156"
+    },
+    {
+      "path": "assets/index-Cwf2mv0p.js",
+      "sha256": "f3941e5f4beff68f00e2b2f9c94e826b3d16b9960e64cb4326ff5ce8cb789e4a"
+    }
+  ],
+  "errors": [],
+  "baseCommit": "a63f5d97109da37142dd756023eae0118476d367",
+  "command": "P0_BUILD_DIR=/tmp/relay-companion-relations-dist node scripts/p0-eden-charge-browser.mjs",
+  "native": {
+    "tests": 13,
+    "command": "node --test tests/mission-progress.test.js",
+    "scope": "Quatre charges neutralisées par des séquences de six secondes, pause et annulation, reprise et chronomètre aux différentes cadences."
+  },
+  "limitations": [
+    "La vérification couvre le spatioport de l’adaptation et son délai de cinq minutes. Le terrain et les placements restent ceux du projet.",
+    "Les combats précédents et les 299 secondes de préparation sont préparés par les API natives. Les actions du navigateur portent sur le dialogue de départ, la première charge, la pause, l’annulation et l’échéance réelle avec reprise. Les quatre charges sont déroulées dans le test natif."
+  ],
+  "sourceHashes": {
+    "scripts/p0-eden-charge-browser.mjs": "244b23a4f451a43e560dc632ebed493919818f4ab49310f268deee56044d6d64",
+    "tests/mission-progress.test.js": "033e59985ae4b02b66a1c73b8afe71e6e89f5e75405a4faaf5a4cbd69af1cd63",
+    "src/mission-progress.js": "d9fa6b5e0ef953e00684aa441ce669e03a2559a249e2137674a0a84c74facc3a",
+    "src/mission-progress-ui.js": "f0f7d4c3cb588ddced277e7e6d2a597935b00b581187d1140d48a858cba48a76"
+  }
+}

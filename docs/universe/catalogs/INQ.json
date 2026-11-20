@@ -26,7 +26,7 @@
   ],
   "entries": [
     {
-      "status": "Prototype",
+      "status": "Validé",
       "nature": "Établi",
       "priority": "P0",
       "description": "L’éditeur présente Bailey cherchant un traître présumé dans le contexte de la Citadelle.",
@@ -43,24 +43,32 @@
         "INQ-S-PAIR"
       ],
       "reference": "Mass Effect: Inquisition, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les soupçons d’Inquisition restent attribués à leur notice, sans verdict inventé. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Les soupçons d’Inquisition restent attribués à leur notice, sans verdict inventé. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.\nSource INQ-S-PAIR, portée et note visibles.\nFiche documentaire sans effet en campagne. Édition source non consultée.",
       "id": "INQ-REF-SCOPE",
       "category": "lore",
       "name": "Bailey au centre de l’enquête",
       "implementationPaths": [
         "src/chronicle-story.js",
         "src/chronicles.js",
-        "src/universe-ui.js"
+        "src/universe-ui.js",
+        "src/continuation-catalogue.js"
       ],
       "evidence": [
         "tests/chronicle-story.test.js",
         "tests/chronicle-specialists.test.js",
         "scripts/chronicle-specialists-browser.mjs",
-        "docs/qa/chronicle-specialists-browser-report.json"
-      ]
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/p0-source-citations.json",
+        "scripts/p0-source-citations-browser.mjs",
+        "scripts/p0-source-citation-cases.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-source-citations.json",
+        "sha256": "f2f8a353a808e9a336c7e63a11bf0814a0b909dd496f86fea7c36392f257b79d"
+      }
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "À vérifier",
       "priority": "P0",
       "description": "Le wiki décrit les accusations d’Udina contre Pallin et les doutes de Bailey après la confrontation.",
@@ -77,13 +85,25 @@
         "INQ-S-WIKI"
       ],
       "reference": "Mass Effect: Inquisition, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.\nSource INQ-S-WIKI, portée et note visibles.\nFiche documentaire sans effet en campagne. Édition source non consultée.",
       "id": "INQ-REF-DOUBT",
       "category": "lore",
-      "name": "Accusation et doute"
+      "name": "Accusation et doute",
+      "implementationPaths": [
+        "src/continuation-catalogue.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-source-citations.json",
+        "scripts/p0-source-citations-browser.mjs",
+        "scripts/p0-source-citation-cases.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-source-citations.json",
+        "sha256": "f2f8a353a808e9a336c7e63a11bf0814a0b909dd496f86fea7c36392f257b79d"
+      }
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "À vérifier",
       "priority": "P0",
       "description": "Le récit rapporté se conclut par une promotion de Bailey.",
@@ -100,10 +120,22 @@
         "INQ-S-WIKI"
       ],
       "reference": "Mass Effect: Inquisition, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.\nSource INQ-S-WIKI, portée et note visibles.\nFiche documentaire sans effet en campagne. Édition source non consultée.",
       "id": "INQ-REF-PROMOTION",
       "category": "lore",
-      "name": "Conclusion de carrière"
+      "name": "Conclusion de carrière",
+      "implementationPaths": [
+        "src/continuation-catalogue.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-source-citations.json",
+        "scripts/p0-source-citations-browser.mjs",
+        "scripts/p0-source-citation-cases.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-source-citations.json",
+        "sha256": "f2f8a353a808e9a336c7e63a11bf0814a0b909dd496f86fea7c36392f257b79d"
+      }
     },
     {
       "status": "Défini",

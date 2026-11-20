@@ -1,5 +1,23 @@
 // Navigation for the larger authored ground mask. Other legacy tableaux keep
 // their existing pathfinder; no combat or progression state is owned here.
+function clearWalkableSegment(start, end, isWalkable, spacing) {
+  const dx = end.x - start.x, dz = end.z - start.z;
+  const samples = Math.max(1, Math.ceil(Math.hypot(dx, dz) / spacing));
+  for (let i = 1; i <= samples; i++) {
+    if (!isWalkable(start.x + dx * i / samples, start.z + dz * i / samples)) return false;
+  }
+  return true;
+}
+
+export function followWalkableStep(start, end, isWalkable) {
+  const clear = point => clearWalkableSegment(start, point, isWalkable, .08);
+  if (clear(end)) return end;
+  // Slide along a wall or stand at the last valid point while the trail turns.
+  const xStep = { x: end.x, z: start.z }, zStep = { x: start.x, z: end.z };
+  const slides = Math.abs(end.x - start.x) >= Math.abs(end.z - start.z) ? [xStep, zStep] : [zStep, xStep];
+  return slides.find(clear) || start;
+}
+
 export function findLevelPath({ bounds, start, destination, isWalkable, step = .75, maxVisits } = {}) {
   if (!bounds || !start || !destination || typeof isWalkable !== 'function'
     || ![start.x, start.z, destination.x, destination.z, step].every(Number.isFinite) || step <= 0
@@ -18,11 +36,7 @@ export function findLevelPath({ bounds, start, destination, isWalkable, step = .
     if (!walk[key]) { const p = point(key); walk[key] = isWalkable(p.x, p.z) ? 1 : 2; }
     return walk[key] === 1;
   };
-  const clearSegment = (a, b) => {
-    const count = Math.max(1, Math.ceil(Math.hypot(a.x - b.x, a.z - b.z) / .2));
-    for (let i = 1; i <= count; i++) if (!isWalkable(a.x + (b.x - a.x) * i / count, a.z + (b.z - a.z) * i / count)) return false;
-    return true;
-  };
+  const clearSegment = (a, b) => clearWalkableSegment(a, b, isWalkable, .2);
   const less = (a, b) => a.score < b.score || a.score === b.score && a.distance < b.distance;
   const push = node => {
     heap.push(node); let i = heap.length - 1;

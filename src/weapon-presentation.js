@@ -17,6 +17,26 @@ const carryPoses = {
   left: { side: 1, hip: .13, tilt: .24 },
 };
 
+// Atlas coordinates on the two authored aim poses. The masks end at the
+// trigger and support gloves, keeping the hands and their shading intact.
+const aimMounts = {
+  'shepard-combat-aim': {
+    rect: [222, 9, 430, 527], grip: [477, 142],
+    mask: 'M378 97 L442 95 L456 86 L492 83 L545 75 L581 78 L592 91 L650 93 L652 123 L638 137 L564 140 L554 127 L537 124 L523 128 L510 138 L487 131 L474 129 L454 134 L435 133 L411 138 L381 134 Z',
+  },
+  'femshep-combat-aim': {
+    rect: [214, 19, 436, 549], grip: [470, 156],
+    mask: 'M362 112 L430 105 L450 105 L467 94 L477 88 L532 88 L538 101 L633 102 L649 112 L649 139 L633 140 L626 152 L558 152 L552 139 L538 132 L525 138 L511 146 L490 145 L476 144 L454 146 L408 145 L367 152 Z',
+  },
+};
+
+const aimGrips = {
+  pistol: { grip: [.29, .64], muzzle: [.65, .33] },
+  assault: { grip: [.44, .64], muzzle: [.9, .36] },
+  shotgun: { grip: [.36, .64], muzzle: [.95, .35] },
+  sniper: { grip: [.42, .64], muzzle: [.975, .37] },
+};
+
 export function getCarriedWeapon(weaponItemId) {
   const item = typeof weaponItemId === 'string' && Object.hasOwn(ITEMS, weaponItemId) ? ITEMS[weaponItemId] : null;
   if (item?.kind !== 'weapon') return null;
@@ -58,15 +78,9 @@ function makeTexture({ outline, accent, id, level }) {
   return texture;
 }
 
-/** Attach a separate sprite plane to the present walking frame, never the
- * combat artwork. The parent owns disposal of the geometry, material and map. */
-export function updateCarriedWeapon(actor, weapon, direction, walkingFrame) {
-  const existing = actor.carriedWeapon;
-  if (!weapon || !walkingFrame) {
-    if (existing) existing.visible = false;
-    return;
-  }
-  let layer = existing;
+// The parent owns disposal of the geometry, material and attached map.
+function weaponLayer(actor, weapon) {
+  let layer = actor.carriedWeapon;
   if (!layer) {
     const material = new THREE.MeshBasicMaterial({
       transparent: true, alphaTest: .2, toneMapped: false, depthWrite: true,
@@ -84,6 +98,16 @@ export function updateCarriedWeapon(actor, weapon, direction, walkingFrame) {
     layer.userData.itemId = weapon.id;
     layer.userData.family = weapon.family;
   }
+  layer.visible = true;
+  return layer;
+}
+
+export function updateCarriedWeapon(actor, weapon, direction, walkingFrame) {
+  if (!weapon || !walkingFrame) {
+    if (actor.carriedWeapon) actor.carriedWeapon.visible = false;
+    return;
+  }
+  const layer = weaponLayer(actor, weapon);
   const { side, hip, tilt } = carryPoses[direction] || carryPoses.front;
   const { width, height } = actor.body.geometry.parameters;
   const parentScale = actor.body.scale;
@@ -93,5 +117,50 @@ export function updateCarriedWeapon(actor, weapon, direction, walkingFrame) {
   layer.position.set(side * width * hip, -height * .07, .028);
   layer.rotation.z = -Math.PI / 2 + tilt;
   layer.scale.set(length / parentScale.y, thickness / parentScale.x, 1);
-  layer.visible = true;
+}
+
+export function getCombatWeaponMount(frame) {
+  const mount = frame && Object.hasOwn(aimMounts, frame.id) && aimMounts[frame.id];
+  return mount && mount.rect.every((value, index) => value === frame.rect?.[index]) ? mount : null;
+}
+
+export function maskBakedCombatWeapon(atlas, frame, mount) {
+  const [x, y, width, height] = mount.rect;
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d');
+  context.drawImage(atlas.image, x, y, width, height, 0, 0, width, height);
+  context.translate(-x, -y);
+  context.globalCompositeOperation = 'destination-out';
+  context.fill(new Path2D(mount.mask));
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.userData.relayAnimationFrame = frame;
+  return texture;
+}
+
+export function updateAimedWeapon(actor, weapon, mount) {
+  if (!mount || !weapon) {
+    if (actor.carriedWeapon) actor.carriedWeapon.visible = false;
+    return;
+  }
+  const layer = weaponLayer(actor, weapon);
+  const [x, y, width, height] = mount.rect;
+  const geometry = actor.body.geometry.parameters;
+  const model = aimGrips[weapon.family];
+  const displayScale = actor.body.scale.y * geometry.height / actor.height;
+  const length = weapon.length * 1.8 * displayScale;
+  const scaleX = length / actor.body.scale.x;
+  const scaleY = length * .6 / actor.body.scale.y;
+  // The mount and tool use the same plane as the posed sprite. Cover and
+  // camera transforms act on both through their shared parent.
+  layer.position.set(
+    ((mount.grip[0] - x) / width - .5) * geometry.width + (.5 - model.grip[0]) * scaleX,
+    (.5 - (mount.grip[1] - y) / height) * geometry.height + (model.grip[1] - .5) * scaleY,
+    .028,
+  );
+  layer.rotation.z = 0;
+  layer.scale.set(scaleX, scaleY, 1);
+  layer.userData.muzzle = model.muzzle;
 }

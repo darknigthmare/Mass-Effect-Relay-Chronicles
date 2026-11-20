@@ -12,7 +12,7 @@ import { COMPANION_ANIMATION_IDS, normalizeCompanionAnimation, canShowCompanionA
 import { ENEMY_ANIMATION_IDS, normalizeEnemyAnimation, canShowEnemyAnimation } from './enemy-animation-data.js';
 import { normalizeJokerSeated, canShowJokerSeated } from './joker-seated-data.js';
 import { getLevelLayout, isLevelGround, nearestLevelGround } from './level-layout-data.js';
-import { findLevelPath } from './world-navigation.js';
+import { findLevelPath, followWalkableStep } from './world-navigation.js';
 import { geometricCover, findRetreatPoint } from './completion-world.js';
 import { sampleWalkableHeight } from './continuation-world-ground.js';
 import { buildEdenScene } from './eden-scene.js';
@@ -26,9 +26,11 @@ import { HORIZON_FAUNA, normalizeHorizonFaunaAtlas, getHorizonFaunaFrame, getHor
 import { HORIZON_FLEET, normalizeHorizonFleetAtlas, getHorizonFleetFrame, canShowHorizonFleet } from './horizon-fleet.js';
 import { BOSS_ANIMATION_IDS, normalizeBossAnimation, canShowBossAnimation } from './boss-animation-data.js';
 import { createMakoState, boardMako, stepMako, dismountMako, makoDirectionFrame, normalizeMakoDirections } from './frontier-vehicles.js';
+import { vehicleExerciseArena, vehicleExercisePosition } from './vehicle-exercise.js';
 import { resolveNoveriaContactAvailable } from './resolve-noveria.js';
-import { getCarriedWeapon, updateCarriedWeapon } from './weapon-presentation.js';
+import { getCarriedWeapon, getCombatWeaponMount, maskBakedCombatWeapon, updateAimedWeapon, updateCarriedWeapon } from './weapon-presentation.js';
 import { fitWorldCamera, showCoveredActor } from './world-camera.js';
+import { prepareSpriteTexture, withSpriteAlpha } from './world-sprite-alpha.js';
 
 const GUARDED_COMBAT_ANIMATION_IDS = [...COMPANION_ANIMATION_IDS, ...ENEMY_ANIMATION_IDS, ...BOSS_ANIMATION_IDS];
 
@@ -49,6 +51,10 @@ const WEAPON_TRACE_STYLES = {
   sniper: { count: 1, burstExtra: 0, radius: .012, duration: .22, spread: 0, color: 0xe2f3ff },
 };
 const BALLISTIC_ORDERS = new Set(['shoot', 'burst', 'signature']);
+const NON_BODY_ATLASES = new Set(['props', 'vehicles', 'mako-directions', 'horizon-fleet-me1']);
+// These three source atlases have small disconnected components at the body
+// cutoff. Restrict decoded-image readback to the affected families.
+const BODY_ATLASES_WITH_ISLANDS = new Set(['combat-femshep', 'combat-thorian', 'combat-creeper']);
 const ASSET_BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
 const COLORS = { operation: 0xc09be9, dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
 const TAU = Math.PI * 2;
@@ -177,6 +183,7 @@ export class WorldView {
         texture.dispose(); this.assetErrors?.push(`Dimensions d’animation incompatibles : ${url}`); return;
       }
       texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4; texture.magFilter = THREE.LinearFilter;
+      if (!NON_BODY_ATLASES.has(name)) prepareSpriteTexture(texture, BODY_ATLASES_WITH_ISLANDS.has(name));
       const previous = this.atlases[name]; this.atlases[name] = texture; urls.set(name, url);
       for (const [key, tex] of this.spriteCache) if (key.startsWith(`${name}:`)) { tex.dispose(); this.spriteCache.delete(key); }
       if (previous && previous !== texture) previous.dispose();
@@ -199,9 +206,20 @@ export class WorldView {
   }
 
   _spriteTexture(key = 'shepard', enemy = false) {
+    if (key === 'mako') return this._neutralSpriteTexture();
+    if (key === 'training-target') {
+      if (!this.spriteCache.has(key)) this.spriteCache.set(key, canvasTexture(128, 128, ctx => {
+        const frame = new Path2D('M64 15 L109 42 L103 91 L64 114 L25 91 L19 42 Z');
+        ctx.fillStyle = '#142c33'; ctx.fill(frame);
+        ctx.strokeStyle = '#93eae3'; ctx.lineWidth = 5; ctx.stroke(frame);
+        ctx.beginPath(); ctx.arc(64, 63, 25, 0, TAU); ctx.stroke();
+        ctx.strokeStyle = '#f4dfa1'; ctx.beginPath(); ctx.arc(64, 63, 8, 0, TAU); ctx.stroke();
+      }));
+      return this.spriteCache.get(key);
+    }
     if (RESOLVE_PROTOTYPE_KEYS.includes(key)) {
       const prototypeKey = `resolve-prototype:${key}:${enemy ? 'enemy' : 'npc'}`;
-      if (!this.spriteCache.has(prototypeKey)) this.spriteCache.set(prototypeKey, fallbackCharacter(key, enemy));
+      if (!this.spriteCache.has(prototypeKey)) this.spriteCache.set(prototypeKey, prepareSpriteTexture(fallbackCharacter(key, enemy)));
       return this.spriteCache.get(prototypeKey);
     }
     const name = this._spriteAtlasName(key, enemy), cacheKey = `${name}:${key}`;
@@ -209,12 +227,21 @@ export class WorldView {
       || ['varren','alpha-varren','gasbag-me1'].includes(key)) return this._neutralSpriteTexture();
     if (this.spriteCache.has(cacheKey)) return this.spriteCache.get(cacheKey);
     let texture;
-    if (this.atlases[name]) {
+    const atlas = this.atlases[name], image = atlas?.image;
+    if (name === 'crew' && key === 'wrex' && typeof HTMLImageElement !== 'undefined' && image instanceof HTMLImageElement
+      && image.width === 1536 && image.height === 1024) {
+      // The existing head extends above the nominal cell. Take its full height
+      // and mask the neighbouring cell's overlapping boot, outside this body.
+      texture = prepareSpriteTexture(canvasTexture(384, 512, context => {
+        context.drawImage(image, 768, 494, 384, 512, 0, 0, 384, 512);
+        context.clearRect(268, 0, 52, 10);
+      }));
+    } else if (atlas) {
       const keys = name === 'boss' ? BOSS_KEYS : name === 'npc' ? NPC_KEYS : enemy ? ENEMY_KEYS : CREW_KEYS; const index = Math.max(0, keys.indexOf(key));
       const columns = name === 'boss' ? 2 : 4;
-      texture = this.atlases[name].clone(); texture.repeat.set(1 / columns, .5);
+      texture = atlas.clone(); texture.repeat.set(1 / columns, .5);
       texture.offset.set((index % columns) / columns, .5 - Math.floor(index / columns) * .5); texture.needsUpdate = true;
-    } else texture = fallbackCharacter(key, enemy);
+    } else texture = prepareSpriteTexture(fallbackCharacter(key, enemy));
     this.spriteCache.set(cacheKey, texture); return texture;
   }
 
@@ -499,6 +526,15 @@ export class WorldView {
 
   isVehicleMounted() { return this.makoState?.mounted === true; }
 
+  getVehicleExerciseArena() {
+    if (!this._vehicleInPeriod()) return null;
+    return vehicleExerciseArena({
+      zoneId: this.zoneId, mounted: this.isVehicleMounted(), position: this.player,
+      parking: this.levelLayout?.vehicleSpawn,
+      walkable: (x, z, radius) => this._vehicleGround(x, z, radius),
+    });
+  }
+
   _vehicleGround(x, z, radius = 1.45, { encounters = true } = {}) {
     if (this.zoneId !== 'therum' || !this.levelLayout || !isLevelGround(this.levelLayout, x, z, radius)) return false;
     if (this.colliders.some(c => this._insideCollider(x,z,c,radius))) return false;
@@ -556,15 +592,19 @@ export class WorldView {
       this.stage.add(group);this.makoSprite={group,body};
     }
     const {group,body}=this.makoSprite;group.visible=this.mode!=='combat'&&this._vehicleInPeriod();group.position.set(state.position.x,0,state.position.z);body.rotation.y=Math.atan2(this.cameraOffset.x,this.cameraOffset.z);
-    const config=this.makoDirectionsConfig,atlas=this.atlases['mako-directions'],frame=config?.frames[makoDirectionFrame(state)];
+    this._applyMakoFrame(body, makoDirectionFrame(state));
+  }
+
+  _applyMakoFrame(body, direction, compression = 1) {
+    const config=this.makoDirectionsConfig,atlas=this.atlases['mako-directions'],frame=config?.frames[direction];
     if(atlas && frame && atlas.image?.width===config.width && atlas.image.height===config.height){
       const [x,y,w,h]=frame.rect,key=`mako-directions:${frame.id}`;let texture=this.spriteCache.get(key);
       if(!texture){texture=atlas.clone();texture.repeat.set(w/config.width,h/config.height);texture.offset.set(x/config.width,1-(y+h)/config.height);this.spriteCache.set(key,texture);}
       body.material.map=texture;const height=config.displayHeight*(frame.heightScale||1),width=height*w/h;
-      body.scale.set(width/5,height/3,1);body.position.y=(frame.pivot[1]/h-.5)*height+.05;
+      body.scale.set(width/5,height*compression/3,1);body.position.y=(frame.pivot[1]/h-.5)*height*compression+.05;
       const offset=(.5-frame.pivot[0]/w)*width,angle=body.rotation.y;body.position.x=Math.cos(angle)*offset;body.position.z=-Math.sin(angle)*offset;body.visible=true;
     }else if(this.atlases.vehicles){
-      const key='mako-legacy-preview';let texture=this.spriteCache.get(key);if(!texture){const atlas=this.atlases.vehicles;texture=atlas.clone();texture.repeat.set(662/atlas.image.width,400/atlas.image.height);texture.offset.set(650/atlas.image.width,1-490/atlas.image.height);this.spriteCache.set(key,texture);}body.material.map=texture;body.scale.set(1,1,1);body.position.set(0,1.55,0);body.visible=true;
+      const key='mako-legacy-preview';let texture=this.spriteCache.get(key);if(!texture){const atlas=this.atlases.vehicles;texture=atlas.clone();texture.repeat.set(662/atlas.image.width,400/atlas.image.height);texture.offset.set(650/atlas.image.width,1-490/atlas.image.height);this.spriteCache.set(key,texture);}body.material.map=texture;body.scale.set(1,compression,1);body.position.set(0,1.5*compression+.05,0);body.visible=true;
     }else body.visible=false;
     body.material.needsUpdate=true;
   }
@@ -623,6 +663,25 @@ export class WorldView {
     actor.body.scale.set(1, actor.alive && actor.state?.cover ? .88 : 1, 1);
     actor.body.position.x = 0; actor.body.position.z = 0;
     actor.body.rotation.z = actor.alive ? 0 : -.9; actor.animationFrame = null;
+  }
+
+  _applyCommanderCombatWeapon(actor) {
+    if (actor.id !== 'shepard' || actor.enemy || typeof document === 'undefined') return;
+    const frame = actor.body.material.map?.userData.relayAnimationFrame;
+    const mount = this.mode === 'combat' && Object.hasOwn(actor.state || {}, 'weaponItemId') && getCombatWeaponMount(frame);
+    if (!mount || frame.id !== actor.animationFrame) {
+      updateAimedWeapon(actor, null, null);
+      return;
+    }
+    const atlasName = `combat-${actor.key}`;
+    const cacheKey = `${atlasName}:equipment-mask`;
+    if (!this.spriteCache.has(cacheKey)) this.spriteCache.set(cacheKey, maskBakedCombatWeapon(this.atlases[atlasName], frame, mount));
+    actor.body.material.map = this.spriteCache.get(cacheKey);
+    if (actor.weaponItemId !== actor.state.weaponItemId) {
+      actor.weaponItemId = actor.state.weaponItemId;
+      actor.weaponVisual = getCarriedWeapon(actor.weaponItemId);
+    }
+    updateAimedWeapon(actor, actor.weaponVisual, mount);
   }
 
   _applyAnimationFrame(actor, atlasName, frame, { cover = false } = {}) {
@@ -1273,7 +1332,7 @@ export class WorldView {
         const canvas = document.createElement('canvas'); canvas.width = rect[2]; canvas.height = rect[3];
         canvas.getContext('2d').drawImage(source.image, ...rect, 0, 0, rect[2], rect[3]);
         const tinted = renderCustomizationSprite(canvas, customization, { appearance: this.commanderAppearance, direction, inCombat, headRegion, headAxis });
-        const texture = new THREE.CanvasTexture(tinted); texture.colorSpace = THREE.SRGBColorSpace;
+        const texture = prepareSpriteTexture(new THREE.CanvasTexture(tinted));
         texture.anisotropy = 4; texture.magFilter = THREE.LinearFilter;
         texture.userData.relayCustomizationSource = source;
         this.customizationTextures.set(cacheKey, texture);
@@ -1353,11 +1412,13 @@ export class WorldView {
     if (id === 'shepard' && !enemy) key = this.commanderAppearance === 'female' ? 'femshep' : 'shepard';
     const group = new THREE.Group(); group.userData.actorId = id; group.userData.key = key;
     const boss = BOSS_KEYS.includes(key), large = ['wrex', 'krogan', 'geth-destroyer', 'thorian', 'saren-final','armature','colossus','battlemaster'].includes(key);
-    const height = HORIZON_ENEMY_HEIGHTS[key] || (key === 'thorian' ? 5.4 : key === 'saren-final' ? 3.6 : large ? 3.25 : key === 'rachni' ? 2.45 : 2.85);
-    const material = new THREE.MeshBasicMaterial({ map: this._spriteTexture(key, enemy), transparent: true, alphaTest: .2, depthWrite: true, side: THREE.DoubleSide, toneMapped: false });
-    const body = new THREE.Mesh(new THREE.PlaneGeometry(boss ? height * (2 / 3) : large ? 2.55 : 2.1, height), material); body.position.y = height / 2 + .05;
+    const vehicle = key === 'mako', target = key === 'training-target';
+    const height = vehicle ? 3 : target ? 1.85 : HORIZON_ENEMY_HEIGHTS[key] || (key === 'thorian' ? 5.4 : key === 'saren-final' ? 3.6 : large ? 3.25 : key === 'rachni' ? 2.45 : 2.85);
+    const material = withSpriteAlpha(new THREE.MeshBasicMaterial({ map: this._spriteTexture(key, enemy), transparent: true, alphaTest: .2, depthWrite: true, side: THREE.DoubleSide, toneMapped: false }));
+    const width = vehicle ? 5 : target ? height : boss ? height * (2 / 3) : large ? 2.55 : 2.1;
+    const body = new THREE.Mesh(new THREE.PlaneGeometry(width, height), material); body.position.y = height / 2 + .05;
     body.userData.characterKey = key; body.userData.enemy = enemy; group.add(body);
-    const shadow = new THREE.Mesh(new THREE.CircleGeometry(large ? .67 : .46, 24), new THREE.MeshBasicMaterial({ color: 0x020a10, transparent: true, opacity: .28, depthWrite: false }));
+    const shadow = new THREE.Mesh(new THREE.CircleGeometry(vehicle ? 1.65 : large ? .67 : .46, 24), new THREE.MeshBasicMaterial({ color: 0x020a10, transparent: true, opacity: .28, depthWrite: false }));
     shadow.rotation.x = -Math.PI / 2; shadow.position.y = .035; group.add(shadow);
     const statusShell = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 10), new THREE.MeshBasicMaterial({ color: 0xa69cea, transparent: true, opacity: .18, wireframe: true, depthWrite: false }));
     statusShell.scale.set(large ? 1.35 : 1.05, height * .6, .8); statusShell.position.y = height * .48; statusShell.visible = false; group.add(statusShell);
@@ -1555,8 +1616,13 @@ export class WorldView {
   }
 
   setBattle(battle) {
-    if (battle && this.isVehicleMounted()) this._dismountVehicle();
-    if (battle && battle !== this.battle) this.battleArena = this.getCombatArena();
+    if (battle && !battle.vehicleExercise && this.isVehicleMounted()) this._dismountVehicle();
+    if (battle && battle !== this.battle) {
+      if (battle.vehicleExercise) {
+        this.battleArena = this.getVehicleExerciseArena();
+        this.makoState = { ...this.makoState, velocity: { x: 0, z: 0 } };
+      } else this.battleArena = this.getCombatArena();
+    }
     if (!battle && this.battle && this.effects?.length) this._clearEffects();
     this.battle = battle;
     if (!battle) { for (const actor of this.battleActors.values()) { this.characters.remove(actor.group); disposeObject(actor.group); this._releaseBattleActorTextures(actor); } this.battleActors.clear(); this.battleArena = null; return; }
@@ -1572,7 +1638,8 @@ export class WorldView {
       if (!actor) { actor = this._makeActor(key, state.id, enemy); this.battleActors.set(state.id, actor); }
       const arena = this.battleArena || this.zone.arena;
       const tactical = getTacticalPosition(battle, state.id);
-      actor.basePosition = tactical
+      const exercise = battle.vehicleExercise && vehicleExercisePosition(arena, state.id);
+      actor.basePosition = exercise ? new THREE.Vector3(exercise.x, 0, exercise.z) : tactical
         ? new THREE.Vector3(arena.x + tactical.x, 0, arena.z + tactical.z)
         : new THREE.Vector3(arena.x + (enemy ? 4.0 + (index % 2) * .7 : -3.5 - (index % 2) * .5), 0, arena.z + (index - 1) * (enemy?enemySpacing:2.9));
       if (actor.lastHp === null) actor.group.position.copy(actor.basePosition);
@@ -1622,9 +1689,13 @@ export class WorldView {
       const to = target.group.position.clone().add(new THREE.Vector3(0, toHeight, 0));
       if (shot) {
         this._weaponContact(target, to);
-        this._weaponContact(source, from, true);
-        const outward = to.clone().sub(from).setY(0).normalize();
-        from.addScaledVector(outward, Math.min(.9, source.height * .2));
+        const weapon = source.carriedWeapon, muzzle = weapon?.visible && weapon.userData.muzzle;
+        if (muzzle) weapon.localToWorld(from.set(muzzle[0] - .5, .5 - muzzle[1], 0));
+        else {
+          this._weaponContact(source, from, true);
+          const outward = to.clone().sub(from).setY(0).normalize();
+          from.addScaledVector(outward, Math.min(.9, source.height * .2));
+        }
         this._muzzleFlash(from, source.state, event);
         if (this._weaponTraces(source.state, from, to, action)) return;
       }
@@ -1980,8 +2051,12 @@ export class WorldView {
       actor.group.visible = this.mode !== 'combat' && !this.isVehicleMounted();
       const target = actor.stationPosition || (index === 0 ? this.player : this.trail[Math.min(this.trail.length - 1, index * 11)] || this.player);
       const actorMoving = moving && !actor.stationPosition;
-      actor.group.position.x = THREE.MathUtils.lerp(actor.group.position.x, target.x, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
-      actor.group.position.z = THREE.MathUtils.lerp(actor.group.position.z, target.z, index === 0 ? 1 : 1 - Math.exp(-dt * 8));
+      const position = actor.group.position, smooth = index === 0 ? 1 : 1 - Math.exp(-dt * 8);
+      const next = { x: THREE.MathUtils.lerp(position.x, target.x, smooth), z: THREE.MathUtils.lerp(position.z, target.z, smooth) };
+      const follow = this.levelLayout && index > 0 && !actor.stationPosition && this._walkable(position.x, position.z)
+        ? followWalkableStep(position, next, (x, z) => this._walkable(x, z)) : next;
+      position.x = follow.x;
+      position.z = follow.z;
       if (this.levelLayout && !this._walkable(actor.group.position.x, actor.group.position.z)) {
         const safe = this._resolveLevelPosition({ x: actor.group.position.x, z: actor.group.position.z }) || this.player;
         actor.group.position.x = safe.x; actor.group.position.z = safe.z;
@@ -2021,6 +2096,7 @@ export class WorldView {
       actor.body.scale.y = actor.alive && actor.state?.cover ? .88 : 1;
       actor.body.position.y = actor.height / 2 * actor.body.scale.y + .05 + (actor.alive ? policy?.ambientPulse===false?0:Math.sin(this.time * 2 + actor.group.position.z) * .025 : -.5);
       actor.body.material.color.set(actor.poseTime > .15 && policy?.hitTint !== false ? 0xffd6b2 : 0xffffff);
+      if (actor.key === 'mako') this._applyMakoFrame(actor.body, 'right', actor.body.scale.y);
       const combatConfig = this._combatAnimationConfig(actor);
       if (combatConfig) {
         if (!actor.alive) { actor.combatPose = null; actor.combatPoseTime = 0; }
@@ -2035,6 +2111,7 @@ export class WorldView {
       else if (HORIZON_ENEMY_IDS.includes(actor.key)) this._applyHorizonEnemyBody(actor);
       else if (['varren','alpha-varren'].includes(actor.key)) this._applyHorizonFaunaBody(actor);
       else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
+      this._applyCommanderCombatWeapon(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     // Sample the body geometry after positioning and applying this frame's pose.

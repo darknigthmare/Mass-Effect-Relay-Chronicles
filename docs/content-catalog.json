@@ -20837,7 +20837,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "Prototype",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -20849,19 +20849,25 @@
       "plannedPath": "src/",
       "assetPath": "src/frontier-vehicles.js",
       "gameKey": "vehicle:mako",
-      "notes": "ME1, Thérum seulement : monter, conduire et descendre. État transitoire ; rechargement à pied. Aucun tir, canon, saut, physique originale ni conduite sur les autres mondes. Prototype partiel non certifié 1:1.",
+      "notes": "ME1, Thérum seulement : monter, conduire et descendre. État transitoire ; rechargement à pied. Aucun tir, canon, saut, physique originale ni conduite sur les autres mondes. Prototype partiel non certifié 1:1.\nL’exploration embarquée et l’exercice ATB empruntent des modes distincts. La coque et le cadrage sont vérifiés en paysage et portrait. Victoire et abandon permettent de reprendre au même parking de Thérum.",
       "implementationPaths": [
         "src/frontier-vehicles.js",
         "src/world.js",
         "src/main.js",
-        "public/assets/vehicle-mako-directions.json"
+        "public/assets/vehicle-mako-directions.json",
+        "src/vehicle-exercise.js",
+        "src/world.css",
+        "src/combat.js"
       ],
       "evidence": [
         "tests/frontier-vehicles.test.js",
         "docs/research/frontier-vehicles.md",
         "docs/qa/frontier-mako-art.json",
         "docs/qa/frontier-workbook-visual-report.json",
-        "docs/qa/frontier-report.json"
+        "docs/qa/frontier-report.json",
+        "docs/qa/p0-mako-exercise/report.json",
+        "tests/vehicle-exercise.test.js",
+        "scripts/p0-vehicle-exercise-browser.mjs"
       ]
     },
     {
@@ -20952,7 +20958,7 @@
       "plannedPath": "src/",
       "assetPath": "src/completion-narrative.js",
       "gameKey": "narrative:SYS-relations",
-      "notes": "Lot narration depuis 0d76912 : Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés.\n\nLot narration depuis 0d76912 : Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD.\nLot P0 : la disponibilité temporaire de Virmire et les pertes définitives sont distinguées dans les relations. Les romances restent à développer.",
+      "notes": "Lot narration depuis 0d76912 : Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés. Précontrôle natif frais : 52/52 ; validations publiques DEV/production et revue d’images encore attendues. Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés.\n\nLot narration depuis 0d76912 : Les étapes d’échange, le conseil à Garrus, la disponibilité et l’historique des membres morts concordent avec les faits enregistrés. Gate natif gelé 1 060/1 060 et DEV02 six groupes, 22 captures réellement ouvertes, 33 exports et 19 imports déclarés. Critère encore partiel : Les romances et leurs étapes d’éligibilité ne sont pas implémentées. Les étapes affichées décrivent seulement les échanges effectivement enregistrés. La fidélité des lignes originales et la représentation artistique intégrale ne sont pas certifiées par les tests fonctionnels. Production compilée encore attendue ; cette proposition complète les clauses fonctionnelles après natifs/DEV/revue, sans prétendre à un gate PROD.\nLot P0 : la disponibilité temporaire de Virmire et les pertes définitives sont distinguées dans les relations. Les romances restent à développer.\nLes notes privées d’amitié et d’intérêt sont persistantes et révocables. Virmire respecte l’indisponibilité, le retour éventuel et les pertes définitives. Les romances mutuelles restent à écrire.",
       "evidence": [
         "docs/qa/completion-integration-final-06-report.json",
         "docs/qa/completion-narrative-dev-final-02-report.json",
@@ -20962,11 +20968,17 @@
         "tests/story.test.js",
         "tests/recruitment.test.js",
         "tests/operations.test.js",
-        "docs/research/completion-narrative.md"
+        "docs/research/completion-narrative.md",
+        "docs/qa/p0-companion-notes.json",
+        "tests/companion-relations.test.js",
+        "scripts/p0-companion-notes-browser.mjs"
       ],
       "implementationPaths": [
         "src/completion-narrative.js",
-        "src/completion-narrative-ui.js"
+        "src/completion-narrative-ui.js",
+        "src/companion-relations.js",
+        "src/state.js",
+        "src/main.js"
       ]
     },
     {
@@ -21671,7 +21683,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Validé",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -21683,7 +21695,16 @@
       "plannedPath": "tests/",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée."
+      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nWrex : tête et suivi au sol vérifiés sur 21 trajets et 136 segments dans neuf zones. Aucune coupe ni collision mesurée sur 15 802 images. Cadrage corrigé sans éditer l’atlas.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/world-navigation.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-wrex-passages.json",
+        "tests/level-renderer.test.js",
+        "scripts/p0-wrex-passages-browser.mjs"
+      ]
     },
     {
       "id": "QA-equipe-indisponible",
@@ -22653,7 +22674,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Validé",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -22665,7 +22686,17 @@
       "plannedPath": "tests/",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée."
+      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nSprites de campagne : 33 atlas de corps inspectés, 15 îlots supprimés en mémoire sur trois planches. Seize poses relues sur fonds clair et sombre, filtrage vérifié sur le rendu WebGL.",
+      "implementationPaths": [
+        "src/world-sprite-alpha.js",
+        "src/world.js",
+        "src/world-camera.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-sprite-alpha-webgl.json",
+        "scripts/p0-sprite-alpha-browser.mjs",
+        "tests/world-sprite-alpha.test.js"
+      ]
     },
     {
       "id": "QA-synchronisation-flash",
@@ -22717,7 +22748,7 @@
       "plannedPath": "tests/",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot P0 : l’arme rangée change sur le personnage jouable pendant les déplacements et après reprise. Son identité, ses dégâts et sa chauffe sont recalculés pour le combat. Les silhouettes armées des équipiers et les poses de visée restent génériques.",
+      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot P0 : l’arme rangée change sur le personnage jouable pendant les déplacements et après reprise. Son identité, ses dégâts et sa chauffe sont recalculés pour le combat. Les silhouettes armées des équipiers et les poses de visée restent génériques.\nLes deux apparences du personnage jouable portent l’arme préparée durant la visée ATB. Attaque et chauffe suivent la dotation. L’accès à l’équipement est verrouillé en combat. Les équipiers conservent leurs armes dessinées.",
       "implementationPaths": [
         "src/weapon-presentation.js",
         "src/world.js",
@@ -22726,7 +22757,10 @@
       "evidence": [
         "docs/qa/p0-weapon-browser.json",
         "tests/equipment-combat.test.js",
-        "scripts/p0-weapon-browser.mjs"
+        "scripts/p0-weapon-browser.mjs",
+        "docs/qa/p0-combat-weapon-browser.json",
+        "scripts/p0-combat-weapon-browser.mjs",
+        "tests/weapon-world.test.js"
       ]
     },
     {
@@ -24741,7 +24775,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -24753,7 +24787,7 @@
       "plannedPath": "content/main_quests/QST-desamorcage-du-spatioport.json",
       "assetPath": "src/mission-progress.js",
       "gameKey": "missionProgress:eden-prime",
-      "notes": "Prototype partiel : quatre charges et six secondes attestées par Prima PDF 15 / guide 71. Le délai total de 300 s, les placements et la suspension en combat sont adaptés. Train, hauteurs, topologie et séquence intégrale d’origine restent ouverts.",
+      "notes": "Prototype partiel : quatre charges et six secondes attestées par Prima PDF 15 / guide 71. Le délai total de 300 s, les placements et la suspension en combat sont adaptés. Train, hauteurs, topologie et séquence intégrale d’origine restent ouverts.\nQuatre charges de six secondes. Le HUD indique durée, pause, annulation et échec. Le mouvement interrompt le désamorçage et la reprise réarme les charges. Fenêtre adaptée de cinq minutes.",
       "implementationPaths": [
         "src/mission-progress.js",
         "src/mission-progress-ui.js",
@@ -24764,7 +24798,9 @@
         "tests/mission-progress.test.js",
         "docs/research/mission-progress.md",
         "docs/qa/priority-report.json",
-        "docs/qa/priority-workbook-visual-report.json"
+        "docs/qa/priority-workbook-visual-report.json",
+        "docs/qa/p0-eden-charge.json",
+        "scripts/p0-eden-charge-browser.mjs"
       ]
     },
     {
@@ -25657,7 +25693,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25669,18 +25705,21 @@
       "plannedPath": "content/main_quests/QST-course-au-conduit.json",
       "assetPath": "src/mission-progress.js",
       "gameKey": "missionProgress:ilos",
-      "notes": "Prototype partiel : fenêtre de 60 s et course à pied adaptées à la carte actuelle. Durée exacte et course originale au Mako restent à recouper et réaliser. Échec/reprise persistants ; passage final et récompense restent distincts.",
+      "notes": "Prototype partiel : fenêtre de 60 s et course à pied adaptées à la carte actuelle. Durée exacte et course originale au Mako restent à recouper et réaliser. Échec/reprise persistants ; passage final et récompense restent distincts.\nÉchec en jeu, reprise explicite et arrivée à la Citadelle vérifiés. Une interruption avant le voyage conserve le passage et la récompense reste unique. Fenêtre de 60 s à pied de l’adaptation.",
       "implementationPaths": [
         "src/mission-progress.js",
         "src/mission-progress-ui.js",
         "src/main.js",
-        "src/state.js"
+        "src/state.js",
+        "src/world-data.js"
       ],
       "evidence": [
         "tests/mission-progress.test.js",
         "docs/research/mission-progress.md",
         "docs/qa/priority-report.json",
-        "docs/qa/priority-workbook-visual-report.json"
+        "docs/qa/priority-workbook-visual-report.json",
+        "docs/qa/p0-conduit-retry.json",
+        "scripts/p0-mission-exit-browser.mjs"
       ]
     },
     {

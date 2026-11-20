@@ -65,6 +65,18 @@ test('references accept HTTPS only and archive text escapes search content', () 
   assert.ok(getProductionCatalogueView({ query: 'x'.repeat(500) }).query.length <= 300);
 });
 
+test('the archive exposes searchable citation identifiers scoped to the selected work', () => {
+  const sourceId = 'INC-S-PAIR';
+  const expected = UNIVERSE_RECORDS.filter(record => record.catalogWorkId === 'INC' && record.sourceIds.includes(sourceId));
+  assert.ok(expected.length > 1);
+  assert.deepEqual(getProductionCatalogueView({ workId: 'INC', query: sourceId.toLowerCase() }).records, expected);
+  assert.equal(getProductionCatalogueView({ workId: 'INQ', query: sourceId }).records.length, 0);
+  const detail = renderProductionResults({ workId: 'INC', query: 'INC-REF-SCOPE' });
+  assert.ok(detail.includes(`data-production-source-reference>${sourceId}</p>`));
+  assert.equal(detail.includes('data-production-source-reference>INQ-S-PAIR</p>'), false);
+  assert.ok(renderProductionCredits('INC').includes(`data-production-source-reference>${sourceId}</p>`));
+});
+
 test('every work exposes its actual sources and distinguishes experiment, campaign and documentary scope', () => {
   for (const work of UNIVERSE_WORKS) {
     const html = renderProductionCredits(work.id);

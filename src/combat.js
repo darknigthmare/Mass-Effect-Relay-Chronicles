@@ -291,7 +291,7 @@ function normalizeActor(input, team, index) {
 }
 
 /** Creates a fresh battle without changing the supplied actor definitions. */
-export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench, tactical = false, tacticalPositionAllowed, tacticalCoverAvailable, bossPhases = false, combatFeedback = false } = {}) {
+export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wait', seed = 1, rng, medigel = 3, medicalBench, tactical = false, tacticalPositionAllowed, tacticalCoverAvailable, bossPhases = false, combatFeedback = false, vehicleExercise = false } = {}) {
   if (!Array.isArray(party) || !party.length || !Array.isArray(enemies) || !enemies.length) {
     throw new TypeError('Un combat nécessite au moins un allié et un adversaire.');
   }
@@ -311,6 +311,7 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
     seed,
     medigel: Math.max(0, Math.floor(finite(medigel, 3))),
     ...(getMedicalBenchProfile(medicalBench) ? { medicalBench } : {}),
+    ...(vehicleExercise === true ? { vehicleExercise: true } : {}),
     log: [],
     events: [],
     winner: null,
@@ -323,7 +324,7 @@ export function createBattle({ party, enemies, difficulty = 'normal', mode = 'wa
   };
   initializeTacticalBattle(battle, tactical, tacticalPositionAllowed);
   if (tacticalEnabled(battle) && typeof tacticalCoverAvailable === 'function') battle._tacticalCoverAvailable = tacticalCoverAvailable;
-  emit(battle, { type: 'start', message: 'Contact hostile. Le commando attend vos ordres.' });
+  emit(battle, { type: 'start', message: battle.vehicleExercise ? 'Exercice embarqué. Neutralisez les deux balises.' : 'Contact hostile. Le commando attend vos ordres.' });
   refreshTacticalCover(battle);
   for (const event of phases?.events || []) emit(battle, event);
   updateWinner(battle);
@@ -383,6 +384,13 @@ function waitingForDecision(battle) {
     && (!tacticalEnabled(battle) || actor.tacticalHeld !== true));
 }
 
+export function setBattleMode(battle, mode) {
+  if (!battle || battle.winner || !['wait', 'active'].includes(mode)) return false;
+  battle.mode = mode;
+  battle.waiting = waitingForDecision(battle);
+  return true;
+}
+
 function opponents(battle, actor) {
   const hacked = actor.statuses.hacked > EPSILON || actor.statuses.dominated > EPSILON;
   return battle.actors.filter(target => target.id !== actor.id && living(target)
@@ -395,6 +403,7 @@ function friends(battle, actor) {
 
 function actionIds(actor, battle) {
   if (isSummon(actor) || !bossActorCanAct(battle, actor)) return [];
+  if (battle.vehicleExercise && actor.team === 'party') return ['shoot', 'burst', 'cover'];
   const organic = actor.primaryAction === 'strike' || actor.primaryAction === 'acid';
   const ids = organic ? [actor.primaryAction, 'cover', 'reposition'] : [...BASE_ACTIONS];
   if (tacticalEnabled(battle) || chroniclePositionsEnabled(battle)) ids.push('advance', 'withdraw');

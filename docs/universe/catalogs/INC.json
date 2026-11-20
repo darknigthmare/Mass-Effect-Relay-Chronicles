@@ -34,7 +34,7 @@
   ],
   "entries": [
     {
-      "status": "Prototype",
+      "status": "Validé",
       "nature": "Établi",
       "priority": "P0",
       "description": "La notice éditeur décrit une attaque des Collectors sur Omega affrontée par Aria.",
@@ -51,24 +51,32 @@
         "INC-S-PAIR"
       ],
       "reference": "Mass Effect: Incursion, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit. Prototype limité à une paraphrase documentaire sourcée et aux références visitées ; pas de reproduction intégrale du récit. Une lecture n’accorde ni recrutement, équipement, victoire ni récompense de campagne.\nSource INC-S-PAIR, portée et note visibles.\nFiche documentaire sans effet en campagne. Édition source non consultée.",
       "id": "INC-REF-SCOPE",
       "category": "lore",
       "name": "Aria et les Collectors",
       "implementationPaths": [
         "src/chronicle-story.js",
         "src/chronicles.js",
-        "src/universe-ui.js"
+        "src/universe-ui.js",
+        "src/continuation-catalogue.js"
       ],
       "evidence": [
         "tests/chronicle-story.test.js",
         "tests/chronicle-specialists.test.js",
         "scripts/chronicle-specialists-browser.mjs",
-        "docs/qa/chronicle-specialists-browser-report.json"
-      ]
+        "docs/qa/chronicle-specialists-browser-report.json",
+        "docs/qa/p0-source-citations.json",
+        "scripts/p0-source-citations-browser.mjs",
+        "scripts/p0-source-citation-cases.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-source-citations.json",
+        "sha256": "f2f8a353a808e9a336c7e63a11bf0814a0b909dd496f86fea7c36392f257b79d"
+      }
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "À vérifier",
       "priority": "P0",
       "description": "Le wiki situe Incursion une semaine avant la destruction du Normandy.",
@@ -85,13 +93,25 @@
         "INC-S-WIKI"
       ],
       "reference": "Mass Effect: Incursion, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.\nSource INC-S-WIKI, portée et note visibles.\nFiche documentaire sans effet en campagne. Édition source non consultée.",
       "id": "INC-REF-TIMING",
       "category": "lore",
-      "name": "Position avant ME2"
+      "name": "Position avant ME2",
+      "implementationPaths": [
+        "src/continuation-catalogue.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-source-citations.json",
+        "scripts/p0-source-citations-browser.mjs",
+        "scripts/p0-source-citation-cases.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-source-citations.json",
+        "sha256": "f2f8a353a808e9a336c7e63a11bf0814a0b909dd496f86fea7c36392f257b79d"
+      }
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "À vérifier",
       "priority": "P0",
       "description": "Le récit rapporte un document de populations humaines, dont Horizon, Freedom’s Progress et la Terre.",
@@ -108,10 +128,22 @@
         "INC-S-WIKI"
       ],
       "reference": "Mass Effect: Incursion, récit court",
-      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.",
+      "notes": "Fait résumé brièvement; aucun dialogue ni découpage intégral du comic reproduit.\nSource INC-S-WIKI, portée et note visibles.\nFiche documentaire sans effet en campagne. Édition source non consultée.",
       "id": "INC-REF-INTEL",
       "category": "lore",
-      "name": "Portée du renseignement"
+      "name": "Portée du renseignement",
+      "implementationPaths": [
+        "src/continuation-catalogue.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-source-citations.json",
+        "scripts/p0-source-citations-browser.mjs",
+        "scripts/p0-source-citation-cases.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-source-citations.json",
+        "sha256": "f2f8a353a808e9a336c7e63a11bf0814a0b909dd496f86fea7c36392f257b79d"
+      }
     },
     {
       "status": "Défini",

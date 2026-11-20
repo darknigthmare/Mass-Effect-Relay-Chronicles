@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-20T14:14:43.657Z",
+  "url": "http://127.0.0.1:4286/",
+  "checks": [
+    {
+      "name": "Un échange réel débloque la note. Consigner l’amitié garde l’action suivante accessible au clavier.",
+      "passed": true
+    },
+    {
+      "name": "La reprise conserve l’opt-in. Le retrait et l’effacement préservent les échanges, le commando et les ressources.",
+      "passed": true
+    }
+  ],
+  "served": [
+    {
+      "path": "index.html",
+      "sha256": "084886b5c3662e9c47e699624cee2fcc94f83616765270f6021f428b1d2fe69a"
+    },
+    {
+      "path": "assets/index-BgjKG6LW.css",
+      "sha256": "e9d58ada668da4a50e63d7110545388b5781cb3dd55e551c08c85984fa90ba59"
+    },
+    {
+      "path": "assets/three-DBNoKq7p.js",
+      "sha256": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156"
+    },
+    {
+      "path": "assets/index-Cwf2mv0p.js",
+      "sha256": "f3941e5f4beff68f00e2b2f9c94e826b3d16b9960e64cb4326ff5ce8cb789e4a"
+    }
+  ],
+  "errors": [],
+  "capture": {
+    "path": "docs/qa/p0-companion-notes-interest.png",
+    "sha256": "5c6ab05e4c958ffced59bbbc87b7bd955ab948f8ca90184e547961c363665560",
+    "viewport": {
+      "width": 1000,
+      "height": 740
+    },
+    "review": "Capture Chromium ouverte à sa taille d’origine. La note est distincte des échanges enregistrés et le bouton de retrait est lisible avec son focus."
+  },
+  "baseCommit": "a63f5d97109da37142dd756023eae0118476d367",
+  "criterion": {
+    "id": "SYS-relations",
+    "description": "Étapes d’amitié et de romance.",
+    "acceptance": "Concordance avec la disponibilité et la survie.",
+    "scope": "Notes privées de la campagne ME1",
+    "review": "Prototype"
+  },
+  "native": {
+    "tests": 120,
+    "command": "node --test tests/{companion-relations,completion-narrative,story,state,completion-persistence,save-slots,advance-continuity,resolve-virmire}.test.js",
+    "checks": "Consentement du joueur, retrait, migration et refus d’état invalide. L’affectation temporaire bloque les actions et l’extraction du survivant les rétablit. Les deux issues de Virmire conservent les notes des personnes disparues en lecture seule."
+  },
+  "browserCommand": "P0_BUILD_DIR=/tmp/relay-companion-relations-dist node scripts/p0-companion-notes-browser.mjs",
+  "limitations": [
+    "Le dossier mémorise une initiative du joueur. Les réponses des partenaires et les arcs romantiques restent ouverts."
+  ],
+  "sourceHashes": {
+    "src/companion-relations.js": "40d70311f4db89cbb377c66ba5033c24a3620204ca14c005e85aaee2474a9387",
+    "src/state.js": "e8337851eff198c0a4034481adf8374ac165b5ee916fdd6e6eb7e6014ce814b2",
+    "src/main.js": "e9937758ff374bce7ffe89fad1baed4ee200d713a554786518ca8d192ba46739",
+    "src/completion-narrative.js": "a86e2cb92c8e97f9c8dd17bccf1be6a861689b8b0da45d20d5357fb83a5add50",
+    "src/completion-narrative-ui.js": "0ae7612c9efb8e72e4a183520d3d5a08198188b621091674ee8c7495d3dc40b0",
+    "scripts/p0-companion-notes-browser.mjs": "f3ba15e9fe4ea3250aa49c8761b16eb1ab6f2ccb54f3d220056e8cf96fe24145",
+    "tests/companion-relations.test.js": "c80820b98d0cb3c7e8affbf0cf77e8e1919b8cbf0d6657eab8c0f3a11edd3fb6"
+  }
+}

@@ -6,7 +6,7 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 ## Vérification des P0
 
-Le dernier lot ferme 29 P0. Dix critères couvrent les dialogues, l’atelier, le rendu des tirs, la nomenclature et le Normandy dans la campagne. Dix-neuf vérifient les sources, le registre et le périmètre des Chroniques et des archives. Il reste 616 P0 ouverts dans les 28 catalogues. [Détail du lot et vérifications](docs/P0.md)
+Le dernier lot ferme 55 P0 sur le combat embarqué, le rendu et les passages du commando, les missions du Conduit et d’Eden Prime, les essais de Galaxy et d’Infiltrator, ainsi que les citations des bandes dessinées. Il reste 561 P0 ouverts dans les 28 catalogues. [Détail du lot et vérifications](docs/P0.md)
 
 ## Enquête, affectations et épilogue — lot précédent
 

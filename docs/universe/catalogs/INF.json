@@ -1908,7 +1908,7 @@
       "id": "INF-SYS-ATB",
       "category": "systems",
       "name": "ATB avec pause des commandes",
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Système original du fan game.",
@@ -1923,7 +1923,21 @@
       "dependencies": [],
       "sourceIds": [],
       "reference": "Conception du fan game",
-      "notes": ""
+      "notes": "Attente et Actif conservent l’ordre sélectionné et les ressources.\nLa jauge autorise une action par tour dans les exercices.",
+      "implementationPaths": [
+        "src/main.js",
+        "src/combat.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-chronicle-keyboard-report.json",
+        "scripts/p0-chronicle-keyboard-browser.mjs",
+        "tests/chronicle-battle-mode.test.js"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-chronicle-keyboard-report.json",
+        "sha256": "acc31cb5ab658bdb60da2c97ec5498b54dddf06c803618ebfe22b7d5d9733b06"
+      }
     },
     {
       "id": "INF-SYS-SAVE",
@@ -1971,7 +1985,7 @@
       "id": "INF-SYS-ACCESS",
       "category": "systems",
       "name": "Commandes et lisibilité",
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Spécification d’accès au jeu.",
@@ -1986,7 +2000,22 @@
       "dependencies": [],
       "sourceIds": [],
       "reference": "Conception du fan game",
-      "notes": ""
+      "notes": "Sélection, sauvegarde, ordres, cible et journal vérifiés au clavier.\nLe focus reste visible lors des mises à jour.",
+      "implementationPaths": [
+        "src/main.js",
+        "src/universe-ui.js",
+        "src/universe-ui.css",
+        "src/gamepad-controls.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-chronicle-keyboard-report.json",
+        "scripts/p0-chronicle-keyboard-browser.mjs",
+        "tests/chronicle-battle-mode.test.js"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-chronicle-keyboard-report.json",
+        "sha256": "acc31cb5ab658bdb60da2c97ec5498b54dddf06c803618ebfe22b7d5d9733b06"
+      }
     },
     {
       "id": "INF-SYS-SOURCES",
@@ -2088,7 +2117,7 @@
       "id": "INF-QA-BALANCE",
       "category": "qa",
       "name": "Coûts, immunités et boss",
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Recette des règles proposées.",
@@ -2103,7 +2132,20 @@
       "dependencies": [],
       "sourceIds": [],
       "reference": "Conception du fan game",
-      "notes": ""
+      "notes": "Les combats de test se gagnent aux armes conventionnelles.\nTypes et boucliers sont visibles. Périmètre des exercices accessibles.",
+      "implementationPaths": [
+        "src/combat.js",
+        "src/universe-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-chronicle-keyboard-report.json",
+        "scripts/p0-chronicle-keyboard-browser.mjs",
+        "tests/chronicle-battle-mode.test.js"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-chronicle-keyboard-report.json",
+        "sha256": "acc31cb5ab658bdb60da2c97ec5498b54dddf06c803618ebfe22b7d5d9733b06"
+      }
     },
     {
       "id": "INF-QA-SCOPE",

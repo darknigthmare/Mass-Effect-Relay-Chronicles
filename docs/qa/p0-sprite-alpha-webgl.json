@@ -1,0 +1,511 @@
+{
+  "passed": true,
+  "tests": 50,
+  "at": "2026-11-20T14:16:53.433Z",
+  "criterionId": "QA-transparence-sprite",
+  "exactCriterion": "Pas de halo ni de pixels isolés.",
+  "baseline": "a63f5d97109da37142dd756023eae0118476d367",
+  "scope": "Atlas de corps du renderer de campagne ME1. Contrôle d’alpha sur les 33 atlas et lecture WebGL des 12 poses issues des trois sources touchées, avec les 4 poses de Wrex comme contrôle.",
+  "sourcePaths": [
+    "src/world.js",
+    "src/world-camera.js",
+    "src/world-sprite-alpha.js",
+    "tests/world-sprite-alpha.test.js",
+    "scripts/p0-sprite-alpha-browser.mjs"
+  ],
+  "sourceHashes": {
+    "src/world-sprite-alpha.js": "fc3482dc05dc135a877df2edb8762b58e91ebf23e2763ce23b9445a30d9d93c7",
+    "tests/world-sprite-alpha.test.js": "bcf437aa60ed8049c821e601dcada6306b4da6dfe49228f5f109df5e26016ae8",
+    "scripts/p0-sprite-alpha-browser.mjs": "a2938611951b94f01f99342520ec37e2f423461befe2501c81b8d35f7f2348b9"
+  },
+  "server": "RELAY_QA=1 npm run dev -- --port 4219 --strictPort",
+  "command": "GAME_URL=http://127.0.0.1:4219/ PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium P0_ALPHA_OUTPUT=/tmp/p0-alpha-review-03 node scripts/p0-sprite-alpha-browser.mjs",
+  "native": {
+    "command": "node --test tests/world-sprite-alpha.test.js tests/world-camera.test.js tests/shepard-combat-world.test.js tests/companion-combat-world.test.js tests/frontier-boss-world.test.js tests/horizon-enemy-world.test.js tests/horizon-character-world.test.js tests/horizon-fauna-world.test.js tests/weapon-world.test.js",
+    "passedTests": 50,
+    "failedTests": 0
+  },
+  "browser": "Chromium 154.0.8037.57, WebGL 2, SwiftShader.",
+  "checks": [
+    "33 atlas de corps décodés. Quinze composantes de 1 à 8 pixels supprimées dans trois atlas en mémoire, aucune île résiduelle au seuil alpha 0,2.",
+    "Les 33 fichiers physiques sont lus sans modification. Les valeurs d’alpha hors masque retiré restent identiques dans les trois textures corrigées.",
+    "Le bord synthétique à 50 % de couverture correspond au mélange attendu à un niveau sur 255 près sur les deux fonds. Les plages opaques restent identiques.",
+    "Seize poses du moteur relues sur chacun des deux fonds avec leurs cadrages issus de WorldView."
+  ],
+  "atlases": [
+    {
+      "name": "walk",
+      "file": "shepard-walk-atlas.png",
+      "width": 1269,
+      "height": 1240,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    {
+      "name": "npc",
+      "file": "npc-atlas.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    {
+      "name": "crew",
+      "file": "crew-atlas.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    {
+      "name": "enemy",
+      "file": "enemy-atlas.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    {
+      "name": "boss",
+      "file": "boss-atlas.png",
+      "width": 1024,
+      "height": 1536,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    {
+      "name": "motion-femshep",
+      "file": "shepard-female-walk-atlas.png",
+      "width": 1254,
+      "height": 1254,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    {
+      "name": "combat-shepard",
+      "file": "shepard-male-combat-atlas.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    {
+      "name": "combat-femshep",
+      "file": "shepard-female-combat-atlas.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "raw": 5,
+      "diffAlpha": 0,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    {
+      "name": "combat-garrus",
+      "file": "companion-garrus-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    {
+      "name": "combat-ashley",
+      "file": "companion-ashley-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    {
+      "name": "combat-kaidan",
+      "file": "companion-kaidan-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    {
+      "name": "combat-tali",
+      "file": "companion-tali-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    {
+      "name": "combat-wrex",
+      "file": "companion-wrex-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    {
+      "name": "combat-jenkins",
+      "file": "companion-jenkins-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+    },
+    {
+      "name": "combat-geth-sniper",
+      "file": "enemy-geth-sniper-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    {
+      "name": "combat-husk",
+      "file": "enemy-husk-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    {
+      "name": "combat-liara",
+      "file": "companion-liara-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    {
+      "name": "combat-geth-destroyer",
+      "file": "enemy-geth-destroyer-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    {
+      "name": "combat-geth",
+      "file": "enemy-geth-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    {
+      "name": "combat-krogan",
+      "file": "enemy-krogan-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    {
+      "name": "combat-creeper",
+      "file": "enemy-creeper-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "raw": 1,
+      "diffAlpha": 0,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300"
+    },
+    {
+      "name": "combat-asari",
+      "file": "enemy-asari-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a"
+    },
+    {
+      "name": "combat-saren",
+      "file": "boss-saren-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    {
+      "name": "combat-benezia",
+      "file": "boss-benezia-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    {
+      "name": "combat-thorian",
+      "file": "boss-thorian-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "raw": 9,
+      "diffAlpha": 0,
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    {
+      "name": "combat-rachni",
+      "file": "enemy-rachni-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    {
+      "name": "frontier-npcs",
+      "file": "frontier-npcs.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc"
+    },
+    {
+      "name": "combat-saren-final",
+      "file": "boss-saren-final-combat.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    },
+    {
+      "name": "frontier-enemies",
+      "file": "frontier-enemies.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9"
+    },
+    {
+      "name": "horizon-npcs",
+      "file": "horizon-npcs.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601"
+    },
+    {
+      "name": "seated-joker",
+      "file": "joker-seated.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    {
+      "name": "horizon-enemies",
+      "file": "horizon-enemies.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0"
+    },
+    {
+      "name": "horizon-fauna",
+      "file": "horizon-fauna.png",
+      "width": 1536,
+      "height": 1024,
+      "residual": 0,
+      "premultiplied": true,
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964"
+    }
+  ],
+  "compositing": [
+    {
+      "background": 1582130,
+      "solid": [
+        222,
+        78,
+        15
+      ],
+      "plain": [
+        2,
+        4,
+        8
+      ],
+      "straightEdge": [
+        57,
+        21,
+        8
+      ],
+      "filteredEdge": [
+        112,
+        41,
+        11
+      ],
+      "filteredSolid": [
+        222,
+        78,
+        15
+      ],
+      "expectedEdge": [
+        112,
+        41,
+        12
+      ]
+    },
+    {
+      "background": 15660543,
+      "solid": [
+        222,
+        78,
+        15
+      ],
+      "plain": [
+        218,
+        233,
+        255
+      ],
+      "straightEdge": [
+        165,
+        136,
+        131
+      ],
+      "filteredEdge": [
+        220,
+        155,
+        135
+      ],
+      "filteredSolid": [
+        222,
+        78,
+        15
+      ],
+      "expectedEdge": [
+        220,
+        156,
+        135
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "id": "shepard",
+      "pose": "aim",
+      "frame": "femshep-combat-aim"
+    },
+    {
+      "id": "shepard",
+      "pose": "power",
+      "frame": "femshep-combat-power"
+    },
+    {
+      "id": "shepard",
+      "pose": "hit",
+      "frame": "femshep-combat-hit"
+    },
+    {
+      "id": "shepard",
+      "pose": "down",
+      "frame": "femshep-combat-down"
+    },
+    {
+      "id": "wrex",
+      "pose": "aim",
+      "frame": "wrex-combat-aim"
+    },
+    {
+      "id": "wrex",
+      "pose": "power",
+      "frame": "wrex-combat-power"
+    },
+    {
+      "id": "wrex",
+      "pose": "hit",
+      "frame": "wrex-combat-hit"
+    },
+    {
+      "id": "wrex",
+      "pose": "down",
+      "frame": "wrex-combat-down"
+    },
+    {
+      "id": "creeper-0",
+      "pose": "aim",
+      "frame": "creeper-combat-aim"
+    },
+    {
+      "id": "creeper-0",
+      "pose": "power",
+      "frame": "creeper-combat-power"
+    },
+    {
+      "id": "creeper-0",
+      "pose": "hit",
+      "frame": "creeper-combat-hit"
+    },
+    {
+      "id": "creeper-0",
+      "pose": "down",
+      "frame": "creeper-combat-down"
+    },
+    {
+      "id": "thorian-0",
+      "pose": "aim",
+      "frame": "thorian-combat-aim"
+    },
+    {
+      "id": "thorian-0",
+      "pose": "power",
+      "frame": "thorian-combat-power"
+    },
+    {
+      "id": "thorian-0",
+      "pose": "hit",
+      "frame": "thorian-combat-hit"
+    },
+    {
+      "id": "thorian-0",
+      "pose": "down",
+      "frame": "thorian-combat-down"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/p0-sprite-alpha-dark.png",
+      "label": "dark",
+      "sha256": "88cbc3c9e27b74aa55d3e943d13d5e8f0c3b98b5ed8dc8c19b1638b46396ce7d",
+      "actuallyOpened": true,
+      "observation": "Les seize poses entières sont visibles. Les découpes des cheveux, griffes et lianes restent lisibles sur fond sombre sans liseré clair ni points flottants visibles."
+    },
+    {
+      "path": "docs/screenshots/p0-sprite-alpha-light.png",
+      "label": "light",
+      "sha256": "dbf326448a84a1382694c119572a3a5778aa4d25e4d6d115df520b46e199b575",
+      "actuallyOpened": true,
+      "observation": "Les seize poses entières sont visibles. Les bords des cheveux, griffes et lianes ne portent aucun liseré sombre artificiel ni point flottant visible. La lueur bleue est dans la pose de pouvoir source."
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Le montage utilise la matière, les textures et poses du renderer en scène isolée, avec agrandissement pour examen. Le seuil d’alpha s’applique aux îlots calculés et le test GPU vise les liserés introduits au filtrage.",
+    "L’inspection visuelle couvre les seize poses ci-dessus. Elle ne certifie pas tous les dessins ou les matières transparentes du décor, des véhicules ou des Chroniques. Aucun atlas source n’est redessiné ni réécrit."
+  ]
+}

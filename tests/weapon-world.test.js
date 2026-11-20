@@ -4,6 +4,9 @@ import * as THREE from 'three';
 import { WorldView } from '../src/world.js';
 import { WORLD_ZONES } from '../src/world-data.js';
 import { createBattle, performAction, tickBattle } from '../src/combat.js';
+import { getCarriedWeapon, getCombatWeaponMount, updateAimedWeapon } from '../src/weapon-presentation.js';
+import maleAnimation from '../public/assets/shepard-male-animation.json' with { type: 'json' };
+import femaleAnimation from '../public/assets/shepard-female-animation.json' with { type: 'json' };
 
 function makeWorld(weaponType) {
   const world = Object.create(WorldView.prototype);
@@ -180,4 +183,35 @@ test('a blocked shot shows a contact cue without inventing a hit pose or repeate
   assert.equal(world.effects.length, 1);
   assert.equal(world.effects[0].object.material.color.getHex(), 0xb0a2e4);
   assert.notEqual(target.combatPose, 'hit');
+});
+
+test('the equipped barrel shares the aim pose and is the endpoint for its flash and tracer', () => {
+  for (const animation of [maleAnimation, femaleAnimation]) {
+    const { aim, power, hit, down } = animation.combat.frames;
+    const mount = getCombatWeaponMount(aim);
+    assert.ok(mount);
+    for (const frame of [power, hit, down, { ...aim, rect: [0, 0, 200, 200] }]) assert.equal(getCombatWeaponMount(frame), null);
+
+    const world = makeWorld('pistol');
+    const actor = world.battleActors.get('shepard');
+    const weapon = getCarriedWeapon('striker-iii');
+    const layer = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial());
+    layer.userData.itemId = weapon.id;
+    actor.carriedWeapon = layer;
+    actor.body.add(layer);
+    updateAimedWeapon(actor, weapon, mount);
+    const standingLength = layer.scale.x;
+    actor.body.scale.y = .88;
+    updateAimedWeapon(actor, weapon, mount);
+    assert.ok(Math.abs(layer.scale.x - standingLength * .88) < 1e-10);
+
+    const [u, v] = layer.userData.muzzle;
+    const muzzle = layer.localToWorld(new THREE.Vector3(u - .5, .5 - v, 0));
+    const [trace] = fire(world);
+    const flash = world.effects.find(effect => effect.kind === 'muzzle-flash');
+    assert.ok(flash.object.position.distanceTo(muzzle) < 1e-10);
+    assert.ok(ends(trace.object)[0].distanceTo(muzzle) < 1e-10);
+    updateAimedWeapon(actor, weapon, null);
+    assert.equal(layer.visible, false);
+  }
 });

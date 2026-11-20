@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-20T14:21:08.234Z",
+  "endpoint": "http://127.0.0.1:4294/",
+  "scope": "Conduite et exercice indépendant de Thérum, par les commandes publiques du build Vite.",
+  "checks": [
+    {
+      "id": "embarquement",
+      "passed": true,
+      "detail": "L’exercice apparaît après embarquement au parking de Thérum."
+    },
+    {
+      "id": "victoire-et-reprise",
+      "passed": true,
+      "detail": "Les deux balises sont neutralisées par le moteur ATB. Le véhicule revient embarqué au même point avec la même partie."
+    },
+    {
+      "id": "abandon",
+      "passed": true,
+      "detail": "Un deuxième essai réinitialise la coque, peut être quitté et laisse débarquer normalement."
+    },
+    {
+      "id": "SYS-mako",
+      "passed": true,
+      "exactDescription": "Exploration et combat véhicule séparés.",
+      "exactCriterion": "Échelle et caméra compatibles avec les environnements.",
+      "detail": "Même rendu de coque en conduite et à l’essai ATB. Le véhicule et les deux cibles restent cadrés en paysage et portrait. Cadrage, roues, silhouette et commandes vérifiés sur les trois captures."
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/qa/p0-mako-exercise/conduite.png",
+      "sha256": "da0d19089dc69465ef5c75f838963e2695761af64a3a2f7edb3140db257dead5"
+    },
+    {
+      "path": "docs/qa/p0-mako-exercise/arene.png",
+      "sha256": "d55e8004fe9f8db1778d2524e8e7e02a1ec889ec7515fa2a13ece2a5cc0ee948"
+    },
+    {
+      "path": "docs/qa/p0-mako-exercise/arene-portrait.png",
+      "sha256": "33fe4f313c9ff0ede18a3cc27d228cd00ce1e15b33ca08f485dedf50ea7a507d"
+    }
+  ],
+  "errors": [],
+  "documentSha256": "c2af4322a237c49d24e7d2fe1511d390588d1410547fd1bebf3980c21ebca63e",
+  "fixture": {
+    "sha256": "43875850ac23219aa3bdc97e29886311333ccf09b38c6047a58e69736bf72b1e",
+    "scope": "Premières victoires et arrivée à Thérum préparées avant import."
+  },
+  "shots": 4,
+  "baseCommit": "a63f5d97109da37142dd756023eae0118476d367",
+  "command": "P0_BUILD_DIR=/tmp/relay-mako-build P0_VEHICLE_OUTPUT=/tmp/relay-mako-browser3 node scripts/p0-vehicle-exercise-browser.mjs",
+  "collectorSha256": "67cf48aaaeabb2a05b6c61de309ccc149c032986ed6e024d7d666db2ea232004",
+  "visualReview": [
+    {
+      "capture": "conduite.png",
+      "opened": true,
+      "observation": "Le véhicule, le terrain, le bouton d’essai et la descente sont visibles. Deux boutons distincts au-dessus du bord inférieur."
+    },
+    {
+      "capture": "arene.png",
+      "opened": true,
+      "observation": "Coque entière, roues et deux balises lisibles. Le badge de mode chevauche un bouton de navigation grisé dans cette capture. Sa position a ensuite été ajustée."
+    },
+    {
+      "capture": "arene-portrait.png",
+      "opened": true,
+      "observation": "La coque et les deux cibles restent visibles au-dessus des commandes en 420 × 800."
+    }
+  ],
+  "limits": [
+    "Exercice original limité au parking praticable de Thérum. Les caractéristiques et échelles sont celles de l’adaptation ATB. Le Mako d’Ilos reste un élément de décor."
+  ]
+}

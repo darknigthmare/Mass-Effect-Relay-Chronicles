@@ -192,3 +192,17 @@ test('a native Tab focus change moves the explicit marker instead of leaving two
   assert.deepEqual(fixture.root.elements.filter(element => element.hasAttribute('data-gamepad-focus')), [b]);
   controls.dispose();
 });
+
+test('collapsed disclosure links are skipped without skipping the summary or open links', () => {
+  const fixture = domFixture();
+  let open = false;
+  const details = { querySelector: () => ({ contains: element => element === summary }) };
+  const closest = selector => selector === 'details:not([open])' && !open ? details : null;
+  const summary = fixture.element('summary', { tagName: 'SUMMARY', closest });
+  const link = fixture.element('reference', { tagName: 'A', closest });
+  const next = fixture.element('continue');
+  fixture.replace([summary, link, next]);
+  assert.deepEqual(gamepadFocusables(fixture.root), [summary, next]);
+  open = true;
+  assert.deepEqual(gamepadFocusables(fixture.root), [summary, link, next]);
+});

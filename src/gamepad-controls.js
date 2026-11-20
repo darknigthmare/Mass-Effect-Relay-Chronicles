@@ -94,6 +94,8 @@ export function createGamepadSampler() {
 export function isGamepadFocusable(element) {
   if (!element || element.disabled || element.getAttribute?.('aria-disabled') === 'true' || element.tabIndex < 0) return false;
   if (element.closest?.('[hidden],[inert],[aria-hidden="true"]')) return false;
+  const closedDetails = element.closest?.('details:not([open])');
+  if (closedDetails && !closedDetails.querySelector(':scope > summary')?.contains(element)) return false;
   if (element.getClientRects && element.getClientRects().length === 0) return false;
   const style = element.ownerDocument?.defaultView?.getComputedStyle?.(element);
   return !style || style.display !== 'none' && style.visibility !== 'hidden' && style.visibility !== 'collapse';
