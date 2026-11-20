@@ -68,7 +68,9 @@ Le [lot 06](docs/armax/lot06/README.md) conserve ses six images : Balak ME1, Jac
 
 Le [lot 07](docs/armax/lot07/README.md) conserve **sept sujets** : Thane AAP1, Grunt AAP2, Maraudeur et Brute armurée ME3, Afterlife, Grissom et la coque du Courtier sur Hagalaz. Ses **dix PNG** incluent trois premières versions conservées après correction ; son catalogue et son suivi Excel restent historiques.
 
-Le [lot 08](docs/armax/lot08/README.md) ajoute **dix sujets et dix PNG** : Guardian, Atlas, LOKI, FENRIS, les tenues de loyauté de Kasumi et Mordin, puis les décors de Mars, Kadara, Eos et Pragia. Le [catalogue courant et son suivi Excel](docs/armax/lot08/MANQUANTS_2026-11-20.md) conservent **164 fiches**, dont **23 avec image candidate et 141 sans image**. Le corpus atteint **112 originaux distincts**. Les directions réellement obtenues, les deux nouveaux refus de génération et les réserves de fidélité sont consignés ; les nouveaux éléments restent des prototypes.
+Le [lot 08 historique](docs/armax/lot08/README.md) conserve dix sujets et dix PNG : Guardian, Atlas, LOKI, FENRIS, les tenues de loyauté de Kasumi et Mordin, puis Mars, Kadara, Eos et Pragia. Son catalogue comptait 23 fiches illustrées et 141 sans image.
+
+Le [lot 09](docs/armax/lot09/README.md) ajoute **douze sujets illustrés** : Scion, Ravager, Cannibal, Banshee, Combat Engineer, Hackett, les armures masculines Terminus et Inferno ME2, puis Rannoch, Despoina, Havarl et Silversun. Ses **quatorze PNG** comprennent deux premières versions conservées après correction du lettrage. Le [catalogue courant et son suivi Excel](docs/armax/lot09/MANQUANTS_2026-11-20.md) gardent **164 fiches**, dont **35 avec image candidate et 129 sans image** ; le corpus atteint **126 originaux distincts**. Le refus du Centurion, la reprise technique d’Havarl et les limites de fidélité sont consignés. Tous restent Prototype, sans intégration moteur ni fidélité 1:1 certifiée.
 
 ## Cadre de développement
 

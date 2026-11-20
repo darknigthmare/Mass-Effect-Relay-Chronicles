@@ -2,11 +2,17 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 08 — continuation courante
+## Lot 09 — continuation courante
+
+Le [lot 09](lot09/README.md) ajoute **douze sujets illustrés** : Scion ME2, Ravager, Cannibal, Banshee, Combat Engineer et Hackett ME3, les armures masculines Terminus et Inferno ME2, puis les stages Rannoch, Despoina, Havarl et Silversun. Les **quatorze PNG** comprennent douze versions sélectionnées et deux premières versions conservées après correction du lettrage de Terminus et Silversun.
+
+Le [catalogue courant](lot09/MANQUANTS_2026-11-20.md) et le [classeur lot 09](lot09/Mass_Effect_Armax_Suivi_Lot09_2026-11-20.xlsx) gardent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **35 ont une image candidate et 129 restent sans image.** Le corpus atteint **126 PNG originaux**, hors trois aperçus historiques. Le refus du Centurion et l’erreur technique Havarl suivie d’une reprise réussie sont distingués. Les nouvelles images restent Prototype, avec leurs limites de comparaison et d’intégration.
+
+## Lot 08 — livraison précédente
 
 Le [lot 08](lot08/README.md) ajoute **dix sujets et dix PNG** : Guardian et Atlas ME3, LOKI et FENRIS ME2, les tenues de loyauté ME2 de Kasumi et Mordin, ainsi que les stages Mars, Kadara, Eos et Pragia. Les six silhouettes sont individuelles et les quatre décors sont des masters aplatis.
 
-Le [catalogue courant](lot08/MANQUANTS_2026-11-20.md) et le [classeur lot 08](lot08/Mass_Effect_Armax_Suivi_Lot08_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **23 fiches disposent d'images candidates et 141 restent sans image**, soit dix manquants illustrés dans cette passe. Le corpus atteint **112 PNG originaux**, hors trois aperçus historiques. Nemesis et Assault Trooper restent sans sortie après refus ; les poses réellement obtenues et les réserves de fidélité sont explicites.
+Le [catalogue historique](lot08/MANQUANTS_2026-11-20.md) et le [classeur lot 08](lot08/Mass_Effect_Armax_Suivi_Lot08_2026-11-20.xlsx) conservent **164 fiches** : 79 personnages/ennemis, 38 costumes et 47 stages. **23 fiches disposent d'images candidates et 141 restent sans image**, soit dix manquants illustrés dans cette passe. Le corpus de cette livraison atteignait **112 PNG originaux**, hors trois aperçus historiques. Nemesis et Assault Trooper restent sans sortie après refus ; les poses réellement obtenues et les réserves de fidélité sont explicites.
 
 ## Lot 07 — livraison précédente
 
