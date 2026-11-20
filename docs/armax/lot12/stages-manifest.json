@@ -1,0 +1,2285 @@
+{
+  "schemaVersion": 1,
+  "lot": "lot12",
+  "date": "2026-11-20",
+  "baseCommit": "e225fb037ff7f7032102f8a854b13b1aaf5c72b0",
+  "scope": "23 anciennes fiches stage sans image du catalogue lot11 reçoivent un master, à périmètre constant de 169 identités. Les 24 stages initialement manquants deviennent un seul : le poste exact du Tempest sur Aya. Les sous-zones et éditions observées sont explicites ; aucune certification 1:1 ni intégration moteur.",
+  "attemptsLog": "docs/armax/lot12/stages-attempts.json",
+  "prompts": "docs/armax/lot12/stages-generation-prompts.json",
+  "referenceLibrary": "docs/armax/lot12/stages-reference-library.json",
+  "counts": {
+    "attemptedSubjects": 23,
+    "toolCalls": 25,
+    "generatedPngs": 25,
+    "selectedMasters": 23,
+    "retainedAlternates": 2,
+    "rejectedSubzones": 0,
+    "rejectedHudFragments": 0,
+    "rejectedGeometry": 1,
+    "rejectedCharacters": 1,
+    "targetedRevisions": 2,
+    "blockedSubjects": 0,
+    "deferredSubjects": 0,
+    "unattemptedReferenceGaps": 1,
+    "technicalErrors": 0,
+    "technicalRetries": 0,
+    "newSeparateLayers": 0,
+    "engineIntegrated": 0,
+    "fidelityValidated": 0
+  },
+  "selectionNotes": [
+    "23 masters sélectionnés et 2 R0 conservés en QA : 25 appels imagegen réussis, sans refus, erreur technique ou nouvelle tentative après refus.",
+    "Deux corrections ciblées uniques : fragments supérieurs fixes du confinement geth rétablis ; silhouette humaine résiduelle de X57 retirée. Les R0 restent intacts et ne comptent pas comme stages supplémentaires.",
+    "X57 utilise explicitement ME1 Legendary Edition ; le texte original GameBanshee corrobore le lieu et le balcon, pas les textures 2007.",
+    "Virmire utilise une grande capture wiki dont l’édition est inconnue ; disposition et palette recoupées avec les images natives du guide IGN original, sans certification des textures.",
+    "Londres suit uniquement la vue basse Before attribuée à prettz en 2012 ; caméra et build exact non documentés, aucun mélange avec l’état After.",
+    "L’usage arene_adaptee est préservé comme intention. Cadrages partiels, reliefs et obstacles restent en place ; aucun sol de duel inventé, calque séparé ou moteur validé.",
+    "Aya reste sans génération pour manque de preuve de la sous-zone exacte, sans blocage imagegen."
+  ],
+  "referencePolicy": "86 images tierces inspectées et documentées : 23 captures utilisées pour les masters retenus. Les autres servent de corroboration ou restent écartées. Aucun binaire tiers copié dans le dépôt. URLs, auteurs, éditions, SHA-256, dimensions et rôle de chaque référence consignés ; deux sorties propres de révision séparées des sources tierces.",
+  "technicalCheckScope": "Décodage PNG, dimensions, mode, SHA-256 et identité octet à octet ; revue propre distincte de la revue indépendante et des essais moteur.",
+  "sourceRecords": {
+    "stage_capture_me1_feros_supercheats": {
+      "title": "Michael Monette / SuperCheats — Feros",
+      "author": "Michael Monette / SuperCheats",
+      "url": "https://www.supercheats.com/guides/mass-effect/feros",
+      "sourceType": "attributed_gameplay_guide_capture",
+      "edition": "Mass Effect 1 original, guide Xbox 360 ; captures et palette antérieures à Legendary Edition.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me1_therum_supercheats": {
+      "title": "Michael Monette / SuperCheats — Find Liara T’Soni",
+      "author": "Michael Monette / SuperCheats",
+      "url": "https://www.supercheats.com/guides/mass-effect/find-liara-tsoni",
+      "sourceType": "attributed_gameplay_guide_capture",
+      "edition": "Mass Effect 1 original, guide Xbox 360 ; captures et palette antérieures à Legendary Edition.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me1_virmire_supercheats": {
+      "title": "Michael Monette / SuperCheats — Virmire",
+      "author": "Michael Monette / SuperCheats",
+      "url": "https://www.supercheats.com/guides/mass-effect/virmire",
+      "sourceType": "attributed_gameplay_guide_capture",
+      "edition": "Mass Effect 1 original, guide Xbox 360 ; captures et palette antérieures à Legendary Edition.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me1_feros_portforward": {
+      "title": "PortForward — Mass Effect, Feros, captures 59, 61 et 62",
+      "author": "PortForward (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://portforward.com/games/walkthroughs/Mass-Effect/Feros.htm",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "ME1 original, guide publié le 12 septembre 2016 ; mise à jour du 15 septembre 2021. Captures et HUD Xbox originaux inspectés.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_hermes_prima": {
+      "title": "Prima Games — Overlord: Hermes Station, figure 005",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/special-assignments/overlord-hermes-station",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Guide Mass Effect 2 original ; aucune capture Legendary Edition utilisée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_atlas_prima": {
+      "title": "Prima Games — Overlord: Atlas Station, figures 003 et 007",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/special-assignments/overlord-atlas-station",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Guide Mass Effect 2 original ; aucune capture Legendary Edition utilisée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_derelict_core_prima": {
+      "title": "Prima Games — Derelict Reaper: Acquire Reaper IFF, Into the Core",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/derelict-reaper-acquire-reaper-iff",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Guide Mass Effect 2 original ; aucune capture Legendary Edition utilisée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_urdnot_camp_prima": {
+      "title": "Prima Games — Tuchanka, Ratch’s Wares, figure 005",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/tuchanka",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Guide Mass Effect 2 original ; aucune capture Legendary Edition utilisée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_rayya_tribunal_prima": {
+      "title": "Prima Games — Tali’s Loyalty: Treason, audience, figures 005 et 006",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/talis-loyalty-treason",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Guide Mass Effect 2 original ; aucune capture Legendary Edition utilisée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_mea_eos_gamepressure": {
+      "title": "Gamepressure — A Better Beginning, Activating the second monolith",
+      "author": "Gamepressure (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "url": "https://www.gamepressure.com/masseffectandromeda/a-better-beginning/zc9883",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect Andromeda, version originale 2017.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_mea_elaaden_gamepressure": {
+      "title": "Gamepressure — Nakmor Drack: A Future for Our People, Entrance to New Tuchanka",
+      "author": "Gamepressure (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "url": "https://www.gamepressure.com/masseffectandromeda/nakmor-drack-a-future-for-our-people/z79a67",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect Andromeda, version originale 2017.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_purgatory_prima": {
+      "title": "Prima Games — Dossier: The Convict, Prisoner’s Row, figure 004",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/dossier-the-convict",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect 2 original ; aucune capture Legendary Edition utilisée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_mea_nexus_wiki": {
+      "title": "Mass Effect Wiki — Docking Bay, Nexus Docking Bay.png",
+      "author": "BioWare / Electronic Arts ; capture diffusée par Mass Effect Wiki, photographe individuel non établi",
+      "url": "https://masseffect.fandom.com/wiki/Docking_Bay",
+      "sourceType": "published_final_game_screenshot",
+      "edition": "Mass Effect Andromeda, jeu final original 2017 ; version et réglages précis de capture non établis.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_mea_voeld_wiki": {
+      "title": "Mass Effect Wiki — Angaran Resistance Base, hangar",
+      "author": "BioWare / Electronic Arts ; capture diffusée par Mass Effect Wiki, photographe individuel non établi",
+      "url": "https://masseffect.fandom.com/wiki/Angaran_Resistance_Base",
+      "sourceType": "published_final_game_screenshot",
+      "edition": "Mass Effect Andromeda, jeu final original 2017 ; version et réglages précis de capture non établis.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_mea_meridian_gamepressure": {
+      "title": "Gamepressure — Meridian: The Way Home, The last relay",
+      "author": "Gamepressure (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "url": "https://www.gamepressure.com/masseffectandromeda/meridian-the-way-home/za9c9e",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect Andromeda, version originale 2017.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me3_cronus_prima": {
+      "title": "Prima Games — Assault the Illusive Man’s Base, Illusive Man’s Office, figure 049",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-3/assault-the-illusive-mans-base",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect3 original, guide2012 ; aucune capture Legendary Edition.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me3_geth_core_prima": {
+      "title": "Prima Games — Disable the Dreadnought, Central Core, figure 052",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-2/disable-the-dreadnought",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect3 original, guide2012 ; aucune capture Legendary Edition.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me1_thorian_prima": {
+      "title": "Prima Games — Mass Effect PC, Destroy the Thorian, premier nœud",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-4-feros/objective-4-destroy-the-thorian",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect1 PC original, guide antérieur à Legendary Edition ; palette du screenshot original conservée.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me3_shroud_prima": {
+      "title": "Prima Games — Cure the Genophage, The Shroud, figure 035",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-1/cure-the-genophage",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect3 original, guide2012 ; aucune capture Legendary Edition.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me3_archives_moby": {
+      "title": "GTramp / MobyGames — Mass Effect3 Citadel, salle des coffres cylindriques",
+      "author": "GTramp, publication MobyGames ; jeu BioWare / Electronic Arts",
+      "url": "https://www.mobygames.com/game/61513/mass-effect-3-citadel/screenshots/windows/680331/",
+      "sourceType": "attributed_final_game_screenshot",
+      "edition": "Mass Effect3 Citadel original Windows2013 ; capture ajoutée23mars2014. Aperçu public1200×675, pas original MobyPlus.",
+      "retrievalStatus": "page_initially_read_and_public_preview_downloaded; later403_not_retried",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me2_arrival_meristation": {
+      "title": "MeriStation — Mass Effect2 Arrival, galerie2011, me2_arrival_01.jpg",
+      "author": "MeriStation (métadonnées de page) ; capture du jeu BioWare / Electronic Arts, auteur individuel non indiqué",
+      "url": "https://as.com/meristation/2011/03/28/album/1301435400_000001.html",
+      "sourceType": "contemporary_final_game_screenshot",
+      "edition": "Mass Effect2 Arrival original ; galerie publiée29mars2011. Plateforme/build précis non établis.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me3_london_prettz2012": {
+      "title": "prettz / Parabolee — vue du faisceau, légende Before, article13avril2012",
+      "author": "prettz (BioWare Social Network), attribution publiée par Parabolee ; jeu BioWare / Electronic Arts",
+      "url": "https://parabolee.blogspot.com/2012/04/mass-effect-3-endings-theories-and.html",
+      "sourceType": "attributed_original_game_screenshot_republished",
+      "edition": "Mass Effect3 original ; publication2012 antérieure à Legendary Edition. Méthode de caméra et build exact non documentés.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "stage_capture_me3_london_prima": {
+      "title": "Prima Games — No-Man’s-Land, fin de l’assaut de Londres",
+      "author": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "url": "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-3/no-mans-land",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect3 original, guide2012.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "lot12_virmire_genophage_wiki": {
+      "title": "Mass Effect Wiki — Virmire: Assault, Genophage Labs",
+      "url": "https://masseffect.fandom.com/wiki/Virmire%3A_Assault",
+      "sourceType": "secondary_game_capture",
+      "author": "BioWare/EA ; auteur individuel de la capture non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "published_filenames_and_original_cdn_files_downloaded_and_inspected",
+      "edition": "Édition/date de la grande capture wiki non établies ; architecture/palette recoupées avec les vignettes IGN originales. Ne pas prétendre certifier chaque texture ni une édition précise de la capture wiki."
+    },
+    "stage_capture_me1_x57_gamerguides_le": {
+      "title": "GamerGuides — X57: Bring Down the Sky, confrontation Balak, vue du balcon",
+      "author": "GamerGuides (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "url": "https://www.gamerguides.com/mass-effect-1-legendary-edition/guide/assignments/bring-down-the-sky/x57-bring-down-the-sky",
+      "sourceType": "published_gameplay_guide_capture",
+      "edition": "Mass Effect 1 Legendary Edition explicitement observée ; aucune certification des textures ou de la palette 2007.",
+      "retrievalStatus": "page_and_downloaded_images_read",
+      "checkedOn": "2026-11-20"
+    },
+    "lot12_mea_research_eos": {
+      "title": "Gamepressure — A Better Beginning",
+      "url": "https://www.gamepressure.com/masseffectandromeda/a-better-beginning/zc9883",
+      "sourceType": "gameplay_guide_capture",
+      "author": "BioWare/EA ; capture diffusée par Gamepressure, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_elaaden": {
+      "title": "Gamepressure — Nakmor Drack: A Future for Our People",
+      "url": "https://www.gamepressure.com/masseffectandromeda/nakmor-drack-a-future-for-our-people/z79a67",
+      "sourceType": "gameplay_guide_capture",
+      "author": "BioWare/EA ; capture diffusée par Gamepressure, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_meridian": {
+      "title": "Gamepressure — Meridian: The Way Home",
+      "url": "https://www.gamepressure.com/masseffectandromeda/meridian-the-way-home/za9c9e",
+      "sourceType": "gameplay_guide_capture",
+      "author": "BioWare/EA ; capture diffusée par Gamepressure, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_meridian_gg": {
+      "title": "Nathan Garvin / Gamer Guides — Meridian: The Way Home",
+      "url": "https://www.gamerguides.com/mass-effect-andromeda/guide/walkthrough/chapter-9-meridian/meridian-the-way-home/",
+      "sourceType": "attributed_gameplay_guide_capture",
+      "author": "Nathan Garvin / Gamer Guides ; BioWare/EA",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_voeld_cc": {
+      "title": "Cheat Code Central Staff — Intro to Voeld: Meeting the Resistance",
+      "url": "https://www.cheatcc.com/guides/mass-effect-andromeda-guide-walkthrough/walkthrough-6/intro-to-voeld-meeting-the-resistance/",
+      "sourceType": "gameplay_guide_capture",
+      "author": "Cheat Code Central Staff ; BioWare/EA",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_voeld_gp": {
+      "title": "Gamepressure — A Trail of Hope",
+      "url": "https://www.gamepressure.com/masseffectandromeda/a-trail-of-hope/z698cb",
+      "sourceType": "gameplay_guide_capture",
+      "author": "BioWare/EA ; capture diffusée par Gamepressure, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_voeld": {
+      "title": "Mass Effect Wiki — Angaran Resistance Base",
+      "url": "https://masseffect.fandom.com/wiki/Angaran_Resistance_Base",
+      "sourceType": "secondary_game_capture",
+      "author": "BioWare/EA ; capture diffusée par Mass Effect Wiki, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_nexus": {
+      "title": "Mass Effect Wiki — Docking Bay",
+      "url": "https://masseffect.fandom.com/wiki/Docking_Bay",
+      "sourceType": "secondary_game_capture",
+      "author": "BioWare/EA ; capture diffusée par Mass Effect Wiki, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_aya": {
+      "title": "Mass Effect Wiki — Docks (Aya)",
+      "url": "https://masseffect.fandom.com/wiki/Docks",
+      "sourceType": "secondary_game_capture",
+      "author": "BioWare/EA ; capture diffusée par Mass Effect Wiki, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_aya_mission": {
+      "title": "Mass Effect Wiki — A Trail of Hope I",
+      "url": "https://masseffect.fandom.com/wiki/A_Trail_of_Hope_I",
+      "sourceType": "secondary_game_capture",
+      "author": "BioWare/EA ; capture diffusée par Mass Effect Wiki, auteur individuel non établi",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_mea_research_aya_gg": {
+      "title": "Nathan Garvin / Gamer Guides — A Trail of Hope: Aya and the Angara",
+      "url": "https://www.gamerguides.com/mass-effect-andromeda/guide/walkthrough/chapter-4-aya/a-trail-of-hope-aya-and-the-angara/",
+      "sourceType": "attributed_gameplay_guide_capture",
+      "author": "Nathan Garvin / Gamer Guides ; BioWare/EA",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_page_or_search_text_and_original_image_inspected"
+    },
+    "lot12_virmire_genophage_ign2007": {
+      "title": "IGN Mass Effect Guide ©2007 — pp155–156, Virmire Assault",
+      "url": "https://www.bazicenter.com/features/ign_guides/masseffect_ignpdf.pdf",
+      "sourceType": "original_game_guide_pdf_secondary_mirror",
+      "author": "IGN Entertainment ; metadata author cmoriarty",
+      "checkedOn": "2026-11-20",
+      "retrievalStatus": "public_pdf_downloaded_pages155_156_rendered_and_inspected",
+      "pdfSha256": "b8c108809688d880074c63f4a60ddb5d13fcf54b593c0e268ddff77890b32d29",
+      "pdfCreationDate": "2008-04-23T00:11:26",
+      "edition": "Guide de Mass Effect original, antérieur à Legendary Edition"
+    },
+    "stage_capture_me3_london_gamepressure_context": {
+      "title": "Gamepressure — Priority: Earth (2)",
+      "url": "https://www.gamepressure.com/masseffect3/priority-earth-2/ze38a2",
+      "sourceType": "context_gameplay_guide_capture",
+      "author": "Gamepressure ; auteur individuel de la capture non établi",
+      "checkedOn": "2026-11-20",
+      "editionLimit": "Page datée de 2022 ; date exacte de capture et version non certifiées. Contexte seulement."
+    },
+    "stage_capture_me3_london_supercheats_context": {
+      "title": "SuperCheats — Earth",
+      "url": "https://www.supercheats.com/guides/mass-effect-3/earth",
+      "sourceType": "context_gameplay_guide_capture",
+      "author": "vhayste, SuperCheats",
+      "checkedOn": "2026-11-20"
+    }
+  },
+  "assets": [
+    {
+      "id": "stg_me2_aite_hermes",
+      "category": "stage",
+      "name": "Aïté — station Hermès",
+      "work": "ME2",
+      "dlc": "Overlord",
+      "variant": "Salle de contrôle",
+      "plannedUse": "arene_adaptee",
+      "subject": "Aïté — station Hermès",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/aite-me2-hermes-radar-control-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-c62b1055-c12d-48da-aa92-ddd19dfbd314.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "ded433254675b3cec6406166e1637cc418395c4362d19d386056635b04e09f19",
+        "sizeBytes": 2479575,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_aite_hermes",
+      "sourceIds": [
+        "stage_capture_me2_hermes_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/special-assignments/overlord-hermes-station",
+        "https://primagames.com/eguides/media/files/mass-effect-2/06c-005.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/06c-005.jpg",
+          "filename": "06c-005.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-2/06c-005.jpg",
+          "sha256": "eaaab9070b76a3716c26dc8385648cffb5b4914f22ba86f4ee958776b8f2196d",
+          "width": 1280,
+          "height": 800,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 1280 × 800 avec personnage au premier plan et HUD ; masques locaux et micro-affichages ne permettent pas une mesure complète ou une certification 1:1.",
+      "producedSubzone": "Salle de contrôle radar principale de la station Hermès, vue vers les consoles et la projection d’antenne sur la vitre.",
+      "productionNote": "Vitre inclinée, moniteurs suspendus, consoles bleues et schéma physique orange conservés. Shepard, réticules et interface retirés. Affichages et lumière restent cuits dans le master ; aucune séparation d’hologrammes ou de calques produite.",
+      "catalogProductionNoteOriginal": "Distinguer de la station Atlas dans le même DLC.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Repères de la salle conservés : fenêtre oblique, deux moniteurs hauts, siège gauche, bancs de consoles et antenne en projection. Aucun personnage ni HUD de jeu visible.",
+        "issues": [
+          "Sol, dessous des consoles et zone derrière Shepard reconstruits.",
+          "Siège droit davantage défini ; micro-schémas, positions de certaines commandes et contraste modifiés.",
+          "Lumière et projection statiques ; aucune animation de rétraction ni intégration moteur."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me2_aite_atlas",
+      "category": "stage",
+      "name": "Aïté — station Atlas",
+      "work": "ME2",
+      "dlc": "Overlord",
+      "variant": "Installation intérieure",
+      "plannedUse": "arene_adaptee",
+      "subject": "Aïté — station Atlas",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/aite-me2-atlas-physical-laboratory-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-b5822ea2-2e84-4d2d-83b8-306d2b07be3f.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "2ea05345b3fff8ee58dc094e398fca3ec111267c58ab4d88c818c77d3e7156ad",
+        "sizeBytes": 2414033,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_aite_atlas",
+      "sourceIds": [
+        "stage_capture_me2_atlas_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/special-assignments/overlord-atlas-station",
+        "https://primagames.com/eguides/media/files/mass-effect-2/06c5-003.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/06c5-003.jpg",
+          "filename": "06c5-003.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-2/06c5-003.jpg",
+          "sha256": "79aeb5e22b52b9e3034269fbd7e6da81c38cd6088fa49142e8501a0c4f8ee880",
+          "width": 1280,
+          "height": 800,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 1280 × 800 partiellement occultée ; seulement le laboratoire physique avant ascenseur, pas tous les niveaux ni la surcouche virtuelle.",
+      "producedSubzone": "Laboratoire physique derrière la porte gauche, avant le puzzle de l’ascenseur vers le niveau 7 de la station Atlas.",
+      "productionNote": "Seuil, larges jambages, tables, câbles, tuyaux et ascenseur conservés. Personnages, corps et HUD retirés. Aucun décor filaire virtuel ajouté. Il s’agit d’un laboratoire précis, pas de l’installation Atlas entière.",
+      "catalogProductionNoteOriginal": "Éviter de confondre décor physique et surcouche virtuelle.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Vue depuis le seuil et disposition générale des plans de travail concordantes, éclairage vert-gris et arrière gauche chaud conservés. Corps et interface absents.",
+        "issues": [
+          "Carrelage masqué par Shepard et les corps reconstitué ; petits objets et détails d’équipement interprétés.",
+          "Netteté, reflets et détail des chiffres de l’ascenseur diffèrent de la capture.",
+          "Les obstacles restent dans la pièce ; aucun couloir de duel ni collision validé."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me2_tuchanka_urdnot",
+      "category": "stage",
+      "name": "Tuchanka — camp Urdnot",
+      "work": "ME2",
+      "dlc": null,
+      "variant": "Zone du camp",
+      "plannedUse": "arene_adaptee",
+      "subject": "Tuchanka — camp Urdnot",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/tuchanka-me2-urdnot-ratch-market-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-cca44b91-ab2b-4235-a614-2bd99c97cd1e.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "713831ca123864b8db4373bf01d9f66c43948bf844a7bd3105f13c59c9ca3c9c",
+        "sizeBytes": 3182048,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_tuchanka_urdnot",
+      "sourceIds": [
+        "stage_capture_me2_urdnot_camp_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/tuchanka",
+        "https://primagames.com/eguides/media/files/mass-effect-2/05t-005.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/05t-005.jpg",
+          "filename": "05t-005.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-2/05t-005.jpg",
+          "sha256": "6c92dba3620dfde697b7f5272364f55d43bd4550924199b31a481fff0a9a87da",
+          "width": 700,
+          "height": 438,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 700 × 438 avec trois figures masquant le sol et le kiosque. La fiche couvre uniquement ce coin du marché.",
+      "producedSubzone": "Coin du marché de Ratch’s Wares dans le camp Urdnot, devant le kiosque et la table longeant le garde-corps.",
+      "productionNote": "Pavés brisés, grillage, kiosque, grosse poutre oblique, gravats, table et rail conservés. Shepard, Ratch, Urz et interface retirés. Cette vue ME2 ne représente ni le Voile ME3 ni un autre secteur de combat de Tuchanka.",
+      "catalogProductionNoteOriginal": "Ne pas remplacer ce camp par le site du Voile ME3.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Le kiosque à gauche, la grille rouillée, la diagonale du mur, le tas de gravats et la table à droite sont reconnaissables. Personnages, varren et HUD retirés.",
+        "issues": [
+          "Pavés cachés par les personnages et Urz reconstitués ; découpe exacte des cassures non mesurée.",
+          "Petits contenants, sièges, commandes du kiosque et textures interprétés à partir de 700 × 438 pixels.",
+          "Contraste et luminosité éclaircis ; pas de panorama complet du camp ni de sol de combat livré."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me2_rayya_tribunal",
+      "category": "stage",
+      "name": "Rayya — tribunal",
+      "work": "ME2",
+      "dlc": null,
+      "variant": "Salle de l'audience",
+      "plannedUse": "arene_adaptee",
+      "subject": "Rayya — tribunal",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/rayya-me2-hearing-hall-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-e9977550-fa60-4ed0-9ce4-d619313c6597.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "963db9f602b2069c2fe61b16faf06d133c522d490294376689a69c2bb067b296",
+        "sizeBytes": 2417774,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_rayya_tribunal",
+      "sourceIds": [
+        "stage_capture_me2_rayya_tribunal_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/talis-loyalty-treason",
+        "https://primagames.com/eguides/media/files/mass-effect-2/05x-005.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/05x-005.jpg",
+          "filename": "05x-005.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-2/05x-005.jpg",
+          "sha256": "e2f5b401985a80c7ea1c5cbd06eb8360e6e5c0f99e48a2b88c85d0930d32dfac",
+          "width": 700,
+          "height": 438,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 700 × 438 très peuplée. L’architecture générale est lisible ; les surfaces sous les personnages ne sont pas documentées pixel à pixel.",
+      "producedSubzone": "Salle d’audience du Rayya vue en plongée depuis les gradins, au début du procès de Tali.",
+      "productionNote": "Gradins, estrade, rails, marches et plantations hautes conservés. Tous les personnages retirés. La foule masquait une grande part des bancs et du sol ; la continuité générée reste une reconstruction, sans relevé métrique du tribunal.",
+      "catalogProductionNoteOriginal": "Flottille de ME2, pas vaisseau geth ni décor de Rannoch.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "L’estrade centrale arrière, les bancs courbes, le garde-corps diagonal, le grand luminaire et les plantations du fond gardent la composition de la salle d’audience.",
+        "issues": [
+          "Réserve forte : bancs, allées et marches largement masqués par la foule dans la source ; géométrie révélée reconstruite.",
+          "Détail des rangées, textures, feuillage et lumière interprétés ; leur exactitude intégrale n’est pas certifiée.",
+          "L’estrade et les gradins sont des obstacles conservés, sans conversion en arène ouverte."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me2_derelict_reaper_core",
+      "category": "stage",
+      "name": "Moissonneur abandonné — cœur",
+      "work": "ME2",
+      "dlc": null,
+      "variant": "Zone du cœur de la mission Reaper IFF",
+      "plannedUse": "arene_adaptee",
+      "subject": "Moissonneur abandonné — cœur",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/derelict-reaper-me2-open-core-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-78e65ddd-692c-4841-b5d6-cf684157ed53.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "4fdcec445fb8c910138db50fca28c626705c6753cd1b80346b504201eee15504",
+        "sizeBytes": 2456443,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_derelict_reaper_core",
+      "sourceIds": [
+        "stage_capture_me2_derelict_core_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/derelict-reaper-acquire-reaper-iff",
+        "https://primagames.com/eguides/media/files/mass-effect-2/05za-036.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/05za-036.jpg",
+          "filename": "05za-036.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-2/05za-036.jpg",
+          "sha256": "1d50ce00d3a6dfe0e21d07931e5710e4c30924634c908ff1879c340e55e39f77",
+          "width": 700,
+          "height": 438,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 700 × 438, vue rapprochée sans sol complet. Un seul état ouvert documenté comme input ; aucune mesure 3D ni animation disponible.",
+      "producedSubzone": "Vue rapprochée ascendante du cœur du Moissonneur abandonné, bouclier ouvert, avec terminal orange à droite.",
+      "productionNote": "Noyau circulaire bleu-blanc, boîtier sombre, tuyaux segmentés et projection du terminal conservés. Shepard et HUD retirés. La vue garde son cadrage rapproché et ne livre ni sol complet ni panorama de la chambre.",
+      "catalogProductionNoteOriginal": "Cadrage d'une sous-zone exacte; les extérieurs et autres couloirs ne sont pas couverts.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Cœur ouvert, anneau métallique, logement polygonal, conduits latéraux et écran physique orange concordent avec la capture. Aucun réticule ou personnage visible.",
+        "issues": [
+          "Conduits et boîtier auparavant cachés par Shepard reconstitués.",
+          "Motif des arcs, luminosité du noyau, relief métallique et micro-affichage orange interprétés.",
+          "Énergie statique incluse dans le PNG ; bouclier rotatif, collision et animation restent à produire."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me1_feros_zhus_hope",
+      "category": "stage",
+      "name": "Féros — Zhu's Hope",
+      "work": "ME1",
+      "dlc": null,
+      "variant": "Colonie",
+      "plannedUse": "arene_adaptee",
+      "subject": "Féros — Zhu's Hope",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/feros-me1-zhus-hope-crane-controls-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-273e2561-8a49-42cc-b83d-b5dde798156e.png",
+      "technical": {
+        "width": 1654,
+        "height": 951,
+        "mode": "RGB",
+        "sha256": "7ce62b79678ce80cef2daa3356d38452e7ddea622d3c1a2b505973728a29a8f5",
+        "sizeBytes": 2094072,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me1_feros_zhus_hope",
+      "sourceIds": [
+        "stage_capture_me1_feros_supercheats"
+      ],
+      "sourceUrls": [
+        "https://www.supercheats.com/guides/mass-effect/feros",
+        "https://www.supercheats.com/guides/files/guid/mass-effect/m4-cranecontrols.jpg"
+      ],
+      "referenceAuthor": "Michael Monette / SuperCheats",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/m4-cranecontrols.jpg",
+          "filename": "m4-cranecontrols.jpg",
+          "url": "https://www.supercheats.com/guides/files/guid/mass-effect/m4-cranecontrols.jpg",
+          "sha256": "5ba8fb299ed6c417e6472abeaf67c6c36bdffdd4711da8c8b72834b07fac3ee8",
+          "width": 996,
+          "height": 572,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 996 × 572 floue et partiellement masquée ; vue limitée au coin des commandes, pas une preuve du plan complet de Zhu’s Hope.",
+      "producedSubzone": "Poste de commande de la grue au pied du cargo de Zhu’s Hope, avant ouverture de l’antre du Thorien.",
+      "productionNote": "Terminal blanc, projection orange, coque courbe du cargo, pilier et gravats conservés. Shepard, cible cyan, compteur de colons et radar retirés. Le master représente ce poste précis ; un panorama de toute la colonie et un cadrage de duel restent à documenter.",
+      "catalogProductionNoteOriginal": "Un cadrage latéral doit rester relié aux structures identifiables du lieu.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Commande inclinée à gauche, hologramme physique, structure verticale sombre, sol rocheux et bande inférieure sombre du cargo concordent. HUD et personnage absents.",
+        "issues": [
+          "Arête de console et sol auparavant cachés reconstitués.",
+          "Affichage orange, textures et débris gagnent un détail interprété par rapport à la capture douce.",
+          "Le reste de la colonie et la future entrée ouverte de l’antre sont hors cadre."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me1_feros_exogeni",
+      "category": "stage",
+      "name": "Féros — ExoGeni",
+      "work": "ME1",
+      "dlc": null,
+      "variant": "Intérieur du siège",
+      "plannedUse": "arene_adaptee",
+      "subject": "Féros — ExoGeni",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/feros-me1-exogeni-geth-altar-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-29b1e41f-03d1-4ee7-b223-1c526a9f062a.png",
+      "technical": {
+        "width": 1654,
+        "height": 951,
+        "mode": "RGB",
+        "sha256": "c6ee22e8c9d3df403f964d03a7aba2b7d4f3d781c76edacfe3197d966e112fad",
+        "sizeBytes": 2414448,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me1_feros_exogeni",
+      "sourceIds": [
+        "stage_capture_me1_feros_supercheats"
+      ],
+      "sourceUrls": [
+        "https://www.supercheats.com/guides/mass-effect/feros",
+        "https://www.supercheats.com/guides/files/guid/mass-effect/m4-gethaltar.jpg"
+      ],
+      "referenceAuthor": "Michael Monette / SuperCheats",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/m4-gethaltar.jpg",
+          "filename": "m4-gethaltar.jpg",
+          "url": "https://www.supercheats.com/guides/files/guid/mass-effect/m4-gethaltar.jpg",
+          "sha256": "16138099052b2f24965819c4603844e420c10b22f47189b206b4838725311e5f",
+          "width": 996,
+          "height": 572,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 996 × 572 vue du haut, partie du sol masquée. La référence documente l’autel et ses griffes fixes, sans plan complet du siège.",
+      "producedSubzone": "Salle de l’autel geth dans ExoGeni, vue depuis la passerelle haute après la conversation avec la VI.",
+      "productionNote": "Griffes fixes d’ancrage du vaisseau, faisceaux de conduits, blocs de pierre et ouverture lumineuse conservés. Les petits geth mobiles, Shepard et HUD sont retirés. Le sol et les obstacles existants restent en place ; aucun plancher de duel ajouté.",
+      "catalogProductionNoteOriginal": "Choisir une salle précise avant génération des calques.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Faisceaux noirs nervurés à gauche, grandes griffes et joints à droite, forte ouverture blanche et bloc rocheux conservent les repères du cadrage original.",
+        "issues": [
+          "Sol masqué par Shepard et les geth reconstruit ; petites pierres et matière non certifiées.",
+          "Géométrie fine des conduits, joints et griffes interprétée depuis une capture douce.",
+          "Bloom et ombres restent cuits ; la salle entière et les commandes de pression ne sont pas couvertes."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me1_therum_ruins",
+      "category": "stage",
+      "name": "Thérum — ruines prothéennes",
+      "work": "ME1",
+      "dlc": null,
+      "variant": "Site de fouilles de Liara",
+      "plannedUse": "arene_adaptee",
+      "subject": "Thérum — ruines prothéennes",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/therum-me1-excavation-entrance-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-7d06895f-ddaf-4212-a50d-85c00ef4ace9.png",
+      "technical": {
+        "width": 1654,
+        "height": 951,
+        "mode": "RGB",
+        "sha256": "3e4e780989e47759539235894dee9fd8394c29d16bd55b33d499a29f48845190",
+        "sizeBytes": 2064933,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me1_therum_ruins",
+      "sourceIds": [
+        "stage_capture_me1_therum_supercheats"
+      ],
+      "sourceUrls": [
+        "https://www.supercheats.com/guides/mass-effect/find-liara-tsoni",
+        "https://www.supercheats.com/guides/files/guid/mass-effect/m3-protheanruinsentrance.jpg"
+      ],
+      "referenceAuthor": "Michael Monette / SuperCheats",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/m3-protheanruinsentrance.jpg",
+          "filename": "m3-protheanruinsentrance.jpg",
+          "url": "https://www.supercheats.com/guides/files/guid/mass-effect/m3-protheanruinsentrance.jpg",
+          "sha256": "8c2af2c718b349bc064c20a3d76b313828b63c9569de01bb01bc62fac984c5fe",
+          "width": 996,
+          "height": 572,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 996 × 572, entrée extérieure seulement. Une partie de la rampe est cachée ; aucun volume souterrain complet n’est documenté par cet input.",
+      "producedSubzone": "Entrée extérieure des fouilles au camp minier de Thérum : rampe montante et portique menant aux ruines prothéennes.",
+      "productionNote": "Rampe étroite inclinée, arcs de l’entrée, bras latéraux éclairés, pylônes ajourés et horizon rocheux conservés. Shepard et radar retirés. L’intérieur des ruines, la prison de Liara et un panorama du site ne sont pas extrapolés.",
+      "catalogProductionNoteOriginal": "La composition 2D sera une adaptation d'un espace 3D.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Composition frontale, rampe centrale, grands bras métalliques, piliers verticaux et ciel bleu-vert sombre reconnaissables, dans la palette de ME1 original.",
+        "issues": [
+          "Bas de la rampe et sol derrière Shepard reconstitués.",
+          "Montagnes, métal, pierres et détails de treillis interprétés ; la capture originale est douce.",
+          "Rampe en pente et portique conservés, sans test de collision ou de caméra latérale."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_mea_eos_monolith",
+      "category": "stage",
+      "name": "Eos — monolithe",
+      "work": "MEA",
+      "dlc": null,
+      "variant": "Site reliquat",
+      "plannedUse": "arene_adaptee",
+      "subject": "Eos — monolithe",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/eos-mea-western-second-monolith-approach-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-2645704f-b82e-41dc-94b3-5fc2b3b11610.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "0addf43e893d1d29419e567405d456e764e8bf99bc7651a7279026a8b8a17cc1",
+        "sizeBytes": 2736979,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_mea_eos_monolith",
+      "sourceIds": [
+        "stage_capture_mea_eos_gamepressure"
+      ],
+      "sourceUrls": [
+        "https://www.gamepressure.com/masseffectandromeda/a-better-beginning/zc9883",
+        "https://www.gamepressure.com/masseffectandromeda/gfx/word/337041564.jpg"
+      ],
+      "referenceAuthor": "Gamepressure (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages-mea/eos-second-monolith.jpg",
+          "filename": "eos-second-monolith.jpg",
+          "url": "https://www.gamepressure.com/masseffectandromeda/gfx/word/337041564.jpg",
+          "sha256": "3f18f27a8211d9ee18e86a1d210483cb17d2beb83677855599945e94053e8019",
+          "width": 720,
+          "height": 405,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 720 × 405 ; Nomad et panneaux HUD masquent une grande partie du bas. Le sol révélé est une continuité reconstruite de la pente visible, pas un relevé du site.",
+      "producedSubzone": "Approche extérieure du monolithe ouest d’Eos, présenté comme le deuxième monolithe dans A Better Beginning par le guide.",
+      "productionNote": "Pilier remnant incliné central, piliers partiels à gauche, formations rocheuses orange, rayon bleu et pente sableuse conservés. Nomad et HUD retirés. Les trois sites de monolithes ne sont pas fusionnés et l’intérieur n’est pas extrapolé.",
+      "catalogProductionNoteOriginal": "Fixer un des sites de la mission avant d'assembler les couches.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Monolithe central incliné, formation rocheuse dominante à droite, petit rocher champignon, rayon bleu diagonal et pente orange gardent la composition de l’approche. Nomad et HUD absents.",
+        "issues": [
+          "Pente au premier plan auparavant cachée par le Nomad et les cadrans reconstruite ; motif du sable, cailloux et végétation non mesuré.",
+          "Relief des roches, glyphes cyan et intensité du rayon bleu détaillés ou accentués à partir de 720 × 405 pixels.",
+          "Vue extérieure d’un monolithe précis ; aucun intérieur, réseau des trois sites, parallaxe ou collision livré."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_mea_elaaden_new_tuchanka",
+      "category": "stage",
+      "name": "Elaaden — Nouvelle Tuchanka",
+      "work": "MEA",
+      "dlc": null,
+      "variant": "Entrée de la colonie",
+      "plannedUse": "arene_adaptee",
+      "subject": "Elaaden — Nouvelle Tuchanka",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/elaaden-mea-new-tuchanka-entrance-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-1738156b-5b2a-44e5-a213-909037cdaa8c.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "fa3eb8c61c548e21f38419656e5337cf125e223cf602df829f709f38b3ad4b1a",
+        "sizeBytes": 3045121,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_mea_elaaden_new_tuchanka",
+      "sourceIds": [
+        "stage_capture_mea_elaaden_gamepressure"
+      ],
+      "sourceUrls": [
+        "https://www.gamepressure.com/masseffectandromeda/nakmor-drack-a-future-for-our-people/z79a67",
+        "https://www.gamepressure.com/masseffectandromeda/gfx/word/519551033.jpg"
+      ],
+      "referenceAuthor": "Gamepressure (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages-mea/elaaden-new-tuchanka-entrance.jpg",
+          "filename": "elaaden-new-tuchanka-entrance.jpg",
+          "url": "https://www.gamepressure.com/masseffectandromeda/gfx/word/519551033.jpg",
+          "sha256": "4621fb8c392e8458fa1acf6cd8648e9df2cac8347a5da0fe9d0aa47530a95c54",
+          "width": 720,
+          "height": 405,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 720 × 405 ; le personnage et le Nomad masquent une partie de la passerelle et du sable. Détail de l’emblème, du tissu et des surfaces fines dépend de cette résolution.",
+      "producedSubzone": "Entrée extérieure de Nouvelle Tuchanka sur Elaaden, sous la grande bannière rouge, au début de l’étape Enter New Tuchanka and talk to Hark.",
+      "productionNote": "Portail et bannière rouge à emblème blanc, petite porte inférieure, arche rocheuse droite, caisse de ravitaillement gauche, passerelle métallique et sable conservés. Ryder, PNJ, Nomad et HUD retirés. Aucun marché intérieur ajouté.",
+      "catalogProductionNoteOriginal": "Distinct du camp Urdnot ME2 et du Voile ME3.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Portail sous bannière rouge, emblème blanc, arche rocheuse droite, spire gauche, caisse de ravitaillement et plaques du sol reconnaissables. Aucun personnage, véhicule ou HUD visible.",
+        "issues": [
+          "Route, grille et sable auparavant masqués par Ryder et le Nomad reconstruits ; proportions des joints et détail des pierres interprétés.",
+          "Porte inférieure représentée fermée et détaillée ; son état exact derrière les PNJ dans la petite capture n’est pas certifié.",
+          "Texture et plis de bannière, contours fins de l’emblème, métal, roches et contraste interprétés à partir de 720 × 405 pixels. Aucun marché intérieur ni collision validée."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me2_purgatory_prison",
+      "category": "stage",
+      "name": "Purgatory — prison",
+      "work": "ME2",
+      "dlc": null,
+      "variant": "Secteur des cellules",
+      "plannedUse": "arene_adaptee",
+      "subject": "Purgatory — prison",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/purgatory-me2-prisoner403-cell-row-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-437b9e7d-6a31-40ad-a118-41e23ebe0c7c.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "633202dcfbf8967b2b50e826305e43e54da1bcd4e83f45950f7c39293698d59e",
+        "sizeBytes": 2457688,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_purgatory_prison",
+      "sourceIds": [
+        "stage_capture_me2_purgatory_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/dossier-the-convict",
+        "https://primagames.com/eguides/media/files/mass-effect-2/05h-004.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/05h-004.jpg",
+          "filename": "05h-004.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-2/05h-004.jpg",
+          "sha256": "70d0dd218587b81b1a159abcc361a9c05e2aa95b055a2dd2558fba661bef413f",
+          "width": 700,
+          "height": 438,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 700 × 438 avec trois personnages occultant des parties du sol, de la cellule et de la rambarde ; absence de plan complet de la prison.",
+      "producedSubzone": "Allée de Prisoner’s Row devant la cellule du prisonnier 403, avant le piège du secteur Outprocessing.",
+      "productionNote": "Cadre vitré de cellule, châssis métalliques, rambarde droite et passerelle grillagée conservés. Shepard, garde, prisonnier et interface retirés. Cette vue du secteur des cellules ne représente ni Outprocessing ni la chambre cryogénique de Jack.",
+      "catalogProductionNoteOriginal": "Distinguer le vaisseau-prison ME2 du club Purgatory ME3.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Fenêtre de la cellule 403, cadres angulaires, passerelle grillagée, rambarde droite et puits éclairé concordent. Prisonnier, garde, Shepard et HUD retirés.",
+        "issues": [
+          "Grilles et rambarde cachées par Shepard et le garde reconstituées ; maillage, joints et usure détaillés au-delà des 700 × 438 pixels.",
+          "Parois et sol derrière le prisonnier révélés par continuité, sans mesure exacte du volume intérieur.",
+          "Reflets et contraste interprétés ; seul ce tronçon de Prisoner’s Row est couvert, sans collision ou caméra de combat validées."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_mea_nexus_docking_bay",
+      "category": "stage",
+      "name": "Nexus — baie d'amarrage",
+      "work": "MEA",
+      "dlc": null,
+      "variant": "Zone du Tempest",
+      "plannedUse": "arene_adaptee",
+      "subject": "Nexus — baie d'amarrage",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/nexus-mea-tempest-berth-common-area-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-ba62861c-47a8-44b5-b960-ebe57753b730.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "e2e88590cae83916fd1960da3b4196c24b5c1c335922f5fa14f77c7521d43d1b",
+        "sizeBytes": 2200242,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_mea_nexus_docking_bay",
+      "sourceIds": [
+        "stage_capture_mea_nexus_wiki"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/Docking_Bay",
+        "https://static.wikia.nocookie.net/masseffect/images/c/c3/Nexus_Docking_Bay.png/revision/latest"
+      ],
+      "referenceAuthor": "BioWare / Electronic Arts ; capture diffusée par Mass Effect Wiki, photographe individuel non établi",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages-mea/nexus-docking-bay-wiki.png",
+          "filename": "nexus-docking-bay-wiki.png",
+          "url": "https://static.wikia.nocookie.net/masseffect/images/c/c3/Nexus_Docking_Bay.png/revision/latest",
+          "sha256": "4d11f5ac883eb47c47d8df4f9364fe3ed14ebff01c0db8cb5743bb76a59bbcf1",
+          "width": 3840,
+          "height": 2160,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 3840 × 2160 avec brume importante dans le lointain et nombreux petits éléments. Une seule vue fixe depuis Common Area ; les détails masqués sous les personnages et derrière le feuillage ne sont pas relevés en 3D.",
+      "producedSubzone": "Baie d’amarrage du Tempest au Nexus, vue depuis les terrasses du Common Area près du Cultural Exchange, après l’arrivée du jeu.",
+      "productionNote": "Tempest stationné, pad noir aux marquages jaunes, pont d’accès, terrasses, plantations, bâtiment Cultural Exchange et grande courbure intérieure du torus conservés. PNJ et projection humanoïde retirés. Les inscriptions physiques présentes ne deviennent pas de nouveaux panneaux.",
+      "catalogProductionNoteOriginal": "Époque post-arrivée du jeu; version Nexus Uprising à traiter séparément.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Tempest sur son pad, orientation du navire, torus intérieur, bâtiment Cultural Exchange, accès en pont, terrasses et plantations conservent la composition. PNJ et projection humanoïde absents.",
+        "issues": [
+          "Petites surfaces de carrelage cachées par les PNJ reconstituées ; ombres de feuillage, assemblages du pad et détails du navire interprétés.",
+          "Inscription physique Cultural Exchange conservée ; petites marques de coque, caisses, silhouettes du lointain et brume non certifiées pixel à pixel.",
+          "Vue fixe depuis Common Area ; aucun découpage du torus, navire, reflets ou arbres en calques, aucune parallaxe ni collision validée."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_mea_voeld_resistance",
+      "category": "stage",
+      "name": "Voeld — base de la Résistance",
+      "work": "MEA",
+      "dlc": null,
+      "variant": "Entrée de la base",
+      "plannedUse": "arene_adaptee",
+      "subject": "Voeld — base de la Résistance",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/voeld-mea-resistance-hangar-entrance-interior-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-645e1f59-1bf7-4123-a3ef-037b23d317bd.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "803a406d47f6f24b8490e8a504cab2872964c420dc0d1b577b03d1085390ea25",
+        "sizeBytes": 2454353,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_mea_voeld_resistance",
+      "sourceIds": [
+        "stage_capture_mea_voeld_wiki"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/Angaran_Resistance_Base",
+        "https://static.wikia.nocookie.net/masseffect/images/a/ab/Angaran_resistance_base_-_hangar.png/revision/latest"
+      ],
+      "referenceAuthor": "BioWare / Electronic Arts ; capture diffusée par Mass Effect Wiki, photographe individuel non établi",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages-mea/voeld-hangar-wiki.png",
+          "filename": "voeld-hangar-wiki.png",
+          "url": "https://static.wikia.nocookie.net/masseffect/images/a/ab/Angaran_resistance_base_-_hangar.png/revision/latest",
+          "sha256": "1a5a18189cce1f3b05f6c67868c9b3f782236bafb4e83aa3ff29d03a5d04a9fd",
+          "width": 3200,
+          "height": 1800,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 3200 × 1800 ; brume bleue et petits PNJ occultent quelques surfaces. L’extérieur lointain et l’envers de la façade ne sont pas documentés par cet angle.",
+      "producedSubzone": "Entrée du hangar de la Résistance sur Voeld, vue depuis l’intérieur vers le seuil et l’extérieur enneigé.",
+      "productionNote": "Voûte rocheuse renforcée, supports courbes, ouverture extérieure centrale, chauffages orange, caisses, équipement à gauche et véhicules lourds à droite conservés. Les personnages sont retirés. Cette vue est intérieure vers le seuil ; aucune façade extérieure inverse n’est inventée.",
+      "catalogProductionNoteOriginal": "Contrôler l'échelle du passage et la neige par rapport aux personnages.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Entrée centrale du hangar, voûte rocheuse renforcée, rangées de lampes, appareils stationnés et chauffages orange conservent la disposition observée. Tous les PNJ sont retirés, le passage garde son sol irrégulier.",
+        "issues": [
+          "Neige et roches derrière les PNJ reconstituées ; traces, petits cailloux et aspérités des équipements non mesurés.",
+          "Brume et contraste bleus ajustés, détails des véhicules et supports interprétés ; navette lointaine et lumières restent figées.",
+          "Vue depuis l’intérieur uniquement ; façade inverse, base complète, animation des engins, parallaxe et collisions non produites."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_mea_meridian_control",
+      "category": "stage",
+      "name": "Méridiane — contrôle",
+      "work": "MEA",
+      "dlc": null,
+      "variant": "Cœur de la mission finale",
+      "plannedUse": "arene_adaptee",
+      "subject": "Méridiane — contrôle",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/meridian-mea-control-third-relay-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-24482633-933c-4d28-a6f7-72f32b4d6a17.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "c4970a422a90945703d707057f9db26ae25e3fefc0cb29537c7f45672ec164ef",
+        "sizeBytes": 2700310,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_mea_meridian_control",
+      "sourceIds": [
+        "stage_capture_mea_meridian_gamepressure"
+      ],
+      "sourceUrls": [
+        "https://www.gamepressure.com/masseffectandromeda/meridian-the-way-home/za9c9e",
+        "https://www.gamepressure.com/masseffectandromeda/gfx/word/260818461.jpg"
+      ],
+      "referenceAuthor": "Gamepressure (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages-mea/meridian-final-relay.jpg",
+          "filename": "meridian-final-relay.jpg",
+          "url": "https://www.gamepressure.com/masseffectandromeda/gfx/word/260818461.jpg",
+          "sha256": "f48f4ecd9185b3e3da81594ee859d5ed9ffaf3069447e2b4a38749ed20b1056b",
+          "width": 720,
+          "height": 405,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 720 × 405, Ryder et HUD occultent le bas gauche ; détail fin des glyphes, reliefs et fond énergétique non mesuré. Un tronçon du cœur final, sans vue symétrique globale.",
+      "producedSubzone": "Plate-forme du troisième relais dans Meridian Control, phase finale de Meridian: The Way Home avant l’interface.",
+      "productionNote": "Relais trapézoïdal, piliers reliquats aux découpes blanches et cyan, fond rouge, blocs de couverture et rainures du sol conservés. Ryder et HUD retirés. La phase antérieure de traversée du ferrofluide n’est pas fusionnée avec ce troisième relais.",
+      "catalogProductionNoteOriginal": "Ne pas remplacer Méridiane par Khi Tasira; lieux à identifier séparément.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Relais trapézoïdal, blocs de couverture droits, forêts de piliers reliquats et rainures du plateau conservent les principaux repères de la capture du dernier relais. Ryder et interface ont disparu.",
+        "issues": [
+          "Partie gauche du relais et sol cachés par Ryder reconstruits ; détails de la façade, petites rainures et prises lumineuses interprétés.",
+          "Rayonnement rouge, volutes bleues et découpe lumineuse des piliers accentués ; texture du sol et reliefs non mesurés.",
+          "Un seul état du troisième relais est figé. Pas de vue globale du cœur, de ferrofluide animé, de plate-forme mobile, de collision ni de parallaxe livré."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me3_cronus_office",
+      "category": "stage",
+      "name": "Station Cronos — bureau",
+      "work": "ME3",
+      "dlc": null,
+      "variant": "Salle de l'Homme Trouble",
+      "plannedUse": "arene_adaptee",
+      "subject": "Station Cronos — bureau",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/cronus-me3-illusive-office-before-combat-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-d96e2aea-6d6f-404e-a67d-2d178014d3ea.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "22dc70f776a463bca7c80ef77f703ce93c6ff1b5a6535122932d14b3a9c65555",
+        "sizeBytes": 2900758,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me3_cronus_office",
+      "sourceIds": [
+        "stage_capture_me3_cronus_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-3/assault-the-illusive-mans-base",
+        "https://primagames.com/eguides/media/files/mass-effect-3/wal_14-049.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/cronus-wal_14-049.jpg",
+          "filename": "cronus-wal_14-049.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-3/wal_14-049.jpg",
+          "sha256": "e86c72094099faf60d56e5db27fbbc1dd795a546f4c67cb71e1b4c7cc5f9ee9c",
+          "width": 1200,
+          "height": 675,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 1200×675 ; Shepard masque la partie centrale des consoles, du sol et du socle. Rayonnement de l’étoile saturé, micro-affichages non mesurables.",
+      "producedSubzone": "Bureau de l’Homme Trouble à Cronos, vue frontale vers l’étoile avant le combat contre Kai Leng.",
+      "productionNote": "Sol et plafond quadrillés réfléchissants, ouverture panoramique sur l’étoile, consoles orange et socle circulaire avant conservés. Shepard retiré. État éclairé avant combat, sans trous ou débris du combat ultérieur.",
+      "catalogProductionNoteOriginal": "Le décor ME3 doit être distingué de la salle de communication ME2.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Quadrillage réfléchissant du sol et du plafond, vue panoramique de l’étoile, deux groupes de consoles orange et socle circulaire avant reconnaissables. Shepard retiré ; état lumineux avant combat conservé.",
+        "issues": [
+          "Sol, bord du socle et surfaces centrales derrière Shepard reconstruits.",
+          "Motifs de surface stellaire, schémas des consoles, reflets et contraste détaillés/interprétés ; effets statiques inclus dans le PNG.",
+          "Vue frontale partielle du bureau avant combat ; état détruit du sol, mobilier hors cadre et intégration moteur non documentés."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me1_feros_thorian_lair",
+      "category": "stage",
+      "name": "Féros — enceinte du Thorien",
+      "work": "ME1",
+      "dlc": null,
+      "variant": "Niveau des nœuds du Thorien",
+      "plannedUse": "arene_adaptee",
+      "subject": "Féros — enceinte du Thorien",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/feros-me1-thorian-first-neural-node-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-b6520c9c-608d-4913-a2b0-366cd569cdcb.png",
+      "technical": {
+        "width": 1449,
+        "height": 1085,
+        "mode": "RGB",
+        "sha256": "d7a56d81c7cabc3cb716f8a81682881427926b8d3aa814ada0664922d709595d",
+        "sizeBytes": 2262094,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me1_feros_thorian_lair",
+      "sourceIds": [
+        "stage_capture_me1_thorian_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-pc-eguide/walkthrough/chapter-4-feros/objective-4-destroy-the-thorian",
+        "https://primagames.com/eguides/media/files/mass_effect/p159-col02-screen02.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/thorian-p159-col02-screen02.jpg",
+          "filename": "thorian-p159-col02-screen02.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass_effect/p159-col02-screen02.jpg",
+          "sha256": "173112638f8c7efdb49e573c1a3e945519a88df5291ffa947846580261c63ef2",
+          "width": 683,
+          "height": 512,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 683×512, texture douce, personnage masquant le bas gauche. Nœud et tendons fixes documentés, mais leur surface et la portion de sol cachée ne sont pas certifiées pixel à pixel.",
+      "producedSubzone": "Premier nœud neural du Thorien dans le tunnel nord du niveau 1 de l’antre, après le combat contre la première asari.",
+      "productionNote": "Nœud organique fixe, tendons, supports sombres, panneaux lumineux hauts, mur de roche et sol étroit conservés. Shepard, réticules, marqueur orange et HUD retirés. Nœud intact dans son tunnel ; aucune fusion des étages ou ajout de creepers.",
+      "catalogProductionNoteOriginal": "Choisir un niveau précis pour le plan de duel; distinct de Zhu's Hope et d'ExoGeni.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Premier nœud intact avec tendon horizontal gauche, deux ancrages descendants, panneaux lumineux supérieurs, grille gauche et paroi droite reconnaissables. Shepard et toutes les surcouches de jeu retirés.",
+        "issues": [
+          "Sol et clôture derrière Shepard reconstitués ; petits gravats ajoutés par continuité de la surface visible.",
+          "Relief et brillance du bulbe, texture rocheuse, luminescence et joints architecturaux interprétés depuis la capture douce.",
+          "Un nœud au niveau 1 uniquement ; autres étages, nœuds, animation organique, collisions et arène de combat non produits."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me3_geth_dreadnought_core",
+      "category": "stage",
+      "name": "Cuirassé geth — cœur",
+      "work": "ME3",
+      "dlc": null,
+      "variant": "Salle du cœur de la mission Priority: Geth Dreadnought",
+      "plannedUse": "arene_adaptee",
+      "subject": "Cuirassé geth — cœur",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/geth-dreadnought-me3-open-containment-overlook-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-5ed3225e-0458-43bb-bae0-4c9fec4964fd.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "717acc7222a5343b1e1b54bf37eae65a990b20d3ce8d5507ac6b4a92d08c57e2",
+        "sizeBytes": 2459022,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 2,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me3_geth_dreadnought_core-revision01",
+      "sourceIds": [
+        "stage_capture_me3_geth_core_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-2/disable-the-dreadnought",
+        "https://primagames.com/eguides/media/files/mass-effect-3/wal_09-052.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/geth-wal_09-052.jpg",
+          "filename": "geth-wal_09-052.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-3/wal_09-052.jpg",
+          "sha256": "734ef8468c76802441e8d3c7d973b56aa80b7d64935b078c00664b76ea6800ee",
+          "width": 1200,
+          "height": 675,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 1200×675 en plongée avec grosse unité tronquée au premier plan et quatre silhouettes. Géométrie sous les personnages/câbles très chargée ; vue partielle de la salle du cœur seulement.",
+      "producedSubzone": "Unité de confinement ouverte dans Central Core, vue plongeante vers la passerelle circulaire avant libération du geth.",
+      "productionNote": "Coque de confinement ouverte au premier plan, passerelle grillagée, câbles en boucles, console orange, garde-corps éclairé et colonne à écran maillé conservés. Geth suspendu, Shepard, Tali et EDI retirés. Le cœur entier et les états fermés ne sont pas extrapolés.",
+      "catalogProductionNoteOriginal": "Ne pas fusionner salle du cœur, batterie principale et coursives dans une composition prétendument exacte.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Passerelle circulaire grillagée, câbles, console orange, écran maillé et coque inférieure ouverte concordent. La correction R1 restaure les deux fragments blancs supérieurs coupés par le bord haut, omis dans R0 ; aucun personnage ou HUD visible.",
+        "issues": [
+          "Coque et surfaces derrière le geth suspendu, grilles et câbles derrière les trois membres d’escouade reconstitués.",
+          "R1 rétablit la présence et le cadrage des fragments supérieurs ; leurs contours fins, les câbles, micro-affichages et bloom ne sont pas mesurés pixel à pixel.",
+          "Vue plongeante partielle sur le confinement ouvert ; aucune sphère énergétique ajoutée, aucun plan global du cœur, état fermé, animation ou collision validé."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [
+        {
+          "path": "public/assets/armax/lot12/stages/qa/geth-dreadnought-me3-open-containment-overlook-r0.png",
+          "technical": {
+            "width": 1672,
+            "height": 941,
+            "mode": "RGB",
+            "sha256": "b2ea3700c766d62e937574dce9eadb8a45f976cc2b0084e9bc656aeba36fd95a",
+            "sizeBytes": 2527022,
+            "originalBytesPreserved": true,
+            "pngDecodeVerified": true
+          },
+          "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-6706e711-0394-4dc7-afad-6e5a42eff42c.png",
+          "status": "QA_non_selected",
+          "reason": "Revue propre et root concordantes : deux fragments blancs fixes du confinement supérieur présents au bord haut de la source effacés avec le geth. R0 préservé comme diagnostic, non sélectionné. Une correction ciblée demandée, aucun refus outil."
+        }
+      ],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée.",
+        "Premier résultat R0 conservé comme diagnostic non sélectionné ; correction ciblée des fragments supérieurs du confinement."
+      ],
+      "revisionInput": {
+        "path": "public/assets/armax/lot12/stages/qa/geth-dreadnought-me3-open-containment-overlook-r0.png",
+        "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-6706e711-0394-4dc7-afad-6e5a42eff42c.png",
+        "sha256": "b2ea3700c766d62e937574dce9eadb8a45f976cc2b0084e9bc656aeba36fd95a",
+        "role": "own_generated_r0_targeted_correction",
+        "includedInRepository": true
+      }
+    },
+    {
+      "id": "stg_me3_tuchanka_shroud",
+      "category": "stage",
+      "name": "Tuchanka — le Voile",
+      "work": "ME3",
+      "dlc": null,
+      "variant": "Approche de la tour",
+      "plannedUse": "arene_adaptee",
+      "subject": "Tuchanka — le Voile",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/tuchanka-me3-shroud-approach-stair-landing-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-156b4cb1-15d5-40cf-95dd-f0bbab529e72.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "fd03dbd9378d205851a80881164c616ea36586d333c29ce23c771ea863d70a05",
+        "sizeBytes": 2938985,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me3_tuchanka_shroud",
+      "sourceIds": [
+        "stage_capture_me3_shroud_prima"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-1/cure-the-genophage",
+        "https://primagames.com/eguides/media/files/mass-effect-3/wal_07-035.jpg"
+      ],
+      "referenceAuthor": "Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/shroud-wal_07-035.jpg",
+          "filename": "shroud-wal_07-035.jpg",
+          "url": "https://primagames.com/eguides/media/files/mass-effect-3/wal_07-035.jpg",
+          "sha256": "f255c26c33e77b8c9929c31f21879bcea7364dd97d24ab0e2a68a9e1aab67604",
+          "width": 1200,
+          "height": 675,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 1200×675, Shepard et quatre cannibales masquent ponctuellement le palier. Vue locale avant le pont ; la silhouette du Voile et ses lointains restent à documenter séparément.",
+      "producedSubzone": "Palier et escalier de l’approche du Voile avant le M5 Phalanx et le pont, tour hors cadre.",
+      "productionNote": "Escalier montant à gauche, muret central, reliefs géométriques verts, bloc de couverture avant, structure abattue et plantes conservés. Personnages et armes retirés. Le master ne montre pas la tour hors cadre et n’invente pas le décor masqué par le Moissonneur dans les vues ultérieures.",
+      "catalogProductionNoteOriginal": "Séparer la tour, les lointains et les effets du combat.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Escalier étroit à gauche, muret central, reliefs géométriques, bloc de couverture avant, passage droit et plantes conservent l’agencement de 035. Tous les combattants retirés.",
+        "issues": [
+          "Bloc avant, pierres et paliers cachés par Shepard et les cannibales reconstitués ; relief fin et textures accentués.",
+          "Contours des plantes, fissures, débris et lumière interprétés à partir de la capture.",
+          "Tour du Voile hors cadre ; seulement ce palier d’approche. Pas de tour, lointains, combat, parcours complet, parallaxe ou collisions livrés."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me3_citadel_archives",
+      "category": "stage",
+      "name": "Citadelle — archives",
+      "work": "ME3",
+      "dlc": "Citadel",
+      "variant": "Salle d'archives de la séquence Escape",
+      "plannedUse": "arene_adaptee",
+      "subject": "Citadelle — archives",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/citadel-me3-archives-cylindrical-vault-hall-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-e04bcd72-d135-4209-b575-56cfbd9f0680.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "df1c836361cfbde13bc62364538e7c3d463952b53ebd38cb4682255c1cba1430",
+        "sizeBytes": 1992898,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me3_citadel_archives",
+      "sourceIds": [
+        "stage_capture_me3_archives_moby"
+      ],
+      "sourceUrls": [
+        "https://www.mobygames.com/game/61513/mass-effect-3-citadel/screenshots/windows/680331/",
+        "https://cdn.mobygames.com/screenshots/16795717-mass-effect-3-citadel-windows-the-archives-are-huge-and-hold-a-l.png"
+      ],
+      "referenceAuthor": "GTramp, publication MobyGames ; jeu BioWare / Electronic Arts",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/citadel-archives-moby680331-public.png",
+          "filename": "citadel-archives-moby680331-public.png",
+          "url": "https://cdn.mobygames.com/screenshots/16795717-mass-effect-3-citadel-windows-the-archives-are-huge-and-hold-a-l.png",
+          "sha256": "d5d18645d7ac27a7ebe51b8148ba2a811d0951c9cfe2575587a4612d5912e784",
+          "width": 1200,
+          "height": 675,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Aperçu public 1200×675 ; cadrage de la grande salle sans numéro lisible. Petits personnages masquent des morceaux de passerelles, détails fins du fond et des coffres restent interprétés.",
+      "producedSubzone": "Grande salle de stockage des Archives de la Citadelle, coffres cylindriques et passerelles superposées pendant Escape ; numéro de salle non visible.",
+      "productionNote": "Rangées verticales de coffres cylindriques, traverses, passerelles, escalier gauche, garde-corps, câbles et bandes lumineuses conservés. Équipes retirées. Aucun marquage de numéro inventé ni salle d’hologrammes historiques fusionnée.",
+      "catalogProductionNoteOriginal": "Fixer une salle et sa numérotation visuelle; les différentes archives restent des espaces distincts.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Grande salle longitudinale, rangées de coffres cylindriques, escaliers et passerelles superposées, câbles et éclairage bleu/rouge conservent le cadrage de la source. Équipes retirées ; aucun numéro de salle inventé.",
+        "issues": [
+          "Petits segments de plancher et de garde-corps masqués par les équipes reconstitués.",
+          "Nombre exact des segments lointains, détail des joints, usure, câbles et luminosité des témoins interprétés ; la vue ne permet pas une mesure intégrale.",
+          "Passerelles et vide central restent des obstacles visibles ; aucun parcours navigable, scène historique, collision ou parallaxe livré."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me2_arrival_asteroid",
+      "category": "stage",
+      "name": "Projet Rho — astéroïde",
+      "work": "ME2",
+      "dlc": "Arrival",
+      "variant": "Plateforme extérieure",
+      "plannedUse": "arene_adaptee",
+      "subject": "Projet Rho — astéroïde",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/arrival-me2-rho-final-exterior-platforms-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-62d7a48f-325c-47ce-9904-0e6410860a74.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "a56d1296a408f8b588fa975f27f48732fab76469d18c210084e20bfa02269c08",
+        "sizeBytes": 2034583,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me2_arrival_asteroid",
+      "sourceIds": [
+        "stage_capture_me2_arrival_meristation"
+      ],
+      "sourceUrls": [
+        "https://as.com/meristation/2011/03/28/album/1301435400_000001.html",
+        "https://img.asmedia.epimg.net/resizer/v2/CIAATA2D35OH7M6N7QS2QTP2WU.jpg?auth=70d6afedc56c9fc434e5ad8b6922fb63d8a879c30aeccfb7e3a263a838567ad3&width=1328"
+      ],
+      "referenceAuthor": "MeriStation (métadonnées de page) ; capture du jeu BioWare / Electronic Arts, auteur individuel non indiqué",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages/arrival-research/meristation-arrival-01-large.jpg",
+          "filename": "meristation-arrival-01-large.jpg",
+          "url": "https://img.asmedia.epimg.net/resizer/v2/CIAATA2D35OH7M6N7QS2QTP2WU.jpg?auth=70d6afedc56c9fc434e5ad8b6922fb63d8a879c30aeccfb7e3a263a838567ad3&width=1328",
+          "sha256": "8fe9e85072725ecea399c3d6d26433218e97f5332877e712aa8a19552b24597c",
+          "width": 1328,
+          "height": 747,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture CDN1328×747 pour source annoncée1280×720 ; hologramme à droite masque localement plateforme et roches. Les surfaces révélées sont reconstruites, pas certifiées. Un angle final, pas tout l’extérieur.",
+      "producedSubzone": "Plateformes extérieures finales du Projet Rho, face au relais Alpha lors de la séquence d’évasion de l’astéroïde.",
+      "productionNote": "Pont métallique bas, garde-corps, plateforme arrière gauche arrondie, plateforme droite polygonale, caisse, roches et relais Alpha conservés. Hologramme d’Harbinger, Shepard, sous-titre et filigrane retirés. La chambre Rho et la prison d’Aratoht ne sont pas substituées.",
+      "catalogProductionNoteOriginal": "Conserver la période du DLC; plan de combat proposé à préciser.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Relais Alpha surdimensionné au-dessus des plateformes finales, pont bas, rails, caisse, pad arrière et pad polygonal droit conservés. Hologramme d’Harbinger, Shepard, sous-titre et filigrane absents.",
+        "issues": [
+          "Détail du pad droit et des roches derrière l’hologramme reconstitué ; bords visibles respectés mais surfaces auparavant cachées non certifiées.",
+          "Motifs, segments et brillance du relais Alpha, grain rocheux, marquages du pad et lumière détaillés au-delà de la source native.",
+          "Évasion finale représentée par un seul cadrage statique ; pas de trajectoire d’astéroïde, hologramme animé, parallaxe ou collisions."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me3_london_beam",
+      "category": "stage",
+      "name": "Londres — approche du faisceau",
+      "work": "ME3",
+      "dlc": null,
+      "variant": "Zone de l'assaut terrestre",
+      "plannedUse": "arene_adaptee",
+      "subject": "Londres — approche du faisceau",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/london-me3-beam-foot-before-low-view-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-b2109723-e86f-441d-8f2a-dea8462915cc.png",
+      "technical": {
+        "width": 1586,
+        "height": 992,
+        "mode": "RGB",
+        "sha256": "84df61589a9d1529d67207b295afce1fbedd8d483dd03f4c2dddbbce5f65bd80",
+        "sizeBytes": 2163976,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me3_london_beam",
+      "sourceIds": [
+        "stage_capture_me3_london_prettz2012",
+        "stage_capture_me3_london_prima"
+      ],
+      "sourceUrls": [
+        "https://parabolee.blogspot.com/2012/04/mass-effect-3-endings-theories-and.html",
+        "https://primagames.com/eguides/mass-effect-3-eguide/walkthrough/act-3/no-mans-land",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuR_HVMA0BKOL1kqV3QPoNaBGwZFtor-2ZtXpqZN7UfGwBMP1txLmEShDSUWCNw1dqGTbHgFtZAAsPYI2GhjNYE6t4P8-6to-5vAUCaRmmLoSJy3oDnhoBZqHRNrL3Yvbbehcw/s1600/mv0i0.jpg"
+      ],
+      "referenceAuthor": "prettz (BioWare Social Network), attribution publiée par Parabolee ; jeu BioWare / Electronic Arts ; Prima Games (auteur individuel non indiqué sur la page consultée)",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages/london-research/parabolee-prettz-3.jpg",
+          "filename": "parabolee-prettz-3.jpg",
+          "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuR_HVMA0BKOL1kqV3QPoNaBGwZFtor-2ZtXpqZN7UfGwBMP1txLmEShDSUWCNw1dqGTbHgFtZAAsPYI2GhjNYE6t4P8-6to-5vAUCaRmmLoSJy3oDnhoBZqHRNrL3Yvbbehcw/s1600/mv0i0.jpg",
+          "sha256": "56d5b042823fb7c3ae9f2e56d082e6f4c2f2b5a80366f36ccb38463fbf2ac371",
+          "width": 1600,
+          "height": 1000,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture 1600×1000 sans personnage masquant le centre ; caméra basse et état Before observés, méthode de capture/build non documentés. Les interprétations narratives du blog ne sont pas utilisées. Le cadrage ne fournit pas un panorama de Londres ni une arène complète.",
+      "producedSubzone": "Pied du faisceau de Londres, vue basse frontale dans l’état légendé Before par la capture 2012 de prettz.",
+      "productionNote": "Faisceau central blanc-bleu, arches et conduits fixes bleu-noir, pointes groupées, bloc gris et roche à son pied, sol brisé clair et flaque rouge sombre conservés. Aucun véhicule, corps ou buisson de la vue After importé ; aucune rue supplémentaire inventée.",
+      "catalogProductionNoteOriginal": "Un stage versus est une adaptation; aucune séquence jouable d'origine revendiquée.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot12",
+        "referenceComparison": "Faisceau central, arches fixes bleu-noir, conduits, pointes, bloc gris au pied et flaque sombre conservent la vue basse Before. Aucun véhicule, corps ou buisson de la vue After ajouté.",
+        "issues": [
+          "Texture des pointes et du sol, contours de la flaque, bloom et reflets interprétés ; le rayonnement reste figé dans le PNG.",
+          "Méthode de caméra et build exact de la source2012 non documentés ; seul son état légendé Before et son cadrage sont reproduits.",
+          "Le décor représente le pied du faisceau, pas une rue complète ou un panorama de Londres ; pas de collision, animation du faisceau ou parallaxe validée."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Revue propre distincte de la revue indépendante root ; pas de fidélité 1:1 certifiée."
+      ]
+    },
+    {
+      "id": "stg_me1_virmire_breeding_lab",
+      "category": "stage",
+      "name": "Virmire — installation de Saren",
+      "work": "ME1",
+      "dlc": null,
+      "variant": "Laboratoire de reproduction krogan",
+      "plannedUse": "arene_adaptee",
+      "subject": "Virmire — installation de Saren",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/virmire-me1-droyas-genophage-lab-curved-aisle-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-9bc3d077-5226-4a6e-86b0-516816219940.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "1271e13299eb0da53dbc29bbc63f72a2616a0ab4e171c11b23fe4298d71b9899",
+        "sizeBytes": 1747215,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 1,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me1_virmire_breeding_lab",
+      "sourceIds": [
+        "lot12_virmire_genophage_wiki"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/Virmire%3A_Assault",
+        "https://static.wikia.nocookie.net/masseffect/images/3/3c/Virmire_laboratory.png/revision/latest"
+      ],
+      "referenceAuthor": "BioWare/EA ; auteur individuel de la capture non établi",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/references/lot12/stages-me1/virmire-laboratory-wiki.png",
+          "filename": "virmire-laboratory-wiki.png",
+          "url": "https://static.wikia.nocookie.net/masseffect/images/3/3c/Virmire_laboratory.png/revision/latest",
+          "sha256": "6388fb4647e37e4b78eb03bd3e4d4008469eb109fce9d7d597c6d8542051d357",
+          "width": 1280,
+          "height": 720,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Édition/date de la grande capture wiki non établies ; architecture/palette recoupées avec les vignettes IGN originales. Ne pas prétendre certifier chaque texture ni une édition précise de la capture wiki. Grande vue 1280 × 720 ; JPEG IGN de corroboration 290 × 150 seulement.",
+      "producedSubzone": "Allée courbe du laboratoire Genophage Labs de Droyas, face aux chambres de stase et aux berceaux horizontaux.",
+      "productionNote": "Chambres rouge/blanc, appareils horizontaux, canisters avant, bras suspendus, spots froids et allée courbe conservés. Sujets humanoïdes retirés. Parois transparentes plus affirmées ; nature verre/champ et texture exacte non certifiées.",
+      "catalogProductionNoteOriginal": "Sous-zone intérieure distincte de la côte déjà illustrée; capture du bon laboratoire requise.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot11",
+        "referenceComparison": "Rangée de chambres rouge/blanc, berceaux horizontaux, canisters avant, bras mécaniques, spots froids et allée courbe conservés. Sujets humanoïdes retirés ; aucun personnage ou HUD résiduel confirmé. JPEG natif IGN 1554 recoupe le même laboratoire, ses chambres et sa palette, à une résolution de 290×150 seulement.",
+        "issues": [
+          "Parois transparentes des chambres plus affirmées et éclaircies ; nature verre/champ et détail exact non certifiés.",
+          "Effets autour des sujets retirés ; surfaces masquées révélées par reconstruction, netteté et microtextures interprétées.",
+          "Date et édition de la grande vue wiki non établies ; le guide IGN original recoupe l’architecture/palette mais ne date pas cette capture.",
+          "Laboratoire de Droyas uniquement, pas les tranchées extérieures ; pas de moteur, collision ou parallaxe validés."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false,
+        "independentOfGenerator": true,
+        "report": "docs/armax/lot12/root-generated-stages-art-review.json"
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Génération root ; revue indépendante par stages_lot11 dans root-generated-stages-art-review.json, distincte de la revue propre root."
+      ],
+      "generator": "root"
+    },
+    {
+      "id": "stg_me1_x57_main_facility",
+      "category": "stage",
+      "name": "Astéroïde X57 — installation principale",
+      "work": "ME1",
+      "dlc": "Bring Down the Sky",
+      "variant": "Salle de confrontation",
+      "plannedUse": "arene_adaptee",
+      "subject": "Astéroïde X57 — installation principale",
+      "kind": "stage-master",
+      "path": "public/assets/armax/lot12/stages/x57-me1-main-facility-balcony-atrium-master.png",
+      "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-6693fd9f-817d-4710-a84b-c37544aeced6.png",
+      "technical": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "6b3af90ae48292c2ead1805402bf9092670c40211fc3172075bfc097d9e82f40",
+        "sizeBytes": 1823320,
+        "originalBytesPreserved": true,
+        "pngDecodeVerified": true
+      },
+      "tool": "image_gen built-in",
+      "generationDate": "2026-11-20",
+      "attempt": 2,
+      "promptSource": "docs/armax/lot12/stages-generation-prompts.json",
+      "promptId": "stg_me1_x57_main_facility-revision01",
+      "sourceIds": [
+        "stage_capture_me1_x57_gamerguides_le"
+      ],
+      "sourceUrls": [
+        "https://www.gamerguides.com/mass-effect-1-legendary-edition/guide/assignments/bring-down-the-sky/x57-bring-down-the-sky",
+        "https://www.gamerguides.com/assets/media/17/229/me1_bring_down_the_sky_facility_4_balak_snipe.jpg"
+      ],
+      "referenceAuthor": "GamerGuides (auteur individuel de la capture non établi) ; jeu BioWare / Electronic Arts",
+      "referenceInputs": [
+        {
+          "source": "/workspace/scratch/133a501d40ef/research/lot12/stages/me1_bring_down_the_sky_facility_4_balak_snipe.jpg",
+          "filename": "me1_bring_down_the_sky_facility_4_balak_snipe.jpg",
+          "url": "https://www.gamerguides.com/assets/media/17/229/me1_bring_down_the_sky_facility_4_balak_snipe.jpg",
+          "sha256": "d7690a10d4b21f4b63ecc913322c6025305af810007c6127858859c76a4503f5",
+          "width": 3840,
+          "height": 2160,
+          "role": "primary_composition_architecture_palette",
+          "inspected": true,
+          "includedInRepository": false
+        }
+      ],
+      "referenceLimit": "Capture LE 3840 × 2160 partiellement cachée par Shepard et HUD ; zones révélées reconstruites. Référence de version explicite, pas une preuve du rendu 2007. Effets bleus fixes ou transitoires indéterminés.",
+      "producedSubzone": "Atrium de confrontation avec Balak dans l’installation principale de X57, vu du balcon supérieur ; référence visuelle Legendary Edition.",
+      "productionNote": "Balcons superposés, vide central, escaliers, arbre rouge et grands renforts droits conservés. R1 retire la petite silhouette restée dans R0. Les glints bleus proches des renforts restent dans leur position source, leur nature n’étant pas établie.",
+      "catalogProductionNoteOriginal": "Employer la version du DLC et non une base batarienne inventée.",
+      "visualReview": {
+        "reviewed": true,
+        "reviewDate": "2026-11-20",
+        "reviewer": "stages_lot11",
+        "referenceComparison": "Le R0 contenait une petite silhouette humaine résiduelle au balcon du fond, vers x870/y338. Revue indépendante a confirmé le défaut. Le R1 retire cette silhouette et restaure la continuité du rail/panneau sans défaut majeur supplémentaire confirmé. Atrium ouvert, balcons superposés, arbre rouge gauche, renforts droits, éclairage orange et cadrage conservés.",
+        "issues": [
+          "Référence visuelle explicitement ME1 Legendary Edition ; aucune certification de textures ou palette 2007.",
+          "Escaliers, rail et surfaces cachées par Shepard reconstitués ; détail métrique non certifié.",
+          "Petites traînées bleues conservées aux mêmes emplacements source ; nature statique ou transitoire indéterminée, distinguées des lampes fixes rondes.",
+          "Parallaxe, éclairages, circulation, collisions et caméra de combat non testés."
+        ],
+        "emptyCombatLane": false,
+        "noHud": true,
+        "inEngineReviewed": false,
+        "independentOfGenerator": true,
+        "report": "docs/armax/lot12/root-generated-stages-art-review.json"
+      },
+      "status": "Prototype",
+      "selection": "candidate_reviewed_with_reservations",
+      "fidelityValidated": false,
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newGeneration": true,
+      "parallaxComplete": false,
+      "separateLayers": [],
+      "alternateFiles": [
+        {
+          "path": "public/assets/armax/lot12/stages/qa/x57-me1-main-facility-balcony-atrium-r0.png",
+          "technical": {
+            "width": 1672,
+            "height": 941,
+            "mode": "RGB",
+            "sizeBytes": 1883803,
+            "sha256": "83d719673a47163c0d9fd9421ddd5ebc07cea0a56ea4a4568fb9d47fe150505c",
+            "originalBytesPreserved": true,
+            "pngDecodeVerified": true
+          },
+          "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-fa984d1e-f693-494c-bfce-35287c9ef491.png",
+          "status": "QA_non_selected",
+          "reason": "Silhouette résiduelle confirmée sur le balcon, R0 conservé en QA ; correction ciblée unique."
+        }
+      ],
+      "notes": [
+        "PNG original préservé sans recadrage ni rééchantillonnage.",
+        "Usage arene_adaptee conservé comme intention du catalogue ; aucune arène fonctionnelle livrée.",
+        "Génération root ; revue indépendante par stages_lot11 dans root-generated-stages-art-review.json, distincte de la revue propre root.",
+        "Premier résultat R0 conservé comme diagnostic non sélectionné ; R1 retire uniquement une silhouette résiduelle confirmée sur le balcon."
+      ],
+      "generator": "root",
+      "revisionInput": {
+        "path": "public/assets/armax/lot12/stages/qa/x57-me1-main-facility-balcony-atrium-r0.png",
+        "sourceOriginal": "/workspace/scratch/133a501d40ef/generated_images/exec-fa984d1e-f693-494c-bfce-35287c9ef491.png",
+        "sha256": "83d719673a47163c0d9fd9421ddd5ebc07cea0a56ea4a4568fb9d47fe150505c",
+        "role": "own_generated_r0_targeted_correction",
+        "includedInRepository": true
+      }
+    }
+  ],
+  "unattemptedReferenceGapIds": [
+    "stg_mea_aya_docks"
+  ]
+}

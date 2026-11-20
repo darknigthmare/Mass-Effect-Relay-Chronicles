@@ -2,11 +2,21 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 11 — continuation courante
+## Lot 12 — continuation courante
+
+Le [lot 12](lot12/README.md) illustre **34 anciennes fiches avec 36 PNG originaux** : neuf personnages ou ennemis — Rachni Worker, Brood Warrior, Geth Colossus, Stalker, Armature, Thorian Creeper, Praetorian, Rampart Mech et Adjutant —, l’armure Collector masculine ME2, Miranda en tenue de loyauté ME2 et 23 stages. **Aucune nouvelle identité n’est ajoutée.** Les 36 appels imagegen ont réussi sans refus ni erreur technique. Deux R0 de stages restent conservés après des corrections ciblées et ne comptent pas comme sujets supplémentaires.
+
+Le [catalogue courant et le listing](lot12/MANQUANTS_2026-11-20.md) et le [classeur lot 12](lot12/Mass_Effect_Armax_Suivi_Lot12_2026-11-20.xlsx) conservent **169 fiches : 84 personnages/ennemis, 38 costumes et 47 stages**. **95 ont une image candidate et 74 restent sans image** ; la couverture est de **35/84 personnages, 14/38 costumes et 46/47 stages**. Les champs d’identité et d’usage hérités restent inchangés. Le corpus atteint **190 PNG originaux**, dont les versions R0 conservées, hors trois aperçus historiques.
+
+Les [23 sous-zones de stages](lot12/STAGES.md) vont des postes précis de Féros et des stations Hermès/Atlas aux plateformes finales de Rho, au cœur partiel du cuirassé geth, au seuil intérieur de Voeld et au troisième relais de Méridiane. Thérum reste une entrée extérieure, le Voile un palier avec tour hors cadre et les Archives une salle sans numéro visible. **Aya seule reste sans master**, faute de référence suffisante de la zone du Tempest. X57 est explicitement référencé en Legendary Edition ; Virmire garde une incertitude d’édition avec recoupement IGN original ; Londres conserve l’état Before et sa limite de caméra/build non documentés.
+
+Les [manifestes et réserves du lot](lot12/README.md), la [bibliothèque de sources](lot12/reference-library.json), les [lacunes documentaires](lot12/REFERENCE_GAPS.md) et les [vérifications](lot12/verification.json) distinguent ces vues partielles des lieux complets. Poses fixes, marges serrées et surfaces cachées restent à traiter. Les rendus 3D du Collector et de Miranda servent uniquement à inspecter les références, hors corpus des masters. Tous les nouveaux fichiers restent **Prototype**, sans fidélité 1:1, animation complète, parallaxe ou moteur validés.
+
+## Lot 11 — livraison précédente
 
 Le [lot 11](lot11/README.md) ajoute **treize sujets et treize PNG** : cinq ennemis d’Andromeda — Wraith, Chosen, Behemoth, Breacher et Nullifier —, Jack en tenue de loyauté ME2, Liara AAP1 ME3 et six décors — Canal et archives d’Ilos, Hot Labs, Haestrom, CIC du Normandy SR-1 et Chora’s Den. **Huit fiches héritées sont nouvellement illustrées ; cinq fiches inédites sont ajoutées avec leurs sources.**
 
-Le [catalogue courant](lot11/MANQUANTS_2026-11-20.md) et le [classeur lot 11](lot11/Mass_Effect_Armax_Suivi_Lot11_2026-11-20.xlsx) contiennent **169 fiches** : 84 personnages/ennemis, 38 costumes et 47 stages. **61 ont une image candidate et 108 restent sans image.** Les 164 identités et usages hérités sont préservés ; le corpus atteint **154 PNG originaux**, hors trois aperçus historiques. Le YMIR demeure sans fichier après un refus. Les références partielles, cadrages et limites sont documentés ; tous les nouveaux fichiers restent Prototype, sans fidélité 1:1 ni intégration moteur certifiées.
+Le [catalogue historique](lot11/MANQUANTS_2026-11-20.md) et le [classeur lot 11](lot11/Mass_Effect_Armax_Suivi_Lot11_2026-11-20.xlsx) conservent **169 fiches** : 84 personnages/ennemis, 38 costumes et 47 stages. **61 ont une image candidate et 108 restent sans image.** Les 164 identités et usages hérités sont préservés ; le corpus de cette livraison atteignait **154 PNG originaux**, hors trois aperçus historiques. Le YMIR demeure sans fichier après un refus. Les références partielles, cadrages et limites sont documentés ; tous les nouveaux fichiers restent Prototype, sans fidélité 1:1 ni intégration moteur certifiées.
 
 ## Lot 10 — livraison précédente
 
