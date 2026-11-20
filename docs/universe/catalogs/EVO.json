@@ -1681,7 +1681,7 @@
       }
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Comprendre le changement de contexte avant de quitter la station.",
@@ -1698,10 +1698,28 @@
       ],
       "sourceIds": [],
       "reference": "Conception originale rattachée à Transition Evolution #1 → #2",
-      "notes": "",
+      "notes": "Les deux bilans sont consultés avant la sortie et le contexte est limité à la période après les hostilités.",
       "id": "EVO-SC-AFTERWAR-MAIN",
       "category": "main_quests",
-      "name": "Après la guerre — objectif jouable"
+      "name": "Après la guerre — objectif jouable",
+      "implementationPaths": [
+        "src/comic-field.js",
+        "src/comic-field-ui.js",
+        "src/comic-field-arcs.js",
+        "src/chronicles.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-field-criteria.json",
+        "docs/qa/p0-comic-fields-browser.json",
+        "docs/qa/p0-comic-fields-browser-closeout.json",
+        "tests/comic-field.test.js",
+        "scripts/p0-comic-fields-browser.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comic-field-criteria.json",
+        "sha256": "67906e56a8c39f9e16f8d7ae9f9e6278d44ff2c18089e831209be90d0f437daa"
+      }
     },
     {
       "status": "Défini",
@@ -1727,7 +1745,7 @@
       "name": "Reconstituer le matériel perdu"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Demander d’abord le bilan militaire ou la situation personnelle.",
@@ -1744,10 +1762,28 @@
       ],
       "sourceIds": [],
       "reference": "Bifurcation de gameplay originale, pas un choix présent dans l’œuvre.",
-      "notes": "",
+      "notes": "Les deux routes inversent l’ordre des bilans militaire et personnel, puis rejoignent la même sortie et le même bilan.",
       "id": "EVO-SC-AFTERWAR-CHOICE",
       "category": "choices",
-      "name": "Après la guerre — stratégie locale"
+      "name": "Après la guerre — stratégie locale",
+      "implementationPaths": [
+        "src/comic-field.js",
+        "src/comic-field-ui.js",
+        "src/comic-field-arcs.js",
+        "src/chronicles.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-field-criteria.json",
+        "docs/qa/p0-comic-fields-browser.json",
+        "docs/qa/p0-comic-fields-browser-closeout.json",
+        "tests/comic-field.test.js",
+        "scripts/p0-comic-fields-browser.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comic-field-criteria.json",
+        "sha256": "67906e56a8c39f9e16f8d7ae9f9e6278d44ff2c18089e831209be90d0f437daa"
+      }
     },
     {
       "status": "Défini",

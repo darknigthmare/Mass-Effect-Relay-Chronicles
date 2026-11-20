@@ -1826,7 +1826,7 @@
       }
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Choisir une approche compatible avec les contraintes de communication.",
@@ -1843,10 +1843,21 @@
       ],
       "sourceIds": [],
       "reference": "Conception originale rattachée à Redemption #3",
-      "notes": "",
+      "notes": "Suite BD 645043e : préparation de liaison originale en archive, avec deux méthodes, même reçu, export puis vraie reprise stables. Le reçu ne certifie ni le trajet exposé ou abrité, ni l’arrivée à la base. Aucun dialogue de personnage, cockpit, accessoire de navigation ou cinématique terminé. Prototype ; critère P0 complet toujours ouvert.",
       "id": "RED-SC-PURSUIT-MAIN",
       "category": "main_quests",
-      "name": "Rejoindre la base — objectif jouable"
+      "name": "Rejoindre la base — objectif jouable",
+      "implementationPaths": [
+        "src/comic-arc-briefings.js",
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-arc-preparations.json",
+        "tests/comic-arc-preparations.test.js",
+        "tests/comic-arc-briefings.test.js"
+      ]
     },
     {
       "status": "Défini",
@@ -2057,7 +2068,7 @@
       }
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Franchir deux contrôles locaux sans fournir une carte complète du réseau.",
@@ -2074,10 +2085,28 @@
       ],
       "sourceIds": [],
       "reference": "Conception originale rattachée à Redemption #3",
-      "notes": "",
+      "notes": "Deux contrôles locaux sont obligatoires dans chaque itinéraire. Le franchissement, le retour et la reprise ont été observés.",
       "id": "RED-SC-ACCESS-MAIN",
       "category": "main_quests",
-      "name": "Identité et accès compartimentés — objectif jouable"
+      "name": "Identité et accès compartimentés — objectif jouable",
+      "implementationPaths": [
+        "src/comic-field.js",
+        "src/comic-field-ui.js",
+        "src/comic-field-arcs.js",
+        "src/chronicles.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-field-criteria.json",
+        "docs/qa/p0-comic-fields-browser.json",
+        "docs/qa/p0-comic-fields-browser-closeout.json",
+        "tests/comic-field.test.js",
+        "scripts/p0-comic-fields-browser.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comic-field-criteria.json",
+        "sha256": "67906e56a8c39f9e16f8d7ae9f9e6278d44ff2c18089e831209be90d0f437daa"
+      }
     },
     {
       "status": "Défini",
@@ -2103,7 +2132,7 @@
       "name": "Relever une anomalie de relais"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Employer la couverture préparée ou détourner l’attention par une panne locale.",
@@ -2120,10 +2149,24 @@
       ],
       "sourceIds": [],
       "reference": "Bifurcation de gameplay originale, pas un choix présent dans l’œuvre.",
-      "notes": "",
+      "notes": "Les itinéraires couverture et panne sont jouables. Une fenêtre chronométrée et une patrouille réactive restent à intégrer.",
       "id": "RED-SC-ACCESS-CHOICE",
       "category": "choices",
-      "name": "Identité et accès compartimentés — stratégie locale"
+      "name": "Identité et accès compartimentés — stratégie locale",
+      "implementationPaths": [
+        "src/comic-field.js",
+        "src/comic-field-ui.js",
+        "src/comic-field-arcs.js",
+        "src/chronicles.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-field-criteria.json",
+        "docs/qa/p0-comic-fields-browser.json",
+        "docs/qa/p0-comic-fields-browser-closeout.json",
+        "tests/comic-field.test.js",
+        "scripts/p0-comic-fields-browser.mjs"
+      ]
     },
     {
       "status": "Défini",

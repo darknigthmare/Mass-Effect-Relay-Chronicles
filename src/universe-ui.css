@@ -86,3 +86,38 @@
 .comic-timeline summary,.comic-summary summary { cursor:pointer; color:var(--gold); padding:8px 0; }
 .comic-timeline ol { display:grid; gap:10px; padding-left:20px; }
 .comic-timeline [aria-current="step"]::marker { color:var(--teal); }
+
+.comic-field-list h4 { margin:0 0 10px; font-size:16px; font-weight:500; }
+.comic-field-map {
+  position:relative; aspect-ratio:1.65; overflow:hidden; border:1px solid var(--line);
+  background-color:#0c2534;
+  background-image:linear-gradient(#81ddd412 1px,transparent 1px),linear-gradient(90deg,#81ddd412 1px,transparent 1px);
+  background-size:7.5% 12.4%;
+}
+.comic-reading .comic-field-marker {
+  position:absolute; z-index:1; left:var(--x); top:var(--y); transform:translate(-50%,-50%);
+  display:grid; place-items:center; width:44px; height:44px; min-height:44px; padding:0;
+  border:1px solid var(--teal); border-radius:50%; background:#113945; color:#f0fbfa;
+  font-size:14px; font-variant-numeric:tabular-nums;
+}
+.comic-field-marker:disabled { border-color:#56727f; background:#193240; color:#b9cbd3; opacity:1; }
+.comic-field-marker.visited { border-color:#91ddba; color:#b9f6d7; }
+.comic-field-marker[aria-current] { border:2px solid #f6c879; background:#3a3023; color:#ffe6b7; }
+.comic-field-marker:focus-visible { outline:2px solid #f6c879; outline-offset:3px; }
+.comic-field-line {
+  position:absolute; left:var(--x); top:var(--y); width:var(--length); height:3px;
+  transform-origin:0 center; transform:rotate(var(--angle)); background:#597481;
+}
+.comic-field-line.selected { background:var(--teal); }
+.comic-field-legend {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr)); gap:7px 16px;
+  margin:0; padding:0 0 0 20px; color:var(--muted); font-size:12px;
+}
+.comic-field-legend li::marker { color:var(--teal); font-variant-numeric:tabular-nums; }
+.comic-field-location h5,.comic-field .comic-summary h5 { margin:0 0 7px; font-size:15px; }
+.comic-field-location p { margin:0 0 9px; line-height:1.55; }
+.comic-field-location button { margin:0 7px 6px 0; }
+.comic-field [data-field-team],.comic-field [data-field-route] { margin:0; color:var(--muted); font-size:13px; }
+@media (min-width:780px) {
+  .comic-field-map { width:min(100%,740px); }
+}

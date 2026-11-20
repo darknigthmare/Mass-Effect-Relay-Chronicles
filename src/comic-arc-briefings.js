@@ -222,4 +222,61 @@ export const comicArcBriefings = [
     optional: { label: 'Définir la réponse attendue', text: 'Demandez une cote de numéro, une édition et un renvoi précis pour compléter la fiche.' },
     resolution: 'Le dossier conserve les éléments attestés. L’attribution à un numéro ou à une page attend une vérification éditoriale.',
   },
+  // The following pieces and service roles are fictional exercises. Their
+  // receipts certify a preparation inside this archive, never a trip, alliance,
+  // identity reveal or line of dialogue taken from the published comics.
+  {
+    id: 'red-approche-de-liaison', mediaId: 'RED', periodId: 'red',
+    title: 'Redemption · Préparer une liaison',
+    objective: 'Comparer deux approches d’exercice et retenir une transmission compatible avec la réserve de confidentialité.',
+    anchorIds: ['RED-SC-PURSUIT-REF', 'RED-SC-ACCESS-REF'],
+    trace: [
+      { label: 'Consigne de liaison', text: 'La responsable de l’exercice autorise un accusé de réception sur le canal commun. Le détail du passage doit rester dans un pli destiné au seul poste d’arrivée.' },
+      { label: 'Relevé des approches', text: 'Le trajet court utilise le canal commun pour transmettre tout le plan. Le détour garde le pli fermé et transmet seulement l’accusé de réception.' },
+      { label: 'Visa de préparation', text: 'Après comparaison, le poste de liaison retient le détour avec le pli fermé. Le visa prépare un départ ; aucun déplacement n’est encore enregistré.' },
+    ],
+    review: {
+      prompt: 'Quelle préparation respecte la consigne de confidentialité de cet exercice ?',
+      choices: ['Envoyer le plan complet sur le canal commun.', 'Garder le pli fermé et transmettre seulement l’accusé de réception.', 'Déclarer le poste d’arrivée atteint dès la réception du visa.'], answer: 1,
+    },
+    optional: { label: 'Contrôler le bordereau du pli', text: 'Le bordereau distingue le destinataire du pli et le canal utilisé pour le seul accusé de réception. Il ne donne aucun plan d’une base du récit.' },
+    resolution: 'La préparation retient le détour et une transmission limitée à l’accusé de réception. Le pli reste fermé pour le destinataire prévu.',
+    receipt: 'Préparation de liaison classée : détour retenu, pli fermé, accusé de réception seul sur le canal commun. Aucun trajet ni accès à une base n’est certifié par ce reçu d’exercice.',
+  },
+  {
+    id: 'inv-briefing-commun', mediaId: 'INV', periodId: 'inv',
+    title: 'Invasion · Un briefing commun',
+    objective: 'Préparer une coordination d’exercice en distinguant le but partagé et les limites propres à chaque service.',
+    anchorIds: ['INV-REF-SCOPE', 'INV-SC-RETURN-REF'],
+    trace: [
+      { label: 'Demande du quai', text: 'La cheffe de quai demande un passage libre pour les équipes de service. Elle garde la responsabilité des accès locaux et ne transmet pas son registre de personnel.' },
+      { label: 'Proposition du transport', text: 'Le bureau des transports propose une navette pour le même passage. Il demande un créneau de départ et laisse au quai le contrôle des identifiants.' },
+      { label: 'Briefing de coordination', text: 'Les deux services inscrivent le créneau et le passage dans un ordre commun. Les registres de personnel et les responsabilités demeurent séparés.' },
+    ],
+    review: {
+      prompt: 'Que valide le briefing commun de cet exercice ?',
+      choices: ['Un créneau et un passage communs, avec des responsabilités distinctes.', 'Le transfert de tous les registres au bureau des transports.', 'Une fusion définitive des deux services.'], answer: 0,
+    },
+    optional: { label: 'Lire la réserve du quai', text: 'L’ordre commun porte seulement sur ce créneau. Il ne permet pas au transport de modifier les identifiants ou les autres accès du quai.' },
+    resolution: 'Le briefing prépare un passage au créneau convenu. Le quai garde ses accès ; le transport prépare la navette. Les engagements restent limités à l’ordre commun.',
+    receipt: 'Coordination d’exercice classée : passage et créneau communs, contrôle des accès conservé par le quai, navette préparée par le transport. Ce reçu ne confirme aucun accord entre les personnages du comic.',
+  },
+  {
+    id: 'dis-fiche-de-couverture', mediaId: 'DIS', periodId: 'dis',
+    title: 'Discovery · Une fiche de présentation',
+    objective: 'Contrôler une présentation sous alias à partir de trois pièces fictives, en gardant la fonction réservée hors de la fiche publique.',
+    anchorIds: ['DIS-REF-SCOPE', 'DIS-REF-TIRAN'],
+    trace: [
+      { label: 'Consigne de présentation', text: 'Le bureau de l’exercice prépare un entretien sous un nom de travail. La fonction réservée figure dans une annexe séparée de la présentation publique.' },
+      { label: 'Contrôle des versions', text: 'La version publique contient le nom de travail et une expérience de maintenance. La seconde version ajoute la fonction réservée ; elle ne convient donc pas à cet entretien.' },
+      { label: 'Fiche retenue', text: 'Après comparaison, le bureau conserve la version publique. L’annexe demeure séparée et aucun interlocuteur n’est réputé en avoir pris connaissance.' },
+    ],
+    review: {
+      prompt: 'Quelle fiche peut servir à l’entretien préparé par cet exercice ?',
+      choices: ['Celle qui expose la fonction réservée à tous les interlocuteurs.', 'Une fiche dont le nom change à chaque ligne.', 'La version publique cohérente avec le nom de travail et sans la fonction réservée.'], answer: 2,
+    },
+    optional: { label: 'Relire le registre des versions', text: 'Le registre distingue une fiche publique d’une annexe réservée. Le nom de travail et l’expérience de maintenance appartiennent seulement à cet exercice original.' },
+    resolution: 'La fiche publique est retenue pour l’entretien. L’annexe reste réservée ; le contrôle n’accorde ni identité révélée ni information supplémentaire aux interlocuteurs.',
+    receipt: 'Présentation d’exercice classée : nom de travail cohérent, expérience de maintenance dans la fiche publique, fonction réservée dans une annexe séparée. Aucun alias exact ou entretien du comic n’est reconstitué.',
+  },
 ];

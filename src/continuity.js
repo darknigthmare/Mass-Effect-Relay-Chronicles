@@ -8,7 +8,8 @@ export const CAMPAIGN_CONTEXT = Object.freeze({ mediaId: 'ME1', periodId: 'me1',
 const OWN = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const FORBIDDEN = new Set(['__proto__', 'prototype', 'constructor']);
 const SESSION_KEYS = ['version', 'context', 'scenarioId', 'discovered', 'notes', 'party', 'loadouts', 'cleared'];
-const OPTIONAL_SESSION_KEYS = ['builds', 'readingProgress', 'ammoModes', 'comicProgress'];
+const COMIC_SESSION_KEYS = ['comicProgress', 'comicFields'];
+const OPTIONAL_SESSION_KEYS = ['builds', 'readingProgress', 'ammoModes', ...COMIC_SESSION_KEYS];
 const EQUIPMENT_SLOTS = ['weapon', 'armor', 'weaponMod', 'weaponMod2'];
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/;
 const isId = value => typeof value === 'string' && ID.test(value) && !FORBIDDEN.has(value);
@@ -137,12 +138,16 @@ export function normalizeChronicleSession(raw) {
     const rawProgress = OWN(raw, 'readingProgress') ? raw.readingProgress : {};
     if (!plain(rawProgress) || Object.keys(rawProgress).length > 500
       || Object.entries(rawProgress).some(([storyId, index]) => !isId(storyId) || !Number.isInteger(index) || index < 0 || index > 999)) return null;
-    const hasComicProgress = OWN(raw, 'comicProgress');
-    if (hasComicProgress && (!plain(raw.comicProgress) || Object.keys(raw.comicProgress).length > 80
-      || Object.entries(raw.comicProgress).some(([id, progress]) => !isId(id) || !plain(progress)))) return null;
+    const comicState = {};
+    for (const key of COMIC_SESSION_KEYS.filter(key => OWN(raw, key))) {
+      const progress = raw[key];
+      if (!plain(progress) || Object.keys(progress).length > 80
+        || Object.entries(progress).some(([id, state]) => !isId(id) || !plain(state))) return null;
+      comicState[key] = structuredClone(progress);
+    }
     return { version: 1, context, scenarioId: raw.scenarioId, discovered: [...raw.discovered], notes,
       party: [...raw.party], loadouts, builds, readingProgress: { ...rawProgress }, ammoModes, cleared: [...raw.cleared],
-      ...(hasComicProgress ? { comicProgress: structuredClone(raw.comicProgress) } : {}) };
+      ...comicState };
   } catch { return null; }
 }
 

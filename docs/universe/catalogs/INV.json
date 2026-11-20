@@ -1310,7 +1310,7 @@
       "name": "Coordination de circonstance"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Préparer une action conjointe en gardant les objectifs distincts.",
@@ -1327,10 +1327,21 @@
       ],
       "sourceIds": [],
       "reference": "Conception originale rattachée à Invasion, coopération initiale",
-      "notes": "",
+      "notes": "Suite BD 645043e : briefing de coordination original en archive, avec deux méthodes, même reçu et reprise publique stables. Il ne réalise ni l’action conjointe sur le terrain, ni un accord ou dialogue Petrovsky/Aria du comic ; référence de coopération encore à contrôler. Prototype ; critère P0 complet toujours ouvert.",
       "id": "INV-SC-ALLIANCE-MAIN",
       "category": "main_quests",
-      "name": "Coordination de circonstance — objectif jouable"
+      "name": "Coordination de circonstance — objectif jouable",
+      "implementationPaths": [
+        "src/comic-arc-briefings.js",
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/chronicles.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-arc-preparations.json",
+        "tests/comic-arc-preparations.test.js",
+        "tests/comic-arc-briefings.test.js"
+      ]
     },
     {
       "status": "Défini",
@@ -1744,7 +1755,7 @@
       }
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P0",
       "description": "Réunir les défenseurs et rejoindre un point de communication.",
@@ -1761,10 +1772,24 @@
       ],
       "sourceIds": [],
       "reference": "Conception originale rattachée à Invasion #1–4, retournement du conflit",
-      "notes": "",
+      "notes": "Le relais et le contrôle du ralliement sont jouables. Les défenseurs et l’évolution de l’occupation demandent des états propres.",
       "id": "INV-SC-RETURN-MAIN",
       "category": "main_quests",
-      "name": "Retour dans une station contestée — objectif jouable"
+      "name": "Retour dans une station contestée — objectif jouable",
+      "implementationPaths": [
+        "src/comic-field.js",
+        "src/comic-field-ui.js",
+        "src/comic-field-arcs.js",
+        "src/chronicles.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-field-criteria.json",
+        "docs/qa/p0-comic-fields-browser.json",
+        "docs/qa/p0-comic-fields-browser-closeout.json",
+        "tests/comic-field.test.js",
+        "scripts/p0-comic-fields-browser.mjs"
+      ]
     },
     {
       "status": "Défini",
@@ -1790,7 +1815,7 @@
       "name": "Récupérer un émetteur local"
     },
     {
-      "status": "Défini",
+      "status": "Prototype",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Passer par un ancien poste de garde ou par une route industrielle.",
@@ -1807,10 +1832,24 @@
       ],
       "sourceIds": [],
       "reference": "Bifurcation de gameplay originale, pas un choix présent dans l’œuvre.",
-      "notes": "",
+      "notes": "Les voies du poste et de l’industrie aboutissent au relais. L’affrontement et la menace active restent à intégrer.",
       "id": "INV-SC-RETURN-CHOICE",
       "category": "choices",
-      "name": "Retour dans une station contestée — stratégie locale"
+      "name": "Retour dans une station contestée — stratégie locale",
+      "implementationPaths": [
+        "src/comic-field.js",
+        "src/comic-field-ui.js",
+        "src/comic-field-arcs.js",
+        "src/chronicles.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comic-field-criteria.json",
+        "docs/qa/p0-comic-fields-browser.json",
+        "docs/qa/p0-comic-fields-browser-closeout.json",
+        "tests/comic-field.test.js",
+        "scripts/p0-comic-fields-browser.mjs"
+      ]
     },
     {
       "status": "Défini",

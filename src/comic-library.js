@@ -1,5 +1,8 @@
 import { getUniverseRecord, getUniverseWork } from './universe-data.js';
 import { productionSourceURL } from './continuation-catalogue.js';
+import { createLibraryPreferences, normalizeLibraryPreferences, updateLibraryPreferences,
+  encodeLibraryPreferences, decodeLibraryPreferences, loadLibraryPreferences, saveLibraryPreferences } from './comic-library-preferences.js';
+export { COMIC_LIBRARY_PREFERENCES_KEY } from './comic-library-preferences.js';
 
 const libraryId = 'LIB';
 const library = getUniverseWork(libraryId);
@@ -95,6 +98,43 @@ export function getComicLibraryTarget(id) {
   return unit ? { mediaId, periodId: unit.periods.length === 1 ? unit.periods[0].id : '' } : null;
 }
 
+export const createComicLibraryPreferences = () => createLibraryPreferences();
+export const normalizeComicLibraryPreferences = raw => normalizeLibraryPreferences(raw, getComicLibraryIndex());
+export const updateComicLibraryPreferences = (raw, command) => updateLibraryPreferences(raw, command, getComicLibraryIndex());
+export const encodeComicLibraryPreferences = raw => encodeLibraryPreferences(raw, getComicLibraryIndex());
+export const decodeComicLibraryPreferences = raw => decodeLibraryPreferences(raw, getComicLibraryIndex());
+export const loadComicLibraryPreferences = storage => loadLibraryPreferences(storage, getComicLibraryIndex());
+export const saveComicLibraryPreferences = (storage, raw) => saveLibraryPreferences(storage, raw, getComicLibraryIndex());
+
+const consultationLabels = { unseen: 'À consulter', 'in-progress': 'En cours', consulted: 'Consulté' };
+function consultationControls(id, label, preferences, readOnly, esc) {
+  const marked = preferences.bookmarks.includes(id), status = preferences.consultation[id] || 'unseen';
+  return `<div class="comic-library-personal">
+    <button class="secondary comic-library-bookmark" data-do="comic-library-bookmark" data-id="${esc(id)}"
+      aria-pressed="${marked}" aria-label="${esc(`${marked ? 'Retirer le marque-page' : 'Marquer'} · ${label}`)}" ${readOnly ? 'disabled' : ''}>${marked ? '★ Marque-page' : '☆ Marquer'}</button>
+    <label><span>Consultation personnelle · ${esc(label)}</span><select data-library-consultation data-id="${esc(id)}" ${readOnly ? 'disabled' : ''}>
+      ${Object.entries(consultationLabels).map(([value, text]) => `<option value="${value}" ${status === value ? 'selected' : ''}>${text}</option>`).join('')}
+    </select></label>
+  </div>`;
+}
+const openSection = (id, preferences, esc) => `data-library-section="${esc(id)}"${preferences.expanded.includes(id) ? ' open' : ''}`;
+function workOrder(works, preferences) {
+  if (preferences.sort === 'volume') return works;
+  const title = (left, right) => left.title.localeCompare(right.title, 'fr') || left.id.localeCompare(right.id);
+  const marked = work => preferences.bookmarks.includes(work.id) || work.units.some(unit => preferences.bookmarks.includes(unit.id));
+  const rank = work => ({ unseen: 0, 'in-progress': 1, consulted: 2 })[preferences.consultation[work.id] || 'unseen'];
+  return [...works].sort((left, right) => preferences.sort === 'bookmarks' ? Number(marked(right)) - Number(marked(left)) || title(left, right)
+    : preferences.sort === 'consultation' ? rank(left) - rank(right) || title(left, right) : title(left, right));
+}
+function resumeLabel(index, id) {
+  for (const work of index.volumes.flatMap(volume => volume.works)) {
+    if (work.id === id) return work.title;
+    const unit = work.units.find(unit => unit.id === id);
+    if (unit) return `${work.title} · ${unit.label}`;
+  }
+  return index.relatedEditions.flatMap(edition => edition.works).find(work => work.id === id)?.title || '';
+}
+
 function sourcesFor(record, esc) {
   if (!record?.sources.length) return '';
   return `<ul class="comic-library-sources">${record.sources.map(source => `<li data-comic-source="${esc(source.id)}">
@@ -118,20 +158,22 @@ function periodCard(period, esc) {
   return `<li data-comic-period="${esc(period.id)}"><strong>${esc(period.label)}</strong> · ${esc(year)}
     ${period.uncertainty ? `<small>${esc(period.uncertainty)}</small>` : ''}</li>`;
 }
-function workCard(work, esc) {
+function workCard(work, esc, preferences, readOnly) {
   const openLabel = work.documentaryOnly ? 'Ouvrir la référence' : 'Ouvrir le dossier';
   return `<article class="comic-library-work" data-comic-work="${esc(work.id)}">
     <div class="comic-library-work-head">
       <div><h5>${esc(work.title)}</h5><p>${esc(work.range)}</p></div>
       ${linkToWork(work.id, `${openLabel} · ${work.title}`, esc)}
     </div>
+    ${consultationControls(work.id, work.title, preferences, readOnly, esc)}
     <p class="small comic-library-work-nature">${esc(work.locator.nature)} · Inclusion dans l’édition reliée</p>
     ${work.description ? `<p class="small">${esc(work.description)}</p>` : ''}
-    <details class="comic-library-units">
+    <details class="comic-library-units" ${openSection(`units:${work.id}`, preferences, esc)}>
       <summary>${esc(work.title)} · Unités et repères</summary>
       <p class="small">Pagination de l’exemplaire à relever.</p>
       <ol>${work.units.map(unit => `<li data-comic-unit="${esc(unit.id)}">
         ${linkToWork(unit.id, `${work.title} · ${unit.label}`, esc)}
+        ${consultationControls(unit.id, `${work.title} · ${unit.label}`, preferences, readOnly, esc)}
         ${unit.periods.length ? `<ol class="comic-library-periods" aria-label="Repères de continuité">${unit.periods.map(period => periodCard(period, esc)).join('')}</ol>`
           : '<p class="small">Fiction interne · référence éditoriale.</p>'}
       </li>`).join('')}</ol>
@@ -140,26 +182,38 @@ function workCard(work, esc) {
   </article>`;
 }
 
-export function renderComicLibrary({ esc = escapeDefault } = {}) {
+export function renderComicLibrary({ esc = escapeDefault, preferences: rawPreferences, readOnly = false } = {}) {
   const index = getComicLibraryIndex();
+  const preferences = normalizeLibraryPreferences(rawPreferences, index) || createLibraryPreferences();
+  const works = index.volumes.flatMap(volume => volume.works), units = works.flatMap(work => work.units);
+  const consultedWorks = works.filter(work => preferences.consultation[work.id] === 'consulted').length;
+  const consultedUnits = units.filter(unit => preferences.consultation[unit.id] === 'consulted').length;
   return `<section class="comic-library" data-comic-library aria-label="Sommaire Library Edition">
     <p class="comic-library-count" data-library-work-count="${index.workCount}" data-library-unit-count="${index.unitCount}">
       ${index.workCount} récits référencés · ${index.unitCount} unités
     </p>
     <p class="brief-copy">Chaque renvoi ouvre le dossier du récit et ses propres périodes.</p>
+    <div class="comic-library-preferences"><label for="comic-library-sort">Tri des récits dans chaque volume<select id="comic-library-sort" ${readOnly ? 'disabled' : ''}>
+      ${[['volume','Ordre du sommaire'],['title','Titre'],['consultation','État de consultation'],['bookmarks','Marque-pages d’abord']].map(([value,label]) => `<option value="${value}" ${preferences.sort === value ? 'selected' : ''}>${label}</option>`).join('')}
+    </select></label><p class="small" data-library-bookmark-count="${preferences.bookmarks.length}" data-library-consulted-work-count="${consultedWorks}" data-library-consulted-unit-count="${consultedUnits}">
+      ${preferences.bookmarks.length} marque-page${preferences.bookmarks.length > 1 ? 's' : ''} · ${consultedWorks}/${index.workCount} dossiers de récits consultés · ${consultedUnits}/${index.unitCount} unités consultées.</p>
+      ${preferences.lastTarget ? `<button class="secondary" data-do="comic-library-resume" data-id="${esc(preferences.lastTarget)}">Reprendre la consultation · ${esc(resumeLabel(index, preferences.lastTarget))}</button>` : ''}
+    </div>
+    <p class="small comic-library-personal-note">Repères personnels de consultation des dossiers : ils n’attestent pas la lecture intégrale du comic ou la vérification d’un exemplaire. Aucun chapitre, objet ou récompense n’est validé par ces repères.</p>
+    ${readOnly ? '<p class="comic-library-readonly" role="status" data-library-readonly>Préférences en lecture seule : stockage indisponible ou données illisibles. Les dossiers restent accessibles.</p>' : ''}
     ${index.volumes.map(volume => `<section class="comic-library-volume" data-comic-volume="${volume.number}" aria-labelledby="comic-library-volume-${volume.number}">
       <h4 id="comic-library-volume-${volume.number}">Volume ${volume.number}</h4>
       <p class="small">${esc(volume.format)}${volume.isbn ? ` · ISBN ${esc(volume.isbn)}` : ''}</p>
-      ${volume.announcement ? `<details><summary>Notice du volume ${volume.number}</summary>${recordCard(volume.announcement, esc)}</details>` : ''}
-      <div class="comic-library-works">${volume.works.map(work => workCard(work, esc)).join('')}</div>
-      <details class="comic-library-bonuses"><summary>Bonus éditoriaux · volume ${volume.number}</summary>
+      ${volume.announcement ? `<details ${openSection(`notice:${volume.number}`, preferences, esc)}><summary>Notice du volume ${volume.number}</summary>${recordCard(volume.announcement, esc)}</details>` : ''}
+      <div class="comic-library-works">${workOrder(volume.works, preferences).map(work => workCard(work, esc, preferences, readOnly)).join('')}</div>
+      <details class="comic-library-bonuses" ${openSection(`bonuses:${volume.number}`, preferences, esc)}><summary>Bonus éditoriaux · volume ${volume.number}</summary>
         <p class="small">Pagination de l’exemplaire à relever.</p>
         ${volume.bonuses.map(record => recordCard(record, esc)).join('')}
       </details>
     </section>`).join('')}
     <section class="comic-library-related" aria-labelledby="comic-library-related">
       <h4 id="comic-library-related">Éditions liées</h4>
-      ${index.relatedEditions.map(edition => `<details data-comic-edition="${edition.id}"><summary>${esc(edition.publication.name)}</summary>
+      ${index.relatedEditions.map(edition => `<details data-comic-edition="${edition.id}" ${openSection(`edition:${edition.id}`, preferences, esc)}><summary>${esc(edition.publication.name)}</summary>
         <p>${esc(edition.publication.description)}</p>
         <ul>${edition.works.map(work => `<li data-comic-related-work="${esc(work.id)}">
           ${linkToWork(work.linkId, work.title, esc)}

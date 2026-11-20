@@ -1,0 +1,1222 @@
+{
+  "passed": true,
+  "at": "2026-11-20T17:07:07.417Z",
+  "mode": "production",
+  "url": "http://127.0.0.1:4332/",
+  "baselineCommit": "645043ed4d006c59520279a9908b5a7835fd19c9",
+  "command": {
+    "script": "node scripts/comic-library-preferences-public-01.mjs",
+    "environment": {
+      "GAME_URL": "http://127.0.0.1:4332/",
+      "COMIC_LIBRARY_DIST": "/tmp/relay-comics-fields-proof-dist/",
+      "COMIC_LIBRARY_PROOF_PREFIX": "comic-library-preferences-public-01"
+    }
+  },
+  "exactCriterion": "Sauvegarder, quitter et reprendre avant/après un raccord ne double aucun objet, objectif ou récompense.",
+  "scope": "Personal Library Edition sorting/bookmarks/consultation/open sections, canonical owner routing, actual owner archive conclusion and restart; unchanged ME1/owner state, explicit readonly storage errors.",
+  "inputMethod": "Actual file chooser, buttons, selects, native details and downloads. Page evaluation reads public DOM or storage bytes only for isolation diagnostics; it never pilots actions from storage.",
+  "fixtures": [
+    {
+      "path": "docs/qa/comic-library-preferences-public-01-me1-witness-fixture.json",
+      "bytes": 4235,
+      "sha256": "b3dbc1afa8f137dbf2e4085552d9416b906dc0f5a499fc0f2611de3745962b28",
+      "origin": "Native unprogressed newGame; actual public upload before any preference operation."
+    },
+    {
+      "kind": "malformed-library-preferences",
+      "path": "docs/qa/comic-library-preferences-public-01-malformed-preferences-fixture.json",
+      "sha256": "5c76c539ece8158ba67f943f87255d9c2192e323fe9ab4bd3b9bf56847853078",
+      "bytes": 20,
+      "storageKey": "relay-chronicles.comic-library.preferences.v1",
+      "origin": "Declared browser storageState fixture in an independent context; no game or Chronicle state injected."
+    }
+  ],
+  "captures": [
+    {
+      "label": "personal-unit-status",
+      "path": "docs/screenshots/comic-library-preferences-public-01-personal-unit-status.png",
+      "bytes": 319320,
+      "sha256": "ee0912423c22515199f518894a75c588d22adc52ea9054d6d613e51f8834ce1a",
+      "source": "Actual unmodified public viewport; no DOM/style/clock changes."
+    },
+    {
+      "label": "restored-mobile",
+      "path": "docs/screenshots/comic-library-preferences-public-01-restored-mobile.png",
+      "bytes": 148944,
+      "sha256": "a804ce0639cb70b14e35d9cf59a6dcc685dabaede792ab2d1fe0f2810e688a63",
+      "source": "Actual unmodified public viewport; no DOM/style/clock changes."
+    },
+    {
+      "label": "quota-readonly",
+      "path": "docs/screenshots/comic-library-preferences-public-01-quota-readonly.png",
+      "bytes": 355009,
+      "sha256": "50a2b78e493335667292ce2c01110f436e2b43feb02a491853952dab4d280bc2",
+      "source": "Actual unmodified public viewport; no DOM/style/clock changes."
+    }
+  ],
+  "exports": [
+    {
+      "label": "owner-before-raccord",
+      "path": "docs/qa/comic-library-preferences-public-01-owner-before-raccord-export.json",
+      "bytes": 599,
+      "sha256": "6bb4fb3bea22d93f9f2290665f4eb33cdecc5bafb14b0e021163bd486c4543fd"
+    },
+    {
+      "label": "owner-after-raccord",
+      "path": "docs/qa/comic-library-preferences-public-01-owner-after-raccord-export.json",
+      "bytes": 698,
+      "sha256": "2e99db645fffdc8bb69c31fdf090d99ac96dc82d7dba57e2f09e68ad584559e1"
+    },
+    {
+      "label": "owner-resumed",
+      "path": "docs/qa/comic-library-preferences-public-01-owner-resumed-export.json",
+      "bytes": 698,
+      "sha256": "2e99db645fffdc8bb69c31fdf090d99ac96dc82d7dba57e2f09e68ad584559e1"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Sort, unique unit bookmark, personal consultation and expanded sections survive alias routing, actual owner conclusion, browser reload and resume with identical owner export and unchanged ME1 storage.",
+      "passed": true
+    },
+    {
+      "name": "A declared preference-only quota failure is caught, leaves the prior default and stored bytes unchanged, shows readonly status and preserves owner navigation.",
+      "passed": true
+    },
+    {
+      "name": "A declared malformed preference load preserves its exact bytes, exposes readonly consultation and creates no silent reset.",
+      "passed": true
+    }
+  ],
+  "observations": [
+    {
+      "label": "real-owner-raccord",
+      "dossierId": "red-1-choix-anterieurs",
+      "onlyComicProgressChanged": true,
+      "me1StorageUnchanged": true,
+      "canonicalLastTarget": "RED",
+      "bookmarks": 1,
+      "consultedUnits": 1,
+      "totalUnits": 34
+    },
+    {
+      "label": "corrupt-preferences",
+      "readonlyMessage": "Préférences en lecture seule : stockage indisponible ou données illisibles. Les dossiers restent accessibles.",
+      "malformedBytesRetained": true
+    }
+  ],
+  "sourceHashes": {
+    "src/activation-guard.js": "747df0f591187f89a8edf266bb2088f534a32eae4256260127a4a837fa318bb5",
+    "src/advance-continuity-ui.js": "fe1e600bb95be47ddfc8696639fc1f2d897ba7199ea298daad33e166eaac0576",
+    "src/advance-continuity.js": "659fe2ba22c7d57ba8ef88e9f2a84c2cda5c478001d1e13ffc92d35fe23171cf",
+    "src/advance-dialogues.js": "00156cd5f184a2887e28866258ca7fb6dcd01021d83e402029d41882e80cce77",
+    "src/advance-feros-ui.js": "c1c2f6f53b4f75b4ebf0d8a72f17e2d0a2586d32b085c645224ad6af7a452688",
+    "src/advance-feros.js": "7479e13a2fa81a6ba9e828d7da5dbca3afcbc21f7a284de2f03729b2acef7d64",
+    "src/advance-progression.js": "9e0677c7930033b248d7537db86f38286be0fdb18d4ecd7a05e9933d8ec2e6f9",
+    "src/advance-travel-access.js": "736d66f2c7ce15935dc53ebd487757d07cab8a2f6a5c877ac361cd24c2431f76",
+    "src/advance-travel-ui.js": "e03b46b1181f2ebbd3bcfcd776da5613050b6cec6b50e4926025f0455bf0a9af",
+    "src/advance-travel.js": "a1aad9063ad2549cc875916695f3fc7af89746531ce306697cc9d88400814f5c",
+    "src/arsenal-visual-data.js": "2fbd06f49bca41841d39e161bf24708961cc354e112a75d46c80e5e5b634ddf0",
+    "src/assignment-data.js": "3bb7aa18b0f17646a76b17d999a074aa64d304ae3c5393b049a6216b46b34c6b",
+    "src/assignments.js": "19e43646c1be0156914954e62f8a3c8cdc86b3dd8b48672305fc228c43d1c770",
+    "src/audio.js": "63a64cb845090c7242afb09a5ec9d39f8f698c50a8f916ab953631e8a7355510",
+    "src/boss-animation-data.js": "e3a1613fb1feaf747dbc35a99d4225c3bda4281e66ac8bf3afa0398f3010a243",
+    "src/boss-phases.js": "dab61d936e2de431e460841a9886f93d9e0f234b1d0fa3d485fb3a676d1b7fdf",
+    "src/campaign-talents-ui.js": "da297911d184522d87e03b5963b94c4354faa78f268afd7ece7efafc6a927a91",
+    "src/campaign-talents.css": "671df4feeb62104a50e33176b8bc842072a59e43148a2c51e48a38f2995fb9d2",
+    "src/campaign-talents.js": "79ec5dd98092e7e293f503f44d397c83cba09d8655b74214b1c94a86dc8e0719",
+    "src/character-data.js": "4ce027760541a9f53e3c65703eb7c154f38a83e764c06e1f14c7c632d9aff60e",
+    "src/chronicle-story.js": "bac1c5fadef9d74bbdffa6c5ae871e22dc79790b02f68d37fd955619278de6f3",
+    "src/chronicles.js": "673a9e73ec1b682b947d9f38f21568f87e7231af4b8e417f765166b3c0f049f7",
+    "src/combat-medical.js": "0a376ec845b04b8c21a014076048fcb3672b1a5c95b7ee3d7a6721a0f676d806",
+    "src/combat-summons.js": "b4e39613d23c28b980768b4fa3e94573ff3bf99912b74eb7432e12fea51bb56b",
+    "src/combat.js": "8bc22601fb44dd6a683a48b71fd868d8cbeda52d6c4186540ecf63d4b6e3da15",
+    "src/comic-arc-briefings.js": "b6eab50cb83df926e8c3829d778ed16a23f12b648ec13d27d10c2c1d616d1f6a",
+    "src/comic-briefing-ui.js": "4a5f12a85810ca60ec3596d5f08198e02feff2f32c85df75e8cd7fc017d072de",
+    "src/comic-briefings.js": "5bdadc451aad455bbb68670a0e73076a4e3a487b18a04c1ae29c0e4450829041",
+    "src/comic-field-arcs.js": "e023b62fa2e56854db1265371219b831bac4537bc98abcf11eda61cc26b72d48",
+    "src/comic-field-issues.js": "bfe41033102d9af34b33fd9c8afc18b70150a9c4a90fd93bd0d4a330d6ce12e9",
+    "src/comic-field-ui.js": "cd4fc75c369e96dc05e5c1996a963e999ef5dce426f553ab7e708e72717657fc",
+    "src/comic-field.js": "49cfccbfa14b140e6a3873154ea69e4692fc3be43fcb71a195114650aa7e525a",
+    "src/comic-issue-briefings.js": "4ad37fe41f1c01383feba9fa4c8bf38a5ad80b36a565db4e889c73a7961eaffa",
+    "src/comic-library-preferences.js": "f463df1e91bae1674ba40a2bc3e307662e072aac6514d90fb3c73e946fd4d072",
+    "src/comic-library.css": "2cc28fd2ea6e2d4e2bfbe81f2bce5f8f6e936aee2f9f7a9c6613988c2daa15ee",
+    "src/comic-library.js": "8b2505cea1aa9be69111aebc78a4d62f88b084d1a999304c9fbe6bdbf5494ed5",
+    "src/comic-short-briefings.js": "fb7e3a1b62c2f85a4aeb707f3e01d992603aa6832ff910506852d6aec408dc76",
+    "src/commander.js": "c6f4567d83a8de2ba348897c2af35f6a1f07db77a9370b0023cadc6b0ce2b0f3",
+    "src/companion-animation-data.js": "8e459efefc9d3a045457bb46ff9914ed95d77c440352d548b521625fa044cda0",
+    "src/companion-relations.js": "40d70311f4db89cbb377c66ba5033c24a3620204ca14c005e85aaee2474a9387",
+    "src/completion-accessibility.css": "052b6f09d299b2b0178b7cf43e43a894981f543bca31db1930a41064bd2b8925",
+    "src/completion-accessibility.js": "66c595e0666c46fca08b0e6809c05b0cc710851703c4060408c59207c51826b6",
+    "src/completion-chronicles-powers.js": "f195b68bc420d51efd19b4a2c23c3ed65e95d1ccec254c3b9b6b88da22486d1f",
+    "src/completion-narrative-ui.js": "0ae7612c9efb8e72e4a183520d3d5a08198188b621091674ee8c7495d3dc40b0",
+    "src/completion-narrative.js": "a86e2cb92c8e97f9c8dd17bccf1be6a861689b8b0da45d20d5357fb83a5add50",
+    "src/completion-persistence-campaign.js": "9b2a75f6697c4cdb46a7e1a0f61332ed799ca1588b52e67c3382c1185ec8a18a",
+    "src/completion-world.js": "d879237c56440fc634576e27aa3ca95fb973d43732c73a1a94f4320833eac0ba",
+    "src/continuation-banter-data.js": "1c93a0be760d11e6c4fb5fc1c267dae4e8d21024cb6aa77e95777b40d4a543e6",
+    "src/continuation-banter.js": "bc55272368b83ddfb31daf4672c195cea5e1820eb2e2007f5d5ed608456ca9a5",
+    "src/continuation-catalogue.css": "4406c0ab66107fe658d7c9746b5605652af7a1e9b1cfb0a4e8a33b0a32f0067e",
+    "src/continuation-catalogue.js": "dd9c2052b2097df97d070257b5df30cdd18ab47190c97cf01d9e4ed24dbcc5cb",
+    "src/continuation-chronicles-positions.js": "131b7efff80512ae3d9e7437c9acbf69ed26cf8237770d3f57be83ff33d93b51",
+    "src/continuation-dialogues.js": "889b111512de6405b35950f72ffce3fd1eadaafc292af4098615eb4686d0d5fb",
+    "src/continuation-world-ground.js": "3dc93f7a0de5eb1d57c179dd136d397db169d768a8a54211b483ffc1cf5b5c7d",
+    "src/continuity-data.js": "ac9f14d5892bf9a8d88ade581b1b07e75d0fae9d8b8216f42ac226e111f63f09",
+    "src/continuity.js": "d7ca98a72078e42d5e883ab894c2937a2fe0fae13294e3dbf28217152262849b",
+    "src/customization-render.js": "8a3b0a8950e8ce381c3476938f4a592085523dc98e67c4a011a56030eae7ca52",
+    "src/customization-ui.css": "549e0ba51cce0d2d52faa259373c489bcc872c73488435c3cc75bcd00d417c45",
+    "src/customization-ui.js": "42e06e80b3cdf5a28005d2fd6433b824e03b993f696749ca837c37fb71bcadb0",
+    "src/customization.js": "503936af25e0256c1812de4493a1001ec37e6b36bc2c08a3b7d899792711a932",
+    "src/eden-prologue.js": "dcca19a48eea024fe302f991b5a9de81082cf8aeaf27681eed1080b0e82c610f",
+    "src/eden-scene.js": "3483cb6c3195f1c631139f969c8bcb08e32cdba6f22a472f6626ce0953722948",
+    "src/enemy-animation-data.js": "7fe66817eb146f4c34893a76c16932378d00bdc2039ed8f997cbbe452c9110da",
+    "src/expansion-armor.js": "a2db8546c188ddf1fc4916f08ea29342b76385a80de154c920cbf1cd6783b7a2",
+    "src/expansion-bench.js": "c67b3f0bbd4bb065e8acd7c081bb46c4d33e2aab8c41c0c760331402c4b1fc98",
+    "src/expansion-characters.js": "6f80bf7d53b3c4d8e35a2ebe2b75d4b696afb4c2dfa4a68042153511c60991c0",
+    "src/expansion-enemies.js": "e24f81d54aeda3c178f9d4f91f95ce2ef957ff5ce1031a8b9bfff4f5de90b8c3",
+    "src/expansion-fleet.js": "3a16f9c725135861a0a75631dad9ccde1ceb4c06807e4caf70d0f95bca1717c0",
+    "src/expansion-medical-bench.js": "6e087b29f39c066ce70c2d1b928ac1aaf12a7564d580b8e2a7fc3add9345ba90",
+    "src/expansion-ui.js": "2675dc629bda7c0ff29bbe9bd66ed480f58d95616e168fc52e35825d52752705",
+    "src/expansion-weapons.js": "bffaa316a6aca541ddcac9f6fab75380ed96b3f9b8d79cef9742801c718f8a15",
+    "src/expansion.js": "f1b7f206028c93c44734b503ecbfe9523923fa0cc8e968b59d572aec182cd022",
+    "src/expansion2-armor.js": "b470732bef5b085196d73302e376850588624d2752b3b64fbcd8a61278a5968f",
+    "src/expansion2-characters.js": "1684f22aae4063981821ab7556fbe21191e54170ce085646e668501e33c412ed",
+    "src/expansion2-enemies.js": "6ca45119a90e1bcd2a2cb67f83aec948871ca548efc1b343b372cfd6a57c4e5f",
+    "src/expansion2-fleet.js": "309ca5cfa614eab577ed4b64a8b44286362062ea5da17414a17130cdbe20a307",
+    "src/expansion2-weapons.js": "533e2da01e7a2804aa8c51c678214aae2e59269da018aee755626c5c500651d7",
+    "src/expansion3-armor.js": "d183556a83d09ed0954c4fd85fac8338e0a31203ad697b7902330047e200b964",
+    "src/expansion3-characters.js": "a7441b34dab20a3667b682fc5a598f30a639d4119152a3ddea7d523f49a9ccda",
+    "src/expansion3-enemies.js": "b107a293a757713016a42b0be5c5b5758ccbe76d5fa87a757278091b14a56ac3",
+    "src/expansion3-fleet.js": "c9fe1eb06b910c4693ff11f93c985de5decf92ed647b67348763003b5ccc2f16",
+    "src/expansion3-weapons.js": "36a4316b8f135849f053b3fe0d2f7d24c96db4cc47b0c3dfb6ca24d812537241",
+    "src/frontier-characters.js": "20b858785f29b8ac9f53cac53cba7c46acb13eb9fd243cba4d968bf3d802cd12",
+    "src/frontier-enemies.js": "9fdadd59657942fb122a63091ce8948ec0d059cbf7359f24aef906d116b09499",
+    "src/frontier-layout-data.js": "a3ea3e0c41df7506c149c354efad0ea768db674a6878a98654967708b8d88fcf",
+    "src/frontier-scene.js": "45a393b8cdd881654da63cf9785ab6fe1829648068e717ed0c2cc01ef1eb93eb",
+    "src/frontier-ui.css": "c2f8eb3d84f73a7ad8c9d749d44ba2bdfaa87f6cfae356d9bcaa0afbc7969bc9",
+    "src/frontier-ui.js": "fe17b8e83d7e6d5b17c9e4326c828a5c6e7f2ebfb1cec4ccb57874c530454b4a",
+    "src/frontier-vehicles.js": "597b41bd174d9a5c1f3a5752bebf0bbd97692d6c2b524ee566773eee08f62191",
+    "src/game-data.js": "e09c18ded014758c5c5ca8f9e80e3ffb9d759c8fe256ec926d911022ef1a2611",
+    "src/gamepad-controls.css": "77e1c42d65deb5baaabddc3ffa65609218c2d0e5bf19b6019a711b86991950d0",
+    "src/gamepad-controls.js": "b45a65dd7a07f6acc6c42fdf9a6452ec8e5e6bf18d487cc5f9c582edbf79504b",
+    "src/horizon-archive-ui.js": "7c588eb8165e9e28a7418f9343bfab9b165208cce367235f4b1c8b4ae50bb3f9",
+    "src/horizon-characters.js": "eaff1d446004fab87bf88ca2b773a31be0723ef18db53033f1add46797384e33",
+    "src/horizon-enemies.js": "351f414fb5f2b26fccceab3978d4eb41bc7be16836ae485ca97591f3ade491f0",
+    "src/horizon-fauna.js": "e5432e75b41466392ba4cb3526271d773ab6b61743aa0946a6fce3b648cd0659",
+    "src/horizon-fleet-reference.js": "7103013f67dd15ae5de3dd2db6ac4a7c528edfcd0486619528a3ea1e9fbce735",
+    "src/horizon-fleet.js": "ab9970092a7f2219225b08cd0e3129d89bfde27bda67e8705dabf8662264caf0",
+    "src/horizon-layout-data.js": "ad744cfd54b0b06bddea193a31b799d5a11245fa357d5764d9212324361349d7",
+    "src/horizon-reference-visuals.js": "46820e8c316615f29f2bf50a795c9c7f175b3e79f89f708fa73a13a60d221728",
+    "src/horizon-scene.js": "b3ff51ed99d615e7548ab3d762511fcf7b8f0b35f82dcfa1474e84cccc4b370e",
+    "src/horizon-ui.css": "c20881d2cc32b569d78b904ef3a9f6b052e0ef29c58c7905b6a588f3616b7447",
+    "src/horizon-ui.js": "81739bf336a7627df78733a815f313bc25ac873f1140da810f15ef849b4a3ddb",
+    "src/joker-seated-data.js": "9eb8c43955787f0b04c3b85587198cf5431e190fca5c7eb85f4844775524b29c",
+    "src/level-layout-data.js": "c6d8f9298f25d58eed710000b2cdafbd66f2a443be812e2074b8d942dfa53260",
+    "src/level-map-render.js": "e0b1848484cffc7a7095681da574e2516ff724e46e09999bcf2ec5e298eb5c94",
+    "src/loadout-ui.css": "91bed304471a4913a19e8f2680865fa5cdbe217ddcb3839a5568b3410af1d2f0",
+    "src/loadout-ui.js": "2a6f1a367557117996b984421e5e7abbad1bfb6d3bc3994bc79beef3374c411a",
+    "src/loadout.js": "2b28edeaa1d7555e180de56c683ad1726e982d43bba572e30b2316b115b35207",
+    "src/local-map.css": "54effa7184fa79372e0127918199497c0af6b735bec30baef37ea1e0af957b6f",
+    "src/local-map.js": "90b324722c8b1a9af6c1d50522fbb07e1819b667216c5663b1ab91e803739b17",
+    "src/main.js": "a8ba22a2091fccf7af4bbc6e1e007ed1878470b2ebe890f80da5238340421d15",
+    "src/mission-progress-ui.js": "f0f7d4c3cb588ddced277e7e6d2a597935b00b581187d1140d48a858cba48a76",
+    "src/mission-progress.js": "d9fa6b5e0ef953e00684aa441ce669e03a2559a249e2137674a0a84c74facc3a",
+    "src/noveria-stations.js": "5e0d1ba69d0bbc56796409de36de6835c11bce28ee2b54851e681cd31de42966",
+    "src/operation-data.js": "7dec08be10905c0b1b1e2705afa903be585da70c600d79cc8ba912e1d88ead26",
+    "src/operations-ui.css": "32a56e28c65e1cc3819b9c7e2ef1c630adc5efc2b912ce8005db4813beff1858",
+    "src/operations-ui.js": "c1674e9fca51d548e7976cdf3287e59b88e54a24b98351eddb319bf4d4073fdc",
+    "src/operations.js": "371a81791fd23a467283bb93c46d064a6f61fd599a934ad56fa426696155312e",
+    "src/priority-ui.css": "4ccfed12020f894792c84700bd5d80b7e51308362bdcc0c84d8c80bc5a633acc",
+    "src/resolve-citadel.js": "e9e2eaafdb240af12376f5804037104c25da04b7082589f32ee827b5022fdf3f",
+    "src/resolve-endgame.js": "224a93ce739e3851442ab43a0df3359fb40d23ab3bc1772b19ce3623b6c92d81",
+    "src/resolve-noveria-ui.js": "951d7dcb0aff5dba2ccfae2f4537445a52e6fdc4e33b34bcb4e9518bddc48d3a",
+    "src/resolve-noveria.js": "956e54a2b975aee38ef0873e9ece0063cfea7127471f6de95bf684d1f1bfcc47",
+    "src/resolve-origins-data.js": "2a615f98fbae2f31f50b24b0c7bfb1e5040618372f1ae323cbaff86a664c933c",
+    "src/resolve-origins.js": "4aa5ccd22e3edae8936c6e1d36c335f05469a4977393603fb290debf665f762d",
+    "src/resolve-virmire-ui.js": "9d564f3c57a79f6cbb9de9b5306c4ec19fa5450ccbe8c7bc23a45d1bb51cac41",
+    "src/resolve-virmire.js": "416868159a6e130d238b063084f0ad8ba37f7aaf71f562afce9631870661befd",
+    "src/save-slots.js": "d074c09308b6883195a8db263d9644e556cddba3344066d0d75b39f216716748",
+    "src/simulation-clock.js": "4393b7afd2963cb737953708372bd1612de594de836173d41766ae2bcb34baa1",
+    "src/state.js": "8c2302a217a705a3ae10f7b434ea50a616cba7a513465ee3f950cacb89954355",
+    "src/story-data.js": "ced99cd39bd735a4ecd01fc4d7897cc34185f5dbc4db377fcb833d49fd7e6dc5",
+    "src/story.js": "b11f92e6c25cf70ee7b83e5f9df041b3ae5e55e71ac4bf5013a444bf498623f3",
+    "src/style.css": "6e8abcd2e775fa2287136d3423927def7236d98031e361d171c13962a10912c4",
+    "src/tactical-positions.js": "762b9e41ff242f5be0661243c9cfcac52749f37790139595b5ba788e29755e2e",
+    "src/tactical-ui.js": "45385da462f1cf8ee00fb2bdcd72646e98a9353c6ea9e0b36c5515837641547a",
+    "src/tool-data.js": "a74626318635e44b4d9d074b95fdf7ce40c9c88bf2758ece6e260db433ea1a3a",
+    "src/universe-actors.js": "0d24051f3aa95f48905338da364d9928fed03a5f1fa5b952187fb283b94e9ac1",
+    "src/universe-ammo.js": "76580f7e77eb21f1bfd42438ee10c2e1f6088c214e2db4eac31a9a1033e6fdd6",
+    "src/universe-data.js": "7ab1b7e966768c5a6f47a46ec79c6856c2b5f062eac942e2b7e825115ad31023",
+    "src/universe-equipment-scenarios.js": "a7c596b35a96ff608e8cbe431b5896997fc8cbf70ff69df8e516b4fbfac2561a",
+    "src/universe-equipment.js": "8350a2bb10864a52482a134efa9733a4d03a7903251f3d228f08143832b7efce",
+    "src/universe-opponents.js": "1ac2f66218ae205bfe89e4db3e907ab48c94b1adbc88d469108ff70336f2d0e7",
+    "src/universe-opposition-scenarios.js": "518291edd40af1afac80c2db4ba70c9611c7476b38ad1ee0208a2a4d853d13f3",
+    "src/universe-portraits.js": "896977e1b52becf5bd2284eec01641a11ece90649e6bd2c0e6bf0050e02111da",
+    "src/universe-powers.js": "71f0287ced8dced901933f1bc650b8d7c4af8e40a3b6cfb7b11e9aa179821f20",
+    "src/universe-specialist-scenarios.js": "3be9693c263ae8803527d5defdd1b0783a068a3c6b2d2b9845c4ef0badbb7759",
+    "src/universe-ui.css": "1247dc3aa7c1a37c3366981edc5acc691398074015f0fb71bfafa8f92c480652",
+    "src/universe-ui.js": "3d674496b29e967fd34d0116d0167b7bf7b44c588cdfa95634ec90e64b924b24",
+    "src/universe-visuals.js": "419ae2d712fa90a7b749ffc92476fa11bda3ae72baac3d171b3d338fdb4f5dbe",
+    "src/universe-weapon-profiles.js": "2efbe4642b2742061a408241a3d63917b23ac52027f4de060d9a22e99dd2ae9d",
+    "src/vehicle-exercise.js": "ee93875380cca5ebb820042572fa1710ee2622b29ea8924531a2e99390ea5941",
+    "src/weapon-presentation.js": "ef3d7a7f13698649759a11660fd6b99c9b4e17c7e7fb9fa30f8ffb8c0d965946",
+    "src/world-camera.js": "c09c43ffeabc19f5147e40f9b98e1d7934f6c5b64b04490316e6c423045c1cf8",
+    "src/world-data.js": "4b32f10807c8632495430213279ec23baf73d67f5dfbec6cd1da94ded232c7ba",
+    "src/world-navigation.js": "ff148b46cd5c974f845cf00e57ef8dc886bf9f17c3a58a460ec98696667c08cd",
+    "src/world-sprite-alpha.js": "fc3482dc05dc135a877df2edb8762b58e91ebf23e2763ce23b9445a30d9d93c7",
+    "src/world.css": "73205c30b0ed4139265079e433694ac889853fe169e66d3b92d1f64600a75204",
+    "src/world.js": "8a181194182ae3206eb10aecd639e6dd0f70e5008944cfe7421d1614a44c2c11",
+    "scripts/comic-library-preferences-public-01.mjs": "7b3cc62dc9447c1c9f0c0930e5e2939d02f0b6f4e88c4a6209fd541b2ea0b80e",
+    "tests/comic-library-preferences.test.js": "349c29b6893410bd0b74f5d92bdc7185f979f6d49dd4aae137e7b93923460cdf",
+    "tests/comic-library.test.js": "352527934857052addb8b5c474badda00b5f82156b6f9b30a797ce0880401f2d",
+    "package.json": "dea840c142cc75ac85799e75b837eb4aa975c854323013473daee3e498474a1d",
+    "package-lock.json": "4c59f9c380cc361c0feac5ce669db68b7469f1c0361cdb7eac65256a88e22937"
+  },
+  "registryContextHashes": {
+    "src/universe-data.js": "7ab1b7e966768c5a6f47a46ec79c6856c2b5f062eac942e2b7e825115ad31023",
+    "docs/universe/catalogs/LIB.json": "59d6248bcc91ab069d0e56934f295b97830333f8e4161545b162a7a17d2a0d00"
+  },
+  "distFiles": {
+    "assets/armax/lot04/anderson-me1-idle.png": {
+      "bytes": 1658364,
+      "sha256": "63f31ec32b49c11582d78b0cd1b0911b14e05be306cf8b016d40fbb677f7a424"
+    },
+    "assets/armax/lot04/archon-andromeda-idle.png": {
+      "bytes": 2008988,
+      "sha256": "39a84bfc10dba3aee8e97a4925d428ae31eddaf5b0e262aeb42df2c52eb209c0"
+    },
+    "assets/armax/lot04/morinth-me2-idle.png": {
+      "bytes": 843445,
+      "sha256": "de149ff933fd36f1684197ca27053861b13563c7c27d7549dde5b36eb0f3b9f5"
+    },
+    "assets/armax/lot04/randall-ezno-infiltrator-idle.png": {
+      "bytes": 1768640,
+      "sha256": "9da762b6da0146d1038c9e07bc2e5fc608e951970d7a7b36ba9b50214baf7752"
+    },
+    "assets/armax/lot04/recovered/benezia-me1-neutral.png": {
+      "bytes": 1384044,
+      "sha256": "e7fd0222255269de04c52471eaf85fbeb336d330b4b614163a4b01b0f0031c7c"
+    },
+    "assets/armax/lot04/recovered/kirrahe-me1-neutral.png": {
+      "bytes": 1487154,
+      "sha256": "c20ba0e0b70bd20e0a41e1f284329ec6dd8c908603196729fb6ed88725a5213b"
+    },
+    "assets/armax/lot04/recovered/nyreen-me3-neutral-r0.png": {
+      "bytes": 1633679,
+      "sha256": "2815cdaf7d02a54e46d6b5348728a755c4ea8dddc1f7c097bdb7378a473870e6"
+    },
+    "assets/armax/lot04/recovered/nyreen-me3-neutral-r1.png": {
+      "bytes": 1509842,
+      "sha256": "66d124b9561bf00a361c22291d7057b782c6da5762272bb2473e6642722bb64e"
+    },
+    "assets/armax/lot04/review/anderson-me1-initial.png": {
+      "bytes": 1493235,
+      "sha256": "f4d7116c94c9fa583b69e70fb5412031d6c21bd23977158a7b19d0db8e1d6386"
+    },
+    "assets/armax/lot04/review/eve-me3-initial.png": {
+      "bytes": 2157017,
+      "sha256": "7c99c9309897e76110f9e96f12870526bfa4efd9e3b67bdbb57056a395a1a01e"
+    },
+    "assets/armax/lot04/review/eve-me3-recovered-v2.png": {
+      "bytes": 1864179,
+      "sha256": "c333ec07d2fd6b61d6eade5e3e4b23778493ede7d166407934664b0d768a566b"
+    },
+    "assets/armax/lot04/shadow-broker-me2-idle.png": {
+      "bytes": 2157864,
+      "sha256": "ba338268be453f95788da93ecca0bbaef32334eee892a148d26ceed5b26ead7e"
+    },
+    "assets/armax/lot04/tela-vasir-me2-idle.png": {
+      "bytes": 1643239,
+      "sha256": "b31d9021e83182679ff4be5413ff22c161e2de4aac6c95d62323b87f96b68985"
+    },
+    "assets/armax/lot05/benezia-me1-guard.png": {
+      "bytes": 1447546,
+      "sha256": "36a1399427f6084ea91c2942c051534f6b60b528f1b1aaa1fc3b4fbb41958585"
+    },
+    "assets/armax/lot05/kirrahe_me1_guard_right_r1.png": {
+      "bytes": 1130223,
+      "sha256": "8e9409294f490f204c52af435dec8ac5fa2521ee45d47be0a785c6cfc771f0d9"
+    },
+    "assets/armax/lot05/nihlus_kryik_me1_guard_right_r0.png": {
+      "bytes": 1093116,
+      "sha256": "2b43fd1e0439cbdae225be91b0bd1f628bba6c3a57b4093d9d594bcde0509bbd"
+    },
+    "assets/armax/lot05/nyreen_kandros_me3_omega_guard_right_r1.png": {
+      "bytes": 1969314,
+      "sha256": "a193c40fabae07bb045cbe8d2bf43909e42ba727270236ffd116cdff8712b2b6"
+    },
+    "assets/armax/lot05/recovered/aria-guard.png": {
+      "bytes": 1854994,
+      "sha256": "0a99d9824a6765458475ec290268b629de00400b27b457b7f2d1a2ba0e83b82f"
+    },
+    "assets/armax/lot05/recovered/garrus-me2-guard.png": {
+      "bytes": 1356440,
+      "sha256": "a5f766de0f1448d3da8979266edcf2b302e17c9a69d37f462436ff734d6d1088"
+    },
+    "assets/armax/lot05/recovered/jack-me3-guard.png": {
+      "bytes": 2047592,
+      "sha256": "6626811c57be19a51949a8a42c82ad21195cac6c45a9a503d87811d1f4e1d8b2"
+    },
+    "assets/armax/lot05/recovered/liara-me3-guard.png": {
+      "bytes": 1795186,
+      "sha256": "e2c0ee5944fed987b54c96c197a54525af5341026d89b2b171b4cce191f6c2b1"
+    },
+    "assets/armax/lot05/recovered/mordin-me2-guard.png": {
+      "bytes": 1780809,
+      "sha256": "e3d7a4a769c274182692e327fc4b7cdbbbf8a518ad7ebf9c065d5262db0d1377"
+    },
+    "assets/armax/lot05/recovered/sara-ryder-mea-guard.png": {
+      "bytes": 1836161,
+      "sha256": "bcb50c7f21e4232581e9d59ab40610201ec55c872ce4a3f9fd51bd7ffbead095"
+    },
+    "assets/armax/lot05/recovered/scott-ryder-mea-guard.png": {
+      "bytes": 1890564,
+      "sha256": "f1f301a28b42f35727ec0fde112d56a0573fdfa8f34e050cd427187924b3f534"
+    },
+    "assets/armax/lot05/recovered/shepard-male-n7-guard.png": {
+      "bytes": 913720,
+      "sha256": "8e309c5fc44a3312ebf32bbd374b9847f9f3b411b11dc36602a2845818fc5000"
+    },
+    "assets/armax/lot05/recovered/tali-me2-guard.png": {
+      "bytes": 2089941,
+      "sha256": "fcae3324c44ea62fce6e0beb6aef448db386b3314ab75d2bfe2eb34824e5e31f"
+    },
+    "assets/armax/lot05/recovered/thane-me2-guard.png": {
+      "bytes": 1942921,
+      "sha256": "7c6558b1dd20aefca65a11fc4b757adc1252e99f4a3ad1d41ccfdb3bc85e59b8"
+    },
+    "assets/armax/lot05/review/benezia-me1-cleanup-attempt.png": {
+      "bytes": 1465563,
+      "sha256": "39054e09b9e87bf2365b1caf8231b3099b45d30d8b578a7f6466e9f1ef147c2c"
+    },
+    "assets/armax/lot05/review/kirrahe_me1_guard_right_r0.png": {
+      "bytes": 1213048,
+      "sha256": "edda8725496eb8d9eb823a977608aa8d1c3522329b52a50bba2304fdfa63259d"
+    },
+    "assets/armax/lot05/review/nyreen_kandros_me3_omega_guard_right_r0.png": {
+      "bytes": 1917447,
+      "sha256": "84f92c744743739b88b2515eca9025d395cfc1842ee330720964312fa807b7ed"
+    },
+    "assets/armax/lot06/costumes/jack-me2-aap1-guard-right.png": {
+      "bytes": 1817154,
+      "sha256": "ec99abc26c20894cb1e82104a0f496bb79bb1495dc329b49052d8bb282c53395"
+    },
+    "assets/armax/lot06/costumes/miranda-me2-aap2-neutral-right.png": {
+      "bytes": 1479785,
+      "sha256": "b2b5ea1ed50258f2e62ef86e6e84b3bcfba574ed83253d8f5d39be346a740abc"
+    },
+    "assets/armax/lot06/costumes/tali-me2-aap2-neutral-right.png": {
+      "bytes": 1197253,
+      "sha256": "47d708fba3af4670bae45ff596c3568efbc23b7680b0a268895aa5018e1f97be"
+    },
+    "assets/armax/lot06/fighters/balak-me1-guard-right.png": {
+      "bytes": 1755455,
+      "sha256": "f2b34ed0781ee4d714d7aa3ce9cabf54ea262114869d9888e858a92e2f6a179f"
+    },
+    "assets/armax/lot06/stages/normandy-sr2-me3-shuttle-bay-master.png": {
+      "bytes": 2372325,
+      "sha256": "6a99cb9628d2c8ddbca251f509b6aef15642457d1cbc3772c9c833a5c86512b7"
+    },
+    "assets/armax/lot06/stages/surkesh-me3-stg-platform-master.png": {
+      "bytes": 2575778,
+      "sha256": "29cf74182df50a51bc5f2de528a91f1fe3deee2f3197a04e81896c36e201bdc4"
+    },
+    "assets/armax/lot07/costumes/grunt-me2-aap2-neutral-right-r1.png": {
+      "bytes": 2460891,
+      "sha256": "cbd7bf6d9de952891f82cc4222bc77e8c2e015e59e5de5b55251818d8f5fefb4"
+    },
+    "assets/armax/lot07/costumes/grunt-me2-aap2-neutral-right.png": {
+      "bytes": 2465829,
+      "sha256": "5832932283f22b183d781093892759261cf1fc63b8d4d3f5b250c9389a437e7c"
+    },
+    "assets/armax/lot07/costumes/thane-me2-aap1-guard-right-r1.png": {
+      "bytes": 1777841,
+      "sha256": "63db9c6b2efe9a3bee2067d85da2f04ba4341a1f17ffc39af27dd2d04a46e977"
+    },
+    "assets/armax/lot07/costumes/thane-me2-aap1-guard-right.png": {
+      "bytes": 1777447,
+      "sha256": "ca3b1e1f8f4486efc3a6af3397df9232749b5c990112acdea1db353b5e315bf6"
+    },
+    "assets/armax/lot07/fighters/brute-me3-armoured-crouch-right-r1.png": {
+      "bytes": 2003038,
+      "sha256": "1b763e716c7d63eb7220d2f88cae7ac2159701fe14a1e36de788ecdfa1a4eec7"
+    },
+    "assets/armax/lot07/fighters/marauder-me3-idle-right.png": {
+      "bytes": 2092761,
+      "sha256": "d8554f91fb8811345c7ce6787ad4807e0f34ed56ee89d89c6749fe80e338b0f2"
+    },
+    "assets/armax/lot07/review/brute-me3-armoured-idle-right-r0.png": {
+      "bytes": 1891623,
+      "sha256": "37e974b95a049a170ca03ec63e22c8a9029d1c9e57e8ddc63fb1d70a0adbea0c"
+    },
+    "assets/armax/lot07/stages/grissom-me3-atrium-master.png": {
+      "bytes": 3112257,
+      "sha256": "64c0c97a5e152e722a0b6739dacc60706c1874ed801a20e6fb68454edf4da717"
+    },
+    "assets/armax/lot07/stages/hagalaz-me2-shadow-broker-hull-master.png": {
+      "bytes": 2208142,
+      "sha256": "0e0ac137f31bcf739a87ec849da8bacb74d42f1dbc8747cef96079a0cb00d95a"
+    },
+    "assets/armax/lot07/stages/omega-me2-afterlife-master.png": {
+      "bytes": 2068808,
+      "sha256": "be0dd9c8a192b87e9b40e812f49f05a344b2324c01cf13130ebb678e6d1ccd9d"
+    },
+    "assets/armax/lot08/costumes/kasumi-me2-loyalty-guard-right.png": {
+      "bytes": 1606861,
+      "sha256": "15b9ec55be4e2a232e879f7572462b114887e1cb1f3a2e7f9aade9eed06fab95"
+    },
+    "assets/armax/lot08/costumes/mordin-me2-loyalty-neutral-right.png": {
+      "bytes": 1063800,
+      "sha256": "7723a1601f425ded75eee2edaba101b0fc16672f202bb3348b4abc8d4b078d23"
+    },
+    "assets/armax/lot08/fighters/atlas-me3-closed-cockpit-right.png": {
+      "bytes": 2206525,
+      "sha256": "28940dfa69c0a5cc146a72df21dd5330c7a23dd0ba19681079099ce326e12ee4"
+    },
+    "assets/armax/lot08/fighters/fenris-me2-ready-right.png": {
+      "bytes": 2096230,
+      "sha256": "fdae6eb8fa756ab3d46a58dfada8d6a4523c6e5c327952bfa97b0be6bc24dba1"
+    },
+    "assets/armax/lot08/fighters/guardian-me3-shield-front.png": {
+      "bytes": 1581537,
+      "sha256": "29d303ca7c4b8eb1dae92d819d5adad4b0c02a649a5f2d83eb4b8050b4185104"
+    },
+    "assets/armax/lot08/fighters/loki-me2-pistol-ready-left.png": {
+      "bytes": 1569902,
+      "sha256": "a72593b723df9f4bbcb603a51db3010527a0df4a985c15e0cdc04af5cb777240"
+    },
+    "assets/armax/lot08/stages/eos-mea-vault-heart-master.png": {
+      "bytes": 2164571,
+      "sha256": "981d74dc4231591b22dc6fce0ac6a257c4a357973ef7f71cc28a36729650e4c0"
+    },
+    "assets/armax/lot08/stages/kadara-mea-market-master.png": {
+      "bytes": 2846943,
+      "sha256": "2da0f4f6d66ef91a243a0fb7393eec11212410427c55299a977f1c652d90594b"
+    },
+    "assets/armax/lot08/stages/mars-me3-archives-gallery-master.png": {
+      "bytes": 2391976,
+      "sha256": "5e808795fa30f568ac24c0a5791cfcf430373cc43e39a1a834428f2c4c482aad"
+    },
+    "assets/armax/lot08/stages/pragia-me2-facility-overgrown-master.png": {
+      "bytes": 2379114,
+      "sha256": "8021cfb411cae861408f27fe44e67bfa7f88e2aac6322c7b0611bfa64cb0c12f"
+    },
+    "assets/arsenal-equipment.png": {
+      "bytes": 2030588,
+      "sha256": "2337a454628749d2fb42bc3de1956e49e787441d354dab01881376e835355714"
+    },
+    "assets/arsenal-fleet.png": {
+      "bytes": 1921736,
+      "sha256": "efc36f55e59f18ecd8b43649299f19e057e4b94e7d0ce11631ab25dd516b2dd5"
+    },
+    "assets/arsenal-opponents.png": {
+      "bytes": 2184312,
+      "sha256": "03380d759702f0983ea4c318a9fc49ac75d8a789184136f5ad3e63d59d3b3147"
+    },
+    "assets/arsenal-people.png": {
+      "bytes": 2621020,
+      "sha256": "c91d0ee166f9c507e2c73271487120ee6c023c208e702270b156cdf4219211b3"
+    },
+    "assets/arsenal-visuals.json": {
+      "bytes": 24007,
+      "sha256": "d9cf02612355373bd25e43905f87182f44ae4cd592029d616bee962fcff162ea"
+    },
+    "assets/boss-atlas.png": {
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    "assets/boss-benezia-animation.json": {
+      "bytes": 1580,
+      "sha256": "afb12aa6053c332af0c6caba4a1eee15e9ad3b8761f8ef23f95cd619568ee2c8"
+    },
+    "assets/boss-benezia-combat.png": {
+      "bytes": 1463718,
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    "assets/boss-saren-animation.json": {
+      "bytes": 1566,
+      "sha256": "69ab0fe2e2eda2be4e235bec600ff0d9ea82a4cbcf69d2553a9ecddc46cc1ffa"
+    },
+    "assets/boss-saren-combat.png": {
+      "bytes": 1918110,
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    "assets/boss-saren-final-animation.json": {
+      "bytes": 1604,
+      "sha256": "76405c9cd6bf75e48bf22ffc6c635ac19483f4f32a96827328f52b6145060b9f"
+    },
+    "assets/boss-saren-final-combat.png": {
+      "bytes": 1974389,
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    },
+    "assets/boss-thorian-animation.json": {
+      "bytes": 1556,
+      "sha256": "8eae1a27117ed815adeffe6fa4e10680bdf3030b513584c8d071cbbc5f6dfd3b"
+    },
+    "assets/boss-thorian-combat.png": {
+      "bytes": 2100344,
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    "assets/chronicle-portraits-me2-me3.png": {
+      "bytes": 2622017,
+      "sha256": "7e1e20382766f0740e06dcae7f4598ff3f9d2528fc434988e495a129803b3ebd"
+    },
+    "assets/chronicle-portraits.json": {
+      "bytes": 6259,
+      "sha256": "354f530c9a77e56c77c55ee7b1036f5ac8bb923c47f35015748211bc11a00977"
+    },
+    "assets/chronicles-8yRHtPVT.js": {
+      "bytes": 28679,
+      "sha256": "181b43de641b4c373aaf4c2058439c2c6d7c0c8508a56db92ade7041a105104e"
+    },
+    "assets/citadel-keyart.png": {
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    "assets/combat-2d/continuation-20261119/grunt-me2-charge-contact.png": {
+      "bytes": 2165816,
+      "sha256": "13449f3beffe0349245a7377c0c2c813132ca8c7e1f39c3b1a0fea7c773e132c"
+    },
+    "assets/combat-2d/continuation-20261119/grunt-me2-guard.png": {
+      "bytes": 2327022,
+      "sha256": "d9263f8afc38169ec16173f94c3f33949723d3aff5118f813c2da1359b6d0ade"
+    },
+    "assets/combat-2d/continuation-20261119/grunt-me2-hit-recoil.png": {
+      "bytes": 2347350,
+      "sha256": "7eb600ff9d32fdd4f56864c7652e8c5c3fb92084a6a2c04c01d7d9e663267d21"
+    },
+    "assets/combat-2d/continuation-20261119/grunt-me2-victory.png": {
+      "bytes": 2352415,
+      "sha256": "fa5adf5be059ba5660506373b8f4eaec140c36b3530f03f8af03e45b17d69053"
+    },
+    "assets/combat-2d/continuation-20261119/legion-me2-drone-discharge-fx.png": {
+      "bytes": 554986,
+      "sha256": "6dc636775464b82f03a0868587e598711371b7db8ce6238e0d655238d9706939"
+    },
+    "assets/combat-2d/continuation-20261119/legion-me2-drone-idle.png": {
+      "bytes": 1470709,
+      "sha256": "de4e174f727c5aaf0c41ca5b02c2d4117823ca9a92d52ec852004c75f0b19900"
+    },
+    "assets/combat-2d/continuation-20261119/port-hanshan-composition.png": {
+      "bytes": 2643362,
+      "sha256": "54914ad08ff20fd84e4baa212baae5e7dcbefd4087ba97c381a38635467e967b"
+    },
+    "assets/combat-2d/continuation-20261119/port-hanshan-exterior.png": {
+      "bytes": 2435690,
+      "sha256": "29f982a2d3cfc020708c8db6b26b58eedea84499edfab15c8d5ea8126691655a"
+    },
+    "assets/combat-2d/continuation-20261119/port-hanshan-foreground.png": {
+      "bytes": 295009,
+      "sha256": "f4bb1a5376efd411358b19c10428547277e719067db1e9cd38a62bc41da60cfa"
+    },
+    "assets/combat-2d/continuation-20261119/port-hanshan-interior.png": {
+      "bytes": 2378939,
+      "sha256": "0164efcdad35391929a2a04175a3fc13caa930d25aab89a61a1d784382362af2"
+    },
+    "assets/comic-field-BmNT-lfY.js": {
+      "bytes": 88192,
+      "sha256": "b2438754003dfe99642b49a5c0aad0b72526261d7603e16d47c640698eae1190"
+    },
+    "assets/companion-ashley-animation.json": {
+      "bytes": 2779,
+      "sha256": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022"
+    },
+    "assets/companion-ashley-combat.png": {
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    "assets/companion-garrus-animation.json": {
+      "bytes": 2465,
+      "sha256": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b"
+    },
+    "assets/companion-garrus-combat.png": {
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    "assets/companion-jenkins-animation.json": {
+      "bytes": 3126,
+      "sha256": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359"
+    },
+    "assets/companion-jenkins-combat.png": {
+      "bytes": 1634485,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+    },
+    "assets/companion-kaidan-animation.json": {
+      "bytes": 2826,
+      "sha256": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b"
+    },
+    "assets/companion-kaidan-combat.png": {
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    "assets/companion-liara-animation.json": {
+      "bytes": 3174,
+      "sha256": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef"
+    },
+    "assets/companion-liara-combat.png": {
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    "assets/companion-tali-animation.json": {
+      "bytes": 3235,
+      "sha256": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812"
+    },
+    "assets/companion-tali-combat.png": {
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    "assets/companion-wrex-animation.json": {
+      "bytes": 2450,
+      "sha256": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702"
+    },
+    "assets/companion-wrex-combat.png": {
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    "assets/continuation-catalogue-CpJZckPb.js": {
+      "bytes": 7620,
+      "sha256": "43443f56eefe467883f33355b180d6bcf87239c6c2d792776f2add8bbf71e8ba"
+    },
+    "assets/continuity-DPVPhI9p.js": {
+      "bytes": 6121,
+      "sha256": "04dcdabe03f870ae2634962afdcdebcdcebeae1d893be73de0f2585d64b44dd0"
+    },
+    "assets/crew-atlas.png": {
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    "assets/eden-ground-dirt.png": {
+      "bytes": 4408187,
+      "sha256": "829249c6fe9f4d43a84354b2a1d21f23f9d17fc2565ae6a703920d09ee2d267d"
+    },
+    "assets/eden-ground-grass.png": {
+      "bytes": 4741123,
+      "sha256": "8bc099c50363679a60231e09f985b0600ae11c91ef66ba25e8d1834f7b840cce"
+    },
+    "assets/enemy-asari-animation.json": {
+      "bytes": 2265,
+      "sha256": "4b299f599418299c62d230ebf682ad0e82175e056f638b7425b255ef2f6ee902"
+    },
+    "assets/enemy-asari-combat.png": {
+      "bytes": 1606367,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a"
+    },
+    "assets/enemy-atlas.png": {
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    "assets/enemy-creeper-animation.json": {
+      "bytes": 2275,
+      "sha256": "4d0c9b23b7f36f546fa479fe10317df51e068779abb1ac1f675bdad40ddc9132"
+    },
+    "assets/enemy-creeper-combat.png": {
+      "bytes": 1903380,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300"
+    },
+    "assets/enemy-geth-animation.json": {
+      "bytes": 2239,
+      "sha256": "94342e83937b0d098571297c7d25e844c326df73945912cd0825eb9f11c00363"
+    },
+    "assets/enemy-geth-combat.png": {
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    "assets/enemy-geth-destroyer-animation.json": {
+      "bytes": 2431,
+      "sha256": "6d3bb6b6a834bda4e79396a32d1d4bc1485c64ba97ae69a4cbf0ee49fc4b1a04"
+    },
+    "assets/enemy-geth-destroyer-combat.png": {
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    "assets/enemy-geth-sniper-animation.json": {
+      "bytes": 2412,
+      "sha256": "277c8f1c855561dbaaeec2115850d6fd0860f306d89f92856d5e797a7228c092"
+    },
+    "assets/enemy-geth-sniper-combat.png": {
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    "assets/enemy-husk-animation.json": {
+      "bytes": 2233,
+      "sha256": "94c68b139909a8ad357c588c7723d5e41b2f907a97e4ba259a596e7026810754"
+    },
+    "assets/enemy-husk-combat.png": {
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    "assets/enemy-krogan-animation.json": {
+      "bytes": 2247,
+      "sha256": "21e4b7f58dac4b6fe153b664beef9f76ef453c5ea37f219d81ada2d1f31c8f7f"
+    },
+    "assets/enemy-krogan-combat.png": {
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    "assets/enemy-rachni-animation.json": {
+      "bytes": 2255,
+      "sha256": "ea546356667aef5acf7d61f39613906a0c4f7cd55633703aded2f91cb5750fc1"
+    },
+    "assets/enemy-rachni-combat.png": {
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    "assets/expansion-DsxthLSy.js": {
+      "bytes": 162086,
+      "sha256": "67973efa32870bce2fd7b51638db9fed39ee40ee29ab7033fd68e67dbd69b7fd"
+    },
+    "assets/frontier-enemies.json": {
+      "bytes": 3607,
+      "sha256": "328e9a2c6b24a526acabcc17b08bf4617ba3f3b16f9ab73221bc4eaf442be78b"
+    },
+    "assets/frontier-enemies.png": {
+      "bytes": 2181259,
+      "sha256": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9"
+    },
+    "assets/frontier-npcs.json": {
+      "bytes": 2111,
+      "sha256": "4b4037bc3a7c29a6f3bab6fd3b92f8b952077f5b93715cb9ec61e9c58b93780d"
+    },
+    "assets/frontier-npcs.png": {
+      "bytes": 1578744,
+      "sha256": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc"
+    },
+    "assets/horizon-enemies.json": {
+      "bytes": 2467,
+      "sha256": "47de288b397e0759c46a846f44ec1e8b508ebbdedf132583e8890fd414d365c0"
+    },
+    "assets/horizon-enemies.png": {
+      "bytes": 1885448,
+      "sha256": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0"
+    },
+    "assets/horizon-fauna.json": {
+      "bytes": 2202,
+      "sha256": "bc6771c0ad6d8b760ecc98321d5cb317e09cb352403f7fd04bb1e7f2c538cc10"
+    },
+    "assets/horizon-fauna.png": {
+      "bytes": 1855369,
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964"
+    },
+    "assets/horizon-fleet-later.json": {
+      "bytes": 1513,
+      "sha256": "f1dbc796cbc59723f07d0e09cb7ba643ae684110d7204f4bbf78f98ee3bbf4f0"
+    },
+    "assets/horizon-fleet-later.png": {
+      "bytes": 2040877,
+      "sha256": "bbf24332b41435241d213fd34765d08f1e886162a94ffddb20b401af96e9d20a"
+    },
+    "assets/horizon-fleet-me1.json": {
+      "bytes": 1496,
+      "sha256": "57c94b9b27b852c7817beb5728689d78f5ceb8e3bc6e5ed388aa86a5ccd03462"
+    },
+    "assets/horizon-fleet-me1.png": {
+      "bytes": 1954276,
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb"
+    },
+    "assets/horizon-npcs.json": {
+      "bytes": 2213,
+      "sha256": "06096a1b71c8043a8490793d00581b060473100aa608a0ed5f9b409fc4d6b36d"
+    },
+    "assets/horizon-npcs.png": {
+      "bytes": 1876944,
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601"
+    },
+    "assets/index-COM-5j7E.css": {
+      "bytes": 84891,
+      "sha256": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+    },
+    "assets/index-smgCh4W8.js": {
+      "bytes": 872090,
+      "sha256": "2c497660e09b92dfe8005cda2283e7775b482d63aaddc847c0f7c47f89ea7b9b"
+    },
+    "assets/joker-seated.json": {
+      "bytes": 2106,
+      "sha256": "cf48ac97ec73b3bb1bc2e1e8d64755cc8175d563192caea27546adaf20dc3ecb"
+    },
+    "assets/joker-seated.png": {
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    "assets/manifest.json": {
+      "bytes": 84355,
+      "sha256": "e1d397231df00479c2b3c7f489f1619881d1853a5469b9949870f1edf8d7eae2"
+    },
+    "assets/npc-atlas.png": {
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    "assets/props-atlas.png": {
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    "assets/shepard-female-animation.json": {
+      "bytes": 6404,
+      "sha256": "ea8a657353a4f8e837b6809a5bbbcd627d3938ffc57fa50c851d5b8709092f1f"
+    },
+    "assets/shepard-female-combat-atlas.png": {
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    "assets/shepard-female-walk-atlas.png": {
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    "assets/shepard-male-animation.json": {
+      "bytes": 2626,
+      "sha256": "085002781eb0274b650e5358129383b87a59dc717822512e532ff569b75d8d52"
+    },
+    "assets/shepard-male-combat-atlas.png": {
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    "assets/shepard-walk-atlas.png": {
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    "assets/three-CflfletH.js": {
+      "bytes": 525878,
+      "sha256": "1f85085c8417af92beee06f30cdf886395e64c5b0323135911fed5bc8204b120"
+    },
+    "assets/universe-actors-CJChEjnX.js": {
+      "bytes": 44362,
+      "sha256": "02ee5869fb5776cf1c74aef0b4fa194b9a605215dbb78ce33f9f01560d4de1ef"
+    },
+    "assets/universe-data-BM4L-nP1.js": {
+      "bytes": 3468552,
+      "sha256": "ded58448300a618e3c8eda83c382c4e1720b4d86387bb0ea25a039cc6f122b79"
+    },
+    "assets/universe-equipment-BGf_a6xY.js": {
+      "bytes": 15986,
+      "sha256": "aa375e62f27996fffb9435f3542f1d3d3caae545ae7ee2ba9c1e71175c1cea06"
+    },
+    "assets/universe-ui-BVKFKL_6.js": {
+      "bytes": 93503,
+      "sha256": "de521f5ef65190a6c2a6fe1e1e4210ea92cefb93b9688ddb1e1926ed6861d885"
+    },
+    "assets/universe-ui-C6bJLGiN.css": {
+      "bytes": 23158,
+      "sha256": "555d5baf5a9f4eea336dc0414c4b1a2410c99164322d6ed5a5e0b7a34f8eb39d"
+    },
+    "assets/vehicle-atlas.png": {
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    "assets/vehicle-mako-directions.json": {
+      "bytes": 1539,
+      "sha256": "4e09bf1a8729e9a4301b198d780c1f55e72dbcf3c25fd7071be7a3c6e6e1e3d9"
+    },
+    "assets/vehicle-mako-directions.png": {
+      "bytes": 2280065,
+      "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74"
+    },
+    "index.html": {
+      "bytes": 660,
+      "sha256": "60b0ee9b03800f4d48f97e14ee235544d96758aa0c09f2b8b6ccda30aa3033f1"
+    }
+  },
+  "servedFiles": [
+    {
+      "path": "index.html",
+      "bytes": 660,
+      "sha256": "60b0ee9b03800f4d48f97e14ee235544d96758aa0c09f2b8b6ccda30aa3033f1"
+    },
+    {
+      "path": "assets/index-COM-5j7E.css",
+      "bytes": 84891,
+      "sha256": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+    },
+    {
+      "path": "assets/three-CflfletH.js",
+      "bytes": 525878,
+      "sha256": "1f85085c8417af92beee06f30cdf886395e64c5b0323135911fed5bc8204b120"
+    },
+    {
+      "path": "assets/index-smgCh4W8.js",
+      "bytes": 872090,
+      "sha256": "2c497660e09b92dfe8005cda2283e7775b482d63aaddc847c0f7c47f89ea7b9b"
+    },
+    {
+      "path": "assets/vehicle-atlas.png",
+      "bytes": 1400111,
+      "sha256": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b"
+    },
+    {
+      "path": "assets/crew-atlas.png",
+      "bytes": 2200826,
+      "sha256": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38"
+    },
+    {
+      "path": "assets/npc-atlas.png",
+      "bytes": 1823302,
+      "sha256": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1"
+    },
+    {
+      "path": "assets/enemy-atlas.png",
+      "bytes": 2502800,
+      "sha256": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f"
+    },
+    {
+      "path": "assets/boss-atlas.png",
+      "bytes": 2565877,
+      "sha256": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4"
+    },
+    {
+      "path": "assets/shepard-walk-atlas.png",
+      "bytes": 1031584,
+      "sha256": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476"
+    },
+    {
+      "path": "assets/shepard-female-walk-atlas.png",
+      "bytes": 979680,
+      "sha256": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc"
+    },
+    {
+      "path": "assets/props-atlas.png",
+      "bytes": 2546184,
+      "sha256": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875"
+    },
+    {
+      "path": "assets/shepard-female-combat-atlas.png",
+      "bytes": 1732207,
+      "sha256": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0"
+    },
+    {
+      "path": "assets/shepard-male-combat-atlas.png",
+      "bytes": 1756958,
+      "sha256": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18"
+    },
+    {
+      "path": "assets/companion-ashley-combat.png",
+      "bytes": 1860104,
+      "sha256": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783"
+    },
+    {
+      "path": "assets/companion-garrus-combat.png",
+      "bytes": 1776411,
+      "sha256": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d"
+    },
+    {
+      "path": "assets/companion-kaidan-combat.png",
+      "bytes": 1778616,
+      "sha256": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35"
+    },
+    {
+      "path": "assets/companion-tali-combat.png",
+      "bytes": 1731786,
+      "sha256": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470"
+    },
+    {
+      "path": "assets/companion-wrex-combat.png",
+      "bytes": 2038505,
+      "sha256": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a"
+    },
+    {
+      "path": "assets/companion-liara-combat.png",
+      "bytes": 1635769,
+      "sha256": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd"
+    },
+    {
+      "path": "assets/enemy-geth-combat.png",
+      "bytes": 1804948,
+      "sha256": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c"
+    },
+    {
+      "path": "assets/companion-jenkins-combat.png",
+      "bytes": 1634485,
+      "sha256": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+    },
+    {
+      "path": "assets/enemy-geth-sniper-combat.png",
+      "bytes": 1819781,
+      "sha256": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8"
+    },
+    {
+      "path": "assets/enemy-geth-destroyer-combat.png",
+      "bytes": 2007003,
+      "sha256": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd"
+    },
+    {
+      "path": "assets/enemy-husk-combat.png",
+      "bytes": 1888592,
+      "sha256": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff"
+    },
+    {
+      "path": "assets/enemy-krogan-combat.png",
+      "bytes": 1885221,
+      "sha256": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663"
+    },
+    {
+      "path": "assets/enemy-creeper-combat.png",
+      "bytes": 1903380,
+      "sha256": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300"
+    },
+    {
+      "path": "assets/enemy-rachni-combat.png",
+      "bytes": 2234953,
+      "sha256": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9"
+    },
+    {
+      "path": "assets/enemy-asari-combat.png",
+      "bytes": 1606367,
+      "sha256": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a"
+    },
+    {
+      "path": "assets/joker-seated.png",
+      "bytes": 1984506,
+      "sha256": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139"
+    },
+    {
+      "path": "assets/boss-saren-combat.png",
+      "bytes": 1918110,
+      "sha256": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318"
+    },
+    {
+      "path": "assets/boss-benezia-combat.png",
+      "bytes": 1463718,
+      "sha256": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788"
+    },
+    {
+      "path": "assets/boss-saren-final-combat.png",
+      "bytes": 1974389,
+      "sha256": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883"
+    },
+    {
+      "path": "assets/boss-thorian-combat.png",
+      "bytes": 2100344,
+      "sha256": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37"
+    },
+    {
+      "path": "assets/frontier-npcs.png",
+      "bytes": 1578744,
+      "sha256": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc"
+    },
+    {
+      "path": "assets/frontier-enemies.png",
+      "bytes": 2181259,
+      "sha256": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9"
+    },
+    {
+      "path": "assets/horizon-npcs.png",
+      "bytes": 1876944,
+      "sha256": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601"
+    },
+    {
+      "path": "assets/vehicle-mako-directions.png",
+      "bytes": 2280065,
+      "sha256": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74"
+    },
+    {
+      "path": "assets/horizon-enemies.png",
+      "bytes": 1885448,
+      "sha256": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0"
+    },
+    {
+      "path": "assets/horizon-fauna.png",
+      "bytes": 1855369,
+      "sha256": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964"
+    },
+    {
+      "path": "assets/horizon-fleet-me1.png",
+      "bytes": 1954276,
+      "sha256": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb"
+    },
+    {
+      "path": "assets/citadel-keyart.png",
+      "bytes": 2784825,
+      "sha256": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+    },
+    {
+      "path": "assets/universe-ui-C6bJLGiN.css",
+      "bytes": 23158,
+      "sha256": "555d5baf5a9f4eea336dc0414c4b1a2410c99164322d6ed5a5e0b7a34f8eb39d"
+    },
+    {
+      "path": "assets/universe-ui-BVKFKL_6.js",
+      "bytes": 93503,
+      "sha256": "de521f5ef65190a6c2a6fe1e1e4210ea92cefb93b9688ddb1e1926ed6861d885"
+    },
+    {
+      "path": "assets/continuation-catalogue-CpJZckPb.js",
+      "bytes": 7620,
+      "sha256": "43443f56eefe467883f33355b180d6bcf87239c6c2d792776f2add8bbf71e8ba"
+    },
+    {
+      "path": "assets/chronicles-8yRHtPVT.js",
+      "bytes": 28679,
+      "sha256": "181b43de641b4c373aaf4c2058439c2c6d7c0c8508a56db92ade7041a105104e"
+    },
+    {
+      "path": "assets/continuity-DPVPhI9p.js",
+      "bytes": 6121,
+      "sha256": "04dcdabe03f870ae2634962afdcdebcdcebeae1d893be73de0f2585d64b44dd0"
+    },
+    {
+      "path": "assets/comic-field-BmNT-lfY.js",
+      "bytes": 88192,
+      "sha256": "b2438754003dfe99642b49a5c0aad0b72526261d7603e16d47c640698eae1190"
+    },
+    {
+      "path": "assets/universe-actors-CJChEjnX.js",
+      "bytes": 44362,
+      "sha256": "02ee5869fb5776cf1c74aef0b4fa194b9a605215dbb78ce33f9f01560d4de1ef"
+    },
+    {
+      "path": "assets/universe-equipment-BGf_a6xY.js",
+      "bytes": 15986,
+      "sha256": "aa375e62f27996fffb9435f3542f1d3d3caae545ae7ee2ba9c1e71175c1cea06"
+    },
+    {
+      "path": "assets/expansion-DsxthLSy.js",
+      "bytes": 162086,
+      "sha256": "67973efa32870bce2fd7b51638db9fed39ee40ee29ab7033fd68e67dbd69b7fd"
+    },
+    {
+      "path": "assets/universe-data-BM4L-nP1.js",
+      "bytes": 3468552,
+      "sha256": "ded58448300a618e3c8eda83c382c4e1720b4d86387bb0ea25a039cc6f122b79"
+    }
+  ],
+  "sourceRequests": [],
+  "errors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "warnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:4332/favicon.ico"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:4332/favicon.ico"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:4332/favicon.ico"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:4332/favicon.ico"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "url": "http://127.0.0.1:4332/favicon.ico"
+    }
+  ],
+  "faultInjection": [
+    "A separate browser context wraps Storage.prototype.setItem only for the library preference key and deliberately throws QuotaExceededError. No game/Chronicle storage, clock, DOM, actor or resource is injected.",
+    "Another separate context starts with the sole library preference key containing malformed JSON, using Playwright storageState. Its bytes must be retained and no false successful save is claimed."
+  ],
+  "limitations": [
+    "The ME1 witness is an unprogressed native newGame uploaded through the real file chooser; no ME1 campaign playthrough is claimed.",
+    "The owner conclusion is the existing original archive exercise, not a comic page transcription, original mission, source hardcover inspection or new canon choice.",
+    "Preference consultation marks are personal dossier status, not completion of a narrative unit or verification of a physical edition. No page or bibliographic fact is added."
+  ],
+  "collectorSnapshot": {
+    "path": "docs/qa/comic-library-preferences-public-01-collector.mjs",
+    "sha256": "7b3cc62dc9447c1c9f0c0930e5e2939d02f0b6f4e88c4a6209fd541b2ea0b80e"
+  },
+  "chromium": "154.0.8037.57",
+  "responseBodiesVerified": 171,
+  "sourceFrozen": true,
+  "distFrozen": true,
+  "browserClosed": true
+}

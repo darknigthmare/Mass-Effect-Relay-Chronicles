@@ -1,4 +1,5 @@
 import { comicFictionReferences, getComicBriefing, listComicBriefings } from './comic-briefings.js';
+import { renderComicFieldWorkspace } from './comic-field-ui.js';
 import { getComicLibraryTarget, renderComicLibrary } from './comic-library.js';
 import { getUniverseRecord, getUniverseWork } from './universe-data.js';
 
@@ -13,7 +14,7 @@ function sourceLink(source, esc) {
   return `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer" data-comic-source="${esc(source.id)}">${esc(source.title)}</a>`;
 }
 
-function journal(anchors, adaptation, esc) {
+function journal(anchors, adaptation, esc, caption = 'Exercice d’archives original pour Relay Chronicles. Son classement reste dans cette chronique.') {
   return `<section class="comic-journal" data-comic-journal aria-label="Provenance du dossier">
     ${anchors.map(anchor => `<article data-comic-origin="${esc(anchor.category)}" data-comic-anchor="${esc(anchor.id)}">
       <span class="comic-origin">${esc(anchor.category)}</span><h5>${esc(anchor.title)}</h5>
@@ -21,7 +22,7 @@ function journal(anchors, adaptation, esc) {
       ${anchor.reference ? `<p data-comic-reference>${esc(anchor.reference)}</p>` : ''}
       <div class="comic-sources">${anchor.sources.map(source => sourceLink(source, esc)).join('')}</div>
     </article>`).join('')}
-    ${adaptation ? '<article data-comic-origin="Adaptation"><span class="comic-origin">Adaptation</span><p>Exercice d’archives original pour Relay Chronicles. Son classement reste dans cette chronique.</p></article>' : ''}
+    ${adaptation ? `<article data-comic-origin="Adaptation"><span class="comic-origin">Adaptation</span><p>${esc(caption)}</p></article>` : ''}
   </section>`;
 }
 
@@ -83,7 +84,8 @@ function renderBriefing(briefing, esc) {
 export function renderComicReading(view, ui, esc) {
   if (ui.mediaId === '') return '<div class="comic-reading"><button class="secondary" data-do="comic-library-back">Ouvrir le sommaire des BD</button></div>';
   if (!comicWorks.has(ui.mediaId)) return '';
-  if (ui.mediaId === 'LIB') return renderComicLibrary({ esc });
+  if (ui.mediaId === 'LIB') return renderComicLibrary({ esc, preferences: view.libraryPreferences,
+    readOnly: view.libraryPreferencesReadOnly });
   const work = getUniverseWork(ui.mediaId);
   const context = view.context?.mediaId === work.id ? view.context : null;
   const ownsSession = !!context && view.session?.context?.mediaId === context.mediaId
@@ -91,11 +93,13 @@ export function renderComicReading(view, ui, esc) {
   const progress = ownsSession ? view.session.comicProgress : null;
   const briefing = ownsSession && getComicBriefing(context, ui.comicId, progress?.[ui.comicId]);
   const entries = ownsSession ? listComicBriefings(context) : [];
+  const fields = ownsSession ? renderComicFieldWorkspace(context, ui.comicFieldId, view.session.comicFields, { esc, journal }) : '';
   return `<section class="comic-reading" data-comic-archive data-media-id="${esc(work.id)}" data-period-id="${esc(context?.periodId)}">
     <div class="comic-header"><h3>${work.id === 'BLA' ? 'Fiction dans l’univers' : 'Dossiers BD'}</h3>
       <button class="secondary" data-do="comic-library-back">Library Edition</button></div>
     ${work.id === 'BLA' ? comicFictionReferences().map(entry => journal(entry.anchors, false, esc)).join('') : ''}
-    ${briefing ? renderBriefing(briefing, esc) : entries.length ? `<ul class="comic-list" data-comic-briefing-list>
+    ${!briefing ? fields : ''}
+    ${briefing ? renderBriefing(briefing, esc) : !ui.comicFieldId && entries.length ? `<ul class="comic-list" data-comic-briefing-list>
       ${entries.map(entry => `<li><button class="secondary" data-do="comic-briefing-open" data-id="${esc(entry.id)}">
         <strong>${esc(entry.title)}</strong><small>${esc(entry.objective)}</small>
         ${progress?.[entry.id] ? `<span>${progress[entry.id].closed ? 'Classé' : 'En cours'}</span>` : ''}

@@ -10,6 +10,8 @@ import { chronicleSignatureStatus } from './completion-chronicles-powers.js';
 import { renderChronicleContinuity } from './advance-continuity-ui.js';
 import { renderComicReading } from './comic-briefing-ui.js';
 export { getComicLibraryTarget } from './comic-briefing-ui.js';
+export { createComicLibraryPreferences, loadComicLibraryPreferences, saveComicLibraryPreferences,
+  updateComicLibraryPreferences } from './comic-library.js';
 export { chronicleSignatureStatus };
 const escapeDefault = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 const GROUPS = [['all', 'Tout'], ['actors', 'Personnages'], ['equipment', 'Équipement'], ['powers', 'Pouvoirs'], ['story', 'Récits et lieux'], ['fleet', 'Vaisseaux illustrés'], ['fauna', 'Faune illustrée']];

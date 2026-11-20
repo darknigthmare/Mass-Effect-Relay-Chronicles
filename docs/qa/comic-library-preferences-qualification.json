@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "generatedAt": "2026-11-20T17:12:39.386Z",
+  "baselineCommit": "645043ed4d006c59520279a9908b5a7835fd19c9",
+  "sourceHashes": {
+    "src/comic-library-preferences.js": "f463df1e91bae1674ba40a2bc3e307662e072aac6514d90fb3c73e946fd4d072",
+    "src/comic-library.js": "8b2505cea1aa9be69111aebc78a4d62f88b084d1a999304c9fbe6bdbf5494ed5",
+    "src/comic-library.css": "2cc28fd2ea6e2d4e2bfbe81f2bce5f8f6e936aee2f9f7a9c6613988c2daa15ee",
+    "src/main.js": "a8ba22a2091fccf7af4bbc6e1e007ed1878470b2ebe890f80da5238340421d15",
+    "src/comic-briefing-ui.js": "4a5f12a85810ca60ec3596d5f08198e02feff2f32c85df75e8cd7fc017d072de",
+    "src/universe-ui.js": "3d674496b29e967fd34d0116d0167b7bf7b44c588cdfa95634ec90e64b924b24",
+    "tests/comic-library-preferences.test.js": "349c29b6893410bd0b74f5d92bdc7185f979f6d49dd4aae137e7b93923460cdf",
+    "tests/comic-library.test.js": "352527934857052addb8b5c474badda00b5f82156b6f9b30a797ce0880401f2d",
+    "scripts/comic-library-preferences-public-01.mjs": "7b3cc62dc9447c1c9f0c0930e5e2939d02f0b6f4e88c4a6209fd541b2ea0b80e"
+  },
+  "proofs": {
+    "native": {
+      "path": "docs/qa/comic-library-preferences-native-01.json",
+      "sha256": "29f402189f41ca7225774b94e8d27d9d3c9e1cf0ef4154959ff16b3d0b6ed404"
+    },
+    "public": {
+      "path": "docs/qa/comic-library-preferences-public-01-report.json",
+      "sha256": "9b416ebf6a6ddacabd89480a4d9f5f43b8c6bd4ba8201211d3fe82afbd0cec9e"
+    },
+    "visualReview": {
+      "path": "docs/qa/comic-library-preferences-public-01-visual-review.json",
+      "sha256": "2f037f624c28537fab4d78eac95b588de0e2c0d2420869b497536f617f77b627"
+    }
+  },
+  "checks": [
+    {
+      "id": "LIB-SYS-SAVE",
+      "passed": true,
+      "proposedStatus": "Validé",
+      "fullCriterionPassed": true,
+      "descriptionComplete": true,
+      "exactDescription": "Conserver la progression de Library Edition sans exporter une issue hypothétique vers la continuité des jeux.",
+      "exactCriterion": "Sauvegarder, quitter et reprendre avant/après un raccord ne double aucun objet, objectif ou récompense.",
+      "exactAdaptation": "Conserver préférences de tri, marque-pages et statut de consultation; ne pas modifier la sauvegarde narrative des jeux ou des adaptations.",
+      "dependencies": [
+        "LIB-REF-COLLECTION"
+      ],
+      "covered": [
+        "Tri, marque-pages canoniques, statut de consultation personnelle, dernier renvoi et sections ouvertes conservés dans une clé dédiée ; anciennes valeurs absentes migrées et données présentes invalides refusées.",
+        "Parcours public : sauvegarde avant et après un vrai dossier RED conclu, fermeture/rechargement puis reprise produisant un export propriétaire strictement identique ; témoin ME1 inchangé.",
+        "Alias Omnibus ramené au même propriétaire et au même marque-page sans doubler les dix récits ou les trente-quatre unités.",
+        "18 tests natifs, dont refus hostiles sans exécution de getters, stockage automatique/manuel et Chroniques isolés, quota et corruption atomiques.",
+        "Recette compilée positive avec trois groupes, trois exports et trois images réellement ouvertes ; refus quota et chargement invalide déclarés en contextes indépendants."
+      ],
+      "remaining": [],
+      "limitations": [
+        "Cette validation porte sur la persistance fonctionnelle définie ; aucune aventure propre à Library Edition, pagination, source hardcover ou conclusion exportée vers les jeux n’est ajoutée.",
+        "La recette de raccord utilise le dossier d’archives propriétaire existant, pas une transcription de mission ou de comic."
+      ]
+    }
+  ],
+  "notClosed": [
+    {
+      "id": "LIB-DOMAIN-CHOICES",
+      "reason": "La description exige aussi les tris par publication et par personnage, absents des modes actuels."
+    },
+    {
+      "id": "LIB-DOMAIN-PROPS",
+      "reason": "Le marque-page ne remplit pas les métadonnées de couverture et de tranche."
+    },
+    {
+      "id": "LIB-DOMAIN-QA",
+      "reason": "Aucune consultation d’un exemplaire relié ; les tests locaux de catalogue ne remplacent pas une preuve hardcover."
+    }
+  ],
+  "scope": "Qualification attribuée aux exécutions et ouvertures réellement réalisées, sans réécrire le rapport public original ou une preuve historique."
+}

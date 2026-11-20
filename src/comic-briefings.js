@@ -18,7 +18,7 @@ function sourcesFor(work, ids) {
     .filter(source => source && /^https?:\/\//.test(source.url));
 }
 
-function anchorFor(id, work, period, context) {
+export function resolveComicAnchor(id, work, period, context) {
   const record = getUniverseRecord(id);
   if (record && record.mediaId === work.id) {
     const sources = sourcesFor(work, record.sourceIds);
@@ -43,7 +43,7 @@ function compileBriefing(definition) {
   const editorial = work?.id === 'BLA' && work.kind === 'in-universe-fiction' && definition.periodId === null;
   const context = normalizeContext({ mediaId: definition.mediaId, periodId: definition.periodId });
   const period = work?.periods.find(item => item.id === definition.periodId);
-  const anchors = work && definition.anchorIds.map(id => anchorFor(id, work, period, context));
+  const anchors = work && definition.anchorIds.map(id => resolveComicAnchor(id, work, period, context));
   if ((!editorial && !context) || !anchors?.length || anchors.some(anchor => !anchor)
     || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(definition.id)
     || ![definition.title, definition.objective, definition.resolution, definition.review?.prompt,

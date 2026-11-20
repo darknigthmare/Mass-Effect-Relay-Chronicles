@@ -5,6 +5,8 @@ import { listUniverseEquipment, getUniverseEquipment, canEquipUniverseItem, norm
 import { listChronicleStories, getChronicleStory, readChronicleStoryStep } from './chronicle-story.js';
 import { actOnComicBriefing, validateComicProgress } from './comic-briefings.js';
 export { getComicBriefing, listComicBriefings } from './comic-briefings.js';
+import { actOnComicField, validateComicFieldProgress } from './comic-field.js';
+export { getComicField, listComicFields } from './comic-field.js';
 import { UNIVERSE_AMMO_PROFILES, validateAmmoMode } from './universe-ammo.js';
 import { isVictoryParticipant, SUMMON_LIMITS } from './combat-summons.js';
 import { createBattle } from './combat.js';
@@ -56,6 +58,7 @@ export function normalizeChronicle(raw) {
     if (!session) return null;
     if (split.importedCampaign !== undefined) session.importedCampaign = split.importedCampaign;
     if (session.comicProgress && !validateComicProgress(session.context, session.comicProgress)) return null;
+    if (session.comicFields && !validateComicFieldProgress(session.context, session.comicFields)) return null;
     for (const [storyId, index] of Object.entries(session.readingProgress)) {
       const story = getChronicleStory(storyId, session.context), page = story?.steps[index];
       if (!page || ![story.progressRecordId, ...page.recordIds].every(id => session.discovered.includes(id))) return null;
@@ -102,6 +105,7 @@ export function selectChronicleScenario(raw, scenarioId) {
   return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes,
     readingProgress: session.readingProgress, cleared: session.cleared,
     ...(session.comicProgress ? { comicProgress: session.comicProgress } : {}),
+    ...(session.comicFields ? { comicFields: session.comicFields } : {}),
     ...(session.importedCampaign ? { importedCampaign: session.importedCampaign } : {}) } };
 }
 
@@ -253,15 +257,23 @@ export function readChroniclePage(raw, storyId, index) {
   return updated ? { ok: true, session: updated, reading } : fail('Progression documentaire invalide.');
 }
 
-export function runChronicleComicAction(raw, id, action, value) {
+function runComicAction(raw, id, action, value, key, perform) {
   const session = normalizeChronicle(raw);
   if (!session || typeof id !== 'string') return fail('Chronique ou dossier invalide.');
-  const result = actOnComicBriefing(session.context, id, session.comicProgress?.[id], action, value);
+  const result = perform(session.context, id, session[key]?.[id], action, value);
   if (!result.ok) return result;
-  const comicProgress = { ...session.comicProgress };
-  if (result.state) comicProgress[id] = result.state;
-  else delete comicProgress[id];
-  return { ok: true, session: { ...session, comicProgress } };
+  const progress = { ...session[key] };
+  if (result.state) progress[id] = result.state;
+  else delete progress[id];
+  return { ok: true, session: { ...session, [key]: progress } };
+}
+
+export function runChronicleComicAction(raw, id, action, value) {
+  return runComicAction(raw, id, action, value, 'comicProgress', actOnComicBriefing);
+}
+
+export function runChronicleFieldAction(raw, id, action, value) {
+  return runComicAction(raw, id, action, value, 'comicFields', actOnComicField);
 }
 
 /** Compose trusted selections without recursively validating the session. */

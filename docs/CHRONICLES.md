@@ -124,6 +124,14 @@ Les dossiers proposent deux méthodes. Le lecteur peut remettre trois pièces da
 
 Le journal indique les faits établis, les notices utilisées comme repères et les informations à vérifier. Les pièces originales du parcours portent la mention « Adaptation ». *Blasto* reste une référence de fiction interne. Le sommaire et les dossiers ouvrent les périodes de leurs œuvres sans transférer de récompense, d’équipement ou de choix vers la campagne. [Vérifications des BD](P0.md)
 
+### Interventions de terrain
+
+Dans **Chroniques → Lecture**, les interventions apparaissent dans la période indiquée par l’œuvre. Choisissez une approche, puis effectuez le contrôle affiché dans chaque secteur. La carte active les liaisons adjacentes au fur et à mesure. Les secteurs déjà parcourus restent accessibles avant le classement. Un relevé facultatif peut être ajouté au dossier de l’intervention.
+
+Les deux routes conduisent au même bilan. Chaque déplacement et contrôle est enregistré dans la chronique, avec l’approche choisie et la position. Le retour à la liste permet de reprendre une intervention. Le classement est accessible après avoir lu ou passé le bilan. Les cartes, les équipes et les actions sont des adaptations originales.
+
+Le sommaire de Library Edition conserve le tri, les marque-pages et l’état de consultation. Reprendre le dernier récit revient à sa période lorsqu’elle est définie par le renvoi. Ces préférences éditoriales ont leur propre sauvegarde. [Vérifications des interventions](P0.md)
+
 ## Seize parcours documentaires
 
 L’onglet Lecture présente des **paraphrases courtes de faits établis**. Les pages s’appuient sur des fiches et sources identifiées ; l’interface affiche leurs titres, liens et repères. L’ordre des pages guide la lecture ; il ne constitue pas un découpage exhaustif des chapitres ou cases. Aucun dialogue canonique, choix alternatif, personnage de combat, butin ou récompense n’est créé pour ces parcours.

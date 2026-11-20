@@ -6,7 +6,7 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 ## Vérification des P0
 
-Le dernier lot BD ferme 3 P0 et 101 P1. Les Chroniques ouvrent 38 dossiers d’archives et le sommaire de Library Edition. Il reste 541 P0 ouverts dans les 28 catalogues, dont 169 dans les classeurs BD. [Détail du lot et vérifications](docs/P0.md)
+Le dernier lot BD ajoute neuf interventions et valide 4 P0 et 3 P1. Quinze fiches passent au stade Prototype. Il reste 537 P0 ouverts dans les 28 catalogues, dont 165 dans les classeurs BD. [Détail du lot et vérifications](docs/P0.md)
 
 ## Enquête, affectations et épilogue — lot précédent
 
