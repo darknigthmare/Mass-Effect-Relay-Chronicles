@@ -3,14 +3,16 @@ import { getResolveCitadelInteraction, listResolveCitadelPOIs, getResolveCitadel
 import { getResolveNoveriaInteraction, transitionResolveNoveria, listResolveNoveriaPOIs, resolveNoveriaEncounterGate, noveriaResolutionReport } from './resolve-noveria.js';
 import { resolveNoveriaObjective, renderResolveNoveriaJournal } from './resolve-noveria-ui.js';
 import { getResolveVirmireInteraction, listResolveVirmirePOIs, resolveVirmireEncounterGate, resolveVirmireCompletionGate, virmireReport } from './resolve-virmire.js';
+import { renderResolveVirmireJournal } from './resolve-virmire-ui.js';
 import { getVigilExchange, commitVigilExchange, chooseHumanRepresentative, getPoliticalEpilogue } from './resolve-endgame.js';
 import { getResolveOriginContacts, getResolveOriginConversation, chooseResolveOriginReply, listResolveOrigins } from './resolve-origins.js';
 import { createExplorationBanterController } from './continuation-banter.js';
 import { getCampaignDialogue, advanceCampaignDialogue } from './continuation-dialogues.js';
 import { getAdvanceRecruitment, advanceRecruitment } from './advance-dialogues.js';
-import { listAdvanceFerosPOIs, getAdvanceFerosInteraction, transitionAdvanceFeros, advanceFerosEncounterGate, advanceFerosCompletionGate, ferosColonyReport } from './advance-feros.js';
+import { listAdvanceFerosPOIs, getAdvanceFerosInteraction, transitionAdvanceFeros, advanceFerosEncounterGate, advanceFerosCompletionGate, ferosColonyReport, ferosProgressLabel } from './advance-feros.js';
 import { advanceFerosObjective, renderAdvanceFerosJournal } from './advance-feros-ui.js';
 import { renderCampaignMilestones, getTrackedCampaignObjective } from './advance-progression.js';
+import { EDEN_SUPPORT, EDEN_CLUE, briefingContactPending, ashleySupportPending, edenDigReportAvailable, edenFieldPOIs, edenBeaconTrail } from './eden-prologue.js';
 import { renderGalaxyMap, renderEncounterRecovery, renderMapCollisions } from './advance-travel-ui.js';
 import { resolveTrackedPOI, beginEncounterRecovery, advanceEncounterRecovery, encounterRecoveryAccess } from './advance-travel.js';
 import './continuation-catalogue.css';
@@ -61,7 +63,7 @@ import { getAssignmentConversation, chooseAssignmentReply, getAssignmentContacts
 import { listManualSaves, readManualSave, writeManualSave, deleteManualSave } from './save-slots.js';
 import { createBattle, tickBattle, getActions, performAction, summarizeBattle, ACTIONS, setBattleMode, getTargetAvailability, getTacticalState, planCoordinatedOrder, performCoordinatedOrder, reserveTacticalOrder, releaseTacticalReservations, getBossPhaseView, getTacticalCoverState as getCombatCoverState } from './combat.js';
 import { VERSION, CLASSES, CREW, CHAPTERS, EQUIPMENT, baseActorFor, actorFor, enemiesFor } from './game-data.js';
-import { newGame, unlockedZones, objectiveReady, canStartEncounter, encounterIndex, zoneEncounters, winEncounter, completeZone, recruit, availableCrew, setSquad, buyUpgrade, upgradePrice, addLog, encodeSave, decodeSave, saveTo, loadFrom, readAutomaticSave, inspectSave, collectSupply, confirmCampaignBriefing, canTravelCampaign, travelCampaign, trackCampaignMilestone, DEFAULT_SETTINGS, applyResolveCitadel, winResolveCitadelEncounter, applyResolveVirmireInteraction } from './state.js';
+import { newGame, unlockedZones, objectiveReady, canStartEncounter, encounterIndex, zoneEncounters, winEncounter, completeZone, recruit, availableCrew, setSquad, buyUpgrade, upgradePrice, addLog, encodeSave, decodeSave, saveTo, loadFrom, readAutomaticSave, inspectSave, collectSupply, confirmCampaignBriefing, canTravelCampaign, travelCampaign, trackCampaignMilestone, DEFAULT_SETTINGS, applyResolveCitadel, winResolveCitadelEncounter, applyResolveVirmireInteraction, confirmEdenSupport, recordEdenDigClue } from './state.js';
 import './completion-accessibility.css';
 
 const $ = selector => document.querySelector(selector);
@@ -119,7 +121,7 @@ function refreshOperations(){
   if(!state)return;
   const previousPOIs=world.getInteractivePOIs();
   syncStoryContext();
-  world.setOperationPOIs([...operationPOIs(state),...getMissionPOIs(state),...listAdvanceFerosPOIs(state)]);
+  world.setOperationPOIs([...operationPOIs(state),...getMissionPOIs(state),...listAdvanceFerosPOIs(state),...edenFieldPOIs(state)]);
   const operation=listOperations(state).find(item=>item.id===state.trackedOperation);
   if(operation&&['completed','unavailable'].includes(operation.status)){state.trackedOperation=null;ui.tracked=null;}
   if(state.trackedOperation)ui.tracked=world.getInteractivePOIs().find(p=>p.operationId===state.trackedOperation)?.id||null;
@@ -222,8 +224,8 @@ function showHumanNomination(){
 }
 function renderResolveJournal(){
   const rows=[];const c=resolveCitadelReport(state);if(c?.known&&(c.hearing||c.nihlus||c.jokerReported))rows.push({id:'citadel',title:'Enquête sur Saren',text:`${c.evidence} ${c.fistStatus}`});
-  const v=virmireReport(state);if(v?.known&&v.briefed)rows.push({id:'virmire',title:'Virmire · diversion et extraction',text:`Volontaire STG : ${CREW[v.stgVolunteer]?.name||'Non affecté'}. Rana : ${({released:'Épargnée',killed:'Exécutée'})[v.rana]||'Non rencontrée'}. Soutiens : ${Object.entries(v.support||{}).filter(([,done])=>done).map(([key])=>({communications:'communications brouillées',satellite:'liaison détruite',flyers:'ravitaillement neutralisé'})[key]).join(', ')||'Aucun consigné'}. Extraction : ${CREW[v.survivor]?.name||'Non décidée'}.`});
-  return renderResolveNoveriaJournal(state,{esc})+rows.map(row=>`<article class="journal-entry" data-resolve-id="${esc(row.id)}"><h3>${esc(row.title)}</h3><p>${esc(row.text)}</p></article>`).join('');
+  return renderResolveNoveriaJournal(state,{esc})+rows.map(row=>`<article class="journal-entry" data-resolve-id="${esc(row.id)}"><h3>${esc(row.title)}</h3><p>${esc(row.text)}</p></article>`).join('')
+    +renderResolveVirmireJournal(state);
 }
 
 function activeSettings(){return running ? state.settings : launchSettings;}
@@ -366,7 +368,14 @@ function chronicleCommands(){
   universeUI.actorId=actor?.id;
   const actions=actor?getActions(chronicleBattle,actor.id):[];
   if(!actions.some(action=>action.id===universeUI.actionId))universeUI.actionId=actions[0]?.id||'shoot';
-  const targetAvailability=chronicleBattle.chroniclePositions&&universeUI.actionId==='bioticCharge'?Object.fromEntries(chronicleBattle.actors.map(target=>[target.id,getTargetAvailability(chronicleBattle,{actorId:actor?.id,actionId:universeUI.actionId,targetId:target.id})])):{};
+  const action=actions.find(candidate=>candidate.id===universeUI.actionId);
+  const targetAvailability={};
+  if(action?.available&&['enemy','enemies','ally'].includes(action.target)){
+    const team=action.target==='ally'?'party':'enemy';
+    for(const target of chronicleBattle.actors){
+      if(target.team===team)targetAvailability[target.id]=getTargetAvailability(chronicleBattle,{actorId:actor.id,actionId:action.id,targetId:target.id});
+    }
+  }
   return {actions,selectedActorId:universeUI.actorId,selectedActionId:universeUI.actionId,targetAvailability};
 }
 function resetChronicleContext(mediaId,periodId=''){
@@ -426,7 +435,8 @@ function advanceChronicle(dt){
 function renderChronicleCombat(force=false){
   if(ui.screen!=='chronicles'||universeUI.tab!=='session'||!chronicleBattle||!chronicleView)return;
   Object.assign(chronicleView,{battle:chronicleBattle,session:chronicleSession,paused:chroniclePaused},chronicleCommands());
-  const stamp=[chronicleBattle.chroniclePositions?.revision,chronicleView.selectedActorId,chronicleView.selectedActionId,chroniclePaused,chronicleBattle.mode,chronicleBattle.waiting,chronicleBattle.winner,chronicleBattle.medigel,chronicleBattle.log.at(-1),...chronicleView.actions.map(action=>`${action.id}:${action.available}:${action.reason}:${Math.ceil(action.cooldownRemaining||0)}`),...chronicleBattle.actors.map(actor=>`${actor.id}:${actor.hp>0}:${actor.ammo}:${Math.round(actor.heat)}:${actor.ammoModeId}`)].join('|');
+  const targeting=Object.entries(chronicleView.targetAvailability).map(([id,target])=>`${id}:${target.ok}:${target.reason}`);
+  const stamp=[chronicleBattle.chroniclePositions?.revision,chronicleView.selectedActorId,chronicleView.selectedActionId,chroniclePaused,chronicleBattle.mode,chronicleBattle.waiting,chronicleBattle.winner,chronicleBattle.medigel,chronicleBattle.log.at(-1),...targeting,...chronicleView.actions.map(action=>`${action.id}:${action.available}:${action.reason}:${Math.ceil(action.cooldownRemaining||0)}`),...chronicleBattle.actors.map(actor=>`${actor.id}:${actor.hp>0}:${actor.ammo}:${Math.round(actor.heat)}:${actor.ammoModeId}`)].join('|');
   if(force||stamp!==chronicleStamp){chronicleStamp=stamp;const content=$('#chronicle-battle-content');if(content)replaceChronicleMarkup(content,universeModules.renderer.renderChronicleBattle(chronicleView,universeUI,{esc}));}
   for(const actor of chronicleBattle.actors){
     const card=document.querySelector(`[data-chronicle-unit="${CSS.escape(actor.id)}"]`);if(!card)continue;
@@ -435,7 +445,7 @@ function renderChronicleCombat(force=false){
       if(bar){bar.style.width=`${pct(value,max)}%`;bar.parentElement.setAttribute('aria-valuenow',Math.ceil(value));}
     }
     card.querySelector('[data-chronicle-hp-label]').textContent=`${Math.ceil(actor.hp)} / ${actor.maxHp}`;
-    const signatures=universeModules.renderer.chronicleSignatureStatus(actor),signatureLabel=card.querySelector('[data-chronicle-signature-status]');if(signatureLabel){signatureLabel.textContent=signatures.join(' · ');signatureLabel.hidden=signatures.length===0;}
+    const signatures=universeModules.renderer.chronicleCombatStatus(actor),signatureLabel=card.querySelector('[data-chronicle-signature-status]');if(signatureLabel){signatureLabel.textContent=signatures.join(' · ');signatureLabel.hidden=signatures.length===0;}
     const lifetime=card.querySelector('[data-chronicle-support-time]');if(lifetime)lifetime.textContent=`${Math.max(0,Math.ceil(actor.expiresAt-chronicleBattle.elapsed))} s`;
   }
 }
@@ -762,7 +772,25 @@ function showConversationReply(id,topicId,replyId){
   const selected=conversation.topics.find(topic=>topic.id===topicId)?.choices?.find(reply=>reply.id===replyId);
   speak(conversation.speaker,result.response,[{label:'Retour aux sujets.',conversationBack:true,run:()=>showConversation(id)}],conversation.portrait,{conversationId:id,topicId,replyId,rememberedReply:selected?.label});
 }
-function currentObjective(){if(!state)return '';const mission=missionHUDText(state);if(mission)return mission;if(getMissionExit(state))return 'Rejoindre le passage pour poursuivre.';const followed=listOperations(state).find(item=>item.id===state.trackedOperation);if(followed&&!['completed','unavailable'].includes(followed.status))return `${followed.name} · ${followed.blockedReason||followed.currentStep?.label||followed.description}`;const campaignObjective=getTrackedCampaignObjective(state);if(campaignObjective)return campaignObjective.text;const noveriaObjective=resolveNoveriaObjective(state);if(noveriaObjective)return noveriaObjective;const ferosObjective=advanceFerosObjective(state);if(ferosObjective)return ferosObjective;if(state.zone==='normandy')return !state.flags.briefed?'Rejoindre le briefing de mission.':'Préparer le commando, puis choisir une destination sur la carte galactique.';if(state.completed.includes(state.zone))return 'Mission accomplie. Rejoignez le point d’extraction.';return CHAPTERS[state.zone]?.objective||'';}
+function currentObjective(){
+  if(!state)return '';
+  const mission=missionHUDText(state);if(mission)return mission;
+  if(getMissionExit(state))return 'Rejoindre le passage pour poursuivre.';
+  const followed=listOperations(state).find(item=>item.id===state.trackedOperation);
+  if(followed&&!['completed','unavailable'].includes(followed.status))return `${followed.name} · ${followed.blockedReason||followed.currentStep?.label||followed.description}`;
+  const campaignObjective=getTrackedCampaignObjective(state);if(campaignObjective)return campaignObjective.text;
+  const noveriaObjective=resolveNoveriaObjective(state);if(noveriaObjective)return noveriaObjective;
+  const ferosObjective=advanceFerosObjective(state);if(ferosObjective)return ferosObjective;
+  if(state.zone==='normandy'){
+    if(!state.flags.briefed)return 'Rejoindre le briefing de mission.';
+    if(briefingContactPending(state))return 'Parler à Nihlus avant le déploiement.';
+    return 'Préparer le commando, puis choisir une destination sur la carte galactique.';
+  }
+  if(state.completed.includes(state.zone))return 'Mission accomplie. Rejoignez le point d’extraction.';
+  if(ashleySupportPending(state))return 'Porter assistance à la survivante.';
+  if(state.zone==='eden-prime'&&state.campaignProgress?.prologue&&state.recruited.includes('ashley'))return edenBeaconTrail(state).text;
+  return CHAPTERS[state.zone]?.objective||'';
+}
 function exploreInteraction(){
   return getExploreInteraction({vehicle:world.getNearbyVehicle(),poi:world.getNearby(),position:world.getPosition()});
 }
@@ -776,7 +804,7 @@ function interactWithWorld(){
   state.position=world.getPosition();hudStamp='';autosave();renderHUD();
   toast(leaving?'Commando à pied.':'M35 Mako · Maj pour accélérer.');
 }
-function renderHUD(){if(!running||!state)return;const pad=document.documentElement.dataset.inputMethod==='gamepad';const chapter=CHAPTERS[state.zone];const sector=currentSectorLabel(getLevelLayout(state.zone),world.getPosition());const nearby=!ui.screen&&!battle?exploreInteraction():null;const mounted=world.isVehicleMounted();const exercise=mounted&&!ui.screen&&!battle&&!!world.getVehicleExerciseArena();const signature=[state.zone,state.name,state.classId,state.appearance,state.party.join(','),state.completed.join(','),state.cleared.join(','),state.flags.briefed,nearby?.id,missionHUDText(state),pad,mounted,exercise,!!battle,battle?.waiting,battle?.log.slice(-3).join('|'),ui.tracked,sector,currentObjective(),Math.ceil(encounterRecovery?.remaining||0)].join('~');if(signature===hudStamp){if(!battle&&$('.minimap'))$('.minimap').innerHTML=minimapSVG();return;}hudStamp=signature;$('#hud').innerHTML=`<div class="hud-top${sector&&!battle?' has-sector':''}"><div class="location"><div class="eyebrow">${state.zone==='normandy'?'SSV · ALLIANCE':`MISSION ${chapter?.number||''}`}</div><h2>${esc(WORLD_ZONES[state.zone].label)}</h2><div class="sub">${esc(chapter?.subtitle||'Centre d’information et de combat')}</div>${sector&&!battle?`<div class="sector-name">${esc(sector)}</div>`:''}</div><nav class="hud-nav"><button class="icon-button" data-do="journal" ${battle?'disabled':''}><b>${pad?'☰':'J'}</b> Journal</button><button class="icon-button" data-do="squad" ${battle?'disabled':''}><b>${pad?'◈':'C'}</b> Commando</button><button class="icon-button" data-do="equipment" ${battle?'disabled':''}><b>${pad?'▣':'I'}</b> Équipement</button><button class="icon-button" data-do="map" ${battle?'disabled':''}><b>${pad?'⌖':'M'}</b> Carte</button><button class="icon-button" data-do="pause"><b>${pad?'START':'Ⅱ'}</b> Pause</button></nav></div>${!battle?`${renderEncounterRecovery(encounterRecovery)}<div class="mission-chip"><div class="eyebrow">${state.completed.includes(state.zone)?'Rapport transmis':'Objectif de mission'}</div><p>${esc(currentObjective())}</p><div class="steps">${zoneEncounters(state.zone).map(id=>`<i class="step ${state.cleared.includes(id)?'done':''}"></i>`).join('')}</div></div><div class="minimap">${minimapSVG()}</div>${exercise?'<button class="interaction vehicle-exercise-entry" data-do="vehicle-exercise"><kbd>ATB</kbd><span>Exercice embarqué</span></button>':''}<div class="explore-party">${state.party.map(id=>`<button class="mini-member" data-do="squad"><span>${esc(id==='shepard'?state.name:CREW[id].name)}</span><small>${id==='shepard'?CLASSES[state.classId].name:CREW[id].role}</small></button>`).join('')}</div>${nearby?`<button class="interaction" data-do="interact"><kbd>${pad?'A / Croix':'E'}</kbd><span>${esc(nearby.label)}</span></button>`:''}<div class="controls-hint">${pad?'STICK GAUCHE · DÉPLACEMENT<br>A / CROIX · INTERAGIR · RT · COURIR<br>START · PAUSE':`${mounted?'M35 MAKO · ZQSD / WASD · CONDUIRE<br>E · DESCENDRE &nbsp; MAJ · ACCÉLÉRER':'ZQSD / WASD · DÉPLACEMENT<br>E · INTERAGIR &nbsp; MAJ · COURIR<br>CLIC · REJOINDRE UN POINT'}`}</div><div class="mobile-pad"><button class="up" data-key="ArrowUp">↑</button><button class="left" data-key="ArrowLeft">←</button><button class="down" data-key="ArrowDown">↓</button><button class="right" data-key="ArrowRight" aria-label="Aller à droite">→</button>${mounted?'<button class="boost" data-key="ShiftLeft" aria-label="Accélérer le Mako">ACC.</button>':''}</div>`:`<div class="combat-badge${battle.vehicleExercise?' vehicle-exercise-status':''}">${esc(battlePOI?.label||'Contact hostile')} · ${battle.waiting?'EN ATTENTE D’ORDRES':'JAUGES ACTIVES'}</div><div class="combat-log">${battle.log.slice(-3).map(l=>`<p>${esc(l)}</p>`).join('')}</div>`}`;}
+function renderHUD(){if(!running||!state)return;const pad=document.documentElement.dataset.inputMethod==='gamepad';const chapter=CHAPTERS[state.zone];const location=currentSectorLabel(getLevelLayout(state.zone),world.getPosition()),sector=state.zone==='feros'?ferosProgressLabel(location,state.advanceFeros):location;const nearby=!ui.screen&&!battle?exploreInteraction():null;const mounted=world.isVehicleMounted();const exercise=mounted&&!ui.screen&&!battle&&!!world.getVehicleExerciseArena();const signature=[state.zone,state.name,state.classId,state.appearance,state.party.join(','),state.completed.join(','),state.cleared.join(','),state.flags.briefed,nearby?.id,missionHUDText(state),pad,mounted,exercise,!!battle,battle?.waiting,battle?.log.slice(-3).join('|'),ui.tracked,sector,currentObjective(),Math.ceil(encounterRecovery?.remaining||0)].join('~');if(signature===hudStamp){if(!battle&&$('.minimap'))$('.minimap').innerHTML=minimapSVG();return;}hudStamp=signature;$('#hud').innerHTML=`<div class="hud-top${sector&&!battle?' has-sector':''}"><div class="location"><div class="eyebrow">${state.zone==='normandy'?'SSV · ALLIANCE':`MISSION ${chapter?.number||''}`}</div><h2>${esc(WORLD_ZONES[state.zone].label)}</h2><div class="sub">${esc(chapter?.subtitle||'Centre d’information et de combat')}</div>${sector&&!battle?`<div class="sector-name">${esc(sector)}</div>`:''}</div><nav class="hud-nav"><button class="icon-button" data-do="journal" ${battle?'disabled':''}><b>${pad?'☰':'J'}</b> Journal</button><button class="icon-button" data-do="squad" ${battle?'disabled':''}><b>${pad?'◈':'C'}</b> Commando</button><button class="icon-button" data-do="equipment" ${battle?'disabled':''}><b>${pad?'▣':'I'}</b> Équipement</button><button class="icon-button" data-do="map" ${battle?'disabled':''}><b>${pad?'⌖':'M'}</b> Carte</button><button class="icon-button" data-do="pause"><b>${pad?'START':'Ⅱ'}</b> Pause</button></nav></div>${!battle?`${renderEncounterRecovery(encounterRecovery)}<div class="mission-chip"><div class="eyebrow">${state.completed.includes(state.zone)?'Rapport transmis':'Objectif de mission'}</div><p>${esc(currentObjective())}</p><div class="steps">${zoneEncounters(state.zone).map(id=>`<i class="step ${state.cleared.includes(id)?'done':''}"></i>`).join('')}</div></div><div class="minimap">${minimapSVG()}</div>${exercise?'<button class="interaction vehicle-exercise-entry" data-do="vehicle-exercise"><kbd>ATB</kbd><span>Exercice embarqué</span></button>':''}<div class="explore-party">${state.party.map(id=>`<button class="mini-member" data-do="squad"><span>${esc(id==='shepard'?state.name:CREW[id].name)}</span><small>${id==='shepard'?CLASSES[state.classId].name:CREW[id].role}</small></button>`).join('')}</div>${nearby?`<button class="interaction" data-do="interact"><kbd>${pad?'A / Croix':'E'}</kbd><span>${esc(nearby.label)}</span></button>`:''}<div class="controls-hint">${pad?'STICK GAUCHE · DÉPLACEMENT<br>A / CROIX · INTERAGIR · RT · COURIR<br>START · PAUSE':`${mounted?'M35 MAKO · ZQSD / WASD · CONDUIRE<br>E · DESCENDRE &nbsp; MAJ · ACCÉLÉRER':'ZQSD / WASD · DÉPLACEMENT<br>E · INTERAGIR &nbsp; MAJ · COURIR<br>CLIC · REJOINDRE UN POINT'}`}</div><div class="mobile-pad"><button class="up" data-key="ArrowUp">↑</button><button class="left" data-key="ArrowLeft">←</button><button class="down" data-key="ArrowDown">↓</button><button class="right" data-key="ArrowRight" aria-label="Aller à droite">→</button>${mounted?'<button class="boost" data-key="ShiftLeft" aria-label="Accélérer le Mako">ACC.</button>':''}</div>`:`<div class="combat-badge${battle.vehicleExercise?' vehicle-exercise-status':''}">${esc(battlePOI?.label||'Contact hostile')} · ${battle.waiting?'EN ATTENTE D’ORDRES':'JAUGES ACTIVES'}</div><div class="combat-log">${battle.log.slice(-3).map(l=>`<p>${esc(l)}</p>`).join('')}</div>`}`;}
 function minimapSVG(){const b=world.getBounds(),p=world.getPosition(),layout=getLevelLayout(state.zone),projection=layout?levelMapProjection(b,{left:12,top:12,width:126,height:126}):null;const x=projection?.x||(v=>12+(v-b.minX)/(b.maxX-b.minX)*126),z=projection?.z||(v=>12+(v-b.minZ)/(b.maxZ-b.minZ)*126);return `<svg viewBox="0 0 150 150" aria-label="Radar">${layout?renderLevelGround(layout,{left:12,top:12,width:126,height:126}):'<path d="M12 75H138M75 12V138" stroke="#81ddd418"/><rect x="12" y="12" width="126" height="126" fill="none" stroke="#81ddd433"/>'}${renderMapCollisions(b,world.getMapCollisions(),{left:12,top:12,width:126,height:126,stretch:!layout})}${world.getInteractivePOIs().filter(o=>!o.cleared).map(o=>`<circle cx="${x(o.x)}" cy="${z(o.z)}" r="${ui.tracked===o.id?4:2.6}" fill="${o.type==='encounter'?'#df8174':o.type==='objective'?'#dcbe8c':'#81ddd4'}"/>`).join('')}<circle cx="${x(p.x)}" cy="${z(p.z)}" r="3.5" fill="#fff"/><circle cx="${x(p.x)}" cy="${z(p.z)}" r="8" fill="none" stroke="#fff5"/></svg>`;}
 
 async function loadZone(zone,{resume=false}={}){
@@ -792,7 +820,7 @@ async function loadZone(zone,{resume=false}={}){
     if(!resume){const moved=travelCampaign(state,zone);if(!moved.ok){toast(moved.reason,true);return false;}}
     else recordVisit(state,zone);
     if(fromZone!==zone)ui.tracked=null;
-    world.setCommanderAppearance(state.appearance);world.setCommanderCustomization(state.customization);world.setCommanderWeapon(actorFor('shepard',state).weaponItemId);syncStoryContext();
+    world.setCommanderAppearance(state.appearance);world.setCommanderCustomization(state.customization);world.setPartyWeapons([...new Set([...state.party,...state.recruited])].map(id=>actorFor(id,state)));syncStoryContext();
     world.setZone(zone,{party:state.party,cleared:state.cleared,fromZone:resume?null:fromZone});
     if(position)world.setPosition(position);
     refreshOperations();state.position=world.getPosition();audio.setZone(zone);simulationClock.reset(performance.now());autosave();
@@ -800,10 +828,25 @@ async function loadZone(zone,{resume=false}={}){
   }finally{ui.busy=false;$('#transition').classList.remove('active');syncMode();renderHUD();}
 }
 
-function beginGame(){if(ui.busy)return;titleReturnAction=null;encounterRecovery=null;retreatCandidate=null;state=newGame(ui.form);if(ui.form.initialEquipment){const draft=createCustomizationDraft(state);draft.equipment={...ui.form.initialEquipment};commitCustomization(state,draft);}ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;state.settings={...launchSettings};running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;audio.unlock();applySettings();loadZone('normandy').then(()=>speak('Capitaine Anderson','Nous approchons d’Eden Prime. Rejoignez le briefing avant la descente. Préparez votre équipe, puis consultez la carte galactique.',[{label:'Je rejoins le briefing.',run:()=>closeScreen()}]));}
+function beginGame(){if(ui.busy)return;titleReturnAction=null;encounterRecovery=null;retreatCandidate=null;state=newGame({...ui.form,guidedPrologue:true});if(ui.form.initialEquipment){const draft=createCustomizationDraft(state);draft.equipment={...ui.form.initialEquipment};commitCustomization(state,draft);}ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;state.settings={...launchSettings};running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;audio.unlock();applySettings();loadZone('normandy').then(()=>speak('Capitaine Anderson','Nous approchons d’Eden Prime. Rejoignez le briefing avant la descente. Préparez votre équipe, puis consultez la carte galactique.',[{label:'Je rejoins le briefing.',run:()=>closeScreen()}]));}
 function continueGame(s=loadFrom(localStorage)){if(ui.busy)return;if(!s){toast('Aucune sauvegarde valide.',true);return;}titleReturnAction=null;state=s;encounterRecovery=null;retreatCandidate=null;ui.codex=null;ui.codexQuery='';ui.journalTab='missions';ui.tracked=null;running=true;battle=null;battlePOI=null;$('#battle-ui').innerHTML='';ui.screen=null;world.setBattle(null);audio.unlock();applySettings();loadZone(state.zone,{resume:true});}
 
+function showEdenPrologueAction(id){
+  const support=id===EDEN_SUPPORT;
+  if(support?!ashleySupportPending(state):!edenDigReportAvailable(state))return;
+  const commit=support?confirmEdenSupport:recordEdenDigClue;
+  speak(support?'Kaidan Alenko':'Relevé du site de fouille',
+    support?'Jenkins n’a pas survécu à la première attaque. Nous avons retrouvé Ashley Williams, isolée de sa garnison.':
+      'Les relevés du site de fouille indiquent une piste vers le spatioport.',
+    [{label:support?'Porter assistance et reprendre la mission.':'Consigner la piste du spatioport.',replyId:support?'support':'record',run:()=>{
+      const result=commit(state);
+      if(!result.ok)return toast(result.reason,true);
+      refreshResolve();closeScreen();
+    }},{label:'Retour sur le terrain.',replyId:'leave',conversationEnd:true,run:closeScreen}],
+    support?'kaidan':null,{conversationId:'eden-prologue',topicId:id});
+}
 function interactPOI(poi){if(!poi||!running||battle||ui.screen||ui.busy)return;audio.play('ui');const zone=state.zone;
+  if([EDEN_SUPPORT,EDEN_CLUE].includes(poi.id))return showEdenPrologueAction(poi.id);
   if(poi.resolveCitadel)return showResolveCitadel(poi.resolveCitadel);
   if(poi.resolveNoveria)return showResolveNoveria(poi.id);
   if(poi.resolveVirmire)return showResolveVirmire(poi.id);
@@ -856,6 +899,10 @@ function showAdvanceFerosInteraction(interactionId){
   speak(model.speaker,model.text,model.choices.map(choice=>({label:choice.label,tone:choice.tone,replyId:choice.id,disabled:!!choice.disabled,reason:choice.reason,run:()=>{
     state.position=world.getPosition();const result=transitionAdvanceFeros(state,interactionId,choice.id);
     if(!result.ok)return toast(result.reason,true);
+    if(result.destination){
+      if(!world.setPosition(result.destination))return toast('Le point d’arrivée est indisponible.',true);
+      autosave();return closeScreen();
+    }
     state.advanceFeros=result.progress;refreshOperations();autosave();
     if(result.repeat)return showAdvanceFerosInteraction(interactionId);
     speak(model.speaker,result.response,[{label:'Retour sur le terrain.',run:()=>closeScreen()}],null,{conversationId:'advance-feros',topicId:interactionId});
@@ -956,7 +1003,9 @@ function startEncounter(poi){
   }
   battlePOI=poi;state.position=world.getPosition();autosave();
   const arena=world.getCombatArena();
-  presentCampaignBattle(createBattle({tactical:true,bossPhases:true,tacticalCoverAvailable:query=>world.getTacticalCoverState(query,arena),tacticalPositionAllowed:point=>world._walkable(arena.x+point.x,arena.z+point.z),party:state.party.map(id=>actorFor(id,state)),enemies:citadel?citadel.enemies:operation?operation.enemies:enemiesFor(state.zone,encounterIndex(poi.id),state),difficulty:state.difficulty,mode:state.mode,seed:state.cleared.length+2183,medigel:state.medigel}), 'shepard');
+  const plannedEnemies=citadel?citadel.enemies:operation?operation.enemies:enemiesFor(state.zone,encounterIndex(poi.id),state);
+  const enemies=state.zone==='feros'?plannedEnemies.map(enemy=>({...enemy,name:ferosProgressLabel(enemy.name,state.advanceFeros)})):plannedEnemies;
+  presentCampaignBattle(createBattle({tactical:true,bossPhases:true,tacticalCoverAvailable:query=>world.getTacticalCoverState(query,arena),tacticalPositionAllowed:point=>world._walkable(arena.x+point.x,arena.z+point.z),party:state.party.map(id=>actorFor(id,state)),enemies,difficulty:state.difficulty,mode:state.mode,seed:state.cleared.length+2183,medigel:state.medigel}), 'shepard');
 }
 function getRetreatState(){
   if(!battle||!battlePOI)return {ok:false,reason:'Aucun combat actif à quitter.'};
@@ -997,7 +1046,10 @@ function claimVictory(){
   if(won===false||won?.ok===false){state.medigel=previousMedigel;return false;}
   battle=null;battlePOI=null;world.setBattle(null);world.setCommanderAppearance(state.appearance);syncStoryContext();world.setParty(state.party);world.setCleared(state.cleared);refreshOperations();$('#battle-ui').innerHTML='';closeScreen();audio.setZone(state.zone);autosave();
   if(poi.resolveCitadelEncounter&&won.nextId){showResolveCitadel(won.nextId);return true;}
-  if(id==='eden-prime:encounter-1')speak('Kaidan Alenko','Jenkins n’a pas survécu à la première attaque. Nous avons retrouvé Ashley Williams, isolée de sa garnison. Elle nous accompagnera jusqu’au site de fouilles.',[{label:'Nous devons poursuivre.',run:()=>closeScreen()}],'kaidan');else toast(poi.operationId?'Étape sécurisée · journal mis à jour.':'Secteur sécurisé · progression sauvegardée.');
+  if(id==='eden-prime:encounter-1'){
+    if(ashleySupportPending(state))showEdenPrologueAction(EDEN_SUPPORT);
+    else speak('Kaidan Alenko','Jenkins n’a pas survécu à la première attaque. Nous avons retrouvé Ashley Williams, isolée de sa garnison. Elle nous accompagnera jusqu’au site de fouilles.',[{label:'Nous devons poursuivre.',run:()=>closeScreen()}],'kaidan');
+  }else toast(poi.operationId?'Étape sécurisée · journal mis à jour.':'Secteur sécurisé · progression sauvegardée.');
   return true;
 }
 
@@ -1083,7 +1135,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
       const result=action==='eq-equip'?equipItem(state,ui.equipmentActor,id,button.dataset.slot||undefined):action==='eq-unequip'?unequipItem(state,ui.equipmentActor,id):action==='eq-buy'?buyItem(state,id):sellItem(state,id);
       toast(result.ok?'Dotation mise à jour.':result.reason,!result.ok);
       if(result.ok){
-        if(ui.equipmentActor==='shepard'&&['eq-equip','eq-unequip'].includes(action))world.setCommanderWeapon(actorFor('shepard',state).weaponItemId);
+        if(['eq-equip','eq-unequip'].includes(action))world.setPartyMemberWeapon(actorFor(ui.equipmentActor,state));
         autosave();
       }
       renderScreen();break;

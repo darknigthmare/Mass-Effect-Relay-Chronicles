@@ -1,0 +1,265 @@
+{
+  "passed": true,
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "at": "2026-11-20T15:02:01.630Z",
+  "command": "node scripts/p0-feros-campaign-browser.mjs",
+  "scope": "passage",
+  "url": "http://127.0.0.1:4260/",
+  "checks": [
+    {
+      "id": "QST-degagement-du-vaisseau-geth",
+      "passed": true,
+      "exactDescription": "Actionner le mécanisme d’ExoGeni.",
+      "exactCriterion": "Voie de retour débloquée.",
+      "observations": {
+        "ferrureActionneeA31PSI": true,
+        "refusAvant": true,
+        "skyway": {
+          "x": -14,
+          "z": -17.000000000000014
+        },
+        "exogeni": {
+          "x": 25,
+          "z": -54
+        },
+        "reprise": true
+      }
+    }
+  ],
+  "captures": [
+    {
+      "label": "pression",
+      "path": "docs/screenshots/p0-feros-pression-rejeu.png",
+      "sha256": "6052e75e561faa4960514d114ef7956f27aea1cee9eb238fd2d9287690889d39",
+      "actuallyOpened": true,
+      "visualReview": "La pression de fermeture de 31 PSI et la commande sont lisibles."
+    },
+    {
+      "label": "passage",
+      "path": "docs/screenshots/p0-feros-passage.png",
+      "sha256": "328c6d528d2ccd415447542842d0277d96eb5193e10e3a0a16a947c108163fa1",
+      "actuallyOpened": true,
+      "visualReview": "Le passage libre et le repère de la voie aérienne sont lisibles après sauvegarde et reprise."
+    }
+  ],
+  "encounters": [],
+  "sources": {
+    "src/advance-feros.js": "7479e13a2fa81a6ba9e828d7da5dbca3afcbc21f7a284de2f03729b2acef7d64",
+    "src/advance-feros-ui.js": "c1c2f6f53b4f75b4ebf0d8a72f17e2d0a2586d32b085c645224ad6af7a452688",
+    "scripts/p0-feros-campaign-browser.mjs": "d7242f41c0419e933859bec8b8a1d18a14cc3acd9f40f7f0fc56c5f70be6e516",
+    "src/game-data.js": "e09c18ded014758c5c5ca8f9e80e3ffb9d759c8fe256ec926d911022ef1a2611",
+    "src/main.js": "bb4d1dae655c8e72410a63d6d1a9f22a0f72db237377a72b9ffb84264d80b191",
+    "src/world.js": "8a181194182ae3206eb10aecd639e6dd0f70e5008944cfe7421d1614a44c2c11",
+    "src/boss-phases.js": "dab61d936e2de431e460841a9886f93d9e0f234b1d0fa3d485fb3a676d1b7fdf",
+    "src/state.js": "8c2302a217a705a3ae10f7b434ea50a616cba7a513465ee3f950cacb89954355",
+    "src/combat.js": "8bc22601fb44dd6a683a48b71fd868d8cbeda52d6c4186540ecf63d4b6e3da15"
+  },
+  "finalSources": {
+    "src/advance-feros.js": "7479e13a2fa81a6ba9e828d7da5dbca3afcbc21f7a284de2f03729b2acef7d64",
+    "src/advance-feros-ui.js": "c1c2f6f53b4f75b4ebf0d8a72f17e2d0a2586d32b085c645224ad6af7a452688",
+    "scripts/p0-feros-campaign-browser.mjs": "d7242f41c0419e933859bec8b8a1d18a14cc3acd9f40f7f0fc56c5f70be6e516",
+    "src/game-data.js": "e09c18ded014758c5c5ca8f9e80e3ffb9d759c8fe256ec926d911022ef1a2611",
+    "src/main.js": "bb4d1dae655c8e72410a63d6d1a9f22a0f72db237377a72b9ffb84264d80b191",
+    "src/world.js": "8a181194182ae3206eb10aecd639e6dd0f70e5008944cfe7421d1614a44c2c11",
+    "src/boss-phases.js": "dab61d936e2de431e460841a9886f93d9e0f234b1d0fa3d485fb3a676d1b7fdf",
+    "src/state.js": "8c2302a217a705a3ae10f7b434ea50a616cba7a513465ee3f950cacb89954355",
+    "src/combat.js": "8bc22601fb44dd6a683a48b71fd868d8cbeda52d6c4186540ecf63d4b6e3da15"
+  },
+  "sharedSourceChanges": [],
+  "fixtures": [
+    {
+      "origin": {
+        "label": "Préparation native déclarée jusqu’à la recherche ExoGeni. Vannes encore fermées, mécanisme et passage à jouer."
+      },
+      "position": {
+        "x": 25,
+        "z": -54
+      },
+      "sha256": "1c09592d53c1056155874b05821b33656d84e9835d10beed0326c30866aa8d31"
+    }
+  ],
+  "exports": [
+    {
+      "label": "passage-ouvert",
+      "sha256": "6ce06fdf38cdd863375b9f1bdca97a05c5599339ee1e39bcad33f78206840955",
+      "position": {
+        "x": -14,
+        "z": -17
+      },
+      "advanceFeros": {
+        "version": 1,
+        "legacy": false,
+        "defense": true,
+        "lizbeth": true,
+        "investigation": true,
+        "valves": 26,
+        "shipReleased": true,
+        "jeong": null,
+        "gasIssued": false,
+        "colonists": {
+          "garage-1": null,
+          "garage-2": null,
+          "garage-3": null,
+          "garage-4": null,
+          "access-1": null,
+          "access-2": null,
+          "colony-1": null,
+          "colony-2": null,
+          "colony-3": null,
+          "colony-4": null,
+          "colony-5": null,
+          "colony-6": null,
+          "arcelia": null,
+          "macha": null,
+          "davin": null,
+          "colony-7": null
+        },
+        "freighterOpened": false,
+        "cipher": false,
+        "shiala": null
+      },
+      "cleared": [
+        "eden-prime:encounter-1",
+        "eden-prime:encounter-2",
+        "eden-prime:boss",
+        "feros:encounter-1",
+        "feros:encounter-2"
+      ],
+      "credits": 1035,
+      "xp": 675,
+      "colony": {
+        "known": true,
+        "total": 16,
+        "resolved": 0,
+        "pending": 16,
+        "spared": 0,
+        "killed": 0,
+        "gas": 0,
+        "melee": 0,
+        "jeong": null,
+        "shiala": null,
+        "cipher": false,
+        "survivors": [],
+        "completionChoice": "force",
+        "legacyChoice": null
+      }
+    }
+  ],
+  "motions": [
+    {
+      "id": "advance:feros:pressure",
+      "before": {
+        "x": 25,
+        "z": -54
+      },
+      "after": {
+        "x": 28.289490419169198,
+        "z": -53.73684076646656
+      }
+    },
+    {
+      "id": "advance:feros:pressure",
+      "before": {
+        "x": 28.289490419169198,
+        "z": -53.73684076646656
+      },
+      "after": {
+        "x": 39.25445848306657,
+        "z": -52.85964332135508
+      }
+    },
+    {
+      "id": "advance:feros:pressure",
+      "before": {
+        "x": 39.25445848306657,
+        "z": -52.85964332135508
+      },
+      "after": {
+        "x": 35.41671966070248,
+        "z": -53.1666624271441
+      }
+    },
+    {
+      "id": "advance:feros:pressure",
+      "before": {
+        "x": 35.41671966070248,
+        "z": -53.1666624271441
+      },
+      "after": {
+        "x": 26.644745209584613,
+        "z": -53.86842038323328
+      }
+    },
+    {
+      "id": "advance:feros:pressure",
+      "before": {
+        "x": 26.644745209584613,
+        "z": -53.86842038323328
+      },
+      "after": {
+        "x": 28.070191057891265,
+        "z": -53.754384715368786
+      }
+    },
+    {
+      "id": "advance:feros:service-exogeni",
+      "before": {
+        "x": 29.714936267475892,
+        "z": -53.62280509860206
+      },
+      "after": {
+        "x": 27.083343932140508,
+        "z": -53.833332485428826
+      }
+    }
+  ],
+  "served": {
+    "index.html": "6b64023686602c039b55381b0bc8f27acbfc5cef6a9bbb4e943aa9949f964ad5",
+    "assets/index-COM-5j7E.css": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454",
+    "assets/three-DBNoKq7p.js": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156",
+    "assets/index-D5UJBCkH.js": "54e02d317b2acd937dccc8ed948afeeabb39894515ed9f885bba94614bbcfb18",
+    "assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "assets/enemy-atlas.png": "a7d774f00d71fed2e64e390171d0ce8d44e90a8ef5c7bb6dc5729323fcf0477f",
+    "assets/boss-atlas.png": "33260c45a48d1903168de8d44af9a3029c795fc7ac54da2449ca9544f70fb3f4",
+    "assets/props-atlas.png": "2ae7dd62d6f0d0089e8756d0587f1257794d940f737fd3f6c457fc9d2e13f875",
+    "assets/npc-atlas.png": "e6b788bcd951c3817892b583c57cc49a4fca64cc7c1090fa19a2b1165224d6e1",
+    "assets/vehicle-atlas.png": "c258d169912e2d6a4427b67301d64d6d4d5aa0467fd75924df2e1ff78971b55b",
+    "assets/shepard-walk-atlas.png": "dcf4aca4d2cb99d42589fe4bfa5cea5ac2ddc6fdea45bab1fd27b6ba4ce8c476",
+    "assets/shepard-female-walk-atlas.png": "094d70bbdbc91aec8ec45a9d1ed779dd46176d68bd7e186e34ba404fa39484cc",
+    "assets/shepard-female-combat-atlas.png": "0110415a01fa9805694b03e247e8cd6476080df397cc6a74dda76d00d674bdf0",
+    "assets/shepard-male-combat-atlas.png": "a6ba2b005d931d571f1f2e4389eef03c5e9581850a01d440dc30adb81dd0bd18",
+    "assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+    "assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+    "assets/companion-jenkins-combat.png": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72",
+    "assets/enemy-geth-combat.png": "a26b39193130e98031907f7b850f46b8591d74a6e5823af39ba860c76f58614c",
+    "assets/enemy-geth-sniper-combat.png": "f1d5d7617d20b7d0845c9fb3af1b51315068061d4403331fa3437f4126b99ab8",
+    "assets/enemy-geth-destroyer-combat.png": "42fa2089e8cb2dde8c8bb25d94906356f4e385cf07a07fb21dbfc1ec288f06bd",
+    "assets/enemy-husk-combat.png": "bcd2977ce016f3cff2b320e02fd5b342ca3ee44426d3d2c48d4885f1965e35ff",
+    "assets/enemy-krogan-combat.png": "8182e3401bb27b4953c39c29a2da23abe5a803c2324b091a4f72d163bf392663",
+    "assets/enemy-rachni-combat.png": "6e623a49feb519f067e0196bbfdf6c22ec2ec765865c02787194ab99dfe94cc9",
+    "assets/enemy-creeper-combat.png": "6ae0a6f8e96111fff3f45c902fd2808fb3411b518421627d10badd6ec5cf6300",
+    "assets/enemy-asari-combat.png": "3fe770569f7072ccf782b9fad510ec83d245e9508bfd58d5feeb05c491351c5a",
+    "assets/joker-seated.png": "b8eeebdd674af3cc7a37058917813c2f028d893c73c4043e0b98c88455d44139",
+    "assets/boss-saren-combat.png": "1424d987513965303b8a07e16063eae31cfad016c81c3c7268057cffd72cf318",
+    "assets/boss-benezia-combat.png": "c7a48a26e77ac3100b5b981f9558b39e9eb45fd3af3fac9f1365d90269bf5788",
+    "assets/boss-thorian-combat.png": "6effcd0f8cdc40a48f840f7d534105df165bb8337b7c6589f06230950ae8eb37",
+    "assets/boss-saren-final-combat.png": "2f61fe7ea3574dcb220aa8de491d0aabaabc3425ddca86f229c6269b1081a883",
+    "assets/frontier-enemies.png": "6db26ffbb1288dc9a5b9f16f88f58912d181c656c7b9c21cb2fd19fc8372ece9",
+    "assets/frontier-npcs.png": "e49b00afb4ebb2df96107dc3cc9f12b2e0532749aa9d091b3c5829f1efa4a3dc",
+    "assets/vehicle-mako-directions.png": "50d4a2f3639c62e0a548283b3167b703c3917c5bd14bb2c9e4c975a82552df74",
+    "assets/horizon-npcs.png": "cef87a2f99493572c134f6c07c95f5f989a9931021afaed301045e273da76601",
+    "assets/horizon-enemies.png": "e575a6e4bc2e22261da7b2a4c868b92fe04fb182416def16ca583d3ccb5779c0",
+    "assets/horizon-fauna.png": "358d745a6cfeb10fb0bfc624ff8e957da451f3ae01b21a7021fbb022ac1ea964",
+    "assets/horizon-fleet-me1.png": "135b99d3600a88e3979a8af460c18362964ecfc8650959c6ad523cfb6e6ec1cb",
+    "assets/citadel-keyart.png": "66b734305b0999b73198a972154cfb61e6b74f5ba0a76c26e45bdd2643fc1ad0"
+  },
+  "displayQuality": "economy",
+  "limitations": [
+    "Les chapitres précédents sont préparés par les API natives. Les rapprochements explicitement déclarés réimportent un vrai export avec la position seule modifiée.",
+    "Les objectifs sont joués dans le niveau adapté existant, avec des interventions civiles et des combats ATB. Aucun décor, dialogue ou scène d’origine supplémentaire n’est reproduit."
+  ]
+}

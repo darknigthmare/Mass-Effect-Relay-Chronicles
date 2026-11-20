@@ -17,6 +17,7 @@ import { createResolveVirmireState, normalizeResolveVirmireState, isResolveVirmi
 import { createResolveOrigins, normalizeResolveOrigins } from './resolve-origins.js';
 import { createResolveEndgameState, normalizeResolveEndgame } from './resolve-endgame.js';
 import { normalizeCompanionRelations } from './companion-relations.js';
+import { ashleySupportPending, edenDigReportAvailable } from './eden-prologue.js';
 
 export const SAVE_KEY = 'relay-chronicles.save.v1';
 const SAVE_VERSION = 1;
@@ -35,7 +36,7 @@ const UPGRADE_STATS = { attack: 3, defense: 2, shield: 15 };
 const FORBIDDEN_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 const clone = value => JSON.parse(JSON.stringify(value));
 
-export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'normal', mode = 'wait', appearance = 'male', origin = 'spacer', psychologicalProfile = 'sole-survivor', customization } = {}) {
+export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'normal', mode = 'wait', appearance = 'male', origin = 'spacer', psychologicalProfile = 'sole-survivor', customization, guidedPrologue = false } = {}) {
   return {
     version: SAVE_VERSION,
     name: typeof name === 'string' ? name.trim().slice(0, 24) || 'Shepard' : 'Shepard',
@@ -50,7 +51,7 @@ export function newGame({ name = 'Shepard', classId = 'soldier', difficulty = 'n
     zone: 'normandy', party: ['shepard', 'kaidan', 'jenkins'], recruited: ['kaidan', 'jenkins'],
     lost: [], completed: [], cleared: [], collected: [], flags: {}, choices: {},
     story: createStoryState(), companionRelations: {}, missionProgress: createMissionProgress(), talents: createTalentState(),
-    assignments: createAssignmentState(), campaignProgress: createCampaignProgress(), advanceFeros: createAdvanceFerosState(),
+    assignments: createAssignmentState(), campaignProgress: createCampaignProgress({ guidedPrologue }), advanceFeros: createAdvanceFerosState(),
     resolveCitadel: createResolveCitadelState(), resolveNoveria: createResolveNoveriaState(),
     resolveVirmire: createResolveVirmireState(), resolveOrigins: createResolveOrigins(), resolveEndgame: createResolveEndgameState(),
     inventory: initialInventory(), operations: normalizeOperations(undefined), trackedOperation: null,
@@ -102,6 +103,10 @@ export function canStartEncounter(state, id) {
   if (!unlockedZones(state).includes(zone)) return { ok: false, reason: 'Destination indisponible.' };
   if (state.zone !== zone) return { ok: false, reason: 'Rejoignez cette destination avant le combat.' };
   if (state.completed.includes(zone)) return { ok: false, reason: 'Cette mission est déjà accomplie.' };
+  if (zone === 'eden-prime' && index > 0) {
+    if (ashleySupportPending(state)) return { ok: false, reason: 'Portez d’abord assistance à la survivante.' };
+    if (edenDigReportAvailable(state)) return { ok: false, reason: 'Consultez les relevés du site de fouille pour localiser la balise.' };
+  }
   if (index > 0 && !zoneEncounters(zone).slice(0, index).every(previous => state.cleared.includes(previous))) {
     return { ok: false, reason: 'Sécurisez d’abord le secteur précédent.' };
   }
@@ -291,6 +296,23 @@ export function availableCrew(state) {
   return state.recruited.filter(id => OWN(CREW, id) && !state.lost.includes(id) && !['shepard', 'jenkins'].includes(id) && !away.includes(id));
 }
 
+export function confirmEdenSupport(state) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!ashleySupportPending(current) || !recruit(current, 'ashley')) return { ok: false, reason: 'Ce soutien est déjà consigné ou indisponible.' };
+  state.recruited = current.recruited;
+  state.party = ['shepard', 'kaidan', 'ashley'];
+  state.logs = current.logs;
+  return { ok: true };
+}
+
+export function recordEdenDigClue(state) {
+  const current = decodeSave({ format: 'relay-chronicles', version: SAVE_VERSION, state });
+  if (!edenDigReportAvailable(current)) return { ok: false, reason: 'Ce relevé est déjà consigné ou indisponible.' };
+  state.campaignProgress = { ...current.campaignProgress, prologue: { digClue: true } };
+  addLog(state, 'Recherche de la balise', 'Le relevé du site de fouille indique le spatioport comme prochaine destination.');
+  return { ok: true };
+}
+
 export function setSquad(state, ids) {
   if (state.zone !== 'normandy' || !Array.isArray(ids) || ids.length !== 2 || new Set(ids).size !== 2) return false;
   const away = getResolveVirmireAwayCrew(state);
@@ -311,9 +333,14 @@ export function winEncounter(state, id) {
   if (id === 'eden-prime:encounter-1') {
     state.flags.jenkinsLost = true;
     if (!state.lost.includes('jenkins')) state.lost.push('jenkins');
-    recruit(state, 'ashley');
-    state.party = ['shepard', 'kaidan', 'ashley'];
-    addLog(state, 'Eden Prime', 'Jenkins a été tué pendant la descente. Ashley Williams rejoint le commando après l’attaque de sa garnison.');
+    if (state.campaignProgress?.prologue) {
+      state.party = ['shepard', 'kaidan'];
+      addLog(state, 'Eden Prime', 'Jenkins a été tué pendant la descente.');
+    } else {
+      recruit(state, 'ashley');
+      state.party = ['shepard', 'kaidan', 'ashley'];
+      addLog(state, 'Eden Prime', 'Jenkins a été tué pendant la descente. Ashley Williams rejoint le commando après l’attaque de sa garnison.');
+    }
   }
   return true;
 }
@@ -459,7 +486,7 @@ function validateProgression(state) {
   if (Object.keys(CHOICES).some(zone => state.completed.includes(zone) && !OWN(state.choices, zone))) return false;
   if (state.ending !== state.completed.includes('citadel-finale')) return false;
   const jenkinsLost = state.cleared.includes('eden-prime:encounter-1');
-  if ((state.flags.jenkinsLost === true) !== jenkinsLost || state.recruited.includes('ashley') !== jenkinsLost) return false;
+  if ((state.flags.jenkinsLost === true) !== jenkinsLost || state.recruited.includes('ashley') && !jenkinsLost) return false;
   if (!state.recruited.includes('kaidan') || !state.recruited.includes('jenkins')) return false;
   if (state.recruited.includes('liara') !== state.completed.includes('therum')) return false;
   const citadelCrew = ['garrus', 'tali', 'wrex'];
@@ -578,6 +605,8 @@ export function decodeSave(raw) {
     if (OWN(input, 'campaignProgress') && input.campaignProgress === undefined) return null;
     state.campaignProgress = normalizeCampaignProgress(OWN(input, 'campaignProgress') ? input.campaignProgress : undefined, state);
     if (!state.campaignProgress) return null;
+    if (state.flags.jenkinsLost === true && !state.recruited.includes('ashley')
+      && (!ashleySupportPending(state) || state.completed.includes('eden-prime') || state.cleared.includes('eden-prime:encounter-2'))) return null;
     state.assignments = migrateAssignmentState(OWN(input, 'assignments') ? input.assignments : undefined, state);
     if (!state.assignments) return null;
     state.inventory = normalizeInventory(OWN(input, 'inventory') ? input.inventory : undefined, state);

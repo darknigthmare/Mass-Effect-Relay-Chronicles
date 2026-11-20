@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "generatedAt": "2026-11-20T14:49:54.140Z",
+  "criterion": {
+    "id": "QST-briefing-normandy",
+    "description": "Rencontrer Anderson et Nihlus avant Eden Prime.",
+    "acceptance": "Ordre des informations et transitions contrôlé.",
+    "passed": true
+  },
+  "url": "http://127.0.0.1:4287/",
+  "checks": [
+    {
+      "id": "QST-briefing-normandy",
+      "name": "Anderson confirme le briefing, la carte attend le contact avec Nihlus et son évaluation se débloque dans l’ordre.",
+      "passed": true
+    }
+  ],
+  "servedFiles": [
+    {
+      "path": "index.html",
+      "sha256": "dca5715c4b80b38cd8bef6868488ec68fc841f4b67b9537b9573d21be3849d57"
+    },
+    {
+      "path": "assets/index-COM-5j7E.css",
+      "sha256": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+    },
+    {
+      "path": "assets/three-DBNoKq7p.js",
+      "sha256": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156"
+    },
+    {
+      "path": "assets/index-DjABJbq5.js",
+      "sha256": "718d5572646ce328b7a64c4882f387a30ac7a53fd6433caa13de805c5b72823b"
+    }
+  ],
+  "nativeChecks": {
+    "tests": 66,
+    "command": "node --test tests/{eden-prologue,state,advance-progression,resolve-citadel,mission-progress,world-camera}.test.js"
+  },
+  "captures": [
+    {
+      "path": "docs/qa/p0-eden-briefing-locked.png",
+      "sha256": "38c7e0861d95dc24f04ba895f53614c22d62ee71fb63cc327583fb32dc2e36bf",
+      "viewport": {
+        "width": 1100,
+        "height": 780
+      },
+      "review": "Capture ouverte en taille réelle. La carte affiche explicitement la condition de rencontrer Nihlus et montre le bouton de déploiement désactivé."
+    }
+  ],
+  "relocations": [
+    {
+      "stage": "briefing",
+      "from": {
+        "x": 0,
+        "z": 11
+      },
+      "to": {
+        "x": -4.5,
+        "z": -3
+      },
+      "sha256": "92eef7fe0afd1137dade30dff0379f027086982ca7b420cca0060bf6116fcce9",
+      "changedFields": [
+        "position"
+      ]
+    }
+  ],
+  "limitations": [
+    "Le navigateur a démarré une nouvelle campagne. Une copie de la sauvegarde exportée a été replacée au briefing sans autre changement. Les deux échanges et la tentative de déploiement sont passés par les commandes publiques.",
+    "Le collecteur groupé s’est interrompu après ce contrôle réussi, pendant la tentative de déplacement distincte sur Eden Prime. Cette preuve couvre le briefing uniquement."
+  ]
+}

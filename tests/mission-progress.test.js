@@ -7,6 +7,10 @@ import { createMissionProgress, normalizeMissionProgress, MISSION_DEFINITIONS, g
   getMissionPOIs, getMissionExit, getMissionInteraction, advanceMission, tickMission, canCompleteMission,
   getMissionEncounterGate, getMissionTravelGate } from '../src/mission-progress.js';
 import { missionHUDText, missionTimeLabel, renderMissionProgress } from '../src/mission-progress-ui.js';
+import { Group } from 'three';
+import { getMiraStations, installMiraPanels, MIRA_STATUS, updateMiraPanels } from '../src/noveria-stations.js';
+import { renderResolveNoveriaJournal } from '../src/resolve-noveria-ui.js';
+import { WorldView } from '../src/world.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
 function prepared(id, { allEncounters = false } = {}) {
@@ -28,6 +32,32 @@ function prepared(id, { allEncounters = false } = {}) {
 const economy = state => ({ xp: state.xp, credits: state.credits, medigel: state.medigel, paragon: state.paragon,
   renegade: state.renegade, choices: clone(state.choices), inventory: clone(state.inventory), cleared: [...state.cleared] });
 const missionPOI = (id, step) => `mission:${id}:${step}`;
+
+test('MIRA terrain lamps and journal reflect each repaired station and its restored state', () => {
+  const state = prepared('noveria'), group = new Group();
+  const panels = installMiraPanels(group);
+  const world = Object.assign(Object.create(WorldView.prototype), { miraPanels: panels });
+  assert.equal(group.children.length, 3);
+  const colors = () => panels.map(panel => panel.lamp.material.color.getHex());
+  assert.deepEqual(colors(), Array(3).fill(MIRA_STATUS.locked.color));
+  assert.equal(advanceMission(state, 'noveria', 'start').ok, true);
+  world.setStoryContext(state);
+  assert.deepEqual(colors(), Array(3).fill(MIRA_STATUS.pending.color));
+  assert.equal(advanceMission(state, missionPOI('noveria', 'power'), 'repair').ok, true);
+  const restored = decodeSave(encodeSave(state));
+  assert.ok(restored);
+  world.setStoryContext(restored);
+  assert.deepEqual(colors(), [MIRA_STATUS.pending.color, MIRA_STATUS.online.color, MIRA_STATUS.pending.color]);
+  const journal = renderResolveNoveriaJournal(restored, { esc: value => value });
+  assert.match(journal, /data-mira-station="power" data-station-state="online"/);
+  assert.match(journal, /data-mira-station="uplink" data-station-state="pending"/);
+  for (const id of ['memory', 'uplink']) assert.equal(advanceMission(restored, missionPOI('noveria', id), 'repair').ok, true);
+  updateMiraPanels(panels, getMiraStations(restored));
+  assert.deepEqual(colors(), Array(3).fill(MIRA_STATUS.online.color));
+  const legacy = prepared('ilos');
+  updateMiraPanels(panels, getMiraStations(legacy));
+  assert.deepEqual(colors(), Array(3).fill(MIRA_STATUS.unknown.color));
+});
 
 test('old completed chapters migrate as explicitly unknown details, while explicit malformed records never migrate', () => {
   const state = prepared('ilos'), old = normalizeMissionProgress(undefined, state);

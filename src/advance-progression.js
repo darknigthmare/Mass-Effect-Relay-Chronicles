@@ -1,16 +1,18 @@
 import { CHAPTERS, CLASSES } from './game-data.js';
 import { COMMANDER_APPEARANCES, ORIGINS, PSYCHOLOGICAL_PROFILES } from './commander.js';
+import { briefingContactPending, edenBeaconTrail, EDEN_SUPPORT } from './eden-prologue.js';
 
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const ROUTES = ['therum', 'feros', 'noveria'];
 export const CAMPAIGN_MILESTONE_IDS = Object.freeze([
   'QST-profil-de-shepard', 'QST-briefing-normandy', 'QST-deploiement-eden-prime',
   'QST-perte-de-jenkins', 'QST-rencontre-d-ashley', 'QST-vision-de-la-balise',
-  'QST-intronisation-spectre', 'QST-commandement-du-normandy',
+  'QST-intronisation-spectre', 'QST-commandement-du-normandy', 'QST-recherche-de-la-balise',
 ]);
 
-export function createCampaignProgress() {
-  return { version: 1, beaconReturned: false, commandDestination: null, trackedMilestone: null };
+export function createCampaignProgress({ guidedPrologue = false } = {}) {
+  return { version: 1, beaconReturned: false, commandDestination: null, trackedMilestone: null,
+    ...(guidedPrologue ? { prologue: { digClue: false } } : {}) };
 }
 
 const completed = (state, zone) => state?.completed?.includes(zone) === true;
@@ -30,9 +32,9 @@ export function normalizeCampaignProgress(raw, state) {
         : null,
     };
     if (!raw || typeof raw !== 'object' || ![Object.prototype, null].includes(Object.getPrototypeOf(raw))) return null;
-    const keys = Reflect.ownKeys(raw);
-    if (keys.length !== 4 || !keys.every(key => typeof key === 'string'
-      && ['version', 'beaconReturned', 'commandDestination', 'trackedMilestone'].includes(key)
+    const keys = ['version', 'beaconReturned', 'commandDestination', 'trackedMilestone'];
+    if (own(raw, 'prologue')) keys.push('prologue');
+    if (keys.length !== Reflect.ownKeys(raw).length || !keys.every(key => own(raw, key)
       && own(Object.getOwnPropertyDescriptor(raw, key), 'value')
       && Object.getOwnPropertyDescriptor(raw, key).enumerable)) return null;
     if (raw.version !== 1 || typeof raw.beaconReturned !== 'boolean'
@@ -40,8 +42,19 @@ export function normalizeCampaignProgress(raw, state) {
       || raw.commandDestination !== null && (!ROUTES.includes(raw.commandDestination)
         || !completed(state, 'citadel') || !visited(state, raw.commandDestination))
       || raw.trackedMilestone !== null && !CAMPAIGN_MILESTONE_IDS.includes(raw.trackedMilestone)) return null;
-    return { version: 1, beaconReturned: raw.beaconReturned,
+    const result = { version: 1, beaconReturned: raw.beaconReturned,
       commandDestination: raw.commandDestination, trackedMilestone: raw.trackedMilestone };
+    if (own(raw, 'prologue')) {
+      const clue = raw.prologue && Object.getOwnPropertyDescriptor(raw.prologue, 'digClue');
+      if (!clue?.enumerable || !own(clue, 'value') || typeof clue.value !== 'boolean'
+        || Reflect.ownKeys(raw.prologue).length !== 1
+        || ![Object.prototype, null].includes(Object.getPrototypeOf(raw.prologue))
+        || visited(state, 'eden-prime') && !(state.resolveCitadel?.nihlus >= 1)
+        || clue.value && !state.recruited?.includes('ashley')
+        || !clue.value && state.cleared?.includes('eden-prime:encounter-2')) return null;
+      result.prologue = { digClue: clue.value };
+    }
+    return result;
   } catch { return null; }
 }
 
@@ -56,6 +69,9 @@ export function getCampaignMilestones(state) {
   const jenkinsLost = state.flags?.jenkinsLost === true && state.lost?.includes('jenkins');
   const ashley = jenkinsLost && state.recruited?.includes('ashley');
   const beacon = completed(state, 'eden-prime');
+  const nihlusPending = briefingContactPending(state);
+  const briefingReady = briefed && !nihlusPending;
+  const trail = edenBeaconTrail(state);
   const spectre = state.flags?.spectre === true && completed(state, 'citadel');
   const dossier = own(COMMANDER_APPEARANCES, state.appearance) && own(ORIGINS, state.origin)
     && own(PSYCHOLOGICAL_PROFILES, state.psychologicalProfile) && own(CLASSES, state.classId);
@@ -67,10 +83,10 @@ export function getCampaignMilestones(state) {
   return [
     entry(CAMPAIGN_MILESTONE_IDS[0], 'Profil de Shepard', dossier, true,
       'Confirmer le dossier avant le départ.', dossier ? `${state.name} · ${COMMANDER_APPEARANCES[state.appearance].name} · ${ORIGINS[state.origin].name} · ${PSYCHOLOGICAL_PROFILES[state.psychologicalProfile].name} · ${CLASSES[state.classId].name}` : '', 'normandy', null),
-    entry(CAMPAIGN_MILESTONE_IDS[1], 'Briefing du Normandy', briefed, !briefed,
-      'Rejoindre Anderson et confirmer la préparation du déploiement.',
-      'Le briefing est confirmé. Le déploiement vers Eden Prime est autorisé.', 'normandy', 'normandy:briefing'),
-    entry(CAMPAIGN_MILESTONE_IDS[2], 'Déploiement vers Eden Prime', landed, briefed,
+    entry(CAMPAIGN_MILESTONE_IDS[1], 'Briefing du Normandy', briefingReady, true,
+      briefed && nihlusPending ? 'Parler à Nihlus avant le déploiement.' : 'Rejoindre Anderson et confirmer la préparation du déploiement.',
+      'Le briefing est confirmé. Le déploiement vers Eden Prime est autorisé.', 'normandy', briefed && nihlusPending ? 'normandy:talk-nihlus' : 'normandy:briefing'),
+    entry(CAMPAIGN_MILESTONE_IDS[2], 'Déploiement vers Eden Prime', landed, briefingReady,
       'Choisir Eden Prime sur la carte galactique. Kaidan et Jenkins accompagnent Shepard.',
       'Le commando a débarqué sur Eden Prime.', 'normandy', 'normandy:galaxy'),
     entry(CAMPAIGN_MILESTONE_IDS[3], 'Perte de Jenkins', jenkinsLost, landed,
@@ -78,7 +94,9 @@ export function getCampaignMilestones(state) {
       'Jenkins est mort pendant la descente. Ce décès scénaristique ne peut pas être soigné.', 'eden-prime', 'eden-prime:encounter-1'),
     entry(CAMPAIGN_MILESTONE_IDS[4], 'Arrivée d’Ashley', ashley, landed,
       'Atteindre la survivante de l’Alliance après le premier contact.',
-      state.lost?.includes('ashley') ? 'Ashley a rejoint le commando sur Eden Prime. Elle a ensuite été perdue sur Virmire.' : 'Ashley a rejoint le commando après le premier contact.', 'eden-prime', 'eden-prime:encounter-1'),
+      state.lost?.includes('ashley') ? 'Ashley a rejoint le commando sur Eden Prime. Elle a ensuite été perdue sur Virmire.' : 'Ashley a rejoint le commando après le premier contact.', 'eden-prime', progress.prologue && jenkinsLost ? EDEN_SUPPORT : 'eden-prime:encounter-1'),
+    entry(CAMPAIGN_MILESTONE_IDS[8], 'Recherche de la balise', trail.done, ashley,
+      trail.text, trail.text, 'eden-prime', trail.target),
     entry(CAMPAIGN_MILESTONE_IDS[5], 'Vision de la balise', progress.beaconReturned, ashley,
       beacon ? 'La vision a eu lieu. Rejoindre l’extraction et retourner au Normandy.' : 'Sécuriser le spatioport puis rejoindre la balise.',
       'Le contact avec la balise et le retour au Normandy sont enregistrés.', 'eden-prime', beacon ? 'eden-prime:exit' : 'eden-prime:objective'),

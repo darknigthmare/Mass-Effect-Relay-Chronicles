@@ -21552,13 +21552,14 @@
       "plannedPath": "tests/",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot Advance : huit paires réelles Normandy ↔ destination sont parcourues dans les deux sens via les contrôles publics en DEV03 ; chaque arrivée concorde avec son repère de carte et aucune boucle immédiate ne se produit. Le test natif vérifie un chemin sur le sol dressé de chaque arrivée à son extraction, ainsi que l’effacement des entrées et interactions en attente. La description globale chaque liaison reste non couverte : Conduit scénaristique à sens unique et liaisons futures non vérifiés. Critère partiel, sans retour contraire au récit ni validation générale.\nLot P0 : le repère du passage à sens unique reste disponible après sauvegarde et reprise jusqu’au voyage. L’arrivée et l’absence de boucle sont vérifiées sur ce trajet. La traversée de chaque liaison dans les deux sens reste ouverte.",
+      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot Advance : huit paires réelles Normandy ↔ destination sont parcourues dans les deux sens via les contrôles publics en DEV03 ; chaque arrivée concorde avec son repère de carte et aucune boucle immédiate ne se produit. Le test natif vérifie un chemin sur le sol dressé de chaque arrivée à son extraction, ainsi que l’effacement des entrées et interactions en attente. La description globale chaque liaison reste non couverte : Conduit scénaristique à sens unique et liaisons futures non vérifiés. Critère partiel, sans retour contraire au récit ni validation générale.\nLot P0 : le repère du passage à sens unique reste disponible après sauvegarde et reprise jusqu’au voyage. L’arrivée et l’absence de boucle sont vérifiées sur ce trajet. La traversée de chaque liaison dans les deux sens reste ouverte.\nHuit paires de liaisons avec le Normandy et le passage du Conduit vérifiés sur 17 arrivées stables. Le Conduit reste à sens unique ; les autres liaisons et le retour universel restent hors de ce contrôle.",
       "implementationPaths": [
         "src/main.js",
         "src/state.js",
         "src/world.js",
         "src/world-data.js",
-        "src/mission-progress.js"
+        "src/mission-progress.js",
+        "src/advance-travel-access.js"
       ],
       "evidence": [
         "tests/advance-world.test.js",
@@ -21568,7 +21569,9 @@
         "docs/qa/advance-world-dev-03-visual-review.json",
         "tests/mission-progress.test.js",
         "scripts/p0-mission-exit-browser.mjs",
-        "docs/qa/p0-mission-exit-report.json"
+        "docs/qa/p0-mission-exit-report.json",
+        "docs/qa/p0-bidirectional-production-report.json",
+        "scripts/p0-bidirectional-production.mjs"
       ]
     },
     {
@@ -22653,7 +22656,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -22665,7 +22668,16 @@
       "plannedPath": "tests/",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée."
+      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nFormation et caisses mesurées. Hauteurs de scène : humain 2,79, turien 2,76, krogan et Destructeur 3,15. Le cadrage de Garrus est corrigé. Les références consultées ne donnent pas d’échelle commune.",
+      "implementationPaths": [
+        "src/world.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-sprite-scale-review.json",
+        "scripts/p0-sprite-scale-browser.mjs",
+        "tests/companion-combat-world.test.js",
+        "tests/world-camera.test.js"
+      ]
     },
     {
       "id": "QA-transparence-sprite",
@@ -22736,7 +22748,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Adaptation",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "Sans objet",
       "reference": "Décisions du fan game ; aucune prétention de canon officiel",
       "sourceId": "PROJECT",
@@ -22748,11 +22760,12 @@
       "plannedPath": "tests/",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot P0 : l’arme rangée change sur le personnage jouable pendant les déplacements et après reprise. Son identité, ses dégâts et sa chauffe sont recalculés pour le combat. Les silhouettes armées des équipiers et les poses de visée restent génériques.\nLes deux apparences du personnage jouable portent l’arme préparée durant la visée ATB. Attaque et chauffe suivent la dotation. L’accès à l’équipement est verrouillé en combat. Les équipiers conservent leurs armes dessinées.",
+      "notes": "Cas défini ; résultat non exécuté tant qu’aucune preuve de test n’est ajoutée.\nLot P0 : l’arme rangée change sur le personnage jouable pendant les déplacements et après reprise. Son identité, ses dégâts et sa chauffe sont recalculés pour le combat. Les silhouettes armées des équipiers et les poses de visée restent génériques.\nLes deux apparences du personnage jouable portent l’arme préparée durant la visée ATB. Attaque et chauffe suivent la dotation. L’accès à l’équipement est verrouillé en combat. Les équipiers conservent leurs armes dessinées.\nLes sept membres ont été vérifiés sur le terrain et dans leurs poses armées ATB avec quatre familles. Arme rendue et statistiques suivent la dotation. Reprise et verrou de combat sont contrôlés.",
       "implementationPaths": [
         "src/weapon-presentation.js",
         "src/world.js",
-        "src/loadout.js"
+        "src/loadout.js",
+        "src/main.js"
       ],
       "evidence": [
         "docs/qa/p0-weapon-browser.json",
@@ -22760,7 +22773,9 @@
         "scripts/p0-weapon-browser.mjs",
         "docs/qa/p0-combat-weapon-browser.json",
         "scripts/p0-combat-weapon-browser.mjs",
-        "tests/weapon-world.test.js"
+        "tests/weapon-world.test.js",
+        "docs/qa/p0-party-weapon-browser.json",
+        "scripts/p0-party-weapon-browser.mjs"
       ]
     },
     {
@@ -24601,7 +24616,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -24613,18 +24628,22 @@
       "plannedPath": "content/main_quests/QST-briefing-normandy.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Confirmation finale et transitions protégées, objectif suivi persistant. Critère encore partiel : La description exige rencontrer Anderson et Nihlus ; une question nommant Nihlus ne couvre pas sa rencontre complète. Natif gelé courant 1 177/1 177 ; DEV04 quatre groupes, six captures réellement ouvertes, quatre exports. Aucun asset promu ; production compilée attendue séparément.",
+      "notes": "Lot Advance : Confirmation finale et transitions protégées, objectif suivi persistant. Critère encore partiel : La description exige rencontrer Anderson et Nihlus ; une question nommant Nihlus ne couvre pas sa rencontre complète. Natif gelé courant 1 177/1 177 ; DEV04 quatre groupes, six captures réellement ouvertes, quatre exports. Aucun asset promu ; production compilée attendue séparément.\nAnderson puis Nihlus interviennent avant le départ. Eden Prime se débloque après le premier échange avec Nihlus. Son évaluation suit cet échange. La reprise conserve l’état.",
       "implementationPaths": [
         "src/state.js",
         "src/advance-progression.js",
-        "src/main.js"
+        "src/main.js",
+        "src/eden-prologue.js",
+        "src/advance-travel-access.js"
       ],
       "evidence": [
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-progression-public-dev-04-report.json",
         "docs/qa/advance-progression-public-dev-04-visual-review.json",
         "tests/advance-progression.test.js",
-        "docs/research/advance-progression.md"
+        "docs/research/advance-progression.md",
+        "docs/qa/p0-eden-briefing.json",
+        "tests/eden-prologue.test.js"
       ]
     },
     {
@@ -24634,7 +24653,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -24646,18 +24665,23 @@
       "plannedPath": "content/main_quests/QST-deploiement-eden-prime.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Départ réel avec Shepard/Kaidan/Jenkins et visite unique. Critère encore partiel : Premier cadrage canonique non comparé à une référence originale : clause caméra encore ouverte. Natif gelé courant 1 177/1 177 ; DEV04 quatre groupes, six captures réellement ouvertes, quatre exports. Aucun asset promu ; production compilée attendue séparément.",
+      "notes": "Lot Advance : Départ réel avec Shepard/Kaidan/Jenkins et visite unique. Critère encore partiel : Premier cadrage canonique non comparé à une référence originale : clause caméra encore ouverte. Natif gelé courant 1 177/1 177 ; DEV04 quatre groupes, six captures réellement ouvertes, quatre exports. Aucun asset promu ; production compilée attendue séparément.\nLe départ mène au prologue avec Shepard, Kaidan et Jenkins. Le cadrage d’arrivée et le rapport d’attaque ont été contrôlés. Le rapport reprend d’une position préparée sur l’itinéraire.",
       "implementationPaths": [
         "src/state.js",
         "src/advance-progression.js",
-        "src/main.js"
+        "src/main.js",
+        "src/world.js",
+        "src/world-data.js"
       ],
       "evidence": [
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-progression-public-dev-04-report.json",
         "docs/qa/advance-progression-public-dev-04-visual-review.json",
         "tests/advance-progression.test.js",
-        "docs/research/advance-progression.md"
+        "docs/research/advance-progression.md",
+        "docs/qa/p0-eden-landing.json",
+        "scripts/p0-eden-prologue-browser.mjs",
+        "tests/eden-prologue.test.js"
       ]
     },
     {
@@ -24700,7 +24724,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -24712,18 +24736,22 @@
       "plannedPath": "content/main_quests/QST-rencontre-d-ashley.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Ashley remplace Jenkins après le premier contact existant et son arrivée persiste. Critère encore partiel : Le soutien à la survivante et une rencontre distincte complète ne sont pas reconstitués par cette attribution automatique après victoire. Natif gelé courant 1 177/1 177 ; DEV04 quatre groupes, six captures réellement ouvertes, quatre exports. Aucun asset promu ; production compilée attendue séparément.",
+      "notes": "Lot Advance : Ashley remplace Jenkins après le premier contact existant et son arrivée persiste. Critère encore partiel : Le soutien à la survivante et une rencontre distincte complète ne sont pas reconstitués par cette attribution automatique après victoire. Natif gelé courant 1 177/1 177 ; DEV04 quatre groupes, six captures réellement ouvertes, quatre exports. Aucun asset promu ; production compilée attendue séparément.\nAprès le premier combat, le soutien confirme la perte de Jenkins. Ashley rejoint le commando une seule fois au moment de la réponse, sans gain ajouté.",
       "implementationPaths": [
         "src/state.js",
         "src/advance-progression.js",
-        "src/main.js"
+        "src/main.js",
+        "src/eden-prologue.js"
       ],
       "evidence": [
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-progression-public-dev-04-report.json",
         "docs/qa/advance-progression-public-dev-04-visual-review.json",
         "tests/advance-progression.test.js",
-        "docs/research/advance-progression.md"
+        "docs/research/advance-progression.md",
+        "docs/qa/p0-eden-support-and-clue.json",
+        "tests/eden-prologue.test.js",
+        "scripts/p0-eden-prologue-browser.mjs"
       ]
     },
     {
@@ -24733,7 +24761,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -24745,7 +24773,18 @@
       "plannedPath": "content/main_quests/QST-recherche-de-la-balise.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "L’indice relevé au site de fouille actualise le journal et le repère de destination. Ces éléments persistent après reprise.",
+      "implementationPaths": [
+        "src/eden-prologue.js",
+        "src/advance-progression.js",
+        "src/state.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-eden-support-and-clue.json",
+        "tests/eden-prologue.test.js",
+        "scripts/p0-eden-prologue-browser.mjs"
+      ]
     },
     {
       "id": "QST-quais-d-eden-prime",
@@ -25041,7 +25080,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Prototype",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25053,7 +25092,17 @@
       "plannedPath": "content/main_quests/QST-atterrissage-therum.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Embarquement et débarquement au parking contrôlés. Trois seuils logiques des combats et passages à pied contrôlés. Les portes en décor et l’enchaînement complet restent ouverts.",
+      "implementationPaths": [
+        "src/world.js",
+        "src/frontier-layout-data.js",
+        "src/frontier-vehicles.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-therum-report.json",
+        "scripts/p0-therum-browser.mjs",
+        "tests/frontier-levels.test.js"
+      ]
     },
     {
       "id": "QST-liberation-de-liara",
@@ -25062,7 +25111,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25074,7 +25123,16 @@
       "plannedPath": "content/main_quests/QST-liberation-de-liara.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Le dispositif reste bloqué avant sécurisation. Le dialogue libère Liara, puis son choix est disponible après extraction. Le commando Shepard/Ashley/Liara est vérifié par export.",
+      "implementationPaths": [
+        "src/main.js",
+        "src/state.js",
+        "src/world-data.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-therum-report.json",
+        "scripts/p0-therum-browser.mjs"
+      ]
     },
     {
       "id": "QST-defense-de-zhu-s-hope",
@@ -25083,7 +25141,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25095,12 +25153,13 @@
       "plannedPath": "content/main_quests/QST-defense-de-zhu-s-hope.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Contact avec Fai Dan après le premier barrage existant ; progression et services anciens conservés. Les demandes et rapports de Macha, Davin et Fai Dan respectent désormais influence et décès, sans bloquer les étapes physiques ni effacer les services terminés. La tour, son combat original et l’actualisation complète des services restent ouverts.",
+      "notes": "Lot Advance : Contact avec Fai Dan après le premier barrage existant ; progression et services anciens conservés. Les demandes et rapports de Macha, Davin et Fai Dan respectent désormais influence et décès, sans bloquer les étapes physiques ni effacer les services terminés. La tour, son combat original et l’actualisation complète des services restent ouverts.\nBarrage joué, contact Fai Dan et bilan des services actualisé après le dialogue.",
       "implementationPaths": [
         "src/advance-feros.js",
         "src/operations.js",
         "src/main.js",
-        "src/world.js"
+        "src/world.js",
+        "src/advance-feros-ui.js"
       ],
       "evidence": [
         "docs/research/advance-feros.md",
@@ -25108,7 +25167,9 @@
         "tests/advance-feros-operations.test.js",
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-feros-public-dev-02-report.json",
-        "docs/qa/advance-feros-public-dev-02-visual-review.json"
+        "docs/qa/advance-feros-public-dev-02-visual-review.json",
+        "docs/qa/p0-feros-stages-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs"
       ]
     },
     {
@@ -25118,7 +25179,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25130,11 +25191,12 @@
       "plannedPath": "content/main_quests/QST-enquete-exogeni.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Lizbeth fournit carte et premier indice ; l’interface de recherche attend la sécurisation d’ExoGeni avant de révéler spores et influence du Thorien. Le parcours public joue ces étapes et les vannes. Installations, niveaux, force field et ensemble des indices originaux restent à reconstruire ; la fiche demeure Prototype.",
+      "notes": "Lot Advance : Lizbeth fournit carte et premier indice ; l’interface de recherche attend la sécurisation d’ExoGeni avant de révéler spores et influence du Thorien. Le parcours public joue ces étapes et les vannes. Installations, niveaux, force field et ensemble des indices originaux restent à reconstruire ; la fiche demeure Prototype.\nCarte, combat et borne joués. Les libellés de la menace apparaissent au jalon de recherche.",
       "implementationPaths": [
         "src/advance-feros.js",
         "src/main.js",
-        "src/world-data.js"
+        "src/world-data.js",
+        "src/world.js"
       ],
       "evidence": [
         "docs/research/advance-feros.md",
@@ -25142,7 +25204,9 @@
         "tests/advance-feros-operations.test.js",
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-feros-public-dev-02-report.json",
-        "docs/qa/advance-feros-public-dev-02-visual-review.json"
+        "docs/qa/advance-feros-public-dev-02-visual-review.json",
+        "docs/qa/p0-feros-stages-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs"
       ]
     },
     {
@@ -25152,7 +25216,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25164,7 +25228,7 @@
       "plannedPath": "content/main_quests/QST-degagement-du-vaisseau-geth.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Cinq vannes de 5, 7, 17, 11 et 13 PSI ; une pression de 31 à 34 PSI permet de sectionner la griffe et de débloquer la suite du retour. La commande est réellement jouée à 31 PSI. La voie physique est déjà parcourable dans la carte condensée : champ de force et chute du vaisseau 3D restent à produire, critère non fermé.",
+      "notes": "Lot Advance : Cinq vannes de 5, 7, 17, 11 et 13 PSI ; une pression de 31 à 34 PSI permet de sectionner la griffe et de débloquer la suite du retour. La commande est réellement jouée à 31 PSI. La voie physique est déjà parcourable dans la carte condensée : champ de force et chute du vaisseau 3D restent à produire, critère non fermé.\nLe mécanisme à 31 PSI ouvre un raccourci franchi dans les deux sens. Son état est conservé après reprise.",
       "implementationPaths": [
         "src/advance-feros.js",
         "src/main.js",
@@ -25176,7 +25240,10 @@
         "tests/advance-feros-operations.test.js",
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-feros-public-dev-02-report.json",
-        "docs/qa/advance-feros-public-dev-02-visual-review.json"
+        "docs/qa/advance-feros-public-dev-02-visual-review.json",
+        "docs/qa/p0-feros-stages-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs",
+        "docs/qa/p0-feros-passage-production.json"
       ]
     },
     {
@@ -25186,7 +25253,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25198,7 +25265,7 @@
       "plannedPath": "content/main_quests/QST-retour-des-colons.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": "Lot Advance : Traversée publique de la colonie avec seize cibles distinctes, méthodes gaz/mêlée/létal et bilan issu des actes. Le cargo exige toutes les cibles et sépare la mort de Fai Dan. Gare, ascenseurs, fusillade civile, grenades physiques et parcours original complet restent absents ; cette quête reste Prototype malgré le calcul non létal fonctionnel.",
+      "notes": "Lot Advance : Traversée publique de la colonie avec seize cibles distinctes, méthodes gaz/mêlée/létal et bilan issu des actes. Le cargo exige toutes les cibles et sépare la mort de Fai Dan. Gare, ascenseurs, fusillade civile, grenades physiques et parcours original complet restent absents ; cette quête reste Prototype malgré le calcul non létal fonctionnel.\nSeize résolutions jouées : six au gaz, cinq au contact et cinq létales. Onze colons sont épargnés. Le cargo est ouvert dans l’export relu.",
       "implementationPaths": [
         "src/advance-feros.js",
         "src/advance-feros-ui.js",
@@ -25212,7 +25279,9 @@
         "tests/advance-feros-operations.test.js",
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-feros-public-dev-02-report.json",
-        "docs/qa/advance-feros-public-dev-02-visual-review.json"
+        "docs/qa/advance-feros-public-dev-02-visual-review.json",
+        "docs/qa/p0-feros-colonists-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs"
       ]
     },
     {
@@ -25222,7 +25291,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25234,7 +25303,7 @@
       "plannedPath": "content/main_quests/QST-affrontement-du-thorian.json",
       "assetPath": "src/boss-phases.js",
       "gameKey": "bossPhases:thorian",
-      "notes": "Six objectifs neuraux passifs sont détruits par de vrais ordres, avec apparition de trois renforts et victoire unique après nettoyage. Prototype dans l’arène adaptée : ni verticalité complète, ni clones asari, ni rencontre de Shiala, ni variable de Cypher supplémentaire. Le choix global de colonie historique ne prouve pas la survie individuelle des colons.\nLot Advance : Le combat existant à six nœuds est conservé ; les seize décisions civiles conditionnent l’accès au cargo, puis Shiala transmet le Cipher après la victoire et son sort est sauvegardé. Le bilan reprend réellement les survivants et la connaissance. Étages, clones asari et scène originale du repaire restent ouverts ; aucun achèvement intégral du chantier n’est déclaré.",
+      "notes": "Six objectifs neuraux passifs sont détruits par de vrais ordres, avec apparition de trois renforts et victoire unique après nettoyage. Prototype dans l’arène adaptée : ni verticalité complète, ni clones asari, ni rencontre de Shiala, ni variable de Cypher supplémentaire. Le choix global de colonie historique ne prouve pas la survie individuelle des colons.\nLot Advance : Le combat existant à six nœuds est conservé ; les seize décisions civiles conditionnent l’accès au cargo, puis Shiala transmet le Cipher après la victoire et son sort est sauvegardé. Le bilan reprend réellement les survivants et la connaissance. Étages, clones asari et scène originale du repaire restent ouverts ; aucun achèvement intégral du chantier n’est déclaré.\nSix nœuds vaincus au combat public. Shiala est épargnée, onze colons sont sauvés et la connaissance du Cypher est conservée après reprise. Arène adaptée.",
       "implementationPaths": [
         "src/boss-phases.js",
         "src/combat.js",
@@ -25255,7 +25324,9 @@
         "tests/advance-feros-operations.test.js",
         "docs/qa/advance-integration-final-03-report.json",
         "docs/qa/advance-feros-public-dev-02-report.json",
-        "docs/qa/advance-feros-public-dev-02-visual-review.json"
+        "docs/qa/advance-feros-public-dev-02-visual-review.json",
+        "docs/qa/p0-feros-boss-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs"
       ]
     },
     {
@@ -25321,7 +25392,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Prototype",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25333,18 +25404,23 @@
       "plannedPath": "content/main_quests/QST-remise-en-marche-mira.json",
       "assetPath": "src/mission-progress.js",
       "gameKey": "missionProgress:noveria",
-      "notes": "Prototype partiel : trois stations d’initialisation, alimentation et liaison dans la carte condensée. Puzzle du noyau, réacteur/carburant, intérieurs et séquence originale complète restent à recouper/reproduire. Les pages communautaires tentées ont répondu 402 ; aucune lecture de leur contenu n’est revendiquée.",
+      "notes": "Prototype partiel : trois stations d’initialisation, alimentation et liaison dans la carte condensée. Puzzle du noyau, réacteur/carburant, intérieurs et séquence originale complète restent à recouper/reproduire. Les pages communautaires tentées ont répondu 402 ; aucune lecture de leur contenu n’est revendiquée.\nLes trois appareils de terrain passent d’ambre à vert après réparation. La première réparation et le journal persistent après reprise. Le verrou des laboratoires se lève à trois stations.",
       "implementationPaths": [
         "src/mission-progress.js",
         "src/mission-progress-ui.js",
         "src/main.js",
-        "src/state.js"
+        "src/state.js",
+        "src/noveria-stations.js",
+        "src/world.js",
+        "src/resolve-noveria-ui.js"
       ],
       "evidence": [
         "tests/mission-progress.test.js",
         "docs/research/mission-progress.md",
         "docs/qa/priority-report.json",
-        "docs/qa/priority-workbook-visual-report.json"
+        "docs/qa/priority-workbook-visual-report.json",
+        "docs/qa/p0-mira-stations/report.json",
+        "scripts/p0-mira-stations-browser.mjs"
       ]
     },
     {
@@ -25472,7 +25548,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25484,7 +25560,17 @@
       "plannedPath": "content/main_quests/QST-soutien-aux-galariens.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Trois sabotages joués. Chaque action conserve son propre drapeau et les alarmes restent indépendantes. Trois exports publics contrôlés.",
+      "implementationPaths": [
+        "src/resolve-virmire.js",
+        "src/resolve-virmire-ui.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-virmire-field/support.json",
+        "tests/resolve-virmire.test.js",
+        "scripts/p0-virmire-field-browser.mjs"
+      ]
     },
     {
       "id": "QST-laboratoires-de-saren",
@@ -25493,7 +25579,7 @@
       "episode": "ME1",
       "scope": "Production ME1",
       "canonLevel": "Référence à vérifier",
-      "status": "Défini",
+      "status": "Validé",
       "assetStatus": "À produire",
       "reference": "Découpage de production de l’intrigue ME1 ; déclencheurs exacts à relever.",
       "sourceId": "PRIMA-PROLOGUE",
@@ -25505,7 +25591,17 @@
       "plannedPath": "content/main_quests/QST-laboratoires-de-saren.json",
       "assetPath": null,
       "gameKey": null,
-      "notes": ""
+      "notes": "Rana, balise puis transmission sont enregistrées dans l’ordre. Le journal conserve ces trois jalons après reprise, avec un accès progressif aux informations.",
+      "implementationPaths": [
+        "src/resolve-virmire.js",
+        "src/resolve-virmire-ui.js",
+        "src/main.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-virmire-field/research.json",
+        "tests/resolve-virmire.test.js",
+        "scripts/p0-virmire-field-browser.mjs"
+      ]
     },
     {
       "id": "QST-revelation-de-sovereign",

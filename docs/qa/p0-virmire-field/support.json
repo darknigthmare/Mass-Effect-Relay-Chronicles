@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "generatedAt": "2026-11-20T15:01:23.242Z",
+  "scope": "Groupe de contrôle des soutiens au STG exécuté et terminé dans le build Vite.",
+  "checks": [
+    {
+      "id": "QST-soutien-aux-galariens",
+      "passed": true,
+      "exactDescription": "Saboter les systèmes utiles à Kirrahe.",
+      "exactCriterion": "Chaque action modifie son drapeau précis.",
+      "changes": [
+        {
+          "intervention": "communications",
+          "support": {
+            "communications": true,
+            "satellite": false,
+            "flyers": false
+          },
+          "exportSha256": "e8b0a499fedae660536edfb6c19ef5f23b559db386c327e5cb15f840eddbefad"
+        },
+        {
+          "intervention": "satellite",
+          "support": {
+            "communications": true,
+            "satellite": true,
+            "flyers": false
+          },
+          "exportSha256": "8f13994a9443b65b54a645ee378817382fafd66a0a8f0c53cad124fac1b9e7cf"
+        },
+        {
+          "intervention": "flyers",
+          "support": {
+            "communications": true,
+            "satellite": true,
+            "flyers": true
+          },
+          "exportSha256": "afa3bda6e2da482a3036fc778cb5dae58704673d164bfc6dd5cf51180b328173"
+        }
+      ],
+      "alarmsIndependent": true
+    }
+  ],
+  "documentSha256": "b928d179712e350593caf5d42d8d291ffaec428af1745af3e86efebcb01933f6",
+  "browser": {
+    "url": "http://127.0.0.1:4304/",
+    "fixtures": [
+      {
+        "key": "briefing",
+        "sha256": "986a90b4095f352b498d1318e8f9c0fedc65fa64240e70d2473243a7dfcb7dd1",
+        "position": {
+          "x": 23,
+          "z": 33
+        },
+        "preparation": "Campagne préalable et arrivée préparées."
+      },
+      {
+        "key": "communications",
+        "sha256": "7fbe93e33d7599973b5ab6a9b200cecc5517183a8156613e838732a3b09b3d1d",
+        "position": {
+          "x": -6,
+          "z": 0
+        },
+        "preparation": "Export de la commande précédente et arrivée au poste. Premier barrage préparé au premier import."
+      },
+      {
+        "key": "satellite",
+        "sha256": "1c65e7758af5051c8ffbde1bf6bd0f974d552679b48a49f6505b57e997809592",
+        "position": {
+          "x": 8,
+          "z": -15
+        },
+        "preparation": "Export de la commande précédente et arrivée au poste. Premier barrage préparé au premier import."
+      },
+      {
+        "key": "flyers",
+        "sha256": "b3510b1c5b4284ffcd5e78cf8babf79e6b0738d17c42fa7d48527c592d88069b",
+        "position": {
+          "x": 19,
+          "z": -24
+        },
+        "preparation": "Export de la commande précédente et arrivée au poste. Premier barrage préparé au premier import."
+      },
+      {
+        "key": "alarms",
+        "sha256": "a3b65cee353b8ec6bfe3116934b03afab2a338d94e966fb61a341b2214acd57d",
+        "position": {
+          "x": 24,
+          "z": -32
+        },
+        "preparation": "Export après les trois soutiens et arrivée à la console."
+      }
+    ],
+    "captures": [
+      {
+        "path": "docs/qa/p0-virmire-field/soutiens-confirmes.png",
+        "sha256": "41e8689ae2513f1c2f9c9f1ac6474a7cd5f0dd5cada9486f87238077d797594b",
+        "opened": true
+      }
+    ]
+  },
+  "origin": {
+    "traceSha256": "613d749254c5ea047bf560894fa0da33883b27e08eaa105057a2e836857488f7",
+    "wholeRunPassed": false,
+    "laterFailure": "Délai de stabilité du clic sur le choix de transmission dans le groupe laboratoire après la réussite des soutiens."
+  },
+  "limits": [
+    "Campagne antérieure, premier barrage et positions préparés. Les trois confirmations, la commande des alarmes et les exports ont été effectués dans les commandes publiques."
+  ]
+}

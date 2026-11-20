@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "generatedAt": "2026-11-20T14:55:00.595Z",
+  "criterion": {
+    "id": "QST-deploiement-eden-prime",
+    "description": "Largage du commando et découverte de l’attaque.",
+    "acceptance": "Équipe temporaire et première caméra correctes.",
+    "passed": true
+  },
+  "url": "http://127.0.0.1:4287/",
+  "checks": [
+    {
+      "id": "QST-deploiement-eden-prime",
+      "name": "Le point de départ contient le groupe prévu. Le rapport de terrain confirme la découverte de l’attaque.",
+      "passed": true
+    },
+    {
+      "id": "QST-deploiement-eden-prime",
+      "passed": true,
+      "name": "Le déploiement par la carte affiche Shepard, Kaidan et Jenkins et garde les trois sprites dans le premier cadre."
+    }
+  ],
+  "servedFiles": [
+    {
+      "path": "index.html",
+      "sha256": "dca5715c4b80b38cd8bef6868488ec68fc841f4b67b9537b9573d21be3849d57"
+    },
+    {
+      "path": "assets/index-COM-5j7E.css",
+      "sha256": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+    },
+    {
+      "path": "assets/three-DBNoKq7p.js",
+      "sha256": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156"
+    },
+    {
+      "path": "assets/index-DjABJbq5.js",
+      "sha256": "718d5572646ce328b7a64c4882f387a30ac7a53fd6433caa13de805c5b72823b"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/qa/p0-eden-landing-camera.png",
+      "sha256": "fff256ff3782cffb3553b68003b37c1a51f2c25f25e0eb34b41b6951170e616c",
+      "viewport": {
+        "width": 1100,
+        "height": 780
+      },
+      "review": "Capture du déploiement public ouverte à taille réelle. Les trois silhouettes, la route de départ, le HUD de l’équipe et la zone de largage sont dans le cadre de 1 100 × 780."
+    }
+  ],
+  "relocations": [
+    {
+      "stage": "largage-prepare",
+      "from": null,
+      "to": null,
+      "sha256": "7a660dc56f6349471923804acc8e0471693dd716f8e14e92d290adfcc9bb14ff",
+      "changedFields": [],
+      "nativePrerequisites": true
+    },
+    {
+      "stage": "rapport-d-arrivee",
+      "from": {
+        "x": -20,
+        "z": 44
+      },
+      "to": {
+        "x": -20,
+        "z": 41
+      },
+      "sha256": "26856fb5b01b6d046bd89dd33dba0f1c74ae1903848fef8d0e69f1855bc2e5a4",
+      "changedFields": [
+        "position"
+      ],
+      "nativePrerequisites": false
+    }
+  ],
+  "limitations": [
+    "La capture du premier cadrage provient du départ réel par la carte. Le rapport de terrain a ensuite été rejoué séparément après préparation du départ par les API natives et un déplacement de sauvegarde limité aux coordonnées.",
+    "Le premier cadrage et le terrain sont ceux de l’adaptation. Les collecteurs des deux familles se sont interrompus après ces observations, sur le déplacement automatique puis la conversion d’un autre repère."
+  ]
+}

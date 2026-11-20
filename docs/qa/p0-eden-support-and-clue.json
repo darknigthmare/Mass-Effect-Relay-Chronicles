@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "generatedAt": "2026-11-20T14:58:40.052Z",
+  "criteria": [
+    {
+      "id": "QST-rencontre-d-ashley",
+      "description": "Soutien à la survivante de l’Alliance.",
+      "acceptance": "Ajout au groupe au bon moment.",
+      "passed": true
+    },
+    {
+      "id": "QST-recherche-de-la-balise",
+      "description": "Suivre les indices depuis le site de fouille.",
+      "acceptance": "Journal et destination mis à jour.",
+      "passed": true
+    }
+  ],
+  "url": "http://127.0.0.1:4287/",
+  "checks": [
+    {
+      "id": "QST-rencontre-d-ashley",
+      "name": "Le premier combat et son rapport laissent le soutien en attente. La reprise retrouve le point et l’aide ajoute Ashley une fois.",
+      "passed": true
+    },
+    {
+      "id": "QST-recherche-de-la-balise",
+      "name": "Le relevé est enregistré au site de fouille. Le journal et le repère suivi basculent vers le spatioport après reprise.",
+      "passed": true
+    }
+  ],
+  "servedFiles": [
+    {
+      "path": "index.html",
+      "sha256": "dca5715c4b80b38cd8bef6868488ec68fc841f4b67b9537b9573d21be3849d57"
+    },
+    {
+      "path": "assets/index-COM-5j7E.css",
+      "sha256": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+    },
+    {
+      "path": "assets/three-DBNoKq7p.js",
+      "sha256": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156"
+    },
+    {
+      "path": "assets/index-DjABJbq5.js",
+      "sha256": "718d5572646ce328b7a64c4882f387a30ac7a53fd6433caa13de805c5b72823b"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/qa/p0-eden-soutien.png",
+      "sha256": "7365d04cf3c2d5435173b0e9b40096c24de76ac068c258719437c3dae4b3801f",
+      "viewport": {
+        "width": 1100,
+        "height": 780
+      },
+      "review": "Capture ouverte à 1 100 × 780 après le combat public et la réclamation de victoire. Le rapport propose une aide explicite et les deux membres encore en activité sont visibles."
+    },
+    {
+      "path": "docs/qa/p0-eden-piste-spatioport.png",
+      "sha256": "efb986375cd054db523c4b11de06e61235f7e6481150df8e54e1ded76aed14d8",
+      "viewport": {
+        "width": 1100,
+        "height": 780
+      },
+      "review": "Capture ouverte à 1 100 × 780. La carte affiche le repère suivi du secteur de progression après lecture de l’indice et rechargement."
+    }
+  ],
+  "fixtures": {
+    "battle": [
+      {
+        "stage": "largage-prepare",
+        "from": null,
+        "to": null,
+        "sha256": "7a660dc56f6349471923804acc8e0471693dd716f8e14e92d290adfcc9bb14ff",
+        "changedFields": [],
+        "nativePrerequisites": true
+      },
+      {
+        "stage": "rapport-d-arrivee",
+        "from": {
+          "x": -20,
+          "z": 44
+        },
+        "to": {
+          "x": -20,
+          "z": 41
+        },
+        "sha256": "26856fb5b01b6d046bd89dd33dba0f1c74ae1903848fef8d0e69f1855bc2e5a4",
+        "changedFields": [
+          "position"
+        ],
+        "nativePrerequisites": false
+      },
+      {
+        "stage": "premier-contact",
+        "from": {
+          "x": -20,
+          "z": 44
+        },
+        "to": {
+          "x": -14,
+          "z": 12
+        },
+        "sha256": "fd680601f56e50f53367cf07b5deb264c9805b658e2f19c41be9fc512fc5e8f2",
+        "changedFields": [
+          "position"
+        ],
+        "nativePrerequisites": false
+      }
+    ],
+    "supportAndClue": [
+      {
+        "stage": "premiere-victoire-preparee",
+        "from": null,
+        "to": null,
+        "sha256": "e9405d552ec05139707b153f2772b3ab1b17291836c819b82c7d7edec969128a",
+        "changedFields": [],
+        "nativePrerequisites": true
+      },
+      {
+        "stage": "soutien-repris",
+        "from": {
+          "x": -20,
+          "z": 44
+        },
+        "to": {
+          "x": -12.200000000000003,
+          "z": 12.000000000000014
+        },
+        "sha256": "e9cedf050f366a3dc6901d0127d1ce9ad1c368b9934fbc0b9f388480ba4b66a2",
+        "changedFields": [
+          "position"
+        ],
+        "nativePrerequisites": false
+      },
+      {
+        "stage": "releve-de-fouille",
+        "from": {
+          "x": -12.200000000000003,
+          "z": 12.000000000000014
+        },
+        "to": {
+          "x": 9,
+          "z": -30.999999999999993
+        },
+        "sha256": "98b851442306167f7cf01d40fbab2abe0e8ce6bad3f93125f2d34c2d8a3017b2",
+        "changedFields": [
+          "position"
+        ],
+        "nativePrerequisites": false
+      }
+    ]
+  },
+  "verification": {
+    "nativeTests": 66,
+    "command": "node --test tests/{eden-prologue,state,advance-progression,resolve-citadel,mission-progress,world-camera}.test.js"
+  },
+  "limitations": [
+    "Dans la première exécution, les API natives préparent le largage et un déplacement de sauvegarde place le groupe au premier contact. Le premier ATB, sa victoire et l’ouverture du rapport ont été joués publiquement. Une erreur du collecteur sur la conversion des coordonnées a interrompu cette exécution après affichage du soutien.",
+    "Dans la seconde exécution, le même état post-victoire est préparé par les API natives. Le soutien, le relevé de fouille, le suivi du journal puis la reprise sont exécutés via le jeu. Les déplacements de préparation changent uniquement les coordonnées des sauvegardes exportées.",
+    "Le rythme, les étapes, le cadrage et les niveaux vérifiés appartiennent à l’adaptation existante."
+  ]
+}

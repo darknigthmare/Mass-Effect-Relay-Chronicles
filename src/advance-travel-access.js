@@ -1,6 +1,7 @@
 import { CHAPTERS } from './game-data.js';
 import { unlockedZones } from './state.js';
 import { getMissionTravelGate } from './mission-progress.js';
+import { ashleySupportPending, briefingContactPending } from './eden-prologue.js';
 
 const investigations = ['therum', 'feros', 'noveria'];
 const finalInvestigations = [...investigations, 'virmire'];
@@ -37,6 +38,8 @@ export function getDestinationAccess(state, zone, { unlocked } = {}) {
   }
   const departure = getMissionTravelGate(state, zone);
   if (!departure.ok) return locked([departure.reason]);
+  if (zone === 'eden-prime' && briefingContactPending(state)) return locked(['Parlez à Nihlus à bord du Normandy avant le déploiement.']);
+  if (zone !== state.zone && ashleySupportPending(state)) return locked(['Portez d’abord assistance à la survivante.']);
   return {
     ok: true,
     reason: completed(zone) ? 'Mission accomplie · revisite disponible.' : 'Destination accessible.',

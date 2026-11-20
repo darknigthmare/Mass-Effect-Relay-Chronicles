@@ -1,4 +1,5 @@
 import { normalizeResolveNoveriaState, noveriaResolutionReport } from './resolve-noveria.js';
+import { getMiraStations, MIRA_STATUS } from './noveria-stations.js';
 
 const PASS_LABELS = {
   lorik: 'Laissez-passer remis par Lorik contre les preuves.',
@@ -27,7 +28,10 @@ export function renderResolveNoveriaJournal(state, { esc } = {}) {
   if (state?.zone !== 'noveria' && !state?.story?.visitedZones?.includes('noveria') && !state?.completed?.includes('noveria')) return '';
   const p = normalizeResolveNoveriaState(state.resolveNoveria, state);
   if (!p) return '';
-  if (p.legacy) return '<article class="journal-entry" data-noveria-report="legacy"><h3>Port Hanshan · bilan</h3><p>Cette ancienne progression ne contient pas la voie d’obtention du laissez-passer ni le sort de Gianna et d’Anoleis. La décision historique sur la reine reste conservée.</p></article>';
+  const stationList = '<article class="journal-entry" data-mira-stations><h3>Pic 15 · État des stations</h3><ul>'
+    + getMiraStations(state).map(station => `<li data-mira-station="${station.id}" data-station-state="${station.status}">${station.label} · <strong>${MIRA_STATUS[station.status].label}</strong></li>`).join('')
+    + '</ul></article>';
+  if (p.legacy) return '<article class="journal-entry" data-noveria-report="legacy"><h3>Port Hanshan · bilan</h3><p>Cette ancienne progression ne contient pas la voie d’obtention du laissez-passer ni le sort de Gianna et d’Anoleis. La décision historique sur la reine reste conservée.</p></article>' + stationList;
   const report = noveriaResolutionReport(state), lines = [];
   const objective = resolveNoveriaObjective(state);
   if (objective) lines.push(objective);
@@ -43,5 +47,5 @@ export function renderResolveNoveriaJournal(state, { esc } = {}) {
   if (report.gianna === 'dead') lines.push('Après votre dénonciation, Gianna et Anoleis se sont entretués.');
   if (report.opold === 'reported') lines.push('Le paquet d’Opold a été saisi par Anoleis.');
   if (report.queen) lines.push(report.queen === 'release' ? 'La reine rachni a été libérée.' : 'La reine rachni a été détruite.');
-  return `<article class="journal-entry" data-noveria-report="current"><h3>Port Hanshan · bilan</h3>${lines.map(text => `<p>${esc(text)}</p>`).join('')}</article>`;
+  return `<article class="journal-entry" data-noveria-report="current"><h3>Port Hanshan · bilan</h3>${lines.map(text => `<p>${esc(text)}</p>`).join('')}</article>` + stationList;
 }

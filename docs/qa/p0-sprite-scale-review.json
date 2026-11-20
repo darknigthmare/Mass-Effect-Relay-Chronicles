@@ -1,0 +1,265 @@
+{
+  "passed": true,
+  "tests": 25,
+  "at": "2026-11-20T14:48:55.836Z",
+  "baseline": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "criterion": {
+    "id": "QA-rapport-de-tailles",
+    "description": "Comparer humain, turien, krogan, geth lourd et décor.",
+    "acceptance": "Échelle cohérente avec les références disponibles.",
+    "passed": false,
+    "recommendedStatus": "Prototype",
+    "reason": "Les cinq gabarits ont été mesurés dans le monde. Les références externes donnent des catégories et des vues partielles, sans base commune de comparaison pour les volumes des quatre corps et du décor."
+  },
+  "scope": "Dimensions visibles en unités du moteur dans une formation de combat à Novéria, et lecture des trois gabarits d’exploration. Les valeurs sont des mesures de dessin projeté sur le plan du sprite.",
+  "sourcePaths": [
+    "src/world.js",
+    "public/assets/crew-atlas.png",
+    "scripts/p0-sprite-scale-browser.mjs",
+    "tests/companion-combat-world.test.js"
+  ],
+  "sourceHashes": {
+    "public/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "scripts/p0-sprite-scale-browser.mjs": "c1b3ea480210ffd39bb6902e696adbcd8efa007bab8cd589aad12102e3249bb3"
+  },
+  "command": "GAME_URL=http://127.0.0.1:4219/ P0_SCALE_OUTPUT=/tmp/p0-sprite-scale-01 node scripts/p0-sprite-scale-browser.mjs",
+  "server": "RELAY_QA=1 npm run dev -- --port 4219 --strictPort",
+  "browser": "Chromium 154.0.8037.57, SwiftShader, 1160 × 800.",
+  "nativeCommand": "node --test tests/commander-world.test.js tests/companion-combat-world.test.js tests/horizon-enemy-world.test.js tests/world-camera.test.js tests/world-sprite-alpha.test.js",
+  "checks": [
+    "Les quatre poses de visée sont chargées par le WorldView de combat, au même plan physique que les caisses d’arène mesurées.",
+    "Le cadrage fixe de Garrus prend 478 pixels visibles de plus au seuil alpha 0,2 dans les treize lignes auparavant coupées. La hauteur nominale du plan de rendu reste 2,85.",
+    "Les visuels des quatre acteurs et du décor sont relus dans une scène du jeu. Le PNG source garde son empreinte."
+  ],
+  "restoredPixels": 478,
+  "measurements": {
+    "exploration": [
+      {
+        "key": "shepard",
+        "nominalHeight": 2.85,
+        "bounds": {
+          "width": 384,
+          "height": 512,
+          "xmin": 118,
+          "xmax": 377,
+          "ymin": 4,
+          "ymax": 511,
+          "count": 57689
+        },
+        "visibleHeight": 2.827734375,
+        "visibleWidth": 1.4218750000000002,
+        "visibleFootAboveFloor": 0.050000000000000044
+      },
+      {
+        "key": "garrus",
+        "nominalHeight": 2.85,
+        "bounds": {
+          "width": 384,
+          "height": 512,
+          "xmin": 81,
+          "xmax": 371,
+          "ymin": 2,
+          "ymax": 505,
+          "count": 63810
+        },
+        "visibleHeight": 2.80546875,
+        "visibleWidth": 1.5914062500000001,
+        "visibleFootAboveFloor": 0.09686197325692647
+      },
+      {
+        "key": "wrex",
+        "nominalHeight": 3.25,
+        "bounds": {
+          "width": 384,
+          "height": 512,
+          "xmin": 7,
+          "xmax": 363,
+          "ymin": 2,
+          "ymax": 509,
+          "count": 105823
+        },
+        "visibleHeight": 3.224609375,
+        "visibleWidth": 2.370703125,
+        "visibleFootAboveFloor": 0.07724407132921085
+      }
+    ],
+    "combat": [
+      {
+        "key": "shepard",
+        "pose": "shepard-combat-aim",
+        "nominalHeight": 2.85,
+        "bounds": {
+          "width": 430,
+          "height": 527,
+          "xmin": 5,
+          "xmax": 377,
+          "ymin": 5,
+          "ymax": 520,
+          "count": 72143
+        },
+        "visibleHeight": 2.7905123339658444,
+        "visibleWidth": 2.0171726755218216,
+        "visibleFootAboveFloor": 0.050000000000000044
+      },
+      {
+        "key": "garrus",
+        "pose": "garrus-combat-aim",
+        "nominalHeight": 2.85,
+        "bounds": {
+          "width": 451,
+          "height": 534,
+          "xmin": 8,
+          "xmax": 397,
+          "ymin": 8,
+          "ymax": 525,
+          "count": 70885
+        },
+        "visibleHeight": 2.7646067415730338,
+        "visibleWidth": 2.081460674157303,
+        "visibleFootAboveFloor": 0.050000000000000044
+      },
+      {
+        "key": "wrex",
+        "pose": "wrex-combat-aim",
+        "nominalHeight": 3.25,
+        "bounds": {
+          "width": 477,
+          "height": 515,
+          "xmin": 8,
+          "xmax": 450,
+          "ymin": 8,
+          "ymax": 506,
+          "count": 100081
+        },
+        "visibleHeight": 3.1490291262135925,
+        "visibleWidth": 2.7956310679611653,
+        "visibleFootAboveFloor": 0.050000000000000044
+      },
+      {
+        "key": "geth-destroyer",
+        "pose": "geth-destroyer-combat-aim",
+        "nominalHeight": 3.25,
+        "bounds": {
+          "width": 477,
+          "height": 537,
+          "xmin": 8,
+          "xmax": 468,
+          "ymin": 8,
+          "ymax": 528,
+          "count": 107420
+        },
+        "visibleHeight": 3.1531657355679705,
+        "visibleWidth": 2.7900372439478582,
+        "visibleFootAboveFloor": 0.050000000000000044
+      }
+    ],
+    "originalGarrusCrop": {
+      "width": 384,
+      "height": 512,
+      "xmin": 81,
+      "xmax": 371,
+      "ymin": 0,
+      "ymax": 490,
+      "count": 63332
+    },
+    "arena": {
+      "x": -24,
+      "z": 27
+    },
+    "arenaCrates": [
+      {
+        "x": -25.7,
+        "z": 24.1,
+        "width": 1.2000000476837158,
+        "height": 0.9599999785423279
+      },
+      {
+        "x": -25.7,
+        "z": 29.9,
+        "width": 1.2000000476837158,
+        "height": 0.9599999785423279
+      },
+      {
+        "x": -22.3,
+        "z": 24.1,
+        "width": 1.2000000476837158,
+        "height": 0.9599999785423279
+      }
+    ],
+    "assetErrors": []
+  },
+  "combatRatiosVsHuman": {
+    "shepard": {
+      "height": 1,
+      "width": 1
+    },
+    "garrus": {
+      "height": 0.990716546177743,
+      "width": 1.0318703497303974
+    },
+    "wrex": {
+      "height": 1.1284770498535042,
+      "width": 1.3859155945774273
+    },
+    "geth-destroyer": {
+      "height": 1.1299594333226712,
+      "width": 1.3831424933545189
+    }
+  },
+  "references": [
+    {
+      "label": "Prima, guide officiel PC ME1 hébergé par BioWare",
+      "url": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
+      "status": 200,
+      "sha256": "dbef65537b3ab6dc7dbcc2d8f4f9ae2f7e4eaa99d47f1d1a2831d7b213e5f8c2",
+      "openedPages": [
+        7,
+        15
+      ],
+      "observations": [
+        "Page PDF 7, page imprimée 63 : Nihlus et les humains du Normandy se côtoient en plans rapprochés. La photographie ne montre pas les pieds des sujets comparés.",
+        "Page PDF 15, page imprimée 71 : le Destructeur est identifié comme lourdement blindé. Le portrait sous le réticule ne montre ni corps entier ni humain à la même profondeur."
+      ]
+    },
+    {
+      "label": "EA, manuel Xbox 360 de Mass Effect",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_en_US.pdf",
+      "status": 200,
+      "sha256": "f09cbe3dae03b652299d63f6b4c9340b8d0a9bf4df8b92b83e9bd9545dbceb44",
+      "openedPages": [
+        13
+      ],
+      "observations": [
+        "La page imprimée 23 illustre le Mako près d’une structure. Elle ne donne ni la mesure des caisses, ni un repère commun aux quatre types d’acteurs."
+      ]
+    },
+    {
+      "label": "EA, index des guides Garrus et Urdnot Wrex",
+      "url": "https://www.ea.com/games/mass-effect/community/cosplay-guides",
+      "status": 200,
+      "sha256": "1a5831b1d42680c2f228fffd23b75b5dafa6a585a020700d69ff24fe6389f792",
+      "archiveAccess": "Les deux liens Zip ont été tentés directement. Le serveur intermédiaire a renvoyé 403 avant téléchargement."
+    }
+  ],
+  "limits": [
+    "Les dimensions sont celles des silhouettes et obstacles du jeu, en unités de scène. Aucune équivalence en mètres ni taille officielle reconstruite n’est établie.",
+    "Les photos des manuels servent uniquement à la comparaison. Elles ne sont ni copiées dans les assets ni utilisées comme textures."
+  ],
+  "captures": [
+    {
+      "label": "noveria",
+      "path": "docs/screenshots/p0-sprite-scale-noveria.png",
+      "sha256": "dc25b05a61987304e3da0c0074a27012aff5288271f8263b2abc5384ebb7f4b3",
+      "actuallyOpened": true,
+      "observation": "Au Port Hanshan, l’humain et le Turien en visée ont des hauteurs proches. Wrex et le Destructeur sont visiblement plus larges. Les caisses du décor restent sous les torses."
+    },
+    {
+      "label": "garrus-crop",
+      "path": "docs/screenshots/p0-sprite-scale-garrus-crop.png",
+      "sha256": "3a25cac2705b0f381ec922a6c9a540224748accff4e2f979bdd9a53d9de62f9e",
+      "actuallyOpened": true,
+      "observation": "Les deux rendus exploitent la même planche. Le haut des lames crâniennes est tronqué à gauche par la grille nominale et entier dans le nouveau cadre à droite."
+    }
+  ],
+  "errors": []
+}

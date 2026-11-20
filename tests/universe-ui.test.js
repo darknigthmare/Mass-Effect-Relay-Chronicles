@@ -41,6 +41,20 @@ test('Galaxy shows both chronology references outside the collapsed source panel
   assert.match(html, /Date non fixée.*GAL-CNT-DATE/);
 });
 
+test('ME2 preparation identifies the selected edition and the actual conditions of a specialist bench', () => {
+  const ctx = context('ME2', 'me2'), ui = uiFor(ctx, { tab: 'session' });
+  const standard = renderUniverseScreen(viewFor(ctx, createChronicle(ctx, 'me2-equipment-workshop')), ui);
+  const legendary = renderUniverseScreen(viewFor(ctx, createChronicle(ctx, 'me2-legendary-equipment-workshop')), ui);
+  assert.match(standard, /data-chronicle-equipment-profile="standard">Profil d’essai Original/);
+  assert.match(legendary, /data-chronicle-equipment-profile="legendary">Profil d’essai Legendary Edition/);
+  assert.match(legendary, /aria-label="Conditions de l’essai"/);
+  assert.match(standard, /data-chronicle-party-exclusive>Alternative à Morinth/);
+  assert.match(legendary, /data-chronicle-party-exclusive>Alternative à Samara/);
+  const shadow = renderUniverseScreen(viewFor(ctx, createChronicle(ctx, 'me2-shadow-broker')), ui);
+  assert.match(shadow, /data-chronicle-party-restriction>Lair of the Shadow Broker uniquement/);
+  assert.doesNotMatch(shadow, /data-chronicle-equipment-profile=/);
+});
+
 test('stale future references never leak into an earlier work, galaxy, or anthology segment', () => {
   for (const [mediaId, periodId, forbiddenId] of [
     ['ME1', 'me1', 'ME2-CHR-JACK'], ['GAL', 'gal', 'ME3-WPN-GRAAL'], ['ME2', 'me2', 'MEA-EQP-HELEUS'],

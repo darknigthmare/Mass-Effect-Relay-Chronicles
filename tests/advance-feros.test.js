@@ -224,3 +224,27 @@ test('real campaign save encode/decode preserves partial targets and final fate 
   const missing = JSON.parse(encodeSave(state)); delete missing.state.advanceFeros;
   const migrated = decodeSave(missing); assert.ok(migrated); assert.equal(migrated.advanceFeros.legacy, true); assert.equal(ferosColonyReport(migrated).spared, null);
 });
+
+test('the service passage stays locked until release and then gives reversible destinations without altering progress', () => {
+  const state = prepared();
+  assert.equal(getAdvanceFerosInteraction(state, id('service-exogeni')).ok, false);
+  act(state, 'defense', 'coordinate'); act(state, 'lizbeth', 'listen');
+  state.cleared.push('feros:encounter-2'); act(state, 'investigation', 'research');
+  const locked = listAdvanceFerosPOIs(state).find(point => point.id === id('service-exogeni'));
+  state.position = { x: locked.x, z: locked.z };
+  assert.equal(getAdvanceFerosInteraction(state, locked.id).choices[0].disabled, true);
+  assert.equal(transitionAdvanceFeros(state, locked.id, 'cross').ok, false);
+  assert.equal(listAdvanceFerosPOIs(state).some(point => point.id === id('service-skyway')), false);
+
+  for (const index of [1, 3, 4]) act(state, 'pressure', `valve-${index}`);
+  act(state, 'pressure', 'release');
+  const routes = listAdvanceFerosPOIs(state).filter(point => point.id.startsWith('advance:feros:service-'));
+  assert.equal(routes.length, 2);
+  for (const [index, point] of routes.entries()) {
+    const progress = clone(state.advanceFeros);
+    assert.equal(transitionAdvanceFeros({ ...state, position: { x: 100, z: 100 } }, point.id, 'cross').ok, false);
+    const { destination } = act(state, point.id.slice('advance:feros:'.length), 'cross');
+    assert.deepEqual(destination, { x: routes[1 - index].x, z: routes[1 - index].z });
+    assert.deepEqual(state.advanceFeros, progress);
+  }
+});

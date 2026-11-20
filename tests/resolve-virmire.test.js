@@ -9,6 +9,7 @@ import { findLevelPath } from '../src/world-navigation.js';
 import { newGame, recruit, winEncounter, zoneEncounters, completeZone, encodeSave, decodeSave,
   applyResolveVirmireInteraction, availableCrew, canTravelCampaign, travelCampaign } from '../src/state.js';
 import { getCodexEntries } from '../src/story.js';
+import { renderResolveVirmireJournal } from '../src/resolve-virmire-ui.js';
 import { createCampaignExport, decodeCampaignExport } from '../src/completion-persistence-campaign.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
@@ -33,6 +34,31 @@ function laboratory(volunteer = 'ashley', fate = 'release') {
 function crisis(volunteer = 'ashley', fate = 'release') {
   const state = laboratory(volunteer, fate); act(state, 'beacon', 'activate'); act(state, 'sovereign', 'confront'); act(state, 'bomb', 'acknowledge'); return state;
 }
+
+test('the field report reflects individual support flags and only publishes research already learned', () => {
+  const state = entered();
+  assert.doesNotMatch(renderResolveVirmireJournal(state), /data-virmire-laboratory|Sovereign|endoctrinement/);
+  act(state, 'satellite', 'destroy');
+  let report = renderResolveVirmireJournal(state);
+  assert.match(report, /data-virmire-support="satellite" data-done="true"/);
+  assert.match(report, /data-virmire-support="communications" data-done="false"/);
+  assert.match(report, /data-virmire-support="flyers" data-done="false"/);
+
+  state.cleared.push('virmire:encounter-2');
+  report = renderResolveVirmireJournal(state);
+  assert.match(report, /data-virmire-laboratory/);
+  assert.match(report, /Secteur dépassé/);
+  assert.doesNotMatch(report, /data-virmire-research/);
+  act(state, 'rana', 'release');
+  report = renderResolveVirmireJournal(state);
+  assert.match(report, /data-virmire-research="rana".*endoctrinement/);
+  assert.doesNotMatch(report, /data-virmire-research="beacon"|Sovereign/);
+  act(state, 'beacon', 'activate');
+  assert.doesNotMatch(renderResolveVirmireJournal(state), /data-virmire-research="sovereign"/);
+  act(state, 'sovereign', 'confront');
+  assert.deepEqual([...renderResolveVirmireJournal(state).matchAll(/data-virmire-research="([^"]+)"/g)].map(match => match[1]),
+    ['rana', 'beacon', 'sovereign']);
+});
 
 test('absent legacy progress keeps historical extraction but invents no STG act, role, Rana fate or survival', () => {
   const state = prepared(); delete state.resolveVirmire;

@@ -108,6 +108,12 @@ export function setChronicleParty(raw, actorIds) {
   if (selectionInput) { delete selectionInput.ammoModes; delete selectionInput.importedCampaign; }
   const selection = selectionInput && normalizeChronicleSession(selectionInput);
   if (!selection || selection.party.length < 1) return fail('Choisissez de un à trois combattants disponibles.');
+  const scenario = scenarioFor(session.scenarioId);
+  const alternatives = (scenario?.exclusiveActorGroups || []).find(group => selection.party.filter(id => group.includes(id)).length > 1);
+  if (alternatives) {
+    const names = alternatives.filter(id => selection.party.includes(id)).map(id => getUniverseActor(id)?.name || id);
+    return fail(`Choisissez un seul de ces équipiers : ${names.join(' ou ')}.`);
+  }
   const loadouts = Object.fromEntries(selection.party.filter(id => own(session.loadouts, id)).map(id => [id, session.loadouts[id]]));
   const builds = Object.fromEntries(selection.party.map(id => [id, session.builds[id] ?? 'default']));
   const ammoModes = Object.fromEntries(selection.party.map(id => [id, session.ammoModes[id] ?? null]));

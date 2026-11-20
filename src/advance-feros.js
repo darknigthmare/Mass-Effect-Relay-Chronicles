@@ -43,6 +43,8 @@ const STATIC_POIS = freeze({
   lizbeth: { label: 'Lizbeth · témoin d’ExoGeni', x: 8, z: -40 },
   investigation: { label: 'ExoGeni · interface de recherche', x: 23, z: -48 },
   pressure: { label: 'ExoGeni · commande de la griffe', x: 30, z: -54 },
+  'service-exogeni': { label: 'Passage de service · retour', x: 25, z: -54 },
+  'service-skyway': { label: 'Passage de service · ExoGeni', x: -14, z: -17 },
   jeong: { label: 'Ethan Jeong · ordre de purge', x: -20, z: -10 },
   juliana: { label: 'Juliana · gaz anti-Thorien', x: -25, z: -13 },
   freighter: { label: 'Zhu’s Hope · commandes du cargo', x: -24, z: 72 },
@@ -94,6 +96,20 @@ export function ferosPressure(progress) {
   return FEROS_PRESSURE_VALVES.reduce((total, pressure, index) => total + (progress.valves & 1 << index ? pressure : 0), 0);
 }
 const progressFor = state => normalizeAdvanceFerosState(state?.advanceFeros, state);
+const unrevealedLabels = new Map([
+  ['Créatures du Thorien', 'Contact dans le secteur de recherche'],
+  ['Rampant du Thorien', 'Rampant'],
+  ['Le Thorien', 'Secteur profond'],
+  ['Repaire du Thorien', 'Secteur profond'],
+]);
+export function ferosProgressLabel(label, progress) {
+  return progress && !progress.legacy && !progress.investigation ? unrevealedLabels.get(label) ?? label : label;
+}
+
+const returnDestinations = {
+  'service-exogeni': 'service-skyway',
+  'service-skyway': 'service-exogeni',
+};
 /** Existing low-level campaign fixtures may finish an untouched chapter. Their
  * completion is retained as legacy, never promoted into sixteen target acts. */
 export function isAdvanceFerosUntouched(state) {
@@ -109,7 +125,15 @@ const choice = (id, label, extra = {}) => ({ id, label, ...extra });
 /** The same detached model powers world markers and choice validation. */
 export function getAdvanceFerosInteraction(state, id) {
   const p = progressFor(state), key = keyFor(id), target = targetFor(id);
-  if (!p || p.legacy || !permitted(state) || state.zone !== 'feros' || has(state.completed, 'feros')) return no('Cette étape de Féros n’est pas disponible.');
+  if (!p || p.legacy || !permitted(state) || state.zone !== 'feros') return no('Cette étape de Féros n’est pas disponible.');
+  if (own(returnDestinations, key)) {
+    if (!p.investigation) return no('Ce passage n’a pas encore été repéré.');
+    if (key === 'service-skyway' && !p.shipReleased) return no('Le passage de service est fermé.');
+    return model(id, 'Passage de service', p.shipReleased ? 'Passage libre.' : 'Passage verrouillé par le mécanisme de la baie.',
+      [choice('cross', 'Franchir le passage.', { disabled: !p.shipReleased, reason: p.shipReleased ? '' : 'Actionnez d’abord la commande de la baie.' })],
+      ['QST-degagement-du-vaisseau-geth']);
+  }
+  if (has(state.completed, 'feros')) return no('Cette étape de Féros n’est pas disponible.');
   if (key === 'defense' && cleared(state, 'encounter-1') && !p.defense) return model(id, 'Fai Dan',
     'Les geth ont été repoussés sur la route. Zhu’s Hope a besoin de vous : vérifiez nos installations et gagnez ExoGeni pour comprendre cette attaque.',
     [choice('coordinate', 'Organiser la défense et poursuivre vers ExoGeni.')], ['QST-defense-de-zhu-s-hope']);
@@ -165,6 +189,10 @@ export function transitionAdvanceFeros(state, id, choiceId) {
   if (!Number.isFinite(state.position?.x) || !Number.isFinite(state.position?.z)
     || Math.hypot(state.position.x - anchor.x, state.position.z - anchor.z) > 7) return no('Approchez cette cible avant d’intervenir.');
   const p = progressFor(state);
+  if (own(returnDestinations, key)) {
+    const { x, z } = STATIC_POIS[returnDestinations[key]];
+    return { ok: true, progress: p, destination: { x, z }, catalogIds: [...current.catalogIds] };
+  }
   let response = '';
   if (key === 'defense') { p.defense = true; response = 'Fai Dan coordonne la défense. Les demandes des habitants restent à accomplir séparément.'; }
   else if (key === 'lizbeth') { p.lizbeth = true; response = 'Le témoignage de Lizbeth et sa carte sont enregistrés. Consultez l’interface après avoir sécurisé ExoGeni.'; }

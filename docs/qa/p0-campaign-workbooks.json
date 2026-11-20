@@ -1,0 +1,961 @@
+{
+  "passed": true,
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "generatedAt": "2026-11-20T15:09:19.089Z",
+  "principal": {
+    "changedRecords": 17,
+    "changedWorkbookCells": 33,
+    "closed": [
+      "QST-briefing-normandy",
+      "QST-deploiement-eden-prime",
+      "QST-liberation-de-liara",
+      "QST-defense-de-zhu-s-hope",
+      "QST-enquete-exogeni",
+      "QST-degagement-du-vaisseau-geth",
+      "QST-soutien-aux-galariens",
+      "QST-rencontre-d-ashley",
+      "QST-recherche-de-la-balise",
+      "QST-laboratoires-de-saren",
+      "QA-changement-d-arme",
+      "QST-remise-en-marche-mira",
+      "QST-retour-des-colons",
+      "QST-affrontement-du-thorian"
+    ],
+    "nativeChecks": {
+      "sheets": 28,
+      "tables": 26,
+      "formulas": 274,
+      "dataValidations": 130,
+      "conditionalRules": 130,
+      "catalogueCells": 23545,
+      "unmodifiedZipMembers": 58,
+      "stylesXmlByteIdentical": true,
+      "sharedStringEntriesBefore": 475,
+      "sharedStringEntriesAfter": 492
+    },
+    "afterStatuses": {
+      "Défini": 837,
+      "Prototype": 328,
+      "Intégré": 0,
+      "Validé": 220
+    }
+  },
+  "supplemental": {
+    "closed": [
+      "ME2-SYS-LOADOUT",
+      "ME2-SYS-SQUAD",
+      "ME2-SYS-EDITION"
+    ],
+    "partials": [
+      "ME2-SYS-ATB"
+    ],
+    "books": [
+      {
+        "id": "ME2",
+        "criteria": [
+          "ME2-SYS-LOADOUT",
+          "ME2-SYS-SQUAD",
+          "ME2-SYS-EDITION"
+        ],
+        "partials": [
+          "ME2-SYS-ATB"
+        ],
+        "catalogue": "docs/universe/catalogs/ME2.json",
+        "xlsx": "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx",
+        "rows": [
+          {
+            "sheet": "UI_systemes",
+            "row": 7,
+            "id": "ME2-SYS-ATB"
+          },
+          {
+            "sheet": "UI_systemes",
+            "row": 10,
+            "id": "ME2-SYS-SQUAD"
+          },
+          {
+            "sheet": "UI_systemes",
+            "row": 18,
+            "id": "ME2-SYS-LOADOUT"
+          },
+          {
+            "sheet": "UI_systemes",
+            "row": 26,
+            "id": "ME2-SYS-EDITION"
+          }
+        ],
+        "changedParts": [
+          "xl/sharedStrings.xml",
+          "xl/worksheets/sheet1.xml",
+          "xl/worksheets/sheet25.xml"
+        ]
+      }
+    ],
+    "nativeChecks": {
+      "workbooks": 27,
+      "workbookCells": 101194,
+      "formulas": 8856,
+      "exactText": true
+    },
+    "statusCounts": {
+      "Défini": 4971,
+      "Prototype": 283,
+      "Intégré": 0,
+      "Validé": 72
+    }
+  },
+  "remainingOpenCriteria": {
+    "P0": 544,
+    "P1": 5761,
+    "P2": 114
+  },
+  "protectedFilesVerified": 9920,
+  "preservedArmaxAndCombatFiles": 352,
+  "acceptance": [
+    {
+      "id": "QA-sortie-bidirectionnelle",
+      "status": "Prototype",
+      "exactDescription": "Traverser chaque liaison dans les deux sens.",
+      "exactCriterion": "Entrée correcte, aucune boucle instantanée.",
+      "descriptionComplete": false,
+      "complete": false,
+      "coveredDescriptionClauses": [
+        "Huit paires de liaisons entre zones et Normandy, et le passage à sens unique du Conduit, ont été parcourus avec les commandes publiques."
+      ],
+      "coveredClauses": [
+        "Dix-sept arrivées conservant leur position après transition, sans relance instantanée."
+      ],
+      "limitations": [
+        "Le passage du Conduit reste à sens unique et la totalité des liaisons n’est pas vérifiée."
+      ],
+      "evidence": [
+        "docs/qa/p0-bidirectional-production-report.json",
+        "scripts/p0-bidirectional-production.mjs",
+        "tests/advance-world.test.js"
+      ]
+    },
+    {
+      "id": "QA-rapport-de-tailles",
+      "status": "Prototype",
+      "exactDescription": "Comparer humain, turien, krogan, geth lourd et décor.",
+      "exactCriterion": "Échelle cohérente avec les références disponibles.",
+      "descriptionComplete": false,
+      "complete": false,
+      "coveredDescriptionClauses": [
+        "Humain, turien, krogan, Destructeur et caisses comparés dans le WorldView de Novéria."
+      ],
+      "coveredClauses": [
+        "Les rapports d’échelle internes et le cadrage de Garrus ont été mesurés. Les pans de référence consultés manquent d’une échelle commune."
+      ],
+      "limitations": [
+        "La cohérence avec des dimensions de référence comparables reste à établir."
+      ],
+      "evidence": [
+        "docs/qa/p0-sprite-scale-review.json",
+        "scripts/p0-sprite-scale-browser.mjs",
+        "tests/companion-combat-world.test.js",
+        "tests/world-camera.test.js"
+      ]
+    },
+    {
+      "id": "QST-briefing-normandy",
+      "status": "Validé",
+      "exactDescription": "Rencontrer Anderson et Nihlus avant Eden Prime.",
+      "exactCriterion": "Ordre des informations et transitions contrôlé.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Anderson et Nihlus rencontrés à bord. Nouvelle partie et copie replacée au briefing dans le navigateur."
+      ],
+      "coveredClauses": [
+        "Ordre du briefing, ouverture du départ et état en reprise contrôlés."
+      ],
+      "limitations": [
+        "Déroulé du briefing condensé et réécrit de l’adaptation. Une position de départ a été préparée pour la copie de vérification."
+      ],
+      "evidence": [
+        "docs/qa/p0-eden-briefing.json",
+        "tests/eden-prologue.test.js"
+      ]
+    },
+    {
+      "id": "QST-deploiement-eden-prime",
+      "status": "Validé",
+      "exactDescription": "Largage du commando et découverte de l’attaque.",
+      "exactCriterion": "Équipe temporaire et première caméra correctes.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Voyage public vers Eden Prime, affichage de la formation temporaire, puis échange de découverte de l’attaque."
+      ],
+      "coveredClauses": [
+        "La première caméra montre les trois sprites et la route. La formation Shepard/Kaidan/Jenkins est confirmée."
+      ],
+      "limitations": [
+        "Rapport d’attaque depuis un placement déclaré. Le décor est celui de l’adaptation."
+      ],
+      "evidence": [
+        "docs/qa/p0-eden-landing.json",
+        "scripts/p0-eden-prologue-browser.mjs",
+        "tests/eden-prologue.test.js"
+      ]
+    },
+    {
+      "id": "QST-liberation-de-liara",
+      "status": "Validé",
+      "exactDescription": "Interagir avec le dispositif de fouille.",
+      "exactCriterion": "Disponibilité de l’équipière après extraction.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Dispositif de confinement et dialogue après sécurisation de Thérum, puis extraction au Normandy."
+      ],
+      "coveredClauses": [
+        "Liara disponible dans le menu du commando après extraction. Sélection et export réel contenant Liara."
+      ],
+      "limitations": [
+        "Victoire antérieure préparée dans la fixture. Dispositif, extraction et sélection utilisés dans l’adaptation."
+      ],
+      "evidence": [
+        "docs/qa/p0-therum-report.json",
+        "scripts/p0-therum-browser.mjs"
+      ]
+    },
+    {
+      "id": "QST-atterrissage-therum",
+      "status": "Prototype",
+      "exactDescription": "Rechercher Liara à travers le site volcanique.",
+      "exactCriterion": "Mako, portes et transition à pied liés.",
+      "descriptionComplete": false,
+      "complete": false,
+      "coveredDescriptionClauses": [
+        "Embarquement et débarquement sur le site actuel et trois seuils logiques préparés dans le contrôle natif."
+      ],
+      "coveredClauses": [
+        "Passages à pied et règles du Mako vérifiables à la portée du prototype."
+      ],
+      "limitations": [
+        "La matérialisation des portes et le parcours enchaîné restent ouverts."
+      ],
+      "evidence": [
+        "docs/qa/p0-therum-report.json",
+        "scripts/p0-therum-browser.mjs",
+        "tests/frontier-levels.test.js"
+      ]
+    },
+    {
+      "id": "QST-defense-de-zhu-s-hope",
+      "status": "Validé",
+      "exactDescription": "Repousser les geth et prendre contact.",
+      "exactCriterion": "Colons et services mis à jour.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Le barrage et le contact ont été joués dans l’interface publique."
+      ],
+      "coveredClauses": [
+        "La victoire et le contact changent le parcours du secteur. Colons et services sont mis à jour."
+      ],
+      "limitations": [
+        "Périmètre de la colonie condensée de cette adaptation."
+      ],
+      "evidence": [
+        "docs/qa/p0-feros-stages-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs",
+        "tests/advance-feros.test.js"
+      ]
+    },
+    {
+      "id": "QST-enquete-exogeni",
+      "status": "Validé",
+      "exactDescription": "Explorer les installations et récupérer les indices.",
+      "exactCriterion": "Pas de saut de révélation sur le Thorian.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Les installations ont été parcourues, le combat et la borne validés."
+      ],
+      "coveredClauses": [
+        "Les libellés restent distincts avant l’indice et la révélation arrive au jalon déclaré."
+      ],
+      "limitations": [
+        "Ordre testé au périmètre des scènes actuelles de l’adaptation."
+      ],
+      "evidence": [
+        "docs/qa/p0-feros-stages-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs",
+        "tests/advance-feros.test.js"
+      ]
+    },
+    {
+      "id": "QST-degagement-du-vaisseau-geth",
+      "status": "Validé",
+      "exactDescription": "Actionner le mécanisme d’ExoGeni.",
+      "exactCriterion": "Voie de retour débloquée.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Le mécanisme de pression est actionné dans l’interface publique en atteignant la valeur prévue."
+      ],
+      "coveredClauses": [
+        "La voie de retour s’ouvre, est franchie dans les deux sens et reste disponible après reprise."
+      ],
+      "limitations": [
+        "La voie et le mécanisme sont ceux de l’adaptation condensée."
+      ],
+      "evidence": [
+        "docs/qa/p0-feros-stages-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs",
+        "tests/advance-feros.test.js",
+        "docs/qa/p0-feros-passage-production.json"
+      ]
+    },
+    {
+      "id": "QST-soutien-aux-galariens",
+      "status": "Validé",
+      "exactDescription": "Saboter les systèmes utiles à Kirrahe.",
+      "exactCriterion": "Chaque action modifie son drapeau précis.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Chacun des trois dispositifs de soutien a été déclenché lors du parcours Virmire."
+      ],
+      "coveredClauses": [
+        "Trois exports successifs et alarmes séparées attestent les drapeaux précis."
+      ],
+      "limitations": [
+        "La preuve et la promotion concernent le groupe soutien, le laboratoire a son parcours distinct."
+      ],
+      "evidence": [
+        "docs/qa/p0-virmire-field/support.json",
+        "tests/resolve-virmire.test.js",
+        "scripts/p0-virmire-field-browser.mjs"
+      ]
+    },
+    {
+      "id": "QST-rencontre-d-ashley",
+      "status": "Validé",
+      "exactDescription": "Soutien à la survivante de l’Alliance.",
+      "exactCriterion": "Ajout au groupe au bon moment.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Combat public achevé puis soutien d’Ashley et distinction de la perte de Jenkins."
+      ],
+      "coveredClauses": [
+        "Ashley est ajoutée au bon moment du dialogue, une seule fois, puis reste dans le journal."
+      ],
+      "limitations": [
+        "Le premier gain constaté est repris dans une fixture équivalente déclarée. Rencontre condensée de l’adaptation."
+      ],
+      "evidence": [
+        "docs/qa/p0-eden-support-and-clue.json",
+        "tests/eden-prologue.test.js",
+        "scripts/p0-eden-prologue-browser.mjs"
+      ]
+    },
+    {
+      "id": "QST-recherche-de-la-balise",
+      "status": "Validé",
+      "exactDescription": "Suivre les indices depuis le site de fouille.",
+      "exactCriterion": "Journal et destination mis à jour.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Le repère du site de fouille et son indice ont été activés dans le parcours public."
+      ],
+      "coveredClauses": [
+        "Journal et carte sont actualisés, puis vérifiés après reprise."
+      ],
+      "limitations": [
+        "Le parcours de test enchaîne la scène adaptée depuis un état de départ préparé."
+      ],
+      "evidence": [
+        "docs/qa/p0-eden-support-and-clue.json",
+        "tests/eden-prologue.test.js",
+        "scripts/p0-eden-prologue-browser.mjs"
+      ]
+    },
+    {
+      "id": "QST-laboratoires-de-saren",
+      "status": "Validé",
+      "exactDescription": "Découvrir les expériences et l’endoctrinement.",
+      "exactCriterion": "Informations ordonnées selon la progression.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Le parcours public découvre Rana, la balise et la transmission dans cet ordre."
+      ],
+      "coveredClauses": [
+        "Les informations deviennent visibles par paliers et le journal garde l’ordre après une reprise effective."
+      ],
+      "limitations": [
+        "Les combats et positions antérieurs sont préparés. La résolution du laboratoire est celle de l’adaptation."
+      ],
+      "evidence": [
+        "docs/qa/p0-virmire-field/research.json",
+        "tests/resolve-virmire.test.js",
+        "scripts/p0-virmire-field-browser.mjs"
+      ]
+    },
+    {
+      "id": "QA-changement-d-arme",
+      "status": "Validé",
+      "exactDescription": "Remplacer une arme pendant les états autorisés.",
+      "exactCriterion": "Sprite et statistiques changent ensemble.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Changements utilisés depuis l’équipement public, vérifications des retours et refus pendant le combat."
+      ],
+      "coveredClauses": [
+        "La dotation change en même temps l’arme rendue, la famille et les statistiques. Vingt-huit combinaisons d’équipier et de famille contrôlées."
+      ],
+      "limitations": [
+        "Silhouettes génériques de quatre familles, pas de validation de chaque dessin d’arme ni des modèles originaux."
+      ],
+      "evidence": [
+        "docs/qa/p0-party-weapon-browser.json",
+        "scripts/p0-party-weapon-browser.mjs",
+        "tests/weapon-world.test.js"
+      ]
+    },
+    {
+      "id": "QST-remise-en-marche-mira",
+      "status": "Validé",
+      "exactDescription": "Restaurer trois stations techniques persistantes de MIRA avant la suite des laboratoires du Pic 15.",
+      "exactCriterion": "Objectifs techniques reflétés dans le décor.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Trois stations parcourues et remises en service par les commandes publiques. Réparation chargée depuis le titre et vérification du verrou laboratoire à l’export."
+      ],
+      "coveredClauses": [
+        "Une mesure du rendu confirme la bascule ambre/vert du décor pour chacune. Le journal reflète les états et conserve la première réparation au chargement."
+      ],
+      "limitations": [
+        "Appareils et positions du Pic 15 condensé. L’état de tout début de séquence est préparé. Combat suivant et puzzle original hors de la preuve."
+      ],
+      "evidence": [
+        "docs/qa/p0-mira-stations/report.json",
+        "scripts/p0-mira-stations-browser.mjs",
+        "tests/mission-progress.test.js"
+      ]
+    },
+    {
+      "id": "QST-retour-des-colons",
+      "status": "Validé",
+      "exactDescription": "Traverser Zhu’s Hope sous influence.",
+      "exactCriterion": "Résolution non létale prise en compte.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Les seize colons sous influence ont été traités dans le parcours public."
+      ],
+      "coveredClauses": [
+        "Le gaz et le contact non létal sont comptés séparément et persistent dans la sauvegarde. Onze survivants et cargo ouvert constatés."
+      ],
+      "limitations": [
+        "Résolution du secteur condensé de l’adaptation, avant le combat du repaire."
+      ],
+      "evidence": [
+        "docs/qa/p0-feros-colonists-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs",
+        "tests/advance-feros.test.js"
+      ]
+    },
+    {
+      "id": "QST-affrontement-du-thorian",
+      "status": "Validé",
+      "exactDescription": "Détruire les nœuds et rencontrer Shiala.",
+      "exactCriterion": "Sort de la colonie et connaissance du Cypher persistants.",
+      "descriptionComplete": true,
+      "complete": true,
+      "coveredDescriptionClauses": [
+        "Combat public joué, six nœuds et renforts neutralisés. Shiala rencontrée après le combat."
+      ],
+      "coveredClauses": [
+        "Onze survivants et connaissance du Cypher observés avant et après une reprise réelle et export."
+      ],
+      "limitations": [
+        "Le rapport relève une divergence d’empreinte de world.js liée au lot MIRA après les contrôles du parcours Féros. Arène condensée."
+      ],
+      "evidence": [
+        "docs/qa/p0-feros-boss-observed.json",
+        "scripts/p0-feros-campaign-browser.mjs",
+        "tests/advance-feros.test.js"
+      ]
+    },
+    {
+      "id": "ME2-SYS-LOADOUT",
+      "status": "Validé",
+      "exactDescription": "Livrable original proposé : Armes, armures et classes.",
+      "exactCriterion": "Le livrable « Armes, armures et classes » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
+      "evidence": [
+        "docs/qa/p0-me2-preparation.json",
+        "scripts/p0-me2-preparation-browser.mjs"
+      ],
+      "declaredDependencies": {
+        "ME2-EQP-N7": {
+          "status": "Prototype",
+          "observation": "Armure d’essai avec porteurs et familles vérifiés."
+        },
+        "ME2-WPN-WIDOW": {
+          "status": "Défini",
+          "observation": "L’arme reste verrouillée et hors des pièces jouables du banc."
+        }
+      }
+    },
+    {
+      "id": "ME2-SYS-SQUAD",
+      "status": "Validé",
+      "exactDescription": "Livrable original proposé : Sélection du groupe et exclusivités.",
+      "exactCriterion": "Le livrable « Sélection du groupe et exclusivités » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
+      "evidence": [
+        "docs/qa/p0-me2-preparation.json",
+        "scripts/p0-me2-preparation-browser.mjs"
+      ],
+      "declaredDependencies": {
+        "ME2-CHR-SAMARA": {
+          "status": "Prototype",
+          "observation": "Sélection et exclusion de Morinth observées en atelier."
+        },
+        "ME2-CHR-MORINTH": {
+          "status": "Prototype",
+          "observation": "Sélection et exclusion de Samara observées en atelier."
+        },
+        "ME2-CHR-LIARA": {
+          "status": "Prototype",
+          "observation": "Disponibilité limitée au banc lié, hors groupe de campagne."
+        }
+      }
+    },
+    {
+      "id": "ME2-SYS-EDITION",
+      "status": "Validé",
+      "exactDescription": "Livrable original proposé : Profils Original / Legendary.",
+      "exactCriterion": "Le livrable « Profils Original / Legendary » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
+      "evidence": [
+        "docs/qa/p0-me2-preparation.json",
+        "scripts/p0-me2-preparation-browser.mjs"
+      ],
+      "declaredDependencies": {
+        "ME2-EQP-RECON": {
+          "status": "Défini",
+          "observation": "Coiffe disponible seulement dans la Simulation Legendary selon le contrôle natif."
+        }
+      }
+    },
+    {
+      "id": "ME2-SYS-ATB",
+      "status": "Prototype",
+      "exactDescription": "Livrable original proposé : Noyau de combat ATB ME2.",
+      "exactCriterion": "Le livrable « Noyau de combat ATB ME2 » possède une scène ou un scénario de contrôle ; ses règles proposées, ses conditions et ses retours visuels sont vérifiables séparément.",
+      "evidence": [
+        "docs/qa/p0-me2-preparation.json",
+        "scripts/p0-me2-preparation-browser.mjs"
+      ],
+      "declaredDependencies": {
+        "ME2-CHR-SHEPARD": {
+          "status": "Prototype",
+          "observation": "Le personnage du banc a ciblé et exécuté avec des ressources suivies avant et après."
+        }
+      }
+    }
+  ],
+  "workbookReview": {
+    "images": [
+      {
+        "file": "completion-tracking-workbook-qa-12-identity.png",
+        "sha256": "3b21d076e4c0afe6f75d685297e70d2ecda75296387317bf8b7b88aa03de9699",
+        "actuallyOpened": true,
+        "observation": "QA, A12:D12. QA-sortie-bidirectionnelle et « Sortie bidirectionnelle » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Prototype » est affiché en C et le statut d’asset « Sans objet » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-qa-43-identity.png",
+        "sha256": "420b1f1ddce5897b29af24726789d16dc7c1b98c30e81f6aec7d9ed53988d881",
+        "actuallyOpened": true,
+        "observation": "QA, A43:D43. QA-rapport-de-tailles et « Rapport de tailles » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Prototype » est affiché en C et le statut d’asset « Sans objet » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-8-identity.png",
+        "sha256": "62dd9f160a80d58ea6e6b830249cf921aff01855962c429c42e65029a7ae006c",
+        "actuallyOpened": true,
+        "observation": "Missions, A8:D8. QST-briefing-normandy et « Briefing Normandy » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-9-identity.png",
+        "sha256": "67b7c0469206fcc5aaa16cb34c54fc359aa3bf11cd1a8feb4b793376681b60bc",
+        "actuallyOpened": true,
+        "observation": "Missions, A9:D9. QST-deploiement-eden-prime et « Déploiement Eden Prime » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-23-identity.png",
+        "sha256": "e1c19763156a81d196c18e9f3778a0f51254a267c6fe96ba477d7ffb9d0c6270",
+        "actuallyOpened": true,
+        "observation": "Missions, A23:D23. QST-liberation-de-liara et « Libération de Liara » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-22-identity.png",
+        "sha256": "adabb3b080b6aa63e01bc5dfa2b90eb5de1c97527bbbaf3ddc67c5a8511bf29d",
+        "actuallyOpened": true,
+        "observation": "Missions, A22:D22. QST-atterrissage-therum et « Atterrissage Therum » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Prototype » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-24-identity.png",
+        "sha256": "9b5b14edd5cac6bdf203845a763c06cef84827e74fe9b6cee802c0211fbbd889",
+        "actuallyOpened": true,
+        "observation": "Missions, A24:D24. QST-defense-de-zhu-s-hope et « Défense de Zhu’s Hope » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-25-identity.png",
+        "sha256": "6426084c5aeb4cdb5f41aa884515256ca9c2a4a151535f4b694de48ad95fab6c",
+        "actuallyOpened": true,
+        "observation": "Missions, A25:D25. QST-enquete-exogeni et « Enquête ExoGeni » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-26-identity.png",
+        "sha256": "b128f5c6efcf309fde9184efffbbebe7359a773241eb76830d8b6a5d5a185558",
+        "actuallyOpened": true,
+        "observation": "Missions, A26:D26. QST-degagement-du-vaisseau-geth et « Dégagement du vaisseau geth » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-36-identity.png",
+        "sha256": "acc1f79a16bb490f9102e2a90e79ed67dfc089ac32b396431a85844787f066bf",
+        "actuallyOpened": true,
+        "observation": "Missions, A36:D36. QST-soutien-aux-galariens et « Soutien aux Galariens » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-11-identity.png",
+        "sha256": "62e09bf436a195fa2893d5d7b618b532729533bf5a83732ffd86f89ea747c754",
+        "actuallyOpened": true,
+        "observation": "Missions, A11:D11. QST-rencontre-d-ashley et « Rencontre d’Ashley » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-12-identity.png",
+        "sha256": "4de1b8b6ec9c130a2c56e47753831dde1d788dc5eed432ed7ee7d36abe7fcf8e",
+        "actuallyOpened": true,
+        "observation": "Missions, A12:D12. QST-recherche-de-la-balise et « Recherche de la balise » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-37-identity.png",
+        "sha256": "f9984cd29d533c0fd12e7ce88b6cd8e1cde93edcddb4957c465b96d7d9bf32d2",
+        "actuallyOpened": true,
+        "observation": "Missions, A37:D37. QST-laboratoires-de-saren et « Laboratoires de Saren » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « À produire » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-qa-46-identity.png",
+        "sha256": "675e3319a04dc2db16434dc4ff8dd3331dee7bd21b13487382da8e968f7197eb",
+        "actuallyOpened": true,
+        "observation": "QA, A46:D46. QA-changement-d-arme et « Changement d’arme » sont lisibles dans les colonnes A et B. Le statut fonctionnel « Validé » est affiché en C et le statut d’asset « Sans objet » en D. Les deux flèches restent visibles.",
+        "reviewer": "p0_camera"
+      },
+      {
+        "file": "completion-tracking-workbook-qa-43-notes.png",
+        "sha256": "f8ee1c1331bbd210dd734d03bc5878ef987d99246c25035221575943e856a06b",
+        "actuallyOpened": true,
+        "observation": "Les trois mesures et la réserve sur l’échelle commune sont lisibles. La note de départ est toujours visible.",
+        "reviewer": "/root/p0_dialogues_next"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-9-notes.png",
+        "sha256": "49dd6bbfb446314212bd58b2f82df4bf0a07f3c723e9c91621079f2e25a38a72",
+        "actuallyOpened": true,
+        "observation": "Le groupe temporaire, le premier cadrage et la préparation de la position du rapport sont lisibles avec la note antérieure.",
+        "reviewer": "/root/p0_dialogues_next"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-23-notes.png",
+        "sha256": "198c2803f9fa0b5a5194163e20941213f382064112877ef0e0fcff47e3ae1fbd",
+        "actuallyOpened": true,
+        "observation": "La condition de sécurisation, la libération, l’extraction et la composition vérifiée sont lisibles.",
+        "reviewer": "/root/p0_dialogues_next"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-22-notes.png",
+        "sha256": "c50bf8f551e280c3c1deb4d490323487338681b37810746aff6cf6f24d73f60d",
+        "actuallyOpened": true,
+        "observation": "Les contrôles au parking et les réserves sur les portes et l’enchaînement sont lisibles.",
+        "reviewer": "/root/p0_dialogues_next"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-11-notes.png",
+        "sha256": "ffa3bf707ec0b612d9f4bbc81cea48904e07ca7a316e5512373ea84c6c0b6314",
+        "actuallyOpened": true,
+        "observation": "L’historique et l’ajout unique après l’action de soutien sont lisibles. La note précise l’absence de gain ajouté.",
+        "reviewer": "/root/p0_dialogues_next"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-12-notes.png",
+        "sha256": "641231b8171cb47b1fa1be8006cf661fa0d0ef6af7a345f11fb68c1ed31503d0",
+        "actuallyOpened": true,
+        "observation": "Le relevé du site de fouille, les repères actualisés et leur persistance après reprise tiennent entièrement dans la cellule.",
+        "reviewer": "/root/p0_dialogues_next"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-31-identity.png",
+        "sha256": "383ccd43b32de50de743e8df605671d6a4cccbcbe87c5ad27ecce5797bf23a24",
+        "actuallyOpened": true,
+        "observation": "Nom, identifiant, Validé et À produire sont lisibles dans deux colonnes distinctes.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-31-notes.png",
+        "sha256": "322f4934ee1f98f3f90f5084eea17334d2cb614905b40cf76c96f12afc325269",
+        "actuallyOpened": true,
+        "observation": "Trois appareils, bascule de couleur, reprise et accès laboratoire lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-27-identity.png",
+        "sha256": "69d6fdb75ef00896ccbb5c1f6da00dafcf9510318b3be5a8bcf57bd5d900945f",
+        "actuallyOpened": true,
+        "observation": "Nom, identifiant, Validé et À produire sont lisibles dans deux colonnes distinctes.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-27-notes.png",
+        "sha256": "5b0beed833104ec31038b518f55dec3f87bf9f419c5df31c0b316d480ed7d453",
+        "actuallyOpened": true,
+        "observation": "Les seize actes, onze survivants et le cargo ouvert sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-28-identity.png",
+        "sha256": "6d8fa66da596c52cc9bf02784e956e95dc6cdc26c94d1f05e4795900a71de95a",
+        "actuallyOpened": true,
+        "observation": "Nom, identifiant, Validé et À produire sont lisibles dans deux colonnes distinctes.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-28-notes.png",
+        "sha256": "4d06ecba7f97b0a2ca03afb726d16ed03b0c4517d6201ffd8ca2aa57f04df888",
+        "actuallyOpened": true,
+        "observation": "Les six nœuds, Shiala, onze colons, reprise et réserve arène sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-8-notes.png",
+        "sha256": "8646532551886c87d7ff6483bfb9255258c4e60b312a834bdcfe5ff1e9ec3dc6",
+        "actuallyOpened": true,
+        "observation": "L’ordre Anderson et premier échange Nihlus, puis déblocage et évaluation distincte sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-qa-12-notes.png",
+        "sha256": "6972ff6acbec93d0fff26a72942c373d056e3ca662c604fcb25097c8da08ef6c",
+        "actuallyOpened": true,
+        "observation": "Les 17 arrivées et le caractère unidirectionnel du Conduit sont lisibles dans l’ajout.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-24-notes.png",
+        "sha256": "1ac207ad014ed8b37a0d52e7437a6bcff60ef89b8dfc09fe5d99a9b1ebc1f0de",
+        "actuallyOpened": true,
+        "observation": "Le barrage, le contact et le bilan des services sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-25-notes.png",
+        "sha256": "af10d0574cf4aba21dfd542be3460da84f5f9bd5eeea8d375e659750bbeb903e",
+        "actuallyOpened": true,
+        "observation": "Carte, combat, borne et ordre des révélations sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-26-notes.png",
+        "sha256": "33ef57f9b08ba1c74064f71312a52689623e6e144f1fa7fb2cac7aae78c16ec3",
+        "actuallyOpened": true,
+        "observation": "Le mécanisme à 31 PSI, la voie bidirectionnelle et la reprise sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-36-notes.png",
+        "sha256": "102ba116a84e40b36a90515573c5fe1d91457f78547e4b7c8c1e9e29ac7f9c27",
+        "actuallyOpened": true,
+        "observation": "Les trois sabotages, drapeaux et alarmes indépendantes sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-missions-37-notes.png",
+        "sha256": "2a4636fb88ff82215d9e02a04c427f60e951a0815e00254238fb66313abed4cf",
+        "actuallyOpened": true,
+        "observation": "Les trois jalons et la reprise vérifiée sont lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-qa-46-notes.png",
+        "sha256": "d60d092710f8d61c17a02190758e0c731b9f1898eda5c68ec4754212f11af5d9",
+        "actuallyOpened": true,
+        "observation": "Équipiers, quatre familles, dotation, reprise et verrou restent lisibles.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "ME2-SYS-ATB-identity.png",
+        "sha256": "5a2be00973543b18dbabaa53f6e1de84a2e98b3760b7de9de31cfe7a3bb5104e",
+        "actuallyOpened": true,
+        "observation": "L’identifiant ATB, le titre, le statut Prototype, la nature Extrapolation et la priorité P0 sont lisibles sans rognage.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-ATB-notes.png",
+        "sha256": "2ad75bbd27046584e7ac8ec0f4dc733ce361ca8d05f64c5cf1d438785277144f",
+        "actuallyOpened": true,
+        "observation": "La note historique et les deux lignes ajoutées sont lisibles. Jauges, sélection, coût et pause sont contrôlés en banc. Réservation différée et interruption restent ouvertes.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-SQUAD-identity.png",
+        "sha256": "84a8aa1f14f43045a21e842bfaf0fb00e18aaf647c1c7c17fd341e9fd2ba6be5",
+        "actuallyOpened": true,
+        "observation": "L’identifiant SQUAD, le titre, le statut Validé, la nature Extrapolation et la priorité P0 sont lisibles sans rognage.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-SQUAD-notes.png",
+        "sha256": "c32bdb8b220669ff98963d661193271c7f7d25c1ae1c56e1e46d8c995347d2a9",
+        "actuallyOpened": true,
+        "observation": "La note historique et les deux lignes ajoutées sont lisibles. Groupe limité à trois, exclusivité Samara/Morinth et rôle temporaire de Liara sont indiqués.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-LOADOUT-identity.png",
+        "sha256": "2c43d9ad68bd361655bd1bb4144779b6f4b653db804beef7edd60c7b463b63a2",
+        "actuallyOpened": true,
+        "observation": "L’identifiant LOADOUT, le titre, le statut Validé, la nature Extrapolation et la priorité P0 sont lisibles sans rognage.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-LOADOUT-notes.png",
+        "sha256": "df6e331c6936d9c6ce57b377d473d21607c5ccaf06fdb9a2e7b8a54f8836a6bb",
+        "actuallyOpened": true,
+        "observation": "La note historique et les deux lignes ajoutées sont lisibles. Classes, porteurs et compatibilité sont vérifiés. N7 d’essai disponible et Widow verrouillée.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-EDITION-identity.png",
+        "sha256": "7b1acd04f7221f54c22088ce1dce28d8c0830d889c6b78ac63e5549a4484143f",
+        "actuallyOpened": true,
+        "observation": "L’identifiant EDITION, le titre, le statut Validé, la nature Extrapolation et la priorité P0 sont lisibles sans rognage.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-SYS-EDITION-notes.png",
+        "sha256": "9d334ff12a5512aa9369315abe150d37d3fc05ca9c847efdfaefc15871194ea1",
+        "actuallyOpened": true,
+        "observation": "La note historique et les deux lignes ajoutées sont lisibles. Comparaison Original et Legendary, champ des pièces d’essai et acquisition d’origine à traiter sont indiqués.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "ME2-dashboard.png",
+        "sha256": "9aae404ac0c170870ff9475e8183c497c63b984d822ec76fffd99ff865de0bd4",
+        "actuallyOpened": true,
+        "observation": "La ligne TOTAL et chaque compteur sont lisibles : 670 fiches, 595 Défini, 72 Prototype, 0 Intégré et 3 Validé.",
+        "reviewer": "p0_readiness"
+      },
+      {
+        "file": "completion-tracking-workbook-dashboard-19.png",
+        "sha256": "cce3141b81860c9ece50a9edcb3a5136d67ff844707c6231afb561c19a01e838",
+        "actuallyOpened": true,
+        "observation": "Missions : 63 fiches, dont 9 Défini, 23 Prototype et 31 Validé.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-dashboard-34.png",
+        "sha256": "44d240d361b68d690b68288890465eab955fd9c397b1ea505a268b57a62e51a2",
+        "actuallyOpened": true,
+        "observation": "QA : 64 fiches, dont 2 Défini, 2 Prototype et 60 Validé.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-dashboard-37.png",
+        "sha256": "172a59e688cacd9e9a9ae98d2dc6fa321336fb61154cd8f48d810adf69c64f5f",
+        "actuallyOpened": true,
+        "observation": "Total : 1 385 fiches, dont 837 Défini, 328 Prototype, 0 Intégré et 220 Validé.",
+        "reviewer": "/root/p0_tracking"
+      },
+      {
+        "file": "completion-tracking-workbook-dashboard-5.png",
+        "sha256": "de51b0d91b38c2046ea87715b589bbf0cbf99491cbd43032498d96b3bccf3f38",
+        "actuallyOpened": true,
+        "observation": "La synthèse affiche 1 385 éléments, 220 livrables avancés et 525 références à vérifier.",
+        "reviewer": "/root/p0_tracking"
+      }
+    ],
+    "counterProbes": [
+      {
+        "passed": true,
+        "id": "QA-rapport-de-tailles",
+        "cell": "QA!C43",
+        "originalValue": "Prototype",
+        "temporaryValue": "Validé",
+        "before": {
+          "category": {
+            "Défini": 2,
+            "Prototype": 2,
+            "Intégré": 0,
+            "Validé": 60
+          },
+          "global": {
+            "Défini": 837,
+            "Prototype": 328,
+            "Intégré": 0,
+            "Validé": 220
+          },
+          "total": 1385
+        },
+        "changed": {
+          "category": {
+            "Défini": 2,
+            "Prototype": 1,
+            "Intégré": 0,
+            "Validé": 61
+          },
+          "global": {
+            "Défini": 837,
+            "Prototype": 327,
+            "Intégré": 0,
+            "Validé": 221
+          },
+          "total": 1385
+        },
+        "restored": true,
+        "exported": false,
+        "source": "SpreadsheetFile calculation in memory; Microsoft Excel was not launched."
+      },
+      {
+        "workbook": "ME2",
+        "totals": [
+          595,
+          72,
+          0,
+          3
+        ],
+        "restored": true
+      }
+    ]
+  },
+  "publishedFileSha256": {
+    "docs/content-catalog.json": "adfa92af0a705379cd8e4be494197feb5e2b4fa00ce1e42502359af02386c6f5",
+    "docs/Mass_Effect_Relay_Chronicles_Production.xlsx": "071bd6743e5434ab1ec2bd921a79d47a798923de18fd699c4d75cc876a537bb0",
+    "docs/universe/manifest.json": "9e07141dcd741177d209e87d59c02ef9c1146b9ccf67801dce1a35e2028f3aa9",
+    "docs/universe/README.md": "406075a2bf382f9bf1176e7e0a38b255cfc2bc69af63f0b4e0e4de8555fe8ed3",
+    "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip": "1bba06a0583dedaa40f4ddb973a374f7a324c604c7af0012790b55ea0fa1bfc4",
+    "docs/universe/catalogs/ME2.json": "774d77be8662c41f4d90c280fcc4b10da98f29db30d8fd18a1f58b8c8220b562",
+    "docs/universe/outputs/relay-chronicles-20261022/Mass_Effect_2_Production.xlsx": "1c63854b39996fe23a7d2c4559b64b420a7bc2929036a4e1c9ee88e69b1bf8e6"
+  },
+  "scope": "Contrôles des cellules et de la structure, ouvertures ciblées des rendus, critères documentaires et fonctionnels liés aux rapports. Le ZIP regroupe les 27 fichiers vérifiés."
+}

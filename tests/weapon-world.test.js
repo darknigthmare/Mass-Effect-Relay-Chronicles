@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { WorldView } from '../src/world.js';
 import { WORLD_ZONES } from '../src/world-data.js';
 import { createBattle, performAction, tickBattle } from '../src/combat.js';
-import { getCarriedWeapon, getCombatWeaponMount, updateAimedWeapon } from '../src/weapon-presentation.js';
+import { getCarriedWeapon, getCombatWeaponMount, updateHeldWeapon } from '../src/weapon-presentation.js';
 import maleAnimation from '../public/assets/shepard-male-animation.json' with { type: 'json' };
 import femaleAnimation from '../public/assets/shepard-female-animation.json' with { type: 'json' };
 
@@ -197,12 +197,13 @@ test('the equipped barrel shares the aim pose and is the endpoint for its flash 
     const weapon = getCarriedWeapon('striker-iii');
     const layer = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial());
     layer.userData.itemId = weapon.id;
+    layer.userData.family = weapon.family;
     actor.carriedWeapon = layer;
     actor.body.add(layer);
-    updateAimedWeapon(actor, weapon, mount);
+    updateHeldWeapon(actor, weapon, mount, true);
     const standingLength = layer.scale.x;
     actor.body.scale.y = .88;
-    updateAimedWeapon(actor, weapon, mount);
+    updateHeldWeapon(actor, weapon, mount, true);
     assert.ok(Math.abs(layer.scale.x - standingLength * .88) < 1e-10);
 
     const [u, v] = layer.userData.muzzle;
@@ -211,7 +212,7 @@ test('the equipped barrel shares the aim pose and is the endpoint for its flash 
     const flash = world.effects.find(effect => effect.kind === 'muzzle-flash');
     assert.ok(flash.object.position.distanceTo(muzzle) < 1e-10);
     assert.ok(ends(trace.object)[0].distanceTo(muzzle) < 1e-10);
-    updateAimedWeapon(actor, weapon, null);
+    updateHeldWeapon(actor, weapon, null);
     assert.equal(layer.visible, false);
   }
 });

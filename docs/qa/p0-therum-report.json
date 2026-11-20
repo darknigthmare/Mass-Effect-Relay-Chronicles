@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "at": "2026-11-20T14:56:34.139Z",
+  "captures": [],
+  "checks": [
+    "Le commando monte dans le Mako et en descend par les commandes publiques.",
+    "Le repère de fouille refuse avant les trois secteurs, ouvre la libération après sécurisation, puis Liara est sélectionnée et sauvegardée au Normandy après extraction."
+  ],
+  "fixtures": [
+    {
+      "name": "mako-avant-secteurs",
+      "position": {
+        "x": -20,
+        "z": 65
+      },
+      "cleared": [
+        "eden-prime:encounter-1",
+        "eden-prime:encounter-2",
+        "eden-prime:boss",
+        "therum:encounter-1",
+        "therum:encounter-2",
+        "therum:boss"
+      ],
+      "sha256": "d9b00203464b88e55ea257de72c39f8e773cdb7c7d3c8271c980c25c95fd1f8c"
+    },
+    {
+      "name": "fouille-avant-combats",
+      "position": {
+        "x": 1,
+        "z": -85
+      },
+      "cleared": [
+        "eden-prime:encounter-1",
+        "eden-prime:encounter-2",
+        "eden-prime:boss",
+        "therum:encounter-1",
+        "therum:encounter-2",
+        "therum:boss"
+      ],
+      "sha256": "37c038f58d67e963e39c6e687a9ed3d24fcda9c4dbf2a2eb309a8c3eeb7554c7"
+    },
+    {
+      "name": "fouille-apres-combats",
+      "position": {
+        "x": 1,
+        "z": -85
+      },
+      "cleared": [
+        "eden-prime:encounter-1",
+        "eden-prime:encounter-2",
+        "eden-prime:boss",
+        "therum:encounter-1",
+        "therum:encounter-2",
+        "therum:boss"
+      ],
+      "sha256": "d64fcedfbf64a8c6ee7ef2fd88d6c6cb1904f4b372e77b0dd8685014d3ae11e5"
+    }
+  ],
+  "errors": [],
+  "documentSha256": "66ab8ba7ccb6f8ab00f456caf910b631638e5f8d984286a180f1f5c5974db542",
+  "liara": {
+    "zone": "normandy",
+    "party": [
+      "shepard",
+      "ashley",
+      "liara"
+    ],
+    "chapterComplete": true,
+    "sha256": "40f3593c5be7a10af68baf578d31dcb3a88644f834bfb376354c3fd99251bd45"
+  },
+  "baseline": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "testedBuild": "Même document compilé que la vérification des liaisons. Le SHA-256 HTTP du document est fourni ci-dessus et concorde.",
+  "buildEvidence": "docs/qa/p0-bidirectional-production-report.json",
+  "collector": {
+    "path": "scripts/p0-therum-browser.mjs",
+    "sha256": "8ec40fddbbd077b9877684eae5eb355f6fe257538aac63cfd527c17f5f9cbb4c"
+  },
+  "command": "GAME_URL=http://127.0.0.1:4279/ P0_THERUM_OUTPUT=/tmp/p0-therum-03 node scripts/p0-therum-browser.mjs",
+  "browser": "Chromium 154.0.8037.57, SwiftShader, qualité Économie, 900 × 640.",
+  "criteria": [
+    {
+      "id": "QST-liberation-de-liara",
+      "passed": true,
+      "exactDescription": "Interagir avec le dispositif de fouille.",
+      "exactCriterion": "Disponibilité de l’équipière après extraction.",
+      "observations": "À l’objectif du site de fouille, la commande E est bloquée tant que les trois secteurs sont ouverts. Après leur sécurisation, l’interaction de confinement permet de libérer Liara. Le retour public au Normandy donne accès à sa sélection et l’export conserve sa place dans le commando.",
+      "implementationPaths": [
+        "src/main.js",
+        "src/state.js",
+        "src/world-data.js"
+      ]
+    },
+    {
+      "id": "QST-atterrissage-therum",
+      "passed": false,
+      "supportedStatus": "Prototype",
+      "exactDescription": "Rechercher Liara à travers le site volcanique.",
+      "exactCriterion": "Mako, portes et transition à pied liés.",
+      "observations": "Embarquement et débarquement confirmés dans le build. Les tests natifs passent les trois seuils conditionnés aux secteurs sécurisés et vérifient le sol de l’escouade à pied. Les seuils actuels sont logiques. La traversée continue avec des portes matérialisées reste ouverte.",
+      "historicalDriveEvidence": "docs/qa/frontier-public-production-01-report.json",
+      "implementationPaths": [
+        "src/world.js",
+        "src/frontier-layout-data.js",
+        "src/frontier-vehicles.js",
+        "tests/frontier-levels.test.js"
+      ]
+    }
+  ],
+  "tests": 41,
+  "native": [
+    {
+      "command": "node --test tests/story.test.js tests/frontier-levels.test.js tests/frontier-vehicles.test.js",
+      "passed": 39
+    },
+    {
+      "command": "node --test --test-name-pattern='campaign|recruitment' tests/state.test.js",
+      "passed": 2
+    }
+  ],
+  "limits": [
+    "Les sauvegardes préparent les autorisations de déploiement, les positions de départ et les trois combats. Le dispositif dialogué, l’extraction et la sélection sont déclenchés dans l’interface publique.",
+    "Les essais d’approche initiale du Mako n’ont pas produit de mesure reproductible de déplacement dans cette session. Le passage véhicule/pieds est observé par les libellés HUD et l’état public de montée/descente.",
+    "Aucune capture n’est nécessaire à ce relevé de commandes et d’export. Le premier essai avec captures a rencontré un délai de composition. La mise en scène du dispositif reste une adaptation existante."
+  ]
+}

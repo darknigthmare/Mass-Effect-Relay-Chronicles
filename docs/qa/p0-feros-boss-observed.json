@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "at": "2026-11-20T15:06:35.115912+00:00",
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "mode": "production",
+  "evidenceParent": "docs/qa/p0-feros-stages-observed.json",
+  "command": "node scripts/p0-feros-campaign-browser.mjs",
+  "checks": [
+    {
+      "id": "QST-affrontement-du-thorian",
+      "passed": true,
+      "exactDescription": "Détruire les nœuds et rencontrer Shiala.",
+      "exactCriterion": "Sort de la colonie et connaissance du Cypher persistants.",
+      "completionLog": "QST-affrontement-du-thorian",
+      "observations": [
+        "Le véritable export public des seize interventions a été réimporté avec la seule position rapprochée du repaire.",
+        "La rencontre a été gagnée dans Chromium. Le collecteur a observé les six indices des nœuds ciblés. Le bilan public affiche 33 actions et 9 unités neutralisées.",
+        "Le commando a reçu le Cipher auprès de Shiala et l’a épargnée par un choix distinct.",
+        "Le joueur a validé le bilan, repris au Normandy après rechargement et exporté de nouveau. La sauvegarde relue confirme Féros terminé, colonie sauvée, onze habitants épargnés et connaissance du Cipher persistante."
+      ],
+      "observedNeuralNodeIndices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "physicalControls": true,
+      "victoryScreenActions": 33,
+      "victoryScreenNeutralized": 9,
+      "shiala": "spared",
+      "sparedCivilians": 11,
+      "cipher": true,
+      "reloaded": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/screenshots/p0-feros-bilan.png",
+      "sha256": "09bee057b25aecbe4aa293fd107394610019b63b79795401f8b12c0878cebb06",
+      "actuallyOpened": true,
+      "visualReview": "Le secteur du repaire, les trois compteurs civils et la validation du bilan sont lisibles."
+    }
+  ],
+  "preparedBuildHttp": {
+    "index.html": "6b64023686602c039b55381b0bc8f27acbfc5cef6a9bbb4e943aa9949f964ad5",
+    "assets/universe-data-DmLxjOl0.js": "a7b7013ae7b78fab79beb473915ffa7e230a328da7765e205012c6fa9eef81a5",
+    "assets/continuity-XLVZa8vj.js": "8c3fabb86bec46463f30eeba2d595b46be7698121f126f96500d43fe25c86a31",
+    "assets/universe-actors-CUyVcVeX.js": "5fe2bd54de254a93a31178655e8e6612fe5d7b4815b6d1446cfca5ea22dcef63",
+    "assets/universe-equipment-C5Gxr1hQ.js": "9e6fc035b49c9451b7287b9be21122e63a4247b7dc95df882a508198181a13e5",
+    "assets/expansion-Btpi_yC8.js": "4d0bfa05a37ee823ad85590a163c962b657bf3e90ab22d84d647fac770435e60",
+    "assets/advance-continuity-DOL-OK8M.js": "b48cdbc9a5c866df679a143684a82ca5f66d930d086c7bf5ab89d2c5eb826d7e",
+    "assets/chronicles-Ck8MWeGT.js": "7be87557c8043f1c1ef9358c3bef6091c3389756e52a4cb3c55aeee3d7970a84",
+    "assets/universe-ui-CQDWwOPM.js": "6b043389037f6e607acb59d35410c5f251ce3aea0b254a7e0a3d55c7a9968f2f",
+    "assets/continuation-catalogue-B8Xd2uN3.js": "d1ee574aa4ee8ce81d54216e6d2ea890c94241802d795881803cd4be08401526",
+    "assets/index-D5UJBCkH.js": "54e02d317b2acd937dccc8ed948afeeabb39894515ed9f885bba94614bbcfb18",
+    "assets/three-DBNoKq7p.js": "e53fefd7b7073e132c228b5263c09403e84fd734892a5fa951c7fea3e5bf0156",
+    "assets/universe-ui-DTDIl9Bp.css": "eb16d39930db2c2d36aacdc981ccef9ed7a2f083f8a06e88e4d9629400941b1d",
+    "assets/index-COM-5j7E.css": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+  },
+  "limitations": [
+    "Les cinq jalons ont réussi et été consignés dans la sortie du collecteur. Après cela, le collecteur a retourné une erreur de gel du world.js due à un correctif Novéria parallèle. Les données chargées par Chromium venaient du bundle isolé.",
+    "Le décor, les sprites et le rythme de combat sont ceux de la campagne adaptée. Ce contrôle ne valide pas le découpage vertical ou les autres ressources originales."
+  ]
+}

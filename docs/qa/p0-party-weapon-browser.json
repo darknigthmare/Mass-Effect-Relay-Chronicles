@@ -1,0 +1,1933 @@
+{
+  "baseCommit": "b005e47dd78e2b642a6ee888ec2b7ea46521ef73",
+  "at": "2026-11-20T14:57:55.277Z",
+  "passed": true,
+  "sourceHashes": {
+    "src/weapon-presentation.js": "ef3d7a7f13698649759a11660fd6b99c9b4e17c7e7fb9fa30f8ffb8c0d965946",
+    "src/world.js": "8a181194182ae3206eb10aecd639e6dd0f70e5008944cfe7421d1614a44c2c11",
+    "src/main.js": "bb4d1dae655c8e72410a63d6d1a9f22a0f72db237377a72b9ffb84264d80b191",
+    "src/loadout.js": "2b28edeaa1d7555e180de56c683ad1726e982d43bba572e30b2316b115b35207",
+    "scripts/p0-party-weapon-browser.mjs": "ce5c09ee0b5654227669b17ee29321b6f7984d4a06bd3e909215fdd1f37fdd11",
+    "public/assets/crew-atlas.png": "1544973931df785f2ed577a4e2cad7a15d499641d12d84fe17991f8c335d4c38",
+    "public/assets/companion-ashley-animation.json": "d09b584dabcdd186e0e1c2d33936c79fef922858117b1b42a2cfcfe4ef7ee022",
+    "public/assets/companion-ashley-combat.png": "1dc47da889cbc51fafe451605d04f49a3fc6040feff6a4388592ffff299fb783",
+    "public/assets/companion-kaidan-animation.json": "46eef2230d460e5d7a8b6fe7e6c7bd16be03286f35ac154fcbaac8fb3310580b",
+    "public/assets/companion-kaidan-combat.png": "40e33a509ddeb5d4c7583dbbd05a5b7c8d38ed36fa3f2b55eddddec60c495c35",
+    "public/assets/companion-garrus-animation.json": "377703bdafc9be87dd802005cb2a083fe13f3a4d4c8675330d370daa2a90e59b",
+    "public/assets/companion-garrus-combat.png": "18a847d532f31a2bf1adde2ae191255342272f3983ce4e270fa6ecc912456a5d",
+    "public/assets/companion-tali-animation.json": "9bd68dcdaf6f481d9c820bb92760490ca7bbe7bca27dc1898e451f8f864a1812",
+    "public/assets/companion-tali-combat.png": "5b3bc87417e7f96c868a41bb35367944fad1774ac0918032ccad8c893ea9c470",
+    "public/assets/companion-liara-animation.json": "1009add779dca98816b7906754459fa834d2c18f039336aa5e6af3a639c6f1ef",
+    "public/assets/companion-liara-combat.png": "fdfd8db58ef32860403c9d31e1393793c619a51129ef6767c22c95bb1cd506dd",
+    "public/assets/companion-wrex-animation.json": "d613dbb747e4342b9f1915124fd8796f5392b2a5b8f8078f61d65ab434420702",
+    "public/assets/companion-wrex-combat.png": "083f1ba93a63f7dd5043306b2d1b1b7b506c3fbf454b6ad1ba8e673229922e1a",
+    "public/assets/companion-jenkins-animation.json": "eea01c545b55c8dc3f84cd104b62fcf77862322fd92a917e30c414a05626b359",
+    "public/assets/companion-jenkins-combat.png": "1be179bc6722a4e74d9f6f9b417afd269789c6caa2828f4d2f3e08766c125f72"
+  },
+  "public": [
+    {
+      "id": "kaidan",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 26,
+      "weaponHeatMultiplier": 1.2,
+      "family": "sniper",
+      "posed": true,
+      "attachment": true
+    },
+    {
+      "id": "jenkins",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 30,
+      "weaponHeatMultiplier": 1.12,
+      "family": "shotgun",
+      "posed": true,
+      "attachment": true
+    }
+  ],
+  "matrix": [
+    {
+      "id": "ashley",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 35,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          384,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "ashley-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "ashley-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "hit",
+          "frame": "ashley-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "down",
+          "frame": "ashley-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 33.46972101056017
+      }
+    },
+    {
+      "id": "ashley",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 36,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          384,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "ashley-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "ashley-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "hit",
+          "frame": "ashley-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "down",
+          "frame": "ashley-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 34.42599875371903
+      }
+    },
+    {
+      "id": "ashley",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 37,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          384,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "ashley-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "ashley-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "hit",
+          "frame": "ashley-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "down",
+          "frame": "ashley-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 35.38227649687789
+      }
+    },
+    {
+      "id": "ashley",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 38,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          384,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "ashley-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "ashley-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "hit",
+          "frame": "ashley-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "down",
+          "frame": "ashley-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 36.33855424003676
+      }
+    },
+    {
+      "id": "kaidan",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 24,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          768,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "kaidan-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "kaidan-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "hit",
+          "frame": "kaidan-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "down",
+          "frame": "kaidan-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 22.950665835812686
+      }
+    },
+    {
+      "id": "kaidan",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 25,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          768,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "kaidan-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "kaidan-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "hit",
+          "frame": "kaidan-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "down",
+          "frame": "kaidan-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 23.90694357897155
+      }
+    },
+    {
+      "id": "kaidan",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 25,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          768,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "kaidan-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "kaidan-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "hit",
+          "frame": "kaidan-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "down",
+          "frame": "kaidan-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 23.90694357897155
+      }
+    },
+    {
+      "id": "kaidan",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 26,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          768,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "kaidan-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "kaidan-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "hit",
+          "frame": "kaidan-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "down",
+          "frame": "kaidan-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 24.86322132213041
+      }
+    },
+    {
+      "id": "garrus",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 36,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          0,
+          497,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "garrus-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "garrus-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "garrus-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "garrus-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 34.42599875371903
+      }
+    },
+    {
+      "id": "garrus",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 39,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          0,
+          497,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "garrus-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "garrus-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "garrus-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "garrus-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 37.294831983195614
+      }
+    },
+    {
+      "id": "garrus",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 37,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          0,
+          497,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "garrus-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "garrus-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "garrus-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "garrus-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 35.38227649687789
+      }
+    },
+    {
+      "id": "garrus",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 41,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          0,
+          497,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "garrus-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "garrus-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "garrus-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "garrus-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 39.20738746951334
+      }
+    },
+    {
+      "id": "tali",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 27,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          384,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "tali-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "tali-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "tali-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "tali-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 25.81949906528927
+      }
+    },
+    {
+      "id": "tali",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 26,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          384,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "tali-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "tali-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "tali-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "tali-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 24.86322132213041
+      }
+    },
+    {
+      "id": "tali",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 29,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          384,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "tali-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "tali-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "tali-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "tali-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 27.732054551606996
+      }
+    },
+    {
+      "id": "tali",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 27,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          384,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "tali-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "tali-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "tali-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "tali-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 25.81949906528927
+      }
+    },
+    {
+      "id": "liara",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 22,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          1152,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "liara-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "liara-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "liara-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "liara-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 21.038110349494964
+      }
+    },
+    {
+      "id": "liara",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 23,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          1152,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "liara-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "liara-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "liara-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "liara-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 21.994388092653825
+      }
+    },
+    {
+      "id": "liara",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 23,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          1152,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "liara-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "liara-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "liara-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "liara-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 21.994388092653825
+      }
+    },
+    {
+      "id": "liara",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 24,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          1152,
+          512,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "liara-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "liara-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "liara-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "liara-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 22.950665835812686
+      }
+    },
+    {
+      "id": "wrex",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 35,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          768,
+          494,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "wrex-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "wrex-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "wrex-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "wrex-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 33.46972101056017
+      }
+    },
+    {
+      "id": "wrex",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 38,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          768,
+          494,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "wrex-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "wrex-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "wrex-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "wrex-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 36.33855424003676
+      }
+    },
+    {
+      "id": "wrex",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 39,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          768,
+          494,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "wrex-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "wrex-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "wrex-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "wrex-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 37.294831983195614
+      }
+    },
+    {
+      "id": "wrex",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 37,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          768,
+          494,
+          384,
+          512
+        ],
+        "topPreserved": true
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "wrex-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "wrex-combat-power",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "hit",
+          "frame": "wrex-combat-hit",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 1,
+          "mask": false,
+          "id": null,
+          "family": null
+        },
+        {
+          "pose": "down",
+          "frame": "wrex-combat-down",
+          "visible": false,
+          "opacity": null,
+          "bodyOpacity": 0.32,
+          "mask": false,
+          "id": null,
+          "family": null
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 35.38227649687789
+      }
+    },
+    {
+      "id": "jenkins",
+      "item": "striker-iii",
+      "family": "pistol",
+      "weaponItemId": "striker-iii",
+      "weaponType": "pistol",
+      "attack": 28,
+      "weaponHeatMultiplier": 0.88,
+      "field": {
+        "item": "striker-iii",
+        "family": "pistol",
+        "crop": [
+          1152,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "jenkins-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "power",
+          "frame": "jenkins-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "hit",
+          "frame": "jenkins-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        },
+        {
+          "pose": "down",
+          "frame": "jenkins-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "striker-iii",
+          "family": "pistol"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 21.12,
+        "damage": 26.775776808448136
+      }
+    },
+    {
+      "id": "jenkins",
+      "item": "banshee-iii",
+      "family": "assault",
+      "weaponItemId": "banshee-iii",
+      "weaponType": "assault",
+      "attack": 29,
+      "weaponHeatMultiplier": 1,
+      "field": {
+        "item": "banshee-iii",
+        "family": "assault",
+        "crop": [
+          1152,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "jenkins-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "power",
+          "frame": "jenkins-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "hit",
+          "frame": "jenkins-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        },
+        {
+          "pose": "down",
+          "frame": "jenkins-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "banshee-iii",
+          "family": "assault"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 24,
+        "damage": 27.732054551606996
+      }
+    },
+    {
+      "id": "jenkins",
+      "item": "hurricane-iii",
+      "family": "shotgun",
+      "weaponItemId": "hurricane-iii",
+      "weaponType": "shotgun",
+      "attack": 30,
+      "weaponHeatMultiplier": 1.12,
+      "field": {
+        "item": "hurricane-iii",
+        "family": "shotgun",
+        "crop": [
+          1152,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "jenkins-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "power",
+          "frame": "jenkins-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "hit",
+          "frame": "jenkins-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        },
+        {
+          "pose": "down",
+          "frame": "jenkins-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "hurricane-iii",
+          "family": "shotgun"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 26.880000000000003,
+        "damage": 28.688332294765857
+      }
+    },
+    {
+      "id": "jenkins",
+      "item": "hammer-iii",
+      "family": "sniper",
+      "weaponItemId": "hammer-iii",
+      "weaponType": "sniper",
+      "attack": 31,
+      "weaponHeatMultiplier": 1.2,
+      "field": {
+        "item": "hammer-iii",
+        "family": "sniper",
+        "crop": [
+          1152,
+          0,
+          384,
+          512
+        ]
+      },
+      "poses": [
+        {
+          "pose": "aim",
+          "frame": "jenkins-combat-aim",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "power",
+          "frame": "jenkins-combat-power",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "hit",
+          "frame": "jenkins-combat-hit",
+          "visible": true,
+          "opacity": 1,
+          "bodyOpacity": 1,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        },
+        {
+          "pose": "down",
+          "frame": "jenkins-combat-down",
+          "visible": true,
+          "opacity": 0.32,
+          "bodyOpacity": 0.32,
+          "mask": true,
+          "id": "hammer-iii",
+          "family": "sniper"
+        }
+      ],
+      "shot": {
+        "ok": true,
+        "heat": 28.799999999999997,
+        "damage": 29.64461003792472
+      }
+    }
+  ],
+  "captures": [
+    {
+      "name": "commando-dotations-terrain.png",
+      "sha256": "19a6ecc84d876ec3e9b326dde706c54134beb88b7e0e12ffe99422bc647b8d27",
+      "path": "docs/screenshots/p0-commando-dotations-terrain.png",
+      "actuallyOpened": true,
+      "observation": "Capture WebGL à Eden Prime après la pose des deux armes via Équipement. Kaidan et Jenkins portent leurs silhouettes distinctes autour de la patrouille."
+    },
+    {
+      "name": "commando-dotations-combat.png",
+      "sha256": "28a1c42422580e7f70f2b618f837adb3c51e45124f0eda747e21fe48abc5b9ea",
+      "path": "docs/screenshots/p0-commando-dotations-combat.png",
+      "actuallyOpened": true,
+      "observation": "Capture WebGL de la vraie rencontre après la reprise. Le fusil de précision de Kaidan et le fusil à pompe de Jenkins sont visibles en visée. Les deux équipiers figurent dans les commandes ATB."
+    },
+    {
+      "name": "commando-quatre-familles.png",
+      "sha256": "3f2dd9be088df89d83a994ae8acb748551be394fd4402ef870f1c844a18bd896",
+      "path": "docs/screenshots/p0-commando-quatre-familles.png",
+      "actuallyOpened": true,
+      "observation": "Planche de diagnostic construite depuis les textures et les calques actifs du renderer. Les quatre familles se distinguent pour les sept équipiers, et les visages restent lisibles."
+    }
+  ],
+  "errors": [],
+  "scope": "Deux changements via le menu public, une reprise, une rencontre à Eden Prime, un verrouillage du menu et un tir de Kaidan. La matrice séparée emploie les transactions d’équipement et le combat natifs dans le renderer de développement. Elle vérifie 28 cas sur le terrain et 112 poses de combat. La planche est un relevé des textures actives.",
+  "limits": "Une arme de rang III par famille a été testée avec chaque équipier. Les silhouettes génériques représentent les familles et les variantes de rang. Les sprites, l’angle trois-quarts et les poses existantes portent la présentation."
+}

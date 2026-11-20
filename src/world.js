@@ -4,7 +4,7 @@ import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeom
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { WORLD_ZONES, getWorldArrival } from './world-data.js';
 import { mapCollisionFootprints } from './advance-travel.js';
-import { FEROS_COLONIST_TARGETS, normalizeAdvanceFerosState, advanceFerosCivilianAlive } from './advance-feros.js';
+import { FEROS_COLONIST_TARGETS, normalizeAdvanceFerosState, advanceFerosCivilianAlive, ferosProgressLabel } from './advance-feros.js';
 import { ENCOUNTERS, ENEMIES } from './game-data.js';
 import { initialCustomization, normalizeCustomization } from './customization.js';
 import { hasVisualCustomization, renderCustomizationSprite } from './customization-render.js';
@@ -28,7 +28,8 @@ import { BOSS_ANIMATION_IDS, normalizeBossAnimation, canShowBossAnimation } from
 import { createMakoState, boardMako, stepMako, dismountMako, makoDirectionFrame, normalizeMakoDirections } from './frontier-vehicles.js';
 import { vehicleExerciseArena, vehicleExercisePosition } from './vehicle-exercise.js';
 import { resolveNoveriaContactAvailable } from './resolve-noveria.js';
-import { getCarriedWeapon, getCombatWeaponMount, maskBakedCombatWeapon, updateAimedWeapon, updateCarriedWeapon } from './weapon-presentation.js';
+import { getMiraStations, installMiraPanels, updateMiraPanels } from './noveria-stations.js';
+import { getActorWeaponVisual, getCarriedWeapon, getCombatWeaponMount, getCrewWeaponMount, maskBakedWeapon, updateHeldWeapon, updateCarriedWeapon } from './weapon-presentation.js';
 import { fitWorldCamera, showCoveredActor } from './world-camera.js';
 import { prepareSpriteTexture, withSpriteAlpha } from './world-sprite-alpha.js';
 
@@ -55,6 +56,11 @@ const NON_BODY_ATLASES = new Set(['props', 'vehicles', 'mako-directions', 'horiz
 // These three source atlases have small disconnected components at the body
 // cutoff. Restrict decoded-image readback to the affected families.
 const BODY_ATLASES_WITH_ISLANDS = new Set(['combat-femshep', 'combat-thorian', 'combat-creeper']);
+// These silhouettes extend above their nominal cells in the existing atlas.
+const CREW_BODY_CROPS = new Map([
+  ['garrus', { x: 0, y: 497 }],
+  ['wrex', { x: 768, y: 494, exclude: [268, 0, 52, 10] }],
+]);
 const ASSET_BASE = `${import.meta.env?.BASE_URL || './'}assets/`;
 const COLORS = { operation: 0xc09be9, dialogue: 0x91e4dc, terminal: 0x5faee6, encounter: 0xf06d53, objective: 0xf1c775, exit: 0x9db5ce };
 const TAU = Math.PI * 2;
@@ -228,13 +234,12 @@ export class WorldView {
     if (this.spriteCache.has(cacheKey)) return this.spriteCache.get(cacheKey);
     let texture;
     const atlas = this.atlases[name], image = atlas?.image;
-    if (name === 'crew' && key === 'wrex' && typeof HTMLImageElement !== 'undefined' && image instanceof HTMLImageElement
+    const crop = name === 'crew' && CREW_BODY_CROPS.get(key);
+    if (crop && typeof HTMLImageElement !== 'undefined' && image instanceof HTMLImageElement
       && image.width === 1536 && image.height === 1024) {
-      // The existing head extends above the nominal cell. Take its full height
-      // and mask the neighbouring cell's overlapping boot, outside this body.
       texture = prepareSpriteTexture(canvasTexture(384, 512, context => {
-        context.drawImage(image, 768, 494, 384, 512, 0, 0, 384, 512);
-        context.clearRect(268, 0, 52, 10);
+        context.drawImage(image, crop.x, crop.y, 384, 512, 0, 0, 384, 512);
+        if (crop.exclude) context.clearRect(...crop.exclude);
       }));
     } else if (atlas) {
       const keys = name === 'boss' ? BOSS_KEYS : name === 'npc' ? NPC_KEYS : enemy ? ENEMY_KEYS : CREW_KEYS; const index = Math.max(0, keys.indexOf(key));
@@ -665,23 +670,55 @@ export class WorldView {
     actor.body.rotation.z = actor.alive ? 0 : -.9; actor.animationFrame = null;
   }
 
-  _applyCommanderCombatWeapon(actor) {
-    if (actor.id !== 'shepard' || actor.enemy || typeof document === 'undefined') return;
+  _applyCrewWeapon(actor, weapon) {
+    const crew = this.atlases.crew;
+    if (typeof document === 'undefined' || actor.enemy || actor.id !== actor.key || !COMPANION_ANIMATION_IDS.includes(actor.key)
+      || crew?.image?.width !== 1536 || crew.image.height !== 1024) return;
+    if (!weapon) {
+      actor.body.material.map = this._spriteTexture(actor.key, false);
+      updateHeldWeapon(actor, null, null);
+      return;
+    }
+    const cacheKey = `crew:weapon-mask:${actor.key}`;
+    if (!this.spriteCache.has(cacheKey)) {
+      const base = this._spriteTexture(actor.key, false);
+      const crop = CREW_BODY_CROPS.get(actor.key);
+      const alreadyCropped = Boolean(crop && base.image.width === 384 && base.image.height === 512);
+      const mount = getCrewWeaponMount(actor.key, alreadyCropped ? crop : null);
+      this.spriteCache.set(cacheKey, maskBakedWeapon(alreadyCropped ? base : crew, null, mount, alreadyCropped));
+    }
+    const mask = this.spriteCache.get(cacheKey);
+    actor.body.material.map = mask;
+    updateHeldWeapon(actor, weapon, mask.userData.weaponMount, false, .68);
+  }
+
+  _applyCombatWeapon(actor) {
+    if (typeof document === 'undefined') return;
+    if (actor.enemy || this.mode !== 'combat' || !Object.hasOwn(actor.state || {}, 'weaponItemId') || !this._combatAnimationConfig(actor)) {
+      if (actor.carriedWeapon) actor.carriedWeapon.visible = false;
+      return;
+    }
+    const { weaponItemId, weaponType } = actor.state;
+    if (actor.weaponItemId !== weaponItemId || actor.weaponType !== weaponType) {
+      actor.weaponItemId = weaponItemId;
+      actor.weaponType = weaponType;
+      actor.weaponVisual = actor.id === 'shepard' ? getCarriedWeapon(weaponItemId) : getActorWeaponVisual(actor.state);
+    }
+    if (!actor.animationFrame && actor.alive && actor.id !== 'shepard') {
+      this._applyCrewWeapon(actor, actor.weaponVisual);
+      return;
+    }
     const frame = actor.body.material.map?.userData.relayAnimationFrame;
-    const mount = this.mode === 'combat' && Object.hasOwn(actor.state || {}, 'weaponItemId') && getCombatWeaponMount(frame);
+    const mount = getCombatWeaponMount(frame);
     if (!mount || frame.id !== actor.animationFrame) {
-      updateAimedWeapon(actor, null, null);
+      updateHeldWeapon(actor, null, null);
       return;
     }
     const atlasName = `combat-${actor.key}`;
-    const cacheKey = `${atlasName}:equipment-mask`;
-    if (!this.spriteCache.has(cacheKey)) this.spriteCache.set(cacheKey, maskBakedCombatWeapon(this.atlases[atlasName], frame, mount));
+    const cacheKey = `${atlasName}:weapon-mask:${frame.id}`;
+    if (!this.spriteCache.has(cacheKey)) this.spriteCache.set(cacheKey, maskBakedWeapon(this.atlases[atlasName], frame, mount));
     actor.body.material.map = this.spriteCache.get(cacheKey);
-    if (actor.weaponItemId !== actor.state.weaponItemId) {
-      actor.weaponItemId = actor.state.weaponItemId;
-      actor.weaponVisual = getCarriedWeapon(actor.weaponItemId);
-    }
-    updateAimedWeapon(actor, actor.weaponVisual, mount);
+    updateHeldWeapon(actor, actor.weaponVisual, mount, frame.id.endsWith('-aim'));
   }
 
   _applyAnimationFrame(actor, atlasName, frame, { cover = false } = {}) {
@@ -1254,6 +1291,8 @@ export class WorldView {
     else if (this.levelLayout?.renderer === 'frontier') buildFrontierScene(this, this.levelLayout);
     else ({ normandy: () => this._normandy(), eden: () => this._eden(), citadel: () => this._citadel(false), therum: () => this._therum(), feros: () => this._feros(), noveria: () => this._noveria(), virmire: () => this._virmire(), ilos: () => this._ilos(), finale: () => this._citadel(true) }[zone.theme] || (() => this._eden()))();
     this._dressScene();
+    this.miraPanels = zone.id === 'noveria' ? installMiraPanels(this.stage) : [];
+    updateMiraPanels(this.miraPanels, this.storyContext?.miraStations);
     // No interaction may be hidden inside scenery. Small placements yield to their authored approach area.
     this.colliders = this.colliders.filter(c => !this.getInteractivePOIs().some(p => this._insideCollider(p.x, p.z, c, .3)));
     this._installTacticalCover();
@@ -1297,6 +1336,19 @@ export class WorldView {
   setCommanderWeapon(weaponItemId) {
     if (this.commanderWeapon !== undefined && (this.commanderWeapon?.id ?? null) === weaponItemId) return;
     this.commanderWeapon = getCarriedWeapon(weaponItemId);
+  }
+
+  setPartyWeapons(actors) {
+    this.partyWeapons = new Map();
+    for (const actor of actors) this.setPartyMemberWeapon(actor);
+  }
+
+  setPartyMemberWeapon(actor) {
+    if (actor.id === 'shepard') this.setCommanderWeapon(actor.weaponItemId);
+    else if (COMPANION_ANIMATION_IDS.includes(actor.id)) {
+      this.partyWeapons ||= new Map();
+      this.partyWeapons.set(actor.id, getActorWeaponVisual(actor));
+    }
   }
 
   _clearCommanderTextures() {
@@ -1386,6 +1438,7 @@ export class WorldView {
       operations:{records:{'feros-varrens':{stage:Number.isInteger(context.operations?.records?.['feros-varrens']?.stage)?context.operations.records['feros-varrens'].stage:0}}},
       advanceFeros: normalizeAdvanceFerosState(context.advanceFeros,context),
       assignmentContacts, resolveContacts,
+      ...(context.zone === 'noveria' ? { miraStations: getMiraStations(context) } : {}),
       resolveNoveriaPresence: Object.fromEntries(['anoleis', 'parasini', 'gianna', 'lorik'].map(id => [id, resolveNoveriaContactAvailable(context, id)])),
       ...(context.mediaId !== undefined ? {mediaId:context.mediaId} : {}),
       ...(context.periodId !== undefined ? {periodId:context.periodId} : {}),
@@ -1396,6 +1449,7 @@ export class WorldView {
     if (next?.flags.jenkinsLost && !next.lost.includes('jenkins')) next.lost.push('jenkins');
     if (JSON.stringify(next) === JSON.stringify(this.storyContext)) return;
     this.storyContext = next;
+    updateMiraPanels(this.miraPanels, next?.miraStations);
     if (!this._vehicleInPeriod() && this.isVehicleMounted()) this._dismountVehicle();
     if (this.makoSprite) this.makoSprite.group.visible=this.mode!=='combat'&&this._vehicleInPeriod();
     if (!this.zone) return;
@@ -1831,7 +1885,10 @@ export class WorldView {
   }
   getBounds() { return { ...this.zone.bounds }; }
   getMapCollisions() { return mapCollisionFootprints(this.colliders); }
-  getPOIs() { return this.zone.pois.map(poi => ({ ...poi, cleared: this.cleared.has(poi.id) })); }
+  getPOIs() {
+    const progress = this.zoneId === 'feros' ? this.storyContext?.advanceFeros : null;
+    return this.zone.pois.map(poi => ({ ...poi, label: ferosProgressLabel(poi.label, progress), cleared: this.cleared.has(poi.id) }));
+  }
   getConversationPOIs({ includeResolveReplaced = false } = {}) {
     const context = this.storyContext;
     if (!context) return [];
@@ -2073,6 +2130,7 @@ export class WorldView {
         actor.body.scale.x = walkingFrame ? actor.walkAspect / (2.1 / actor.height) : 1;
       }
       if (actor.id === 'shepard' && !actor.enemy) updateCarriedWeapon(actor, this.commanderWeapon, actor.walkDirection, walkingFrame);
+      else if (this.partyWeapons?.has(actor.id)) this._applyCrewWeapon(actor, this.partyWeapons.get(actor.id));
     });
     for (const actor of this.ambientActors || []) {
       this._groundActor(actor);
@@ -2111,7 +2169,7 @@ export class WorldView {
       else if (HORIZON_ENEMY_IDS.includes(actor.key)) this._applyHorizonEnemyBody(actor);
       else if (['varren','alpha-varren'].includes(actor.key)) this._applyHorizonFaunaBody(actor);
       else if (GUARDED_COMBAT_ANIMATION_IDS.includes(actor.key) && actor.animationFrame) this._fallbackCombatFrame(actor);
-      this._applyCommanderCombatWeapon(actor);
+      this._applyCombatWeapon(actor);
     }
     for (const actor of [...this.actors, ...this.battleActors.values()]) this._applyCommanderCustomization(actor);
     // Sample the body geometry after positioning and applying this frame's pose.

@@ -1,10 +1,24 @@
 import { normalizeAdvanceFerosState, ferosColonyReport, FEROS_COLONIST_TARGETS } from './advance-feros.js';
+import { operationEffects, listOperations } from './operations.js';
+
+const serviceStatuses = {
+  locked: 'Verrouillé', available: 'Disponible', active: 'En cours',
+  completed: 'Terminé', unavailable: 'Indisponible',
+};
+
+function renderFerosDefenseServices(state, esc) {
+  const services = listOperations(state).filter(operation => operation.zone === 'feros');
+  return `<section data-feros-defense-services><h4>Défense coordonnée</h4>
+    <p>Services rétablis ${operationEffects(state).colonySupport}/4</p>
+    <ul>${services.map(service => `<li>${esc(service.name)} · ${esc(serviceStatuses[service.status])}</li>`).join('')}</ul>
+  </section>`;
+}
 
 export function advanceFerosObjective(state) {
   if (state?.zone !== 'feros' || state.completed?.includes('feros')) return '';
   const p=normalizeAdvanceFerosState(state.advanceFeros,state);
   if (!p || p.legacy) return '';
-  if (!state.cleared.includes('feros:encounter-1')) return '';
+  if (!state.cleared.includes('feros:encounter-1')) return 'Repousser le barrage geth puis rejoindre le poste de défense.';
   if (!p.defense) return 'Retrouver Fai Dan pour organiser la défense de Zhu’s Hope.';
   if (!p.lizbeth) return 'Recueillir le témoignage de Lizbeth à ExoGeni.';
   if (!state.cleared.includes('feros:encounter-2')) return 'Sécuriser ExoGeni pour accéder aux recherches.';
@@ -30,5 +44,5 @@ export function renderAdvanceFerosJournal(state,{esc}={}) {
   const status=state.completed.includes('feros')?'Mission accomplie':advanceFerosObjective({...state,zone:'feros'});
   const methods={gas:'Épargné · gaz anti-Thorien',melee:'Épargné · mêlée',lethal:'Tué'};
   const jeong={persuaded:'Jeong a renoncé à la purge après persuasion.',intimidated:'Jeong a renoncé à la purge après intimidation.',killed:'Jeong a été tué lors de la confrontation.'};
-  return `<article class="journal-entry" data-feros-report="current" data-feros-resolved="${report.resolved}" data-feros-spared="${report.spared}" data-feros-killed="${report.killed}"><h3>Rapport de Zhu’s Hope</h3><p>${esc(status)}</p>${p.lizbeth?'<p>Le témoignage et la carte de Lizbeth ont été recueillis.</p>':''}${p.investigation?'<p>Les recherches d’ExoGeni expliquent l’influence des spores sur les colons.</p>':''}${p.shipReleased?'<p>La griffe du vaisseau geth a été détruite ; la voie de retour est libérée.</p>':''}${p.jeong?`<p>${esc(jeong[p.jeong])}</p>`:''}${p.gasIssued?`<p>${report.resolved}/16 cibles traitées : ${report.spared} épargnées et ${report.killed} tuées. Gaz : ${report.gas} · Mêlée : ${report.melee}.</p><details><summary>État des habitants</summary><ul>${FEROS_COLONIST_TARGETS.map(target=>`<li>${esc(target.name)} · ${esc(methods[p.colonists[target.id]]||'Encore sous influence')}</li>`).join('')}</ul></details>`:''}${p.freighterOpened?'<p>Fai Dan s’est donné la mort. Il est compté séparément des seize cibles.</p>':''}${p.cipher?'<p>Le Cipher a été transmis à Shepard.</p>':''}${p.shiala?`<p>Shiala a été ${p.shiala==='spared'?'épargnée':'exécutée'}.</p>`:''}</article>`;
+  return `<article class="journal-entry" data-feros-report="current" data-feros-resolved="${report.resolved}" data-feros-spared="${report.spared}" data-feros-killed="${report.killed}"><h3>Rapport de Zhu’s Hope</h3><p>${esc(status)}</p>${p.defense ? renderFerosDefenseServices(state, esc) : ''}${p.lizbeth?'<p>Le témoignage et la carte de Lizbeth ont été recueillis.</p>':''}${p.investigation?'<p>Les recherches d’ExoGeni expliquent l’influence des spores sur les colons.</p>':''}${p.shipReleased?'<p>La griffe du vaisseau geth a été détruite ; la voie de retour est libérée.</p>':''}${p.jeong?`<p>${esc(jeong[p.jeong])}</p>`:''}${p.gasIssued?`<p>${report.resolved}/16 cibles traitées : ${report.spared} épargnées et ${report.killed} tuées. Gaz : ${report.gas} · Mêlée : ${report.melee}.</p><details><summary>État des habitants</summary><ul>${FEROS_COLONIST_TARGETS.map(target=>`<li>${esc(target.name)} · ${esc(methods[p.colonists[target.id]]||'Encore sous influence')}</li>`).join('')}</ul></details>`:''}${p.freighterOpened?'<p>Fai Dan s’est donné la mort. Il est compté séparément des seize cibles.</p>':''}${p.cipher?'<p>Le Cipher a été transmis à Shepard.</p>':''}${p.shiala?`<p>Shiala a été ${p.shiala==='spared'?'épargnée':'exécutée'}.</p>`:''}</article>`;
 }
