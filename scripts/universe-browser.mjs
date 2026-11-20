@@ -267,7 +267,7 @@ try {
   assert.equal(await action('chronicle-party', 'ME2-CHR-JACK').count(), 0);
   await blockedGearOption('ME2-CHR-SHEPARD', 'weapon', 'ME2-WPN-PREDATOR', 'A workshop weapon is not attributed to the historical scene');
   await prepare('ME2', 'me2', 'me2-equipment-workshop');
-  assert.match(await page.locator('.universe-session-note').innerText(), /acquisition.*non simulée/);
+  assert.match(await page.locator('.universe-session-note:not([data-chronicle-equipment-profile])').innerText(), /acquisition.*non simulée/);
   assert.equal(await action('chronicle-party', 'ME2-CHR-JACK').count(), 1, 'Jack is selectable in an explicitly free workshop, never in Freedom’s Progress');
   for (const id of ['ME2-CHR-MIRANDA', 'ME2-CHR-JACOB']) await action('chronicle-party', id).click();
   await action('chronicle-party', 'ME2-CHR-SAMARA').click();

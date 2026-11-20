@@ -116,6 +116,14 @@ Arc, Graal, Javelin et Venom utilisent **quatre charges automatiques d’une sec
 
 Falcon et les autres profils spéciaux ne reçoivent pas les modules conçus pour les armes conventionnelles. Délais, zone, suivi de cible, chaleur, munitions, trajectoires et dégâts ne constituent pas une reproduction intégrale des modèles originaux. Les [sources historiques](research/chronicle-specialist-sources.md) restent identifiées comme telles ; les métadonnées courantes conservent les conditions et limites de chaque profil.
 
+## Dossiers BD et Library Edition
+
+Dans **Chroniques → Lecture**, le sommaire des BD donne accès aux récits, aux numéros et à leurs périodes. Chaque renvoi de Library Edition ouvre l’œuvre propriétaire. Les autres éditions réutilisent les mêmes identifiants de récit. Les notices indiquent leur provenance, et les pages restent vides tant que l’exemplaire correspondant n’a pas été consulté.
+
+Les dossiers proposent deux méthodes. Le lecteur peut remettre trois pièces dans l’ordre ou les examiner pour choisir le bon classement. Une vérification facultative enrichit le dossier local. Le classement et ses annexes éventuelles se retrouvent après reprise ou export de la chronique. Les deux méthodes aboutissent au même bilan.
+
+Le journal indique les faits établis, les notices utilisées comme repères et les informations à vérifier. Les pièces originales du parcours portent la mention « Adaptation ». *Blasto* reste une référence de fiction interne. Le sommaire et les dossiers ouvrent les périodes de leurs œuvres sans transférer de récompense, d’équipement ou de choix vers la campagne. [Vérifications des BD](P0.md)
+
 ## Seize parcours documentaires
 
 L’onglet Lecture présente des **paraphrases courtes de faits établis**. Les pages s’appuient sur des fiches et sources identifiées ; l’interface affiche leurs titres, liens et repères. L’ordre des pages guide la lecture ; il ne constitue pas un découpage exhaustif des chapitres ou cases. Aucun dialogue canonique, choix alternatif, personnage de combat, butin ou récompense n’est créé pour ces parcours.

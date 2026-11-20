@@ -3,6 +3,8 @@ import { createChronicleSession, normalizeChronicleSession, normalizeContext, ca
 import { CHRONICLE_SCENARIOS, getUniverseActor, canUseUniverseActor, universeActorFor, listUniverseBuilds, getUniverseBuild } from './universe-actors.js';
 import { listUniverseEquipment, getUniverseEquipment, canEquipUniverseItem, normalizeChronicleLoadouts, equipChronicleItem, getChronicleEquipmentEffects } from './universe-equipment.js';
 import { listChronicleStories, getChronicleStory, readChronicleStoryStep } from './chronicle-story.js';
+import { actOnComicBriefing, validateComicProgress } from './comic-briefings.js';
+export { getComicBriefing, listComicBriefings } from './comic-briefings.js';
 import { UNIVERSE_AMMO_PROFILES, validateAmmoMode } from './universe-ammo.js';
 import { isVictoryParticipant, SUMMON_LIMITS } from './combat-summons.js';
 import { createBattle } from './combat.js';
@@ -53,6 +55,7 @@ export function normalizeChronicle(raw) {
     const session = normalizeChronicleSession(split.base);
     if (!session) return null;
     if (split.importedCampaign !== undefined) session.importedCampaign = split.importedCampaign;
+    if (session.comicProgress && !validateComicProgress(session.context, session.comicProgress)) return null;
     for (const [storyId, index] of Object.entries(session.readingProgress)) {
       const story = getChronicleStory(storyId, session.context), page = story?.steps[index];
       if (!page || ![story.progressRecordId, ...page.recordIds].every(id => session.discovered.includes(id))) return null;
@@ -98,6 +101,7 @@ export function selectChronicleScenario(raw, scenarioId) {
   replacement.ammoModes = reconcileAmmoModes({ ...replacement, ammoModes: session.ammoModes });
   return { ok: true, session: { ...replacement, discovered: session.discovered, notes: session.notes,
     readingProgress: session.readingProgress, cleared: session.cleared,
+    ...(session.comicProgress ? { comicProgress: session.comicProgress } : {}),
     ...(session.importedCampaign ? { importedCampaign: session.importedCampaign } : {}) } };
 }
 
@@ -247,6 +251,17 @@ export function readChroniclePage(raw, storyId, index) {
   const updated = normalizeChronicle({ ...session, discovered: reading.discovered,
     readingProgress: { ...session.readingProgress, [storyId]: reading.index } });
   return updated ? { ok: true, session: updated, reading } : fail('Progression documentaire invalide.');
+}
+
+export function runChronicleComicAction(raw, id, action, value) {
+  const session = normalizeChronicle(raw);
+  if (!session || typeof id !== 'string') return fail('Chronique ou dossier invalide.');
+  const result = actOnComicBriefing(session.context, id, session.comicProgress?.[id], action, value);
+  if (!result.ok) return result;
+  const comicProgress = { ...session.comicProgress };
+  if (result.state) comicProgress[id] = result.state;
+  else delete comicProgress[id];
+  return { ok: true, session: { ...session, comicProgress } };
 }
 
 /** Compose trusted selections without recursively validating the session. */

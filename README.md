@@ -6,7 +6,7 @@ Un RPG de fan en français : **personnages en sprites 2D, décors 3D, groupe de 
 
 ## Vérification des P0
 
-Le dernier lot ferme 17 P0 sur le prologue, Thérum, Féros, Novéria, Virmire, le rendu des armes du commando et les bancs de préparation ME2. Il reste 544 P0 ouverts dans les 28 catalogues. [Détail du lot et vérifications](docs/P0.md)
+Le dernier lot BD ferme 3 P0 et 101 P1. Les Chroniques ouvrent 38 dossiers d’archives et le sommaire de Library Edition. Il reste 541 P0 ouverts dans les 28 catalogues, dont 169 dans les classeurs BD. [Détail du lot et vérifications](docs/P0.md)
 
 ## Enquête, affectations et épilogue — lot précédent
 

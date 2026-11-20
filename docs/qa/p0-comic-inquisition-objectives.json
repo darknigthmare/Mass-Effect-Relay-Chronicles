@@ -1,0 +1,106 @@
+{
+  "at": "2026-11-20T15:41:16.047Z",
+  "passed": true,
+  "url": "http://127.0.0.1:4328/",
+  "baseCommit": "563aab682f7a695b20a774adfee48fe696471ce0",
+  "sourceHashes": {
+    "docs/universe/catalogs/INQ.json": "d53a1beda59d7e7a5ae5d218b55e0f13acd55f278a95f72124e1383ee7af6a86",
+    "src/main.js": "c87501f125e10f6ab37702a15848f6d537509e162cb2562bd6c90652e394041e",
+    "src/universe-ui.js": "8cecd37c125d47d9152e0195c7c78a39b12a346a434ad121d1e47986d01457cc",
+    "src/comic-briefing-ui.js": "fe0a0df10859d69b1e13be4b7ce13f65ece9b6e1487d9012a6419b58ce06a4db",
+    "src/comic-briefings.js": "78805e31b0fb9b23e15a543f3375aee2ebe1109b9dfe1465c0738ca7104e6758",
+    "src/comic-short-briefings.js": "fb7e3a1b62c2f85a4aeb707f3e01d992603aa6832ff910506852d6aec408dc76",
+    "src/chronicles.js": "cc9e83cd7933db09a6355cd741fa85b378d8eb4e83cebe697a566282092cc33b",
+    "src/continuity.js": "9ca60774811058f0b624ea221a924b97b09c2c5fb6c82566e0b318e0c90404da",
+    "scripts/p0-inquisition-objectives-browser.mjs": "694adc64a442db756ff53c689e30087d285f7807a5c34a6c5f463d6035f863e7"
+  },
+  "checks": [
+    {
+      "id": "INQ-SC-BRIEF-MAIN",
+      "priority": "P0",
+      "passed": true,
+      "exactDescription": "Enregistrer une demande en distinguant accusation et observation.",
+      "exactCriterion": "L'objectif « Recevoir les accusations » atteint son raccord annoncé après chaque méthode; sauvegarde, rechargement et saut de scène n'en changent ni le groupe ni les informations acquises.",
+      "dossier": "inq-recevoir-les-accusations",
+      "title": "Recevoir les accusations",
+      "routes": [
+        {
+          "method": "trace",
+          "optional": true,
+          "finish": "archive",
+          "checkpointSha256": "081c166a18d8da2b3a03e8c2e57f407d6caff1462d860550b83b6cc68be89ff8",
+          "finalSha256": "76b74deda463afb42139eaecd01301cdb44a081b93a4574322b058621acd2347",
+          "receiptAfterResume": "Demande consignée. Observation de deux passages rapprochés du même badge. Accusation de prêt de badge attribuée à la cheffe de quart. L’identité des personnes reste à vérifier."
+        },
+        {
+          "method": "review",
+          "optional": false,
+          "finish": "skip",
+          "checkpointSha256": "8f12ad9ef4f8ad1222916a540a97315a5780e6d5913c375034c408de411889e0",
+          "finalSha256": "de490c4e5357e700ff63aa55e31cc299ccb1c901ca7dc264c3d1ac045100ba51",
+          "receiptAfterResume": "Demande consignée. Observation de deux passages rapprochés du même badge. Accusation de prêt de badge attribuée à la cheffe de quart. L’identité des personnes reste à vérifier."
+        }
+      ],
+      "receipt": "Demande consignée. Observation de deux passages rapprochés du même badge. Accusation de prêt de badge attribuée à la cheffe de quart. L’identité des personnes reste à vérifier.",
+      "campaignUnchanged": true
+    },
+    {
+      "id": "INQ-SC-REPORT-MAIN",
+      "priority": "P0",
+      "passed": true,
+      "exactDescription": "Classer les faits et laisser ouvertes les questions non résolues.",
+      "exactCriterion": "L'objectif « Rendre un rapport incertain » atteint son raccord annoncé après chaque méthode; sauvegarde, rechargement et saut de scène n'en changent ni le groupe ni les informations acquises.",
+      "dossier": "inq-contre-signature",
+      "title": "Rendre un rapport incertain",
+      "routes": [
+        {
+          "method": "trace",
+          "optional": true,
+          "finish": "archive",
+          "checkpointSha256": "a5632bbcffc86d826ff70203e43698df4c747c70711d971986905d600b3e39d9",
+          "finalSha256": "07d55987a2e27c9ad9f09103bbc442ffc5255d93f8f7a6e9de8cc7acfb4328bf",
+          "receiptAfterResume": "Rapport classé. La contre-signature figure sur l’original et manque sur la copie. Le guichet déclare une panne. La cause de l’écart et une éventuelle intervention restent à vérifier."
+        },
+        {
+          "method": "review",
+          "optional": false,
+          "finish": "skip",
+          "checkpointSha256": "627305c24820940574845cf648598765032a8b7572061dbc0bdb0fef393044c5",
+          "finalSha256": "2924a1a76fb2c3c95d83a3b17c2ec95f4566de1dbb94ce8519ebd80e384a8418",
+          "receiptAfterResume": "Rapport classé. La contre-signature figure sur l’original et manque sur la copie. Le guichet déclare une panne. La cause de l’écart et une éventuelle intervention restent à vérifier."
+        }
+      ],
+      "receipt": "Rapport classé. La contre-signature figure sur l’original et manque sur la copie. Le guichet déclare une panne. La cause de l’écart et une éventuelle intervention restent à vérifier.",
+      "campaignUnchanged": true
+    }
+  ],
+  "captures": [
+    {
+      "name": "inq-recevoir-les-accusations.png",
+      "sha256": "4f9ccd86d9fa5aaca085a80bcd27d257c576cbe64c1d8d0a0dae1829482a81fd",
+      "path": "docs/screenshots/p0-inq-recevoir-les-accusations.png",
+      "actuallyOpened": true,
+      "observation": "Reçu final ouvert après reprise. Le texte sépare deux passages observés, un prêt de badge allégué et l’identité restant à vérifier."
+    },
+    {
+      "name": "inq-contre-signature.png",
+      "sha256": "db46efc3dc7095e410e0a88e13ec2a628a6834aad888e1d8530d9cefb3b9d943",
+      "path": "docs/screenshots/p0-inq-contre-signature.png",
+      "actuallyOpened": true,
+      "observation": "Reçu final ouvert après reprise. Le texte distingue la divergence des pièces, la panne déclarée par le guichet et les deux questions encore ouvertes."
+    }
+  ],
+  "errors": [],
+  "served": {
+    "assets/index-C35eCjXj.js": "d448ee1bad2e09ca9167348e4d511b97f13175cbd53802f3648ee97e2b77dd50",
+    "assets/three-CflfletH.js": "1f85085c8417af92beee06f30cdf886395e64c5b0323135911fed5bc8204b120",
+    "assets/index-COM-5j7E.css": "80f13eb6216ffe253db783b043fd8d83a6b19664416442e3265f852864cfe454"
+  },
+  "scope": "Deux objectifs du récit Inquisition exécutés sur une version compilée. Ces exercices d’archives originaux distinguent constat et accusation. Les scènes, personnages en action et cinématiques du numéro publié restent hors du parcours.",
+  "viewport": {
+    "width": 430,
+    "height": 870
+  },
+  "rendererQuality": "Économie",
+  "limits": "Les reçus concluent des exercices d’archives originaux. Le saut testé porte sur le bilan de ces exercices. Les scènes publiées, leur mise en scène et les autres objectifs du numéro relèvent d’un contrôle distinct."
+}

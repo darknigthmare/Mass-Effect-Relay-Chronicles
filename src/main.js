@@ -101,7 +101,7 @@ const touchKeys = new Map();
 let retreatCandidate = null, encounterRecovery = null;
 let state = null, battle = null, running = false, battlePOI = null, lastBattleEvent = 0, combatStamp = '', lastFrame = performance.now(), uiAccumulator = 0, saveAccumulator = 0;
 let universePromise, universeModules, chronicleSession=null, chronicleBattle=null, chroniclePaused=false, chronicleFinished=false, chronicleStamp='', chronicleView=null, expansionResult=null;
-const universeUI={mediaId:'',periodId:'',scenarioId:'',readingId:null,group:'all',query:'',recordId:null,visibleCount:30,tab:'references',actorId:null,actionId:'shoot',feedback:null,returnScreen:'title',expansionMode:'all',expansionBatch:'all',expansionId:null,expansionSeed:1,expansionDifficulty:'normal',expansionEdition:'standard'};
+const universeUI={mediaId:'',periodId:'',scenarioId:'',readingId:null,comicId:null,libraryLink:null,group:'all',query:'',recordId:null,visibleCount:30,tab:'references',actorId:null,actionId:'shoot',feedback:null,returnScreen:'title',expansionMode:'all',expansionBatch:'all',expansionId:null,expansionSeed:1,expansionDifficulty:'normal',expansionEdition:'standard'};
 const ui = { talentActor:'shepard', coordMode:false, coordOrders:[], horizonKind:'fleet', horizonRecord:null, screen:'title', previous:null, form:newCommanderForm(), planet:'eden-prime', selectedCrew:[], actor:'shepard', action:'shoot', selectedTarget:null, equipmentActor:'shepard', equipmentTab:'loadout', equipmentKind:'all', equipmentSlots:{}, customTab:'character', customSlot:'weapon', customView:'front', customPose:'field', customCompare:false, customShowAll:false, customWeaponFilter:'all', customizationDraft:null, customizationBase:null, customReturn:null, customCreation:false, customItem:null, operationFilter:'all', mapFilter:'all', codex:null, codexQuery:'', journalTab:'missions', tracked:null, dialogue:null, busy:false, manualNames:{}, manualFeedback:null, manualConfirmation:null, manualReturn:'title' };
 $('#app').innerHTML = `<div id="world"></div><div class="vignette"></div><div id="hud" class="hidden"></div><div id="battle-ui"></div><div id="overlay"></div><div id="toasts" aria-live="polite"></div><div id="exploration-banter" class="hidden" aria-live="polite" aria-atomic="true"></div><div id="transition" class="transition-cover"><span class="eyebrow">Normandy · liaison opérationnelle</span><h2></h2><div class="spinner"></div></div><div class="scanlines"></div><input type="file" id="save-import" accept="application/json,.json" hidden><input type="file" id="chronicle-import" accept="application/json,.json" hidden><input type="file" id="chronicle-continuity-import-file" accept="application/json,.json" hidden>`;
 const audio = new AudioDirector();
@@ -382,6 +382,7 @@ function resetChronicleContext(mediaId,periodId=''){
   if(chronicleBattle&&!chronicleBattle.winner)return;
   expansionResult=null;universeUI.expansionId=null;universeUI.expansionEdition='standard';
   universeUI.mediaId=mediaId;universeUI.periodId=periodId;universeUI.scenarioId='';universeUI.readingId=null;universeUI.query='';universeUI.recordId=null;universeUI.visibleCount=30;universeUI.feedback=null;
+  universeUI.comicId=null;
   chronicleSession=null;chronicleBattle=null;chronicleView=null;chronicleStamp='';
   const context=universeContext();
   if(context){const loaded=universeModules.engine.loadChronicle(localStorage,context);if(loaded.ok)chronicleSession=loaded.session;else universeUI.feedback={text:loaded.reason,error:true};}
@@ -401,6 +402,44 @@ function acceptChronicle(result,message){
 function readChroniclePage(index){
   if(!chronicleSession||!universeUI.readingId||chronicleBattle&&!chronicleBattle.winner)return;
   acceptChronicle(universeModules.engine.readChroniclePage(chronicleSession,universeUI.readingId,index),'Lecture enregistrée.');
+}
+function openComicBriefing(id){
+  if(!chronicleSession||!universeModules.engine.getComicBriefing(universeContext(),id))return;
+  universeUI.comicId=id;
+  universeUI.feedback=null;
+  renderScreen();
+  $('[data-comic-briefing]')?.focus();
+}
+function updateComicBriefing(action,value){
+  if(!chronicleSession||!universeUI.comicId)return;
+  const result=universeModules.engine.runChronicleComicAction(chronicleSession,universeUI.comicId,action,value);
+  if(!result.ok)return chronicleFeedback(result.reason,true);
+  const saved=universeModules.engine.saveChronicle(localStorage,result.session);
+  if(!saved.ok)return chronicleFeedback(saved.reason,true);
+  chronicleSession=result.session;
+  universeUI.feedback=null;
+  renderScreen();
+  if(document.activeElement?.id==='chronicle-media')$('[data-comic-briefing]')?.focus();
+}
+function changeComicContext(action,id){
+  if(action==='comic-library-back'){
+    resetChronicleContext('LIB');
+    const link=universeUI.libraryLink&&$(`[data-do="comic-library-open"][data-id="${CSS.escape(universeUI.libraryLink)}"]`);
+    const details=link?.closest('details');
+    if(details)details.open=true;
+    link?.focus();
+    return;
+  }
+  if(action==='comic-library-open'){
+    const target=universeModules.renderer.getComicLibraryTarget(id);
+    if(target){universeUI.libraryLink=id;resetChronicleContext(target.mediaId,target.periodId);}
+    return;
+  }
+  const work=universeModules.data.getUniverseWork(action==='comic-period'?universeUI.mediaId:id);
+  if(!work)return;
+  if(action==='comic-period'){
+    if(work.periods.some(period=>period.id===id))resetChronicleContext(work.id,id);
+  }else resetChronicleContext(work.id,work.periods.length===1?work.periods[0].id:'');
 }
 function prepareChronicle(){
   if(chronicleSession)return acceptChronicle(universeModules.engine.selectChronicleScenario(chronicleSession,universeUI.scenarioId||chronicleSession.scenarioId),'Préparation enregistrée dans cette chronique.');
@@ -1072,6 +1111,19 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'chronicle-load':loadPreparedChronicle();break;
     case 'chronicle-reading-open':readChroniclePage();break;
     case 'chronicle-page':readChroniclePage(Number(button.dataset.index));break;
+    case 'comic-library-open':case 'comic-library-back':case 'comic-period':case 'comic-related':
+      if(ui.screen==='chronicles'&&universeUI.tab==='reading')changeComicContext(action,id);break;
+    case 'comic-briefing-open':
+      if(ui.screen==='chronicles'&&universeUI.tab==='reading')openComicBriefing(id);break;
+    case 'comic-briefing-back':
+      if(ui.screen==='chronicles'&&universeUI.tab==='reading'){
+        const selected=universeUI.comicId;
+        universeUI.comicId=null;universeUI.feedback=null;renderScreen();
+        if(selected)$(`[data-do="comic-briefing-open"][data-id="${CSS.escape(selected)}"]`)?.focus();
+      }
+      break;
+    case 'comic-briefing-method':case 'comic-briefing-pick':case 'comic-briefing-optional':case 'comic-briefing-finish':case 'comic-briefing-restart':
+      if(ui.screen==='chronicles'&&universeUI.tab==='reading')updateComicBriefing(action.slice('comic-briefing-'.length),action==='comic-briefing-pick'&&id!==undefined?Number(id):id);break;
     case 'chronicle-save':if(chronicleSession){persistChronicle('Chronique enregistrée.');renderScreen();}break;
     case 'chronicle-import':if(!chronicleBattle||chronicleBattle.winner)$('#chronicle-import').click();break;
     case 'chronicle-export':exportChronicle();break;
@@ -1255,7 +1307,7 @@ $('#chronicle-import').addEventListener('change',async event=>{
     if(!imported)return chronicleFeedback('Ce fichier n’est pas une chronique valide.',true);
     if(ui.screen!=='chronicles')return;
     expansionResult=null;universeUI.expansionId=null;universeUI.expansionEdition='standard';
-    universeUI.mediaId=imported.context.mediaId;universeUI.periodId=imported.context.periodId;universeUI.scenarioId=imported.scenarioId||'';universeUI.query='';universeUI.recordId=null;universeUI.visibleCount=30;universeUI.readingId=null;universeUI.tab=imported.scenarioId?'session':universeModules.engine.listChronicleReadings(imported.context).length?'reading':'references';
+    universeUI.mediaId=imported.context.mediaId;universeUI.periodId=imported.context.periodId;universeUI.scenarioId=imported.scenarioId||'';universeUI.query='';universeUI.recordId=null;universeUI.visibleCount=30;universeUI.readingId=null;universeUI.comicId=null;universeUI.tab=Object.keys(imported.comicProgress||{}).length?'reading':imported.scenarioId?'session':universeModules.engine.listChronicleReadings(imported.context).length?'reading':'references';
     acceptChronicle({ok:true,session:imported},'Chronique importée.');
   }catch{chronicleFeedback('Impossible de lire ce fichier de chronique.',true);}
 });

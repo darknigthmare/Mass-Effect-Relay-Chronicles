@@ -1707,7 +1707,7 @@
       "name": "Confinement à Avernus — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Établi",
       "priority": "P1",
       "description": "La défense d’Omega se transforme en conflit avec Cerberus. ",
@@ -1724,10 +1724,24 @@
         "INV-S-BOOK"
       ],
       "reference": "Invasion #1–4, retournement du conflit",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro.\nRésumé, cote du numéro ou segment et source dans le bon dossier.\nLes détails incertains restent signalés. Exercice d’archives.",
       "id": "INV-SC-RETURN-REF",
       "category": "lore",
-      "name": "Retour dans une station contestée"
+      "name": "Retour dans une station contestée",
+      "implementationPaths": [
+        "src/comic-arc-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/comic-briefings.js"
+      ],
+      "evidence": [
+        "docs/qa/comic-arc-references.json",
+        "tests/comic-arc-briefings.test.js",
+        "scripts/comic-arc-reference-browser.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/comic-arc-references.json",
+        "sha256": "90222b6f41216388ba62e157f4dda09e35fad3294658f84d3bd83f4f1a532bd4"
+      }
     },
     {
       "status": "Défini",
@@ -2127,7 +2141,7 @@
       "name": "Piège d’Afterlife — contrôle du parcours"
     },
     {
-      "status": "Prototype",
+      "status": "Validé",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le dernier numéro se conclut par le départ d’Aria. ",
@@ -2144,21 +2158,31 @@
         "INV-S-AUTHOR4"
       ],
       "reference": "Invasion #4",
-      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.",
+      "notes": "Ne remplace pas la lecture du numéro. Prototype limité à une paraphrase documentaire sourcée et aux références visitées. Les autres livrables de l’œuvre restent à produire ; les personnages mentionnés ne sont pas recrutables et les lieux cités ne deviennent pas des niveaux.\nRésumé, cote du numéro ou segment et source dans le bon dossier.\nLes détails incertains restent signalés. Exercice d’archives.",
       "id": "INV-SC-EXILE-REF",
       "category": "lore",
       "name": "Ultimatum et départ",
       "implementationPaths": [
         "src/chronicle-story.js",
         "src/chronicles.js",
-        "src/universe-ui.js"
+        "src/universe-ui.js",
+        "src/comic-arc-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/comic-briefings.js"
       ],
       "evidence": [
         "tests/chronicle-story.test.js",
         "tests/chronicle-expansion.test.js",
         "scripts/chronicle-expansion-browser.mjs",
-        "docs/qa/chronicle-expansion-browser-report.json"
-      ]
+        "docs/qa/chronicle-expansion-browser-report.json",
+        "docs/qa/comic-arc-references.json",
+        "tests/comic-arc-briefings.test.js",
+        "scripts/comic-arc-reference-browser.mjs"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/comic-arc-references.json",
+        "sha256": "90222b6f41216388ba62e157f4dda09e35fad3294658f84d3bd83f4f1a532bd4"
+      }
     },
     {
       "status": "Défini",
@@ -2637,7 +2661,7 @@
       "name": "Indicateur d’exposition abstrait"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Dans Invasion, séparer faits attestés, données à contrôler et événements issus des règles du fan game.",
@@ -2654,10 +2678,26 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "Le journal indique la provenance et le niveau de certitude.\nChoix et combat d’essai ne changent pas le statut des sources.",
       "id": "INV-SYS-CANON",
       "category": "systems",
-      "name": "Journal à deux niveaux"
+      "name": "Journal à deux niveaux",
+      "implementationPaths": [
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/universe-ui.js",
+        "src/chronicles.js",
+        "src/continuity.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -2706,7 +2746,7 @@
       "name": "Rythme ATB proposé"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Conserver la progression de Invasion sans exporter une issue hypothétique vers la continuité des jeux.",
@@ -2723,10 +2763,26 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "Reprises avant et après le bilan contrôlées en jeu.\nLe classement ne duplique ni objet, ni objectif, ni récompense.",
       "id": "INV-SYS-SAVE",
       "category": "systems",
-      "name": "Sauvegarde des modules"
+      "name": "Sauvegarde des modules",
+      "implementationPaths": [
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/universe-ui.js",
+        "src/chronicles.js",
+        "src/continuity.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -2798,7 +2854,7 @@
       "name": "Convergence narrative"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "L’arc prépare la situation d’Omega dans ME3; le scénariste décrit explicitement le DLC Omega comme suite. Aria quitte la station dans le final.",
@@ -2815,10 +2871,25 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "La frise affiche périodes, œuvres liées, sources et incertitudes.\nAucune date numérique n’est ajoutée pour les repères testés.",
       "id": "INV-CNT-PLACE",
       "category": "continuity",
-      "name": "Position dans l’univers"
+      "name": "Position dans l’univers",
+      "implementationPaths": [
+        "src/continuity-data.js",
+        "src/continuity.js",
+        "src/universe-ui.js",
+        "src/comic-briefing-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",

@@ -4,7 +4,7 @@
 
 Ces classeurs prolongent le catalogue ME1 existant pour préparer des adaptations en RPG à commandes ATB, avec personnages principalement en sprites 2D et décors 3D. Ils partagent la charte du classeur initial : titres bleu nuit, accents turquoise, lignes alternées, filtres, volets figés et cellules de statut ambre.
 
-**Statuts des fiches : Défini : 4 971 · Prototype : 283 · Intégré : 0 · Validé : 72.** Les statuts non Défini ont des chemins de code et de preuves explicites vérifiés dans le dépôt. L’existence de ces fichiers ne promeut aucune fiche automatiquement. Les prototypes de profils et d’équipements sont des essais dans des chroniques indépendantes ; ils ne certifient ni des campagnes complètes, ni des cartes et sprites achevés, ni une fidélité 1:1.
+**Statuts des fiches : Défini : 4 877 · Prototype : 273 · Intégré : 0 · Validé : 176.** Les statuts non Défini ont des chemins de code et de preuves explicites vérifiés dans le dépôt. L’existence de ces fichiers ne promeut aucune fiche automatiquement. Les prototypes de profils et d’équipements sont des essais dans des chroniques indépendantes ; ils ne certifient ni des campagnes complètes, ni des cartes et sprites achevés, ni une fidélité 1:1.
 
 **[Télécharger les 27 classeurs en une archive](outputs/relay-chronicles-20261022/Mass_Effect_Universe_27_Classeurs.zip)**
 
@@ -14,7 +14,7 @@ Ces classeurs prolongent le catalogue ME1 existant pour préparer des adaptation
 
 L’identifiant documentaire de Conviction reste **`CON`**. Ses fichiers sont désormais [catalogs/CONVICTION.json](catalogs/CONVICTION.json) et [qa/CONVICTION.json](qa/CONVICTION.json), car [Windows réserve le nom `CON`, même avec une extension](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file). Les champs `catalogPath` et `qaPath` du manifeste donnent les chemins actuels.
 
-Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La mention conservée dans le catalogue Library Edition et dans son classeur est un texte de conception, sans lien actif. La correction des chemins Windows conservait les 27 catalogues et classeurs octet pour octet dans l’état historique `c614a45`. Les exports actuels peuvent évoluer avec les statuts et leurs preuves ; leurs empreintes figurent dans le manifeste courant.
+Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La correction des chemins Windows conservait les 27 catalogues et classeurs octet pour octet dans l’état historique `c614a45`. Les exports actuels peuvent évoluer avec les statuts et leurs preuves ; leurs empreintes figurent dans le manifeste courant.
 
 ## Jeux
 

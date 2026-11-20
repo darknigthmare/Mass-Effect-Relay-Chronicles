@@ -3,12 +3,20 @@ import assert from 'node:assert/strict';
 import { newGame, encodeSave, decodeSave } from '../src/state.js';
 import { CHRONICLE_SCENARIOS, HISTORICAL_CHRONICLE_SCENARIOS } from '../src/universe-actors.js';
 import { UNIVERSE_EQUIPMENT } from '../src/universe-equipment.js';
-import { createChronicle, normalizeChronicle, listChronicleScenarios, selectChronicleScenario, setChronicleParty, equipChronicle, getChronicleRoster, getChronicleGear, buildChronicleActor, startChronicleBattle, finishChronicleBattle, encodeChronicle, decodeChronicle, chronicleStorageKey, saveChronicle, loadChronicle } from '../src/chronicles.js';
+import { createChronicle, normalizeChronicle, listChronicleScenarios, selectChronicleScenario, setChronicleParty, equipChronicle, getChronicleRoster, getChronicleGear, buildChronicleActor, startChronicleBattle, finishChronicleBattle, encodeChronicle, decodeChronicle, chronicleStorageKey, saveChronicle, loadChronicle, runChronicleComicAction } from '../src/chronicles.js';
 import { getActions, performAction, tickBattle } from '../src/combat.js';
 const clone = value => structuredClone(value);
 const context = mediaId => ({ mediaId, periodId: mediaId.toLowerCase() });
 const workshop = mediaId => createChronicle(context(mediaId), `${mediaId.toLowerCase()}-equipment-workshop`);
 const storage = () => { const values = new Map(); return { values, getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) }; };
+
+test('archive action rejects a non-string ID before resolving saved progress', () => {
+  const session = createChronicle(context('INQ'));
+  const unknown = { toString() { throw new Error('Comic ID must not be coerced'); } };
+  assert.equal(runChronicleComicAction(session, unknown, 'method', 'trace').ok, false);
+  assert.equal(runChronicleComicAction(session, 'inq-recevoir-les-accusations', 'method', 'trace').ok, true);
+  assert.equal(session.comicProgress, undefined);
+});
 function simulate(battle) {
   for (let frame = 0; frame < 12000 && !battle.winner; frame++) {
     for (const actor of battle.actors.filter(actor => actor.team === 'party' && actor.hp > 0)) {

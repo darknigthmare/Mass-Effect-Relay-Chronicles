@@ -1085,7 +1085,7 @@
       "name": "Altercation au bar — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "À vérifier",
       "priority": "P1",
       "description": "La conclusion rapportée confie à Vega la garde de Shepard. ",
@@ -1102,10 +1102,25 @@
         "CON-S-WIKI"
       ],
       "reference": "Mass Effect: Conviction, récit court",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro.\nCote, bref résumé et sources affichés dans le dossier concerné.\nLa mention À vérifier reste visible.",
       "id": "CON-SC-DUTY-REF",
       "category": "lore",
-      "name": "Reprendre une affectation"
+      "name": "Reprendre une affectation",
+      "implementationPaths": [
+        "src/comic-short-briefings.js",
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json",
+        "tests/comic-short-briefings.test.js"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -1427,7 +1442,7 @@
       "name": "Garde et reprise d’équilibre — proposition"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Dans Conviction, séparer faits attestés, données à contrôler et événements issus des règles du fan game.",
@@ -1444,10 +1459,26 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "Le journal indique la provenance et le niveau de certitude.\nChoix et combat d’essai ne changent pas le statut des sources.",
       "id": "CON-SYS-CANON",
       "category": "systems",
-      "name": "Journal à deux niveaux"
+      "name": "Journal à deux niveaux",
+      "implementationPaths": [
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/universe-ui.js",
+        "src/chronicles.js",
+        "src/continuity.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -1496,7 +1527,7 @@
       "name": "Rythme ATB proposé"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Conserver la progression de Conviction sans exporter une issue hypothétique vers la continuité des jeux.",
@@ -1513,10 +1544,26 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "Reprises avant et après le bilan contrôlées en jeu.\nLe classement ne duplique ni objet, ni objectif, ni récompense.",
       "id": "CON-SYS-SAVE",
       "category": "systems",
-      "name": "Sauvegarde des modules"
+      "name": "Sauvegarde des modules",
+      "implementationPaths": [
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/universe-ui.js",
+        "src/chronicles.js",
+        "src/continuity.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -1588,7 +1635,7 @@
       "name": "Convergence narrative"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Le wiki relie Conviction aux conséquences de Bahak, au passé de Vega sur Fehl et à la garde de Shepard. Les liens avec Arrival et Paragon Lost doivent être contrôlés; ne pas rejouer ces œuvres ici.",
@@ -1605,10 +1652,25 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "La frise affiche périodes, œuvres liées, sources et incertitudes.\nAucune date numérique n’est ajoutée pour les repères testés.",
       "id": "CON-CNT-PLACE",
       "category": "continuity",
-      "name": "Position dans l’univers"
+      "name": "Position dans l’univers",
+      "implementationPaths": [
+        "src/continuity-data.js",
+        "src/continuity.js",
+        "src/universe-ui.js",
+        "src/comic-briefing-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",

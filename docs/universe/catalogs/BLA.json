@@ -697,7 +697,7 @@
       "name": "Virmire de cinéma — paysage sonore"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Établi",
       "priority": "P1",
       "description": "La mission annoncée réunit Blasto et Cerulean Star. ",
@@ -714,10 +714,25 @@
         "BLA-S-BOOK"
       ],
       "reference": "Blasto: Eternity is Forever, récit autonome",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro.\nCote, bref résumé et sources affichés dans le dossier concerné.\nLa mention À vérifier reste visible.",
       "id": "BLA-SC-BRIEF-REF",
       "category": "lore",
-      "name": "Briefing du duo de cinéma"
+      "name": "Briefing du duo de cinéma",
+      "implementationPaths": [
+        "src/comic-short-briefings.js",
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json",
+        "tests/comic-short-briefings.test.js"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -907,7 +922,7 @@
       "name": "Briefing du duo de cinéma — contrôle du parcours"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Établi",
       "priority": "P1",
       "description": "Le duo de film se rend sur Virmire. ",
@@ -924,10 +939,25 @@
         "BLA-S-BOOK"
       ],
       "reference": "Blasto: Eternity is Forever, récit autonome",
-      "notes": "Ne remplace pas la lecture du numéro.",
+      "notes": "Ne remplace pas la lecture du numéro.\nCote, bref résumé et sources affichés dans le dossier concerné.\nLa mention À vérifier reste visible.",
       "id": "BLA-SC-ISLAND-REF",
       "category": "lore",
-      "name": "Approche de l’installation"
+      "name": "Approche de l’installation",
+      "implementationPaths": [
+        "src/comic-short-briefings.js",
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json",
+        "tests/comic-short-briefings.test.js"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -1759,7 +1789,7 @@
       "name": "Temps figé — effet local proposé"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Dans Blasto: Eternity is Forever, séparer faits attestés, données à contrôler et événements issus des règles du fan game.",
@@ -1776,10 +1806,26 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "La fiction interne, ses repères et sa provenance restent affichés.\nLes résultats de combat restent hors de ce dossier.",
       "id": "BLA-SYS-CANON",
       "category": "systems",
-      "name": "Journal à deux niveaux"
+      "name": "Journal à deux niveaux",
+      "implementationPaths": [
+        "src/comic-briefings.js",
+        "src/comic-briefing-ui.js",
+        "src/universe-ui.js",
+        "src/chronicles.js",
+        "src/continuity.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",
@@ -1920,7 +1966,7 @@
       "name": "Convergence narrative"
     },
     {
-      "status": "Défini",
+      "status": "Validé",
       "nature": "Extrapolation",
       "priority": "P1",
       "description": "Module de cinéma dans l’univers. Les événements de cette histoire ne fixent pas l’état réel de Virmire après la mission ME1 ni l’existence d’un Spectre hanari réel.",
@@ -1937,10 +1983,25 @@
       ],
       "sourceIds": [],
       "reference": "Règle originale de production; les ancrages de continuité sont documentés dans les fiches REF.",
-      "notes": "",
+      "notes": "La frise affiche périodes, œuvres liées, sources et incertitudes.\nAucune date numérique n’est ajoutée pour les repères testés.",
       "id": "BLA-CNT-PLACE",
       "category": "continuity",
-      "name": "Position dans l’univers"
+      "name": "Position dans l’univers",
+      "implementationPaths": [
+        "src/continuity-data.js",
+        "src/continuity.js",
+        "src/universe-ui.js",
+        "src/comic-briefing-ui.js"
+      ],
+      "evidence": [
+        "docs/qa/p0-comics-runtime.json",
+        "scripts/p0-comics-browser.mjs",
+        "docs/qa/p0-comics-runtime-raw.json"
+      ],
+      "validation": {
+        "reportPath": "docs/qa/p0-comics-runtime.json",
+        "sha256": "5a7d94453dd84e02b8fe961c08c88f56c0968c03883a5f516af773d80bdd5b02"
+      }
     },
     {
       "status": "Défini",

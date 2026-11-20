@@ -1,0 +1,311 @@
+{
+  "passed": true,
+  "baseCommit": "563aab682f7a695b20a774adfee48fe696471ce0",
+  "at": "2026-11-20T15:38:34.750147+00:00",
+  "sources": {
+    "src/comic-library.js": "78baa015be9c1aa37a62eb033f879a15529f683027ecf2df9d7d73472c28c579",
+    "src/comic-library.css": "865ccb5a248a06f2679ed85967c983abeee5b916a044b7516d8c43d22fe28531",
+    "src/continuity.js": "9ca60774811058f0b624ea221a924b97b09c2c5fb6c82566e0b318e0c90404da",
+    "src/chronicles.js": "cc9e83cd7933db09a6355cd741fa85b378d8eb4e83cebe697a566282092cc33b",
+    "tests/comic-library.test.js": "352527934857052addb8b5c474badda00b5f82156b6f9b30a797ce0880401f2d",
+    "docs/universe/catalogs/LIB.json": "aa5276930d32e85657ae448838276eb496ca1c69d5a54fa10dca61852130ca65"
+  },
+  "checks": [
+    {
+      "id": "LIB-DOMAIN-LINKS",
+      "passed": true,
+      "exactDescription": "Relier volume, œuvre, numéros et catalogue propriétaire.",
+      "exactCriterion": "Tous les renvois nomment un catalogue existant; chaque dépendance structurée reste dans LIB.",
+      "observation": "Les 34 unités conduisent à leur catalogue existant. Le registre des dépendances reste interne à LIB."
+    },
+    {
+      "id": "LIB-DOMAIN-LORE",
+      "passed": true,
+      "exactDescription": "Créer un descriptif éditorial bref pour chaque œuvre, sans recopier ses scènes.",
+      "exactCriterion": "Aucune fiche du recueil ne devient un résumé intégral remplaçant un comic.",
+      "observation": "Dix descriptions documentaires courtes identifient les dossiers. L’index ne charge aucun texte de scène."
+    },
+    {
+      "id": "LIB-DOMAIN-ZONES",
+      "passed": true,
+      "exactDescription": "Garder la propriété des scènes de terrain dans les œuvres sources.",
+      "exactCriterion": "Aucun identifiant de niveau inédit n’est créé par l’import de LIB.",
+      "observation": "Le contexte LIB est verrouillé et refuse la création de session. Les renvois utilisent les périodes propriétaires existantes."
+    },
+    {
+      "id": "LIB-DOMAIN-SIDE_QUESTS",
+      "passed": true,
+      "exactDescription": "Traiter les galeries et annotations comme consultation éditoriale facultative.",
+      "exactCriterion": "L’interface nomme galerie ou annotation, jamais mission coupée par défaut.",
+      "observation": "Annotations, galerie et croquis s’affichent dans des panneaux de consultation éditoriale par volume."
+    },
+    {
+      "id": "LIB-DOMAIN-SYSTEMS",
+      "passed": true,
+      "exactDescription": "Identifier chaque récit et chaque numéro indépendamment de ses éditions.",
+      "exactCriterion": "Ajouter un second recueil ne double ni le nombre de récits ni le travail de production déjà alloué.",
+      "observation": "Chaque unité reçoit une clé du récit propriétaire. Le changement d’édition ne change aucune clé ni entrée de production."
+    },
+    {
+      "id": "LIB-DOMAIN-CONTINUITY",
+      "passed": true,
+      "exactDescription": "Library Edition est une compilation éditoriale.",
+      "exactCriterion": "La frise ne contient aucun événement intitulé aventure Library Edition.",
+      "observation": "Le registre des périodes LIB reste vide. Les repères présents appartiennent à leurs récits."
+    },
+    {
+      "id": "LIB-EDITION-OMNI1",
+      "passed": true,
+      "exactDescription": "La notice officielle Omnibus 1 rassemble les quatre premiers arcs.",
+      "exactCriterion": "Le registre distingue hardcover Library et Omnibus; les pages ne se substituent pas silencieusement.",
+      "observation": "La notice Omnibus 1 est séparée de l’édition reliée. Aucune pagination n’est transportée."
+    },
+    {
+      "id": "LIB-EDITION-OMNI2",
+      "passed": true,
+      "exactDescription": "La notice officielle Omnibus 2 réunit Foundation #1–13, Blasto et le récit FCBD.",
+      "exactCriterion": "Les trois œuvres sont reconnues sans prétendre que tous les bonus sont identiques entre éditions.",
+      "observation": "Foundation, He Who Laughs Best et Blasto sont reliés sous l’édition Omnibus 2. Les bonus sont rattachés à leur notice."
+    },
+    {
+      "id": "LIB-EDITION-COMPLETE",
+      "passed": true,
+      "exactDescription": "Dark Horse Digital présente The Complete Comics comme une autre compilation incluant Discovery.",
+      "exactCriterion": "Le filtre Library n’importe pas automatiquement Discovery parce qu’il apparaît dans The Complete Comics.",
+      "observation": "The Complete Comics renvoie à Discovery dans les éditions liées. Le sommaire LIB conserve dix récits et 34 unités."
+    },
+    {
+      "id": "LIB-SYS-REUSE",
+      "passed": true,
+      "exactDescription": "Distinguer les coûts des récits de ceux de l’interface éditoriale de collection.",
+      "exactCriterion": "La somme des œuvres uniques est stable quand un nouveau format du même recueil est ajouté.",
+      "observation": "Les apparitions Omnibus réutilisent les clés des récits et numéros déjà dénombrés dans LIB. Discovery reste une référence distincte."
+    },
+    {
+      "id": "LIB-QA-PAGES",
+      "passed": true,
+      "exactDescription": "Préparer un relevé de pages par récit et bonus sans renseigner des pages non consultées.",
+      "exactCriterion": "Les numéros de page affichés correspondent à l’exemplaire exact et à une consultation attestée.",
+      "observation": "Les pages non contrôlées restent vides pour chaque unité et bonus. La page PDF 103 est indiquée au niveau de la notice de distribution."
+    },
+    {
+      "id": "LIB-QA-BONUS-CLAIM",
+      "passed": true,
+      "exactDescription": "Contrôler le vocabulaire employé pour chaque image préparatoire et annotation.",
+      "exactCriterion": "Aucune image de galerie n’est étiquetée scène coupée sur simple ressemblance ou absence dans le comic.",
+      "observation": "Les bonus gardent leur étiquette éditoriale et leur source. Aucun classement en scène coupée ne découle des métadonnées."
+    },
+    {
+      "id": "LIB-CNT-PLACE",
+      "passed": true,
+      "exactDescription": "La collection ne crée aucun événement chronologique supplémentaire. Les contradictions, périodes et niveaux de fiction restent ceux des récits propriétaires.",
+      "exactCriterion": "La frise indique les incertitudes et les liens avec les autres œuvres sans attribuer une date non sourcée.",
+      "observation": "Les repères naviguent vers les périodes du propriétaire et affichent leur incertitude. Une fenêtre sans année attestée indique Date non fixée."
+    },
+    {
+      "id": "LIB-CNT-NO-CUT",
+      "passed": true,
+      "exactDescription": "Aucune rumeur de scène coupée n’est intégrée à Library Edition.",
+      "exactCriterion": "Une future fiche Coupé attesté ou Concept abandonné devra citer une preuve primaire spécifique.",
+      "observation": "Les entrées CUT ne peuvent devenir des renvois de Library Edition. Les bonus restent bibliographiques."
+    },
+    {
+      "id": "LIB-BONUS-ANNOTATIONS",
+      "passed": true,
+      "exactDescription": "Le catalogue officiel de 2015 annonce des annotations de créateurs pour le volume 2.",
+      "exactCriterion": "La fiche identifie le type de bonus, sa provenance et sa portée; une interprétation n’est pas présentée comme déclaration de l’auteur.",
+      "observation": "La notice CAT2015 identifie le type et la portée des annotations proposées pour le volume 2."
+    },
+    {
+      "id": "LIB-BONUS-COVERS",
+      "passed": true,
+      "exactDescription": "Le catalogue libraire annonce une galerie de couvertures pour le volume 2.",
+      "exactCriterion": "La fiche identifie le type de bonus, sa provenance et sa portée; une interprétation n’est pas présentée comme déclaration de l’auteur.",
+      "observation": "La galerie de couvertures est un bonus annoncé par une source libraire et sa correspondance reste À vérifier."
+    },
+    {
+      "id": "LIB-BONUS-SKETCHES",
+      "passed": true,
+      "exactDescription": "Le catalogue libraire annonce croquis et dessins préparatoires pour le volume 2.",
+      "exactCriterion": "La fiche identifie le type de bonus, sa provenance et sa portée; une interprétation n’est pas présentée comme déclaration de l’auteur.",
+      "observation": "Les croquis sont présentés avec la notice libraire et son niveau À vérifier."
+    },
+    {
+      "id": "LIB-BONUS-VOL1BONUS",
+      "passed": true,
+      "exactDescription": "Le détail des bonus du volume 1 n’est pas établi par les sources primaires consultées.",
+      "exactCriterion": "La fiche identifie le type de bonus, sa provenance et sa portée; une interprétation n’est pas présentée comme déclaration de l’auteur.",
+      "observation": "Le détail du volume 1 est signalé à inventorier sans pagination ou contenu transposé."
+    }
+  ],
+  "native": {
+    "tests": 29,
+    "command": "node --test tests/comic-library.test.js tests/continuity-data.test.js tests/gamepad-controls.test.js"
+  },
+  "inspected": {
+    "volumes": [
+      {
+        "number": 1,
+        "works": [
+          {
+            "id": "RED",
+            "units": [
+              "RED:1",
+              "RED:2",
+              "RED:3",
+              "RED:4"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "EVO",
+            "units": [
+              "EVO:1",
+              "EVO:2",
+              "EVO:3",
+              "EVO:4"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "INV",
+            "units": [
+              "INV:1",
+              "INV:2",
+              "INV:3",
+              "INV:4"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "HOM",
+            "units": [
+              "HOM:1",
+              "HOM:2",
+              "HOM:3",
+              "HOM:4"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "INC",
+            "units": [
+              "INC:single"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "INQ",
+            "units": [
+              "INQ:single"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "CON",
+            "units": [
+              "CON:single"
+            ],
+            "pageLocator": null
+          }
+        ],
+        "bonuses": [
+          {
+            "id": "LIB-BONUS-VOL1BONUS",
+            "nature": "Extrapolation",
+            "page": null,
+            "sources": []
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "works": [
+          {
+            "id": "FOU",
+            "units": [
+              "FOU:1",
+              "FOU:2",
+              "FOU:3",
+              "FOU:4",
+              "FOU:5",
+              "FOU:6",
+              "FOU:7",
+              "FOU:8",
+              "FOU:9",
+              "FOU:10",
+              "FOU:11",
+              "FOU:12",
+              "FOU:13"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "HWB",
+            "units": [
+              "HWB:single"
+            ],
+            "pageLocator": null
+          },
+          {
+            "id": "BLA",
+            "units": [
+              "BLA:single"
+            ],
+            "pageLocator": null
+          }
+        ],
+        "bonuses": [
+          {
+            "id": "LIB-BONUS-ANNOTATIONS",
+            "nature": "Établi",
+            "page": null,
+            "sources": [
+              "LIB-S-CAT2015"
+            ]
+          },
+          {
+            "id": "LIB-BONUS-COVERS",
+            "nature": "À vérifier",
+            "page": null,
+            "sources": [
+              "LIB-S-RETAIL"
+            ]
+          },
+          {
+            "id": "LIB-BONUS-SKETCHES",
+            "nature": "À vérifier",
+            "page": null,
+            "sources": [
+              "LIB-S-RETAIL"
+            ]
+          }
+        ]
+      }
+    ],
+    "workCount": 10,
+    "unitCount": 34,
+    "distinctNavigationIds": true
+  },
+  "openP0": [
+    "LIB-QA-RED",
+    "LIB-QA-EVO",
+    "LIB-QA-INV",
+    "LIB-QA-HOM",
+    "LIB-QA-INC",
+    "LIB-QA-INQ",
+    "LIB-QA-CON",
+    "LIB-QA-FOU",
+    "LIB-QA-HWB",
+    "LIB-QA-BLA",
+    "LIB-QA-SOURCE",
+    "LIB-QA-VISIBILITY",
+    "LIB-QA-NARRATIVE"
+  ],
+  "limitations": [
+    "Vérification native du module et du registre local. Les références bibliographiques restent celles du catalogue actuel.",
+    "Requête directe Fandom 402. Les notices éditeur et douze recherches bibliographiques additionnelles ont reçu un refus réseau 403. Aucun exemplaire du relié n’a été ouvert.",
+    "Les fiches QA P0 du sommaire restent ouvertes tant que leur édition exacte et leurs inclusions détaillées ne sont pas attestées.",
+    "Les P1 de navigation effectivement joués sont évalués par la recette Chromium séparée."
+  ]
+}

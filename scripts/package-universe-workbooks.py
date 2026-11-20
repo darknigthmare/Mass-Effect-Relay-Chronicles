@@ -166,7 +166,7 @@ def main():
             text.extend([
                 '### Chemins compatibles avec Windows', '',
                 'L’identifiant documentaire de Conviction reste **`CON`**. Ses fichiers sont désormais [catalogs/CONVICTION.json](catalogs/CONVICTION.json) et [qa/CONVICTION.json](qa/CONVICTION.json), car [Windows réserve le nom `CON`, même avec une extension](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file). Les champs `catalogPath` et `qaPath` du manifeste donnent les chemins actuels.', '',
-                'Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La mention conservée dans le catalogue Library Edition et dans son classeur est un texte de conception, sans lien actif. La correction des chemins Windows conservait les 27 catalogues et classeurs octet pour octet dans l’état historique `c614a45`. Les exports actuels peuvent évoluer avec les statuts et leurs preuves ; leurs empreintes figurent dans le manifeste courant.', '',
+                'Les mentions historiques de `docs/universe/catalogs/CON.json` se lisent donc `docs/universe/catalogs/CONVICTION.json`. La correction des chemins Windows conservait les 27 catalogues et classeurs octet pour octet dans l’état historique `c614a45`. Les exports actuels peuvent évoluer avec les statuts et leurs preuves ; leurs empreintes figurent dans le manifeste courant.', '',
             ])
         for group, ids in GROUPS:
             text.extend([f'## {group}', '', '| Classeur | Fiches | Domaines renseignés | Références de sources |', '|---|---:|---:|---:|'])
