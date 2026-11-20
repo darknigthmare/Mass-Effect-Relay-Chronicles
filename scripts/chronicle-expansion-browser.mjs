@@ -454,8 +454,10 @@ async function exerciseDocumentaryReadings() {
   await page.locator('[data-chronicle-reading]').scrollIntoViewIfNeeded();
   await screenshot('documentary-page');
   await selectContext('EVO', 'evo-contact'); await action('universe-tab', 'reading').click();
-  assert.equal(await page.locator('#chronicle-reading').count(), 0, 'The later Evolution arc cannot be read as ongoing First Contact War');
-  assert.equal(await page.locator('[data-chronicle-reading]').count(), 0);
+  assert.deepEqual(await page.locator('#chronicle-reading option').evaluateAll(options => options.map(option => option.value)),
+    ['evo-contact'], 'Only the first Evolution issue is available while the war is ongoing');
+  assert.equal(await page.locator('[data-chronicle-reading="evo-contact"]').count(), 1);
+  assert.equal(await page.locator('[data-chronicle-reading="evo-apres-guerre"]').count(), 0);
   for (const mediaId of ['LIB', 'BLA', 'ME4', 'CUT']) {
     await selectContext(mediaId); await action('universe-tab', 'reading').click();
     assert.equal(await page.locator('#chronicle-period').isDisabled(), true);
