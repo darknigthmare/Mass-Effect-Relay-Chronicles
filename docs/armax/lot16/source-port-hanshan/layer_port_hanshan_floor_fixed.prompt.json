@@ -1,0 +1,19 @@
+{
+  "catalogId": "layer_port_hanshan_floor_fixed",
+  "prompt": "Use case: precise-object-edit. Asset type: one transparent floor layer, PH-40, for the Mass Effect Armax fighting-game project.\nInput image 1 is the EDIT TARGET: our existing generated Port Hanshan interior prototype. Input image 2 is a SUPPORTING ALIGNMENT REFERENCE ONLY: the new PH-30 rear architecture layer, whose opaque structures end around y=672 on the same 1672x941 canvas. Do not reproduce any architecture from image 2 in the output.\nPrimary request: retain only the horizontal floor and its narrow rear junction strip from image 1. Preserve the full original wide 16:9 canvas, floor perspective and absolute position at the bottom. Keep the floor panels visible in the source, extending them by only the narrow rear contact strip necessary to overlap the bottom edge of the PH-30 architecture reference. The top edge of this floor layer should begin around y=670 on the 941-pixel-high canvas, so the independent layers meet without a transparent gap. The floor occupies the lower approximately 29 percent; the upper approximately 71 percent must be empty true alpha transparency. Do not move or enlarge the floor to fill that empty space.\nPreserve the existing cool grey metal floor panels, perspective convergence, seams, joints, front horizontal rail/seam and soft light reflections as closely as possible. Keep a continuous full-width rear top edge, with no holes where the braces or terminals were. Preserve the source's lower canvas boundary and side-edge continuity. The narrow overlap strip is plain continuation of the existing floor-junction material, with no wall, plinth or new object.\nRemove the ceiling, all walls, window frames, catwalk, railings, columns, diagonal braces, wall lights and side terminals entirely; they belong to PH-30. Output exactly one floor layer on a genuinely transparent canvas above it. No characters, text, HUD, checkerboard, opaque background, sky or wall silhouettes. No zoom, recentering, mirroring or cropping; retain source framing and use real alpha transparency.",
+  "referenced_image_paths": [
+    "/workspace/scratch/8eb3f23d9927/lot16-port-hanshan-reference-inputs/port-hanshan-interior.png",
+    "/workspace/scratch/8eb3f23d9927/mass-effect-relay-chronicles/public/assets/armax/lot16/layers/port-hanshan-ph30-structures.png"
+  ],
+  "transparent_background": true,
+  "referenceRole": "edit_target_existing_generated_internal_candidate",
+  "sourceCommit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+  "repositoryReference": "public/assets/combat-2d/continuation-20261119/port-hanshan-interior.png",
+  "referenceSha256": "0164efcdad35391929a2a04175a3fc13caa930d25aab89a61a1d784382362af2",
+  "supportReference": {
+    "repositoryPath": "public/assets/armax/lot16/layers/port-hanshan-ph30-structures.png",
+    "sha256": "9ced15e67810a7733134aae3b165fb1d76aed9ea6a49bfd076b44d417392e66c",
+    "role": "supporting_alignment_reference_existing_generated_internal_candidate"
+  },
+  "planningAdjustment": "Before any PH40 generation: align the floor rear strip with the observed PH30 strong-alpha boundary near y672; no extra imagegen call."
+}
