@@ -7,14 +7,28 @@ Cette annexe conserve la production artistique du mode de combat 2D de Mass Effe
 La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **30 rubriques** de **Combat_Games_Guide_General_v1.0.txt** aux contrats et fiches Armax. Elle fixe la référence commune de conception tout en conservant les lots historiques.
 
 - [Associations et 90 critères d’acceptation](bible/guide-associations.json).
-- [Associations des 188 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones et composants d’action ; [index structuré](bible/content-associations.json).
+- [Associations des 192 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
 - [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
 
-**Portée : conception documentaire.** Les scénarios et plans ne sont ni des images produites ni des parcours jouables. Le suivi courant est celui du lot 14 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+**Portée de la bible : conception documentaire.** Les 36 briefs narratifs restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 16 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
 
-## Lot 14 — continuation courante
+## Lot 16 — continuation courante du 25 novembre 2026
+
+Le [lot 16](lot16/README.md) apporte **6 PNG natifs pour 5 sujets, dont 5 PNG sélectionnés** : architecture distante PH-20, structures arrière PH-30 et sol PH-40 de Port Hanshan, fauteuil isolé de l’Homme Trouble et pose assise ME2. La révision R0 du sol reste archivée et non sélectionnée. Les trois calques et le fauteuil créent **4 fiches** ; la pose assise complète `chr_me2_illusive_man`, déjà illustré debout au lot 13.
+
+Le [catalogue courant](lot16/production-catalog.json), les [manquants](lot16/MANQUANTS_2026-11-25.md) et le [classeur du 25 novembre](lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) comptent **192 fiches : 132 avec image candidate et 60 sans**. Couverture : **49/87 personnages, 16/38 costumes, 52/52 masters de sous-zones, 3/3 calques, 7 effets, 2 projectiles et 3 accessoires**. La catégorie stage totalise 55 fiches, en distinguant les 52 sous-zones historiques des 3 composants de Port Hanshan. Le [contrôle du corpus](lot16/workbook-verification.json) compte **231 originaux distincts : 225 antérieurs et 6 nouveaux**.
+
+Les [associations à la bible](lot16/bible-asset-associations.json) rattachent les calques aux fiches **G/J** et les deux sujets de l’Homme Trouble aux fiches narratives **B/F/J**. Le fauteuil et la pose assise disposent de candidats, avec une géométrie différente entre les deux images et un alpha maximal de 254 ; ils ne sont pas prêts à se superposer directement. Le sol PH-40 R1 améliore la jonction avec PH-30 mais conserve une largeur de 1 671 pixels contre 1 672 pour les autres calques. Les franges et le calage restent à revoir. Aucun pouvoir, kit, animation, scène complète ou arène jouable n’est ajouté.
+
+Le [manifeste](lot16/manifest.json), les [sources](lot16/reference-library.json), la [revue indépendante de Port Hanshan](lot16/qa/port-hanshan-independent-review.json), la [revue indépendante de l’Homme Trouble](lot16/qa/illusive-man-independent-review.json) et la [vérification du lot](lot16/verification.json) détaillent les preuves et limites. Les fichiers restent **Prototype**, avec fidélité 1:1 et intégration moteur non validées.
+
+### Lot 15 — livraison antérieure non récupérée
+
+Les **113 PNG annoncés au lot 15 ne sont ni récupérés ni publiés**. L’archive et le commit local de cette livraison ne sont pas disponibles à la reprise. Le [constat de récupération](lot16/RECUPERATION_LOT15.md) conserve les repères antérieurs ; les comptes courants repartent des fichiers du lot 14 et des nouveaux fichiers vérifiés du lot 16. Les plans narratifs annoncés au lot 15 ne sont pas déclarés présents, et les exclusions de génération signalées restent actives.
+
+## Lot 14 — historique du 25 novembre 2026
 
 Le [lot 14](lot14/README.md) ajoute **21 PNG natifs pour 20 sujets** : CAT6 Heavy et Sniper, Amanda Kenson, Suvi assise ; cinq sous-zones Armax/Omega ; sept effets ME2, deux projectiles, un omni-outil et la grenade-disque ME1. Un R0 d’omni-outil est conservé en historique. **Quatre anciennes fiches** sont illustrées et **seize nouvelles fiches** sont ajoutées ; aucun costume nouveau.
 
@@ -26,9 +40,9 @@ Les [associations à la bible](lot14/bible-asset-associations.json), [sources](l
 
 Le [lot 13](lot13/README.md) apporte **14 PNG pour 13 sujets** : Kelly Chambers, l’Homme Trouble et Alec Ryder ; Varren, Dévoreur, Rachni Soldier et CAT6 Specialist ; Samara loyauté et Jack standard ME2 ; la passerelle du poste du Tempest à Aya ; Kett Anointed, Reliquat Assembler et Hydra d’Andromeda. Le R0 d’Hydra reste conservé après correction de son capteur supérieur. **Dix anciennes fiches** sont nouvellement illustrées et **trois identités sourcées** sont ajoutées séparément.
 
-Le [catalogue courant et les manquants](lot13/MANQUANTS_2026-11-24.md) et le [classeur du 24 novembre](lot13/Mass_Effect_Armax_Suivi_Lot13_2026-11-24.xlsx) conservent les **169 identités et usages hérités**. Avec les trois ajouts, ils comptent **172 fiches, dont 108 avec image candidate et 64 sans** : **45/87 personnages ou ennemis, 16/38 costumes et 47/47 stages** illustrés. Le corpus atteint **204 PNG originaux**, hors trois aperçus historiques. Les 13 exclusions de génération héritées restent inchangées.
+Le [catalogue et les manquants historiques](lot13/MANQUANTS_2026-11-24.md) et le [classeur du 24 novembre](lot13/Mass_Effect_Armax_Suivi_Lot13_2026-11-24.xlsx) conservent les **169 identités et usages hérités**. Avec les trois ajouts, ils comptent **172 fiches, dont 108 avec image candidate et 64 sans** : **45/87 personnages ou ennemis, 16/38 costumes et 47/47 stages** illustrés. Le corpus atteint **204 PNG originaux**, hors trois aperçus historiques. Les 13 exclusions de génération héritées restent inchangées.
 
-La [bibliothèque de références](lot13/reference-library.json), la [revue indépendante](lot13/independent-art-review.json), les [lacunes documentées](lot13/REFERENCE_GAPS.md) et les [vérifications](lot13/verification.json) relient chaque PNG à ses sources, son prompt et ses limites. Le fauteuil de l’Homme Trouble reste manquant ; le bas de la tenue de Jack s’appuie sur le dessin final officiel, sans certification de sa correspondance exacte au modèle du jeu. Aya représente la passerelle d’accueil, pas l’ensemble des quais ni un stage jouable. Les accessoires, autres poses, surfaces cachées, animations et couches de parallaxe restent à traiter. Tous les fichiers restent **Prototype**, sans fidélité 1:1 ni intégration moteur certifiées.
+La [bibliothèque de références](lot13/reference-library.json), la [revue indépendante](lot13/independent-art-review.json), les [lacunes documentées](lot13/REFERENCE_GAPS.md) et les [vérifications](lot13/verification.json) relient chaque PNG à ses sources, son prompt et ses limites. À l’issue du lot 13, le fauteuil de l’Homme Trouble restait manquant ; son candidat et la pose assise sont désormais suivis au lot 16 avec leurs réserves de géométrie et d’alpha. Le bas de la tenue de Jack s’appuie sur le dessin final officiel, sans certification de sa correspondance exacte au modèle du jeu. Aya représente la passerelle d’accueil, pas l’ensemble des quais ni un stage jouable. Les accessoires, autres poses, surfaces cachées, animations et couches de parallaxe restent à traiter selon chaque fiche. Tous les fichiers restent **Prototype**, sans fidélité 1:1 ni intégration moteur certifiées.
 
 ## Lot 12 — livraison précédente
 

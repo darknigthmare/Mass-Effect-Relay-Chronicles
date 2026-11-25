@@ -1,6 +1,6 @@
 # Armax — fiches types, exemples et liaisons
 
-**25 novembre 2026 — conception documentaire.** Ce document applique les fiches A–J de la rubrique 27 du guide général. Référence : [bible intégrée](BIBLE_ARMAX_INTEGREE.md) et [RC-ARMAX-0.1](common-rules.json).
+**25 novembre 2026 — conception documentaire et associations artistiques du lot 16.** Ce document applique les fiches A–J de la rubrique 27 du guide général. Référence : [bible intégrée](BIBLE_ARMAX_INTEGREE.md) et [RC-ARMAX-0.1](common-rules.json). Les exemples initiaux conservent leurs sources historiques ; la section 15 décrit les nouveaux candidats fixes.
 
 ## 1. Une référence explicite pour chaque objet
 
@@ -16,6 +16,9 @@ Une association se compose de **source + identifiant + rôle**. Un ID de sprite 
 | Corps de Legion | [catalogue lot 13](../lot13/production-catalog.json), chr_me2_legion_standard | Manquant de corps suivi, sans image dans ce périmètre |
 | Drone de Legion | [production.json](../../combat-2d/production.json), ME2-VS-LEGION-DRONE-IDLE-01 | Asset distinct du corps ; propriétaire futur Legion |
 | Port Hanshan | [production.json](../../combat-2d/production.json), ME1-VS-PORT-HANSHAN-REF-01 | Référence de composition ; les IDs FAR/ROOM/NEAR sont des plans prototypes |
+| Calques de Port Hanshan | [Catalogue lot 16](../lot16/production-catalog.json), `layer_port_hanshan_architecture_distant_fixed`, `layer_port_hanshan_rear_structures_fixed`, `layer_port_hanshan_floor_fixed` | Composants PH-20/PH-30/PH-40 de cette même composition ; G/J, sans création de trois arènes |
+| L’Homme Trouble assis | [Catalogue lot 16](../lot16/production-catalog.json), `chr_me2_illusive_man` | Pose additionnelle sur une identité existante ; B/F/J, briefing et présence narrative ME2 |
+| Fauteuil de l’Homme Trouble | [Catalogue lot 16](../lot16/production-catalog.json), `prop_me2_illusive_man_chair` | Accessoire isolé associé à `chr_me2_illusive_man` ; B/F/J, sans action de combat |
 | Coque d'Hagalaz | [catalogue lot 13](../lot13/production-catalog.json), stg_me2_hagalaz_broker_hull | Sous-zone extérieure ME2 ; master aplati |
 | Archonte | [fighters.json](../lot04/fighters.json), armax-archon-andromeda | Boss à objectifs, hors Versus standard |
 
@@ -46,7 +49,7 @@ Les six axes sont **lore**, **conception**, **assets**, **intégration**, **vali
 
 **Socle P0 :** Versus local/IA, entraînement, tutoriels, commandes, ressources, règles de fin et état isolé. **Cible P1 :** routes, campagne globale, tournoi 4/8/16, boss/Rush, galerie, stages et liaisons validées. **Extensions P2 :** voir la matrice.
 
-**Phase :** conception complète ; production artistique limitée aux éléments fixes demandés ; aucun nouvel asset dans cette livraison. **Critère :** un lot ne change que les statuts étayés par ses propres preuves. **Risques ouverts :** harmonisation des vieux combos, sous-zones exactes, géants, animations et intégration du duel.
+**Phase :** conception complète ; production artistique limitée aux éléments fixes demandés. L’exemple initial n’ajoutait aucun asset ; les candidats du lot 16 et leurs limites sont associés en section 15. **Critère :** un lot ne change que les statuts étayés par ses propres preuves. **Risques ouverts :** harmonisation des vieux combos, sous-zones exactes, géants, animations et intégration du duel.
 
 ## 4. Fiche B — Saren ME1
 
@@ -112,7 +115,7 @@ Le scénario distingue résultat du combat, choix de dialogue et indicateur de s
 
 ## 8. Fiche G — coque d'Hagalaz ME2
 
-**ID :** stg_me2_hagalaz_broker_hull. **Œuvre :** ME2, DLC Lair of the Shadow Broker. **Sous-zone :** extérieur du vaisseau du Courtier. **Source courante :** catalogue lot 13, image héritée du lot 07.
+**ID :** stg_me2_hagalaz_broker_hull. **Œuvre :** ME2, DLC Lair of the Shadow Broker. **Sous-zone :** extérieur du vaisseau du Courtier. **Source de l’exemple initial :** catalogue lot 13, image héritée du lot 07 ; même identité conservée dans le catalogue lot 16.
 
 **Asset existant déclaré :** public/assets/armax/lot07/stages/hagalaz-me2-shadow-broker-hull-master.png. Statut Prototype, engineIntegrated=false, fidelity1to1Validated=false. La bande latérale prolonge la coque dans une composition adaptée ; elle ne prouve pas la topologie du niveau original.
 
@@ -156,15 +159,15 @@ Ces chiffres sont des adaptations originales déjà écrites dans le lot 04. Ils
 
 ## 11. Fiche J — preuve et disponibilité d'un asset
 
-Exemple : master de coque Hagalaz déjà associé au stage.
+Exemple documentaire initial : master de coque Hagalaz déjà associé au stage. Les nouvelles preuves du lot 16 sont présentées séparément en section 15.
 
 | Axe | État retenu dans cette révision |
 |---|---|
 | Lore | Sources du lot conservées ; détails et topologie encore sous réserves |
 | Conception | Sous-zone et usage définis ; adaptation latérale explicitée |
-| Assets | Candidat présent déclaré par le catalogue ; pas de nouvelle image |
+| Assets | Candidat présent déclaré par le catalogue ; aucune nouvelle image d’Hagalaz dans le lot 16 |
 | Intégration | false dans le catalogue ; aucune promotion |
-| Validation | Revues historiques propres au lot ; pixels non réinspectés dans cette livraison documentaire |
+| Validation | Revues historiques propres au lot ; pixels non réinspectés dans cet exemple documentaire |
 | Publication | Fichier présent dans l'arbre Git de référence ; mise en production jouable non déduite |
 
 Le catalogue conserve chemin, provenance, blob et réserves. Les mesures d'alpha, dimensions, pivot, marges et couleur doivent venir d'une inspection du fichier concerné, pas de cet exemple. Une valeur absente reste inconnue.
@@ -178,9 +181,9 @@ Les fiches structurent les travaux futurs : compléter les collisions et traject
 Les changements de contenu ou de disponibilité passent par le catalogue concerné et son export. La présente association de méthode n'altère pas les 172 entrées du lot 13 ni son classeur historique.
 
 
-## 13. Raccordement des images fixes du lot 14
+## 13. Raccordement historique des images fixes du lot 14
 
-Le [catalogue lot 14](../lot14/production-catalog.json) est le suivi courant : 188 fiches, 128 avec image candidate et 60 sans. Les références lot13 des exemples précédents restent des liens historiques ; leurs identités et usages ont été conservés.
+Le [catalogue lot 14](../lot14/production-catalog.json) conserve son bilan historique du 25 novembre 2026 : 188 fiches, 128 avec image candidate et 60 sans. Les références lot 13 des exemples précédents restent des liens historiques ; leurs identités et usages ont été conservés.
 
 | Fiche | Actifs liés | Portée de l’association |
 |---|---|---|
@@ -195,8 +198,26 @@ La [revue artistique](../lot14/independent-art-review.json), les [lacunes](../lo
 
 ## 14. Associations de tout le catalogue courant
 
-L’[index consolidé](ASSOCIATIONS_CONTENU.md) et sa [version structurée](content-associations.json) appliquent ces modèles aux 188 fiches du lot 14. Une association indique le cadre à consulter ou compléter ; elle ne prouve pas que la fiche soit terminée. Le catalogue reste l’autorité sur les identités, usages, fichiers et statuts.
+L’[index consolidé](ASSOCIATIONS_CONTENU.md) et sa [version structurée](content-associations.json) appliquent ces modèles aux **192 fiches du lot 16**, dont les 188 identités antérieures conservées. Une association indique le cadre à consulter ou compléter ; elle ne prouve pas que la fiche soit terminée. Le catalogue reste l’autorité sur les identités, usages, fichiers et statuts.
 
 Les costumes sont regroupés en 19 ensembles identité/œuvre, sans fusion de variantes. Deux liens exacts rejoignent les fiches lot 04 de Kai Leng et Balak ; leur divergence de sélection est conservée. Quatre liens documentaires rejoignent Legion standard, Legion loyauté et les deux costumes de Grunt, sans inventer de kitId Versus.
 
-Les 52 décors conservent leurs sous-zones. Les liens narratifs positifs, les simples mentions de lieu et les avertissements interdisant une substitution sont enregistrés séparément. Les trois rapprochements d’action déjà proposés au lot 14 gardent leurs réserves d’attribution et ne modifient pas RC-ARMAX-0.1.
+Les **52 masters de décor** conservent leurs sous-zones. Les **3 calques de Port Hanshan** sont des composants en G/J, portant le rôle `calque_decor` ; les deux ensembles forment les 55 fiches de catégorie stage. Les liens narratifs positifs, les simples mentions de lieu et les avertissements interdisant une substitution sont enregistrés séparément. Les trois rapprochements d’action déjà proposés au lot 14 gardent leurs réserves d’attribution et ne modifient pas RC-ARMAX-0.1.
+
+## 15. Raccordement des images fixes du lot 16
+
+Le [lot 16](../lot16/README.md) ajoute **6 PNG natifs pour 5 sujets, dont 5 sélectionnés**. Les trois calques et le fauteuil créent quatre fiches ; la pose assise complète `chr_me2_illusive_man`. Le [catalogue courant](../lot16/production-catalog.json) compte **192 fiches, 132 avec candidat et 60 sans**. Les [associations du lot](../lot16/bible-asset-associations.json) donnent pour chaque sujet le chemin du PNG sélectionné, les rubriques du guide, le parent documentaire et les réserves.
+
+| Sujet et identifiant | Fiches | Association précise et portée |
+|---|---|---|
+| [Architecture distante PH-20](ASSOCIATIONS_CONTENU.md#layer_port_hanshan_architecture_distant_fixed), `layer_port_hanshan_architecture_distant_fixed` | G, J | Composant PH-20 de `ME1-VS-PORT-HANSHAN-REF-01` ; architecture extérieure isolée depuis un candidat interne historique. Îlot détaché et franges cyan à contrôler. |
+| [Structures arrière PH-30](ASSOCIATIONS_CONTENU.md#layer_port_hanshan_rear_structures_fixed), `layer_port_hanshan_rear_structures_fixed` | G, J | Composant PH-30 de la même composition ; architecture intérieure séparée du sol. Raccord, baies et franges sous réserve. |
+| [Sol PH-40](ASSOCIATIONS_CONTENU.md#layer_port_hanshan_floor_fixed), `layer_port_hanshan_floor_fixed` | G, J | Composant PH-40 ; R1 sélectionné après amélioration de la jonction avec PH-30. R0 conservé et non sélectionné. Largeur native de 1 671 pixels contre 1 672 pour PH-20/PH-30. |
+| [Fauteuil de l’Homme Trouble](ASSOCIATIONS_CONTENU.md#prop_me2_illusive_man_chair), `prop_me2_illusive_man_chair` | B, F, J | Accessoire narratif ME2 relié à `chr_me2_illusive_man` : identité et contexte de briefing, préparation de scène, preuve de l’asset. Dossier, jonctions cachées et alpha sous réserve. |
+| [L’Homme Trouble assis](ASSOCIATIONS_CONTENU.md#chr_me2_illusive_man), `chr_me2_illusive_man` | B, F, J | Pose assise additionnelle pour présence narrative ME2, avec la pose debout lot 13 conservée. Une jambe croisée et une main levée avec cigarette sont observées ; le fauteuil inclus diffère du fauteuil vide. |
+
+Les calques renvoient aux rubriques **02, 13, 14, 15, 17, 22, 26 et 27**. Le fauteuil et la pose assise renvoient aux rubriques **02, 03, 07, 09, 10, 16, 17, 26 et 27**. Pour cette paire narrative, la fiche **F** décrit la fonction de scène et la fiche **J** conserve les preuves ; le cadre **C** des accessoires de combat ne lui attribue aucun coup, projectile ou pouvoir. Aucun chapitre ni numéro de plan n’est choisi par déduction, et les 36 briefs narratifs ne sont pas déclarés terminés.
+
+**Preuves de la fiche J :** le [manifeste](../lot16/manifest.json) consigne les six fichiers, leurs empreintes, dimensions, alpha, prompts, références et états de sélection. La [revue de Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) vérifie la composition des candidats ; celle de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) vérifie le fauteuil et la pose. Les deux images de cette paire ont un alpha maximal de 254 et des résidus faibles aux bords ; l’assise, les accoudoirs et les appuis changent de position entre elles. Leur assemblage direct reste donc non validé. Le raccord du sol R1 est amélioré sur la largeur commune sans supprimer l’écart d’un pixel ni les franges. Les sources et réserves ne certifient aucune fidélité 1:1.
+
+La [vérification du lot](../lot16/verification.json), le [classeur courant](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) et les [manquants](../lot16/MANQUANTS_2026-11-25.md) conservent la séparation entre présence, sélection, validation et intégration. Les **113 PNG annoncés au lot 15 restent non récupérés et non publiés**, selon le [constat de reprise](../lot16/RECUPERATION_LOT15.md) ; ils ne complètent aucune fiche actuelle par présomption. Les nouveaux candidats restent **Prototype**, sans moteur ou animation livrés.

@@ -2,11 +2,11 @@
 
 **Révision documentaire du 25 novembre 2026 — Europe/Paris.**
 
-Cet index relie les **188 fiches du catalogue lot 14** aux rôles, fiches types et rubriques de notre jeu de combat. Il rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.
+Cet index relie les **192 fiches du catalogue lot 16** aux rôles, fiches types et rubriques de notre jeu de combat. Les **188 identités antérieures** sont conservées ; quatre fiches sont ajoutées et l’Homme Trouble reçoit une pose supplémentaire. L’index rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.
 
-Sources : [catalogue courant](../lot14/production-catalog.json), [fiches lot 04](../lot04/fighters.json), [complément Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md), [campagnes et scènes](CAMPAGNES_ET_SCENES.md), [fiches A–J](FICHES_ET_LIAISONS.md), [associations artistiques lot 14](../lot14/bible-asset-associations.json). Le [JSON associé](content-associations.json) contient les sélecteurs exacts, qualifications et empreintes des sources.
+Sources : [catalogue courant](../lot16/production-catalog.json), [fiches lot 04](../lot04/fighters.json), [complément Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md), [campagnes et scènes](CAMPAGNES_ET_SCENES.md), [fiches A–J](FICHES_ET_LIAISONS.md), [associations artistiques lot 14](../lot14/bible-asset-associations.json) et [lot 16](../lot16/bible-asset-associations.json). Le [JSON associé](content-associations.json) contient les sélecteurs exacts, qualifications et empreintes des sources.
 
-**État de référence : `cc44ce510f1bb152fa68f3d8375a5db2745437c5`.** Cette projection conserve les identités, les usages et les statuts de cette version. Le catalogue demeure la source de production ; l’index n’est ni une nouvelle liste de combattants sélectionnables ni un inventaire exhaustif du projet.
+**Base de la continuation lot 16 : `71955d9143562d6a44a8b8d48bc552978372bc1e`.** La première projection examinait le lot 14 au commit `cc44ce510f1bb152fa68f3d8375a5db2745437c5` ; ses correspondances et ses 188 ancres sont conservées. La projection courante reprend les apports vérifiés du lot 16. Le catalogue demeure la source de production ; l’index n’est ni une nouvelle liste de combattants sélectionnables ni un inventaire exhaustif du projet.
 
 ## 1. Lecture et portée
 
@@ -16,17 +16,18 @@ Chaque ligne du catalogue est associée à un rôle déjà déclaré, puis aux f
 |---|---:|---:|---:|
 | Personnages et adversaires | 87 | 49 | 38 |
 | Costumes | 38 | 16 | 22 |
-| Sous-zones de décor | 52 | 52 | 0 |
+| Masters de sous-zones de décor | 52 | 52 | 0 |
+| Calques de décor — Port Hanshan | 3 | 3 | 0 |
 | Effets | 7 | 7 | 0 |
 | Projectiles | 2 | 2 | 0 |
-| Accessoires | 2 | 2 | 0 |
-| **Total** | **188** | **128** | **60** |
+| Accessoires | 3 | 3 | 0 |
+| **Total** | **192** | **132** | **60** |
 
-La présence d’une image ne ferme pas les autres poses, vues, accessoires, phases d’action ou couches de décor. Les valeurs de fidélité et d’intégration moteur restent celles des sources. Cette révision documentaire ne produit aucune nouvelle image et ne modifie aucun classeur, kit, coût, dégât, condition de fin ou sauvegarde.
+La catégorie stage contient **55 fiches : 52 masters de sous-zones et 3 calques**. Le lot 16 apporte **6 PNG, dont 5 sélectionnés, pour 5 sujets** ; la pose assise ne crée pas une nouvelle identité et le sol R0 écarté ne crée pas un sujet supplémentaire. La présence d’une image ne ferme pas les autres poses, vues, accessoires, phases d’action ou couches de décor. Les valeurs de fidélité et d’intégration moteur restent celles des sources. Les associations ne modifient aucun kit, coût, dégât, condition de fin ou sauvegarde. Les 113 PNG annoncés au lot 15 sont exclus des présences tant qu’ils restent [non récupérés](../lot16/RECUPERATION_LOT15.md).
 
 ### Rôles dans le jeu de combat
 
-| Usage hérité | Nombre | Fiches à consulter ou compléter | Rattachement au contexte Armax |
+| Usage déclaré | Nombre | Fiches à consulter ou compléter | Rattachement au contexte Armax |
 |---|---:|---|---|
 | Combattant candidat | 9 | B, C, E, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [03](BIBLE_ARMAX_INTEGREE.md#g03), [04](BIBLE_ARMAX_INTEGREE.md#g04), [05](BIBLE_ARMAX_INTEGREE.md#g05), [07](BIBLE_ARMAX_INTEGREE.md#g07), [08](BIBLE_ARMAX_INTEGREE.md#g08), [17](BIBLE_ARMAX_INTEGREE.md#g17), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Documenter la version, le kit, les ressources et la route avant de définir sa disponibilité dans un mode. Candidat du suivi artistique ; aucune sélection jouable déduite du catalogue. |
 | Boss candidat | 22 | B, C, I, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [03](BIBLE_ARMAX_INTEGREE.md#g03), [05](BIBLE_ARMAX_INTEGREE.md#g05), [11](BIBLE_ARMAX_INTEGREE.md#g11), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [21](BIBLE_ARMAX_INTEGREE.md#g21), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Relier gabarit, phases, signaux, réponses et arène à une fiche de boss. Usage proposé dans le catalogue ; confronter la sélection de la fiche de conception avant tout accès Versus ou tournoi. |
@@ -36,15 +37,18 @@ La présence d’une image ne ferme pas les autres poses, vues, accessoires, pha
 | Arène adaptée | 52 | G, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [13](BIBLE_ARMAX_INTEGREE.md#g13), [14](BIBLE_ARMAX_INTEGREE.md#g14), [15](BIBLE_ARMAX_INTEGREE.md#g15), [17](BIBLE_ARMAX_INTEGREE.md#g17), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Documenter la sous-zone exacte, le sol, la caméra, les couches et les quatre axes d’options. Un master de décor ne prouve ni terrain jouable ni connexion. Une fiche H s’ajoute seulement pour un événement ou une liaison explicitement étudiés. |
 | Effet visuel | 7 | C, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [05](BIBLE_ARMAX_INTEGREE.md#g05), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [18](BIBLE_ARMAX_INTEGREE.md#g18), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Associer l’instant visuel à une phase d’action et à une attribution sourcée. Ni la couleur ni le nom du fichier ne prouvent un porteur, des dégâts ou une durée. |
 | Projectile candidat | 2 | C, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [05](BIBLE_ARMAX_INTEGREE.md#g05), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [18](BIBLE_ARMAX_INTEGREE.md#g18), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Préparer propriétaire, trajectoire, collision, interaction et phase visuelle dans la fiche d’action. L’image fixe et l’association proposée restent distinctes d’un projectile moteur fonctionnel. |
-| Accessoire candidat | 2 | B, C, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [03](BIBLE_ARMAX_INTEGREE.md#g03), [05](BIBLE_ARMAX_INTEGREE.md#g05), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [18](BIBLE_ARMAX_INTEGREE.md#g18), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Définir l’attache et l’usage compatibles avec l’acteur et son action, lorsqu’ils sont documentés. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus. |
+| Accessoire candidat | 3 | B, C, J pour grenade et omni-outil ; B, F, J pour le fauteuil narratif. Rubriques précisées par entrée dans le JSON. | Définir l’attache et l’usage compatibles avec l’acteur documenté. Le fauteuil est lié à l’Homme Trouble et à sa présence narrative ME2 ; aucune action ne lui est attribuée. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus. |
+| Calque de décor — `calque_decor` | 3 | G, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [13](BIBLE_ARMAX_INTEGREE.md#g13), [14](BIBLE_ARMAX_INTEGREE.md#g14), [15](BIBLE_ARMAX_INTEGREE.md#g15), [17](BIBLE_ARMAX_INTEGREE.md#g17), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Séparer architecture distante, structures arrière et sol de Port Hanshan. Chaque composant conserve son ID de couche et sa relation à `ME1-VS-PORT-HANSHAN-REF-01` ; aucune arène supplémentaire, collision ou vitesse de parallaxe validée n’en est déduite. |
 
 Les 87 fiches de personnages se répartissent en **9 combattants candidats, 22 boss candidats, 31 adversaires candidats et 25 soutiens narratifs**. Ce sont les usages du suivi artistique. La sélection d’un mode doit rester cohérente avec la fiche de conception, les règles communes et les réserves ci-dessous.
+
+Le fauteuil conserve le rôle de catalogue `accessoire_candidat`, avec une association particulière **B/F/J** : identité de l’Homme Trouble, contexte de briefing ou présence narrative, puis provenance et revue de l’asset. Ses rubriques sont [02](BIBLE_ARMAX_INTEGREE.md#g02), [03](BIBLE_ARMAX_INTEGREE.md#g03), [07](BIBLE_ARMAX_INTEGREE.md#g07), [09](BIBLE_ARMAX_INTEGREE.md#g09), [10](BIBLE_ARMAX_INTEGREE.md#g10), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [26](BIBLE_ARMAX_INTEGREE.md#g26) et [27](BIBLE_ARMAX_INTEGREE.md#g27). Le cadre C général des accessoires de combat ne s’applique pas à cette association narrative.
 
 ## 2. Fiches de conception et correspondances exactes
 
 Les sélections du tableau suivant reproduisent la conception du lot 04. Elles ne prouvent pas une implémentation. Une absence du catalogue de manquants ne signifie pas que le sujet manque au projet.
 
-| Sujet / identifiant de conception | Sélection décrite dans la source | Correspondance au catalogue lot 14 |
+| Sujet / identifiant de conception | Sélection décrite dans la source | Correspondance au catalogue courant lot 16 |
 |---|---|---|
 | Saren Arterius — `armax-saren-me1` | Versus, boss | Hors de ce catalogue ; fiche existante conservée |
 | Matriarche Bénézia — `armax-benezia-me1` | boss | Hors de ce catalogue ; fiche existante conservée |
@@ -99,11 +103,11 @@ Les **38 costumes** forment **19 groupes documentaires identité/œuvre**. Chaqu
 | Shepard masculin | ME2 | [Armure Kestrel complète — corps masculin](#cst_me2_shepard_male_kestrel), [Armure Blood Dragon complète — corps masculin](#cst_me2_shepard_male_blood_dragon), [Armure Terminus Assault complète — corps masculin](#cst_me2_shepard_male_terminus), [Armure Collector complète — corps masculin](#cst_me2_shepard_male_collector), [Armure Inferno complète — corps masculin](#cst_me2_shepard_male_inferno), [Armure Cerberus Assault complète — corps masculin](#cst_me2_shepard_male_cerberus_assault) |
 | Shepard féminin | ME2 | [Armure Kestrel complète — corps féminin](#cst_me2_shepard_female_kestrel), [Armure Blood Dragon complète — corps féminin](#cst_me2_shepard_female_blood_dragon), [Armure Terminus Assault complète — corps féminin](#cst_me2_shepard_female_terminus), [Armure Collector complète — corps féminin](#cst_me2_shepard_female_collector), [Armure Inferno complète — corps féminin](#cst_me2_shepard_female_inferno), [Armure Cerberus Assault complète — corps féminin](#cst_me2_shepard_female_cerberus_assault) |
 
-Les seize armures de Shepard n’établissent aucune classe ni liste de pouvoirs. Wrex conserve « opus à confirmer » dans sa fiche. Ahern conserve son contexte du DLC original. L’Homme Trouble possède un corps debout candidat ; son fauteuil demeure un besoin distinct. Suvi est représentée assise avec son siège, sans nouveau rôle de combattante.
+Les seize armures de Shepard n’établissent aucune classe ni liste de pouvoirs. Wrex conserve « opus à confirmer » dans sa fiche. Ahern conserve son contexte du DLC original. L’[Homme Trouble](#chr_me2_illusive_man) possède le corps debout lot 13 et une pose assise candidate lot 16 ; son [fauteuil isolé](#prop_me2_illusive_man_chair) est désormais présent dans une fiche distincte. Les réserves de géométrie et d’alpha de la paire restent ouvertes. Suvi est représentée assise avec son siège, sans nouveau rôle de combattante.
 
 ## 4. Décors, scènes et liaisons
 
-**52 sous-zones** sont rattachées aux fiches G/J. Parmi elles, **16 disposent de 18 associations documentaires précises** dans les campagnes ou les exemples de fiches. Les **36 autres** n’ont pas d’affectation positive particulière dans les deux documents examinés ; elles restent utilisables comme besoins d’arène à préciser, sans scénario ajouté par déduction.
+Les **52 sous-zones historiques** sont rattachées aux fiches G/J. Parmi elles, **16 disposent de 18 associations documentaires précises** dans les campagnes ou les exemples de fiches. Les **36 autres** n’ont pas d’affectation positive particulière dans les deux documents examinés ; elles restent utilisables comme besoins d’arène à préciser, sans scénario ajouté par déduction. Les **3 calques de Port Hanshan** ont une association de composant distincte ; ils ne modifient pas ce décompte de sous-zones ou de scènes.
 
 | Sous-zone | Association explicitement écrite | Portée |
 |---|---|---|
@@ -138,7 +142,9 @@ Les sept avertissements explicites des sources concernent cinq stages. Ils reste
 | CIC du Normandy SR-1 | Salle d’entraînement d’Anderson |
 | Réacteur Omega | Zone des Serres et passerelle de contrôle de Nyreen |
 
-Le c03 de Nihlus cite une installation X57 simulée sans confirmer la salle précise. Le c05 de Saren demande un espace de Novéria à préciser : Hot Labs ne lui est pas affecté automatiquement. La destination intérieure de **ARMAX-LINK-HAGALAZ-01** reste sans identifiant de stage livré. Port Hanshan est conservé comme référence extérieure à ce catalogue, sous `ME1-VS-PORT-HANSHAN-REF-01` dans [production.json](../../combat-2d/production.json).
+Le c03 de Nihlus cite une installation X57 simulée sans confirmer la salle précise. Le c05 de Saren demande un espace de Novéria à préciser : Hot Labs ne lui est pas affecté automatiquement. La destination intérieure de **ARMAX-LINK-HAGALAZ-01** reste sans identifiant de stage livré. La composition de Port Hanshan conserve son ID documentaire `ME1-VS-PORT-HANSHAN-REF-01` dans [production.json](../../combat-2d/production.json), extérieur au catalogue de manquants. Les nouvelles entrées [PH-20](#layer_port_hanshan_architecture_distant_fixed), [PH-30](#layer_port_hanshan_rear_structures_fixed) et [PH-40](#layer_port_hanshan_floor_fixed) s’y rattachent par `componentParent` dans le JSON ; elles ne remplacent pas cette composition et ne lui attribuent pas de route.
+
+Ces calques dérivent des candidats internes historiques, avec des détails reconstruits. PH-20 et PH-30 mesurent 1 672 × 941 pixels ; le sol PH-40 R1 mesure 1 671 × 941 pixels. La révision améliore le raccord vertical sur leur largeur commune, mais la colonne manquante, les franges et l’îlot détaché de PH-20 restent consignés dans la [revue indépendante](../lot16/qa/port-hanshan-independent-review.json). Le PH-50 historique reste une référence distincte déjà disponible ; le lot 16 ne le recompte pas comme une génération nouvelle.
 
 Le hall Armax et Fatal Error, Afterlife ME2 et le commandement Cerberus ME3, le CIC SR-1 et le hangar SR-2 restent des identités séparées. Le passage entre lieux de campagne ne prouve pas une transition de combat. Les options de présentation, interactions, dangers et transitions restent celles de la [bible](BIBLE_ARMAX_INTEGREE.md#g13).
 
@@ -152,9 +158,11 @@ Les vingt associations artistiques existantes sont référencées sans modifier 
 | [Impact Throw ME2](#fx_me2_throw_impact_fixed) | Morinth, `armax-morinth-me2-special-3`, Recul biotique | Famille visuelle seulement ; comparaison exacte encore requise |
 | [Traceur chaud ME2](#projectile_me2_incendiary_fixed) | Grunt, Munitions incendiaires, `214S` (ancien `214T`) | Attribution du visuel incertaine ; aucun dégât permanent ajouté |
 
-Les autres effets, projectiles et accessoires conservent leurs références sans recevoir de porteur inventé. La décharge candidate Overload reste à attribuer. L’omni-outil et la grenade-disque n’octroient pas d’équipement ou de capacité. Aucun composant ne ferme une action complète, une animation ou un plan narratif.
+Les autres effets, projectiles et accessoires du lot 14 conservent leurs références sans recevoir de porteur inventé. La décharge candidate Overload reste à attribuer. L’omni-outil et la grenade-disque n’octroient pas d’équipement ou de capacité. Aucun composant ne ferme une action complète, une animation ou un plan narratif.
 
-## 6. Index des 188 entrées
+Le [fauteuil](#prop_me2_illusive_man_chair) et la [pose assise](#chr_me2_illusive_man) du lot 16 sont associés à la présence narrative ME2 de l’Homme Trouble, en **B/F/J**. Les [associations du lot](../lot16/bible-asset-associations.json) portent `actionAssociations: []` et `completeNarrativeSceneProduced: false`. Aucun chapitre ou numéro de plan particulier ne leur est affecté sans brief correspondant. Le personnage assis inclut un fauteuil redessiné : assise, accoudoirs et appuis ne coïncident pas exactement avec l’accessoire vide. Les deux PNG ont un alpha réel de 0 à 254, avec résidus faibles sur certains bords ; la [revue indépendante](../lot16/qa/illusive-man-independent-review.json) conserve ces limites.
+
+## 6. Index des 192 entrées
 
 L’identité, l’œuvre, la variante et l’état d’image ci-dessous sont repris du catalogue de référence. « Candidat présent » indique uniquement qu’au moins un chemin d’image est déclaré. Les preuves et réserves détaillées restent dans le catalogue et les manifestes des lots. Les rubriques et fiches applicables sont celles du rôle indiqué en section 1 et dans le JSON.
 
@@ -254,7 +262,7 @@ Fiches : **B, F, J**. Aucun coup, pouvoir ou soutien de combat ajouté par le se
 | <a id="chr_me2_kelly_chambers"></a>`chr_me2_kelly_chambers` — Kelly Chambers | ME2 ; Tenue de service | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_gavin_archer"></a>`chr_me2_gavin_archer` — Gavin Archer | ME2 ; Overlord ; Apparence du projet Overlord | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_amanda_kenson"></a>`chr_me2_amanda_kenson` — Amanda Kenson | ME2 ; Arrival ; Apparence Arrival | Candidat présent | Association lot 14 conservée |
-| <a id="chr_me2_illusive_man"></a>`chr_me2_illusive_man` — L'Homme Trouble | ME2 ; Costume et fauteuil ME2 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me2_illusive_man"></a>`chr_me2_illusive_man` — L'Homme Trouble | ME2 ; Costume et fauteuil ME2 | Candidat présent | Pose debout lot 13 conservée ; pose assise lot 16 en B/F/J. [Fauteuil isolé](#prop_me2_illusive_man_chair) distinct ; géométrie et alpha sous réserve, sans action ajoutée. |
 | <a id="chr_me3_padok_wiks"></a>`chr_me3_padok_wiks` — Padok Wiks | ME3 ; Apparence Sur'Kesh | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_adrien_victus"></a>`chr_me3_adrien_victus` — Adrien Victus | ME3 ; Apparence de Primarque | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_steven_hackett"></a>`chr_me3_steven_hackett` — Steven Hackett | ME3 ; Uniforme d'amiral ME3 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
@@ -377,6 +385,16 @@ Fiches : **G, J**. Un master de décor ne prouve ni terrain jouable ni connexion
 | <a id="stg_me3_omega_doru_district_walkway"></a>`stg_me3_omega_doru_district_walkway` — Omega — passerelle vers Doru District | ME3 ; Omega ; Omega — passerelle vers Doru District | Candidat présent | 1 association(s) précise(s), section 4; Association lot 14 conservée |
 | <a id="stg_me3_omega_afterlife_command"></a>`stg_me3_omega_afterlife_command` — Omega — Afterlife, centre de commandement Cerberus | ME3 ; Omega ; Omega — Afterlife, centre de commandement Cerberus | Candidat présent | 1 association(s) précise(s), section 4; Association lot 14 conservée |
 
+### Calque de décor — 3 fiches
+
+Fiches : **G, J**. Rôle `calque_decor`, catégorie stage. Chaque calque est un composant de la composition documentaire `ME1-VS-PORT-HANSHAN-REF-01`, distinct des 52 masters historiques. Les coefficients de parallaxe, le calage et les collisions ne sont pas validés.
+
+| Identifiant et sujet | Œuvre / variante | Image candidate | Raccord particulier |
+|---|---|---|---|
+| <a id="layer_port_hanshan_architecture_distant_fixed"></a>`layer_port_hanshan_architecture_distant_fixed` — Port Hanshan — architecture distante PH-20 | ME1 ; PH-20 — architecture extérieure isolée | Candidat présent | Composant PH-20 en G/J ; candidat interne historique comme source, îlot détaché et franges cyan sous réserve. |
+| <a id="layer_port_hanshan_rear_structures_fixed"></a>`layer_port_hanshan_rear_structures_fixed` — Port Hanshan — structures arrière PH-30 | ME1 ; PH-30 — architecture intérieure sans sol | Candidat présent | Composant PH-30 en G/J ; plafond, baies et structures séparés du sol, avec franges et raccord à contrôler. |
+| <a id="layer_port_hanshan_floor_fixed"></a>`layer_port_hanshan_floor_fixed` — Port Hanshan — sol PH-40 | ME1 ; PH-40 — sol et jonctions isolés | Candidat présent | Composant PH-40 en G/J ; R1 sélectionné, R0 archivé. Raccord vertical amélioré ; largeur native inférieure d’un pixel. |
+
 ### Effet visuel — 7 fiches
 
 Fiches : **C, J**. Ni la couleur ni le nom du fichier ne prouvent un porteur, des dégâts ou une durée.
@@ -400,19 +418,20 @@ Fiches : **C, J**. L’image fixe et l’association proposée restent distincte
 | <a id="projectile_me2_concussive_fixed"></a>`projectile_me2_concussive_fixed` — Tir percussif ME2 | ME2 ; Projectile orienté vers la droite | Candidat présent | Association lot 14 conservée |
 | <a id="projectile_me2_incendiary_fixed"></a>`projectile_me2_incendiary_fixed` — Traceur chaud ME2 — candidat munitions incendiaires | ME2 ; Traceur orienté vers la droite | Candidat présent | Association lot 14 conservée |
 
-### Accessoire candidat — 2 fiches
+### Accessoire candidat — 3 fiches
 
-Fiches : **B, C, J**. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus.
+Fiches : **B, C, J** pour la grenade et l’omni-outil ; **B, F, J** pour le fauteuil de scène narrative. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus ; le fauteuil ne reçoit aucune association d’action.
 
 | Identifiant et sujet | Œuvre / variante | Image candidate | Raccord particulier |
 |---|---|---|---|
 | <a id="prop_me1_alliance_grenade_disc"></a>`prop_me1_alliance_grenade_disc` — Grenade-disque de l'Alliance | ME1 ; Disque fermé — vue du manuel Xbox 360 français | Candidat présent | Association lot 14 conservée |
 | <a id="accessory_me2_omnitool_casting_fixed"></a>`accessory_me2_omnitool_casting_fixed` — Omni-outil ME2 — projection d'avant-bras | ME2 ; Projection d'avant-bras isolée | Candidat présent | Association lot 14 conservée |
+| <a id="prop_me2_illusive_man_chair"></a>`prop_me2_illusive_man_chair` — Fauteuil de l’Homme Trouble | ME2 ; Fauteuil ME2 isolé — vue trois-quarts | Candidat présent | Association particulière B/F/J à [chr_me2_illusive_man](#chr_me2_illusive_man), pour briefing et présence narrative. Géométrie et alpha sous réserve ; aucune action. |
 
 ## 7. Reprise et vérification
 
 Lors d’un prochain lot, partir du catalogue courant, conserver les identités et rechercher la fiche de conception correspondante. Un nouveau raccord doit nommer la source, l’ID ou la section, le type de relation et ce qui reste à confirmer. Un lien de costume ne vaut pas lien de kit ; une occurrence d’ID dans un avertissement ne vaut pas affectation de scène.
 
-Mettre à jour la projection si sa source change. Les empreintes de `sourceSnapshots` désignent les versions au commit de base ; les ajouts de navigation aux bibles ne sont pas présentés comme des sources déjà présentes à ce commit. Les références de ligne des occurrences sont également celles du commit de base.
+Mettre à jour la projection si sa source change. Les empreintes de `sourceSnapshots` identifient les versions effectivement utilisées, avec leur chemin et leur portée de révision. Les occurrences historiques conservent leurs références de ligne au commit de base ; les ajouts du lot 16 ne sont pas présentés comme déjà présents dans cet arbre. Les 188 ancres initiales et les quatre nouvelles ancres restent alignées sur les IDs du catalogue.
 
-Le [rapport de vérification de cette association](verification-content-associations-2026-11-25.json) distingue couverture des 188 IDs, conservation des usages, liens de conception, affectations de stage et absence de modification des sources de production. Aucun test de gameplay, rendu artistique ou certification de fidélité n’est revendiqué.
+Le [rapport historique d’association](verification-content-associations-2026-11-25.json) conserve son contrôle des 188 IDs du lot 14. La [vérification du lot 16](../lot16/verification.json), le [manifeste](../lot16/manifest.json) et le [classeur courant](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) suivent les 192 fiches et les six nouveaux PNG. Les revues de [Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) et de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) qualifient les candidats ; elles ne constituent ni test de gameplay ni certification de fidélité. Les [manquants](../lot16/MANQUANTS_2026-11-25.md) et le [bilan du lot](../lot16/README.md) restent les points de reprise artistique.

@@ -2,18 +2,18 @@
 # Bible intégrée du mode combat 2D
 
 **Révision documentaire du 25 novembre 2026 — Europe/Paris.**
-**État : conception définie. L’intégration initiale du guide est documentaire ; la continuation artistique lot 14 est associée ci-dessous.**
+**État : conception définie. L’intégration initiale du guide est documentaire ; la continuation artistique courante est le lot 16, associé ci-dessous.**
 
 Cette bible applique les **30 rubriques, numérotées 00 à 29**, du fichier fourni par Darknigthmare, **Combat_Games_Guide_General_v1.0.txt**, à Armax, le mode annexe de **Mass Effect — Relay Chronicles**. Elle réunit les décisions transversales et relie les fiches existantes. Elle constitue le point d'entrée courant ; les lots conservent leur provenance et leurs résultats historiques.
 
-Base examinée : **4befa64285080fe016d6ecd9424b00ab4d42509f**, branche **feat/armax-missing-lot13-20261124**, PR **#11**. Le RPG hôte conserve son ATB, son groupe de trois, son renderer Three.js 0.180.0 et ses sauvegardes. Le duel Armax possède son propre contrat.
+Base de l’intégration initiale : **4befa64285080fe016d6ecd9424b00ab4d42509f**, branche **feat/armax-missing-lot13-20261124**, PR **#11**. La continuation lot 16 repart du catalogue lot 14 au commit **71955d9143562d6a44a8b8d48bc552978372bc1e**. Le RPG hôte conserve son ATB, son groupe de trois, son renderer Three.js 0.180.0 et ses sauvegardes. Le duel Armax possède son propre contrat.
 
 ## Documents associés
 
 | Document | Usage |
 |---|---|
 | [Associations du guide](guide-associations.json) | 30 exigences de section, décisions, priorités, sources, critères et travaux restants |
-| [Associations du contenu](ASSOCIATIONS_CONTENU.md) et [index structuré](content-associations.json) | 188 fiches rattachées à leur rôle ; correspondances des kits, costumes, scènes et sous-zones |
+| [Associations du contenu](ASSOCIATIONS_CONTENU.md) et [index structuré](content-associations.json) | 192 fiches rattachées à leur rôle ; correspondances des kits, costumes, scènes, sous-zones et calques |
 | [Règles communes RC-ARMAX-0.1](common-rules.json) | Contrat de conception normalisé, arbitrages entre les anciens lots |
 | [Campagnes et scènes](CAMPAGNES_ET_SCENES.md) | Campagne globale distincte, six routes pilotes et briefs d'illustrations |
 | [Fiches et liaisons](FICHES_ET_LIAISONS.md) | Modèles A–J adaptés, exemples remplis, dépendances et critères |
@@ -21,28 +21,39 @@ Base examinée : **4befa64285080fe016d6ecd9424b00ab4d42509f**, branche **feat/ar
 | [Lot 04 : bible détaillée](../lot04/BIBLE_EXTENSION.md) et [fiches](../lot04/fighters.json) | 14 sujets, 13 kits de conception, récits et deux boss à phases |
 | [Complément Grunt / Legion / Port Hanshan](../../combat-2d/CONTINUATION_2026-11-19.md) | Deux kits et une arène, à normaliser selon le contrat commun |
 | [Lot 03 : bible de production](../lot03/Bible_Complement_Lot03.md) | Apparences, poses, masters et besoins de parallaxe |
-| [Catalogue courant lot 14](../lot14/production-catalog.json) | 188 fiches : 128 avec image candidate et 60 sans ; historique lot13 conservé |
+| [Catalogue courant lot 16](../lot16/production-catalog.json) | 192 fiches : 132 avec image candidate et 60 sans ; 188 identités antérieures conservées |
+| [Livraison lot 16](../lot16/README.md), [manifeste](../lot16/manifest.json) et [associations artistiques](../lot16/bible-asset-associations.json) | 6 PNG natifs, dont 5 sélectionnés, pour 5 sujets ; sources, poses observées et réserves |
 | [Bible du jeu hôte](../../DESIGN.md) | Association au RPG et séparation du contrat ATB |
 | [Dossier Armax](../README.md) | Navigation dans les livraisons artistiques |
 | [Vérification documentaire](verification-2026-11-25.json) | Couverture, liens, IDs, cohérence et limites |
 
 **Lecture des statuts.** « Retenu » est une décision de conception, « Défini » décrit une fiche, « Prototype » un état de production. Aucun de ces termes ne signifie « jouable » ou « fidélité 1:1 validée ». Les exigences d'animation restent documentées pendant la phase de production de sprites fixes.
 
-## Continuation artistique — lot 14 du 25 novembre 2026
+## Continuation artistique courante — lot 16 du 25 novembre 2026
+
+Le [lot 16](../lot16/README.md) produit **6 PNG natifs, dont 5 sélectionnés, pour 5 sujets fixes** : les calques PH-20, PH-30 et PH-40 de Port Hanshan, le fauteuil de l’Homme Trouble et sa pose assise ME2. Les trois calques et le fauteuil ajoutent **4 fiches** ; la pose assise complète `chr_me2_illusive_man`, déjà illustré au lot 13. Le sol PH-40 R0 est conservé comme révision écartée.
+
+**Production actuelle : 192 fiches, 132 avec image candidate et 60 sans ; 231 originaux distincts dans le corpus, soit 225 antérieurs et 6 nouveaux.** Le [suivi des manquants](../lot16/MANQUANTS_2026-11-25.md), le [classeur](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) et sa [vérification](../lot16/workbook-verification.json) distinguent les unités comptées. Les **55 entrées de catégorie stage** comprennent **52 masters de sous-zones historiques et 3 calques**, rattachés à la composition documentaire `ME1-VS-PORT-HANSHAN-REF-01`.
+
+**Usage dans notre jeu de combat :** les calques relèvent des fiches **G/J**, avec hypothèses de calage et de parallaxe à contrôler. Le fauteuil et la pose assise relèvent des fiches **B/F/J** pour le briefing et la présence narrative ME2. Ils n’ajoutent aucune action, capacité ou sélection de combattant. La [revue de Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) conserve les franges et la largeur de PH-40, inférieure d’un pixel à celle de PH-20/PH-30. La [revue de l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) conserve les réserves de géométrie, de visage et d’alpha ; le fauteuil vide et celui de la pose assise ne sont pas directement superposables. Tous restent **Prototype**, sans fidélité 1:1 ni intégration moteur validées.
+
+Les **113 PNG annoncés au lot 15 ne sont ni récupérés ni publiés** ; le [constat de reprise](../lot16/RECUPERATION_LOT15.md) les exclut du corpus présent. Les **36 briefs narratifs** restent conservés comme besoins de conception. Les cinq associations du lot 16 ne déclarent aucun de ces plans entièrement illustré.
+
+## Continuation artistique historique — lot 14 du 25 novembre 2026
 
 Le [lot 14](../lot14/README.md) matérialise **20 sujets fixes en 21 PNG natifs** et conserve les 172 identités héritées. Quatre anciens manquants sont illustrés ; seize entrées sourcées s’ajoutent au catalogue. Les [liaisons par actif](../lot14/bible-asset-associations.json) raccordent les fiches B/C/G/J aux exigences du guide. Les 30 rubriques et 90 critères de la matrice initiale conservent leur sens.
 
 **Usage dans notre jeu de combat :** les CAT6 sont des sprites d’ennemis candidats ; Kenson et Suvi restent narratifs ; les sous-zones Armax/Omega sont des masters de composition ; les effets, projectiles et accessoires constituent des composants visuels à associer aux actions après contrôle. L’effet percussif est proposé pour Grunt, le traceur chaud reste d’attribution incertaine et Throw est seulement une famille visuelle candidate pour le Recul biotique de Morinth. Les autres fichiers ne reçoivent aucun porteur inventé.
 
-**Production actuelle : 188 fiches, 128 avec image et 60 sans ; 225 originaux dans le corpus.** La [revue indépendante](../lot14/independent-art-review.json) et le [classeur](../lot14/Mass_Effect_Armax_Suivi_Lot14_2026-11-25.xlsx) documentent les réserves. Fidélité 1:1, paramètres moteur, phases d’action, couches de scène et autres poses restent ouverts. Les 36 plans narratifs ne sont pas déclarés illustrés par ce lot.
+**Bilan historique du lot 14 : 188 fiches, 128 avec image et 60 sans ; 225 originaux dans le corpus à cette étape.** La [revue indépendante](../lot14/independent-art-review.json) et le [classeur](../lot14/Mass_Effect_Armax_Suivi_Lot14_2026-11-25.xlsx) documentent les réserves. Fidélité 1:1, paramètres moteur, phases d’action, couches de scène et autres poses restent ouverts. Les 36 plans narratifs ne sont pas déclarés illustrés par ce lot.
 
 ## Associations consolidées du contenu
 
-L’[index de contenu](ASSOCIATIONS_CONTENU.md) rattache chacune des **188 fiches** aux modèles A–J et aux rubriques pertinentes du guide. Il distingue les **9 combattants candidats, 22 boss candidats, 31 adversaires et 25 soutiens narratifs** du suivi, puis les **38 costumes, 52 décors et 11 effets/projectiles/accessoires**. Ces rôles décrivent la production prévue ; ils ne constituent pas un roster jouable.
+L’[index de contenu](ASSOCIATIONS_CONTENU.md) rattache chacune des **192 fiches** aux modèles A–J et aux rubriques pertinentes du guide. Il distingue les **9 combattants candidats, 22 boss candidats, 31 adversaires et 25 soutiens narratifs** du suivi, puis les **38 costumes, 52 masters de sous-zones, 3 calques et 12 effets/projectiles/accessoires**. Ces rôles décrivent la production prévue ; ils ne constituent pas un roster jouable.
 
-Les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion** sont accessibles dans ce même index, sans les ajouter aux 188 lignes. Les correspondances exactes et les identifiants documentaires restent distincts. Kai Leng et Balak présentent une divergence entre usage « boss candidat » du catalogue et sélection Versus de leur fiche ; elle est exposée avant toute décision d’implémentation.
+Les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion** sont accessibles dans ce même index, sans les ajouter aux 192 lignes. Les correspondances exactes et les identifiants documentaires restent distincts. Kai Leng et Balak présentent une divergence entre usage « boss candidat » du catalogue et sélection Versus de leur fiche ; elle est exposée avant toute décision d’implémentation.
 
-Pour les décors, **18 associations précises concernant 16 sous-zones** sont reliées aux chapitres, routes ou exemples de fiches. Les avertissements de non-équivalence restent des restrictions, sans affectation de scène déduite. Le [rapport de cette réconciliation](verification-content-associations-2026-11-25.json) vérifie les identités, les liens et la conservation des sources de production.
+Pour les décors, les **18 associations précises concernant 16 des 52 sous-zones** sont conservées. Les trois calques de Port Hanshan ajoutent des relations de composant à leur composition documentaire, sans ajouter de route ou de scène. Les avertissements de non-équivalence restent des restrictions. Le [rapport historique de réconciliation](verification-content-associations-2026-11-25.json) conserve son périmètre de 188 fiches ; la [vérification du lot 16](../lot16/verification.json) suit les ajouts et les preuves courantes.
 
 <a id="g00"></a>
 ## 00. Utilisation, priorités et autorité
@@ -78,7 +89,7 @@ La ressemblance 1:1 exige une comparaison effective. Les marqueurs **fidelity1to
 
 Conserver les identifiants et leur espace de noms : **armax-saren-me1** désigne une fiche de kit, **chr_me2_legion_standard** une entrée de suivi d'image, **ME2-CHR-LEGION** une identité du catalogue d'univers. Leur association est déclarée ; ils ne sont pas interchangeables et ne deviennent pas trois personnages distincts.
 
-Chaque sujet indique son rôle : candidat jouable, boss, adversaire, soutien, PNJ ou présence narrative. Eve/Bakara reste un soutien. Le yahg et l'Archonte restent hors tournoi standard ; Bénézia attend une variante normalisée. Le fauteuil de l'Homme Trouble reste un besoin séparé du corps debout déjà suivi.
+Chaque sujet indique son rôle : candidat jouable, boss, adversaire, soutien, PNJ ou présence narrative. Eve/Bakara reste un soutien. Le yahg et l'Archonte restent hors tournoi standard ; Bénézia attend une variante normalisée. L’[Homme Trouble](ASSOCIATIONS_CONTENU.md#chr_me2_illusive_man) conserve son corps debout lot 13 et dispose désormais d’une pose assise candidate. Son [fauteuil isolé](ASSOCIATIONS_CONTENU.md#prop_me2_illusive_man_chair) est une fiche d’accessoire narratif distincte, associée en B/F/J ; géométrie et alpha restent sous réserve, sans action de combat déduite.
 
 Séparer identité, période, classe/profil, transformation, costume et palette. Une nouvelle apparence ne modifie pas automatiquement les collisions ou les pouvoirs. Un changement de morphologie ou d'arme exige une vérification ; un changement substantiel de kit devient une variante explicite.
 
@@ -223,6 +234,8 @@ La caméra de duel et le terrain latéral sont des adaptations déclarées. Déf
 
 Réutiliser les plans déjà étudiés : lointain, architecture, activité de fond, structures proches, sol, avant-plan et effets. Chaque couche a une fonction, une vitesse relative et des marges de recouvrement contrôlables. Les coefficients de Port Hanshan restent des hypothèses de sa fiche.
 
+Le lot 16 fournit trois candidats de rôle `calque_decor` : [architecture distante PH-20](ASSOCIATIONS_CONTENU.md#layer_port_hanshan_architecture_distant_fixed), [structures arrière PH-30](ASSOCIATIONS_CONTENU.md#layer_port_hanshan_rear_structures_fixed) et [sol PH-40](ASSOCIATIONS_CONTENU.md#layer_port_hanshan_floor_fixed). Ils dérivent de candidats internes historiques. La révision R1 du sol améliore la jonction avec PH-30 sur la largeur commune ; le pixel de largeur manquant, les franges et l’assemblage moteur restent à vérifier. Ces composants ne remplacent pas les 52 identités historiques de sous-zones et ne prouvent aucune collision.
+
 La variante de campagne décrit état du monde, météo et destruction. Un master disponible est une image candidate de sous-zone ; il ne clôt ni la parallaxe, ni les interactions, ni l'échelle, ni les connexions.
 
 <a id="g14"></a>
@@ -360,7 +373,7 @@ Le catalogue lot 13 constitue un périmètre nommé : **172 fiches, 108 avec ima
 
 Ce catalogue de manquants ne contient pas tous les IDs de kits et de récupérations. Lier lot 04, continuation, lot 03 et récupération évite d'inventer une exhaustivité ou de compter plusieurs fois Legion selon ses espaces de noms. Les sous-zones et les couches restent des unités distinctes.
 
-Cette révision ajoute une couverture documentaire des 30 rubriques, des décisions communes et des briefs narratifs. Elle n'augmente aucun compteur d'images, de fidélité validée, de combattants intégrés ou de modes testés. Les statistiques de la nouvelle documentation sont séparées du suivi artistique et du RPG.
+L’intégration initiale du guide a ajouté une couverture documentaire des 30 rubriques, des décisions communes et des briefs narratifs, sans augmenter les compteurs artistiques de son instantané. Le [catalogue courant lot 16](../lot16/production-catalog.json) conserve les 188 fiches du lot 14 et ajoute quatre fiches : **192 au total, 132 avec candidat et 60 sans**. La pose assise supplémentaire ne compte pas comme une nouvelle identité. Le corpus de **231 originaux** inclut le sol R0 écarté ; les 113 PNG non récupérés du lot 15 en sont exclus. Les compteurs de fidélité certifiée et d’intégration moteur ne progressent pas par la seule présence d’images.
 
 <a id="g26"></a>
 ## 26. Validation et ordre de production
@@ -371,7 +384,7 @@ Tester tôt les risques structurants : grand gabarit, drone, ressource d'arme, t
 
 Une fiche est terminée lorsqu'elle possède source, version, règle, dépendances et critères. Un sprite est terminé pour son usage après les revues requises. Un combattant exige actions/réactions/collisions et modes testés. Un stage exige terrain, profils, limites et liaisons fonctionnels. Une route et une campagne exigent une traversée jusqu'à la conclusion avec reprise.
 
-La vérification de cette livraison est documentaire : couverture, IDs, liens, cohérence des règles, préservation du suivi et revue des scènes. Elle ne remplace aucun build, test de combat, contrôle artistique ou parcours Windows.
+La vérification de l’intégration initiale du guide est documentaire : couverture, IDs, liens, cohérence des règles, préservation du suivi et revue des briefs de scènes. La [vérification artistique du lot 16](../lot16/verification.json) et les revues propres aux images ajoutent leurs mesures et réserves. Ces preuves restent distinctes d’un build, d’un test de combat ou d’un parcours Windows.
 
 <a id="g27"></a>
 ## 27. Fiches A–J adaptées

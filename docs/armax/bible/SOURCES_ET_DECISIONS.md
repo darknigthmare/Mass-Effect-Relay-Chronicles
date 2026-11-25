@@ -1,6 +1,6 @@
 # Armax — sources, décisions et portée
 
-**25 novembre 2026 — Europe/Paris.** L’intégration initiale du guide fourni par Darknigthmare examine le dépôt au commit **4befa64285080fe016d6ecd9424b00ab4d42509f**, PR #11. La réconciliation du contenu décrite en section 6 part ensuite du lot 14 au commit **cc44ce510f1bb152fa68f3d8375a5db2745437c5**. Les preuves des deux passes conservent leur périmètre.
+**25 novembre 2026 — Europe/Paris.** L’intégration initiale du guide fourni par Darknigthmare examine le dépôt au commit **4befa64285080fe016d6ecd9424b00ab4d42509f**, PR #11. La réconciliation du contenu décrite en section 6 part ensuite du lot 14 au commit **cc44ce510f1bb152fa68f3d8375a5db2745437c5**. La continuation lot 16, décrite en section 7, repart de l’état publié **71955d9143562d6a44a8b8d48bc552978372bc1e**. Les preuves de chaque passe conservent leur périmètre.
 
 ## 1. Autorité des documents
 
@@ -10,7 +10,7 @@
 | Guide utilisateur | Combat_Games_Guide_General_v1.0.txt, version 1.0 du 25 novembre 2026, 30 rubriques 00–29 | Structure commune et exigences à contextualiser |
 | Contrat courant Armax | [Bible intégrée](BIBLE_ARMAX_INTEGREE.md), [règles communes](common-rules.json), [associations](guide-associations.json) | Décisions transversales de conception et critères |
 | Fiches de contenu | [Lot 04](../lot04/fighters.json), [bible détaillée](../lot04/BIBLE_EXTENSION.md), [Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md) | Identités, kits, actions, récits et réserves de leurs versions |
-| Production artistique courante | [Catalogue lot 14](../lot14/production-catalog.json), manifestes des lots et récupération | Fichiers, provenance, présence et limites ; le [lot 13](../lot13/production-catalog.json) conserve son instantané historique |
+| Production artistique courante | [Catalogue lot 16](../lot16/production-catalog.json), [manifeste](../lot16/manifest.json), manifestes antérieurs et récupération | Fichiers, provenance, présence et limites ; les [lots 13](../lot13/production-catalog.json) et [14](../lot14/production-catalog.json) conservent leurs instantanés historiques |
 | Associations du contenu | [Index lisible](ASSOCIATIONS_CONTENU.md), [données](content-associations.json) | Projection des sources et correspondances documentaires ; aucun remplacement de catalogue ou de kit |
 | Invariants du jeu hôte | [AGENTS.md](../../../AGENTS.md), [guide gamedev](../../GAMEDEV_GUIDANCE.md), [Chroniques](../../CHRONICLES.md) | Renderer, RPG, personnalisation, sauvegardes, périodes et vérifications |
 
@@ -28,7 +28,8 @@ La bible de 99 pages et les lots 01/02 signalés non retrouvés restent une lacu
 | SRC-ARMAX-LOT04 | [Source structurée du lot 04](../lot04/fighters.json) | 14 sujets, 13 kits, scènes, noms de finalisations, phases et réserves | Données de conception, avec actions explicitement non canoniques |
 | SRC-ARMAX-CONTINUATION | [Complément combat](../../combat-2d/CONTINUATION_2026-11-19.md) | Grunt, Legion, Port Hanshan, ressources et contraintes de soutien | Anciennes règles communes partiellement divergentes ; harmonisation définie ici |
 | SRC-ARMAX-LOT13 | [Catalogue](../lot13/production-catalog.json) et [rapport du lot](../lot13/README.md) | 172 fiches et statistiques de présence à l’intégration initiale | Instantané historique ; pas un inventaire exhaustif de tous les kits, récupérations ou personnages de l'univers |
-| SRC-ARMAX-LOT14 | [Catalogue courant](../lot14/production-catalog.json) et [associations artistiques](../lot14/bible-asset-associations.json) | 188 fiches, usages hérités et 20 associations de sujets fixes | Images candidates ; aucune sélection de mode ni action complète déduite |
+| SRC-ARMAX-LOT14 | [Catalogue historique](../lot14/production-catalog.json) et [associations artistiques](../lot14/bible-asset-associations.json) | 188 fiches, usages hérités et 20 associations de sujets fixes à cette étape | Images candidates ; aucune sélection de mode ni action complète déduite |
+| SRC-ARMAX-LOT16 | [Catalogue courant](../lot16/production-catalog.json), [associations artistiques](../lot16/bible-asset-associations.json) et [bibliothèque de références](../lot16/reference-library.json) | 192 fiches, 5 nouvelles associations de sujets fixes ; 6 PNG dont 5 sélectionnés, avec sources et réserves | Trois calques issus de candidats internes ; fauteuil et pose narrative avec géométrie et alpha à revoir. Aucune fidélité 1:1, scène complète ou intégration moteur certifiée |
 
 Consultation des trois pages officielles : **25 novembre 2026**. Les références détaillées de personnage et de sous-zone restent celles de chaque lot. Les sources secondaires qu'ils utilisent sont conservées avec leurs limites ; elles ne sont pas promues en source officielle.
 
@@ -72,8 +73,32 @@ La publication dans la PR courante est distincte de sa fusion et d'une livraison
 
 ## 6. Réconciliation des associations après le lot 14
 
-La reprise de la même consigne associe individuellement les 188 entrées de production aux fiches et rubriques de la bible. L’[index](ASSOCIATIONS_CONTENU.md) expose les 16 sujets de conception examinés, les 19 groupes identité/œuvre des costumes, les 18 liens précis de décors et les 20 associations artistiques existantes. Les 30 rubriques et 90 critères initiaux sont conservés.
+La première réconciliation de la même consigne associait individuellement les 188 entrées du lot 14 aux fiches et rubriques de la bible. Elle exposait les 16 sujets de conception examinés, les 19 groupes identité/œuvre des costumes, les 18 liens précis de décors et les 20 associations artistiques existantes. L’[index courant](ASSOCIATIONS_CONTENU.md) conserve ces correspondances, les 30 rubriques et les 90 critères initiaux.
 
 Cette passe révèle deux divergences de rôle pour Kai Leng et Balak : le catalogue les décrit comme boss candidats, tandis que leur fiche lot 04 permet le Versus et ne coche pas boss. La décision de cette réconciliation est de conserver et signaler les deux sources. Elle n’autorise pas une nouvelle sélection. Les mentions de lieu sans sous-zone exacte et les avertissements de non-équivalence sont également conservés comme tels.
 
-Le [JSON d’associations](content-associations.json) identifie ses sources par chemin, sélecteur, commit et empreinte. Les références de ligne sont celles du commit de base. La [vérification propre à cette passe](verification-content-associations-2026-11-25.json) contrôle la couverture, les rôles, les correspondances, les liens et la préservation de la production. Les compteurs restent **188 fiches, 128 avec image candidate, 60 sans**. Aucun asset, classeur, kit ou mécanisme jouable n’est ajouté par cette réconciliation.
+Le JSON d’associations de cette passe identifiait ses sources par chemin, sélecteur, commit et empreinte ; les références de ligne historiques restent celles du commit de base. La [vérification propre à cette passe](verification-content-associations-2026-11-25.json) contrôle la couverture, les rôles, les correspondances, les liens et la préservation de la production. Son bilan demeure **188 fiches, 128 avec image candidate, 60 sans**. Aucun asset, classeur, kit ou mécanisme jouable n’était ajouté par cette seule réconciliation. Le [JSON courant](content-associations.json) identifie sa version précédente et les ajouts ultérieurs du lot 16.
+
+## 7. Continuation lot 16 et disponibilité vérifiable
+
+Le [lot 16](../lot16/README.md) part des **188 fiches du catalogue lot 14** et ajoute quatre entrées : `layer_port_hanshan_architecture_distant_fixed`, `layer_port_hanshan_rear_structures_fixed`, `layer_port_hanshan_floor_fixed` et `prop_me2_illusive_man_chair`. La pose assise est ajoutée à `chr_me2_illusive_man`, déjà illustré debout. Le bilan courant est **192 fiches, 132 avec candidat et 60 sans**, pour **6 PNG natifs, 5 sélections et 5 sujets**. Le sol PH-40 R0 reste conservé avec `selected: false`.
+
+Le [contrôle du corpus](../lot16/workbook-verification.json) compte **231 originaux distincts**, union des 225 antérieurs et des six nouveaux. Les **55 fiches de catégorie stage** regroupent **52 masters de sous-zones historiques et 3 calques** ; les couches de Port Hanshan ne sont pas comptées comme trois arènes supplémentaires. Les 188 ancres de l’index initial sont conservées et quatre nouvelles ancres reprennent exactement les IDs ajoutés.
+
+### Sources et qualifications des nouveaux sujets
+
+| Sujet | Preuve utilisée et association | Réserve maintenue |
+|---|---|---|
+| PH-20, PH-30 et PH-40 de Port Hanshan | PNG internes historiques de la continuation du 19 novembre, extraits de l’arbre de base et inspectés ; relation G/J à `ME1-VS-PORT-HANSHAN-REF-01` | Ces références sont des candidats générés, sans nouvelle preuve canonique. Surfaces reconstruites, franges, îlot détaché de PH-20 et écart de largeur de PH-40 restent documentés. |
+| Fauteuil isolé ME2 | Capture de presse du jeu avant sortie et vues de statuette sous licence, qualifiées dans la [bibliothèque de références](../lot16/reference-library.json) ; relation narrative B/F/J à `chr_me2_illusive_man` | La statuette complète la lecture de forme mais ne prouve pas tous les détails du modèle final. Dossier, jonctions cachées et accessoire de cendrier restent non confirmés ; alpha maximal 254. |
+| L’Homme Trouble assis ME2 | Références du personnage et de son contexte, planche secondaire historique, candidat debout lot 13 et fauteuil lot 16 comme continuité ; B/F/J | Pose croisée candidate ; visage et iris non certifiés. Le fauteuil inclus est redessiné et ne se superpose pas exactement au fauteuil vide ; alpha maximal 254 et résidus faibles aux bords. |
+
+Les [associations par asset](../lot16/bible-asset-associations.json) relient les calques aux rubriques **02, 13, 14, 15, 17, 22, 26, 27**, et les sujets de l’Homme Trouble aux rubriques **02, 03, 07, 09, 10, 16, 17, 26, 27**. Le fauteuil reste un `accessoire_candidat`, avec la qualification particulière **B/F/J de scène narrative**. Aucune association d’action, capacité de combat ou scène complète n’est ajoutée. Les 36 briefs narratifs restent des besoins documentés.
+
+Le [manifeste](../lot16/manifest.json), les revues indépendantes de [Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) et de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json), la [vérification du lot](../lot16/verification.json), le [classeur](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) et les [manquants courants](../lot16/MANQUANTS_2026-11-25.md) constituent les preuves de cette passe. Les PNG restent **Prototype** ; aucune valeur d’intégration moteur ou de fidélité 1:1 n’est promue.
+
+### Lot 15 non récupéré
+
+Les **113 PNG annoncés au lot 15 ne sont ni récupérés ni publiés**. L’archive, le classeur et le commit local annoncés précédemment ne sont pas disponibles dans l’environnement repris ni dans l’arbre publié de base. Le [constat de reprise](../lot16/RECUPERATION_LOT15.md) conserve les empreintes rapportées et les recherches effectuées. Ces déclarations historiques ne prouvent aucune présence courante ; les 33 plans narratifs annoncés pour cette livraison ne sont donc pas crédités comme fichiers disponibles.
+
+Les exclusions et refus antérieurement signalés restent actifs. La perte des fichiers ne déclenche pas leur régénération. Les réserves rapportées sur Thane, Méridiane et Fortification restent ouvertes, en attente d’originaux vérifiables ou de références suffisantes. Une nouvelle production éventuelle devrait être identifiée comme une nouvelle version, avec ses propres preuves.

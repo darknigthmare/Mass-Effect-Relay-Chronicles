@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "lot16-catalogue-independent-review",
+  "reviewDateUTC": "2026-11-25T20:00:50.446717+00:00",
+  "reviewer": "independent_subagent_lot16_illusive_man",
+  "baseCommit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+  "result": "pass",
+  "scope": "Comparaison documentaire et structurelle indépendante du consolidateur et des JSON lot16/bible, sans exécution mutatrice du consolidateur.",
+  "readOnlyReview": true,
+  "onlyWrittenPath": "docs/armax/lot16/qa/catalogue-independent-review.json",
+  "reviewedFiles": [
+    {
+      "path": "scripts/consolidate-armax-lot16.py",
+      "sha256": "1397e87ed17e94e0c40287a10419a8af8b9ee8b1c5dd9c96269c8de465333d4b"
+    },
+    {
+      "path": "docs/armax/lot16/production-catalog.json",
+      "sha256": "30ab5544b56e9805e517bbcb8ef64311a3bd71b1fa5c83687a65c71f4b018403"
+    },
+    {
+      "path": "docs/armax/lot16/manifest.json",
+      "sha256": "e7276337d704205543de5407540469239cbff556f7baf37c5ddff6d877cd7be5"
+    },
+    {
+      "path": "docs/armax/lot16/bible-asset-associations.json",
+      "sha256": "ed119f1a01fd5d1156ca55856ce71563b3c4a2929eeb912cf88610793f4224da"
+    },
+    {
+      "path": "docs/armax/bible/content-associations.json",
+      "sha256": "2a2ed5f217c44282909e6f1f34cd50b13c05ca3e667c828e88b10000839fd6b8"
+    },
+    {
+      "path": "docs/armax/bible/guide-associations.json",
+      "sha256": "b409c23eec9144bc817ca0daca166d3170a8f88e544e4c2de976f29d98fe4e4c"
+    },
+    {
+      "path": "docs/armax/bible/common-rules.json",
+      "sha256": "8828bea7699410df54e0fa36e3b5f91f0fa40a292beffc2d33dbd2f370fe8f7c"
+    },
+    {
+      "path": "docs/armax/lot16/consolidation-inputs.json",
+      "sha256": "135520da945cc409bb8abdb9a0214eb241f9e9522fd8bce94b8cea3f89ce9f03"
+    },
+    {
+      "path": "docs/armax/lot16/remaining-work.json",
+      "sha256": "3326c47fa1ce04724cac82d198a012e41364d6c9f968f0f82bd2ddde46423e15"
+    }
+  ],
+  "baselineSources": [
+    {
+      "path": "docs/armax/lot14/production-catalog.json",
+      "commit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+      "sha256": "fefbe24e354b75c86ee3ca4b3fb4cf9bdfa17ea99cfd13c6f73e7099225ee973"
+    },
+    {
+      "path": "docs/armax/bible/content-associations.json",
+      "commit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+      "sha256": "3154967877b8d4816bc3b5e06a8cb0fb8a75d1ce0450e8eb66bf772530869805"
+    },
+    {
+      "path": "docs/armax/bible/guide-associations.json",
+      "commit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+      "sha256": "692cd2b63a7cd0302a58ee674f19d7833cea28a7d7706fa9365cdb44b896f922"
+    },
+    {
+      "path": "docs/armax/bible/common-rules.json",
+      "commit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+      "sha256": "8828bea7699410df54e0fa36e3b5f91f0fa40a292beffc2d33dbd2f370fe8f7c"
+    }
+  ],
+  "checks": [
+    {
+      "id": "counts_192_132_60",
+      "result": "pass",
+      "evidence": {
+        "total": 192,
+        "withImage": 132,
+        "withoutImage": 60
+      }
+    },
+    {
+      "id": "188_identities_six_fields_preserved",
+      "result": "pass",
+      "evidence": {
+        "identityFields": [
+          "category",
+          "name",
+          "work",
+          "dlc",
+          "variant",
+          "plannedUse"
+        ],
+        "catalogFieldComparisons": 1128,
+        "indexFieldComparisons": 1128,
+        "catalogDifferences": [],
+        "indexDifferences": [],
+        "newIds": [
+          "layer_port_hanshan_architecture_distant_fixed",
+          "layer_port_hanshan_floor_fixed",
+          "layer_port_hanshan_rear_structures_fixed",
+          "prop_me2_illusive_man_chair"
+        ]
+      }
+    },
+    {
+      "id": "60_missing_ids_unchanged",
+      "result": "pass",
+      "evidence": {
+        "baselineMissingCount": 60,
+        "currentMissingCount": 60,
+        "newlyClosedMissingIds": [],
+        "newlyMissingIds": []
+      }
+    },
+    {
+      "id": "historical_asset_paths_preserved",
+      "result": "pass",
+      "evidence": {
+        "historicalPathCount": 139,
+        "lostPaths": []
+      }
+    },
+    {
+      "id": "three_layers_are_not_three_new_arenas",
+      "result": "pass",
+      "evidence": {
+        "masterArenaCount": 52,
+        "layerCount": 3,
+        "categoryStageCount": 55,
+        "explanation": "La catégorie stage contient 52 masters et 3 composants. Le plannedUse arene_adaptee compte toujours 52 entrées ; les trois nouvelles entrées utilisent calque_decor.",
+        "parents": {
+          "layer_port_hanshan_architecture_distant_fixed": {
+            "sourcePath": "docs/combat-2d/production.json",
+            "id": "ME1-VS-PORT-HANSHAN-REF-01",
+            "layerId": "PH-20"
+          },
+          "layer_port_hanshan_rear_structures_fixed": {
+            "sourcePath": "docs/combat-2d/production.json",
+            "id": "ME1-VS-PORT-HANSHAN-REF-01",
+            "layerId": "PH-30"
+          },
+          "layer_port_hanshan_floor_fixed": {
+            "sourcePath": "docs/combat-2d/production.json",
+            "id": "ME1-VS-PORT-HANSHAN-REF-01",
+            "layerId": "PH-40"
+          }
+        }
+      }
+    },
+    {
+      "id": "seated_pose_is_additional_not_missing_closure",
+      "result": "pass",
+      "evidence": {
+        "catalogId": "chr_me2_illusive_man",
+        "beforeAssets": [
+          "public/assets/armax/lot13/fighters/illusive-man-me2-standing-three-quarter.png"
+        ],
+        "afterAssets": [
+          "public/assets/armax/lot13/fighters/illusive-man-me2-standing-three-quarter.png",
+          "public/assets/armax/lot16/fighters/illusive-man-me2-seated.png"
+        ],
+        "inheritedMissingClosures": 0
+      }
+    },
+    {
+      "id": "26_exclusions_13_documented_13_reported",
+      "result": "pass",
+      "evidence": {
+        "historicalDocumentedCount": 13,
+        "reportedOnlyCount": 13,
+        "effectivePolicyCount": 26,
+        "noGeneratedExcludedIdentity": true,
+        "reportedOnlyEvidenceKinds": [
+          "previous_conversation_report_original_logs_unavailable"
+        ]
+      }
+    },
+    {
+      "id": "no_inherited_status_promotion",
+      "result": "pass",
+      "evidence": {
+        "catalogStatusChangedIds": [],
+        "indexSnapshotChangedIds": [],
+        "newEntryStatuses": {
+          "layer_port_hanshan_architecture_distant_fixed": "Prototype",
+          "layer_port_hanshan_floor_fixed": "Prototype",
+          "layer_port_hanshan_rear_structures_fixed": "Prototype",
+          "prop_me2_illusive_man_chair": "Prototype"
+        }
+      }
+    },
+    {
+      "id": "common_rules_and_combat_kits_unchanged",
+      "result": "pass",
+      "evidence": {
+        "commonRulesSha256": "8828bea7699410df54e0fa36e3b5f91f0fa40a292beffc2d33dbd2f370fe8f7c",
+        "commonRulesByteIdentical": true,
+        "designSubjectsCount": 16,
+        "allExistingRolePoliciesUnchanged": true,
+        "newActionAssociations": 0,
+        "newCombatKits": 0,
+        "newPlayableContent": 0
+      }
+    },
+    {
+      "id": "guide_30_requirements_90_criteria_unchanged",
+      "result": "pass",
+      "evidence": {
+        "requirementCount": 30,
+        "acceptanceCriteriaCount": 90,
+        "requirementsDeepEqual": true,
+        "statusesAndModesUnchanged": true
+      }
+    },
+    {
+      "id": "five_documentary_asset_associations",
+      "result": "pass",
+      "evidence": {
+        "associations": 5,
+        "fullActionDependenciesClosed": 0,
+        "narrativeScenesProduced": 0
+      }
+    },
+    {
+      "id": "six_native_pngs_five_selected",
+      "result": "pass",
+      "evidence": {
+        "nativePngs": 6,
+        "selectedPngs": 5,
+        "supersededPngs": 1,
+        "newEntries": 4,
+        "inheritedAdditionalPoses": 1,
+        "sha256AllMatch": true
+      }
+    },
+    {
+      "id": "pair_non_assembly_reservation_preserved",
+      "result": "pass",
+      "evidence": {
+        "assetIds": [
+          "prop_me2_illusive_man_chair",
+          "chr_me2_illusive_man"
+        ],
+        "assemblyCompatible": false
+      }
+    },
+    {
+      "id": "same_delivery_snapshot_hashes",
+      "result": "pass",
+      "evidence": [
+        {
+          "path": "docs/armax/lot16/production-catalog.json",
+          "sha256Matches": true
+        },
+        {
+          "path": "docs/armax/lot16/bible-asset-associations.json",
+          "sha256Matches": true
+        }
+      ]
+    },
+    {
+      "id": "scope_and_authority_current",
+      "result": "pass",
+      "evidence": {
+        "catalogScope": "Lot16 : trois calques Port Hanshan, un fauteuil narratif et une pose assise sur une identité déjà illustrée. Les188identités héritées sont conservées. 6PNG natifs pour5sujets, dont une révision écartée ; quatre nouvellesfiches. Lot15 non récupéré, sans certification1:1 ni intégration moteur.",
+        "authorityProductionSource": "docs/armax/lot16/production-catalog.json",
+        "authorityProductionChanges": true,
+        "guideProductionChanges": true
+      }
+    }
+  ],
+  "checkCount": 15,
+  "passedCheckCount": 15,
+  "failedCheckIds": [],
+  "findings": [],
+  "resolvedFindings": [
+    {
+      "id": "R01_catalog_scope",
+      "severity": "low",
+      "initialObservation": "Le catalogue lot16 conservait le scope du lot14 avec 172 identités / 20 sujets / 21 PNG.",
+      "recommendedCorrection": "Définir le scope courant dans scripts/consolidate-armax-lot16.py puis régénérer le catalogue.",
+      "resolution": "Corrigé par l’agent parent et relu : le scope commence par Lot16 et qualifie les nouveaux fichiers et la pose additionnelle.",
+      "status": "resolved"
+    },
+    {
+      "id": "R02_index_authority",
+      "severity": "medium",
+      "initialObservation": "L’autorité du nouvel index pointait lot14 avec productionChanges=false, alors que les catalogSource et le guide pointaient lot16.",
+      "recommendedCorrection": "Mettre authority.productionSource à docs/armax/lot16/production-catalog.json et authority.productionChanges à true dans le consolidateur.",
+      "resolution": "Les deux valeurs régénérées sont conformes et cohérentes avec le guide.",
+      "status": "resolved"
+    },
+    {
+      "id": "R03_effective_exclusion_policy",
+      "severity": "medium",
+      "initialObservation": "Les listes de suivi indiquaient 26 exclusions, mais policy.automaticRetryExcludedIds contenait seulement les 13 exclusions historiques.",
+      "recommendedCorrection": "Synchroniser la politique effective avec l’union des 26 IDs en préservant la qualification distincte des 13 refus documentés et des 13 rapportés.",
+      "resolution": "La politique effective contient maintenant exactement les 26 IDs ; les notes par entrée gardent la provenance reported-only et interdisent la relance.",
+      "status": "resolved"
+    }
+  ],
+  "accountingInterpretation": {
+    "fiches": 192,
+    "avecImageCandidate": 132,
+    "sansImage": 60,
+    "nouvellesFiches": 4,
+    "anciensPersonnagesManquantsFermes": 0,
+    "ancienPersonnageAvecPoseAdditionnelle": 1,
+    "mastersArenes": 52,
+    "calquesAdditionnels": 3,
+    "pngNatifs": 6,
+    "pngSelectionnes": 5,
+    "pngEcartes": 1
+  },
+  "limits": [
+    "La revue ne couvre pas la fidélité artistique 1:1, l’intégration moteur ni le gameplay.",
+    "Le classeur et les documents lisibles en cours de préparation ne font pas partie de cette passe et leur absence éventuelle ne constitue pas un échec.",
+    "Le script de consolidation a été lu et ses sorties comparées ; il n’a pas été exécuté par ce relecteur.",
+    "Les 13 refus rapportés restent un témoignage du contexte antérieur, pas 13 journaux originaux retrouvés.",
+    "Le champ newImagesClaimed=0 de la matrice du guide demeure historique ; les images lot16 sont explicitement comptées dans productionContinuations et le manifeste courant."
+  ]
+}
