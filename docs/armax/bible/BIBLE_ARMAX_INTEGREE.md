@@ -13,6 +13,7 @@ Base examinée : **4befa64285080fe016d6ecd9424b00ab4d42509f**, branche **feat/ar
 | Document | Usage |
 |---|---|
 | [Associations du guide](guide-associations.json) | 30 exigences de section, décisions, priorités, sources, critères et travaux restants |
+| [Associations du contenu](ASSOCIATIONS_CONTENU.md) et [index structuré](content-associations.json) | 188 fiches rattachées à leur rôle ; correspondances des kits, costumes, scènes et sous-zones |
 | [Règles communes RC-ARMAX-0.1](common-rules.json) | Contrat de conception normalisé, arbitrages entre les anciens lots |
 | [Campagnes et scènes](CAMPAGNES_ET_SCENES.md) | Campagne globale distincte, six routes pilotes et briefs d'illustrations |
 | [Fiches et liaisons](FICHES_ET_LIAISONS.md) | Modèles A–J adaptés, exemples remplis, dépendances et critères |
@@ -34,6 +35,14 @@ Le [lot 14](../lot14/README.md) matérialise **20 sujets fixes en 21 PNG natifs*
 **Usage dans notre jeu de combat :** les CAT6 sont des sprites d’ennemis candidats ; Kenson et Suvi restent narratifs ; les sous-zones Armax/Omega sont des masters de composition ; les effets, projectiles et accessoires constituent des composants visuels à associer aux actions après contrôle. L’effet percussif est proposé pour Grunt, le traceur chaud reste d’attribution incertaine et Throw est seulement une famille visuelle candidate pour le Recul biotique de Morinth. Les autres fichiers ne reçoivent aucun porteur inventé.
 
 **Production actuelle : 188 fiches, 128 avec image et 60 sans ; 225 originaux dans le corpus.** La [revue indépendante](../lot14/independent-art-review.json) et le [classeur](../lot14/Mass_Effect_Armax_Suivi_Lot14_2026-11-25.xlsx) documentent les réserves. Fidélité 1:1, paramètres moteur, phases d’action, couches de scène et autres poses restent ouverts. Les 36 plans narratifs ne sont pas déclarés illustrés par ce lot.
+
+## Associations consolidées du contenu
+
+L’[index de contenu](ASSOCIATIONS_CONTENU.md) rattache chacune des **188 fiches** aux modèles A–J et aux rubriques pertinentes du guide. Il distingue les **9 combattants candidats, 22 boss candidats, 31 adversaires et 25 soutiens narratifs** du suivi, puis les **38 costumes, 52 décors et 11 effets/projectiles/accessoires**. Ces rôles décrivent la production prévue ; ils ne constituent pas un roster jouable.
+
+Les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion** sont accessibles dans ce même index, sans les ajouter aux 188 lignes. Les correspondances exactes et les identifiants documentaires restent distincts. Kai Leng et Balak présentent une divergence entre usage « boss candidat » du catalogue et sélection Versus de leur fiche ; elle est exposée avant toute décision d’implémentation.
+
+Pour les décors, **18 associations précises concernant 16 sous-zones** sont reliées aux chapitres, routes ou exemples de fiches. Les avertissements de non-équivalence restent des restrictions, sans affectation de scène déduite. Le [rapport de cette réconciliation](verification-content-associations-2026-11-25.json) vérifie les identités, les liens et la conservation des sources de production.
 
 <a id="g00"></a>
 ## 00. Utilisation, priorités et autorité

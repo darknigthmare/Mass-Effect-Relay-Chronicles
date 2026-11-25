@@ -192,3 +192,11 @@ Le [catalogue lot 14](../lot14/production-catalog.json) est le suivi courant : 1
 Les [associations machine-lisibles](../lot14/bible-asset-associations.json) conservent les IDs et les références d’action existantes. La grenade ME1 ne crée pas un équipement pour chaque combattant ME1 ; un effet ME2 ne vaut pas preuve du même effet dans un autre opus. Les règles RC-ARMAX-0.1, dégâts, coûts et ressources ne sont pas modifiés par l’existence d’un PNG.
 
 La [revue artistique](../lot14/independent-art-review.json), les [lacunes](../lot14/REFERENCE_GAPS.md) et les [dépendances restantes](../lot14/remaining-work.json) sont des pièces de la fiche J. Aucun de ces actifs ne reçoit les statuts Intégré ou Validé.
+
+## 14. Associations de tout le catalogue courant
+
+L’[index consolidé](ASSOCIATIONS_CONTENU.md) et sa [version structurée](content-associations.json) appliquent ces modèles aux 188 fiches du lot 14. Une association indique le cadre à consulter ou compléter ; elle ne prouve pas que la fiche soit terminée. Le catalogue reste l’autorité sur les identités, usages, fichiers et statuts.
+
+Les costumes sont regroupés en 19 ensembles identité/œuvre, sans fusion de variantes. Deux liens exacts rejoignent les fiches lot 04 de Kai Leng et Balak ; leur divergence de sélection est conservée. Quatre liens documentaires rejoignent Legion standard, Legion loyauté et les deux costumes de Grunt, sans inventer de kitId Versus.
+
+Les 52 décors conservent leurs sous-zones. Les liens narratifs positifs, les simples mentions de lieu et les avertissements interdisant une substitution sont enregistrés séparément. Les trois rapprochements d’action déjà proposés au lot 14 gardent leurs réserves d’attribution et ne modifient pas RC-ARMAX-0.1.

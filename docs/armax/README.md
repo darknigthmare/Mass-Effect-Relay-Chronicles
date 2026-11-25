@@ -7,6 +7,7 @@ Cette annexe conserve la production artistique du mode de combat 2D de Mass Effe
 La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **30 rubriques** de **Combat_Games_Guide_General_v1.0.txt** aux contrats et fiches Armax. Elle fixe la référence commune de conception tout en conservant les lots historiques.
 
 - [Associations et 90 critères d’acceptation](bible/guide-associations.json).
+- [Associations des 188 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones et composants d’action ; [index structuré](bible/content-associations.json).
 - [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
