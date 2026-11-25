@@ -2,6 +2,17 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
+## Bible courante — intégration du guide général
+
+La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **30 rubriques** de **Combat_Games_Guide_General_v1.0.txt** aux contrats et fiches Armax. Elle fixe la référence commune de conception tout en conservant les lots historiques.
+
+- [Associations et 90 critères d’acceptation](bible/guide-associations.json).
+- [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
+- [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
+- [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
+
+**Portée : conception documentaire.** Les scénarios et plans ne sont ni des images produites ni des parcours jouables. Les 172 fiches du suivi lot 13 et leurs statuts restent inchangés ; ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+
 ## Lot 13 — continuation courante
 
 Le [lot 13](lot13/README.md) apporte **14 PNG pour 13 sujets** : Kelly Chambers, l’Homme Trouble et Alec Ryder ; Varren, Dévoreur, Rachni Soldier et CAT6 Specialist ; Samara loyauté et Jack standard ME2 ; la passerelle du poste du Tempest à Aya ; Kett Anointed, Reliquat Assembler et Hydra d’Andromeda. Le R0 d’Hydra reste conservé après correction de son capteur supérieur. **Dix anciennes fiches** sont nouvellement illustrées et **trois identités sourcées** sont ajoutées séparément.

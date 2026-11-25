@@ -62,6 +62,11 @@ Les conversations sont des adaptations françaises condensées ; les profils et 
 
 ## Armax Relay Clash — mode annexe de combat
 
+### Bible intégrée — guide général du 25 novembre 2026
+
+La [bible Armax intégrée](docs/armax/bible/BIBLE_ARMAX_INTEGREE.md) applique les 30 rubriques du guide de combat fourni par Darknigthmare aux systèmes, personnages et périodes du projet. Les [associations et 90 critères](docs/armax/bible/guide-associations.json), les [règles communes RC-ARMAX-0.1](docs/armax/bible/common-rules.json) et l’[annexe de campagnes et scènes](docs/armax/bible/CAMPAGNES_ET_SCENES.md) relient les anciens lots : six routes pilotes, une campagne globale en deux volets, finishers après KO final et quatre axes d’arène. Cette mise à jour est documentaire ; elle n’ajoute pas de PNG ni de fonctionnalité jouable et ne modifie pas les compteurs du lot 13.
+
+
 Le [dossier Armax](docs/armax/README.md) rassemble les poses individuelles, costumes, arènes et compléments de bible du mode de combat 2D. La [récupération du 20 novembre](docs/armax/recovery-20261120/README.md) conserve **86 PNG originaux distincts** issus de cinq sessions, avec empreintes SHA-256 et réserves. Les concepts, les corps fixes et les calques restent des prototypes artistiques ; leur présence ne constitue pas une animation complète ou une intégration jouable.
 
 Le [lot 06](docs/armax/lot06/README.md) conserve ses six images : Balak ME1, Jack ME2 AAP1, Miranda et Tali ME2 AAP2, le hangar du Normandy SR-2 ME3 et Sur’Kesh. Son catalogue et son classeur restent historiques.

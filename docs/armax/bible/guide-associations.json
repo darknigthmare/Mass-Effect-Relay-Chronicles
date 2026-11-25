@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": 1,
+  "project": "Mass Effect — Relay Chronicles",
+  "mode": "Armax Relay Clash",
+  "revision": "guide-integration-2026-11-25",
+  "updatedOn": "2026-11-25",
+  "timezone": "Europe/Paris",
+  "guideSource": {
+    "filename": "Combat_Games_Guide_General_v1.0.txt",
+    "version": "1.0",
+    "date": "2026-11-25",
+    "provenance": "fichier fourni par l'utilisateur",
+    "sections": 30,
+    "scope": "adaptation complète des rubriques ; pas une nouvelle édition du guide général"
+  },
+  "baseline": {
+    "commit": "4befa64285080fe016d6ecd9424b00ab4d42509f",
+    "branch": "feat/armax-missing-lot13-20261124",
+    "pullRequest": 11
+  },
+  "artifactRole": "Matrice documentaire de traçabilité ; ne remplace aucun catalogue de production ni export Excel.",
+  "statusAxes": [
+    "lore",
+    "conception",
+    "assets",
+    "integration",
+    "validation",
+    "publication"
+  ],
+  "coverageUnit": "rubrique_documentaire",
+  "implementedFeaturesClaimed": 0,
+  "newImagesClaimed": 0,
+  "animationProduction": false,
+  "sourceNamespaces": [
+    {
+      "source": "docs/armax/lot04/fighters.json",
+      "entityKey": "fighters[].id",
+      "role": "kits de conception",
+      "count": 14
+    },
+    {
+      "source": "docs/armax/lot13/production-catalog.json",
+      "entityKey": "entries[].id",
+      "role": "périmètre du suivi de manquants",
+      "count": 172
+    },
+    {
+      "source": "docs/combat-2d/production.json",
+      "entityKey": "assets[].id",
+      "role": "assets du complément ; pas tous des combattants",
+      "count": 11
+    },
+    {
+      "source": "docs/universe/catalogs/ME2.json",
+      "entityKey": "catalogue source à conserver",
+      "role": "identités ME2-CHR-GRUNT / ME2-CHR-LEGION"
+    }
+  ],
+  "modes": [
+    {
+      "id": "ARMAX-MODE-VERSUS",
+      "name": "Versus local",
+      "decision": "retenue",
+      "priority": "P0",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-CPU",
+      "name": "Combat libre IA",
+      "decision": "retenue",
+      "priority": "P0",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-TRAINING",
+      "name": "Entraînement et tutoriels",
+      "decision": "retenue",
+      "priority": "P0",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-ROUTE",
+      "name": "Routes individuelles et arcade narratif",
+      "decision": "retenue",
+      "priority": "P1",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-CAMPAIGN",
+      "name": "Campagne Protocoles de relais",
+      "decision": "retenue",
+      "priority": "P1",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-TOURNAMENT",
+      "name": "Tournoi local 4/8/16",
+      "decision": "retenue",
+      "priority": "P1",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-BOSS",
+      "name": "Boss Combat",
+      "decision": "retenue",
+      "priority": "P1",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-BOSSRUSH",
+      "name": "Boss Rush",
+      "decision": "retenue",
+      "priority": "P1",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-GALLERY",
+      "name": "Galerie et dossiers",
+      "decision": "retenue",
+      "priority": "P1",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-NETWORK",
+      "name": "Réseau et classement",
+      "decision": "a_decider",
+      "priority": "P2",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    },
+    {
+      "id": "ARMAX-MODE-REPLAY",
+      "name": "Replays de simulation",
+      "decision": "differee",
+      "priority": "P2",
+      "namespace": "identifiant_de_conception_pas_mode_runtime",
+      "implementationStatus": "non_livre_par_cette_revision"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "ARMAX-G00",
+      "guideSection": "00",
+      "title": "Utilisation du guide et priorités",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Le guide devient une référence transversale reliée aux lots Armax.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g00",
+      "existingRefs": [
+        "AGENTS.md",
+        "docs/GAMEDEV_GUIDANCE.md"
+      ],
+      "acceptanceCriteria": [
+        "Lier chaque lot à une exigence et une preuve de portée définie.",
+        "Conserver les instructions spécifiques et les historiques.",
+        "Nommer explicitement les arbitrages entre lots."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G01",
+      "guideSection": "01",
+      "title": "Identité et périmètre",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Duel latéral Armax séparé du RPG ATB, toutes œuvres déjà retenues conservées.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g01",
+      "existingRefs": [
+        "README.md",
+        "docs/universe/README.md",
+        "docs/DESIGN.md"
+      ],
+      "acceptanceCriteria": [
+        "Identifier format, moteur, plateformes et piliers.",
+        "Conserver les œuvres déjà retenues et leurs périodes.",
+        "Ne pas confondre suivi de manquants et univers exhaustif."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G02",
+      "guideSection": "02",
+      "title": "Fidélité et sources",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Contrôle de fidélité par œuvre, édition, période et référence exploitable.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g02",
+      "existingRefs": [
+        "docs/FIDELITY.md",
+        "docs/armax/lot13/production-catalog.json"
+      ],
+      "acceptanceCriteria": [
+        "Qualifier séparément canon, adaptation, original, alternatif et incertain.",
+        "Associer chaque fait à une source exploitable par œuvre/édition/période.",
+        "Ne promouvoir aucun statut de fidélité sur présence de fichier."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G03",
+      "guideSection": "03",
+      "title": "Roster, variantes et costumes",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Association des kits, identités, variantes et fichiers sans fusion d'espaces de noms.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g03",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/armax/lot13/production-catalog.json"
+      ],
+      "acceptanceCriteria": [
+        "Séparer identité, variante, transformation, costume et palette.",
+        "Conserver sélection versus/boss/soutien et exclusions.",
+        "Relier les espaces de noms sans doubler les sujets."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G04",
+      "guideSection": "04",
+      "title": "Fondations de combat",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "60 Hz, L/M/H/S et règles RC-ARMAX-0.1 ; divergences historiques consignées.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g04",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Rendre explicites commandes, garde, jauges, manches, égalités et interruptions.",
+        "Résoudre les divergences de règles sans falsifier les historiques.",
+        "Tester ultérieurement coûts, changements de côté, double KO et garde."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G05",
+      "guideSection": "05",
+      "title": "Movesets, spéciaux et ressources",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Kits existants préservés, ressources propres bornées et combos à vérifier.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g05",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Lier chaque action à un porteur/version et qualifier son adaptation.",
+        "Documenter D/A/R, résultats, coûts, limites et réponses adverses.",
+        "Recalculer les combos sous les règles communes avant validation."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "dependencies": [
+        "ARMAX-G02",
+        "ARMAX-G04",
+        "ARMAX-G22"
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G06",
+      "guideSection": "06",
+      "title": "Ultimes, finishers et conclusions",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Neutralisation décisive originale, après KO final, distincte de super/victoire/outro.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g06",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Distinguer super, neutralisation, victoire et outro.",
+        "Déclencher une neutralisation uniquement après résultat final fixé.",
+        "Définir cibles compatibles, repli et passage sans double récompense."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "dependencies": [
+        "ARMAX-G04",
+        "ARMAX-G07",
+        "ARMAX-G18"
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G07",
+      "guideSection": "07",
+      "title": "Présentation et relations",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Relations qualifiées et dialogues situés ; opposition tactique non assimilée au canon.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g07",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Qualifier chaque rivalité selon période et statut narratif.",
+        "Localiser les répliques avec identifiants stables.",
+        "Séparer présentations spécifiques, génériques et ressources absentes."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G08",
+      "guideSection": "08",
+      "title": "Histoire individuelle",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Six routes pilotes détaillées ; cinq combats et sept temps narratifs.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g08",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json"
+      ],
+      "acceptanceCriteria": [
+        "Relier intro, cinq combats, rival, revers et outro de chaque route pilote.",
+        "Justifier adversaires, version, lieu et conséquence.",
+        "Prévoir reprise entre combats et galerie sans effet répété."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "dependencies": [
+        "ARMAX-G03",
+        "ARMAX-G07",
+        "ARMAX-G10",
+        "ARMAX-G24"
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G09",
+      "guideSection": "09",
+      "title": "Campagne globale",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Protocoles de relais : campagne originale en volets distincts.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g09",
+      "existingRefs": [
+        "docs/armax/lot04/BIBLE_EXTENSION.md",
+        "docs/CHRONICLES.md"
+      ],
+      "acceptanceCriteria": [
+        "Donner à la campagne une intrigue et des chapitres distincts des routes.",
+        "Séparer Voie lactée/Andromeda et cadre hors diégèse.",
+        "Définir objectifs, progression, résolution et checkpoints."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "dependencies": [
+        "ARMAX-G02",
+        "ARMAX-G10",
+        "ARMAX-G11",
+        "ARMAX-G24"
+      ],
+      "subDecisions": [
+        {
+          "feature": "Rencontre physique inter-époques non justifiée dans une campagne située",
+          "decision": "non_applicable",
+          "priority": "P1",
+          "reason": "Possible seulement comme scénario de simulation explicitement alternatif."
+        },
+        {
+          "feature": "Exploration/hub Armax et progression RPG supplémentaire",
+          "decision": "differee",
+          "priority": "P2"
+        }
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G10",
+      "guideSection": "10",
+      "title": "Illustrations et cinématiques",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Plans d'intro, rivalité et outro avec fonction narrative et continuité visuelle.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g10",
+      "existingRefs": [
+        "docs/armax/lot03/Bible_Complement_Lot03.md",
+        "docs/ART_BRIEFS.md"
+      ],
+      "acceptanceCriteria": [
+        "Créer un brief par plan avec action, émotion, cadrage et continuité.",
+        "Séparer textes et sprites des illustrations de scène.",
+        "Conserver le statut non produit des plans seulement documentés."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G11",
+      "guideSection": "11",
+      "title": "Boss, machines et Boss Rush",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Boss à objectifs, machines et géants traités avec leurs propres règles.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g11",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/armax/lot13/production-catalog.json"
+      ],
+      "acceptanceCriteria": [
+        "Définir phases, annonces, réponses et échelle propres à la rencontre.",
+        "Garantir une solution pour chaque famille de kit autorisée.",
+        "Versionner ordre, récupération, tentatives, reprise et score du Rush."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G12",
+      "guideSection": "12",
+      "title": "Modes de jeu",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Modes P0/P1 retenus, tournoi existant conservé, extensions explicites.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g12",
+      "existingRefs": [
+        "docs/armax/lot04/BIBLE_EXTENSION.md"
+      ],
+      "acceptanceCriteria": [
+        "Nommer entrée, partie, résultat et sortie de chaque mode.",
+        "Conserver tournoi local, campagne et modes boss retenus.",
+        "Différer explicitement les extensions non engagées."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "subDecisions": [
+        {
+          "feature": "Tag, assists d'équipe, coopération, quatre joueurs, plusieurs plans",
+          "decision": "differee",
+          "priority": "P2",
+          "reason": "Aucun engagement de réalisation dans le socle Armax examiné ; drones propres au kit conservés."
+        },
+        {
+          "feature": "Survie, contre-la-montre et défis supplémentaires",
+          "decision": "differee",
+          "priority": "P2"
+        }
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G13",
+      "guideSection": "13",
+      "title": "Arènes et lisibilité",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Sous-zones exactes, plan de combat lisible et couche de parallaxe suivie séparément.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g13",
+      "existingRefs": [
+        "docs/armax/lot13/production-catalog.json",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Raccorder une sous-zone exacte à son ID et ses références.",
+        "Définir terrain, départs, limites, caméra et couches.",
+        "Ne pas déclarer un niveau complet sur un master aplati."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G14",
+      "guideSection": "14",
+      "title": "Arènes vivantes et statiques",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Quatre axes indépendants et profils de match annoncés.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g14",
+      "existingRefs": [
+        "docs/armax/lot03/Bible_Complement_Lot03.md",
+        "docs/armax/lot13/production-catalog.json"
+      ],
+      "acceptanceCriteria": [
+        "Séparer présentation, interactions, dangers et transitions.",
+        "Conserver les annonces indispensables en version statique.",
+        "Partager les règles de gameplay entre participants."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G15",
+      "guideSection": "15",
+      "title": "Arènes connectées et interactions",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Liaisons locales cohérentes avec leur époque ; destinations requises.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g15",
+      "existingRefs": [
+        "docs/armax/lot13/production-catalog.json",
+        "docs/armax/lot04/BIBLE_EXTENSION.md"
+      ],
+      "acceptanceCriteria": [
+        "Vérifier période, géographie et sous-zones des deux extrémités.",
+        "Définir déclenchement, défense, KO, chrono, arrivée et reset.",
+        "Ne rendre la liaison disponible qu'avec destination réellement jouable."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "dependencies": [
+        "ARMAX-G04",
+        "ARMAX-G13",
+        "ARMAX-G14",
+        "ARMAX-G23"
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G16",
+      "guideSection": "16",
+      "title": "Ennemis, soutiens, véhicules et projectiles",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Propriétaires, rôles et comportements séparés de l'image des projectiles.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g16",
+      "existingRefs": [
+        "docs/armax/lot13/production-catalog.json",
+        "docs/combat-2d/production.json"
+      ],
+      "acceptanceCriteria": [
+        "Conserver des rôles et inventaires distincts.",
+        "Documenter propriétaire, émission, trajectoire, collision et réponses.",
+        "Séparer projectile, traînée et impact selon besoin moteur."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G17",
+      "guideSection": "17",
+      "title": "Direction artistique et assets",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Un sujet par sprite, alpha mesuré, asymétries vérifiées ; images fixes prioritaires.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g17",
+      "existingRefs": [
+        "docs/ART_BRIEFS.md",
+        "docs/armax/lot03/Bible_Complement_Lot03.md",
+        "docs/armax/lot13/README.md"
+      ],
+      "acceptanceCriteria": [
+        "Un sujet par sprite autonome, alpha réel, cadrage et ancrage mesurés.",
+        "Vérifier version, proportions, équipement et asymétries.",
+        "Conserver phase sprites fixes et provenance des sorties."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G18",
+      "guideSection": "18",
+      "title": "Animations, VFX, son et caméra",
+      "decision": "retenue",
+      "priority": "P1",
+      "adaptation": "Conception d'états complète ; animation reportée à sa phase de production.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g18",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Définir états, entrées/sorties, points d'émission et synchronisation.",
+        "Séparer durées de simulation et dessins produits.",
+        "Différer production d'animations sans omettre les besoins."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "subDecisions": [
+        {
+          "feature": "Conception des états et besoins",
+          "decision": "retenue",
+          "priority": "P1"
+        },
+        {
+          "feature": "Production d'animations",
+          "decision": "differee",
+          "priority": "P2",
+          "reason": "Phase utilisateur courante : sprites de base fixes ; réactivation lors de la phase animation."
+        }
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G19",
+      "guideSection": "19",
+      "title": "Interface et expérience utilisateur",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Parcours complets, HUD des ressources et disponibilité honnête.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g19",
+      "existingRefs": [
+        "docs/armax/lot04/BIBLE_EXTENSION.md",
+        "docs/GAMEDEV_GUIDANCE.md"
+      ],
+      "acceptanceCriteria": [
+        "Documenter sélection→match→résultat→revanche et chemins d'échec.",
+        "Afficher ressources, versions, profils et disponibilité réelle.",
+        "Prévoir navigation clavier/manette et déconnexion."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G20",
+      "guideSection": "20",
+      "title": "Tutoriels et entraînement",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Exercices d'approche, rechargement, drone et garde adaptés aux kits.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g20",
+      "existingRefs": [
+        "docs/armax/lot04/BIBLE_EXTENSION.md",
+        "docs/combat-2d/CONTINUATION_2026-11-19.md"
+      ],
+      "acceptanceCriteria": [
+        "Relier un exercice à chaque mécanique réellement implémentée.",
+        "Permettre reset, position, ressources, garde et diagnostic.",
+        "Distinguer données observées et valeurs de conception."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G21",
+      "guideSection": "21",
+      "title": "IA et difficulté",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Personnalité tactique par kit, difficultés fondées sur décisions et réactions.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g21",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json"
+      ],
+      "acceptanceCriteria": [
+        "Respecter règles et ressources du kit.",
+        "Régler réaction, erreurs et décisions avec exceptions boss explicites.",
+        "Tester coins, soutiens, projectiles, transitions et objectifs."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G22",
+      "guideSection": "22",
+      "title": "Équilibrage et accessibilité",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Contrôle du défenseur, lisibilité et compétition sans bonus RPG.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g22",
+      "existingRefs": [
+        "docs/armax/lot04/BIBLE_EXTENSION.md",
+        "docs/GAMEDEV_GUIDANCE.md"
+      ],
+      "acceptanceCriteria": [
+        "Vérifier tailles, styles, boucles, ressources et contrôle du défenseur.",
+        "Séparer bonus de campagne et compétition.",
+        "Préserver l'information en modes de confort et commandes simplifiées."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "subDecisions": [
+        {
+          "feature": "Bonus RPG persistants en Versus normalisé",
+          "decision": "non_applicable",
+          "priority": "P0",
+          "reason": "Égalité de départ et séparation des états."
+        }
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G23",
+      "guideSection": "23",
+      "title": "Multijoueur, réseau et replays",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Local retenu ; réseau à décider et replays différés, état déterministe anticipé.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g23",
+      "existingRefs": [
+        "docs/armax/lot04/BIBLE_EXTENSION.md",
+        "package.json"
+      ],
+      "acceptanceCriteria": [
+        "Retenir le local et préciser déconnexion/reprise.",
+        "Anticiper sérialisation sans revendiquer netcode ou service.",
+        "Décider architecture et validation réseau avant engagement en ligne."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "subDecisions": [
+        {
+          "feature": "Local",
+          "decision": "retenue",
+          "priority": "P0"
+        },
+        {
+          "feature": "État de simulation sérialisable",
+          "decision": "retenue",
+          "priority": "P0"
+        },
+        {
+          "feature": "Réseau/rollback/services/classement/crossplay",
+          "decision": "a_decider",
+          "priority": "P2"
+        },
+        {
+          "feature": "Replays de simulation",
+          "decision": "differee",
+          "priority": "P2"
+        }
+      ],
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G24",
+      "guideSection": "24",
+      "title": "Progression et sauvegarde",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Progression et sauvegarde Armax versionnées sans effet sur le RPG.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g24",
+      "existingRefs": [
+        "docs/CHRONICLES.md",
+        "docs/GAMEDEV_GUIDANCE.md",
+        "docs/armax/lot04/BIBLE_EXTENSION.md"
+      ],
+      "acceptanceCriteria": [
+        "Isoler état Armax et décisions du RPG/Chroniques.",
+        "Versionner checkpoints, règles, scènes et déblocages.",
+        "Prévoir migration, import refusé et récompenses idempotentes."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G25",
+      "guideSection": "25",
+      "title": "Organisation et statistiques",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Six axes de statut ; catalogue lot13 non exhaustif des bibles/récupérations.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g25",
+      "existingRefs": [
+        "docs/armax/lot13/production-catalog.json",
+        "docs/armax/lot13/README.md",
+        "docs/armax/lot04/fighters.json"
+      ],
+      "acceptanceCriteria": [
+        "Conserver six axes et les identifiants d'origine.",
+        "Donner unités, dénominateurs et périmètre daté.",
+        "Ne pas additionner images, fiches, plans et combattants jouables."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G26",
+      "guideSection": "26",
+      "title": "Validation et production",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Critères par livrable et vérification de la seule portée documentaire actuelle.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g26",
+      "existingRefs": [
+        "AGENTS.md",
+        "docs/GAMEDEV_GUIDANCE.md",
+        "docs/armax/lot04/BIBLE_EXTENSION.md"
+      ],
+      "acceptanceCriteria": [
+        "Définir terminé par type de livrable.",
+        "Préparer tranche jouable et risques avant extension de contenu.",
+        "Limiter les preuves de cette révision à la documentation."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G27",
+      "guideSection": "27",
+      "title": "Fiches A–J",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Fiches A–J remplies partiellement sur références existantes avec limites.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g27",
+      "existingRefs": [
+        "docs/armax/lot04/fighters.json",
+        "docs/armax/lot13/production-catalog.json"
+      ],
+      "acceptanceCriteria": [
+        "Adapter les dix fiches aux espaces de noms existants.",
+        "Fournir des exemples remplis et signaler les champs inconnus.",
+        "Ne pas créer de catalogue parallèle de présence d'assets."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G28",
+      "guideSection": "28",
+      "title": "Instruction de reprise",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Instruction réutilisable propre au projet, source de reprise unique.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g28",
+      "existingRefs": [
+        "AGENTS.md",
+        "docs/GAMEDEV_GUIDANCE.md",
+        "docs/armax/README.md"
+      ],
+      "acceptanceCriteria": [
+        "Nommer sources, règles, phase et invariants de reprise.",
+        "Rechercher un manquant existant avant de créer un nouvel ID.",
+        "Rapporter vérifications et publication à leur portée réelle."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    },
+    {
+      "id": "ARMAX-G29",
+      "guideSection": "29",
+      "title": "Références et vocabulaire",
+      "decision": "retenue",
+      "priority": "P0",
+      "adaptation": "Sources primaires, sources locales et créations distinguées.",
+      "bibleRef": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md#g29",
+      "existingRefs": [
+        "docs/gamedev-sources.json",
+        "docs/armax/lot04/BIBLE_EXTENSION.md"
+      ],
+      "acceptanceCriteria": [
+        "Distinguer inspirations, sources lore et règles du projet.",
+        "Indiquer origine officielle ou créée des noms.",
+        "Conserver incertitudes et limitations des références."
+      ],
+      "designStatus": "Défini",
+      "loreStatus": "sources_identifiees_avec_reserves_par_fiche",
+      "assetStatus": "aucune_production_dans_cette_revision",
+      "integrationStatus": "documentation_uniquement",
+      "validationStatus": "verification_documentaire_distincte_du_gameplay",
+      "implementationEvidence": [],
+      "remainingWork": "Produire, intégrer et vérifier les livrables concernés selon la phase et les critères de la bible.",
+      "publicationStatus": "porte_par_la_livraison",
+      "publicationRef": "docs/armax/bible/verification-2026-11-25.json"
+    }
+  ],
+  "publication": {
+    "scope": "livraison_documentaire",
+    "targetBranch": "feat/armax-missing-lot13-20261124",
+    "pullRequestUrl": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/pull/11",
+    "proofRef": "docs/armax/bible/verification-2026-11-25.json",
+    "stateAuthority": "historique_Git_et_etat_courant_de_la_PR",
+    "mergeOrReleaseClaimed": false
+  }
+}

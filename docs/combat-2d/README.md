@@ -1,5 +1,8 @@
 # Mode combat 2D — dossier de continuation
 
+> **Référence courante — 25 novembre 2026 :** la [bible intégrée Armax](../armax/bible/BIBLE_ARMAX_INTEGREE.md), ses [associations au guide](../armax/bible/guide-associations.json) et [RC-ARMAX-0.1](../armax/bible/common-rules.json) complètent cette continuation. T devient un alias de S ; déprojection, gains, réduction de combo et annulations suivent le contrat commun. Les supers de Grunt/Legion restent à 200. Les anciennes chaînes demandent leur recalcul et leur vérification ; aucun gameplay n’est ajouté par cette note.
+
+
 Ce dossier suit la production du mode annexe de **Mass Effect — Relay Chronicles**. La reprise du **19 novembre 2026** porte sur Grunt ME2, Legion ME2 et son drone, le M-300 Claymore ME2 et une arène inspirée de Port Hanshan ME1.
 
 ## Lire le lot

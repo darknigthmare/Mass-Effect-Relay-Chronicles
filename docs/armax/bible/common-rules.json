@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "ruleSetId": "RC-ARMAX-0.1",
+  "title": "Armax Relay Clash — contrat commun de conception",
+  "updatedOn": "2026-11-25",
+  "timezone": "Europe/Paris",
+  "designStatus": "Défini",
+  "implementationStatus": "non_implémenté_par_cette_livraison",
+  "gameplayValidated": false,
+  "baseCommit": "4befa64285080fe016d6ecd9424b00ab4d42509f",
+  "scope": "Duel latéral Armax. Référence documentaire de normalisation ; aucune importation runtime ni réécriture des fiches historiques.",
+  "sourceRefs": [
+    "docs/armax/lot04/fighters.json",
+    "docs/armax/lot04/BIBLE_EXTENSION.md",
+    "docs/combat-2d/CONTINUATION_2026-11-19.md"
+  ],
+  "simulation": {
+    "hz": 60,
+    "renderIndependent": true,
+    "inputBufferFrames": 5,
+    "localFocusLoss": "pause_simulation_et_entrees",
+    "hitstopFrames": {
+      "light": 6,
+      "medium": 8,
+      "heavy": 10,
+      "special": 10
+    },
+    "roundClockDuringHitstop": "paused"
+  },
+  "controls": {
+    "buttons": [
+      "L",
+      "M",
+      "H",
+      "S"
+    ],
+    "directions": "1–9 relatives à l'adversaire ; orientation mémorisée au début de la commande",
+    "legacyAliases": {
+      "T": "S"
+    },
+    "throwForward": "6L+M",
+    "throwBack": "4L+M",
+    "throwBackStatus": "différée_jusqu_aux_animations",
+    "legacyNeutralThrow": "L+M devient une prise avant en absence de direction arrière",
+    "finisher": "L+M+H après KO final confirmé",
+    "aliasRule": "Un alias ne crée ni bouton supplémentaire ni action différente."
+  },
+  "match": {
+    "roundsToWin": 2,
+    "roundSeconds": 99,
+    "lifeAndShieldAtRoundStart": "valeurs initiales du profil",
+    "meterAtRoundStart": 0,
+    "timeoutOrder": [
+      "ratio_PV_restants_sur_PV_initiaux",
+      "ratio_bouclier_restant_sur_bouclier_initial"
+    ],
+    "zeroShieldRatio": 0,
+    "exactTie": "aucun_point_de_manche_puis_manche_supplementaire_aux_valeurs_initiales",
+    "simultaneousKO": "meme_traitement_que_egalite_exacte",
+    "resultCommit": "une_seule_fois_avant_presentation",
+    "boss": "une_manche_a_objectifs_selon_fiche"
+  },
+  "defense": {
+    "standingBackBlocks": [
+      "mid",
+      "air",
+      "overhead"
+    ],
+    "downBackBlocks": [
+      "mid",
+      "low"
+    ],
+    "groundOverhead": "uniquement_actions_explicitement_etiquetees ; aucun ajout aux normaux lot04",
+    "throwTechFrames": 10,
+    "wakeupThrowImmunityFrames": 8,
+    "defaultThrow": {
+      "startupFrames": 5,
+      "activeFrames": 2,
+      "whiffRecoveryFrames": 34,
+      "designRange": 0.7
+    },
+    "perActionTiming": "les durées spécifiques d'une prise restent celles de sa fiche ; la fenêtre d'échappée commune prime",
+    "universalInvulnerability": false,
+    "explicitGroundOverheads": [
+      {
+        "sourceRef": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+        "sourceEntityId": "ME2-CHR-GRUNT",
+        "command": "6H",
+        "name": "Frappe plongeante",
+        "blockedBy": "standing_back",
+        "beats": "down_back"
+      },
+      {
+        "sourceRef": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+        "sourceEntityId": "ME2-CHR-LEGION",
+        "command": "6M",
+        "name": "Revers descendant",
+        "blockedBy": "standing_back",
+        "beats": "down_back"
+      }
+    ]
+  },
+  "shield": {
+    "beforeHealth": true,
+    "rechargeDelayFrames": 300,
+    "rechargePerFrame": 1,
+    "max": "valeur_initiale_du_profil",
+    "resetDelayOn": [
+      "attaque_lancee",
+      "degat_recu",
+      "impact_garde"
+    ],
+    "normalization": "protection commune de duel ; ne certifie pas l'identité physique des barrières, boucliers et armures du lore",
+    "noUnspecifiedBypass": true
+  },
+  "meter": {
+    "min": 0,
+    "max": 300,
+    "normalHitGain": 8,
+    "specialHitGain": 4,
+    "blockedAttackGain": 3,
+    "damageReceivedGain": 5,
+    "gainCapPerPlayerPerCombo": 30,
+    "blockedAttackGainOwner": "attaquant",
+    "receivedGainCondition": "perte_positive_de_PV_ou_protection_du_combattant",
+    "eventRule": "une seule catégorie de gain offensif par action ; aucun gain par tick visuel ou par sous-impact",
+    "noGainFrom": [
+      "attaque_a_vide",
+      "cible_soutien",
+      "super",
+      "finisher",
+      "provocation",
+      "victoire",
+      "scene_narrative"
+    ],
+    "defaultSuperCost": 100,
+    "spend": "au_declenchement_de_l_action_acceptee",
+    "interruptedStartup": "cout_non_rembourse",
+    "rejectedInput": "aucun_cout"
+  },
+  "combos": {
+    "damageScaling": [
+      1,
+      0.8,
+      0.65,
+      0.5,
+      0.35,
+      0.25
+    ],
+    "maxDamageEvents": 6,
+    "repeatedMoveAllowed": false,
+    "multiHitBudget": "un total par action ; répartir les dégâts entiers entre ses impacts, sans multiplier le total",
+    "rounding": "floor(baseTotal*scaling) avant répartition des sous-impacts",
+    "trueCombo": "continuité réelle de hitstun ; cadence rapide insuffisante",
+    "cancels": [
+      "L -> M sur touche",
+      "M -> spécial de conversion 1 sur touche",
+      "H -> spécial de conversion 2 sur touche",
+      "spécial de conversion -> super sur touche"
+    ],
+    "fighterExceptions": [
+      {
+        "fighterId": "armax-kirrahe-me1",
+        "rule": "H -> spécial 3, pas spécial 2"
+      }
+    ],
+    "legacyRoutes": "enchaînements Grunt/Legion historiques à recalculer sous ce contrat ; non garantis et non validés",
+    "damageEventUnit": "une action offensive identifiée dans la chaîne, pas chaque sous-impact",
+    "scalingIndexIncrement": "une fois par action au premier contact dommageable ; tous ses sous-impacts partagent le coefficient et le budget",
+    "maximumUnit": "six actions offensives distinctes par chaîne ; non-répétition évaluée par actionId"
+  },
+  "chip": {
+    "normal": 0,
+    "specialAndSuperFraction": 0.05,
+    "rounding": "floor",
+    "shieldFirst": true,
+    "canCauseFinalKO": false
+  },
+  "finishers": {
+    "familyName": "Neutralisation décisive",
+    "nameOrigin": "création_du_projet_non_terme_officiel",
+    "legacyIndividualNamesPreserved": true,
+    "triggerAfter": "KO_final_et_resultat_de_match_fixe",
+    "inputWindowFrames": 120,
+    "damage": 0,
+    "meterGain": 0,
+    "exclusiveRewards": false,
+    "skip": "immédiat ; aucun changement de résultat ni de récompense",
+    "presentationOptions": [
+      "désactivée",
+      "sobre",
+      "complète"
+    ],
+    "tournament": "sobre_ou_ignoree_selon_reglement",
+    "eligibility": "uniquement profil autorisé et cible compatible ; choix de présentation ne débloque pas un boss en Versus",
+    "requiredResult": {
+      "matchOver": true,
+      "reason": "KO_final",
+      "winnerKnown": true,
+      "targetCompatible": true
+    },
+    "excludedResultReasons": [
+      "temps_ecoule",
+      "egalite",
+      "double_KO_sans_vainqueur",
+      "forfait",
+      "abandon",
+      "deconnexion"
+    ]
+  },
+  "profiles": [
+    {
+      "id": "ARMAX-RULE-COMPETITION",
+      "presentation": [
+        "vivante",
+        "reduite",
+        "statique"
+      ],
+      "interactions": false,
+      "hazards": false,
+      "transitions": false,
+      "persistentEquipmentBonuses": false
+    },
+    {
+      "id": "ARMAX-RULE-SPECTACLE",
+      "presentation": [
+        "vivante",
+        "reduite",
+        "statique"
+      ],
+      "interactions": "selon_fiche_validee",
+      "hazards": "selon_fiche_validee",
+      "transitions": "selon_liaisons_validees",
+      "persistentEquipmentBonuses": false
+    },
+    {
+      "id": "ARMAX-RULE-CAMPAIGN",
+      "presentation": [
+        "vivante",
+        "reduite",
+        "statique"
+      ],
+      "interactions": "selon_chapitre",
+      "hazards": "selon_chapitre",
+      "transitions": "selon_chapitre",
+      "persistentEquipmentBonuses": "uniquement_si_reglement_de_campagne_le_definit"
+    },
+    {
+      "id": "ARMAX-RULE-TRAINING",
+      "presentation": [
+        "vivante",
+        "reduite",
+        "statique"
+      ],
+      "interactions": "configurable",
+      "hazards": "configurable",
+      "transitions": "configurable",
+      "persistentEquipmentBonuses": false
+    }
+  ],
+  "kitOverrides": [
+    {
+      "sourceRef": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+      "sourceEntityId": "ME2-CHR-GRUNT",
+      "sourceEntityNamespace": "catalogue_univers_pas_fighterId_runtime",
+      "displayName": "Grunt ME2",
+      "superName": "Brèche décisive",
+      "superCost": 200,
+      "superTier": 2,
+      "legacyTechniqueButton": "T",
+      "canonicalTechniqueButton": "S",
+      "sharedRulesOverrideLegacy": true,
+      "moveTimingsAndCosts": "conservés comme hypothèses ; ne valent pas validation des combos",
+      "abilityConstraint": "percée physique originale, pas Charge biotique"
+    },
+    {
+      "sourceRef": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+      "sourceEntityId": "ME2-CHR-LEGION",
+      "sourceEntityNamespace": "catalogue_univers_pas_fighterId_runtime",
+      "displayName": "Legion ME2",
+      "superName": "Solution de tir",
+      "superCost": 200,
+      "superTier": 2,
+      "legacyTechniqueButton": "T",
+      "canonicalTechniqueButton": "S",
+      "sharedRulesOverrideLegacy": true,
+      "moveTimingsAndCosts": "conservés comme hypothèses ; ne valent pas validation des combos",
+      "abilityConstraint": "intrusion limitée aux soutiens explicitement piratables"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DEC-ARMAX-01",
+      "topic": "commandes",
+      "resolution": "L/M/H/S commun ; T reste alias historique de S."
+    },
+    {
+      "id": "DEC-ARMAX-02",
+      "topic": "deprojection",
+      "resolution": "10 pas communs ; ancienne fenêtre de 8 pas remplacée pour la conception courante."
+    },
+    {
+      "id": "DEC-ARMAX-03",
+      "topic": "jauge",
+      "resolution": "Gains et plafond du lot04 communs ; gains du complément Grunt/Legion historiques."
+    },
+    {
+      "id": "DEC-ARMAX-04",
+      "topic": "combos",
+      "resolution": "Scaling et annulations du lot04 communs ; anciennes chaînes M>H et combos Grunt/Legion restent à remapper et tester."
+    },
+    {
+      "id": "DEC-ARMAX-05",
+      "topic": "super",
+      "resolution": "100 par défaut ; deux supers existantes Grunt/Legion à 200 conservées, explicitement niveau II."
+    },
+    {
+      "id": "DEC-ARMAX-06",
+      "topic": "etats_et_continuite",
+      "resolution": "État Armax séparé du RPG et des Chroniques ; aucune résurrection ni transfert automatique d'équipement."
+    },
+    {
+      "id": "DEC-ARMAX-07",
+      "topic": "stage",
+      "resolution": "Présentation locale indépendante ; interactions/dangers/transitions communs au match et désactivés dans le profil compétition initial."
+    },
+    {
+      "id": "DEC-ARMAX-08",
+      "topic": "clarifications",
+      "resolution": "Attribution des gains, budgets multi-impacts, interruption par impact gardé et égalité explicites ; décisions de conception à tester."
+    }
+  ]
+}
