@@ -11,9 +11,17 @@ La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **30 rubriques** 
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
 
-**Portée : conception documentaire.** Les scénarios et plans ne sont ni des images produites ni des parcours jouables. Les 172 fiches du suivi lot 13 et leurs statuts restent inchangés ; ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+**Portée : conception documentaire.** Les scénarios et plans ne sont ni des images produites ni des parcours jouables. Le suivi courant est celui du lot 14 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
 
-## Lot 13 — continuation courante
+## Lot 14 — continuation courante
+
+Le [lot 14](lot14/README.md) ajoute **21 PNG natifs pour 20 sujets** : CAT6 Heavy et Sniper, Amanda Kenson, Suvi assise ; cinq sous-zones Armax/Omega ; sept effets ME2, deux projectiles, un omni-outil et la grenade-disque ME1. Un R0 d’omni-outil est conservé en historique. **Quatre anciennes fiches** sont illustrées et **seize nouvelles fiches** sont ajoutées ; aucun costume nouveau.
+
+Le [catalogue et les manquants](lot14/MANQUANTS_2026-11-25.md) et le [classeur du 25 novembre](lot14/Mass_Effect_Armax_Suivi_Lot14_2026-11-25.xlsx) comptent **188 fiches : 128 avec image et 60 sans**. Couverture : **49/87 personnages, 16/38 costumes, 52/52 stages, 7 effets, 2 projectiles et 2 accessoires**. Les 172 identités héritées et les 13 exclusions sont conservées ; le corpus atteint 225 PNG originaux.
+
+Les [associations à la bible](lot14/bible-asset-associations.json), [sources](lot14/reference-library.json), [réserves](lot14/REFERENCE_GAPS.md), [revues](lot14/independent-art-review.json) et [vérifications](lot14/verification.json) détaillent la portée. Tous restent **Prototype**, sans certification 1:1 ni intégration moteur. La pose assise de Suvi, les décors aplatis et les instants de VFX ne complètent pas tous les assets de leurs fiches.
+
+## Lot 13 — historique
 
 Le [lot 13](lot13/README.md) apporte **14 PNG pour 13 sujets** : Kelly Chambers, l’Homme Trouble et Alec Ryder ; Varren, Dévoreur, Rachni Soldier et CAT6 Specialist ; Samara loyauté et Jack standard ME2 ; la passerelle du poste du Tempest à Aya ; Kett Anointed, Reliquat Assembler et Hydra d’Andromeda. Le R0 d’Hydra reste conservé après correction de son capteur supérieur. **Dix anciennes fiches** sont nouvellement illustrées et **trois identités sourcées** sont ajoutées séparément.
 

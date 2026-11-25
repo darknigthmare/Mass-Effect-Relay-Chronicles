@@ -2,7 +2,7 @@
 # Bible intégrée du mode combat 2D
 
 **Révision documentaire du 25 novembre 2026 — Europe/Paris.**
-**État : conception définie ; cette livraison ne produit ni gameplay, ni image, ni animation.**
+**État : conception définie. L’intégration initiale du guide est documentaire ; la continuation artistique lot 14 est associée ci-dessous.**
 
 Cette bible applique les **30 rubriques, numérotées 00 à 29**, du fichier fourni par Darknigthmare, **Combat_Games_Guide_General_v1.0.txt**, à Armax, le mode annexe de **Mass Effect — Relay Chronicles**. Elle réunit les décisions transversales et relie les fiches existantes. Elle constitue le point d'entrée courant ; les lots conservent leur provenance et leurs résultats historiques.
 
@@ -20,12 +20,20 @@ Base examinée : **4befa64285080fe016d6ecd9424b00ab4d42509f**, branche **feat/ar
 | [Lot 04 : bible détaillée](../lot04/BIBLE_EXTENSION.md) et [fiches](../lot04/fighters.json) | 14 sujets, 13 kits de conception, récits et deux boss à phases |
 | [Complément Grunt / Legion / Port Hanshan](../../combat-2d/CONTINUATION_2026-11-19.md) | Deux kits et une arène, à normaliser selon le contrat commun |
 | [Lot 03 : bible de production](../lot03/Bible_Complement_Lot03.md) | Apparences, poses, masters et besoins de parallaxe |
-| [Catalogue de suivi lot 13](../lot13/production-catalog.json) | Présence des images et manquants de son périmètre de 172 fiches |
+| [Catalogue courant lot 14](../lot14/production-catalog.json) | 188 fiches : 128 avec image candidate et 60 sans ; historique lot13 conservé |
 | [Bible du jeu hôte](../../DESIGN.md) | Association au RPG et séparation du contrat ATB |
 | [Dossier Armax](../README.md) | Navigation dans les livraisons artistiques |
 | [Vérification documentaire](verification-2026-11-25.json) | Couverture, liens, IDs, cohérence et limites |
 
 **Lecture des statuts.** « Retenu » est une décision de conception, « Défini » décrit une fiche, « Prototype » un état de production. Aucun de ces termes ne signifie « jouable » ou « fidélité 1:1 validée ». Les exigences d'animation restent documentées pendant la phase de production de sprites fixes.
+
+## Continuation artistique — lot 14 du 25 novembre 2026
+
+Le [lot 14](../lot14/README.md) matérialise **20 sujets fixes en 21 PNG natifs** et conserve les 172 identités héritées. Quatre anciens manquants sont illustrés ; seize entrées sourcées s’ajoutent au catalogue. Les [liaisons par actif](../lot14/bible-asset-associations.json) raccordent les fiches B/C/G/J aux exigences du guide. Les 30 rubriques et 90 critères de la matrice initiale conservent leur sens.
+
+**Usage dans notre jeu de combat :** les CAT6 sont des sprites d’ennemis candidats ; Kenson et Suvi restent narratifs ; les sous-zones Armax/Omega sont des masters de composition ; les effets, projectiles et accessoires constituent des composants visuels à associer aux actions après contrôle. L’effet percussif est proposé pour Grunt, le traceur chaud reste d’attribution incertaine et Throw est seulement une famille visuelle candidate pour le Recul biotique de Morinth. Les autres fichiers ne reçoivent aucun porteur inventé.
+
+**Production actuelle : 188 fiches, 128 avec image et 60 sans ; 225 originaux dans le corpus.** La [revue indépendante](../lot14/independent-art-review.json) et le [classeur](../lot14/Mass_Effect_Armax_Suivi_Lot14_2026-11-25.xlsx) documentent les réserves. Fidélité 1:1, paramètres moteur, phases d’action, couches de scène et autres poses restent ouverts. Les 36 plans narratifs ne sont pas déclarés illustrés par ce lot.
 
 <a id="g00"></a>
 ## 00. Utilisation, priorités et autorité

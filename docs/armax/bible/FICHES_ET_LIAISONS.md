@@ -176,3 +176,19 @@ Une nouvelle revue consigne date, commit, fichier exact, méthode, résultat et 
 Les fiches structurent les travaux futurs : compléter les collisions et trajectoires des actions, documenter les sources fines des pouvoirs, préparer les sous-zones de récits, produire les plans narratifs, terminer les couches nécessaires, puis intégrer les parcours. Les bibles des lots restent les sources des détails de personnage ; ce document fournit leur cadre commun et des exemples vérifiables.
 
 Les changements de contenu ou de disponibilité passent par le catalogue concerné et son export. La présente association de méthode n'altère pas les 172 entrées du lot 13 ni son classeur historique.
+
+
+## 13. Raccordement des images fixes du lot 14
+
+Le [catalogue lot 14](../lot14/production-catalog.json) est le suivi courant : 188 fiches, 128 avec image candidate et 60 sans. Les références lot13 des exemples précédents restent des liens historiques ; leurs identités et usages ont été conservés.
+
+| Fiche | Actifs liés | Portée de l’association |
+|---|---|---|
+| B — Personnage | CAT6 Heavy, CAT6 Sniper, Amanda Kenson, Suvi Anwar | Une pose observée par sujet ; Kenson/Suvi restent narratifs ; Suvi inclut le siège |
+| C — Action/projectile | Tir percussif, traceur chaud, impacts, Singularité, Shockwave, flash, omni-outil et grenade-disque | Composants fixes ; pas de fermeture automatique d’une action ni d’attribution canonique non démontrée |
+| G — Arène | Armax hall nord, Fatal Error ; Omega Water Treatment, passerelle Doru District, Afterlife commandement | Cinq points de vue documentés ; sol jouable, couches et connexions à produire |
+| J — Asset/suivi | Les 21 PNG, dont R0 omni-outil écarté | Native PNG, SHA-256, dimensions, alpha, prompt exact, inputs ordonnés, sources, revues et réserves |
+
+Les [associations machine-lisibles](../lot14/bible-asset-associations.json) conservent les IDs et les références d’action existantes. La grenade ME1 ne crée pas un équipement pour chaque combattant ME1 ; un effet ME2 ne vaut pas preuve du même effet dans un autre opus. Les règles RC-ARMAX-0.1, dégâts, coûts et ressources ne sont pas modifiés par l’existence d’un PNG.
+
+La [revue artistique](../lot14/independent-art-review.json), les [lacunes](../lot14/REFERENCE_GAPS.md) et les [dépendances restantes](../lot14/remaining-work.json) sont des pièces de la fiche J. Aucun de ces actifs ne reçoit les statuts Intégré ou Validé.

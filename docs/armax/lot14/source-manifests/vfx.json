@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "batch": "lot14-vfx",
+  "createdAt": "2026-11-25",
+  "repository": "darknigthmare/Mass-Effect-Relay-Chronicles",
+  "auditedHead": "06d85522ad0165aedcf96b67948f8b836327c785",
+  "scope": "Dix candidats fixes transparents complémentaires pour projectiles, effets et accessoire. Production isolée ; aucune mutation de branche ou de catalogue par cet agent.",
+  "counts": {
+    "selectedSubjects": 10,
+    "selectedPNG": 10,
+    "nativeGenerationOutputs": 11,
+    "supersededPNG": 1,
+    "inheritedCatalogueRowsClosed": 0
+  },
+  "status": "candidate_assets_with_technical_and_visual_review",
+  "generation": {
+    "tool": "image_gen.imagegen",
+    "editsOutsideImagegen": false,
+    "nativeOutputsPreserved": true,
+    "promptsPreserved": true,
+    "referenceImagesInspected": true
+  },
+  "globalConstraints": [
+    "Pas de certification 1:1 : les images sources sont partielles, souvent en perspective et sans séquence temporelle.",
+    "Aucun candidat intégré au moteur, aucune animation, aucun comportement de combat implémenté.",
+    "Ne pas étendre automatiquement ces références ME2 à ME1, ME3 ou Andromeda.",
+    "Les 13 exclusions historiques et les refus Claymore ont été préservés ; aucune nouvelle tentative sur ces sujets.",
+    "Aucune modification des données de dégâts, jauges, coûts, KO ou finishers."
+  ],
+  "assets": [
+    {
+      "proposedAssetId": "fx_me2_overload_impact_fixed",
+      "file": "assets/vfx-me2-overload-impact.png",
+      "name": "Décharge électrique ME2 — candidat Overload",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-e041be19-afd1-4277-80b4-2559673fbf7c.png",
+      "prompt": "prompt-01-overload.txt",
+      "referenceIds": [
+        "ref_ea_me2_sentinel_press"
+      ],
+      "visualRole": "Impact radial",
+      "anchorProposal": "Centre visuel à mesurer dans le moteur.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Ramification et enveloppe électrique cohérentes avec le motif observé ; géométrie reconstruite, pas extraite.",
+          "Le nom Overload est une attribution probable, non démontrée par la légende de cette capture.",
+          "Le halo comporte du bruit d'alpha de valeur 1 en bordure ; masse utile non coupée."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    },
+    {
+      "proposedAssetId": "projectile_me2_concussive_fixed",
+      "file": "assets/vfx-me2-concussive-projectile.png",
+      "name": "Tir percussif ME2",
+      "category": "projectile",
+      "nativeOutput": "../generated_images/exec-82eb4931-45e2-4d22-b434-d2aabf18bb29.png",
+      "prompt": "prompt-02.txt",
+      "referenceIds": [
+        "ref_me2_concussive_gameplay"
+      ],
+      "visualRole": "Projectile orienté vers la droite",
+      "anchorProposal": "Tête du projectile à droite ; pivot non validé.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "La capture ne fournit qu'une petite traînée lointaine ; détails et épaisseur restent à comparer en jeu.",
+          "Aucune hitbox, vitesse, durée ou animation n'est livrée par cette image."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": [
+        {
+          "source": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+          "sourceCharacterId": "ME2-CHR-GRUNT",
+          "input": "236M",
+          "move": "Tir percussif",
+          "status": "proposed_visual_attachment_only",
+          "note": "Le tir percussif figure explicitement dans la fiche Grunt. Le PNG ne vérifie ni portée ni neutralisation par projectile."
+        }
+      ]
+    },
+    {
+      "proposedAssetId": "accessory_me2_omnitool_casting_fixed",
+      "file": "assets/prop-me2-omnitool-casting.png",
+      "name": "Omni-outil ME2 — projection d'avant-bras",
+      "category": "accessoire",
+      "nativeOutput": "../generated_images/exec-e750627d-0582-4991-87db-e4060bc06e44.png",
+      "prompt": "prompt-11.txt",
+      "referenceIds": [
+        "ref_ea_me2_sentinel_press"
+      ],
+      "visualRole": "Projection d'avant-bras isolée",
+      "anchorProposal": "Ouverture fourchue à gauche, anneau à droite dans le candidat ; adaptation à la pose à vérifier.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "La correction R1 supprime la main, les doigts et l'interface de paume inventés dans R0.",
+          "Des contours et panneaux ont été reconstruits ; proportion, perspective et orientation ne sont pas certifiées 1:1.",
+          "Projection humaine générique observée ; aucune attribution à la main geth de Legion ni à une omni-lame ME3."
+        ]
+      },
+      "selected": true,
+      "revision": "R1",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    },
+    {
+      "proposedAssetId": "fx_me2_throw_impact_fixed",
+      "file": "assets/vfx-me2-throw-impact.png",
+      "name": "Projection biotique ME2 — impact Throw",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-8cf62537-1e4d-4a29-bd12-a48707a54c7e.png",
+      "prompt": "prompt-04.txt",
+      "referenceIds": [
+        "ref_me2_throw_gameplay"
+      ],
+      "visualRole": "Impact compact",
+      "anchorProposal": "Centre d'impact à régler sur la cible.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Couleurs froides et concentration centrale cohérentes ; forme instantanée reconstruite.",
+          "L'association à Push dans Armax est une proposition artistique, pas une preuve de pouvoir canonique ni de branchement moteur."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": [
+        {
+          "source": "docs/armax/lot04/fighters.json",
+          "fighterId": "armax-morinth-me2",
+          "actionId": "armax-morinth-me2-special-3",
+          "move": "Push",
+          "status": "proposed_visual_family_only",
+          "note": "Reprise possible du langage biotique ME2 ; la mécanique Armax et le visuel canonique exact de Morinth restent à comparer."
+        }
+      ]
+    },
+    {
+      "proposedAssetId": "fx_me2_incinerate_impact_fixed",
+      "file": "assets/vfx-me2-incinerate-impact.png",
+      "name": "Incinération ME2 — impact",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-d983d4bb-ad05-4a18-b2c9-f5d249b93f0e.png",
+      "prompt": "prompt-05.txt",
+      "referenceIds": [
+        "ref_me2_incinerate_gameplay"
+      ],
+      "visualRole": "Impact thermique",
+      "anchorProposal": "Centre d'impact à régler sur la cible.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Nuage rouge et filaments dorés repris du motif observé ; microformes reconstruits.",
+          "Aucun état brûlure, dégât progressif ou affectation automatique à un kit n'est induit."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    },
+    {
+      "proposedAssetId": "fx_me2_cryo_impact_fixed",
+      "file": "assets/vfx-me2-cryo-impact.png",
+      "name": "Cryo Blast ME2 — impact",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-81edff82-a2e0-4b06-afcc-7e5afe6f2760.png",
+      "prompt": "prompt-06.txt",
+      "referenceIds": [
+        "ref_me2_cryo_gameplay"
+      ],
+      "visualRole": "Impact cryogénique",
+      "anchorProposal": "Centre d'impact à régler sur la cible.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Motif blanc froid et éclats de givre lisibles ; densité et forme à comparer à vitesse réelle.",
+          "Ce sprite n'inclut pas de cible gelée ni de règles de gel."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    },
+    {
+      "proposedAssetId": "fx_me2_singularity_active_fixed",
+      "file": "assets/vfx-me2-singularity-active.png",
+      "name": "Singularité ME2 — état actif fixe",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-5a885b18-6394-4918-9a09-dc354e383e96.png",
+      "prompt": "prompt-07.txt",
+      "referenceIds": [
+        "ref_ea_me2_singularity_press"
+      ],
+      "visualRole": "Champ biotique actif",
+      "anchorProposal": "Noyau sombre à utiliser comme centre proposé ; non intégré.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Noyau noir et courants bleus-violets cohérents avec la capture promotionnelle ; organisation spatiale reconstruite.",
+          "Le noyau sombre est une partie volontaire du sujet, pas un fond opaque accidentel.",
+          "Un état fixe ne livre pas les phases apparition, attraction et extinction."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    },
+    {
+      "proposedAssetId": "projectile_me2_incendiary_fixed",
+      "file": "assets/vfx-me2-incendiary-projectile.png",
+      "name": "Traceur chaud ME2 — candidat munitions incendiaires",
+      "category": "projectile",
+      "nativeOutput": "../generated_images/exec-0f1027eb-647d-44f9-8ecf-77f838b1b760.png",
+      "prompt": "prompt-08.txt",
+      "referenceIds": [
+        "ref_me2_incendiary_gameplay"
+      ],
+      "visualRole": "Traceur orienté vers la droite",
+      "anchorProposal": "Tête lumineuse à droite ; pivot non validé.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "L'attribution du traceur à la munition incendiaire n'est pas démontrée par une image fixe.",
+          "La géométrie, la couleur exacte et le lien avec le tir de Claymore restent à confirmer.",
+          "Ne pas confondre le visuel avec une brûlure permanente ou un projectile laser."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": [
+        {
+          "source": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+          "sourceCharacterId": "ME2-CHR-GRUNT",
+          "legacyInput": "214T",
+          "normalizedInput": "214S",
+          "move": "Munitions incendiaires",
+          "status": "candidate_association_needs_visual_attribution",
+          "note": "Le buff défini accorde +20 dégâts directs aux deux prochains tirs de Claymore, sans brûlure permanente ; ni arme Claymore ni moteur ne sont livrés."
+        }
+      ]
+    },
+    {
+      "proposedAssetId": "fx_me2_shockwave_pulse_fixed",
+      "file": "assets/vfx-me2-shockwave-pulse.png",
+      "name": "Shockwave ME2 — une impulsion au sol",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-9fc16a8e-0afe-41c5-a26d-1bdd496bb0df.png",
+      "prompt": "prompt-09.txt",
+      "referenceIds": [
+        "ref_me2_shockwave_gameplay"
+      ],
+      "visualRole": "Impulsion hémisphérique au sol",
+      "anchorProposal": "Base lumineuse proposée pour ancrage sol ; altitude à valider.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Hémisphère bleu-blanc et centre lumineux lisibles, plus large et régulier que le motif partiellement masqué de la capture.",
+          "Densité du dôme et perspective de la base à ajuster après comparaison en jeu.",
+          "Une seule impulsion, sans série de vagues ni chronologie."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    },
+    {
+      "proposedAssetId": "fx_me2_weapon_discharge_observed_fixed",
+      "file": "assets/vfx-me2-weapon-discharge-observed.png",
+      "name": "Décharge d'arme ME2 — motif observé",
+      "category": "effet",
+      "nativeOutput": "../generated_images/exec-c41a9c37-9e40-427e-9501-8970c25d1fdf.png",
+      "prompt": "prompt-10.txt",
+      "referenceIds": [
+        "ref_ea_me2_weapon_discharge"
+      ],
+      "visualRole": "Flash orienté vers la droite",
+      "anchorProposal": "Origine lumineuse à gauche, projection vers la droite ; rattachement au canon à vérifier.",
+      "visualReview": {
+        "status": "candidate_with_reservations",
+        "reviewer": "guide_audit",
+        "observed": true,
+        "reservations": [
+          "Flash bleu-blanc et étincelles chaudes conservés ; ramifications et halo reconstruits.",
+          "Le type d'arme et de munition n'est pas établi : aucune attribution Claymore, grenade, Overload ou arme geth.",
+          "Risque de surdimensionnement du halo par rapport à la capture ; contrôler à échelle de combat."
+        ]
+      },
+      "selected": true,
+      "revision": "R0",
+      "work": "Mass Effect 2",
+      "inWorldYear": 2185,
+      "fixedOnly": true,
+      "transparentBackgroundRequested": true,
+      "nativeImagegen": true,
+      "fidelity1to1Certified": false,
+      "engineIntegrated": false,
+      "actualScaleTested": false,
+      "animationProvided": false,
+      "gameplayChanges": false,
+      "existingCatalogueRowsClosed": [],
+      "proposedAssociations": []
+    }
+  ],
+  "superseded": [
+    {
+      "proposedAssetId": "accessory_me2_omnitool_casting_fixed",
+      "revision": "R0",
+      "file": "history/prop-me2-omnitool-casting-v1.png",
+      "nativeOutput": "../generated_images/exec-1e66a3c1-d67f-474b-8bb7-cf7e3fb29a65.png",
+      "prompt": "prompt-03.txt",
+      "referenceIds": [
+        "ref_ea_me2_sentinel_press"
+      ],
+      "selected": false,
+      "status": "superseded",
+      "reason": "Main complète, doigts et interface circulaire de paume inventés : remplacé par la projection d'avant-bras R1.",
+      "supersededBy": "assets/prop-me2-omnitool-casting.png"
+    }
+  ],
+  "dependencies": {
+    "audit": "audit-missing-fixed-assets.json",
+    "technicalQA": "technical-qa.json",
+    "references": "references/index.json"
+  },
+  "deferred": [
+    {
+      "subject": "Barrière / stase / fortification",
+      "reason": "La référence Barrier récupérée montre le menu de pouvoirs, sans champ exploitable. Il manque une vue active attribuable à chaque pouvoir et à sa version."
+    },
+    {
+      "subject": "Grenade disque ME1",
+      "reason": "Confiée au parent ; aucune production ni doublon dans ce lot."
+    },
+    {
+      "subject": "Déploiements, props de boss et projectiles spécifiques lot04",
+      "reason": "L'audit conserve les dépendances. Un pouvoir ou accessoire extrapolé depuis un seul nom de kit ne peut pas être déclaré fidèle."
+    },
+    {
+      "subject": "Claymore",
+      "reason": "Exclusion historique de production préservée ; aucun nouveau rendu."
+    }
+  ]
+}
