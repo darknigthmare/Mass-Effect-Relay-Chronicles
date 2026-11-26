@@ -2,11 +2,11 @@
 
 **Révision documentaire du 25 novembre 2026 — Europe/Paris.**
 
-Cet index relie les **192 fiches du catalogue lot 16** aux rôles, fiches types et rubriques de notre jeu de combat. Les **188 identités antérieures** sont conservées ; quatre fiches sont ajoutées et l’Homme Trouble reçoit une pose supplémentaire. L’index rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.
+Cet index relie les **196 fiches du catalogue lot 18** aux rôles, fiches types et rubriques de notre jeu de combat. Les **192 identités antérieures** sont conservées ; quatre composants du marché Urdnot sont ajoutés. Onze fiches sont illustrées par le lot17 consolidé et trois costumes par le lot18. L’index rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.
 
-Sources : [catalogue courant](../lot16/production-catalog.json), [fiches lot 04](../lot04/fighters.json), [complément Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md), [campagnes et scènes](CAMPAGNES_ET_SCENES.md), [fiches A–J](FICHES_ET_LIAISONS.md), [associations artistiques lot 14](../lot14/bible-asset-associations.json) et [lot 16](../lot16/bible-asset-associations.json). Le [JSON associé](content-associations.json) contient les sélecteurs exacts, qualifications et empreintes des sources.
+Sources : [catalogue courant](../lot18/production-catalog.json), [fiches lot 04](../lot04/fighters.json), [complément Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md), [campagnes et scènes](CAMPAGNES_ET_SCENES.md), [fiches A–J](FICHES_ET_LIAISONS.md), [associations artistiques lot 14](../lot14/bible-asset-associations.json) et [lot 16](../lot16/bible-asset-associations.json). Le [JSON associé](content-associations.json) contient les sélecteurs exacts, qualifications et empreintes des sources.
 
-**Base de la continuation lot 16 : `71955d9143562d6a44a8b8d48bc552978372bc1e`.** La première projection examinait le lot 14 au commit `cc44ce510f1bb152fa68f3d8375a5db2745437c5` ; ses correspondances et ses 188 ancres sont conservées. La projection courante reprend les apports vérifiés du lot 16. Le catalogue demeure la source de production ; l’index n’est ni une nouvelle liste de combattants sélectionnables ni un inventaire exhaustif du projet.
+**Base de la continuation lot 16 : `71955d9143562d6a44a8b8d48bc552978372bc1e`.** La première projection examinait le lot 14 au commit `cc44ce510f1bb152fa68f3d8375a5db2745437c5` ; ses correspondances et ses 188 ancres sont conservées. La projection courante reprend les apports vérifiés des lots17–18 depuis `1e3cea80b1a6ec81d7ca6df8ad70d96988973f10`. Les relations de conception antérieures restent conservées. Le catalogue demeure la source de production ; l’index n’est ni une nouvelle liste de combattants sélectionnables ni un inventaire exhaustif du projet.
 
 ## 1. Lecture et portée
 
@@ -14,16 +14,16 @@ Chaque ligne du catalogue est associée à un rôle déjà déclaré, puis aux f
 
 | Famille du catalogue | Fiches | Avec image candidate | Sans image |
 |---|---:|---:|---:|
-| Personnages et adversaires | 87 | 49 | 38 |
-| Costumes | 38 | 16 | 22 |
+| Personnages et adversaires | 87 | 57 | 30 |
+| Costumes | 38 | 22 | 16 |
 | Masters de sous-zones de décor | 52 | 52 | 0 |
-| Calques de décor — Port Hanshan | 3 | 3 | 0 |
+| Calques de décor — Port Hanshan et marché Urdnot | 5 | 5 | 0 |
 | Effets | 7 | 7 | 0 |
 | Projectiles | 2 | 2 | 0 |
-| Accessoires | 3 | 3 | 0 |
-| **Total** | **192** | **132** | **60** |
+| Accessoires | 5 | 5 | 0 |
+| **Total** | **196** | **150** | **46** |
 
-La catégorie stage contient **55 fiches : 52 masters de sous-zones et 3 calques**. Le lot 16 apporte **6 PNG, dont 5 sélectionnés, pour 5 sujets** ; la pose assise ne crée pas une nouvelle identité et le sol R0 écarté ne crée pas un sujet supplémentaire. La présence d’une image ne ferme pas les autres poses, vues, accessoires, phases d’action ou couches de décor. Les valeurs de fidélité et d’intégration moteur restent celles des sources. Les associations ne modifient aucun kit, coût, dégât, condition de fin ou sauvegarde. Les 113 PNG annoncés au lot 15 sont exclus des présences tant qu’ils restent [non récupérés](../lot16/RECUPERATION_LOT15.md).
+La catégorie stage contient **57 fiches : 52 masters de sous-zones et 5 calques**. Le lot 16 apporte **6 PNG, dont 5 sélectionnés, pour 5 sujets** ; la pose assise ne crée pas une nouvelle identité et le sol R0 écarté ne crée pas un sujet supplémentaire. La présence d’une image ne ferme pas les autres poses, vues, accessoires, phases d’action ou couches de décor. Les valeurs de fidélité et d’intégration moteur restent celles des sources. Les associations ne modifient aucun kit, coût, dégât, condition de fin ou sauvegarde. Les 113 PNG annoncés au lot 15 sont exclus des présences tant qu’ils restent [non récupérés](../lot16/RECUPERATION_LOT15.md).
 
 ### Rôles dans le jeu de combat
 
@@ -37,8 +37,8 @@ La catégorie stage contient **55 fiches : 52 masters de sous-zones et 3 calques
 | Arène adaptée | 52 | G, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [13](BIBLE_ARMAX_INTEGREE.md#g13), [14](BIBLE_ARMAX_INTEGREE.md#g14), [15](BIBLE_ARMAX_INTEGREE.md#g15), [17](BIBLE_ARMAX_INTEGREE.md#g17), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Documenter la sous-zone exacte, le sol, la caméra, les couches et les quatre axes d’options. Un master de décor ne prouve ni terrain jouable ni connexion. Une fiche H s’ajoute seulement pour un événement ou une liaison explicitement étudiés. |
 | Effet visuel | 7 | C, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [05](BIBLE_ARMAX_INTEGREE.md#g05), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [18](BIBLE_ARMAX_INTEGREE.md#g18), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Associer l’instant visuel à une phase d’action et à une attribution sourcée. Ni la couleur ni le nom du fichier ne prouvent un porteur, des dégâts ou une durée. |
 | Projectile candidat | 2 | C, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [05](BIBLE_ARMAX_INTEGREE.md#g05), [16](BIBLE_ARMAX_INTEGREE.md#g16), [17](BIBLE_ARMAX_INTEGREE.md#g17), [18](BIBLE_ARMAX_INTEGREE.md#g18), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Préparer propriétaire, trajectoire, collision, interaction et phase visuelle dans la fiche d’action. L’image fixe et l’association proposée restent distinctes d’un projectile moteur fonctionnel. |
-| Accessoire candidat | 3 | B, C, J pour grenade et omni-outil ; B, F, J pour le fauteuil narratif. Rubriques précisées par entrée dans le JSON. | Définir l’attache et l’usage compatibles avec l’acteur documenté. Le fauteuil est lié à l’Homme Trouble et à sa présence narrative ME2 ; aucune action ne lui est attribuée. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus. |
-| Calque de décor — `calque_decor` | 3 | G, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [13](BIBLE_ARMAX_INTEGREE.md#g13), [14](BIBLE_ARMAX_INTEGREE.md#g14), [15](BIBLE_ARMAX_INTEGREE.md#g15), [17](BIBLE_ARMAX_INTEGREE.md#g17), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Séparer architecture distante, structures arrière et sol de Port Hanshan. Chaque composant conserve son ID de couche et sa relation à `ME1-VS-PORT-HANSHAN-REF-01` ; aucune arène supplémentaire, collision ou vitesse de parallaxe validée n’en est déduite. |
+| Accessoire candidat | 5 | B, C, J pour grenade et omni-outil ; B, F, J pour le fauteuil narratif ; G, J pour les deux props du marché Urdnot. Rubriques précisées par entrée dans le JSON. | Définir l’attache et l’usage compatibles avec l’acteur ou le décor documenté. Le fauteuil est lié à l’Homme Trouble et à sa présence narrative ME2 ; les props de Tuchanka restent des composants de scène. Aucune action ne leur est attribuée. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus. |
+| Calque de décor — `calque_decor` | 5 | G, J ; rubriques [02](BIBLE_ARMAX_INTEGREE.md#g02), [13](BIBLE_ARMAX_INTEGREE.md#g13), [14](BIBLE_ARMAX_INTEGREE.md#g14), [15](BIBLE_ARMAX_INTEGREE.md#g15), [17](BIBLE_ARMAX_INTEGREE.md#g17), [22](BIBLE_ARMAX_INTEGREE.md#g22), [26](BIBLE_ARMAX_INTEGREE.md#g26), [27](BIBLE_ARMAX_INTEGREE.md#g27) | Séparer les trois couches de Port Hanshan et les deux couches du marché Urdnot à Tuchanka. Chaque composant conserve son ID et sa relation à sa composition documentaire ; aucune arène supplémentaire, collision ou vitesse de parallaxe validée n’en est déduite. |
 
 Les 87 fiches de personnages se répartissent en **9 combattants candidats, 22 boss candidats, 31 adversaires candidats et 25 soutiens narratifs**. Ce sont les usages du suivi artistique. La sélection d’un mode doit rester cohérente avec la fiche de conception, les règles communes et les réserves ci-dessous.
 
@@ -48,7 +48,7 @@ Le fauteuil conserve le rôle de catalogue `accessoire_candidat`, avec une assoc
 
 Les sélections du tableau suivant reproduisent la conception du lot 04. Elles ne prouvent pas une implémentation. Une absence du catalogue de manquants ne signifie pas que le sujet manque au projet.
 
-| Sujet / identifiant de conception | Sélection décrite dans la source | Correspondance au catalogue courant lot 16 |
+| Sujet / identifiant de conception | Sélection décrite dans la source | Correspondance au catalogue courant lot 18 |
 |---|---|---|
 | Saren Arterius — `armax-saren-me1` | Versus, boss | Hors de ce catalogue ; fiche existante conservée |
 | Matriarche Bénézia — `armax-benezia-me1` | boss | Hors de ce catalogue ; fiche existante conservée |
@@ -162,7 +162,9 @@ Les autres effets, projectiles et accessoires du lot 14 conservent leurs référ
 
 Le [fauteuil](#prop_me2_illusive_man_chair) et la [pose assise](#chr_me2_illusive_man) du lot 16 sont associés à la présence narrative ME2 de l’Homme Trouble, en **B/F/J**. Les [associations du lot](../lot16/bible-asset-associations.json) portent `actionAssociations: []` et `completeNarrativeSceneProduced: false`. Aucun chapitre ou numéro de plan particulier ne leur est affecté sans brief correspondant. Le personnage assis inclut un fauteuil redessiné : assise, accoudoirs et appuis ne coïncident pas exactement avec l’accessoire vide. Les deux PNG ont un alpha réel de 0 à 254, avec résidus faibles sur certains bords ; la [revue indépendante](../lot16/qa/illusive-man-independent-review.json) conserve ces limites.
 
-## 6. Index des 192 entrées
+## 6. Index des 192 entrées héritées
+
+Les quatre nouvelles fiches du lot 18 figurent dans la section « Composants du marché Urdnot » en fin de document, portant le total courant à 196.
 
 L’identité, l’œuvre, la variante et l’état d’image ci-dessous sont repris du catalogue de référence. « Candidat présent » indique uniquement qu’au moins un chemin d’image est déclaré. Les preuves et réserves détaillées restent dans le catalogue et les manifestes des lots. Les rubriques et fiches applicables sont celles du rôle indiqué en section 1 et dans le JSON.
 
@@ -179,7 +181,7 @@ Fiches : **B, C, E, J**. Candidat du suivi artistique ; aucune sélection jouabl
 | <a id="chr_me3_urdnot_wreav"></a>`chr_me3_urdnot_wreav` — Urdnot Wreav | ME3 ; Apparence ME3 | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_alec_ryder"></a>`chr_mea_alec_ryder` — Alec Ryder | MEA ; Armure de Pionnier du prologue | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_reyes_vidal"></a>`chr_mea_reyes_vidal` — Reyes Vidal | MEA ; Apparence Kadara | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_mea_sloane_kelly"></a>`chr_mea_sloane_kelly` — Sloane Kelly | MEA ; Apparence Kadara | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_mea_sloane_kelly"></a>`chr_mea_sloane_kelly` — Sloane Kelly | MEA ; Apparence Kadara | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_evfra"></a>`chr_mea_evfra` — Evfra | MEA ; Apparence de chef de la Résistance | Sans image | Cadre du rôle ; affectation particulière à préciser |
 
 ### Boss candidat — 22 fiches
@@ -191,7 +193,7 @@ Fiches : **B, C, I, J**. Usage proposé dans le catalogue ; confronter la sélec
 | <a id="chr_me3_kai_leng"></a>`chr_me3_kai_leng` — Kai Leng | ME3 ; Tenue du jeu publié | Sans image | armax-kai-leng-me3 ; divergence de rôle conservée |
 | <a id="chr_me1_balak"></a>`chr_me1_balak` — Balak | ME1 ; Bring Down the Sky ; Apparence X57 | Candidat présent | armax-balak-me1 ; divergence de rôle conservée |
 | <a id="chr_me2_collector_general"></a>`chr_me2_collector_general` — Général récolteur | ME2 ; Corps du personnage | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me3_maya_brooks"></a>`chr_me3_maya_brooks` — Maya Brooks | ME3 ; Citadel ; Apparence finale du DLC | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me3_maya_brooks"></a>`chr_me3_maya_brooks` — Maya Brooks | ME3 ; Citadel ; Apparence finale du DLC | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_thresher_maw"></a>`chr_me1_thresher_maw` — Dévoreur / Thresher Maw | ME1 ; Créature ME1 émergée | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_rachni_brood_warrior"></a>`chr_me1_rachni_brood_warrior` — Rachni Brood Warrior | ME1 ; Guerrier rachni ME1 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_geth_armature"></a>`chr_me1_geth_armature` — Geth Armature | ME1 ; Plateforme lourde ME1 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
@@ -257,13 +259,13 @@ Fiches : **B, F, J**. Aucun coup, pouvoir ou soutien de combat ajouté par le se
 |---|---|---|---|
 | <a id="chr_me1_ahern"></a>`chr_me1_ahern` — Amiral Tadius Ahern | ME1 original ; Pinnacle Station ; Apparence de Pinnacle Station | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_kate_bowman"></a>`chr_me1_kate_bowman` — Kate Bowman | ME1 ; Bring Down the Sky ; Apparence X57 | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me1_chakwas"></a>`chr_me1_chakwas` — Karin Chakwas | ME1 ; Tenue médicale Normandy SR-1 | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me1_chakwas"></a>`chr_me1_chakwas` — Karin Chakwas | ME1 ; Tenue médicale Normandy SR-1 | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_joker"></a>`chr_me2_joker` — Jeff « Joker » Moreau | ME2 ; Tenue du Normandy SR-2 | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_kelly_chambers"></a>`chr_me2_kelly_chambers` — Kelly Chambers | ME2 ; Tenue de service | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me2_gavin_archer"></a>`chr_me2_gavin_archer` — Gavin Archer | ME2 ; Overlord ; Apparence du projet Overlord | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me2_gavin_archer"></a>`chr_me2_gavin_archer` — Gavin Archer | ME2 ; Overlord ; Apparence du projet Overlord | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_amanda_kenson"></a>`chr_me2_amanda_kenson` — Amanda Kenson | ME2 ; Arrival ; Apparence Arrival | Candidat présent | Association lot 14 conservée |
 | <a id="chr_me2_illusive_man"></a>`chr_me2_illusive_man` — L'Homme Trouble | ME2 ; Costume et fauteuil ME2 | Candidat présent | Pose debout lot 13 conservée ; pose assise lot 16 en B/F/J. [Fauteuil isolé](#prop_me2_illusive_man_chair) distinct ; géométrie et alpha sous réserve, sans action ajoutée. |
-| <a id="chr_me3_padok_wiks"></a>`chr_me3_padok_wiks` — Padok Wiks | ME3 ; Apparence Sur'Kesh | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me3_padok_wiks"></a>`chr_me3_padok_wiks` — Padok Wiks | ME3 ; Apparence Sur'Kesh | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_adrien_victus"></a>`chr_me3_adrien_victus` — Adrien Victus | ME3 ; Apparence de Primarque | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_steven_hackett"></a>`chr_me3_steven_hackett` — Steven Hackett | ME3 ; Uniforme d'amiral ME3 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_han_gerrel"></a>`chr_me3_han_gerrel` — Han'Gerrel vas Neema | ME3 ; Combinaison de l'amiral | Sans image | Cadre du rôle ; affectation particulière à préciser |
@@ -272,13 +274,13 @@ Fiches : **B, F, J**. Aucun coup, pouvoir ou soutien de combat ajouté par le se
 | <a id="chr_me3_daro_xen"></a>`chr_me3_daro_xen` — Daro'Xen vas Moreh | ME3 ; Combinaison de l'amirale | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_bailey"></a>`chr_me3_bailey` — Armando-Owen Bailey | ME3 ; Tenue du SSC ME3 | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_steve_cortez"></a>`chr_me3_steve_cortez` — Steve Cortez | ME3 ; Tenue de pilote Alliance | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me3_samantha_traynor"></a>`chr_me3_samantha_traynor` — Samantha Traynor | ME3 ; Tenue de service Alliance | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me3_samantha_traynor"></a>`chr_me3_samantha_traynor` — Samantha Traynor | ME3 ; Tenue de service Alliance | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_oleg_petrovsky"></a>`chr_me3_oleg_petrovsky` — Oleg Petrovsky | ME3 ; Omega ; Uniforme du DLC Omega | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_henry_lawson"></a>`chr_me3_henry_lawson` — Henry Lawson | ME3 ; Apparence Sanctuary | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_kallo_jath"></a>`chr_mea_kallo_jath` — Kallo Jath | MEA ; Tenue du pilote du Tempest | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_suvi_anwar"></a>`chr_mea_suvi_anwar` — Suvi Anwar | MEA ; Tenue scientifique du Tempest | Candidat présent | Association lot 14 conservée |
-| <a id="chr_mea_gil_brodie"></a>`chr_mea_gil_brodie` — Gil Brodie | MEA ; Tenue d'ingénieur du Tempest | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_mea_lexi_tperro"></a>`chr_mea_lexi_tperro` — Lexi T'Perro | MEA ; Tenue médicale du Tempest | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_mea_gil_brodie"></a>`chr_mea_gil_brodie` — Gil Brodie | MEA ; Tenue d'ingénieur du Tempest | Image candidate | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_mea_lexi_tperro"></a>`chr_mea_lexi_tperro` — Lexi T'Perro | MEA ; Tenue médicale du Tempest | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_moshae_sjefa"></a>`chr_mea_moshae_sjefa` — Moshae Sjefa | MEA ; Apparence du jeu | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 
 ### Costume / variante visuelle — 38 fiches
@@ -311,18 +313,18 @@ Fiches : **B, J**. Le costume ne crée ni classe, ni pouvoir, ni kit ; aucune st
 | <a id="cst_me3_shepard_male_ajax"></a>`cst_me3_shepard_male_ajax` — Shepard masculin | ME3 ; Alternate Appearance Pack 1 ; Armure Cerberus Ajax | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me3_shepard_female_ajax"></a>`cst_me3_shepard_female_ajax` — Shepard féminin | ME3 ; Alternate Appearance Pack 1 ; Armure Cerberus Ajax | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_jack_standard"></a>`cst_me2_jack_standard` — Jack | ME2 ; Tenue standard ME2 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
-| <a id="cst_me2_shepard_male_kestrel"></a>`cst_me2_shepard_male_kestrel` — Shepard masculin | ME2 ; Aegis Pack ; Armure Kestrel complète — corps masculin | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="cst_me2_shepard_male_kestrel"></a>`cst_me2_shepard_male_kestrel` — Shepard masculin | ME2 ; Aegis Pack ; Armure Kestrel complète — corps masculin | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_shepard_female_kestrel"></a>`cst_me2_shepard_female_kestrel` — Shepard féminin | ME2 ; Aegis Pack ; Armure Kestrel complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_shepard_male_blood_dragon"></a>`cst_me2_shepard_male_blood_dragon` — Shepard masculin | ME2 ; Blood Dragon Armor ; Armure Blood Dragon complète — corps masculin | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_shepard_female_blood_dragon"></a>`cst_me2_shepard_female_blood_dragon` — Shepard féminin | ME2 ; Blood Dragon Armor ; Armure Blood Dragon complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_shepard_male_terminus"></a>`cst_me2_shepard_male_terminus` — Shepard masculin | ME2 ; Terminus Weapon and Armor Pack ; Armure Terminus Assault complète — corps masculin | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
-| <a id="cst_me2_shepard_female_terminus"></a>`cst_me2_shepard_female_terminus` — Shepard féminin | ME2 ; Terminus Weapon and Armor Pack ; Armure Terminus Assault complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="cst_me2_shepard_female_terminus"></a>`cst_me2_shepard_female_terminus` — Shepard féminin | ME2 ; Terminus Weapon and Armor Pack ; Armure Terminus Assault complète — corps féminin | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_shepard_male_collector"></a>`cst_me2_shepard_male_collector` — Shepard masculin | ME2 ; Collectors' Weapon and Armor Pack ; Armure Collector complète — corps masculin | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
-| <a id="cst_me2_shepard_female_collector"></a>`cst_me2_shepard_female_collector` — Shepard féminin | ME2 ; Collectors' Weapon and Armor Pack ; Armure Collector complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="cst_me2_shepard_female_collector"></a>`cst_me2_shepard_female_collector` — Shepard féminin | ME2 ; Collectors' Weapon and Armor Pack ; Armure Collector complète — corps féminin | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me2_shepard_male_inferno"></a>`cst_me2_shepard_male_inferno` — Shepard masculin | ME2 ; Equalizer Pack ; Armure Inferno complète — corps masculin | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
-| <a id="cst_me2_shepard_female_inferno"></a>`cst_me2_shepard_female_inferno` — Shepard féminin | ME2 ; Equalizer Pack ; Armure Inferno complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="cst_me2_shepard_male_cerberus_assault"></a>`cst_me2_shepard_male_cerberus_assault` — Shepard masculin | ME2 ; Cerberus Weapon and Armor Pack ; Armure Cerberus Assault complète — corps masculin | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="cst_me2_shepard_female_cerberus_assault"></a>`cst_me2_shepard_female_cerberus_assault` — Shepard féminin | ME2 ; Cerberus Weapon and Armor Pack ; Armure Cerberus Assault complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="cst_me2_shepard_female_inferno"></a>`cst_me2_shepard_female_inferno` — Shepard féminin | ME2 ; Equalizer Pack ; Armure Inferno complète — corps féminin | Image candidate | Cadre du rôle ; affectation particulière à préciser |
+| <a id="cst_me2_shepard_male_cerberus_assault"></a>`cst_me2_shepard_male_cerberus_assault` — Shepard masculin | ME2 ; Cerberus Weapon and Armor Pack ; Armure Cerberus Assault complète — corps masculin | Image candidate | Cadre du rôle ; affectation particulière à préciser |
+| <a id="cst_me2_shepard_female_cerberus_assault"></a>`cst_me2_shepard_female_cerberus_assault` — Shepard féminin | ME2 ; Cerberus Weapon and Armor Pack ; Armure Cerberus Assault complète — corps féminin | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me3_shepard_male_reckoner_knight"></a>`cst_me3_shepard_male_reckoner_knight` — Shepard masculin | ME3 ; Bonus démo Kingdoms of Amalur: Reckoning ; Armure Reckoner Knight complète — corps masculin | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="cst_me3_shepard_female_reckoner_knight"></a>`cst_me3_shepard_female_reckoner_knight` — Shepard féminin | ME3 ; Bonus démo Kingdoms of Amalur: Reckoning ; Armure Reckoner Knight complète — corps féminin | Sans image | Cadre du rôle ; affectation particulière à préciser |
 
@@ -385,7 +387,7 @@ Fiches : **G, J**. Un master de décor ne prouve ni terrain jouable ni connexion
 | <a id="stg_me3_omega_doru_district_walkway"></a>`stg_me3_omega_doru_district_walkway` — Omega — passerelle vers Doru District | ME3 ; Omega ; Omega — passerelle vers Doru District | Candidat présent | 1 association(s) précise(s), section 4; Association lot 14 conservée |
 | <a id="stg_me3_omega_afterlife_command"></a>`stg_me3_omega_afterlife_command` — Omega — Afterlife, centre de commandement Cerberus | ME3 ; Omega ; Omega — Afterlife, centre de commandement Cerberus | Candidat présent | 1 association(s) précise(s), section 4; Association lot 14 conservée |
 
-### Calque de décor — 3 fiches
+### Calque de décor — 3 fiches héritées, hors compléments lot 18
 
 Fiches : **G, J**. Rôle `calque_decor`, catégorie stage. Chaque calque est un composant de la composition documentaire `ME1-VS-PORT-HANSHAN-REF-01`, distinct des 52 masters historiques. Les coefficients de parallaxe, le calage et les collisions ne sont pas validés.
 
@@ -418,7 +420,7 @@ Fiches : **C, J**. L’image fixe et l’association proposée restent distincte
 | <a id="projectile_me2_concussive_fixed"></a>`projectile_me2_concussive_fixed` — Tir percussif ME2 | ME2 ; Projectile orienté vers la droite | Candidat présent | Association lot 14 conservée |
 | <a id="projectile_me2_incendiary_fixed"></a>`projectile_me2_incendiary_fixed` — Traceur chaud ME2 — candidat munitions incendiaires | ME2 ; Traceur orienté vers la droite | Candidat présent | Association lot 14 conservée |
 
-### Accessoire candidat — 3 fiches
+### Accessoire candidat — 3 fiches héritées, hors compléments lot 18
 
 Fiches : **B, C, J** pour la grenade et l’omni-outil ; **B, F, J** pour le fauteuil de scène narrative. La grenade ou l’omni-outil n’équipe pas automatiquement tous les personnages du même opus ; le fauteuil ne reçoit aucune association d’action.
 
@@ -432,6 +434,19 @@ Fiches : **B, C, J** pour la grenade et l’omni-outil ; **B, F, J** pour le fau
 
 Lors d’un prochain lot, partir du catalogue courant, conserver les identités et rechercher la fiche de conception correspondante. Un nouveau raccord doit nommer la source, l’ID ou la section, le type de relation et ce qui reste à confirmer. Un lien de costume ne vaut pas lien de kit ; une occurrence d’ID dans un avertissement ne vaut pas affectation de scène.
 
-Mettre à jour la projection si sa source change. Les empreintes de `sourceSnapshots` identifient les versions effectivement utilisées, avec leur chemin et leur portée de révision. Les occurrences historiques conservent leurs références de ligne au commit de base ; les ajouts du lot 16 ne sont pas présentés comme déjà présents dans cet arbre. Les 188 ancres initiales et les quatre nouvelles ancres restent alignées sur les IDs du catalogue.
+Mettre à jour la projection si sa source change. Les empreintes de `sourceSnapshots` identifient les versions effectivement utilisées, avec leur chemin et leur portée de révision. Les occurrences historiques conservent leurs références de ligne au commit de base ; les ajouts ultérieurs ne sont pas présentés comme déjà présents dans cet arbre. Les 188 ancres initiales, les quatre ajouts du lot 16 et les quatre ajouts du lot 18 restent alignés sur les IDs du catalogue courant.
 
-Le [rapport historique d’association](verification-content-associations-2026-11-25.json) conserve son contrôle des 188 IDs du lot 14. La [vérification du lot 16](../lot16/verification.json), le [manifeste](../lot16/manifest.json) et le [classeur courant](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) suivent les 192 fiches et les six nouveaux PNG. Les revues de [Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) et de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) qualifient les candidats ; elles ne constituent ni test de gameplay ni certification de fidélité. Les [manquants](../lot16/MANQUANTS_2026-11-25.md) et le [bilan du lot](../lot16/README.md) restent les points de reprise artistique.
+Le [rapport historique d’association](verification-content-associations-2026-11-25.json) conserve son contrôle des 188 IDs du lot 14. La [vérification du lot 16](../lot16/verification.json), le [manifeste historique](../lot16/manifest.json) et le [classeur historique](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) suivent les 192 fiches et les six PNG de cette étape. Les revues de [Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) et de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) qualifient les candidats ; elles ne constituent ni test de gameplay ni certification de fidélité. Les [manquants courants](../lot18/MANQUANTS_2026-11-25.md), le [classeur lot 18](../lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx), la [vérification courante](../lot18/verification.json) et le [bilan du lot 18](../lot18/README.md) constituent les points de reprise artistique pour les 196 fiches.
+
+## Composants du marché Urdnot ajoutés au lot 18
+
+Les quatre fiches relèvent de G/J et de la même sous-zone `stg_me2_tuchanka_urdnot`. Les deux props ne sont pas des accessoires de combat.
+
+| Identité | Usage | Image et réserve |
+|---|---|---|
+| <a id="layer_me2_tuchanka_market_rear_architecture"></a>`layer_me2_tuchanka_market_rear_architecture` — Tuchanka — marché Urdnot : architecture arrière | calque_decor | [Candidat](../../../public/assets/armax/lot18/stages/tuchanka-me2-market-rear-architecture.png) ; fidélité et moteur non validés |
+| <a id="layer_me2_tuchanka_market_floor"></a>`layer_me2_tuchanka_market_floor` — Tuchanka — marché Urdnot : sol | calque_decor | [Candidat](../../../public/assets/armax/lot18/stages/tuchanka-me2-market-floor.png) ; fidélité et moteur non validés |
+| <a id="prop_me2_tuchanka_market_table"></a>`prop_me2_tuchanka_market_table` — Tuchanka — table du marché Urdnot | accessoire_candidat | [Candidat](../../../public/assets/armax/lot18/props/tuchanka-me2-market-table.png) ; fidélité et moteur non validés |
+| <a id="prop_me2_tuchanka_market_terminal"></a>`prop_me2_tuchanka_market_terminal` — Tuchanka — console du marché Urdnot | accessoire_candidat | [Candidat](../../../public/assets/armax/lot18/props/tuchanka-me2-market-terminal.png) ; fidélité et moteur non validés |
+
+[Annexe narrative lot18](../lot18/BIBLE_COMPLEMENTS_LOT18.md) · [Manifestes et réserves](../lot18/manifest.json) · [Suivi des manquants](../lot18/MANQUANTS_2026-11-25.md).

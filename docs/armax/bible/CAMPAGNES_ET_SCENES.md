@@ -6,6 +6,10 @@ Cette annexe applique les sections **07, 08, 09, 10 et 24** du fichier utilisate
 
 Base documentaire examinée : commit **4befa64285080fe016d6ecd9424b00ab4d42509f**, tête de la PR #11 lors de cette préparation. Le [contrat commun de la bible intégrée](BIBLE_ARMAX_INTEGREE.md), [les règles communes](common-rules.json) et [la matrice d'association du guide](guide-associations.json) déterminent le périmètre général. Les réglages de combat historiques ne sont pas recopiés ici.
 
+## Continuation lot 18
+
+L’[annexe Grunt, Legion, Tela Vasir et Morinth](../lot18/BIBLE_COMPLEMENTS_LOT18.md) et son [registre](../lot18/narrative-complements.json) ajoutent quatre routes, vingt rencontres et trente-deux briefs. Les six routes et trente-six briefs ci-dessous restent inchangés. Aucune illustration complète supplémentaire n’est comptée ; les fichiers visuels courants sont suivis au [lot 18](../lot18/README.md).
+
 ## 1. Sources de conception et liens conservés
 
 | Source existante | Ce qu'elle fournit à cette annexe | Ce qu'elle ne prouve pas |

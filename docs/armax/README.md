@@ -7,18 +7,26 @@ Cette annexe conserve la production artistique du mode de combat 2D de Mass Effe
 La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **30 rubriques** de **Combat_Games_Guide_General_v1.0.txt** aux contrats et fiches Armax. Elle fixe la référence commune de conception tout en conservant les lots historiques.
 
 - [Associations et 90 critères d’acceptation](bible/guide-associations.json).
-- [Associations des 192 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
+- [Associations des 196 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
 - [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
 
-**Portée de la bible : conception documentaire.** Les 36 briefs narratifs restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 16 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 18 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
 
-## Lot 16 — continuation courante du 25 novembre 2026
+## Lot 18 — continuation courante du 25 novembre 2026
+
+Le [lot 18](lot18/README.md) consolide **12 PNG récupérés du lot 17**, ajoute **8 PNG pour 7 nouveaux sujets** et rattache les deux images lot17 déjà publiées au catalogue. Trois costumes féminins ME2 — Inferno, Terminus et Collector — et quatre composants du marché Urdnot complètent la production. Le sol R0 reste archivé ; trois récupérations ambiguës restent non attribuées.
+
+Le [catalogue courant](lot18/production-catalog.json), les [manquants](lot18/MANQUANTS_2026-11-25.md) et le [classeur](lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx) comptent **196 fiches : 150 avec candidat et 46 sans**. Couverture : **57/87 personnages, 22/38 costumes, 52 masters, 5 calques, 7 effets, 2 projectiles et 5 accessoires**. Les 192 identités héritées sont conservées ; les quatre composants ne créent pas quatre nouvelles arènes.
+
+L’[annexe de campagnes](lot18/BIBLE_COMPLEMENTS_LOT18.md) ajoute quatre routes Grunt/Legion/Tela/Morinth, vingt rencontres et trente-deux briefs, sans nouvelle illustration produite. Le [manifeste](lot18/manifest.json), les [associations](lot18/bible-asset-associations.json) et la [vérification](lot18/verification.json) conservent les réserves de fidélité, de raccord et d’identification. Les actifs restent Prototype et le moteur n’est pas modifié.
+
+## Lot 16 — historique du 25 novembre 2026
 
 Le [lot 16](lot16/README.md) apporte **6 PNG natifs pour 5 sujets, dont 5 PNG sélectionnés** : architecture distante PH-20, structures arrière PH-30 et sol PH-40 de Port Hanshan, fauteuil isolé de l’Homme Trouble et pose assise ME2. La révision R0 du sol reste archivée et non sélectionnée. Les trois calques et le fauteuil créent **4 fiches** ; la pose assise complète `chr_me2_illusive_man`, déjà illustré debout au lot 13.
 
-Le [catalogue courant](lot16/production-catalog.json), les [manquants](lot16/MANQUANTS_2026-11-25.md) et le [classeur du 25 novembre](lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) comptent **192 fiches : 132 avec image candidate et 60 sans**. Couverture : **49/87 personnages, 16/38 costumes, 52/52 masters de sous-zones, 3/3 calques, 7 effets, 2 projectiles et 3 accessoires**. La catégorie stage totalise 55 fiches, en distinguant les 52 sous-zones historiques des 3 composants de Port Hanshan. Le [contrôle du corpus](lot16/workbook-verification.json) compte **231 originaux distincts : 225 antérieurs et 6 nouveaux**.
+Le [catalogue historique](lot16/production-catalog.json), les [manquants](lot16/MANQUANTS_2026-11-25.md) et le [classeur du 25 novembre](lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) comptent **192 fiches : 132 avec image candidate et 60 sans**. Couverture : **49/87 personnages, 16/38 costumes, 52/52 masters de sous-zones, 3/3 calques, 7 effets, 2 projectiles et 3 accessoires**. La catégorie stage totalise 55 fiches, en distinguant les 52 sous-zones historiques des 3 composants de Port Hanshan. Le [contrôle du corpus](lot16/workbook-verification.json) compte **231 originaux distincts : 225 antérieurs et 6 nouveaux**.
 
 Les [associations à la bible](lot16/bible-asset-associations.json) rattachent les calques aux fiches **G/J** et les deux sujets de l’Homme Trouble aux fiches narratives **B/F/J**. Le fauteuil et la pose assise disposent de candidats, avec une géométrie différente entre les deux images et un alpha maximal de 254 ; ils ne sont pas prêts à se superposer directement. Le sol PH-40 R1 améliore la jonction avec PH-30 mais conserve une largeur de 1 671 pixels contre 1 672 pour les autres calques. Les franges et le calage restent à revoir. Aucun pouvoir, kit, animation, scène complète ou arène jouable n’est ajouté.
 
