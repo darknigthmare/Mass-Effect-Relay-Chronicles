@@ -1,8 +1,8 @@
 # Lot 22 — Les Dettes de Nacre et prototype Armax
 
-Date : **27 novembre 2026**. Continuation de la PR **#11**, à partir du lot21 au commit `d448b795db469b490eb0f8b4116ef19cfb202e05`.
+État de preuve : **27 novembre 2026**. La PR **#11** a été fusionnée à **14:33:15 UTC**, au commit `6b761f8a`. La vérification se poursuit sur `feat/armax-lot22-verification-20261127`. La suite générale et les six cas navigateur ont réussi sur **`f2b756fd476e00c5a282345e30464966a982c02e`**, après correction du bouton « Retour » mobile. Les résultats de `859fac` et `6335856` restent historiques. Le lot21 au commit `d448b795db469b490eb0f8b4116ef19cfb202e05` reste la base historique de cette continuation.
 
-Cette livraison ajoute une extension originale conçue autour de **110 identités**, avec **109 bases visuelles sélectionnées**, et un prototype local de combat raccordé au jeu. Les **114 PNG natifs** comprennent les bases sélectionnées et cinq versions de contrôle conservées. Les dix campagnes personnelles, les rencontres et les règles communes disposent de code exécutable ; les kits complets et la validation visuelle en jeu restent ouverts.
+Cette livraison ajoute une extension originale conçue autour de **110 identités**, avec **109 bases visuelles sélectionnées**, et un prototype local de combat raccordé au jeu. Les **114 PNG natifs** comprennent les bases sélectionnées et cinq versions de contrôle conservées. Les dix campagnes personnelles, les rencontres et les règles communes disposent de code exécutable ; les kits complets et la validation visuelle exhaustive en jeu restent ouverts.
 
 Le catalogue courant contient **326 fiches : 280 avec une image candidate, 46 sans image**. Les 216 fiches historiques sont conservées à l’identique ; leurs 45 manquants ne sont pas fermés par les créations originales. La fidélité artistique 1:1 certifiée reste à zéro.
 
@@ -55,6 +55,12 @@ Les dix routes enchaînent huit duels, avec un rival non létal au quatrième co
 
 **Commandes principales :** flèches/ZQSD/WASD, saut avec haut ou Espace, garde avec arrière ou Maj, `J/K/L/U` pour léger/moyen/lourd/spécial, `I` pour la super, `O` ou `J+K` pour la prise, Échap pour la pause. Des boutons tactiles exposent les mêmes actions. Le détail des règles, valeurs, exceptions et limites figure dans [GAMEPLAY_IMPLEMENTATION.md](GAMEPLAY_IMPLEMENTATION.md).
 
+## Pour essayer
+
+[Télécharger Windows Portable](https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/46016973856/artifacts/15207573142) — archive de **770 422 138 octets**, conservée jusqu’au **27 décembre 2026** selon la rétention CI. Le mode se lance depuis **Armax · duel 2D** sur l’écran titre. Le [run de fabrication 46016973856](https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/46016973856) a réussi ses jobs web et Windows, dont les tests, le packaging Windows et la publication des artefacts ; les [métadonnées](qa/armax-packaged-builds.json) donnent les tailles, empreintes et dates d’expiration.
+
+Ce build provient du **main fusionné `6b761f8a`**, avec le même runtime que le premier parcours navigateur réussi sur **`859fac`**. Il n’inclut pas la dernière retouche du libellé « Retour » du sélecteur mobile, présente dans `f2b756fd`. La production de l’archive est vérifiée en CI ; aucun lancement sur du matériel Windows réel n’est revendiqué.
+
 ## Production et revue artistique
 
 Les originaux natifs sont conservés. Les manifestes mesurent dimensions, SHA-256, transparence et limites alpha. Aucun agrandissement n’est présenté comme de l’UHD native. Les versions corrigées sont sélectionnées sous la même identité, sans augmenter le nombre de personnages, lieux ou accessoires.
@@ -65,11 +71,37 @@ Les armes, modules, drones ou effets encore inclus dans une base demandent une s
 
 ## Vérification
 
-Les **38 tests natifs ciblés** du moteur et des routes ont réussi, ainsi que la compilation de production. Les rapports portent les empreintes de leurs sources. Le [rapport de consolidation](verification-final.json) vérifie les concordances entre catalogue, fichiers natifs, code testé et classeur final. Le test de progression complète utilise volontairement des adversaires affaiblis : il vérifie la logique d’étapes, pas l’équilibrage.
+### Sources exécutables vérifiées
 
-La suite générale `npm test`, après restauration de 24 fichiers historiques exacts, rapporte **1 392 tests : 1 373 réussis, 19 en échec**. Les 19 traces restantes correspondent à 12 autres entrées historiques absentes de la copie locale. Aucun échec Armax n’est observé, mais la suite globale reste partiellement vérifiée. Le [rapport final de suite générale](qa/armax-full-suite-restored-report.json) conserve chaque trace et les empreintes des sources ; le [premier essai](qa/armax-full-suite-report.json) reste identifié comme historique.
+Sur les sources de `859fac838f988c49b05e10c6cc529f5726eb5d5d`, les **38/38 tests natifs Armax**, les **16/16 contrôles d’entrée** et la **compilation de production** ont réussi. Les [preuves Armax](qa/armax-native-report.json) et le [contrat de routage des entrées](qa/armax-input-routing-native-report.json) portent leurs périmètres et empreintes. Le [rapport de consolidation](verification-final.json) conserve les concordances qu’il a contrôlées entre catalogue, fichiers natifs, code et classeur. Le test de progression complète utilise volontairement des adversaires affaiblis : il vérifie la logique d’étapes, pas l’équilibrage.
 
-**Le parcours navigateur reste non validé.** Chromium était indisponible localement et le navigateur cloud n’a pas pu joindre le serveur. Un dernier essai après remplacement de l’environnement a échoué au contrôle HTTP depuis un second processus, avant le parcours UI. Les [rapports du navigateur](qa/armax-browser-report.json) et du [dernier essai](qa/armax-browser-retry-report.json) conservent zéro contrôle UI réussi et zéro capture de duel. Les règles CSS, la compilation et les contacts d’images ne constituent pas un playtest ou une validation du rendu mobile.
+Les correctifs couvrent la réception des clics par le panneau Armax, la capture des flèches par le menu global et le miroir des corps/FX. Les entrées globales cèdent désormais la place au mode Armax ; les images utilisent des plans `Mesh` à échelle signée. Le parcours navigateur décrit ci-dessous confirme le déplacement et les attaques de Mara, ainsi que le miroir visible de Tavin. Il ne valide pas chaque profil ni chaque FX.
+
+### Suite générale complète sur la révision f2b756fd
+
+La CI sur **`f2b756fd476e00c5a282345e30464966a982c02e`** a réussi **1 393/1 393 tests**, sans échec ni test ignoré, puis la **compilation de 170 modules**. Le [rapport courant](qa/armax-ci-general-current-report.json) et son [journal brut](qa/armax-ci-general-current.log) identifient le run `46020607465`, le job `140578968871` et **onze empreintes concordant avec les sources vérifiées**. Cette exécution comprend les correctifs de clic, de routage clavier, de rendu `Mesh` et du libellé « Retour » mobile.
+
+La suite générale et le parcours navigateur courant ont donc tous deux réussi sur `f2b756fd`. L’échec du job Shepard `140578968931` reste consigné avec son diagnostic distinct ; l’atelier Shepard est suivi séparément. Aucun succès de l’ensemble de la CI n’est déclaré.
+
+Le résultat de **`859fac838f988c49b05e10c6cc529f5726eb5d5d`**, **1 393/1 393 tests** et compilation de **170 modules**, est conservé dans le [rapport historique 859](qa/armax-ci-general-859-report.json) et son [journal](qa/armax-ci-general-859.log), run `46016000473`. Il précède la dernière retouche CSS mobile.
+
+L’exécution sur `6335856adb5c067625404d24f6c6f0ab2a8b56cb` avait réussi **1 392/1 392 tests** et la compilation de **170 modules**. Le [rapport historique 633](qa/armax-ci-general-633-report.json) et son [journal brut](qa/armax-ci-general-633.log) identifient le run `46014391137`. Cette preuve reste rattachée au code antérieur aux corrections de `src/main.js` et `src/armax-ui.js`.
+
+Les essais locaux incomplets restent archivés : le [premier essai](qa/armax-full-suite-report.json) et l’[essai après restauration partielle](qa/armax-full-suite-restored-report.json) documentent les fichiers historiques absents de la copie locale. Ils constituent l’historique des blocages, distinct de la suite complète réussie en CI.
+
+### Navigateur : six cas réussis sur f2b756fd
+
+Le [rapport du run 46020607485](qa/ci-armax/run-46020607485/armax-browser-report.json), job `140578969050`, établit **6/6 cas réussis**, avec `errors: []` et `diagnosticErrors: []`, dans Chromium automatisé. La [provenance](qa/ci-armax/run-46020607485/provenance.json) rattache l’exécution à **`f2b756fd476e00c5a282345e30464966a982c02e`** ; ses **13/13 empreintes** concordent avec les sources vérifiées. Sept captures sont conservées avec le rapport, la provenance et le journal.
+
+La couverture comprend le sélecteur avec **10 combattants et 20 stages**, le déplacement et une attaque avec dégâts/jauge, la pause et une perte de focus simulée, les dégâts infligés par le CPU, les commandes pointer à **390 × 844** sur le second stage, puis le retour au titre avec toutes les valeurs de `localStorage` inchangées. Les duels exercent seulement **Mara Vey et Tavin Rhex**, sur **Quai des arrivées de Nacre** et **Galerie de transit**.
+
+Les premières captures [initiale](qa/ci-armax/run-46016000543/armax-ready-1.png), [desktop](qa/ci-armax/run-46016000543/armax-duel-desktop.png) et [mobile](qa/ci-armax/run-46016000543/armax-duel-mobile.png) ont confirmé Tavin face à Mara, un ancrage des pieds cohérent et les messages de **55 puis 90 dégâts**. Les poses restent fixes et se chevauchent visuellement au contact. Le nouveau parcours repasse les mêmes six cas ; la [sélection mobile courante](qa/ci-armax/run-46020607485/armax-selection-mobile.png), relue après correction CSS, affiche **« RETOUR » sur une ligne**, le titre entier et aucun débordement horizontal.
+
+Ce résultat ne valide pas les autres profils ou décors, les campagnes, les boss, les ennemis, les FX individuels, les kits animés ou un téléphone réel. Les **72 identités** raccordées au prototype ne sont pas globalement certifiées en navigateur, et la certification artistique **1:1 reste à zéro**.
+
+Le [premier succès à 6/6, run 46016000543](qa/ci-armax/run-46016000543/armax-browser-report.json), reste la preuve historique de `859fac`, avant la retouche CSS du sélecteur mobile. Les quatre essais CI antérieurs avaient chacun réussi le seul cas du sélecteur avant d’échouer : [46010749352](qa/ci-armax/run-46010749352/armax-browser-report.json), [46011849232](qa/ci-armax/run-46011849232/armax-browser-report.json), [46012230051](qa/ci-armax/run-46012230051/armax-browser-report.json) et [46014391140](qa/ci-armax/run-46014391140/armax-browser-report.json). Leurs captures de diagnostic ont révélé les défauts de réception du clic, de routage des flèches et de miroir. L’[observation de file créée à 14:49 UTC](qa/armax-browser-pending-report.json) conserve l’attente historique du premier run réussi ; elle n’en décrit pas le résultat final.
+
+Les blocages locaux antérieurs — Chromium absent, accès cloud refusé et connexion HTTP locale impossible après remplacement de l’environnement — restent documentés comme historique, notamment dans le [rapport de reprise locale](qa/armax-browser-retry-report.json). Les règles CSS, la compilation et les planches d’images ne constituent pas un essai sur téléphone réel.
 
 ```bash
 python3 scripts/armax-build-runtime.py
@@ -77,7 +109,7 @@ python3 scripts/build-armax-lot22-catalog.py
 node scripts/armax-verify.mjs --build
 ```
 
-Le script [armax-browser.mjs](../../../scripts/armax-browser.mjs) prépare un parcours réel de l’interface, à exécuter dans un environnement disposant de Chromium. Le générateur du classeur utilise l’environnement ArtifactTool ; sa preuve de recalcul et les rendus relus sont enregistrés avec le fichier final.
+Le script [armax-browser.mjs](../../../scripts/armax-browser.mjs) définit les six cas du parcours UI : sélecteur, déplacement/attaque, pause/blur simulé, IA, commandes à l’écran à 390×844 et retour au titre avec stockage préservé. Il exerce Mara/Tavin et les stages01/02 ; son résultat ne couvre pas tous les profils, décors, défis ou routes. Le générateur du classeur utilise l’environnement ArtifactTool ; sa preuve de recalcul et les rendus relus sont enregistrés avec le fichier final.
 
 ## Manquants canoniques
 

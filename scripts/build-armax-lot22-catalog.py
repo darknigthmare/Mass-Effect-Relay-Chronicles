@@ -24,6 +24,10 @@ parent_path = ROOT / 'docs/armax/lot21/production-catalog.json'
 parent = read(parent_path)
 roster = read(DLC / 'nacre_roster_design.json')
 world = read(DLC / 'nacre-world.json')
+coverage_path = OUT / 'gameplay-coverage.json'
+coverage = read(coverage_path) if coverage_path.is_file() else {}
+verification = coverage.get('verification', {})
+limited_smoke_passed = coverage.get('smokeTestPassed') is True and verification.get('browserPassed') is True
 families = [
     ('fighters', 'personnage_original', roster['fighters']),
     ('stages', 'stage_original', world['stages']),
@@ -118,8 +122,22 @@ catalog.update({
     'baseCommit': 'd448b795db469b490eb0f8b4116ef19cfb202e05',
     'scope': '216 fiches canoniques héritées + 110 créations originales Nacre',
     'globalFidelityCertified': False, 'engineImplementationClaimed': True,
-    'engineImplementationScope': 'Prototype local condensé, logique native et compilation vérifiées ; bible complète et parcours navigateur non validés.',
+    'engineImplementationScope': 'Prototype local condensé, logique native et compilation vérifiées. ' + (
+        'Six contrôles UI limités réussis sur Mara/Tavin et les stages01/02, révision ' + verification.get('browserSourceHead', 'non précisée')[:8] + ' ; couverture jouable et visuelle exhaustive non validée.' if limited_smoke_passed else
+        'Le parcours UI complet de la révision corrigée attend sa preuve ; la bible complète et la couverture visuelle exhaustive restent non validées.'),
     'fullGameImplemented': False, 'browserGameplayValidated': False,
+    'browserGameplayValidationScope': 'Validation exhaustive du prototype et de ses contenus. Un smoke limité ne modifie ni ce booléen ni les certifications par identité.',
+    'limitedBrowserSmoke': {
+        'passed': limited_smoke_passed,
+        'status': verification.get('browserStatus', 'not_verified'),
+        'evidence': 'docs/armax/lot22/gameplay-coverage.json',
+        'report': verification.get('browserReport'),
+        'sourceHead': verification.get('browserSourceHead'),
+        'sourceMatchesCurrent': verification.get('browserSourceMatchesCurrent', False),
+        'coveredFighterIds': ['nacre_mara_vey', 'nacre_tavin_rhex'] if limited_smoke_passed else [],
+        'coveredStageIds': ['nacre_stage_01', 'nacre_stage_02'] if limited_smoke_passed else [],
+        'fullProfileCertification': False,
+    },
     'inheritedPolicyScope': 'La politique héritée inchangée vise les 216 fiches historiques ; les 110 créations Nacre restent explicitement non canoniques.',
     'carriedForwardEntries': 216, 'addedEntries': 110,
     'addedEntryIds': [e['id'] for e in new_entries],
