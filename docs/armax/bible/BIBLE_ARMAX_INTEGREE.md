@@ -2,7 +2,7 @@
 # Bible intégrée du mode combat 2D
 
 **Révision documentaire du 27 novembre 2026 — Europe/Paris.**
-**État : conception définie. Guide général et deux extensions intégrés à la bible ; la continuation artistique courante est le lot 19. Les fonctions du moteur gardent leurs statuts propres.**
+**État : conception définie. Guide général et deux extensions intégrés à la bible ; la continuation artistique courante est le lot 20. Les fonctions du moteur gardent leurs statuts propres.**
 
 Cette bible applique désormais **68 rubriques** fournies par Darknigthmare à Armax, le mode annexe de **Mass Effect — Relay Chronicles** : **00–29** dans ce corps, **30–49** dans l'[extension équipes et bonus](EXTENSION_01_EQUIPES_ET_BONUS.md), **50–67** dans l'[extension déblocages](EXTENSION_02_DEBLOCAGES.md). Les [trois fichiers originaux](../guides/README.md) ont été récupérés intégralement et conservés sans modification. La [réconciliation](GUIDE_RECONCILIATION_2026-11-27.md) conserve les 30 associations et 90 critères historiques et relie les 38 rubriques supplémentaires. Ce document constitue le point d'entrée courant ; les lots conservent leur provenance et leurs résultats historiques.
 
@@ -25,7 +25,7 @@ Base de l’intégration initiale : **4befa64285080fe016d6ecd9424b00ab4d42509f**
 | [Lot 04 : bible détaillée](../lot04/BIBLE_EXTENSION.md) et [fiches](../lot04/fighters.json) | 14 sujets, 13 kits de conception, récits et deux boss à phases |
 | [Complément Grunt / Legion / Port Hanshan](../../combat-2d/CONTINUATION_2026-11-19.md) | Deux kits et une arène, à normaliser selon le contrat commun |
 | [Lot 03 : bible de production](../lot03/Bible_Complement_Lot03.md) | Apparences, poses, masters et besoins de parallaxe |
-| [Catalogue courant lot 19](../lot19/production-catalog.json) et [bilan](../lot19/README.md) | Suivi de production courant, avec ses propres fichiers et contrôles ; distinct des nouvelles fiches de conception |
+| [Catalogue courant lot 20](../lot20/production-catalog.json) et [bilan](../lot20/README.md) | Suivi de production courant, avec ses propres fichiers et contrôles ; distinct des nouvelles fiches de conception |
 | [Catalogue historique lot 18](../lot18/production-catalog.json) | Instantané : 196 fiches, 150 avec image candidate et 46 sans ; 192 identités héritées conservées |
 | [Livraison lot 16](../lot16/README.md), [manifeste](../lot16/manifest.json) et [associations artistiques](../lot16/bible-asset-associations.json) | 6 PNG natifs, dont 5 sélectionnés, pour 5 sujets ; sources, poses observées et réserves |
 | [Bible du jeu hôte](../../DESIGN.md) | Association au RPG et séparation du contrat ATB |
@@ -34,11 +34,15 @@ Base de l’intégration initiale : **4befa64285080fe016d6ecd9424b00ab4d42509f**
 
 **Lecture des statuts.** « Retenu » est une décision de conception, « Défini » décrit une fiche, « Prototype » un état de production. Aucun de ces termes ne signifie « jouable » ou « fidélité 1:1 validée ». Les exigences d'animation restent documentées pendant la phase de production de sprites fixes.
 
-## Reprise courante — guides originaux, extensions et lot 19
+## Reprise courante — lot 20
+
+**5 fiches auparavant sans image disposent d’un candidat**. Le suivi conserve **196 identités : 161 avec image et 35 sans**. Cette passe produit **4 PNG natifs, dont 4 sélectionnés**, et résout **1 attribution historique**. Le [catalogue lot20](../lot20/production-catalog.json) et l’[index courant](content-associations.json) font autorité sur la présence des images. Les preuves, limites et décisions de sélection sont dans le [bilan du lot20](../lot20/README.md). Les 68 rubriques et 204 critères des guides demeurent documentaires.
+
+## Intégration historique — guides originaux, extensions et lot 19
 
 La source originale du guide général est maintenant présente avec les deux extensions. Les **68 rattachements documentaires** et **204 critères** comprennent les 90 critères hérités conservés et 114 critères nouveaux. Les **40 scénarios d'acceptation** décrivent des tests à exécuter, sans résultat de gameplay déclaré. Les deux annexes donnent six taunts, quatre duos prioritaires, dix bonus, six zones d'archives et cinq règles de déblocage comme exemples de conception, sans les compter comme sprites ou animations produits.
 
-Le [lot 19](../lot19/README.md) poursuit séparément les images candidates et leur suivi. Le [catalogue qu'il porte](../lot19/production-catalog.json) et l'[index courant](content-associations.json) font autorité sur les fichiers et comptes, tandis que les instantanés des anciens lots restent lisibles ci-dessous. La présence des extensions dans cette bible n'active ni tag, ni service de paiement, ni droit de joueur dans le moteur.
+Le [lot 19](../lot19/README.md) poursuit séparément les images candidates et leur suivi. Le [catalogue qu'il porte](../lot19/production-catalog.json) conserve les fichiers et comptes historiques de cette étape, tandis que les instantanés des anciens lots restent lisibles ci-dessous. La présence des extensions dans cette bible n'active ni tag, ni service de paiement, ni droit de joueur dans le moteur.
 
 ## Continuation artistique historique — lots 17 consolidé et 18
 
@@ -72,7 +76,7 @@ L’[index de contenu](ASSOCIATIONS_CONTENU.md) rattache chacune des **196 fiche
 
 Les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion** sont accessibles dans ce même index, sans les ajouter aux 196 lignes. Les correspondances exactes et les identifiants documentaires restent distincts. Kai Leng et Balak présentent une divergence entre usage « boss candidat » du catalogue et sélection Versus de leur fiche ; elle est exposée avant toute décision d’implémentation.
 
-Pour les décors, les **18 associations précises concernant 16 des 52 sous-zones** sont conservées. Les trois calques de Port Hanshan et les deux calques de Tuchanka ajoutent des relations de composant à leur composition documentaire, sans créer de nouvelle arène. Les avertissements de non-équivalence restent des restrictions. Le [rapport historique de réconciliation](verification-content-associations-2026-11-25.json) conserve son périmètre de 188 fiches ; la [vérification du lot 18](../lot18/verification.json) conserve les preuves de cette étape. Les contrôles de la reprise courante sont liés au [lot 19](../lot19/README.md).
+Pour les décors, les **18 associations précises concernant 16 des 52 sous-zones** sont conservées. Les trois calques de Port Hanshan et les deux calques de Tuchanka ajoutent des relations de composant à leur composition documentaire, sans créer de nouvelle arène. Les avertissements de non-équivalence restent des restrictions. Le [rapport historique de réconciliation](verification-content-associations-2026-11-25.json) conserve son périmètre de 188 fiches ; la [vérification du lot 18](../lot18/verification.json) conserve les preuves de cette étape. Les contrôles de la reprise courante sont liés au [lot 20](../lot20/README.md).
 
 <a id="g00"></a>
 ## 00. Utilisation, priorités et autorité

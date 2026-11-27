@@ -2,15 +2,19 @@
 
 **Révision documentaire du 27 novembre 2026 — Europe/Paris.**
 
-Cet index relie les **196 fiches du catalogue lot 19** aux rôles, fiches types et rubriques de notre jeu de combat. Les **196 identités héritées du lot 18** sont conservées. Les quatre composants du marché Urdnot, les onze fiches illustrées par le lot17 consolidé et les trois costumes du lot18 appartiennent aux livraisons antérieures. L’index rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.
+Cet index relie les **196 fiches du catalogue lot 20** aux rôles, fiches types et rubriques de notre jeu de combat. Les **196 identités héritées du lot 18** sont conservées. Les quatre composants du marché Urdnot, les onze fiches illustrées par le lot17 consolidé et les trois costumes du lot18 appartiennent aux livraisons antérieures. L’index rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.
 
-Sources : [catalogue courant](../lot19/production-catalog.json), [fiches lot 04](../lot04/fighters.json), [complément Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md), [campagnes et scènes](CAMPAGNES_ET_SCENES.md), [fiches A–J](FICHES_ET_LIAISONS.md), [associations artistiques lot 14](../lot14/bible-asset-associations.json) et [lot 16](../lot16/bible-asset-associations.json). Le [JSON associé](content-associations.json) contient les sélecteurs exacts, qualifications et empreintes des sources.
+Sources : [catalogue courant](../lot20/production-catalog.json), [fiches lot 04](../lot04/fighters.json), [complément Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md), [campagnes et scènes](CAMPAGNES_ET_SCENES.md), [fiches A–J](FICHES_ET_LIAISONS.md), [associations artistiques lot 14](../lot14/bible-asset-associations.json) et [lot 16](../lot16/bible-asset-associations.json). Le [JSON associé](content-associations.json) contient les sélecteurs exacts, qualifications et empreintes des sources.
 
 **Base de la continuation lot 16 : `71955d9143562d6a44a8b8d48bc552978372bc1e`.** La première projection examinait le lot 14 au commit `cc44ce510f1bb152fa68f3d8375a5db2745437c5` ; ses correspondances et ses 188 ancres sont conservées. La projection courante reprend les apports vérifiés des lots17–18 depuis `1e3cea80b1a6ec81d7ca6df8ad70d96988973f10`. Les relations de conception antérieures restent conservées. Le catalogue demeure la source de production ; l’index n’est ni une nouvelle liste de combattants sélectionnables ni un inventaire exhaustif du projet.
 
 Le [registre complet des 68 rubriques](guide-coverage-2026-11-27.json) est la référence documentaire courante du guide et des deux extensions. Les associations aux 30 rubriques initiales ci-dessous restent valables.
 
-## Continuation lot 19
+## Continuation courante — lot 20
+
+**5 fiches auparavant sans image disposent d’un candidat**. Le suivi conserve **196 identités : 161 avec image et 35 sans**. Cette passe produit **4 PNG natifs, dont 4 sélectionnés**, et résout **1 attribution historique**. Les [preuves et réserves](../lot20/README.md), les [manquants](../lot20/MANQUANTS_2026-11-27.md) et le [classeur](../lot20/Mass_Effect_Armax_Suivi_Lot20_2026-11-27.xlsx) portent cette continuation.
+
+## Continuation historique — lot 19
 
 Les 196 identités sont conservées. **6 fiches précédemment sans image disposent d'un candidat**, portant la présence à **156/196**, avec **40 fiches sans image**. Les images et leurs réserves figurent dans le [lot19](../lot19/README.md). Les comptes des lots16–18 décrivent les livraisons antérieures. La matrice générale initiale reste un instantané historique ; son sous-objet lot16 ne constitue pas le compteur courant.
 
@@ -20,14 +24,14 @@ Chaque ligne du catalogue est associée à un rôle déjà déclaré, puis aux f
 
 | Famille du catalogue | Fiches | Avec image candidate | Sans image |
 |---|---:|---:|---:|
-| Personnages et adversaires | 87 | 63 | 24 |
+| Personnages et adversaires | 87 | 68 | 19 |
 | Costumes | 38 | 22 | 16 |
 | Masters de sous-zones de décor | 52 | 52 | 0 |
 | Calques de décor — Port Hanshan et marché Urdnot | 5 | 5 | 0 |
 | Effets | 7 | 7 | 0 |
 | Projectiles | 2 | 2 | 0 |
 | Accessoires | 5 | 5 | 0 |
-| **Total** | **196** | **156** | **40** |
+| **Total** | **196** | **161** | **35** |
 
 La catégorie stage contient **57 fiches : 52 masters de sous-zones et 5 calques**. Le lot 16 apporte **6 PNG, dont 5 sélectionnés, pour 5 sujets** ; la pose assise ne crée pas une nouvelle identité et le sol R0 écarté ne crée pas un sujet supplémentaire. La présence d’une image ne ferme pas les autres poses, vues, accessoires, phases d’action ou couches de décor. Les valeurs de fidélité et d’intégration moteur restent celles des sources. Les associations ne modifient aucun kit, coût, dégât, condition de fin ou sauvegarde. Les 113 PNG annoncés au lot 15 sont exclus des présences tant qu’ils restent [non récupérés](../lot16/RECUPERATION_LOT15.md).
 
@@ -54,7 +58,7 @@ Le fauteuil conserve le rôle de catalogue `accessoire_candidat`, avec une assoc
 
 Les sélections du tableau suivant reproduisent la conception du lot 04. Elles ne prouvent pas une implémentation. Une absence du catalogue de manquants ne signifie pas que le sujet manque au projet.
 
-| Sujet / identifiant de conception | Sélection décrite dans la source | Correspondance au catalogue courant lot 19 |
+| Sujet / identifiant de conception | Sélection décrite dans la source | Correspondance au catalogue courant lot 20 |
 |---|---|---|
 | Saren Arterius — `armax-saren-me1` | Versus, boss | Hors de ce catalogue ; fiche existante conservée |
 | Matriarche Bénézia — `armax-benezia-me1` | boss | Hors de ce catalogue ; fiche existante conservée |
@@ -183,8 +187,8 @@ Fiches : **B, C, E, J**. Candidat du suivi artistique ; aucune sélection jouabl
 | <a id="chr_me2_legion_standard"></a>`chr_me2_legion_standard` — Legion | ME2 ; Plateforme physique standard | Sans image | ME2-CHR-LEGION ; identité documentaire |
 | <a id="chr_me3_edi_standard"></a>`chr_me3_edi_standard` — IDA / EDI | ME3 ; Corps synthétique standard | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_trilogy_urdnot_wrex_guide_ea"></a>`chr_trilogy_urdnot_wrex_guide_ea` — Urdnot Wrex | Trilogie / guide EA ; Armure rouge du guide EA (opus à confirmer) | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me1_jenkins"></a>`chr_me1_jenkins` — Richard L. Jenkins | ME1 ; Uniforme et armure d'Eden Prime | Sans image | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me3_urdnot_wreav"></a>`chr_me3_urdnot_wreav` — Urdnot Wreav | ME3 ; Apparence ME3 | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me1_jenkins"></a>`chr_me1_jenkins` — Richard L. Jenkins | ME1 ; Uniforme et armure d'Eden Prime | Image candidate lot17 — attribution lot20 | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me3_urdnot_wreav"></a>`chr_me3_urdnot_wreav` — Urdnot Wreav | ME3 ; Apparence ME3 | Image candidate lot20 | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_alec_ryder"></a>`chr_mea_alec_ryder` — Alec Ryder | MEA ; Armure de Pionnier du prologue | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_reyes_vidal"></a>`chr_mea_reyes_vidal` — Reyes Vidal | MEA ; Apparence Kadara | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_mea_sloane_kelly"></a>`chr_mea_sloane_kelly` — Sloane Kelly | MEA ; Apparence Kadara | Image candidate | Cadre du rôle ; affectation particulière à préciser |
@@ -198,7 +202,7 @@ Fiches : **B, C, I, J**. Usage proposé dans le catalogue ; confronter la sélec
 |---|---|---|---|
 | <a id="chr_me3_kai_leng"></a>`chr_me3_kai_leng` — Kai Leng | ME3 ; Tenue du jeu publié | Sans image | armax-kai-leng-me3 ; divergence de rôle conservée |
 | <a id="chr_me1_balak"></a>`chr_me1_balak` — Balak | ME1 ; Bring Down the Sky ; Apparence X57 | Candidat présent | armax-balak-me1 ; divergence de rôle conservée |
-| <a id="chr_me2_collector_general"></a>`chr_me2_collector_general` — Général récolteur | ME2 ; Corps du personnage | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me2_collector_general"></a>`chr_me2_collector_general` — Général récolteur | ME2 ; Corps du personnage | Image candidate lot20 | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me3_maya_brooks"></a>`chr_me3_maya_brooks` — Maya Brooks | ME3 ; Citadel ; Apparence finale du DLC | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_thresher_maw"></a>`chr_me1_thresher_maw` — Dévoreur / Thresher Maw | ME1 ; Créature ME1 émergée | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_rachni_brood_warrior"></a>`chr_me1_rachni_brood_warrior` — Rachni Brood Warrior | ME1 ; Guerrier rachni ME1 | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
@@ -263,10 +267,10 @@ Fiches : **B, F, J**. Aucun coup, pouvoir ou soutien de combat ajouté par le se
 
 | Identifiant et sujet | Œuvre / variante | Image candidate | Raccord particulier |
 |---|---|---|---|
-| <a id="chr_me1_ahern"></a>`chr_me1_ahern` — Amiral Tadius Ahern | ME1 original ; Pinnacle Station ; Apparence de Pinnacle Station | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me1_ahern"></a>`chr_me1_ahern` — Amiral Tadius Ahern | ME1 original ; Pinnacle Station ; Apparence de Pinnacle Station | Image candidate lot20 | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_kate_bowman"></a>`chr_me1_kate_bowman` — Kate Bowman | ME1 ; Bring Down the Sky ; Apparence X57 | Sans image | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me1_chakwas"></a>`chr_me1_chakwas` — Karin Chakwas | ME1 ; Tenue médicale Normandy SR-1 | Image candidate | Cadre du rôle ; affectation particulière à préciser |
-| <a id="chr_me2_joker"></a>`chr_me2_joker` — Jeff « Joker » Moreau | ME2 ; Tenue du Normandy SR-2 | Sans image | Cadre du rôle ; affectation particulière à préciser |
+| <a id="chr_me2_joker"></a>`chr_me2_joker` — Jeff « Joker » Moreau | ME2 ; Tenue du Normandy SR-2 | Image candidate lot20 | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_kelly_chambers"></a>`chr_me2_kelly_chambers` — Kelly Chambers | ME2 ; Tenue de service | Candidat présent | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_gavin_archer"></a>`chr_me2_gavin_archer` — Gavin Archer | ME2 ; Overlord ; Apparence du projet Overlord | Image candidate | Cadre du rôle ; affectation particulière à préciser |
 | <a id="chr_me2_amanda_kenson"></a>`chr_me2_amanda_kenson` — Amanda Kenson | ME2 ; Arrival ; Apparence Arrival | Candidat présent | Association lot 14 conservée |
@@ -442,7 +446,7 @@ Lors d’un prochain lot, partir du catalogue courant, conserver les identités 
 
 Mettre à jour la projection si sa source change. Les empreintes de `sourceSnapshots` identifient les versions effectivement utilisées, avec leur chemin et leur portée de révision. Les occurrences historiques conservent leurs références de ligne au commit de base ; les ajouts ultérieurs ne sont pas présentés comme déjà présents dans cet arbre. Les 188 ancres initiales, les quatre ajouts du lot 16 et les quatre ajouts du lot 18 restent alignés sur les IDs du catalogue courant.
 
-Le [rapport historique d’association](verification-content-associations-2026-11-25.json) conserve son contrôle des 188 IDs du lot 14. La [vérification du lot 16](../lot16/verification.json), le [manifeste historique](../lot16/manifest.json) et le [classeur historique](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) suivent les 192 fiches et les six PNG de cette étape. Les revues de [Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) et de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) qualifient les candidats ; elles ne constituent ni test de gameplay ni certification de fidélité. Les [manquants historiques](../lot18/MANQUANTS_2026-11-25.md), le [classeur lot 18](../lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx), la [vérification du lot 18](../lot18/verification.json) et son [bilan](../lot18/README.md) conservent la preuve de cette étape. Les [manquants courants](../lot19/MANQUANTS_2026-11-27.md), le [classeur lot 19](../lot19/Mass_Effect_Armax_Suivi_Lot19_2026-11-27.xlsx), la [vérification courante](../lot19/verification.json) et le [bilan du lot 19](../lot19/README.md) portent la reprise actuelle des 196 fiches.
+Le [rapport historique d’association](verification-content-associations-2026-11-25.json) conserve son contrôle des 188 IDs du lot 14. La [vérification du lot 16](../lot16/verification.json), le [manifeste historique](../lot16/manifest.json) et le [classeur historique](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) suivent les 192 fiches et les six PNG de cette étape. Les revues de [Port Hanshan](../lot16/qa/port-hanshan-independent-review.json) et de [l’Homme Trouble](../lot16/qa/illusive-man-independent-review.json) qualifient les candidats ; elles ne constituent ni test de gameplay ni certification de fidélité. Les [manquants historiques](../lot18/MANQUANTS_2026-11-25.md), le [classeur lot 18](../lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx), la [vérification du lot 18](../lot18/verification.json) et son [bilan](../lot18/README.md) conservent la preuve de cette étape. Les [manquants historiques lot19](../lot19/MANQUANTS_2026-11-27.md), le [classeur lot19](../lot19/Mass_Effect_Armax_Suivi_Lot19_2026-11-27.xlsx), sa [vérification](../lot19/verification.json) et son [bilan](../lot19/README.md) conservent cette étape. Les [manquants courants](../lot20/MANQUANTS_2026-11-27.md), le [classeur lot20](../lot20/Mass_Effect_Armax_Suivi_Lot20_2026-11-27.xlsx), la [vérification courante](../lot20/verification.json) et le [bilan du lot20](../lot20/README.md) portent la reprise actuelle des 196 fiches.
 
 ## Composants du marché Urdnot ajoutés au lot 18
 

@@ -62,9 +62,13 @@ Les conversations sont des adaptations françaises condensées ; les profils et 
 
 ## Armax Relay Clash — mode annexe de combat
 
-### Continuation courante — lot 19 et deux extensions
+### Continuation courante — lot 20
 
-Le [lot19](docs/armax/lot19/README.md) ajoute **6 PNG natifs, dont 4 sélectionnés**, et résout **2 attributions de PNG historiques**, pour **6 fiches auparavant sans image**. Le [suivi courant](docs/armax/lot19/MANQUANTS_2026-11-27.md) conserve **196 identités, 156 avec candidat et 40 sans**. Les fichiers originaux du guide général et des deux extensions sont récupérés et associés à **68 rubriques / 204 critères documentaires**, avec [sources exactes](docs/armax/guides/README.md) et [réconciliation](docs/armax/bible/GUIDE_RECONCILIATION_2026-11-27.md). Les extensions équipes/bonus et déblocages restent des spécifications ; les nouvelles images sont des prototypes fixes, sans validation 1:1 ni nouvelle intégration moteur.
+Le [lot20](docs/armax/lot20/README.md) poursuit les sprites fixes manquants. **5 fiches auparavant sans image disposent d’un candidat**. Le suivi conserve **196 identités : 161 avec image et 35 sans**. Cette passe produit **4 PNG natifs, dont 4 sélectionnés**, et résout **1 attribution historique**. Les références, écarts et refus sont tracés ; aucun actif ne reçoit une certification 1:1 ou une nouvelle intégration moteur. Les guides et deux extensions intégrés au lot19 sont conservés.
+
+### Historique — lot 19 et deux extensions
+
+Le [lot19](docs/armax/lot19/README.md) ajoute **6 PNG natifs, dont 4 sélectionnés**, et résout **2 attributions de PNG historiques**, pour **6 fiches auparavant sans image**. Le [suivi historique lot19](docs/armax/lot19/MANQUANTS_2026-11-27.md) conserve **196 identités, 156 avec candidat et 40 sans**. Les fichiers originaux du guide général et des deux extensions sont récupérés et associés à **68 rubriques / 204 critères documentaires**, avec [sources exactes](docs/armax/guides/README.md) et [réconciliation](docs/armax/bible/GUIDE_RECONCILIATION_2026-11-27.md). Les extensions équipes/bonus et déblocages restent des spécifications ; les nouvelles images sont des prototypes fixes, sans validation 1:1 ni nouvelle intégration moteur.
 
 ### Historique — lots 17 et 18
 
@@ -74,7 +78,7 @@ Le [lot 18](docs/armax/lot18/README.md) récupère douze PNG du lot 17 et ajoute
 
 La [bible Armax intégrée](docs/armax/bible/BIBLE_ARMAX_INTEGREE.md) applique les **68 rubriques du guide général et de ses deux extensions** aux systèmes, personnages et périodes du projet. La [matrice courante et ses 204 critères](docs/armax/bible/guide-coverage-2026-11-27.json) conserve les 30 rubriques historiques et ajoute les 38 rubriques des extensions. Les [associations historiques et 90 critères](docs/armax/bible/guide-associations.json), les [règles communes RC-ARMAX-0.1](docs/armax/bible/common-rules.json) et l’[annexe de campagnes et scènes](docs/armax/bible/CAMPAGNES_ET_SCENES.md) relient les anciens lots : six routes pilotes, une campagne globale en deux volets, finishers après KO final et quatre axes d’arène. L’intégration initiale du guide est documentaire ; ses 36 briefs narratifs restent distincts des images effectivement disponibles et des fonctionnalités jouables.
 
-L’[index consolidé du contenu](docs/armax/bible/ASSOCIATIONS_CONTENU.md) associe les **196 fiches du catalogue lot 19** à leurs rôles et aux modèles du guide : **156 avec image candidate et 40 sans**. Il conserve les 192 identités héritées du lot 16, les correspondances de conception, les costumes, les scènes et les sous-zones précises. Les calques de Port Hanshan et de Tuchanka relèvent des fiches G/J ; le fauteuil et la pose assise de l’Homme Trouble relèvent des fiches narratives B/F/J, avec leurs réserves artistiques.
+L’[index consolidé du contenu](docs/armax/bible/ASSOCIATIONS_CONTENU.md) associe les **196 fiches du catalogue lot 20** à leurs rôles et aux modèles du guide : **161 avec image candidate et 35 sans**. Il conserve les 192 identités héritées du lot 16, les correspondances de conception, les costumes, les scènes et les sous-zones précises. Les calques de Port Hanshan et de Tuchanka relèvent des fiches G/J ; le fauteuil et la pose assise de l’Homme Trouble relèvent des fiches narratives B/F/J, avec leurs réserves artistiques.
 
 
 Le [dossier Armax](docs/armax/README.md) rassemble les poses individuelles, costumes, arènes et compléments de bible du mode de combat 2D. La [récupération du 20 novembre](docs/armax/recovery-20261120/README.md) conserve **86 PNG originaux distincts** issus de cinq sessions, avec empreintes SHA-256 et réserves. Les concepts, les corps fixes et les calques restent des prototypes artistiques ; leur présence ne constitue pas une animation complète ou une intégration jouable.
