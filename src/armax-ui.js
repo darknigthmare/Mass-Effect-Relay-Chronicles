@@ -70,9 +70,8 @@ export function mountArmax(root,{onExit,baseUrl=import.meta.env.BASE_URL}={}){
     root.innerHTML=`<section class="armax-screen armax-lobby" role="dialog" aria-modal="true" aria-label="Armax Relay Clash">
       <header class="armax-header"><div><p class="armax-eyebrow">ARMAX RELAY CLASH · DOSSIER NACRE</p><h1>Les Dettes de Nacre</h1><p>Duel local dans les systèmes Terminus · 2185</p></div><button class="secondary" data-armax="exit">Retour</button></header>
       <div class="armax-lobby-body"><article class="armax-intro"><span class="armax-kicker">CHOISIR SA TRAVERSÉE</span><h2>Le quai garde toutes les dettes.</h2><p>Faites céder la protection, surveillez votre jauge et trouvez l’ouverture. Les défis annoncent leurs actions ; les routes personnelles traversent huit affrontements.</p>
-      <p class="armax-prototype">Prototype jouable : poses fixes, un spécial par personnage et effets simplifiés. Les rencontres adaptent une partie de leur conception ; les kits complets restent en production.</p>
+      <p class="armax-prototype">Duel, entraînement, défis et parcours personnels : choisissez votre approche de la crise de Nacre.</p>
       <div class="armax-roster-count"><strong>10</strong><span>personnages originaux</span><strong>${ARMAX_STAGES.length}</strong><span>arènes de prototype</span></div>
-      <p class="armax-assets-status">Visuels disponibles : ${ARMAX_BOSSES.filter(p=>p.assetAvailable).length}/20 boss · ${ARMAX_ENEMIES.filter(p=>p.assetAvailable).length}/20 ennemis.</p>
       ${saved?`<button class="secondary" data-armax="campaign-resume">${saved.status==='completed'?'Revoir la conclusion':'Reprendre la route'} · ${esc(byId(saved.fighterId).name)} · ${saved.index}/8</button>`:''}</article>
       <form class="armax-setup"><label>Votre combattant<select name="player">${options(ARMAX_FIGHTERS,selection.player)}</select></label><p class="armax-profile" data-profile="player"></p>
       <label>Mode<select name="mode">${modeOptions}</select></label>
