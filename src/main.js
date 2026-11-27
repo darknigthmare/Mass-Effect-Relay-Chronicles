@@ -1448,7 +1448,7 @@ function frame(now){
   requestAnimationFrame(frame);
 }
 controls=createGamepadControls({
-  getMode:()=>document.hidden||focusSuspended||ui.busy?'blocked':ui.screen?'menu':battle?'combat':running?'explore':'menu',
+  getMode:()=>document.hidden||focusSuspended||ui.busy||['armax','armax-loading'].includes(ui.screen)?'blocked':ui.screen?'menu':battle?'combat':running?'explore':'menu',
   getFocusRoot:()=>ui.screen?$('#overlay'):battle?$('#battle-ui'):$('#hud'),
   onMove:input=>{world.gamepadInput=input;},onInteract:()=>interactWithWorld(),
   onPause:()=>{if(inChronicles()&&chronicleBattle){chroniclePaused=!chroniclePaused;renderChronicleCombat(true);return;}if(!running)return;if(ui.screen==='pause')closeScreen();else if(!ui.screen)openScreen('pause');},

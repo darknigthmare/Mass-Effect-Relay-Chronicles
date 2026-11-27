@@ -133,6 +133,28 @@ test('menu keyboard actions trap boundary focus and never consume world movement
   controls.dispose();
 });
 
+test('blocked global controls leave modal keyboard ownership intact and restore menu navigation afterwards', () => {
+  const fixture = domFixture(); let mode = 'blocked', backs = 0;
+  const pause = fixture.element('pause'), selection = fixture.element('selection', { rect: { left: 120, top: 0, width: 80, height: 30 } });
+  fixture.replace([pause, selection]); pause.focus();
+  const controls = createGamepadControls({ document: fixture.doc, window: null, getMode: () => mode, getFocusRoot: () => fixture.root, onBack: () => { backs++; } });
+  for (const code of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space', 'Enter', 'Escape', 'Tab', 'KeyJ']) {
+    const key = event(code, pause);
+    assert.equal(controls.handleKeyDown(key), false, code + ' belongs to the active modal');
+    assert.equal(key.prevented, false); assert.equal(key.stopped, false);
+    assert.equal(fixture.doc.activeElement, pause);
+  }
+  const select = fixture.element('fighter', { tagName: 'SELECT', value: 'mara' });
+  assert.equal(controls.handleKeyDown(event('ArrowDown', select)), false);
+  assert.equal(select.value, 'mara'); assert.equal(backs, 0);
+  assert.equal(pause.clicks + selection.clicks, 0);
+  mode = 'menu';
+  assert.equal(controls.handleKeyDown(event('ArrowRight', pause)), true);
+  assert.equal(fixture.doc.activeElement, selection);
+  controls.handleKeyDown(event('Enter', selection)); assert.equal(selection.clicks, 1);
+  controls.dispose();
+});
+
 test('gamepad lists and sliders dispatch actual change events, skip disabled options and clamp values', () => {
   const fixture = domFixture(); let currentPad = pad();
   const select = fixture.element('mode', { tagName: 'SELECT', value: 'wait', options: [{ value: 'wait' }, { value: 'forbidden', disabled: true }, { value: 'active' }] });

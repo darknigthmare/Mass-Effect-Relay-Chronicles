@@ -19,12 +19,15 @@ function createView(container,profiles,textures,effects={}){
   const resources=[...textures,...Object.values(effects).map(effect=>effect.texture)],ratio=textures[2].image.width/textures[2].image.height;
   const geometry=new THREE.PlaneGeometry(Math.max(16,9*ratio),Math.max(9,16/ratio)),material=new THREE.MeshBasicMaterial({map:textures[2],depthWrite:false});resources.push(geometry,material);
   const backdrop=new THREE.Mesh(geometry,material);backdrop.position.set(0,4.5,-2);scene.add(backdrop);
+  // Shared XY planes preserve signed scale while keeping fighter origins at their feet.
+  const fighterGeometry=new THREE.PlaneGeometry(1,1),effectGeometry=new THREE.PlaneGeometry(1,1);
+  fighterGeometry.translate(0,.5,0);resources.push(fighterGeometry,effectGeometry);
   const silhouettes=profiles.map((profile,index)=>{
     const texture=textures[index],w=texture.image.width,h=texture.image.height,b=profile.visualBounds||[0,0,w,h];
     const left=Math.max(0,b[0]-8),top=Math.max(0,b[1]-8),right=Math.min(w,b[2]+8),bottom=Math.min(h,b[3]+8);
     texture.repeat.set((right-left)/w,(bottom-top)/h);texture.offset.set(left/w,1-bottom/h);
-    const mat=new THREE.SpriteMaterial({map:texture,alphaTest:32/255,transparent:true,depthWrite:false});
-    const sprite=new THREE.Sprite(mat);sprite.center.set(.5,0);sprite.renderOrder=2+index;scene.add(sprite);resources.push(mat);
+    const mat=new THREE.MeshBasicMaterial({map:texture,alphaTest:32/255,transparent:true,depthWrite:false});
+    const sprite=new THREE.Mesh(fighterGeometry,mat);sprite.renderOrder=2+index;scene.add(sprite);resources.push(mat);
     const shadowGeo=new THREE.CircleGeometry(.5,32),shadowMat=new THREE.MeshBasicMaterial({color:'#020609',transparent:true,opacity:.35,depthWrite:false});
     const shadow=new THREE.Mesh(shadowGeo,shadowMat);shadow.scale.y=.18;scene.add(shadow);resources.push(shadowGeo,shadowMat);
     return {sprite,shadow,aspect:(right-left)/(bottom-top)};
@@ -42,7 +45,7 @@ function createView(container,profiles,textures,effects={}){
     const live=new Set(state.projectiles.map(shot=>shot.id));for(const[id,mesh]of shotViews)if(!live.has(id)){scene.remove(mesh);mesh.material.dispose();shotViews.delete(id);}
     for(const shot of state.projectiles){
       let mesh=shotViews.get(shot.id);const effect=effects[shot.trap?'trap':profiles[shot.owner].species.toLowerCase().includes('asari')?'biotic':'kinetic'];
-      if(!mesh){mesh=effect?new THREE.Sprite(new THREE.SpriteMaterial({map:effect.texture,alphaTest:32/255,transparent:true,depthWrite:false})):new THREE.Mesh(shotGeometry,new THREE.MeshBasicMaterial({color:profiles[shot.owner].color,transparent:true,opacity:.9,depthWrite:false}));scene.add(mesh);shotViews.set(shot.id,mesh);}
+      if(!mesh){mesh=effect?new THREE.Mesh(effectGeometry,new THREE.MeshBasicMaterial({map:effect.texture,alphaTest:32/255,transparent:true,depthWrite:false})):new THREE.Mesh(shotGeometry,new THREE.MeshBasicMaterial({color:profiles[shot.owner].color,transparent:true,opacity:.9,depthWrite:false}));scene.add(mesh);shotViews.set(shot.id,mesh);}
       mesh.position.set(shot.x,1.8+shot.y,.5);
       if(effect){const width=shot.area?shot.radius*2:shot.trap ? .75 : 1.05;mesh.scale.set(width*(shot.vx<0?-1:1)*effect.facingSign,width/effect.aspect,1);}else mesh.scale.set(shot.area?shot.radius*10:shot.trap?2.4:2.5,shot.trap ? .65 : .6,1);
       mesh.material.opacity=shot.armed ? .4 : .95;
