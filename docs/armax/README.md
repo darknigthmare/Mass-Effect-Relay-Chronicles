@@ -8,16 +8,22 @@ La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **68 rubriques** 
 
 - [Matrice courante : 68 rubriques et 204 critères](bible/guide-coverage-2026-11-27.json).
 - [Associations historiques et 90 critères conservés](bible/guide-associations.json).
-- [Associations des 196 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
+- [Associations des 216 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
 - [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
 
-**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 20 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 21 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
 
-## Lot 20 — continuation courante du 27 novembre 2026
+## Lot 21 — continuation courante
 
-**5 fiches auparavant sans image disposent d’un candidat**. Le suivi conserve **196 identités : 161 avec image et 35 sans**. Cette passe produit **4 PNG natifs, dont 4 sélectionnés**, et résout **1 attribution historique**. Le [bilan](lot20/README.md), le [catalogue courant](lot20/production-catalog.json), les [manquants](lot20/MANQUANTS_2026-11-27.md) et le [classeur](lot20/Mass_Effect_Armax_Suivi_Lot20_2026-11-27.xlsx) portent les fichiers et contrôles de cette passe.
+**216 fiches : 171 avec image candidate et 45 sans**. Le lot21 conserve 196 identités et en ajoute 20. Il livre **10 PNG : 7 récupérés et 3 générés**, pour 2 anciennes fiches complétées et 8 nouvelles identités illustrées. Dans le périmètre hérité, les manquants passent de 35 à 33. La fidélité 1:1 et l’intégration moteur restent non certifiées.
+
+[Livraison](lot21/README.md) · [Manquants](lot21/MANQUANTS_2026-11-27.md) · [Bible complémentaire](lot21/BIBLE_COMPLEMENTS_LOT21.md) · [Classeur](lot21/Mass_Effect_Armax_Suivi_Lot21_2026-11-27.xlsx). Les 68 rubriques et 204 critères des guides sont conservés ; aucun des 40 scénarios de gameplay n’est exécuté ici.
+
+## Lot 20 — historique du 27 novembre 2026
+
+**5 fiches auparavant sans image disposent d’un candidat**. Le suivi conserve **196 identités : 161 avec image et 35 sans**. Cette passe produit **4 PNG natifs, dont 4 sélectionnés**, et résout **1 attribution historique**. Le [bilan](lot20/README.md), le [catalogue historique](lot20/production-catalog.json), les [manquants](lot20/MANQUANTS_2026-11-27.md) et le [classeur](lot20/Mass_Effect_Armax_Suivi_Lot20_2026-11-27.xlsx) portent les fichiers et contrôles de cette passe.
 
 ## Lot 19 — historique du 27 novembre 2026
 
