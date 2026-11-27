@@ -1,0 +1,1332 @@
+{
+  "schemaVersion": 1,
+  "project": "Mass Effect — Relay Chronicles",
+  "mode": "Armax Relay Clash",
+  "updatedOn": "2026-11-27",
+  "timezone": "Europe/Paris",
+  "artifactRole": "specification_de_conception_non_importee_par_le_moteur",
+  "extension": "01",
+  "sourceSections": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "sourceManifest": "docs/armax/guides/source-manifest.json",
+  "designStatus": "Défini",
+  "implementationStatus": "non_livre_par_cette_revision",
+  "gameplayValidated": false,
+  "fidelity1to1Validated": false,
+  "implementedFeaturesClaimed": 0,
+  "newImagesClaimed": 0,
+  "animationsProduced": 0,
+  "parameterStatus": "hypotheses_de_reglage_a_mesurer_et_tester",
+  "ruleSetId": "RC-ARMAX-TEAM-0.1",
+  "inherits": "docs/armax/bible/common-rules.json",
+  "identityPolicy": {
+    "nameOrigin": "noms_de_conception_du_projet_sauf_noms_de_personnages_et_pouvoirs_sources",
+    "fidelityClasses": [
+      "canon_atteste",
+      "adaptation_jouable",
+      "original_compatible",
+      "alternatif_crossover",
+      "a_confirmer"
+    ],
+    "campaignIsolation": [
+      "ME1",
+      "ME2",
+      "ME3",
+      "MEA"
+    ],
+    "crossPeriodVersus": "simulation_hypothetique_sans_effet_sur_recrutements_ou_deces",
+    "dataIdNamespace": "identifiants_documentaires_non_ids_runtime"
+  },
+  "profiles": [
+    {
+      "id": "E1-PROFILE-DUEL",
+      "members": 1,
+      "controllable": 1,
+      "support": 0,
+      "loss": "KO_actif",
+      "priority": "P0",
+      "rules": "RC-ARMAX-0.1"
+    },
+    {
+      "id": "E1-PROFILE-ASSIST",
+      "members": 2,
+      "controllable": 1,
+      "support": 1,
+      "loss": "KO_actif",
+      "supportBecomesActiveOnPrincipalKO": false,
+      "priority": "P1",
+      "decision": "retenue"
+    },
+    {
+      "id": "E1-PROFILE-TAG",
+      "members": 2,
+      "controllable": 2,
+      "support": 0,
+      "loss": "aucun_survivant",
+      "priority": "P1",
+      "decision": "retenue"
+    },
+    {
+      "id": "E1-PROFILE-HYBRID",
+      "members": 2,
+      "controllable": 2,
+      "support": 1,
+      "loss": "aucun_survivant",
+      "priority": "P2",
+      "decision": "retenue_apres_validation_ASSIST_TAG"
+    },
+    {
+      "id": "E1-PROFILE-STORY",
+      "members": "selon_chapitre",
+      "controllable": "selon_fiche_de_chapitre",
+      "support": "selon_fiche_de_chapitre",
+      "loss": "condition_explicite_du_chapitre",
+      "priority": "P1",
+      "decision": "adaptee"
+    }
+  ],
+  "teamState": {
+    "health": "propre_a_chaque_membre",
+    "reserveHealthRegeneration": false,
+    "reserveProtectionRegeneration": false,
+    "kitResourcesPersistOnTag": true,
+    "cooldownsRunInReserve": true,
+    "clockFrozenIn": [
+      "pause",
+      "hitstop",
+      "cinematique",
+      "clash"
+    ],
+    "maxRosterInterventionsPerTeam": 1,
+    "maxNativeEntitiesPerTeam": 2,
+    "maxNativeEntitiesPerOwner": 1,
+    "maxDangerousProjectilesPerTeam": 4,
+    "duplicateIdentityWithinTeam": false,
+    "opponentMirror": "autorise_en_simulation_selon_reglement",
+    "memberActionMutex": true,
+    "koResolution": {
+      "ASSIST": "KO_du_principal_conclut_defaite_soutien_non_controlable",
+      "TAG_HYBRID": "resoudre_tous_contacts_du_pas_puis_compter_survivants",
+      "bothActiveKOWithReserves": "relais_gratuit_des_deux_equipes",
+      "onlyOneTeamWithoutSurvivor": "victoire_de_equipe_survivante",
+      "bothTeamsWithoutSurvivor": "egalite_selon_RC_ARMAX_0_1"
+    },
+    "timeout": {
+      "TAG_HYBRID": [
+        "sum_remaining_health_over_sum_initial_health",
+        "sum_remaining_protection_over_sum_initial_protection"
+      ],
+      "ASSIST": "ratios_du_principal_seulement",
+      "koMemberRemaining": 0,
+      "zeroProtectionDenominatorRatio": 0,
+      "exactTie": "aucun_point_puis_nouvelle_manche"
+    },
+    "roundReset": {
+      "health": "initiale_par_membre",
+      "protection": "initiale_par_membre",
+      "coordination": 0,
+      "memberOrder": "ordre_de_depart_selectionne",
+      "entities": "toutes_retirees",
+      "persistentEffects": "retires",
+      "cooldowns": "etat_initial_de_fiche"
+    }
+  },
+  "controls": {
+    "actions": [
+      "TAUNT",
+      "ASSIST",
+      "TAG",
+      "DUO_SUPER",
+      "TEAM_FINISH",
+      "ENTITY_ORDER"
+    ],
+    "physicalBindings": "remappables_a_integrer",
+    "legacyTAlias": "S_conserve",
+    "tapHoldOverloadUsed": false,
+    "simultaneousPriority": [
+      "required_KO_relay",
+      "DUO_SUPER",
+      "TAG",
+      "ASSIST",
+      "TAUNT"
+    ],
+    "rejectedCommandCost": 0,
+    "transaction": "un_seul_engagement_et_debit_atomique_par_equipe_et_pas"
+  },
+  "coordinationMeter": {
+    "replacesIndividualSuperMeterInTeamProfiles": true,
+    "min": 0,
+    "max": 300,
+    "initial": 0,
+    "normalHitGain": 8,
+    "specialHitGain": 4,
+    "blockedAttackGain": 3,
+    "damageReceivedGain": 5,
+    "gainCapPerTeamPerCombo": 30,
+    "passiveGain": 0,
+    "deduplication": "par_action_et_equipe; aucune_prime_double_sur_actif_plus_soutien",
+    "noGainFrom": [
+      "super",
+      "finisher",
+      "taunt",
+      "whiff",
+      "cible_soutien"
+    ],
+    "costs": {
+      "ASSIST": 50,
+      "TAG_NEUTRAL": 25,
+      "TAG_COMBO": 100,
+      "TAG_AFTER_KO": 0,
+      "DUO_SUPER": 200,
+      "TEAM_FINISH": 0,
+      "TAUNT": 0
+    },
+    "individualSuperCosts": "100_par_defaut;200_pour_exceptions_Grunt_Legion_RC_ARMAX_0_1",
+    "spendAt": "engagement_accepte",
+    "interruptedAfterSpend": "non_rembourse",
+    "rejectedBeforeEngagement": "aucun_debit"
+  },
+  "taunts": [
+    {
+      "id": "E1-TAUNT-GARRUS-ME3",
+      "character": "Garrus",
+      "work": "ME3",
+      "gesture": "verifie_alignement_du_fusil_et_reprend_appui",
+      "fidelityClass": "original_compatible",
+      "loreValidation": "a_confirmer",
+      "startupFrames": 12,
+      "poseFrames": 30,
+      "recoveryFrames": 18,
+      "vulnerable": true,
+      "voluntaryCancelBeforeRecovery": false,
+      "bufferLastFrames": 6,
+      "resourceGain": 0,
+      "assetStatus": "a_produire",
+      "animationStatus": "non_produite",
+      "voiceStatus": "replique_originale_facultative_a_ecrire"
+    },
+    {
+      "id": "E1-TAUNT-TALI-ME3",
+      "character": "Tali",
+      "work": "ME3",
+      "gesture": "diagnostic_omni_tool_sans_recharge_ni_retrait_masque",
+      "fidelityClass": "original_compatible",
+      "loreValidation": "a_confirmer",
+      "startupFrames": 12,
+      "poseFrames": 30,
+      "recoveryFrames": 18,
+      "vulnerable": true,
+      "voluntaryCancelBeforeRecovery": false,
+      "bufferLastFrames": 6,
+      "resourceGain": 0,
+      "assetStatus": "a_produire",
+      "animationStatus": "non_produite",
+      "voiceStatus": "replique_originale_facultative_a_ecrire"
+    },
+    {
+      "id": "E1-TAUNT-GRUNT-ME2",
+      "character": "Grunt",
+      "work": "ME2",
+      "gesture": "redresse_torse_defi_physique_sans_biotique",
+      "fidelityClass": "original_compatible",
+      "loreValidation": "a_confirmer",
+      "startupFrames": 12,
+      "poseFrames": 30,
+      "recoveryFrames": 18,
+      "vulnerable": true,
+      "voluntaryCancelBeforeRecovery": false,
+      "bufferLastFrames": 6,
+      "resourceGain": 0,
+      "assetStatus": "a_produire",
+      "animationStatus": "non_produite",
+      "voiceStatus": "replique_originale_facultative_a_ecrire"
+    },
+    {
+      "id": "E1-TAUNT-LEGION-ME2",
+      "character": "Legion",
+      "work": "ME2",
+      "gesture": "inclinaison_tete_et_volets",
+      "fidelityClass": "original_compatible",
+      "loreValidation": "a_confirmer",
+      "startupFrames": 12,
+      "poseFrames": 30,
+      "recoveryFrames": 18,
+      "vulnerable": true,
+      "voluntaryCancelBeforeRecovery": false,
+      "bufferLastFrames": 6,
+      "resourceGain": 0,
+      "assetStatus": "a_produire",
+      "animationStatus": "non_produite",
+      "voiceStatus": "replique_originale_facultative_a_ecrire"
+    },
+    {
+      "id": "E1-TAUNT-NYREEN-ME3",
+      "character": "Nyreen",
+      "work": "ME3_Omega",
+      "gesture": "designe_sortie_sure",
+      "fidelityClass": "original_compatible",
+      "loreValidation": "a_confirmer",
+      "startupFrames": 12,
+      "poseFrames": 30,
+      "recoveryFrames": 18,
+      "vulnerable": true,
+      "voluntaryCancelBeforeRecovery": false,
+      "bufferLastFrames": 6,
+      "resourceGain": 0,
+      "assetStatus": "a_produire",
+      "animationStatus": "non_produite",
+      "voiceStatus": "replique_originale_facultative_a_ecrire"
+    },
+    {
+      "id": "E1-TAUNT-RYDER-MEA",
+      "character": "Ryder",
+      "work": "MEA",
+      "gesture": "controle_equipement_selon_profil",
+      "fidelityClass": "original_compatible",
+      "loreValidation": "a_confirmer",
+      "startupFrames": 12,
+      "poseFrames": 30,
+      "recoveryFrames": 18,
+      "vulnerable": true,
+      "voluntaryCancelBeforeRecovery": false,
+      "bufferLastFrames": 6,
+      "resourceGain": 0,
+      "assetStatus": "a_produire",
+      "animationStatus": "non_produite",
+      "voiceStatus": "replique_originale_facultative_a_ecrire"
+    }
+  ],
+  "selection": {
+    "id": "E1-SELECT-GARRUS-ME3",
+    "states": [
+      "survol",
+      "apercu",
+      "confirmation",
+      "attente_confirmee",
+      "changement_costume",
+      "deselection",
+      "validation_equipe",
+      "depart"
+    ],
+    "confirmationFrames": 30,
+    "confirmedIdleLoopFrames": 120,
+    "fullDeselectFrames": 24,
+    "shortDeselectFrames": 6,
+    "deselect": "abaisse_fusil_et_recule",
+    "stateCommit": "immediat_sans_attendre_animation",
+    "previewOwnership": "session_par_curseur;nettoyage_des_seuls_effets_de_session",
+    "reducedMotion": "pose_et_fondu_bref_avec_information_identique",
+    "newAnimationClaimed": false,
+    "secretPolicy": "extension02_discovery"
+  },
+  "assists": [
+    {
+      "id": "E1-ASSIST-GARRUS-ME3",
+      "character": "Garrus",
+      "work": "ME3",
+      "name": "Tir de couverture",
+      "nameOrigin": "original_du_projet",
+      "powerSource": "SRC-EXT-ME3-MANUAL-P5",
+      "fidelityClass": "adaptation_jouable",
+      "cycle": [
+        "disponible",
+        "engage",
+        "arrivee",
+        "action",
+        "sortie",
+        "recuperation",
+        "disponible"
+      ],
+      "cost": 50,
+      "arrivalFrames": 18,
+      "startupAfterArrivalFrames": 18,
+      "projectileEmissions": 1,
+      "exitFrames": 24,
+      "cooldownFrames": 600,
+      "cooldownStarts": "fin_sortie",
+      "vulnerableStates": [
+        "arrivee",
+        "action",
+        "sortie"
+      ],
+      "allowedWhen": "actif_au_sol_neutral_ou_fenetre_explicitement_autorisee",
+      "rejectedWhen": [
+        "hitstun",
+        "blockstun",
+        "partner_busy",
+        "partner_KO",
+        "meter_insufficient"
+      ],
+      "reserveDamage": "PV_de_reserve_dans_hybride",
+      "missingBeforeIntegration": [
+        "vitesse_portee_et_collisions_projectile",
+        "poses_arme_exacte",
+        "dommages_bornes_fiche_action",
+        "tests_de_cible_geante"
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "E1-TAG-NEUTRAL",
+      "cost": 25,
+      "outgoingFrames": 18,
+      "incomingFrames": 24,
+      "logicalTransferFrame": 18,
+      "firstActionAllowedFrame": 42,
+      "inputBufferFrames": 5,
+      "invulnerability": false,
+      "allowedState": "neutral_au_sol",
+      "hitBeforeTransfer": "interruption_sortant_reste_actif",
+      "hitAfterTransfer": "entrant_recoit_coup",
+      "invalidArrivalPosition": "refus_avant_debit",
+      "preserves": [
+        "kit_resources",
+        "cooldowns",
+        "status_effects",
+        "projectile_ownership",
+        "combo_history"
+      ]
+    },
+    {
+      "id": "E1-TAG-COMBO",
+      "cost": 100,
+      "decision": "differee_avant_animations_et_tests",
+      "preservesComboHistory": true
+    },
+    {
+      "id": "E1-TAG-RESCUE",
+      "decision": "non_retenue_premier_profil"
+    },
+    {
+      "id": "E1-TAG-AFTER-KO",
+      "cost": 0,
+      "requires": "reserve_controlable_vivante",
+      "cannotBeBlockedByMeter": true
+    }
+  ],
+  "duoScenes": [
+    {
+      "id": "E1-DUO-GARRUS-SHEPARD-ME3",
+      "participants": [
+        "Garrus_ME3",
+        "Shepard_Soldat_ME3"
+      ],
+      "work": "ME3",
+      "leader": "Shepard_Soldat_ME3",
+      "fidelityClass": "original_compatible",
+      "timeline": [
+        "signal",
+        "tir_percutant_Garrus",
+        "confirmation_touche",
+        "tir_Shepard",
+        "reaction_cible",
+        "retour"
+      ],
+      "conditions": [
+        "membres_vivants",
+        "partenaire_disponible",
+        "amorce_touche",
+        "cible_compatible"
+      ],
+      "cost": 200,
+      "missOrBlock": "resolution_courte",
+      "exitActive": "leader_initial",
+      "damage": "un_budget_action_reparti_sans_multiplier_gain",
+      "animationStatus": "non_produite"
+    },
+    {
+      "id": "E1-DUO-GRUNT-LEGION-ME2",
+      "participants": [
+        "Grunt_ME2",
+        "Legion_ME2"
+      ],
+      "work": "ME2",
+      "leader": "Grunt_ME2",
+      "fidelityClass": "original_compatible",
+      "contributions": [
+        "ligne_de_tir_Legion",
+        "percussion_physique_Grunt"
+      ],
+      "conditions": [
+        "recrutes_et_vivants_si_route",
+        "aucune_charge_biotique_Grunt"
+      ],
+      "cost": 200,
+      "animationStatus": "non_produite"
+    },
+    {
+      "id": "E1-DUO-NYREEN-ARIA-ME3",
+      "participants": [
+        "Nyreen_ME3_Omega",
+        "Aria_ME3_Omega"
+      ],
+      "work": "ME3_Omega",
+      "fidelityClass": "original_compatible",
+      "conditions": [
+        "segment_Omega_avec_les_deux_presentes",
+        "pas_de_resurrection"
+      ],
+      "missingBeforeIntegration": [
+        "validation_kits_et_actions_detaillees"
+      ],
+      "cost": 200,
+      "animationStatus": "non_produite"
+    },
+    {
+      "id": "E1-DUO-RYDER-PEEBEE-MEA",
+      "participants": [
+        "Ryder_MEA_profil_fixe",
+        "Peebee_MEA"
+      ],
+      "work": "MEA",
+      "fidelityClass": "a_confirmer",
+      "conditions": [
+        "volet_Heleus",
+        "profil_Ryder_reellement_equipe"
+      ],
+      "missingBeforeIntegration": [
+        "controle_source_pouvoirs",
+        "decoupage_complet"
+      ],
+      "cost": 200,
+      "animationStatus": "non_produite"
+    }
+  ],
+  "finishes": {
+    "familyName": "Neutralisation coordonnée",
+    "nameOrigin": "original_du_projet",
+    "requires": [
+      "final_match_KO",
+      "winner_known",
+      "compatible_target",
+      "participants_alive"
+    ],
+    "neverOn": [
+      "timeout",
+      "draw",
+      "abandon",
+      "disconnect"
+    ],
+    "windowFrames": 120,
+    "gameplayDamage": 0,
+    "resourceGain": 0,
+    "exclusiveReward": false,
+    "priority": [
+      "specific_dramatic",
+      "team_finish",
+      "individual_finish",
+      "normal_victory"
+    ],
+    "skipPreservesResult": true,
+    "examples": [
+      {
+        "id": "E1-FIN-GARRUS-SHEPARD-ME3",
+        "name": "Périmètre sécurisé",
+        "pairId": "E1-DUO-GARRUS-SHEPARD-ME3",
+        "target": "humanoide_compatible",
+        "giantFallback": "plan_de_couverture_puis_victoire_normale"
+      },
+      {
+        "id": "E1-DRAMATIC-GRUNT-ME2",
+        "name": "Après l’épreuve",
+        "character": "Grunt_ME2",
+        "requires": [
+          "chapitre_compatible_lot18",
+          "Tuchanka_ME2",
+          "etat_narratif_compatible"
+        ],
+        "fidelityClass": "original_compatible",
+        "fallback": "victoire_normale"
+      }
+    ]
+  },
+  "clash": {
+    "id": "E1-CLASH-MELEE",
+    "group": "attaques_lourdes_melee_explicitement_compatibles",
+    "maxStartDifferenceFrames": 3,
+    "requiresActiveContact": true,
+    "oncePerAction": true,
+    "cooldownFrames": 600,
+    "thirdPartySameTick": "contact_tiers_interrompt_eligibilite_cinematique;resoudre_normalement",
+    "competitive": "separation_sans_QTE",
+    "spectacle": "appui_unique_fenetre_commune",
+    "qteClock": {
+      "hz": 60,
+      "windowFrames": 30,
+      "independentFromFrozenCombatClock": true,
+      "pausesWithAuthorizedLocalPause": true
+    },
+    "qteOutcome": {
+      "oneSuccess": "avantage_reprise12pas_sans_degats_supplementaires",
+      "twoSuccesses": "separation_neutre",
+      "twoFailures": "separation_neutre",
+      "noInput": "separation_neutre",
+      "disconnect": "reglement_match_sans_succes_automatique"
+    },
+    "freeze": [
+      "fighters",
+      "supports",
+      "entities",
+      "projectiles",
+      "cooldowns",
+      "round_clock"
+    ],
+    "resource": "couts_attaques_engagees_conserves",
+    "hasGameplayImplementation": false
+  },
+  "entities": [
+    {
+      "id": "E1-ENTITY-LEGION-DRONE-ME2",
+      "owner": "Legion_ME2",
+      "family": "drone",
+      "fidelityClass": "adaptation_jouable",
+      "sourceRef": "docs/combat-2d/CONTINUATION_2026-11-19.md",
+      "referenceKit": "proprietes_historiques_a_conserver_et_reconcilier",
+      "nativeKitComponent": true,
+      "ownerCatalogEntryId": "chr_me2_legion_standard",
+      "entityAssetRef": {
+        "source": "docs/combat-2d/production.json",
+        "entityId": "ME2-VS-LEGION-DRONE-IDLE-01",
+        "scope": "reference_historique_pas_nouvelle_validation_pixels"
+      }
+    },
+    {
+      "id": "E1-ENTITY-GARRUS-MINE-ME3",
+      "owner": "Garrus_ME3",
+      "family": "mine",
+      "powerSource": "SRC-EXT-ME3-MANUAL-P5",
+      "fidelityClass": "adaptation_jouable",
+      "placementFrames": 24,
+      "armingFrames": 30,
+      "maxLifeFrames": 600,
+      "maxPerOwner": 1,
+      "atLimit": "refus_avant_cout",
+      "counterplay": [
+        "visible",
+        "contournable",
+        "destructible_selon_fiche_action"
+      ],
+      "nativeKitComponent": true
+    },
+    {
+      "id": "E1-ENTITY-RYDER-ZAP-MEA",
+      "owner": "Ryder_MEA_profil_compatible",
+      "family": "observateur_Remnant",
+      "powerSource": "SRC-EXT-PRIMA-ZAP",
+      "fidelityClass": "adaptation_jouable",
+      "requiredStoryCondition": "progression_de_quete_compatible",
+      "prohibitedConflation": "Poc_et_Zap_ne_sont_pas_interchangeables",
+      "nativeKitComponent": true
+    }
+  ],
+  "entityLifecycle": {
+    "ownerHit": "action_engagee_continue_pas_nouvel_ordre",
+    "ownerThrown": "meme_regle_que_hit",
+    "reserve": {
+      "drone": "rappel_fin_pas_sans_remboursement",
+      "mine": "persiste_proprietaire_identique",
+      "projectile": "continue_sans_retarget_implicite"
+    },
+    "ownerKO": "contacts_du_pas_puis_retrait_drone_desarmement_mine_et_retrait_projectiles_sans_impact",
+    "transition": "retrait_sans_remboursement_recharges_conservees",
+    "newRound": "retrait_tout",
+    "superOrClash": "gel_synchronise",
+    "finisher": "retrait_gameplay_avant_presentation",
+    "reflectionDefault": false,
+    "reflectionException": "fiche_explicite_change_damageOwnerId_avec_origine_et_historique_conserves",
+    "teamSharedComboHistory": true
+  },
+  "bonuses": [
+    {
+      "id": "E1-BONUS-01",
+      "family": "Destruction contrôlée",
+      "setting": "carcasse_simulee",
+      "objective": "4 zones en60secondes",
+      "maxSeconds": 60,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-02",
+      "family": "Horde",
+      "setting": "cibles_holographiques",
+      "objective": "survivre90secondes",
+      "maxSeconds": 90,
+      "maxConcurrentEnemies": 6,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-03",
+      "family": "Précision",
+      "setting": "galerie_tir",
+      "objective": "10cibles sur12",
+      "maxSeconds": null,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-04",
+      "family": "Défense",
+      "setting": "corridor",
+      "objective": "6reponses sur8",
+      "maxSeconds": null,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-05",
+      "family": "Mobilité",
+      "setting": "evacuation",
+      "objective": "3balises etsortie en60secondes",
+      "maxSeconds": 60,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-06",
+      "family": "Protection",
+      "setting": "extraction",
+      "objective": "dispositif vivant60secondes",
+      "maxSeconds": 60,
+      "maxConcurrentEnemies": 6,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-07",
+      "family": "Interaction",
+      "setting": "signal",
+      "objective": "3consoles activees",
+      "maxSeconds": null,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-08",
+      "family": "Entité",
+      "setting": "ligne_deportee",
+      "objective": "4objectifs dont2par_entite",
+      "maxSeconds": null,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer",
+      "loanKit": {
+        "availableWithoutRosterUnlock": true,
+        "identities": [
+          "Legion_ME2",
+          "Ryder_MEA_Zap_condition_compatible"
+        ],
+        "scope": "exercice_uniquement"
+      }
+    },
+    {
+      "id": "E1-BONUS-09",
+      "family": "Coordination",
+      "setting": "couverture_croisee",
+      "objective": "1assist et1relais puis cible",
+      "maxSeconds": null,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer"
+    },
+    {
+      "id": "E1-BONUS-10",
+      "family": "Personnalité",
+      "setting": "resistance_krogan",
+      "objective": "defi_physique_Grunt_sans_nouveau_rite_canonique",
+      "maxSeconds": null,
+      "maxConcurrentEnemies": 0,
+      "fidelityClass": "original_compatible",
+      "context": "simulation_explicitement_identifiee",
+      "optionalInRoutes": true,
+      "failure": "score_termine_suite_autorisee_reessai_possible",
+      "reward": "collection_sans_bonus_stats_competition",
+      "initialResources": "etat_fiche_exercice_sans_transferer_RPG",
+      "nextFightResources": "etat_initial_du_prochain_combat",
+      "rewardDeduplication": "profile_rule_content",
+      "assetStatus": "a_produire",
+      "gameplayStatus": "a_integrer",
+      "loanKit": {
+        "availableWithoutRosterUnlock": true,
+        "identities": [
+          "Grunt_ME2"
+        ],
+        "scope": "exercice_uniquement"
+      }
+    }
+  ],
+  "exploration": {
+    "id": "E1-HUB-ARCHIVES",
+    "name": "Archives de simulation Armax",
+    "fidelityClass": "original_compatible",
+    "notOfficialArenaMap": true,
+    "renderTarget": "parcours2_5D_moteur_hote",
+    "MEA": "galerie_de_menu_separee_pas_liaison_physique_2186",
+    "rooms": [
+      {
+        "id": "HUB-ACCUEIL",
+        "name": "Accueil"
+      },
+      {
+        "id": "HUB-GALERIE",
+        "name": "Galerie"
+      },
+      {
+        "id": "HUB-ENTRAINEMENT",
+        "name": "Entraînement"
+      },
+      {
+        "id": "HUB-DOSSIERS",
+        "name": "Dossiers"
+      },
+      {
+        "id": "HUB-ARMURERIE",
+        "name": "Armurerie"
+      },
+      {
+        "id": "HUB-OBSERVATOIRE",
+        "name": "Observatoire"
+      }
+    ],
+    "connections": [
+      {
+        "id": "E1-DOOR-01",
+        "from": "HUB-ACCUEIL",
+        "to": "HUB-GALERIE",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "libre",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      },
+      {
+        "id": "E1-DOOR-02",
+        "from": "HUB-ACCUEIL",
+        "to": "HUB-ENTRAINEMENT",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "libre",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      },
+      {
+        "id": "E1-DOOR-03",
+        "from": "HUB-GALERIE",
+        "to": "HUB-DOSSIERS",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "initiation_terminee",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      },
+      {
+        "id": "E1-DOOR-04",
+        "from": "HUB-ENTRAINEMENT",
+        "to": "HUB-ARMURERIE",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "une_epreuve_terminee",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      },
+      {
+        "id": "E1-DOOR-05",
+        "from": "HUB-DOSSIERS",
+        "to": "HUB-OBSERVATOIRE",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "trois_dossiers_decouverts",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      },
+      {
+        "id": "E1-DOOR-06",
+        "from": "HUB-ARMURERIE",
+        "to": "HUB-GALERIE",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "armurerie_visitee",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      },
+      {
+        "id": "E1-DOOR-07",
+        "from": "HUB-OBSERVATOIRE",
+        "to": "HUB-GALERIE",
+        "bidirectional": true,
+        "sameConditionBothWays": true,
+        "condition": "observatoire_visite",
+        "onceOpenedPermanent": true,
+        "placement": "seuil_sur_limite_piece_et_repere_destination"
+      }
+    ],
+    "progressCurrency": "jalons_sans_monnaie_achetable_ni_aleatoire",
+    "collectionIdSource": "catalogue_commun",
+    "rewardExample": {
+      "id": "E1-REWARD-ARCHIVE-FIRST",
+      "ruleId": "E2-RULE-ARCHIVE-FIRST",
+      "grantOnce": true
+    }
+  },
+  "validationScenarios": [
+    {
+      "id": "E1-TEST-01",
+      "sourceSection": "47",
+      "sourceCase": 1,
+      "scenario": "Navigation rapide puis confirmation et désélection sans effets résiduels.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": "E1-TEST-02",
+      "sourceSection": "47",
+      "sourceCase": 2,
+      "scenario": "Taunt interrompu et retour au contrôle selon les fenêtres annoncées.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": "E1-TEST-03",
+      "sourceSection": "47",
+      "sourceCase": 3,
+      "scenario": "Assistance et relais demandés au même instant pour un partenaire unique.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "id": "E1-TEST-04",
+      "sourceSection": "47",
+      "sourceCase": 4,
+      "scenario": "Deux actions tentant de dépenser la dernière portion de jauge.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "id": "E1-TEST-05",
+      "sourceSection": "47",
+      "sourceCase": 5,
+      "scenario": "Soutien touché ou KO pendant son arrivée ; état de l'équipe cohérent.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "id": "E1-TEST-06",
+      "sourceSection": "47",
+      "sourceCase": 6,
+      "scenario": "Super duo demandée pendant la sortie d'une assistance.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "id": "E1-TEST-07",
+      "sourceSection": "47",
+      "sourceCase": 7,
+      "scenario": "Attaque initiale du super bloquée ou ratée ; résolution correcte.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        37,
+        38
+      ]
+    },
+    {
+      "id": "E1-TEST-08",
+      "sourceSection": "47",
+      "sourceCase": 8,
+      "scenario": "Fin dramatique avec version, lieu ou partenaire incompatible ; remplacement.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        37,
+        38
+      ]
+    },
+    {
+      "id": "E1-TEST-09",
+      "sourceSection": "47",
+      "sourceCase": 9,
+      "scenario": "Clash simultané avec projectile tiers, piège ou assistance.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "E1-TEST-10",
+      "sourceSection": "47",
+      "sourceCase": 10,
+      "scenario": "Réussite, échec, égalité, absence de réponse et déconnexion pendant un QTE.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "E1-TEST-11",
+      "sourceSection": "47",
+      "sourceCase": 11,
+      "scenario": "Propriétaire en réserve ou KO avec une entité encore active.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "E1-TEST-12",
+      "sourceSection": "47",
+      "sourceCase": 12,
+      "scenario": "Transition d'arène pendant un combo utilisant un objet placé.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "E1-TEST-13",
+      "sourceSection": "47",
+      "sourceCase": 13,
+      "scenario": "Réflexion de projectile puis dégâts, attribution et éventuelle fin dramatique.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "E1-TEST-14",
+      "sourceSection": "47",
+      "sourceCase": 14,
+      "scenario": "Tentative de boucle infinie combinant pièges, relais et assistances.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "E1-TEST-15",
+      "sourceSection": "47",
+      "sourceCase": 15,
+      "scenario": "Horde à la limite de présence : performance, lisibilité et issues accessibles.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        42,
+        43,
+        46
+      ]
+    },
+    {
+      "id": "E1-TEST-16",
+      "sourceSection": "47",
+      "sourceCase": 16,
+      "scenario": "Bonus réussi ou raté : bonne progression, ressources et récompenses.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        42,
+        43,
+        46
+      ]
+    },
+    {
+      "id": "E1-TEST-17",
+      "sourceSection": "47",
+      "sourceCase": 17,
+      "scenario": "Déblocage, sauvegarde et rechargement : contenu conservé sans doublon.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        42,
+        43,
+        46
+      ]
+    },
+    {
+      "id": "E1-TEST-18",
+      "sourceSection": "47",
+      "sourceCase": 18,
+      "scenario": "Passage abrégé d'une scène et correction réseau : même état de combat.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": "etat_actif_reserve_ressources_objets_resultat_et_reprise_conformes_au_contrat;capture_et_rapport_versionne",
+      "specSections": [
+        42,
+        43,
+        46
+      ]
+    }
+  ],
+  "productionTemplates": [
+    {
+      "id": "E1-A",
+      "name": "Taunt",
+      "exampleIds": [
+        "E1-TAUNT-GARRUS-ME3"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-B",
+      "name": "Sélection",
+      "exampleIds": [
+        "E1-SELECT-GARRUS-ME3"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-C",
+      "name": "Équipe",
+      "exampleIds": [
+        "E1-PROFILE-HYBRID"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-D",
+      "name": "Assistance et relais",
+      "exampleIds": [
+        "E1-ASSIST-GARRUS-ME3",
+        "E1-TAG-NEUTRAL"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-E",
+      "name": "Scène collective",
+      "exampleIds": [
+        "E1-DUO-GARRUS-SHEPARD-ME3",
+        "E1-FIN-GARRUS-SHEPARD-ME3"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-F",
+      "name": "Clash",
+      "exampleIds": [
+        "E1-CLASH-MELEE"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-G",
+      "name": "Entité",
+      "exampleIds": [
+        "E1-ENTITY-GARRUS-MINE-ME3"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-H",
+      "name": "Bonus",
+      "exampleIds": [
+        "E1-BONUS-02"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-I",
+      "name": "Lieu",
+      "exampleIds": [
+        "E1-HUB-ARCHIVES"
+      ],
+      "status": "documente_non_produit"
+    },
+    {
+      "id": "E1-J",
+      "name": "Récompense",
+      "exampleIds": [
+        "E1-REWARD-ARCHIVE-FIRST"
+      ],
+      "status": "documente_non_produit"
+    }
+  ],
+  "externalSources": [
+    {
+      "id": "SRC-EXT-BIOWARE-CITADEL",
+      "url": "https://blog.bioware.com/2013/02/21/mass-effect-3-citadel-reckoning-dlc-announced/",
+      "reviewedOn": "2026-11-27",
+      "scope": "existence_de_l_arene_Armax_dans_Citadel_pas_plan_nouveau_hub",
+      "accessMethod": "texte_indexe_restitue_par_recherche_et_ouverture;URL_canonique_HTTP_direct_non_certifiee"
+    },
+    {
+      "id": "SRC-EXT-ME3-MANUAL-P5",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_Microsoft%20XBOX360.pdf",
+      "pagePrinted": 5,
+      "reviewedOn": "2026-11-27",
+      "scope": "pouvoirs_affiches_de_Garrus_pas_frame_data_Armax",
+      "accessMethod": "texte_indexe_restitue_par_recherche_et_ouverture;URL_canonique_HTTP_direct_non_certifiee"
+    },
+    {
+      "id": "SRC-EXT-PRIMA-ZAP",
+      "url": "https://primagames.com/eguides/mass-effect-andromeda-collectors-edition-eguide/secondary-ops/peebees-secret-project",
+      "reviewedOn": "2026-11-27",
+      "scope": "quete_introduction_Poc_et_Remnant_VI_Zap_pas_regles_duel",
+      "accessMethod": "texte_indexe_restitue_par_recherche_et_ouverture;URL_canonique_HTTP_direct_non_certifiee"
+    }
+  ]
+}

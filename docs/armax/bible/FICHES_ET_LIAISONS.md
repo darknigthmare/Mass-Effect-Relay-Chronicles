@@ -196,9 +196,9 @@ Les [associations machine-lisibles](../lot14/bible-asset-associations.json) cons
 
 La [revue artistique](../lot14/independent-art-review.json), les [lacunes](../lot14/REFERENCE_GAPS.md) et les [dépendances restantes](../lot14/remaining-work.json) sont des pièces de la fiche J. Aucun de ces actifs ne reçoit les statuts Intégré ou Validé.
 
-## 14. Associations de tout le catalogue courant
+## 14. Associations historiques du catalogue lot 16
 
-L’[index consolidé](ASSOCIATIONS_CONTENU.md) et sa [version structurée](content-associations.json) appliquent ces modèles aux **192 fiches du lot 16**, dont les 188 identités antérieures conservées. Une association indique le cadre à consulter ou compléter ; elle ne prouve pas que la fiche soit terminée. Le catalogue reste l’autorité sur les identités, usages, fichiers et statuts.
+La réconciliation historique appliquait ces modèles aux **192 fiches du lot 16**, dont les 188 identités antérieures conservées. L’[index consolidé courant](ASSOCIATIONS_CONTENU.md) et sa [version structurée](content-associations.json) suivent désormais le catalogue référencé par la livraison courante. Une association indique le cadre à consulter ou compléter ; elle ne prouve pas que la fiche soit terminée. Le catalogue reste l’autorité sur les identités, usages, fichiers et statuts.
 
 Les costumes sont regroupés en 19 ensembles identité/œuvre, sans fusion de variantes. Deux liens exacts rejoignent les fiches lot 04 de Kai Leng et Balak ; leur divergence de sélection est conservée. Quatre liens documentaires rejoignent Legion standard, Legion loyauté et les deux costumes de Grunt, sans inventer de kitId Versus.
 
@@ -223,8 +223,23 @@ Les calques renvoient aux rubriques **02, 13, 14, 15, 17, 22, 26 et 27**. Le fau
 La [vérification du lot](../lot16/verification.json), le [classeur courant](../lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) et les [manquants](../lot16/MANQUANTS_2026-11-25.md) conservent la séparation entre présence, sélection, validation et intégration. Les **113 PNG annoncés au lot 15 restent non récupérés et non publiés**, selon le [constat de reprise](../lot16/RECUPERATION_LOT15.md) ; ils ne complètent aucune fiche actuelle par présomption. Les nouveaux candidats restent **Prototype**, sans moteur ou animation livrés.
 
 
-## Continuation de production — lot 18
+## Continuation historique de production — lot 18
 
-Le [catalogue courant lot 18](../lot18/production-catalog.json) compte **196 fiches : 150 avec image candidate et 46 sans**, après consolidation des sorties du lot17. Les [associations](../lot18/bible-asset-associations.json) relient les trois costumes à **B/J**, les soutiens narratifs à **B/F/J** et les quatre composants du marché Urdnot à **G/J**. Le groupe table/chaises et la console sont des props de décor ; aucun cadre C ne leur attribue un coup ou un fonctionnement interactif.
+Le [catalogue historique lot 18](../lot18/production-catalog.json) compte **196 fiches : 150 avec image candidate et 46 sans**, après consolidation des sorties du lot 17. Les [associations](../lot18/bible-asset-associations.json) relient les trois costumes à **B/J**, les soutiens narratifs à **B/F/J** et les quatre composants du marché Urdnot à **G/J**. Le groupe table/chaises et la console sont des props de décor ; aucun cadre C ne leur attribue un coup ou un fonctionnement interactif.
 
 La [preuve J](../lot18/manifest.json) distingue huit nouvelles sorties pour sept sujets, douze sorties récupérées, deux sorties déjà publiées et trois hypothèses d’identité non retenues. La [relecture](../lot18/independent-review.json) conserve les mesures d’alpha et de raccord. Le [complément narratif](../lot18/BIBLE_COMPLEMENTS_LOT18.md) développe les fiches E/F de quatre routes sans les déclarer jouables.
+
+## 16. Fiches des extensions 01 et 02 — reprise du 27 novembre
+
+Les originaux sont disponibles dans le [dossier des guides](../guides/README.md). Les lettres des fiches ont des espaces de noms distincts : **général A–J**, **E1-A–J**, **E2-A–F**. Les seize nouveaux modèles ne remplacent pas les dix modèles initiaux. Ils relient chaque fonction à des IDs de conception, à une version d'œuvre, à ses critères et à ses dépendances, sans créer de doublon dans le catalogue artistique.
+
+| Extension | Fiches et exemples | Rattachement |
+|---|---|---|
+| 01 | Taunt, sélection/désélection, profil d'équipe, assistance/relais, scène collective | [Fiches E1-A à E1-E](EXTENSION_01_EQUIPES_ET_BONUS.md#g48) ; exemples Garrus ME3, Shepard soldat ME3 et profil hybride |
+| 01 | Clash, entité, bonus, lieu et récompense | [Fiches E1-F à E1-J](EXTENSION_01_EQUIPES_ET_BONUS.md#g48) ; mine ME3, horde holographique, archives et règle E2-RULE-ARCHIVE-FIRST |
+| 02 | Slot, condition d'accès, avantage de soutien | [Fiches E2-A à E2-C](EXTENSION_02_DEBLOCAGES.md#g65) ; Legion ME2, Kestrel féminin ME2, bénéfice temporaire désactivé |
+| 02 | Charte des dossiers, accès de stage, matrice des droits | [Fiches E2-D à E2-F](EXTENSION_02_DEBLOCAGES.md#g65) ; secret sans silhouette, paquet de match complet, permanent conservé après expiration |
+
+La [matrice des 68 rubriques](guide-coverage-2026-11-27.json) conserve les 90 critères historiques et ajoute 114 critères documentaires. Les [spécifications d'équipe](extension-01-specs.json) et [d'accès](extension-02-specs.json) indiquent 18 et 22 scénarios **à tester**, sans revendiquer leur exécution. Le [lot 19](../lot19/README.md) et son catalogue portent séparément les images réellement produites et leurs vérifications.
+
+L'identité artistique `chr_me2_legion_standard` désigne le propriétaire Legion, pas son drone. Une fiche d'entité doit lier son asset propre, tel que `ME2-VS-LEGION-DRONE-IDLE-01` dans les données historiques du complément combat, et garder ses réserves. Cette distinction s'applique à tous les personnages, accessoires et soutiens.

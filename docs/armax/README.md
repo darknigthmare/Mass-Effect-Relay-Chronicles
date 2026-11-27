@@ -2,23 +2,30 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Bible courante — intégration du guide général
+## Bible courante — guide général et deux extensions
 
-La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **30 rubriques** de **Combat_Games_Guide_General_v1.0.txt** aux contrats et fiches Armax. Elle fixe la référence commune de conception tout en conservant les lots historiques.
+La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **68 rubriques** du guide général et de ses deux extensions aux contrats et fiches Armax : 30 rubriques historiques et 38 supplémentaires. Elle fixe la référence commune de conception tout en conservant les lots historiques.
 
-- [Associations et 90 critères d’acceptation](bible/guide-associations.json).
+- [Matrice courante : 68 rubriques et 204 critères](bible/guide-coverage-2026-11-27.json).
+- [Associations historiques et 90 critères conservés](bible/guide-associations.json).
 - [Associations des 196 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
 - [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
 
-**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 18 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 19 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
 
-## Lot 18 — continuation courante du 25 novembre 2026
+## Lot 19 — continuation courante du 27 novembre 2026
+
+Le [lot19](lot19/README.md) poursuit les sprites fixes : **6 PNG natifs, 4 sélectionnés et 2 attributions historiques résolues**, soit **6 anciennes fiches nouvellement illustrées**. Le [catalogue courant](lot19/production-catalog.json), les [manquants](lot19/MANQUANTS_2026-11-27.md) et le [classeur](lot19/Mass_Effect_Armax_Suivi_Lot19_2026-11-27.xlsx) comptent **196 identités, 156 avec image candidate et 40 sans**. Les totaux lot18 ci-dessous restent historiques.
+
+Les [trois guides originaux](guides/README.md) sont maintenant récupérés à l'identique. Le [registre complet](bible/guide-coverage-2026-11-27.json) associe **68 rubriques et 204 critères de conception**. Les [équipes et bonus](bible/EXTENSION_01_EQUIPES_ET_BONUS.md) et les [déblocages](bible/EXTENSION_02_DEBLOCAGES.md) complètent la bible avec règles d'opus, rôles, sources et scénarios à tester. Les 90 critères initiaux restent conservés. Aucun système jouable ou abonnement réel n'est déclaré opérationnel.
+
+## Lot 18 — historique du 25 novembre 2026
 
 Le [lot 18](lot18/README.md) consolide **12 PNG récupérés du lot 17**, ajoute **8 PNG pour 7 nouveaux sujets** et rattache les deux images lot17 déjà publiées au catalogue. Trois costumes féminins ME2 — Inferno, Terminus et Collector — et quatre composants du marché Urdnot complètent la production. Le sol R0 reste archivé ; trois récupérations ambiguës restent non attribuées.
 
-Le [catalogue courant](lot18/production-catalog.json), les [manquants](lot18/MANQUANTS_2026-11-25.md) et le [classeur](lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx) comptent **196 fiches : 150 avec candidat et 46 sans**. Couverture : **57/87 personnages, 22/38 costumes, 52 masters, 5 calques, 7 effets, 2 projectiles et 5 accessoires**. Les 192 identités héritées sont conservées ; les quatre composants ne créent pas quatre nouvelles arènes.
+Le [catalogue historique](lot18/production-catalog.json), les [manquants](lot18/MANQUANTS_2026-11-25.md) et le [classeur](lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx) comptent **196 fiches : 150 avec candidat et 46 sans**. Couverture : **57/87 personnages, 22/38 costumes, 52 masters, 5 calques, 7 effets, 2 projectiles et 5 accessoires**. Les 192 identités héritées sont conservées ; les quatre composants ne créent pas quatre nouvelles arènes.
 
 L’[annexe de campagnes](lot18/BIBLE_COMPLEMENTS_LOT18.md) ajoute quatre routes Grunt/Legion/Tela/Morinth, vingt rencontres et trente-deux briefs, sans nouvelle illustration produite. Le [manifeste](lot18/manifest.json), les [associations](lot18/bible-asset-associations.json) et la [vérification](lot18/verification.json) conservent les réserves de fidélité, de raccord et d’identification. Les actifs restent Prototype et le moteur n’est pas modifié.
 

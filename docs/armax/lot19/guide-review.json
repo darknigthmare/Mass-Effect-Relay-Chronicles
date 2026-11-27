@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "ARMAX-LOT19-GUIDES-INDEPENDENT-2026-11-27",
+  "reviewedOn": "2026-11-27",
+  "timezone": "Europe/Paris",
+  "recordedAtUtc": "2026-11-27T05:41:31.130777+00:00",
+  "baseCommit": "231ffde14652932ffaa667c40315f1232f802d4a",
+  "reviewStatus": "approved_documentary_integration",
+  "blockingDocumentaryFindings": 0,
+  "scope": "Relecture indépendante des trois originaux et de leur intégration documentaire, des relations, états et conditions ; pas revue des nouveaux pixels ni certification du moteur.",
+  "methods": [
+    "Lecture de AGENTS.md, README.md, docs/GAMEDEV_GUIDANCE.md et des bibles initiales.",
+    "Lecture des guides gamedev router/game-ui-ux/save-systems à la révision épinglée via le connecteur GitHub ; aucune API d’un autre moteur introduite.",
+    "Récupération des trois originaux Drive, vérification indépendante des octets et empreintes.",
+    "Comparaison sémantique du sommaire et contrôle des 68 intervalles de lignes/ancres.",
+    "Comparaison des fichiers historiques au commit de référence, des 90 critères et des priorités.",
+    "Analyse structurelle des JSON, références internes, états de droits, profils de KO, tableaux de portes et paramètres explicitement différés.",
+    "Relecture manuelle des deux annexes pour distinction canon/adaptation, périodes, pouvoirs et limites.",
+    "Résolution des liens sur le worktree et sur l’arbre Git pour les cibles historiques absentes du checkout sparse."
+  ],
+  "sourceCopies": [
+    {
+      "path": "docs/armax/guides/Combat_Games_Guide_General_v1.0.txt",
+      "bytes": 55172,
+      "sha256": "4844584616072ac0d52d37c2fab4365e1ec489240f17a721ee216e223b0355b7",
+      "exactRecoveredOriginal": true,
+      "sourceUrl": "https://drive.google.com/file/d/14o_RrgXucs8Km-x1LQJtMK7rol6mENKy/view?usp=drivesdk",
+      "driveFileId": "14o_RrgXucs8Km-x1LQJtMK7rol6mENKy"
+    },
+    {
+      "path": "docs/armax/guides/Combat_Games_Extension_01_Tag_Taunts_Bonus_v1.0.txt",
+      "bytes": 60589,
+      "sha256": "330fb7485a7a52b2a20f855646c940aaac0fcd9510032bc84b2e17c518edd25f",
+      "exactRecoveredOriginal": true,
+      "sourceUrl": "https://drive.google.com/file/d/1rYxKLIbz67L1sstmJWsga76uK7cX2mXF/view?usp=drivesdk",
+      "driveFileId": "1rYxKLIbz67L1sstmJWsga76uK7cX2mXF"
+    },
+    {
+      "path": "docs/armax/guides/Combat_Games_Extension_02_Slots_Verrouilles_Deblocages_Abonnes_v1.0.txt",
+      "bytes": 47334,
+      "sha256": "08b57ea542e83c487fef3276997a612d4657f2ee9ed4f8e46b0bf65a2778038b",
+      "exactRecoveredOriginal": true,
+      "sourceUrl": "https://drive.google.com/file/d/1qr8hgvvjFqdWzcGaf1DPeKromk75bBn0/view?usp=drivesdk",
+      "driveFileId": "1qr8hgvvjFqdWzcGaf1DPeKromk75bBn0"
+    }
+  ],
+  "checks": {
+    "originalDocuments": 3,
+    "originalBytes": 163095,
+    "exactOriginals": true,
+    "originalFilenamesAbsentAtBaseline": true,
+    "sectionCounts": {
+      "general": 30,
+      "extension01": 20,
+      "extension02": 18,
+      "total": 68
+    },
+    "uniqueRequirementIds": 68,
+    "sourceRangesAndAnchorsVerified": 68,
+    "legacyCriterionTextsPreserved": 90,
+    "legacyPrioritiesPreserved": true,
+    "guideAssociationsByteIdentical": true,
+    "commonRulesByteIdentical": true,
+    "documentedCriteria": 204,
+    "plannedGameplayScenarios": 40,
+    "gameplayScenariosExecuted": 0,
+    "productionTemplateCounts": {
+      "extension01": 10,
+      "extension02": 6
+    },
+    "definitionIds": 130,
+    "checkedInternalIdReferences": 36,
+    "duplicateDefinitionIds": [],
+    "unresolvedInternalIds": [],
+    "localMarkdownLinksChecked": 233,
+    "historicalTreeOnlyTargets": 28,
+    "localLinkErrors": [],
+    "anchorErrors": [],
+    "stateAxes": 4,
+    "supportBenefitsConfiguredOrEnabled": false,
+    "changedRuntimeOrDependencyFiles": [],
+    "artisticFidelityCertified": false
+  },
+  "resolvedFindings": [
+    {
+      "id": "GR19-01",
+      "topic": "Originaux et provenance",
+      "finding": "Les trois fichiers source bruts étaient absents de l’arbre de référence ; l’ancienne bible disposait d’une adaptation du guide général.",
+      "resolution": "Copies exactes retrouvées sur Drive, archivées séparément des adaptations et vérifiées par taille/SHA-256."
+    },
+    {
+      "id": "GR19-02",
+      "topic": "Correspondance des numéros",
+      "finding": "Risque de décalage entre les 30 anciens identifiants et le guide original.",
+      "resolution": "Comparaison du sommaire et des titres : ARMAX-G00 à G29 sont déjà alignés. Aucun remapping requis ; 90 critères et priorités héritées conservés."
+    },
+    {
+      "id": "GR19-03",
+      "topic": "Autorité courante du suivi",
+      "finding": "Le sous-index historique lot16/192 pouvait être lu comme compte courant.",
+      "resolution": "Le snapshot ancien reste inchangé et explicitement historique ; la matrice courante renvoie à content-associations.json et au catalogue de la livraison."
+    },
+    {
+      "id": "GR19-04",
+      "topic": "KO selon le profil",
+      "finding": "Une formulation pouvait transformer un soutien non contrôlable en entrant après KO actif.",
+      "resolution": "ASSIST se conclut au KO du principal ; les relais après KO restent réservés à une réserve contrôlable vivante."
+    },
+    {
+      "id": "GR19-05",
+      "topic": "Survivants, temps et manche",
+      "finding": "Double KO et fin au temps étaient ambigus pour une équipe.",
+      "resolution": "Résolution par survivants des deux équipes ; ratios agrégés TAG/HYBRID, ratios du principal ASSIST ; reset de manche explicite."
+    },
+    {
+      "id": "GR19-06",
+      "topic": "Relais et horloges",
+      "finding": "Le transfert au pas18 pouvait permettre d’agir avant la fin d’arrivée ; le gel du combat pouvait être confondu avec celui du QTE.",
+      "resolution": "Entrant verrouillé jusqu’au pas42 ; compteur QTE60Hz distinct du temps de combat suspendu."
+    },
+    {
+      "id": "GR19-07",
+      "topic": "Portes et continuité",
+      "finding": "Les raccourcis des archives étaient présentés sans symétrie totalement explicite.",
+      "resolution": "Sept connexions bidirectionnelles, conditions identiques et maintien d’ouverture documentés pour six zones."
+    },
+    {
+      "id": "GR19-08",
+      "topic": "Déblocages sans boucle",
+      "finding": "Le droit Legion et la voie Tuchanka pouvaient dépendre du personnage à débloquer ou non disponible.",
+      "resolution": "Prêts d’exercice distincts de la possession pour Legion et Grunt ; récompense E1 explicitement reliée à sa règle E2."
+    },
+    {
+      "id": "GR19-09",
+      "topic": "Entité et corps du propriétaire",
+      "finding": "existingArtId du drone désignait le corps de Legion.",
+      "resolution": "ownerCatalogEntryId désigne le propriétaire ; entityAssetRef pointe la fiche historique du drone, sans nouvelle validation artistique."
+    },
+    {
+      "id": "GR19-10",
+      "topic": "Priorités et historique",
+      "finding": "La première matrice de rapprochement abaissait les anciennes rubriques P0 à P1 et le tableau ancien conservait tag/assist P2.",
+      "resolution": "Priorités des 30 rubriques héritées restaurées ; évolution de conception ASSIST/TAG vers P1 explicitée, hybride et autres formats séparés."
+    }
+  ],
+  "publicationDependencies": [],
+  "openProductionWork": [
+    {
+      "id": "GR19-OPEN-01",
+      "status": "explicitly_deferred",
+      "description": "Les 40 scénarios restent à exécuter quand les mécaniques et sauvegardes existent ; aucune réussite de gameplay n’est déduite de leur rédaction."
+    },
+    {
+      "id": "GR19-OPEN-02",
+      "status": "explicitly_identified",
+      "description": "Vitesses/collisions/dégâts du projectile Garrus, détails des trois autres duos, identité des trois boss du déblocage Boss Rush, runtime de droits et tests des parcours restent à spécifier ou produire avant intégration."
+    },
+    {
+      "id": "GR19-OPEN-03",
+      "status": "not_certified",
+      "description": "Les timings, chorégraphies, activités et métaphores UI sont des adaptations ou créations documentées. La fidélité visuelle 1:1, les animations et la topologie canonique ne sont pas certifiées par cette revue."
+    },
+    {
+      "id": "GR19-OPEN-04",
+      "status": "disabled_by_design",
+      "description": "Les bénéfices externes sont des exemples désactivés, sans fournisseur, prix ou droits réels. Toute future intégration devra relire la documentation actuelle du fournisseur choisi."
+    }
+  ],
+  "reviewedFiles": [
+    {
+      "path": "docs/armax/guides/README.md",
+      "bytes": 1737,
+      "sha256": "43ea02663ae1abb105a3dad611f9859a56f763b51d2d7185c78f11895c91ea52"
+    },
+    {
+      "path": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md",
+      "bytes": 56499,
+      "sha256": "053ee367da6f5a0487a9622beee612bd736a953039dcac9271459409df812b9e"
+    },
+    {
+      "path": "docs/armax/bible/EXTENSION_01_EQUIPES_ET_BONUS.md",
+      "bytes": 39113,
+      "sha256": "e22d920cf7fc14d476059070194187771ccd328ecf1836bf9931b7f4fab25391"
+    },
+    {
+      "path": "docs/armax/bible/EXTENSION_02_DEBLOCAGES.md",
+      "bytes": 32076,
+      "sha256": "678429bc240af1dbb9f9f971e7c55c64aa70e619ac1846aaa6828ca89835043a"
+    },
+    {
+      "path": "docs/armax/bible/GUIDE_RECONCILIATION_2026-11-27.md",
+      "bytes": 8061,
+      "sha256": "6f97c4de9c1e0d58c488d158a2a2459b456a01fca0b0e5c26b00308a25ec6a50"
+    },
+    {
+      "path": "docs/armax/bible/SOURCES_ET_DECISIONS.md",
+      "bytes": 21385,
+      "sha256": "88fe8bcc9106eb57ede01b393048c4aaa0577eacb5d5588adbbc00ab993d92c0"
+    },
+    {
+      "path": "docs/armax/bible/FICHES_ET_LIAISONS.md",
+      "bytes": 31678,
+      "sha256": "cbaca1b910e973b2609e9344374cddc3b6263e3b198ee18be82e50056ee544a5"
+    },
+    {
+      "path": "docs/armax/bible/guide-coverage-2026-11-27.json",
+      "bytes": 89515,
+      "sha256": "cc7e1176ea84bcb156c8003328330d9cc490dfde0faababbe688e541881788d3"
+    },
+    {
+      "path": "docs/armax/bible/extension-01-specs.json",
+      "bytes": 40742,
+      "sha256": "00004a0ae2e9aaaa200726e63066c381d8dad7b6ceb12717c27e1a71f35f4286"
+    },
+    {
+      "path": "docs/armax/bible/extension-02-specs.json",
+      "bytes": 27737,
+      "sha256": "09a72cf4a1a4ad96b093c5adad57f46943dbd4ea5f9b7bec8a22988af39b07dd"
+    },
+    {
+      "path": "docs/armax/bible/guide-associations.json",
+      "bytes": 48559,
+      "sha256": "b409c23eec9144bc817ca0daca166d3170a8f88e544e4c2de976f29d98fe4e4c"
+    },
+    {
+      "path": "docs/armax/bible/common-rules.json",
+      "bytes": 10891,
+      "sha256": "8828bea7699410df54e0fa36e3b5f91f0fa40a292beffc2d33dbd2f370fe8f7c"
+    },
+    {
+      "path": "docs/armax/guides/source-manifest.json",
+      "bytes": 3037,
+      "sha256": "584f91d7c6653795a0ab297160f0ffdda00147203a915b1fdbc9900a8540a08b"
+    },
+    {
+      "path": "docs/armax/guides/Combat_Games_Guide_General_v1.0.txt",
+      "bytes": 55172,
+      "sha256": "4844584616072ac0d52d37c2fab4365e1ec489240f17a721ee216e223b0355b7"
+    },
+    {
+      "path": "docs/armax/guides/Combat_Games_Extension_01_Tag_Taunts_Bonus_v1.0.txt",
+      "bytes": 60589,
+      "sha256": "330fb7485a7a52b2a20f855646c940aaac0fcd9510032bc84b2e17c518edd25f"
+    },
+    {
+      "path": "docs/armax/guides/Combat_Games_Extension_02_Slots_Verrouilles_Deblocages_Abonnes_v1.0.txt",
+      "bytes": 47334,
+      "sha256": "08b57ea542e83c487fef3276997a612d4657f2ee9ed4f8e46b0bf65a2778038b"
+    }
+  ],
+  "limitations": [
+    "Les références externes présentes dans les originaux sont archivées ; cette revue ne revalide pas toutes leurs affirmations historiques.",
+    "Les chemins de fichiers historiques ont été vérifiés dans Git ; leurs pixels et anciens rapports ne sont pas rejoués ici.",
+    "L’existence et les expressions des voies de prêt sont vérifiées documentairement ; aucun moteur de progression ou graphe complet d’événements exécutables n’existe dans ce périmètre.",
+    "Aucune fusion, publication, version Windows jouée ou fidélité artistique globale n’est affirmée."
+  ],
+  "publicationTargetsResolvedAtReview": [
+    {
+      "path": "docs/armax/lot19/README.md",
+      "bytes": 5424,
+      "existsAndNonempty": true,
+      "jsonParses": null,
+      "productionCountsReviewedHere": false
+    },
+    {
+      "path": "docs/armax/lot19/production-catalog.json",
+      "bytes": 1124986,
+      "existsAndNonempty": true,
+      "jsonParses": true,
+      "productionCountsReviewedHere": false
+    }
+  ]
+}

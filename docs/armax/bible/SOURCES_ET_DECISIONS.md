@@ -10,7 +10,7 @@
 | Guide utilisateur | Combat_Games_Guide_General_v1.0.txt, version 1.0 du 25 novembre 2026, 30 rubriques 00–29 | Structure commune et exigences à contextualiser |
 | Contrat courant Armax | [Bible intégrée](BIBLE_ARMAX_INTEGREE.md), [règles communes](common-rules.json), [associations](guide-associations.json) | Décisions transversales de conception et critères |
 | Fiches de contenu | [Lot 04](../lot04/fighters.json), [bible détaillée](../lot04/BIBLE_EXTENSION.md), [Grunt/Legion](../../combat-2d/CONTINUATION_2026-11-19.md) | Identités, kits, actions, récits et réserves de leurs versions |
-| Production artistique courante | [Catalogue lot 16](../lot16/production-catalog.json), [manifeste](../lot16/manifest.json), manifestes antérieurs et récupération | Fichiers, provenance, présence et limites ; les [lots 13](../lot13/production-catalog.json) et [14](../lot14/production-catalog.json) conservent leurs instantanés historiques |
+| Production artistique au moment de cette table historique | [Catalogue lot 16](../lot16/production-catalog.json), [manifeste](../lot16/manifest.json), manifestes antérieurs et récupération | Fichiers, provenance, présence et limites de cette étape ; la section 8 identifie les autorités courantes |
 | Associations du contenu | [Index lisible](ASSOCIATIONS_CONTENU.md), [données](content-associations.json) | Projection des sources et correspondances documentaires ; aucun remplacement de catalogue ou de kit |
 | Invariants du jeu hôte | [AGENTS.md](../../../AGENTS.md), [guide gamedev](../../GAMEDEV_GUIDANCE.md), [Chroniques](../../CHRONICLES.md) | Renderer, RPG, personnalisation, sauvegardes, périodes et vérifications |
 
@@ -102,3 +102,35 @@ Le [manifeste](../lot16/manifest.json), les revues indépendantes de [Port Hansh
 Les **113 PNG annoncés au lot 15 ne sont ni récupérés ni publiés**. L’archive, le classeur et le commit local annoncés précédemment ne sont pas disponibles dans l’environnement repris ni dans l’arbre publié de base. Le [constat de reprise](../lot16/RECUPERATION_LOT15.md) conserve les empreintes rapportées et les recherches effectuées. Ces déclarations historiques ne prouvent aucune présence courante ; les 33 plans narratifs annoncés pour cette livraison ne sont donc pas crédités comme fichiers disponibles.
 
 Les exclusions et refus antérieurement signalés restent actifs. La perte des fichiers ne déclenche pas leur régénération. Les réserves rapportées sur Thane, Méridiane et Fortification restent ouvertes, en attente d’originaux vérifiables ou de références suffisantes. Une nouvelle production éventuelle devrait être identifiée comme une nouvelle version, avec ses propres preuves.
+
+## 8. Originaux retrouvés et extensions intégrées — 27 novembre 2026
+
+Base de reprise : **231ffde14652932ffaa667c40315f1232f802d4a**, même branche et PR #11. Les trois fichiers utilisateurs sont récupérés depuis leur emplacement Drive, copiés sans modification dans [docs/armax/guides](../guides/README.md), et vérifiés par taille et SHA-256. Le [manifeste](../guides/source-manifest.json) conserve les identifiants d'origine et leur URL. Leur total est **163 095 octets**.
+
+| Source | Version déclarée | Rubriques | Portée de la preuve |
+|---|---|---|---|
+| Combat_Games_Guide_General_v1.0.txt | 25 novembre 2026 | 00–29 | Original désormais présent ; concordance des 30 numéros avec l'adaptation antérieure |
+| Combat_Games_Extension_01_Tag_Taunts_Bonus_v1.0.txt | 26 novembre 2026 | 30–49 | Exigences d'équipes, personnalité, entités, clashes, bonus et exploration conservées intégralement |
+| Combat_Games_Extension_02_Slots_Verrouilles_Deblocages_Abonnes_v1.0.txt | 27 novembre 2026 | 50–67 | Exigences de découverte, droits, disponibilité, compatibilité, déblocages et soutien conservées intégralement |
+
+La [matrice courante](guide-coverage-2026-11-27.json) fait autorité sur les **68 rattachements**. Les anciens `guide-associations.json` et `common-rules.json` sont conservés octet pour octet ; leurs 30 rubriques, priorités et 90 critères ne sont pas réécrits. Le sous-index lot 16/192 de l'ancien fichier d'associations reste **historique**. Les comptes artistiques actuels proviennent de [content-associations.json](content-associations.json), du [catalogue lot 19](../lot19/production-catalog.json) et de sa livraison.
+
+La comparaison n'a pas révélé de décalage entre numéros 00–29, seulement des titres abrégés dans l'adaptation. La [réconciliation](GUIDE_RECONCILIATION_2026-11-27.md) donne chaque correspondance. Les 38 rubriques nouvelles ajoutent 114 critères, pour **204 critères documentaires**, et deux annexes détaillées. Les 40 scénarios d'acceptation restent à tester dans le moteur. Aucun résultat des vérifications historiques n'est présenté comme un test de tag, de déblocage ou de paiement.
+
+### Décisions nouvelles et périmètre
+
+RC-ARMAX-TEAM-0.1 complète le contrat duel pour les seuls profils d'équipe : ressources partagées sans double gain, KO selon survivants, timeout agrégé, entrée de relais explicite, propriété des entités et conclusions de match. Les assistances et le tag passent à P1 de **conception** ; hybride P2, coopération/quatre joueurs/multiplans différés. Les nombres restent des hypothèses d'équilibrage, pas des valeurs officielles de Mass Effect.
+
+Les **Archives de simulation Armax**, leurs six pièces, les dix exercices bonus, les nouvelles chorégraphies et le nom **Neutralisation coordonnée** sont des créations du projet. Les profils ME1/ME2/ME3/Andromeda restent séparés ; un menu de collection n'ajoute aucune présence physique, résurrection ou pouvoir à l'histoire.
+
+Les modèles de soutien sont spécifiés, **désactivés**, sans fournisseur ni offre configurés. Les références externes que contiennent les guides restent attribuées à leur rédaction. Leur copie ne signifie pas que leurs APIs, modalités commerciales ou disponibilités ont été vérifiées à nouveau dans cette passe.
+
+### Sources supplémentaires consultées pour des faits précis
+
+| ID | Source et mode de consultation | Fait utilisé et limite |
+|---|---|---|
+| SRC-EXT-BIOWARE-CITADEL | [BioWare, annonce Citadel & Reckoning du 21 février 2013](https://blog.bioware.com/2013/02/21/mass-effect-3-citadel-reckoning-dlc-announced/), texte indexé restitué par recherche et ouverture le 27 novembre 2026 | Mention de l'arène Armax dans Citadel ; ne prouve ni le plan des archives imaginées, ni le tag, ni les scènes nouvelles. La disponibilité HTTP directe de cette URL historique n'est pas certifiée. |
+| SRC-EXT-ME3-MANUAL-P5 | [Manuel officiel ME3 Xbox 360](https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_Microsoft%20XBOX360.pdf), page imprimée 5, extraction consultée le 27 novembre 2026 | Pouvoirs affichés de Garrus ; aucun timing, coût ou dégâts Armax n'en est déduit. |
+| SRC-EXT-PRIMA-ZAP | [Guide Prima Andromeda — Peebee's Secret Project](https://primagames.com/eguides/mass-effect-andromeda-collectors-edition-eguide/secondary-ops/peebees-secret-project), texte consulté le 27 novembre 2026 | L'introduction de Poc est reliée au pouvoir Remnant VI qui invoque Zap ; cette source ne donne pas le contrat d'entité du duel. |
+
+Les méthodes `router`, `game-ui-ux` et `save-systems` du [registre gamedev épinglé](../../gamedev-sources.json) ont été lues pour cette spécification : périmètre documentaire, états de menu/focus, données versionnées et autorité distincte. Aucun exemple Godot ou Unity n'est présenté comme API de l'hôte Three.js/localStorage, et aucune dépendance nouvelle n'est ajoutée.
