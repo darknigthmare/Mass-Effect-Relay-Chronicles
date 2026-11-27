@@ -1,0 +1,4052 @@
+{
+  "schemaVersion": "nacre.roster.design.v1",
+  "extensionId": "les_dettes_de_nacre",
+  "title": "Les Dettes de Nacre — roster original",
+  "date": "2026-11-27",
+  "fightersCount": 10,
+  "engineIntegrated": false,
+  "deliveryStatus": "Design complet du roster ; les assets et le sous-ensemble de prototype sont suivis par les manifestes d’intégration du lot 22.",
+  "framing": {
+    "era": "2185, avant la fin des événements de Mass Effect 2",
+    "location": "Nacre, station originale des systèmes Terminus ; installations sur la lune minière originale Tessère.",
+    "antagonist": "Concordat des Quais, consortium logistique original détournant contrats, dettes et évacuations.",
+    "limits": [
+      "Aucun changement des événements de Shepard.",
+      "Aucune issue de Mass Effect 3 imposée.",
+      "Aucun personnage d’Andromeda projeté en 2185.",
+      "Aucun nouveau relais ou moyen de transport transgalactique.",
+      "Aucune espèce, pouvoir ou filiation canon inventée.",
+      "Aucune revendication de statut officiel."
+    ]
+  },
+  "combatContract": {
+    "version": "RC-ARMAX-0.1 design extension",
+    "simulationHz": 60,
+    "buttons": [
+      "L",
+      "M",
+      "H",
+      "S"
+    ],
+    "meterMaximum": 300,
+    "superCost": 100,
+    "notation": "5 neutre ; 2 bas ; 4 arrière ; 6 avant ; j en l’air ; 236 quart de cercle avant ; 214 arrière ; 623 avant-bas-diagonale ; 22 bas-bas ; L+M simultané (alias avant au neutre ; arrière différé hors prototype).",
+    "scope": "Les nombres sont des intentions de réglage, pas un équilibrage certifié ni une description de tous les états du prototype.",
+    "simplifiedInputs": "Le prototype expose seulement L/M/H/S, garde et mouvement. Les commandes directionnelles, contres, lancers, pièges avancés, ressources propres et cinématiques restent à relier explicitement avant d’être annoncés comme jouables.",
+    "normalCancel": "L vers M ou H ; M vers H ; un normal confirmé vers un spécial autorisé. Aucun cancel infini et aucun super automatique sur garde.",
+    "airRule": "Un saut physique, sans double saut universel, vol ou dash aérien inventé. Hauteurs et arcs adaptés aux silhouettes.",
+    "throws": "Portée de contact, fenêtre de déchoppage commune de conception de 10 frames ; les command throws annoncées ne sont pas garanties après garde.",
+    "finisherRule": "Cinématique de fin appelée Neutralisation décisive ; aucune exécution pendant une manche, aucun rival tué par un résultat de duel non létal.",
+    "tagRule": "Assistance de conception à 25 points, délai global et un appel actif ; modes compétitifs sans bonus chiffré de taunt.",
+    "damageRule": "Dégâts indiqués avant les règles de protection, échelle de combo et ajustements du moteur. Un effet de bouclier n’est pas un soin de santé.",
+    "tuningGate": "Vérifier portée, temps de réaction, dégâts de combo, collision des petits corps et boucles de restauration avant qualification."
+  },
+  "fighters": [
+    {
+      "id": "nacre_mara_vey",
+      "name": "Mara Vey",
+      "species": "Humaine",
+      "role": "Escorte polyvalente",
+      "gender": "Femme",
+      "life": 1000,
+      "shield": 220,
+      "speed": 250,
+      "height": 145,
+      "specialName": "Tir concussif",
+      "specialKind": "projectile",
+      "biography": "Ancienne fusilière régulière de l’Alliance devenue escorte de convois, Mara a signé la livraison d’un groupe de travailleurs qui n’est jamais arrivé. Elle revient à Nacre avec les doubles de ses bordereaux, convaincue qu’un officier de quai a transformé son évacuation en saisie de personnel. Elle n’a ni grade N7 ni autorité Spectre. Sa compétence vient de l’escorte, de la discipline de tir et de la responsabilité qu’elle assume pour les passagers disparus.",
+      "motivation": "Retrouver les passagers du convoi Vey-17, admettre sa propre négligence et remplacer les promesses de sauvetage par une évacuation vérifiable.",
+      "equipment": [
+        "Carabine de masse de gabarit M-8 Avenger",
+        "Protection composite de fret",
+        "Munitions à fonction concussive adaptées au duel"
+      ],
+      "speciesLocks": [
+        "Aucun pouvoir biotique",
+        "Aucun insigne N7",
+        "Aucune immunité par statut militaire"
+      ],
+      "identity": "Personnage d’apprentissage exigeant sur la discipline de tir : alterner un projectile lisible, les coups de crosse et une courte progression protégée. Son point faible est la récupération de ses tirs à longue distance.",
+      "resource": "Une salve spéciale consomme une charge thermique de conception ; trois salves disponibles, rechargement vulnérable de 42 frames. Les coups de crosse ne consomment pas de charge. Ce réservoir est une abstraction de duel, pas une règle canon de fonctionnement de l’arme.",
+      "command": {
+        "name": "Avancée sous protection",
+        "input": "6H",
+        "intent": "Pas de progression suivi d’un coup de crosse ; aucune invulnérabilité.",
+        "damage": 105,
+        "startupFrames": 20,
+        "activeFrames": 5,
+        "recoveryFrames": 25,
+        "guard": "overhead",
+        "counterplay": "Attaque basse ou recul avant le contact.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Sortie de ligne",
+        "input": "6L+M / 4L+M",
+        "intent": "Saisie du poignet, déplacement de l’arme et projection latérale, sans tir sur une cible déjà neutralisée.",
+        "damage": 125,
+        "startupFrames": 7,
+        "activeFrames": 2,
+        "recoveryFrames": 29,
+        "guard": "throw",
+        "counterplay": "Déchoppage dans la fenêtre commune ; saut avant contact.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Tir concussif",
+          "input": "236S",
+          "intent": "Une décharge de masse horizontale à portée moyenne repousse sans téléporter.",
+          "damage": 120,
+          "startupFrames": 18,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Saut anticipé ou garde puis punition à courte portée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "projectile",
+          "meterCost": 0,
+          "projectilePolicy": "One projectile; neutral speed; no tracking."
+        },
+        {
+          "name": "Angle de crosse",
+          "input": "623S",
+          "intent": "Uppercut de crosse anti-aérien. Ne protège pas les jambes au sol.",
+          "damage": 105,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 32,
+          "guard": "mid",
+          "counterplay": "Appât au sol puis punition de récupération.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "anti_air",
+          "meterCost": 0
+        },
+        {
+          "name": "Repli d’escorte",
+          "input": "214S",
+          "intent": "Court recul physique suivi d’un tir seulement si S est relâché. Le recul reste vulnérable aux coups bas.",
+          "damage": 80,
+          "startupFrames": 12,
+          "activeFrames": 4,
+          "recoveryFrames": 27,
+          "guard": "mid",
+          "counterplay": "Poursuivre au sol ; attendre le tir pour avancer.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "retreat_shot",
+          "meterCost": 0
+        },
+        {
+          "name": "Changement de clip",
+          "input": "22S",
+          "intent": "Éjecte le dissipateur chaud et réarme les trois salves ; l’action peut être interrompue et ne restaure aucune santé.",
+          "damage": 0,
+          "startupFrames": 1,
+          "activeFrames": 4,
+          "recoveryFrames": 42,
+          "guard": "mid",
+          "counterplay": "Mettre sous pression pendant la manipulation.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "reload",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Couloir dégagé",
+        "input": "236236S",
+        "intent": "Après un premier impact confirmé, succession de deux tirs concussifs et d’une poussée de crosse qui crée une fenêtre d’extraction.",
+        "damage": 285,
+        "startupFrames": 12,
+        "activeFrames": 12,
+        "recoveryFrames": 42,
+        "guard": "mid",
+        "counterplay": "Garder la première décharge ou sauter avant son activation.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100,
+        "whiffPolicy": "No cinematic on whiff; recovery remains punishable."
+      },
+      "finisher": {
+        "name": "Bordereau clos",
+        "sequence": "Désarme la cible, tire dans son module de protection déjà en panne puis la met au sol avec une sangle d’arrestation. Le tir vise le matériel ; un rival vivant reste évacuable.",
+        "condition": "Fin de manche seulement, adversaire vaincu et version narrative non létale.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_mara_vey_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Tir de couverture",
+        "intent": "Une salve horizontale lente force la garde pendant l’entrée du partenaire.",
+        "meterCost": 25,
+        "counterplay": "Peut être bloquée ou évitée ; une seule assistance active."
+      },
+      "taunt": {
+        "name": "Contrôle du bordereau",
+        "line": "Cette fois, tout le monde arrive.",
+        "animation": "Vérifie un jeton d’embarquement puis reprend sa garde.",
+        "rankedEffect": "Cosmétique ; aucune recharge ni bonus."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 236S",
+          "goal": "Confirmation simple suivie d’une mise à distance."
+        },
+        {
+          "input": "2M > 5H > 236236S",
+          "goal": "Conversion à 100 points après ouverture confirmée ; aucun super automatique sur garde."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_mara_vey",
+        "name": "Mara Vey",
+        "species": "Humaine",
+        "visual": "Femme adulte, carrure athlétique crédible d'escorte de fret, visage brun aux cheveux noirs courts repoussés derrière l'oreille, petite cicatrice verticale au sourcil gauche. Armure composite graphite aux volumes fonctionnels Mass Effect, plaques sternum et épaules ivoire usé, discrètes bandes de repérage cuivre sur l'avant-bras droit, combinaison technique anthracite, bottes fermées. Carabine de masse de gabarit Avenger compacte tenue basse, canon vers la droite ; aucune arme surdimensionnée. Attitude stable, pieds décalés, regard vigilant, aucun effet de pouvoir.",
+        "palette": [
+          "#303B42",
+          "#D1C9B4",
+          "#AB704C"
+        ],
+        "silhouette": "Triangle compact, épaules modérées, taille protégée, arme à deux mains sous la ligne du visage.",
+        "avoid": "Aucune armure ou visage de Shepard/Ashley, pas de logo N7, pas d'aura biotique, pas de talons."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_mara_vey.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Coup de paume au poignet",
+          "input": "5L",
+          "intent": "Interrompre une approche courte.",
+          "damage": 45,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse au sternum",
+          "input": "5M",
+          "intent": "Confirmer une ouverture sans tirer.",
+          "damage": 70,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse descendante",
+          "input": "5H",
+          "intent": "Punir un engagement trop proche.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Balayage de cheville",
+          "input": "2L",
+          "intent": "Tester la garde basse.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Genou bas",
+          "input": "2M",
+          "intent": "Garder l’adversaire au contact.",
+          "damage": 65,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse montante",
+          "input": "2H",
+          "intent": "Dégager une trajectoire aérienne.",
+          "damage": 90,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Poing en descente",
+          "input": "jL",
+          "intent": "Approche aérienne de faible portée.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou sauté",
+          "input": "jM",
+          "intent": "Ouvrir la garde haute.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Crosse d’atterrissage",
+          "input": "jH",
+          "intent": "Retomber devant la cible, sans ambiguïté de côté.",
+          "damage": 95,
+          "startupFrames": 15,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "À bord d’une navette vide, Mara réécoute dix-sept confirmations d’embarquement. Le manifeste reçu à Nacre n’en reconnaît que six. Elle s’arrime au quai avant que les traces ne soient purgées.",
+        "rivalId": "nacre_tavin_rhex",
+        "rivalReason": "Mara veut forcer immédiatement les portes ; Tavin refuse un assaut qui exposerait les civils derrière. Leur duel non létal décide qui commande la traversée.",
+        "rivalDialogue": [
+          "Mara : « Chaque minute que tu négocies leur donne un autre quai. »",
+          "Tavin : « Chaque porte que tu ouvres sans regarder leur donne un otage. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_01",
+          "nacre_stage_02",
+          "nacre_stage_04",
+          "nacre_stage_06",
+          "nacre_stage_10",
+          "nacre_stage_12",
+          "nacre_stage_13",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_01",
+          "nacre_boss_13"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Publier le faux manifeste immédiatement ou attendre la sortie du dernier groupe ; les deux voies sauvent des personnes différentes dans cette affaire locale.",
+        "ending": "Mara évacue les passagers dont elle a retrouvé la trace et remet les copies intactes des contrats aux familles. Elle rend sa licence d’escorte le temps de l’enquête, puis reprend du service avec un protocole où chaque personne confirme son arrivée. Les disparus non retrouvés restent une responsabilité, pas une victoire effacée du registre.",
+        "illustrationAssetIds": [
+          "nacre_mara_vey_campaign_intro",
+          "nacre_mara_vey_campaign_rival",
+          "nacre_mara_vey_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_mara_vey_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_mara_vey",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_mara_vey.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_mara_vey_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_tavin_rhex",
+      "name": "Tavin Rhex",
+      "species": "Turien",
+      "role": "Contrôle à mi-distance",
+      "gender": "Homme",
+      "life": 1000,
+      "shield": 280,
+      "speed": 230,
+      "height": 160,
+      "specialName": "Tir de contention",
+      "specialKind": "projectile",
+      "biography": "Ancien coordinateur de sécurité d’une compagnie de transit turienne, Tavin a quitté son employeur quand les escortes ont commencé à protéger les créanciers plutôt que les passagers. Sa signature reste attachée à plusieurs procédures utilisées par le Concordat des Quais. Il est méthodique, mais le doute ne l’a pas rendu passif : il veut employer sa connaissance du dispositif pour ouvrir des couloirs de sortie.",
+      "motivation": "Rendre les protocoles de sûreté à ceux qu’ils devaient protéger et identifier qui a détourné ses schémas de défense.",
+      "equipment": [
+        "Pistolet de masse de service",
+        "Omni-outil de maintenance",
+        "Générateur de couvert cinétique compact à durée limitée"
+      ],
+      "speciesLocks": [
+        "Mandibules et posture turiennes lisibles",
+        "Aucun pouvoir biotique",
+        "Couvert créé par équipement destructible, pas par anatomie"
+      ],
+      "identity": "Contrôleur de mi-distance : ses meilleurs coups interceptent une course. Il perd son avantage lorsqu’un adversaire traverse son dispositif ou lui impose une garde basse prolongée.",
+      "resource": "Un seul émetteur de couvert posé à la fois. Déployer un second remplace le premier. Sa durée et sa résistance limitées empêchent une forteresse permanente.",
+      "command": {
+        "name": "Pas de barrage",
+        "input": "6H",
+        "intent": "Long coup de crosse qui fait reculer mais laisse la jambe avancée exposée.",
+        "damage": 110,
+        "startupFrames": 18,
+        "activeFrames": 5,
+        "recoveryFrames": 28,
+        "guard": "mid",
+        "counterplay": "Garde basse puis approche pendant récupération.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Réorientation",
+        "input": "6L+M / 4L+M",
+        "intent": "Détourne l’axe de l’adversaire puis le pousse hors de sa ligne de tir.",
+        "damage": 120,
+        "startupFrames": 7,
+        "activeFrames": 2,
+        "recoveryFrames": 28,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun ; pas de projection à travers le décor.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Tir de contention",
+          "input": "236S",
+          "intent": "Projectile de faible recul qui marque l’espace devant lui ; pas de verrouillage automatique.",
+          "damage": 105,
+          "startupFrames": 17,
+          "activeFrames": 4,
+          "recoveryFrames": 26,
+          "guard": "mid",
+          "counterplay": "Saut ou changement de rythme avant la décharge.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "projectile",
+          "meterCost": 0
+        },
+        {
+          "name": "Couvert de fortune",
+          "input": "214S",
+          "intent": "Pose un émetteur devant lui qui intercepte une seule attaque à projectile normale, puis s’éteint.",
+          "damage": 0,
+          "startupFrames": 25,
+          "activeFrames": 4,
+          "recoveryFrames": 24,
+          "guard": "mid",
+          "counterplay": "Avancer au corps à corps, feinter un tir ou frapper le module.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "deployable",
+          "meterCost": 0,
+          "lifetimeFrames": 150,
+          "maximumInstances": 1
+        },
+        {
+          "name": "Déviation de ligne",
+          "input": "623S",
+          "intent": "Contre technique des seuls projectiles cinétiques de catégorie légère ; ne renvoie ni super ni attaque de contact.",
+          "damage": 80,
+          "startupFrames": 6,
+          "activeFrames": 4,
+          "recoveryFrames": 36,
+          "guard": "mid",
+          "counterplay": "Attendre la fin de la fenêtre ou utiliser une attaque de contact.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "projectile_parry",
+          "meterCost": 0,
+          "counterWindowFrames": 10
+        },
+        {
+          "name": "Surcharge locale",
+          "input": "22S",
+          "intent": "Courte impulsion de son omni-outil : dégâts de bouclier élevés, portée courte, récupération importante.",
+          "damage": 95,
+          "startupFrames": 22,
+          "activeFrames": 4,
+          "recoveryFrames": 33,
+          "guard": "mid",
+          "counterplay": "Rester hors de la portée puis punir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "shield_disrupt",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Périmètre tenu",
+        "input": "236236S",
+        "intent": "Trois angles de tir successifs annoncés au sol ; le premier doit toucher pour déclencher le zoom cinématique.",
+        "damage": 275,
+        "startupFrames": 15,
+        "activeFrames": 18,
+        "recoveryFrames": 43,
+        "guard": "mid",
+        "counterplay": "Garde initiale puis punition ; aucun encerclement imblocable.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Ordre de mise à l’abri",
+        "sequence": "Verrouille l’arme adverse par surcharge, désarme puis enferme la cible vaincue dans le couvert de sécurité temporaire afin qu’une équipe puisse la récupérer.",
+        "condition": "Fin de manche ; protection temporaire illustrative, pas prison infinie.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_tavin_rhex_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Angle sûr",
+        "intent": "Déploie un écran qui absorbe un projectile léger, puis disparaît.",
+        "meterCost": 25,
+        "counterplay": "Le corps à corps, les projectiles lourds et le déplacement le contournent."
+      },
+      "taunt": {
+        "name": "Vérification des angles",
+        "line": "La sortie est derrière moi.",
+        "animation": "Inspecte les deux extrémités du quai.",
+        "rankedEffect": "Cosmétique."
+      },
+      "combos": [
+        {
+          "input": "5M > 5H > 236S",
+          "goal": "Punition à mi-distance."
+        },
+        {
+          "input": "623S [contre réussi] > 5M > 236236S",
+          "goal": "Conversion après lecture d’un projectile ; échec du contre lourdement punissable."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_tavin_rhex",
+        "name": "Tavin Rhex",
+        "species": "Turien",
+        "visual": "Turien adulte masculin grand et sec, exosquelette facial gris pierre, mandibles lisibles, crête crânienne longue propre aux turiens, marquage tribal bleu ardoise discret sur le côté du visage. Armure industrielle segmentée bleu pétrole et gris clair, épaules angulaires, jambes turiennes anatomiquement lisibles, bottes digitigrades compatibles. Petit module de réparation fermé sur hanche gauche ; pas de bouclier médiéval. Pistolet de masse compact bas dans la main droite et avant-bras gauche dégagé pour omni-outil inactif. Position de contrôle stable et légèrement de biais, profil vers la droite.",
+        "palette": [
+          "#264A56",
+          "#9EA9A9",
+          "#556C85"
+        ],
+        "silhouette": "Long torse étroit, crête et mandibles identifiables, protections angulaires, profil haut.",
+        "avoid": "Pas de visage balafré ou armure Garrus, pas d'armure de Saren, aucun visage humain."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_tavin_rhex.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Main de contrôle",
+          "input": "5L",
+          "intent": "Contrôler le poignet proche.",
+          "damage": 45,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude de ligne",
+          "input": "5M",
+          "intent": "Conserver la distance de crosse.",
+          "damage": 70,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Pointe de crosse",
+          "input": "5H",
+          "intent": "Contester la portée adverse.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Croche-pied court",
+          "input": "2L",
+          "intent": "Sanctionner une garde debout.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Poussée basse",
+          "input": "2M",
+          "intent": "Écarter un poursuivant.",
+          "damage": 65,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Bras de barrage",
+          "input": "2H",
+          "intent": "Intercepter une retombée.",
+          "damage": 90,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Paume aérienne",
+          "input": "jL",
+          "intent": "Interrompre un saut face à face.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou de traversée",
+          "input": "jM",
+          "intent": "Approche aérienne prudente.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Crosse verticale",
+          "input": "jH",
+          "intent": "Frapper verticalement sans couverture gratuite.",
+          "damage": 95,
+          "startupFrames": 15,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Tavin reconnaît sa propre grille de contrôle sur une porte où des évacués attendent sous la menace. Il coupe son identification professionnelle et entre comme simple passager.",
+        "rivalId": "nacre_mara_vey",
+        "rivalReason": "Tavin veut cartographier les prisonniers avant l’assaut ; Mara ne croit plus aux délais administratifs. Ils se disputent la méthode, pas la valeur des vies.",
+        "rivalDialogue": [
+          "Tavin : « Une sortie n’est pas sûre parce qu’elle est ouverte. »",
+          "Mara : « Une sortie fermée ne sauve personne. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_01",
+          "nacre_stage_04",
+          "nacre_stage_06",
+          "nacre_stage_09",
+          "nacre_stage_12",
+          "nacre_stage_14",
+          "nacre_stage_19",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_06",
+          "nacre_boss_19"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Sacrifier ses anciens accès pour ouvrir tout de suite un passage ou les conserver jusqu’à la preuve finale ; conséquences locales sur les secours.",
+        "ending": "Il livre les clés du réseau de sûreté à une équipe indépendante de travailleurs et fournit le journal de ses anciennes autorisations. Une voie d’évacuation reste tenue jusqu’au dernier transport. Il accepte de témoigner contre son employeur, même si l’enquête examine aussi ses décisions passées.",
+        "illustrationAssetIds": [
+          "nacre_tavin_rhex_campaign_intro",
+          "nacre_tavin_rhex_campaign_rival",
+          "nacre_tavin_rhex_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_tavin_rhex_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_tavin_rhex",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_tavin_rhex.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_tavin_rhex_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_ilyra_senn",
+      "name": "Ilyra Senn",
+      "species": "Asari",
+      "role": "Contrôle biotique",
+      "gender": "Asari",
+      "life": 900,
+      "shield": 250,
+      "speed": 250,
+      "height": 145,
+      "specialName": "Projection",
+      "specialKind": "projectile",
+      "biography": "Ilyra a été médiatrice pour des communautés dont les contrats de relogement dépendaient de la chaîne de Nacre. Biotique formée, elle a longtemps séparé les familles de leurs créanciers en négociant des échéances. La découverte de personnes inscrites comme garanties matérielles rend cette neutralité impossible. Elle n’est ni Justicar ni maîtresse d’un ordre secret : elle connaît les gens que le système transforme en chiffres.",
+      "motivation": "Retrouver les familles déplacées, préserver leurs choix et mettre les signataires face aux conséquences de leurs actes.",
+      "equipment": [
+        "Amplificateur biotique entretenu",
+        "Armure légère de protection",
+        "Omni-outil d’identification des passagers"
+      ],
+      "speciesLocks": [
+        "Crêtes naturelles asari, aucun cheveu",
+        "Biotique issue d’une aptitude et d’une formation, pas d’un artefact magique",
+        "Pas de stase infinie ni de contrôle mental"
+      ],
+      "identity": "Contrôle biotique mobile : elle prépare une courte ouverture et choisit de projeter ou d’approcher. Sa faible robustesse punit les préparations irréfléchies.",
+      "resource": "Après deux effets de contrôle successifs sur la même cible, celle-ci reçoit une immunité de juggle de 90 frames. La stase de conception protège la cible des dégâts pendant son arrêt ; elle ne devient pas un combo gratuit.",
+      "command": {
+        "name": "Main de traverse",
+        "input": "6H",
+        "intent": "Paume biotique à courte portée au-dessus de la garde basse ; très visible.",
+        "damage": 95,
+        "startupFrames": 22,
+        "activeFrames": 4,
+        "recoveryFrames": 26,
+        "guard": "overhead",
+        "counterplay": "Se relever pour garder ; punir si elle tombe trop court.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Dépose contrôlée",
+        "input": "6L+M / 4L+M",
+        "intent": "Saisie au contact, assistance biotique brève et dépose de l’adversaire au sol ; aucune télékinésie pleine portée.",
+        "damage": 115,
+        "startupFrames": 8,
+        "activeFrames": 2,
+        "recoveryFrames": 30,
+        "guard": "throw",
+        "counterplay": "Déchoppage et saut selon règles communes.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Projection",
+          "input": "236S",
+          "intent": "Champ biotique bref qui avance en ligne droite et repousse ; jamais un portail.",
+          "damage": 115,
+          "startupFrames": 18,
+          "activeFrames": 4,
+          "recoveryFrames": 27,
+          "guard": "mid",
+          "counterplay": "Garder ou sauter avant le passage du champ.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "biotic_projectile",
+          "meterCost": 0
+        },
+        {
+          "name": "Lévitation brève",
+          "input": "623S",
+          "intent": "Soulève une cible déjà vulnérable dans une petite colonne devant elle ; bouclier intact limite l’effet à un recul.",
+          "damage": 90,
+          "startupFrames": 19,
+          "activeFrames": 4,
+          "recoveryFrames": 34,
+          "guard": "mid",
+          "counterplay": "Rester hors de la colonne ou interrompre le démarrage.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "launcher",
+          "meterCost": 0
+        },
+        {
+          "name": "Stase de sûreté",
+          "input": "214S",
+          "intent": "Immobilise un court instant sans dégâts, et empêche les dégâts tant que l’enveloppe reste active ; sert à se replacer.",
+          "damage": 0,
+          "startupFrames": 24,
+          "activeFrames": 4,
+          "recoveryFrames": 30,
+          "guard": "mid",
+          "counterplay": "Approcher pendant le démarrage ; après sortie de stase, reprise neutre sans avantage automatique.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "stasis",
+          "meterCost": 0,
+          "durationFrames": 30,
+          "targetInvulnerableDuringStasis": true
+        },
+        {
+          "name": "Barrière resserrée",
+          "input": "22S",
+          "intent": "Concentre sa protection vers l’avant pour une courte fenêtre ; ne couvre ni une projection ni les coups venant de derrière.",
+          "damage": 0,
+          "startupFrames": 8,
+          "activeFrames": 4,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Projection au contact, délai ou changement de côté.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "barrier",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Champ de dégagement",
+        "input": "236236S",
+        "intent": "Impact biotique confirmé, soulèvement limité puis projection hors du couloir d’évacuation ; la cible retombe sur le même plan de jeu.",
+        "damage": 290,
+        "startupFrames": 16,
+        "activeFrames": 10,
+        "recoveryFrames": 44,
+        "guard": "mid",
+        "counterplay": "Garder la première poussée ou interrompre la préparation.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Dépose sous protection",
+        "sequence": "Arrête brièvement la chute de l’adversaire vaincu, dépose son arme hors de portée puis l’immobilise dans un filet de retenue physique fourni par l’équipe de quai.",
+        "condition": "Fin de manche ; la stase ne sert pas à infliger des dégâts à une cible invulnérable.",
+        "durationSeconds": 6,
+        "assetIds": [
+          "nacre_ilyra_senn_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Écart biotique",
+        "intent": "Une petite poussée défensive sépare les combattants sans garantir un combo.",
+        "meterCost": 25,
+        "counterplay": "Bloquable, courte portée et pas de capture aérienne infinie."
+      },
+      "taunt": {
+        "name": "Main ouverte",
+        "line": "Vous pouvez encore vous arrêter.",
+        "animation": "Ouvre une paume sans produire de pouvoir.",
+        "rankedEffect": "Cosmétique."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 236S",
+          "goal": "Confirmer puis créer de l’espace."
+        },
+        {
+          "input": "623S [sans bouclier] > jM > 236236S",
+          "goal": "Conversion aérienne dans la limite anti-juggle ; pas de combo sur stase."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_ilyra_senn",
+        "name": "Ilyra Senn",
+        "species": "Asari",
+        "visual": "Asari adulte à peau bleu violet désaturé, visage calme, crêtes naturelles lisses de la tête nettement visibles, aucun cheveu ni oreille humaine. Tenue d'intervention biomédicale et protection légère, plastron gris perle, panneaux prune profond, sous-combinaison presque noire, petites attaches cuivre. Un gant technique à l'avant-bras, aucun bâton. Elle pose un pied devant l'autre avec mains libres ouvertes à hauteur du torse, disponibilité biotique indiquée seulement par un minuscule reflet bleu sur la paume gauche, sans sphère géante. Silhouette élégante mais équipée, bottes plates, rien de sexualisé.",
+        "palette": [
+          "#697AB1",
+          "#D0CDCC",
+          "#5F3A59"
+        ],
+        "silhouette": "Épaules douces, protection légère, mains et crêtes dégagées pour animation.",
+        "avoid": "Pas de tenue Liara/Samara/Aria, pas de cheveux, pas de talons, pas de cristal ou magie runique."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_ilyra_senn.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Paume d’écart",
+          "input": "5L",
+          "intent": "Créer un petit intervalle sans pouvoir.",
+          "damage": 45,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude fluide",
+          "input": "5M",
+          "intent": "Confirmer une touche rapprochée.",
+          "damage": 70,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Paume renforcée",
+          "input": "5H",
+          "intent": "Coup physique accompagné d’un faible champ bleu.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Balayage léger",
+          "input": "2L",
+          "intent": "Menacer la garde basse.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Genou bas",
+          "input": "2M",
+          "intent": "Arrêter une course.",
+          "damage": 65,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Élévation de garde",
+          "input": "2H",
+          "intent": "Intercepter sans lévitation permanente.",
+          "damage": 90,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Main descendante",
+          "input": "jL",
+          "intent": "Toucher au début de la descente.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Talonnade aérienne",
+          "input": "jM",
+          "intent": "Approche aérienne claire.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Paume en retombée",
+          "input": "jH",
+          "intent": "Attaque lourde lisible et punissable.",
+          "damage": 95,
+          "startupFrames": 15,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Dans un centre de transit, une enfant lui rend le jeton qui garantissait un logement. Le code mène à un quai condamné. Ilyra suit cette preuve avec les familles qui acceptent son aide.",
+        "rivalId": "nacre_nyra_korr",
+        "rivalReason": "Nyra veut exfiltrer les témoins avant la négociation ; Ilyra veut laisser les familles décider de leur destination. Leur confrontation protège les deux options.",
+        "rivalDialogue": [
+          "Ilyra : « Les mettre en sécurité ne vous donne pas le droit de choisir leur vie. »",
+          "Nyra : « Et une signature ne vaut rien si personne ne sort d’ici. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_02",
+          "nacre_stage_03",
+          "nacre_stage_07",
+          "nacre_stage_08",
+          "nacre_stage_12",
+          "nacre_stage_16",
+          "nacre_stage_18",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_02",
+          "nacre_boss_16"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Préserver un passage discret pour les familles ou rendre l’abus public pour briser les contrats ; la décision change les témoins disponibles, pas le canon galactique.",
+        "ending": "Elle organise un choix explicite entre refuge local, départ et témoignage protégé. Son dernier dialogue n’impose pas le pardon à ses anciens collègues. Les familles reprennent possession de leurs dossiers ; le récit s’achève sur un lieu où l’on peut rester sans dette fabriquée.",
+        "illustrationAssetIds": [
+          "nacre_ilyra_senn_campaign_intro",
+          "nacre_ilyra_senn_campaign_rival",
+          "nacre_ilyra_senn_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_ilyra_senn_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_ilyra_senn",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_ilyra_senn.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ilyra_senn_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_keela_vess",
+      "name": "Keela’Vess nar Tasera",
+      "species": "Quarienne",
+      "role": "Ingénieure d’interception",
+      "gender": "Femme",
+      "life": 900,
+      "shield": 280,
+      "speed": 245,
+      "height": 147,
+      "specialName": "Relais d’interception",
+      "specialKind": "trap",
+      "biography": "Keela est en pèlerinage ; Tasera est le nom original de son vaisseau de naissance dans ce projet. Elle réparait des pompes de transit pour financer un matériel utile à la Flotte quand elle a reconnu ses propres codes d’entretien dans un système de verrouillage des personnes. Elle ne peut pas effacer ce détournement en changeant simplement d’employeur. Son talent porte sur l’interface et la maintenance, pas sur une domination magique de toute intelligence synthétique.",
+      "motivation": "Démonter les serrures qu’elle a involontairement rendues fiables, puis rentrer avec une contribution dont elle connaît les usages.",
+      "equipment": [
+        "Combinaison environnementale intégralement étanche",
+        "Omni-outil de maintenance",
+        "Drone d’interception non conscient",
+        "Pistolet compact de défense"
+      ],
+      "speciesLocks": [
+        "Visière et respirateur conservés en combat et en victoire",
+        "Pas de visage nu ajouté pour une pose",
+        "Drone à programme limité, aucune IA geth docile invoquée"
+      ],
+      "identity": "Ingénieure de position : elle prépare un relais qui gêne l’approche, puis profite d’un petit tir de couverture. Elle souffre lorsqu’on détruit son dispositif avant son armement.",
+      "resource": "Un drone ou relais actif maximum ; trois commandes de tir au plus avant retour. La perte du dispositif entraîne une récupération de système de 180 frames. Les drones ne persistent pas après un changement de manche.",
+      "command": {
+        "name": "Recul de maintenance",
+        "input": "4H",
+        "intent": "Frappe du coude accompagnée d’un petit pas arrière, sans invulnérabilité.",
+        "damage": 95,
+        "startupFrames": 17,
+        "activeFrames": 4,
+        "recoveryFrames": 27,
+        "guard": "mid",
+        "counterplay": "Avancer avant le contact ou punir le recul en coin.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Prise de dérivation",
+        "input": "6L+M / 4L+M",
+        "intent": "Utilise le poignet et l’élan de la cible pour la tourner ; sa combinaison reste fermée.",
+        "damage": 115,
+        "startupFrames": 7,
+        "activeFrames": 2,
+        "recoveryFrames": 30,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Relais d’interception",
+          "input": "236S",
+          "intent": "Pose au sol un relais qui émet un seul arc court si un adversaire entre dans sa zone après armement.",
+          "damage": 105,
+          "startupFrames": 27,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Frapper le relais avant armement, sauter au-dessus de sa zone ou garder.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "trap",
+          "meterCost": 0,
+          "armingFrames": 30,
+          "lifetimeFrames": 240,
+          "maximumInstances": 1
+        },
+        {
+          "name": "Drone de diversion",
+          "input": "214S",
+          "intent": "Un drone non conscient arrive à un point fixe, produit une décharge télégraphiée puis revient ; aucun suivi parfait de cible.",
+          "damage": 85,
+          "startupFrames": 30,
+          "activeFrames": 4,
+          "recoveryFrames": 22,
+          "guard": "mid",
+          "counterplay": "Intercepter le drone ou passer sous sa ligne de tir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "drone",
+          "meterCost": 0
+        },
+        {
+          "name": "Surcharge d’urgence",
+          "input": "623S",
+          "intent": "Impulsion courte contre les protections techniques ; ne désactive pas gratuitement toutes les attaques adverses.",
+          "damage": 95,
+          "startupFrames": 15,
+          "activeFrames": 4,
+          "recoveryFrames": 31,
+          "guard": "mid",
+          "counterplay": "Rester hors de la portée et punir le geste.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "shield_disrupt",
+          "meterCost": 0
+        },
+        {
+          "name": "Rappel du relais",
+          "input": "22S",
+          "intent": "Récupère le dispositif en place ; produit une fenêtre de repositionnement, sans explosion ni dégâts gratuits.",
+          "damage": 0,
+          "startupFrames": 12,
+          "activeFrames": 4,
+          "recoveryFrames": 20,
+          "guard": "mid",
+          "counterplay": "Punir le rappel si elle est acculée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "recall",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Circuit de sortie",
+        "input": "236236S",
+        "intent": "Une décharge initiale ouvre une boucle entre deux relais temporaires, qui referment leurs arcs sur la cible touchée puis se désactivent.",
+        "damage": 280,
+        "startupFrames": 19,
+        "activeFrames": 12,
+        "recoveryFrames": 44,
+        "guard": "mid",
+        "counterplay": "Garder le premier arc ; les relais ne capturent pas sur garde.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100,
+        "temporaryDeployables": true
+      },
+      "finisher": {
+        "name": "Accès révoqué",
+        "sequence": "Coupe les commandes de l’équipement de la cible vaincue, récupère son propre relais et envoie le code de déverrouillage du quai aux évacués.",
+        "condition": "Fin de manche ; sabotage limité au matériel présent, pas prise de contrôle d’une personne.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_keela_vess_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Décharge d’interception",
+        "intent": "Un relais disparaissant après une impulsion crée une menace basse de courte portée.",
+        "meterCost": 25,
+        "counterplay": "Télégraphe, blocage et destruction du relais."
+      },
+      "taunt": {
+        "name": "Diagnostic propre",
+        "line": "Ce verrou aussi était mal câblé.",
+        "animation": "Tapote un module de poignet sans rompre l’étanchéité.",
+        "rankedEffect": "Cosmétique, aucun soin."
+      },
+      "combos": [
+        {
+          "input": "2L > 5M > 623S",
+          "goal": "Défense au contact quand le relais est détruit."
+        },
+        {
+          "input": "236S [arc confirmé] > 5M > 236236S",
+          "goal": "Récompenser un placement réussi sans garantie après simple pose."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_keela_vess",
+        "name": "Keela’Vess nar Tasera",
+        "species": "Quarienne",
+        "visual": "Quarienne adulte élancée, combinaison environnementale entièrement fermée et étanche, visière fumée opalescente opaque aux traits humains, respirateur frontal et flexibles discrets. Capuche courte couleur terre cuite et étole asymétrique sable, étoffe à micro-motif géométrique original sans reprise du motif de Tali, protections graphite aux articulations, petites pièces d'atelier bleu acier. Morphologie et mains de quarienne, jambes anatomiquement compatibles, pas de visage nu. Pose basse technique, avant-bras droit prêt pour omni-outil mais sans interface ni projecteur visible, petit pistolet de masse tenu bas dans l'autre main. Drone non présent dans l'image, produit séparément.",
+        "palette": [
+          "#A85C43",
+          "#C6B895",
+          "#3F565F"
+        ],
+        "silhouette": "Capuche courte, volume des tuyaux limité, longue ligne des jambes, outils compacts.",
+        "avoid": "Pas de Tali recolorée, pas de combinaison violette iconique, pas de visage découvert, pas de second personnage/drone."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_keela_vess.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Contact de gant",
+          "input": "5L",
+          "intent": "S’écarter d’un contact dangereux.",
+          "damage": 45,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude d’atelier",
+          "input": "5M",
+          "intent": "Obtenir une confirmation courte.",
+          "damage": 70,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse courte",
+          "input": "5H",
+          "intent": "Finir un échange rapproché.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crochet de botte",
+          "input": "2L",
+          "intent": "Tester la garde basse sans exposer les tuyaux.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Genou de recul",
+          "input": "2M",
+          "intent": "Pousser en recul.",
+          "damage": 65,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Bras de déviation",
+          "input": "2H",
+          "intent": "Intercepter une arrivée aérienne.",
+          "damage": 90,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Paume en descente",
+          "input": "jL",
+          "intent": "Petite attaque de saut.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou oblique",
+          "input": "jM",
+          "intent": "Approche compacte.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Crosse de secours",
+          "input": "jH",
+          "intent": "Punition aérienne lourde.",
+          "damage": 95,
+          "startupFrames": 15,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Keela découvre une mise à jour portant sa signature sur une porte de confinement. Elle photographie les numéros, arrache le réseau du contrôle central puis cherche les personnes encore enfermées.",
+        "rivalId": "nacre_selek_dhan",
+        "rivalReason": "Selek veut effacer les commandes compromises ; Keela veut en préserver les journaux pour identifier les responsables. Le conflit porte sur la réparation sans destruction de preuve.",
+        "rivalDialogue": [
+          "Keela : « Tu peux supprimer le programme. Pas ce qu’ils en ont fait. »",
+          "Selek : « Si je le laisse tourner, il recommence avant notre témoignage. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_01",
+          "nacre_stage_05",
+          "nacre_stage_07",
+          "nacre_stage_11",
+          "nacre_stage_12",
+          "nacre_stage_14",
+          "nacre_stage_15",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_07",
+          "nacre_boss_14"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Détruire le contrôleur immédiatement ou le maintenir isolé le temps d’extraire les preuves ; chaque voie possède une procédure de secours sûre.",
+        "ending": "Elle sépare les fonctions de sûreté des fonctions de dette, remet les journaux aux témoins et garde un exemplaire chiffré de son travail. Son futur présent à la Flotte sera un protocole d’audit et des pièces réellement réparées, jamais une arme miraculeuse ni une IA volée.",
+        "illustrationAssetIds": [
+          "nacre_keela_vess_campaign_intro",
+          "nacre_keela_vess_campaign_rival",
+          "nacre_keela_vess_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_keela_vess_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_keela_vess",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_keela_vess.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_keela_vess_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_ghoran_brakk",
+      "name": "Ghoran Brakk",
+      "species": "Krogan",
+      "role": "Lutteur lourd",
+      "gender": "Homme",
+      "life": 1300,
+      "shield": 100,
+      "speed": 190,
+      "height": 154,
+      "specialName": "Percée de quai",
+      "specialKind": "charge",
+      "biography": "Brakk appartient au clan original Ghoran, sans parenté revendiquée avec les figures canoniques. Après des années de contrats de force, il a organisé une équipe de manutention sur Tessère. Le Concordat retient les paies, puis déclare les ouvriers redevables de leur propre transport. Brakk a promis à son équipe qu’aucun collègue ne deviendrait une ligne d’actif. Sa colère se traduit par des décisions précises, pas par une incapacité à comprendre la fraude.",
+      "motivation": "Sortir les équipes de la mine et récupérer les paies détournées sans laisser le consortium les diviser.",
+      "equipment": [
+        "Plaques de protection de manutention renforcées",
+        "Gants et avant-bras d’appui",
+        "Balise de sécurité de chantier"
+      ],
+      "speciesLocks": [
+        "Bosse dorsale et proportions krogan conservées",
+        "Aucune biotique présumée",
+        "Sa robustesse ne donne pas une invulnérabilité permanente"
+      ],
+      "identity": "Lutteur de proximité très robuste : il gagne en amenant la cible dans la portée de ses prises. Les attaques longues et les esquives de saisie exploitent sa lenteur.",
+      "resource": "Deux crans d’ancrage maximum, obtenus par garde réussie d’un coup lourd. Dépenser un cran protège d’un seul impact léger pendant un pas lourd ; les projections et les coups bas restent efficaces.",
+      "command": {
+        "name": "Appui de chantier",
+        "input": "6H",
+        "intent": "Avance une épaule en gardant le contact au sol. Un cran d’ancrage peut absorber un léger impact, jamais une projection.",
+        "damage": 135,
+        "startupFrames": 24,
+        "activeFrames": 6,
+        "recoveryFrames": 32,
+        "guard": "mid",
+        "counterplay": "Recul, coup bas ou projection au démarrage.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Déchargement manuel",
+        "input": "6L+M / 4L+M",
+        "intent": "Saisie au contact et jet court sur la même voie de combat ; aucune projection hors du stage.",
+        "damage": 145,
+        "startupFrames": 8,
+        "activeFrames": 2,
+        "recoveryFrames": 34,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun ; saut avant la saisie.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Percée de quai",
+          "input": "236S",
+          "intent": "Charge d’épaule physique au sol sur une distance fixe, sans propulsion biotique.",
+          "damage": 145,
+          "startupFrames": 23,
+          "activeFrames": 4,
+          "recoveryFrames": 34,
+          "guard": "mid",
+          "counterplay": "Sauter, reculer hors de portée ou garder puis punir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "charge",
+          "meterCost": 0
+        },
+        {
+          "name": "Prise de levage",
+          "input": "63214S",
+          "intent": "Saisie de commandement très courte ; un échec laisse une longue récupération.",
+          "damage": 170,
+          "startupFrames": 11,
+          "activeFrames": 2,
+          "recoveryFrames": 43,
+          "guard": "throw",
+          "counterplay": "Saut, recul ou attaque avant la prise.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "command_throw",
+          "meterCost": 0
+        },
+        {
+          "name": "Frein de charge",
+          "input": "214S",
+          "intent": "Plante ses appuis et arrête volontairement une approche ; peut absorber un léger projectile contre un cran d’ancrage.",
+          "damage": 0,
+          "startupFrames": 8,
+          "activeFrames": 4,
+          "recoveryFrames": 26,
+          "guard": "mid",
+          "counterplay": "Projection ou poursuite après la fenêtre.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "stance",
+          "meterCost": 0
+        },
+        {
+          "name": "Frappe de plancher",
+          "input": "22S",
+          "intent": "Coup d’avant-bras près des pieds, vague de choc physique limitée à la portée proche ; aucune secousse planétaire.",
+          "damage": 125,
+          "startupFrames": 30,
+          "activeFrames": 4,
+          "recoveryFrames": 38,
+          "guard": "low",
+          "counterplay": "Sauter le coup annoncé ou frapper pendant le démarrage.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "ground_slam",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Dernier chargement",
+        "input": "236236S",
+        "intent": "Saisie initiale au contact puis poussée et projection lourde contre un conteneur d’arrière-plan simulé ; la frontière du combat reste inchangée.",
+        "damage": 320,
+        "startupFrames": 10,
+        "activeFrames": 3,
+        "recoveryFrames": 51,
+        "guard": "throw",
+        "counterplay": "Éviter la saisie initiale ; aucun super de projection automatique après garde.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Quai évacué",
+        "sequence": "Brakk déplace l’adversaire vaincu hors du couloir et bloque son arme sous un bloc de manutention ; il se tourne immédiatement vers l’évacuation des travailleurs.",
+        "condition": "Fin de manche, pas d’atteinte à des civils ni d’effondrement du stage.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_ghoran_brakk_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Poussée d’équipe",
+        "intent": "Brève charge physique télégraphiée qui repousse ; ne transporte pas la cible hors écran.",
+        "meterCost": 25,
+        "counterplay": "Sauter ou garder ; l’assistant reste vulnérable pendant son entrée."
+      },
+      "taunt": {
+        "name": "Prêt à porter",
+        "line": "Mes gens repartent. Discutez entre vous.",
+        "animation": "Resserre un gant et se remet en garde.",
+        "rankedEffect": "Cosmétique ; aucun gain d’ancrage."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 236S",
+          "goal": "Terminer un échange court par un recul forcé."
+        },
+        {
+          "input": "6H [touché] > 5M > 22S",
+          "goal": "Maintenir la pression avec une frappe lente évitable ; aucune saisie garantie hors règles de combo."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_ghoran_brakk",
+        "name": "Ghoran Brakk",
+        "species": "Krogan",
+        "visual": "Krogan adulte massif avec bosse dorsale organique et silhouette basse lourde, grande plaque crânienne ocre sombre marquée d'une entaille ancienne non sanglante, museau large, peau gris brun rugueuse. Armure de dock à plaques épaisses orange industriel brûlé et graphite, protections avant-bras renforcées, sangles de manutention et petite balise de sécurité fermée sur l'épaule. Aucun canon géant. Bras lourds relevés en garde de lutte, pieds larges au sol, pose préparant une poussée d'épaule. Visage expressif décidé, aucune rage magique.",
+        "palette": [
+          "#6B5C46",
+          "#B46832",
+          "#30383D"
+        ],
+        "silhouette": "Bosse crânio-dorsale, torse immense, cou très court, pas de proportions humaines de bodybuilder.",
+        "avoid": "Pas d'armure Wrex/Grunt, pas de cornes fantasy, pas de biotique, pas de mecha."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_ghoran_brakk.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Poing court",
+          "input": "5L",
+          "intent": "Arrêter un adversaire collé.",
+          "damage": 55,
+          "startupFrames": 8,
+          "activeFrames": 3,
+          "recoveryFrames": 15,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude de quai",
+          "input": "5M",
+          "intent": "Confirmer à courte portée.",
+          "damage": 80,
+          "startupFrames": 12,
+          "activeFrames": 4,
+          "recoveryFrames": 20,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Marteau d’avant-bras",
+          "input": "5H",
+          "intent": "Punir une garde mal placée.",
+          "damage": 110,
+          "startupFrames": 18,
+          "activeFrames": 4,
+          "recoveryFrames": 28,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Écrasement de botte",
+          "input": "2L",
+          "intent": "Menacer la garde basse.",
+          "damage": 50,
+          "startupFrames": 9,
+          "activeFrames": 3,
+          "recoveryFrames": 16,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Balayage lourd",
+          "input": "2M",
+          "intent": "Renverser au prix d’une récupération lente.",
+          "damage": 75,
+          "startupFrames": 13,
+          "activeFrames": 4,
+          "recoveryFrames": 22,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crochet montant",
+          "input": "2H",
+          "intent": "Défendre le ciel sans démarrage invincible.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 5,
+          "recoveryFrames": 32,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Poing de chute",
+          "input": "jL",
+          "intent": "Petit coup aérien rare.",
+          "damage": 50,
+          "startupFrames": 9,
+          "activeFrames": 4,
+          "recoveryFrames": 13,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou massif",
+          "input": "jM",
+          "intent": "Approche très lisible.",
+          "damage": 75,
+          "startupFrames": 12,
+          "activeFrames": 5,
+          "recoveryFrames": 17,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Double avant-bras",
+          "input": "jH",
+          "intent": "Lourde retombée, forte récupération.",
+          "damage": 105,
+          "startupFrames": 17,
+          "activeFrames": 5,
+          "recoveryFrames": 22,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Dans une galerie minière, Brakk fait l’appel. Le terminal prétend que cinq absents ont été transférés volontairement. Les autres montrent les contrats qu’ils n’ont jamais signés.",
+        "rivalId": "nacre_varek_hesk",
+        "rivalReason": "Varek refuse que Brakk écrase un poste de sûreté dont les caméras prouvent les saisies ; Brakk refuse de retarder le départ de l’équipe. Ils apprennent à protéger personnes et preuves ensemble.",
+        "rivalDialogue": [
+          "Brakk : « Leurs noms d’abord. Leurs murs après. »",
+          "Varek : « Alors garde le mur debout jusqu’à ce qu’il témoigne. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_04",
+          "nacre_stage_05",
+          "nacre_stage_07",
+          "nacre_stage_10",
+          "nacre_stage_11",
+          "nacre_stage_12",
+          "nacre_stage_18",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_05",
+          "nacre_boss_11"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Récupérer les paies dans le coffre de fret ou utiliser ce transport pour les blessés ; le manque éventuel est reconnu dans l’épilogue.",
+        "ending": "Les ouvriers quittent la mine avec leurs effets et une copie des paies récupérées. Brakk reste le temps d’assurer la dernière rotation, puis accepte une place dans une coopérative de fret. Son clan n’est ni le nouveau dirigeant de Tuchanka ni l’instrument d’un changement du génophage.",
+        "illustrationAssetIds": [
+          "nacre_ghoran_brakk_campaign_intro",
+          "nacre_ghoran_brakk_campaign_rival",
+          "nacre_ghoran_brakk_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_ghoran_brakk_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_ghoran_brakk",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_ghoran_brakk.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_ghoran_brakk_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_neral_vesh",
+      "name": "Neral Vesh",
+      "species": "Drell",
+      "role": "Infiltration",
+      "gender": "Homme",
+      "life": 850,
+      "shield": 160,
+      "speed": 305,
+      "height": 147,
+      "specialName": "Percée à couvert",
+      "specialKind": "charge",
+      "biography": "Neral a transporté des messages scellés pour des témoins qui ont ensuite disparu de la circulation. Il n’était pas payé pour connaître leur contenu ; il sait désormais que cette ignorance faisait partie du dispositif. Son expérience est celle d’un coursier clandestin et d’un opérateur discret, pas d’un nouvel assassin légendaire. Il a gardé des souvenirs suffisamment précis pour relier les trajets, mais doit trouver des preuves matérielles recevables.",
+      "motivation": "Rétablir le fil des témoignages, protéger ceux qui veulent parler et cesser de confondre discrétion et neutralité.",
+      "equipment": [
+        "Pistolet compact de masse",
+        "Protection souple de coursier",
+        "Camouflage tactique limité par équipement",
+        "Poche médicale étanche de voyage"
+      ],
+      "speciesLocks": [
+        "Silhouette et traits drell conservés",
+        "Aucune biotique attribuée par défaut",
+        "Camouflage technologique : ni téléportation ni invulnérabilité"
+      ],
+      "identity": "Infiltrateur rapide et fragile : approche physique, feinte de visibilité et courte confirmation au pistolet. Il perd nettement lorsqu’une feinte est lue.",
+      "resource": "Le camouflage dure au plus 45 frames et se rompt sur attaque, impact ou projection. Les collisions, la trace au sol et les sons restent actifs ; aucune invisibilité permanente en duel.",
+      "command": {
+        "name": "Pas intérieur",
+        "input": "6M",
+        "intent": "Court pas physique suivi d’un coude, traversée de garde impossible sans déplacement réel.",
+        "damage": 80,
+        "startupFrames": 14,
+        "activeFrames": 4,
+        "recoveryFrames": 22,
+        "guard": "mid",
+        "counterplay": "Coup court pour interrompre ou recul.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Retrait discret",
+        "input": "6L+M / 4L+M",
+        "intent": "Déséquilibre la cible par le bras et la pivote, sans blessure cinématique imposée.",
+        "damage": 115,
+        "startupFrames": 6,
+        "activeFrames": 2,
+        "recoveryFrames": 29,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Percée à couvert",
+          "input": "236S",
+          "intent": "Course basse physique puis coude ; aucune dématérialisation et aucune invulnérabilité aux coups bas.",
+          "damage": 115,
+          "startupFrames": 15,
+          "activeFrames": 4,
+          "recoveryFrames": 31,
+          "guard": "mid",
+          "counterplay": "Contester au sol ou garder puis punir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "charge",
+          "meterCost": 0
+        },
+        {
+          "name": "Camouflage bref",
+          "input": "214S",
+          "intent": "Réduit la visibilité du corps sans retirer la trace au sol ni le repère d’adversaire ; aucune attaque automatique.",
+          "damage": 0,
+          "startupFrames": 12,
+          "activeFrames": 4,
+          "recoveryFrames": 26,
+          "guard": "mid",
+          "counterplay": "Lire la trace ou frapper une zone ; les dégâts interrompent le camouflage.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "cloak",
+          "meterCost": 0,
+          "durationFrames": 45
+        },
+        {
+          "name": "Tir d’intervalle",
+          "input": "623S",
+          "intent": "Décharge de pistolet à courte diagonale, utile contre une approche déjà lue.",
+          "damage": 100,
+          "startupFrames": 13,
+          "activeFrames": 4,
+          "recoveryFrames": 32,
+          "guard": "mid",
+          "counterplay": "Rester au sol à distance ou bloquer le tir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "angled_projectile",
+          "meterCost": 0
+        },
+        {
+          "name": "Fausse sortie",
+          "input": "22S",
+          "intent": "Feinte de départ suivie d’un pas de recul ; la reprise d’action n’est pas instantanée.",
+          "damage": 0,
+          "startupFrames": 8,
+          "activeFrames": 4,
+          "recoveryFrames": 23,
+          "guard": "mid",
+          "counterplay": "Attendre le recul et avancer sans surréagir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "feint",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Trajet sans témoin",
+        "input": "236236S",
+        "intent": "La première frappe doit toucher ; Neral contourne physiquement la garde, désarme, puis enchaîne deux impacts de crosse.",
+        "damage": 285,
+        "startupFrames": 10,
+        "activeFrames": 8,
+        "recoveryFrames": 43,
+        "guard": "mid",
+        "counterplay": "Garder le premier coude ; aucun saut cinématique gratuit derrière la cible.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Dernière livraison",
+        "sequence": "Pose le jeton de preuve sur l’arme désarmée, immobilise la cible puis rejoint le témoin sous protection. Le camouflage sert à sortir, pas à faire disparaître une personne.",
+        "condition": "Fin de manche ; aucun meurtre d’un rival dans la campagne.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_neral_vesh_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Passage discret",
+        "intent": "Courte traversée physique suivie d’un coup léger, toujours annoncée par un signal et une trace.",
+        "meterCost": 25,
+        "counterplay": "Garde possible des deux côtés selon position ; pas d’attaque invisible instantanée."
+      },
+      "taunt": {
+        "name": "Jeton retourné",
+        "line": "Je me souviens du destinataire.",
+        "animation": "Retourne un jeton de transit entre ses doigts.",
+        "rankedEffect": "Cosmétique, ne déclenche pas le camouflage."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 236S",
+          "goal": "Conversion rapide et courte."
+        },
+        {
+          "input": "214S > déplacement > 5M > 236236S",
+          "goal": "Approche de camouflage à lire et contrer ; aucun enchaînement garanti depuis l’activation seule."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_neral_vesh",
+        "name": "Neral Vesh",
+        "species": "Drell",
+        "visual": "Drell adulte masculin mince et nerveux, peau écaillée vert sombre désaturé avec zone sous la gorge cuivre mat, grands yeux noirs à reflet discret, reliefs faciaux et crâne lisse propres aux drell, aucun cheveu. Veste technique courte gris fumée intégrée à une protection légère, doublure olive, sous-combinaison noire, bottes fines plates et gants courts. Pistolet compact à la main droite près du flanc, main gauche en garde. Poche médicale étanche à la ceinture mais pas de respirateur permanent inventé. Pose ramassée vers la droite, furtive sans transparence ni doublon de silhouette.",
+        "palette": [
+          "#355B4A",
+          "#42494D",
+          "#AE7351"
+        ],
+        "silhouette": "Élancé, col court laissant voir gorge et tête, veste asymétrique arrêtée aux hanches.",
+        "avoid": "Pas de manteau ni visage de Thane, pas de katana, pas d'aura magique, pas d'exosuit."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_neral_vesh.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Frappe de poignet",
+          "input": "5L",
+          "intent": "Punition rapide de près.",
+          "damage": 45,
+          "startupFrames": 5,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude rentré",
+          "input": "5M",
+          "intent": "Confirmer sans sortir l’arme.",
+          "damage": 70,
+          "startupFrames": 9,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse précise",
+          "input": "5H",
+          "intent": "Récompenser une ouverture nette.",
+          "damage": 100,
+          "startupFrames": 15,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Pointe basse",
+          "input": "2L",
+          "intent": "Tester la garde basse.",
+          "damage": 40,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crochet de jambe",
+          "input": "2M",
+          "intent": "Préparer un déplacement latéral.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude montant",
+          "input": "2H",
+          "intent": "Défendre une approche aérienne.",
+          "damage": 90,
+          "startupFrames": 13,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Main aérienne",
+          "input": "jL",
+          "intent": "Approche peu engagée.",
+          "damage": 40,
+          "startupFrames": 6,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou de passage",
+          "input": "jM",
+          "intent": "Passage rapide, même plan de jeu.",
+          "damage": 65,
+          "startupFrames": 9,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Coup de talon",
+          "input": "jH",
+          "intent": "Engagement lourd puni s’il manque.",
+          "damage": 95,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Un témoin lui remet une enveloppe vide avec le code d’une ancienne livraison. Neral se rappelle le trajet et retrouve, quai après quai, la chaîne qui l’a utilisée.",
+        "rivalId": "nacre_dalo_ruun",
+        "rivalReason": "Dalo exige des documents authentifiables avant d’ouvrir un corridor garanti ; Neral veut protéger l’identité de témoins vivants. Leur accord cherchera une preuve qui n’expose pas la source.",
+        "rivalDialogue": [
+          "Neral : « Un nom publié devient une cible. »",
+          "Dalo : « Un dossier sans preuve devient une rumeur. Trouvons mieux. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_02",
+          "nacre_stage_04",
+          "nacre_stage_08",
+          "nacre_stage_09",
+          "nacre_stage_13",
+          "nacre_stage_15",
+          "nacre_stage_18",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_08",
+          "nacre_boss_13"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Rendre publique une partie du trajet ou garder le réseau d’exfiltration intact ; les preuves doivent rester suffisantes dans chaque voie.",
+        "ending": "Il remet des preuves corroborées et anonymisées aux personnes que les témoins ont choisies. Les itinéraires sûrs restent secrets. Son dernier trajet est payé par ceux qu’il escorte, avec un contrat qu’il lit en entier avant de le signer.",
+        "illustrationAssetIds": [
+          "nacre_neral_vesh_campaign_intro",
+          "nacre_neral_vesh_campaign_rival",
+          "nacre_neral_vesh_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_neral_vesh_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_neral_vesh",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_neral_vesh.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_neral_vesh_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_selek_dhan",
+      "name": "Selek Dhan",
+      "species": "Galarien",
+      "role": "Pièges et sabotage",
+      "gender": "Homme",
+      "life": 850,
+      "shield": 220,
+      "speed": 280,
+      "height": 160,
+      "specialName": "Microcharge de sabotage",
+      "specialKind": "trap",
+      "biography": "Selek est un contrôleur de qualité indépendant, engagé pour réduire les incidents des installations de Tessère. Ses rapports ont été réécrits pour rendre les retards imputables aux travailleurs. En recoupant les versions, il découvre que la même procédure fabrique dette, panne puis transfert forcé. Il parle vite lorsqu’il vérifie une hypothèse, mais sa voix ne copie pas celle de Mordin et sa compétence ne fait pas de lui un ancien membre secret du GSI.",
+      "motivation": "Empêcher la prochaine purge de dossiers et prouver la différence entre une erreur de maintenance et une fraude organisée.",
+      "equipment": [
+        "Omni-outil d’inspection",
+        "Microcharges de sabotage limitées aux dispositifs techniques",
+        "Capsules de cryorefroidissement industriel adaptées au duel"
+      ],
+      "speciesLocks": [
+        "Anatomie galarienne, long cou et membres fins",
+        "Pas de biotique",
+        "Pas de pouvoir de piratage universel sur un organisme vivant"
+      ],
+      "identity": "Poseur de pièges fragile : temporiser, menacer une voie puis changer d’emplacement. Ses dispositifs ont une phase d’armement visible et peuvent être détruits.",
+      "resource": "Deux balises maximum, mais une seule peut être armée simultanément. Un signal clignotant et un bip indiquent l’activation ; pas de piège invisible ou de dégâts hors écran.",
+      "command": {
+        "name": "Diagnostic en retrait",
+        "input": "4M",
+        "intent": "Petit coup de boîtier en recul physique, sans armure.",
+        "damage": 70,
+        "startupFrames": 12,
+        "activeFrames": 4,
+        "recoveryFrames": 22,
+        "guard": "mid",
+        "counterplay": "Avancer et couvrir l’espace libéré.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Mise hors ligne",
+        "input": "6L+M / 4L+M",
+        "intent": "Saisie brève et bascule de l’adversaire par son équipement, sans téléchargement instantané de cerveau.",
+        "damage": 110,
+        "startupFrames": 7,
+        "activeFrames": 2,
+        "recoveryFrames": 31,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Microcharge de sabotage",
+          "input": "236S",
+          "intent": "Pose une petite charge technique qui désorganise les boucliers au contact de sa zone, une fois armée.",
+          "damage": 110,
+          "startupFrames": 26,
+          "activeFrames": 4,
+          "recoveryFrames": 27,
+          "guard": "mid",
+          "counterplay": "Détruire la charge avant le bip d’armement, sauter ou bloquer.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "trap",
+          "meterCost": 0,
+          "armingFrames": 36,
+          "lifetimeFrames": 240,
+          "maximumInstances": 2
+        },
+        {
+          "name": "Froid de maintenance",
+          "input": "214S",
+          "intent": "Jet court de refroidissement qui ralentit brièvement une approche ; ne congèle pas un corps vivant de façon permanente.",
+          "damage": 75,
+          "startupFrames": 20,
+          "activeFrames": 4,
+          "recoveryFrames": 31,
+          "guard": "mid",
+          "counterplay": "Rester hors de portée ou sauter avant l’émission.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "slow",
+          "meterCost": 0,
+          "slowDurationFrames": 30,
+          "slowMultiplier": 0.8
+        },
+        {
+          "name": "Détonation contrôlée",
+          "input": "22S",
+          "intent": "Déclenche la balise armée après un avertissement distinct ; aucun effet sans balise.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 30,
+          "guard": "mid",
+          "counterplay": "S’éloigner du repère ou interrompre l’ordre de déclenchement.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "remote_trigger",
+          "meterCost": 0
+        },
+        {
+          "name": "Purge locale",
+          "input": "623S",
+          "intent": "Neutralise sa propre balise pour traverser un intervalle sûr ; elle ne blesse pas en disparaissant.",
+          "damage": 0,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 21,
+          "guard": "mid",
+          "counterplay": "Poursuivre Selek pendant qu’il perd son contrôle de zone.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "self_cleanup",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Chaîne de causalité",
+        "input": "236236S",
+        "intent": "Après impact de la première impulsion, trois microcharges préannoncées isolent et frappent successivement l’équipement adverse.",
+        "damage": 280,
+        "startupFrames": 18,
+        "activeFrames": 15,
+        "recoveryFrames": 45,
+        "guard": "mid",
+        "counterplay": "Garder ou sortir de la première zone avant le verrouillage.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Rapport irréfutable",
+        "sequence": "Désactive l’armement de la cible déjà vaincue, scelle un journal de diagnostic et affiche son accusé d’intégrité sur un terminal de l’équipe.",
+        "condition": "Fin de manche ; le document est un élément narratif, jamais une interface couvrant le duel.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_selek_dhan_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Balise de retard",
+        "intent": "Une charge télégraphiée couvre une petite zone puis expire.",
+        "meterCost": 25,
+        "counterplay": "Destructible, évitable, une seule occurrence par appel."
+      },
+      "taunt": {
+        "name": "Dernière vérification",
+        "line": "Erreur reproductible. Responsabilité aussi.",
+        "animation": "Referme un boîtier après un diagnostic silencieux.",
+        "rankedEffect": "Cosmétique, aucune réinitialisation de piège."
+      },
+      "combos": [
+        {
+          "input": "2L > 5M > 214S",
+          "goal": "Obtenir le temps de reposer une balise."
+        },
+        {
+          "input": "236S [déclenchement confirmé] > 5H > 236236S",
+          "goal": "Conversion de placement ; jamais à partir d’une balise non armée."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_selek_dhan",
+        "name": "Selek Dhan",
+        "species": "Galarien",
+        "visual": "Galarien adulte grand et très mince, tête allongée avec cornes crâniennes d'allure galarienne, grands yeux sombres, peau gris olive mouchetée, cou long. Armure légère d'inspection technique vert sauge et graphite avec un seul panneau d'épaule jaune désaturé, petites capsules d'entretien fixées proprement à la ceinture, gants fins. Main gauche près d'un omni-outil inactif, main droite tenant un injecteur de réparation industriel fermé et non une seringue médicale à aiguille, posture en recul prête à se déplacer. Aucun explosif ni piège posé autour de lui.",
+        "palette": [
+          "#71816B",
+          "#38474A",
+          "#B7A45D"
+        ],
+        "silhouette": "Très grande tête étroite, long cou, membres fins, silhouette haute et légère.",
+        "avoid": "Pas de Mordin recoloré, pas de blouse de médecin, aucun ajout d'anatomie humaine ou yeux rouges artificiels."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_selek_dhan.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Test de contact",
+          "input": "5L",
+          "intent": "Petit coup rapide.",
+          "damage": 45,
+          "startupFrames": 5,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude d’écart",
+          "input": "5M",
+          "intent": "Confirmer une ouverture proche.",
+          "damage": 70,
+          "startupFrames": 9,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Frappe de boîtier",
+          "input": "5H",
+          "intent": "Frapper avec un boîtier fermé.",
+          "damage": 100,
+          "startupFrames": 15,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Pointe de botte",
+          "input": "2L",
+          "intent": "Menacer la garde basse.",
+          "damage": 40,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Balayage en retrait",
+          "input": "2M",
+          "intent": "S’écarter après une touche basse.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Bras d’alarme",
+          "input": "2H",
+          "intent": "Antiaérien vulnérable au sol.",
+          "damage": 90,
+          "startupFrames": 13,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Paume suspendue",
+          "input": "jL",
+          "intent": "Rester peu engagé en l’air.",
+          "damage": 40,
+          "startupFrames": 6,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou de fuite",
+          "input": "jM",
+          "intent": "Passer au-dessus d’une attaque basse.",
+          "damage": 65,
+          "startupFrames": 9,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Boîtier en descente",
+          "input": "jH",
+          "intent": "Attaque lourde lisible.",
+          "damage": 95,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Selek confronte deux rapports portant sa signature et des conclusions incompatibles. Le terminal confirme qu’une nouvelle purge commencera à la prochaine relève.",
+        "rivalId": "nacre_keela_vess",
+        "rivalReason": "Il privilégie l’arrêt immédiat du système ; Keela insiste sur la conservation des journaux. Tous deux doivent concevoir un isolement qui permette les deux.",
+        "rivalDialogue": [
+          "Selek : « Le système fonctionne exactement comme ils l’ont voulu. Il faut le couper. »",
+          "Keela : « Alors gardons la preuve de ce qu’ils ont voulu. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_03",
+          "nacre_stage_05",
+          "nacre_stage_07",
+          "nacre_stage_11",
+          "nacre_stage_13",
+          "nacre_stage_14",
+          "nacre_stage_17",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_03",
+          "nacre_boss_14"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Sauvegarder une archive volumineuse ou immobiliser immédiatement la ligne de purge ; une sauvegarde partielle reste possible mais change les personnes inculpables.",
+        "ending": "Les données de maintenance, les heures de transfert et les contrats sont réunis sans altérer leurs originaux. Il transmet une méthode de contrôle aux techniciens de Nacre et refuse un contrat qui exige le silence sur les causes de panne.",
+        "illustrationAssetIds": [
+          "nacre_selek_dhan_campaign_intro",
+          "nacre_selek_dhan_campaign_rival",
+          "nacre_selek_dhan_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_selek_dhan_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_selek_dhan",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_selek_dhan.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_selek_dhan_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_varek_hesk",
+      "name": "Varek Hesk",
+      "species": "Batarien",
+      "role": "Briseur de proximité",
+      "gender": "Homme",
+      "life": 1100,
+      "shield": 180,
+      "speed": 235,
+      "height": 149,
+      "specialName": "Coup d’arrêt",
+      "specialKind": "melee",
+      "biography": "Ancien agent de sécurité portuaire, Varek a longtemps considéré les conflits de dette comme extérieurs à son poste. Le jour où le Concordat lui a demandé de retenir une équipe sous un motif qu’il savait faux, il a refusé et perdu son travail. Il a ensuite organisé l’entraide entre employés d’origines différentes. Son histoire traite de ses propres choix ; elle ne prétend ni excuser ni condamner une espèce entière.",
+      "motivation": "Obtenir la libération des travailleurs retenus et établir la chaîne des ordres au lieu de laisser les exécutants porter seuls la faute.",
+      "equipment": [
+        "Armure de sûreté portuaire",
+        "Protections d’avant-bras compactes",
+        "Pistolet rangé pendant les enchaînements de contact"
+      ],
+      "speciesLocks": [
+        "Quatre yeux lisibles",
+        "Aucun pouvoir biotique",
+        "Désignation politique individuelle, aucun alignement moral automatique lié à l’espèce"
+      ],
+      "identity": "Briseur de proximité fondé sur les contres : il oblige l’adversaire à varier ses attaques. Sa garde anticipée et ses coups lourds sont vulnérables aux feintes et aux projections.",
+      "resource": "Une lecture réussie peut renforcer un prochain coup d’arrêt. Ce bénéfice expire au bout de 120 frames, est perdu à l’impact subi et ne se cumule pas.",
+      "command": {
+        "name": "Frappe au montant",
+        "input": "6H",
+        "intent": "Direct oblique au-dessus d’une garde basse ; pas de casse-garde automatique.",
+        "damage": 120,
+        "startupFrames": 23,
+        "activeFrames": 4,
+        "recoveryFrames": 30,
+        "guard": "overhead",
+        "counterplay": "Garde debout puis punition si le coup manque.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Sortie du poste",
+        "input": "6L+M / 4L+M",
+        "intent": "Saisie de sécurité et projection hors de la ligne de tir, sans étouffement cinématique prolongé.",
+        "damage": 135,
+        "startupFrames": 7,
+        "activeFrames": 2,
+        "recoveryFrames": 31,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Coup d’arrêt",
+          "input": "236S",
+          "intent": "Court pas suivi d’un puissant direct de protection d’avant-bras.",
+          "damage": 140,
+          "startupFrames": 19,
+          "activeFrames": 4,
+          "recoveryFrames": 31,
+          "guard": "mid",
+          "counterplay": "Recul ou garde ; punissable à portée courte.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "melee",
+          "meterCost": 0
+        },
+        {
+          "name": "Lecture de contact",
+          "input": "214S",
+          "intent": "Garde anticipée qui contre un coup de contact moyen ou haut ; les coups bas, tirs et projections la battent.",
+          "damage": 115,
+          "startupFrames": 5,
+          "activeFrames": 4,
+          "recoveryFrames": 39,
+          "guard": "mid",
+          "counterplay": "Feinte, bas, projectile ou projection.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "counter",
+          "meterCost": 0,
+          "counterWindowFrames": 9
+        },
+        {
+          "name": "Rupture d’appui",
+          "input": "22S",
+          "intent": "Balayage lourd à courte portée, utile contre une attente debout.",
+          "damage": 115,
+          "startupFrames": 24,
+          "activeFrames": 4,
+          "recoveryFrames": 35,
+          "guard": "low",
+          "counterplay": "Garde basse ou saut annoncé.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "sweep",
+          "meterCost": 0
+        },
+        {
+          "name": "Interposition",
+          "input": "623S",
+          "intent": "Coup d’avant-bras montant qui intercepte un saut mais n’est pas invincible au sol.",
+          "damage": 110,
+          "startupFrames": 13,
+          "activeFrames": 4,
+          "recoveryFrames": 34,
+          "guard": "mid",
+          "counterplay": "Rester au sol et punir la récupération.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "anti_air",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Fin du contrôle",
+        "input": "236236S",
+        "intent": "Premier direct confirmé, enchaînement de deux coudes puis mise au sol. La protection technique de la cible se désactive sous les impacts, sans magie.",
+        "damage": 305,
+        "startupFrames": 13,
+        "activeFrames": 11,
+        "recoveryFrames": 46,
+        "guard": "mid",
+        "counterplay": "Bloquer le premier coup ; la séquence ne se déclenche pas sur garde.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Ordre refusé",
+        "sequence": "Arrache le brassard de commandement de l’adversaire vaincu, le remet avec son arme au sol et ouvre le passage aux retenus.",
+        "condition": "Fin de manche ; un rival reste vivant, la scène vise le pouvoir du poste.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_varek_hesk_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Épaule au poste",
+        "intent": "Un coup physique court stoppe une poursuite proche.",
+        "meterCost": 25,
+        "counterplay": "Courte portée et garde possible ; aucun contre automatique de tout type."
+      },
+      "taunt": {
+        "name": "Brassard retiré",
+        "line": "Je ne retiens plus personne pour vous.",
+        "animation": "Montre sa main ouverte puis reprend sa garde.",
+        "rankedEffect": "Cosmétique."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 236S",
+          "goal": "Punition de proximité."
+        },
+        {
+          "input": "214S [contre réussi] > 5H > 236236S",
+          "goal": "Récompenser une lecture ; aucun déclenchement après contre manqué."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_varek_hesk",
+        "name": "Varek Hesk",
+        "species": "Batarien",
+        "visual": "Batarien adulte masculin large d'épaules, quatre yeux clairement distincts en deux paires, reliefs faciaux épais, peau brun rouille et crâne court sans cheveux stylisés humains. Armure de sécurité portuaire robuste vert sombre et cuir technique brun, panneau de poitrine asymétrique gris vieilli, avant-bras droit protégé par une plaque rectangulaire compacte, brassard de travailleurs sans texte ni logo. Arme rangée ; poings en garde de boxe et coude prêt au contre, posture centrée et pragmatique.",
+        "palette": [
+          "#4A6254",
+          "#6E4A37",
+          "#91918A"
+        ],
+        "silhouette": "Compact et trapu, tête aux quatre yeux lisible, protections de poings sans lames.",
+        "avoid": "Pas de Balak, pas de collier d'esclave ni accessoire faisant de toute son espèce un stéréotype, pas de pouvoir biotique."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_varek_hesk.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Jab de quai",
+          "input": "5L",
+          "intent": "Interruption rapprochée.",
+          "damage": 55,
+          "startupFrames": 8,
+          "activeFrames": 3,
+          "recoveryFrames": 15,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude court",
+          "input": "5M",
+          "intent": "Confirmer un jab.",
+          "damage": 80,
+          "startupFrames": 12,
+          "activeFrames": 4,
+          "recoveryFrames": 20,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Direct lourd",
+          "input": "5H",
+          "intent": "Punir une récupération.",
+          "damage": 110,
+          "startupFrames": 18,
+          "activeFrames": 4,
+          "recoveryFrames": 28,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Pointe basse",
+          "input": "2L",
+          "intent": "Tester le bas de garde.",
+          "damage": 50,
+          "startupFrames": 9,
+          "activeFrames": 3,
+          "recoveryFrames": 16,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Balayage serré",
+          "input": "2M",
+          "intent": "Faire trébucher à courte portée.",
+          "damage": 75,
+          "startupFrames": 13,
+          "activeFrames": 4,
+          "recoveryFrames": 22,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crochet de garde",
+          "input": "2H",
+          "intent": "Défendre contre un saut.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 5,
+          "recoveryFrames": 32,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Poing plongeant",
+          "input": "jL",
+          "intent": "Saut d’approche court.",
+          "damage": 50,
+          "startupFrames": 9,
+          "activeFrames": 4,
+          "recoveryFrames": 13,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou de passage",
+          "input": "jM",
+          "intent": "Toucher au corps.",
+          "damage": 75,
+          "startupFrames": 12,
+          "activeFrames": 5,
+          "recoveryFrames": 17,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Marteau aérien",
+          "input": "jH",
+          "intent": "Gros engagement lisible.",
+          "damage": 105,
+          "startupFrames": 17,
+          "activeFrames": 5,
+          "recoveryFrames": 22,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Varek retrouve son nom sur le registre d’un ordre qu’il a refusé. Il revient au poste avec ses anciens collègues pour réclamer les images originales de la relève.",
+        "rivalId": "nacre_ghoran_brakk",
+        "rivalReason": "Il veut préserver une salle de contrôle qui contient les preuves ; Brakk veut dégager ses collègues avant une fermeture des sas. Ils doivent choisir un ordre d’action commun.",
+        "rivalDialogue": [
+          "Varek : « S’ils peuvent effacer les ordres, ils recommenceront ailleurs. »",
+          "Brakk : « S’ils gardent mes gens, il n’y aura personne pour témoigner. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_01",
+          "nacre_stage_04",
+          "nacre_stage_05",
+          "nacre_stage_08",
+          "nacre_stage_10",
+          "nacre_stage_12",
+          "nacre_stage_18",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_04",
+          "nacre_boss_18"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Garder les caméras intactes ou couper le réseau qui retient des personnes ; les équipes de Keela et Selek peuvent réduire, sans annuler, ce coût.",
+        "ending": "Il confronte les registres aux témoignages de l’équipe et laisse chaque ancien agent répondre de ses choix. Une garde commune protège le départ des civils, sans se transformer en nouvelle milice du Concordat. Varek y tient un poste soumis au même contrôle que les autres.",
+        "illustrationAssetIds": [
+          "nacre_varek_hesk_campaign_intro",
+          "nacre_varek_hesk_campaign_rival",
+          "nacre_varek_hesk_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_varek_hesk_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_varek_hesk",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_varek_hesk.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_varek_hesk_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_dalo_ruun",
+      "name": "Dalo Ruun",
+      "species": "Volus",
+      "role": "Renfort de protection",
+      "gender": "Homme",
+      "life": 800,
+      "shield": 380,
+      "speed": 180,
+      "height": 93,
+      "specialName": "Réserve de bouclier",
+      "specialKind": "shield",
+      "biography": "Dalo inspecte les garanties des transporteurs. Il a découvert que le Concordat revendait le même droit d’évacuation à plusieurs créanciers, puis accusait les passagers de défaut de paiement. Son métier lui donne accès aux écritures, mais pas l’autorité d’annuler toutes les dettes de la galaxie. Sa combinaison pressurisée de sécurité et ses outils de protection lui permettent d’accompagner les inspecteurs dans les secteurs dangereux.",
+      "motivation": "Rendre les garanties aux passagers, établir les faux et empêcher les créanciers de recouvrer deux fois une même obligation.",
+      "equipment": [
+        "Combinaison pressurisée volus intégralement scellée",
+        "Renfort de bouclier technique à réserve finie",
+        "Balise de sûreté de fret",
+        "Omni-outil d’audit"
+      ],
+      "speciesLocks": [
+        "Corps volus court et corpulent conservé",
+        "Combinaison vitale toujours fermée",
+        "Aucun méca géant ni biotique",
+        "Le système de protection est un équipement limité, pas une invincibilité financière"
+      ],
+      "identity": "Soutien défensif lent : fort bouclier, faible santé, portée de contact courte. Il gagne du temps au bon moment et perd vite lorsqu’un adversaire lit sa restauration.",
+      "resource": "Réserve de bouclier finie pour la manche : deux charges proposées. Chaque charge restaure au plus 120 points sans dépasser le maximum, ne soigne pas la vie et exige 38 frames vulnérables. Pas de recharge pendant la même manche ; compteur visible.",
+      "command": {
+        "name": "Appui pressurisé",
+        "input": "6H",
+        "intent": "Courte avancée du corps protégé, faible portée, aucun changement de taille.",
+        "damage": 90,
+        "startupFrames": 21,
+        "activeFrames": 5,
+        "recoveryFrames": 29,
+        "guard": "mid",
+        "counterplay": "Recul ou coup bas au démarrage.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Dégagement de sûreté",
+        "input": "6L+M / 4L+M",
+        "intent": "Prise d’équipement et poussée assistée par un petit amortisseur mécanique ; ne soulève pas un krogan à bras nus.",
+        "damage": 105,
+        "startupFrames": 8,
+        "activeFrames": 2,
+        "recoveryFrames": 33,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Réserve de bouclier",
+          "input": "22S",
+          "intent": "Canalise son renfort technique et restaure au maximum 120 points de bouclier sur sa réserve, sans vie ni dépassement.",
+          "damage": 0,
+          "startupFrames": 1,
+          "activeFrames": 4,
+          "recoveryFrames": 38,
+          "guard": "mid",
+          "counterplay": "Attaquer pendant la canalisation, projeter ou épuiser ses deux charges.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "shield",
+          "meterCost": 0,
+          "shieldRestore": 120,
+          "chargesPerRound": 2,
+          "cannotOvercap": true
+        },
+        {
+          "name": "Balise de sûreté",
+          "input": "236S",
+          "intent": "Pose une balise visible qui produit une impulsion de recul très courte après un délai.",
+          "damage": 75,
+          "startupFrames": 29,
+          "activeFrames": 4,
+          "recoveryFrames": 28,
+          "guard": "mid",
+          "counterplay": "Détruire la balise, rester hors de sa zone ou garder.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "trap",
+          "meterCost": 0,
+          "armingFrames": 30,
+          "lifetimeFrames": 180,
+          "maximumInstances": 1
+        },
+        {
+          "name": "Écran rapproché",
+          "input": "214S",
+          "intent": "Posture qui réduit un seul impact frontal ; ne bloque pas les projections ni les attaques venant de derrière.",
+          "damage": 0,
+          "startupFrames": 9,
+          "activeFrames": 4,
+          "recoveryFrames": 31,
+          "guard": "mid",
+          "counterplay": "Feinte puis projection ou changement de côté.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "defense",
+          "meterCost": 0
+        },
+        {
+          "name": "Impulsion de dégagement",
+          "input": "623S",
+          "intent": "Décharge technique de contact qui éloigne faiblement une cible collée ; pas de pouvoir biotique.",
+          "damage": 85,
+          "startupFrames": 15,
+          "activeFrames": 4,
+          "recoveryFrames": 34,
+          "guard": "mid",
+          "counterplay": "Garder puis punir, ou rester hors de sa très courte portée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "tech_pulse",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Garantie de sortie",
+        "input": "236236S",
+        "intent": "Une impulsion initiale confirmée désarme l’équipement, puis une balise de fret repousse la cible. En tag, aucun soin gratuit n’est ajouté à cette attaque.",
+        "damage": 250,
+        "startupFrames": 18,
+        "activeFrames": 12,
+        "recoveryFrames": 45,
+        "guard": "mid",
+        "counterplay": "Garder le premier contact ; si la cible reste hors de portée, tout le coût est perdu.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Garantie restituée",
+        "sequence": "Place la cible vaincue derrière un écran de sûreté, récupère la clé de transit de son équipement puis la remet aux passagers enregistrés.",
+        "condition": "Fin de manche ; combinaison fermée, aucune transformation en géant.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_dalo_ruun_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Marge de sécurité",
+        "intent": "Restaure au plus 60 boucliers au partenaire après un délai visible ; pas de vie et pas de dépassement du maximum.",
+        "meterCost": 25,
+        "counterplay": "Un coup sur l’appel interrompt le renfort ; la réserve d’assistances et le délai global bornent le gain."
+      },
+      "taunt": {
+        "name": "Audit terminé",
+        "line": "Vous facturez deux fois la même sortie.",
+        "animation": "Referme une projection d’audit sans texte lisible dans la pose sprite.",
+        "rankedEffect": "Cosmétique, aucun bouclier restauré."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 623S",
+          "goal": "Se dégager pour préparer le bouclier."
+        },
+        {
+          "input": "236S [impulsion confirmée] > 5H > 236236S",
+          "goal": "Petite conversion de placement ; pas de boucle de soin."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_dalo_ruun",
+        "name": "Dalo Ruun",
+        "species": "Volus",
+        "visual": "Volus adulte très court et corpulent, proportions emblématiques rotundes, combinaison pressurisée entièrement scellée avec grand respirateur frontal et deux lentilles oculaires lumineuses ambre. Tenue de sécurité de fret bronze patiné, bleu nuit et gris mat, petites protections arrondies intégrées, réservoir dorsal compact respectant le volume volus, mains courtes et bottes basses. Aucune jambe mécanique allongée. Une main prête sur le contrôleur de renfort de bouclier à la poitrine, autre main ouverte en garde. Posture basse ferme, héros de soutien compétent, sans arme lourde ni bulle de bouclier autour du corps.",
+        "palette": [
+          "#8A6B45",
+          "#263E50",
+          "#81898A"
+        ],
+        "silhouette": "Volus authentiquement petit et rond, tête intégrée au col respiratoire, aucune silhouette de soldat humain/mecha.",
+        "avoid": "Pas de mecha géant, pas de torse bodybuilder, pas de tête découverte, pas de gag 'dieu biotique', pas de biotique."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_dalo_ruun.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Contact de gant",
+          "input": "5L",
+          "intent": "Se dégager à très courte portée.",
+          "damage": 40,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Poussée de bras",
+          "input": "5M",
+          "intent": "Éloigner légèrement une cible collée.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Butoir de protection",
+          "input": "5H",
+          "intent": "Frapper avec la protection, pas avec une force surhumaine.",
+          "damage": 95,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coup de botte court",
+          "input": "2L",
+          "intent": "Tester le bas de garde.",
+          "damage": 35,
+          "startupFrames": 7,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Poussée basse",
+          "input": "2M",
+          "intent": "Créer un intervalle de sécurité.",
+          "damage": 60,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude de dégagement",
+          "input": "2H",
+          "intent": "Intercepter une cible proche en l’air.",
+          "damage": 85,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Gant en descente",
+          "input": "jL",
+          "intent": "Petit saut défensif adapté à son gabarit.",
+          "damage": 35,
+          "startupFrames": 7,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou compact",
+          "input": "jM",
+          "intent": "Approche aérienne très limitée.",
+          "damage": 60,
+          "startupFrames": 10,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Butoir descendant",
+          "input": "jH",
+          "intent": "Retombée compacte, jamais charge de mecha.",
+          "damage": 90,
+          "startupFrames": 15,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Deux contrats de sortie portent le même numéro de garantie et deux listes de passagers incompatibles. Dalo suspend son mandat et vient vérifier les personnes derrière les dossiers.",
+        "rivalId": "nacre_neral_vesh",
+        "rivalReason": "Il a besoin de preuves authentifiables, Neral a besoin de témoins anonymes. Leur confrontation aboutit à une chaîne de preuve qui respecte les deux.",
+        "rivalDialogue": [
+          "Dalo : « Je peux bloquer le paiement. Pas sur une simple parole. »",
+          "Neral : « Alors vérifiez la preuve sans livrer celui qui l’a portée. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_01",
+          "nacre_stage_03",
+          "nacre_stage_08",
+          "nacre_stage_09",
+          "nacre_stage_10",
+          "nacre_stage_13",
+          "nacre_stage_16",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_09",
+          "nacre_boss_20"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Geler les comptes pour préserver l’argent ou laisser passer un paiement contrôlé pour identifier l’organisateur ; le montant récupéré varie.",
+        "ending": "Il fait geler les garanties frauduleuses de cette opération avec les preuves obtenues ; il ne réécrit pas le droit galactique. Les fonds réellement disponibles financent les traversées promises. Une ligne demeure à son nom : les frais qu’il accepte de ne pas faire supporter aux évacués.",
+        "illustrationAssetIds": [
+          "nacre_dalo_ruun_campaign_intro",
+          "nacre_dalo_ruun_campaign_rival",
+          "nacre_dalo_ruun_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_dalo_ruun_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_dalo_ruun",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_dalo_ruun.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_dalo_ruun_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "nacre_nyra_korr",
+      "name": "Nyra Korr",
+      "species": "Turienne",
+      "role": "Éclaireuse de précision",
+      "gender": "Femme",
+      "life": 900,
+      "shield": 220,
+      "speed": 290,
+      "height": 156,
+      "specialName": "Tir repéré",
+      "specialKind": "projectile",
+      "biography": "Nyra cartographie les accès de secours et pilote parfois les navettes de reconnaissance de Tessère. Une série de balises déplacées a conduit ses collègues dans une zone de contrôle du Concordat. Elle revient établir un itinéraire que personne ne puisse fermer à distance. Sa précision est acquise sur le terrain ; elle n’est pas liée à une organisation secrète ou à une aptitude biotique rare inventée pour la distinguer.",
+      "motivation": "Retrouver l’équipe disparue et laisser à Nacre des cartes d’évacuation dont les habitants possèdent eux-mêmes les clés.",
+      "equipment": [
+        "Carabine de précision de masse",
+        "Omni-outil de cartographie",
+        "Protection légère d’éclaireuse",
+        "Balise de repérage sans tir orbital"
+      ],
+      "speciesLocks": [
+        "Silhouette turienne féminine, tête et mandibles turiennes",
+        "Pas de propulseurs empruntés à Andromeda",
+        "Aucun pouvoir biotique",
+        "Pas de tir depuis l’orbite par une simple balise"
+      ],
+      "identity": "Éclaireuse de précision : marche rapide, tir annoncé et recul. Elle doit confirmer ses tirs à bonne distance ; le corps à corps prolongé reste dangereux.",
+      "resource": "Une seule marque de repérage visible peut exister pendant 120 frames. Elle réduit la dispersion de l’animation du tir mais ne crée ni poursuite automatique ni coup imblocable. Le tir consomme la marque.",
+      "command": {
+        "name": "Traverse de quai",
+        "input": "6M",
+        "intent": "Pas rapide et coup de crosse ; aucune traversée de corps gratuite.",
+        "damage": 85,
+        "startupFrames": 15,
+        "activeFrames": 4,
+        "recoveryFrames": 23,
+        "guard": "mid",
+        "counterplay": "Anticiper avec un coup court ou reculer.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "throw": {
+        "name": "Changement de route",
+        "input": "6L+M / 4L+M",
+        "intent": "Pivote autour du bras saisi et remet l’adversaire dans la direction choisie.",
+        "damage": 115,
+        "startupFrames": 7,
+        "activeFrames": 2,
+        "recoveryFrames": 30,
+        "guard": "throw",
+        "counterplay": "Déchoppage commun.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only"
+      },
+      "specials": [
+        {
+          "name": "Tir repéré",
+          "input": "236S",
+          "intent": "Tir de précision horizontal annoncé par une brève lueur de visée ; aucun suivi vertical automatique.",
+          "damage": 135,
+          "startupFrames": 25,
+          "activeFrames": 4,
+          "recoveryFrames": 34,
+          "guard": "mid",
+          "counterplay": "Sauter pendant la visée ou s’approcher après garde.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "projectile",
+          "meterCost": 0
+        },
+        {
+          "name": "Balise de lecture",
+          "input": "214S",
+          "intent": "Marque une zone de sol fixe, visible de tous ; le repérage améliore l’information du joueur, pas les collisions.",
+          "damage": 0,
+          "startupFrames": 22,
+          "activeFrames": 4,
+          "recoveryFrames": 23,
+          "guard": "mid",
+          "counterplay": "Changer de zone ou forcer Nyra à quitter sa ligne.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "marker",
+          "meterCost": 0,
+          "lifetimeFrames": 120,
+          "maximumInstances": 1
+        },
+        {
+          "name": "Roulade d’écart",
+          "input": "22S",
+          "intent": "Roulade physique avec trajectoire fixe ; reste vulnérable aux projections et aux coups bas, sans téléportation.",
+          "damage": 0,
+          "startupFrames": 9,
+          "activeFrames": 4,
+          "recoveryFrames": 27,
+          "guard": "mid",
+          "counterplay": "Poursuivre à la sortie ou placer un coup bas.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "evade",
+          "meterCost": 0
+        },
+        {
+          "name": "Crosse de relèvement",
+          "input": "623S",
+          "intent": "Coup de crosse anti-aérien ; aucune invulnérabilité au réveil.",
+          "damage": 105,
+          "startupFrames": 12,
+          "activeFrames": 4,
+          "recoveryFrames": 33,
+          "guard": "mid",
+          "counterplay": "Appâter au sol puis punir.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "kind": "anti_air",
+          "meterCost": 0
+        }
+      ],
+      "super": {
+        "name": "Route libre",
+        "input": "236236S",
+        "intent": "Tir d’arrêt confirmé puis déplacement physique sur une courte trajectoire et second tir sur le module d’arme ; aucun soutien orbital.",
+        "damage": 290,
+        "startupFrames": 18,
+        "activeFrames": 12,
+        "recoveryFrames": 45,
+        "guard": "mid",
+        "counterplay": "Bloquer ou éviter le premier tir ; punition si elle manque.",
+        "tuningStatus": "provisional_design_not_balanced",
+        "implementationStatus": "design_only",
+        "meterCost": 100
+      },
+      "finisher": {
+        "name": "Balise rendue",
+        "sequence": "Désactive la balise de verrouillage de la cible vaincue et la remplace par un signal d’évacuation appartenant à l’équipe locale.",
+        "condition": "Fin de manche ; le signal ne contrôle ni relais ni planète.",
+        "durationSeconds": 5,
+        "assetIds": [
+          "nacre_nyra_korr_finisher_key"
+        ]
+      },
+      "assist": {
+        "name": "Lecture de couloir",
+        "intent": "Un tir lent annonce et ferme une voie horizontale pendant l’entrée du partenaire.",
+        "meterCost": 25,
+        "counterplay": "Saut, garde ou interruption de l’entrée."
+      },
+      "taunt": {
+        "name": "Cap vérifié",
+        "line": "J’ai trouvé une autre route.",
+        "animation": "Vérifie un petit module puis reprend sa ligne de tir.",
+        "rankedEffect": "Cosmétique, aucune marque gratuite."
+      },
+      "combos": [
+        {
+          "input": "5L > 5M > 623S",
+          "goal": "Défense rapprochée et séparation."
+        },
+        {
+          "input": "5H > 236S [marque active] > 236236S",
+          "goal": "Conversion de précision uniquement si la portée le permet ; aucun verrouillage automatique."
+        }
+      ],
+      "status": "original_design",
+      "canonStatus": "original_lore_compatible_fan_content_not_official",
+      "engineIntegrated": false,
+      "balanceStatus": "provisional_RC_ARMAX_0_1",
+      "visual": {
+        "id": "nacre_nyra_korr",
+        "name": "Nyra Korr",
+        "species": "Turienne",
+        "visual": "Turienne adulte féminine athlétique et élancée, visage turien à mandibles distinctes, plaques faciales gris clair et petite marque diagonale cuivre originale, crête arrière courte compatible avec silhouettes turiennes féminines de Mass Effect, jamais visage humain. Armure légère d'éclaireuse anthracite et rouge argile avec plaques de cuisses compactes, ligne dorsale souple, petit paquetage cartographique. Carabine de précision de masse fermée et compacte tenue près du corps, canon vers le bas à droite ; pas de propulseurs. Pose mobile un pied décalé en arrière, tête tournée vers la droite.",
+        "palette": [
+          "#3D444C",
+          "#9A5143",
+          "#ACB3AD"
+        ],
+        "silhouette": "Turienne légère aux jambes caractéristiques, crête courte, équipement sans bords de cape.",
+        "avoid": "Pas de copie Nyreen/Vetra, pas de corps humain coiffé d'un masque, pas de jetpack ni énergie biotique."
+      },
+      "sprite": "assets/armax/lot22/originals/fighters/nacre_nyra_korr.png",
+      "spriteStatus": "planned_pending_generation_by_parent",
+      "normalMoves": [
+        {
+          "name": "Poignet rapide",
+          "input": "5L",
+          "intent": "Interrompre un assaut très proche.",
+          "damage": 45,
+          "startupFrames": 6,
+          "activeFrames": 3,
+          "recoveryFrames": 12,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Coude d’angle",
+          "input": "5M",
+          "intent": "Confirmer avant de reculer.",
+          "damage": 70,
+          "startupFrames": 10,
+          "activeFrames": 4,
+          "recoveryFrames": 17,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse de précision",
+          "input": "5H",
+          "intent": "Punir une attaque trop courte.",
+          "damage": 100,
+          "startupFrames": 16,
+          "activeFrames": 4,
+          "recoveryFrames": 25,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Pointe de botte",
+          "input": "2L",
+          "intent": "Tester la garde basse.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 3,
+          "recoveryFrames": 13,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Balayage latéral",
+          "input": "2M",
+          "intent": "Gagner de l’espace latéral.",
+          "damage": 65,
+          "startupFrames": 11,
+          "activeFrames": 4,
+          "recoveryFrames": 19,
+          "guard": "low",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Crosse montante",
+          "input": "2H",
+          "intent": "Défendre contre un saut lu.",
+          "damage": 90,
+          "startupFrames": 14,
+          "activeFrames": 5,
+          "recoveryFrames": 29,
+          "guard": "mid",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": null
+        },
+        {
+          "name": "Paume aérienne",
+          "input": "jL",
+          "intent": "Approche aérienne légère.",
+          "damage": 40,
+          "startupFrames": 7,
+          "activeFrames": 4,
+          "recoveryFrames": 10,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Genou d’angle",
+          "input": "jM",
+          "intent": "Attaque sautée médiane.",
+          "damage": 65,
+          "startupFrames": 10,
+          "activeFrames": 5,
+          "recoveryFrames": 14,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        },
+        {
+          "name": "Crosse plongeante",
+          "input": "jH",
+          "intent": "Frappe lourde en retombée.",
+          "damage": 95,
+          "startupFrames": 15,
+          "activeFrames": 5,
+          "recoveryFrames": 19,
+          "guard": "overhead",
+          "counterplay": "Garde adaptée à la hauteur, contrôle de portée et punition sur attaque manquée.",
+          "tuningStatus": "provisional_design_not_balanced",
+          "implementationStatus": "design_only",
+          "airRecoveryMode": "provisional_landing_frames"
+        }
+      ],
+      "campaign": {
+        "canonScope": "Branche narrative alternative du même incident local ; les dix routes ne prétendent pas se dérouler dix fois à la suite.",
+        "intro": "Les coordonnées de secours ont changé entre sa vérification et le départ du convoi. Nyra conserve les deux cartes et remonte la piste des balises remplacées.",
+        "rivalId": "nacre_ilyra_senn",
+        "rivalReason": "Nyra privilégie la vitesse de l’exfiltration ; Ilyra lui rappelle qu’une escorte ne peut décider à la place des passagers. Elles confrontent urgence et consentement.",
+        "rivalDialogue": [
+          "Nyra : « Si nous attendons l’accord de tout le monde, ils fermeront le ciel. »",
+          "Ilyra : « Ils n’ont pas tous choisi la même destination. Nous pouvons leur offrir les deux. »"
+        ],
+        "rivalOutcome": "Duel non létal ; coopération après désaccord de méthode.",
+        "stageIds": [
+          "nacre_stage_02",
+          "nacre_stage_06",
+          "nacre_stage_10",
+          "nacre_stage_12",
+          "nacre_stage_15",
+          "nacre_stage_16",
+          "nacre_stage_19",
+          "nacre_stage_20"
+        ],
+        "personalBossIds": [
+          "nacre_boss_06",
+          "nacre_boss_19"
+        ],
+        "finalBossId": "nacre_boss_20",
+        "choice": "Publier un itinéraire qui pourra être contesté ou protéger une route secrète pour les derniers témoins ; l’épilogue précise qui bénéficie de chaque choix.",
+        "ending": "Les itinéraires de secours sont copiés sur des appareils détenus par les équipes de quai, avec des procédures manuelles si le réseau tombe. Nyra accompagne le dernier transport et laisse une voie sûre derrière elle, sans devenir la nouvelle autorité sur les routes de Nacre.",
+        "illustrationAssetIds": [
+          "nacre_nyra_korr_campaign_intro",
+          "nacre_nyra_korr_campaign_rival",
+          "nacre_nyra_korr_campaign_ending"
+        ],
+        "implementationStatus": "story_design_only"
+      },
+      "alternateCostume": {
+        "id": "nacre_nyra_korr_costume_quai",
+        "name": "Service de relève",
+        "scope": "Tenue originale alternative de service sur Nacre ; mêmes proportions, protection vitale et points de fixation.",
+        "direction": "Remplacer les grandes plaques de couleur par des panneaux de service gris pierre avec marquages de repérage propres au personnage. Aucun insigne canon réservé.",
+        "implementationStatus": "design_only"
+      },
+      "assetRequirements": [
+        {
+          "id": "nacre_nyra_korr",
+          "kind": "fighter_base",
+          "expectedPath": "assets/armax/lot22/originals/fighters/nacre_nyra_korr.png",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_portrait",
+          "kind": "selection_portrait",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_costume_quai",
+          "kind": "alternate_costume_base",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_campaign_intro",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_campaign_rival",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_campaign_ending",
+          "kind": "campaign_illustration",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_finisher_key",
+          "kind": "finisher_key_art",
+          "status": "planned"
+        },
+        {
+          "id": "nacre_nyra_korr_voice",
+          "kind": "original_voice_and_subtitles",
+          "status": "planned"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "nacre_src_manual_fr",
+      "title": "Mass Effect — manuel officiel Xbox 360 français",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-manuals_Microsoft%20XBOX360_fr.pdf",
+      "publisher": "Electronic Arts",
+      "type": "official_primary",
+      "scope": "Existence des familles de talents biotiques et techniques ; Projection, Lévitation, Barrière, Stase et Sabotage.",
+      "sourceNote": "Les commandes, frames, dégâts et variantes de Nacre sont une adaptation originale, pas des chiffres tirés du manuel."
+    },
+    {
+      "id": "nacre_src_calibrations",
+      "title": "Mass Effect Legendary Edition — Gameplay Calibrations",
+      "url": "https://www.ea.com/ea-play/news/gameplay-calibrations",
+      "publisher": "EA/BioWare",
+      "type": "official_primary",
+      "scope": "Les trois épisodes possèdent des systèmes de combat distincts ; couvert, contrôle des équipiers et munitions ont fait l’objet de réglages différents.",
+      "sourceNote": "Le combat 2D ne peut donc pas être présenté comme une reproduction mécanique littérale de tous les épisodes simultanément."
+    },
+    {
+      "id": "nacre_src_tali",
+      "title": "Female Character Profiles: Tali",
+      "url": "https://www.ea.com/amp/news/female-character-profiles-tali",
+      "publisher": "Electronic Arts",
+      "type": "official_primary",
+      "scope": "Précédents officiels des quariens ingénieurs : drones, piratage, omni-outils. Aucun détail de Keela ne prétend être une biographie de Tali.",
+      "sourceNote": "La compétence individuelle et la tenue de Keela restent des créations."
+    },
+    {
+      "id": "nacre_src_volus_mp",
+      "title": "A Tour of the New N7 HQ",
+      "url": "https://blog.bioware.com/2012/10/11/a-tour-of-the-new-n7-hq/",
+      "publisher": "BioWare",
+      "type": "official_primary",
+      "scope": "BioWare annonce les volus dans le contenu multijoueur Retaliation de Mass Effect 3.",
+      "sourceNote": "Ce précédent de jouabilité ne prouve pas l’équipement exact de Dalo en 2185 ; son kit demeure une proposition originale limitée."
+    },
+    {
+      "id": "nacre_src_species_codex",
+      "title": "Codex — Aliens: Non-Council Races, transcription communautaire",
+      "url": "https://masseffect.fandom.com/wiki/Codex/Aliens%3A_Non-Council_Races",
+      "publisher": "Mass Effect Wiki",
+      "type": "secondary_codex_transcription",
+      "scope": "Repères morphologiques/culturels des espèces non membres du Conseil, notamment volus et quariens.",
+      "sourceNote": "Source de contrôle à recouper avec modèles et codex des jeux pour la revue visuelle 1:1 ; pas preuve que les originaux sont canoniques."
+    },
+    {
+      "id": "nacre_src_biotics_codex",
+      "title": "Codex — Technology, transcription communautaire",
+      "url": "https://masseffect.fandom.com/wiki/Codex/Technology",
+      "publisher": "Mass Effect Wiki",
+      "type": "secondary_codex_transcription",
+      "scope": "La biotique relève de champs d’effet de masse, d’aptitudes et d’entraînement, distincts des outils techniques.",
+      "sourceNote": "Seule Ilyra possède une biotique dans ce roster ; les autres actions sont physiques ou techniques."
+    }
+  ],
+  "acceptanceCriteria": [
+    "10 identités originales uniques et 5 rivalités réciproques ; aucun nom de personnage canon réutilisé volontairement.",
+    "Chaque kit comprend 9 normales, 1 commande normale, 1 projection, 4 spéciaux, 1 super, 1 neutralisation décisive, 1 assistance, 1 taunt et 2 routes de combo proposées.",
+    "Chaque campagne possède une intro, une rivalité, 8 étapes d’arène proposées, des boss personnels, le boss final et un épilogue.",
+    "Toutes les tenues préservent l’anatomie, la protection vitale et les points de fixation ; aucun modèle généré ne vaut certification 1:1.",
+    "Aucun fichier d’illustration, de costume, de voix ou d’animation n’est compté comme créé sans fichier et contrôle correspondant.",
+    "Les pouvoirs non présents dans le prototype restent marqués design_only ; les profils jouables ne doivent pas faire croire aux kits complets."
+  ]
+}
