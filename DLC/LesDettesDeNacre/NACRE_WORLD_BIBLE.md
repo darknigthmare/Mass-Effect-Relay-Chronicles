@@ -567,7 +567,7 @@ Limite de gameplay : Ne poursuit pas au-delà d'un poste de contrôle ; ne lit p
 
 Limite de lore : Pas d'habilitation N7 ni d'uniforme officiel réinventé.
 
-Stages : nacre_stage_01, nacre_stage_02. Effets : nacre_fx_01, nacre_fx_14. Corps, équipement mobile, poses et effets restent à produire séparément.
+Stages : nacre_stage_01, nacre_stage_02, nacre_stage_20. Effets : nacre_fx_01, nacre_fx_14. Corps, équipement mobile, poses et effets restent à produire séparément.
 
 ### nacre_enemy_02 — Sentinelle de quai
 
@@ -1757,7 +1757,7 @@ Production : corps/châssis, pièces mobiles, portrait, introduction, poses, tra
 
 Directrice logistique du Concordat des Quais ; elle tente de sauver son contrôle des départs en détruisant les dernières preuves.
 
-Visuel : Combinaison d'officière civile anthracite, gants clairs et cadre de commandement relié physiquement aux bras du quai ; visage visible et pas d'armure N7.
+Visuel : Femme mûre à peau brune foncée et cheveux courts poivre et sel. Combinaison d'officière civile anthracite, gants clairs et cadre de commandement relié physiquement aux bras du quai ; visage visible et pas d'armure N7.
 
 Signature : Boss final de commandement qui perd progressivement ses dispositifs puis affronte les conséquences de ses choix.
 

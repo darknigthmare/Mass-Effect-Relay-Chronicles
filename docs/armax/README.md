@@ -13,9 +13,21 @@ La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **68 rubriques** 
 - [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
 - [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
 
-**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 21 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 22 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
 
-## Lot 21 — continuation courante
+## Lot 22 — Les Dettes de Nacre et prototype de duel
+
+Le [lot 22](lot22/README.md) poursuit les **216 fiches canoniques** et ajoute **110 identités originales** : 10 combattants, 20 stages, 20 ennemis, 20 boss, 20 accessoires et 20 effets/projectiles. La [bible Nacre](../../DLC/LesDettesDeNacre/README.md) décrit leur cadre de 2185, leurs kits, leurs routes et leurs rencontres.
+
+Le mode **Armax · duel 2D** est ajouté au titre et à la pause du jeu. Le [rapport d’implémentation](lot22/GAMEPLAY_IMPLEMENTATION.md) et la [couverture exécutable](lot22/gameplay-coverage.json) distinguent le noyau testé, les défis condensés et les fonctions encore à réaliser. Les campagnes ME1/Chroniques gardent leur état propre. La revue navigateur reste non validée tant que le rapport ne porte pas une preuve positive.
+
+- [Catalogue courant : 326 fiches](lot22/production-catalog.json) et [associations consolidées](lot22/content-associations.json).
+- [Manifestes des PNG natifs](lot22/asset-manifest.json) et [audit des manquants canoniques](lot22/CANONICAL_REMAINING.md).
+- [Classeur Nacre et suivi lot 22](lot22/Mass_Effect_Armax_Nacre_Lot22_2026-11-27.xlsx).
+
+Une création originale ne ferme aucun manque canonique. Une pose fixe ne vaut pas une animation ; un master de décor ne vaut pas cinq calques. Les comptes historiques ci-dessous conservent leur périmètre.
+
+## Lot 21 — état historique
 
 **216 fiches : 171 avec image candidate et 45 sans**. Le lot21 conserve 196 identités et en ajoute 20. Il livre **10 PNG : 7 récupérés et 3 générés**, pour 2 anciennes fiches complétées et 8 nouvelles identités illustrées. Dans le périmètre hérité, les manquants passent de 35 à 33. La fidélité 1:1 et l’intégration moteur restent non certifiées.
 

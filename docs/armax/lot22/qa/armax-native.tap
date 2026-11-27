@@ -1,0 +1,238 @@
+TAP version 13
+# Subtest: common timings, gauge, shields and match rules follow the design contract
+ok 1 - common timings, gauge, shields and match rules follow the design contract
+  ---
+  duration_ms: 3.956215
+  type: 'test'
+  ...
+# Subtest: ten original profiles create independent mutable match state
+ok 2 - ten original profiles create independent mutable match state
+  ---
+  duration_ms: 1.127587
+  type: 'test'
+  ...
+# Subtest: invalid profiles and unsupported modes are rejected
+ok 3 - invalid profiles and unsupported modes are rejected
+  ---
+  duration_ms: 0.52538
+  type: 'test'
+  ...
+# Subtest: a normal hits once and consumes shields before health with one meter gain
+ok 4 - a normal hits once and consumes shields before health with one meter gain
+  ---
+  duration_ms: 5.686493
+  type: 'test'
+  ...
+# Subtest: standing guard blocks mids, crouching guard blocks lows, and lows beat standing guard
+ok 5 - standing guard blocks mids, crouching guard blocks lows, and lows beat standing guard
+  ---
+  duration_ms: 2.255494
+  type: 'test'
+  ...
+# Subtest: super rejects insufficient meter, pays at startup and does not refund interruption
+ok 6 - super rejects insufficient meter, pays at startup and does not refund interruption
+  ---
+  duration_ms: 0.922138
+  type: 'test'
+  ...
+# Subtest: special chip can break shields but never consumes the last health point
+ok 7 - special chip can break shields but never consumes the last health point
+  ---
+  duration_ms: 0.763803
+  type: 'test'
+  ...
+# Subtest: shield regeneration waits five seconds and caps at the profile maximum
+ok 8 - shield regeneration waits five seconds and caps at the profile maximum
+  ---
+  duration_ms: 8.075013
+  type: 'test'
+  ...
+# Subtest: an accepted whiff restarts the 300-step recharge delay at launch
+ok 9 - an accepted whiff restarts the 300-step recharge delay at launch
+  ---
+  duration_ms: 1.304658
+  type: 'test'
+  ...
+# Subtest: hitstop suspends the round clock and a buffered cancel makes a scaled real combo
+ok 10 - hitstop suspends the round clock and a buffered cancel makes a scaled real combo
+  ---
+  duration_ms: 0.836367
+  type: 'test'
+  ...
+# Subtest: a whiff gains no meter and disconnected hits do not fake a combo
+ok 11 - a whiff gains no meter and disconnected hits do not fake a combo
+  ---
+  duration_ms: 0.773776
+  type: 'test'
+  ...
+# Subtest: buffer preserves requested down direction and facing through a cross-under
+ok 12 - buffer preserves requested down direction and facing through a cross-under
+  ---
+  duration_ms: 0.465668
+  type: 'test'
+  ...
+# Subtest: projectile collides once and a high jump evades the shot
+ok 13 - projectile collides once and a high jump evades the shot
+  ---
+  duration_ms: 0.895728
+  type: 'test'
+  ...
+# Subtest: trap has an arming delay and replacing it cannot create an unlimited mine field
+ok 14 - trap has an arming delay and replacing it cannot create an unlimited mine field
+  ---
+  duration_ms: 0.830143
+  type: 'test'
+  ...
+# Subtest: volus shield reserve is capped and creates neither damage nor meter
+ok 15 - volus shield reserve is capped and creates neither damage nor meter
+  ---
+  duration_ms: 0.493037
+  type: 'test'
+  ...
+# Subtest: volus has two vulnerable shield casts per round and spends nothing at full protection
+ok 16 - volus has two vulnerable shield casts per round and spends nothing at full protection
+  ---
+  duration_ms: 2.097244
+  type: 'test'
+  ...
+# Subtest: a ground throw allows ten frames of tech and cannot grab an airborne defender
+ok 17 - a ground throw allows ten frames of tech and cannot grab an airborne defender
+  ---
+  duration_ms: 0.890551
+  type: 'test'
+  ...
+# Subtest: un-teched throw resolves once and grants eight immune frames after hitstun
+ok 18 - un-teched throw resolves once and grants eight immune frames after hitstun
+  ---
+  duration_ms: 0.577124
+  type: 'test'
+  ...
+# Subtest: simultaneous KO awards no point and next round restores full values
+ok 19 - simultaneous KO awards no point and next round restores full values
+  ---
+  duration_ms: 0.573112
+  type: 'test'
+  ...
+# Subtest: timeout compares life ratios, then protection ratios, and exact draws award nothing
+ok 20 - timeout compares life ratios, then protection ratios, and exact draws award nothing
+  ---
+  duration_ms: 1.35427
+  type: 'test'
+  ...
+# Subtest: final result commits once and finisher presentation cannot change damage or score
+ok 21 - final result commits once and finisher presentation cannot change damage or score
+  ---
+  duration_ms: 0.389712
+  type: 'test'
+  ...
+# Subtest: pause clears queued inputs and freezes the complete combat state
+ok 22 - pause clears queued inputs and freezes the complete combat state
+  ---
+  duration_ms: 0.776348
+  type: 'test'
+  ...
+# Subtest: fixed simulation steps agree at 30 Hz and 120 Hz rendering
+ok 23 - fixed simulation steps agree at 30 Hz and 120 Hz rendering
+  ---
+  duration_ms: 7.304805
+  type: 'test'
+  ...
+# Subtest: CPU closes distance and inflicts damage without owning campaign state
+ok 24 - CPU closes distance and inflicts damage without owning campaign state
+  ---
+  duration_ms: 1.80184
+  type: 'test'
+  ...
+# Subtest: twenty stages and forty distinct opposition profiles preserve design boundaries
+ok 25 - twenty stages and forty distinct opposition profiles preserve design boundaries
+  ---
+  duration_ms: 7.259176
+  type: 'test'
+  ...
+# Subtest: boss thresholds announce transitions, cancel owned offense and never restore life
+ok 26 - boss thresholds announce transitions, cancel owned offense and never restore life
+  ---
+  duration_ms: 1.842481
+  type: 'test'
+  ...
+# Subtest: all twenty bosses have three reachable health phases without healing or invulnerability
+ok 27 - all twenty bosses have three reachable health phases without healing or invulnerability
+  ---
+  duration_ms: 1.664471
+  type: 'test'
+  ...
+# Subtest: a locked zone damages a stationary target but misses a player who leaves its announced footprint
+ok 28 - a locked zone damages a stationary target but misses a player who leaves its announced footprint
+  ---
+  duration_ms: 4.242005
+  type: 'test'
+  ...
+# Subtest: boss startup and transition recovery stay vulnerable to ordinary player attacks
+ok 29 - boss startup and transition recovery stay vulnerable to ordinary player attacks
+  ---
+  duration_ms: 1.299795
+  type: 'test'
+  ...
+# Subtest: fixed machinery keeps its position while still running a telegraphed attack
+ok 30 - fixed machinery keeps its position while still running a telegraphed attack
+  ---
+  duration_ms: 21.509919
+  type: 'test'
+  ...
+# Subtest: opposition support casts use two finite reserves and never heal health
+ok 31 - opposition support casts use two finite reserves and never heal health
+  ---
+  duration_ms: 3.623289
+  type: 'test'
+  ...
+# Subtest: a boss loss ends its single round and rejects unsupported finisher presentation
+ok 32 - a boss loss ends its single round and rejects unsupported finisher presentation
+  ---
+  duration_ms: 3.377025
+  type: 'test'
+  ...
+# Subtest: ten personal routes contain eight linked encounters and one named rival
+ok 33 - ten personal routes contain eight linked encounters and one named rival
+  ---
+  duration_ms: 2.549462
+  type: 'test'
+  ...
+# Subtest: stage 03 records the real outpost opponent and never claims a Halek victory
+ok 34 - stage 03 records the real outpost opponent and never claims a Halek victory
+  ---
+  duration_ms: 0.523196
+  type: 'test'
+  ...
+# Subtest: eight fixture combat victories reach the ending exactly once through real match results
+ok 35 - eight fixture combat victories reach the ending exactly once through real match results
+  ---
+  duration_ms: 1.988047
+  type: 'test'
+  ...
+# Subtest: defeat and a stale battle token cannot advance or duplicate a checkpoint
+ok 36 - defeat and a stale battle token cannot advance or duplicate a checkpoint
+  ---
+  duration_ms: 0.344072
+  type: 'test'
+  ...
+# Subtest: campaign save validation rejects forged indices, awards and impossible endings
+ok 37 - campaign save validation rejects forged indices, awards and impossible endings
+  ---
+  duration_ms: 0.636295
+  type: 'test'
+  ...
+# Subtest: saving and resuming an interrupted encounter touches only the separate Nacre key
+ok 38 - saving and resuming an interrupted encounter touches only the separate Nacre key
+  ---
+  duration_ms: 0.951388
+  type: 'test'
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 220.810845

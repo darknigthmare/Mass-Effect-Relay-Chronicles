@@ -20,7 +20,7 @@ Les identités, tenues, intrigues et coups de Nacre sont inventés pour le proje
 - **superCost** : 100
 - **notation** : 5 neutre ; 2 bas ; 4 arrière ; 6 avant ; j en l’air ; 236 quart de cercle avant ; 214 arrière ; 623 avant-bas-diagonale ; 22 bas-bas ; L+M simultané (alias avant au neutre ; arrière différé hors prototype).
 - **scope** : Les nombres sont des intentions de réglage, pas un équilibrage certifié ni une description de tous les états du prototype.
-- **simplifiedInputs** : Le prototype expose seulement L/M/H/S, garde et mouvement. Les commandes directionnelles, contres, lancers, pièges avancés, ressources propres et cinématiques restent à relier explicitement avant d’être annoncés comme jouables.
+- **simplifiedInputs** : Le sous-ensemble exécuté par le prototype est décrit dans docs/armax/lot22/gameplay-coverage.json. Les commandes complètes de ces fiches restent de la conception ; chaque action doit être explicitement raccordée et vérifiée avant d’être annoncée comme jouable.
 - **normalCancel** : L vers M ou H ; M vers H ; un normal confirmé vers un spécial autorisé. Aucun cancel infini et aucun super automatique sur garde.
 - **airRule** : Un saut physique, sans double saut universel, vol ou dash aérien inventé. Hauteurs et arcs adaptés aux silhouettes.
 - **throws** : Portée de contact, fenêtre de déchoppage commune de conception de 10 frames ; les command throws annoncées ne sont pas garanties après garde.

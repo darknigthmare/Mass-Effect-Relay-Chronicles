@@ -2,7 +2,7 @@
 # Bible intégrée du mode combat 2D
 
 **Révision documentaire du 27 novembre 2026 — Europe/Paris.**
-**État : conception définie. Guide général et deux extensions intégrés à la bible ; la continuation artistique courante est le lot 21. Les fonctions du moteur gardent leurs statuts propres.**
+**État : conception définie. Guide général et deux extensions intégrés à la bible ; la continuation courante est le lot 22, avec l’extension originale Nacre et un prototype local de duel. Les fonctions du moteur gardent leurs statuts propres.**
 
 Cette bible applique désormais **68 rubriques** fournies par Darknigthmare à Armax, le mode annexe de **Mass Effect — Relay Chronicles** : **00–29** dans ce corps, **30–49** dans l'[extension équipes et bonus](EXTENSION_01_EQUIPES_ET_BONUS.md), **50–67** dans l'[extension déblocages](EXTENSION_02_DEBLOCAGES.md). Les [trois fichiers originaux](../guides/README.md) ont été récupérés intégralement et conservés sans modification. La [réconciliation](GUIDE_RECONCILIATION_2026-11-27.md) conserve les 30 associations et 90 critères historiques et relie les 38 rubriques supplémentaires. Ce document constitue le point d'entrée courant ; les lots conservent leur provenance et leurs résultats historiques.
 
@@ -25,7 +25,7 @@ Base de l’intégration initiale : **4befa64285080fe016d6ecd9424b00ab4d42509f**
 | [Lot 04 : bible détaillée](../lot04/BIBLE_EXTENSION.md) et [fiches](../lot04/fighters.json) | 14 sujets, 13 kits de conception, récits et deux boss à phases |
 | [Complément Grunt / Legion / Port Hanshan](../../combat-2d/CONTINUATION_2026-11-19.md) | Deux kits et une arène, à normaliser selon le contrat commun |
 | [Lot 03 : bible de production](../lot03/Bible_Complement_Lot03.md) | Apparences, poses, masters et besoins de parallaxe |
-| [Catalogue courant lot 21](../lot21/production-catalog.json) et [bilan](../lot21/README.md) | Suivi de production courant, avec ses propres fichiers et contrôles ; distinct des nouvelles fiches de conception |
+| [Catalogue courant lot 22](../lot22/production-catalog.json) et [bilan](../lot22/README.md) | 326 fiches ; production canonique héritée et extension originale Nacre ; statuts artistiques et moteur distincts |
 | [Catalogue historique lot 18](../lot18/production-catalog.json) | Instantané : 196 fiches, 150 avec image candidate et 46 sans ; 192 identités héritées conservées |
 | [Livraison lot 16](../lot16/README.md), [manifeste](../lot16/manifest.json) et [associations artistiques](../lot16/bible-asset-associations.json) | 6 PNG natifs, dont 5 sélectionnés, pour 5 sujets ; sources, poses observées et réserves |
 | [Bible du jeu hôte](../../DESIGN.md) | Association au RPG et séparation du contrat ATB |
@@ -34,7 +34,15 @@ Base de l’intégration initiale : **4befa64285080fe016d6ecd9424b00ab4d42509f**
 
 **Lecture des statuts.** « Retenu » est une décision de conception, « Défini » décrit une fiche, « Prototype » un état de production. Aucun de ces termes ne signifie « jouable » ou « fidélité 1:1 validée ». Les exigences d'animation restent documentées pendant la phase de production de sprites fixes.
 
-## Reprise courante — lot 21
+## Reprise courante — lot 22 : Les Dettes de Nacre
+
+L’extension originale ajoute **10 combattants, 20 stages, 20 ennemis, 20 boss, 20 accessoires et 20 familles FX/projectiles**, soit 110 identités distinctes. Le [catalogue consolidé](../lot22/production-catalog.json) comporte 326 fiches ; ses 216 enregistrements canoniques sont conservés à l’identique. Les [associations du lot 22](../lot22/content-associations.json) rattachent les 110 créations aux modèles et rubriques existants sans élargir artificiellement les 68 rubriques / 204 critères du guide.
+
+Le [dossier Nacre](../../../DLC/LesDettesDeNacre/README.md), la [bible des personnages](../../../DLC/LesDettesDeNacre/NACRE_ROSTER_BIBLE.md) et la [bible du monde](../../../DLC/LesDettesDeNacre/NACRE_WORLD_BIBLE.md) fixent la période 2185, les rivalités, les routes de huit rencontres, les quatre actes et les limites de lore. Il s’agit de créations de fan, pas d’éléments canoniques ou officiels.
+
+Un simulateur de duel à 60 Hz est désormais présent dans le code. Son [rapport précis](../lot22/GAMEPLAY_IMPLEMENTATION.md), sa [couverture](../lot22/gameplay-coverage.json) et ses preuves de test priment pour décrire le sous-ensemble exécutable. Le texte documentaire ci-dessous conserve les kits cibles, y compris les fonctionnalités encore absentes. Les images ne prouvent ni animation complète, ni équilibrage, ni fidélité canonique 1:1.
+
+## Reprise historique — lot 21
 
 **216 fiches : 171 avec image candidate et 45 sans**. Le lot21 conserve 196 identités et en ajoute 20. Il livre **10 PNG : 7 récupérés et 3 générés**, pour 2 anciennes fiches complétées et 8 nouvelles identités illustrées. Dans le périmètre hérité, les manquants passent de 35 à 33. La fidélité 1:1 et l’intégration moteur restent non certifiées. Le [catalogue](../lot21/production-catalog.json), le [bilan](../lot21/README.md) et la [bible complémentaire](../lot21/BIBLE_COMPLEMENTS_LOT21.md) portent la reprise. Les30 exclusions parmi 45 fiches sans image restent respectées ; 15 fiches ouvertes comprennent 4 pistes de réemploi. Les 68 rubriques et 204 critères restent documentaires. Le [lot20](../lot20/README.md) conserve son résultat historique.
 

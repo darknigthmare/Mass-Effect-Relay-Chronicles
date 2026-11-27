@@ -1,5 +1,7 @@
 # Armax — associations du contenu à la bible
 
+> **Continuation lot 22 :** l’[index consolidé de 326 fiches](../lot22/content-associations.json) ajoute les 110 créations de Nacre aux 216 associations historiques détaillées dans cette page. Les [bibles Nacre](../../../DLC/LesDettesDeNacre/README.md) et la [couverture moteur](../lot22/gameplay-coverage.json) gardent des statuts séparés pour les fiches, les images et les comportements exécutés.
+
 **Révision documentaire du 27 novembre 2026 — Europe/Paris.**
 
 Cet index relie les **216 fiches du catalogue lot 21** aux rôles, fiches types et rubriques de notre jeu de combat. Les **196 identités héritées du lot 20** sont conservées. Les quatre composants du marché Urdnot, les onze fiches illustrées par le lot17 consolidé et les trois costumes du lot18 appartiennent aux livraisons antérieures. L’index rend aussi accessibles les **14 fiches de conception du lot 04** et les **deux compléments Grunt/Legion**, dont une grande partie n’apparaît pas dans le suivi des images manquantes. Les totaux de ces ensembles ne s’additionnent pas : ils décrivent des périmètres qui se recoupent.

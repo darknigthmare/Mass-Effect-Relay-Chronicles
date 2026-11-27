@@ -1,0 +1,1268 @@
+{
+  "schemaVersion": "1.0",
+  "title": "Audit documentaire et présence des assets — checkpoint Nacre",
+  "auditedAt": "2026-11-27 13:12:03 UTC",
+  "repository": "darknigthmare/Mass-Effect-Relay-Chronicles",
+  "historicalCommit": {
+    "sha": "2c98ae3fb2784b956f58ec6068a8d8e342baf314",
+    "treeSha": "74c3ff09564c52f4abd61b5adb016a815cae3c4f",
+    "committedAt": "2026-11-27T12:53:21Z",
+    "treeEntryCount": 12389,
+    "treeTruncated": false,
+    "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/commit/2c98ae3fb2784b956f58ec6068a8d8e342baf314"
+  },
+  "scope": "Lecture indépendante via GitHub connector des données et de l’arbre immuable du commit 2c98ae3. Ce checkpoint précède l’intégration finale du runtime à vingt stages. Une correction documentaire locale ultérieure est décrite séparément.",
+  "engineExecutionPerformed": false,
+  "imagePixelsDecoded": false,
+  "visualFidelityValidated": false,
+  "productionCertification": false,
+  "outcome": {
+    "historicalCheckpoint": "Conforme pour les décomptes, les liens et la présence attendue ; une asymétrie d’index stage-ennemi détectée.",
+    "unexpectedMissingSelectedAssetCount": 0,
+    "dataFindingCount": 1,
+    "correctedDataFindingCount": 1,
+    "sourceCorrectionsCommittedByThisAudit": false
+  },
+  "checks": [
+    {
+      "id": "design_counts",
+      "passed": true,
+      "evidence": "10 combattants + 20 stages + 20 ennemis + 20 boss + 20 props + 20 familles FX = 110."
+    },
+    {
+      "id": "global_entity_uniqueness",
+      "passed": true,
+      "evidence": {
+        "total": 110,
+        "unique": 110
+      }
+    },
+    {
+      "id": "family_number_sequences",
+      "passed": true,
+      "evidence": "Chaque famille de vingt couvre exactement 01 à 20."
+    },
+    {
+      "id": "cross_reference_resolution",
+      "passed": true,
+      "evidence": {
+        "checkedEntityIdOccurrences": 601,
+        "unresolved": []
+      }
+    },
+    {
+      "id": "boss_and_prop_stage_reciprocity",
+      "passed": true
+    },
+    {
+      "id": "enemy_stage_reciprocity_at_checkpoint",
+      "passed": false,
+      "evidence": "Stage20 annonce enemy01, dont la liste ne contient alors que stages01/02.",
+      "findingId": "NACRE-DATA-001"
+    },
+    {
+      "id": "ten_routes_consistency",
+      "passed": true,
+      "evidence": {
+        "routes": 10,
+        "stagesPerRoute": 8,
+        "coverage": 20
+      }
+    },
+    {
+      "id": "readme_local_links",
+      "passed": true,
+      "evidence": {
+        "linkOccurrences": 11,
+        "uniqueTargets": 10,
+        "missing": []
+      }
+    },
+    {
+      "id": "selected_asset_presence",
+      "passed": true,
+      "evidence": {
+        "expected": 89,
+        "present": 89,
+        "nonEmpty": 89,
+        "distinctGitBlobs": 89
+      }
+    },
+    {
+      "id": "stage11_revision_presence",
+      "passed": true,
+      "evidence": {
+        "id": "nacre_stage_11",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_11_r1.png",
+        "present": true,
+        "gitBlobSha": "7ecd02e64fa8f6370a506a2d53dd25da74ff3583",
+        "bytes": 2579799,
+        "nonEmpty": true
+      }
+    },
+    {
+      "id": "sidecar_identity_alignment",
+      "passed": true,
+      "evidence": [
+        {
+          "file": "nacre-stage-briefs.json",
+          "count": 20,
+          "expected": 20,
+          "uniqueIDs": 20,
+          "unknownIDs": [],
+          "nameMismatches": []
+        },
+        {
+          "file": "nacre-opposition-briefs.json",
+          "count": 40,
+          "expected": 40,
+          "uniqueIDs": 40,
+          "unknownIDs": [],
+          "nameMismatches": []
+        },
+        {
+          "file": "nacre_runtime_profiles.json",
+          "count": 10,
+          "expected": 10,
+          "uniqueIDs": 10,
+          "unknownIDs": [],
+          "nameMismatches": []
+        }
+      ]
+    },
+    {
+      "id": "planned_child_id_uniqueness",
+      "passed": true,
+      "evidence": {
+        "plannedIds": 337,
+        "unique": 337
+      }
+    },
+    {
+      "id": "enemy01_stage20_targeted_post_correction",
+      "passed": true,
+      "evidence": "Ajout exclusif de stage20 dans enemy01.stageIds ; composition complète de stage20 conservée."
+    }
+  ],
+  "designedIdentityCounts": {
+    "fighters": 10,
+    "stages": 20,
+    "enemies": 20,
+    "bosses": 20,
+    "props": 20,
+    "projectilesVfx": 20
+  },
+  "plannedSubassets": {
+    "parallaxLayers": 100,
+    "propParts": 98,
+    "fxPhases": 79,
+    "bossPhases": 60,
+    "plannedChildIds": 337,
+    "actualProducedCountImpliedByTheseNumbers": 0
+  },
+  "routes": [
+    {
+      "fighterId": "nacre_mara_vey",
+      "stageIds": [
+        "nacre_stage_01",
+        "nacre_stage_02",
+        "nacre_stage_04",
+        "nacre_stage_06",
+        "nacre_stage_10",
+        "nacre_stage_12",
+        "nacre_stage_13",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_01",
+        "nacre_boss_13"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_tavin_rhex",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_tavin_rhex",
+      "stageIds": [
+        "nacre_stage_01",
+        "nacre_stage_04",
+        "nacre_stage_06",
+        "nacre_stage_09",
+        "nacre_stage_12",
+        "nacre_stage_14",
+        "nacre_stage_19",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_06",
+        "nacre_boss_19"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_mara_vey",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_ilyra_senn",
+      "stageIds": [
+        "nacre_stage_02",
+        "nacre_stage_03",
+        "nacre_stage_07",
+        "nacre_stage_08",
+        "nacre_stage_12",
+        "nacre_stage_16",
+        "nacre_stage_18",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_02",
+        "nacre_boss_16"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_nyra_korr",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_keela_vess",
+      "stageIds": [
+        "nacre_stage_01",
+        "nacre_stage_05",
+        "nacre_stage_07",
+        "nacre_stage_11",
+        "nacre_stage_12",
+        "nacre_stage_14",
+        "nacre_stage_15",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_07",
+        "nacre_boss_14"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_selek_dhan",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_ghoran_brakk",
+      "stageIds": [
+        "nacre_stage_04",
+        "nacre_stage_05",
+        "nacre_stage_07",
+        "nacre_stage_10",
+        "nacre_stage_11",
+        "nacre_stage_12",
+        "nacre_stage_18",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_05",
+        "nacre_boss_11"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_varek_hesk",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_neral_vesh",
+      "stageIds": [
+        "nacre_stage_02",
+        "nacre_stage_04",
+        "nacre_stage_08",
+        "nacre_stage_09",
+        "nacre_stage_13",
+        "nacre_stage_15",
+        "nacre_stage_18",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_08",
+        "nacre_boss_13"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_dalo_ruun",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_selek_dhan",
+      "stageIds": [
+        "nacre_stage_03",
+        "nacre_stage_05",
+        "nacre_stage_07",
+        "nacre_stage_11",
+        "nacre_stage_13",
+        "nacre_stage_14",
+        "nacre_stage_17",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_03",
+        "nacre_boss_14"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_keela_vess",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_varek_hesk",
+      "stageIds": [
+        "nacre_stage_01",
+        "nacre_stage_04",
+        "nacre_stage_05",
+        "nacre_stage_08",
+        "nacre_stage_10",
+        "nacre_stage_12",
+        "nacre_stage_18",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_04",
+        "nacre_boss_18"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_ghoran_brakk",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_dalo_ruun",
+      "stageIds": [
+        "nacre_stage_01",
+        "nacre_stage_03",
+        "nacre_stage_08",
+        "nacre_stage_09",
+        "nacre_stage_10",
+        "nacre_stage_13",
+        "nacre_stage_16",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_09",
+        "nacre_boss_20"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_neral_vesh",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    },
+    {
+      "fighterId": "nacre_nyra_korr",
+      "stageIds": [
+        "nacre_stage_02",
+        "nacre_stage_06",
+        "nacre_stage_10",
+        "nacre_stage_12",
+        "nacre_stage_15",
+        "nacre_stage_16",
+        "nacre_stage_19",
+        "nacre_stage_20"
+      ],
+      "personalBossIds": [
+        "nacre_boss_06",
+        "nacre_boss_19"
+      ],
+      "finalBossId": "nacre_boss_20",
+      "rivalId": "nacre_ilyra_senn",
+      "worldAndRosterAgree": true,
+      "personalBossStagesPresent": true,
+      "rivalReciprocal": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "NACRE-DATA-001",
+      "severity": "medium",
+      "historicalStatus": "present_at_audited_commit",
+      "statusAfterCorrection": "corrected_in_local_worktree_and_draft",
+      "path": "DLC/LesDettesDeNacre/nacre-world.json",
+      "sourceBlobSha": "7955865b7e3d1e4432b7c150be3d22ce9b496404",
+      "stagePointer": "/stages/19/enemyIds",
+      "stageValue": [
+        "nacre_enemy_01",
+        "nacre_enemy_11",
+        "nacre_enemy_20"
+      ],
+      "enemyPointer": "/enemies/0/stageIds",
+      "beforeEnemyStageIds": [
+        "nacre_stage_01",
+        "nacre_stage_02"
+      ],
+      "afterEnemyStageIds": [
+        "nacre_stage_01",
+        "nacre_stage_02",
+        "nacre_stage_20"
+      ],
+      "implication": "Les deux index peuvent fournir une composition différente selon le sens de lecture des données.",
+      "correction": "Ajouter nacre_stage_20 à la fiche nacre_enemy_01, sans retirer le garde de stage20.",
+      "stage20CompositionUnchanged": true,
+      "targetedCheckPassed": true,
+      "correctedWorldBlobShaComputed": "20b277461f1b3b7350bd05a639c2d3289c6fdf5e",
+      "correctedWorldBibleBlobShaComputed": "64a83616e69254ecdddb82f73167d9ec301e4d0e",
+      "bibleUpdate": "Liste des stages d’enemy01 actualisée ; brief d’Elyne R1 également aligné sur le JSON déjà corrigé au checkpoint.",
+      "otherChecksRerunAfterPatch": false,
+      "reasonNoFullRerun": "Les sources de départ ont été contrôlées par SHA, et la mutation porte uniquement sur cette liste. Le contrôle ciblé vérifie la réciprocité ajoutée et l’absence de changement dans stage20."
+    }
+  ],
+  "localReadmeFileLinks": [
+    {
+      "path": "DLC/LesDettesDeNacre/NACRE_ROSTER_BIBLE.md",
+      "gitBlobSha": "645b5a073eb49b8f20d940dc7f9eab879c6dcfbc",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre_roster_design.json",
+      "gitBlobSha": "c198c8da2d70d1a20738568341e3d7f73acd7b0d",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre_visual_briefs.json",
+      "gitBlobSha": "885099d9fd7e5219c3597c6c256f6920cc409e2c",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre_fighter_asset_requirements.json",
+      "gitBlobSha": "85479a6a0e1e898603a65414101670631b42ae65",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre_runtime_profiles.json",
+      "gitBlobSha": "521f74a2e1f8871888b246a77971aaf2011e8d76",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/NACRE_WORLD_BIBLE.md",
+      "gitBlobSha": "d3dfbce9fa11adc8021ce7a99aaec9c7342923cf",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-world.json",
+      "gitBlobSha": "7955865b7e3d1e4432b7c150be3d22ce9b496404",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-stage-briefs.json",
+      "gitBlobSha": "025286f201290dd8a308078d446077644bc8330a",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-opposition-briefs.json",
+      "gitBlobSha": "7d89e3cbe11321fa1043a6007de129cd54f71ca3",
+      "present": true
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-world-validation.json",
+      "gitBlobSha": "37bca31f8243e922fafb1dc73eec64363c63233c",
+      "present": true
+    }
+  ],
+  "assetPresence": {
+    "method": "Existence, type blob, chemin, SHA Git et taille non nulle dans l’arbre complet non tronqué du commit ; aucun décodage PNG, contrôle alpha ou rendu du moteur dans cet audit.",
+    "expectedSelectedCount": 89,
+    "presentSelectedCount": 89,
+    "distinctSelectedBlobCount": 89,
+    "pngPathCountIncludingRevisions": 92,
+    "families": {
+      "fighters": {
+        "expected": 10,
+        "present": 10,
+        "pngFilesInFamily": 10
+      },
+      "stages": {
+        "expected": 20,
+        "present": 20,
+        "pngFilesInFamily": 21
+      },
+      "enemies": {
+        "expected": 20,
+        "present": 20,
+        "pngFilesInFamily": 20
+      },
+      "bosses": {
+        "expected": 19,
+        "present": 19,
+        "pngFilesInFamily": 21
+      },
+      "fx": {
+        "expected": 20,
+        "present": 20,
+        "pngFilesInFamily": 20
+      },
+      "props": {
+        "expected": 0,
+        "present": 0,
+        "pngFilesInFamily": 0
+      }
+    },
+    "selectedFiles": [
+      {
+        "id": "nacre_mara_vey",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_mara_vey.png",
+        "gitBlobSha": "97de5b41a6400d564f783072d95e1bc27aa8c805",
+        "bytes": 1814653
+      },
+      {
+        "id": "nacre_tavin_rhex",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_tavin_rhex.png",
+        "gitBlobSha": "d12435167b11af9e545c499f725e8ba2ea294909",
+        "bytes": 1801992
+      },
+      {
+        "id": "nacre_ilyra_senn",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_ilyra_senn.png",
+        "gitBlobSha": "b4a188275fc90bc329c212b098cc86afa477d622",
+        "bytes": 1728995
+      },
+      {
+        "id": "nacre_keela_vess",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_keela_vess.png",
+        "gitBlobSha": "ecb45eb99e4b92d3595b2e074718e090ffe153a8",
+        "bytes": 2091370
+      },
+      {
+        "id": "nacre_ghoran_brakk",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_ghoran_brakk.png",
+        "gitBlobSha": "3457a157e96c08b0a94b172f06ee49fda7dace90",
+        "bytes": 2310778
+      },
+      {
+        "id": "nacre_neral_vesh",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_neral_vesh.png",
+        "gitBlobSha": "42dac63da5cd722ca1cc8eaa22cfcb995c8600a3",
+        "bytes": 1715856
+      },
+      {
+        "id": "nacre_selek_dhan",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_selek_dhan.png",
+        "gitBlobSha": "01ffbc5ebf575bc7666045436449ff41293ac7bc",
+        "bytes": 1703596
+      },
+      {
+        "id": "nacre_varek_hesk",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_varek_hesk.png",
+        "gitBlobSha": "37a52f280076fe5980be5598e7879324825dde3a",
+        "bytes": 2115415
+      },
+      {
+        "id": "nacre_dalo_ruun",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_dalo_ruun.png",
+        "gitBlobSha": "92438ae05bd5f1a1a83321719b0fa94beb998feb",
+        "bytes": 2148563
+      },
+      {
+        "id": "nacre_nyra_korr",
+        "family": "fighters",
+        "path": "public/assets/armax/lot22/originals/fighters/nacre_nyra_korr.png",
+        "gitBlobSha": "c150f6f1929ecb119c744dd6a38bf1c8a4cf28f7",
+        "bytes": 1744182
+      },
+      {
+        "id": "nacre_stage_01",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_01.png",
+        "gitBlobSha": "b6572c027bfb4efaed2bd7d110ef137057e3cc4c",
+        "bytes": 2489856
+      },
+      {
+        "id": "nacre_stage_02",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_02.png",
+        "gitBlobSha": "81e0cd5a8adb661e740279ccd35866932050cd33",
+        "bytes": 2424337
+      },
+      {
+        "id": "nacre_stage_03",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_03.png",
+        "gitBlobSha": "1ebf9e098e12f9777e0a4a817a8e5aca54133894",
+        "bytes": 2354541
+      },
+      {
+        "id": "nacre_stage_04",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_04.png",
+        "gitBlobSha": "12494f71f79724a43e3823e7f8d9567a65d64279",
+        "bytes": 2624303
+      },
+      {
+        "id": "nacre_stage_05",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_05.png",
+        "gitBlobSha": "4ebf72e3eb142b4da6265fdcea49312e8c1b7897",
+        "bytes": 2730373
+      },
+      {
+        "id": "nacre_stage_06",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_06.png",
+        "gitBlobSha": "d1bf71a3e12e793bfd6bb9047d9810c3d6d459f5",
+        "bytes": 2460626
+      },
+      {
+        "id": "nacre_stage_07",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_07.png",
+        "gitBlobSha": "36f43ff6bf795efec2b45cc66549ae1a9715b5f4",
+        "bytes": 2501969
+      },
+      {
+        "id": "nacre_stage_08",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_08.png",
+        "gitBlobSha": "14fe8d9feb338719f86c76cfa871ea99b5f96ce8",
+        "bytes": 2714683
+      },
+      {
+        "id": "nacre_stage_09",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_09.png",
+        "gitBlobSha": "b554a9e8c3848082fe630fe17eece0ae10d07801",
+        "bytes": 2331432
+      },
+      {
+        "id": "nacre_stage_10",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_10.png",
+        "gitBlobSha": "94442612748809a7e68acc741affe98fbd9192b5",
+        "bytes": 2385981
+      },
+      {
+        "id": "nacre_stage_11",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_11_r1.png",
+        "gitBlobSha": "7ecd02e64fa8f6370a506a2d53dd25da74ff3583",
+        "bytes": 2579799
+      },
+      {
+        "id": "nacre_stage_12",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_12.png",
+        "gitBlobSha": "c17b9c0560ced4b106624a563067adb85fbf7538",
+        "bytes": 2830273
+      },
+      {
+        "id": "nacre_stage_13",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_13.png",
+        "gitBlobSha": "fcccb69c407eff30815391d33e9b6c48ea75241f",
+        "bytes": 2708320
+      },
+      {
+        "id": "nacre_stage_14",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_14.png",
+        "gitBlobSha": "97bd0e6810fab5b80281dbb3d95e843b5ec37209",
+        "bytes": 2567834
+      },
+      {
+        "id": "nacre_stage_15",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_15.png",
+        "gitBlobSha": "952b8638d6ac2a06f2fff7147c50aac20c7e0700",
+        "bytes": 2430972
+      },
+      {
+        "id": "nacre_stage_16",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_16.png",
+        "gitBlobSha": "fc0050dccd091dfbd0d314e145e5fab3b31258ca",
+        "bytes": 2355151
+      },
+      {
+        "id": "nacre_stage_17",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_17.png",
+        "gitBlobSha": "0a56319884ca01ee0279f20ed272112617ade010",
+        "bytes": 2592689
+      },
+      {
+        "id": "nacre_stage_18",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_18.png",
+        "gitBlobSha": "33545121b6b64b90e6b1eb97ae8b5ccb59ac893a",
+        "bytes": 2326969
+      },
+      {
+        "id": "nacre_stage_19",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_19.png",
+        "gitBlobSha": "c109ea745cf81bc2ffadbca7a4032a3038575480",
+        "bytes": 2386392
+      },
+      {
+        "id": "nacre_stage_20",
+        "family": "stages",
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_20.png",
+        "gitBlobSha": "c7bc1bd1185b4655fac646fb1c4878ede69ba1ca",
+        "bytes": 2288298
+      },
+      {
+        "id": "nacre_enemy_01",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_01.png",
+        "gitBlobSha": "badb4844c5176e7c17ad84d140f85cde75be70b7",
+        "bytes": 1849657
+      },
+      {
+        "id": "nacre_enemy_02",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_02.png",
+        "gitBlobSha": "87f80bd73c9cf728f070992b212f8d81f126f3cb",
+        "bytes": 1980763
+      },
+      {
+        "id": "nacre_enemy_03",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_03.png",
+        "gitBlobSha": "fff52772cbb1a62f178ed88bc0d9ea7c302a4d6f",
+        "bytes": 1950471
+      },
+      {
+        "id": "nacre_enemy_04",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_04.png",
+        "gitBlobSha": "4c2e7739a43f4577c44fef0ca34dd4ffd62eb399",
+        "bytes": 1917417
+      },
+      {
+        "id": "nacre_enemy_05",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_05.png",
+        "gitBlobSha": "b6f5fff161ef7b2c1c444159b4f369fe4abfd4ac",
+        "bytes": 1795033
+      },
+      {
+        "id": "nacre_enemy_06",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_06.png",
+        "gitBlobSha": "d9ad828bb18dfcbcf96fb34d9afca71071062fe4",
+        "bytes": 2298479
+      },
+      {
+        "id": "nacre_enemy_07",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_07.png",
+        "gitBlobSha": "3132c516b1dd195d80fe5601285ff99d257dd053",
+        "bytes": 1919139
+      },
+      {
+        "id": "nacre_enemy_08",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_08.png",
+        "gitBlobSha": "fa2a153b0f7ab4eaa4f5f42fcae7b65c31c11a17",
+        "bytes": 1958778
+      },
+      {
+        "id": "nacre_enemy_09",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_09.png",
+        "gitBlobSha": "58c02b78ef5562c6291480ed657f4133b8f64175",
+        "bytes": 1809630
+      },
+      {
+        "id": "nacre_enemy_10",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_10.png",
+        "gitBlobSha": "00c76cdd02e28998de63284b7e908c2bed39cd03",
+        "bytes": 2037766
+      },
+      {
+        "id": "nacre_enemy_11",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_11.png",
+        "gitBlobSha": "ff3ceed80fa7e6841fda6dcf4c3f81197418deed",
+        "bytes": 1717217
+      },
+      {
+        "id": "nacre_enemy_12",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_12.png",
+        "gitBlobSha": "760fab51f13caab994349402ab2d6535a2817ac7",
+        "bytes": 2045797
+      },
+      {
+        "id": "nacre_enemy_13",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_13.png",
+        "gitBlobSha": "7c20124ed2fa1d0ac905ab1f29aec60ee168b4b6",
+        "bytes": 1574944
+      },
+      {
+        "id": "nacre_enemy_14",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_14.png",
+        "gitBlobSha": "7a392a3be26f1b1ca3d3878f7751e7e3fb53bc3a",
+        "bytes": 1776261
+      },
+      {
+        "id": "nacre_enemy_15",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_15.png",
+        "gitBlobSha": "e33fd6df381ee374f8dd80512662223f4cb44be5",
+        "bytes": 1060517
+      },
+      {
+        "id": "nacre_enemy_16",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_16.png",
+        "gitBlobSha": "48a71cfea01adb58339f081068364a362c5914c7",
+        "bytes": 1650105
+      },
+      {
+        "id": "nacre_enemy_17",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_17.png",
+        "gitBlobSha": "35baf28651993b3e352707c0cfa64d70b02ae9a9",
+        "bytes": 1991286
+      },
+      {
+        "id": "nacre_enemy_18",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_18.png",
+        "gitBlobSha": "952731d93d6657afba8e42c4a7ff60f7d9bc053b",
+        "bytes": 1444346
+      },
+      {
+        "id": "nacre_enemy_19",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_19.png",
+        "gitBlobSha": "794e39344e57a4d24aca276ccc60e3ec34610753",
+        "bytes": 1787739
+      },
+      {
+        "id": "nacre_enemy_20",
+        "family": "enemies",
+        "path": "public/assets/armax/lot22/originals/enemies/nacre_enemy_20.png",
+        "gitBlobSha": "4dea6e047565378978e9477f70771f5836cde411",
+        "bytes": 1291429
+      },
+      {
+        "id": "nacre_boss_01",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_01.png",
+        "gitBlobSha": "4a1cdd97d4ea67c0f823cc7475a8e77cee2a47c8",
+        "bytes": 1817357
+      },
+      {
+        "id": "nacre_boss_02",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_02.png",
+        "gitBlobSha": "d21a639b7ae237ed7fbcf1cfae51e19b8df59fab",
+        "bytes": 1782945
+      },
+      {
+        "id": "nacre_boss_04",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_04.png",
+        "gitBlobSha": "94b0d48e2108e287f1f69d7ea0354915429aabb7",
+        "bytes": 2110695
+      },
+      {
+        "id": "nacre_boss_05",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_05.png",
+        "gitBlobSha": "a3b71501a23df6789851a5a6a0e4ae90620b6344",
+        "bytes": 1944286
+      },
+      {
+        "id": "nacre_boss_06",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_06.png",
+        "gitBlobSha": "3f6c0ff2f8081380c3ee81487ab89f55a84340a0",
+        "bytes": 1970514
+      },
+      {
+        "id": "nacre_boss_07",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_07.png",
+        "gitBlobSha": "228d0cfa11a4b1243c0e44db8035a5c858c6d4a3",
+        "bytes": 2555743
+      },
+      {
+        "id": "nacre_boss_08",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_08.png",
+        "gitBlobSha": "dde051dea69dafac7f8a748b0c7b8a3ab8477828",
+        "bytes": 1744199
+      },
+      {
+        "id": "nacre_boss_09",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_09.png",
+        "gitBlobSha": "c2a43bd797041d1856efd0b1e09239442ba877d3",
+        "bytes": 1780635
+      },
+      {
+        "id": "nacre_boss_10",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_10.png",
+        "gitBlobSha": "6c887ea240400093c6297ad4ae4d3cbcf16bd2c7",
+        "bytes": 2784272
+      },
+      {
+        "id": "nacre_boss_11",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_11.png",
+        "gitBlobSha": "d899a6b8d6029f02986b2aa55eb9be83d4129381",
+        "bytes": 2446655
+      },
+      {
+        "id": "nacre_boss_12",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_12.png",
+        "gitBlobSha": "1b88c8ed4a47c160117871629e36eb3a434c3bb6",
+        "bytes": 2432459
+      },
+      {
+        "id": "nacre_boss_13",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_13.png",
+        "gitBlobSha": "b844736d9da299300af8019eef8374e52b3073ca",
+        "bytes": 1881270
+      },
+      {
+        "id": "nacre_boss_14",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_14.png",
+        "gitBlobSha": "2c4c09ea82e753069abc0599ed64732729e1f694",
+        "bytes": 2006869
+      },
+      {
+        "id": "nacre_boss_15",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_15.png",
+        "gitBlobSha": "0be1445d000b13da6d8167c417ac88199b0b7924",
+        "bytes": 1096889
+      },
+      {
+        "id": "nacre_boss_16",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_16.png",
+        "gitBlobSha": "88fbaa18c9faab6a1617eac5303d9f1890ec882f",
+        "bytes": 1887978
+      },
+      {
+        "id": "nacre_boss_17",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_17.png",
+        "gitBlobSha": "82c81fd4376a4ceefdfc33c1be156efa93c1305f",
+        "bytes": 2105397
+      },
+      {
+        "id": "nacre_boss_18",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_18.png",
+        "gitBlobSha": "94687a277e65167d1f9576a6a3371133f318683d",
+        "bytes": 2000700
+      },
+      {
+        "id": "nacre_boss_19",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_19.png",
+        "gitBlobSha": "c8831bd873f1730c111565b3ae583b04d9219687",
+        "bytes": 1873658
+      },
+      {
+        "id": "nacre_boss_20",
+        "family": "bosses",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_20.png",
+        "gitBlobSha": "26115c767fd8a8b05010ac8cf3ac7221fc03a81e",
+        "bytes": 1687090
+      },
+      {
+        "id": "nacre_fx_01",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_01.png",
+        "gitBlobSha": "44395faa195fb84a593d9b19f6cac6f26af44ec1",
+        "bytes": 226880
+      },
+      {
+        "id": "nacre_fx_02",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_02.png",
+        "gitBlobSha": "49d248066a13bcb8d044fe09c12de4d542938d68",
+        "bytes": 306712
+      },
+      {
+        "id": "nacre_fx_03",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_03.png",
+        "gitBlobSha": "fa8f208eead7e152ef4ab6dd758f98d003e6b4fb",
+        "bytes": 385766
+      },
+      {
+        "id": "nacre_fx_04",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_04.png",
+        "gitBlobSha": "fe39b0aadbefecb28b012e2ca6d590531909c7ad",
+        "bytes": 569254
+      },
+      {
+        "id": "nacre_fx_05",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_05.png",
+        "gitBlobSha": "896458cc6880514cc3b999da9b93be5e4f5ec40b",
+        "bytes": 677103
+      },
+      {
+        "id": "nacre_fx_06",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_06.png",
+        "gitBlobSha": "123524feaa36225d3785be80c0b1fe56f311a26f",
+        "bytes": 1452248
+      },
+      {
+        "id": "nacre_fx_07",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_07.png",
+        "gitBlobSha": "a192a3a86f37277a0df34c7650e209aabc1ca0dd",
+        "bytes": 1221147
+      },
+      {
+        "id": "nacre_fx_08",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_08.png",
+        "gitBlobSha": "84532cbd1703e1607702e8bf0876fbeaa31d1dd4",
+        "bytes": 529486
+      },
+      {
+        "id": "nacre_fx_09",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_09.png",
+        "gitBlobSha": "834ef37fb12f81261d35622841a24bae192ee6bd",
+        "bytes": 1124918
+      },
+      {
+        "id": "nacre_fx_10",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_10.png",
+        "gitBlobSha": "66d15ad16a0eb43148ed9c55a535873283bfd5fc",
+        "bytes": 264989
+      },
+      {
+        "id": "nacre_fx_11",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_11.png",
+        "gitBlobSha": "9431bd3bac8dcfa74089b97e1eeae6feb5f514cc",
+        "bytes": 1138826
+      },
+      {
+        "id": "nacre_fx_12",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_12.png",
+        "gitBlobSha": "40f4477cc9db9b95a70ab623a0f5e37be65402aa",
+        "bytes": 1493831
+      },
+      {
+        "id": "nacre_fx_13",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_13.png",
+        "gitBlobSha": "7a50c0f34af6701b74c2bd729cf3cc42ca6d4260",
+        "bytes": 854461
+      },
+      {
+        "id": "nacre_fx_14",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_14.png",
+        "gitBlobSha": "7e31080e6da51e804ac6ae84e141841f3074dd85",
+        "bytes": 1122454
+      },
+      {
+        "id": "nacre_fx_15",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_15.png",
+        "gitBlobSha": "627ae4b68410959b433d0b5ae5145477597b78df",
+        "bytes": 749976
+      },
+      {
+        "id": "nacre_fx_16",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_16.png",
+        "gitBlobSha": "477c0f5058a6a1e9de8ed30936af67311707fa8c",
+        "bytes": 481048
+      },
+      {
+        "id": "nacre_fx_17",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_17.png",
+        "gitBlobSha": "d1764f9c8030ff800ca6e1959cbfe189ed5b6752",
+        "bytes": 680540
+      },
+      {
+        "id": "nacre_fx_18",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_18.png",
+        "gitBlobSha": "a097b4a15b2ab07b4d6151099536784792b7b7cb",
+        "bytes": 863934
+      },
+      {
+        "id": "nacre_fx_19",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_19.png",
+        "gitBlobSha": "c3633520069c3aec8478d2e880ef5f4130b581be",
+        "bytes": 1724947
+      },
+      {
+        "id": "nacre_fx_20",
+        "family": "fx",
+        "path": "public/assets/armax/lot22/originals/fx/nacre_fx_20.png",
+        "gitBlobSha": "8a9832017959360810062ec497d8439c1f11d1b0",
+        "bytes": 1528267
+      }
+    ],
+    "excludedRevisions": [
+      {
+        "path": "public/assets/armax/lot22/originals/bosses/qa/nacre_boss_02_r0.png",
+        "sha": "ed2106ac6e9641cfac4494767f5d5ecace60c0a4",
+        "bytes": 1759805
+      },
+      {
+        "path": "public/assets/armax/lot22/originals/bosses/qa/nacre_boss_20_r0.png",
+        "sha": "a143dcdf132d7713e2da1777113b7a4ee123615d",
+        "bytes": 1651030
+      },
+      {
+        "path": "public/assets/armax/lot22/originals/stages/nacre_stage_11.png",
+        "sha": "4df935e73d4abf2b049080df1fe5ba8770b68b72",
+        "bytes": 2956291
+      }
+    ],
+    "expectedAbsences": [
+      {
+        "id": "nacre_boss_03",
+        "path": "public/assets/armax/lot22/originals/bosses/nacre_boss_03.png",
+        "absent": true,
+        "reason": "Blocage de génération documenté ; absence attendue, aucune image substituée."
+      },
+      {
+        "family": "props",
+        "path": "public/assets/armax/lot22/originals/props/",
+        "publishedFiles": 0,
+        "reason": "Les props ne sont pas encore publiés au checkpoint audité."
+      }
+    ]
+  },
+  "runtimeScope": {
+    "sourceFile": "src/armax-data.js",
+    "sourceBlobSha": "5fbeffeb292461fcd59b04960787bdbdf347e389",
+    "fighterIdsStaticallyDeclared": [
+      "nacre_mara_vey",
+      "nacre_tavin_rhex",
+      "nacre_ilyra_senn",
+      "nacre_keela_vess",
+      "nacre_ghoran_brakk",
+      "nacre_neral_vesh",
+      "nacre_selek_dhan",
+      "nacre_varek_hesk",
+      "nacre_dalo_ruun",
+      "nacre_nyra_korr"
+    ],
+    "stageIdsStaticallyDeclared": [
+      "nacre_stage_01",
+      "nacre_stage_02"
+    ],
+    "note": "À ce SHA historique, seules stages01/02 sont déclarées dans ce catalogue runtime. Les vingt arènes graphiques présentes dans Git ne prouvent donc pas vingt arènes disponibles dans ce runtime. L’intégration finale est postérieure et n’est pas évaluée ici.",
+    "executed": false,
+    "gameplayCorrectnessAssessed": false
+  },
+  "productionTraceability": {
+    "completeBossManifestInAuditedCommit": false,
+    "completeBossPromptsInAuditedCommit": false,
+    "latestLocalBossFilesCopiedAfterAudit": [
+      {
+        "path": "docs/armax/lot22/boss-art-manifest.json",
+        "gitBlobSha": "adb625374e0656951f59420988b1f01f8ca3a1c9"
+      },
+      {
+        "path": "docs/armax/lot22/boss-art-prompts.json",
+        "gitBlobSha": "f1dc47f0ba8b37f519f63a83d10b7b80dddf9a7f"
+      },
+      {
+        "path": "docs/armax/lot22/boss-git-blobs.json",
+        "gitBlobSha": "d21c23b9e8435a04e91134d27a4dac6c8f3277c5"
+      }
+    ],
+    "note": "Le rapport boss existe au checkpoint. Les manifestes et prompts boss complets ont été copiés dans le répertoire de travail après l’audit ; ils ne sont pas rétroactivement comptés comme fichiers du commit 2c98ae3."
+  },
+  "sourceEvidence": [
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-world.json",
+      "gitBlobSha": "7955865b7e3d1e4432b7c150be3d22ce9b496404",
+      "bytes": 332425
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre_roster_design.json",
+      "gitBlobSha": "c198c8da2d70d1a20738568341e3d7f73acd7b0d",
+      "bytes": 181065
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/README.md",
+      "gitBlobSha": "607fa9098f1e87a9e946aac1ede9ef81768bc4cf",
+      "bytes": 16715
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/NACRE_WORLD_BIBLE.md",
+      "gitBlobSha": "d3dfbce9fa11adc8021ce7a99aaec9c7342923cf",
+      "bytes": 113846
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-stage-briefs.json",
+      "gitBlobSha": "025286f201290dd8a308078d446077644bc8330a",
+      "bytes": 22668
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-opposition-briefs.json",
+      "gitBlobSha": "7d89e3cbe11321fa1043a6007de129cd54f71ca3",
+      "bytes": 41196
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre_runtime_profiles.json",
+      "gitBlobSha": "521f74a2e1f8871888b246a77971aaf2011e8d76",
+      "bytes": 3875
+    },
+    {
+      "path": "DLC/LesDettesDeNacre/nacre-world-validation.json",
+      "gitBlobSha": "37bca31f8243e922fafb1dc73eec64363c63233c",
+      "bytes": 2549
+    },
+    {
+      "path": "docs/armax/lot22/revision-generation-prompts.json",
+      "gitBlobSha": "6d1c44139356db91f26d2fddd53e50e44176ac3f",
+      "bytes": 1300
+    },
+    {
+      "path": "src/armax-data.js",
+      "gitBlobSha": "5fbeffeb292461fcd59b04960787bdbdf347e389",
+      "bytes": 2485
+    }
+  ],
+  "limitations": [
+    "Présence de blobs Git uniquement : aucune vérification visuelle, du canal alpha ou de la validité binaire PNG dans cet audit.",
+    "Aucun build, test JavaScript, lancement de navigateur, duel, équilibrage ou vérification de sauvegarde exécuté par cet audit.",
+    "Les contrôles portent sur le commit cité. Les corrections et intégrations ultérieures nécessitent leur propre SHA de publication.",
+    "Les familles, couches, pièces et phases conçues ne sont pas comptées comme animations réalisées."
+  ]
+}

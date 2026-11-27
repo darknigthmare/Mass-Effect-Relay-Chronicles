@@ -1,12 +1,8 @@
 // Original-compatible Nacre duel profiles. Tuning numbers, not canonical RPG statistics.
-const BOUNDS = {
-  nacre_mara_vey:[173,20,848,1506],nacre_tavin_rhex:[121,10,777,1499],
-  nacre_ilyra_senn:[124,4,896,1501],nacre_keela_vess:[60,8,951,1484],
-  nacre_ghoran_brakk:[29,65,997,1453],nacre_neral_vesh:[69,19,919,1512],
-};
+import { ARMAX_FIGHTER_ART, ARMAX_STAGE_ART } from './armax-expansion-data.js';
 const profile=(id,name,species,role,life,shield,speed,height,specialName,specialKind,color)=>Object.freeze({
-  id,name,species,role,life,shield,speed:speed/100,height:height/60,specialName,specialKind,color,
-  sprite:`assets/armax/lot22/originals/fighters/${id}.png`,visualBounds:BOUNDS[id]||null,
+  id,name,species,role,life,shield,speed:speed/100,height:height/40,specialName,specialKind,color,
+  sprite:`assets/armax/lot22/originals/fighters/${id}.png`,...ARMAX_FIGHTER_ART[id],
   status:'Prototype',fullKitImplemented:false,animationStatus:'pose_fixe',
 });
 export const ARMAX_FIGHTERS=Object.freeze([
@@ -21,8 +17,5 @@ export const ARMAX_FIGHTERS=Object.freeze([
   profile('nacre_dalo_ruun','Dalo Ruun','Volus','Renfort de protection',800,380,180,93,'Réserve de bouclier','shield','#6bc5d4'),
   profile('nacre_nyra_korr','Nyra Korr','Turienne','Éclaireuse de précision',900,220,290,156,'Tir repéré','projectile','#9dbdce'),
 ]);
-export const ARMAX_STAGES=Object.freeze([
-  {id:'nacre_stage_01',name:'Nacre · quai des arrivées',image:'assets/armax/lot22/originals/stages/nacre_stage_01.png'},
-  {id:'nacre_stage_02',name:'Nacre · galerie de transit',image:'assets/armax/lot22/originals/stages/nacre_stage_02.png'},
-]);
+export const ARMAX_STAGES=ARMAX_STAGE_ART;
 export const ARMAX_COMMANDS=Object.freeze({KeyJ:'L',KeyK:'M',KeyL:'H',KeyU:'S',KeyI:'super',KeyO:'throw'});
