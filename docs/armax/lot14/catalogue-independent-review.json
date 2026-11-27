@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-25",
+  "reviewer": "guide_audit",
+  "role": "independent_agent_review",
+  "scope": "Catalogue normalisé, manifeste, références, identités héritées, compteurs, liens locaux, copies natives et exclusions historiques. Aucun catalogue ou manifeste modifié par le réviseur.",
+  "verdict": "pass_structure_counts_provenance_and_documentation",
+  "reviewedFiles": [
+    {
+      "path": "docs/armax/lot14/production-catalog.json",
+      "sha256AtReview": "cead280c8104f5c0a3b56960cc65093636dd1a8619451ebb2f826ba62a133422"
+    },
+    {
+      "path": "docs/armax/lot14/manifest.json",
+      "sha256AtReview": "3e32a336b27b7e4920474d8c2942ed557f91319a966e246772308a8eb81477f0"
+    },
+    {
+      "path": "docs/armax/lot14/reference-library.json",
+      "sha256AtReview": "391c976cec9379b24b9317d1cbd2e2acb2f4306468869fe8a822d08fee378293"
+    },
+    {
+      "path": "docs/armax/lot14/catalog-additions.json",
+      "sha256AtReview": "317d0bd757acca0c951beb5a5ea57d3204f16913b8a0f79a6430eda92f4a0941"
+    }
+  ],
+  "checks": {
+    "counts": {
+      "catalogueEntries": 188,
+      "catalogueRows": 188,
+      "inheritedIdentities": 172,
+      "removedInheritedIds": [],
+      "addedIds": 16,
+      "withImage": 128,
+      "withoutImage": 60,
+      "newlyIllustratedInherited": 4,
+      "newManifestSubjects": 20,
+      "manifestPNGs": 21,
+      "selectedPNGs": 20,
+      "unselectedPNGs": 1,
+      "pngFilesOnDisk": 21,
+      "uniqueNativeOutputs": 21,
+      "certified1to1": 0,
+      "engineIntegrated": 0,
+      "historicalExclusionsPreserved": 13,
+      "categoryCounts": {
+        "personnage": 87,
+        "costume": 38,
+        "stage": 52,
+        "accessoire": 2,
+        "effet": 7,
+        "projectile": 2
+      }
+    },
+    "newlyIllustratedInheritedIds": [
+      "chr_me2_amanda_kenson",
+      "chr_mea_suvi_anwar",
+      "chr_me3_cat6_heavy",
+      "chr_me3_cat6_sniper"
+    ],
+    "addedIds": [
+      "accessory_me2_omnitool_casting_fixed",
+      "fx_me2_cryo_impact_fixed",
+      "fx_me2_incinerate_impact_fixed",
+      "fx_me2_overload_impact_fixed",
+      "fx_me2_shockwave_pulse_fixed",
+      "fx_me2_singularity_active_fixed",
+      "fx_me2_throw_impact_fixed",
+      "fx_me2_weapon_discharge_observed_fixed",
+      "projectile_me2_concussive_fixed",
+      "projectile_me2_incendiary_fixed",
+      "prop_me1_alliance_grenade_disc",
+      "stg_me3_armax_fatal_error",
+      "stg_me3_armax_lobby_north",
+      "stg_me3_omega_afterlife_command",
+      "stg_me3_omega_doru_district_walkway",
+      "stg_me3_omega_water_treatment_entry"
+    ],
+    "parentShaMatches": true,
+    "manifestAndCatalogueCountsConsistent": true,
+    "localOrTrackedCatalogueAssetLinks": 139,
+    "referenceDefinitions": 21,
+    "trackedChangesAtReview": [],
+    "stagedChangesAtReview": [],
+    "problems": []
+  },
+  "sourceManifestCopies": [
+    {
+      "file": "docs/armax/lot14/source-manifests/characters-and-grenade.json",
+      "source": "/workspace/scratch/8eb3f23d9927/lot14-characters/manifest.json",
+      "sha256": "d2c282a36d69c5a48326ff0a83e0b0fa2c809cfd9201507b77ce1dda4a5bfae5",
+      "sourceCopyIdentical": false,
+      "semanticCopyIdentical": false,
+      "differenceNote": "Seule différence sémantique : ajout dans assets[4].referencePaths de la seconde image de grenade effectivement fournie au générateur. Correction de provenance attendue, vérifiée contre le prompt ; aucun PNG modifié."
+    },
+    {
+      "file": "docs/armax/lot14/source-manifests/vfx.json",
+      "source": "/workspace/scratch/8eb3f23d9927/lot14-vfx/vfx-production-manifest.json",
+      "sha256": "99d3b1b6371ff480ff50535b67fa90b8b29cf0c2fd23d878b8684fb06f625808",
+      "sourceCopyIdentical": false,
+      "semanticCopyIdentical": true,
+      "differenceNote": "Différence de sérialisation seulement ; objets JSON identiques."
+    },
+    {
+      "file": "docs/armax/lot14/source-manifests/vfx-technical-qa.json",
+      "source": "/workspace/scratch/8eb3f23d9927/lot14-vfx/technical-qa.json",
+      "sha256": "6c06daac9ef098f8bb685631d473619bdcc22210eb058a02688046d41cc5d2a8",
+      "sourceCopyIdentical": true
+    },
+    {
+      "file": "docs/armax/lot14/source-manifests/stages.json",
+      "sha256": "3e6dfea432a76526d7a607cdfa8aac7ce1b7b66bda67a2eaae38fa38d006e4f7",
+      "jsonReadable": true,
+      "sourceCopyIdentical": null
+    }
+  ],
+  "manualFindings": [],
+  "resolvedFindings": [
+    {
+      "id": "DOC-GRENADE-INPUTS",
+      "state": "verified_resolved",
+      "finding": "Les deux images effectivement transmises pour la grenade sont désormais présentes dans referencePaths, dans le même ordre que le prompt. La page officielle et l’extrait embarqué sont conservés dans la provenance."
+    },
+    {
+      "id": "DOC-OMNITOOL-INPUTS",
+      "severity": "P2",
+      "state": "verified_resolved",
+      "assetId": "accessory_me2_omnitool_casting_fixed",
+      "revision": "R1",
+      "finding": "R1 a été généré en édition avec deux inputs ordonnés : le candidat R0 puis sentinel_01.jpg. Le manifeste normalisé ne liste que la capture Sentinel. Le chemin de travail de R0 a ensuite été remplacé par R1, ce qui impose de pointer vers la copie historique préservée pour éviter une auto-référence.",
+      "requestedCorrection": "Ajouter les deux inputs ordonnés avec le fichier historique R0 et sa somme SHA-256, puis la référence Sentinel. Conserver le R0 selected=false.",
+      "expectedInputs": [
+        {
+          "order": 1,
+          "role": "edit_source_candidate",
+          "repositoryPath": "public/assets/armax/lot14/history/prop-me2-omnitool-casting-v1.png",
+          "sha256": "f020959eb611bda9f1621e82ff5dcb1f439024147d5aec429a11a66553354379"
+        },
+        {
+          "order": 2,
+          "role": "official_visual_reference",
+          "referenceId": "ref_ea_me2_sentinel_press",
+          "localPath": "/workspace/scratch/8eb3f23d9927/lot14-vfx/references/sentinel_01.jpg",
+          "sha256": "ca873dec778090cb668b2d7610ffc3b947e64be3b0ae3abbd9ec9478570bae82"
+        }
+      ],
+      "resolutionEvidence": "R1 orderedGenerationInputs contient exactement R0 history puis Sentinel. Les deux fichiers existent et leurs SHA-256 correspondent aux valeurs enregistrées ; la note explique le remplacement ultérieur du chemin de travail. R0 reste selected=false."
+    },
+    {
+      "id": "DOC-INDEPENDENT-REVIEW-LINKS",
+      "severity": "P2",
+      "state": "verified_resolved",
+      "finding": "Les états review.independentReview sont encore pending dans le manifeste au moment de la revue. La revue des cinq personnages/accessoire existe ; le parent conduit la revue des effets et décors.",
+      "requestedCorrection": "Rattacher les rapports terminés avant publication en conservant les réserves, Prototype et fidelity1to1Validated=false. Ne pas remplacer une revue artistique par la seule validation des liens.",
+      "resolutionEvidence": "Les21 entrées du manifeste pointent vers docs/armax/lot14/independent-art-review.json. Le rapport contient21 clés (catalogId, revision, path) uniques correspondant exactement aux21 PNG, réserves conservées."
+    },
+    {
+      "id": "DOC-MORINTH-ACTION-NAME",
+      "severity": "P2",
+      "state": "verified_resolved",
+      "finding": "Le libellé producteur Push ne correspondait pas au nom du kit lié.",
+      "resolutionEvidence": "Recul biotique est employé dans README, bible intégrée, manifeste, catalogue, remaining-work et associations. Action ID armax-morinth-me2-special-3, input623S et SHA de la source lot04 vérifiés. reference-library.sourceCorrections conserve Push comme ancien libellé du snapshot producteur ; Throw reste une famille visuelle candidate."
+    },
+    {
+      "id": "DOC-GUIDE-SECTIONS-14-15",
+      "severity": "P3",
+      "state": "verified_resolved",
+      "finding": "Le résumé des rubriques omettait14 et15, présentes dans les associations des décors.",
+      "resolutionEvidence": "Le README énumère désormais02,03,13,14,15,16,17,18,26,27, en cohérence avec bible-asset-associations.json."
+    }
+  ],
+  "scopeAndIdentityFindings": [
+    "Les172 IDs hérités, noms, catégories, opus, DLC, variantes et usages prévus sont identiques au lot13. Aucune identité retirée.",
+    "Les quatre fiches héritées nouvellement illustrées sont Kenson, Suvi, CAT6 Heavy et CAT6 Sniper ; Suvi conserve narration_support et sa pose assise est explicitement nommée.",
+    "Les16 ajouts sont cinq sous-zones de décors, sept effets, deux projectiles et deux accessoires ; ils ne sont pas présentés comme seize anciens manques résolus.",
+    "Les21 PNG correspondent à20 sujets et20 images sélectionnées, plus le R0 omni-outil écarté. Les21 chemins sont uniques et les copies correspondent aux sorties natives.",
+    "Les128 fiches avec image et60 sans image sont des mesures de disponibilité de fichiers, pas de fidélité, animation ou intégration.",
+    "Les13 exclusions historiques sont intactes et absentes des sujets générés du lot14. Les anciens fichiers suivis par Git ne présentent aucune modification au moment du contrôle."
+  ],
+  "notCertified": [
+    "Fidélité1:1 des sujets",
+    "Intégration moteur ou animation",
+    "Jouabilité des décors et continuité navigable",
+    "Absence de modification des captures communautaires",
+    "Disponibilité future des caches de références externes"
+  ],
+  "publicationCondition": "Aucun suivi documentaire ouvert de cette revue. Les statuts Prototype, les réserves artistiques et les drapeaux de fidélité1:1 et moteur restent inchangés. Zéro dépendance d’action complète et zéro scène narrative clôturées ; les36 plans restent des briefs.",
+  "followupVerification": {
+    "date": "2026-11-25",
+    "reviewer": "guide_audit",
+    "resolvedFindingIds": [
+      "DOC-OMNITOOL-INPUTS",
+      "DOC-INDEPENDENT-REVIEW-LINKS"
+    ],
+    "orderedInputsPresentForAll21Entries": true,
+    "omnitoolR1InputOrderAndHashesVerified": true,
+    "reviewedImageKeysMatchManifest21of21": true,
+    "openDocumentationFindings": 0,
+    "verifiedFiles": [
+      {
+        "path": "docs/armax/lot14/manifest.json",
+        "sha256": "3e32a336b27b7e4920474d8c2942ed557f91319a966e246772308a8eb81477f0"
+      },
+      {
+        "path": "docs/armax/lot14/independent-art-review.json",
+        "sha256": "e66e0b00b78fb22d7ae9d123b4235cdd0843c2bc6131688b29f75b4f1109568a"
+      }
+    ]
+  },
+  "documentationReview": {
+    "date": "2026-11-25",
+    "reviewer": "guide_audit",
+    "result": "pass",
+    "correctionsVerified": [
+      "DOC-MORINTH-ACTION-NAME",
+      "DOC-GUIDE-SECTIONS-14-15"
+    ],
+    "currentActionNameMatchesSource": true,
+    "producerOriginalLabelPreservedAsCorrectionHistory": true,
+    "sourceSha256Verified": true,
+    "fullyClosedActionDependencies": 0,
+    "completeNarrativeScenesProduced": 0,
+    "narrativeBriefsRemainOpen": 36,
+    "fidelity1to1AndRuntimeClaimsRemainFalse": true,
+    "countsAuditRepeated": false,
+    "openDocumentationFindings": 0,
+    "verifiedFiles": [
+      {
+        "path": "docs/armax/lot14/README.md",
+        "sha256": "2c49ddab76da3da7e8bf91fc5f6d1a787b2eca32c042c6e86f6e9597d2c60895"
+      },
+      {
+        "path": "docs/armax/lot14/MANQUANTS_2026-11-25.md",
+        "sha256": "00c9c1978802113ffd095800176ee66544ec2f2cc1786d28bea105ffb5611082"
+      },
+      {
+        "path": "docs/armax/lot14/REFERENCE_GAPS.md",
+        "sha256": "e855d8b4b223542bac9dcdefc1caa732ea604ae7778e1297ea247ffc3f528c9a"
+      },
+      {
+        "path": "docs/armax/lot14/bible-asset-associations.json",
+        "sha256": "e62a9a053e256e2af5e3f7ecc79114e99e97a972849a1977bf28d463b8eb7fee"
+      },
+      {
+        "path": "docs/armax/lot14/remaining-work.json",
+        "sha256": "cde809aabb0b58c84d79bdeb061618ad724ccc65d22c7053d07887e5f02a4ab7"
+      },
+      {
+        "path": "docs/armax/lot14/manifest.json",
+        "sha256": "9091d588bbd20ecd89330ad0ee1dd5a80ff5ce6ea0871f4d72735c3c56ea9e79"
+      },
+      {
+        "path": "docs/armax/lot14/production-catalog.json",
+        "sha256": "fefbe24e354b75c86ee3ca4b3fb4cf9bdfa17ea99cfd13c6f73e7099225ee973"
+      },
+      {
+        "path": "docs/armax/lot14/reference-library.json",
+        "sha256": "b2777dbd1e5f8f7fa0591508a39942f918465732444b352bbd2fca9303dca84b"
+      },
+      {
+        "path": "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md",
+        "sha256": "783fc9b6f66ec5c55664ad8969dcf297624a2125be34802caf7c4e9154c5c7a8"
+      }
+    ]
+  }
+}

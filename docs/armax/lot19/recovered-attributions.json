@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "reportId": "ARMAX-LOT19-RECOVERED-ATTRIBUTIONS-2026-11-27",
+  "reviewedOn": "2026-11-27",
+  "status": "proposition_documentee_pour_integration_du_catalogue",
+  "scope": "Comparaison visuelle de trois PNG historiques non attribués avec six captures ME3 inspectées. Ce rapport ne modifie ni catalogue, ni index, ni manifeste historique, ni pixels.",
+  "repository": {
+    "branch": "feat/armax-missing-lot13-20261124",
+    "baseCommit": "231ffde14652932ffaa667c40315f1232f802d4a"
+  },
+  "historicalEvidence": {
+    "recoveryAuditPath": "docs/armax/lot17/recovery-audit.json",
+    "recoveryAuditSha256AtBase": "08d6bf4fbd4fa9dfc80ec5c79726fc656bf9e348e332043bdb417fbd065fe1e7",
+    "lot18ManifestPath": "docs/armax/lot18/manifest.json",
+    "historyPreservation": "Les deux hypothèses de nom historiques étaient non sélectionnées et catalogId:null. Les nouvelles propositions sont consignées ici sans réécrire cette preuve historique."
+  },
+  "selectionMeaning": "selected:true signifie candidat proposé pour association au catalogue. Cela ne signifie ni fidélité 1:1 validée ni asset intégré au moteur. L’application au catalogue et au classeur est une étape de consolidation distincte.",
+  "summary": {
+    "historicalPngReviewed": 3,
+    "proposedAssociations": 2,
+    "unresolvedPng": 1,
+    "existingCatalogEntriesNewlyIllustratedIfApplied": 2,
+    "newCatalogIdentities": 0,
+    "newPngFiles": 0,
+    "newImageGenerationCalls": 0,
+    "pngBytesModified": 0,
+    "fidelity1to1Validations": 0,
+    "engineIntegrations": 0
+  },
+  "accountingRules": [
+    "Les deux fichiers sont déjà présents dans le lot17 et récupérés/consolidés historiquement au lot18. Ajouter leurs associations ne crée aucun fichier PNG.",
+    "Conserver imageLot:lot17 et attributionLot:lot19. PNG lot19 = 0 pour ces deux fiches ; ne pas les compter parmi les nouvelles générations du lot19.",
+    "Préserver latestGenerationAttempt historique et les autres données de génération. La résolution d’identité n’est pas un nouvel essai.",
+    "Ajouter les chemins historiques exacts aux assetFiles lors de la consolidation ; ne pas recopier ou renommer les PNG sous le lot19.",
+    "Ne pas créer de nouvelle identité catalogue et ne pas modifier le statut de fidélité ni l’intégration moteur.",
+    "Jenkins et le fichier de marine restent non attribués."
+  ],
+  "method": {
+    "historicalRecovery": "git show du commit de base vers un cache externe au dépôt ; égalité exacte des octets et du SHA-256 vérifiée.",
+    "comparison": "Ouverture effective des trois PNG et des six captures ; comparaison du casque, du respirateur, de l’asymétrie des épaules, des sangles, du drapé et de l’armure dans les régions couvertes.",
+    "sourceProvenance": "Les captures ont été récupérées via les liens CDN tirés des pages/catégories du wiki. Les noms de fichiers et contextes de jeu soutiennent ME3. Accès direct aux pages/à l’API de métadonnées bloqué ou indisponible pendant cette passe ; aucune métadonnée d’uploader ni absence de mod certifiée.",
+    "notPerformed": [
+      "test en jeu",
+      "comparaison de toutes les directions",
+      "validation des jambes/pieds sur une source exacte",
+      "récupération de prompts ou de reçus originaux"
+    ]
+  },
+  "associations": [
+    {
+      "catalogId": "chr_me3_zaal_koris",
+      "path": "public/assets/armax/lot17/recovered/candidate-quarian-purple-e3b9a976.png",
+      "sha256": "4569cb691178525092e23425301b613e6710f80a1c9fb47bb0f48ecf785363ae",
+      "bytes": 1432969,
+      "selected": true,
+      "recoveryId": "lot17-recovered-e3b9a976",
+      "imageLot": "lot17",
+      "attributionLot": "lot19",
+      "cachePath": "/tmp/armax-lot17-identity-review-20261127/candidate-quarian-purple-e3b9a976.png",
+      "previousHypothesis": {
+        "catalogId": "chr_me3_han_gerrel",
+        "source": "docs/armax/lot17/recovery-audit.json",
+        "status": "hypothese_non_selectionnee",
+        "originalCatalogId": null,
+        "originalSelected": false
+      },
+      "originalGeneration": {
+        "prompt": null,
+        "receipt": null,
+        "promptToImageVerified": false,
+        "generationDate": null,
+        "note": "Métadonnées non récupérées ; ne pas inventer de prompt, de reçu ni de nouvel essai de génération."
+      },
+      "historicalBytesVerifiedAgainstGit": true,
+      "technicalInspection": {
+        "format": "PNG",
+        "mode": "RGBA",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "frames": 1,
+        "alphaRange": [
+          0,
+          254
+        ]
+      },
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newPngFile": false,
+      "newGeneration": false,
+      "name": "Zaal’Koris vas Qwib-Qwib",
+      "work": "ME3",
+      "variant": "Combinaison de l’amiral",
+      "attributionStatus": "association_candidate_proposee",
+      "referenceIds": [
+        "ref-me3-koris-body",
+        "ref-me3-koris-face",
+        "ref-me3-koris-context"
+      ],
+      "reviewNotes": [
+        "Le visage masqué et la capuche violette correspondent aux vues nommées de Koris. Le respirateur circulaire présente le même petit centre bleu/violet lumineux.",
+        "Deux épaulières de taille voisine, anguleuses et segmentées, sont visibles dans le PNG comme sur la référence de Koris. La large épaule gauche grise propre à la référence de Gerrel n’est pas présente.",
+        "Le drapé sombre pourpre, la sangle descendante depuis l’épaule droite et ses deux attaches rectangulaires, puis le raccord circulaire du harnais au torse, concordent.",
+        "Les bandes courbes de l’abdomen, les pochettes des bras, les avant-bras et la ceinture à plaques verticales concordent dans les zones montrées par la capture.",
+        "La capture de Rannoch et le portrait rapproché corroborent le casque et la combinaison de la vue du Normandy. L’ensemble soutient la variante ME3 demandée, sans mélanger la tenue ME2.",
+        "La convergence de ces traits soutient Koris. L’hypothèse historique Han’Gerrel est infirmée pour cette image ; ce n’était pas une association sélectionnée à remplacer."
+      ],
+      "limits": [
+        "Association candidate fondée sur la convergence de plusieurs éléments visibles du costume, du casque et du contexte ME3 ; elle ne démontre pas une fidélité artistique intégrale 1:1.",
+        "Les références inspectées ne couvrent pas les genoux, les mollets ni les pieds. Leur géométrie et leur palette dans le PNG restent non vérifiées.",
+        "Le dos, les autres orientations, les poses animées et les détails fins de textures ne sont pas validés par ces vues.",
+        "Le prompt original et le reçu original de génération ne sont pas récupérés. Aucune preuve prompt→image ni date de génération exacte n’est reconstruite.",
+        "Les captures proviennent d’un wiki communautaire. Les fichiers et contextes visibles concordent avec ME3 ; les métadonnées de mise en ligne/modification du fichier ne sont pas accessibles, donc une absence absolue de mod n’est pas certifiée.",
+        "Les différences de pose, lumière et rendu du PNG empêchent de considérer les teintes comme un étalonnage exact. Les contrôles techniques historiques ne deviennent pas une validation artistique ou en jeu."
+      ],
+      "sourceUrls": [
+        "https://static.wikia.nocookie.net/masseffect/images/0/0e/Me3_koris.png",
+        "https://static.wikia.nocookie.net/masseffect/images/8/88/ME3_a._koris_boxshot.png",
+        "https://static.wikia.nocookie.net/masseffect/images/e/e5/Rannoch_-_koris_hunted.png"
+      ],
+      "sourcePageUrls": [
+        "https://masseffect.fandom.com/wiki/Zaal%27Koris_vas_Qwib-Qwib"
+      ]
+    },
+    {
+      "catalogId": "chr_me3_han_gerrel",
+      "path": "public/assets/armax/lot17/recovered/candidate-quarian-maroon-5c7ec3e1.png",
+      "sha256": "cf6e6ee204ce60a021e6a7db4a9db09b410e6d795026706b3d2a7fc0c0940bca",
+      "bytes": 1550592,
+      "selected": true,
+      "recoveryId": "lot17-recovered-5c7ec3e1",
+      "imageLot": "lot17",
+      "attributionLot": "lot19",
+      "cachePath": "/tmp/armax-lot17-identity-review-20261127/candidate-quarian-maroon-5c7ec3e1.png",
+      "previousHypothesis": {
+        "catalogId": "chr_me3_zaal_koris",
+        "source": "docs/armax/lot17/recovery-audit.json",
+        "status": "hypothese_non_selectionnee",
+        "originalCatalogId": null,
+        "originalSelected": false
+      },
+      "originalGeneration": {
+        "prompt": null,
+        "receipt": null,
+        "promptToImageVerified": false,
+        "generationDate": null,
+        "note": "Métadonnées non récupérées ; ne pas inventer de prompt, de reçu ni de nouvel essai de génération."
+      },
+      "historicalBytesVerifiedAgainstGit": true,
+      "technicalInspection": {
+        "format": "PNG",
+        "mode": "RGBA",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "frames": 1,
+        "alphaRange": [
+          0,
+          254
+        ]
+      },
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newPngFile": false,
+      "newGeneration": false,
+      "name": "Han’Gerrel vas Neema",
+      "work": "ME3",
+      "variant": "Combinaison de l’amiral",
+      "attributionStatus": "association_candidate_proposee",
+      "referenceIds": [
+        "ref-me3-gerrel-body",
+        "ref-me3-gerrel-face",
+        "ref-me3-gerrel-context"
+      ],
+      "reviewNotes": [
+        "La capuche et le drapé bordeaux correspondent aux vues nommées de Gerrel. Le respirateur central est sombre, sans le petit centre bleu lumineux observé sur Koris.",
+        "La grande épaulière gauche gris clair, plate et plus large que la droite, crée la même asymétrie sur le PNG et sur la capture de Gerrel.",
+        "Le cadre clair du casque, la découpe de la visière, les segments du respirateur et l’empiècement sombre sous le menton concordent dans les vues rapprochées.",
+        "Le harnais avec deux attaches rectangulaires, le raccord rond du torse, l’armure abdominale grise à bandes courbes, les pochettes des bras et la ceinture segmentée concordent.",
+        "Le drapé bordeaux réapparaît au haut des cuisses sur le PNG comme sur la capture de la salle de guerre. Les scènes du Normandy SR-2 corroborent le contexte ME3.",
+        "La convergence de ces traits soutient Gerrel. L’hypothèse historique Zaal’Koris est infirmée pour cette image ; ce n’était pas une association sélectionnée à remplacer."
+      ],
+      "limits": [
+        "Association candidate fondée sur la convergence de plusieurs éléments visibles du costume, du casque et du contexte ME3 ; elle ne démontre pas une fidélité artistique intégrale 1:1.",
+        "Les références inspectées ne couvrent pas les genoux, les mollets ni les pieds. Leur géométrie et leur palette dans le PNG restent non vérifiées.",
+        "Le dos, les autres orientations, les poses animées et les détails fins de textures ne sont pas validés par ces vues.",
+        "Le prompt original et le reçu original de génération ne sont pas récupérés. Aucune preuve prompt→image ni date de génération exacte n’est reconstruite.",
+        "Les captures proviennent d’un wiki communautaire. Les fichiers et contextes visibles concordent avec ME3 ; les métadonnées de mise en ligne/modification du fichier ne sont pas accessibles, donc une absence absolue de mod n’est pas certifiée.",
+        "Les différences de pose, lumière et rendu du PNG empêchent de considérer les teintes comme un étalonnage exact. Les contrôles techniques historiques ne deviennent pas une validation artistique ou en jeu."
+      ],
+      "sourceUrls": [
+        "https://static.wikia.nocookie.net/masseffect/images/b/be/ME3_gerrel.png",
+        "https://static.wikia.nocookie.net/masseffect/images/0/0f/ME3_a._gerrel_boxshot.png",
+        "https://static.wikia.nocookie.net/masseffect/images/5/53/Normandy_-_admirals_bickering.png"
+      ],
+      "sourcePageUrls": [
+        "https://masseffect.fandom.com/wiki/Han%27Gerrel_vas_Neema"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "catalogId": null,
+      "path": "public/assets/armax/lot17/recovered/candidate-alliance-marine-1b151607.png",
+      "sha256": "87a03bd987ab9ae3e6b1c036f6fa84b620595e63e194c1f4c47484f4d73dac33",
+      "bytes": 1557054,
+      "selected": false,
+      "recoveryId": "lot17-recovered-1b151607",
+      "imageLot": "lot17",
+      "attributionLot": "lot19",
+      "cachePath": "/tmp/armax-lot17-identity-review-20261127/candidate-alliance-marine-1b151607.png",
+      "previousHypothesis": {
+        "catalogId": "chr_me1_jenkins",
+        "source": "docs/armax/lot17/recovery-audit.json",
+        "status": "hypothese_non_selectionnee",
+        "originalCatalogId": null,
+        "originalSelected": false
+      },
+      "originalGeneration": {
+        "prompt": null,
+        "receipt": null,
+        "promptToImageVerified": false,
+        "generationDate": null,
+        "note": "Métadonnées non récupérées ; ne pas inventer de prompt, de reçu ni de nouvel essai de génération."
+      },
+      "historicalBytesVerifiedAgainstGit": true,
+      "technicalInspection": {
+        "format": "PNG",
+        "mode": "RGBA",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "frames": 1,
+        "alphaRange": [
+          0,
+          254
+        ]
+      },
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "newPngFile": false,
+      "newGeneration": false,
+      "attributionStatus": "non_resolu",
+      "possibleCatalogIds": [
+        "chr_me1_jenkins"
+      ],
+      "referenceIds": [],
+      "sourceUrls": [],
+      "reviewNotes": [
+        "Le PNG montre un humain en armure brune/grise de marine, casque ouvert, corps entier et visage visible.",
+        "Aucune référence exacte inspectée de Richard L. Jenkins à Eden Prime n’est disponible dans cette comparaison. Le visage et la variante d’armure ne peuvent donc pas être établis.",
+        "Les références des deux amiraux ne fournissent aucune preuve sur ce marine. Une silhouette militaire générique et une ancienne hypothèse de nom ne suffisent pas à attribuer Jenkins.",
+        "Conserver catalogId:null et selected:false. chr_me1_jenkins reste sans image attribuée. Ne pas promouvoir ce fichier en personnage générique jouable pour contourner ce manque de preuve."
+      ],
+      "limits": [
+        "Identité, opus/période et tenue exacte non prouvés.",
+        "Prompt et reçu originaux absents.",
+        "Aucune fidélité 1:1 ni intégration moteur validée."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "id": "ref-me3-gerrel-body",
+      "sourceType": "capture_de_jeu_publiee_sur_wiki_communautaire",
+      "sourcePageUrl": "https://masseffect.fandom.com/wiki/Han%27Gerrel_vas_Neema",
+      "url": "https://static.wikia.nocookie.net/masseffect/images/b/be/ME3_gerrel.png",
+      "cachePath": "/workspace/scratch/e65d4789181d/reference_cache/armax-lot19/ME3_gerrel.webp",
+      "cacheIsTemporaryAndNotRepositoryDependency": true,
+      "bytes": 96778,
+      "sha256": "3aba05ec5bbf4c180e15c8183e61d25f5b750095c43300966501a474beccfe1d",
+      "format": "WEBP",
+      "dimensions": [
+        600,
+        720
+      ],
+      "visuallyInspected": true,
+      "visualCoverage": "Han’Gerrel, ME3 : tête, torse, bras, ceinture et haut des cuisses dans la salle de guerre du Normandy SR-2.",
+      "work": "ME3",
+      "acquisitionNote": "Octets CDN inspectés. Le serveur a fourni du WebP derrière une URL portant une extension PNG ; aucune conversion locale effectuée."
+    },
+    {
+      "id": "ref-me3-gerrel-face",
+      "sourceType": "capture_de_jeu_publiee_sur_wiki_communautaire",
+      "sourcePageUrl": "https://masseffect.fandom.com/wiki/Han%27Gerrel_vas_Neema",
+      "url": "https://static.wikia.nocookie.net/masseffect/images/0/0f/ME3_a._gerrel_boxshot.png",
+      "cachePath": "/workspace/scratch/e65d4789181d/reference_cache/armax-lot19/ME3_a._gerrel_boxshot.webp",
+      "cacheIsTemporaryAndNotRepositoryDependency": true,
+      "bytes": 390462,
+      "sha256": "ee708e9e2d92ff9170354a5adea2eb0e04efb5d641dd0698e8dc3f190f95ca0c",
+      "format": "WEBP",
+      "dimensions": [
+        2160,
+        2160
+      ],
+      "visuallyInspected": true,
+      "visualCoverage": "Han’Gerrel, ME3 : gros plan du casque, capuche bordeaux et respirateur sombre.",
+      "work": "ME3",
+      "acquisitionNote": "Octets CDN inspectés. Le serveur a fourni du WebP derrière une URL portant une extension PNG ; aucune conversion locale effectuée."
+    },
+    {
+      "id": "ref-me3-gerrel-context",
+      "sourceType": "capture_de_jeu_publiee_sur_wiki_communautaire",
+      "sourcePageUrl": "https://masseffect.fandom.com/wiki/Han%27Gerrel_vas_Neema",
+      "url": "https://static.wikia.nocookie.net/masseffect/images/5/53/Normandy_-_admirals_bickering.png",
+      "cachePath": "/workspace/scratch/e65d4789181d/reference_cache/armax-lot19/Normandy_-_admirals_bickering.webp",
+      "cacheIsTemporaryAndNotRepositoryDependency": true,
+      "bytes": 765922,
+      "sha256": "83e800d5bca17d8d9fe1f84848caa605b72bbdd61e9bca33fcc00eccfb276f8d",
+      "format": "WEBP",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "visuallyInspected": true,
+      "visualCoverage": "Han’Gerrel, ME3 : profil et torse dans la salle de guerre avec les autres amiraux. Pas de jambes complètes.",
+      "work": "ME3",
+      "acquisitionNote": "Octets CDN inspectés. Le serveur a fourni du WebP derrière une URL portant une extension PNG ; aucune conversion locale effectuée."
+    },
+    {
+      "id": "ref-me3-koris-body",
+      "sourceType": "capture_de_jeu_publiee_sur_wiki_communautaire",
+      "sourcePageUrl": "https://masseffect.fandom.com/wiki/Zaal%27Koris_vas_Qwib-Qwib",
+      "url": "https://static.wikia.nocookie.net/masseffect/images/0/0e/Me3_koris.png",
+      "cachePath": "/workspace/scratch/e65d4789181d/reference_cache/armax-lot19/Me3_koris.webp",
+      "cacheIsTemporaryAndNotRepositoryDependency": true,
+      "bytes": 88834,
+      "sha256": "08351194fe38f3ab2f878a49b06d3f36ccb34155281f3e9d614291bd5ab1164a",
+      "format": "WEBP",
+      "dimensions": [
+        600,
+        720
+      ],
+      "visuallyInspected": true,
+      "visualCoverage": "Zaal’Koris, ME3 : tête, torse, bras, ceinture et haut des cuisses dans le Normandy SR-2.",
+      "work": "ME3",
+      "acquisitionNote": "Octets CDN inspectés. Le serveur a fourni du WebP derrière une URL portant une extension PNG ; aucune conversion locale effectuée."
+    },
+    {
+      "id": "ref-me3-koris-face",
+      "sourceType": "capture_de_jeu_publiee_sur_wiki_communautaire",
+      "sourcePageUrl": "https://masseffect.fandom.com/wiki/Zaal%27Koris_vas_Qwib-Qwib",
+      "url": "https://static.wikia.nocookie.net/masseffect/images/8/88/ME3_a._koris_boxshot.png",
+      "cachePath": "/workspace/scratch/e65d4789181d/reference_cache/armax-lot19/ME3_a._koris_boxshot.webp",
+      "cacheIsTemporaryAndNotRepositoryDependency": true,
+      "bytes": 341162,
+      "sha256": "a3303042ddb421c15a42ece8a296235a287d124dc1fc81270f6028cc0302ce0f",
+      "format": "WEBP",
+      "dimensions": [
+        2160,
+        2160
+      ],
+      "visuallyInspected": true,
+      "visualCoverage": "Zaal’Koris, ME3 : gros plan du casque, capuche pourpre et respirateur bleu/violet lumineux.",
+      "work": "ME3",
+      "acquisitionNote": "Octets CDN inspectés. Le serveur a fourni du WebP derrière une URL portant une extension PNG ; aucune conversion locale effectuée."
+    },
+    {
+      "id": "ref-me3-koris-context",
+      "sourceType": "capture_de_jeu_publiee_sur_wiki_communautaire",
+      "sourcePageUrl": "https://masseffect.fandom.com/wiki/Zaal%27Koris_vas_Qwib-Qwib",
+      "url": "https://static.wikia.nocookie.net/masseffect/images/e/e5/Rannoch_-_koris_hunted.png",
+      "cachePath": "/workspace/scratch/e65d4789181d/reference_cache/armax-lot19/Rannoch_-_koris_hunted.webp",
+      "cacheIsTemporaryAndNotRepositoryDependency": true,
+      "bytes": 430326,
+      "sha256": "6e228f7b93e018ae8ffb27e80e8b58d1f9d9e5ee92bf8346ec08408c6c8dbe25",
+      "format": "WEBP",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "visuallyInspected": true,
+      "visualCoverage": "Zaal’Koris, ME3 : tête et torse armé sur Rannoch, contexte de mission. Pas de jambes complètes.",
+      "work": "ME3",
+      "acquisitionNote": "Octets CDN inspectés. Le serveur a fourni du WebP derrière une URL portant une extension PNG ; aucune conversion locale effectuée."
+    }
+  ],
+  "verification": {
+    "reportJsonParsed": true,
+    "historicalPngSha256Matched": 3,
+    "historicalPngBytesMatchedGit": 3,
+    "referenceFilesReadAndHashed": 6,
+    "associationCatalogIdsExist": true,
+    "scope": "Contrôles de fichiers et cohérence documentaire ; pas de certification artistique."
+  }
+}

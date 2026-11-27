@@ -1,0 +1,968 @@
+{
+  "schemaVersion": 1,
+  "project": "Mass Effect — Relay Chronicles",
+  "mode": "Armax Relay Clash",
+  "updatedOn": "2026-11-27",
+  "timezone": "Europe/Paris",
+  "artifactRole": "specification_de_conception_non_importee_par_le_moteur",
+  "extension": "02",
+  "sourceSections": [
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67
+  ],
+  "sourceManifest": "docs/armax/guides/source-manifest.json",
+  "designStatus": "Défini",
+  "implementationStatus": "non_livre_par_cette_revision",
+  "gameplayValidated": false,
+  "fidelity1to1Validated": false,
+  "implementedFeaturesClaimed": 0,
+  "newImagesClaimed": 0,
+  "animationsProduced": 0,
+  "parameterStatus": "hypotheses_de_reglage_a_mesurer_et_tester",
+  "stateAxes": {
+    "discovery": [
+      "secret",
+      "indice",
+      "identifie"
+    ],
+    "entitlement": [
+      "aucun",
+      "a_reclamer",
+      "permanent",
+      "temporaire_actif",
+      "verification",
+      "expire",
+      "retire"
+    ],
+    "technical": [
+      "pret",
+      "installation_requise",
+      "version_incompatible",
+      "indisponible"
+    ],
+    "matchCompatibility": [
+      "compatible",
+      "mode_interdit",
+      "periode_interdite",
+      "dependance",
+      "doublon"
+    ]
+  },
+  "stateResolution": {
+    "order": [
+      "mask_discovery",
+      "derive_rights_from_independent_sources",
+      "choose_useful_next_action",
+      "display_technical_and_match_reasons"
+    ],
+    "singleUnlockedBoolean": false,
+    "permanentSourceSurvivesTemporaryExpiry": true,
+    "unknownTemporaryDoesNotInvalidateKnownPermanent": true,
+    "allFourAxesRequiredBeforeSelection": true,
+    "productionStatusIsNotEntitlement": true
+  },
+  "visualCharter": {
+    "id": "E2-UI-DOSSIER",
+    "fidelityClass": "original_compatible",
+    "metaphor": "interface_de_dossiers_de_simulation_non_diegetique",
+    "palette": {
+      "background": "#071A26",
+      "text": "#E7F6FA",
+      "focus": "#8FE7FA"
+    },
+    "secret": "embleme_neutre_sans_silhouette_nom_voix",
+    "hint": "silhouette_noire_seulement_si_politique_autorise",
+    "unlocked": "portrait_revele_badge_collection",
+    "technicalError": "icone_distincte_du_verrou_progression",
+    "feedback": [
+      "texte",
+      "forme",
+      "icone",
+      "focus"
+    ],
+    "reducedMotion": "apparition_sans_scan_ni_flash",
+    "revealDoesNotBlockSelection": true
+  },
+  "contentSlots": [
+    {
+      "id": "E2-SLOT-LEGION-ME2",
+      "catalogEntryId": "chr_me2_legion_standard",
+      "category": "personnage",
+      "work": "ME2",
+      "initialDiscovery": "secret",
+      "ruleId": "E2-RULE-LEGION",
+      "technicalStatus": "a_etablir_par_preuve_runtime",
+      "nativeKitEntitiesIncluded": true,
+      "storyLoan": "E1-BONUS-08",
+      "loanGrantsOwnership": false,
+      "campaignRecruitmentEffect": false
+    },
+    {
+      "id": "E2-SLOT-KESTREL-F-ME2",
+      "catalogEntryId": "cst_me2_shepard_female_kestrel",
+      "category": "costume",
+      "work": "ME2",
+      "initialDiscovery": "identifie",
+      "ruleId": "E2-RULE-KESTREL-F",
+      "parentProfile": "Shepard_feminin_ME2",
+      "retainWhenParentUnavailable": true,
+      "cosmeticStatsChange": false
+    },
+    {
+      "id": "E2-SLOT-TUCHANKA-ME2",
+      "catalogEntryId": "stg_me2_tuchanka_urdnot",
+      "category": "stage",
+      "work": "ME2",
+      "initialDiscovery": "indice",
+      "ruleId": "E2-RULE-TUCHANKA",
+      "includesComfortPresentations": [
+        "vivante",
+        "reduite",
+        "statique"
+      ],
+      "technicalStatus": "assemblage_et_runtime_a_verifier",
+      "assetPresenceDoesNotProvePlayable": true
+    },
+    {
+      "id": "E2-MODE-BOSS-RUSH",
+      "category": "mode",
+      "ruleId": null,
+      "decision": "condition3rencontres_distinctes;identites_boss_a_definir_avant_integration",
+      "runtimeEnabled": false,
+      "requiredMatchesAccessibleWithoutMode": true
+    }
+  ],
+  "unlockRules": [
+    {
+      "id": "E2-RULE-LEGION",
+      "grants": [
+        "E2-SLOT-LEGION-ME2"
+      ],
+      "expression": {
+        "op": "all",
+        "children": [
+          {
+            "op": "event",
+            "id": "initiation_terminee"
+          },
+          {
+            "op": "event",
+            "id": "bonus_entite_termine"
+          },
+          {
+            "op": "event",
+            "id": "borne_legion_consultee"
+          }
+        ]
+      },
+      "grantMode": "borne",
+      "acquisition": "permanente",
+      "prerequisiteCycleEscape": "kit_de_pret_E1_BONUS08_independant_du_roster",
+      "scope": "profil_Armax",
+      "runtimeEnabled": false,
+      "sourceOfAuthority": "a_implementer_par_mode;pas_import_de_progression_RPG",
+      "deduplicationKey": [
+        "profileId",
+        "ruleId",
+        "contentId",
+        "periodId_if_applicable"
+      ],
+      "retroactive": "uniquement_evenement_historique_reellement_enregistre",
+      "duplicate": "conserver_droit_et_sources_sans_cout_ni_duree_supplementaire"
+    },
+    {
+      "id": "E2-RULE-KESTREL-F",
+      "grants": [
+        "E2-SLOT-KESTREL-F-ME2"
+      ],
+      "expression": {
+        "op": "all",
+        "children": [
+          {
+            "op": "event",
+            "id": "galerie_ouverte"
+          },
+          {
+            "op": "any",
+            "children": [
+              {
+                "op": "event",
+                "id": "bonus_precision_termine"
+              },
+              {
+                "op": "event",
+                "id": "bonus_destruction_termine"
+              }
+            ]
+          }
+        ]
+      },
+      "grantMode": "automatique",
+      "acquisition": "permanente",
+      "retainWithoutParent": true,
+      "scope": "profil_Armax",
+      "runtimeEnabled": false,
+      "sourceOfAuthority": "a_implementer_par_mode;pas_import_de_progression_RPG",
+      "deduplicationKey": [
+        "profileId",
+        "ruleId",
+        "contentId",
+        "periodId_if_applicable"
+      ],
+      "retroactive": "uniquement_evenement_historique_reellement_enregistre",
+      "duplicate": "conserver_droit_et_sources_sans_cout_ni_duree_supplementaire"
+    },
+    {
+      "id": "E2-RULE-TUCHANKA",
+      "grants": [
+        "E2-SLOT-TUCHANKA-ME2"
+      ],
+      "expression": {
+        "op": "all",
+        "children": [
+          {
+            "op": "event",
+            "id": "dossier_tuchanka_identifie"
+          },
+          {
+            "op": "any",
+            "children": [
+              {
+                "op": "event",
+                "id": "route_grunt_terminee"
+              },
+              {
+                "op": "event",
+                "id": "bonus_resistance_termine"
+              }
+            ]
+          }
+        ]
+      },
+      "grantMode": "automatique",
+      "acquisition": "permanente",
+      "prerequisiteCycleEscape": "kit_de_pret_Grunt_E1_BONUS10_independant_du_roster",
+      "scope": "profil_Armax",
+      "runtimeEnabled": false,
+      "sourceOfAuthority": "a_implementer_par_mode;pas_import_de_progression_RPG",
+      "deduplicationKey": [
+        "profileId",
+        "ruleId",
+        "contentId",
+        "periodId_if_applicable"
+      ],
+      "retroactive": "uniquement_evenement_historique_reellement_enregistre",
+      "duplicate": "conserver_droit_et_sources_sans_cout_ni_duree_supplementaire"
+    },
+    {
+      "id": "E2-RULE-ARCHIVE-FIRST",
+      "grants": [
+        "E1-REWARD-ARCHIVE-FIRST"
+      ],
+      "expression": {
+        "op": "all",
+        "children": [
+          {
+            "op": "event",
+            "id": "initiation_terminee"
+          },
+          {
+            "op": "event",
+            "id": "borne_accueil_consultee"
+          }
+        ]
+      },
+      "grantMode": "borne",
+      "acquisition": "permanente",
+      "scope": "profil_Armax",
+      "runtimeEnabled": false,
+      "sourceOfAuthority": "a_implementer_par_mode;pas_import_de_progression_RPG",
+      "deduplicationKey": [
+        "profileId",
+        "ruleId",
+        "contentId",
+        "periodId_if_applicable"
+      ],
+      "retroactive": "uniquement_evenement_historique_reellement_enregistre",
+      "duplicate": "conserver_droit_et_sources_sans_cout_ni_duree_supplementaire"
+    },
+    {
+      "id": "E2-RULE-SUPPORT-DEMO",
+      "grants": [
+        "E2-COSMETIC-ARCHIVES-BLUE"
+      ],
+      "expression": {
+        "op": "any",
+        "children": [
+          {
+            "op": "event",
+            "id": "defi_cosmetique_termine"
+          },
+          {
+            "op": "external_valid",
+            "benefitId": "E2-BENEFIT-TEMP"
+          }
+        ]
+      },
+      "grantMode": "selon_source",
+      "acquisition": "permanente_par_defi_ou_temporaire_par_justificatif",
+      "externalBranchEnabled": false,
+      "scope": "profil_Armax",
+      "runtimeEnabled": false,
+      "sourceOfAuthority": "a_implementer_par_mode;pas_import_de_progression_RPG",
+      "deduplicationKey": [
+        "profileId",
+        "ruleId",
+        "contentId",
+        "periodId_if_applicable"
+      ],
+      "retroactive": "uniquement_evenement_historique_reellement_enregistre",
+      "duplicate": "conserver_droit_et_sources_sans_cout_ni_duree_supplementaire"
+    }
+  ],
+  "plannedCosmetics": [
+    {
+      "id": "E2-COSMETIC-ARCHIVES-BLUE",
+      "category": "decoration_de_galerie",
+      "fidelityClass": "original_compatible_a_confirmer",
+      "assetStatus": "non_produit",
+      "runtimeEnabled": false,
+      "statsEffect": false
+    }
+  ],
+  "supportBenefits": [
+    {
+      "id": "E2-BENEFIT-PERM",
+      "model": "permanent",
+      "enabled": false,
+      "provider": null,
+      "campaignId": null,
+      "tierIds": [],
+      "price": null,
+      "startAt": null,
+      "endAt": null,
+      "contentIds": [
+        "E2-COSMETIC-ARCHIVES-BLUE"
+      ],
+      "eligibility": "preuve_de_source_de_confiance_a_definir",
+      "ordinaryCancellation": "conserver_acquisition_livree",
+      "pastLots": "non_attribues_sans_regle_explicite",
+      "freeTrialGiftPolicy": "a_definir_avant_activation",
+      "alternativeUnlockRule": "E2-RULE-SUPPORT-DEMO",
+      "assetUseReview": "a_verifier_avant_toute_offre",
+      "termsStatus": "specification_non_offre_active"
+    },
+    {
+      "id": "E2-BENEFIT-TEMP",
+      "model": "catalogue_temporaire",
+      "enabled": false,
+      "provider": null,
+      "campaignId": null,
+      "tierIds": [],
+      "price": null,
+      "startAt": null,
+      "endAt": null,
+      "contentIds": [
+        "E2-COSMETIC-ARCHIVES-BLUE"
+      ],
+      "eligibility": "preuve_de_source_de_confiance_a_definir",
+      "ordinaryCancellation": "fin_effective_verifiee_de_source",
+      "pastLots": "non_attribues_sans_regle_explicite",
+      "freeTrialGiftPolicy": "a_definir_avant_activation",
+      "alternativeUnlockRule": "E2-RULE-SUPPORT-DEMO",
+      "assetUseReview": "a_verifier_avant_toute_offre",
+      "termsStatus": "specification_non_offre_active"
+    },
+    {
+      "id": "E2-BENEFIT-PERIOD",
+      "model": "lot_par_periode",
+      "enabled": false,
+      "provider": null,
+      "campaignId": null,
+      "tierIds": [],
+      "price": null,
+      "startAt": null,
+      "endAt": null,
+      "contentIds": [
+        "E2-COSMETIC-ARCHIVES-BLUE"
+      ],
+      "eligibility": "preuve_de_source_de_confiance_a_definir",
+      "ordinaryCancellation": "chaque_lot_suit_permanence_annoncee",
+      "pastLots": "non_attribues_sans_regle_explicite",
+      "freeTrialGiftPolicy": "a_definir_avant_activation",
+      "alternativeUnlockRule": "E2-RULE-SUPPORT-DEMO",
+      "assetUseReview": "a_verifier_avant_toute_offre",
+      "termsStatus": "specification_non_offre_active"
+    }
+  ],
+  "externalAccessContract": {
+    "status": "differe_non_implemente",
+    "voluntaryLinking": true,
+    "neverCollectProviderPasswordInGame": true,
+    "clientLocalBooleanTrusted": false,
+    "screenshotsTrusted": false,
+    "sameEmailTrusted": false,
+    "secretsInPublicClient": false,
+    "verificationAuthority": "service_de_confiance_a_concevoir",
+    "eventDeduplication": true,
+    "outOfOrderEvents": "reconcilier_etat_autoritatif",
+    "accountLinkIsEntitlement": false,
+    "manualSync": "bornee",
+    "unlinkRenewalStopAndGameAccountDeletion": "trois_actions_distinctes"
+  },
+  "offlineAndExpiry": {
+    "permanent": "conserve_hors_ligne",
+    "temporary": "jusqua_validite_reellement_etablie_du_justificatif",
+    "graceBeyondVerifiedExpiry": false,
+    "unknownExpiry": "verification_necessaire_pas_date_inventee",
+    "outage": "source_en_verification_pas_expiree_par_deduction",
+    "clockRollbackExtendsAccess": false,
+    "matchConfiguration": "figee_jusquau_resultat",
+    "expiryApplication": "prochaine_preparation_match",
+    "keep": [
+      "discovery",
+      "progress",
+      "records",
+      "permanent_acquisitions",
+      "preferred_equipment"
+    ],
+    "cosmeticFallback": "apparence_disponible_expliquee_sans_effacer_preference",
+    "restoredAccess": "proposer_restauration_sans_l_imposer",
+    "refund": "politique_annoncee_de_source_seulement;ne_pas_effacer_autre_source_valide"
+  },
+  "stageAccess": {
+    "id": "E2-STAGE-ACCESS-POLICY",
+    "select": "source_valide_et_contexte_compatible",
+    "participateWithoutOwnership": "autorise_si_paquet_complet_pour_tous_et_versions_compatibles",
+    "participationGrantsOwnership": false,
+    "allTransitionDestinationsPreloaded": true,
+    "missingBeforeMatch": "choix_commun_ou_installation_avant_lancement",
+    "missingDuringMatch": "ne_pas_preparer_un_match_impossible",
+    "geometry": "identique_pour_ambiance_cosmetique_normalisee",
+    "comfortPresentationIncluded": true,
+    "expiryDuringMatch": "conserver_configuration_jusquau_resultat",
+    "replay": "droit_de_lecture_distinct_ressources_et_versions_necessaires"
+  },
+  "contextPermissions": {
+    "dimensions": [
+      "preview",
+      "select_or_equip",
+      "participate",
+      "train"
+    ],
+    "localGuest": "roster_base_et_prets_annonces_pas_acquisition_hote",
+    "externalBenefitLocalSharing": "bloque_tant_modalites_non_definies",
+    "trainingLoan": "kit_integre_explicitement_prete_sans_acquisition",
+    "competitive": "liste_commune_geometries_et_reglement_sans_bonus_stats",
+    "randomSelection": "filtrer_quatre_axes",
+    "replay": "ne_donne_pas_de_recompense_ni_droit_selection"
+  },
+  "saveContract": {
+    "schemaVersion": 1,
+    "catalogVersion": "ARMAX-ACCESS-DRAFT-2026-11-27",
+    "scope": "Armax_separe_du_RPG_et_Chroniques",
+    "fields": [
+      "discoveries",
+      "accessSources",
+      "grantEvents",
+      "openedDoors",
+      "records",
+      "preferences",
+      "verificationSnapshots"
+    ],
+    "sourceFields": [
+      "contentId",
+      "sourceId",
+      "origin",
+      "permanence",
+      "grantEventId",
+      "periodId",
+      "validFrom_if_known",
+      "validUntil_if_known",
+      "lastVerifiedAt_if_known",
+      "revocationReason_if_known"
+    ],
+    "saveBeforeReveal": true,
+    "grantIdempotent": true,
+    "loadPipeline": [
+      "read_version",
+      "migrate_purely",
+      "validate",
+      "apply"
+    ],
+    "invalidPresentField": "refus_conserve_etat_courant",
+    "missingLegacyField": "migration_explicite",
+    "futureSchema": "refus_lisible_sans_ecrasement",
+    "localStorageAtomicRenameClaimed": false,
+    "networkAuthorityImplemented": false
+  },
+  "rightsMatrixExamples": [
+    {
+      "id": "E2-MATRIX-PERM-AND-EXPIRED",
+      "discovery": "identifie",
+      "sources": [
+        {
+          "kind": "permanent",
+          "valid": true
+        },
+        {
+          "kind": "temporary",
+          "valid": false,
+          "reason": "expired"
+        }
+      ],
+      "technical": "pret",
+      "matchCompatibility": "compatible",
+      "expectedMessage": "Acquis — conservé",
+      "expectedSelect": true,
+      "status": "a_tester"
+    },
+    {
+      "id": "E2-MATRIX-ASSET-MISSING",
+      "discovery": "identifie",
+      "sources": [
+        {
+          "kind": "permanent",
+          "valid": true
+        }
+      ],
+      "technical": "installation_requise",
+      "matchCompatibility": "compatible",
+      "expectedMessage": "Acquis — installation nécessaire",
+      "expectedSelect": false,
+      "status": "a_tester"
+    },
+    {
+      "id": "E2-MATRIX-SECRET",
+      "discovery": "secret",
+      "sources": [],
+      "technical": "pret",
+      "matchCompatibility": "compatible",
+      "expectedMessage": "Dossier non révélé",
+      "expectedSelect": false,
+      "forbidVisible": [
+        "name",
+        "silhouette",
+        "voice",
+        "alt_text_identity"
+      ],
+      "status": "a_tester"
+    },
+    {
+      "id": "E2-MATRIX-OUTAGE",
+      "discovery": "identifie",
+      "sources": [
+        {
+          "kind": "temporary",
+          "valid": null,
+          "verification": "indisponible",
+          "knownUnexpiredVoucher": false
+        }
+      ],
+      "technical": "pret",
+      "matchCompatibility": "compatible",
+      "expectedMessage": "Vérification indisponible — réessayer",
+      "expectedSelect": false,
+      "mustNotClaim": "abonnement_termine",
+      "status": "a_tester"
+    }
+  ],
+  "validationScenarios": [
+    {
+      "id": "E2-TEST-01",
+      "sourceSection": "64",
+      "sourceCase": 1,
+      "scenario": "Personnage secret : nom, silhouette, voix et texte accessible ne le trahissent pas.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-02",
+      "sourceSection": "64",
+      "sourceCase": 2,
+      "scenario": "Slot verrouillé : navigation et condition lisibles, confirmation non bloquante.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-03",
+      "sourceSection": "64",
+      "sourceCase": 3,
+      "scenario": "Déblocage automatique ou à réclamer : bon état, bonne animation, bon contenu.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-04",
+      "sourceSection": "64",
+      "sourceCase": 4,
+      "scenario": "Condition ET / OU : branches correctes, progression et alternatives explicites.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-05",
+      "sourceSection": "64",
+      "sourceCase": 5,
+      "scenario": "Récompense réclamée deux fois ou sauvegarde interrompue : attribution unique.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-06",
+      "sourceSection": "64",
+      "sourceCase": 6,
+      "scenario": "Costume acquis avant le personnage : récompense conservée, dépendance indiquée.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-07",
+      "sourceSection": "64",
+      "sourceCase": 7,
+      "scenario": "Costume gagné définitivement puis abonnement expiré : accès permanent conservé.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-08",
+      "sourceSection": "64",
+      "sourceCase": 8,
+      "scenario": "Catalogue temporaire expiré : source retirée, préférences et progression préservées.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-09",
+      "sourceSection": "64",
+      "sourceCase": 9,
+      "scenario": "Annulation avec accès encore valide : aucune révocation anticipée injustifiée.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-10",
+      "sourceSection": "64",
+      "sourceCase": 10,
+      "scenario": "Service indisponible : état inconnu et politique hors ligne correctement appliqués.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-11",
+      "sourceSection": "64",
+      "sourceCase": 11,
+      "scenario": "Droit valide mais assets absents : message d'installation, pas faux verrou de paiement.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-12",
+      "sourceSection": "64",
+      "sourceCase": 12,
+      "scenario": "Remboursement d'une source et seconde source valide : bon accès final.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-13",
+      "sourceSection": "64",
+      "sourceCase": 13,
+      "scenario": "Stage abonné contre joueur non abonné : chargement, participation et choix conformes.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-14",
+      "sourceSection": "64",
+      "sourceCase": 14,
+      "scenario": "Transition vers un stage lié : destination et assets disponibles pour la partie.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-15",
+      "sourceSection": "64",
+      "sourceCase": 15,
+      "scenario": "Expiration pendant un match : résultat valide et changement au moment prévu.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-16",
+      "sourceSection": "64",
+      "sourceCase": 16,
+      "scenario": "Costume ou partenaire équipé devenu inaccessible : remplacement sans perte de profil.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-17",
+      "sourceSection": "64",
+      "sourceCase": 17,
+      "scenario": "Variante vivante ou statique : choix de confort disponible selon la règle annoncée.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-18",
+      "sourceSection": "64",
+      "sourceCase": 18,
+      "scenario": "Mode verrouillé : aucune boucle de prérequis et progression récupérable.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-19",
+      "sourceSection": "64",
+      "sourceCase": 19,
+      "scenario": "Compte invité, double liaison ou changement de niveau : droits attribués au bon profil.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-20",
+      "sourceSection": "64",
+      "sourceCase": 20,
+      "scenario": "Événements externes doublés ou désordonnés : état final cohérent, pas de double lot.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-21",
+      "sourceSection": "64",
+      "sourceCase": 21,
+      "scenario": "Clavier, manette, lecteur d'écran et mouvement réduit : états compréhensibles.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    },
+    {
+      "id": "E2-TEST-22",
+      "sourceSection": "64",
+      "sourceCase": 22,
+      "scenario": "Migration, resynchronisation et restauration : acquisitions et sources conservées.",
+      "status": "a_tester",
+      "executed": false,
+      "expectedEvidence": [
+        "message_exact",
+        "action_suivante",
+        "droit_effectif_par_source",
+        "sauvegarde_et_reprise",
+        "continuer_a_jouer"
+      ]
+    }
+  ],
+  "productionTemplates": [
+    {
+      "id": "E2-A",
+      "name": "Contenu et slot",
+      "exampleIds": [
+        "E2-SLOT-LEGION-ME2"
+      ],
+      "status": "documente_non_implemente"
+    },
+    {
+      "id": "E2-B",
+      "name": "Règle",
+      "exampleIds": [
+        "E2-RULE-KESTREL-F"
+      ],
+      "status": "documente_non_implemente"
+    },
+    {
+      "id": "E2-C",
+      "name": "Soutien",
+      "exampleIds": [
+        "E2-BENEFIT-TEMP"
+      ],
+      "status": "documente_non_implemente"
+    },
+    {
+      "id": "E2-D",
+      "name": "Charte",
+      "exampleIds": [
+        "E2-UI-DOSSIER"
+      ],
+      "status": "documente_non_implemente"
+    },
+    {
+      "id": "E2-E",
+      "name": "Stage spécial",
+      "exampleIds": [
+        "E2-STAGE-ACCESS-POLICY"
+      ],
+      "status": "documente_non_implemente"
+    },
+    {
+      "id": "E2-F",
+      "name": "Matrice droits",
+      "exampleIds": [
+        "E2-MATRIX-PERM-AND-EXPIRED"
+      ],
+      "status": "documente_non_implemente"
+    }
+  ]
+}

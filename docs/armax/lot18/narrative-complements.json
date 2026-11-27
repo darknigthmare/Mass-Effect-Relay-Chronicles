@@ -1,0 +1,1231 @@
+{
+  "schemaVersion": 1,
+  "id": "armax-lot18-narrative-complements",
+  "baseCommit": "1e3cea80b1a6ec81d7ca6df8ad70d96988973f10",
+  "createdOn": "2026-11-25",
+  "timezone": "Europe/Paris",
+  "scope": "Annexe documentaire de quatre routes ME2. Aucun import runtime, nouvelle image, mutation du catalogue ou certification artistique par ce fichier.",
+  "ruleSetRef": "docs/armax/bible/common-rules.json",
+  "finishersFamily": "Neutralisation décisive",
+  "sourceSnapshots": [
+    {
+      "path": "docs/armax/bible/common-rules.json",
+      "sha256": "8828bea7699410df54e0fa36e3b5f91f0fa40a292beffc2d33dbd2f370fe8f7c"
+    },
+    {
+      "path": "docs/armax/bible/CAMPAGNES_ET_SCENES.md",
+      "sha256": "6b7fa4269fb24bf990b9e4b9ee119f8369534d11dc4719af1b441be02132de31"
+    },
+    {
+      "path": "docs/armax/lot04/fighters.json",
+      "sha256": "300cf6b119df27ae1891f814a3137376f045d148ddbd8ea909bf43be05b7aa18"
+    },
+    {
+      "path": "docs/armax/lot16/production-catalog.json",
+      "sha256": "30ab5544b56e9805e517bbcb8ef64311a3bd71b1fa5c83687a65c71f4b018403"
+    }
+  ],
+  "routes": [
+    {
+      "id": "route-armax-grunt-me2",
+      "name": "Grunt",
+      "title": "Le passage appartient au groupe",
+      "work": "ME2",
+      "narrativeStatus": "original_simulation_not_canonical_event",
+      "designStatus": "Défini",
+      "runtimeImplemented": false,
+      "actorRef": {
+        "namespace": "universe-actor-documentary",
+        "id": "ME2-CHR-GRUNT",
+        "sourcePath": "src/universe-actors.js",
+        "runtimeBinding": null
+      },
+      "rivalRef": {
+        "namespace": "universe-actor-documentary",
+        "id": "ME2-CHR-LEGION",
+        "sourcePath": "src/universe-actors.js",
+        "runtimeBinding": null
+      },
+      "storyPurpose": "Passer de la seule percée à une victoire qui préserve le couloir nécessaire aux autres. La cuve constitue un rappel visuel de son origine ; le récit de cet exercice est nouveau.",
+      "sceneIds": [
+        "lot18-grunt-me2-intro",
+        "lot18-grunt-me2-rival",
+        "lot18-grunt-me2-ending"
+      ],
+      "costumeLock": "Version ME2 explicitement référencée ; aucune variante ME3 ou imitation implicite.",
+      "finalOptionalObjective": "Après victoire finale, objectif secondaire accompli si les deux balises de passage restent actives. Balises, seuils et ennemis qui les ciblent doivent être annoncés avant c05.",
+      "endings": [
+        {
+          "id": "a",
+          "title": "Avancer ensemble",
+          "condition": "finalVictory && optionalObjectiveMet",
+          "consequence": "L’espace gagné reste praticable ; Grunt quitte le débriefing en regardant la sortie commune."
+        },
+        {
+          "id": "b",
+          "title": "Recommencer plus juste",
+          "condition": "finalVictory && !optionalObjectiveMet",
+          "consequence": "Le duel est gagné, le couloir a été perdu ; il conserve l’échec de protection comme nouvel objectif."
+        }
+      ],
+      "encounters": [
+        {
+          "id": "route-armax-grunt-me2-c01",
+          "order": 1,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_loki_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Couloir Armax original à façade industrielle ME2",
+          "objective": "Reconnaître la récupération adverse avant le tir de Claymore.",
+          "transitionAfterConfirmedResult": "Le premier verrou se lève ; une carte annonce le couloir à préserver.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-grunt-me2-c02",
+          "order": 2,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_fenris_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Même couloir, secteur de sas",
+          "objective": "Répondre à un gabarit bas sans employer une prise humanoïde.",
+          "transitionAfterConfirmedResult": "Une voie de contournement s’ouvre.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-grunt-me2-c03",
+          "order": 3,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_collector_drone",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Aire de tir simulée, géographie originale",
+          "objective": "Choisir sa fenêtre de recharge sous une pression à distance.",
+          "transitionAfterConfirmedResult": "Le rapport signale qu’une avancée trop directe a laissé un flanc exposé.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-grunt-me2-c04",
+          "order": 4,
+          "opponentRef": {
+            "namespace": "universe-actor-documentary",
+            "id": "ME2-CHR-LEGION",
+            "sourcePath": "src/universe-actors.js",
+            "runtimeBinding": null
+          },
+          "location": "Aire de calibration commune Armax",
+          "objective": "Duel rival : fermer la distance en lisant drone et tir préparé.",
+          "transitionAfterConfirmedResult": "Le vainqueur est enregistré ; les deux balises du test final sont expliquées.",
+          "role": "rival",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-grunt-me2-c05",
+          "order": 5,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_scion",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Couloir final original, deux balises hors ligne de combat",
+          "objective": "Vaincre le profil lourd ; objectif secondaire de protection affiché séparément.",
+          "transitionAfterConfirmedResult": "Résultat du duel puis branche a/b, sans toucher au rite de Tuchanka.",
+          "role": "finale",
+          "implemented": false
+        }
+      ],
+      "shots": [
+        {
+          "id": "art-lot18-grunt-me2-intro-p01",
+          "sceneId": "lot18-grunt-me2-intro",
+          "branch": null,
+          "framing": "Large 3/4",
+          "action": "Grunt standard ME2 près de sa cuve vide dans la soute cargo du Normandy SR-2, main sur le bord, regard vers l’issue.",
+          "continuity": "Cuve et soute exactes à référencer ; aucun Okeer vivant ni nouveau recrutement.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-grunt-me2-intro-p02",
+          "sceneId": "lot18-grunt-me2-intro",
+          "branch": null,
+          "framing": "Plan moyen latéral",
+          "action": "Son regard quitte la cuve pour la sortie ; l’interface de l’exercice apparaît séparément au montage.",
+          "continuity": "Même costume, même usure, même éclairage ; ne pas remplacer la soute par le hangar ME3.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-grunt-me2-rival-p01",
+          "sceneId": "lot18-grunt-me2-rival",
+          "branch": null,
+          "framing": "Large sur les deux axes",
+          "action": "Grunt ferme son angle d’approche tandis que Legion protège sa ligne de tir.",
+          "continuity": "Simulation originale ; Legion reste une dépendance visuelle exclue des nouveaux essais de génération.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-grunt-me2-rival-p02",
+          "sceneId": "lot18-grunt-me2-rival",
+          "branch": null,
+          "framing": "Plan moyen Grunt",
+          "action": "Grunt détourne un instant son attention vers l’emplacement du drone, sans charger.",
+          "continuity": "La référence du drone reste ouverte ; ne pas fixer une nouvelle géométrie inventée.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-grunt-me2-ending-a-p01",
+          "sceneId": "lot18-grunt-me2-ending",
+          "branch": "a",
+          "framing": "Large camp Urdnot",
+          "action": "Grunt vu de dos/3/4 dans le camp Urdnot ME2, arme abaissée, tête tournée vers la sortie commune.",
+          "continuity": "Même tenue ; pas de cérémonie, Kalros, personnage ajouté ou arène du Rite substituée au camp.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false,
+          "generationStatus": "refused",
+          "generationAttempt": {
+            "requestId": "8f59b8ab-5dba-4100-ba30-529927fc50d8",
+            "reason": "moderation_blocked/output/other",
+            "retry": false,
+            "fileProduced": false
+          }
+        },
+        {
+          "id": "art-lot18-grunt-me2-ending-a-p02",
+          "sceneId": "lot18-grunt-me2-ending",
+          "branch": "a",
+          "framing": "Plan rapproché mains/visage",
+          "action": "Il relâche sa prise puis se remet en marche ; le bilan de protection reste dans l’UI.",
+          "continuity": "Fin originale de simulation ; aucun grade ou clan attribué par cette image.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-grunt-me2-ending-b-p01",
+          "sceneId": "lot18-grunt-me2-ending",
+          "branch": "b",
+          "framing": "Large aire de débriefing",
+          "action": "Grunt reste face au schéma du couloir perdu, arme baissée ; sortie visible derrière lui.",
+          "continuity": "Un résultat d’exercice, aucune destruction de Tuchanka.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-grunt-me2-ending-b-p02",
+          "sceneId": "lot18-grunt-me2-ending",
+          "branch": "b",
+          "framing": "Plan moyen",
+          "action": "Il remet son arme en position de repos et accepte la nouvelle tentative.",
+          "continuity": "Reprendre l’intention de l’ending historique ; pas de recharge gratuite par la pose.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        }
+      ],
+      "dependencies": [
+        "kit_versus_raccorde",
+        "references_visuelles_exactes",
+        "camera_et_contacts_valides",
+        "etat_armax_separe",
+        "scenes_et_reprise_implantees"
+      ]
+    },
+    {
+      "id": "route-armax-legion-me2",
+      "name": "Legion",
+      "title": "La solution manquante",
+      "work": "ME2",
+      "narrativeStatus": "original_simulation_not_canonical_event",
+      "designStatus": "Défini",
+      "runtimeImplemented": false,
+      "actorRef": {
+        "namespace": "universe-actor-documentary",
+        "id": "ME2-CHR-LEGION",
+        "sourcePath": "src/universe-actors.js",
+        "runtimeBinding": null
+      },
+      "rivalRef": {
+        "namespace": "universe-actor-documentary",
+        "id": "ME2-CHR-GRUNT",
+        "sourcePath": "src/universe-actors.js",
+        "runtimeBinding": null
+      },
+      "storyPurpose": "Une trajectoire optimale ne suffit pas si elle ignore les objectifs protégés. Le débriefing conserve plusieurs solutions au lieu d’imposer un consensus narratif nouveau.",
+      "sceneIds": [
+        "lot18-legion-me2-intro",
+        "lot18-legion-me2-rival",
+        "lot18-legion-me2-ending"
+      ],
+      "costumeLock": "Version ME2 explicitement référencée ; aucune variante ME3 ou imitation implicite.",
+      "finalOptionalObjective": "Objectif secondaire accompli si le relais d’observation survit au combat final ; il est affiché avant engagement et ne doit jamais imposer un piratage de cible non compatible.",
+      "endings": [
+        {
+          "id": "a",
+          "title": "Plusieurs solutions",
+          "condition": "finalVictory && optionalObjectiveMet",
+          "consequence": "Le journal conserve les trajectoires de tir et de protection."
+        },
+        {
+          "id": "b",
+          "title": "Mesure à compléter",
+          "condition": "finalVictory && !optionalObjectiveMet",
+          "consequence": "Le duel est gagné ; la trajectoire qui négligeait le relais est conservée comme contre-exemple."
+        }
+      ],
+      "encounters": [
+        {
+          "id": "route-armax-legion-me2-c01",
+          "order": 1,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_loki_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Aire synthétique Armax originale",
+          "objective": "Distinguer combattant principal et soutien explicitement piratable.",
+          "transitionAfterConfirmedResult": "Le test valide l’identification de cible, sans étendre le piratage aux joueurs.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-legion-me2-c02",
+          "order": 2,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_fenris_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Sas technique du même exercice",
+          "objective": "Défendre une approche basse sans attendre la fin du déploiement.",
+          "transitionAfterConfirmedResult": "Le rapport annonce que le soutien peut être interrompu.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-legion-me2-c03",
+          "order": 3,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_collector_drone",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Aire de tir Armax originale",
+          "objective": "Répondre par arme et placement ; l’intrusion n’est pas une réponse universelle.",
+          "transitionAfterConfirmedResult": "Le rival propose une approche physique différente.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-legion-me2-c04",
+          "order": 4,
+          "opponentRef": {
+            "namespace": "universe-actor-documentary",
+            "id": "ME2-CHR-GRUNT",
+            "sourcePath": "src/universe-actors.js",
+            "runtimeBinding": null
+          },
+          "location": "Aire de calibration commune Armax",
+          "objective": "Duel rival : conserver la distance tout en défendant le drone.",
+          "transitionAfterConfirmedResult": "Le relevé précédent ne prédit plus à lui seul l’épreuve finale.",
+          "role": "rival",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-legion-me2-c05",
+          "order": 5,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_scion",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Plateforme d’exercice avec relais d’observation",
+          "objective": "Vaincre le profil lourd et tenter de garder le relais actif.",
+          "transitionAfterConfirmedResult": "Rappel du drone, résultat, branche a/b ; aucune réécriture des hérétiques.",
+          "role": "finale",
+          "implemented": false
+        }
+      ],
+      "shots": [
+        {
+          "id": "art-lot18-legion-me2-intro-p01",
+          "sceneId": "lot18-legion-me2-intro",
+          "branch": null,
+          "framing": "Plan moyen plateforme",
+          "action": "Legion examine deux trajectoires sur un terminal de simulation.",
+          "continuity": "Plan à produire uniquement à partir d’originaux autorisés récupérés ; corps ME2 et asymétries conservés.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-intro-p02",
+          "sceneId": "lot18-legion-me2-intro",
+          "branch": null,
+          "framing": "Insert optique/terminal",
+          "action": "L’optique se tourne vers une zone que la première trajectoire ne couvrait pas.",
+          "continuity": "Données UI séparées ; pas d’accès nouveau aux archives geth.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-rival-p01",
+          "sceneId": "lot18-legion-me2-rival",
+          "branch": null,
+          "framing": "Large opposition de distances",
+          "action": "Grunt se place à l’entrée du couloir, Legion reste à son autre extrémité.",
+          "continuity": "Rivalité du simulateur ; aucune hostilité canonique annoncée.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-rival-p02",
+          "sceneId": "lot18-legion-me2-rival",
+          "branch": null,
+          "framing": "Plan moyen optique/arme",
+          "action": "Legion modifie la visée avant l’avancée de Grunt.",
+          "continuity": "Angle fixé avant départ ; pas de visée courbe omnisciente.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-ending-a-p01",
+          "sceneId": "lot18-legion-me2-ending",
+          "branch": "a",
+          "framing": "Large débriefing",
+          "action": "Le relais reste allumé ; Legion rappelle le drone et s’éloigne.",
+          "continuity": "Aucun drone exact validé par le brief.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-ending-a-p02",
+          "sceneId": "lot18-legion-me2-ending",
+          "branch": "a",
+          "framing": "Insert terminal",
+          "action": "Plusieurs tracés restent ouverts dans le journal d’exercice.",
+          "continuity": "Interface originale, pas copie des données de la station hérétique.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-ending-b-p01",
+          "sceneId": "lot18-legion-me2-ending",
+          "branch": "b",
+          "framing": "Large débriefing",
+          "action": "Relais éteint, silhouette immobile devant le point resté découvert.",
+          "continuity": "Le KO ne devient pas un échec fictif du duel.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-legion-me2-ending-b-p02",
+          "sceneId": "lot18-legion-me2-ending",
+          "branch": "b",
+          "framing": "Insert terminal",
+          "action": "Le trajet gagnant est conservé mais marqué comme incomplet.",
+          "continuity": "Aucune option Détruire/Réécrire de la campagne ME2 modifiée.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        }
+      ],
+      "dependencies": [
+        "kit_versus_raccorde",
+        "references_visuelles_exactes",
+        "camera_et_contacts_valides",
+        "etat_armax_separe",
+        "scenes_et_reprise_implantees"
+      ]
+    },
+    {
+      "id": "route-armax-tela-vasir-me2",
+      "name": "Tela Vasir",
+      "title": "La valeur du dossier",
+      "work": "ME2",
+      "narrativeStatus": "original_simulation_not_canonical_event",
+      "designStatus": "Défini",
+      "runtimeImplemented": false,
+      "actorRef": {
+        "namespace": "armax-design-fighter",
+        "id": "armax-tela-vasir-me2",
+        "sourcePath": "docs/armax/lot04/fighters.json",
+        "runtimeBinding": null
+      },
+      "rivalRef": {
+        "namespace": "universe-actor-documentary",
+        "id": "ME2-CHR-LIARA",
+        "sourcePath": "src/universe-actors.js",
+        "runtimeBinding": null
+      },
+      "storyPurpose": "Une extraction d’archives simulées confronte sa recherche du résultat aux accès qu’elle sacrifie. Liara défend le terminal ; cet exercice ne réécrit pas leur confrontation du DLC.",
+      "sceneIds": [
+        "armax-tela-vasir-me2-intro",
+        "armax-tela-vasir-me2-rival",
+        "armax-tela-vasir-me2-ending"
+      ],
+      "costumeLock": "Version ME2 explicitement référencée ; aucune variante ME3 ou imitation implicite.",
+      "finalOptionalObjective": "Objectif secondaire accompli si le coffre de données reste lisible pendant c05. Les données sont exclusivement celles du simulateur et leur intégrité ne verse pas de récompense supplémentaire.",
+      "endings": [
+        {
+          "id": "a",
+          "title": "Archive intacte",
+          "condition": "finalVictory && optionalObjectiveMet",
+          "consequence": "Les données d’exercice sont isolées et rendues au débriefing."
+        },
+        {
+          "id": "b",
+          "title": "Dossier incomplet",
+          "condition": "finalVictory && !optionalObjectiveMet",
+          "consequence": "Tela rejoint l’issue avec un résultat de duel et une archive devenue inutilisable."
+        }
+      ],
+      "encounters": [
+        {
+          "id": "route-armax-tela-vasir-me2-c01",
+          "order": 1,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_loki_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Terrasse d’exercice inspirée du secteur Azure ; géométrie originale pour c01-c03",
+          "objective": "Mesurer la distance avant une Charge de Vasir.",
+          "transitionAfterConfirmedResult": "Accès au palier suivant.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-tela-vasir-me2-c02",
+          "order": 2,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_fenris_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Palier d’exercice adjacent, sans traversée cinématique supposée",
+          "objective": "Punir une approche basse en gardant une issue de repli.",
+          "transitionAfterConfirmedResult": "La carte signale un coffre à préserver.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-tela-vasir-me2-c03",
+          "order": 3,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_ymir_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Poste de contrôle de simulation",
+          "objective": "Aborder une protection lourde ; ne pas supposer une prise humanoïde.",
+          "transitionAfterConfirmedResult": "La force brute est insuffisante pour atteindre l’archive intacte.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-tela-vasir-me2-c04",
+          "order": 4,
+          "opponentRef": {
+            "namespace": "universe-actor-documentary",
+            "id": "ME2-CHR-LIARA",
+            "sourcePath": "src/universe-actors.js",
+            "runtimeBinding": null
+          },
+          "location": "Terrasse précise hôtel Azure, reproduction à référencer",
+          "objective": "Duel rival : Liara bloque le terminal ; les commandes 2D sont des adaptations.",
+          "transitionAfterConfirmedResult": "Conserver dialogue du lot04, puis annoncer la vérification finale.",
+          "role": "rival",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-tela-vasir-me2-c05",
+          "order": 5,
+          "opponentRef": {
+            "namespace": "armax-design-fighter",
+            "id": "armax-shadow-broker-me2",
+            "sourcePath": "docs/armax/lot04/fighters.json",
+            "runtimeBinding": null
+          },
+          "location": "Salle d’archive Armax originale, sans prétendre être le vaisseau d’Hagalaz",
+          "objective": "Boss de simulation : neutraliser le verrou lourd et préserver le coffre.",
+          "transitionAfterConfirmedResult": "Épreuve volontairement alternative opposant deux anciens alliés de contexte ; branche a/b.",
+          "role": "finale",
+          "implemented": false
+        }
+      ],
+      "shots": [
+        {
+          "id": "art-lot18-tela-vasir-me2-intro-p01",
+          "sceneId": "armax-tela-vasir-me2-intro",
+          "branch": null,
+          "framing": "Large terrasse Azure",
+          "action": "Tela termine une communication, près du balcon courbe avec jardinières ; regard vers l’accès intérieur.",
+          "continuity": "Tenue Spectre ME2, marquages magenta ; pas de blessure, otage ou personnage ajouté.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-intro-p02",
+          "sceneId": "armax-tela-vasir-me2-intro",
+          "branch": null,
+          "framing": "Plan moyen 3/4",
+          "action": "Sa main quitte la communication tandis que l’autre protège son flanc.",
+          "continuity": "Même sous-zone, lumière et costume ; le terminal reste un calque séparé.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-rival-p01",
+          "sceneId": "armax-tela-vasir-me2-rival",
+          "branch": null,
+          "framing": "Large accès au terminal",
+          "action": "Liara version DLC ME2 se tient devant l’accès ; Tela conserve une voie de retrait visible.",
+          "continuity": "Ne pas utiliser costume Liara ME3 AAP1 ; scène originale du simulateur.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-rival-p02",
+          "sceneId": "armax-tela-vasir-me2-rival",
+          "branch": null,
+          "framing": "Plans opposés sans changement d’axe",
+          "action": "Tela cherche une entrée latérale ; Liara suit ce regard.",
+          "continuity": "Même terminal et même hauteur de garde-corps entre les plans.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-ending-a-p01",
+          "sceneId": "armax-tela-vasir-me2-ending",
+          "branch": "a",
+          "framing": "Plan moyen archive Armax",
+          "action": "Tela pose le module de données de simulation sur le support de débriefing.",
+          "continuity": "Aucun secret, dossier ou lieu canonique nouveau n’est révélé.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-ending-a-p02",
+          "sceneId": "armax-tela-vasir-me2-ending",
+          "branch": "a",
+          "framing": "Large sortie",
+          "action": "Elle quitte l’archive, laissant le module dans le champ.",
+          "continuity": "Le module est le même objet que celui annoncé avant c05.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-ending-b-p01",
+          "sceneId": "armax-tela-vasir-me2-ending",
+          "branch": "b",
+          "framing": "Plan moyen archive Armax",
+          "action": "Le module est présent mais son état incomplet apparaît dans l’UI ; Tela le regarde sans triompher.",
+          "continuity": "Aucun texte incrusté dans l’image.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-tela-vasir-me2-ending-b-p02",
+          "sceneId": "armax-tela-vasir-me2-ending",
+          "branch": "b",
+          "framing": "Large sortie",
+          "action": "Elle se détourne de la donnée inutilisable, en conservant son résultat du duel.",
+          "continuity": "Ne pas ressusciter Tela après un événement de campagne.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        }
+      ],
+      "dependencies": [
+        "kit_versus_raccorde",
+        "references_visuelles_exactes",
+        "camera_et_contacts_valides",
+        "etat_armax_separe",
+        "scenes_et_reprise_implantees"
+      ]
+    },
+    {
+      "id": "route-armax-morinth-me2",
+      "name": "Morinth",
+      "title": "Une issue reste ouverte",
+      "work": "ME2",
+      "narrativeStatus": "original_simulation_not_canonical_event",
+      "designStatus": "Défini",
+      "runtimeImplemented": false,
+      "actorRef": {
+        "namespace": "armax-design-fighter",
+        "id": "armax-morinth-me2",
+        "sourcePath": "docs/armax/lot04/fighters.json",
+        "runtimeBinding": null
+      },
+      "rivalRef": {
+        "namespace": "universe-actor-documentary",
+        "id": "ME2-CHR-SAMARA",
+        "sourcePath": "src/universe-actors.js",
+        "runtimeBinding": null
+      },
+      "storyPurpose": "Morinth cherche une sortie dans un dispositif de surveillance simulé. Samara est son opposition personnelle ; le final révèle si gagner le duel suffisait à effacer la trace laissée dans l’exercice.",
+      "sceneIds": [
+        "armax-morinth-me2-intro",
+        "armax-morinth-me2-rival",
+        "armax-morinth-me2-ending"
+      ],
+      "costumeLock": "Version ME2 explicitement référencée ; aucune variante ME3 ou imitation implicite.",
+      "finalOptionalObjective": "Objectif secondaire accompli si le dispositif de suivi annoncé avant c05 est neutralisé avant la victoire. Il s’agit d’un module d’arène vulnérable, pas d’une domination mentale des machines.",
+      "endings": [
+        {
+          "id": "a",
+          "title": "Trace interrompue",
+          "condition": "finalVictory && optionalObjectiveMet",
+          "consequence": "La sortie virtuelle se ferme et le suivi de l’exercice s’arrête."
+        },
+        {
+          "id": "b",
+          "title": "Poursuite ouverte",
+          "condition": "finalVictory && !optionalObjectiveMet",
+          "consequence": "Elle franchit la sortie mais l’UI conserve une trace de suivi ; aucune victime ou fuite canonique ajoutée."
+        }
+      ],
+      "encounters": [
+        {
+          "id": "route-armax-morinth-me2-c01",
+          "order": 1,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_loki_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Salle d’exercice originale derrière un habillage Omega",
+          "objective": "Lire la garde adverse et confirmer le trait biotique.",
+          "transitionAfterConfirmedResult": "Le dispositif annonce qu’une porte sera surveillée.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-morinth-me2-c02",
+          "order": 2,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_fenris_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Couloir de la même simulation",
+          "objective": "Maintenir un espace de réponse contre une cible basse.",
+          "transitionAfterConfirmedResult": "La trace de déplacement est montrée au joueur.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-morinth-me2-c03",
+          "order": 3,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_collector_drone",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Passerelle virtuelle ; adversaire emprunté au profil ME2",
+          "objective": "Convertir une ouverture sans dépendre de la marque d’Emprise.",
+          "transitionAfterConfirmedResult": "Samara rejoint la porte finale de l’exercice.",
+          "role": "progression",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-morinth-me2-c04",
+          "order": 4,
+          "opponentRef": {
+            "namespace": "universe-actor-documentary",
+            "id": "ME2-CHR-SAMARA",
+            "sourcePath": "src/universe-actors.js",
+            "runtimeBinding": null
+          },
+          "location": "Passerelle d’Omega créée pour le simulateur",
+          "objective": "Duel rival à identité révélée ; aucune exécution ou substitution réelle de Samara.",
+          "transitionAfterConfirmedResult": "Le verrou matériel reste actif après le duel.",
+          "role": "rival",
+          "implemented": false
+        },
+        {
+          "id": "route-armax-morinth-me2-c05",
+          "order": 5,
+          "opponentRef": {
+            "namespace": "armax-production-entry",
+            "id": "chr_me2_ymir_mech",
+            "sourcePath": "docs/armax/lot16/production-catalog.json",
+            "runtimeBinding": null
+          },
+          "location": "Sortie virtuelle d’Omega, module de suivi visible",
+          "objective": "Vaincre le verrou lourd ; possibilité de neutraliser le suivi dans le même espace.",
+          "transitionAfterConfirmedResult": "La porte se ferme ; branche a/b selon le suivi, sans recruter Morinth.",
+          "role": "finale",
+          "implemented": false
+        }
+      ],
+      "shots": [
+        {
+          "id": "art-lot18-morinth-me2-intro-p01",
+          "sceneId": "armax-morinth-me2-intro",
+          "branch": null,
+          "framing": "Large couloir Omega original",
+          "action": "Morinth en tenue civile ME2 observe l’issue et le champ de surveillance.",
+          "continuity": "Pas d’armure de Samara, pas de victime ou séduction ; décor explicitement original compatible.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-intro-p02",
+          "sceneId": "armax-morinth-me2-intro",
+          "branch": null,
+          "framing": "Plan moyen de profil",
+          "action": "Elle ouvre les paumes et fixe sa distance d’engagement.",
+          "continuity": "Marquages propres à Morinth et tenue sombre de la référence lot04.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-rival-p01",
+          "sceneId": "armax-morinth-me2-rival",
+          "branch": null,
+          "framing": "Large porte et deux silhouettes",
+          "action": "Samara bloque la passerelle, Morinth reste côté sortie.",
+          "continuity": "Samara ME2 et Morinth civile distinctes ; ne pas fusionner visages et costumes.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-rival-p02",
+          "sceneId": "armax-morinth-me2-rival",
+          "branch": null,
+          "framing": "Plans rapprochés sur axe conservé",
+          "action": "Le regard de Morinth passe de Samara à la porte, puis revient vers elle.",
+          "continuity": "Dialogue lot04, aucun lien mental représenté comme fait nouveau.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-ending-a-p01",
+          "sceneId": "armax-morinth-me2-ending",
+          "branch": "a",
+          "framing": "Large seuil",
+          "action": "Morinth franchit seule la porte virtuelle ; voyant de suivi inactif séparé.",
+          "continuity": "Aucun décès, échange d’identité ou recrutement canonique.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-ending-a-p02",
+          "sceneId": "armax-morinth-me2-ending",
+          "branch": "a",
+          "framing": "Plan serré profil",
+          "action": "La porte se ferme sur son profil comme dans l’ending existant.",
+          "continuity": "Profil et marques identiques à l’intro.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-ending-b-p01",
+          "sceneId": "armax-morinth-me2-ending",
+          "branch": "b",
+          "framing": "Large seuil",
+          "action": "Même passage de porte ; le module reste allumé en arrière-plan.",
+          "continuity": "La différence porte sur le suivi simulé, pas sur une blessure ajoutée.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        },
+        {
+          "id": "art-lot18-morinth-me2-ending-b-p02",
+          "sceneId": "armax-morinth-me2-ending",
+          "branch": "b",
+          "framing": "Plan serré profil",
+          "action": "Elle regarde une dernière fois le module avant la fermeture.",
+          "continuity": "Épilogue alternatif présenté comme tel dans la galerie.",
+          "aspectRatio": "16:9",
+          "textBakedIntoImage": false,
+          "fileRef": null,
+          "imageProduced": false,
+          "fidelity1to1Validated": false,
+          "engineIntegrated": false
+        }
+      ],
+      "dependencies": [
+        "kit_versus_raccorde",
+        "references_visuelles_exactes",
+        "camera_et_contacts_valides",
+        "etat_armax_separe",
+        "scenes_et_reprise_implantees"
+      ]
+    }
+  ],
+  "accounting": {
+    "routesDocumented": 4,
+    "encountersDocumented": 20,
+    "scenesReferenced": 12,
+    "shotBriefs": 32,
+    "endingVariants": 8,
+    "imagesProducedByThisDocument": 0,
+    "routesPlayable": 0
+  },
+  "webSources": [
+    {
+      "id": "S1",
+      "title": "EA — guides officiels de cosplay",
+      "url": "https://www.ea.com/games/mass-effect/community/cosplay-guides",
+      "type": "primary-publisher",
+      "readOn": "2026-11-25",
+      "supports": "Présence de guides Grunt, Legion, Samara et Liara. Index lu ; les fichiers graphiques complets ne sont pas certifiés examinés dans cette annexe."
+    },
+    {
+      "id": "S2",
+      "title": "Prima Games — Mass Effect 2, Dossiers",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/essentials/cast-of-characters/dossiers",
+      "type": "secondary-gameplay-guide",
+      "readOn": "2026-11-25",
+      "supports": "Familles d’armes et pouvoirs Grunt/Legion ; familles biotiques de Samara/Liara. Ne prouve aucun timing ou trajet de duel 2D."
+    },
+    {
+      "id": "S3",
+      "title": "Prima Games — Samara: The Ardat-Yakshi",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/samaras-loyalty-the-ardat-yakshi",
+      "type": "secondary-gameplay-guide",
+      "readOn": "2026-11-25",
+      "supports": "Relation Samara/Morinth, identité distincte, Pull/Throw/Dominate. Les choix narratifs restent ceux de l’œuvre."
+    },
+    {
+      "id": "S4",
+      "title": "Prima Games — Lair of the Shadow Broker: Azure Hotel",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/special-assignments/lair-of-the-shadowbroker-azure-hotel",
+      "type": "secondary-gameplay-guide",
+      "readOn": "2026-11-25",
+      "supports": "Confrontation Vasir/Liara, balcon courbe, charge/dash biotique, Shockwave, protection et arme ; ne prouve pas les nouvelles règles 2D."
+    },
+    {
+      "id": "S5",
+      "title": "Prima Games — Grunt: Rite of Passage",
+      "url": "https://primagames.com/eguides/mass-effect-2-eguide/walkthrough/walkthrough/grunts-loyalty-rite-of-passage",
+      "type": "secondary-gameplay-guide",
+      "readOn": "2026-11-25",
+      "supports": "Soute de Grunt, Tuchanka et existence d’une arène du rite distincte du camp. L’annexe ne fixe aucun chef de clan ou choix de campagne."
+    },
+    {
+      "id": "M1",
+      "title": "gamedev — dialogue-systems (révision épinglée)",
+      "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/dialogue-systems/SKILL.md",
+      "type": "method-only",
+      "readOn": "2026-11-25",
+      "supports": "IDs, conditions, transitions, texte séparé et effets exécutés une seule fois. Aucun moteur ou dépendance ajouté."
+    }
+  ],
+  "moveMappings": [
+    {
+      "actor": "ME2-CHR-GRUNT",
+      "sourceCapabilities": [
+        "Concussive Shot",
+        "Incendiary Ammo",
+        "Fortification"
+      ],
+      "sourceIds": [
+        "S2"
+      ],
+      "canonicalCapabilityDoesNotMeanCanonical2DMechanic": true,
+      "specialConversionSlots": {
+        "1": "236M — Tir percussif",
+        "2": "214M — Percée krogan"
+      },
+      "proposedRoutes": [
+        "5L > 5M xx 236M",
+        "5H xx 214M xx 236236H"
+      ],
+      "superCost": 200,
+      "restrictions": [
+        "Percée physique, pas Charge biotique",
+        "Fortification reste limitée selon le contrat de duel",
+        "Munitions liées aux tirs, pas un pouvoir Incinerate",
+        "Routes à observer en moteur ; aucun combo garanti"
+      ]
+    },
+    {
+      "actor": "ME2-CHR-LEGION",
+      "sourceCapabilities": [
+        "AI Hacking",
+        "Combat Drone",
+        "Geth Shield Boost"
+      ],
+      "sourceIds": [
+        "S2"
+      ],
+      "canonicalCapabilityDoesNotMeanCanonical2DMechanic": true,
+      "specialConversionSlots": {
+        "1": "236L — Rafale courte",
+        "2": "236H — Tir de précision"
+      },
+      "proposedRoutes": [
+        "5L > 5M xx 236L",
+        "5H xx 236H xx 236236H"
+      ],
+      "superCost": 200,
+      "restrictions": [
+        "Intrusion seulement sur soutien déclaré piratable",
+        "Aucune prise de contrôle de combattant joueur",
+        "Ordre de drone hors chaîne automatique ; même action non répétée",
+        "Pas de preuve visuelle du drone exact acquise par cette annexe"
+      ]
+    },
+    {
+      "actor": "armax-tela-vasir-me2",
+      "sourceCapabilities": [
+        "Charge/dash biotique",
+        "Shockwave",
+        "Protection biotique",
+        "Arme"
+      ],
+      "sourceIds": [
+        "S4"
+      ],
+      "canonicalCapabilityDoesNotMeanCanonical2DMechanic": true,
+      "existingMoveIdsPreserved": [
+        "armax-tela-vasir-me2-special-1",
+        "armax-tela-vasir-me2-special-2",
+        "armax-tela-vasir-me2-special-3"
+      ],
+      "proposedRoutes": [
+        "2L > 5M xx 236S",
+        "5H xx 214S xx 236236H"
+      ],
+      "superCost": 100,
+      "restrictions": [
+        "Charge horizontale sans invulnérabilité complète selon le kit existant",
+        "Onde de rupture reste adaptation de Shockwave, destruction de projectile non canonique",
+        "Aucune Nova ou Singularity ajoutée",
+        "Marques, armure et période de Liara verrouillées ME2"
+      ]
+    },
+    {
+      "actor": "armax-morinth-me2",
+      "sourceCapabilities": [
+        "Pull",
+        "Throw",
+        "Dominate"
+      ],
+      "sourceIds": [
+        "S3"
+      ],
+      "canonicalCapabilityDoesNotMeanCanonical2DMechanic": true,
+      "existingMoveIdsPreserved": [
+        "armax-morinth-me2-special-1",
+        "armax-morinth-me2-special-2",
+        "armax-morinth-me2-special-3"
+      ],
+      "proposedRoutes": [
+        "2L > 5M xx 236S",
+        "5H xx 214S xx 236236H"
+      ],
+      "superCost": 100,
+      "restrictions": [
+        "Emprise est un marqueur de simulation, pas une preuve de Dominate exact",
+        "Marque sur synthétique ne représente pas un contrôle biologique",
+        "Convergence ne devient pas Singularity",
+        "Aucun Reave de Samara attribué implicitement à Morinth"
+      ]
+    }
+  ],
+  "finisherSpecifications": [
+    {
+      "id": "lot18-grunt-me2-finisher",
+      "actor": "ME2-CHR-GRUNT",
+      "name": "Dernier passage",
+      "nameOrigin": "création_du_projet",
+      "legacySequencePreserved": "percussion puis tir hors champ",
+      "presentation": "Le coup de crosse/percussion ferme la distance ; arme cadrée puis coupe vers la ligne de sortie. Tir hors champ et extinction du profil de simulation.",
+      "durationFramesProposed": 180,
+      "assetDependency": "poses et cadrage arme à produire",
+      "compatibleTargetPolicy": "Humanoïde dont les contacts ont été définis ; sinon extinction sobre de la projection."
+    },
+    {
+      "id": "lot18-legion-me2-finisher",
+      "actor": "ME2-CHR-LEGION",
+      "name": "Trajectoire résolue",
+      "nameOrigin": "création_du_projet",
+      "legacySequencePreserved": "cible immobilisée en présentation, tir de précision",
+      "presentation": "Optique, ligne de visée et arme sur trois accents ; le gel de la cible appartient à la présentation après résultat, pas à une nouvelle capacité de Stasis.",
+      "durationFramesProposed": 180,
+      "assetDependency": "corps existant à récupérer et référence du fusil",
+      "compatibleTargetPolicy": "Cible prévue par la fiche ; pas de piratage du joueur ni de trophée sur boss géant."
+    },
+    {
+      "id": "armax-tela-vasir-me2-finisher",
+      "actor": "armax-tela-vasir-me2",
+      "name": "Dossier clos",
+      "nameOrigin": "nom_herite_du_projet",
+      "legacySequencePreserved": "barrière autour du module de simulation, récupération d’une donnée holographique",
+      "presentation": "La barrière encadre un module Armax, puis Tela récupère le témoin de résultat. Aucun secret canonique ni fichier de la campagne n’est ouvert.",
+      "durationFramesProposed": 165,
+      "assetDependency": "module, main et barrière cohérents",
+      "compatibleTargetPolicy": "Module de simulation commun, sans contact imposé à l’anatomie du boss."
+    },
+    {
+      "id": "armax-morinth-me2-finisher",
+      "actor": "armax-morinth-me2",
+      "name": "Volonté coupée",
+      "nameOrigin": "nom_herite_du_projet",
+      "legacySequencePreserved": "projection adverse éteinte dans un halo, Morinth se détourne",
+      "presentation": "Le halo ne masque pas le visage de Morinth ; la projection se coupe et elle regarde la sortie. Il s’agit d’une extinction Armax, pas d’un nouvel usage canonique de Dominate.",
+      "durationFramesProposed": 150,
+      "assetDependency": "halo distinct du corps, raccord sortie",
+      "compatibleTargetPolicy": "Extinction sobre pour toute cible incompatible ; le joueur garde le contrôle jusqu’au résultat fixé."
+    }
+  ],
+  "finisherCommonContract": {
+    "ruleSet": "RC-ARMAX-0.1",
+    "afterConfirmedFinalKOOnly": true,
+    "input": "L+M+H",
+    "windowFrames": 120,
+    "damage": 0,
+    "meterGain": 0,
+    "skipImmediate": true,
+    "exclusiveRewards": false,
+    "tournament": "sobre_ou_ignoree",
+    "matchResultImmutable": true
+  }
+}

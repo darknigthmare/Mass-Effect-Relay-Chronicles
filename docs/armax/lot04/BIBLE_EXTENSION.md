@@ -3,6 +3,8 @@
 
 **État : conception spécifiée ; aucun gameplay Armax livré par cette bible.**
 
+> **Association au guide général — 25 novembre 2026 :** la [bible intégrée](../bible/BIBLE_ARMAX_INTEGREE.md) complète les 30 rubriques communes et relie ces fiches aux [campagnes et scènes](../bible/CAMPAGNES_ET_SCENES.md). Le [contrat RC-ARMAX-0.1](../bible/common-rules.json) est la référence courante des règles communes, avec les arbitrages explicites vis-à-vis du complément Grunt/Legion. Les kits, noms, récits, valeurs spécifiques et preuves ci-dessous restent leur version historique ; aucune disponibilité jouable ni fidélité supplémentaire n’est déclarée.
+
 Date de préparation : 19 novembre 2026, contexte Europe/Paris. Base examinée : `deb5c9382a697acd0cf72b182bc646337cdcfb25`. Source structurée : [fighters.json](fighters.json). Les fichiers réellement obtenus et leurs contrôles sont suivis par le manifeste de production du lot ; le chemin prévu d’une image ne prouve jamais son existence.
 
 Le lot définit **14 sujets : dix candidats au Versus standard, trois profils de boss dont Bénézia à normaliser avant une éventuelle sélection Versus, et un soutien narratif, Eve**. Treize sujets reçoivent un kit de conception, soit 78 normaux, 39 spéciaux, treize prises, treize supers, treize finalisations sobres et 26 séquences. Les deux grands boss ont six phases au total. Ces nombres comptent des fiches et des intentions, pas des personnages déjà jouables. Pour l’Archonte, le kit décrit des commandes de dangers environnementaux et ne lui attribue pas une carrière de duelliste.

@@ -106,6 +106,16 @@ La nouvelle opération des varrens comprend demande, affrontement d’une meute 
 
 Le Codex donne accès à **Faune et vaisseaux**, selon la connaissance du commando. Les repères de vaisseaux sont des projections bleues sur bornes, sans présence physique de coques dans les promenades. Les dossiers des autres épisodes passent par l’accès documentaire existant et des filtres dédiés des Chroniques ; une image n’accorde ni pilotage, ni recrutement ou rencontre. Les cinq profils ennemis supplémentaires utilisent les ordres ATB existants. Le maître de guerre de Thérum garde le budget exact du krogan qu’il remplace.
 
+## Armax Relay Clash — mode annexe de combat
+
+La [bible intégrée Armax](armax/bible/BIBLE_ARMAX_INTEGREE.md), révisée le **25 novembre 2026**, applique les **30 rubriques du guide général de combat** au mode annexe latéral Mass Effect. Elle associe les [règles communes RC-ARMAX-0.1](armax/bible/common-rules.json), les kits existants, les personnages et costumes, les pouvoirs, les neutralisations après KO final, les boss, les projectiles et les arènes.
+
+Les [campagnes et scènes](armax/bible/CAMPAGNES_ET_SCENES.md) distinguent **six routes pilotes individuelles** et une **campagne globale originale en deux volumes et douze chapitres**. Les introductions, rivaux et outros disposent de briefs d'illustration ; les rencontres alternatives et sous-zones manquantes restent identifiées. Les quatre axes de stage — présentation, interactions, dangers, transitions — sont définis séparément.
+
+La [matrice des associations](armax/bible/guide-associations.json) porte **90 critères d'acceptation** et les décisions retenues, différées ou à préciser. Les [fiches A–J](armax/bible/FICHES_ET_LIAISONS.md) relient les IDs de conception aux catalogues existants. Les [sources et arbitrages](armax/bible/SOURCES_ET_DECISIONS.md) documentent notamment l'harmonisation du complément Grunt/Legion avec le lot 04.
+
+**Statut : conception documentaire.** Aucun combattant, mode, plan narratif ou nouvel asset n'est déclaré produit ou jouable par cette révision. Le contrat Armax reste distinct du combat ATB ci-dessous et conserve son propre état ; personnages, inventaire, neuf emplacements et décisions du RPG suivent leurs règles existantes.
+
 ## Combat ATB
 
 Chaque acteur possède santé, bouclier, attaque, défense, vitesse, chaleur, concentration, jauge ATB, recharges et états temporaires. Une jauge pleine permet une action. La simulation découpe le temps en petites étapes pour conserver l’ordre des événements même lorsqu’un test accélère plusieurs secondes.

@@ -2,17 +2,96 @@
 
 Cette annexe conserve la production artistique du mode de combat 2D de Mass Effect — Relay Chronicles. Les PNG, les compléments de bible et les exports restent accompagnés de leurs références, de leur provenance et de leurs réserves.
 
-## Lot 12 — continuation courante
+## Bible courante — guide général et deux extensions
+
+La [bible intégrée](bible/BIBLE_ARMAX_INTEGREE.md) relie les **68 rubriques** du guide général et de ses deux extensions aux contrats et fiches Armax : 30 rubriques historiques et 38 supplémentaires. Elle fixe la référence commune de conception tout en conservant les lots historiques.
+
+- [Matrice courante : 68 rubriques et 204 critères](bible/guide-coverage-2026-11-27.json).
+- [Associations historiques et 90 critères conservés](bible/guide-associations.json).
+- [Associations des 216 fiches de contenu](bible/ASSOCIATIONS_CONTENU.md) : rôles, kits existants, costumes, sous-zones, calques et composants d’action ; [index structuré](bible/content-associations.json).
+- [Règles RC-ARMAX-0.1](bible/common-rules.json) : commandes, garde, jauges et arbitrages Grunt/Legion–lot 04.
+- [Campagnes et scènes](bible/CAMPAGNES_ET_SCENES.md) : six routes pilotes, 30 combats de route, 36 plans à produire ; campagne globale distincte en deux volumes et douze chapitres.
+- [Fiches A–J et liaisons](bible/FICHES_ET_LIAISONS.md), [sources et décisions](bible/SOURCES_ET_DECISIONS.md).
+
+**Portée de la bible : conception documentaire.** Les 36 briefs narratifs initiaux et les 32 nouveaux briefs du lot 18 restent des plans à produire ; leur écriture ne prouve aucune image ni aucun parcours jouable. Le suivi artistique courant est celui du lot 22 ci-dessous ; les anciens lots conservent leurs comptes historiques. Ce suivi de manquants ne contient pas tous les kits et récupérations précédents.
+
+## Lot 22 — Les Dettes de Nacre et prototype de duel
+
+Le [lot 22](lot22/README.md) poursuit les **216 fiches canoniques** et ajoute **110 identités originales** : 10 combattants, 20 stages, 20 ennemis, 20 boss, 20 accessoires et 20 effets/projectiles. La [bible Nacre](../../DLC/LesDettesDeNacre/README.md) décrit leur cadre de 2185, leurs kits, leurs routes et leurs rencontres.
+
+Le mode **Armax · duel 2D** est ajouté au titre et à la pause du jeu. Le [rapport d’implémentation](lot22/GAMEPLAY_IMPLEMENTATION.md) et la [couverture exécutable](lot22/gameplay-coverage.json) distinguent le noyau testé, les défis condensés et les fonctions encore à réaliser. Les campagnes ME1/Chroniques gardent leur état propre. La revue navigateur reste non validée tant que le rapport ne porte pas une preuve positive.
+
+- [Catalogue courant : 326 fiches](lot22/production-catalog.json) et [associations consolidées](lot22/content-associations.json).
+- [Manifestes des PNG natifs](lot22/asset-manifest.json) et [audit des manquants canoniques](lot22/CANONICAL_REMAINING.md).
+- [Classeur Nacre et suivi lot 22](lot22/Mass_Effect_Armax_Nacre_Lot22_2026-11-27.xlsx).
+
+Une création originale ne ferme aucun manque canonique. Une pose fixe ne vaut pas une animation ; un master de décor ne vaut pas cinq calques. Les comptes historiques ci-dessous conservent leur périmètre.
+
+## Lot 21 — état historique
+
+**216 fiches : 171 avec image candidate et 45 sans**. Le lot21 conserve 196 identités et en ajoute 20. Il livre **10 PNG : 7 récupérés et 3 générés**, pour 2 anciennes fiches complétées et 8 nouvelles identités illustrées. Dans le périmètre hérité, les manquants passent de 35 à 33. La fidélité 1:1 et l’intégration moteur restent non certifiées.
+
+[Livraison](lot21/README.md) · [Manquants](lot21/MANQUANTS_2026-11-27.md) · [Bible complémentaire](lot21/BIBLE_COMPLEMENTS_LOT21.md) · [Classeur](lot21/Mass_Effect_Armax_Suivi_Lot21_2026-11-27.xlsx). Les 68 rubriques et 204 critères des guides sont conservés ; aucun des 40 scénarios de gameplay n’est exécuté ici.
+
+## Lot 20 — historique du 27 novembre 2026
+
+**5 fiches auparavant sans image disposent d’un candidat**. Le suivi conserve **196 identités : 161 avec image et 35 sans**. Cette passe produit **4 PNG natifs, dont 4 sélectionnés**, et résout **1 attribution historique**. Le [bilan](lot20/README.md), le [catalogue historique](lot20/production-catalog.json), les [manquants](lot20/MANQUANTS_2026-11-27.md) et le [classeur](lot20/Mass_Effect_Armax_Suivi_Lot20_2026-11-27.xlsx) portent les fichiers et contrôles de cette passe.
+
+## Lot 19 — historique du 27 novembre 2026
+
+Le [lot19](lot19/README.md) poursuit les sprites fixes : **6 PNG natifs, 4 sélectionnés et 2 attributions historiques résolues**, soit **6 anciennes fiches nouvellement illustrées**. Le [catalogue historique lot19](lot19/production-catalog.json), les [manquants](lot19/MANQUANTS_2026-11-27.md) et le [classeur](lot19/Mass_Effect_Armax_Suivi_Lot19_2026-11-27.xlsx) comptent **196 identités, 156 avec image candidate et 40 sans**. Les totaux lot18 ci-dessous restent historiques.
+
+Les [trois guides originaux](guides/README.md) sont maintenant récupérés à l'identique. Le [registre complet](bible/guide-coverage-2026-11-27.json) associe **68 rubriques et 204 critères de conception**. Les [équipes et bonus](bible/EXTENSION_01_EQUIPES_ET_BONUS.md) et les [déblocages](bible/EXTENSION_02_DEBLOCAGES.md) complètent la bible avec règles d'opus, rôles, sources et scénarios à tester. Les 90 critères initiaux restent conservés. Aucun système jouable ou abonnement réel n'est déclaré opérationnel.
+
+## Lot 18 — historique du 25 novembre 2026
+
+Le [lot 18](lot18/README.md) consolide **12 PNG récupérés du lot 17**, ajoute **8 PNG pour 7 nouveaux sujets** et rattache les deux images lot17 déjà publiées au catalogue. Trois costumes féminins ME2 — Inferno, Terminus et Collector — et quatre composants du marché Urdnot complètent la production. Le sol R0 reste archivé ; trois récupérations ambiguës restent non attribuées.
+
+Le [catalogue historique](lot18/production-catalog.json), les [manquants](lot18/MANQUANTS_2026-11-25.md) et le [classeur](lot18/Mass_Effect_Armax_Suivi_Lot18_2026-11-25.xlsx) comptent **196 fiches : 150 avec candidat et 46 sans**. Couverture : **57/87 personnages, 22/38 costumes, 52 masters, 5 calques, 7 effets, 2 projectiles et 5 accessoires**. Les 192 identités héritées sont conservées ; les quatre composants ne créent pas quatre nouvelles arènes.
+
+L’[annexe de campagnes](lot18/BIBLE_COMPLEMENTS_LOT18.md) ajoute quatre routes Grunt/Legion/Tela/Morinth, vingt rencontres et trente-deux briefs, sans nouvelle illustration produite. Le [manifeste](lot18/manifest.json), les [associations](lot18/bible-asset-associations.json) et la [vérification](lot18/verification.json) conservent les réserves de fidélité, de raccord et d’identification. Les actifs restent Prototype et le moteur n’est pas modifié.
+
+## Lot 16 — historique du 25 novembre 2026
+
+Le [lot 16](lot16/README.md) apporte **6 PNG natifs pour 5 sujets, dont 5 PNG sélectionnés** : architecture distante PH-20, structures arrière PH-30 et sol PH-40 de Port Hanshan, fauteuil isolé de l’Homme Trouble et pose assise ME2. La révision R0 du sol reste archivée et non sélectionnée. Les trois calques et le fauteuil créent **4 fiches** ; la pose assise complète `chr_me2_illusive_man`, déjà illustré debout au lot 13.
+
+Le [catalogue historique](lot16/production-catalog.json), les [manquants](lot16/MANQUANTS_2026-11-25.md) et le [classeur du 25 novembre](lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx) comptent **192 fiches : 132 avec image candidate et 60 sans**. Couverture : **49/87 personnages, 16/38 costumes, 52/52 masters de sous-zones, 3/3 calques, 7 effets, 2 projectiles et 3 accessoires**. La catégorie stage totalise 55 fiches, en distinguant les 52 sous-zones historiques des 3 composants de Port Hanshan. Le [contrôle du corpus](lot16/workbook-verification.json) compte **231 originaux distincts : 225 antérieurs et 6 nouveaux**.
+
+Les [associations à la bible](lot16/bible-asset-associations.json) rattachent les calques aux fiches **G/J** et les deux sujets de l’Homme Trouble aux fiches narratives **B/F/J**. Le fauteuil et la pose assise disposent de candidats, avec une géométrie différente entre les deux images et un alpha maximal de 254 ; ils ne sont pas prêts à se superposer directement. Le sol PH-40 R1 améliore la jonction avec PH-30 mais conserve une largeur de 1 671 pixels contre 1 672 pour les autres calques. Les franges et le calage restent à revoir. Aucun pouvoir, kit, animation, scène complète ou arène jouable n’est ajouté.
+
+Le [manifeste](lot16/manifest.json), les [sources](lot16/reference-library.json), la [revue indépendante de Port Hanshan](lot16/qa/port-hanshan-independent-review.json), la [revue indépendante de l’Homme Trouble](lot16/qa/illusive-man-independent-review.json) et la [vérification du lot](lot16/verification.json) détaillent les preuves et limites. Les fichiers restent **Prototype**, avec fidélité 1:1 et intégration moteur non validées.
+
+### Lot 15 — livraison antérieure non récupérée
+
+Les **113 PNG annoncés au lot 15 ne sont ni récupérés ni publiés**. L’archive et le commit local de cette livraison ne sont pas disponibles à la reprise. Le [constat de récupération](lot16/RECUPERATION_LOT15.md) conserve les repères antérieurs ; les comptes courants repartent des fichiers du lot 14 et des nouveaux fichiers vérifiés du lot 16. Les plans narratifs annoncés au lot 15 ne sont pas déclarés présents, et les exclusions de génération signalées restent actives.
+
+## Lot 14 — historique du 25 novembre 2026
+
+Le [lot 14](lot14/README.md) ajoute **21 PNG natifs pour 20 sujets** : CAT6 Heavy et Sniper, Amanda Kenson, Suvi assise ; cinq sous-zones Armax/Omega ; sept effets ME2, deux projectiles, un omni-outil et la grenade-disque ME1. Un R0 d’omni-outil est conservé en historique. **Quatre anciennes fiches** sont illustrées et **seize nouvelles fiches** sont ajoutées ; aucun costume nouveau.
+
+Le [catalogue et les manquants](lot14/MANQUANTS_2026-11-25.md) et le [classeur du 25 novembre](lot14/Mass_Effect_Armax_Suivi_Lot14_2026-11-25.xlsx) comptent **188 fiches : 128 avec image et 60 sans**. Couverture : **49/87 personnages, 16/38 costumes, 52/52 stages, 7 effets, 2 projectiles et 2 accessoires**. Les 172 identités héritées et les 13 exclusions sont conservées ; le corpus atteint 225 PNG originaux.
+
+Les [associations à la bible](lot14/bible-asset-associations.json), [sources](lot14/reference-library.json), [réserves](lot14/REFERENCE_GAPS.md), [revues](lot14/independent-art-review.json) et [vérifications](lot14/verification.json) détaillent la portée. Tous restent **Prototype**, sans certification 1:1 ni intégration moteur. La pose assise de Suvi, les décors aplatis et les instants de VFX ne complètent pas tous les assets de leurs fiches.
+
+## Lot 13 — historique
+
+Le [lot 13](lot13/README.md) apporte **14 PNG pour 13 sujets** : Kelly Chambers, l’Homme Trouble et Alec Ryder ; Varren, Dévoreur, Rachni Soldier et CAT6 Specialist ; Samara loyauté et Jack standard ME2 ; la passerelle du poste du Tempest à Aya ; Kett Anointed, Reliquat Assembler et Hydra d’Andromeda. Le R0 d’Hydra reste conservé après correction de son capteur supérieur. **Dix anciennes fiches** sont nouvellement illustrées et **trois identités sourcées** sont ajoutées séparément.
+
+Le [catalogue et les manquants historiques](lot13/MANQUANTS_2026-11-24.md) et le [classeur du 24 novembre](lot13/Mass_Effect_Armax_Suivi_Lot13_2026-11-24.xlsx) conservent les **169 identités et usages hérités**. Avec les trois ajouts, ils comptent **172 fiches, dont 108 avec image candidate et 64 sans** : **45/87 personnages ou ennemis, 16/38 costumes et 47/47 stages** illustrés. Le corpus atteint **204 PNG originaux**, hors trois aperçus historiques. Les 13 exclusions de génération héritées restent inchangées.
+
+La [bibliothèque de références](lot13/reference-library.json), la [revue indépendante](lot13/independent-art-review.json), les [lacunes documentées](lot13/REFERENCE_GAPS.md) et les [vérifications](lot13/verification.json) relient chaque PNG à ses sources, son prompt et ses limites. À l’issue du lot 13, le fauteuil de l’Homme Trouble restait manquant ; son candidat et la pose assise sont désormais suivis au lot 16 avec leurs réserves de géométrie et d’alpha. Le bas de la tenue de Jack s’appuie sur le dessin final officiel, sans certification de sa correspondance exacte au modèle du jeu. Aya représente la passerelle d’accueil, pas l’ensemble des quais ni un stage jouable. Les accessoires, autres poses, surfaces cachées, animations et couches de parallaxe restent à traiter selon chaque fiche. Tous les fichiers restent **Prototype**, sans fidélité 1:1 ni intégration moteur certifiées.
+
+## Lot 12 — livraison précédente
 
 Le [lot 12](lot12/README.md) illustre **34 anciennes fiches avec 36 PNG originaux** : neuf personnages ou ennemis — Rachni Worker, Brood Warrior, Geth Colossus, Stalker, Armature, Thorian Creeper, Praetorian, Rampart Mech et Adjutant —, l’armure Collector masculine ME2, Miranda en tenue de loyauté ME2 et 23 stages. **Aucune nouvelle identité n’est ajoutée.** Les 36 appels imagegen ont réussi sans refus ni erreur technique. Deux R0 de stages restent conservés après des corrections ciblées et ne comptent pas comme sujets supplémentaires.
 
-Le [catalogue courant et le listing](lot12/MANQUANTS_2026-11-20.md) et le [classeur lot 12](lot12/Mass_Effect_Armax_Suivi_Lot12_2026-11-20.xlsx) conservent **169 fiches : 84 personnages/ennemis, 38 costumes et 47 stages**. **95 ont une image candidate et 74 restent sans image** ; la couverture est de **35/84 personnages, 14/38 costumes et 46/47 stages**. Les champs d’identité et d’usage hérités restent inchangés. Le corpus atteint **190 PNG originaux**, dont les versions R0 conservées, hors trois aperçus historiques.
+Le [catalogue et le listing historiques](lot12/MANQUANTS_2026-11-20.md) et le [classeur lot 12](lot12/Mass_Effect_Armax_Suivi_Lot12_2026-11-20.xlsx) conservent **169 fiches : 84 personnages/ennemis, 38 costumes et 47 stages**. **95 ont une image candidate et 74 restent sans image** ; la couverture est de **35/84 personnages, 14/38 costumes et 46/47 stages**. Les champs d’identité et d’usage hérités restent inchangés. Le corpus atteint **190 PNG originaux**, dont les versions R0 conservées, hors trois aperçus historiques.
 
-Les [23 sous-zones de stages](lot12/STAGES.md) vont des postes précis de Féros et des stations Hermès/Atlas aux plateformes finales de Rho, au cœur partiel du cuirassé geth, au seuil intérieur de Voeld et au troisième relais de Méridiane. Thérum reste une entrée extérieure, le Voile un palier avec tour hors cadre et les Archives une salle sans numéro visible. **Aya seule reste sans master**, faute de référence suffisante de la zone du Tempest. X57 est explicitement référencé en Legendary Edition ; Virmire garde une incertitude d’édition avec recoupement IGN original ; Londres conserve l’état Before et sa limite de caméra/build non documentés.
+Les [23 sous-zones de stages](lot12/STAGES.md) vont des postes précis de Féros et des stations Hermès/Atlas aux plateformes finales de Rho, au cœur partiel du cuirassé geth, au seuil intérieur de Voeld et au troisième relais de Méridiane. Thérum reste une entrée extérieure, le Voile un palier avec tour hors cadre et les Archives une salle sans numéro visible. **Au terme du lot 12, Aya seule restait sans master**, faute de référence suffisante de la zone du Tempest. X57 est explicitement référencé en Legendary Edition ; Virmire garde une incertitude d’édition avec recoupement IGN original ; Londres conserve l’état Before et sa limite de caméra/build non documentés.
 
 Les [manifestes et réserves du lot](lot12/README.md), la [bibliothèque de sources](lot12/reference-library.json), les [lacunes documentaires](lot12/REFERENCE_GAPS.md) et les [vérifications](lot12/verification.json) distinguent ces vues partielles des lieux complets. Poses fixes, marges serrées et surfaces cachées restent à traiter. Les rendus 3D du Collector et de Miranda servent uniquement à inspecter les références, hors corpus des masters. Tous les nouveaux fichiers restent **Prototype**, sans fidélité 1:1, animation complète, parallaxe ou moteur validés.
 
-## Lot 11 — livraison précédente
+## Lot 11 — historique
 
 Le [lot 11](lot11/README.md) ajoute **treize sujets et treize PNG** : cinq ennemis d’Andromeda — Wraith, Chosen, Behemoth, Breacher et Nullifier —, Jack en tenue de loyauté ME2, Liara AAP1 ME3 et six décors — Canal et archives d’Ilos, Hot Labs, Haestrom, CIC du Normandy SR-1 et Chora’s Den. **Huit fiches héritées sont nouvellement illustrées ; cinq fiches inédites sont ajoutées avec leurs sources.**
 

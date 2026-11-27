@@ -1,0 +1,1078 @@
+{
+  "schemaVersion": 1,
+  "auditId": "armax-lot21-coverage-additions",
+  "date": "2026-11-27",
+  "timezone": "Etc/UTC",
+  "baseCommit": "8542d7ca03702dcf4b3bccd8ac938bd6574f20bc",
+  "armaxBaseline": {
+    "path": "docs/armax/lot20/production-catalog.json",
+    "entryCount": 196,
+    "sha256": "41789c4d1ff2b054514fa81608c2dfe37eeba8a0f250928fae1c04f2d68f3d19"
+  },
+  "scope": "Extension mesurée ME1/ME2/ME3/Andromeda : 15 identités absentes du catalogue Armax lot20, non exclues à cette date. Aucun inventaire exhaustif de la franchise.",
+  "accountingRule": "Une identité = sujet + œuvre + variante. Les propositions ne sont pas des images ; les prototypes du RPG ne deviennent pas automatiquement des actifs Armax.",
+  "recovery": {
+    "reconstructed": true,
+    "sourceWorkbook": "docs/armax/lot21/Mass_Effect_Armax_Suivi_Lot21_2026-11-27.xlsx",
+    "sourceWorkbookSha256": "0c72622d22bed67d59836477a95006977a5492f485d8b4b462c37f1ee31032c4",
+    "sourceExtract": "docs/armax/lot21/audit/recovered-workbook-entries.json",
+    "note": "Le JSON original a été perdu avec le répertoire temporaire. Cette reconstitution conserve les 15 identités et décisions, les sources attestées dans le classeur et les liens aux catalogues Git ; elle ne revendique pas la même empreinte ni la restitution littérale des trois réserves initiales remplacées après production."
+  },
+  "method": [
+    "Comparer les identifiants au lot20 et aux exclusions historiques.",
+    "Relier chaque proposition à une fiche de catalogue existante.",
+    "Lire les sources et réserves conservées dans le classeur final.",
+    "Distinguer la source officielle textuelle, la référence visuelle et une illustration candidate.",
+    "Rechercher les assets déjà attribués avant toute production supplémentaire."
+  ],
+  "counts": {
+    "proposedEntries": 15,
+    "productionAfterReference": 10,
+    "reuseToInspect": 4,
+    "independentReferenceResearch": 1,
+    "generatedPngFilesByThisAudit": 0,
+    "byWork": {
+      "ME1": 4,
+      "ME2": 4,
+      "ME3": 4,
+      "MEA": 3
+    },
+    "byCategory": {
+      "personnage": 8,
+      "arme": 6,
+      "accessoire": 1
+    },
+    "finalWorkbookObservation": {
+      "illustratedProposals": 3,
+      "withoutImageProposals": 12,
+      "excludedWithoutImageProposals": 2,
+      "openWithoutImageProposals": 10
+    }
+  },
+  "sources": [
+    {
+      "id": "wiki_locust",
+      "title": "M-12 Locust",
+      "url": "https://masseffect.fandom.com/wiki/M-12_Locust",
+      "kind": "secondaire",
+      "scope": "Identité ME2 et variante ; capture entière originale requise.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "official_me2_firepower",
+      "title": "Firepower Pack — Xbox",
+      "url": "https://www.xbox.com/en-us/games/store/firepower-pack/BVVZ72CC1VJJ",
+      "kind": "primaire_officielle",
+      "scope": "Périmètre du pack ; ne certifie pas les détails du modèle.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "official_me2_2010",
+      "title": "Mass Effect 2 (2010 Edition) — Xbox",
+      "url": "https://www.xbox.com/en-US/games/store/mass-effect-2-2010-edition/9MTP3NKHVWM6",
+      "kind": "primaire_officielle",
+      "scope": "Édition de référence ME2 ; ne remplace pas une capture exacte.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "wiki_mattock",
+      "title": "M-96 Mattock",
+      "url": "https://masseffect.fandom.com/wiki/M-96_Mattock",
+      "kind": "secondaire",
+      "scope": "Identité de l’arme ; versions séparées par opus.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "wiki_phalanx",
+      "title": "M-5 Phalanx",
+      "url": "https://masseffect.fandom.com/wiki/M-5_Phalanx",
+      "kind": "secondaire",
+      "scope": "Identité et modèle ME2 ; variantes ultérieures distinctes.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "wiki_cain",
+      "title": "M-920 Cain",
+      "url": "https://masseffect.fandom.com/wiki/M-920_Cain",
+      "kind": "secondaire",
+      "scope": "Arme ME2 ; arme, charge et explosion séparées.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "official_me1_prima",
+      "title": "Mass Effect PC — guide Prima hébergé par EA/BioWare",
+      "url": "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf",
+      "kind": "guide_officiel_heberge_editeur",
+      "scope": "Identité et contexte ME1 ; modèle exact et édition à capturer.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "official_me3_manual",
+      "title": "Mass Effect 3 — manuel Xbox 360 EA",
+      "url": "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_Microsoft%20XBOX360.pdf",
+      "kind": "primaire_officielle",
+      "scope": "Existence et rôle du bestiaire ; aucune géométrie 1:1 déduite du texte.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "wiki_suppressor",
+      "title": "M-11 Suppressor",
+      "url": "https://masseffect.fandom.com/wiki/M-11_Suppressor",
+      "kind": "secondaire",
+      "scope": "Identité ME3 / Citadel ; profil entier requis.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "wiki_adhi",
+      "title": "Adhi",
+      "url": "https://masseffect.fandom.com/wiki/Adhi",
+      "kind": "secondaire",
+      "scope": "Distinction sauvage/dressé ; ne remplace pas une planche complète.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "official_mea_prima_outlaws",
+      "title": "Mass Effect Andromeda — guide officiel Prima, Outlaws",
+      "url": "https://primagames.com/eguides/mass-effect-andromeda-collectors-edition-eguide/game-mechanics/enemies/outlaws",
+      "kind": "guide_officiel",
+      "scope": "Source textuelle de la variante dressée, documentée dans la recherche lot13.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "artist_adhi_lowis",
+      "title": "Herbert Lowis — Adhi",
+      "url": "https://herbertlowis.artstation.com/projects/X2RP0",
+      "kind": "auteur_du_modele_reference",
+      "scope": "Pointeur historique ; planche complète non récupérée. Aucun nouvel accès ni contournement revendiqué.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    },
+    {
+      "id": "wiki_paw",
+      "title": "P.A.W.",
+      "url": "https://masseffect.fandom.com/wiki/P.A.W.",
+      "kind": "secondaire",
+      "scope": "Identité Andromeda ; configuration solo à isoler.",
+      "recoveryEvidence": "URL conservée dans le classeur lot21 ou les catalogues Git ; reconstruction documentaire, aucun nouveau succès d’accès web revendiqué."
+    }
+  ],
+  "entries": [
+    {
+      "id": "wpn_me2_m12_locust",
+      "name": "M-12 Locust",
+      "work": "ME2",
+      "category": "arme",
+      "variant": "Modèle original ME2 — Kasumi: Stolen Memory",
+      "plannedUse": "arme_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME2.json",
+      "sourceEntryId": "ME2-WPN-LOCUST",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "wiki_locust"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/M-12_Locust"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Priorité de production : verrouiller une vue entière native ME2, pas un render ME3. Conserver crosse, poignée avant, canon et marquages ; un seul objet sans porteur.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 207,
+        "status": "Prototype",
+        "imagePresent": true,
+        "selectedAssetFiles": [
+          "public/assets/armax/lot21/weapons/m12-locust-me2-profile-r0.png"
+        ],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 1,
+        "selectedPngCount": 1
+      }
+    },
+    {
+      "id": "wpn_me2_m96_mattock",
+      "name": "M-96 Mattock",
+      "work": "ME2",
+      "category": "arme",
+      "variant": "Modèle original ME2 — Firepower Pack",
+      "plannedUse": "arme_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME2.json",
+      "sourceEntryId": "ME2-WPN-MATTOCK",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me2_firepower",
+        "official_me2_2010",
+        "wiki_mattock"
+      ],
+      "sourceUrls": [
+        "https://www.xbox.com/en-us/games/store/firepower-pack/BVVZ72CC1VJJ",
+        "https://www.xbox.com/en-US/games/store/mass-effect-2-2010-edition/9MTP3NKHVWM6",
+        "https://masseffect.fandom.com/wiki/M-96_Mattock"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Capturer le modèle ME2 exact et ses proportions. Ne pas remplacer par le Mattock de ME3/Andromeda ni le Mattock Auto d’Infiltrator.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 208,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": true,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "wpn_me2_m5_phalanx",
+      "name": "M-5 Phalanx",
+      "work": "ME2",
+      "category": "arme",
+      "variant": "Modèle original ME2 — Firepower Pack",
+      "plannedUse": "arme_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME2.json",
+      "sourceEntryId": "ME2-WPN-PHALANX",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me2_firepower",
+        "official_me2_2010",
+        "wiki_phalanx"
+      ],
+      "sourceUrls": [
+        "https://www.xbox.com/en-us/games/store/firepower-pack/BVVZ72CC1VJJ",
+        "https://www.xbox.com/en-US/games/store/mass-effect-2-2010-edition/9MTP3NKHVWM6",
+        "https://masseffect.fandom.com/wiki/M-5_Phalanx"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Verrouiller le modèle ME2 du Firepower Pack, une vue entière et le dispositif de visée. Distinguer les variantes ME3/Andromeda ; phases de tir, rechargement et effet de visée sont des livrables séparés.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 209,
+        "status": "Prototype",
+        "imagePresent": true,
+        "selectedAssetFiles": [
+          "public/assets/armax/lot21/weapons/m5-phalanx-me2-profile-r0.png"
+        ],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 1,
+        "selectedPngCount": 1
+      }
+    },
+    {
+      "id": "wpn_me2_m920_cain",
+      "name": "M-920 Cain",
+      "work": "ME2",
+      "category": "arme",
+      "variant": "Arme lourde — modèle ME2",
+      "plannedUse": "arme_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME2.json",
+      "sourceEntryId": "ME2-WPN-CAIN",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "wiki_cain"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/M-920_Cain"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Verrouiller carcasse entière et échelle. Séparer arme, charge, projectile et explosion ; aucune équivalence au Cain local de ME3 déduite.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 210,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_me1_geth_rocket_trooper",
+      "name": "Lance-roquettes geth",
+      "work": "ME1",
+      "category": "personnage",
+      "variant": "Sous-type ME1 — édition visuelle à confirmer",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "reemploi_a_inspecter",
+      "sourceCatalog": "docs/content-catalog.json",
+      "sourceEntryId": "ENM-lance-roquettes-geth",
+      "sourceEntryStatus": "Prototype",
+      "sourceEntryAssetPath": "public/assets/frontier-enemies.png",
+      "sourceIds": [
+        "official_me1_prima"
+      ],
+      "sourceUrls": [
+        "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "reemploi_visuel_a_inspecter",
+      "referenceGap": "Corps fixe RPG présent dans frontier-enemies. Comparer au modèle de l’édition retenue, cadrage et armement avant toute nouvelle image ou association Armax. La roquette et l’explosion restent des actifs distincts.",
+      "existingRepositoryVisuals": [
+        {
+          "path": "public/assets/frontier-enemies.png",
+          "metadataPath": "public/assets/frontier-enemies.json",
+          "frame": "rocket-geth",
+          "rect": [
+            786,
+            17,
+            321,
+            477
+          ],
+          "status": "Prototype historique du RPG à comparer",
+          "gitBlob": "cd1b174405f70d1ef4f4dad1f67f676a24f3f0de",
+          "presenceEvidence": "Git tree at 8542d7ca03702dcf4b3bccd8ac938bd6574f20bc; this audit has not promoted or copied the visual into Armax."
+        }
+      ],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 211,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_me1_geth_juggernaut",
+      "name": "Juggernaut geth",
+      "work": "ME1",
+      "category": "personnage",
+      "variant": "Sous-type ME1 — édition visuelle à confirmer",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "reemploi_a_inspecter",
+      "sourceCatalog": "docs/content-catalog.json",
+      "sourceEntryId": "ENM-juggernaut-geth",
+      "sourceEntryStatus": "Prototype",
+      "sourceEntryAssetPath": "public/assets/frontier-enemies.png",
+      "sourceIds": [
+        "official_me1_prima"
+      ],
+      "sourceUrls": [
+        "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "reemploi_visuel_a_inspecter",
+      "referenceGap": "Corps fixe RPG présent dans frontier-enemies. Ne pas confondre le Juggernaut ME1 avec le Geth Prime ni le personnage multijoueur de ME3.",
+      "existingRepositoryVisuals": [
+        {
+          "path": "public/assets/frontier-enemies.png",
+          "metadataPath": "public/assets/frontier-enemies.json",
+          "frame": "juggernaut",
+          "rect": [
+            6,
+            486,
+            364,
+            530
+          ],
+          "status": "Prototype historique du RPG à comparer",
+          "gitBlob": "cd1b174405f70d1ef4f4dad1f67f676a24f3f0de",
+          "presenceEvidence": "Git tree at 8542d7ca03702dcf4b3bccd8ac938bd6574f20bc; this audit has not promoted or copied the visual into Armax."
+        }
+      ],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 212,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_me1_geth_destroyer",
+      "name": "Destructeur geth",
+      "work": "ME1",
+      "category": "personnage",
+      "variant": "Sous-type ME1 — édition visuelle à confirmer",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "reemploi_a_inspecter",
+      "sourceCatalog": "docs/content-catalog.json",
+      "sourceEntryId": "ENM-destructeur-geth",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me1_prima"
+      ],
+      "sourceUrls": [
+        "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "reemploi_visuel_a_inspecter",
+      "referenceGap": "Quatre poses RPG présentes, arme générique explicitement non certifiée. Le catalogue principal conserve assetPath=null : écart d’attribution à examiner sans déclarer une absence globale.",
+      "existingRepositoryVisuals": [
+        {
+          "path": "public/assets/enemy-geth-destroyer-combat.png",
+          "metadataPath": "public/assets/enemy-geth-destroyer-animation.json",
+          "sourceEntryId": "SPR-destructeur-geth-ennemi",
+          "status": "Quatre poses fixes ; armement et fidélité non certifiés",
+          "gitBlob": "47ca5a6097d3ca93ed937605a7a3c569c1c4e0dc",
+          "presenceEvidence": "Git tree at 8542d7ca03702dcf4b3bccd8ac938bd6574f20bc; this audit has not promoted or copied the visual into Armax."
+        }
+      ],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 213,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "prop_me1_eden_prime_prothean_beacon",
+      "name": "Balise prothéenne d’Eden Prime",
+      "work": "ME1",
+      "category": "accessoire",
+      "variant": "Artefact sur sa plateforme avant activation — ME1",
+      "plannedUse": "accessoire_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/content-catalog.json",
+      "sourceEntryId": "PRP-balise-protheenne",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me1_prima"
+      ],
+      "sourceUrls": [
+        "https://na.llnet.bioware.cdn.ea.com/u/f/eagames/bioware/masseffect/prima/prima_guide_me_pc.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Le master de stage Armax existe déjà ; il ne fournit pas l’objet détouré, le revers, le socle ni les états inactif/actif. Vérifier référence ME1 originale, silhouette et place sur la plateforme. Aucun rôle de combattant.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 214,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      },
+      "existingRepositoryContext": [
+        {
+          "catalogId": "stg_me1_eden_prime_spaceport",
+          "path": "public/assets/armax/lot10/stages/eden-prime-me1-beacon-platform-master.png",
+          "qualification": "Master de stage déjà compté ; ne fournit pas l’objet détouré ni ses états."
+        }
+      ]
+    },
+    {
+      "id": "chr_me3_geth_hunter",
+      "name": "Geth Hunter",
+      "work": "ME3",
+      "category": "personnage",
+      "variant": "Unité ennemie ME3 — état visible non camouflé",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME3.json",
+      "sourceEntryId": "ME3-ENM-GETH-HUNTER",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me3_manual"
+      ],
+      "sourceUrls": [
+        "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_Microsoft%20XBOX360.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Capturer le modèle ennemi ME3 entier. Effets entrée/sortie camouflage séparés ; ne pas assimiler au Geth Hunter Infiltrator jouable ni au modèle ME2. Source Marauder héritée trop générale, remplacée ici par le manuel officiel pour l’existence.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 215,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_me3_geth_pyro",
+      "name": "Geth Pyro",
+      "work": "ME3",
+      "category": "personnage",
+      "variant": "Unité ennemie ME3 — équipement standard",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME3.json",
+      "sourceEntryId": "ME3-ENM-GETH-PYRO",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me3_manual"
+      ],
+      "sourceUrls": [
+        "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_Microsoft%20XBOX360.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Capturer réservoirs, tuyaux, arme et silhouette ME3. Jet de feu, ignition et extinction séparés. Ne pas réutiliser le Destructeur ME2 sous ce nom.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 216,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_me3_swarmer",
+      "name": "Swarmer",
+      "work": "ME3",
+      "category": "personnage",
+      "variant": "Un spécimen au sol — ME3",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME3.json",
+      "sourceEntryId": "ME3-ENM-SWARMER",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_me3_manual"
+      ],
+      "sourceUrls": [
+        "https://eaassets-a.akamaihd.net/eahelp/manuals/mass-effect-3-manuals_Microsoft%20XBOX360.pdf"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Verrouiller une vue entière du Swarmer ME3 individuel ; ne pas remplacer la créature par le Ravager ou par un essaim. Silhouette, échelle, naissance et mouvement restent à vérifier séparément.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 217,
+        "status": "Prototype",
+        "imagePresent": true,
+        "selectedAssetFiles": [
+          "public/assets/armax/lot21/characters/enemy-swarmer-me3-neutral-r0.png"
+        ],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 1,
+        "selectedPngCount": 1
+      }
+    },
+    {
+      "id": "wpn_me3_m11_suppressor",
+      "name": "M-11 Suppressor",
+      "work": "ME3",
+      "category": "arme",
+      "variant": "Modèle ME3 — DLC Citadel",
+      "plannedUse": "arme_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/ME3.json",
+      "sourceEntryId": "ME3-WPN-SUPPRESSOR",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "wiki_suppressor"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/M-11_Suppressor"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Capturer profil entier, silencieux et fixation. Usage de projectile et animation à associer ensuite aux porteurs autorisés ; présence documentaire ne rend pas un PNJ combattant.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 218,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": true,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_mea_adhi_wild",
+      "name": "Adhi sauvage",
+      "work": "MEA",
+      "category": "personnage",
+      "variant": "Faune sauvage — sans équipement des Outlaws",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "reemploi_a_inspecter",
+      "sourceCatalog": "docs/universe/catalogs/MEA.json",
+      "sourceEntryId": "MEA-ENM-ADHI-WILD",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "wiki_adhi"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/Adhi"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "reemploi_visuel_a_inspecter",
+      "referenceGap": "Le cadre adhi-mea de horizon-fauna est un candidat historique. Son identifiant ne prouve pas seul sauvage/dressé ; inspection visuelle et comparaison de l’anatomie requises avant attribution. Ne pas générer de doublon à l’aveugle.",
+      "existingRepositoryVisuals": [
+        {
+          "path": "public/assets/horizon-fauna.png",
+          "metadataPath": "public/assets/horizon-fauna.json",
+          "frame": "adhi-mea",
+          "rect": [
+            797,
+            655,
+            319,
+            224
+          ],
+          "status": "Attribution sauvage/dressé non démontrée par le seul identifiant",
+          "gitBlob": "66eb0c42d62658a33ee9dcbc02e84c5c04017bb4",
+          "presenceEvidence": "Git tree at 8542d7ca03702dcf4b3bccd8ac938bd6574f20bc; this audit has not promoted or copied the visual into Armax."
+        }
+      ],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 219,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    },
+    {
+      "id": "chr_mea_adhi_trained_outlaws",
+      "name": "Adhi dressé des Outlaws",
+      "work": "MEA",
+      "category": "personnage",
+      "variant": "Variante équipée des Outlaws",
+      "plannedUse": "opposant_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "recherche_reference_independante",
+      "sourceCatalog": "docs/universe/catalogs/MEA.json",
+      "sourceEntryId": "MEA-ENM-ADHI-TRAINED",
+      "sourceEntryStatus": "Défini",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "official_mea_prima_outlaws",
+        "wiki_adhi",
+        "artist_adhi_lowis"
+      ],
+      "sourceUrls": [
+        "https://primagames.com/eguides/mass-effect-andromeda-collectors-edition-eguide/game-mechanics/enemies/outlaws",
+        "https://masseffect.fandom.com/wiki/Adhi",
+        "https://herbertlowis.artstation.com/projects/X2RP0"
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "publication_visuelle_independante_non_retrouvee",
+      "referenceGap": "Historique lot13 : planche complète et équipement non récupérés. Ne pas transformer une image de faune sauvage en variante équipée sans référence. Conserver les refus d’accès documentés ; chercher une publication indépendante permise.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 220,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      },
+      "priorResearch": "docs/armax/lot13/adhi-reference-research.json"
+    },
+    {
+      "id": "wpn_mea_paw",
+      "name": "P.A.W.",
+      "work": "MEA",
+      "category": "arme",
+      "variant": "Modèle solo Andromeda — configuration visuelle à verrouiller",
+      "plannedUse": "arme_candidat",
+      "priority": "P1",
+      "status": "Défini",
+      "auditDecision": "production_apres_reference",
+      "sourceCatalog": "docs/universe/catalogs/MEA.json",
+      "sourceEntryId": "MEA-WPN-PAW",
+      "sourceEntryStatus": "Prototype",
+      "sourceEntryAssetPath": null,
+      "sourceIds": [
+        "wiki_paw"
+      ],
+      "sourceUrls": [
+        "https://masseffect.fandom.com/wiki/P.A.W."
+      ],
+      "armaxPresence": "absent_from_196_entry_lot20_catalog",
+      "automaticRetryExcluded": false,
+      "referenceReadiness": "existence_documentee_capture_exacte_a_verrouiller",
+      "referenceGap": "Un profil ATB à chaleur existe déjà dans les Chroniques ; ce n’est pas une image isolée. Capturer corps de l’arme et sortie du rayon, puis séparer rayon/impact/extinction ; ne pas recopier les variantes multijoueurs dans le solo.",
+      "existingRepositoryVisuals": [],
+      "armaxAssetFiles": [],
+      "fidelity1to1Validated": false,
+      "engineIntegrated": false,
+      "claimScope": "Proposition documentaire relative au lot20 ; aucune génération, intégration ou promotion de statut réalisée par cet audit. Les résultats ultérieurs figurent dans le catalogue et le manifeste lot21.",
+      "finalWorkbookObservation": {
+        "excelRow": 221,
+        "status": "Défini",
+        "imagePresent": false,
+        "selectedAssetFiles": [],
+        "automaticRetryExcluded": false,
+        "deliveredPngCount": 0,
+        "selectedPngCount": 0
+      }
+    }
+  ],
+  "coverageByWork": [
+    {
+      "work": "ME1",
+      "catalogPath": "docs/content-catalog.json",
+      "catalogEntryCount": 1385,
+      "armaxProposedIds": [
+        "chr_me1_geth_rocket_trooper",
+        "chr_me1_geth_juggernaut",
+        "chr_me1_geth_destroyer",
+        "prop_me1_eden_prime_prothean_beacon"
+      ],
+      "proposedCount": 4,
+      "scope": "Lien de couverture documentaire ; aucune exhaustivité de l’œuvre ni des variantes revendiquée."
+    },
+    {
+      "work": "ME2",
+      "catalogPath": "docs/universe/catalogs/ME2.json",
+      "catalogEntryCount": 670,
+      "armaxProposedIds": [
+        "wpn_me2_m12_locust",
+        "wpn_me2_m96_mattock",
+        "wpn_me2_m5_phalanx",
+        "wpn_me2_m920_cain"
+      ],
+      "proposedCount": 4,
+      "scope": "Lien de couverture documentaire ; aucune exhaustivité de l’œuvre ni des variantes revendiquée."
+    },
+    {
+      "work": "ME3",
+      "catalogPath": "docs/universe/catalogs/ME3.json",
+      "catalogEntryCount": 736,
+      "armaxProposedIds": [
+        "chr_me3_geth_hunter",
+        "chr_me3_geth_pyro",
+        "chr_me3_swarmer",
+        "wpn_me3_m11_suppressor"
+      ],
+      "proposedCount": 4,
+      "scope": "Lien de couverture documentaire ; aucune exhaustivité de l’œuvre ni des variantes revendiquée."
+    },
+    {
+      "work": "MEA",
+      "catalogPath": "docs/universe/catalogs/MEA.json",
+      "catalogEntryCount": 763,
+      "armaxProposedIds": [
+        "chr_mea_adhi_wild",
+        "chr_mea_adhi_trained_outlaws",
+        "wpn_mea_paw"
+      ],
+      "proposedCount": 3,
+      "scope": "Lien de couverture documentaire ; aucune exhaustivité de l’œuvre ni des variantes revendiquée."
+    }
+  ],
+  "otherWorkCatalogIndex": [
+    {
+      "work": "ANN",
+      "title": "Mass Effect Andromeda: Annihilation",
+      "catalogPath": "docs/universe/catalogs/ANN.json",
+      "entryCount": 161,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "ASC",
+      "title": "Mass Effect: Ascension",
+      "catalogPath": "docs/universe/catalogs/ASC.json",
+      "entryCount": 158,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "BLA",
+      "title": "Mass Effect: Blasto: Eternity is Forever",
+      "catalogPath": "docs/universe/catalogs/BLA.json",
+      "entryCount": 82,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "CON",
+      "title": "Mass Effect: Conviction",
+      "catalogPath": "docs/universe/catalogs/CONVICTION.json",
+      "entryCount": 68,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "CUT",
+      "title": "Mass Effect : contenus coupés et concepts abandonnés",
+      "catalogPath": "docs/universe/catalogs/CUT.json",
+      "entryCount": 124,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "DEC",
+      "title": "Mass Effect: Deception",
+      "catalogPath": "docs/universe/catalogs/DEC.json",
+      "entryCount": 160,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "DIS",
+      "title": "Mass Effect: Discovery",
+      "catalogPath": "docs/universe/catalogs/DIS.json",
+      "entryCount": 160,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "EVO",
+      "title": "Mass Effect: Evolution",
+      "catalogPath": "docs/universe/catalogs/EVO.json",
+      "entryCount": 122,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "FOU",
+      "title": "Mass Effect: Foundation",
+      "catalogPath": "docs/universe/catalogs/FOU.json",
+      "entryCount": 249,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "GAL",
+      "title": "Mass Effect: Galaxy",
+      "catalogPath": "docs/universe/catalogs/GAL.json",
+      "entryCount": 103,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "HOM",
+      "title": "Mass Effect: Homeworlds",
+      "catalogPath": "docs/universe/catalogs/HOM.json",
+      "entryCount": 171,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "HWB",
+      "title": "Mass Effect: He Who Laughs Best",
+      "catalogPath": "docs/universe/catalogs/HWB.json",
+      "entryCount": 71,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "INC",
+      "title": "Mass Effect: Incursion",
+      "catalogPath": "docs/universe/catalogs/INC.json",
+      "entryCount": 64,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "INF",
+      "title": "Mass Effect: Infiltrator",
+      "catalogPath": "docs/universe/catalogs/INF.json",
+      "entryCount": 109,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "INI",
+      "title": "Mass Effect Andromeda: Initiation",
+      "catalogPath": "docs/universe/catalogs/INI.json",
+      "entryCount": 159,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "INQ",
+      "title": "Mass Effect: Inquisition",
+      "catalogPath": "docs/universe/catalogs/INQ.json",
+      "entryCount": 63,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "INV",
+      "title": "Mass Effect: Invasion",
+      "catalogPath": "docs/universe/catalogs/INV.json",
+      "entryCount": 117,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "LIB",
+      "title": "Mass Effect Library Edition",
+      "catalogPath": "docs/universe/catalogs/LIB.json",
+      "entryCount": 80,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "ME4",
+      "title": "Mass Effect 4 : extrapolation du projet annulé",
+      "catalogPath": "docs/universe/catalogs/ME4.json",
+      "entryCount": 145,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "NEX",
+      "title": "Mass Effect Andromeda: Nexus Uprising",
+      "catalogPath": "docs/universe/catalogs/NEX.json",
+      "entryCount": 159,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "PL",
+      "title": "Mass Effect: Paragon Lost",
+      "catalogPath": "docs/universe/catalogs/PL.json",
+      "entryCount": 199,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "RED",
+      "title": "Mass Effect: Redemption",
+      "catalogPath": "docs/universe/catalogs/RED.json",
+      "entryCount": 117,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "RET",
+      "title": "Mass Effect: Retribution",
+      "catalogPath": "docs/universe/catalogs/RET.json",
+      "entryCount": 158,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    },
+    {
+      "work": "REV",
+      "title": "Mass Effect: Revelation",
+      "catalogPath": "docs/universe/catalogs/REV.json",
+      "entryCount": 158,
+      "auditStatus": "indexed_only_not_audited_for_armax"
+    }
+  ],
+  "priorityWeaponAbsenceEvidence": [
+    {
+      "id": "wpn_me2_m12_locust",
+      "catalogueLot20Present": false,
+      "sourceEntryAssetPath": null,
+      "trackedAssetNameMatchesAtBase": [],
+      "qualification": "Recherche de nom dans les assets Git et contrôle des fiches sources ; ne démontre pas l’absence du sujet à l’intérieur d’une image sans attribution. Les captures d’interface ne sont pas des sprites isolés."
+    },
+    {
+      "id": "wpn_me2_m96_mattock",
+      "catalogueLot20Present": false,
+      "sourceEntryAssetPath": null,
+      "trackedAssetNameMatchesAtBase": [],
+      "qualification": "Recherche de nom dans les assets Git et contrôle des fiches sources ; ne démontre pas l’absence du sujet à l’intérieur d’une image sans attribution. Les captures d’interface ne sont pas des sprites isolés."
+    },
+    {
+      "id": "wpn_me2_m5_phalanx",
+      "catalogueLot20Present": false,
+      "sourceEntryAssetPath": null,
+      "trackedAssetNameMatchesAtBase": [],
+      "qualification": "Recherche de nom dans les assets Git et contrôle des fiches sources ; ne démontre pas l’absence du sujet à l’intérieur d’une image sans attribution. Les captures d’interface ne sont pas des sprites isolés."
+    }
+  ],
+  "limitations": [
+    "Registre limité aux 15 propositions ; les catalogues des autres œuvres sont seulement indexés.",
+    "Les sources textuelles ne certifient aucune géométrie, couleur, animation ou fidélité 1:1.",
+    "Les quatre pistes de réemploi restent sans attribution Armax dans ce bilan.",
+    "Aucune image tierce copiée, aucun PNG généré et aucun moteur modifié par cet audit.",
+    "Mattock et Suppressor sont devenus exclus pendant la production lot21 ; leur exclusion finale est conservée dans finalWorkbookObservation et dans le catalogue courant."
+  ]
+}

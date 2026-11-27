@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-25",
+  "reviewer": "guide_audit",
+  "role": "independent_agent_review",
+  "manifest": "manifest.json",
+  "scope": "Inspection des cinq PNG natifs, de leurs références locales et de leurs prompts ; aucune nouvelle génération et aucune mutation de branche.",
+  "method": [
+    "Lecture intégrale des cinq prompts et du manifeste.",
+    "Comparaison visuelle des cinq PNG à chacune de leurs références fournies, y compris l'illustration extraite du manuel pour la grenade.",
+    "Lecture indépendante des dimensions et du canal alpha ; égalité binaire confirmée entre les cinq copies et leurs sorties natives."
+  ],
+  "overall": {
+    "verdict": "retain_as_prototypes_with_reservations",
+    "selectedCandidatesSupported": 5,
+    "fidelity1to1Certified": 0,
+    "engineReadyCertified": 0,
+    "blockingForPrototypePublication": false,
+    "blockingForClaimOfExactFidelity": true,
+    "summary": "Les cinq sujets sont identifiables et possèdent une sortie transparente. La portée des sources et plusieurs détails reconstruits empêchent une validation 1:1. Suvi est un sprite narratif assis, pas une pose de combat."
+  },
+  "requiredDocumentationCorrections": [
+    {
+      "severity": "P2",
+      "assetId": "prop_me1_alliance_grenade_disc",
+      "field": "manifest.assets[].referencePaths",
+      "finding": "Le prompt utilise la page de manuel et l'illustration extraite, mais referencePaths n'énumère que la page.",
+      "action": "Ajouter /workspace/scratch/8eb3f23d9927/lot14-refs/me1-manual-asset-013.png à la liste des références effectivement transmises. L'illustration possède déjà chemin, dimensions et SHA dans reference-library.json."
+    },
+    {
+      "severity": "P2",
+      "assetId": null,
+      "field": "manifest.assets[].review.independentReview",
+      "finding": "Le manifeste indique encore pending.",
+      "action": "Pointer vers independent-review.json et conserver selected_with_reservations, fidelity1to1Validated=false, engineIntegrated=false."
+    }
+  ],
+  "assets": [
+    {
+      "catalogId": "chr_me3_cat6_heavy",
+      "file": "cat6-heavy-me3-front.png",
+      "verdict": "retain_as_prototype_with_reservations",
+      "fidelity1to1Validated": false,
+      "referenceCoverage": "Modèle complet du Heavy à gauche dans un rendu Source Filmmaker communautaire ; aucune vue native ME3 du même angle ni contrôle du dos.",
+      "positiveObservations": [
+        "La silhouette massive, la posture fléchie, l'arme rouge/noire tenue vers le bas et la visière horizontale distinguent correctement le Heavy des deux autres sujets de la référence.",
+        "Asymétrie des épaules, plaque de l'avant-bras, nœuds lumineux de hanche et épaulière avec insigne blanc restent lisibles.",
+        "Corps, arme et deux bottes entièrement dans le cadre ; aucun autre personnage importé."
+      ],
+      "reservations": [
+        {
+          "severity": "P1_for_exact_fidelity",
+          "area": "Matière et géométrie fine",
+          "finding": "Les rayures, taches de camouflage, bords métalliques et intensités cyan sont reconstruits et accentués. La correspondance au rendu du port ne démontre pas celle des textures et shaders natifs ME3.",
+          "action": "Conserver le statut Prototype ; comparer ultérieurement à une capture native et au modèle exact avant toute certification."
+        },
+        {
+          "severity": "P2",
+          "area": "Cadre et usage",
+          "finding": "Marge utile haute 64 px / 1536 (4,17 %) et basse 49 px (3,19 %). Le sujet occupe plus de hauteur que les 85 % visés dans le prompt, mais la masse visible n'est pas coupée.",
+          "action": "Documenter le cadrage ; fixer le padding lors d'une future préparation d'atlas sans prétendre que l'asset est déjà prêt au combat."
+        }
+      ],
+      "technical": {
+        "rgba": true,
+        "nativeBytesPreserved": true,
+        "usefulBoundsAlpha16": [
+          145,
+          64,
+          919,
+          1487
+        ],
+        "alphaZeroFraction": 0.593816,
+        "alpha1to15Fraction": 0.017206
+      },
+      "roleBoundary": "Un seul master fixe ; aucune garde, marche, hitbox ou animation de tir."
+    },
+    {
+      "catalogId": "chr_me3_cat6_sniper",
+      "file": "cat6-sniper-me3-crouch.png",
+      "verdict": "retain_as_prototype_with_reservations",
+      "fidelity1to1Validated": false,
+      "referenceCoverage": "Sniper accroupi à droite du port SFM complet ; détails natifs ME3 non certifiés.",
+      "positiveObservations": [
+        "Pose accroupie, genou relevé, fusil posé en diagonale sur l'épaule et silhouette plus fine que le Heavy conservés.",
+        "Bande cyan verticale et optique décentrée du casque conservées ; pas d'antenne ni des grandes lunettes du Specialist.",
+        "Arme et deux bottes visibles, personnage isolé."
+      ],
+      "reservations": [
+        {
+          "severity": "P1_for_exact_fidelity",
+          "area": "Casque, arme et panneaux",
+          "finding": "Le respirateur et les contours de plaques sont plus accentués et les surfaces plus détaillées que dans la référence de faible taille. Le camouflage et les lumières du fusil sont interprétés.",
+          "action": "Maintenir la réserve sur les détails de visage/visée, de matière et d'émetteurs ; valider avec une capture native de même variante."
+        },
+        {
+          "severity": "P2",
+          "area": "Pose",
+          "finding": "Cette pose de présentation accroupie ne couvre pas une garde debout. Le regard et le fusil ne définissent pas à eux seuls une direction de tir utilisable.",
+          "action": "Conserver la pose explicitement nommée, sans marquer un jeu complet de sprites de combat comme livré."
+        }
+      ],
+      "technical": {
+        "rgba": true,
+        "nativeBytesPreserved": true,
+        "usefulBoundsAlpha16": [
+          176,
+          77,
+          882,
+          1479
+        ],
+        "alphaZeroFraction": 0.678605,
+        "alpha1to15Fraction": 0.014926
+      },
+      "roleBoundary": "Master de pose accroupie seulement ; pas d'arme détachable livrée."
+    },
+    {
+      "catalogId": "chr_me2_amanda_kenson",
+      "file": "amanda-kenson-me2-arrival.png",
+      "verdict": "retain_as_prototype_with_reservations",
+      "fidelity1to1Validated": false,
+      "referenceCoverage": "Trois captures Arrival : gros plan avec collier de contention, vue de conversation montrant tenue et pantalon, vue de cellule où le corps entier est très petit.",
+      "positiveObservations": [
+        "Coupe courte grise asymétrique, deux boucles de bretelles, épaules ouvertes, manches séparées et tenue brune cohérentes avec les captures.",
+        "La suppression du collier métallique suit la variante après libération demandée ; le fin tour de cou sombre reste distinct.",
+        "Silhouette humaine entière sans arme ou armure ajoutée."
+      ],
+      "reservations": [
+        {
+          "severity": "P1_for_exact_fidelity",
+          "area": "Visage et bas du corps",
+          "finding": "Le visage et la texture cutanée sont reconstruits sous une lumière différente. Chaussures, plis du pantalon, coutures basses et proportions fines ne sont pas suffisamment documentés par la petite silhouette de cellule.",
+          "action": "Ne pas certifier identité faciale ou costume 1:1 ; obtenir une capture rapprochée du bas du corps avant validation détaillée."
+        },
+        {
+          "severity": "P2",
+          "area": "Marge de sécurité",
+          "finding": "Marge utile haute 6 px / 1774 (0,34 %) et basse 12 px (0,68 %), très loin des 5 % demandés. Le seuil alpha 16 ne montre pas de découpe du corps mais laisse peu de réserve pour filtrage/atlas.",
+          "action": "Conserver la copie native ; noter un futur ajustement de padding avant intégration. Ne pas annoncer le prompt entièrement respecté sur le cadrage."
+        }
+      ],
+      "technical": {
+        "rgba": true,
+        "nativeBytesPreserved": true,
+        "usefulBoundsAlpha16": [
+          157,
+          6,
+          710,
+          1762
+        ],
+        "alphaZeroFraction": 0.637725,
+        "alpha1to15Fraction": 0.018693
+      },
+      "roleBoundary": "État après libération, pose neutre ; aucune scène de contention, état indoctriné ou animation fourni."
+    },
+    {
+      "catalogId": "chr_mea_suvi_anwar",
+      "file": "suvi-anwar-mea-seated.png",
+      "verdict": "retain_as_narrative_prototype_with_reservations",
+      "fidelity1to1Validated": false,
+      "referenceCoverage": "Capture collective de la soirée cinéma pour la pose et le costume, gros plan du cockpit pour le visage. Chaise largement masquée dans la capture collective.",
+      "positiveObservations": [
+        "Pose assise, mains posées sur les genoux, costume rouge/ivoire/gris et bottes claires cohérents avec la figure à gauche de la scène cinéma.",
+        "Bob asymétrique blond-roux, yeux verts et petites taches de rousseur préservent les principaux marqueurs.",
+        "Le siège est conservé comme partie explicite du sprite narratif ; aucune arme ou aptitude de combattante ajoutée."
+      ],
+      "reservations": [
+        {
+          "severity": "P1_for_exact_fidelity",
+          "area": "Ressemblance faciale",
+          "finding": "Le visage généré est plus affiné, avec ouverture des yeux, nez et bouche moins proches des volumes du gros plan source ; il ne suffit pas de conserver coupe et couleur pour certifier la ressemblance.",
+          "action": "Conserver une réserve prioritaire sur le visage ; une future correction devrait s'appuyer sur ce même gros plan sans embellissement."
+        },
+        {
+          "severity": "P1_for_exact_fidelity",
+          "area": "Costume et siège",
+          "finding": "Insigne de manche, géométrie des genouillères, coutures des bottes et pied métallique du siège sont reconstruits ou mieux exposés que dans la capture collective. Le siège ne peut pas être validé comme un accessoire canonique complet.",
+          "action": "Garder le siège inclus et cette seule pose narrative ; ne pas extraire une chaise prétendument exacte ni fermer une demande de pose debout."
+        },
+        {
+          "severity": "P2",
+          "area": "Marge de sécurité",
+          "finding": "Marge utile haute 14 px / 1536 (0,91 %) et basse 13 px (0,85 %), au lieu des 8 % demandés ; cheveux et bottes restent dans le cadre au seuil mesuré.",
+          "action": "Documenter le cadrage et prévoir un padding avant intégration."
+        }
+      ],
+      "technical": {
+        "rgba": true,
+        "nativeBytesPreserved": true,
+        "usefulBoundsAlpha16": [
+          151,
+          14,
+          877,
+          1523
+        ],
+        "alphaZeroFraction": 0.600213,
+        "alpha1to15Fraction": 0.017549
+      },
+      "roleBoundary": "Personnage narratif assis avec siège ; aucun sprite de combat debout."
+    },
+    {
+      "catalogId": "prop_me1_alliance_grenade_disc",
+      "file": "alliance-grenade-me1-disc.png",
+      "verdict": "retain_as_prop_prototype_with_reservations",
+      "fidelity1to1Validated": false,
+      "referenceCoverage": "Illustration officielle du manuel Xbox 360 français, page imprimée 17, 118 × 115 pixels embarqués. La page entière et l'illustration extraite ont été inspectées.",
+      "positiveObservations": [
+        "Silhouette de disque fermé, croix décalée, quadrant supérieur droit perforé, voyant vertical et reflet bleu au bord supérieur gauche conservés.",
+        "Pas de goupille, poignée, ailettes ou mécanique interne ajoutée.",
+        "Objet isolé et intégralement visible avec environ 14 à 17 % de marge utile selon le côté."
+      ],
+      "reservations": [
+        {
+          "severity": "P1_for_exact_fidelity",
+          "area": "Détail à haute résolution",
+          "finding": "Le voyant est plus accentué ; rainures, reliefs près du voyant, perforations et usure sont reconstruits à une définition très supérieure à celle du manuel.",
+          "action": "Conserver la mention de reconstruction HD à partir de 118 × 115 pixels ; ne pas présenter la microgéométrie comme documentée."
+        },
+        {
+          "severity": "P2",
+          "area": "État et provenance",
+          "finding": "Une seule vue de l'objet intact est livrée. Le second fichier de référence transmis au générateur est absent de referencePaths dans le manifeste.",
+          "action": "Ajouter la référence extraite à la provenance et laisser lancée, impact et explosion comme états non produits."
+        }
+      ],
+      "technical": {
+        "rgba": true,
+        "nativeBytesPreserved": true,
+        "usefulBoundsAlpha16": [
+          194,
+          178,
+          1059,
+          1055
+        ],
+        "alphaZeroFraction": 0.617673,
+        "alpha1to15Fraction": 0.010568
+      },
+      "roleBoundary": "Accessoire fermé ME1 uniquement ; aucune attribution de la grenade à un kit ou comportement de détonation."
+    }
+  ],
+  "globalNotes": [
+    "Les franges de très faible alpha existent dans les cinq fichiers. Leur présence est mesurée ; le rendu sur une page noire n'est pas une preuve suffisante d'un fond opaque. Aucun nettoyage ni compositing d'image n'a été effectué.",
+    "Une nouvelle image disponible peut réduire un compteur de fiche sans image tout en restant Prototype : distinguer disponibilité du master, fidélité, couverture de poses et intégration.",
+    "Aucun nouveau rendu n'est demandé par cette revue ; les corrections immédiates sont documentaires."
+  ],
+  "notPerformed": [
+    "Essai dans le moteur du jeu",
+    "Comparaison à taille finale de combat",
+    "Validation des pivots et hitboxes",
+    "Recherche d'une nouvelle référence",
+    "Génération ou retouche d'image"
+  ]
+}

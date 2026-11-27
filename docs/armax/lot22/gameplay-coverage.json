@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-27T14:26:17.976197+00:00",
+  "scope": "Prototype local RC0.1. Contrôles natifs et compilation réussis ; routage clavier et miroir corrigés après diagnostic navigateur, parcours UI complet en attente de revalidation ; fidélité artistique non certifiée.",
+  "prototypePlayableVerified": false,
+  "smokeTestPassed": false,
+  "verification": {
+    "nativePassed": true,
+    "nativeTests": 38,
+    "buildPassed": true,
+    "browserPassed": false,
+    "browserStatus": "diagnostic_ci_identified_global_menu_arrow_capture_and_sprite_mirror_fixed_pending_recheck",
+    "passed": false,
+    "nativeReport": "docs/armax/lot22/qa/armax-native-report.json",
+    "browserReport": "docs/armax/lot22/qa/armax-browser-report.json",
+    "sourceSha256": {
+      "src/armax-data.js": "48c65db789b4d08afa1580ced64a2c55c52dde2324f1943d776dd8a67b651b38",
+      "src/armax-expansion-data.js": "ff1f6c3b979e049d9b9313330b557d195cc0b89fd6453153dedc7f95c7b35336",
+      "src/armax-engine.js": "284b4b2264b8cb399cb1cbd18342645f43ae7de1af67df1670b47facf360faf6",
+      "src/armax-campaign.js": "e5ab8f10090b290e01030d2ecee736b77ee7d3560b4325ca991f9394d4f85861",
+      "src/armax-ui.js": "3016d79579c4ac11ae5899767fbbad2aee316e89dab748c6d47e5189234594fe",
+      "src/armax-ui.css": "a463507a978a778dfc62b1930674be3812d9c9b34a0e83045b880eb9804c342f",
+      "src/main.js": "6456f09266f6e470cc639ae31f151b6446c59d0b4a6dfdb23d27ed0c8b3384d9",
+      "tests/armax-engine.test.js": "b5c8de29e07525d05efdaef21f682c954db1475c0152f84de1c9b5c78516135b",
+      "tests/armax-expansion.test.js": "318a98a251328d21f80ad68fad5fbfaabe2ea87793d54e11ef2a70b2ff85b607"
+    },
+    "fullSuite": {
+      "passed": false,
+      "reportedTests": 1392,
+      "passedTests": 1373,
+      "failedTests": 19,
+      "classification": "missing_historical_inputs_in_sparse_checkout",
+      "missingHistoricalTrackedInputs": 12,
+      "armaxObservedFailures": 0,
+      "report": "docs/armax/lot22/qa/armax-full-suite-restored-report.json",
+      "sourceSha256": {
+        "src/armax-data.js": "48c65db789b4d08afa1580ced64a2c55c52dde2324f1943d776dd8a67b651b38",
+        "src/armax-expansion-data.js": "ff1f6c3b979e049d9b9313330b557d195cc0b89fd6453153dedc7f95c7b35336",
+        "src/armax-engine.js": "284b4b2264b8cb399cb1cbd18342645f43ae7de1af67df1670b47facf360faf6",
+        "src/armax-campaign.js": "e5ab8f10090b290e01030d2ecee736b77ee7d3560b4325ca991f9394d4f85861",
+        "src/armax-ui.js": "ad97c9cef98312dfe3bdce35bf60d19eca131630a231c5cfd44b8d8760b506b3",
+        "src/armax-ui.css": "89b5dc6db817d1e2ef6de8d8cddaa592a58d7033cc4bb167d3243c0caaaeddfb",
+        "src/main.js": "736e936195bef53d3892c8dcf80114796aa0b8efb5d9371a478f500bda6a058b",
+        "tests/armax-engine.test.js": "b5c8de29e07525d05efdaef21f682c954db1475c0152f84de1c9b5c78516135b",
+        "tests/armax-expansion.test.js": "318a98a251328d21f80ad68fad5fbfaabe2ea87793d54e11ef2a70b2ff85b607"
+      }
+    },
+    "browserRetryReport": "docs/armax/lot22/qa/armax-browser-retry-report.json",
+    "firstCiAttempt": {
+      "runId": 46010749352,
+      "sourceHead": "b79f5ed4af5959f0c1f523c8ad0dea91c7662e79",
+      "passed": false,
+      "checksPassed": 1,
+      "failure": "Historical run: pointer-events:none inherited by Armax intercepted the normal launch click. Corrected by scoped pointer-events:auto in cfd1e104."
+    },
+    "inputRoutingReport": "docs/armax/lot22/qa/armax-input-routing-native-report.json",
+    "inputRoutingTests": 16,
+    "latestCiAttempt": {
+      "runId": 46014391140,
+      "sourceHead": "6335856adb5c067625404d24f6c6f0ab2a8b56cb",
+      "passed": false,
+      "checksPassed": 1,
+      "failure": "Diagnostic input evidence: global menu captured ArrowRight and moved focus, leaving the attack out of range. The clock advanced normally. Static screenshots also confirmed the opponent was not mirrored. Both fixes await a new browser run."
+    }
+  },
+  "playableProfiles": {
+    "count": 10,
+    "fullKitsImplemented": 0,
+    "nativeStateCreationVerified": true,
+    "browserVerified": false
+  },
+  "stages": {
+    "selectable": 20,
+    "nativeImages": 20,
+    "parallaxValidated": 0,
+    "variantsSelected": {
+      "nacre_stage_01": "base",
+      "nacre_stage_02": "base",
+      "nacre_stage_03": "base",
+      "nacre_stage_04": "base",
+      "nacre_stage_05": "base",
+      "nacre_stage_06": "base",
+      "nacre_stage_07": "base",
+      "nacre_stage_08": "base",
+      "nacre_stage_09": "base",
+      "nacre_stage_10": "base",
+      "nacre_stage_11": "r1",
+      "nacre_stage_12": "base",
+      "nacre_stage_13": "base",
+      "nacre_stage_14": "base",
+      "nacre_stage_15": "base",
+      "nacre_stage_16": "base",
+      "nacre_stage_17": "base",
+      "nacre_stage_18": "base",
+      "nacre_stage_19": "base",
+      "nacre_stage_20": "base"
+    }
+  },
+  "features": [
+    {
+      "id": "clock60",
+      "feature": "Simulation fixe 60 Hz",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "move",
+      "feature": "Déplacement et collision de corps",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "jump",
+      "feature": "Saut et coups en l’air",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "guard",
+      "feature": "Garde haute et basse",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "hitstun",
+      "feature": "Hitstun, blockstun et hitstop",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "buffer",
+      "feature": "Buffer 5 frames avec orientation mémorisée",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "throw",
+      "feature": "Prise au sol et déprojection 10 frames",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "shield",
+      "feature": "Protection avant vie, recharge après 300 frames",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "meter",
+      "feature": "Jauge, coûts et gains plafonnés",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "combo",
+      "feature": "Chaînes confirmées et réduction des dégâts",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "rounds",
+      "feature": "99 secondes, 2 manches, égalités et résultat unique",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "special",
+      "feature": "Un spécial prototype par profil",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "super",
+      "feature": "Super commun à 100 points",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "dalo",
+      "feature": "Volus : 2 réserves vulnérables de 120 par manche",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "cpu",
+      "feature": "IA locale déterministe",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "pause",
+      "feature": "Pause suspend la simulation et efface les entrées",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "finisher",
+      "feature": "Présentation finale après KO, sans altérer le résultat",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Couvert par la suite native courante ; parcours visuel navigateur non validé."
+    },
+    {
+      "id": "entry",
+      "feature": "Entrée depuis le titre et la pause",
+      "status": "implemented_browser_pending",
+      "evidence": [
+        "src/armax-ui.js",
+        "src/main.js",
+        "src/armax-data.js"
+      ],
+      "limitations": "Branchement titre/pause compilé ; parcours UI bloqué par le navigateur indisponible."
+    },
+    {
+      "id": "render",
+      "feature": "Scène Three.js orthographique et sprites PNG",
+      "status": "implemented_browser_pending",
+      "evidence": [
+        "src/armax-ui.js",
+        "src/main.js",
+        "src/armax-data.js"
+      ],
+      "limitations": "Three.js orthographique, PNG natifs avec bounds et 3 FX optionnels ; poses fixes, vues miroir et rendu en jeu non validé."
+    },
+    {
+      "id": "touch",
+      "feature": "Commandes tactiles et clavier",
+      "status": "implemented_browser_pending",
+      "evidence": [
+        "src/armax-ui.js",
+        "src/main.js",
+        "src/armax-data.js"
+      ],
+      "limitations": "Événements implémentés ; appareil tactile réel non testé."
+    },
+    {
+      "id": "stages",
+      "feature": "20 décors originaux sélectionnables",
+      "status": "implemented_browser_pending",
+      "evidence": [
+        "src/armax-ui.js",
+        "src/main.js",
+        "src/armax-data.js"
+      ],
+      "limitations": "20 masters natifs présents ; stage 11 R1 sélectionné ; un seul plan par décor, sans parallaxe."
+    },
+    {
+      "id": "isolation",
+      "feature": "Isolation de la campagne ME1 et des Chroniques",
+      "status": "partial_engine_verified",
+      "evidence": [
+        "src/armax-campaign.js",
+        "src/main.js",
+        "tests/armax-expansion.test.js"
+      ],
+      "limitations": "Sauvegarde Nacre distincte vérifiée en test natif ; retour de menu et stockage réel navigateur encore non vérifiés."
+    },
+    {
+      "id": "dash",
+      "feature": "Dash avant/arrière",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "full_kit",
+      "feature": "Quatre spéciaux et super propre à chaque personnage",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "campaign",
+      "feature": "Campagnes personnelles et routes de 8 combats",
+      "status": "partial_engine_verified",
+      "evidence": [
+        "src/armax-campaign.js",
+        "src/armax-ui.js",
+        "tests/armax-expansion.test.js",
+        "docs/armax/lot22/qa/armax-native-report.json"
+      ],
+      "limitations": "Routes de huit duels et textes exécutables ; choix narratifs avancés et illustrations dédiées absents. Le test de progression utilise des adversaires affaiblis, sans valider l’équilibrage ni l’UI."
+    },
+    {
+      "id": "bosses",
+      "feature": "20 boss avec leurs 60 mécaniques complètes",
+      "status": "partial_engine_verified",
+      "evidence": [
+        "src/armax-expansion-data.js",
+        "src/armax-engine.js",
+        "tests/armax-expansion.test.js"
+      ],
+      "limitations": "20 profils, 19 PNG propres, 3 états HP par profil ; routines condensées. Halek 03 reste indisponible. Aucun des 60 patterns complets n’est certifié."
+    },
+    {
+      "id": "enemies",
+      "feature": "20 ennemis avec leurs kits complets",
+      "status": "partial_engine_verified",
+      "evidence": [
+        "src/armax-expansion-data.js",
+        "src/armax-engine.js",
+        "tests/armax-expansion.test.js"
+      ],
+      "limitations": "20 profils et 20 images ; une routine annoncée par ennemi. Pas de groupes simultanés ni de kit collectif complet."
+    },
+    {
+      "id": "tag",
+      "feature": "Mode Tag",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "tournament",
+      "feature": "Tournoi",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "taunts",
+      "feature": "Provocations",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "parallax",
+      "feature": "Parallaxe cinq couches par décor",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "netcode",
+      "feature": "Multijoueur réseau",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "animation",
+      "feature": "Animations et directions natives complètes",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "gamepad",
+      "feature": "Navigation et combat à la manette",
+      "status": "design_only",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-engine.test.js",
+        "docs/armax/lot22/qa/armax-native.tap"
+      ],
+      "limitations": "Non livré dans le noyau actuel."
+    },
+    {
+      "id": "boss_phase_transitions",
+      "feature": "Transitions de boss à 66/33 %, annonce 90 pas, sans soin",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-expansion.test.js"
+      ],
+      "limitations": "États mécaniques condensés ; accessoires et scripts environnementaux complets absents."
+    },
+    {
+      "id": "fixed_machines",
+      "feature": "Machines fixes sous collision, impact et déprojection",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-engine.js",
+        "tests/armax-expansion.test.js"
+      ],
+      "limitations": "Vérification logique ; présentation du châssis non validée dans le navigateur."
+    },
+    {
+      "id": "campaign_save",
+      "feature": "Point de contrôle isolé, résultat unique et reprise validée",
+      "status": "engine_verified",
+      "evidence": [
+        "src/armax-campaign.js",
+        "tests/armax-expansion.test.js"
+      ],
+      "limitations": "Stockage séparé testé avec adaptateur local ; parcours navigateur réel non validé."
+    },
+    {
+      "id": "native_fx",
+      "feature": "Trois textures FX optionnelles et orientation propre à FX05",
+      "status": "implemented_browser_pending",
+      "evidence": [
+        "src/armax-ui.js",
+        "scripts/armax-build-runtime.py"
+      ],
+      "limitations": "Textures fixes, aucun clip animé ; trois PNG disponibles, mais rendu UI non validé."
+    }
+  ],
+  "nativeImplementationVerified": true,
+  "opposition": {
+    "bossProfiles": 20,
+    "bossImages": 19,
+    "unavailableBossIds": [
+      "nacre_boss_03"
+    ],
+    "enemyProfiles": 20,
+    "enemyImages": 20,
+    "condensedHealthPhasesPerBoss": 3,
+    "fullBossPatternSetsValidated": 0,
+    "fullEnemyKitsValidated": 0
+  },
+  "routes": {
+    "count": 10,
+    "encountersPerRoute": 8,
+    "rivalIndex": 3,
+    "scriptedChoiceImplemented": false,
+    "stage03Replacement": "nacre_enemy_05",
+    "stage03DoesNotAwardBoss03": true,
+    "browserVerified": false
+  },
+  "effects": {
+    "optionalMapped": 3,
+    "nativeImagesAvailable": 3,
+    "bioticNativeFacingSign": -1,
+    "animatedSequencesValidated": 0
+  }
+}

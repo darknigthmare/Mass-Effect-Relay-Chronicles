@@ -93,6 +93,7 @@ const simulationClock = createSimulationClock();
 let controls = null, focusSuspended = false;
 const banterController=createExplorationBanterController();
 let activeBanter=null,banterRemaining=0,archiveModule=null,archivePromise=null,archiveReturn='title';
+let armaxController=null,armaxReturn='title',armaxLoadId=0;
 const productionUI={workId:'all',status:'',query:'',page:0,recordId:null};
 let hudStamp = '';
 let launchSettings = { ...DEFAULT_SETTINGS };
@@ -139,6 +140,14 @@ function updateExplorationBanter(dt,eligible){
   if(event){activeBanter={...event,zone:state.zone,party:state.party.join(',')};banterRemaining=12;const panel=$('#exploration-banter');panel.textContent='';panel.dataset.banterId=event.id;for(const line of event.lines){const p=document.createElement('p');p.dataset.banterSpeaker=line.speakerId;const name=document.createElement('strong');name.textContent=line.speaker;p.append(name,document.createTextNode(` : ${line.text}`));panel.appendChild(p);}autosave();}
   $('#exploration-banter').classList.toggle('hidden',!eligible||!activeBanter||banterRemaining<=0);
 }
+async function openArmax(){
+  if(ui.busy||battle||['armax','armax-loading'].includes(ui.screen))return;
+  armaxReturn=running?'pause':'title';clearActiveInput();simulationClock.reset(performance.now());
+  ui.screen='armax-loading';renderScreen();const ticket=++armaxLoadId;
+  try{const module=await import('./armax-ui.js');if(ticket!==armaxLoadId||ui.screen!=='armax-loading')return;ui.screen='armax';syncMode();armaxController=module.mountArmax($('#overlay'),{onExit:closeArmax});}
+  catch{if(ticket===armaxLoadId){closeArmax();toast('Le mode Armax ne peut pas être chargé. Réessayez.',true);}}
+}
+function closeArmax(){armaxLoadId++;armaxController?.dispose();armaxController=null;clearActiveInput();simulationClock.reset(performance.now());ui.screen=armaxReturn;renderScreen();document.querySelector('[data-do="armax"]')?.focus();}
 async function openProductionArchive(destination){
   if(!['credits','production-catalogue'].includes(ui.screen))archiveReturn=running?'pause':'title';
   ui.screen='archive-loading';simulationClock.reset(performance.now());renderScreen();
@@ -238,6 +247,7 @@ function returnToTitle(){
   titleReturnAction=null;
 }
 function dismissScreen(){
+  if(['armax','armax-loading'].includes(ui.screen))return closeArmax();
   if(ui.screen==='vehicle-exercise-result')return stopVehicleExercise();
   if(['production-catalogue','credits','archive-loading'].includes(ui.screen))return closeProductionArchive();
   if(ui.screen==='customization')return closeCustomization();
@@ -529,17 +539,19 @@ function exportChronicle(){
 function screen(title,eyebrow,body,foot='',className=''){return `<div class="overlay-backdrop"></div><section class="screen ${className}" role="dialog" aria-label="${esc(title)}"><header class="screen-head"><div><div class="eyebrow">${eyebrow}</div><h2>${title}</h2></div>${['victory','defeat','ending'].includes(ui.screen)?'':'<button class="close" data-do="close" aria-label="Fermer">×</button>'}</header><div class="screen-body">${body}</div>${foot?`<footer class="screen-foot">${foot}</footer>`:''}</section>`;}
 function titleScreen(){
   const automatic=readAutomaticSave(localStorage),saved=automatic.ok?automatic.state:null;
-  return `<section class="title-screen"><div class="title-art"></div><div class="title-coordinates">ARCHIVES DE L’ALLIANCE<br>2183 · ESPACE CONCILIEN<div class="title-line"></div>SSV NORMANDY SR-1</div><div class="title-content"><div class="title-overline">UNE GALAXIE. VOS DÉCISIONS.</div><h1 class="title-wordmark">MASS EFFECT</h1><h2 class="title-subtitle">Relay Chronicles</h2><p class="title-copy">Traversez les relais. Rassemblez votre commando.<br>Une aventure cinématographique en 2D/3D,<br>au rythme de vos décisions.</p><div class="title-menu">${!automatic.ok&&automatic.code!=='empty'?`<p class="small save-warning" role="status">${esc(automatic.reason)}</p>`:''}${saved?`<button class="primary" data-do="continue">Reprendre <span>→</span></button>`:''}<button class="${saved?'secondary':'primary'}" data-do="new">Nouvelle campagne <span>→</span></button><button class="secondary" data-do="manual-saves">Charger une partie <span>→</span></button><button class="secondary" data-do="chronicles">Chroniques <span>→</span></button><button class="secondary" data-do="import">Importer une sauvegarde <span>↗</span></button><button class="secondary" data-do="title-settings">Options <span>＋</span></button><button class="secondary" data-do="production-catalogue">Catalogue de production <span>＋</span></button><button class="secondary" data-do="credits">Crédits et sources <span>＋</span></button></div></div><div class="title-badge"><b>01 / 2183</b><small>LES CHRONIQUES DES RELAIS</small></div><footer class="title-footer"><span>Projet de fan non officiel · campagne condensée</span><span>Version ${VERSION} · PC</span></footer></section>`;
+  return `<section class="title-screen"><div class="title-art"></div><div class="title-coordinates">ARCHIVES DE L’ALLIANCE<br>2183 · ESPACE CONCILIEN<div class="title-line"></div>SSV NORMANDY SR-1</div><div class="title-content"><div class="title-overline">UNE GALAXIE. VOS DÉCISIONS.</div><h1 class="title-wordmark">MASS EFFECT</h1><h2 class="title-subtitle">Relay Chronicles</h2><p class="title-copy">Traversez les relais. Rassemblez votre commando.<br>Une aventure cinématographique en 2D/3D,<br>au rythme de vos décisions.</p><div class="title-menu">${!automatic.ok&&automatic.code!=='empty'?`<p class="small save-warning" role="status">${esc(automatic.reason)}</p>`:''}${saved?`<button class="primary" data-do="continue">Reprendre <span>→</span></button>`:''}<button class="${saved?'secondary':'primary'}" data-do="new">Nouvelle campagne <span>→</span></button><button class="secondary" data-do="manual-saves">Charger une partie <span>→</span></button><button class="secondary" data-do="chronicles">Chroniques <span>→</span></button><button class="secondary" data-do="armax">Armax · duel 2D <span>→</span></button><button class="secondary" data-do="import">Importer une sauvegarde <span>↗</span></button><button class="secondary" data-do="title-settings">Options <span>＋</span></button><button class="secondary" data-do="production-catalogue">Catalogue de production <span>＋</span></button><button class="secondary" data-do="credits">Crédits et sources <span>＋</span></button></div></div><div class="title-badge"><b>01 / 2183</b><small>LES CHRONIQUES DES RELAIS</small></div><footer class="title-footer"><span>Projet de fan non officiel · campagne condensée</span><span>Version ${VERSION} · PC</span></footer></section>`;
 }
 function renderScreen(){
+  if(ui.screen==='armax'){syncMode();return;}
   let html='';
   if(ui.screen==='title')html=titleScreen();
+  else if(ui.screen==='armax-loading')html=screen('Armax Relay Clash','Les Dettes de Nacre','<p role="status">Chargement du mode de combat…</p>');
   else if(ui.screen==='chronicles-loading')html=screen('Chroniques','Archives des relais','<p class="brief-copy" role="status">Chargement des chroniques…</p>');
   else if(ui.screen==='chronicles'&&universeModules){chronicleView=universeView();html=screen('Chroniques','Œuvres et chapitres',universeModules.renderer.renderUniverseScreen(chronicleView,universeUI,{esc}),'<span class="small">Références et essais tactiques indépendants. Votre campagne Mass Effect conserve sa progression.</span><button class="secondary" data-do="chronicle-back">Retour</button>','universe-screen');}
   else if(ui.screen==='archive-loading')html=screen('Archives des relais','Plan de production','<p role="status">Chargement des archives…</p>');
   else if(ui.screen==='production-catalogue'&&archiveModule)html=screen('Catalogue de production','Archives des relais',archiveModule.renderProductionCatalogue(productionUI),'<button class="secondary" data-do="production-back">Retour</button><button class="secondary" data-do="credits">Crédits et sources</button>');
   else if(ui.screen==='new')html=newGameScreen();
-  else if(ui.screen==='pause')html=screen('Mission en pause','Normandy · commando',`<div class="button-row"><button class="primary" data-do="close">Reprendre</button><button class="secondary" data-do="save" ${battle?'disabled':''}>Sauvegarder</button><button class="secondary" data-do="manual-saves" ${battle?'disabled':''}>Emplacements de sauvegarde</button><button class="secondary" data-do="export" ${battle?'disabled':''}>Exporter la sauvegarde</button>${state.ending?`${!state.resolveEndgame?.humanRepresentative?`<button class="secondary" data-do="human-nomination" ${battle?'disabled':''}>Recommander le représentant humain</button>`:''}<button class="secondary" data-do="export-campaign" ${battle?'disabled':''}>Exporter le bilan de fin ME1</button>`:''}<button class="secondary" data-do="dossier">Dossier Shepard</button><button class="secondary" data-do="talents" ${battle?'disabled':''}>Talents</button><button class="secondary" data-do="customization" ${battle?'disabled':''}>Personnaliser Shepard</button><button class="secondary" data-do="codex" ${battle?'disabled':''}>Codex</button><button class="secondary" data-do="chronicles" ${battle?'disabled':''}>Chroniques</button><button class="secondary" data-do="settings">Options</button><button class="secondary" data-do="help">Commandes</button><button class="secondary" data-do="production-catalogue">Catalogue de production</button><button class="secondary" data-do="credits">Crédits et sources</button><button class="danger" data-do="quit">Retour au titre</button></div>`,`<span class="small">${battle?'La reprise se fait avant le combat en cours.':'Sauvegarde automatique entre les rencontres.'}</span>`,'pause-screen');
+  else if(ui.screen==='pause')html=screen('Mission en pause','Normandy · commando',`<div class="button-row"><button class="primary" data-do="close">Reprendre</button><button class="secondary" data-do="save" ${battle?'disabled':''}>Sauvegarder</button><button class="secondary" data-do="manual-saves" ${battle?'disabled':''}>Emplacements de sauvegarde</button><button class="secondary" data-do="export" ${battle?'disabled':''}>Exporter la sauvegarde</button>${state.ending?`${!state.resolveEndgame?.humanRepresentative?`<button class="secondary" data-do="human-nomination" ${battle?'disabled':''}>Recommander le représentant humain</button>`:''}<button class="secondary" data-do="export-campaign" ${battle?'disabled':''}>Exporter le bilan de fin ME1</button>`:''}<button class="secondary" data-do="dossier">Dossier Shepard</button><button class="secondary" data-do="talents" ${battle?'disabled':''}>Talents</button><button class="secondary" data-do="customization" ${battle?'disabled':''}>Personnaliser Shepard</button><button class="secondary" data-do="codex" ${battle?'disabled':''}>Codex</button><button class="secondary" data-do="chronicles" ${battle?'disabled':''}>Chroniques</button><button class="secondary" data-do="armax" ${battle?'disabled':''}>Armax · duel 2D</button><button class="secondary" data-do="settings">Options</button><button class="secondary" data-do="help">Commandes</button><button class="secondary" data-do="production-catalogue">Catalogue de production</button><button class="secondary" data-do="credits">Crédits et sources</button><button class="danger" data-do="quit">Retour au titre</button></div>`,`<span class="small">${battle?'La reprise se fait avant le combat en cours.':'Sauvegarde automatique entre les rencontres.'}</span>`,'pause-screen');
   else if(ui.screen==='galaxy')html=galaxyScreen();
   else if(ui.screen==='squad')html=squadScreen();
   else if(ui.screen==='dossier')html=commanderScreen();
@@ -1135,6 +1147,7 @@ document.addEventListener('click',event=>{const button=event.target.closest('[da
     case 'production-page':if(ui.screen==='production-catalogue'){productionUI.page=Number(id);productionUI.recordId=null;renderScreen();$('#production-results')?.scrollIntoView({block:'start'});}break;
     case 'production-record':if(ui.screen==='production-catalogue'){productionUI.recordId=id;$('#production-results').innerHTML=archiveModule.renderProductionResults(productionUI);}break;
     case 'chronicles':openChronicles();break;
+    case 'armax':openArmax();break;
     case 'chronicle-back':closeChronicles();break;
     case 'universe-tab':if(['references','session','reading','expansion','continuity'].includes(id)&&!(id==='reading'&&chronicleBattle&&!chronicleBattle.winner)){universeUI.tab=id;if(chronicleBattle&&!chronicleBattle.winner)chroniclePaused=true;if(id==='reading'&&chronicleSession&&universeUI.readingId)readChroniclePage();else renderScreen();}break;
     case 'expansion-run':if(universeUI.tab==='expansion')runExpansion();break;
@@ -1379,7 +1392,7 @@ $('#chronicle-continuity-import-file').addEventListener('change',async event=>{
 
 function exportCampaign(){if(!state||battle)return;const encoded=encodeCampaignExport(state);if(!encoded)return toast('Terminez la campagne pour exporter son bilan de fin.',true);const url=URL.createObjectURL(new Blob([encoded],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='Relay_Chronicles_Bilan_ME1.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function exportSave(){if(!state||battle)return;const blob=new Blob([encodeSave(state)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Relay_Chronicles_Sauvegarde.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-document.addEventListener('keydown',e=>{if(ui.screen==='customization'){
+document.addEventListener('keydown',e=>{if(ui.screen==='armax')return;if(ui.screen==='customization'){
   if(e.code==='Escape'){e.preventDefault();closeCustomization();return;}
   if(e.code==='Tab'){const focusable=[...document.querySelectorAll('.customization-screen button:not(:disabled),.customization-screen select,.customization-screen input,.customization-screen summary')].filter(element=>element.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}
   return;
@@ -1409,6 +1422,7 @@ window.addEventListener('focus',()=>{focusSuspended=false;simulationClock.reset(
 window.addEventListener('beforeunload',()=>{if(running&&!battle)autosave();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){focusSuspended=true;pauseForInterruption();}else{focusSuspended=!document.hasFocus();simulationClock.reset(performance.now());clearActiveInput();}});
 function frame(now){
+  if(ui.screen==='armax'){simulationClock.reset(now);lastFrame=now;requestAnimationFrame(frame);return;}
   controls?.update(now);
   const uiElapsed=Math.min(.25,Math.max(0,(now-lastFrame)/1000));lastFrame=now;
   const foreground=!document.hidden&&!focusSuspended&&!ui.busy;
@@ -1434,7 +1448,7 @@ function frame(now){
   requestAnimationFrame(frame);
 }
 controls=createGamepadControls({
-  getMode:()=>document.hidden||focusSuspended||ui.busy?'blocked':ui.screen?'menu':battle?'combat':running?'explore':'menu',
+  getMode:()=>document.hidden||focusSuspended||ui.busy||['armax','armax-loading'].includes(ui.screen)?'blocked':ui.screen?'menu':battle?'combat':running?'explore':'menu',
   getFocusRoot:()=>ui.screen?$('#overlay'):battle?$('#battle-ui'):$('#hud'),
   onMove:input=>{world.gamepadInput=input;},onInteract:()=>interactWithWorld(),
   onPause:()=>{if(inChronicles()&&chronicleBattle){chroniclePaused=!chroniclePaused;renderChronicleCombat(true);return;}if(!running)return;if(ui.screen==='pause')closeScreen();else if(!ui.screen)openScreen('pause');},

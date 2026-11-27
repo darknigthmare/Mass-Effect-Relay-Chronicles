@@ -1,0 +1,566 @@
+{
+  "schemaVersion": 1,
+  "reviewState": "completed",
+  "reviewedOn": "2026-11-25",
+  "reviewer": "independent_reference_review_agent",
+  "baseCommit": "71955d9143562d6a44a8b8d48bc552978372bc1e",
+  "scope": "Revue visuelle et mesures des calques natifs ; composition statique uniquement.",
+  "coordinateSystem": "Pixels natifs, origine en haut à gauche, indices commençant à zéro.",
+  "method": [
+    "Inspection individuelle des références et sorties en dimensions natives.",
+    "Composition diagnostique à origine (0,0), sans déplacement ni rééchantillonnage des sources.",
+    "Calcul de l’alpha combiné avec composition source-over.",
+    "Aperçus sur fond blanc, sombre et magenta ; agrandissements de QA explicitement indiqués."
+  ],
+  "sourceReferences": [
+    {
+      "fileName": "port-hanshan-exterior.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "29f982a2d3cfc020708c8db6b26b58eedea84499edfab15c8d5ea8126691655a",
+      "visuallyInspected": true,
+      "sourceType": "historical_internal_generated_candidate",
+      "primaryCanonicalEvidence": false
+    },
+    {
+      "fileName": "port-hanshan-interior.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "0164efcdad35391929a2a04175a3fc13caa930d25aab89a61a1d784382362af2",
+      "visuallyInspected": true,
+      "sourceType": "historical_internal_generated_candidate",
+      "primaryCanonicalEvidence": false
+    },
+    {
+      "fileName": "port-hanshan-composition.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "54914ad08ff20fd84e4baa212baae5e7dcbefd4087ba97c381a38635467e967b",
+      "visuallyInspected": true,
+      "sourceType": "historical_internal_generated_candidate",
+      "primaryCanonicalEvidence": false
+    }
+  ],
+  "assets": {
+    "PH20": {
+      "path": "public/assets/armax/lot16/layers/port-hanshan-ph20-architecture.png",
+      "sha256": "4a03b771bedf8657bc60bc46a7725132d942bd94d26d08669db561ec91744d83",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "alphaNonZeroPixels": 1225729,
+      "alpha128Pixels": 1194533,
+      "alphaMedianNonZero": 253.0,
+      "nonZeroAlphaBounds": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "visuallyInspected": true,
+      "decision": "prototype_avec_reserves",
+      "observations": [
+        "Les grands volumes étagés à gauche et la tour à droite restent proches du cadrage historique.",
+        "Le ciel, la neige en suspension et la brume ont été retirés ; les surfaces auparavant masquées ont été reconstruites.",
+        "L’îlot détaché près de x123/y47 est visible sur fond blanc et sombre.",
+        "Des franges cyan/bleues demeurent sur les silhouettes fines.",
+        "Aucune séparation pixel à pixel ni fidélité canonique certifiée."
+      ],
+      "qaPreview": "port-hanshan-ph20-independent-preview.png"
+    },
+    "PH30": {
+      "path": "public/assets/armax/lot16/layers/port-hanshan-ph30-structures.png",
+      "sha256": "9ced15e67810a7733134aae3b165fb1d76aed9ea6a49bfd076b44d417392e66c",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "alphaNonZeroPixels": 973787,
+      "alpha128Pixels": 888960,
+      "alphaMedianNonZero": 253.0,
+      "nonZeroAlphaBounds": [
+        0,
+        0,
+        1672,
+        852
+      ],
+      "visuallyInspected": true,
+      "decision": "prototype_avec_reserves",
+      "observations": [
+        "Les deux étages, les contreventements, la pile centrale et les terminaux gardent leur gabarit et leur placement général.",
+        "Les ouvertures de fenêtres conservent une transparence réelle.",
+        "La masse du plancher est retirée ; dernière rangée contenant alpha>=128 : y672.",
+        "Des pixels de faible alpha subsistent sous la coupure, jusqu’à y851 ; des franges colorées apparaissent aux contours."
+      ],
+      "qaPreview": "port-hanshan-ph30-independent-preview.png"
+    },
+    "PH40_R0": {
+      "path": "public/assets/armax/lot16/layers/port-hanshan-ph40-floor-r0.png",
+      "sha256": "2103aa911e86c0b87b947163a3901ef568aec4f5d3be118f0fa995fa8e1572c2",
+      "width": 1671,
+      "height": 941,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "alphaNonZeroPixels": 456920,
+      "alpha128Pixels": 446157,
+      "alphaMedianNonZero": 253.0,
+      "nonZeroAlphaBounds": [
+        0,
+        135,
+        1671,
+        941
+      ],
+      "visuallyInspected": true,
+      "decision": "non_retenu_pour_assemblage_sans_correction",
+      "observations": [
+        "Le plan de sol, ses joints convergents, ses reflets et la ligne de devant restent proches de la référence.",
+        "Le canvas natif est large de 1671 pixels, contre 1672 pour PH20 et PH30.",
+        "Le support fort du sol commence à y674.",
+        "À origine identique, la jonction PH30/PH40 ne couvre pas suffisamment y673 et la dernière colonne x1671 manque au sol."
+      ],
+      "qaPreview": "port-hanshan-ph40-r0-independent-preview.png",
+      "selected": false
+    },
+    "PH40_R1": {
+      "path": "public/assets/armax/lot16/layers/port-hanshan-ph40-floor.png",
+      "sha256": "a5cb2aa156176df230e6330e5882b78242690743a803898fca7ea0ec2a078145",
+      "width": 1671,
+      "height": 941,
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "alphaNonZeroPixels": 461265,
+      "alpha128Pixels": 448924,
+      "alphaMedianNonZero": 253.0,
+      "nonZeroAlphaBounds": [
+        0,
+        86,
+        1671,
+        941
+      ],
+      "visuallyInspected": true,
+      "selected": true,
+      "decision": "prototype_retenu_avec_reserves_de_jonction_et_largeur",
+      "observations": [
+        "Le sol reste isolé dans la partie basse, avec joints convergents, reflets et ligne de devant cohérents avec la référence historique.",
+        "La révision avance le support fort vers y672 et améliore la jonction avec PH30.",
+        "La largeur native reste 1671 pixels ; la dernière colonne x1671 du canvas 1672 manque toujours.",
+        "Sur les 1671 colonnes communes, toutes les positions des rangées y665–685 atteignent alpha128 dans la composition.",
+        "La jonction reste partiellement transparente : minimum alpha combiné 156,506 à y672 et 218,639 à y673 sur la largeur commune.",
+        "Pas d’opération destructive, de recadrage ou d’extension des sources effectuée par la revue.",
+        "La fine teinte magenta de la jonction reste perceptible dans l’aperçu diagnostique agrandi, plus discrète que sur R0."
+      ],
+      "qaPreview": "port-hanshan-ph40-r1-independent-preview.png"
+    }
+  },
+  "assemblies": {
+    "PH30_PH40_R0": {
+      "nativeZeroOffset": true,
+      "inputImagesResized": false,
+      "canvasWidth": 1672,
+      "canvasHeight": 941,
+      "compositionReady": false,
+      "junctionFullyCoveredAtAlpha128": false,
+      "junctionRows": [
+        {
+          "y": 665,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 249,
+          "maximumAlpha": 253,
+          "meanAlpha": 251.133
+        },
+        {
+          "y": 666,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 248,
+          "maximumAlpha": 252,
+          "meanAlpha": 250.824
+        },
+        {
+          "y": 667,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 247,
+          "maximumAlpha": 253,
+          "meanAlpha": 250.129
+        },
+        {
+          "y": 668,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 244,
+          "maximumAlpha": 252,
+          "meanAlpha": 249.359
+        },
+        {
+          "y": 669,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 242,
+          "maximumAlpha": 252,
+          "meanAlpha": 248.145
+        },
+        {
+          "y": 670,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 233,
+          "maximumAlpha": 248,
+          "meanAlpha": 242.211
+        },
+        {
+          "y": 671,
+          "combinedAlpha128Pixels": 1672,
+          "minimumAlpha": 224,
+          "maximumAlpha": 255,
+          "meanAlpha": 247.421
+        },
+        {
+          "y": 672,
+          "combinedAlpha128Pixels": 778,
+          "minimumAlpha": 85,
+          "maximumAlpha": 159,
+          "meanAlpha": 126.289
+        },
+        {
+          "y": 673,
+          "combinedAlpha128Pixels": 0,
+          "minimumAlpha": 1,
+          "maximumAlpha": 51,
+          "meanAlpha": 29.816
+        },
+        {
+          "y": 674,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 192,
+          "meanAlpha": 173.309
+        },
+        {
+          "y": 675,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 1,
+          "maximumAlpha": 255,
+          "meanAlpha": 251.853
+        },
+        {
+          "y": 676,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 251,
+          "meanAlpha": 246.921
+        },
+        {
+          "y": 677,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 252,
+          "meanAlpha": 249.147
+        },
+        {
+          "y": 678,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 252,
+          "meanAlpha": 250.541
+        },
+        {
+          "y": 679,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 252,
+          "meanAlpha": 250.791
+        },
+        {
+          "y": 680,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 253,
+          "meanAlpha": 251.626
+        },
+        {
+          "y": 681,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 253,
+          "meanAlpha": 251.788
+        },
+        {
+          "y": 682,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 253,
+          "meanAlpha": 252.018
+        },
+        {
+          "y": 683,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 253,
+          "meanAlpha": 252.248
+        },
+        {
+          "y": 684,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 253,
+          "meanAlpha": 252.583
+        },
+        {
+          "y": 685,
+          "combinedAlpha128Pixels": 1671,
+          "minimumAlpha": 0,
+          "maximumAlpha": 253,
+          "meanAlpha": 252.701
+        }
+      ],
+      "rightmostFloorColumnMissing": true,
+      "seamPreview": "port-hanshan-ph40-r0-seam-preview.png",
+      "diagnosticPreviewVisuallyInspected": true
+    },
+    "PH30_PH40_R1": {
+      "nativeZeroOffset": true,
+      "inputImagesResized": false,
+      "canvasWidth": 1672,
+      "canvasHeight": 941,
+      "commonWidth": 1671,
+      "measureFormula": "alphaUnion=255*(1-(1-alphaPH30/255)*(1-alphaPH40/255)); alpha absent de PH40 hors largeur=0",
+      "compositionReady": false,
+      "nativeCanvasSizesIdentical": false,
+      "junctionFullyCoveredAtAlpha128FullWidth": false,
+      "junctionFullyCoveredAtAlpha128CommonWidth": true,
+      "junctionFullyCoveredAtAlpha240CommonWidth": false,
+      "junctionRows": [
+        {
+          "y": 665,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 249.0,
+          "minimumAlphaCommonWidth": 249.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 251.144
+        },
+        {
+          "y": 666,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 248.0,
+          "minimumAlphaCommonWidth": 248.0,
+          "maximumAlphaCommonWidth": 252.024,
+          "meanAlphaCommonWidth": 250.846
+        },
+        {
+          "y": 667,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 247.0,
+          "minimumAlphaCommonWidth": 247.0,
+          "maximumAlphaCommonWidth": 253.016,
+          "meanAlphaCommonWidth": 250.162
+        },
+        {
+          "y": 668,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 244.043,
+          "minimumAlphaCommonWidth": 244.043,
+          "maximumAlphaCommonWidth": 252.047,
+          "meanAlphaCommonWidth": 249.408
+        },
+        {
+          "y": 669,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 242.102,
+          "minimumAlphaCommonWidth": 242.102,
+          "maximumAlphaCommonWidth": 252.094,
+          "meanAlphaCommonWidth": 248.277
+        },
+        {
+          "y": 670,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 233.518,
+          "minimumAlphaCommonWidth": 233.518,
+          "maximumAlphaCommonWidth": 248.137,
+          "meanAlphaCommonWidth": 242.511
+        },
+        {
+          "y": 671,
+          "combinedAlpha128PixelsFullWidth": 1672,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 224.851,
+          "minimumAlphaCommonWidth": 224.851,
+          "maximumAlphaCommonWidth": 255.0,
+          "meanAlphaCommonWidth": 247.602
+        },
+        {
+          "y": 672,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 98.0,
+          "minimumAlphaCommonWidth": 156.506,
+          "maximumAlphaCommonWidth": 219.667,
+          "meanAlphaCommonWidth": 192.564
+        },
+        {
+          "y": 673,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 4.0,
+          "minimumAlphaCommonWidth": 218.639,
+          "maximumAlphaCommonWidth": 255.0,
+          "meanAlphaCommonWidth": 237.845
+        },
+        {
+          "y": 674,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 241.0,
+          "maximumAlphaCommonWidth": 255.0,
+          "meanAlphaCommonWidth": 248.582
+        },
+        {
+          "y": 675,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 1.0,
+          "minimumAlphaCommonWidth": 243.141,
+          "maximumAlphaCommonWidth": 252.059,
+          "meanAlphaCommonWidth": 248.424
+        },
+        {
+          "y": 676,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 247.0,
+          "maximumAlphaCommonWidth": 253.024,
+          "meanAlphaCommonWidth": 250.568
+        },
+        {
+          "y": 677,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 248.0,
+          "maximumAlphaCommonWidth": 253.016,
+          "meanAlphaCommonWidth": 251.04
+        },
+        {
+          "y": 678,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 249.0,
+          "maximumAlphaCommonWidth": 253.016,
+          "meanAlphaCommonWidth": 251.459
+        },
+        {
+          "y": 679,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 250.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 251.69
+        },
+        {
+          "y": 680,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 250.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 252.225
+        },
+        {
+          "y": 681,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 251.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 252.344
+        },
+        {
+          "y": 682,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 251.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 252.652
+        },
+        {
+          "y": 683,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 252.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 252.768
+        },
+        {
+          "y": 684,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 252.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 252.938
+        },
+        {
+          "y": 685,
+          "combinedAlpha128PixelsFullWidth": 1671,
+          "combinedAlpha128PixelsCommonWidth": 1671,
+          "minimumAlphaFullWidth": 0.0,
+          "minimumAlphaCommonWidth": 252.0,
+          "maximumAlphaCommonWidth": 253.008,
+          "meanAlphaCommonWidth": 252.98
+        }
+      ],
+      "rightmostFloorColumnMissing": true,
+      "seamPreview": "port-hanshan-ph40-r1-seam-preview.png",
+      "verdict": "Amélioration verticale confirmée sur la largeur commune ; largeur et transparence résiduelle maintenues comme réserves. L’assemblage complet n’est pas validé.",
+      "diagnosticPreviewVisuallyInspected": true
+    }
+  },
+  "cameraAndFloor": {
+    "nativeFraming": "Plans comparés au cadrage historique complet ; aucun zoom/crop effectué par la revue.",
+    "footLineProposalY": 771.62,
+    "footLineVerifiedWithFighters": false,
+    "overscan15PercentProvided": false,
+    "parallaxMotionTested": false,
+    "collisionGeometryVerified": false,
+    "notes": [
+      "Le cadrage fixe seul ne valide pas les déplacements de caméra ni les 15 % de débord proposés dans la bible.",
+      "La ligne de pieds à 82 % reste un repère de composition et ne constitue pas une collision."
+    ]
+  },
+  "fidelity1to1Validated": false,
+  "engineIntegrated": false,
+  "engineCompositionValidated": false,
+  "nativePngsModifiedByReviewer": false,
+  "overallVerdict": "PH20, PH30 et PH40 R1 sont des calques prototypes distincts et réellement transparents. R1 améliore la jonction verticale sur les 1671 colonnes communes, mais la largeur diffère toujours d’un pixel et la jonction n’est pas uniformément opaque. Aucun assemblage moteur, déplacement de caméra, collision ou fidélité canonique 1:1 validé.",
+  "qaPreviewsDirectory": "/workspace/scratch/8eb3f23d9927/lot16-qa",
+  "qaPreviews": [
+    "port-hanshan-ph20-independent-preview.png",
+    "port-hanshan-ph30-independent-preview.png",
+    "port-hanshan-ph40-r0-independent-preview.png",
+    "port-hanshan-ph40-r0-seam-preview.png",
+    "port-hanshan-ph40-r1-independent-preview.png",
+    "port-hanshan-ph40-r1-seam-preview.png"
+  ],
+  "qaPreviewsAreProductionAssets": false,
+  "qaPreviewsPersistedInRepository": false
+}

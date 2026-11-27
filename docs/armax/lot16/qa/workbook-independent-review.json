@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-11-25",
+  "reviewer": "independent_reference_review_agent",
+  "reviewState": "completed",
+  "finalBuildSignalReceived": true,
+  "sourceWorkbook": "docs/armax/lot16/Mass_Effect_Armax_Suivi_Lot16_2026-11-25.xlsx",
+  "sourceWorkbookSha256": "eb4c0aa133a90653fa0e4edbf7f865ebf167f59ffbe21f95c1be03360e3caf90",
+  "scope": "Lecture seule des trois feuilles, contrôle de données ZIP/XML et revue visuelle des 12 aperçus de préparation/relecture fournis.",
+  "method": [
+    "Lecture directe des XML du XLSX par la bibliothèque standard Python, sans sauvegarde du classeur.",
+    "Comparaison des identités, variantes, statuts, sources, chemins et compteurs du catalogue avec production-catalog.json.",
+    "Comparaison des 86 lignes Recuperes et de leurs notes avec asset-inventory.json.",
+    "Recalcul indépendant des 36 résultats attendus de synthèse à partir des valeurs de lignes ; comparaison aux caches stockés.",
+    "Inspection visuelle des 12 PNG après le signal du build final."
+  ],
+  "checks": {
+    "sheetNames": [
+      "Synthese",
+      "Catalogue",
+      "Recuperes"
+    ],
+    "catalogueRecords": 192,
+    "catalogueUniqueIds": 192,
+    "catalogueSourceRowsMatched": 192,
+    "catalogueSourceDifferences": [],
+    "productionNotesMissingFromOutput": [],
+    "recoveredRecords": 86,
+    "recoveredUniqueIds": 86,
+    "recoveredSourceDifferences": [],
+    "summaryFormulaCachesIndependentlyCompared": 36,
+    "summaryFormulaCacheDifferences": [],
+    "xlsxErrorCells": [],
+    "attemptStatusCounts": {
+      "Bloqué": 13,
+      "Généré": 132,
+      "Non tenté": 34,
+      "Refus rapporté": 13
+    },
+    "reportedRefusalsHaveHistoricalQualifier": true,
+    "blockedOrReportedRowsHaveNoLot16Png": true,
+    "fidelityValidatedYesCount": 0,
+    "lot15AssetPathsCount": 0,
+    "repositoryAndOutputCopiesByteIdentical": true,
+    "matchesCoordinatorVerificationSha256": true,
+    "newPngFiles": 6,
+    "newlyAddedRecords": 4,
+    "recordsWithCurrentLot16Image": 5,
+    "readbackPreviewComparisons": [
+      {
+        "prepared": "preview-synthese.png",
+        "readback": "readback-synthese.png",
+        "pixelIdentical": true
+      },
+      {
+        "prepared": "preview-notes-production.png",
+        "readback": "readback-notes-production.png",
+        "pixelIdentical": true
+      }
+    ],
+    "columnAOpenXmlWidths": [
+      {
+        "min": "1",
+        "max": "1",
+        "width": "30",
+        "customWidth": "1",
+        "hidden": "0"
+      }
+    ]
+  },
+  "visualReviewPassedForInspectedRanges": true,
+  "dataChecksPassed": true,
+  "previews": [
+    {
+      "file": "preview-catalogue.png",
+      "sha256": "e262e3eecd7b957c51c6751b9857ccf2933aab219fdd3f4fc27891808a0f00d3",
+      "size": [
+        2273,
+        1306
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Catalogue général : en-têtes et valeurs lisibles, statuts Bloqué et Refus rapporté distincts."
+    },
+    {
+      "file": "preview-actifs-stage.png",
+      "sha256": "d29ea0236425eecaec7a312a048cc9be8f01594e729eb45ce0f427ab664ab99c",
+      "size": [
+        2273,
+        456
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "PH20 et PH30 : noms entiers contenus dans la colonne A élargie."
+    },
+    {
+      "file": "preview-actifs-accessoire.png",
+      "sha256": "b666845689813aa9a7d2191d10f76c3865f53ab6f3e0c61158f4ef84e20dec07",
+      "size": [
+        2273,
+        502
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "PH40 et fauteuil : labels et statuts lisibles."
+    },
+    {
+      "file": "preview-ennemis.png",
+      "sha256": "e84ca22ba53fdb2557fe053c74d0442caf6721703a4889d08343ba779fd41c07",
+      "size": [
+        2273,
+        834
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Homme Trouble : ligne lisible, Prototype et 1:1 Non conservés."
+    },
+    {
+      "file": "preview-recuperes.png",
+      "sha256": "d6fbb3c2db5b7a045e7b00796b2f7f05e556aaf1f01fcfe20c65f48ec5256300",
+      "size": [
+        1703,
+        1150
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Troisième feuille : compte de 86 fichiers et sélection historique lisibles."
+    },
+    {
+      "file": "preview-notes-production.png",
+      "sha256": "da3c2e2a493bfed94916302a2d3db518a179dfba2b9c1d127e1b7f7aabafd758",
+      "size": [
+        2390,
+        481
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Note longue de production et sources complètes dans le rendu inspecté, sans collision visible entre colonnes."
+    },
+    {
+      "file": "preview-notes-costume.png",
+      "sha256": "d64daa1b6dcb686037c92eb99bdaed243b20ee10cc6c6c1fc346c3a20d09ff79",
+      "size": [
+        2390,
+        113
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Refus documenté du costume Grunt et absence de relance lisibles."
+    },
+    {
+      "file": "preview-notes-versions.png",
+      "sha256": "b0a461b98849122fbbbf6fa70c098ddfc393ee1d326730f58f2bd5e2e2b7828e",
+      "size": [
+        1170,
+        444
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "R196=2 et chemin R0 conservé lisibles ; les deux fichiers ne sont pas deux identités."
+    },
+    {
+      "file": "preview-notes-recuperes.png",
+      "sha256": "9249fc20877c192079671479b9b7125b3b59344f369a9e1a77ad8b3f49b7c554",
+      "size": [
+        1640,
+        177
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Note récupérée longue de la pose R1 lisible jusqu’à sa dernière phrase."
+    },
+    {
+      "file": "preview-synthese.png",
+      "sha256": "1ca0216b58caa27cf51b9f3f5182ade1164f05c68213424c3966a5b435c60fe6",
+      "size": [
+        1305,
+        1452
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Les totaux, la date et la phrase corrigée ses 113 PNG sont lisibles. Libellé A21 corrigé et dernière synthèse relue."
+    },
+    {
+      "file": "readback-synthese.png",
+      "sha256": "1ca0216b58caa27cf51b9f3f5182ade1164f05c68213424c3966a5b435c60fe6",
+      "size": [
+        1305,
+        1452
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Rendu des valeurs relues visuellement rapproché de la synthèse. Libellé A21 corrigé et dernière synthèse relue."
+    },
+    {
+      "file": "readback-notes-production.png",
+      "sha256": "da3c2e2a493bfed94916302a2d3db518a179dfba2b9c1d127e1b7f7aabafd758",
+      "size": [
+        2390,
+        481
+      ],
+      "visuallyInspectedAfterFinalBuildSignal": true,
+      "result": "readable",
+      "note": "Rendu relu de la note longue rapproché du rendu de préparation."
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "id": "catalogue_ph30_width",
+      "status": "resolved",
+      "finding": "La colonne A élargie contient désormais le nom PH30 sans débordement visible."
+    },
+    {
+      "id": "summary_spacing",
+      "status": "resolved",
+      "finding": "Synthese!A30 affiche ses 113 PNG avec espaces."
+    },
+    {
+      "id": "prior_lot_label_scope",
+      "status": "resolved",
+      "location": "Synthese!A21:B21",
+      "finding": "Le libellé final Fiches illustrées sans ajout au lot 16 correspond au compteur127 et distingue la pose additionnelle de l’Homme Trouble.",
+      "visuallyRecheckedAfterLabelOnlyRebuild": true
+    }
+  ],
+  "minorEditorialReserves": [
+    {
+      "id": "ph40_note_spacing",
+      "location": "Catalogue!M196",
+      "severity": "minor",
+      "finding": "Quelques mots restent fusionnés dans la note héritée : avecPH30, reste1671px, surfondsclairs. La note reste intelligible et conserve les réserves de largeur et de fidélité.",
+      "blocksDataOrVisualAcceptance": false
+    }
+  ],
+  "nativeExcelOpened": false,
+  "nativeExcelRecalculationVerified": false,
+  "nativeExcelPaginationVerified": false,
+  "workbookModifiedByReviewer": false,
+  "otherWorkbooksCreated": false,
+  "conclusion": "Contrôles de données satisfaits et plages rendues lisibles. Les libellés PH30 et A21 ainsi que la phrase ses 113 PNG sont corrigés. Seule réserve éditoriale mineure : quelques mots fusionnés dans la note PH40, sans erreur de compte ni perte de texte constatée dans les aperçus inspectés. Aucune ouverture Excel native ni validation du moteur Excel revendiquée.",
+  "finalLabelOnlyRebuild": {
+    "coordinatorFinalSignalReceived": true,
+    "sha256": "eb4c0aa133a90653fa0e4edbf7f865ebf167f59ffbe21f95c1be03360e3caf90",
+    "changedCell": "Synthese!A21",
+    "finalValue": "Fiches illustrées sans ajout au lot 16",
+    "dataChecksReusedBecauseDataUnchanged": true,
+    "summaryVisuallyRechecked": true,
+    "preparedAndReadbackSummaryPixelIdentical": true
+  }
+}
