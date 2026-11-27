@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-27T14:49:10Z",
+  "status": "browser_verification_in_progress",
+  "browserPassed": false,
+  "currentRunConclusion": null,
+  "currentRunChecks": null,
+  "scope": "Pending observation of the current GitHub workflow. This is not execution provenance, a successful UI result, or a failure of the current correction.",
+  "run": {
+    "id": 46016000543,
+    "jobId": 140563152254,
+    "attempt": 1,
+    "headSha": "859fac838f988c49b05e10c6cc529f5726eb5d5d",
+    "createdAt": "2026-11-27T14:26:48Z",
+    "status": "in_progress",
+    "url": "https://github.com/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/46016000543/job/140563152254",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "in_progress",
+        "conclusion": null,
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "pending",
+        "conclusion": null,
+        "number": 3
+      },
+      {
+        "name": "Run npm ci",
+        "status": "pending",
+        "conclusion": null,
+        "number": 4
+      },
+      {
+        "name": "Run npx playwright install --with-deps chromium",
+        "status": "pending",
+        "conclusion": null,
+        "number": 5
+      },
+      {
+        "name": "Exercise Armax controls in Chromium",
+        "status": "pending",
+        "conclusion": null,
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "pending",
+        "conclusion": null,
+        "number": 7
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "pending",
+        "conclusion": null,
+        "number": 14
+      }
+    ]
+  },
+  "evidenceAvailability": {
+    "lastCheckedAt": "2026-11-27T14:47:10Z",
+    "artifacts": [],
+    "logAvailable": false,
+    "logResponse": "404 BlobNotFound before the runner started. This is absence of a generated job log, not a runtime error or failed test.",
+    "runStatusObservedLater": "in_progress at 2026-11-27T14:49:10Z"
+  },
+  "statusCrossCheck": {
+    "individualRunEndpoint": "https://api.github.com/repos/darknigthmare/Mass-Effect-Relay-Chronicles/actions/runs/46016000543",
+    "individualRunObservedStatus": "queued before the runner started",
+    "individualJobEndpoint": "not supported by github_fetch allowlist (400 INVALID_ARGUMENT); no bypass attempted"
+  },
+  "lastDiagnostic": {
+    "runId": 46014391140,
+    "headSha": "6335856adb5c067625404d24f6c6f0ab2a8b56cb",
+    "historical": true,
+    "passed": false,
+    "report": "docs/armax/lot22/qa/ci-armax/run-46014391140/armax-browser-report.json",
+    "provenance": "docs/armax/lot22/qa/ci-armax/run-46014391140/provenance.json",
+    "screenshots": [
+      "docs/armax/lot22/qa/ci-armax/run-46014391140/armax-ready-1.png",
+      "docs/armax/lot22/qa/ci-armax/run-46014391140/armax-failure.png"
+    ],
+    "observedCause": "The global keyboard navigation consumed ArrowRight and moved focus from Pause to Selection; no fighter movement or shield damage followed. The clock advanced with focus and visibility intact. The images also showed Sprite mirroring did not reverse the opponent. Both corrections are present in the current HEAD, whose browser result is still pending."
+  },
+  "expectedSourceSha256Description": "Thirteen expected file hashes read from the published HEAD859fac. These are local/published source expectations, not hashes extracted from a completed current-run provenance artifact.",
+  "expectedSourceSha256": {
+    "src/armax-data.js": "48c65db789b4d08afa1580ced64a2c55c52dde2324f1943d776dd8a67b651b38",
+    "src/armax-expansion-data.js": "ff1f6c3b979e049d9b9313330b557d195cc0b89fd6453153dedc7f95c7b35336",
+    "src/armax-engine.js": "284b4b2264b8cb399cb1cbd18342645f43ae7de1af67df1670b47facf360faf6",
+    "src/armax-campaign.js": "e5ab8f10090b290e01030d2ecee736b77ee7d3560b4325ca991f9394d4f85861",
+    "src/armax-ui.js": "3016d79579c4ac11ae5899767fbbad2aee316e89dab748c6d47e5189234594fe",
+    "src/armax-ui.css": "a463507a978a778dfc62b1930674be3812d9c9b34a0e83045b880eb9804c342f",
+    "src/main.js": "6456f09266f6e470cc639ae31f151b6446c59d0b4a6dfdb23d27ed0c8b3384d9",
+    "tests/armax-engine.test.js": "b5c8de29e07525d05efdaef21f682c954db1475c0152f84de1c9b5c78516135b",
+    "tests/armax-expansion.test.js": "318a98a251328d21f80ad68fad5fbfaabe2ea87793d54e11ef2a70b2ff85b607",
+    "src/gamepad-controls.js": "b45a65dd7a07f6acc6c42fdf9a6452ec8e5e6bf18d487cc5f9c582edbf79504b",
+    "tests/gamepad-controls.test.js": "b60efffa0f64ad11c3bfd10fccbfa5365e34caa6b28420c9d2fd51092e7af6a1",
+    "scripts/armax-browser.mjs": "709ff876b0d7134edb452589fdbcfe8267560e818a788bc6fad95706739f644d",
+    ".github/workflows/armax-browser.yml": "11d98ac2b4d6b748435dcbff12d0ea0fcd20bfeba0fab18d736721bb1c4a5d58"
+  },
+  "limitations": [
+    "No current-run artifact, provenance.json or screenshots were available at the availability check.",
+    "No positive UI result is claimed for the current correction.",
+    "No rerun was triggered; the original GitHub run remains active.",
+    "The six smoke checks cover only their explicit scenarios; they do not verify all ten full character kits, all twenty arenas, hardware gamepads, physical mobile devices, balance or 1:1 fidelity."
+  ]
+}

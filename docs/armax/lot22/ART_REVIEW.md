@@ -1,6 +1,6 @@
 # Revue artistique de consolidation — lot22
 
-Date : 27 novembre 2026. Périmètre : **109 identités originales illustrées**, 114 PNG natifs avec les versions conservées. Les vingt boss sont conçus ; Halek Orr reste sans image.
+État de la revue : **27 novembre 2026**. Périmètre : **109 identités originales illustrées**, 114 PNG natifs avec les versions conservées. Les vingt boss sont conçus ; Halek Orr reste sans image. Le parcours navigateur courant réussit six cas sur **`f2b756fd476e00c5a282345e30464966a982c02e`**, après un premier succès sur `859fac`. Les captures relues restent limitées à Mara/Tavin, aux stages01/02 et aux sélecteurs testés.
 
 ## Étendue de la revue
 
@@ -39,8 +39,20 @@ Les arènes possèdent un plan horizontal lisible et des architectures cohérent
 
 FX01 pointe vers la droite ; le noyau de FX05 est à gauche. Le renderer applique un signe d’orientation propre à FX05. Les halos et fumées demandent un réglage d’opacité en situation ; les bounds de lecture ne doivent pas devenir des hitboxes. Les cycles d’apparition, impact et extinction restent absents des bases fixes.
 
+## Captures du moteur : preuve courante bornée
+
+Le [run 46020607485](qa/ci-armax/run-46020607485/armax-browser-report.json), job `140578969050`, a réussi **6/6 cas** avec `errors: []` et `diagnosticErrors: []`. Sa [provenance](qa/ci-armax/run-46020607485/provenance.json) identifie **`f2b756fd476e00c5a282345e30464966a982c02e`** et treize empreintes concordantes avec les sources vérifiées. Sept captures sont conservées. Ce parcours exerce Mara/Tavin, les stages01/02, les dix/vingt options du sélecteur, le déplacement et les dégâts, la pause/blur simulé, le CPU, les commandes pointer à 390 × 844 et le retour au titre avec `localStorage` inchangé.
+
+Le [premier succès du run 46016000543](qa/ci-armax/run-46016000543/armax-browser-report.json), sur `859fac`, reste historique. Ses vues [initiale](qa/ci-armax/run-46016000543/armax-ready-1.png), [desktop](qa/ci-armax/run-46016000543/armax-duel-desktop.png) et [mobile](qa/ci-armax/run-46016000543/armax-duel-mobile.png) ont été relues : Tavin regarde vers Mara ; les pieds restent sur une même ligne de sol, sans coupe visible des corps. Le HUD affiche 55 puis 90 dégâts, et le duel mobile ne déborde pas horizontalement. Les poses fixes se chevauchent visuellement au contact, particulièrement dans le petit viewport. Elles ne constituent pas des attaques animées.
+
+La [capture courante du sélecteur mobile](qa/ci-armax/run-46020607485/armax-selection-mobile.png), sur `f2b756fd`, a été relue : **« RETOUR » tient sur une ligne**, le titre est entier et aucun débordement horizontal n’est observé à **390 × 844**. La coupure du libellé visible dans la [version précédente](qa/ci-armax/run-46016000543/armax-selection-mobile.png) est corrigée. Aucune validation d’un autre corps, d’un boss, d’un ennemi, d’un FX individuel ou d’un téléphone réel n’est déduite de cette correction et des six cas repassés.
+
+Quatre exécutions CI antérieures avaient chacune réussi le seul cas du sélecteur avant l’échec. Le [diagnostic du run 46014391140](qa/ci-armax/run-46014391140/armax-browser-report.json), sur `6335856`, montrait Tavin dans le même sens que Mara et les flèches détournées vers le focus du menu. Les correctifs de routage et les plans `Mesh` à échelle signée ont ensuite été relus ; les nouvelles captures confirment leur effet pour le duel testé. L’[observation de file de 14:49 UTC](qa/armax-browser-pending-report.json) conserve seulement l’attente historique du run.
+
+La [suite générale courante](qa/armax-ci-general-current-report.json), sur **`f2b756fd`**, a réussi **1 393/1 393 tests** sans échec ni test ignoré, puis la compilation de **170 modules** : run `46020607465`, job `140578968871`, onze empreintes concordantes. Les **38/38 contrôles Armax** et **16/16 contrôles d’entrée** disposent aussi de leurs preuves. Ces résultats natifs restent distincts de la lecture des captures. Les résultats de [`859fac` à 1 393 tests](qa/armax-ci-general-859-report.json), de [`6335856` à 1 392 tests](qa/armax-ci-general-633-report.json) et les blocages locaux restent historiques. L’échec du job Shepard `140578968931` est consigné avec son diagnostic distinct ; l’atelier Shepard reste suivi séparément et aucun succès global de la CI n’est déclaré.
+
 ## Réserves conservées
 
-Les franges et voiles d’alpha faibles, les marges de certaines machines, l’échelle relative des corps, le contact des pieds, la visibilité des attaques et les asymétries retournées en miroir doivent encore être contrôlés dans le moteur. Le rejet d’alphas faibles n’est pas une certification de détourage parfait.
+La première lecture en jeu porte seulement sur Mara/Tavin et les deux décors testés. Les franges et voiles d’alpha faibles, les marges des machines, l’échelle et le contact des pieds des autres corps, la visibilité des attaques, les FX et les asymétries retournées en miroir restent à contrôler dans le moteur. Le rejet d’alphas faibles n’est pas une certification de détourage parfait.
 
-La revue conclut à des **bases candidates cohérentes pour la continuation**, avec réserves explicites. Elle ne certifie ni une reproduction 1:1, ni la totalité des anatomies sous tous les angles, ni les kits animés, ni un rendu en jeu ou une approbation officielle. Les références canoniques ouvertes restent traitées dans l’audit distinct des manquants.
+La revue conclut à des **bases candidates cohérentes pour la continuation**, avec réserves explicites. Elle ne certifie ni une reproduction 1:1, ni la totalité des anatomies sous tous les angles, ni les kits animés, ni une validation exhaustive du rendu en jeu ou une approbation officielle. Les 72 identités raccordées au code ne sont pas déclarées vérifiées dans le navigateur. Les références canoniques ouvertes restent traitées dans l’audit distinct des manquants.

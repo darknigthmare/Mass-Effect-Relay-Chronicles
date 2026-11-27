@@ -11,6 +11,7 @@
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { SpreadsheetFile, Workbook } from '@oai/artifact-tool';
 
@@ -25,7 +26,12 @@ const docDir = path.join(repo, 'docs/armax/lot22');
 const qaDir = path.join(docDir, 'qa/workbook');
 const fileName = 'Mass_Effect_Armax_Nacre_Lot22_2026-11-27.xlsx';
 const exists = async file => !!(await fs.stat(file).catch(() => null))?.isFile();
-const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
+const sourceSha256 = {};
+const readJson = async file => {
+  const bytes = await fs.readFile(file);
+  sourceSha256[path.relative(repo,file).replaceAll(path.sep,'/')] = createHash('sha256').update(bytes).digest('hex');
+  return JSON.parse(bytes.toString('utf8'));
+};
 const choose = async files => {
   for (const file of files.filter(Boolean)) if (await exists(file)) return file;
   throw new Error(`Required source unavailable: ${files.filter(Boolean).join(' ; ')}`);
@@ -119,15 +125,29 @@ const coverageFeatures = arr(coverage?.features || coverage?.coverage || coverag
 const coverageById = new Map(coverageFeatures.map(feature => [feature.id, feature]));
 const nativeTestsPassed = coverage?.verification?.nativePassed === true;
 const nativeTestsCount = Number(coverage?.verification?.nativeTests || 0);
+const inputRoutingPassed = coverage?.verification?.inputRoutingPassed === true;
+const inputRoutingTests = Number(coverage?.verification?.inputRoutingTests || 0);
+const nativeVerificationText = nativeTestsPassed ? `${nativeTestsCount} tests Armax réussis` : 'Tests Armax à vérifier';
+const inputVerificationText = inputRoutingPassed ? ` ; ${inputRoutingTests} contrats d’entrée vérifiés` : '';
 const campaignPartiallyVerified = coverageById.get('campaign')?.status === 'partial_engine_verified';
 const bossesPartiallyVerified = coverageById.get('bosses')?.status === 'partial_engine_verified';
-const verifiedStatuses = new Set(['implemented_and_verified', 'implemented_verified', 'verified', 'tested', 'prototype_verified', 'validated']);
-const coverageOverall = string(coverage?.status || coverage?.validationStatus || coverage?.verification?.status);
-const prototypeVerified = coverage?.prototypePlayableVerified === true ||
-  coverage?.smokeTestPassed === true || coverage?.verification?.passed === true ||
-  verifiedStatuses.has(coverageOverall);
 const runtimeSourcePath = path.join(repo, 'src/armax-data.js');
 const runtimeSource = await exists(runtimeSourcePath) ? await fs.readFile(runtimeSourcePath, 'utf8') : '';
+// Complete prototype sign-off requires an explicit declaration and all ten IDs.
+// Smoke/global results cannot certify profiles or the full kits from the bible.
+const prototypeVerificationFor = report => {
+  const verifiedIds = new Set(Array.isArray(report?.playableProfiles?.verifiedIds)
+    ? report.playableProfiles.verifiedIds.filter(id => typeof id === 'string') : []);
+  return report?.prototypePlayableVerified === true && roster.fighters.every(fighter =>
+    verifiedIds.has(fighter.id) && runtimeSource.includes(fighter.id));
+};
+const prototypeVerified = prototypeVerificationFor(coverage);
+const partialUiChecksPassed = coverage?.verification?.browserPassed === true;
+const browserQueued = coverage?.verification?.pendingCiAttempt?.status === 'queued' ||
+  string(coverage?.verification?.browserStatus).startsWith('queued');
+const browserVerificationText = prototypeVerified ? 'Prototype complet vérifié' :
+  partialUiChecksPassed ? 'Contrôles UI partiels réussis' :
+  browserQueued ? 'Contrôles UI en attente' : 'Parcours navigateur non validé';
 const entries = new Map();
 for (const entry of catalog.entries || []) {
   if (entries.has(entry.id)) throw new Error(`Duplicate catalogue id: ${entry.id}`);
@@ -317,7 +337,7 @@ summary.getRange(`B${summaryNotesRow}`).formulas=[[`=COUNTIFS('Catalogue'!$Q$6:$
 summary.getRange(`A${summaryNotesRow+2}`).values=[['Les Dettes de Nacre']];
 summary.getRange(`A${summaryNotesRow+2}`).format.font={name:FONT,size:10,bold:true,color:colors.navy};
 summary.getRange(`A${summaryNotesRow+3}`).values=[['Création du projet, située en 2185 dans les Terminus. Aucun statut officiel revendiqué.']];
-summary.getRange(`A${summaryNotesRow+4}`).values=[[nativeTestsPassed ? `${nativeTestsCount} tests natifs réussis ; routines condensées. Parcours navigateur : ${prototypeVerified?'vérifié':'non validé'}.` : 'Couverture du moteur et vérification du parcours de jeu détaillées dans la feuille Gameplay.']];
+summary.getRange(`A${summaryNotesRow+4}`).values=[[`${nativeVerificationText}${inputVerificationText}. ${browserVerificationText}.`]];
 summary.getRange(`A${summaryNotesRow+5}`).values=[['Kits complets, animations, parallaxe, scènes illustrées, voix et costumes restent suivis séparément.']];
 
 const kitRows=[];
@@ -420,9 +440,45 @@ gameplayRows.push(['complete_kits','Kits complets de Nacre','Conception','DLC/Le
   'Neuf normales, commande, projection, quatre spéciaux, super, neutralisation, assist et taunt par personnage ; ce périmètre dépasse le prototype.']);
 gameplayRows.push(['canonical_1to1','Fidélité 1:1 des contenus canoniques','Non certifiée','Catalogue : colonne 1:1 validé',
   'Un fichier présent est un candidat artistique. Les variantes et les références doivent être contrôlées individuellement.']);
-const gameplayWidths=[31,38,35,80,90];
-startSheet(sheets.Gameplay,'Couverture du gameplay',nativeTestsPassed?`${nativeTestsCount} tests natifs réussis ; compilation ${coverage?.verification?.buildPassed?'réussie':'à vérifier'}. Parcours navigateur ${prototypeVerified?'vérifié':'non validé'}. Les kits complets restent ouverts.`:'La vérification du prototype courant reste à consigner ; aucun résultat ancien n’est promu.',gameplayWidths,gameplayRows.length+10);
+if (coverage?.verification?.inputRoutingReport) gameplayRows.push([
+  'input_routing_contracts',`${inputRoutingTests} contrats d’entrée courants`,
+  inputRoutingPassed?'Contrats natifs vérifiés':'À vérifier',coverage.verification.inputRoutingReport,
+  'Contrats du routage clavier et du pointeur ; cette preuve native ne valide pas un parcours UI ni les dix profils.']);
+const currentFullSuite = coverage?.verification?.fullSuite;
+const currentSuiteDifferences = arr(currentFullSuite?.changedRuntimeFiles ?? currentFullSuite?.currentSourceDifferences);
+if (currentFullSuite) gameplayRows.push([
+  'current_full_suite',currentFullSuite.sourceMatchesCurrent===false?'Suite générale — révision testée':'Suite générale courante',
+  currentFullSuite.passed===true?(currentFullSuite.sourceMatchesCurrent===false?'Réussie sur la révision indiquée':'Suite courante réussie'):currentFullSuite.status||'À vérifier',
+  [currentFullSuite.report,currentFullSuite.url].filter(Boolean).join('\n'),
+  `Révision : ${currentFullSuite.sourceHead||'non renseignée'}. `+
+  (currentFullSuite.passed===true?`${currentFullSuite.passedTests??'?'}/${currentFullSuite.reportedTests??currentFullSuite.tests??'?'} tests réussis ; ${currentFullSuite.failedTests??'?'} échec(s). `+
+    `${currentFullSuite.buildPassed===true?`Compilation réussie (${currentFullSuite.buildModules??'?'} modules). `:''}`+
+    `${currentFullSuite.sourceMatchesCurrent===true?'Sources concordantes avec la version courante. ':
+      currentFullSuite.sourceMatchesCurrent===false?`Résultat rattaché à la révision testée ; sources courantes différentes${currentSuiteDifferences.length?` (${currentSuiteDifferences.join(', ')})`:''}. `:
+      'Correspondance avec les sources courantes non établie. '}Résultat distinct des contrôles UI.`:
+    'Aucune réussite courante déduite du résultat historique.')]);
+const lastCompletedFullSuite = coverage?.verification?.lastCompletedFullSuite;
+if (lastCompletedFullSuite) gameplayRows.push([
+  'last_completed_full_suite',lastCompletedFullSuite.sourceMatchesCurrent===false?'Suite générale historique':'Dernière suite générale consignée',lastCompletedFullSuite.passed===true?'Réussie sur la révision indiquée':'Échec sur la révision indiquée',
+  lastCompletedFullSuite.report||'',
+  `${lastCompletedFullSuite.passedTests??'?'}/${lastCompletedFullSuite.tests??'?'} tests ; révision ${lastCompletedFullSuite.sourceHead||'non renseignée'}. `+
+  (lastCompletedFullSuite.sourceMatchesCurrent===false?`Résultat historique : sources courantes différentes (${arr(lastCompletedFullSuite.changedRuntimeFiles).join(', ')}).`:'Correspondance avec les sources courantes à lire dans le rapport.')]);
+const gameplayWidths=[31,38,35,80,96];
+startSheet(sheets.Gameplay,'Couverture du gameplay',`${nativeVerificationText}${inputVerificationText} ; compilation ${coverage?.verification?.buildPassed?'réussie':'à vérifier'}. ${browserVerificationText}. Les kits complets restent ouverts.`,gameplayWidths,gameplayRows.length+10);
 table(sheets.Gameplay,'NacreGameplay',['ID','Fonction','État observé','Preuve ou source','Limites et travail restant'],gameplayRows,gameplayWidths,{rowHeight:32,maxHeight:200});
+// Keep the limited UI checks and their evidence readable in a focused view.
+// Locate them by ID so a later coverage report can reorder its feature rows.
+const uiReviewIds = new Set(['entry','render','touch','stages','isolation']);
+const uiReviewRows = gameplayRows.flatMap((values,index) =>
+  uiReviewIds.has(values[0]) ? [{row:index+6,values}] : []);
+for (const {row,values} of uiReviewRows) {
+  const lineCount = Math.max(1,...values.map((value,ci) => string(value).split('\n')
+    .reduce((count,line) => count+Math.max(1,Math.ceil(line.length/Math.max(10,gameplayWidths[ci]-3))),0)));
+  sheets.Gameplay.getRange(`A${row}:E${row}`).format.rowHeight = Math.min(409,Math.max(80,lineCount*13+12));
+}
+const uiReviewRange = uiReviewRows.length
+  ? `A${Math.min(...uiReviewRows.map(item=>item.row))}:E${Math.max(...uiReviewRows.map(item=>item.row))}`
+  : 'A1:E13';
 sheets.Gameplay.tabColor=colors.mid;
 
 workbook.recalculate();
@@ -435,6 +491,32 @@ const expected=[
 if(JSON.stringify(before)!==JSON.stringify(expected)) throw new Error(`Summary does not reconcile: ${JSON.stringify({before,expected})}`);
 
 // Meaningful recalculation checks are temporary and restored before export.
+const smokeProbeCoverage = coverage || {};
+const hadSmokeFlag = Object.prototype.hasOwnProperty.call(smokeProbeCoverage, 'smokeTestPassed');
+const savedSmokeFlag = smokeProbeCoverage.smokeTestPassed;
+const fighterRows = roster.fighters.map(fighter => rowFor.get(fighter.id));
+const readPrototypeCells = () => fighterRows.map(row => Number(sheets.Catalogue.getRange(`I${row}`).values[0][0]));
+const savedPrototypeCells = readPrototypeCells();
+try {
+  smokeProbeCoverage.smokeTestPassed = true;
+  const probeVerified = prototypeVerificationFor(smokeProbeCoverage);
+  fighterRows.forEach(row => { sheets.Catalogue.getRange(`I${row}`).values = [[probeVerified ? 1 : 0]]; });
+  workbook.recalculate();
+  if (JSON.stringify(readPrototypeCells()) !== JSON.stringify(savedPrototypeCells) ||
+      JSON.stringify(numericValues('B7:H9')) !== JSON.stringify(before)) {
+    throw new Error('A smoke-test flag changed prototype certification cells.');
+  }
+} finally {
+  if (hadSmokeFlag) smokeProbeCoverage.smokeTestPassed = savedSmokeFlag;
+  else delete smokeProbeCoverage.smokeTestPassed;
+  fighterRows.forEach((row,index) => { sheets.Catalogue.getRange(`I${row}`).values = [[savedPrototypeCells[index]]]; });
+  workbook.recalculate();
+}
+if (Object.prototype.hasOwnProperty.call(smokeProbeCoverage, 'smokeTestPassed') !== hadSmokeFlag ||
+    smokeProbeCoverage.smokeTestPassed !== savedSmokeFlag ||
+    JSON.stringify(readPrototypeCells()) !== JSON.stringify(savedPrototypeCells)) {
+  throw new Error('Smoke-test probe was not restored.');
+}
 const sample=records.find(record=>record.scope==='Original');
 const sampleRow=rowFor.get(sample.id);
 const samplePresence=sample.present;
@@ -484,6 +566,8 @@ const renderJobs=[
  ['Kits','J219:L221','11-kit-dalo-limites.png'],
  ['Kits',`J${commonKitStart}:L${commonKitStart+5}`,'12-kits-regles-communes.png'],
  ['Catalogue',`L${sourceAppendixStart-1}:O${sourceAppendixStart+4}`,'13-index-sources.png'],
+ ['Gameplay',uiReviewRange,'14-gameplay-controles-ui.png',
+   'Contrôles UI limités et réserves de chaque fonction ; aucune certification des dix profils, des assets ou des kits complets déduite de cette vue.'],
 ];
 for(const [sheetName,range,filename] of renderJobs){
   const preview=await workbook.render({sheetName,range,scale:1,format:'png'});
@@ -499,14 +583,17 @@ const verification={
   sources:{catalog:sourcePath(catalogPath),roster:sourcePath(rosterPath),world:sourcePath(worldPath),coverage:coveragePath?sourcePath(coveragePath):null,
     canonicalFollowup:canonicalFollowup?sourcePath(canonicalFollowupPath):null,
     revisionReferenceManifest:revisionReferences.length?sourcePath(revisionReferencePath):null},
+  sourceSha256:Object.fromEntries(Object.entries(sourceSha256).sort(([left],[right])=>left.localeCompare(right))),
   sheets:Object.keys(sheets),records:records.length,canonicalRecords:canonicalCount,originalRecords:originalCount,
   sourceIndex:{count:referenceUrls.length,startRow:sourceAppendixStart,range:`Catalogue!L${sourceAppendixStart}:O${sourceAppendixBottom}`,allOriginalUrlsPreserved:true},
   originalCounts:Object.fromEntries(['fighter','stage','enemy','boss','prop','projectile_vfx'].map(category=>[category,[...entries.values()].filter(e=>e.scope==='Original'&&e.category===category).length])),
   summaryColumns:['fiches','avec_image','sans_image','presence_non_renseignee','prototype_verifie','kit_complet','fidelite_validee'],
   summaryRows:{canon:before[0],original:before[1],total:before[2]},
-  gameplayVerification:{nativeTestsPassed,nativeTestsCount,prototypeVerified,buildPassed:coverage?.verification?.buildPassed===true,statusCounts:Object.fromEntries(unique(coverageFeatures.map(f=>f.status)).map(status=>[status,coverageFeatures.filter(f=>f.status===status).length]))},
-  tests:{independentSourceReconciliation:true,imagePresenceChange:true,blankPresenceVisible:true,duplicateIdVisible:true,temporaryEditsRestored:true},
-  views:renderJobs.map(([sheet,range,file])=>({sheet,range,file,scale:1})),
+  gameplayVerification:{nativeTestsPassed,nativeTestsCount,inputRoutingPassed,inputRoutingTests,prototypeVerified,partialUiChecksPassed,browserQueued,
+    buildPassed:coverage?.verification?.buildPassed===true,currentFullSuite:currentFullSuite||null,lastCompletedFullSuite:lastCompletedFullSuite||null,
+    statusCounts:Object.fromEntries(unique(coverageFeatures.map(f=>f.status)).map(status=>[status,coverageFeatures.filter(f=>f.status===status).length]))},
+  tests:{independentSourceReconciliation:true,smokeFlagDoesNotPromoteProfiles:true,smokeProbeRestored:true,imagePresenceChange:true,blankPresenceVisible:true,duplicateIdVisible:true,temporaryEditsRestored:true},
+  views:renderJobs.map(([sheet,range,file,scope])=>({sheet,range,file,scale:1,...(scope?{scope}:{})})),
   visualReviewStatus:'Rendered; human/model visual inspection still required after this run.',
   nativeExcelOpened:false,
   limitations:['Formula calculation verified with artifact-tool; no native Microsoft Excel execution claimed.',

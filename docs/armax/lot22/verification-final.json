@@ -1,8 +1,12 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-11-27T13:35:56.255076+00:00",
-  "scope": "Consolidation des fichiers livrés ; ce rapport ne certifie ni le rendu navigateur, ni les kits complets, ni la fidélité 1:1.",
-  "publicationParent": "2c98ae3fb2784b956f58ec6068a8d8e342baf314",
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-27T15:10:13.601759+00:00",
+  "scope": "Consolidation des fichiers, preuves natives, suite générale et smoke UI limité. Ne certifie ni kits complets ni fidélité1:1 ni tous les contenus en jeu.",
+  "publicationParent": "f2b756fd476e00c5a282345e30464966a982c02e",
+  "originalContentCommit": "bc62e7e7bc715366a71cac0741742f4b5d80eb40",
+  "mergedContentCommit": "6b761f8aca41cd1d8d92a0a582c02d5e91d87535",
+  "followupPr": 12,
+  "followupBranch": "feat/armax-lot22-verification-20261127",
   "counts": {
     "total": 326,
     "withImage": 280,
@@ -33,39 +37,65 @@
     "selected109FileHashesUnique": true,
     "all114NativePngsAccountedFor": true,
     "nativeReportMatchesCurrentSources": true,
-    "fullSuiteReportMatchesCurrentSources": true,
+    "inputReportMatchesCurrentSources": true,
+    "completeSuiteReportMatchesCurrentSources": true,
+    "browserThirteenSourcesMatchCurrent": true,
+    "browserSixCasesSucceededWithoutErrors": true,
     "coverageMatchesCurrentEvidence": true,
+    "sixArchivedRunsRetainTheirFileHashes": true,
     "workbookCopiesIdentical": true,
-    "workbook13ReviewedViewsMatch": true,
+    "workbookFourteenReviewedViewsMatch": true,
     "workbookCountsMatchCatalog": true,
+    "workbookSevenRecalculationChecksPassed": true,
+    "workbookLimitedUiDoesNotCertifyFullProfiles": true,
+    "originalGuidesUnchanged": true,
     "blockedBossHasNoImage": true,
+    "catalogSmokeDoesNotPromotePerAssetValidation": true,
     "noFidelityOrFullKitCertification": true
   },
   "integrityPassed": true,
   "failedIntegrityChecks": [],
   "native": {
     "passed": true,
-    "tests": 38,
+    "armaxTests": 38,
+    "inputRoutingTests": 16,
     "buildPassed": true,
-    "report": "qa/armax-native-report.json"
+    "report": "qa/armax-native-report.json",
+    "inputReport": "qa/armax-input-routing-native-report.json"
   },
   "generalSuite": {
-    "passed": false,
-    "reportedTests": 1392,
-    "passedTests": 1373,
-    "failedTests": 19,
-    "missingHistoricalInputPaths": 12,
-    "report": "qa/armax-full-suite-restored-report.json"
+    "passed": true,
+    "tests": 1393,
+    "passedTests": 1393,
+    "failedTests": 0,
+    "sourceHead": "f2b756fd476e00c5a282345e30464966a982c02e",
+    "buildPassed": true,
+    "buildModules": 170,
+    "runId": 46020607465,
+    "report": "qa/armax-ci-general-current-report.json"
   },
   "browser": {
-    "passed": false,
-    "uiChecksPassed": 0,
-    "duelScreenshots": 0,
-    "report": "qa/armax-browser-report.json",
-    "lastRetryReport": "qa/armax-browser-retry-report.json"
+    "passed": true,
+    "scope": "Limited six-case smoke on Mara/Tavin, stages01/02; simulated blur and pointer controls at390x844. No exhaustive profile, campaign, boss or physical-device certification.",
+    "uiChecksPassed": 6,
+    "screenshots": 7,
+    "sourceHead": "f2b756fd476e00c5a282345e30464966a982c02e",
+    "sourceHashesMatched": 13,
+    "runId": 46020607485,
+    "report": "qa/ci-armax/run-46020607485/armax-browser-report.json",
+    "provenance": "qa/ci-armax/run-46020607485/provenance.json",
+    "history": "qa/ci-armax/index.json",
+    "visualReview": "ART_REVIEW.md"
   },
+  "otherChecks": {
+    "allCiGreen": false,
+    "report": "qa/armax-ci-other-checks.json",
+    "shepardHarness": "Invalid URL from undefined texture in separate combat-pose test"
+  },
+  "packagedBuilds": "qa/armax-packaged-builds.json",
   "workbook": {
-    "sha256": "f5d2576c03967ba033a188a32d5ef208bb6074f4e5c53bd7892e85f13885228b",
+    "sha256": "96131a8d939e0500fe1780186a8d43b2aac05b1f40c75ce04893125606f860e1",
+    "bytes": 186644,
     "sheets": [
       "Synthèse",
       "Gameplay",
@@ -74,8 +104,11 @@
       "Rencontres",
       "Catalogue"
     ],
-    "reviewedViews": 13,
-    "nativeExcelOpened": false
+    "reviewedViews": 14,
+    "recalculationChecks": 7,
+    "sourceUrls": 832,
+    "nativeExcelOpened": false,
+    "fullProfileCertifications": 0
   },
   "independentReadOnlyReview": {
     "agent": "extension_world",
@@ -96,7 +129,14 @@
       "docs/armax/README.md",
       "docs/armax/bible/BIBLE_ARMAX_INTEGREE.md",
       "docs/armax/bible/ASSOCIATIONS_CONTENU.md"
-    ]
+    ],
+    "originalGuideBlobsRechecked": {
+      "docs/armax/guides/Combat_Games_Guide_General_v1.0.txt": "4ec741bdd6f7e025f4025c6bc845524f12ea3f40",
+      "docs/armax/guides/Combat_Games_Extension_01_Tag_Taunts_Bonus_v1.0.txt": "824569d7e098deffc6183667a5dc11f68f5bd973",
+      "docs/armax/guides/Combat_Games_Extension_02_Slots_Verrouilles_Deblocages_Abonnes_v1.0.txt": "01a22d8f5a41ef1bdc24d03639237a04e4aaee3f"
+    },
+    "finalDocumentationProofLinksChecked": 30,
+    "currentRuntimeReview": "No blocking issue found in Mesh/input routing review; browser captures subsequently verified within stated scope."
   },
   "remaining": {
     "canonicalEntriesWithoutImage": 45,
@@ -104,7 +144,7 @@
     "canonicalOpenReferenceOrProductionGaps": 15,
     "originalBossWithoutImage": "nacre_boss_03",
     "fullGameImplemented": false,
-    "browserGameplayValidated": false,
+    "exhaustiveBrowserGameplayValidated": false,
     "fidelity1to1Certified": false
   }
 }
