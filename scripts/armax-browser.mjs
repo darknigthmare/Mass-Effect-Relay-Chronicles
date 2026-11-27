@@ -10,7 +10,7 @@ const check=name=>{report.checks.push(name);console.log(`PASS ${name}`);};
 const screenshot=async name=>{const path=`${out}/${name}.png`;await page.screenshot({path,fullPage:false});report.screenshots.push(path);};
 const button=name=>page.locator(`[data-armax="${name}"]`).first();
 const storage=()=>page.evaluate(()=>JSON.stringify(Object.entries(localStorage).sort()));
-const ready=async()=>{await page.waitForSelector('.armax-arena canvas');await page.waitForSelector('.armax-loading[hidden]');if(await button('resume').isVisible())await button('resume').click();};
+const ready=async()=>{await page.waitForSelector('.armax-arena canvas');await page.waitForSelector('.armax-loading[hidden]',{state:'attached'});if(await button('resume').isVisible())await button('resume').click();};
 try{
   if(process.env.ARMAX_SELF_HOST==='1'){
     const {createServer}=await import('vite');server=await createServer({server:{host:'127.0.0.1',port:Number(entry.port)||4187,strictPort:true}});await server.listen();
